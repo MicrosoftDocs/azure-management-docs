@@ -9,13 +9,13 @@
 
 # How To
 
-## [Create a service principal](../resource-group-create-service-principal-portal.md)
+## [Create a service principal](../azure-resource-manager/resource-group-create-service-principal-portal.md?toc=%2fazure%2fcontainer-registry%2ftoc.json)
 ## [Authenticate with a registry](container-registry-authentication.md)
 
 # Reference
 
-## [Azure CLI](/cli/azure/acr)
-## [REST API](/rest/api/containerregistry)
+## [Azure CLI 2.0 preview](/cli/azure/acr)
+## [REST](/rest/api/containerregistry)
 
 # Related
 
