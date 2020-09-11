@@ -1,13 +1,13 @@
 ---
 title: Built-in policy definitions for Azure Arc enabled Kubernetes
 description: Lists Azure Policy built-in policy definitions for Azure Arc enabled Kubernetes. These built-in policy definitions provide common approaches to managing your Azure resources.
-ms.date: 07/10/2020
+ms.date: 09/10/2020
 ms.service: azure-arc
 #ms.subservice: azure-arc-kubernetes coming soon
 author: mlearned
 ms.author: mlearned
-ms.topic: sample
-ms.custom: subject-policy-samples
+ms.topic: reference
+ms.custom: subject-policy-reference
 ---
 # Azure Policy built-in definitions for Azure Arc enabled Kubernetes
 
@@ -22,7 +22,7 @@ the link in the **Version** column to view the source on the
 
 ## Arc enabled Kubernetes
 
-[!INCLUDE [azure-policy-samples-rp-aks-kubernetes](../../../includes/policy/samples/byrp/microsoft.kubernetes.md)]
+[!INCLUDE [azure-policy-reference-rp-aks-kubernetes](../../../includes/policy/reference/byrp/microsoft.kubernetes.md)]
 
 ## Next steps
 
