@@ -26,6 +26,20 @@ To create the Azure Arc data Controller using Kubernetes tools you will need to 
 > [!NOTE]
 > Some of the steps to create the Azure Arc data controller that are indicated below require Kubernetes cluster administrator permissions.  If you are not a Kubernetes cluster administrator, you will need to have the Kubernetes cluster administrator perform these steps on your behalf.
 
+#### Cleanup from past installations
+
+If you installed Azure Arc data controller in the past on the same cluster and deleted the Azure Arc data controller using the `azdata arc dc delete` command, there may be some cluster level objects that would still need to be deleted. Run the following commands to delete Azure Arc data controller cluster level objects:
+
+```
+# Cleanup azure arc data service artifacts
+kubectl delete crd datacontrollers.arcdata.microsoft.com 
+kubectl delete sqlmanagedinstances.sql.arcdata.microsoft.com 
+kubectl delete postgresql-11s.arcdata.microsoft.com 
+kubectl delete postgresql-12s.arcdata.microsoft.com
+kubectl delete clusterroles azure-arc-data:cr-arc-metricsdc-reader
+kubectl delete clusterrolebindings azure-arc-data:crb-arc-metricsdc-reader
+```
+
 ## Overview
 
 Creating the Azure Arc data controller has the following high level steps:
@@ -253,12 +267,15 @@ kubectl describe po/<pod name> --namespace arc
 #kubectl describe po/control-2g7bl --namespace arc
 ```
 
+Azure Arc extension for Azure Data Studio provides a notebook to walk you through the experience of how to set up Azure Arc enabled Kubernetes and configure it to monitor a git repository that contains a sample SQL Managed Instance yaml file. When everything is connected, a new SQL Managed Instance will be deployed to your Kubernetes cluster.
+
+See the **Deploy a SQL Managed Instance using Azure Arc enabled Kubernetes and Flux** notebook in the Azure Arc extension for Azure Data Studio.
+
 ## Troubleshooting creation problems
 
 If you encounter any troubles with creation, please see the [troubleshooting guide](troubleshoot-guide.md).
 
 ## Next steps
 
-Azure Arc extension for Azure Data Studio provides a notebook to walk you through the experience of how to set up Azure Arc enabled Kubernetes and configure it to monitor a git repository that contains a sample SQL Managed Instance yaml file. When everything is connected, a new SQL Managed Instance will be deployed to your Kubernetes cluster.
-
-See the **Deploy a SQL Managed Instance using Azure Arc enabled Kubernetes and Flux** notebook in the Azure Arc extension for Azure Data Studio.
+- [Create a SQL managed instance using Kubernetes-native tools](./create-sql-managed-instance-using-kubernetes-native-tools.md)
+- [Create a PostgreSQL Hyperscale server group using Kubernetes-native tools](./create-postgresql-hyperscale-server-group-kubernetes-native-tools.md)
