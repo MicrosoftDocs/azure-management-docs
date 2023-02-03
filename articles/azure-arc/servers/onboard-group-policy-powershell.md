@@ -1,12 +1,12 @@
 ---
 title: Connect machines at scale using Group Policy with a PowerShell script
 description: In this article, you learn how to create a Group Policy Object to onboard Active Directory-joined Windows machines to Azure Arc-enabled servers.
-ms.date: 10/18/2022
+ms.date: 12/13/2022
 ms.topic: conceptual
 ms.custom: template-how-to
 ---
 
-# Create a Group Policy Object for onboarding with a PowerShell script
+# Connect machines at scale using Group Policy
 
 You can onboard Active Directory–joined Windows machines to Azure Arc-enabled servers at scale using Group Policy.
 
@@ -27,15 +27,15 @@ The Group Policy Object, which is used to onboard Azure Arc-enabled servers, req
     * Assign the Azure Connected Machine Onboarding role to your service principal and limit the scope of the role to the target Azure landing zone.
     * Make a note of the Service Principal Secret; you'll need this value later.
 
-1. Download and unzip the folder **ArcEnabledServersGroupPolicy_v1.0.1** from [https://aka.ms/gp-onboard](https://aka.ms/gp-onboard). This folder contains the ArcGPO project structure with the scripts `EnableAzureArc.ps1`, `DeployGPO.ps1`, and `AzureArcDeployment.psm1`. These assets will be used for onboarding the machine to Azure Arc-enabled servers.
-
-1. Execute the deployment script `DeployGPO.ps1`, modifying the run parameters for the DomainFQDN, ReportServerFQDN, ArcRemoteShare, Service Principal secret, Service Principal Client Id, Subscription Id, Resource Group, Region, Tenant, and AgentProxy (if applicable):
-
-   ```
-   .\DeployGPO.ps1 -DomainFQDN contoso.com -ReportServerFQDN Server.contoso.com -ArcRemoteShare AzureArcOnBoard -ServicePrincipalSecret $ServicePrincipalSecret -ServicePrincipalClientId $ServicePrincipalClientId -SubscriptionId $SubscriptionId --ResourceGroup $ResourceGroup -Location $Location -TenantId $TenantId [-AgentProxy $AgentProxy]
-    ```
+1. Download and unzip the folder **ArcEnabledServersGroupPolicy_v1.0.1** from [https://github.com/Azure/ArcEnabledServersGroupPolicy/releases/download/1.0.2/ArcEnabledServersGroupPolicy_v1.0.2.zip](https://github.com/Azure/ArcEnabledServersGroupPolicy/releases/download/1.0.2/ArcEnabledServersGroupPolicy_v1.0.2.zip). This folder contains the ArcGPO project structure with the scripts `EnableAzureArc.ps1`, `DeployGPO.ps1`, and `AzureArcDeployment.psm1`. These assets will be used for onboarding the machine to Azure Arc-enabled servers.
 
 1. Download the latest version of the [Azure Connected Machine agent Windows Installer package](https://aka.ms/AzureConnectedMachineAgent) from the Microsoft Download Center and save it to the remote share.
+
+1. Execute the deployment script `DeployGPO.ps1`, modifying the run parameters for the DomainFQDN, ReportServerFQDN, ArcRemoteShare, Service Principal secret, Service Principal Client ID, Subscription ID, Resource Group, Region, Tenant, and AgentProxy (if applicable):
+
+   ```
+   .\DeployGPO.ps1 -DomainFQDN contoso.com -ReportServerFQDN Server.contoso.com -ArcRemoteShare AzureArcOnBoard -ServicePrincipalSecret $ServicePrincipalSecret -ServicePrincipalClientId $ServicePrincipalClientId -SubscriptionId $SubscriptionId -ResourceGroup $ResourceGroup -Location $Location -TenantId $TenantId [-AgentProxy $AgentProxy]
+    ```
 
 ## Apply the Group Policy Object
 
