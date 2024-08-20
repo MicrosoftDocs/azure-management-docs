@@ -1,5 +1,10 @@
 {
-  "Docsets": [],
+  "Docsets": [
+    {
+      "DocsetName": "azure-management",
+      "BuildSourceFolder": "."
+    }
+  ],
   "MetadataDelimiter": "\"",
   "Exclude": [],
   "PreloadTOCFiles": [],
