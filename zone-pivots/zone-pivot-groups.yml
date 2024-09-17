@@ -38,3 +38,26 @@ groups:
     title: Bicep
   - id: terraform
     title: Terraform
+# Owner: tejaswikolli-web
+- id: container-registry-zones
+  title: Container registry ide
+  prompt: Choose a scope option
+  pivots:
+  - id: development-environment-azure-portal
+    title: Portal
+  - id: development-environment-azure-cli
+    title: CLI
+- id: programming-languages-set-fivedevlangs
+  title: Programming languages
+  prompt: Choose a programming language
+  pivots:
+  - id: programming-language-csharp
+    title: C#
+  - id: programming-language-java
+    title: Java
+  - id: programming-language-javascript
+    title: JavaScript
+  - id: programming-language-python
+    title: Python
+  - id: programming-language-go
+    title: Go
