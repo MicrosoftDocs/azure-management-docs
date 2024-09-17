@@ -10,11 +10,11 @@ ms.date: 10/31/2023
 
 # Using connected registry with Azure IoT Edge
 
-In this article, you learn about using an Azure [connected registry](intro-connected-registry.md) in hierarchical [IoT Edge](../iot-edge/about-iot-edge.md) scenarios. The connected container registry can be deployed as an IoT Edge module and play an essential role in serving container images required by the devices in the hierarchy.
+In this article, you learn about using an Azure [connected registry](intro-connected-registry.md) in hierarchical [IoT Edge](/azure/iot-edge/about-iot-edge) scenarios. The connected container registry can be deployed as an IoT Edge module and play an essential role in serving container images required by the devices in the hierarchy.
 
 ## What is a hierarchical IoT Edge deployment?
 
-Azure IoT Edge allows you to deploy IoT Edge devices across networks organized in hierarchical layers. Each layer in a hierarchy is a [gateway device](../iot-edge/iot-edge-as-gateway.md) that handles messages and requests from devices in the layer beneath it. You can structure a hierarchy of devices so that only the top layer has connectivity to the cloud, and the lower layers can only communicate with adjacent north and south layers. This network layering is the foundation of most industrial networks, which follow the [ISA-95 standard](https://en.wikipedia.org/wiki/ANSI/ISA-95).
+Azure IoT Edge allows you to deploy IoT Edge devices across networks organized in hierarchical layers. Each layer in a hierarchy is a [gateway device](/azure/iot-edge/iot-edge-as-gateway) that handles messages and requests from devices in the layer beneath it. You can structure a hierarchy of devices so that only the top layer has connectivity to the cloud, and the lower layers can only communicate with adjacent north and south layers. This network layering is the foundation of most industrial networks, which follow the [ISA-95 standard](https://en.wikipedia.org/wiki/ANSI/ISA-95).
 
 To learn how to create a hierarchy of IoT Edge devices, see [Tutorial: Create a hierarchy of IoT Edge devices][tutorial-nested-iot-edge]
 
@@ -62,5 +62,5 @@ In this overview, you learned about the use of the connected registry in hierarc
 [quickstart-connected-registry-cli]:quickstart-connected-registry-cli.md
 [quickstart-connected-registry-portal]:quickstart-connected-registry-portal.md
 [quickstart-deploy-connected-registry-iot-edge-cli]:quickstart-deploy-connected-registry-iot-edge-cli.md
-[tutorial-nested-iot-edge]:../iot-edge/tutorial-nested-iot-edge.md
+[tutorial-nested-iot-edge]:/azure/iot-edge/tutorial-nested-iot-edge
 [tutorial-deploy-connected-registry-nested-iot-edge-cli]: tutorial-deploy-connected-registry-nested-iot-edge-cli.md

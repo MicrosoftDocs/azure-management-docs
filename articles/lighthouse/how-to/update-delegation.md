@@ -41,10 +41,10 @@ If you are updating the offer to adjust authorizations only, and keeping the sam
 
 :::image type="content" source="../media/update-delegation.jpg" alt-text="Diagram showing when to change mspOfferName and remove a previous delegation.":::
 
-Removing access to the delegation can be done by any user in the managing tenant who was granted the [Managed Services Registration Assignment Delete Role](../../role-based-access-control/built-in-roles.md#managed-services-registration-assignment-delete-role) in the original delegation. If no user in your managing tenant has this role, you can ask the customer to [remove access to the offer in the Azure portal](view-manage-service-providers.md#remove-service-provider-offers).
+Removing access to the delegation can be done by any user in the managing tenant who was granted the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) in the original delegation. If no user in your managing tenant has this role, you can ask the customer to [remove access to the offer in the Azure portal](view-manage-service-providers.md#remove-service-provider-offers).
 
 > [!TIP]
-> If you have removed the previous delegation but are unable to deploy the new ARM template, you may need to [remove the registration definition completely](/powershell/module/az.managedservices/remove-azmanagedservicesdefinition). This can be done by any user with a role that has the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](../../role-based-access-control/built-in-roles.md#owner), in the customer tenant.  
+> If you have removed the previous delegation but are unable to deploy the new ARM template, you may need to [remove the registration definition completely](/powershell/module/az.managedservices/remove-azmanagedservicesdefinition). This can be done by any user with a role that has the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), in the customer tenant.  
 
 ## Deploy the ARM template
 
@@ -54,7 +54,7 @@ After the deployment has been completed, [confirm that it was successful](onboar
 
 ## Updating Managed Service offers
 
-If you onboarded your customer through a Managed Service offer published to Azure Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](../../marketplace/update-existing-offer.md) with updates to the [authorizations](../../marketplace/create-managed-service-offer-plans.md#authorizations) in the plan for that customer. The customer will then be able to [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
+If you onboarded your customer through a Managed Service offer published to Azure Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](/azure/marketplace/update-existing-offer) with updates to the [authorizations](/azure/marketplace/create-managed-service-offer-plans#authorizations) in the plan for that customer. The customer will then be able to [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
 
 If you want to change the managing tenant, you'll need to [create and publish a new Managed Service offer](publish-managed-services-offers.md) for the customer to accept.
 

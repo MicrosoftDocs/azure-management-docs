@@ -21,7 +21,7 @@ Arc-enabled VMware vSphere allows you to:
 
 - Perform various virtual machine (VM) operations directly from Azure, such as create, resize, delete, and power cycle operations such as start/stop/restart on VMware VMs consistently with Azure. 
 
-- Empower developers and application teams to self-serve VM operations on-demand using [Azure role-based access control](../../role-based-access-control/overview.md) (RBAC).
+- Empower developers and application teams to self-serve VM operations on-demand using [Azure role-based access control](/azure/role-based-access-control/overview) (RBAC).
 
 - Install the Azure connected machine agent at scale on VMware VMs to [govern, protect, configure, and monitor](../servers/overview.md#supported-cloud-operations) them.
 
@@ -75,7 +75,7 @@ Azure Arc-enabled VMware vSphere currently works with vCenter Server versions 7 
 > [!NOTE]
 > Azure Arc-enabled VMware vSphere supports vCenters with a maximum of 9500 VMs. If your vCenter has more than 9500 VMs, we don't recommend you to use Arc-enabled VMware vSphere with it at this point.
 
-If you're trying to enable Arc for Azure VMware Solution (AVS) private cloud, see [Deploy Arc-enabled VMware vSphere for Azure VMware Solution private cloud](../../azure-vmware/deploy-arc-for-azure-vmware-solution.md).
+If you're trying to enable Arc for Azure VMware Solution (AVS) private cloud, see [Deploy Arc-enabled VMware vSphere for Azure VMware Solution private cloud](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution).
 
 ## Supported regions
 

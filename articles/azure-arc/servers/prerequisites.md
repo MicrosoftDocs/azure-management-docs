@@ -110,7 +110,7 @@ For example, a computer running Windows 11 that's responsible for digital signag
 
 Microsoft doesn't recommend running Azure Arc on short-lived (ephemeral) servers or virtual desktop infrastructure (VDI) VMs. Azure Arc is designed for long-term management of servers and isn't optimized for scenarios where you are regularly creating and deleting servers. For example, Azure Arc doesn't know if the agent is offline due to planned system maintenance or if the VM was deleted, so it won't automatically clean up server resources that stopped sending heartbeats. As a result, you could encounter a conflict if you re-create the VM with the same name and there's an existing Azure Arc resource with the same name.
 
-[Azure Virtual Desktop on Azure Stack HCI](../../virtual-desktop/azure-stack-hci-overview.md) doesn't use short-lived VMs and supports running Azure Arc in the desktop VMs.
+[Azure Virtual Desktop on Azure Stack HCI](/azure/virtual-desktop/azure-stack-hci-overview) doesn't use short-lived VMs and supports running Azure Arc in the desktop VMs.
 
 ## Software requirements
 
@@ -141,20 +141,20 @@ Check if any of `NT SERVICE\ALL SERVICES`, `NT SERVICE\himds`, or `S-1-5-80-4215
 
 You'll need the following Azure built-in roles for different aspects of managing connected machines:
 
-* To onboard machines, you must have the [Azure Connected Machine Onboarding](../../role-based-access-control/built-in-roles.md#azure-connected-machine-onboarding) or [Contributor](../../role-based-access-control/built-in-roles.md#contributor) role for the resource group where you're managing the servers.
-* To read, modify, and delete a machine, you must have the [Azure Connected Machine Resource Administrator](../../role-based-access-control/built-in-roles.md#azure-connected-machine-resource-administrator) role for the resource group.
-* To select a resource group from the drop-down list when using the **Generate script** method, you'll also need the [Reader](../../role-based-access-control/built-in-roles.md#reader) role for that resource group (or another role that includes **Reader** access).
+* To onboard machines, you must have the [Azure Connected Machine Onboarding](/azure/role-based-access-control/built-in-roles#azure-connected-machine-onboarding) or [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role for the resource group where you're managing the servers.
+* To read, modify, and delete a machine, you must have the [Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator) role for the resource group.
+* To select a resource group from the drop-down list when using the **Generate script** method, you'll also need the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for that resource group (or another role that includes **Reader** access).
 * When associating a Private Link Scope with an Arc Server, you must have Microsoft.HybridCompute/privateLinkScopes/read permission on the Private Link Scope Resource.
 
 ## Azure subscription and service limits
 
 There are no limits to the number of Azure Arc-enabled servers you can register in any single resource group, subscription, or tenant.
 
-Each Azure Arc-enabled server is associated with a Microsoft Entra object and counts against your directory quota. See [Microsoft Entra service limits and restrictions](../../active-directory/enterprise-users/directory-service-limits-restrictions.md) for information about the maximum number of objects you can have in a Microsoft Entra directory.
+Each Azure Arc-enabled server is associated with a Microsoft Entra object and counts against your directory quota. See [Microsoft Entra service limits and restrictions](/azure/active-directory/enterprise-users/directory-service-limits-restrictions) for information about the maximum number of objects you can have in a Microsoft Entra directory.
 
 ## Azure resource providers
 
-To use Azure Arc-enabled servers, the following [Azure resource providers](../../azure-resource-manager/management/resource-providers-and-types.md) must be registered in your subscription:
+To use Azure Arc-enabled servers, the following [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) must be registered in your subscription:
 
 * **Microsoft.HybridCompute**
 * **Microsoft.GuestConfiguration**
@@ -185,7 +185,7 @@ az provider register --namespace 'Microsoft.HybridConnectivity'
 az provider register --namespace 'Microsoft.AzureArcData'
 ```
 
-You can also register the resource providers in the [Azure portal](../../azure-resource-manager/management/resource-providers-and-types.md#azure-portal).
+You can also register the resource providers in the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal).
 
 ## Next steps
 

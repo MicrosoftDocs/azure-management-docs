@@ -70,7 +70,7 @@ While Kubernetes RBAC works only on Kubernetes resources within your cluster, Az
 
 ### Azure RBAC authorization
 
-[Azure role-based access control (RBAC)](../../role-based-access-control/overview.md) is an authorization system built on Azure Resource Manager and Microsoft Entra ID that provides fine-grained access management of Azure resources. With Azure RBAC, role definitions outline the permissions to be applied. You assign these roles to users or groups via a role assignment for a particular scope. The scope can be across the entire subscription or limited to a resource group or to an individual resource such as a Kubernetes cluster.
+[Azure role-based access control (RBAC)](/azure/role-based-access-control/overview) is an authorization system built on Azure Resource Manager and Microsoft Entra ID that provides fine-grained access management of Azure resources. With Azure RBAC, role definitions outline the permissions to be applied. You assign these roles to users or groups via a role assignment for a particular scope. The scope can be across the entire subscription or limited to a resource group or to an individual resource such as a Kubernetes cluster.
 
 If you're using Microsoft Entra authentication without cluster connect, then Azure RBAC authorization is your only option for authorization.
 

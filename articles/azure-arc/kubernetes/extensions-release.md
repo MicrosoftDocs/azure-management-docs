@@ -23,7 +23,7 @@ For more information, see [Azure Monitor Container Insights for Azure Arc-enable
 
 Azure Policy extends [Gatekeeper](https://github.com/open-policy-agent/gatekeeper), an admission controller webhook for [Open Policy Agent](https://www.openpolicyagent.org/) (OPA), to apply at-scale enforcements and safeguards on your clusters in a centralized, consistent manner.
 
-For more information, see [Understand Azure Policy for Kubernetes clusters](../../governance/policy/concepts/policy-for-kubernetes.md?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
+For more information, see [Understand Azure Policy for Kubernetes clusters](/azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
 
 ## Azure Key Vault Secrets Provider
 
@@ -67,10 +67,10 @@ For more information, see [Azure Arc-enabled Data Services](../data/create-data-
 
 Allows you to provision an App Service Kubernetes environment on top of Azure Arc-enabled Kubernetes clusters.
 
-For more information, see [App Service, Functions, and Logic Apps on Azure Arc (Preview)](../../app-service/overview-arc-integration.md).
+For more information, see [App Service, Functions, and Logic Apps on Azure Arc (Preview)](/azure/app-service/overview-arc-integration).
 
 > [!IMPORTANT]
-> App Service on Azure Arc is currently in public preview. Review the [public preview limitations for App Service Kubernetes environments](../../app-service/overview-arc-integration.md#public-preview-limitations) before deploying this extension.
+> App Service on Azure Arc is currently in public preview. Review the [public preview limitations for App Service Kubernetes environments](/azure/app-service/overview-arc-integration#public-preview-limitations) before deploying this extension.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Azure Event Grid on Kubernetes
@@ -79,7 +79,7 @@ For more information, see [App Service, Functions, and Logic Apps on Azure Arc (
 
 Event Grid is an event broker used to integrate workloads that use event-driven architectures. This extension lets you create and manage Event Grid resources such as topics and event subscriptions on top of Azure Arc-enabled Kubernetes clusters.
 
-For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](../../event-grid/kubernetes/overview.md).
+For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](/azure/event-grid/kubernetes/overview).
 
 > [!IMPORTANT]
 > Event Grid on Kubernetes with Azure Arc is currently in public preview.
@@ -91,7 +91,7 @@ For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](..
 
 With the integration between Azure API Management and Azure Arc on Kubernetes, you can deploy the API Management gateway component as an extension in an Azure Arc-enabled Kubernetes cluster. This extension is [namespace-scoped](conceptual-extensions.md#extension-scope), not cluster-scoped.
 
-For more information, see [Deploy an Azure API Management gateway on Azure Arc (preview)](../../api-management/how-to-deploy-self-hosted-gateway-azure-arc.md).
+For more information, see [Deploy an Azure API Management gateway on Azure Arc (preview)](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc).
 
 > [!IMPORTANT]
 > API Management self-hosted gateway on Azure Arc is currently in public preview.

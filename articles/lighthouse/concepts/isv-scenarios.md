@@ -17,7 +17,7 @@ For more information, see [Publish a Managed Service offer to Azure Marketplace]
 
 ## Using Azure Lighthouse with Azure managed applications
 
-[Azure managed applications](../../azure-resource-manager/managed-applications/overview.md) are another way that ISVs can provide services to their customers. You can use Azure Lighthouse along with your Azure managed applications to enable enhanced scenarios.
+[Azure managed applications](/azure/azure-resource-manager/managed-applications/overview) are another way that ISVs can provide services to their customers. You can use Azure Lighthouse along with your Azure managed applications to enable enhanced scenarios.
 
 For more information, see [Azure Lighthouse and Azure managed applications](managed-applications.md).
 

@@ -65,7 +65,7 @@ built-in policy definition, or one of the other policy definitions to apply Flux
     * When creating Flux configurations, you must provide a value for one (and only one) of these parameters: `repositoryRefBranch`, `repositoryRefTag`, `repositoryRefSemver`, `repositoryRefCommit`.
 1. Select **Next** to open the **Remediation** task.
 1. Enable **Create a remediation task**.
-1. Verify that **Create a Managed Identity** is checked, and that the identity has **Contributor** permissions. For more information, see [Quickstart: Create a policy assignment to identify non-compliant resources](../../governance/policy/assign-policy-portal.md) and [Remediate non-compliant resources with Azure Policy](../../governance/policy/how-to/remediate-resources.md).
+1. Verify that **Create a Managed Identity** is checked, and that the identity has **Contributor** permissions. For more information, see [Quickstart: Create a policy assignment to identify non-compliant resources](/azure/governance/policy/assign-policy-portal) and [Remediate non-compliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources).
 
 1. Select **Review + create**, then select **Create**.
 
@@ -88,7 +88,7 @@ For existing clusters, you might need to manually run a remediation task. This t
 
 The built-in policies cover the main scenarios for using GitOps with Flux v2 in your Kubernetes clusters. However, due to limitations on the number of parameters allowed in Azure Policy assignments (max of 20), not all parameters are present in the built-in policies. Also, to fit within the 20-parameter limit, only a single kustomization can be created with the built-in policies.  
 
-If you have a scenario that differs from the built-in policies, you can overcome the limitations by creating [custom policies](../../governance/policy/tutorials/create-custom-policy-definition.md) using the built-in policies as templates. You can create custom policies that contain only the parameters you need, and hard-code the rest, therefore working around the 20-parameter limit.
+If you have a scenario that differs from the built-in policies, you can overcome the limitations by creating [custom policies](/azure/governance/policy/tutorials/create-custom-policy-definition) using the built-in policies as templates. You can create custom policies that contain only the parameters you need, and hard-code the rest, therefore working around the 20-parameter limit.
 
 ## Next steps
 

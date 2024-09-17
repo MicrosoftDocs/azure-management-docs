@@ -223,7 +223,7 @@ If your admin has enabled an inactivity timeout policy, you can still choose you
 
 ### Change the directory timeout setting (admin)
 
-Users with the [Global Administrator role](../active-directory/roles/permissions-reference.md#global-administrator) can enforce the maximum idle time before a session is signed out. This inactivity timeout setting applies to all users in the Azure tenant. Once it's set, all new sessions will comply with the new timeout settings. The change won't apply to signed-in users until their next sessions.
+Users with the [Global Administrator role](/azure/active-directory/roles/permissions-reference#global-administrator) can enforce the maximum idle time before a session is signed out. This inactivity timeout setting applies to all users in the Azure tenant. Once it's set, all new sessions will comply with the new timeout settings. The change won't apply to signed-in users until their next sessions.
 
 Global Administrators can't specify different settings for individual users in the tenant. However, each user has the option to set a shorter timeout interval for themselves. Users can't change their individual timeout setting to a longer interval than the current option set by a Global Administrator.
 

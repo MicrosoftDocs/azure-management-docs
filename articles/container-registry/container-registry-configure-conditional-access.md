@@ -14,12 +14,12 @@ Azure Container Registry (ACR) gives you the option to create and configure the 
 
 The Conditional Access policy applies after the first-factor authentication to the Azure Container Registry is complete. The purpose of Conditional Access for ACR is for user authentication only. The policy enables the user to choose the controls and further blocks or grants access based on the policy decisions.
 
-The [Conditional Access policy](../active-directory/conditional-access/overview.md) is designed to enforce strong authentication. The policy enables the security to meet the organizations compliance requirements and keep the data and user accounts safe.
+The [Conditional Access policy](/azure/active-directory/conditional-access/overview) is designed to enforce strong authentication. The policy enables the security to meet the organizations compliance requirements and keep the data and user accounts safe.
 
 >[!IMPORTANT]
 > To configure Conditional Access policy for the registry, you must disable [`authentication-as-arm`](container-registry-disable-authentication-as-arm.md) for all the registries within the desired tenant. 
 
-Learn more about [Conditional Access policy](../active-directory/conditional-access/overview.md), the [conditions](../active-directory/conditional-access/overview.md#common-signals) you'll take it into consideration to make [policy decisions.](../active-directory/conditional-access/overview.md#common-decisions)
+Learn more about [Conditional Access policy](/azure/active-directory/conditional-access/overview), the [conditions](/azure/active-directory/conditional-access/overview#common-signals) you'll take it into consideration to make [policy decisions.](/azure/active-directory/conditional-access/overview#common-decisions)
 
 In this tutorial, you learn how to:
 
@@ -75,7 +75,7 @@ Create a Conditional Access policy and assign your test group of users as follow
    1. Under **Grant**, filter and choose from options to enforce grant access or block access, during a sign-in event to the Azure portal. In this case grant access with *Require multifactor authentication*, then choose **Select**.
 
       >[!TIP]
-      > To configure and grant multi-factor authentication, see [configure and conditions for multi-factor authentication.](../active-directory/authentication/tutorial-enable-azure-mfa.md#configure-the-conditions-for-multi-factor-authentication)
+      > To configure and grant multi-factor authentication, see [configure and conditions for multi-factor authentication.](/azure/active-directory/authentication/tutorial-enable-azure-mfa#configure-the-conditions-for-multi-factor-authentication)
 
    1. Under **Session**, filter and choose from options to enable any control on session level experience of the cloud apps.
 
@@ -96,6 +96,6 @@ Create a Conditional Access policy and assign your test group of users as follow
 ## Next steps 
 
 > [!div class="nextstepaction"]
-> [Azure Policy definitions](../governance/policy/concepts/definition-structure.md) and [effects](../governance/policy/concepts/effects.md).
->[Common access concerns that Conditional Access policies can help with](../active-directory/conditional-access/concept-conditional-access-policy-common.md).
-> [Conditional Access policy components](../active-directory/conditional-access/concept-conditional-access-policies.md).
+> [Azure Policy definitions](/azure/governance/policy/concepts/definition-structure) and [effects](/azure/governance/policy/concepts/effects).
+>[Common access concerns that Conditional Access policies can help with](/azure/active-directory/conditional-access/concept-conditional-access-policy-common).
+> [Conditional Access policy components](/azure/active-directory/conditional-access/concept-conditional-access-policies).

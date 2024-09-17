@@ -93,7 +93,7 @@ Related links:
 * [Login with managed identity](container-registry-authentication-managed-identity.md)
 * [Login with repository-scoped token](container-registry-repository-scoped-permissions.md)
 * [Login with admin account](container-registry-authentication.md#admin-account)
-* [Microsoft Entra authentication and authorization error codes](../active-directory/develop/reference-aadsts-error-codes.md)
+* [Microsoft Entra authentication and authorization error codes](/azure/active-directory/develop/reference-aadsts-error-codes)
 * [az acr login](/cli/azure/acr#az-acr-login) reference
 
 ### Confirm credentials are authorized to access registry
@@ -110,10 +110,10 @@ Related links:
 
 * [Azure roles and permissions - Azure Container Registry](container-registry-roles.md)
 * [Login with repository-scoped token](container-registry-repository-scoped-permissions.md)
-* [Add or remove Azure role assignments using the Azure portal](../role-based-access-control/role-assignments-portal.yml)
-* [Use the portal to create a Microsoft Entra application and service principal that can access resources](../active-directory/develop/howto-create-service-principal-portal.md)
-* [Create a new application secret](../active-directory/develop/howto-create-service-principal-portal.md#option-3-create-a-new-client-secret)
-* [Microsoft Entra authentication and authorization codes](../active-directory/develop/reference-aadsts-error-codes.md)
+* [Add or remove Azure role assignments using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
+* [Use the portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal)
+* [Create a new application secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret)
+* [Microsoft Entra authentication and authorization codes](/azure/active-directory/develop/reference-aadsts-error-codes)
 
 ### Check that credentials aren't expired
 

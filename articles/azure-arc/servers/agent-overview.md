@@ -23,7 +23,7 @@ The Azure Connected Machine agent package contains several logical components bu
 
 * The guest configuration agent provides functionality such as assessing whether the machine complies with required policies and enforcing compliance.
 
-    Note the following behavior with Azure Policy [guest configuration](../../governance/machine-configuration/overview.md) for a disconnected machine:
+    Note the following behavior with Azure Policy [guest configuration](/azure/governance/machine-configuration/overview) for a disconnected machine:
 
   * An Azure Policy assignment that targets disconnected machines is unaffected.
   * Guest assignment is stored locally for 14 days. Within the 14-day period, if the Connected Machine agent reconnects to the service, policy assignments are reapplied.

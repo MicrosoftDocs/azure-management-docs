@@ -43,8 +43,8 @@ Results can be easily visualized and exported to other reporting solutions. More
 
 ## Additional resources
 
-* [What is Azure Resource Graph?](../../governance/resource-graph/overview.md)
+* [What is Azure Resource Graph?](/azure/governance/resource-graph/overview)
 
 * [Azure Resource Graph sample queries for Azure Arc-enabled servers](resource-graph-samples.md)
 
-* [Use tags to organize your Azure resources and management hierarchy](../../azure-resource-manager/management/tag-resources.md?tabs=json)
+* [Use tags to organize your Azure resources and management hierarchy](/azure/azure-resource-manager/management/tag-resources?tabs=json)

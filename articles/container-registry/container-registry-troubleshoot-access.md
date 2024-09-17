@@ -95,24 +95,24 @@ Review NSG rules and service tags used to limit traffic from other resources in 
 
 If a service endpoint to the registry is configured, confirm that a network rule is added to the registry that allows access from that network subnet. The service endpoint only supports access from virtual machines and AKS clusters in the network.
 
-If you want to restrict registry access using a virtual network in a different Azure subscription, ensure that you register the `Microsoft.ContainerRegistry` resource provider in that subscription. [Register the resource provider](../azure-resource-manager/management/resource-providers-and-types.md) for Azure Container Registry using the Azure portal, Azure CLI, or other Azure tools.
+If you want to restrict registry access using a virtual network in a different Azure subscription, ensure that you register the `Microsoft.ContainerRegistry` resource provider in that subscription. [Register the resource provider](/azure/azure-resource-manager/management/resource-providers-and-types) for Azure Container Registry using the Azure portal, Azure CLI, or other Azure tools.
 
 If Azure Firewall or a similar solution is configured in the network, check that egress traffic from other resources such as an AKS cluster is enabled to reach the registry endpoints.
 
 Related links:
 
 * [Connect privately to an Azure container registry using Azure Private Link](container-registry-private-link.md)
-* [Troubleshoot Azure Private Endpoint connectivity problems](../private-link/troubleshoot-private-endpoint-connectivity.md)
+* [Troubleshoot Azure Private Endpoint connectivity problems](/azure/private-link/troubleshoot-private-endpoint-connectivity)
 * [Restrict access to a container registry using a service endpoint in an Azure virtual network](container-registry-vnet.md)
 * [Required outbound network rules and FQDNs for AKS clusters](/azure/aks/outbound-rules-control-egress#required-outbound-network-rules-and-fqdns-for-aks-clusters)
 * [Kubernetes: Debugging DNS resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/)
-* [Virtual network service tags](../virtual-network/service-tags-overview.md)
+* [Virtual network service tags](/azure/virtual-network/service-tags-overview)
 
 ### Configure service access
 
 Currently, access to a container registry with network restrictions isn't allowed from several Azure services:
 
-* Microsoft Defender for Cloud can't perform [image vulnerability scanning](../security-center/defender-for-container-registries-introduction.md?bc=%2fazure%2fcontainer-registry%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcontainer-registry%2ftoc.json) in a registry that restricts access to private endpoints, selected subnets, or IP addresses. 
+* Microsoft Defender for Cloud can't perform [image vulnerability scanning](/azure/security-center/defender-for-container-registries-introduction?bc=%2fazure%2fcontainer-registry%2fbreadcrumb%2ftoc.json&toc=%2fazure%2fcontainer-registry%2ftoc.json) in a registry that restricts access to private endpoints, selected subnets, or IP addresses. 
 * Resources of certain Azure services are unable to access a container registry with network restrictions, including Azure App Service and  Azure Container Instances.
 
 If access or integration of these Azure services with your container registry is required, remove the network restriction. For example, remove the registry's private endpoints, or remove or modify the registry's public access rules.
@@ -121,7 +121,7 @@ Starting January 2021, you can configure a network-restricted registry to [allow
 
 Related links:
 
-* [Azure Container Registry image scanning by Microsoft Defender for container registries](../security-center/defender-for-container-registries-introduction.md)
+* [Azure Container Registry image scanning by Microsoft Defender for container registries](/azure/security-center/defender-for-container-registries-introduction)
 * Provide [feedback](https://feedback.azure.com/d365community/idea/cbe6351a-0525-ec11-b6e6-000d3a4f07b8)
 * [Allow trusted services to securely access a network-restricted container registry](allow-access-trusted-services.md)
 

@@ -31,5 +31,5 @@ For more information, see [Create alerts for quotas](how-to-guide-monitoring-ale
 
 - Learn [how to create quota alerts](how-to-guide-monitoring-alerting.md).
 - Learn more about [alerts](/azure/azure-monitor/alerts/alerts-overview)
-- Learn about [Azure Resource Graph](../governance/resource-graph/overview.md)
+- Learn about [Azure Resource Graph](/azure/governance/resource-graph/overview)
 

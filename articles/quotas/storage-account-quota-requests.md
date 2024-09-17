@@ -53,7 +53,7 @@ Follow these steps to request a storage account quota increase from Azure Home. 
 
 ## See also
 
-- [Scalability and performance targets for standard storage accounts](../storage/common/scalability-targets-standard-account.md)
-- [Scalability targets for premium block blob storage accounts](../storage/blobs/scalability-targets-premium-block-blobs.md)
-- [Scalability and performance targets for premium page blob storage accounts](../storage/blobs/scalability-targets-premium-page-blobs.md)
-- [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md)
+- [Scalability and performance targets for standard storage accounts](/azure/storage/common/scalability-targets-standard-account)
+- [Scalability targets for premium block blob storage accounts](/azure/storage/blobs/scalability-targets-premium-block-blobs)
+- [Scalability and performance targets for premium page blob storage accounts](/azure/storage/blobs/scalability-targets-premium-page-blobs)
+- [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits)

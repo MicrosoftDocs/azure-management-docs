@@ -10,14 +10,14 @@ ms.custom: devx-track-azurepowershell
 
 As a service provider, you may have onboarded multiple customer tenants to [Azure Lighthouse](../overview.md). Azure Lighthouse allows service providers to perform operations at scale across several tenants at once, making management tasks more efficient.
 
-This topic explains how to use [Azure Policy](../../governance/policy/index.yml) to deploy a policy definition and policy assignment across multiple tenants using PowerShell commands. In this example, the policy definition ensures that storage accounts are secured by allowing only HTTPS traffic. You can use the same general process for any policy that you want to deploy.
+This topic explains how to use [Azure Policy](/azure/governance/policy/) to deploy a policy definition and policy assignment across multiple tenants using PowerShell commands. In this example, the policy definition ensures that storage accounts are secured by allowing only HTTPS traffic. You can use the same general process for any policy that you want to deploy.
 
 > [!TIP]
 > Though we refer to service providers and customers in this topic, [enterprises managing multiple tenants](../concepts/enterprise.md) can use the same processes.
 
 ## Use Azure Resource Graph to query across customer tenants
 
-You can use [Azure Resource Graph](../../governance/resource-graph/overview.md) to query across all subscriptions in customer tenants that you manage. In this example, we'll identify any storage accounts in these subscriptions that don't currently require HTTPS traffic.  
+You can use [Azure Resource Graph](/azure/governance/resource-graph/overview) to query across all subscriptions in customer tenants that you manage. In this example, we'll identify any storage accounts in these subscriptions that don't currently require HTTPS traffic.  
 
 ```powershell
 $MspTenant = "insert your managing tenantId here"
@@ -48,7 +48,7 @@ foreach ($ManagedSub in $ManagedSubscriptions)
 ```
 
 > [!NOTE]
-> While you can deploy policies across multiple tenants, currently you can't [view compliance details](../../governance/policy/how-to/determine-non-compliance.md#compliance-details) for non-compliant resources in these tenants.
+> While you can deploy policies across multiple tenants, currently you can't [view compliance details](/azure/governance/policy/how-to/determine-non-compliance#compliance-details) for non-compliant resources in these tenants.
 
 ## Validate the policy deployment
 
@@ -92,6 +92,6 @@ foreach ($ManagedSub in $ManagedSubscriptions)
 
 ## Next steps
 
-- Learn about [Azure Policy](../../governance/policy/index.yml).
+- Learn about [Azure Policy](/azure/governance/policy/).
 - Learn about [cross-tenant management experiences](../concepts/cross-tenant-management-experience.md).
 - Learn how to [deploy a policy that can be remediated](deploy-policy-remediation.md) within a delegated subscription.

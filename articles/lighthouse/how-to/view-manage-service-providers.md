@@ -12,9 +12,9 @@ The **Service providers** page in the [Azure portal](https://portal.azure.com) g
 To access the **Service providers** page in the Azure portal, enter "Service providers" in the search box near the top of the Azure portal. You can also select **All services**, then search for **Azure Lighthouse**, or search for "Azure Lighthouse". From the Azure Lighthouse page, select **View service provider offers**.
 
 > [!NOTE]
-> To view the **Service providers** page, a user in the customer's tenant must have the [Reader built-in role](../../role-based-access-control/built-in-roles.md#reader) (or another built-in role which includes Reader access).
+> To view the **Service providers** page, a user in the customer's tenant must have the [Reader built-in role](/azure/role-based-access-control/built-in-roles#reader) (or another built-in role which includes Reader access).
 >
-> To add or update offers, delegate resources, and remove offers, the user must have a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](../../role-based-access-control/built-in-roles.md#owner).
+> To add or update offers, delegate resources, and remove offers, the user must have a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner).
 
 Keep in mind that the **Service providers** page only shows information about the service providers that have access to the customer's subscriptions or resource groups through Azure Lighthouse. It doesn't show any information about additional service providers who don't use Azure Lighthouse.
 
@@ -70,19 +70,19 @@ Delegations represent an association of specific customer resources (subscriptio
 Filters at the top of the page let you sort and group your delegation information. You can also filter by specific service providers, offers, or keywords.
 
 > [!NOTE]
-> When [viewing role assignments for the delegated scope in the Azure portal](../../role-based-access-control/role-assignments-list-portal.yml#list-role-assignments-at-a-scope) or via APIs, customers won't see role assignments for users from the service provider tenant who have access through Azure Lighthouse. Similarly, users in the service provider tenant won't see role assignments for users in a customer's tenant, regardless of the role they've been assigned.
+> When [viewing role assignments for the delegated scope in the Azure portal](/azure/role-based-access-control/role-assignments-list-portal#list-role-assignments-at-a-scope) or via APIs, customers won't see role assignments for users from the service provider tenant who have access through Azure Lighthouse. Similarly, users in the service provider tenant won't see role assignments for users in a customer's tenant, regardless of the role they've been assigned.
 >
-> Note that [classic administrator](../../role-based-access-control/classic-administrators.md) assignments in a customer tenant may be visible to users in the managing tenant, or the other way around, because classic administrator roles don't use the Resource Manager deployment model.
+> Note that [classic administrator](/azure/role-based-access-control/classic-administrators) assignments in a customer tenant may be visible to users in the managing tenant, or the other way around, because classic administrator roles don't use the Resource Manager deployment model.
 
 ## Audit and restrict delegations in your environment
 
 Customers may want to review all subscriptions and/or resource groups that have been delegated to Azure Lighthouse. This is especially useful for those customers with a large number of subscriptions, or who have many users who perform management tasks.
 
-We provide an [Azure Policy built-in policy definition](../../governance/policy/samples/built-in-policies.md#lighthouse) to [audit delegation of scopes to a managing tenant](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Lighthouse/Delegations_Audit.json). You can assign this policy to a management group that includes all of the subscriptions that you want to audit. When you check for compliance with this policy, any delegated subscriptions and/or resource groups (within the management group to which the policy is assigned) are shown in a noncompliant state. You can then review the results and confirm that there are no unexpected delegations.
+We provide an [Azure Policy built-in policy definition](/azure/governance/policy/samples/built-in-policies#lighthouse) to [audit delegation of scopes to a managing tenant](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Lighthouse/Delegations_Audit.json). You can assign this policy to a management group that includes all of the subscriptions that you want to audit. When you check for compliance with this policy, any delegated subscriptions and/or resource groups (within the management group to which the policy is assigned) are shown in a noncompliant state. You can then review the results and confirm that there are no unexpected delegations.
 
-Another [built-in policy definition](../../governance/policy/samples/built-in-policies.md#lighthouse) lets you [restrict delegations to specific managing tenants](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Lighthouse/AllowCertainManagingTenantIds_Deny.json). This policy can be assigned to a management group that includes any subscriptions for which you want to limit delegations. After the policy is deployed, any attempts to delegate a subscription to a tenant outside of the ones you specify will be denied.
+Another [built-in policy definition](/azure/governance/policy/samples/built-in-policies#lighthouse) lets you [restrict delegations to specific managing tenants](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Lighthouse/AllowCertainManagingTenantIds_Deny.json). This policy can be assigned to a management group that includes any subscriptions for which you want to limit delegations. After the policy is deployed, any attempts to delegate a subscription to a tenant outside of the ones you specify will be denied.
 
-For more information about how to assign a policy and view compliance state results, see [Quickstart: Create a policy assignment](../../governance/policy/assign-policy-portal.md).
+For more information about how to assign a policy and view compliance state results, see [Quickstart: Create a policy assignment](/azure/governance/policy/assign-policy-portal).
 
 ## Next steps
 

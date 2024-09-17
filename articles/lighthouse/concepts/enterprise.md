@@ -47,9 +47,9 @@ If you prefer, tenants within an enterprise can be onboarded by [publishing a Ma
 
 ## Azure AD B2C
 
-[Azure Active Directory B2C (Azure AD B2C)](../../active-directory-b2c/overview.md) provides business-to-customer identity as a service. When you delegate a resource group through Azure Lighthouse, you can use Azure Monitor to route Azure Active Directory B2C (Azure AD B2C) sign-in and auditing logs to different monitoring solutions. You can retain the logs for long-term use, or integrate with third-party security information and event management (SIEM) tools to gain insights into your environment.
+[Azure Active Directory B2C (Azure AD B2C)](/azure/active-directory-b2c/overview) provides business-to-customer identity as a service. When you delegate a resource group through Azure Lighthouse, you can use Azure Monitor to route Azure Active Directory B2C (Azure AD B2C) sign-in and auditing logs to different monitoring solutions. You can retain the logs for long-term use, or integrate with third-party security information and event management (SIEM) tools to gain insights into your environment.
 
-For more information, see [Monitor Azure AD B2C with Azure Monitor](../../active-directory-b2c/azure-monitor.md).
+For more information, see [Monitor Azure AD B2C with Azure Monitor](/azure/active-directory-b2c/azure-monitor).
 
 ## Terminology notes
 

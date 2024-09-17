@@ -27,7 +27,7 @@ az acr import \
 
 To support the connected registry on nested IoT Edge, you need to deploy modules for the IoT Edge and API proxy. Import these images into your private registry.
 
-The [IoT Edge API proxy module](../articles/iot-edge/how-to-configure-api-proxy-module.md) allows an IoT Edge device to expose multiple services using the HTTPS protocol on the same port such as 443.
+The [IoT Edge API proxy module](/azure/iot-edge/how-to-configure-api-proxy-module) allows an IoT Edge device to expose multiple services using the HTTPS protocol on the same port such as 443.
 
 ```azurecli
 az acr import \

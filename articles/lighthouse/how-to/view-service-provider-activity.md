@@ -16,7 +16,7 @@ Customers who have delegated subscriptions to service providers through [Azure L
 You can also [view and retrieve activity log events](/azure/azure-monitor/essentials/activity-log#other-methods-to-retrieve-activity-log-events) programmatically.
 
 > [!NOTE]
-> Users in a service provider's tenant can view activity log results for a delegated subscription if they were granted the [Reader](../../role-based-access-control/built-in-roles.md#reader) role (or another built-in role which includes Reader access) when that subscription was onboarded to Azure Lighthouse.
+> Users in a service provider's tenant can view activity log results for a delegated subscription if they were granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role which includes Reader access) when that subscription was onboarded to Azure Lighthouse.
 
 In the activity log, you'll see the name of the operation and its status, along with the date and time it was performed. The **Event initiated by** column shows which user performed the operation, whether it was a user in a service provider's tenant acting through Azure Lighthouse, or a user in the customer's own tenant. Note that the name of the user is shown, rather than the tenant or the role that the user has been assigned for that subscription.
 

@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Get subscription and tenant IDs in the Azure portal
 
-A tenant is a [Microsoft Entra ID](../active-directory/fundamentals/active-directory-whatis.md) entity that typically encompasses an organization. Tenants can have one or more subscriptions, which are agreements with Microsoft to use cloud services, including Azure. Every Azure resource is associated with a subscription.
+A tenant is a [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) entity that typically encompasses an organization. Tenants can have one or more subscriptions, which are agreements with Microsoft to use cloud services, including Azure. Every Azure resource is associated with a subscription.
 
 Each subscription has an ID associated with it, as does the tenant to which a subscription belongs. As you perform different tasks, you may need the ID for a subscription or tenant. You can find these values in the Azure portal.
 
@@ -44,6 +44,6 @@ Follow these steps to retrieve the ID for a Microsoft Entra tenant in the Azure 
 
 ## Next steps
 
-- Learn more about [Microsoft Entra ID](../active-directory/fundamentals/active-directory-whatis.md).
+- Learn more about [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis).
 - Learn how to manage Azure subscriptions [with Azure CLI](/cli/azure/manage-azure-subscriptions-azure-cli) or [with Azure PowerShell](/powershell/azure/manage-subscriptions-azureps).
 - Learn how to [manage Azure portal settings and preferences](set-preferences.md).

@@ -27,7 +27,7 @@ We recommend creating these workspaces directly in the customer tenants. This wa
 You can create a Log Analytics workspace by using the [Azure portal](/azure/azure-monitor/logs/quick-create-workspace), by using [Azure Resource Manager templates](/azure/azure-monitor/logs/resource-manager-workspace), or by using [Azure PowerShell](/azure/azure-monitor/logs/powershell-workspace-configuration).
 
 > [!IMPORTANT]
-> If all workspaces are created in customer tenants, the Microsoft.Insights resource providers must also be [registered](../../azure-resource-manager/management/resource-providers-and-types.md#register-resource-provider) on a subscription in the managing tenant. If your managing tenant doesn't have an existing Azure subscription, you can register the resource provider manually by using the following PowerShell commands:
+> If all workspaces are created in customer tenants, the Microsoft.Insights resource providers must also be [registered](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) on a subscription in the managing tenant. If your managing tenant doesn't have an existing Azure subscription, you can register the resource provider manually by using the following PowerShell commands:
 >
 > ```powershell
 > $ManagingTenantId = "your-managing-Azure-AD-tenant-id"
@@ -43,9 +43,9 @@ You can create a Log Analytics workspace by using the [Azure portal](/azure/azur
 
 ## Deploy policies that log data
 
-Once you've created your Log Analytics workspaces, you can deploy [Azure Policy](../../governance/policy/overview.md) across your customer hierarchies so that diagnostic data is sent to the appropriate workspace in each tenant. The exact policies you deploy may vary, depending on the resource types that you want to monitor.
+Once you've created your Log Analytics workspaces, you can deploy [Azure Policy](/azure/governance/policy/overview) across your customer hierarchies so that diagnostic data is sent to the appropriate workspace in each tenant. The exact policies you deploy may vary, depending on the resource types that you want to monitor.
 
-To learn more about creating policies, see [Tutorial: Create and manage policies to enforce compliance](../../governance/policy/tutorials/create-and-manage.md). This [community tool](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/tools/azure-diagnostics-policy-generator) provides a script to help you create policies to monitor the specific resource types that you choose.
+To learn more about creating policies, see [Tutorial: Create and manage policies to enforce compliance](/azure/governance/policy/tutorials/create-and-manage). This [community tool](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/tools/azure-diagnostics-policy-generator) provides a script to help you create policies to monitor the specific resource types that you choose.
 
 When you've determined which policies to deploy, you can [deploy them to your delegated subscriptions at scale](policy-at-scale.md).
 
@@ -77,7 +77,7 @@ You can view [alerts](/azure/azure-monitor/alerts/alerts-overview) for delegated
 
 From your managing tenant, you can [create, view, and manage activity log alerts](/azure/azure-monitor/alerts/alerts-activity-log) in the Azure portal or through APIs and management tools.
 
-To refresh alerts automatically across multiple customers, use an [Azure Resource Graph](../../governance/resource-graph/overview.md) query to filter for alerts. You can pin the query to your dashboard and select all of the appropriate customers and subscriptions. For example, the query below will display severity 0 and 1 alerts, refreshing every 60 minutes.
+To refresh alerts automatically across multiple customers, use an [Azure Resource Graph](/azure/governance/resource-graph/overview) query to filter for alerts. You can pin the query to your dashboard and select all of the appropriate customers and subscriptions. For example, the query below will display severity 0 and 1 alerts, refreshing every 60 minutes.
 
 ```kusto
 alertsmanagementresources
@@ -92,5 +92,5 @@ alertsmanagementresources
 ## Next steps
 
 - Try out the [Activity Logs by Domain](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/workbook-activitylogs-by-domain) workbook on GitHub.
-- Explore this [MVP-built sample workbook](https://github.com/scautomation/Azure-Automation-Update-Management-Workbooks), which tracks patch compliance reporting by [querying Update Management logs](../../automation/update-management/query-logs.md) across multiple Log Analytics workspaces.
+- Explore this [MVP-built sample workbook](https://github.com/scautomation/Azure-Automation-Update-Management-Workbooks), which tracks patch compliance reporting by [querying Update Management logs](/azure/automation/update-management/query-logs) across multiple Log Analytics workspaces.
 - Learn about other [cross-tenant management experiences](../concepts/cross-tenant-management-experience.md).

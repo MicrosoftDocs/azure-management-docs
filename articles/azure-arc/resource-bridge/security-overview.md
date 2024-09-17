@@ -11,13 +11,13 @@ This article describes the security configuration and considerations you should 
 
 ## Using a managed identity
 
-By default, a Microsoft Entra system-assigned [managed identity](../../active-directory/managed-identities-azure-resources/overview.md) is created and assigned to the Azure Arc resource bridge. Azure Arc resource bridge currently supports only a system-assigned identity. The `clusteridentityoperator` identity initiates the first outbound communication and fetches the Managed Service Identity (MSI) certificate used by other agents for communication with Azure.
+By default, a Microsoft Entra system-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) is created and assigned to the Azure Arc resource bridge. Azure Arc resource bridge currently supports only a system-assigned identity. The `clusteridentityoperator` identity initiates the first outbound communication and fetches the Managed Service Identity (MSI) certificate used by other agents for communication with Azure.
 
 ## Identity and access control
 
-Azure Arc resource bridge is represented as a resource in a resource group inside an Azure subscription. Access to this resource is controlled by standard [Azure role-based access control](../../role-based-access-control/overview.md). From the [**Access Control (IAM)**](../../role-based-access-control/role-assignments-portal.yml) page in the Azure portal, you can verify who has access to your Azure Arc resource bridge.
+Azure Arc resource bridge is represented as a resource in a resource group inside an Azure subscription. Access to this resource is controlled by standard [Azure role-based access control](/azure/role-based-access-control/overview). From the [**Access Control (IAM)**](/azure/role-based-access-control/role-assignments-portal) page in the Azure portal, you can verify who has access to your Azure Arc resource bridge.
 
-Users and applications who are granted the [Contributor](../../role-based-access-control/built-in-roles.md#contributor) or Administrator role to the resource group can make changes to the resource bridge, including deploying or deleting cluster extensions.
+Users and applications who are granted the [Contributor](/azure/role-based-access-control/built-in-roles#contributor) or Administrator role to the resource group can make changes to the resource bridge, including deploying or deleting cluster extensions.
 
 ## Data residency
 

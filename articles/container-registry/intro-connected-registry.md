@@ -85,7 +85,7 @@ The following image shows a typical deployment model for the connected registry 
 
 Each connected registry is a resource you manage within a cloud-based Azure container registry. The top parent in the connected registry hierarchy is an Azure container registry in the Azure cloud. The connected registry can be deployed either on Azure IoT Edge or Arc-enabled Kubernetes clusters.
 
-To install the connected registry, use Azure tools on a server or device on your premises, or in an environment that supports on-premises container workloads, such as [Azure IoT Edge](../iot-edge/tutorial-nested-iot-edge.md). 
+To install the connected registry, use Azure tools on a server or device on your premises, or in an environment that supports on-premises container workloads, such as [Azure IoT Edge](/azure/iot-edge/tutorial-nested-iot-edge). 
 
 Deploy the connected registry Arc extension to the Arc-enabled Kubernetes cluster. Secure the connection with TLS using default configurations for read-only access and a continuous sync window. This setup allows the connected registry to synchronize images from the Azure container registry (ACR) to the connected registry on-premises, enabling image pulls from the connected registry.
 

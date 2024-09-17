@@ -55,7 +55,7 @@ The template used in this quickstart is from [Azure Quickstart Templates](https:
 
 ## Deploy the template
 
-This example uses the Azure portal to deploy the template. You can also use other methods to deploy ARM templates, such as [Azure PowerShell](../azure-resource-manager/templates/deploy-powershell.md), [Azure CLI](../azure-resource-manager/templates/deploy-cli.md), or [REST API](../azure-resource-manager/templates/deploy-rest.md).
+This example uses the Azure portal to deploy the template. You can also use other methods to deploy ARM templates, such as [Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell), [Azure CLI](/azure/azure-resource-manager/templates/deploy-cli), or [REST API](/azure/azure-resource-manager/templates/deploy-rest).
 
 1. Select the following image to sign in to Azure and open a template.
 

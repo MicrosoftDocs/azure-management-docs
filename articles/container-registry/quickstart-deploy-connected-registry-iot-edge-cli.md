@@ -19,7 +19,7 @@ For an overview of using a connected registry with IoT Edge, see [Using connecte
 
 
 [!INCLUDE [Prepare Azure CLI environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
-* Azure IoT Hub and IoT Edge device. For deployment steps, see [Quickstart: Deploy your first IoT Edge module to a virtual Linux device](../iot-edge/quickstart-linux.md).
+* Azure IoT Hub and IoT Edge device. For deployment steps, see [Quickstart: Deploy your first IoT Edge module to a virtual Linux device](/azure/iot-edge/quickstart-linux).
   > [!IMPORTANT]
   > For later access to the modules deployed on the IoT Edge device, make sure that you open the ports 8000, 5671, and 8883 on the device. For configuration steps, see [How to open ports to a virtual machine with the Azure portal](/azure/virtual-machines/windows/nsg-quickstart-portal). 
 
@@ -52,7 +52,7 @@ By default, the settings information doesn't include the [sync token](overview-c
 
 ## Configure a deployment manifest for IoT Edge
 
-A deployment manifest is a JSON document that describes which modules to deploy to the IoT Edge device. For more information, see [Understand how IoT Edge modules can be used, configured, and reused](../iot-edge/module-composition.md).
+A deployment manifest is a JSON document that describes which modules to deploy to the IoT Edge device. For more information, see [Understand how IoT Edge modules can be used, configured, and reused](/azure/iot-edge/module-composition).
 
 To deploy the connected registry and API proxy modules using the Azure CLI, save the following deployment manifest locally as a `manifest.json` file. You will use the file path in the next section when you run the command to apply the configuration to your device.
 
@@ -73,7 +73,7 @@ az iot edge set-modules \
   --content manifest.json
 ```
 
-For details, see [Deploy Azure IoT Edge modules with Azure CLI](../iot-edge/how-to-deploy-modules-cli.md).
+For details, see [Deploy Azure IoT Edge modules with Azure CLI](/azure/iot-edge/how-to-deploy-modules-cli).
 
 To check the status of the connected registry, use the following [az acr connected-registry show][az-acr-connected-registry-show] command. The name of the connected registry is the value of *$CONNECTED_REGISTRY_RW*.
 

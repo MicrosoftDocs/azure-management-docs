@@ -35,15 +35,15 @@ If you [create your template in the Azure portal](#create-your-template-in-the-a
 
 ## Define roles and permissions
 
-As a service provider, you may want to perform multiple tasks for a single customer, requiring different access for different scopes. You can define as many authorizations as you need in order to assign the appropriate [Azure built-in roles](../../role-based-access-control/built-in-roles.md). Each authorization includes a `principalId` which refers to a Microsoft Entra user, group, or service principal in the managing tenant.
+As a service provider, you may want to perform multiple tasks for a single customer, requiring different access for different scopes. You can define as many authorizations as you need in order to assign the appropriate [Azure built-in roles](/azure/role-based-access-control/built-in-roles). Each authorization includes a `principalId` which refers to a Microsoft Entra user, group, or service principal in the managing tenant.
 
 > [!NOTE]
 > Unless explicitly specified, references to a "user" in the Azure Lighthouse documentation can apply to a Microsoft Entra user, group, or service principal in an authorization.
 
-To define authorizations in your template, you must include the ID values for each user, user group, or service principal in the managing tenant to which you want to grant access. You'll also need to include the role definition ID for each [built-in role](../../role-based-access-control/built-in-roles.md) you want to assign. When you [create your template in the Azure portal](#create-your-template-in-the-azure-portal), you can select the user account and role, and these ID values will be added automatically. If you are [creating a template manually](#create-your-template-manually), you can [retrieve user IDs by using the Azure portal, Azure PowerShell, or Azure CLI](../../role-based-access-control/role-assignments-template.md#get-object-ids) from within the managing tenant.
+To define authorizations in your template, you must include the ID values for each user, user group, or service principal in the managing tenant to which you want to grant access. You'll also need to include the role definition ID for each [built-in role](/azure/role-based-access-control/built-in-roles) you want to assign. When you [create your template in the Azure portal](#create-your-template-in-the-azure-portal), you can select the user account and role, and these ID values will be added automatically. If you are [creating a template manually](#create-your-template-manually), you can [retrieve user IDs by using the Azure portal, Azure PowerShell, or Azure CLI](/azure/role-based-access-control/role-assignments-template#get-object-ids) from within the managing tenant.
 
 > [!TIP]
-> We recommend assigning the [Managed Services Registration Assignment Delete Role](../../role-based-access-control/built-in-roles.md#managed-services-registration-assignment-delete-role) when onboarding a customer, so that users in your tenant can [remove access to the delegation](remove-delegation.md) later if needed. If this role is not assigned, delegated resources can only be removed by a user in the customer's tenant.
+> We recommend assigning the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) when onboarding a customer, so that users in your tenant can [remove access to the delegation](remove-delegation.md) later if needed. If this role is not assigned, delegated resources can only be removed by a user in the customer's tenant.
 
 Whenever possible, we recommend using Microsoft Entra user groups for each assignment whenever possible, rather than individual users. This gives you the flexibility to add or remove individual users to the group that has access, so that you don't have to repeat the onboarding process to make user changes. You can also assign roles to a service principal, which can be useful for automation scenarios.
 
@@ -55,11 +55,11 @@ When defining your authorizations, be sure to follow the principle of least priv
 > [!TIP]
 > You can also create *eligible authorizations* that let users in your managing tenant temporarily elevate their role. This feature has specific licensing requirements. For more information, see [Create eligible authorizations](create-eligible-authorizations.md).
 
-To track your impact across customer engagements and receive recognition, associate your Microsoft Cloud Partner Program ID with at least one user account that has access to each of your onboarded subscriptions. You'll need to perform this association in your service provider tenant. We recommend creating a service principal account in your tenant that is associated with your partner ID, then including that service principal every time you onboard a customer. For more info, see [Link a partner ID](../../cost-management-billing/manage/link-partner-id.md).
+To track your impact across customer engagements and receive recognition, associate your Microsoft Cloud Partner Program ID with at least one user account that has access to each of your onboarded subscriptions. You'll need to perform this association in your service provider tenant. We recommend creating a service principal account in your tenant that is associated with your partner ID, then including that service principal every time you onboard a customer. For more info, see [Link a partner ID](/azure/cost-management-billing/manage/link-partner-id).
 
 ## Create an Azure Resource Manager template
 
-To onboard your customer, you'll need to create an [Azure Resource Manager](../../azure-resource-manager/index.yml) template for your offer with the following information. The `mspOfferName` and `mspOfferDescription` values will be visible to the customer in the [Service providers page](view-manage-service-providers.md) of the Azure portal once the template is deployed in the customer's tenant.
+To onboard your customer, you'll need to create an [Azure Resource Manager](/azure/azure-resource-manager/) template for your offer with the following information. The `mspOfferName` and `mspOfferDescription` values will be visible to the customer in the [Service providers page](view-manage-service-providers.md) of the Azure portal once the template is deployed in the customer's tenant.
 
 |Field  |Definition  |
 |---------|---------|
@@ -181,7 +181,7 @@ Once you have created your template, a user in the customer's tenant must deploy
 When onboarding a subscription (or one or more resource groups within a subscription) using the process described here, the **Microsoft.ManagedServices** resource provider will be registered for that subscription.
 
 > [!IMPORTANT]
-> This deployment must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](../../role-based-access-control/built-in-roles.md#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](../../role-based-access-control/role-assignments-list-portal.yml#list-owners-of-a-subscription).
+> This deployment must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](/azure/role-based-access-control/role-assignments-list-portal#list-owners-of-a-subscription).
 >
 > If the subscription was created through the [Cloud Solution Provider (CSP) program](../concepts/cloud-solution-provider.md), any user who has the [Admin Agent](/partner-center/permissions-overview#manage-commercial-transactions-in-partner-center-azure-ad-and-csp-roles) role in your service provider tenant can perform the deployment.
 
@@ -300,7 +300,7 @@ In the service provider's tenant:
 3. Confirm that you can see the subscription(s) with the offer name you provided in the Resource Manager template.
 
 > [!IMPORTANT]
-> In order to see the delegated subscription in [My customers](view-manage-customers.md), users in the service provider's tenant must have been granted the [Reader](../../role-based-access-control/built-in-roles.md#reader) role (or another built-in role which includes Reader access) when the subscription was onboarded.
+> In order to see the delegated subscription in [My customers](view-manage-customers.md), users in the service provider's tenant must have been granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role which includes Reader access) when the subscription was onboarded.
 
 In the customer's tenant:
 
@@ -343,15 +343,15 @@ If you need to make changes after the customer has been onboarded, you can [upda
 
 If you are unable to successfully onboard your customer, or if your users have trouble accessing the delegated resources, check the following tips and requirements and try again.
 
-- Users who need to view customer resources in the Azure portal must have been granted the [Reader](../../role-based-access-control/built-in-roles.md#reader) role (or another built-in role which includes Reader access) during the onboarding process.
+- Users who need to view customer resources in the Azure portal must have been granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role which includes Reader access) during the onboarding process.
 - The `managedbyTenantId` value must not be the same as the tenant ID for the subscription being onboarded.
 - You can't have multiple assignments at the same scope with the same `mspOfferName`.
-- The **Microsoft.ManagedServices** resource provider must be registered for the delegated subscription. This should happen automatically during the deployment but if not, you can [register it manually](../../azure-resource-manager/management/resource-providers-and-types.md#register-resource-provider).
-- Authorizations must not include any users with the [Owner](../../role-based-access-control/built-in-roles.md#owner) role, any roles with [DataActions](../../role-based-access-control/role-definitions.md#dataactions), or any roles that include [restricted actions](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse).
+- The **Microsoft.ManagedServices** resource provider must be registered for the delegated subscription. This should happen automatically during the deployment but if not, you can [register it manually](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+- Authorizations must not include any users with the [Owner](/azure/role-based-access-control/built-in-roles#owner) role, any roles with [DataActions](/azure/role-based-access-control/role-definitions#dataactions), or any roles that include [restricted actions](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse).
 - Groups must be created with [**Group type**](/entra/fundamentals/concept-learn-about-groups#group-types) set to **Security** and not **Microsoft 365**.
 - If access was granted to a group, check to make sure the user is a member of that group. If they aren't, you can [add them to the group using Microsoft Entra ID](/entra/fundamentals/how-to-manage-groups), without having to perform another deployment. Note that group owners are not necessarily members of the groups they manage, and may need to be added in order to have access.
 - There may be an additional delay before access is enabled for [nested groups](/entra/fundamentals/how-to-manage-groups#add-a-group-to-another-group).
-- The [Azure built-in roles](../../role-based-access-control/built-in-roles.md) that you include in authorizations must not include any deprecated roles. If an Azure built-in role becomes deprecated, any users who were onboarded with that role will lose access, and you won't be able to onboard additional delegations. To fix this, update your template to use only supported built-in roles, then perform a new deployment.
+- The [Azure built-in roles](/azure/role-based-access-control/built-in-roles) that you include in authorizations must not include any deprecated roles. If an Azure built-in role becomes deprecated, any users who were onboarded with that role will lose access, and you won't be able to onboard additional delegations. To fix this, update your template to use only supported built-in roles, then perform a new deployment.
 
 ## Next steps
 

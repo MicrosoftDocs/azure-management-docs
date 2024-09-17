@@ -11,7 +11,7 @@ ms.service: azure-container-registry
 
 # Restrict access to a container registry using a service endpoint in an Azure virtual network
 
-[Azure Virtual Network](../virtual-network/virtual-networks-overview.md) provides secure, private networking for your Azure and on-premises resources. A [service endpoint](../virtual-network/virtual-network-service-endpoints-overview.md) allows you to secure your container registry's public IP address to only your virtual network. This endpoint gives traffic an optimal route to the resource over the Azure backbone network. The identities of the virtual network and the subnet are also transmitted with each request.
+[Azure Virtual Network](/azure/virtual-network/virtual-networks-overview) provides secure, private networking for your Azure and on-premises resources. A [service endpoint](/azure/virtual-network/virtual-network-service-endpoints-overview) allows you to secure your container registry's public IP address to only your virtual network. This endpoint gives traffic an optimal route to the resource over the Azure backbone network. The identities of the virtual network and the subnet are also transmitted with each request.
 
 This article shows how to configure a container registry service endpoint (preview) in a virtual network. 
 

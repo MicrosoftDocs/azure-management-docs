@@ -16,7 +16,7 @@ Azure Arc is the overarching brand for a suite of Azure hybrid products that ext
 ## What's the difference between Azure Arc-enabled servers and Azure Arc-enabled VMware vSphere?
 
 > [!NOTE]
-> [Arc-enabled VMware vSphere](../vmware-vsphere/overview.md) supports vSphere environments anywhere, either on-premises as well as [Azure VMware Solution (AVS)](./../../azure-vmware/deploy-arc-for-azure-vmware-solution.md), VMware Cloud on AWS, and Google Cloud VMware Engine.
+> [Arc-enabled VMware vSphere](../vmware-vsphere/overview.md) supports vSphere environments anywhere, either on-premises as well as [Azure VMware Solution (AVS)](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution), VMware Cloud on AWS, and Google Cloud VMware Engine.
 
 The easiest way to think of this is as follows:
 

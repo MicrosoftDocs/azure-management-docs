@@ -58,12 +58,12 @@ You can [publish an updated version of your offer](/partner-center/marketplace/u
 After a customer adds your offer, they can [delegate one or more specific subscriptions or resource groups](view-manage-service-providers.md#delegate-resources), which will be onboarded to Azure Lighthouse. If a customer has accepted an offer but has not yet delegated any resources, they'll see a note at the top of the **Service provider offers** section of the **Service providers** page in the Azure portal.
 
 > [!IMPORTANT]
-> Delegation must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](../../role-based-access-control/built-in-roles.md#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](../../role-based-access-control/role-assignments-list-portal.yml#list-owners-of-a-subscription).
+> Delegation must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](/azure/role-based-access-control/role-assignments-list-portal#list-owners-of-a-subscription).
 
 Once the customer delegates a subscription (or one or more resource groups within a subscription), the **Microsoft.ManagedServices** resource provider is registered for that subscription, and users in your tenant will be able to access the delegated resources according to the authorizations that you defined in your offer.
 
 > [!NOTE]
-> To delegate additional subscriptions or resource groups to the same offer at a later time, the customer must [manually register the **Microsoft.ManagedServices** resource provider](../../azure-resource-manager/management/resource-providers-and-types.md#register-resource-provider) on each subscription before delegating.
+> To delegate additional subscriptions or resource groups to the same offer at a later time, the customer must [manually register the **Microsoft.ManagedServices** resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) on each subscription before delegating.
 
 If you publish an updated version of your offer, the customer can [review the changes in the Azure portal and accept the new version](view-manage-service-providers.md#update-service-provider-offers).
 

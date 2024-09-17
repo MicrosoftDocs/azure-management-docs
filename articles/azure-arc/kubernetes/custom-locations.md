@@ -99,9 +99,9 @@ This warning occurs because the service principal lacks the necessary permission
      > [!NOTE]
      > Outbound proxy without authentication and outbound proxy with basic authentication are supported by the Azure Arc-enabled data services cluster extension. Outbound proxy that expects trusted certificates is currently not supported.
 
-   - [Azure App Service on Azure Arc](../../app-service/manage-create-arc-environment.md#install-the-app-service-extension)
+   - [Azure App Service on Azure Arc](/azure/app-service/manage-create-arc-environment#install-the-app-service-extension)
 
-   - [Event Grid on Kubernetes](../../event-grid/kubernetes/install-k8s-extension.md)
+   - [Event Grid on Kubernetes](/azure/event-grid/kubernetes/install-k8s-extension)
 
 1. Get the Azure Resource Manager identifier of the Azure Arc-enabled Kubernetes cluster, referenced in later steps as `connectedClusterId`:
 
@@ -186,6 +186,6 @@ If custom location creation fails with the error `Unknown proxy error occurred`,
 ## Next steps
 
 - Securely connect to the cluster using [Cluster Connect](cluster-connect.md).
-- Continue with [Azure App Service on Azure Arc](../../app-service/overview-arc-integration.md) for end-to-end instructions on installing extensions, creating custom locations, and creating the App Service Kubernetes environment.
-- Create an Event Grid topic and an event subscription for [Event Grid on Kubernetes](../../event-grid/kubernetes/overview.md).
+- Continue with [Azure App Service on Azure Arc](/azure/app-service/overview-arc-integration) for end-to-end instructions on installing extensions, creating custom locations, and creating the App Service Kubernetes environment.
+- Create an Event Grid topic and an event subscription for [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 - Learn more about currently available [Azure Arc-enabled Kubernetes extensions](extensions-release.md).

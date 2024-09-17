@@ -14,8 +14,8 @@ The Azure Monitor agent is required if you want to:
 
 * Monitor the operating system and any workloads running on the machine or server using [VM insights](/azure/azure-monitor/vm/vminsights-overview)
 * Analyze and alert using [Azure Monitor](/azure/azure-monitor/overview)
-* Perform security monitoring in Azure by using [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) or [Microsoft Sentinel](../../sentinel/overview.md)
-* Collect inventory and track changes by using [Azure Automation Change Tracking and Inventory](../../automation/change-tracking/overview.md)
+* Perform security monitoring in Azure by using [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) or [Microsoft Sentinel](/azure/sentinel/overview)
+* Collect inventory and track changes by using [Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview)
 
 > [!NOTE]
 > Azure Monitor agent logs are stored locally and are updated after temporary disconnection of an Arc-enabled machine.
@@ -57,7 +57,7 @@ Azure Policy includes several prebuilt definitions related to Azure Monitor. For
 #### Disadvantages
 
 * The **Configure** *operating system* **Arc-enabled machines to run Azure Monitor Agent** policy only installs the Azure Monitor agent extension and configures the agent to report to a specified Log Analytics workspace.
-* Standard compliance evaluation cycle is once every 24 hours. An evaluation scan for a subscription or a resource group can be started with Azure CLI, Azure PowerShell, a call to the REST API, or by using the Azure Policy Compliance Scan GitHub Action. For more information, see [Evaluation triggers](../../governance/policy/how-to/get-compliance-data.md#evaluation-triggers).
+* Standard compliance evaluation cycle is once every 24 hours. An evaluation scan for a subscription or a resource group can be started with Azure CLI, Azure PowerShell, a call to the REST API, or by using the Azure Policy Compliance Scan GitHub Action. For more information, see [Evaluation triggers](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
 
 ### Use Azure Automation
 
@@ -92,6 +92,6 @@ The Azure Monitor agent VM extension can be installed using the Azure portal. Se
 
 ## Next steps
 
-* To start collecting security-related events with Microsoft Sentinel, see [onboard to Microsoft Sentinel](scenario-onboard-azure-sentinel.md), or to collect with Microsoft Defender for Cloud, see [onboard to Microsoft Defender for Cloud](../../security-center/quickstart-onboard-machines.md).
+* To start collecting security-related events with Microsoft Sentinel, see [onboard to Microsoft Sentinel](scenario-onboard-azure-sentinel.md), or to collect with Microsoft Defender for Cloud, see [onboard to Microsoft Defender for Cloud](/azure/security-center/quickstart-onboard-machines).
 
 * Read the VM insights [Monitor performance](/azure/azure-monitor/vm/vminsights-performance) and [Map dependencies](/azure/azure-monitor/vm/vminsights-maps) articles to see how well your machine is performing and view discovered application components.

@@ -12,7 +12,7 @@ ms.service: azure-container-registry
 
 ## Template deployment failures or errors
   * If a pipeline run fails, look at the `pipelineRunErrorMessage` property of the run resource.
-  * For common template deployment errors, see [Troubleshoot ARM template deployments](../azure-resource-manager/templates/template-tutorial-troubleshoot.md)
+  * For common template deployment errors, see [Troubleshoot ARM template deployments](/azure/azure-resource-manager/templates/template-tutorial-troubleshoot)
 ## Problems accessing Key Vault
   * If your pipelineRun deployment fails with a `403 Forbidden` error when accessing Azure Key Vault, verify that your pipeline managed identity has adequate permissions.
   * A pipelineRun uses the exportPipeline or importPipeline managed identity to fetch the SAS token secret from your Key Vault. ExportPipelines and importPipelines are provisioned with either a system-assigned or user-assigned managed identity. This managed identity is required to have `secret get` permissions on the Key Vault in order to read the SAS token secret. Ensure that an access policy for the managed identity was added to the Key Vault. For more information, reference [Give the ExportPipeline identity keyvault policy access](./container-registry-transfer-cli.md#give-the-exportpipeline-identity-keyvault-policy-access) and [Give the ImportPipeline identity keyvault policy access](./container-registry-transfer-cli.md#give-the-importpipeline-identity-keyvault-policy-access).
@@ -33,11 +33,11 @@ ms.service: azure-container-registry
   * The Storage Blob must have a valid ContentMD5 property in order to be imported by the Source Trigger feature.
   * The Storage Blob must have the "category":"acr-transfer-blob" blob metadata in order to be imported by the Source Trigger feature. This metadata is added automatically during an Export Pipeline Run, but may be stripped when moved from storage account to storage account depending on the method of copy.
 ## AzCopy issues
-  * See [Troubleshoot AzCopy issues](../storage/common/storage-use-azcopy-configure.md).
+  * See [Troubleshoot AzCopy issues](/azure/storage/common/storage-use-azcopy-configure).
 ## Artifacts transfer problems
   * Not all artifacts, or none, are transferred. Confirm spelling of artifacts in export run, and name of blob in export and import runs. Confirm you're transferring a maximum of 50 artifacts.
   * Pipeline run might not have completed. An export or import run can take some time.
-  * For other pipeline issues, provide the deployment [correlation ID](../azure-resource-manager/templates/deployment-history.md) of the export run or import run to the Azure Container Registry team.
+  * For other pipeline issues, provide the deployment [correlation ID](/azure/azure-resource-manager/templates/deployment-history) of the export run or import run to the Azure Container Registry team.
   * To create ACR Transfer resources such as `exportPipelines`,` importPipelines`, and `pipelineRuns`, the user must have at least Contributor access on the ACR subscription. Otherwise, they'll see authorization to perform the transfer denied or scope is invalid errors.
 ## Problems pulling the image in a physically isolated environment
   * If you see errors regarding foreign layers or attempts to resolve mcr.microsoft.com when attempting to pull an image in a physically isolated environment, your image manifest likely has non-distributable layers. Due to the nature of a physically isolated environment, these images will often fail to pull. You can confirm that this is the case by checking the image manifest for any references to external registries. If so, you'll need to push the non-distributable layers to your public cloud ACR prior to deploying an export pipeline-run for that image. For guidance on how to do this, see [How do I push non-distributable layers to a registry?](./container-registry-faq.yml#how-do-i-push-non-distributable-layers-to-a-registry-)

@@ -22,7 +22,7 @@ To learn more about Docker and registry concepts, see the [Docker overview on Do
 Pull images from an Azure container registry to various deployment targets:
 
 * *Scalable orchestration systems* that manage containerized applications across clusters of hosts, including [Kubernetes](https://kubernetes.io/docs/), [DC/OS](https://dcos.io/), and [Docker Swarm](https://docs.docker.com/get-started/swarm-deploy/).
-* *Azure services* that support building and running applications at scale, such as [Azure Kubernetes Service (AKS)](/azure/aks/), [App Service](../app-service/index.yml), [Batch](../batch/index.yml), and [Service Fabric](/azure/service-fabric/).
+* *Azure services* that support building and running applications at scale, such as [Azure Kubernetes Service (AKS)](/azure/aks/), [App Service](/azure/app-service/), [Batch](/azure/batch/), and [Service Fabric](/azure/service-fabric/).
 
 Developers can also push to a container registry as part of a container development workflow. For example, you can target a container registry from a continuous integration and continuous delivery (CI/CD) tool such as [Azure Pipelines](/azure/devops/pipelines/ecosystems/containers/acr-template) or [Jenkins](https://jenkins.io/).
 
@@ -41,7 +41,7 @@ Azure provides tooling like the Azure CLI, the Azure portal, and API support to 
   > [!IMPORTANT]
   > As of January 13, 2020, Azure Container Registry requires all secure connections from servers and applications to use TLS 1.2. Enable TLS 1.2 by using any recent Docker client (version 18.03.0 or later).
 
-  You [control access](container-registry-authentication.md) to a container registry by using an Azure identity, a Microsoft Entra [service principal](../active-directory/develop/app-objects-and-service-principals.md), or a provided admin account. Use Azure role-based access control (RBAC) to assign specific registry permissions to users or systems.
+  You [control access](container-registry-authentication.md) to a container registry by using an Azure identity, a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals), or a provided admin account. Use Azure role-based access control (RBAC) to assign specific registry permissions to users or systems.
 
   Security features of the Premium service tier include [content trust](container-registry-content-trust.md) for image tag signing, and [firewalls and virtual networks (preview)](container-registry-vnet.md) to restrict access to the registry. Microsoft Defender for Cloud optionally integrates with Azure Container Registry to [scan images](/azure/container-registry/scan-images-defender) whenever you push an image to a registry.
 

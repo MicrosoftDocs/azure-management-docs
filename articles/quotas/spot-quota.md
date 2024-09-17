@@ -62,4 +62,4 @@ Your request will be reviewed, and you'll be notified if the request can be fulf
 
 - Learn more about [Azure virtual machines](/azure/virtual-machines/spot-vms).
 - Learn more in [Quotas overview](quotas-overview.md).
-- Learn about [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+- Learn about [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).

@@ -11,7 +11,7 @@ This document walks through the structure of an Azure dashboard, using the follo
 
 :::image type="content" source="media/azure-portal-dashboards-structure/sample-dashboard.png" alt-text="Screenshot of a sample dashboard in the Azure portal.":::
 
-Since shared [Azure dashboards are resources](../azure-resource-manager/management/overview.md), this dashboard can be represented as JSON. You can download the JSON representation of a dashboard by selecting **Export** and then **Download** in the Azure portal.
+Since shared [Azure dashboards are resources](/azure/azure-resource-manager/management/overview), this dashboard can be represented as JSON. You can download the JSON representation of a dashboard by selecting **Export** and then **Download** in the Azure portal.
 
 The following JSON represents the dashboard shown above.
 

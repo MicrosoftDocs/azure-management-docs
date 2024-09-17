@@ -62,7 +62,7 @@ From Azure portal:
 3. Optionally, delete the custom location that the data controller is deployed to.
 4. Optionally, you can also delete the namespace on your Kubernetes cluster if there are no other resources created in the namespace.
 
-See [Manage Azure resources by using the Azure portal](../../azure-resource-manager/management/manage-resources-portal.md).
+See [Manage Azure resources by using the Azure portal](/azure/azure-resource-manager/management/manage-resources-portal).
 
 
 ## Delete data controller in directly connected mode using Azure CLI

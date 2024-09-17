@@ -9,7 +9,7 @@ ms.topic: how-to
 
 Service providers using [Azure Lighthouse](../overview.md) can use the **My customers** page in the [Azure portal](https://portal.azure.com) to view delegated customer resources and subscriptions.
 
-To view information about a customer, you must have been granted the [Reader](../../role-based-access-control/built-in-roles.md#reader) role (or another built-in role that includes Reader access) when that customer was onboarded.
+To view information about a customer, you must have been granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role that includes Reader access) when that customer was onboarded.
 
 > [!TIP]
 > While we'll refer to service providers and customers here, [enterprises managing multiple tenants](../concepts/enterprise.md) can use the same process to consolidate their management experience.
@@ -50,7 +50,7 @@ The users and permissions associated with each delegation appear in the **Role a
 
 ### Remove delegations
 
-If you included users with the [Managed Services Registration Assignment Delete Role](../../role-based-access-control/built-in-roles.md#managed-services-registration-assignment-delete-role) when onboarding a customer to Azure Lighthouse, those users can remove delegations by selecting the trash can icon that appears in the row for that delegation. When they do so, no users in the service provider's tenant will be able to access the resources that had been previously delegated.
+If you included users with the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) when onboarding a customer to Azure Lighthouse, those users can remove delegations by selecting the trash can icon that appears in the row for that delegation. When they do so, no users in the service provider's tenant will be able to access the resources that had been previously delegated.
 
 For more information, see [Remove access to a delegation](remove-delegation.md).
 
@@ -83,7 +83,7 @@ You can also work on delegated subscriptions or resource groups by selecting the
 
 ## Cloud Solution Provider (Preview)
 
-A separate **Cloud Solution Provider (Preview)** section of the **My customers** page shows billing information and resources for your CSP customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started). For more information, see [Get started with your Microsoft Partner Agreement billing account](../../cost-management-billing/understand/mpa-overview.md).
+A separate **Cloud Solution Provider (Preview)** section of the **My customers** page shows billing information and resources for your CSP customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started). For more information, see [Get started with your Microsoft Partner Agreement billing account](/azure/cost-management-billing/understand/mpa-overview).
 
 These CSP customers appear in this section whether or not you also onboarded them to Azure Lighthouse. Similarly, a CSP customer doesn't have to appear in the **Cloud Solution Provider (Preview)** section of **My customers** in order for you to onboard them to Azure Lighthouse.
 

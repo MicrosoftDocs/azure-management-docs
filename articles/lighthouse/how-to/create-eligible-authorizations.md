@@ -51,7 +51,7 @@ You can't use eligible authorizations with service principals, since there's cur
 
 ### Role
 
-Each eligible authorization needs to include an [Azure built-in role](../../role-based-access-control/built-in-roles.md) that the user will be eligible to use on a just-in-time basis.
+Each eligible authorization needs to include an [Azure built-in role](/azure/role-based-access-control/built-in-roles) that the user will be eligible to use on a just-in-time basis.
 
 The role can be any Azure built-in role that is [supported for Azure delegated resource management](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse), except for User Access Administrator.
 
@@ -80,7 +80,7 @@ If you don’t include any approvers, the user will be able to activate the elig
 
 ## Create eligible authorizations using Managed Services offers
 
-To onboard your customer to Azure Lighthouse, you can publish Managed Services offers to Azure Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you can now specify whether the **Access type** for each [Authorization](../../marketplace/create-managed-service-offer-plans.md#authorizations) should be **Active** or **Eligible**.
+To onboard your customer to Azure Lighthouse, you can publish Managed Services offers to Azure Marketplace. When [creating your offers in Partner Center](publish-managed-services-offers.md), you can now specify whether the **Access type** for each [Authorization](/azure/marketplace/create-managed-service-offer-plans#authorizations) should be **Active** or **Eligible**.
 
 When you select **Eligible**, the user in your authorization will be able to activate the role according to the access policy you configure. You must set a maximum duration between 30 minutes and 8 hours, and specify whether you'll require multifactor authentication. You can also add up to 10 approvers if you choose to use them, providing a display name and a principal ID for each one.
 
@@ -244,7 +244,7 @@ Each entry within the `eligibleAuthorizations` parameter contains [three element
 
 `principalId` specifies the ID for the Microsoft Entra user or group to which this eligible authorization will apply.
 
-`roleDefinitionId` contains the role definition ID for an [Azure built-in role](../../role-based-access-control/built-in-roles.md) that the user will be eligible to use on a just-in-time basis. If you include multiple eligible authorizations that use the same `roleDefinitionId`, they all must have identical settings for `justInTimeAccessPolicy`.
+`roleDefinitionId` contains the role definition ID for an [Azure built-in role](/azure/role-based-access-control/built-in-roles) that the user will be eligible to use on a just-in-time basis. If you include multiple eligible authorizations that use the same `roleDefinitionId`, they all must have identical settings for `justInTimeAccessPolicy`.
 
 `justInTimeAccessPolicy` specifies three elements:
 

@@ -90,7 +90,7 @@ az acr task logs --registry mycontainerregistry1220 \
   --run-id cf4 > ~/tasklogs/cf4.log
 ```
 
-You can also save local log files to Azure Storage. For example, use the [Azure CLI](../storage/blobs/storage-quickstart-blobs-cli.md), the [Azure portal](../storage/blobs/storage-quickstart-blobs-portal.md), or other methods to upload files to a storage account.
+You can also save local log files to Azure Storage. For example, use the [Azure CLI](/azure/storage/blobs/storage-quickstart-blobs-cli), the [Azure portal](/azure/storage/blobs/storage-quickstart-blobs-portal), or other methods to upload files to a storage account.
 
 ## Next steps
 

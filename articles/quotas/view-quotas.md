@@ -19,7 +19,7 @@ To view the **Quotas** page, sign in to the [Azure portal](https://portal.azure.
 To view detailed information about your quotas, select **My quotas** in the left pane on the **Quotas** page.
 
 > [!NOTE]
-> You can also select a specific Azure provider from the **Quotas** overview page to view quotas and usage for that provider. If you don't see a provider, check the [Azure subscription and service limits page](../azure-resource-manager/management/azure-subscription-service-limits.md) for more information.
+> You can also select a specific Azure provider from the **Quotas** overview page to view quotas and usage for that provider. If you don't see a provider, check the [Azure subscription and service limits page](/azure/azure-resource-manager/management/azure-subscription-service-limits) for more information.
 
 On the **My quotas** page, you can choose which quotas and usage data to display. The filter options at the top of the page let you filter by location, provider, subscription, and usage. You can also use the search box to look for a specific quota. Depending on the provider you select, you may see some differences in filters and columns.
 
@@ -30,5 +30,5 @@ In the list of quotas, you can toggle the arrow shown next to **Quota** to expan
 ## Next steps
 
 - Learn more in [Quota overview](quotas-overview.md).
-- about [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+- about [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 - Learn how to request increases for [VM-family vCPU quotas](per-vm-quota-requests.md), [vCPU quotas by region](regional-quota-requests.md), [spot vCPU quotas](spot-quota.md), and [storage accounts](storage-account-quota-requests.md).

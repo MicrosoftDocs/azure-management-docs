@@ -36,7 +36,7 @@ Onboarding a subscription that you created through the CSP program follows the s
 > [Managed Service offers](managed-services-offers.md) with private plans aren't supported with subscriptions established through a reseller of the Cloud Solution Provider (CSP) program. Instead, you can onboard these subscriptions to Azure Lighthouse by [using Azure Resource Manager templates](../how-to/onboard-customer.md).
 
 > [!NOTE]
-> The [**My customers** page in the Azure portal](../how-to/view-manage-customers.md) now includes a **Cloud Solution Provider (Preview)** section, which displays billing info and resources for CSP customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started). For more info, see [Get started with your Microsoft Partner Agreement billing account](../../cost-management-billing/understand/mpa-overview.md).
+> The [**My customers** page in the Azure portal](../how-to/view-manage-customers.md) now includes a **Cloud Solution Provider (Preview)** section, which displays billing info and resources for CSP customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started). For more info, see [Get started with your Microsoft Partner Agreement billing account](/azure/cost-management-billing/understand/mpa-overview).
 >
 > CSP customers may appear in this section whether or not they have also been onboarded to Azure Lighthouse. If they have, they'll also appear in the **Customers** section, as described in [View and manage customers and delegated resources](../how-to/view-manage-customers.md). Similarly, a CSP customer does not have to appear in the **Cloud Solution Provider (Preview)** section of **My customers** in order for you to onboard them to Azure Lighthouse.
 
@@ -44,9 +44,9 @@ Onboarding a subscription that you created through the CSP program follows the s
 
 Members of the [Microsoft Cloud Partner Program](https://partner.microsoft.com/) can link a partner ID with the credentials used to manage delegated customer resources. This link allows Microsoft to identify and recognize partners who drive Azure customer success. It also allows [CSP (Cloud Solution Provider)](/partner-center/csp-overview) partners to receive [partner earned credit (PEC)](/partner-center/partner-earned-credit) for customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started).
 
-To earn recognition for Azure Lighthouse activities, you'll need to [link your partner ID](../../cost-management-billing/manage/link-partner-id.md) with at least one user account in your managing tenant, and ensure that the linked account has access to each of your onboarded subscriptions. For simplicity, we recommend creating a service principal account in your tenant, associating it with your Partner ID, then granting it access to every customer you onboard with an [Azure built-in role that is eligible for partner earned credit](/partner-center/azure-roles-perms-pec).
+To earn recognition for Azure Lighthouse activities, you'll need to [link your partner ID](/azure/cost-management-billing/manage/link-partner-id) with at least one user account in your managing tenant, and ensure that the linked account has access to each of your onboarded subscriptions. For simplicity, we recommend creating a service principal account in your tenant, associating it with your Partner ID, then granting it access to every customer you onboard with an [Azure built-in role that is eligible for partner earned credit](/partner-center/azure-roles-perms-pec).
 
-For more information, see [Link a partner ID](../../cost-management-billing/manage/link-partner-id.md).
+For more information, see [Link a partner ID](/azure/cost-management-billing/manage/link-partner-id).
 
 ## Next steps
 

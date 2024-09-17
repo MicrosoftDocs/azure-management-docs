@@ -161,7 +161,7 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
   * `Microsoft.KubernetesConfiguration/extensions`
   * `Microsoft.KubernetesConfiguration/fluxConfigurations`
 
-* [Registration](../../azure-resource-manager/management/resource-providers-and-types.md#azure-portal) of the following Azure resource providers:
+* [Registration](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal) of the following Azure resource providers:
 
   * Microsoft.ContainerService
   * Microsoft.Kubernetes

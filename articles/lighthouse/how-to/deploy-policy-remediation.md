@@ -7,21 +7,21 @@ ms.topic: how-to
 
 # Deploy a policy that can be remediated within a delegated subscription
 
-[Azure Lighthouse](../overview.md) allows service providers to create and edit policy definitions within a delegated subscription. To deploy policies that use a [remediation task](../../governance/policy/how-to/remediate-resources.md) (that is, policies with the [deployIfNotExists](../../governance/policy/concepts/effect-deploy-if-not-exists.md) or [modify](../../governance/policy/concepts/effect-modify.md) effect), you must create a [managed identity](../../active-directory/managed-identities-azure-resources/overview.md) in the customer tenant. This managed identity can be used by Azure Policy to deploy the template within the policy. This article describes the steps that are required to enable this scenario, both when you onboard the customer for Azure Lighthouse, and when you deploy the policy itself.
+[Azure Lighthouse](../overview.md) allows service providers to create and edit policy definitions within a delegated subscription. To deploy policies that use a [remediation task](/azure/governance/policy/how-to/remediate-resources) (that is, policies with the [deployIfNotExists](/azure/governance/policy/concepts/effect-deploy-if-not-exists) or [modify](/azure/governance/policy/concepts/effect-modify) effect), you must create a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) in the customer tenant. This managed identity can be used by Azure Policy to deploy the template within the policy. This article describes the steps that are required to enable this scenario, both when you onboard the customer for Azure Lighthouse, and when you deploy the policy itself.
 
 > [!TIP]
 > Though we refer to service providers and customers in this topic, [enterprises managing multiple tenants](../concepts/enterprise.md) can use the same processes.
 
 ## Create a user who can assign roles to a managed identity in the customer tenant
 
-When you [onboard a customer to Azure Lighthouse](onboard-customer.md), you define authorizations that grant access to delegated resources in the customer tenant. Each authorization specifies a **principalId** that corresponds to a Microsoft Entra user, group, or service principal in the managing tenant, and a **roleDefinitionId** that corresponds to the [Azure built-in role](../../role-based-access-control/built-in-roles.md) that will be granted.
+When you [onboard a customer to Azure Lighthouse](onboard-customer.md), you define authorizations that grant access to delegated resources in the customer tenant. Each authorization specifies a **principalId** that corresponds to a Microsoft Entra user, group, or service principal in the managing tenant, and a **roleDefinitionId** that corresponds to the [Azure built-in role](/azure/role-based-access-control/built-in-roles) that will be granted.
 
 To allow a **principalId** to assign roles to a managed identity in the customer tenant, you must set its **roleDefinitionId** to **User Access Administrator**. While this role isn't generally supported for Azure Lighthouse, it can be used in this specific scenario. Granting this role to this **principalId** allows it to assign specific built-in roles to managed identities. These roles are defined in the **delegatedRoleDefinitionIds** property, and can include any [supported Azure built-in role](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse) except for User Access Administrator or Owner.
 
 After the customer is onboarded, the **principalId** created in this authorization will be able to assign these built-in roles to managed identities in the customer tenant. It won't any other permissions normally associated with the User Access Administrator role.
 
 > [!NOTE]
-> [Role assignments](../../role-based-access-control/role-assignments-steps.md#step-5-assign-role) across tenants must currently be done through APIs, not in the Azure portal.
+> [Role assignments](/azure/role-based-access-control/role-assignments-steps#step-5-assign-role) across tenants must currently be done through APIs, not in the Azure portal.
 
 This example shows a **principalId** with the User Access Administrator role. This user will be able to assign two built-in roles to managed identities in the customer tenant: Contributor and Log Analytics Contributor.
 
@@ -67,5 +67,5 @@ The following example shows a role assignment with a **delegatedManagedIdentityR
 
 ## Next steps
 
-- Learn about [Azure Policy](../../governance/policy/index.yml).
-- Learn about [managed identities for Azure resources](../../active-directory/managed-identities-azure-resources/overview.md).
+- Learn about [Azure Policy](/azure/governance/policy/).
+- Learn about [managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).

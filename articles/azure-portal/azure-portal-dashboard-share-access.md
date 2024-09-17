@@ -7,7 +7,7 @@ ms.date: 09/05/2023
 
 # Share Azure dashboards by using Azure role-based access control
 
-After configuring a dashboard, you can publish it and share it with other users in your organization. When you share a dashboard, you can control who can view it by using [Azure role-based access control (Azure RBAC)](../role-based-access-control/role-assignments-portal.yml) to assign roles to either a single user or a group of users. You can select a role that allows them only to view the published dashboard, or a role that also allows them to modify it.
+After configuring a dashboard, you can publish it and share it with other users in your organization. When you share a dashboard, you can control who can view it by using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal) to assign roles to either a single user or a group of users. You can select a role that allows them only to view the published dashboard, or a role that also allows them to modify it.
 
 > [!TIP]
 > Within a dashboard, individual tiles enforce their own access control requirements based on the resources they display. You can share any dashboard broadly, even if some data on specific tiles might not be visible to all users.
@@ -41,7 +41,7 @@ To share access to a dashboard, you must first publish it. When you do so, other
 
     By default, sharing publishes your dashboard to a resource group named **dashboards**. To select a different resource group, clear the checkbox.
 
-1. To [add optional tags](../azure-resource-manager/management/tag-resources.md) to the dashboard, enter one or more name/value pairs.
+1. To [add optional tags](/azure/azure-resource-manager/management/tag-resources) to the dashboard, enter one or more name/value pairs.
 
 1. Select **Publish**.
 
@@ -72,7 +72,7 @@ For each dashboard that you have published, you can assign Azure RBAC built-in r
 
 ## Next steps
 
-* View the list of [Azure built-in roles](../role-based-access-control/built-in-roles.md).
-* Learn about [managing groups in Microsoft Entra ID](../active-directory/fundamentals/active-directory-groups-create-azure-portal.md).
-* Learn more about [managing Azure resources by using the Azure portal](../azure-resource-manager/management/manage-resources-portal.md).
+* View the list of [Azure built-in roles](/azure/role-based-access-control/built-in-roles).
+* Learn about [managing groups in Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-groups-create-azure-portal).
+* Learn more about [managing Azure resources by using the Azure portal](/azure/azure-resource-manager/management/manage-resources-portal).
 * [Create a dashboard](azure-portal-dashboards.md) in the Azure portal.

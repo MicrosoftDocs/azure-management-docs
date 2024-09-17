@@ -217,7 +217,7 @@ az group delete --name $RESOURCE_GROUP_NAME
 
 You can find the Azure Container Registry event message schema reference in the Event Grid documentation:
 
-[Azure Event Grid event schema for Container Registry](../event-grid/event-schema-container-registry.md)
+[Azure Event Grid event schema for Container Registry](/azure/event-grid/event-schema-container-registry)
 
 ## Next steps
 

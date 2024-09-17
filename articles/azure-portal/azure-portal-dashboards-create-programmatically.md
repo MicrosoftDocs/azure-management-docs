@@ -14,7 +14,7 @@ This article walks you through the process of programmatically creating and publ
 
 ## Overview
 
-Shared dashboards in the [Azure portal](https://portal.azure.com) are [resources](../azure-resource-manager/management/overview.md), just like virtual machines and storage accounts. You can manage resources programmatically by using the [REST APIs](/rest/api/?view=Azure&preserve-view=true), the [Azure CLI](/cli/azure), and [Azure PowerShell commands](/powershell/azure/get-started-azureps).
+Shared dashboards in the [Azure portal](https://portal.azure.com) are [resources](/azure/azure-resource-manager/management/overview), just like virtual machines and storage accounts. You can manage resources programmatically by using the [REST APIs](/rest/api/?view=Azure&preserve-view=true), the [Azure CLI](/cli/azure), and [Azure PowerShell commands](/powershell/azure/get-started-azureps).
 
 Many features build on these APIs to make resource management easier. Each of these APIs and tools offers ways to create, list, retrieve, modify, and delete resources. Since dashboards are resources, you can pick your favorite API or tool to use.
 
@@ -44,9 +44,9 @@ To publish this dashboard for any virtual machine in the future, parameterize ev
 
 ## Create a dashboard template
 
-Azure offers the ability to orchestrate the deployment of multiple resources. You create a deployment template that expresses the set of resources to deploy and the relationships between them. For more information, see [Deploy resources with Resource Manager templates and Azure PowerShell](../azure-resource-manager/templates/deploy-powershell.md).
+Azure offers the ability to orchestrate the deployment of multiple resources. You create a deployment template that expresses the set of resources to deploy and the relationships between them. For more information, see [Deploy resources with Resource Manager templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
 
-The JSON format of each deployed template resource is the same as if you were creating them individually by uploading an exported dashboard, except that the template language adds a few concepts like variables, parameters, basic functions, and more. This extended syntax is only supported in the context of a template deployment. For more information, see [Understand the structure and syntax of ARM templates](../azure-resource-manager/templates/syntax.md).
+The JSON format of each deployed template resource is the same as if you were creating them individually by uploading an exported dashboard, except that the template language adds a few concepts like variables, parameters, basic functions, and more. This extended syntax is only supported in the context of a template deployment. For more information, see [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax).
 
 Parameterization should be done using the template's parameter syntax.  You replace all instances of the resource ID we found earlier as shown here.
 
@@ -90,7 +90,7 @@ Declare required template metadata and the parameters at the top of the JSON tem
 Once you've configured your template, deploy it using any of the following methods:
 
 - [REST APIs](/rest/api/resources/deployments)
-- [PowerShell](../azure-resource-manager/templates/deploy-powershell.md)
+- [PowerShell](/azure/azure-resource-manager/templates/deploy-powershell)
 - [Azure CLI](/cli/azure/deployment/group#az-deployment-group-create)
 - [The Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template)
 

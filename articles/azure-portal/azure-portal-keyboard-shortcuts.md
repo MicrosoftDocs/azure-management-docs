@@ -43,9 +43,9 @@ The letters that appear below represent letter keys on your keyboard. For exampl
 
 Individual services may have their own additional keyboard shortcuts. Examples include:
 
-- [Azure Resource Graph Explorer](../governance/resource-graph/reference/keyboard-shortcuts.md)
+- [Azure Resource Graph Explorer](/azure/governance/resource-graph/reference/keyboard-shortcuts)
 - [Kusto Explorer](/azure/data-explorer/kusto/tools/kusto-explorer-shortcuts)
-- [Azure Maps drawing module](../azure-maps/drawing-tools-interactions-keyboard-shortcuts.md)
+- [Azure Maps drawing module](/azure/azure-maps/drawing-tools-interactions-keyboard-shortcuts)
 
 ## Next steps
 

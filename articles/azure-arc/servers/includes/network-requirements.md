@@ -32,7 +32,7 @@ For a list of IP addresses for each service tag/region, see the JSON file [Azure
 
 If you filter traffic to the AzureArcInfrastructure service tag, you must allow traffic to the full service tag range. The ranges advertised for individual regions, for example AzureArcInfrastructure.AustraliaEast, do not include the IP ranges used by global components of the service. The specific IP address resolved for these endpoints may change over time within the documented ranges, so just using a lookup tool to identify the current IP address for a given endpoint and allowing access to that will not be sufficient to ensure reliable access.
 
-For more information, see [Virtual network service tags](../../../virtual-network/service-tags-overview.md).
+For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 ### URLs
 
@@ -51,7 +51,7 @@ The table below lists the URLs that must be available in order to install and us
 |`login.windows.net`|Microsoft Entra ID|Always| Public |
 |`login.microsoftonline.com`|Microsoft Entra ID|Always| Public |
 |`pas.windows.net`|Microsoft Entra ID|Always| Public |
-|`management.azure.com`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](../../../azure-resource-manager/management/create-private-link-access-portal.md) is also configured |
+|`management.azure.com`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured |
 |`*.his.arc.azure.com`|Metadata and hybrid identity services|Always| Private |
 |`*.guestconfiguration.azure.com`| Extension management and guest configuration services |Always| Private |
 |`guestnotificationservice.azure.com`, `*.guestnotificationservice.azure.com`|Notification service for extension and connectivity scenarios|Always| Public |
@@ -84,7 +84,7 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 |`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only| Public |
 |`login.microsoftonline.us`|Microsoft Entra ID|Always| Public |
 |`pasff.usgovcloudapi.net`|Microsoft Entra ID|Always| Public |
-|`management.usgovcloudapi.net`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](../../../azure-resource-manager/management/create-private-link-access-portal.md) is also configured |
+|`management.usgovcloudapi.net`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured |
 |`*.his.arc.azure.us`|Metadata and hybrid identity services|Always| Private |
 |`*.guestconfiguration.azure.us`| Extension management and guest configuration services |Always| Private |
 |`*.blob.core.usgovcloudapi.net`|Download source for Azure Arc-enabled servers extensions|Always, except when using private endpoints| Not used when private link is configured |

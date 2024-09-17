@@ -14,7 +14,7 @@ This article is part two in a four-part tutorial series. [Part one](tutorial-cus
 
 ## Prerequisites
 
-* [Install the Azure CLI][azure-cli] or prepare to use [Azure Cloud Shell](../cloud-shell/quickstart.md).
+* [Install the Azure CLI][azure-cli] or prepare to use [Azure Cloud Shell](/azure/cloud-shell/quickstart).
 * Sign in to the [Azure portal](https://portal.azure.com/). 
 
 ## Enable a customer-managed key by using the Azure CLI
@@ -29,7 +29,7 @@ az group create --name <resource-group-name> --location <location>
 
 ### Create a user-assigned managed identity
 
-Configure a user-assigned [managed identity](../active-directory/managed-identities-azure-resources/overview.md) for the registry so that you can access the key vault:
+Configure a user-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) for the registry so that you can access the key vault:
 
 1. Run the [az identity create][az-identity-create] command to create the managed identity:
 
@@ -215,9 +215,9 @@ Depending on the key that's used to encrypt the registry, the output is similar 
 
 ### Create a user-assigned managed identity
 
-To create a user-assigned [managed identity for Azure resources](../active-directory/managed-identities-azure-resources/overview.md) in the Azure portal: 
+To create a user-assigned [managed identity for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview) in the Azure portal: 
 
-1. Follow the steps to [create a user-assigned identity](../active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal.md#create-a-user-assigned-managed-identity).
+1. Follow the steps to [create a user-assigned identity](/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal#create-a-user-assigned-managed-identity).
 
 2. Save the identity's name to use it in later steps.
 
@@ -249,7 +249,7 @@ The first option is to configure the access policy for the key vault and set key
 
 :::image type="content" source="media/container-registry-customer-managed-keys/add-key-vault-access-policy.png" alt-text="Screenshot of options for creating a key vault access policy.":::
 
-The other option is to assign the `Key Vault Crypto Service Encryption User` RBAC role to the user-assigned managed identity at the key vault scope. For detailed steps, see [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml).
+The other option is to assign the `Key Vault Crypto Service Encryption User` RBAC role to the user-assigned managed identity at the key vault scope. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Create a key 
 

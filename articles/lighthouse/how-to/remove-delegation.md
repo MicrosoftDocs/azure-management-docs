@@ -19,13 +19,13 @@ Removing a delegation can be done by a user in either the customer tenant or the
 
 ## Customers
 
-Users in the customer's tenant who have a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](../../role-based-access-control/built-in-roles.md#owner), can remove service provider access to that subscription (or to resource groups in that subscription). To do so, the user can go to the [Service providers page](view-manage-service-providers.md#remove-service-provider-offers) of the Azure portal, find the offer on the **Service provider offers** screen, and select the trash can icon in the row for that offer.
+Users in the customer's tenant who have a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), can remove service provider access to that subscription (or to resource groups in that subscription). To do so, the user can go to the [Service providers page](view-manage-service-providers.md#remove-service-provider-offers) of the Azure portal, find the offer on the **Service provider offers** screen, and select the trash can icon in the row for that offer.
 
 After confirming the deletion, no users in the service provider's tenant will be able to access the resources that had been previously delegated.
 
 ## Service providers
 
-Users in a managing tenant can remove access to delegated resources if they were granted the [Managed Services Registration Assignment Delete Role](../../role-based-access-control/built-in-roles.md#managed-services-registration-assignment-delete-role) during the onboarding process. If this role isn't assigned to any service provider users, the delegation can only be removed by a user in the customer's tenant.
+Users in a managing tenant can remove access to delegated resources if they were granted the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) during the onboarding process. If this role isn't assigned to any service provider users, the delegation can only be removed by a user in the customer's tenant.
 
 This example shows an assignment granting the **Managed Services Registration Assignment Delete Role** that can be included in a parameter file during the [onboarding process](onboard-customer.md):
 
@@ -39,7 +39,7 @@ This example shows an assignment granting the **Managed Services Registration As
     ] 
 ```
 
-This role can also be selected in an **Authorization** when [creating a Managed Service offer](../../marketplace/plan-managed-service-offer.md) to publish to Azure Marketplace.
+This role can also be selected in an **Authorization** when [creating a Managed Service offer](/azure/marketplace/plan-managed-service-offer) to publish to Azure Marketplace.
 
 A user with this permission can remove a delegation in one of the following ways.
 

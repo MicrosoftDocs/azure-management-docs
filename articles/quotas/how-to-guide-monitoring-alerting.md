@@ -35,8 +35,8 @@ The simplest way to create a quota alert is to use the Azure portal. Follow thes
     | Alert me when the usage % reaches | **Adjust** the slider to select your desired usage percentage for **triggering** alerts. For example, at the default 80%, you receive an alert when your quota reaches 80% capacity.|
     | Severity | Select the **severity** of the alert when the **rule’s condition** is met.|
     | [Frequency of evaluation](/azure/azure-monitor/alerts/alerts-overview#stateful-alerts) | Choose how **often** the alert rule should **run**, by selecting 5, 10, or 15 minutes.  If the frequency is smaller than the aggregation granularity, frequency of evaluation results in sliding window evaluation. |
-    | [Resource Group](../azure-resource-manager/management/manage-resource-groups-portal.md) | Resource Group is a collection of resources that share the same lifecycles, permissions, and policies. Select a resource group similar to other quotas in your subscription, or create a new resource group. |
-    | [Managed identity](../active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities.md?pivots=identity-mi-methods-azp) | Select from the dropdown, or **Create New**. Managed Identity should have **read permissions** for the selected Subscription (to read Usage data from ARG). |
+    | [Resource Group](/azure/azure-resource-manager/management/manage-resource-groups-portal) | Resource Group is a collection of resources that share the same lifecycles, permissions, and policies. Select a resource group similar to other quotas in your subscription, or create a new resource group. |
+    | [Managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) | Select from the dropdown, or **Create New**. Managed Identity should have **read permissions** for the selected Subscription (to read Usage data from ARG). |
     | Notify me by | There are three notifications methods and you can check one or all three check boxes, depending on your notification preference. |
     | [Use an existing action group](/azure/azure-monitor/alerts/action-groups) | Check the box to use an existing action group. An action group **invokes** a defined set of **notifications** and actions when an alert is triggered. You can create Action Group to automatically Increase the Quota whenever possible. |
     | [Dimensions](/azure/azure-monitor/alerts/alerts-types#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions-1) | Here are the options for selecting **multiple Quotas** and **regions** within a single alert rule. Adding dimensions is a cost-effective approach compared to creating a new alert for each quota or region.|
@@ -113,9 +113,9 @@ You can use functions to call the Quota API and request for more quota. Use `Tes
 
 ## Query using Resource Graph Explorer
 
-Using [Azure Resource Graph](../governance/resource-graph/overview.md), alerts can be [managed programatically](/azure/azure-monitor/alerts/alerts-manage-alert-instances#manage-your-alerts-programmatically). This allows you to query your alert instances and analyze your alerts to identify patterns and trends.
+Using [Azure Resource Graph](/azure/governance/resource-graph/overview), alerts can be [managed programatically](/azure/azure-monitor/alerts/alerts-manage-alert-instances#manage-your-alerts-programmatically). This allows you to query your alert instances and analyze your alerts to identify patterns and trends.
 
-The **QuotaResources** table in [Azure Resource Graph](../governance/resource-graph/overview.md) explorer provides usage and limit/quota data for a given resource, region, and/or subscription. You can also query usage and quota data across multiple subscriptions with Azure Resource Graph queries.
+The **QuotaResources** table in [Azure Resource Graph](/azure/governance/resource-graph/overview) explorer provides usage and limit/quota data for a given resource, region, and/or subscription. You can also query usage and quota data across multiple subscriptions with Azure Resource Graph queries.
 
 You must have at least the **Reader** role for the subscription to query this data using Resource Graph Explorer.
 
@@ -165,5 +165,5 @@ If you encounter problems while creating alert rules for quotas, [open a support
 ## Next steps  
 
 - Learn about [quota monitoring and alerting](monitoring-alerting.md)
-- Learn more about [quotas](quotas-overview.md) and [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+- Learn more about [quotas](quotas-overview.md) and [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 - Learn how to request increases for [VM-family vCPU quotas](per-vm-quota-requests.md), [vCPU quotas by region](regional-quota-requests.md), [spot vCPU quotas](spot-quota.md), and [storage accounts](storage-account-quota-requests.md).

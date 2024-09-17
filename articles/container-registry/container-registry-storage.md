@@ -29,7 +29,7 @@ For scenarios requiring high-availability assurance, consider using the [geo-rep
 
 ## Zone redundancy
 
-To help create a resilient and high-availability Azure container registry, optionally enable [zone redundancy](zone-redundancy.md) in select Azure regions. A feature of the Premium service tier, zone redundancy uses Azure [availability zones](../availability-zones/az-overview.md) to replicate your registry to a minimum of three separate zones in each enabled region. Combine geo-replication and zone redundancy to enhance both the reliability and performance of a registry. 
+To help create a resilient and high-availability Azure container registry, optionally enable [zone redundancy](zone-redundancy.md) in select Azure regions. A feature of the Premium service tier, zone redundancy uses Azure [availability zones](/azure/availability-zones/az-overview) to replicate your registry to a minimum of three separate zones in each enabled region. Combine geo-replication and zone redundancy to enhance both the reliability and performance of a registry. 
 
 ## Scalable storage
 

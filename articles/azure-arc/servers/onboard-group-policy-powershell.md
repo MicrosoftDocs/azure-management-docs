@@ -41,7 +41,7 @@ The Group Policy Object, which is used to onboard Azure Arc-enabled servers, req
 
 ## Apply the Group Policy Object
 
-On the Group Policy Management Console (GPMC), right-click on the desired Organizational Unit and link the GPO named **[MSFT] Azure Arc Servers (datetime)**. This is the Group Policy Object which has the Scheduled Task to onboard the machines. After 10 or 20 minutes, the Group Policy Object will be replicated to the respective domain controllers. Learn more about [creating and managing group policy in Microsoft Entra Domain Services](../../active-directory-domain-services/manage-group-policy.md).
+On the Group Policy Management Console (GPMC), right-click on the desired Organizational Unit and link the GPO named **[MSFT] Azure Arc Servers (datetime)**. This is the Group Policy Object which has the Scheduled Task to onboard the machines. After 10 or 20 minutes, the Group Policy Object will be replicated to the respective domain controllers. Learn more about [creating and managing group policy in Microsoft Entra Domain Services](/azure/active-directory-domain-services/manage-group-policy).
 
 After you have successfully installed the agent and configured it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the servers in your Organizational Unit have successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
 
@@ -53,5 +53,5 @@ After you have successfully installed the agent and configured it to connect to 
 
 * Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
 * Review connection troubleshooting information in the [Troubleshoot Connected Machine agent guide](troubleshoot-agent-onboard.md).
-* Learn how to manage your machine using [Azure Policy](../../governance/policy/overview.md) for such things as VM [guest configuration](../../governance/machine-configuration/overview.md), verifying that the machine is reporting to the expected Log Analytics workspace, enabling monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
+* Learn how to manage your machine using [Azure Policy](/azure/governance/policy/overview) for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verifying that the machine is reporting to the expected Log Analytics workspace, enabling monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
 * Learn more about [Group Policy](/troubleshoot/windows-server/group-policy/group-policy-overview).

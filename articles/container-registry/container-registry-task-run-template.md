@@ -62,7 +62,7 @@ az deployment group create \
     sourceLocation=https://github.com/Azure-Samples/acr-build-helloworld-node.git#main
  ```
 
-The previous command passes the parameters on the command line. If desired, pass them in a [parameters file](../azure-resource-manager/templates/parameter-files.md).
+The previous command passes the parameters on the command line. If desired, pass them in a [parameters file](/azure/azure-resource-manager/templates/parameter-files).
 
 ### Verify deployment
 
@@ -210,7 +210,7 @@ az deployment group create \
     customRegistry=mybaseregistry.azurecr.io
 ```
 
-The previous command passes the parameters on the command line. If desired, pass them in a [parameters file](../azure-resource-manager/templates/parameter-files.md).
+The previous command passes the parameters on the command line. If desired, pass them in a [parameters file](/azure/azure-resource-manager/templates/parameter-files).
 
 ### Verify deployment
 

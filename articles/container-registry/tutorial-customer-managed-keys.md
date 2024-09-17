@@ -9,7 +9,7 @@ ms.service: azure-container-registry
 
 # Overview of customer-managed keys
 
-Azure Container Registry automatically encrypts images and other artifacts that you store. By default, Azure automatically encrypts the registry content at rest by using [service-managed keys](../security/fundamentals/encryption-models.md). By using a customer-managed key, you can supplement default encryption with an additional encryption layer.
+Azure Container Registry automatically encrypts images and other artifacts that you store. By default, Azure automatically encrypts the registry content at rest by using [service-managed keys](/azure/security/fundamentals/encryption-models). By using a customer-managed key, you can supplement default encryption with an additional encryption layer.
   
 This article is part one in a four-part tutorial series. The tutorial covers:
 
@@ -25,7 +25,7 @@ A customer-managed key gives you the ownership to bring your own key in [Azure K
 
 Key features include:
 
-* **Regulatory compliance**: Azure automatically encrypts registry content at rest with [service-managed keys](../security/fundamentals/encryption-models.md), but customer-managed key encryption helps you meet guidelines for regulatory compliance.
+* **Regulatory compliance**: Azure automatically encrypts registry content at rest with [service-managed keys](/azure/security/fundamentals/encryption-models), but customer-managed key encryption helps you meet guidelines for regulatory compliance.
 
 * **Integration with Azure Key Vault**: Customer-managed keys support server-side encryption through integration with [Azure Key Vault](/azure/key-vault/general/overview). With customer-managed keys, you can create your own encryption keys and store them in a key vault. Or you can use Azure Key Vault APIs to generate keys. 
 
@@ -59,7 +59,7 @@ For details, see [Key rotation](tutorial-enable-customer-managed-keys.md#key-rot
 ## Next steps
 
 * To enable your container registry with a customer-managed key by using the Azure CLI, the Azure portal, or an Azure Resource Manager template, advance to the next article: [Enable a customer-managed key](tutorial-enable-customer-managed-keys.md).
-* Learn more about [encryption at rest in Azure](../security/fundamentals/encryption-atrest.md).
+* Learn more about [encryption at rest in Azure](/azure/security/fundamentals/encryption-atrest).
 * Learn more about access policies and how to [secure access to a key vault](/azure/key-vault/general/security-features).
 
 

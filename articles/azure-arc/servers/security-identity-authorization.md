@@ -37,11 +37,11 @@ Generic RBAC roles in Azure also apply to Azure Arc-enabled servers, including R
 
 ## Identity and access control
 
-[Azure role-based access control](../../role-based-access-control/overview.md) is used to control which accounts can see and manage your Azure Arc-enabled server. From the [**Access Control (IAM)**](../../role-based-access-control/role-assignments-portal.yml) page in the Azure portal, you can verify who has access to your Azure Arc-enabled server.
+[Azure role-based access control](/azure/role-based-access-control/overview) is used to control which accounts can see and manage your Azure Arc-enabled server. From the [**Access Control (IAM)**](/azure/role-based-access-control/role-assignments-portal) page in the Azure portal, you can verify who has access to your Azure Arc-enabled server.
 
 :::image type="content" source="media/security-identity-authorization/access-control-page.png" alt-text="Screenshot of the Azure portal showing Azure Arc-enabled server access control.":::
 
-Users and applications granted [contributor](../../role-based-access-control/built-in-roles.md#contributor) or administrator role access to the resource can make changes to the resource, including deploying or deleting [extensions](manage-vm-extensions.md) on the machine. Extensions can include arbitrary scripts that run in a privileged context, so consider any contributor on the Azure resource to be an indirect administrator of the server.
+Users and applications granted [contributor](/azure/role-based-access-control/built-in-roles#contributor) or administrator role access to the resource can make changes to the resource, including deploying or deleting [extensions](manage-vm-extensions.md) on the machine. Extensions can include arbitrary scripts that run in a privileged context, so consider any contributor on the Azure resource to be an indirect administrator of the server.
 
 The **Azure Connected Machine Onboarding** role is available for at-scale onboarding, and is only able to read or create new Azure Arc-enabled servers in Azure. It cannot be used to delete servers already registered or manage extensions. As a best practice, we recommend only assigning this role to the Microsoft Entra service principal used to onboard machines at scale.
 

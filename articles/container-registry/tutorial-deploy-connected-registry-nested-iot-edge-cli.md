@@ -17,7 +17,7 @@ For an overview of using a connected registry with IoT Edge, see [Using connecte
 
 [!INCLUDE [Prepare Azure CLI environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
-* Azure IoT Hub. For deployment steps, see [Create an IoT hub using the Azure portal](../iot-hub/iot-hub-create-through-portal.md).
+* Azure IoT Hub. For deployment steps, see [Create an IoT hub using the Azure portal](/azure/iot-hub/iot-hub-create-through-portal).
 * Two connected registry resources in Azure. For deployment steps, see quickstarts using the [Azure CLI][quickstart-connected-registry-cli] or [Azure portal][quickstart-connected-registry-portal].
 
   * For the top layer, the connected registry can be in either ReadWrite or ReadOnly mode. This article assumes ReadWrite mode, and the connected registry name is stored in the environment variable `$CONNECTED_REGISTRY_RW`.
@@ -55,7 +55,7 @@ az acr connected-registry get-settings \
 
 ## Configure deployment manifests
 
-A deployment manifest is a JSON document that describes which modules to deploy to an IoT Edge device. For more information, see [Understand how IoT Edge modules can be used, configured, and reused](../iot-edge/module-composition.md).
+A deployment manifest is a JSON document that describes which modules to deploy to an IoT Edge device. For more information, see [Understand how IoT Edge modules can be used, configured, and reused](/azure/iot-edge/module-composition).
 
 To deploy the connected registry module on each IoT Edge device using the Azure CLI, save the following deployment manifests locally as JSON files. Use the information from the previous sections to update the relevant JSON values in each manifest. Use the file paths in the next section when you run the command to apply the configuration to your device.
 
@@ -188,11 +188,11 @@ Overall, the lower layer deployment file is similar to the top layer deployment 
 
 ## Set up and deploy connected registry modules
 
-The following steps are adapted from [Tutorial: Create a hierarchy of IoT Edge devices](../iot-edge/tutorial-nested-iot-edge.md) and are specific to deploying connected registry modules in the IoT Edge hierarchy. See that tutorial for details about individual steps.
+The following steps are adapted from [Tutorial: Create a hierarchy of IoT Edge devices](/azure/iot-edge/tutorial-nested-iot-edge) and are specific to deploying connected registry modules in the IoT Edge hierarchy. See that tutorial for details about individual steps.
 
 ### Create top layer and lower layer devices
 
-Create top layer and lower layer virtual machines using an existing [ARM template](https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0/edgeDeploy.json). The template also installs the IoT Edge agent. If you want to deploy from your own devices instead, see [Tutorial: Install or uninstall Azure IoT Edge for Linux](../iot-edge/how-to-install-iot-edge.md) to learn how to manually set up the device.
+Create top layer and lower layer virtual machines using an existing [ARM template](https://raw.githubusercontent.com/Azure/iotedge-vm-deploy/1.2.0/edgeDeploy.json). The template also installs the IoT Edge agent. If you want to deploy from your own devices instead, see [Tutorial: Install or uninstall Azure IoT Edge for Linux](/azure/iot-edge/how-to-install-iot-edge) to learn how to manually set up the device.
 
 > [!IMPORTANT]
 > For later access to the modules deployed on the top layer device, make sure that you open the following ports inbound: 8000, 443, 5671, 8883. For configuration steps, see [How to open ports to a virtual machine with the Azure portal](/azure/virtual-machines/windows/nsg-quickstart-portal).
@@ -308,7 +308,7 @@ az iot edge set-modules \
   --content <deployment-manifest-filename>
 ```
 
-For details, see [Deploy Azure IoT Edge modules with Azure CLI](../iot-edge/how-to-deploy-modules-cli.md).
+For details, see [Deploy Azure IoT Edge modules with Azure CLI](/azure/iot-edge/how-to-deploy-modules-cli).
 
 After successful deployment, the connected registry shows a status of `Online`.
 
@@ -325,7 +325,7 @@ You might need to a wait a few minutes until the deployment of the connected reg
 
 After successful deployment, the connected registry shows a status of `Online`.
 
-To troubleshoot a deployment, run `iotedge check` on the affected device. For more information, see [Troubleshooting](../iot-edge/tutorial-nested-iot-edge.md#troubleshooting).
+To troubleshoot a deployment, run `iotedge check` on the affected device. For more information, see [Troubleshooting](/azure/iot-edge/tutorial-nested-iot-edge#troubleshooting).
 
 ## Next steps
 

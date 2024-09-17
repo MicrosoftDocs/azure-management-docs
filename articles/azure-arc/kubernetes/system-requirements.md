@@ -64,11 +64,11 @@ To connect your cluster to Azure Arc, you must have a Microsoft Entra identity (
 
 This identity must have 'Read' and 'Write' permissions on the Azure Arc-enabled Kubernetes resource type (`Microsoft.Kubernetes/connectedClusters`). If connecting the cluster to an existing resource group (rather than a new one created by this identity), the identity must have 'Read' permission for that resource group.
 
-The [Kubernetes Cluster - Azure Arc Onboarding built-in role](../../role-based-access-control/built-in-roles.md#kubernetes-cluster---azure-arc-onboarding) can be used for this identity. This role is useful for at-scale onboarding, as it has only the granular permissions required to connect clusters to Azure Arc, and doesn't have permission to update, delete, or modify any other clusters or other Azure resources.
+The [Kubernetes Cluster - Azure Arc Onboarding built-in role](/azure/role-based-access-control/built-in-roles#kubernetes-cluster---azure-arc-onboarding) can be used for this identity. This role is useful for at-scale onboarding, as it has only the granular permissions required to connect clusters to Azure Arc, and doesn't have permission to update, delete, or modify any other clusters or other Azure resources.
 
 ## Azure resource provider requirements
 
-To use Azure Arc-enabled Kubernetes, the following [Azure resource providers](../../azure-resource-manager/management/resource-providers-and-types.md) must be registered in your subscription:
+To use Azure Arc-enabled Kubernetes, the following [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) must be registered in your subscription:
 
 - **Microsoft.Kubernetes**
 - **Microsoft.KubernetesConfiguration**
@@ -95,7 +95,7 @@ az provider register --namespace Microsoft.KubernetesConfiguration
 az provider register --namespace Microsoft.ExtendedLocation
 ```
 
-You can also register the resource providers in the [Azure portal](../../azure-resource-manager/management/resource-providers-and-types.md#azure-portal).
+You can also register the resource providers in the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal).
 
 ## Network requirements
 

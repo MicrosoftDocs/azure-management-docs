@@ -13,7 +13,7 @@ This article provides steps to enable delivery of Extended Security Updates (ESU
 
 Plan and prepare to onboard your machines to Azure Arc-enabled servers. See [Prepare to deliver Extended Security Updates for Windows Server 2012](prepare-extended-security-updates.md) to learn more.
 
-You'll also need the [Contributor](../../role-based-access-control/built-in-roles.md#contributor) role in [Azure RBAC](../../role-based-access-control/overview.md) to create and assign ESUs to Arc-enabled servers.
+You'll also need the [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role in [Azure RBAC](/azure/role-based-access-control/overview) to create and assign ESUs to Arc-enabled servers.
 
 ## Manage ESU licenses
 
@@ -57,7 +57,7 @@ The **Licenses** tab displays Azure Arc WS2012 licenses that are available. From
 You can select one or more Arc-enabled servers to link to an Extended Security Update license. Once you've linked a server to an activated ESU license, the server is eligible to receive Windows Server 2012 and 2012 R2 ESUs. 
 
 > [!NOTE]
-> You have the flexibility to configure your patching solution of choice to receive these updates – whether that’s [Update Manager](../../update-center/overview.md), [Windows Server Update Services](/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus), Microsoft Updates, [Microsoft Endpoint Configuration Manager](/mem/configmgr/core/understand/introduction), or a third-party patch management solution. 
+> You have the flexibility to configure your patching solution of choice to receive these updates – whether that’s [Update Manager](/azure/update-center/overview), [Windows Server Update Services](/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus), Microsoft Updates, [Microsoft Endpoint Configuration Manager](/mem/configmgr/core/understand/introduction), or a third-party patch management solution. 
 > 
 1. Select the **Eligible Resources** tab to view a list of all your Arc-enabled servers running Windows Server 2012 and 2012 R2.
 

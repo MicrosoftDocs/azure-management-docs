@@ -34,7 +34,7 @@ This feature is available in the **Premium** container registry service tier. Fo
 
 ## Prerequisites
 
-* To use the Azure CLI steps in this article, Azure CLI version 2.3.1 or later is required. If you need to install or upgrade, see [Install Azure CLI][azure-cli]. Or run in [Azure Cloud Shell](../cloud-shell/quickstart.md).
+* To use the Azure CLI steps in this article, Azure CLI version 2.3.1 or later is required. If you need to install or upgrade, see [Install Azure CLI][azure-cli]. Or run in [Azure Cloud Shell](/azure/cloud-shell/quickstart).
 * If you don't already have a container registry, [create one][create-reg-cli] (Premium tier required) in a preview region.
 
 ## Pool tiers
@@ -221,4 +221,4 @@ For more examples of container image builds and maintenance in the cloud, check 
 [az-acr-task-create]: /cli/azure/acr/task#az_acr_task_create
 [az-acr-task-run]: /cli/azure/acr/task#az_acr_task_run
 [create-reg-cli]: container-registry-get-started-azure-cli.md
-[az-vnet-svc-ep]: ../virtual-network/virtual-network-service-endpoints-overview.md#secure-azure-services-to-virtual-networks
+[az-vnet-svc-ep]: /azure/virtual-network/virtual-network-service-endpoints-overview#secure-azure-services-to-virtual-networks

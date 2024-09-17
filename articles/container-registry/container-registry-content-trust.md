@@ -79,7 +79,7 @@ Only the users or systems you've granted permission can push trusted images to y
 > [!IMPORTANT]
 > You can't grant trusted image push permission to the following administrative accounts: 
 > * the [admin account](container-registry-authentication.md#admin-account) of an Azure container registry
-> * a user account in Microsoft Entra ID with the [classic system administrator role](../role-based-access-control/rbac-and-directory-admin-roles.md#classic-subscription-administrator-roles).
+> * a user account in Microsoft Entra ID with the [classic system administrator role](/azure/role-based-access-control/rbac-and-directory-admin-roles#classic-subscription-administrator-roles).
 
 > [!NOTE]
 > Starting July 2021, the `AcrImageSigner` role includes both the         `Microsoft.ContainerRegistry/registries/sign/write` action and the `Microsoft.ContainerRegistry/registries/trustedCollections/write` data action.
@@ -92,7 +92,7 @@ Details for granting the `AcrImageSigner` role in the Azure portal and the Azure
 
 1. Select **Add** > **Add role assignment** to open the Add role assignment page.
 
-1. Assign the following role. In this example, the role is assigned to an individual user. For detailed steps, see [Assign Azure roles using the Azure portal](../role-based-access-control/role-assignments-portal.yml).
+1. Assign the following role. In this example, the role is assigned to an individual user. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
     
     | Setting | Value |
     | --- | --- |
@@ -131,7 +131,7 @@ az role assignment create --scope $REGISTRY_ID --role AcrImageSigner --assignee 
 The `<service principal ID>` can be the service principal's **appId**, **objectId**, or one of its **servicePrincipalNames**. For more information about working with service principals and Azure Container Registry, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
 > [!IMPORTANT]
-> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Add or remove Azure role assignments using Azure CLI](../role-based-access-control/role-assignments-cli.md) and [Troubleshoot Azure RBAC](../role-based-access-control/troubleshooting.md).
+> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Add or remove Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-cli) and [Troubleshoot Azure RBAC](/azure/role-based-access-control/troubleshooting).
 
 ## Push a trusted image
 

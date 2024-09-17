@@ -49,7 +49,7 @@ A cluster-scoped extension will be installed in the `release-namespace` specifie
 
 A namespace-scoped extension can be installed in a given namespace provided using the `–namespace` property. Since the extension can be deployed at a namespace scope, multiple instances of the namespace-scoped extension and its components can run on the cluster.  Each extension instance has permissions on the namespace where it is deployed to. All the above extensions are cluster-scoped except Event Grid on Kubernetes.
 
-All of the [currently available extensions](extensions-release.md) are cluster-scoped, except for [Azure API Management on Azure Arc](../../api-management/how-to-deploy-self-hosted-gateway-azure-arc.md) .
+All of the [currently available extensions](extensions-release.md) are cluster-scoped, except for [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc) .
 
 ## Next steps
 

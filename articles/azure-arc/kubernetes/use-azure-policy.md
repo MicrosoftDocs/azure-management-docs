@@ -49,7 +49,7 @@ Verify you have `Microsoft.Authorization/policyAssignments/write` permissions on
 1. Select **Next**.
 1. Enable **Create a remediation task**.
 1. Verify **Create a managed identity** is checked, and that the identity will have **Contributor** permissions. 
-    * For more information, see the [Create a policy assignment quickstart](../../governance/policy/assign-policy-portal.md) and the [Remediate non-compliant resources with Azure Policy article](../../governance/policy/how-to/remediate-resources.md).
+    * For more information, see the [Create a policy assignment quickstart](/azure/governance/policy/assign-policy-portal) and the [Remediate non-compliant resources with Azure Policy article](/azure/governance/policy/how-to/remediate-resources).
 1. Select **Review + create**.
 
 After creating the policy assignment, the configuration is applied to new Azure Arc-enabled Kubernetes clusters created within the scope of policy assignment.

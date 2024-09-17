@@ -15,7 +15,7 @@ To connect hybrid machines to Azure, you install the [Azure Connected Machine ag
 
 * Proactively monitor the OS and workloads running on the machine
 * Manage it using Automation runbooks or solutions like Update Management
-* Use other Azure services like [Microsoft Defender for Cloud](../../security-center/security-center-introduction.md)
+* Use other Azure services like [Microsoft Defender for Cloud](/azure/security-center/security-center-introduction)
 
 You can install the Connected Machine agent manually, or on multiple machines at scale, using the [deployment method](deployment-options.md) that works best for your scenario.
 
@@ -30,20 +30,20 @@ You can install the Connected Machine agent manually, or on multiple machines at
 When you connect your machine to Azure Arc-enabled servers, you can perform many operational functions, just as you would with native Azure virtual machines. Below are some of the key supported actions for connected machines.
 
 * **Govern**:
-  * Assign [Azure machine configurations](../../governance/machine-configuration/overview.md) to audit settings inside the machine. To understand the cost of using Azure Machine Configuration policies with Arc-enabled servers, see Azure Policy [pricing guide](https://azure.microsoft.com/pricing/details/azure-policy/).
+  * Assign [Azure machine configurations](/azure/governance/machine-configuration/overview) to audit settings inside the machine. To understand the cost of using Azure Machine Configuration policies with Arc-enabled servers, see Azure Policy [pricing guide](https://azure.microsoft.com/pricing/details/azure-policy/).
 * **Protect**:
-  * Protect non-Azure servers with [Microsoft Defender for Endpoint](/microsoft-365/security/defender-endpoint), included through [Microsoft Defender for Cloud](../../security-center/defender-for-servers-introduction.md), for threat detection, for vulnerability management, and to proactively monitor for potential security threats. Microsoft Defender for Cloud presents the alerts and remediation suggestions from the threats detected.
+  * Protect non-Azure servers with [Microsoft Defender for Endpoint](/microsoft-365/security/defender-endpoint), included through [Microsoft Defender for Cloud](/azure/security-center/defender-for-servers-introduction), for threat detection, for vulnerability management, and to proactively monitor for potential security threats. Microsoft Defender for Cloud presents the alerts and remediation suggestions from the threats detected.
   * Use [Microsoft Sentinel](scenario-onboard-azure-sentinel.md) to collect security-related events and correlate them with other data sources.
 * **Configure**:
-  * Use [Azure Automation](../../automation/extension-based-hybrid-runbook-worker-install.md?tabs=windows) for frequent and time-consuming management tasks using PowerShell and Python [runbooks](../../automation/automation-runbook-execution.md). Assess configuration changes for installed software, Microsoft services, Windows registry and files, and Linux daemons using [Change Tracking and Inventory](../../automation/change-tracking/overview.md)
-  * Use [Update Management](../../automation/update-management/overview.md) to manage operating system updates for your Windows and Linux servers. Automate onboarding and configuration of a set of Azure services when you use [Azure Automanage (preview)](../../automanage/automanage-arc.md).
+  * Use [Azure Automation](/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows) for frequent and time-consuming management tasks using PowerShell and Python [runbooks](/azure/automation/automation-runbook-execution). Assess configuration changes for installed software, Microsoft services, Windows registry and files, and Linux daemons using [Change Tracking and Inventory](/azure/automation/change-tracking/overview)
+  * Use [Update Management](/azure/automation/update-management/overview) to manage operating system updates for your Windows and Linux servers. Automate onboarding and configuration of a set of Azure services when you use [Azure Automanage (preview)](/azure/automanage/automanage-arc).
   * Perform post-deployment configuration and automation tasks using supported [Arc-enabled servers VM extensions](manage-vm-extensions.md) for your non-Azure Windows or Linux machine.
 * **Monitor**:
   * Monitor operating system performance and discover application components to monitor processes and dependencies with other resources using [VM insights](/azure/azure-monitor/vm/vminsights-overview).
   * Collect other log data, such as performance data and events, from the operating system or workloads running on the machine with the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview). This data is stored in a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview).
 
 > [!NOTE]
-> At this time, enabling Azure Automation Update Management directly from an Azure Arc-enabled server is not supported. See [Enable Update Management from your Automation account](../../automation/update-management/enable-from-automation-account.md) to understand requirements and [how to enable Update Management for non-Azure VMs](../../automation/update-management/enable-from-automation-account.md#enable-non-azure-vms).
+> At this time, enabling Azure Automation Update Management directly from an Azure Arc-enabled server is not supported. See [Enable Update Management from your Automation account](/azure/automation/update-management/enable-from-automation-account) to understand requirements and [how to enable Update Management for non-Azure VMs](/azure/automation/update-management/enable-from-automation-account#enable-non-azure-vms).
 
 Log data collected and stored in a Log Analytics workspace from the hybrid machine contains properties specific to the machine, such as a Resource ID, to support [resource-context](/azure/azure-monitor/logs/manage-access#access-mode) log access.
 
@@ -85,7 +85,7 @@ If a machine remains disconnected for 45 days, its status may change to **Expire
 
 There's no limit to how many Arc-enabled servers and VM extensions you can deploy in a resource group or subscription. The standard 800 resource limit per resource group applies to the Azure Arc Private Link Scope resource type.
 
-To learn more about resource type limits, see the [Resource instance limit](../../azure-resource-manager/management/resources-without-resource-group-limit.md#microsofthybridcompute) article.
+To learn more about resource type limits, see the [Resource instance limit](/azure/azure-resource-manager/management/resources-without-resource-group-limit#microsofthybridcompute) article.
 
 ## Data residency
 

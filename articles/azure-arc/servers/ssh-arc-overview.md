@@ -15,7 +15,7 @@ allowing existing management tools to have a greater impact on Azure Arc-enabled
 SSH access to Arc-enabled servers provides the following key benefits:
  - No public IP address or open SSH ports required
  - Access to Windows and Linux machines
- - Ability to log in as a local user or an [Azure user (Linux only)](../../active-directory/devices/howto-vm-sign-in-azure-ad-linux.md)
+ - Ability to log in as a local user or an [Azure user (Linux only)](/azure/active-directory/devices/howto-vm-sign-in-azure-ad-linux)
  - Support for other OpenSSH based tooling with config file support
 
 ## Prerequisites
@@ -33,7 +33,7 @@ Authenticating with Microsoft Entra credentials has additional requirements:
     An Azure user who has the Owner or Contributor role assigned for a VM doesn't automatically have privileges to Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines. 
 
     > [!NOTE]
-    > The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](../../role-based-access-control/troubleshoot-limits.md) per subscription.
+    > The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
 
 ### Availability
 SSH access to Arc-enabled servers is currently supported in all regions supported by Arc-Enabled Servers.

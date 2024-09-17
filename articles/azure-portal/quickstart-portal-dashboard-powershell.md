@@ -55,7 +55,7 @@ $vmName = 'myVM1'
 
 ## Create a resource group
 
-Create an [Azure resource group](../azure-resource-manager/management/overview.md) using the [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup)
+Create an [Azure resource group](/azure/azure-resource-manager/management/overview) using the [New-AzResourceGroup](/powershell/module/az.resources/new-azresourcegroup)
 cmdlet. A resource group is a logical container in which Azure resources are deployed and managed as a group.
 
 The following example creates a resource group based on the name in the `$resourceGroupName`

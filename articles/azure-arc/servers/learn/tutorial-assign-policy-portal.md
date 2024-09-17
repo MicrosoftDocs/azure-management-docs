@@ -57,7 +57,7 @@ Follow the steps below to create a policy assignment and assign the policy defin
    - Apply tag and its value
    - Inherit a tag from the resource group if missing
 
-   For a partial list of available built-in policies, see [Azure Policy samples](../../../governance/policy/samples/index.md).
+   For a partial list of available built-in policies, see [Azure Policy samples](/azure/governance/policy/samples/).
 
 1. Search through the policy definitions list to find the _\[Preview]: Log Analytics extension should be installed on your Windows Azure Arc machines_
    definition (if you have enabled the Azure Connected Machine agent on a Windows-based machine). For a Linux-based machine, find the corresponding _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_ policy definition. Click on that policy and click **Add**.

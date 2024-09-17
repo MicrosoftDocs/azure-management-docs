@@ -112,4 +112,4 @@ In this quickstart, you created an Azure Container Registry with a Bicep file. C
 For a step-by-step tutorial that guides you through the process of creating a Bicep file, see:
 
 > [!div class="nextstepaction"]
-> [Quickstart: Create Bicep files with Visual Studio Code](../azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code.md)
+> [Quickstart: Create Bicep files with Visual Studio Code](/azure/azure-resource-manager/bicep/quickstart-create-bicep-use-visual-studio-code)

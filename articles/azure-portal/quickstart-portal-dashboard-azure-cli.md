@@ -21,7 +21,7 @@ Select a subscription by using the [az account set](/cli/azure/account#az-accoun
   az account set --subscription 00000000-0000-0000-0000-000000000000
   ```
 
-- Create an [Azure resource group](../azure-resource-manager/management/overview.md#resource-groups) by using the [az group create](/cli/azure/group#az-group-create) command (or use an existing resource group):
+- Create an [Azure resource group](/azure/azure-resource-manager/management/overview#resource-groups) by using the [az group create](/cli/azure/group#az-group-create) command (or use an existing resource group):
 
   ```azurecli
   az group create --name myResourceGroup --location centralus

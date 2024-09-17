@@ -62,5 +62,5 @@ For more information about support requests, see [Create an Azure support reques
 
 ## Next steps
 
-- Review details on [networking limits](../azure-resource-manager/management/azure-subscription-service-limits.md#networking-limits).
-- Learn about [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+- Review details on [networking limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#networking-limits).
+- Learn about [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).

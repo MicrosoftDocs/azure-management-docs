@@ -41,7 +41,7 @@ When you create a registry, the `exportPolicy` status is set to `enabled` by def
 
 ### ARM template 
 
-Include the following JSON to update the `exportPolicy` status and set the `publicNetworkAccess` property to `disabled`. Learn more about [deploying resources with ARM templates](../azure-resource-manager/templates/deploy-cli.md).
+Include the following JSON to update the `exportPolicy` status and set the `publicNetworkAccess` property to `disabled`. Learn more about [deploying resources with ARM templates](/azure/azure-resource-manager/templates/deploy-cli).
 
 ```json
 {
@@ -124,7 +124,7 @@ After disabling the `exportPolicy` status in a registry, you can re-enable it at
 
 ### ARM template 
 
-Include the following JSON to update the `exportPolicy` status to `enabled`. Learn more about [deploying resources with ARM templates](../azure-resource-manager/templates/deploy-cli.md)
+Include the following JSON to update the `exportPolicy` status to `enabled`. Learn more about [deploying resources with ARM templates](/azure/azure-resource-manager/templates/deploy-cli)
 
 ```json
 {

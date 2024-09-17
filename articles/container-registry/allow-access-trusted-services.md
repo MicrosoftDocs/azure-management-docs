@@ -16,7 +16,7 @@ Use the Azure Cloud Shell or a local installation of the Azure CLI to run the co
 
 ## Limitations
 
-* Certain registry access scenarios with trusted services require a [managed identity for Azure resources](../active-directory/managed-identities-azure-resources/overview.md). Except where noted that a user-assigned managed identity is supported, only a system-assigned identity may be used.
+* Certain registry access scenarios with trusted services require a [managed identity for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Except where noted that a user-assigned managed identity is supported, only a system-assigned identity may be used.
 * Allowing trusted services doesn't apply to a container registry configured with a [service endpoint](container-registry-vnet.md). The feature only affects registries that are restricted with a [private endpoint](container-registry-private-link.md) or that have [public IP access rules](container-registry-access-selected-networks.md) applied.
 
 ## About trusted services

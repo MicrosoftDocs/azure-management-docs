@@ -15,7 +15,7 @@ You can use a Microsoft Entra service principal to provide push, pull, or other 
 
 ## What is a service principal?
 
-Microsoft Entra ID [*service principals*](../active-directory/develop/app-objects-and-service-principals.md) provide access to Azure resources within your subscription. You can think of a service principal as a user identity for a service, where "service" is any application, service, or platform that needs to access the resources. You can configure a service principal with access rights scoped only to those resources you specify. Then, configure your application or service to use the service principal's credentials to access those resources.
+Microsoft Entra ID [*service principals*](/azure/active-directory/develop/app-objects-and-service-principals) provide access to Azure resources within your subscription. You can think of a service principal as a user identity for a service, where "service" is any application, service, or platform that needs to access the resources. You can configure a service principal with access rights scoped only to those resources you specify. Then, configure your application or service to use the service principal's credentials to access those resources.
 
 In the context of Azure Container Registry, you can create a Microsoft Entra service principal with pull, push and pull, or other permissions to your private registry in Azure. For a complete list, see [Azure Container Registry roles and permissions](container-registry-roles.md).
 
@@ -29,7 +29,7 @@ For example, configure your web application to use a service principal that prov
 
 You should use a service principal to provide registry access in **headless scenarios**. That is, an application, service, or script that must push or pull container images in an automated or otherwise unattended manner. For example:
 
-* *Pull*: Deploy containers from a registry to orchestration systems including Kubernetes, DC/OS, and Docker Swarm. You can also pull from container registries to related Azure services such as [App Service](../app-service/index.yml), [Batch](../batch/index.yml), [Service Fabric](/azure/service-fabric/), and others.
+* *Pull*: Deploy containers from a registry to orchestration systems including Kubernetes, DC/OS, and Docker Swarm. You can also pull from container registries to related Azure services such as [App Service](/azure/app-service/), [Batch](/azure/batch/), [Service Fabric](/azure/service-fabric/), and others.
 
     > [!TIP]
     > A service principal is recommended in several [Kubernetes scenarios](authenticate-kubernetes-options.md) to pull images from an Azure container registry. With Azure Kubernetes Service (AKS), you can also use an automated mechanism to authenticate with a target registry by enabling the cluster's [managed identity](/azure/aks/cluster-container-registry-integration).
@@ -100,7 +100,7 @@ A service principal can also be used in Azure scenarios that require pulling ima
 
 To create a service principal that can authenticate with a container registry in a cross-tenant scenario:
 
-* Create a [multitenant app](../active-directory/develop/single-and-multi-tenant-apps.md) (service principal) in Tenant A
+* Create a [multitenant app](/azure/active-directory/develop/single-and-multi-tenant-apps) (service principal) in Tenant A
 * Provision the app in Tenant B
 * Grant the service principal permissions to pull from the registry in Tenant B
 * Update the service or app in Tenant A to authenticate using the new service principal

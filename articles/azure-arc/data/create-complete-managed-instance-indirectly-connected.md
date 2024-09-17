@@ -85,7 +85,7 @@ Follow the steps below to deploy the cluster from the Azure CLI.
    az group create --name <resource_group_name> --location <location>
    ```
 
-   To learn more about resource groups, see [What is Azure Resource Manager](../../azure-resource-manager/management/overview.md).
+   To learn more about resource groups, see [What is Azure Resource Manager](/azure/azure-resource-manager/management/overview).
 
 1. Create Kubernetes cluster
 

@@ -64,5 +64,5 @@ Your request will be reviewed, and you'll be notified if the request can be fulf
 
 - Learn more about [vCPU quotas](/azure/virtual-machines/windows/quotas).
 - Learn more in [Quotas overview](quotas-overview.md).
-- Learn about [Azure subscription and service limits, quotas, and constraints](../azure-resource-manager/management/azure-subscription-service-limits.md).
+- Learn about [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits).
 - Review the [list of Azure regions and their locations](https://azure.microsoft.com/regions/).

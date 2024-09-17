@@ -66,7 +66,7 @@ You use the following steps to:
  
 ### Step 3: Grant service principal permission to pull from registry
 
-In **Tenant B**, assign the AcrPull role to the service principal, scoped to the target container registry. You can use the [Azure portal](../role-based-access-control/role-assignments-portal.yml) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
+In **Tenant B**, assign the AcrPull role to the service principal, scoped to the target container registry. You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
 
 :::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Assign acrpull role to multitenant app":::
 
@@ -82,5 +82,5 @@ Updating the service principal can take several minutes.
 
 * Learn more [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md)
 * Learn more about image pull secrets in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod)
-- Learn about [Application and service principal objects in Microsoft Entra ID](../active-directory/develop/app-objects-and-service-principals.md)
+- Learn about [Application and service principal objects in Microsoft Entra ID](/azure/active-directory/develop/app-objects-and-service-principals)
 - Learn more about [scenarios to authenticate with Azure Container Registry](authenticate-kubernetes-options.md) from a Kubernetes cluster

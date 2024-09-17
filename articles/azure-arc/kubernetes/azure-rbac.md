@@ -215,10 +215,10 @@ Owners of the Azure Arc-enabled Kubernetes resource can use either built-in role
 
 | Role | Description |
 |---|---|
-| [Azure Arc Kubernetes Viewer](../../role-based-access-control/built-in-roles.md#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
-| [Azure Arc Kubernetes Writer](../../role-based-access-control/built-in-roles.md#azure-arc-kubernetes-writer) | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing secrets and running pods as any `ServiceAccount` value in the namespace, so it can be used to gain the API access levels of any `ServiceAccount` value in the namespace. |
-| [Azure Arc Kubernetes Admin](../../role-based-access-control/built-in-roles.md#azure-arc-kubernetes-admin) | Allows admin access. It's intended to be granted within a namespace through `RoleBinding`. If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. This role doesn't allow write access to resource quota or to the namespace itself. |
-| [Azure Arc Kubernetes Cluster Admin](../../role-based-access-control/built-in-roles.md#azure-arc-kubernetes-cluster-admin) | Allows superuser access to execute any action on any resource. When you use it in `ClusterRoleBinding`, it gives full control over every resource in the cluster and in all namespaces. When you use it in `RoleBinding`, it gives full control over every resource in the role binding's namespace, including the namespace itself.|
+| [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
+| [Azure Arc Kubernetes Writer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-writer) | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing secrets and running pods as any `ServiceAccount` value in the namespace, so it can be used to gain the API access levels of any `ServiceAccount` value in the namespace. |
+| [Azure Arc Kubernetes Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-admin) | Allows admin access. It's intended to be granted within a namespace through `RoleBinding`. If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. This role doesn't allow write access to resource quota or to the namespace itself. |
+| [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows superuser access to execute any action on any resource. When you use it in `ClusterRoleBinding`, it gives full control over every resource in the cluster and in all namespaces. When you use it in `RoleBinding`, it gives full control over every resource in the role binding's namespace, including the namespace itself.|
 
 You can create role assignments scoped to the Azure Arc-enabled Kubernetes cluster in the Azure portal on the **Access Control (IAM)** pane of the cluster resource. You can also use the following Azure CLI commands:
 
@@ -241,7 +241,7 @@ az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee <AZURE
 
 You can choose to create your own role definition for use in role assignments.
 
-Walk through the following example of a role definition that allows a user to only read deployments. For more information, see [the full list of data actions that you can use to construct a role definition](../../role-based-access-control/resource-provider-operations.md#microsoftkubernetes).
+Walk through the following example of a role definition that allows a user to only read deployments. For more information, see [the full list of data actions that you can use to construct a role definition](/azure/role-based-access-control/resource-provider-operations#microsoftkubernetes).
 
 Copy the following JSON object into a file called *custom-role.json*. Replace the `<subscription-id>` placeholder with the actual subscription ID. The custom role uses one of the data actions and lets you view all deployments in the scope (cluster or namespace) where the role assignment is created.
 
@@ -415,10 +415,10 @@ Using a shared kubeconfig requires slightly different steps depending on your Ku
 
 ## Use Conditional Access with Microsoft Entra ID
 
-When you're integrating Microsoft Entra ID with your Azure Arc-enabled Kubernetes cluster, you can also use [Conditional Access](../../active-directory/conditional-access/overview.md) to control access to your cluster.
+When you're integrating Microsoft Entra ID with your Azure Arc-enabled Kubernetes cluster, you can also use [Conditional Access](/azure/active-directory/conditional-access/overview) to control access to your cluster.
 
 > [!NOTE]
-> [Microsoft Entra Conditional Access](../../active-directory/conditional-access/overview.md) is a Microsoft Entra ID P2 capability.
+> [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview) is a Microsoft Entra ID P2 capability.
 
 To create an example Conditional Access policy to use with the cluster:
 
@@ -466,10 +466,10 @@ Follow the instructions to sign in again. An error message states that you're su
 
 ## Configure just-in-time cluster access with Microsoft Entra ID
 
-Another option for cluster access control is to use [Privileged Identity Management (PIM)](../../active-directory/privileged-identity-management/pim-configure.md) for just-in-time requests.
+Another option for cluster access control is to use [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure) for just-in-time requests.
 
 >[!NOTE]
-> [Microsoft Entra PIM](../../active-directory/privileged-identity-management/pim-configure.md) is a Microsoft Entra ID P2 capability. For more on Microsoft Entra ID SKUs, see the [pricing guide](https://azure.microsoft.com/pricing/details/active-directory/).
+> [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more on Microsoft Entra ID SKUs, see the [pricing guide](https://azure.microsoft.com/pricing/details/active-directory/).
 
 To configure just-in-time access requests for your cluster, complete the following steps:
 
@@ -500,7 +500,7 @@ To configure just-in-time access requests for your cluster, complete the followi
 
     :::image type="content" source="media/azure-rbac/jit-adding-assignment.png" alt-text="Screenshot showing how to add assignments in the Azure portal." lightbox="media/azure-rbac/jit-adding-assignment.png":::
 
-1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**. For more on assignment types, see [Assign eligibility for a privileged access group (preview) in Privileged Identity Management](../../active-directory/privileged-identity-management/groups-assign-member-owner.md#assign-an-owner-or-member-of-a-group).
+1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**. For more on assignment types, see [Assign eligibility for a privileged access group (preview) in Privileged Identity Management](/azure/active-directory/privileged-identity-management/groups-assign-member-owner#assign-an-owner-or-member-of-a-group).
 
     :::image type="content" source="media/azure-rbac/jit-set-active-assignment.png" alt-text="Screenshot showing assignment properties in the Azure portal." lightbox="media/azure-rbac/jit-set-active-assignment.png":::
 

@@ -12,7 +12,7 @@ ms.service: azure-container-registry
 
 This article shows how to transfer collections of images or other registry artifacts from one Azure container registry to another registry. The source and target registries can be in the same or different subscriptions, Active Directory tenants, Azure clouds, or physically disconnected clouds.
 
-To transfer artifacts, you create a *transfer pipeline* that replicates artifacts between two registries by using [blob storage](../storage/blobs/storage-blobs-introduction.md):
+To transfer artifacts, you create a *transfer pipeline* that replicates artifacts between two registries by using [blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
 * Artifacts from a source registry are exported to a blob in a source storage account
 * The blob is copied from the source storage account to a target storage account
@@ -36,7 +36,7 @@ Transfer is ideal for copying content between two Azure container registries in 
    If you need to create a registry, see [Quickstart: Create a private container registry using the Azure CLI](container-registry-get-started-azure-cli.md).
 * **Storage accounts** - Create source and target storage accounts in a subscription and location of your choice. For testing purposes, you can use the same subscription or subscriptions as your source and target registries. For cross-cloud scenarios, typically you create a separate storage account in each cloud.
 
-  If needed, create the storage accounts with the [Azure CLI](../storage/common/storage-account-create.md?tabs=azure-cli) or other tools.
+  If needed, create the storage accounts with the [Azure CLI](/azure/storage/common/storage-account-create?tabs=azure-cli) or other tools.
 
   Create a blob container for artifact transfer in each account. For example, create a container named *transfer*.
 

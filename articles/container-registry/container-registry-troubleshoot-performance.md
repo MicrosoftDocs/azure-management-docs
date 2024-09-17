@@ -46,7 +46,7 @@ Related links:
 
 * [Azure Container Registry service tiers](container-registry-skus.md)    
 * [Container registry FAQ](container-registry-faq.yml)
-* [Performance and scalability targets for Azure Blob Storage](../storage/blobs/scalability-targets.md)
+* [Performance and scalability targets for Azure Blob Storage](/azure/storage/blobs/scalability-targets)
 
 ### Check client hardware
 
@@ -92,7 +92,7 @@ Related links:
 * [Geo-replication in Azure Container Registry](container-registry-geo-replication.md)
 * [Troubleshoot push operations with geo-replicated registries](container-registry-geo-replication.md#troubleshoot-push-operations-with-geo-replicated-registries)
 * [Temporarily disable routing to replication](container-registry-geo-replication.md#temporarily-disable-routing-to-replication)
-* [Traffic Manager FAQs](../traffic-manager/traffic-manager-faqs.md)
+* [Traffic Manager FAQs](/azure/traffic-manager/traffic-manager-faqs)
 
 ### Advanced troubleshooting
 

@@ -31,7 +31,7 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 
 * Enforce threat protection using [Microsoft Defender for Kubernetes](/azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json).
 
-* Ensure governance through applying policies with [Azure Policy for Kubernetes](../../governance/policy/concepts/policy-for-kubernetes.md?toc=/azure/azure-arc/kubernetes/toc.json).
+* Ensure governance through applying policies with [Azure Policy for Kubernetes](/azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json).
 
 * Grant access and [connect](cluster-connect.md) to your Kubernetes clusters from anywhere, and manage access by using [Azure role-based access control (RBAC)](azure-rbac.md) on your cluster.
 
@@ -40,8 +40,8 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 * Deploy services that allow you to take advantage of specific hardware, comply with data residency requirements, or enable new scenarios. Examples of services include:
   * [Azure Arc-enabled data services](../data/overview.md)
   * [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json)
-  * [Event Grid on Kubernetes](../../event-grid/kubernetes/overview.md)
-  * [App Services on Azure Arc](../../app-service/overview-arc-integration.md)
+  * [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview)
+  * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
    - [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
    * Deploy and manage Kubernetes applications targeted for Azure Arc-Enabled Kubernetes clusters from Azure Marketplace.
    

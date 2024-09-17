@@ -7,9 +7,9 @@ ms.topic: how-to
 
 # Onboard all subscriptions in a management group
 
-[Azure Lighthouse](../overview.md) allows delegation of subscriptions and/or resource groups, but not [management groups](../../governance/management-groups/overview.md). However, you can use an [Azure Policy](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/policy-delegate-management-groups) to delegate all subscriptions within a management group to a managing tenant.
+[Azure Lighthouse](../overview.md) allows delegation of subscriptions and/or resource groups, but not [management groups](/azure/governance/management-groups/overview). However, you can use an [Azure Policy](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/policy-delegate-management-groups) to delegate all subscriptions within a management group to a managing tenant.
 
-The policy uses the [deployIfNotExists](../../governance/policy/concepts/effects.md#deployifnotexists) effect to check whether each subscription within the management group has been delegated to the specified managing tenant. If a subscription is not already delegated, the policy creates the Azure Lighthouse assignment based on the values you provide in the parameters. You will then have access to all of the subscriptions in the management group, just as if they had each been onboarded manually.
+The policy uses the [deployIfNotExists](/azure/governance/policy/concepts/effects#deployifnotexists) effect to check whether each subscription within the management group has been delegated to the specified managing tenant. If a subscription is not already delegated, the policy creates the Azure Lighthouse assignment based on the values you provide in the parameters. You will then have access to all of the subscriptions in the management group, just as if they had each been onboarded manually.
 
 When using this policy, keep in mind:
 
@@ -23,11 +23,11 @@ Unless specified below, all of these steps must be performed by a user in the cu
 
 ## Register the resource provider across subscriptions
 
-Typically, the **Microsoft.ManagedServices** resource provider is registered for a subscription as part of the onboarding process. When using the policy to onboard subscriptions in a management group, the resource provider must be registered in advance. This can be done by a Contributor or Owner user in the customer's tenant (or any user who has permissions to do the `/register/action` operation for the resource provider). For more information, see [Azure resource providers and types](../../azure-resource-manager/management/resource-providers-and-types.md).
+Typically, the **Microsoft.ManagedServices** resource provider is registered for a subscription as part of the onboarding process. When using the policy to onboard subscriptions in a management group, the resource provider must be registered in advance. This can be done by a Contributor or Owner user in the customer's tenant (or any user who has permissions to do the `/register/action` operation for the resource provider). For more information, see [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
 
 You can use an [Azure Logic App to automatically register the resource provider across subscriptions](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/register-managed-services-rp-customer). This Logic App can be deployed in a customer's tenant with limited permissions that allow it to register the resource provider in each subscription within a management group.
 
-We also provide an [Azure Logic App that can be deployed in the service provider's tenant](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/register-managed-services-rp-partner). This Logic App can assign the resource provider across subscriptions in multiple tenants by [granting tenant-wide admin consent](../../active-directory/manage-apps/grant-admin-consent.md) to the Logic App. Granting tenant-wide admin consent requires you to sign in as a user that is authorized to consent on behalf of the organization. Note that even if you use this option to register the provider across multiple tenants, you'll still need to deploy the policy individually for each management group.
+We also provide an [Azure Logic App that can be deployed in the service provider's tenant](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/register-managed-services-rp-partner). This Logic App can assign the resource provider across subscriptions in multiple tenants by [granting tenant-wide admin consent](/azure/active-directory/manage-apps/grant-admin-consent) to the Logic App. Granting tenant-wide admin consent requires you to sign in as a user that is authorized to consent on behalf of the organization. Note that even if you use this option to register the provider across multiple tenants, you'll still need to deploy the policy individually for each management group.
 
 ## Create your parameters file
 
@@ -74,7 +74,7 @@ The example below shows a parameters file which will delegate the subscriptions 
 
 ## Assign the policy to a management group  
 
-Once you've edited the policy to create your assignments, you can assign it at the management group level. To learn how to assign a policy and view compliance state results, see [Quickstart: Create a policy assignment](../../governance/policy/assign-policy-portal.md).
+Once you've edited the policy to create your assignments, you can assign it at the management group level. To learn how to assign a policy and view compliance state results, see [Quickstart: Create a policy assignment](/azure/governance/policy/assign-policy-portal).
 
 The PowerShell script below shows how to add the policy definition under the specified management group, using the template and parameter file you created. You need to create the assignment and remediation task for existing subscriptions.
 
@@ -91,5 +91,5 @@ If you keep the Logic App and policy active for your management group, any new s
 ## Next steps
 
 - Learn more about [onboarding customers to Azure Lighthouse](onboard-customer.md).
-- Learn about [Azure Policy](../../governance/policy/index.yml).
-- Learn about [Azure Logic Apps](../../logic-apps/logic-apps-overview.md).
+- Learn about [Azure Policy](/azure/governance/policy/).
+- Learn about [Azure Logic Apps](/azure/logic-apps/logic-apps-overview).
