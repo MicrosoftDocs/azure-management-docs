@@ -9,28 +9,31 @@ items:
     items:
     - name: Azure Arc-enabled data services
       tocHref: /azure/azure-arc/data/
-      topicHref: /azure/azure-arc/index
+      topicHref: /azure/azure-arc/data/
     - name: Azure Arc-enabled Kubernetes
       tocHref: /azure/azure-arc/kubernetes/
-      topicHref: /azure/azure-arc/index
+      topicHref: /azure/azure-arc/kubernetes/
     - name: Azure Arc-enabled VMWare
       tocHref: /azure/azure-arc/vmware-vsphere/
-      topicHref: /azure/azure-arc/index
+      topicHref: /azure/azure-arc/vmware-vsphere/
     - name: Arc-enabled servers
       tocHref: /azure/azure-arc/servers/
       topicHref: /azure/azure-arc/servers/
     - name: Azure Container Storage enabled by Azure Arc
       tocHref: /azure/azure-arc/container-storage/
-      topicHref: /azure/azure-arc/container-storage/index
-  - name: Azure Lighthouse
-    tocHref: /azure/lighthouse/
-    topicHref: /azure/lighthouse/
-  - name: Container Registry
-    tocHref: /azure/container-registry/
-    topicHref: /azure/container-registry/
+      topicHref: /azure/azure-arc/container-storage/
   - name: Azure portal documentation
     tocHref: /azure/azure-portal/
     topicHref: /azure/azure-portal/
+  - name: Container Registry
+    tocHref: /azure/container-registry/
+    topicHref: /azure/container-registry/
   - name: Microsoft Copilot in Azure
     tocHref: /azure/copilot/
     topicHref: /azure/copilot/
+  - name: Azure Lighthouse
+    tocHref: /azure/lighthouse/
+    topicHref: /azure/lighthouse/
+  - name: Azure Quotas
+    tocHref: /azure/quotas/
+    topicHref: /azure/quotas/
