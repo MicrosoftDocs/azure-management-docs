@@ -1,0 +1,19 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/articles/lighthouse/concepts/azure-delegated-resource-management.md",
+            "redirect_url": "/azure/lighthouse/concepts/architecture",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/lighthouse/how-to/partner-earned-credit.md",
+            "redirect_url": "/azure/cost-management-billing/manage/link-partner-id",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/lighthouse/samples/policy-samples.md",
+            "redirect_url": "/azure/lighthouse/samples/policy-reference",
+            "redirect_document_id": false
+        }
+    ]
+}

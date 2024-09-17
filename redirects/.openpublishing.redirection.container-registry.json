@@ -169,6 +169,11 @@
       "source_path_from_root": "/articles/container-registry/container-registry-auth-aks.md",
       "redirect_url": "/azure/aks/cluster-container-registry-integration",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/manual-regional-move.md",
+      "redirect_url": "/azure/operational-excellence/relocation-container-registry",
+      "redirect_document_id": false
     }
   ]
 }
