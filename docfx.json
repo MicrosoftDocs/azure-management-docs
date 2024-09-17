@@ -7,11 +7,9 @@
           "**/*.yml"
         ],
         "exclude": [
-          "iot-edge/**",
           "**/_themes/**",
           "**/includes/**",
-          "**/obj/**",
-          "**/*.graffle"
+          "**/obj/**"
         ],
         "src": "articles",
         "dest": "."
@@ -34,7 +32,6 @@
           "**/*.svg"
         ],
         "exclude": [
-          "iot-edge/**",
           "**/_themes/**",
           "**/obj/**"
         ],
@@ -53,6 +50,13 @@
           "**/_themes/**",
           "**/obj/**"
         ]
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-management"
       }
     ],
     "globalMetadata": {
@@ -135,7 +139,7 @@
       ],
       "uhfHeaderId": "azure",
       "ms.suite": "office",
-      "zone_pivot_group_filename": "zone-pivot-groups.json"
+      "zone_pivot_group_filename": "zone-pivots/azure-management/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "author": {

@@ -1,0 +1,40 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: attach-app
+  title: Attach method
+  prompt: Choose an attach method
+  pivots:
+  - id: attach-kubernetes
+    title: Kubernetes native
+  - id: attach-iot-op
+    title: Azure IoT Operations
+# Owner: sethm
+- id: platform-select
+  title: Platform
+  prompt: Choose a platform
+  pivots:
+  - id: aks
+    title: AKS enabled by Arc
+  - id: aks-ee
+    title: AKS Edge Essentials
+  - id: ubuntu
+    title: Ubuntu
+- id: identity-select
+  title: Authentication
+  prompt: Choose authentication
+  pivots:
+  - id: storage-key
+    title: Storage key
+  - id: workload-identity
+    title: Workload identity
+# Owner: v-gjeronika
+- id: vmware-portal-bicep-terraform
+  title: Create a virtual machine on VMware vCenter using Azure Arc
+  prompt: Choose a method
+  pivots:
+  - id: portal
+    title: Azure portal
+  - id: bicep
+    title: Bicep
+  - id: terraform
+    title: Terraform
