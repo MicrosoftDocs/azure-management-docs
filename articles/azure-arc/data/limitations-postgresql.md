@@ -15,7 +15,7 @@ ms.topic: how-to
 
 This article describes limitations of Azure Arc-enabled PostgreSQL. 
 
-[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
 
 ## High availability
 

@@ -15,7 +15,7 @@ ms.topic: conceptual
 
 This article lists additional experiences you can have with Azure Arc-enabled data services.
 
-[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
 
 ## Experiences
 

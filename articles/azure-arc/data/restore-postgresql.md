@@ -16,7 +16,7 @@ ms.topic: how-to
 
 Restoring an Azure Arc-enable PostgreSQL server creates a new server by copying the configuration of the existing server (for example resource requests/limits, extensions etc.). Configurations that could cause conflicts (for example primary endpoint port) aren't copied. The storage configuration for the new resource can be defined by passing `--storage-class*` and `--volume-size-*` parameters to the `restore` command.
 
-[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
 
 Restore an Azure Arc-enabled PostgreSQL server to a new server with the `restore` command:
 

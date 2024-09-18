@@ -13,7 +13,7 @@ ms.topic: how-to
 
 # Create a PostgreSQL server using Kubernetes tools
 
-[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
 
 ## Prerequisites
 
