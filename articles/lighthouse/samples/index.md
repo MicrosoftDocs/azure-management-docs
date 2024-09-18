@@ -10,19 +10,19 @@ The following table includes links to key Azure Resource Manager templates for A
 
 ## Onboard customers
 
-[!INCLUDE [azure-lighthouse-samples-onboarding](../../../includes/azure-lighthouse-samples-onboarding.md)]
+[!INCLUDE [azure-lighthouse-samples-onboarding](../includes/azure-lighthouse-samples-onboarding.md)]
 
 ## Azure Policy
 
-[!INCLUDE [azure-lighthouse-samples-policy](../../../includes/azure-lighthouse-samples-policy.md)]
+[!INCLUDE [azure-lighthouse-samples-policy](../includes/azure-lighthouse-samples-policy.md)]
 
 ## Azure Monitor
 
-[!INCLUDE [azure-lighthouse-samples-monitor](../../../includes/azure-lighthouse-samples-monitor.md)]
+[!INCLUDE [azure-lighthouse-samples-monitor](../includes/azure-lighthouse-samples-monitor.md)]
 
 ## Additional cross-tenant scenarios
 
-[!INCLUDE [azure-lighthouse-samples-scenarios](../../../includes/azure-lighthouse-samples-scenarios.md)]
+[!INCLUDE [azure-lighthouse-samples-scenarios](../includes/azure-lighthouse-samples-scenarios.md)]
 
 ## Next steps
 
