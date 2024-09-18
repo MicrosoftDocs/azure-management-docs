@@ -21,7 +21,7 @@ items:
       topicHref: /azure/azure-arc/multicloud-connector/
     - name: Azure Arc Resource Bridge
       tocHref: /azure/azure-arc/resource-bridge/
-      topicHref: /azure/azure-arc/resource-bridge/
+      topicHref: /azure/azure-arc/resource-bridge/overview
     - name: Arc-enabled servers
       tocHref: /azure/azure-arc/servers/
       topicHref: /azure/azure-arc/servers/
