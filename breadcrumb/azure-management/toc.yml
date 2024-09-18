@@ -19,10 +19,7 @@ items:
     - name: Multicloud connector
       tocHref: /azure/azure-arc/multicloud-connector/
       topicHref: /azure/azure-arc/multicloud-connector/
-    - name: Azure Arc-Platform
-      tocHref: /azure/azure-arc/platform/
-      topicHref: /azure/azure-arc/platform/
-    - name: Azure Arc-Resource Bridge
+    - name: Azure Arc Resource Bridge
       tocHref: /azure/azure-arc/resource-bridge/
       topicHref: /azure/azure-arc/resource-bridge/
     - name: Arc-enabled servers
