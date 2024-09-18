@@ -20,6 +20,13 @@
         ],
         "src": "breadcrumb/azure-management",
         "dest": "breadcrumb/azure-management"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-management"
       }
     ],
     "resource": [
@@ -50,13 +57,6 @@
           "**/_themes/**",
           "**/obj/**"
         ]
-      },
-      {
-        "files": [
-          "zone-pivot-groups.yml"
-        ],
-        "src": "zone-pivots",
-        "dest": "zone-pivots/azure-management"
       }
     ],
     "globalMetadata": {
