@@ -47,7 +47,7 @@ To import container images, this article requires that you run Azure PowerShell 
 
 ---
 
-[!INCLUDE [container-registry-geo-replication-include](../../includes/container-registry-geo-replication-include.md)]
+[!INCLUDE [container-registry-geo-replication-include](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-geo-replication-include.md)]
 
 > [!IMPORTANT]
 > Changes to image import between two Azure container registries have been introduced as of January 2021:
