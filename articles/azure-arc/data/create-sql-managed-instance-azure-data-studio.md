@@ -15,7 +15,7 @@ ms.topic: how-to
 
 This document demonstrates how to install Azure SQL Managed Instance - Azure Arc using Azure Data Studio.
 
-[!INCLUDE [azure-arc-common-prerequisites](../../../includes/azure-arc-common-prerequisites.md)]
+[!INCLUDE [azure-arc-common-prerequisites](../includes/azure-arc-common-prerequisites.md)]
 
 ## Steps
 

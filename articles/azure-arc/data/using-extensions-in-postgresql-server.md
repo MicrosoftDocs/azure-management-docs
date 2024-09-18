@@ -16,7 +16,7 @@ ms.topic: how-to
 
 PostgreSQL is at its best when you use it with extensions.
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
 
 ## Supported extensions
 The following extensions are deployed by default in the containers of your Azure Arc-enabled PostgreSQL server, some of them are standard [`contrib`](https://www.postgresql.org/docs/14/contrib.html) extensions:

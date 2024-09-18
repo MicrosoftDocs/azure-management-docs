@@ -17,7 +17,7 @@ To enable automated backups, include the `--storage-class-backups` argument when
 
 Additionally, if you set the retention period to zero, then automated backups are disabled. 
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
 
 ## Create server with automated backup
 

@@ -16,7 +16,7 @@ ms.topic: how-to
 
 This document describes the steps to get your existing PostgreSQL database (one that not hosted in Azure Arc-enabled Data Services) into your Azure Arc-enabled PostgreSQL server.
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
 
 ## Considerations
 

@@ -13,7 +13,7 @@ ms.topic: conceptual
 
 # What is Azure Arc-enabled PostgreSQL server
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
 
 **Azure Arc-enabled PostgreSQL server** is one of the database engines available as part of Azure Arc-enabled data services. 
 

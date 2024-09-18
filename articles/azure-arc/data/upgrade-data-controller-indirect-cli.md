@@ -35,7 +35,7 @@ Before you can proceed with the tasks in this article, you need to install:
 - The [Azure CLI (`az`)](/cli/azure/install-azure-cli)
 - The [`arcdata` extension for Azure CLI](install-arcdata-extension.md)
 
-[!INCLUDE [azure-arc-angle-bracket-example](../../../includes/azure-arc-angle-bracket-example.md)]
+[!INCLUDE [azure-arc-angle-bracket-example](../includes/azure-arc-angle-bracket-example.md)]
 
 The `arcdata` extension version and the image version are related. Check that you have the correct `arcdata` extension version that corresponds to the image version you want to upgrade to in the [Version log](version-log.md).
 

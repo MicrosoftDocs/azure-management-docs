@@ -15,11 +15,11 @@ ms.topic: conceptual
 
 This article lists additional experiences you can have with Azure Arc-enabled data services.
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](.../includes/azure-arc-data-preview.md)]
 
 ## Experiences
 
-[!INCLUDE [azure-arc-common-monitoring](../../../includes/azure-arc-common-monitoring.md)]
+[!INCLUDE [azure-arc-common-monitoring](../includes/azure-arc-common-monitoring.md)]
 
 ## Related content
 - [Read about the overview of Azure Arc-enabled data services](overview.md)
