@@ -91,7 +91,21 @@ You should see the sample app rendered with no event messages displayed:
 
 ![Web browser showing sample web app with no events displayed][sample-app-02]
 
-[!INCLUDE [register-provider-cli.md](../../articles/event-grid/includes/register-provider-cli.md)]
+## Enable the Event Grid resource provider
+
+1. If you haven't previously used Event Grid in your Azure subscription, you might need to register the Event Grid resource provider. Run the following command to register the provider:
+
+   ```azurecli-interactive
+   az provider register --namespace Microsoft.EventGrid
+   ```
+    
+2. It might take a moment for the registration to finish. To check the status, run the following command:
+
+   ```azurecli-interactive
+   az provider show --namespace Microsoft.EventGrid --query "registrationState"
+   ```
+   
+   When `registrationState` is `Registered`, you're ready to continue.
 
 ## Subscribe to registry events
 
