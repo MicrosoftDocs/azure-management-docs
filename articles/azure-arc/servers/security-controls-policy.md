@@ -14,9 +14,9 @@ page lists the **compliance domains** and **security controls** for Azure Arc-en
 assign the built-ins for a **security control** individually to help make your Azure resources
 compliant with the specific standard.
 
-[!INCLUDE [azure-policy-compliancecontrols-introwarning](../../../includes/policy/standards/intro-warning.md)]
+[!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-arcservers](../../../includes/policy/standards/byrp/microsoft.hybridcompute.md)]
+[!INCLUDE [azure-policy-compliancecontrols-arcservers](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.hybridcompute.md)]
 
 ## Next steps
 
