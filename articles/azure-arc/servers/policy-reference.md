@@ -17,7 +17,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Arc-enabled servers
 
-[!INCLUDE [azure-policy-reference-rp-arcserver](../../../includes/policy/reference/byrp/microsoft.hybridcompute.md)]
+[!INCLUDE [azure-policy-reference-rp-arcserver](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.hybridcompute.md)]
 
 ## Next steps
 
