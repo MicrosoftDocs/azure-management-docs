@@ -7,21 +7,36 @@ items:
     tocHref: /azure/azure-arc/
     topicHref: /azure/azure-arc/
     items:
+    - name: Azure Container Storage enabled by Azure Arc
+      tocHref: /azure/azure-arc/container-storage/
+      topicHref: /azure/azure-arc/container-storage/
     - name: Azure Arc-enabled data services
       tocHref: /azure/azure-arc/data/
       topicHref: /azure/azure-arc/data/
     - name: Azure Arc-enabled Kubernetes
       tocHref: /azure/azure-arc/kubernetes/
       topicHref: /azure/azure-arc/kubernetes/
-    - name: Azure Arc-enabled VMWare
-      tocHref: /azure/azure-arc/vmware-vsphere/
-      topicHref: /azure/azure-arc/vmware-vsphere/
+    - name: Azure Arc-Multicloud connector
+      tocHref: /azure/azure-arc/multicloud-connector/
+      topicHref: /azure/azure-arc/multicloud-connector/
+    - name: Azure Arc-Platform
+      tocHref: /azure/azure-arc/platform/
+      topicHref: /azure/azure-arc/platform/
+    - name: Azure Arc-Resource Bridge
+      tocHref: /azure/azure-arc/resource-bridge/
+      topicHref: /azure/azure-arc/resource-bridge/
     - name: Arc-enabled servers
       tocHref: /azure/azure-arc/servers/
       topicHref: /azure/azure-arc/servers/
-    - name: Azure Container Storage enabled by Azure Arc
-      tocHref: /azure/azure-arc/container-storage/
-      topicHref: /azure/azure-arc/container-storage/
+    - name: Azure Arc Site manager
+      tocHref: /azure/azure-arc/site-manager/
+      topicHref: /azure/azure-arc/site-manager/
+    - name: System Center VMM
+      tocHref: /azure/azure-arc/system-center-virtual-machine-manager/
+      topicHref: /azure/azure-arc/system-center-virtual-machine-manager/
+    - name: Azure Arc-enabled VMWare
+      tocHref: /azure/azure-arc/vmware-vsphere/
+      topicHref: /azure/azure-arc/vmware-vsphere/
   - name: Azure portal documentation
     tocHref: /azure/azure-portal/
     topicHref: /azure/azure-portal/
