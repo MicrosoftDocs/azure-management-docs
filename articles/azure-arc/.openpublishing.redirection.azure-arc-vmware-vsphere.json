@@ -1,0 +1,44 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/azure-arc-resource-bridge.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/custom-locations.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/day2-operations-resource-bridge.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/administer-arc-vmware",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/disaster-recovery.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/manage-access-to-arc-vmware-resources.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/setup-and-manage-self-service-access",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/manage-vmware-vms-in-azure.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/perform-vm-ops-through-azure",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/switch-to-new-preview-version.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/switch-to-new-version-vmware",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/switch-to-new-version-vmware.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/switch-to-new-version",
+            "redirect_document_id": false
+        }
+    ]
+}
