@@ -16,7 +16,7 @@ items:
     - name: Azure Arc-enabled Kubernetes
       tocHref: /azure/azure-arc/kubernetes/
       topicHref: /azure/azure-arc/kubernetes/
-    - name: Azure Arc-Multicloud connector
+    - name: Multicloud connector
       tocHref: /azure/azure-arc/multicloud-connector/
       topicHref: /azure/azure-arc/multicloud-connector/
     - name: Azure Arc-Platform
