@@ -1,9 +1,4 @@
 {
   "redirections": [
-    {
-      "source_path_from_root": "/articles/copilot/limited-access.md",
-      "redirect_url": "/azure/copilot/manage-access",
-      "redirect_document_id": false
-    }
   ]
 }
