@@ -27,7 +27,7 @@ Before you proceed, make sure you have created the required service principal an
 * [Create service principal](upload-metrics-and-logs-to-azure-monitor.md#create-service-principal).
 * [Assign roles to the service principal](upload-metrics-and-logs-to-azure-monitor.md#assign-roles-to-the-service-principal)
 
-[!INCLUDE [azure-arc-angle-bracket-example](../includes/azure-arc-angle-bracket-example.md)]
+[!INCLUDE [azure-arc-angle-bracket-example](./includes/azure-arc-angle-bracket-example.md)]
 
 ## Upload usage data
 

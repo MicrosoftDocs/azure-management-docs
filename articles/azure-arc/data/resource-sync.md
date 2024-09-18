@@ -15,7 +15,7 @@ ms.topic: conceptual
 
 Resource sync lets you create, update, or delete resources directly on the Kubernetes cluster using Kubernetes APIs in the direct connected mode, and automatically synchronizes those changes to Azure. This article explains resource sync.
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 When you deploy Azure Arc-enabled data services in direct connected mode, the deployment creates a *resource sync* rule. This resource sync rule ensures that the Arc resources such as SQL managed instance created or updated by directly calling the Kubernetes APIs get updated appropriately in the mapped resources in Azure and the resource metadata is continually synced back to Azure. This rule is created within the same resource group as the data controller. 
 

@@ -18,7 +18,7 @@ This article lists additional experiences you can have with Azure Arc-enabled da
 
 ## Experiences
 
-[!INCLUDE [azure-arc-common-monitoring](../includes/azure-arc-common-monitoring.md)]
+[!INCLUDE [azure-arc-common-monitoring](./includes/azure-arc-common-monitoring.md)]
 
 ## Related content
 - [Read about the overview of Azure Arc-enabled data services](overview.md)

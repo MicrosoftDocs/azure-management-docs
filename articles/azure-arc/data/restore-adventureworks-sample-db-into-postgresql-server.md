@@ -20,7 +20,7 @@ An open-source project has converted the AdventureWorks database to be compatibl
 
 This document describes a simple process to get the AdventureWorks sample database imported into your Azure Arc-enabled PostgreSQL server.
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Download the AdventureWorks backup file
 

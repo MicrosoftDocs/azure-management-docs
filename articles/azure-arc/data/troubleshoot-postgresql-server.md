@@ -43,7 +43,7 @@ Notebooks can document procedures by including markdown content to describe what
 
 For example, let's troubleshoot a PostgreSQL server that might have some problems using Azure Data Studio.
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md]
 
 [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
 

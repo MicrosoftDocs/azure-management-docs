@@ -49,7 +49,7 @@ The registry name must be unique within Azure, and contain 5-50 alphanumeric cha
 $registry = New-AzContainerRegistry -ResourceGroupName "myResourceGroup" -Name "mycontainerregistry" -EnableAdminUser -Sku Basic
 ```
 
-[!INCLUDE [container-registry-quickstart-sku](../../includes/container-registry-quickstart-sku.md)]
+[!INCLUDE [container-registry-quickstart-sku](./includes/container-registry-quickstart-sku.md)]
 
 ## Log in to registry
 
@@ -64,9 +64,9 @@ Connect-AzContainerRegistry -Name $registry.Name
 
 The command returns `Login Succeeded` once completed.
 
-[!INCLUDE [container-registry-quickstart-docker-push](../../includes/container-registry-quickstart-docker-push.md)]
+[!INCLUDE [container-registry-quickstart-docker-push](./includes/container-registry-quickstart-docker-push.md)]
 
-[!INCLUDE [container-registry-quickstart-docker-pull](../../includes/container-registry-quickstart-docker-pull.md)]
+[!INCLUDE [container-registry-quickstart-docker-pull](./includes/container-registry-quickstart-docker-pull.md)]
 
 ## Clean up resources
 

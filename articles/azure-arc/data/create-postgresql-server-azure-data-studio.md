@@ -15,9 +15,9 @@ ms.topic: how-to
 
 This document walks you through the steps for using Azure Data Studio to provision Azure Arc-enabled PostgreSQL servers.
 
-[!INCLUDE [azure-arc-common-prerequisites](../includes/azure-arc-common-prerequisites.md)]
+[!INCLUDE [azure-arc-common-prerequisites](./includes/azure-arc-common-prerequisites.md)]
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Preliminary and temporary step for OpenShift users only
 

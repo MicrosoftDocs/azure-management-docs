@@ -153,7 +153,7 @@ Create a Dockerfile that pulls the base image from your base registry. Perform t
     ```
  1. Select **Commit new file**.
 
-[!INCLUDE [container-registry-tasks-user-assigned-id](../../includes/container-registry-tasks-user-assigned-id.md)]
+[!INCLUDE [container-registry-tasks-user-assigned-id](./includes/container-registry-tasks-user-assigned-id.md)]
 
 ### Give identity pull permissions to the base registry
 

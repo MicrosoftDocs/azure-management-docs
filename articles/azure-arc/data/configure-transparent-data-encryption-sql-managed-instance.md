@@ -23,7 +23,7 @@ Turning on the TDE feature does the following:
 - All existing databases will now be automatically encrypted.
 - All newly created databases will get automatically encrypted.
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Prerequisites
 

@@ -77,7 +77,7 @@ This example uses the Azure portal to deploy the template. You can also use othe
 
 ## Review deployed resources
 
-[!INCLUDE [azure-portal-review-deployed-resources](../../includes/azure-portal-review-deployed-resources.md)]
+[!INCLUDE [azure-portal-review-deployed-resources](./includes/azure-portal-review-deployed-resources.md)]
 
 ## Clean up resources
 

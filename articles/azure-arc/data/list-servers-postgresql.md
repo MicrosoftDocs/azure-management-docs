@@ -18,7 +18,7 @@ This article explains how you can retrieve the list of servers created in your A
 
 To retrieve this list, use either of the following methods once you are connected to the Arc Data Controller:
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## From CLI with Azure CLI extension (az)
 

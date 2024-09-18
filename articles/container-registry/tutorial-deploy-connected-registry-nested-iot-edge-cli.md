@@ -23,7 +23,7 @@ For an overview of using a connected registry with IoT Edge, see [Using connecte
   * For the top layer, the connected registry can be in either ReadWrite or ReadOnly mode. This article assumes ReadWrite mode, and the connected registry name is stored in the environment variable `$CONNECTED_REGISTRY_RW`.
   * For the lower layer, the connected registry must be in ReadOnly mode. This article assumes the connected registry name is stored in the environment variable `$CONNECTED_REGISTRY_RO`.
 
-[!INCLUDE [container-registry-connected-import-images](../../includes/container-registry-connected-import-images.md)]
+[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
 
 ## Retrieve connected registry configuration
 
@@ -51,7 +51,7 @@ az acr connected-registry get-settings \
   --parent-protocol https
 ```
 
-[!INCLUDE [container-registry-connected-connection-configuration](../../includes/container-registry-connected-connection-configuration.md)]
+[!INCLUDE [container-registry-connected-connection-configuration](./includes/container-registry-connected-connection-configuration.md)]
 
 ## Configure deployment manifests
 
@@ -66,7 +66,7 @@ For the device at the top layer, create a deployment manifest file `deploymentTo
 > [!NOTE]
 > If you already deployed a connected registry to a top layer IoT Edge device using the [quickstart](quickstart-deploy-connected-registry-iot-edge-cli.md), you can use it at the top layer of a nested hierarchy. Modify the deployment steps in this tutorial to configure it in the hierarchy (not shown).
 
-[!INCLUDE [container-registry-connected-iot-edge-manifest](../../includes/container-registry-connected-iot-edge-manifest.md)]
+[!INCLUDE [container-registry-connected-iot-edge-manifest](./includes/container-registry-connected-iot-edge-manifest.md)]
 
 ### Deployment manifest for the lower layer
 

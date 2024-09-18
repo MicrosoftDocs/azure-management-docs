@@ -14,7 +14,7 @@ ms.topic: how-to
 
 # Deploy a SQL Managed Instance enabled by Azure Arc
 
-[!INCLUDE [azure-arc-common-prerequisites](../includes/azure-arc-common-prerequisites.md)]
+[!INCLUDE [azure-arc-common-prerequisites](./includes/azure-arc-common-prerequisites.md)]
 
 To view available options for the create command for SQL Managed Instance enabled by Azure Arc, use the following command:
 

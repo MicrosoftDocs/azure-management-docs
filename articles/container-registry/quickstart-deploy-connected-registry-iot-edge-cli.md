@@ -28,7 +28,7 @@ For an overview of using a connected registry with IoT Edge, see [Using connecte
     * A connected registry in either `ReadWrite` or `ReadOnly` mode can be used in this scenario. 
     * In the commands in this article, the connected registry name is stored in the environment variable *CONNECTED_REGISTRY_RW*.
 
-[!INCLUDE [container-registry-connected-import-images](../../includes/container-registry-connected-import-images.md)]
+[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
 
 ## Retrieve connected registry configuration
 
@@ -48,7 +48,7 @@ By default, the settings information doesn't include the [sync token](overview-c
 > [!WARNING]
 > Regenerating a password rotates the sync token credentials. If you configured a device using the previous password, you need to update the configuration.
 
-[!INCLUDE [container-registry-connected-connection-configuration](../../includes/container-registry-connected-connection-configuration.md)]
+[!INCLUDE [container-registry-connected-connection-configuration](./includes/container-registry-connected-connection-configuration.md)]
 
 ## Configure a deployment manifest for IoT Edge
 
@@ -56,7 +56,7 @@ A deployment manifest is a JSON document that describes which modules to deploy 
 
 To deploy the connected registry and API proxy modules using the Azure CLI, save the following deployment manifest locally as a `manifest.json` file. You will use the file path in the next section when you run the command to apply the configuration to your device.
 
-[!INCLUDE [container-registry-connected-iot-edge-manifest](../../includes/container-registry-connected-iot-edge-manifest.md)]
+[!INCLUDE [container-registry-connected-iot-edge-manifest](./includes/container-registry-connected-iot-edge-manifest.md)]
 
 ## Deploy the connected registry and API proxy modules on IoT Edge
 

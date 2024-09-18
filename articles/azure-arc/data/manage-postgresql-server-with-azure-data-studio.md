@@ -18,7 +18,7 @@ This article describes how to:
 - manage your PostgreSQL instances with dashboard views like Overview, Connection Strings, Properties, Resource Health...
 - work with your data and schema
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Prerequisites
 

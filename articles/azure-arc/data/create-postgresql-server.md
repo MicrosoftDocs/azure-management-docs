@@ -16,9 +16,9 @@ ms.topic: how-to
 
 This document describes the steps to create a PostgreSQL server on Azure Arc and to connect to it.
 
-[!INCLUDE [azure-arc-common-prerequisites](../includes/azure-arc-common-prerequisites.md)]
+[!INCLUDE [azure-arc-common-prerequisites](./includes/azure-arc-common-prerequisites.md)]
 
-[!INCLUDE [azure-arc-data-preview](../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Getting started
 If you are already familiar with the topics below, you may skip this paragraph.

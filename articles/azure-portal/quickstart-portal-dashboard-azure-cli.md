@@ -96,7 +96,7 @@ az portal dashboard update --resource-group myResourceGroup --name 'Simple VM Da
 
 ## Review deployed resources
 
-[!INCLUDE [azure-portal-review-deployed-resources](../../includes/azure-portal-review-deployed-resources.md)]
+[!INCLUDE [azure-portal-review-deployed-resources](./includes/azure-portal-review-deployed-resources.md)]
 
 ## Clean up resources
 
