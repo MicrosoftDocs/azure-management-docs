@@ -7,44 +7,247 @@
           "**/*.yml"
         ],
         "exclude": [
-          "**/obj/**",
+          "**/_themes/**",
           "**/includes/**",
-          "_themes/**",
-          "_themes.pdf/**",
-          "**/docfx.json",
-          "_repo.en-us/**",
-          "README.md",
-          "LICENSE",
-          "LICENSE-CODE",
-          "ThirdPartyNotices.md",
-          "SECURITY.md"
-        ]
+          "**/obj/**"
+        ],
+        "src": "articles",
+        "dest": "."
+      },
+      {
+        "files": [
+          "toc.yml"
+        ],
+        "src": "breadcrumb/azure-management",
+        "dest": "breadcrumb/azure-management"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-management"
       }
     ],
     "resource": [
       {
         "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
           "**/*.png",
-          "**/*.jpg"
+          "**/*.svg"
         ],
         "exclude": [
-          "**/obj/**",
-          "**/includes/**",
-          "_themes/**",
-          "_themes.pdf/**",
-          "**/docfx.json",
-          "_repo.en-us/**"
+          "**/_themes/**",
+          "**/obj/**"
+        ],
+        "src": "articles",
+        "dest": "."
+      },
+      {
+        "files": [
+          "includes/**/*.gif",
+          "includes/**/*.jpeg",
+          "includes/**/*.jpg",
+          "includes/**/*.png",
+          "includes/**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/obj/**"
         ]
       }
     ],
+    "globalMetadata": {
+      "contributors_to_exclude": [
+        "alexbuckgit",
+        "American-Dipper",
+        "AnnaMHuff",
+        "cdpark",
+        "Court72",
+        "damabe",
+        "denrea",
+        "dksimpson",
+        "garycentric",
+        "GitHubber17",
+        "Jak-MS",
+        "JamesJBarnett",
+        "JasonWHowell",
+        "JillGrant615",
+        "JKirsch1",
+        "Jmart1428",
+        "JustPies",
+        "ktoliver",
+        "LizCasey1",
+        "MeeraDi",
+        "meganbradley",
+        "mohitp930",
+        "mSarts",
+        "ms-robkni",
+        "openpublishingbuild",
+        "paulth1",
+        "PMEds28",
+        "PRmerger",
+        "PRMerger17",
+        "PRMerger-2",
+        "PRMerger3",
+        "PRMerger4",
+        "PRMerger5",
+        "PRMerger8",
+        "PRMerger9",
+        "rjagiewich",
+        "rmca14",
+        "Saisang",
+        "sdwheeler",
+        "ShannonLeavitt",
+        "ShawnJackson",
+        "ShawnKupfer",
+        "tfosmark",
+        "TimShererWithAquent",
+        "ttorble",
+        "tysonn",
+        "v-albemi",
+        "v-ccolin",
+        "v-dirichards",
+        "v-emilypr",
+        "v-lmcdonald",
+        "v-regandowner",
+        "v-savila",
+        "v-shils",
+        "v-stsavell",
+        "v-thepet",
+        "v-thpra"
+      ],
+      "breadcrumb_path": "~/breadcrumb/azure-management/toc.yml",
+      "_op_documentIdPathDepotMapping": {
+        "articles/iot-central/": {}
+      },
+      "brand": "azure",
+      "feedback_github_repo": "MicrosoftDocs/azure-docs",
+      "feedback_help_link_url": "https://learn.microsoft.com/answers/tags/133/azure",
+      "feedback_help_link_type": "get-help-at-qna",
+      "feedback_product_url": "https://feedback.azure.com/d365community/forum/79b1327d-d925-ec11-b6e6-000d3a4f06a4",
+      "feedback_system": "Standard",
+      "searchScope": [
+        "Azure"
+      ],
+      "permissioned-type": "public",
+      "recommendations": true,
+      "recommendation_types": [
+        "Training",
+        "Certification"
+      ],
+      "uhfHeaderId": "azure",
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-management/zone-pivot-groups.json"
+    },
+    "fileMetadata": {
+      "author": {
+        "articles/azure-arc/**/*.md": "JnHs",
+        "articles/azure-arc/servers/**/*.md": "johnmarco",
+        "articles/azure-portal/**/*.md": "JnHs",
+        "articles/azure-portal/**/*.yml": "JnHs",
+        "articles/container-registry/**/*.md": "tejaswikolli-web",
+        "articles/lighthouse/**/*.md": "JnHs",
+        "articles/quotas/**/*.md": "JnHs",
+        "articles/quotas/**/*.yml": "JnHs"
+      },
+      "featureFlags": {
+        "articles/**/*.md": [
+          "show_learn_banner"
+        ]
+      },
+      "feedback_product_url": {
+        "articles/azure-arc/**/*.md": "https://feedback.azure.com/d365community/forum/5c778dec-0625-ec11-b6e6-000d3a4f0858",
+        "articles/azure-portal/**/*.md": "https://feedback.azure.com/d365community/forum/a222eda7-2425-ec11-b6e6-000d3a4f09d0",
+        "articles/azure-portal/supportability/**/*.md": "https://feedback.azure.com/d365community/forum/a222eda7-2425-ec11-b6e6-000d3a4f09d0",
+        "articles/container-registry/**/*.md": "https://feedback.azure.com/d365community/forum/180a533d-0d25-ec11-b6e6-000d3a4f0858",
+        "articles/lighthouse/**/*.md": "https://feedback.azure.com/d365community/forum/cd8dfdcb-f824-ec11-b6e6-000d3a4f0da0"
+      },
+      "feedback_help_link_url": {
+        "articles/azure-arc/**/*": "https://learn.microsoft.com/answers/tags/146/azure-arc/",
+        "articles/container-registry/**/*": "https://learn.microsoft.com/answers/tags/62/azure-container-registry/",
+        "articles/copilot/**/*": "https://learn.microsoft.com/answers/tags/467/ms-copilot",
+        "articles/lighthouse/**/*": "https://learn.microsoft.com/answers/tags/95/azure-lighthouse/"
+      },
+      "feedback_help_link_type": {
+        "**/*": "get-help-at-qna"
+      },
+      "learn_banner_products": {
+        "articles/**/*.md": [
+          "azure"
+        ],
+        "articles/azure-portal/**/*.md": [
+          "azure-portal"
+        ]
+      },
+      "manager": {
+        "articles/azure-arc/servers/**/*.md": "rayoflores",
+        "articles/azure-portal/**/*.md": "rayoflores",
+        "articles/quotas/**/*.md": "rayoflores"
+      },
+      "ms.author": {
+        "articles/azure-arc/**/*.md": "jenhayes",
+        "articles/azure-arc/servers/**/*.md": "johnmarc",
+        "articles/azure-portal/**/*.md": "jenhayes",
+        "articles/azure-portal/**/*.yml": "jenhayes",
+        "articles/container-registry/**/*.md": "tejaswikolli",
+        "articles/lighthouse/**/*.md": "jenhayes",
+        "articles/quotas/**/*.md": "jenhayes",
+        "articles/quotas/**/*.yml": "jenhayes"
+      },
+      "ms.collection": {
+        "articles/copilot/*.md": "ce-skilling-ai-copilot",
+        "articles/copilot/*.yml": "ce-skilling-ai-copilot"
+      },
+      "ms.service": {
+        "articles/azure-arc/**/*.md": "azure-arc",
+        "articles/azure-portal/**/*.md": "azure-portal",
+        "articles/azure-portal/supportability/**/*.md": "azure-supportability",
+        "articles/container-registry/**/*.md": "azure-container-registry",
+        "articles/lighthouse/**/*.md": "azure-lighthouse",
+        "articles/quotas/**/*.md": "azure-quotas"
+      },
+      "ms.subservice": {
+        "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
+        "articles/azure-arc/servers/**/*.md": "azure-arc-servers"
+      },
+      "searchScope": {
+        "articles/azure-arc/**/*.md": [
+          "Azure",
+          "Azure Arc"
+        ],
+        "articles/azure-arc/**/*.yml": [
+          "Azure",
+          "Azure Arc"
+        ],
+        "articles/azure-portal/**/*.md": [
+          "Azure",
+          "Azure portal"
+        ],
+        "articles/azure-portal/**/*.yml": [
+          "Azure",
+          "Azure portal"
+        ],
+        "articles/azure-portal/supportability/**/*.md": [
+          "Azure",
+          "Azure supportability"
+        ]
+      },
+      "titleSuffix": {
+        "articles/azure-arc/**/*.md": "Azure Arc",
+        "articles/azure-portal/**/*.md": "Azure portal",
+        "articles/azure-portal/**/*.yml": "Azure portal",
+        "articles/azure-portal/supportability/**/*.md": "Azure supportability",
+        "articles/container-registry/**/*.md": "Azure Container Registry",
+        "articles/lighthouse/**/*.md": "Azure Lighthouse",
+        "articles/quotas/**/*.md": "Azure Quotas",
+        "articles/quotas/**/*.yml": "Azure Quotas"
+      }
+    },
     "overwrite": [],
     "externalReference": [],
-    "globalMetadata": {
-      "breadcrumb_path": "~/breadcrumb/azure-management/toc.yml",
-      "feedback_system": "Standard",
-      "permissioned-type": "public"
-    },
-    "fileMetadata": {},
     "template": []
   }
 }
