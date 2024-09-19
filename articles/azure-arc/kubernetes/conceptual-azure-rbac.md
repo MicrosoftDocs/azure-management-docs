@@ -4,6 +4,7 @@ ms.date: 05/22/2024
 ms.topic: conceptual
 description: "This article provides a conceptual overview of the Azure RBAC capability on Azure Arc-enabled Kubernetes."
 ---
+
 # Azure RBAC on Azure Arc-enabled Kubernetes clusters
 
 Kubernetes [ClusterRoleBinding and RoleBinding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) object types help to define authorization in Kubernetes natively. With Azure role-based access control (Azure RBAC), you can use Microsoft Entra ID and role assignments in Azure to control authorization checks on the cluster. This allows the benefits of Azure role assignments, such as activity logs showing all Azure RBAC changes to an Azure resource, to be used with your Azure Arc-enabled Kubernetes cluster.
