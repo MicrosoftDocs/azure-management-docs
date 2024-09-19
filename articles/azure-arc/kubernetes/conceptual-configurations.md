@@ -21,8 +21,6 @@ In relation to Kubernetes, GitOps is the practice of declaring the desired state
 
 ## Configurations
 
-[ ![Configurations architecture](./media/conceptual-configurations.png) ](./media/conceptual-configurations.png#lightbox)
-
 The connection between your cluster and a Git repository is created as a configuration resource (`Microsoft.KubernetesConfiguration/sourceControlConfigurations`) on top of the Azure Arc-enabled Kubernetes resource (represented by `Microsoft.Kubernetes/connectedClusters`) in Azure Resource Manager. 
 
 The configuration resource properties are used to deploy Flux operator on the cluster with the appropriate parameters, such as the Git repo from which to pull manifests and the polling interval at which to pull them. The configuration resource data is stored encrypted at rest in an Azure Cosmos DB database to ensure data confidentiality.
