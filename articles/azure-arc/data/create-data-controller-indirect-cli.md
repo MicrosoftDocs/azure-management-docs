@@ -23,7 +23,7 @@ Review the topic [Plan an Azure Arc-enabled data services deployment](plan-azure
 
 Before you begin, install the `arcdata` extension for Azure (az) CLI. 
 
-[Install the [!INCLUDE [azure-data-cli-azdata](../includes/azure-data-cli-azdata.md)]](install-client-tools.md)
+[Install the [!INCLUDE [azure-data-cli-azdata](./includes/azure-data-cli-azdata.md)]](install-client-tools.md)
 
 Regardless of which target platform you choose, you need to set the following environment variables prior to the creation for the data controller. These environment variables become the credentials used for accessing the metrics and logs dashboards after data controller creation.
 
