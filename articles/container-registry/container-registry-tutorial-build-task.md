@@ -46,7 +46,7 @@ GIT_PAT=<personal-access-token> # The PAT you generated in the previous section
 
 Now, create the task by executing the following [az acr task create][az-acr-task-create] command.
 
-[!INCLUDE [pull-image-dockerfile-include](../../includes/pull-image-dockerfile-include.md)]
+[!INCLUDE [pull-image-dockerfile-include](./includes/pull-image-dockerfile-include.md)]
 
 ```azurecli
 az acr task create \

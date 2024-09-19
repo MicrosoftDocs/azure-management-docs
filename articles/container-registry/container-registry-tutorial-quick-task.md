@@ -84,7 +84,7 @@ az acr create --resource-group $RES_GROUP --name $ACR_NAME --sku Standard --loca
 
 Now that you have a registry, use ACR Tasks to build a container image from the sample code. Execute the [az acr build][az-acr-build] command to perform a *quick task*.
 
-[!INCLUDE [pull-image-dockerfile-include](../../includes/pull-image-dockerfile-include.md)]
+[!INCLUDE [pull-image-dockerfile-include](./includes/pull-image-dockerfile-include.md)]
 
 ```azurecli
 az acr build --registry $ACR_NAME --image helloacrtasks:v1 --file /path/to/Dockerfile /path/to/build/context.
