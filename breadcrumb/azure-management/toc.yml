@@ -1,3 +1,48 @@
-- name: '<please enter product name here>'
-  tocHref: /
-  topicHref: /
+items:
+- name: Azure
+  tocHref: /azure/
+  topicHref: /azure/index
+  items:
+  - name: Azure Arc
+    tocHref: /azure/azure-arc/
+    topicHref: /azure/azure-arc/
+    items:
+    - name: Azure Container Storage enabled by Azure Arc
+      tocHref: /azure/azure-arc/container-storage/
+      topicHref: /azure/azure-arc/container-storage/
+    - name: Azure Arc-enabled data services
+      tocHref: /azure/azure-arc/data/
+      topicHref: /azure/azure-arc/data/
+    - name: Azure Arc-enabled Kubernetes
+      tocHref: /azure/azure-arc/kubernetes/
+      topicHref: /azure/azure-arc/kubernetes/
+    - name: Multicloud connector
+      tocHref: /azure/azure-arc/multicloud-connector/
+      topicHref: /azure/azure-arc/multicloud-connector/
+    - name: Arc-enabled servers
+      tocHref: /azure/azure-arc/servers/
+      topicHref: /azure/azure-arc/servers/
+    - name: Azure Arc Site manager
+      tocHref: /azure/azure-arc/site-manager/
+      topicHref: /azure/azure-arc/site-manager/
+    - name: System Center VMM
+      tocHref: /azure/azure-arc/system-center-virtual-machine-manager/
+      topicHref: /azure/azure-arc/system-center-virtual-machine-manager/
+    - name: Azure Arc-enabled VMWare
+      tocHref: /azure/azure-arc/vmware-vsphere/
+      topicHref: /azure/azure-arc/vmware-vsphere/
+  - name: Azure portal documentation
+    tocHref: /azure/azure-portal/
+    topicHref: /azure/azure-portal/
+  - name: Container Registry
+    tocHref: /azure/container-registry/
+    topicHref: /azure/container-registry/
+  - name: Microsoft Copilot in Azure
+    tocHref: /azure/copilot/
+    topicHref: /azure/copilot/
+  - name: Azure Lighthouse
+    tocHref: /azure/lighthouse/
+    topicHref: /azure/lighthouse/
+  - name: Azure Quotas
+    tocHref: /azure/quotas/
+    topicHref: /azure/quotas/

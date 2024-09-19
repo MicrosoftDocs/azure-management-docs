@@ -1,0 +1,44 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/deploy-azure-monitor-for-containers.md",
+            "redirect_url": "/azure/azure-monitor/insights/container-insights-enable-arc-enabled-clusters",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/conceptual-agent-architecture.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-agent-overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/connect-cluster.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/quickstart-connect-cluster",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/deploy-azure-iot-edge-workloads.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/plan-at-scale-deployment.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/policy-samples.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/policy-reference",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/tutorial-workload-management.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/workload-management",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/use-gitops-connected-cluster.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/tutorial-use-gitops-connected-cluster",
+            "redirect_document_id": false
+        }
+    ]
+}
