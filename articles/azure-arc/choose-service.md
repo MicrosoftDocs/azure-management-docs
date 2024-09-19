@@ -7,7 +7,7 @@ ms.topic: conceptual
 
 # Choosing the right Azure Arc service for machines
 
-Azure Arc offers different services based on your existing IT infrastructure and management needs. Before onboarding your resources to Azure Arc-enabled servers, you should investigate the different Azure Arc offerings to determine which best suits your requirements. Choosing the right Azure Arc service provides the best possible inventorying and management of your resources.
+Azure Arc offers different services based on your existing IT infrastructure and management needs. Before onboarding your resources to Azure Arc-enabled servers, you should investigate the different Azure Arc offerings to determine which best suits your requirements. Choosing the right Azure Arc service provides the best possible inventorying and management of your resources. test pr
 
 There are several different ways you can connect your existing Windows and Linux machines to Azure Arc:
 
