@@ -16,7 +16,7 @@ ms.topic: how-to
 
 This document describes the steps to delete a server from your Azure Arc setup.
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Delete the server
 

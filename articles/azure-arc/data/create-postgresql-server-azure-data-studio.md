@@ -15,9 +15,9 @@ ms.topic: how-to
 
 This document walks you through the steps for using Azure Data Studio to provision Azure Arc-enabled PostgreSQL servers.
 
-[!INCLUDE [azure-arc-common-prerequisites](../../../includes/azure-arc-common-prerequisites.md)]
+[!INCLUDE [azure-arc-common-prerequisites](./includes/azure-arc-common-prerequisites.md)]
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Preliminary and temporary step for OpenShift users only
 
@@ -38,7 +38,7 @@ You may now implement the next step.
 1. On the Connections tab, Click on the three dots on the top left and choose "New Deployment"
 1. From the deployment options, select **PostgreSQL server - Azure Arc**
     >[!NOTE]
-    > You may be prompted to install the [!INCLUDE [azure-data-cli-azdata](../../../includes/azure-data-cli-azdata.md)] here if it is not currently installed.
+    > You may be prompted to install the [!INCLUDE [azure-data-cli-azdata](./includes/azure-data-cli-azdata.md)] here if it is not currently installed.
 1. Accept the Privacy and license terms and click **Select** at the bottom
 1. In the Deploy PostgreSQL server - Azure Arc blade, enter the following information:
    - Enter a name for the server

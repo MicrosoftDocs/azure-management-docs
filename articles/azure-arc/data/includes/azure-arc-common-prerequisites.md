@@ -16,6 +16,6 @@ Before you can proceed with the tasks in this article, you need to have the nece
 - `arcdata` extension for Azure CLI
 - `kubectl`
 
-   Additional client tools depending your environment. For a more comprehensive list, see [Client tools](../articles/azure-arc/data/install-client-tools.md).
+   Additional client tools depending your environment. For a more comprehensive list, see [Client tools](../install-client-tools.md).
 
-In addition to the required tools, to complete the tasks, you need [an Azure Arc data controller](../articles/azure-arc/data/plan-azure-arc-data-services.md).
+In addition to the required tools, to complete the tasks, you need [an Azure Arc data controller](../plan-azure-arc-data-services.md).

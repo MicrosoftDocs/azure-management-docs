@@ -40,7 +40,7 @@ In the **Basics** tab, enter values for **Resource group** and **Registry name**
 
 Accept default values for the remaining settings. Then select **Review + create**. After reviewing the settings, select **Create**.
 
-[!INCLUDE [container-registry-quickstart-sku](../../includes/container-registry-quickstart-sku.md)]
+[!INCLUDE [container-registry-quickstart-sku](./includes/container-registry-quickstart-sku.md)]
 
 When the **Deployment succeeded** message appears, select the container registry in the portal. 
 
@@ -84,7 +84,7 @@ The command returns `Login Succeeded` once completed.
 
 ---
 
-[!INCLUDE [container-registry-quickstart-docker-push](../../includes/container-registry-quickstart-docker-push.md)]
+[!INCLUDE [container-registry-quickstart-docker-push](./includes/container-registry-quickstart-docker-push.md)]
 
 ## List container images
 
@@ -94,7 +94,7 @@ To list the images in your registry, navigate to your registry in the portal and
 
 By selecting the **hello-world** repository, you see the `v1`-tagged image under **Tags**.
 
-[!INCLUDE [container-registry-quickstart-docker-pull](../../includes/container-registry-quickstart-docker-pull.md)]
+[!INCLUDE [container-registry-quickstart-docker-pull](./includes/container-registry-quickstart-docker-pull.md)]
 
 ## Clean up resources
 

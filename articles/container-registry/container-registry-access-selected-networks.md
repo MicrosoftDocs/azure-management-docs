@@ -18,7 +18,7 @@ Configuring IP access rules is available in the **Premium** container registry s
 
 Each registry supports a maximum of 100 IP access rules.
 
-[!INCLUDE [container-registry-scanning-limitation](../../includes/container-registry-scanning-limitation.md)]
+[!INCLUDE [container-registry-scanning-limitation](./includes/container-registry-scanning-limitation.md)]
 
 ## Access from selected public network - CLI
 

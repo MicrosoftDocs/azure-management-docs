@@ -17,7 +17,7 @@ You can [configure DNS settings](/azure/private-link/private-endpoint-overview#d
 
 This article shows how to configure a private endpoint for your registry using the Azure portal (recommended) or the Azure CLI. This feature is available in the **Premium** container registry service tier. For information about registry service tiers and limits, see [Azure Container Registry tiers](container-registry-skus.md).
 
-[!INCLUDE [container-registry-scanning-limitation](../../includes/container-registry-scanning-limitation.md)]
+[!INCLUDE [container-registry-scanning-limitation](./includes/container-registry-scanning-limitation.md)]
 
 > [!NOTE]
 > Starting from October 2021, new container registries allow a maximum of 200 private endpoints. Registries created earlier allow a maximum of 10 private endpoints. Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command to see the limit for your registry. Please open a support ticket to increase the limit to 200 private endpoints.

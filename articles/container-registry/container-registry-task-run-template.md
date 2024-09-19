@@ -49,7 +49,7 @@ For this example, provide values for the following template parameters:
 
 Deploy the template with the [az deployment group create][az-deployment-group-create] command. This example builds and pushes the *helloworld-node:testrun* image to a registry named *mycontainerregistry*.
 
-[!INCLUDE [pull-image-dockerfile-include](../../includes/pull-image-dockerfile-include.md)]
+[!INCLUDE [pull-image-dockerfile-include](./includes/pull-image-dockerfile-include.md)]
 
 ```azurecli
 az deployment group create \
@@ -153,7 +153,7 @@ Create a Dockerfile that pulls the base image from your base registry. Perform t
     ```
  1. Select **Commit new file**.
 
-[!INCLUDE [container-registry-tasks-user-assigned-id](../../includes/container-registry-tasks-user-assigned-id.md)]
+[!INCLUDE [container-registry-tasks-user-assigned-id](./includes/container-registry-tasks-user-assigned-id.md)]
 
 ### Give identity pull permissions to the base registry
 

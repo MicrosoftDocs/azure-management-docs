@@ -17,7 +17,7 @@ ms.topic: how-to
 This article points you to resources to install the tools to manage Azure Arc-enabled data services.
 
 > [!IMPORTANT]
-> If you are updating to a new release, update to the latest version of Azure Data Studio, the Azure Arc extension for Azure Data Studio, Azure (`az`) command line interface (CLI), and the [!INCLUDE [azure-data-cli-azdata](../../../includes/azure-data-cli-azdata.md)].
+> If you are updating to a new release, update to the latest version of Azure Data Studio, the Azure Arc extension for Azure Data Studio, Azure (`az`) command line interface (CLI), and the [!INCLUDE [azure-data-cli-azdata](./includes/azure-data-cli-azdata.md)].
 >
 > [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)] 
 

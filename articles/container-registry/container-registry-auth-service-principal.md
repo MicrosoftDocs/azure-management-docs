@@ -37,7 +37,7 @@ You should use a service principal to provide registry access in **headless scen
 
 For individual access to a registry, such as when you manually pull a container image to your development workstation, we recommend using your own [Microsoft Entra identity](container-registry-authentication.md#individual-login-with-azure-ad) instead for registry access (for example, with [az acr login][az-acr-login]).
 
-[!INCLUDE [container-registry-service-principal](../../includes/container-registry-service-principal.md)]
+[!INCLUDE [container-registry-service-principal](./includes/container-registry-service-principal.md)]
 
 ### Sample scripts
 

@@ -23,7 +23,7 @@ For example, if you have an automated script that runs nightly and creates a [ta
 
 Service principals should also be used when the registry [admin user](container-registry-authentication.md#admin-account) is disabled.
 
-[!INCLUDE [container-registry-service-principal](../../includes/container-registry-service-principal.md)]
+[!INCLUDE [container-registry-service-principal](./includes/container-registry-service-principal.md)]
 
 ## Authenticate using the service principal
 

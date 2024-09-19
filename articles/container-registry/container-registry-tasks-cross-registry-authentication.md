@@ -64,7 +64,7 @@ The build step uses the `Dockerfile-app` file in the [Azure-Samples/acr-build-he
 
 The steps in this section create a task and enable a user-assigned identity. If you want to enable a system-assigned identity instead, see [Option 2: Create task with system-assigned identity](#option-2-create-task-with-system-assigned-identity). 
 
-[!INCLUDE [container-registry-tasks-user-assigned-id](../../includes/container-registry-tasks-user-assigned-id.md)]
+[!INCLUDE [container-registry-tasks-user-assigned-id](./includes/container-registry-tasks-user-assigned-id.md)]
 
 ### Create task
 
@@ -79,7 +79,7 @@ az acr task create \
   --assign-identity $resourceID
 ```
 
-[!INCLUDE [container-registry-tasks-user-id-properties](../../includes/container-registry-tasks-user-id-properties.md)]
+[!INCLUDE [container-registry-tasks-user-id-properties](./includes/container-registry-tasks-user-id-properties.md)]
 
 ### Give identity pull permissions to the base registry
 
@@ -118,7 +118,7 @@ az acr task create \
   --file helloworldtask.yaml \
   --assign-identity 
 ```
-[!INCLUDE [container-registry-tasks-system-id-properties](../../includes/container-registry-tasks-system-id-properties.md)]
+[!INCLUDE [container-registry-tasks-system-id-properties](./includes/container-registry-tasks-system-id-properties.md)]
 
 ### Give identity pull permissions to the base registry
 

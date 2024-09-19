@@ -35,7 +35,7 @@ az acr update --name $REGISTRY_NAME \
   --data-endpoint-enabled
 ```
 
-[!INCLUDE [container-registry-connected-import-images](../../includes/container-registry-connected-import-images.md)]
+[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
 
 ## Create a connected registry resource for read and write functionality
 

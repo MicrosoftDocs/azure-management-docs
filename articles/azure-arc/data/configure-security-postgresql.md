@@ -21,7 +21,7 @@ This document describes various aspects related to security of your server group
    - Change the password of the _postgres_ administrative user
 - Audit
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Encryption at rest
 

@@ -30,7 +30,7 @@ Configuring a registry service endpoint is available in the **Premium** containe
 * Only an [Azure Kubernetes Service](/azure/aks/intro-kubernetes) cluster or Azure [virtual machine](/azure/virtual-machines/linux/overview) can be used as a host to access a container registry using a service endpoint. *Other Azure services including Azure Container Instances aren't supported.*
 * Service endpoints for Azure Container Registry aren't supported in the Azure US Government cloud or Microsoft Azure operated by 21Vianet cloud.
 
-[!INCLUDE [container-registry-scanning-limitation](../../includes/container-registry-scanning-limitation.md)]
+[!INCLUDE [container-registry-scanning-limitation](./includes/container-registry-scanning-limitation.md)]
 
 ## Prerequisites
 
@@ -46,7 +46,7 @@ Configuring a registry service endpoint is available in the **Premium** containe
   az provider register --namespace Microsoft.ContainerRegistry
   ``` 
 
-[!INCLUDE [Set up Docker-enabled VM](../../includes/container-registry-docker-vm-setup.md)]
+[!INCLUDE [Set up Docker-enabled VM](./includes/container-registry-docker-vm-setup.md)]
 
 ## Configure network access for registry
 

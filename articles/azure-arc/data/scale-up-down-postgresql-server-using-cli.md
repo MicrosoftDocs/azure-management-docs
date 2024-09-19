@@ -23,7 +23,7 @@ Scaling up or down the vCore or memory settings of your server means you have th
 - you have enough resources available in the physical infrastructure that hosts your deployment and 
 - workloads collocated on the same system are not competing for the same vCores or Memory.
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## Show the current definition of the server
 

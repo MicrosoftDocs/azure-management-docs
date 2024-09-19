@@ -19,7 +19,7 @@ This article explains how to display the configuration of your server. It does s
 - From a Kubernetes point of view
 - From an Azure Arc-enabled data services point of view
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md)]
 
 ## From a Kubernetes point of view
 

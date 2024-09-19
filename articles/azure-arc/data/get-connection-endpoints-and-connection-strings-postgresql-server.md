@@ -17,7 +17,7 @@ ms.topic: how-to
 This article explains how you can retrieve the connection endpoints for your server group and how you can form the connection strings, which can be used with your applications and/or tools.
 
 
-[!INCLUDE [azure-arc-data-preview](../../../includes/azure-arc-data-preview.md)]
+[!INCLUDE [azure-arc-data-preview](./includes/azure-arc-data-preview.md]
 
 ## Get connection end points:
 

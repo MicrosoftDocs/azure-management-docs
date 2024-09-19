@@ -22,7 +22,7 @@ This example creates a pull secret using Microsoft Entra [service principal cred
 
 This article assumes you already created a private Azure container registry. You also need to have a Kubernetes cluster running and accessible via the `kubectl` command-line tool.
 
-[!INCLUDE [container-registry-service-principal](../../includes/container-registry-service-principal.md)]
+[!INCLUDE [container-registry-service-principal](./includes/container-registry-service-principal.md)]
 
 If you don't save or remember the service principal password, you can reset it with the [az ad sp credential reset][az-ad-sp-credential-reset] command:
 
