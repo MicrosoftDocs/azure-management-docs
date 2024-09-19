@@ -6,7 +6,7 @@ ms.custom: devx-track-azurecli
 author: tejaswikolli-web
 ms.author: tejaswikolli
 ms.service: azure-container-registry
-ms.date: 10/31/2023
+ms.date: 09/18/2024
 ---
 
 # Push and pull Helm charts to an Azure container registry
