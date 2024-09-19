@@ -5,6 +5,7 @@ ms.topic: conceptual
 ms.date: 04/12/2024
 ms.custom: accessibility
 ---
+
 # Keyboard shortcuts in the Azure portal
 
 This article lists the keyboard shortcuts that work throughout the Azure portal.
