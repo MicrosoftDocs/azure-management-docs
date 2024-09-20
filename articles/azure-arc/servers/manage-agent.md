@@ -1,7 +1,7 @@
 ---
 title:  Managing the Azure Connected Machine agent
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 07/24/2024
+ms.date: 09/20/2024
 ms.topic: conceptual
 ---
 
@@ -277,6 +277,9 @@ For guidance on how to identify and remove any extensions on your Azure Arc-enab
 ### Step 2: Disconnect the server from Azure Arc
 
 Disconnecting the agent deletes the corresponding Azure resource for the server and clears the local state of the agent. To disconnect the agent, run the `azcmagent disconnect` command as an administrator on the server. You'll be prompted to sign in with an Azure account that has permission to delete the resource in your subscription. If the resource has already been deleted in Azure, pass an additional flag to clean up the local state: `azcmagent disconnect --force-local-only`.
+
+> [!WARNING]
+> When disconnecting the agent from Arc-enabled VMs running on Azure Stack HCI, use only the `azcmagent disconnect --force-local-only` command. 
 
 ### Step 3a: Uninstall the Windows agent
 
