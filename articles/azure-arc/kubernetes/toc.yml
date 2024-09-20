@@ -84,16 +84,8 @@
         items:
           - name: Configurations and GitOps (Flux v1)
             href: conceptual-configurations.md
-          - name: CI/CD workflow using GitOps (Flux v1)
-            href: conceptual-gitops-ci-cd.md
           - name: Deploy configurations using GitOps (Flux v1)
             href: tutorial-use-gitops-connected-cluster.md
-          - name: Implement CI/CD with GitOps (Flux v1)
-            href: tutorial-gitops-ci-cd.md
-          - name: Deploy Helm charts using GitOps (Flux v1)
-            href: use-gitops-with-helm.md
-          - name: At-scale Flux v1 configurations using Azure Policy
-            href: use-azure-policy.md
   - name: Security
     items:
     - name: Security baseline

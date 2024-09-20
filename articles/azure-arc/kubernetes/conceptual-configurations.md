@@ -21,8 +21,6 @@ In relation to Kubernetes, GitOps is the practice of declaring the desired state
 
 ## Configurations
 
-[ ![Configurations architecture](./media/conceptual-configurations.png) ](./media/conceptual-configurations.png#lightbox)
-
 The connection between your cluster and a Git repository is created as a configuration resource (`Microsoft.KubernetesConfiguration/sourceControlConfigurations`) on top of the Azure Arc-enabled Kubernetes resource (represented by `Microsoft.Kubernetes/connectedClusters`) in Azure Resource Manager. 
 
 The configuration resource properties are used to deploy Flux operator on the cluster with the appropriate parameters, such as the Git repo from which to pull manifests and the polling interval at which to pull them. The configuration resource data is stored encrypted at rest in an Azure Cosmos DB database to ensure data confidentiality.
@@ -43,6 +41,11 @@ You can create multiple namespace-scoped configuration resources on the same Azu
 Since Azure Resource Manager manages your configurations, you can automate creating the same configuration across all Azure Arc-enabled Kubernetes resources using Azure Policy, within scope of a subscription or a resource group. 
 
 This at-scale enforcement ensures a common baseline configuration (containing configurations like ClusterRoleBindings, RoleBindings, and NetworkPolicy) can be applied across an entire fleet or inventory of Azure Arc-enabled Kubernetes clusters.
+
+> [!IMPORTANT]
+> The documents in this section are for GitOps with Flux v1.  GitOps with Flux v2 is now available for Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters; [learn about GitOps with Flux v2](./conceptual-gitops-flux2.md). We recommend [migrating to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible.
+>
+> Support for Flux v1-based cluster configuration resources created prior to January 1, 2024 will end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
 ## Next steps
 

@@ -13,7 +13,7 @@ ms.custom: template-tutorial, devx-track-azurecli
 >
 > Support for Flux v1-based cluster configuration resources created prior to January 1, 2024 will end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
-In this tutorial, you will apply configurations using GitOps on an Azure Arc-enabled Kubernetes cluster. You'll learn how to:
+In this tutorial, you will apply Flux v1 configurations using GitOps on an Azure Arc-enabled Kubernetes cluster. You'll learn how to:
 
 > [!div class="checklist"]
 > * Create a configuration on an Azure Arc-enabled Kubernetes cluster using an example Git repository.
@@ -47,6 +47,11 @@ The [example repository](https://github.com/Azure/arc-k8s-demo) used in this art
 The `config-agent` polls Azure for new or updated configurations. This task will take up to 5 minutes.
 
 If you are associating a private repository with the configuration, complete the steps below in [Apply configuration from a private Git repository](#apply-configuration-from-a-private-git-repository).
+
+> [!IMPORTANT]
+> This tutorial is for GitOps with Flux v1.  GitOps with Flux v2 is now available for Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters; [go to the tutorial for GitOps with Flux v2](./tutorial-use-gitops-flux2.md).  We recommend [migrating to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible.
+>
+> Support for Flux v1-based cluster configuration resources created prior to January 1, 2024 will end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
 ## Use Azure CLI
 Use the Azure CLI extension for `k8s-configuration` to link a connected cluster to the [example Git repository](https://github.com/Azure/arc-k8s-demo). 
@@ -364,6 +369,11 @@ az k8s-configuration delete --name cluster-config --cluster-name AzureArcTest1 -
 
 > [!NOTE]
 > Any changes to the cluster that were the result of deployments from the tracked Git repository are not deleted when the configuration is deleted.
+
+> [!IMPORTANT]
+> This tutorial is for GitOps with Flux v1.  GitOps with Flux v2 is now available for Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters; [go to the tutorial for GitOps with Flux v2](./tutorial-use-gitops-flux2.md).  We recommend [migrating to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible.
+>
+> Support for Flux v1-based cluster configuration resources created prior to January 1, 2024 will end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
 ## Next steps
 
