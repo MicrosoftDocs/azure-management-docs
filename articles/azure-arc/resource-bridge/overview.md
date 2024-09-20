@@ -108,7 +108,6 @@ Arc resource bridge supports the following Azure regions:
 * Canada Central
 * Australia East
 * Australia SouthEast
-
 * West Europe
 * North Europe
 * UK South
@@ -144,9 +143,9 @@ There could be instances where supported versions are not sequential. For exampl
 
 Arc resource bridge typically releases a new version on a monthly cadence, at the end of the month. Delays might occur that could push the release date further out. Regardless of when a new release comes out, if you are within n-3 supported versions, then your Arc resource bridge version is supported. To stay updated on releases, visit the [Arc resource bridge release notes](release-notes.md). To learn more about upgrade options, visit [Upgrade Arc resource bridge](upgrade.md).
 
-### Private Link Support
+### Private link support
 
-Arc resource bridge does not currently support private link.
+Arc resource bridge currently doesn't support private link.
 
 ## Next steps
 
