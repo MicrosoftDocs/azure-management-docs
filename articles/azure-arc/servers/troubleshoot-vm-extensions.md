@@ -17,7 +17,7 @@ The following troubleshooting steps apply to all VM extensions.
 
 1. Retry extension installation.
 
-    Extensions can stall in Creating/Updating or Fail status for various reasons. In this case, it's recommended to remove the extension and install it again. To remove an extension, use the following command:
+    Extensions can stall in Creating/Updating or Fail status for various reasons. In this case, remove the extension and install it again. To remove an extension, use the following command:
 
     ```powershell
     Remove-AzConnectedMachineExtension -Name <Extension Name> -ResourceGroupName <RG Name> -MachineName <Machine Name>
@@ -37,15 +37,17 @@ The following troubleshooting steps apply to all VM extensions.
 
     Extension service logs are written to `…GuestConfig\ext_mgr_logs\gc_ext.log`. Errors regarding downloading or verifying the packages are shown there.  
 
-1. Check extension-specific documentation troubleshooting sections for error codes, known issues etc. Additional troubleshooting information for each extension can be found in the **Troubleshoot and support** section in the overview for the extension. This includes the description of error codes written to the log. The extension articles are linked in the [extensions table](manage-vm-extensions.md#extensions).
+1. Check extension-specific documentation troubleshooting sections for error codes, known issues etc. More troubleshooting information for each extension can be found in the **Troubleshoot and support** section in the overview for the extension. This includes the description of error codes written to the log. The extension articles are linked in the [extensions table](manage-vm-extensions.md#extensions).
 
 1. Look at the system logs. Check for other operations that may have interfered with the extension, such as a long running installation of another application that required exclusive package manager access.
 
+
+<!-->
 ## Troubleshooting specific extension scenarios
 
 ### VM Insights
 
-- When enabling VM Insights for an Azure Arc-enabled server, it installs the Dependency and Log Analytics agent. On a slow machine or one with a slow network connection, it is possible to see timeouts during the installation process. Microsoft is taking steps to address this in the Connected Machine agent to help improve this condition. In the interim, a retry of the installation may succeed.
+- Enabling VM Insights for an Azure Arc-enabled server installs the Dependency and Log Analytics agent. On a slow machine or one with a slow network connection, it is possible to see timeouts during the installation process. Microsoft is taking steps to address this in the Connected Machine agent to help improve this condition. In the interim, a retry of the installation may succeed.
 
 ### Log Analytics agent for Linux
 
@@ -56,6 +58,8 @@ The following troubleshooting steps apply to all VM extensions.
 - Error code 52 in the status message indicates a missing dependency. Check the output and logs for more information about which dependency is missing.
 
 - If an installation fails, review the **Troubleshoot and support** section in the overview for the extension. In most cases, there is an error code included in the status message. For the Log Analytics agent for Linux, status messages are explained [here](/azure/virtual-machines/extensions/oms-linux#troubleshoot-and-support), along with general troubleshooting information for this VM extension.
+
+-->
 
 ## Next steps
 
