@@ -1,20 +1,22 @@
 ---
 title: Azure Arc resource bridge deployment command overview
 description: Learn about the Azure CLI commands that can be used to manage your Azure Arc resource bridge deployment.
-ms.date: 02/09/2024
+ms.date: 09/20/2024
 ms.topic: overview
 ms.custom: devx-track-azurecli
 ---
 
 # Azure Arc resource bridge deployment command overview
 
-[Azure CLI](/cli/azure/install-azure-cli) is required to deploy the Azure Arc resource bridge. When deploying Arc resource bridge with a corresponding partner product, the Azure CLI commands may be combined into an automation script, along with additional provider-specific commands. To learn about installing Arc resource bridge with a corresponding partner product, see:
+[Azure CLI](/cli/azure/install-azure-cli) is required to deploy the Azure Arc resource bridge. When deploying Arc resource bridge with a corresponding partner product, Azure CLI commands may be combined into an automation script, along with additional provider-specific commands.
+
+To learn about installing Arc resource bridge with a corresponding partner product, see:
 
 - [Connect VMware vCenter Server to Azure with Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md)
 - [Connect System Center Virtual Machine Manager (SCVMM) to Azure with Arc resource bridge](../system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc.md#download-the-onboarding-script)
 - [Azure Stack HCI VM Management through Arc resource bridge](/azure-stack/hci/manage/azure-arc-vm-management-prerequisites)
 
-This topic provides an overview of the [Azure CLI commands](/cli/azure/arcappliance) that are used to manage Arc resource bridge deployment, in the order in which they are typically used for deployment.
+This article provides an overview of the [Azure CLI commands](/cli/azure/arcappliance) that are used to manage Arc resource bridge deployment, in the order in which they're typically used for deployment.
 
 ## `az arcappliance createconfig`
 
@@ -37,7 +39,7 @@ The `validate` command checks the configuration files for a valid schema, cloud 
 
 This command downloads the OS images from Microsoft that are used to deploy the on-premises appliance VM. Once downloaded, the images are then uploaded to the local cloud image gallery to prepare for the creation of the appliance VM.
 
-This command takes about 10-30+ minutes to complete, depending on the network speed. Allow the command to complete before continuing with the deployment.
+This command generally takes 10-30 minutes to complete, depending on the network speed. Allow the command to complete before continuing with the deployment.
 
 ## `az arcappliance deploy`
 
@@ -47,11 +49,11 @@ The `deploy` command deploys an on-premises instance of Arc resource bridge as a
 
 This command creates Arc resource bridge in Azure as an ARM resource, then establishes the connection between the ARM resource and on-premises appliance VM.
 
-Once the `create` command initiates the connection, it will return in the terminal, even though the connection between the ARM resource and on-premises appliance VM is not yet complete. The resource bridge needs about 5 minutes to establish the connection between the ARM resource and the on-premises VM.
+Once the `create` command initiates the connection, it will return in the terminal, even though the connection between the ARM resource and on-premises appliance VM is not yet complete. The resource bridge needs about five minutes to establish the connection between the ARM resource and the on-premises VM.
 
 ## `az arcappliance show`
 
-The `show` command gets the status of the Arc resource bridge and ARM resource information. It can be used to check the progress of the connection between the ARM resource and on-premises appliance VM. 
+The `show` command gets the status of the Arc resource bridge and ARM resource information. It can be used to check the progress of the connection between the ARM resource and on-premises appliance VM.
 
 While the Arc resource bridge is connecting the ARM resource to the on-premises VM, the resource bridge progresses through the following stages:
 
@@ -60,13 +62,9 @@ While the Arc resource bridge is connecting the ARM resource to the on-premises 
 `Status` transitions between `WaitingForHeartbeat` -> `Validating` ->  `Connecting` -> `Connected` -> `Running`.
 
 - `WaitingForHeartbeat`: Azure is waiting to receive a signal from the appliance VM.
-
 - `Validating`: Appliance VM is checking Azure services for connectivity and serviceability.
-
 - `Connecting`: Appliance VM is syncing on-premises resources to Azure.
-
 - `Connected`: Appliance VM completed sync of on-premises resources to Azure.
-
 - `Running`: Appliance VM and Azure have completed hybrid sync and Arc resource bridge is now operational.
 
 Successful Arc resource bridge creation results in `ProvisioningState = Succeeded` and `Status = Running`.
