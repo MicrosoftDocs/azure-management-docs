@@ -2,14 +2,14 @@
 title: Azure Arc resource bridge security overview 
 description: Understand security configuration and considerations for Azure Arc resource bridge.
 ms.topic: conceptual
-ms.date: 11/03/2023
+ms.date: 09/20/2024
 ---
 
 # Azure Arc resource bridge security overview
 
 This article describes the security configuration and considerations you should evaluate before deploying Azure Arc resource bridge in your enterprise.
 
-## Using a managed identity
+## Managed identity
 
 By default, a Microsoft Entra system-assigned [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) is created and assigned to the Azure Arc resource bridge. Azure Arc resource bridge currently supports only a system-assigned identity. The `clusteridentityoperator` identity initiates the first outbound communication and fetches the Managed Service Identity (MSI) certificate used by other agents for communication with Azure.
 
@@ -25,11 +25,13 @@ Azure Arc resource bridge follows data residency regulations specific to each re
 
 ## Data encryption at rest
 
-Azure Arc resource bridge stores resource information in Azure Cosmos DB. As described in  [Encryption at rest in Azure Cosmos DB](/azure/cosmos-db/database-encryption-at-rest), all the data is encrypted at rest.
+Azure Arc resource bridge stores resource information in Azure Cosmos DB. As described in [Data encryption in Azure Cosmos DB](/azure/cosmos-db/database-encryption-at-rest), all the data is encrypted at rest.
 
 ## Security audit logs
 
-The [activity log](/azure/azure-monitor/essentials/activity-log-insights) is an Azure platform log that provides insight into subscription-level events. This includes tracking when the Azure Arc resource bridge is modified, deleted, or added. You can [view the activity log](/azure/azure-monitor/essentials/activity-log-insights#view-the-activity-log) in the Azure portal or retrieve entries with PowerShell and Azure CLI. By default, activity log events are [retained for 90 days](/azure/azure-monitor/essentials/activity-log-insights#retention-period) and then deleted.
+The [activity log](/azure/azure-monitor/essentials/activity-log-insights) is an Azure platform log that provides insight into subscription-level events. This includes tracking when the Azure Arc resource bridge is modified, deleted, or added.
+
+You can [view the activity log](/azure/azure-monitor/essentials/activity-log-insights#view-the-activity-log) in the Azure portal or retrieve entries with PowerShell and Azure CLI. By default, activity log events are [retained for 90 days](/azure/azure-monitor/essentials/activity-log-insights#retention-period) and then deleted.
 
 ## Next steps
 

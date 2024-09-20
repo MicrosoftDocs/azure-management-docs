@@ -10,6 +10,7 @@ ms.topic: how-to
 This article describes how Arc resource bridge is upgraded, and the two ways upgrade can be performed: cloud-managed upgrade or manual upgrade. Currently, some private cloud providers differ in how they handle Arc resource bridge upgrades.
 
 ## Private cloud providers
+
 Currently, private cloud providers differ in how they perform Arc resource bridge upgrades. Review the following information to see how to upgrade your Arc resource bridge for a specific provider.
 
 For **Arc-enabled VMware vSphere**, manual upgrade and cloud-managed upgrade are available. Appliances on version 1.0.15 and higher are automatically opted-in to cloud-managed upgrade. Cloud-managed upgrade helps ensure the appliance VM is kept within n-3 supported versions but not the latest version. If you would like to be on the latest version, you need to manual upgrade. In order for either upgrade option to work, [the upgrade prerequisites](#prerequisites) must be met. Microsoft may attempt to perform a cloud-managed upgrade of your Arc resource bridge at any time if your appliance will soon be out of support. While Microsoft offers cloud-managed upgrade, you’re still responsible for ensuring that your Arc resource bridge is within the supported n-3 versions. Disruptions could cause cloud-managed upgrade to fail and you may need to manual upgrade the Arc resource bridge. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version, rather than waiting for cloud-managed upgrade.

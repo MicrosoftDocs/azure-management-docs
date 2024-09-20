@@ -78,13 +78,10 @@ Arc resource bridge consists of an appliance VM that is deployed on-premises. Th
 
 Appliance VM IP address requirements:
 
-- Communication with the management machine (SSH TCP port 22, Kubernetes API port 6443)
-
+- Communication with the management machine (SSH TCP port 22, Kubernetes API port 6443).
 - Communication with the private cloud management endpoint via Port 443 (such as VMware vCenter).
-
 - Internet connectivity to [required URLs](network-requirements.md#outbound-connectivity-requirements) enabled in proxy/firewall.
 - Static IP assigned and within the IP address prefix.
-
 - Internal and external DNS resolution.
 - If using a proxy, the proxy server has to be reachable from this IP and all IPs within the VM IP pool.
 
@@ -94,16 +91,11 @@ Arc resource bridge reserves an additional IP address to be used for the applian
 
 Reserved appliance VM IP requirements:  
 
-- Communication with the management machine (SSH TCP port 22, Kubernetes API port 6443)
-
+- Communication with the management machine (SSH TCP port 22, Kubernetes API port 6443).
 - Communication with the private cloud management endpoint via Port 443 (such as VMware vCenter).
-
 - Internet connectivity to [required URLs](network-requirements.md#outbound-connectivity-requirements) enabled in proxy/firewall.
-
 - Static IP assigned and within the IP address prefix.
-
 - Internal and external DNS resolution.
-
 - If using a proxy, the proxy server has to be reachable from this IP and all IPs within the VM IP pool.
 
 ## Control plane IP requirements
@@ -113,9 +105,7 @@ The appliance VM hosts a management Kubernetes cluster with a control plane that
 Control plane IP requirements:
 
 - Communication with the management machine (SSH TCP port 22, Kubernetes API port 6443).
-
 - Static IP address assigned and within the IP address prefix.
-
 - If using a proxy, the proxy server has to be reachable from IPs within the IP address prefix, including the reserved appliance VM IP.
 
 ## DNS server
@@ -171,6 +161,7 @@ The appliance VM hosts a management Kubernetes cluster. The kubeconfig is a low-
 
 > [!IMPORTANT]
 > Once the Arc resource bridge VM is created, the configuration settings can't be modified or updated. Also, the appliance VM must stay in the location where it was initially deployed. Capabilities to allow appliance VM configuration and location changes post-deployment will be available in a future release. However, the Arc resource bridge VM name is a unique GUID that can't be renamed as it's an identifier used for cloud-managed upgrade.
+
 ## Next steps
 
 - Understand [network requirements for Azure Arc resource bridge](network-requirements.md).
