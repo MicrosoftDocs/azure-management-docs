@@ -42,7 +42,7 @@ The following troubleshooting steps apply to all VM extensions.
 1. Look at the system logs. Check for other operations that may have interfered with the extension, such as a long running installation of another application that required exclusive package manager access.
 
 
-<!-->
+<!--
 ## Troubleshooting specific extension scenarios
 
 ### VM Insights
