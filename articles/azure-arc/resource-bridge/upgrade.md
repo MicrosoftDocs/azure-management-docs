@@ -21,13 +21,13 @@ For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, the manual up
 
 ## Prerequisites
 
-Before upgrading an Arc resource bridge, the following prerequisites must be met:
+Before an Arc resource bridge can be upgraded, the following prerequisites must be met:
 
 - The appliance VM must be on a General Availability version (1.0.15 or higher). If not, the Arc resource bridge VM needs to be redeployed. If you're using Arc-enabled VMware/AVS, you can [perform disaster recovery](../vmware-vsphere/recover-from-resource-bridge-deletion.md). If you're using Arc-enabled SCVMM, follow this [disaster recovery guide](../system-center-virtual-machine-manager/disaster-recovery.md).
 
-- The appliance VM must be online, healthy with a Status of "Running". You can check the Azure resource of your Arc resource bridge to verify.
+- The appliance VM must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
 
-- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be up-to-date.  To test that the credentials within the Arc resource bridge VM are valid, perform an operation on an Arc-enabled VM from Azure. You can also [update the credentials](/azure/azure-arc/resource-bridge/maintenance) to be certain.
+- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be up to date. To test that the credentials within the Arc resource bridge VM are valid, perform an operation on an Arc-enabled VM from Azure. You can also [update the credentials](/azure/azure-arc/resource-bridge/maintenance) to be certain.
 
 - There must be sufficient space on the management machine (~3.5 GB) and appliance VM (35 GB) to download required images.
   

@@ -25,7 +25,7 @@ If deploying Arc resource bridge on VMware, Azure CLI 64-bit is required to be i
 
 If deploying on Azure Stack HCI, then Azure CLI 32-bit should be installed on the management machine.
 
-Arc Appliance CLI extension, `arcappliance`, needs to be installed on the CLI. This can be done by running: `az extension add --name arcappliance`
+The Arc appliance CLI extension, `arcappliance`, needs to be installed by running this command: `az extension add --name arcappliance`
 
 ## Minimum resource requirements
 
@@ -40,7 +40,7 @@ These minimum requirements enable most scenarios for products that use Arc resou
 
 ## IP address prefix (subnet) requirements
 
-The IP address prefix (subnet) where Arc resource bridge will be deployed requires a minimum prefix of /29. The IP address prefix must have enough available IP addresses for the gateway IP, control plane IP, appliance VM IP, and reserved appliance VM IP. Arc resource bridge only uses the IP addresses assigned to the IP pool range (Start IP, End IP) and the Control Plane IP. We recommend that the End IP immediately follow the Start IP. Ex: Start IP = 192.168.0.2, End IP = 192.168.0.3. Please work with your network engineer to ensure that there is an available subnet with the required available IP addresses and IP address prefix for Arc resource bridge.
+The IP address prefix (subnet) where Arc resource bridge will be deployed requires a minimum prefix of /29. The IP address prefix must have enough available IP addresses for the gateway IP, control plane IP, appliance VM IP, and reserved appliance VM IP. Arc resource bridge only uses the IP addresses assigned to the IP pool range (Start IP, End IP) and the Control Plane IP. We recommend that the End IP immediately follow the Start IP. Ex: Start IP = 192.168.0.2, End IP = 192.168.0.3. Work with your network engineer to ensure that there is an available subnet with the required available IP addresses and IP address prefix for Arc resource bridge.
 
 The IP address prefix is the subnet's IP address range for the virtual network and subnet mask (IP Mask) in CIDR notation, for example `192.168.7.1/29`. You provide the IP address prefix (in CIDR notation) during the creation of the configuration files for Arc resource bridge. 
 
@@ -56,7 +56,7 @@ If using DHCP, you must reserve the IP addresses used by the control plane and a
 
 ## Management machine requirements
 
-The machine used to run the commands to deploy and maintain Arc resource bridge is called the *management machine*. 
+The machine used to run the commands to deploy and maintain Arc resource bridge is called the *management machine*.
 
 Management machine requirements:
 
@@ -74,7 +74,7 @@ Management machine requirements:
   
 ## Appliance VM IP address requirements
 
-Arc resource bridge consists of an appliance VM that is deployed on-premises. The appliance VM has visibility into the on-premises infrastructure and can tag on-premises resources (guest management) for projection into Azure Resource Manager (ARM). The appliance VM is assigned an IP address from the `k8snodeippoolstart` parameter in the `createconfig` command. It may be referred to in partner products as Start Range IP, RB IP Start or VM IP 1. The appliance VM IP is the starting IP address for the appliance VM IP pool range; therefore, when you first deploy Arc resource  bridge, this is the IP that's initially assigned to your appliance VM. The VM IP pool range requires a minimum of 2 IP addresses.
+Arc resource bridge consists of an appliance VM that is deployed on-premises. The appliance VM has visibility into the on-premises infrastructure and can tag on-premises resources (guest management) for projection into Azure Resource Manager (ARM). The appliance VM is assigned an IP address from the `k8snodeippoolstart` parameter in the `createconfig` command. It may be referred to in partner products as Start Range IP, RB IP Start or VM IP 1. The appliance VM IP is the starting IP address for the appliance VM IP pool range, and this IP is initially assigned to your appliance VM when you first deploy Arc resource  bridge. The VM IP pool range requires a minimum of 2 IP addresses.
 
 Appliance VM IP address requirements:
 
@@ -87,7 +87,7 @@ Appliance VM IP address requirements:
 
 ## Reserved appliance VM IP requirements
 
-Arc resource bridge reserves an additional IP address to be used for the appliance VM upgrade. The reserved appliance VM IP is assigned an IP address via the `k8snodeippoolend` parameter in the `az arcappliance createconfig` command. This IP address may be referred to as End Range IP, RB IP End, or VM IP 2. The reserved appliance VM IP is the ending IP address for the appliance VM IP pool range. When your appliance VM is upgraded for the first time, this is the IP assigned to your appliance VM post-upgrade and the initial appliance VM IP is returned to the IP pool to be used for a future upgrade. If specifying an IP pool range larger than two IP addresses, the additional IPs are reserved.
+Arc resource bridge reserves an additional IP address to be used for the appliance VM upgrade. The reserved appliance VM IP is assigned an IP address via the `k8snodeippoolend` parameter in the `az arcappliance createconfig` command. This IP address may be referred to as End Range IP, RB IP End, or VM IP 2. The reserved appliance VM IP is the ending IP address for the appliance VM IP pool range. When your appliance VM is upgraded for the first time, the reserved appliance VM IP is assigned to your appliance VM post-upgrade, and the initial appliance VM IP is returned to the IP pool to be used for a future upgrade. If specifying an IP pool range larger than two IP addresses, the additional IPs are reserved.
 
 Reserved appliance VM IP requirements:  
 
@@ -110,7 +110,7 @@ Control plane IP requirements:
 
 ## DNS server
 
-DNS server(s) must have internal and external endpoint resolution. The appliance VM and control plane need to resolve the management machine and vice versa. All three IPs must be able to reach the required URLs for deployment.
+DNS servers must have internal and external endpoint resolution. The appliance VM and control plane need to resolve the management machine and vice versa. All three IPs must be able to reach the required URLs for deployment.
 
 ## Gateway
 
@@ -136,12 +136,12 @@ Notice that the IP addresses for the gateway, control plane, appliance VM and DN
 
 ## User account and credentials
 
-Arc resource bridge may require a separate user account with the necessary roles to view and manage resources in the on-premises infrastructure (such as Arc-enabled VMware vSphere). If so, during creation of the configuration files, the `username` and `password` parameters will be required. The account credentials are then stored in a configuration file locally within the appliance VM.  
+Arc resource bridge may require a separate user account with the necessary roles to view and manage resources in the on-premises infrastructure (such as Arc-enabled VMware vSphere). If so, during creation of the configuration files, the `username` and `password` parameters are required. The account credentials are then stored in a configuration file locally within the appliance VM.  
 
 > [!WARNING]
 > Arc resource bridge can only use a user account that does not have multifactor authentication enabled. If the user account is set to periodically change passwords, [the credentials must be immediately updated on the resource bridge](maintenance.md#update-credentials-in-the-appliance-vm). This user account can also be set with a lockout policy to protect the on-premises infrastructure, in case the credentials aren't updated and the resource bridge makes multiple attempts to use expired credentials to access the on-premises control center.
 
-For example, with Arc-enabled VMware, Arc resource bridge needs a separate user account for vCenter with the necessary roles. If the [credentials for the user account change](troubleshoot-resource-bridge.md#insufficient-privileges), then the credentials stored in Arc resource bridge must be immediately updated by running `az arcappliance update-infracredentials` from the [management machine](#management-machine-requirements). Otherwise, the appliance will make repeated attempts to use the expired credentials to access vCenter, which will result in a lockout of the account.
+For example, with Arc-enabled VMware, Arc resource bridge needs a separate user account for vCenter with the necessary roles. If the [credentials for the user account change](troubleshoot-resource-bridge.md#insufficient-privileges), then the credentials stored in Arc resource bridge must be immediately updated by running `az arcappliance update-infracredentials` from the [management machine](#management-machine-requirements). Otherwise, the appliance makes repeated attempts to use the expired credentials to access vCenter, which can result in a lockout of the account.
 
 ## Configuration files
 
@@ -160,7 +160,7 @@ By default, these files are generated in the current CLI directory of where the 
 The appliance VM hosts a management Kubernetes cluster. The kubeconfig is a low-privilege Kubernetes configuration file that is used to maintain the appliance VM. By default, it's generated in the current CLI directory when the `deploy` command completes. The kubeconfig should be saved in a secure location on the management machine, because it's required for maintaining the appliance VM. If the kubeconfig is lost, it can be retrieved by running the `az arcappliance get-credentials` command.
 
 > [!IMPORTANT]
-> Once the Arc resource bridge VM is created, the configuration settings can't be modified or updated. Also, the appliance VM must stay in the location where it was initially deployed. Capabilities to allow appliance VM configuration and location changes post-deployment will be available in a future release. However, the Arc resource bridge VM name is a unique GUID that can't be renamed as it's an identifier used for cloud-managed upgrade.
+> Once the Arc resource bridge VM is created, the configuration settings can't be modified or updated. Currently, the appliance VM must stay in the location where it was initially deployed. The Arc resource bridge VM name is a unique GUID that can't be renamed, because it's an identifier used for cloud-managed upgrade.
 
 ## Next steps
 
