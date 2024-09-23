@@ -109,7 +109,7 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
  
 1. Confirm the machine has a connected status.
 
-:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="A successful machine connection" border="false":::
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="A successful machine connection." border="false":::
 
 ## Next steps
 
