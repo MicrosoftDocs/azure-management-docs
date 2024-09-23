@@ -61,7 +61,8 @@ Use the Azure portal to create a script that automates the agent download and in
        
      * **Public endpoint** 
      * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-     * **Private endpoint**—Select an existing private link scope and endpoint or create a new one. 
+     * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
+   
    1. Select **Next**.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards. Then select **Next**.
