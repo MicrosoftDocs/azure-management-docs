@@ -10,7 +10,9 @@ ms.custom: mode-other
 
 Get started with [Azure Arc-enabled servers](../overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
-In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers.
+In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
+
+While you can repeat the steps in this topic as needed to onboard additional machines, we also provide a variety of other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
 
 > [!TIP]
 > If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
@@ -33,12 +35,9 @@ In this quickstart, you'll deploy and configure the Azure Connected Machine agen
   * The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
   * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](../network-requirements.md#urls) are not blocked.
 
-## 1. Generate installation script
+## Generate installation script
 
-Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. You'll install this script, in a later step, to the hybrid machines you want to onboard to Azure Arc.
-
-> [!TIP]
-> You can repeat the steps in this topic as needed to onboard additional machines. We also provide a variety of other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
+Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. You'll install this script, in a later step, to the hybrid machine you want to onboard to Azure Arc.
 
 <!--1. Launch the Azure Arc service in the Azure portal by searching for and selecting **Servers - Azure Arc**.
 
@@ -49,8 +48,9 @@ Use the Azure portal to create a script that automates the agent download and in
 1. [Go to the Azure portal page for adding servers with Azure Arc](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/HybridVmAddBlade). Select the **Add a single server** tile, then select **Generate script**.
 
     :::image type="content" source="media/quick-enable-hybrid-vm/add-single-server.png" alt-text="Screenshot of Azure portal's add server page." lightbox="media/quick-enable-hybrid-vm/add-single-server.png":::
-    > [!TIP]
-    > In the portal, you can also reach this page by searching for and selecting "Servers - Azure Arc" and then selecting **+Add**.
+    
+   > [!TIP]
+   > In the portal, you can also reach this page by searching for and selecting "Servers - Azure Arc" and then selecting **+Add**.     
 
 1. On the **Basics** page, complete the following steps:
 
@@ -70,7 +70,7 @@ Use the Azure portal to create a script that automates the agent download and in
    1.  Review the script. If you want to make any changes, use the **Previous** button to go back and update your selections. 
    1. Select **Download** to save the script file.
 
-## 2. Install the agent using the script
+## Install the agent using the script
 
 Now that you've generated the script, the next step is to run it on the server that you want to onboard to Azure Arc. The script will download the Connected Machine agent from the Microsoft Download Center, install the agent on the server, create the Azure Arc-enabled server resource, and associate it with the agent.
 
@@ -100,13 +100,13 @@ Install the Linux agent on the target machine in one of the following ways:
     bash ~/Install_linux_azcmagent.sh --proxy "{proxy-url}:{proxy-port}"
     ```
 
-## 3. Verify the connection with Azure Arc
+## Verify the connection with Azure Arc
 
 After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. 
 
 1. Go to the [Azure portal page for hybrid machines](https://aka.ms/hybridmachineportal).
-  > [!TIP]
-  > You can also reach this page in the portal by searching for and selecting "Machines - Azure Arc".
+   > [!TIP]
+   > You can also reach this page in the portal by searching for and selecting "Machines - Azure Arc".
  
 1. Confirm the machine has a connected status.
 
