@@ -74,7 +74,7 @@ Use the Azure portal to create a script that automates the agent download and in
 
 Now that you've generated the script, the next step is to run it on the server that you want to onboard to Azure Arc. The script will download the Connected Machine agent from the Microsoft Download Center, install the agent on the server, create the Azure Arc-enabled server resource, and associate it with the agent.
 
-Complete the followin steps for the operating system of your server.
+Complete the following steps for the operating system of your server.
 
 ### Windows agent
 
