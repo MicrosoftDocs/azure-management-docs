@@ -12,7 +12,7 @@ Get started with [Azure Arc-enabled servers](../overview.md) to manage and gover
 
 In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
 
-While you can repeat the steps in this topic as needed to onboard additional machines, we also provide a variety of other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
+While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
 
 > [!TIP]
 > If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
@@ -23,7 +23,7 @@ While you can repeat the steps in this topic as needed to onboard additional mac
 * Administrator permissions to install and configure the Connected Machine agent. 
   * Linux—Use the root account. 
   * Windows—Use an account that's a member of the Local Administrators group.
-* Review the [Connected Machine agent prerequisites](../prerequisites.md) and verify the following:
+* Review the [Connected Machine agent prerequisites](../prerequisites.md) and verify the following requirements:
   * These [resource providers are registered](../prerequisites.md#azure-resource-providers) on your subscription:
     * Microsoft.HybridCompute
     * Microsoft.GuestConfiguration
@@ -33,7 +33,7 @@ While you can repeat the steps in this topic as needed to onboard additional mac
   * Your account has the [required Azure built-in roles](../prerequisites.md#required-permissions).
   * The machine is in a [supported region](../overview.md#supported-regions).
   * The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](../network-requirements.md#urls) are not blocked.
+  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](../network-requirements.md#urls) aren't blocked.
 
 ## Generate installation script
 
@@ -74,7 +74,7 @@ Use the Azure portal to create a script that automates the agent download and in
 
 Now that you've generated the script, the next step is to run it on the server that you want to onboard to Azure Arc. The script will download the Connected Machine agent from the Microsoft Download Center, install the agent on the server, create the Azure Arc-enabled server resource, and associate it with the agent.
 
-Follow the steps below for the operating system of your server.
+Complete the followin steps for the operating system of your server.
 
 ### Windows agent
 
