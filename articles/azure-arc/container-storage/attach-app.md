@@ -4,7 +4,7 @@ description: Learn how to attach your app using the Azure IoT Operations data pr
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 08/26/2024
+ms.date: 09/24/2024
 zone_pivot_groups: attach-app
 ---
 
@@ -13,13 +13,6 @@ zone_pivot_groups: attach-app
 This article assumes you created a Persistent Volume (PV) and a Persistent Volume Claim (PVC). For information about creating a PV, see [Create a persistent volume](create-persistent-volume.md). For information about creating a PVC, see [Create a Persistent Volume Claim](create-persistent-volume-claim.md).
 
 ::: zone pivot="attach-iot-op"
-## Configure the Azure IoT Operations data processor
-
-When you use Azure IoT Operations (AIO), the Data Processor is spawned without any mounts for Cache Volumes. You can perform the following tasks:
-
-- Add a mount for the Cache Volumes PVC you created previously.
-- Reconfigure all pipelines' output stage to output to the Cache Volumes mount you just created.  
-
 ## Add Cache Volumes to your aio-dp-runner-worker-0 pods
 
 These pods are part of a **statefulSet**. You can't edit the statefulSet in place to add mount points. Instead, follow this procedure:
