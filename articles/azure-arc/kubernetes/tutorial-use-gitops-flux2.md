@@ -554,7 +554,7 @@ az k8s-extension update --resource-group <resource-group> --cluster-name <cluste
 
 ### Vertical scaling
 
-Support for vertical scaling is available starting with [`microsoft.flux` v1.`1.0](extensions-release.md#flux-gitops). Currently, only specific parameters described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported. Other parameters may be manually applied to the cluster.
+Support for vertical scaling is available starting with [`microsoft.flux` v1.12.0](extensions-release.md#flux-gitops). Currently, only specific parameters described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported. Other parameters may be manually applied to the cluster.
 
 To increase resource limits on controllers beyond the [current limits](extensions-troubleshooting.md#ensuring-memory-and-cpu-requirements-for-microsoftflux-extension-installation-are-met), run this command, changing the specific resource type and value as needed:
 
