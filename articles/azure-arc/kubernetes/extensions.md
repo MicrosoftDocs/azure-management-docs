@@ -1,7 +1,7 @@
 ---
 title: "Deploy and manage Azure Arc-enabled Kubernetes cluster extensions"
 ms.custom: devx-track-azurecli
-ms.date: 02/08/2024
+ms.date: 09/24/2024
 ms.topic: how-to
 description: "Create and manage extension instances on Azure Arc-enabled Kubernetes clusters."
 ---
