@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Plan and deploy Azure Arc-enabled servers
 
-Deployment of an IT infrastructure service or business application is a challenge for any company. In order to execute it well and avoid any unwelcome surprises and unplanned costs, you need to thoroughly plan for it to ensure that you're as ready as possible. To plan for deploying Azure Arc-enabled servers at any scale, it should cover the design and deployment criteria that needs to be met in order to successfully complete the tasks.
+Deployment of an IT infrastructure service or business application is a challenge for any company. In order to execute it well and avoid any unwelcome surprises and unplanned costs, you need to thoroughly plan for it to ensure that you're as ready as possible. To plan for deploying Azure Arc-enabled servers at any scale, it should cover the design and deployment criteria that need to be met in order to successfully complete the tasks.
 
 For the deployment to proceed smoothly, your plan should establish a clear understanding of:
 
@@ -16,9 +16,9 @@ For the deployment to proceed smoothly, your plan should establish a clear under
 * The skill set and training required to enable successful deployment and on-going management.
 * Acceptance criteria and how you track its success.
 * Tools or methods to be used to automate the deployments.
-* Identified risks and mitigation plans to avoid delays, disruptions, etc.
-* How to avoid disruption during deployment.
-* What's the escalation path when a significant issue occurs?
+* A list of identified risks and mitigation plans to avoid delays, disruptions, etc.
+* A plan to avoid disruption during deployment.
+* The escalation path when a significant issue occurs.
 
 The purpose of this article is to ensure you are prepared for a successful deployment of Azure Arc-enabled servers across multiple production physical servers or virtual machines in your environment.
 
@@ -32,7 +32,7 @@ Consider the following basic requirements when planning your deployment:
 
 * Your machines must run a [supported operating system](prerequisites.md#supported-operating-systems) for the Connected Machine agent.
 * Your machines must have connectivity from your on-premises network or other cloud environment to resources in Azure, either directly or through a proxy server.
-* To install and configure the Azure Connected Machine agent, you must have an account with elevated privileges (that is, an administrator or as root)on the machines.
+* To install and configure the Azure Connected Machine agent, you must have an account with elevated privileges (that is, an administrator or as root) on the machines.
 * To onboard machines, you must have the **Azure Connected Machine Onboarding** Azure built-in role.
 * To read, modify, and delete a machine, you must have the **Azure Connected Machine Resource Administrator** Azure built-in role.
 
