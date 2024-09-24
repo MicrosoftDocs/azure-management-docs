@@ -1,5 +1,5 @@
 ---
-title: Authenticate with managed identity
+title: Managed Identity Authentication for ACR
 description: Provide access to images in your private container registry by using a user-assigned or system-assigned managed Azure identity.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell, linux-related-content
@@ -7,6 +7,8 @@ author: tejaswikolli-web
 ms.service: azure-container-registry
 ms.author: tejaswikolli
 ms.date: 10/31/2023
+#customer intent: As a developer, I want to use managed identities to authenticate to Azure Container Registry so that I can securely access container images without managing credentials.
+
 ---
 
 # Use an Azure managed identity to authenticate to an Azure container registry
@@ -102,6 +104,8 @@ Get-AzPublicIpAddress -Name myPublicIP -ResourceGroupName myResourceGroup | Sele
 ---
 
 ### Install Docker on the VM
+
+To run Docker containers on your virtual machine, you need to install Docker. This section provides the steps to install Docker on an Ubuntu VM, ensuring that your VM is ready to pull and run container images from your Azure Container Registry.
 
 After the VM is running, make an SSH connection to the VM. Replace *publicIpAddress* with the public IP address of your VM.
 
@@ -311,7 +315,9 @@ docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 
 ---
 
-## Example 2: Access with a system-assigned identity
+### Configure the VM with a system-managed identity
+
+A system-assigned managed identity is a feature of Azure that allows your virtual machine to automatically manage its own identity in Azure Active Directory. This section explains how to configure your VM with a system-assigned identity to securely access your Azure Container Registry.y
 
 ### Configure the VM with a system-managed identity
 

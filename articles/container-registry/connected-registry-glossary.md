@@ -1,5 +1,5 @@
 ---
-title: "Glossary for connected registry with Azure Arc"
+title: "Glossary for Connected Registry with Azure Arc"
 description: "Learn the terms and definitions for the connected registry extension with Azure Arc for a seamless extension deployment."
 author: tejaswikolli-web
 ms.author: tejaswikolli

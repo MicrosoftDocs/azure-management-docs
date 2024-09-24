@@ -1,5 +1,5 @@
 ---
-title: Manage signed images
+title: Manage Signed Images with Content Trust in ACR
 description: Learn how to enable content trust for your Azure container registry, and push and pull signed images. Content trust implements Docker content trust and is a feature of the Premium service tier.
 ms.topic: how-to
 author: tejaswikolli-web
