@@ -4,7 +4,7 @@ description: Learn about Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
 ms.topic: overview
-ms.date: 08/26/2024
+ms.date: 09/24/2024
 ms.custom: references_regions
 
 ---
@@ -19,15 +19,14 @@ Azure Container Storage enabled by Azure Arc is a first-party storage system des
 
 ## What does Azure Container Storage enabled by Azure Arc do?
 
-Azure Container Storage enabled by Azure Arc serves as a native persistent storage system for Arc-connected Kubernetes clusters. Its primary role is to provide a reliable, fault-tolerant file system that allows data to be tiered to Azure. For Azure IoT Operations (AIO) and other Arc Services, Azure Container Storage enabled by Azure Arc is crucial in making Kubernetes clusters stateful. Key features of Azure Container Storage enabled by Azure Arc for Arc-connected K8s clusters include:
+Azure Container Storage enabled by Azure Arc serves as a native persistent storage system for Arc-connected Kubernetes clusters. Its primary role is to provide a reliable, fault-tolerant file system that allows data to be tiered to Azure. For Azure IoT Operations and other Arc Services, Azure Container Storage enabled by Azure Arc is crucial in making Kubernetes clusters stateful. Key features of Azure Container Storage enabled by Azure Arc for Arc-connected K8s clusters include:
 
 - **Tolerance to node failures:** When configured as a 3 node cluster, Azure Container Storage enabled by Azure Arc replicates data between nodes (triplication) to ensure high availability and tolerance to single node failures.
 - **Data synchronization to Azure:** Azure Container Storage enabled by Azure Arc is configured with a storage target, so data written to volumes is automatically tiered to Azure Blob (block blob, ADLSgen-2 or OneLake) in the cloud.
-- **Low latency operations:** Arc services, such as AIO, can expect low latency for read and write operations.
+- **Low latency operations:** Arc services, such as Azure IoT Operations, can expect low latency for read and write operations.
 - **Simple connection:** Customers can easily connect to an Azure Container Storage enabled by Azure Arc volume using a CSI driver to start making Persistent Volume Claims against their storage.
-- **Flexibility in deployment:** Azure Container Storage enabled by Azure Arc can be deployed as part of AIO or as a standalone solution.
+- **Flexibility in deployment:** Azure Container Storage enabled by Azure Arc can be deployed as part of Azure IoT Operations or as a standalone solution.
 - **Observable:** Azure Container Storage enabled by Azure Arc supports industry standard Kubernetes monitoring logs and metrics facilities, and supports Azure Monitor Agent observability.
-- **Designed with integration in mind:** Azure Container Storage enabled by Azure Arc integrates seamlessly with AIO's Data Processor to ease the shuttling of data from your edge to Azure.  
 - **Platform neutrality:** Azure Container Storage enabled by Azure Arc is a Kubernetes storage system that can run on any Arc Kubernetes supported platform. Validation was done for specific platforms, including Ubuntu + CNCF K3s/K8s, Windows IoT + AKS-EE, and Azure Stack HCI + AKS-HCI.
 
 ## What are the different Azure Container Storage enabled by Azure Arc offerings?
