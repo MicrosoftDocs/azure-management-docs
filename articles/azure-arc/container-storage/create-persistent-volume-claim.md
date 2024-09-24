@@ -4,7 +4,7 @@ description: Learn how to create a Persistent Volume Claim (PVC) in Cache Volume
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 08/26/2024
+ms.date: 09/24/2024
 
 ---
 
@@ -37,9 +37,6 @@ This size does not affect the ceiling of blob storage used in the cloud to suppo
        ### This name references your PV name in your PV config ###
        volumeName: INSERT_YOUR_PV_NAME
    ```
-
-   > [!NOTE]
-   > If you intend to use your PVC with the Azure IoT Operations Data Processor, use `azure-iot-operations` as the `namespace` on line 7.
 
 1. To apply this .yaml file, run:
 
