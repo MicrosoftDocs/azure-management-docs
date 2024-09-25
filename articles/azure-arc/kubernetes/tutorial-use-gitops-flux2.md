@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 08/01/2024
+ms.date: 9/24/2024
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
 ---
@@ -550,6 +550,28 @@ When you use this annotation, the deployed HelmRelease is patched with the refer
 
 ```azurecli
 az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --name flux --cluster-type <cluster-type> --config helm-controller.detectDrift=true 
+```
+
+### Vertical scaling
+
+Support for vertical scaling is available starting with [`microsoft.flux` v1.12.0](extensions-release.md#flux-gitops). Currently, only specific parameters described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported. Other parameters may be manually applied to the cluster.
+
+To increase resource limits on controllers beyond the [current limits](extensions-troubleshooting.md#ensuring-memory-and-cpu-requirements-for-microsoftflux-extension-installation-are-met), run this command, changing the specific resource type and value as needed:
+
+```azurecli
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config kustomize-controller.resources.limits.memory=2Gi kustomize-controller.resources.limits.cpu=2000m
+```
+
+To increase the number of reconciliations that can be performed in parallel, run this command:
+
+```azurecli
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config kustomize-controller.concurrent=6 kustomize-controller.requeue-dependency=50s
+```
+
+To enable in-memory build, run this command:
+
+```azurecli
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config kustomize-controller.enable-in-memory-build=true
 ```
 
 ### Helm OOM watch
