@@ -92,7 +92,7 @@ To deploy the application, you use a manifest file to create all the objects req
 - **Rabbit MQ**: Message queue for an order queue.
 
 > [!NOTE]
-> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure CosmosDB or Azure Service Bus.
+> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure Cosmos DB or Azure Service Bus.
 
 1. Create a file named `aks-store-quickstart.yaml` and copy in the following manifest:
 
@@ -379,8 +379,6 @@ When the application runs, a Kubernetes service exposes the application front en
     ```
 
 1. Open a web browser to the external IP address of your service to see the Azure Store app in action.
-
-    :::image type="content" source="media/aks-store-application.png" alt-text="Screenshot of AKS Store sample application." lightbox="media/aks-store-application.png":::
 
 ## Delete the cluster
 
