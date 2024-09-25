@@ -1,14 +1,11 @@
 ---
 title:  Managing the Azure Connected Machine agent
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 09/20/2024
+ms.date: 09/25/2024
 ms.topic: conceptual
 ---
 
 # Managing and maintaining the Connected Machine agent
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 After initial deployment of the Azure Connected Machine agent, you may need to reconfigure the agent, upgrade it, or remove it from the computer. These routine maintenance tasks can be done manually or through automation (which reduces both operational error and expenses). This article describes the operational aspects of the agent. See the [azcmagent CLI documentation](azcmagent.md) for command line reference information.
 
@@ -206,7 +203,7 @@ You can download the latest agent package from Microsoft's [package repository](
 
 Actions of the [apt](https://help.ubuntu.com/lts/serverguide/apt.html) command, such as installation and removal of packages, are logged in the `/var/log/dpkg.log` log file.
 
-#### Upgrade the agent on Red Hat/CentOS/Oracle Linux/Amazon Linux
+#### Upgrade the agent on Red Hat/Oracle Linux/Amazon Linux
 
 1. To update the local package index with the latest changes made in the repositories, run the following command:
 
@@ -335,7 +332,7 @@ The command used to uninstall the Linux agent depends on the Linux operating sys
     sudo apt purge azcmagent
     ```
 
-* For RHEL, CentOS, Oracle Linux, and Amazon Linux, run the following command:
+* For RHEL, Oracle Linux, and Amazon Linux, run the following command:
 
     ```bash
     sudo yum remove azcmagent

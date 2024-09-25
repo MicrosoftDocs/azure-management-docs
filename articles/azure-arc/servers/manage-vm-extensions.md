@@ -1,14 +1,11 @@
 ---
 title: VM extension management with Azure Arc-enabled servers
 description: Azure Arc-enabled servers can manage deployment of virtual machine extensions that provide post-deployment configuration and automation tasks with non-Azure VMs.
-ms.date: 09/04/2024
+ms.date: 09/25/2024
 ms.topic: conceptual
 ---
 
 # Virtual machine extension management with Azure Arc-enabled servers
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 Virtual machine (VM) extensions are small applications that provide post-deployment configuration and automation tasks on Azure VMs. For example, if a virtual machine requires software installation, anti-virus protection, or to run a script in it, a VM extension can be used.
 
@@ -112,7 +109,6 @@ Before you install the extension we suggest you review the [deployment options f
 
 The Key Vault VM extension doesn't support the following Linux operating systems:
 
-- CentOS Linux 7 (x64)
 - Red Hat Enterprise Linux (RHEL) 7 (x64)
 - Amazon Linux 2 (x64)
 
@@ -164,9 +160,6 @@ The following extensions are available for Windows and Linux machines:
 |Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom Script |Key Vault |Hybrid Runbook |Antimalware Extension |Connected Machine agent |
 |-----------------|--------------------|-----------------------|-------|--------------|----------|---------------|----------------------|------------------------|
 |Amazon Linux 2 | | |X | | |X |X |
-|CentOS Linux 8 |X |X |X |X | |X |X |
-|CentOS Linux 7 |X |X |X |X | |X |X |
-|CentOS Linux 6 | | |X |X | |X | |
 |Debian 10 |X | |X |X | |X | |
 |Debian 9 |X |X |X |X | | | |
 |Debian 8 | |X |X | | |X | |
