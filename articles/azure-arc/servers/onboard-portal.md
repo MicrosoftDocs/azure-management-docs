@@ -36,7 +36,10 @@ The script to automate the download and installation, and to establish the conne
     1. In the **Project Details** section, select the **Subscription** and **Resource group** the machine will be managed from.
     1. In the **Region** drop-down list, select the Azure region to store the servers metadata.
     1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
-    1. In the **Connectivity method** section, If the machine is communicating through a proxy server to connect to the internet, select **Proxy server** option and specify the proxy server IP address or the name and port number that the machine will use to communicate with the proxy server. Enter the value in the format `http://<proxyURL>:<proxyport>`. Else if the machine is communicating through a private endpoint then select **Private endpoint** option and appropriate private link scope in the drop-down list. Else if the machine is communicating through a public endpoint then select **Public endpoint** option.
+    1. In the **Connectivity method** section, choose how the Azure Connected Machine agent should connect to the internet: 
+        * **Public endpoint** 
+        * **Proxy server**—If the machine is communicating through a proxy server, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        * **Private endpoint**—If the machine is communicating through a private endpoint, select an existing private link scope and endpoint or create a new one.
     1. In the **Automanage machine best practices** section, you may enable automanage if you want to onboard and configure best practice services like Machine configuration and Insights, based on your server needs.
     1. Select **Next** to go to the Tags page.
 
