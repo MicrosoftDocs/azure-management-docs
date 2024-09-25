@@ -3,7 +3,7 @@ title: Programmatically create Azure Dashboards
 description: Use a dashboard in the Azure portal as a template to programmatically create Azure Dashboards. Includes JSON reference.
 ms.topic: how-to
 ms.custom:
-ms.date: 09/05/2023
+ms.date: 09/25/2024
 ---
 
 # Programmatically create Azure dashboards
@@ -38,7 +38,7 @@ In most cases, you want to preserve the structure and configuration of each tile
 
 In your exported JSON dashboard, find all occurrences of Azure resource IDs. Our example dashboard has multiple tiles that all point at a single Azure virtual machine. That's because our dashboard only looks at this single resource. If you search the sample JSON included at the end of the document for "/subscriptions", you'll find several occurrences of this ID.
 
-`/subscriptions/6531c8c8-df32-4254-d717-b6e983273e5d/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1`
+`/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1`
 
 To publish this dashboard for any virtual machine in the future, parameterize every occurrence of this string within the JSON.
 
@@ -53,7 +53,7 @@ Parameterization should be done using the template's parameter syntax.  You repl
 Example JSON property with hard-coded resource ID:
 
 ```json
-id: "/subscriptions/6531c8c8-df32-4254-d717-b6e983273e5d/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1"
+id: "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1"
 ```
 
 Example JSON property converted to a parameterized version based on template parameters
@@ -103,11 +103,11 @@ This example is similar to what you'll see when you export a dashboard similar t
 ```json
 {
   "properties": {
-    "lenses": {
-      "0": {
+    "lenses": [
+      {
         "order": 0,
-        "parts": {
-          "0": {
+        "parts": [
+          {
             "position": {
               "x": 0,
               "y": 0,
@@ -127,7 +127,7 @@ This example is similar to what you'll see when you export a dashboard similar t
               }
             }
           },
-          "1": {
+          {
             "position": {
               "x": 3,
               "y": 0,
@@ -149,7 +149,7 @@ This example is similar to what you'll see when you export a dashboard similar t
               }
             }
           },
-          "2": {
+          {
             "position": {
               "x": 0,
               "y": 2,
@@ -169,7 +169,7 @@ This example is similar to what you'll see when you export a dashboard similar t
               }
             }
           },
-          "3": {
+          {
             "position": {
               "x": 0,
               "y": 4,
@@ -184,22 +184,21 @@ This example is similar to what you'll see when you export a dashboard similar t
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Percentage CPU",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "4": {
+          {
             "position": {
               "x": 0,
               "y": 7,
@@ -214,26 +213,25 @@ This example is similar to what you'll see when you export a dashboard similar t
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Disk Read Operations/Sec",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Operations/Sec",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "5": {
+          {
             "position": {
               "x": 3,
               "y": 7,
@@ -248,26 +246,25 @@ This example is similar to what you'll see when you export a dashboard similar t
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Disk Read Bytes",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Bytes",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "6": {
+          {
             "position": {
               "x": 6,
               "y": 7,
@@ -282,26 +279,25 @@ This example is similar to what you'll see when you export a dashboard similar t
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Network In Total",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Network Out Total",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "7": {
+          {
             "position": {
               "x": 9,
               "y": 7,
@@ -312,31 +308,21 @@ This example is similar to what you'll see when you export a dashboard similar t
               "inputs": [
                 {
                   "name": "id",
-                  "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                  "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                 }
               ],
-              "type": "Extension/HubsExtension/PartType/ResourcePart",
+              "type": "Extension/Microsoft_Azure_Compute/PartType/VirtualMachinePart",
               "asset": {
                 "idInputName": "id",
                 "type": "VirtualMachine"
               }
             }
           }
-        }
+        ]
       }
-    },
+    ],
     "metadata": {
-      "model": {
-        "timeRange": {
-          "value": {
-            "relative": {
-              "duration": 24,
-              "timeUnit": 1
-            }
-          },
-          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
-        }
-      }
+      "model": {}
     }
   },
   "name": "Simple VM Dashboard",
@@ -345,7 +331,7 @@ This example is similar to what you'll see when you export a dashboard similar t
   "tags": {
     "hidden-title": "Simple VM Dashboard"
   },
-  "apiVersion": "2015-08-01-preview"
+  "apiVersion": "2022-12-01-preview"
 }
 ```
 
@@ -630,4 +616,4 @@ Now that you've seen an example of using a parameterized template to deploy a da
 - Learn more about the [structure of Azure dashboards](azure-portal-dashboards-structure.md).
 - Learn how to [use markdown tiles on Azure dashboards to show custom content](azure-portal-markdown-tile.md).
 - Learn how to [manage access for shared dashboards](azure-portal-dashboard-share-access.md).
-- Learn how to [manage Azure portal settings and preferences](set-preferences.md).
+

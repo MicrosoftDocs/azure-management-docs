@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard with Azure CLI
 description: "Quickstart: Learn how to create a dashboard in the Azure portal using the Azure CLI. A dashboard is a focused and organized view of your cloud resources."
 ms.topic: quickstart
 ms.custom: devx-track-azurecli, mode-api
-ms.date: 03/27/2023
+ms.date: 09/25/2024
 ---
 
 # Quickstart: Create an Azure portal dashboard with Azure CLI
@@ -18,7 +18,7 @@ In addition to the prerequisites below, you'll need an Azure account with an act
 Select a subscription by using the [az account set](/cli/azure/account#az-account-set) command:
 
   ```azurecli
-  az account set --subscription 00000000-0000-0000-0000-000000000000
+  az account set --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
   ```
 
 - Create an [Azure resource group](/azure/azure-resource-manager/management/overview#resource-groups) by using the [az group create](/cli/azure/group#az-group-create) command (or use an existing resource group):
