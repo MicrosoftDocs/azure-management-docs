@@ -405,4 +405,4 @@ In this quickstart, you deployed an Azure Linux Container Host cluster. To learn
 > [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
 
 [kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
-[kubernetes-deployment]: ../concepts-clusters-workloads.md#deployments-and-yaml-manifests
+[kubernetes-deployment]: /azure/aks/concepts-clusters-workloads.md#deployments-and-yaml-manifests

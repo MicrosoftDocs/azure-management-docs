@@ -409,4 +409,4 @@ In this quickstart, you deployed an Azure Linux Container Host AKS cluster. To l
 [remove-azresourcegroup]: /powershell/module/az.resources/remove-azresourcegroup
 
 [kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
-[kubernetes-deployment]: ../concepts-clusters-workloads.md#deployments-and-yaml-manifests
+[kubernetes-deployment]: /azure/aks/concepts-clusters-workloads.md#deployments-and-yaml-manifests
