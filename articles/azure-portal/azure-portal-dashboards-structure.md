@@ -13,7 +13,9 @@ This document walks through the structure of an Azure dashboard, using the follo
 
 Since shared [Azure dashboards are resources](/azure/azure-resource-manager/management/overview), this dashboard can be represented as JSON. You can download the JSON representation of a dashboard by selecting **Export** and then **Download** in the Azure portal.
 
-The following JSON represents the dashboard shown above.
+## Example dashboard JSON
+
+The following JSON represents the sample dashboard shown in the previous section.
 
 ```json
 {
@@ -252,7 +254,7 @@ The following JSON represents the dashboard shown above.
 
 ## Common resource properties
 
-Let’s break down the relevant sections of the JSON. The common resource properties appear near the end of the example above. These properties are shared across all Azure resource types. They don't relate specifically to the dashboard's content.
+Let’s break down the relevant sections of the JSON. The common resource properties appear near the end of the example JSON. These properties are shared across all Azure resource types, and they don't relate specifically to the dashboard's content.
 
 ### ID
 
@@ -270,7 +272,7 @@ All dashboards are of type `Microsoft.Portal/dashboards`.
 
 ### Location
 
-Unlike other resources, dashboards don’t have a runtime component. For dashboards, `location`` indicates the primary geographic location that stores the dashboard’s JSON representation. The value should be one of the location codes that can be fetched using the [locations API on the subscriptions resource](/rest/api/resources/subscriptions).
+Unlike other resources, dashboards don’t have a runtime component. For dashboards, `location` indicates the primary geographic location that stores the dashboard's JSON representation. The value should be one of the location codes that can be fetched using the [locations API on the subscriptions resource](/rest/api/resources/subscriptions).
 
 ### Tags
 
@@ -278,15 +280,15 @@ Tags are a common feature of Azure resources that let you organize your resource
 
 ## Properties
 
-The properties object contains two properties, `lenses` and `metadata`. The `lenses` property contains information about the tiles on the dashboard.  The `metadata` property is reserved for potential future features.
+The `properties` object contains two properties, `lenses` and `metadata`. The `lenses` property contains information about the tiles on the dashboard.  The `metadata` property is reserved for potential future features.
 
 ### Lenses
 
-The `lenses` property contains the dashboard. The lens object in this example contains a single property called "0". Lenses are a grouping concept that isn't currently implemented. For now, all of your dashboards have this single "0" property on the lens object.
+The `lenses` property contains the dashboard.
 
 ### Parts
 
-The object underneath the "0" contains two properties, `order` and `parts`. Currently, `order` is always set to 0. The `parts` property contains an object that defines the individual parts (also referred to as tiles) on the dashboard.
+The `lenses` property contains two properties, `order` and `parts`. Currently, `order` is always set to 0. The `parts` property contains an object that defines the individual parts (also referred to as tiles) on the dashboard.
 
 The `parts` object contains a property for each part, where the name of the property is a number. The number isn't significant.
 
@@ -294,7 +296,7 @@ Each individual part object contains `position` and `metadata`.
 
 ### Position
 
-The `position` property contains the size and location information for the part expressed as `x`, `y`, `rowSpan`, and `colSpan`. The values are in terms of grid units. These grid units are visible when the dashboard is in the customize mode as shown here.
+The `position` property contains the size and location information for the part expressed as `x`, `y`, `rowSpan`, and `colSpan`. The values are in terms of grid units. These grid units are visible when the dashboard is in editable mode, as shown here.
 
 :::image type="content" source="media/azure-portal-dashboards-structure/grid-units.png" alt-text="Screenshot showing the grid units for a dashboard in the Azure portal.":::
 
@@ -304,7 +306,7 @@ For example, if you want a tile to have a width of two grid units, a height of o
 
 ### Metadata
 
-Each part has a metadata property. An object has only one required property: `type`. This string tells the portal which [tile type](azure-portal-dashboards.md#add-tiles-from-the-tile-gallery) to show. Our example dashboard uses these types of tiles:
+Each part has a metadata property. An object has only one required property within metadata: `type`. This string tells the portal which [tile type](azure-portal-dashboards.md#add-tiles-from-the-tile-gallery) to show. Our example dashboard uses these types of tiles:
 
 1. `Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart` – Used to show monitoring metrics
 1. `Extension[azure]/HubsExtension/PartType/MarkdownPart` – Used to show customized markdown content, such as text or images, with basic formatting for lists, links, etc.
@@ -327,16 +329,16 @@ Each `MetricsChartPart` in our example has a single input that expresses the res
       "timespan": {
         "duration": "PT1H"
       },
-      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
       "chartType": 0,
       "metrics": [
         {
           "name": "Network In Total",
-          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
         },
         {
           "name": "Network Out Total",
-          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
         }
       ]
     }
@@ -347,7 +349,7 @@ Each `MetricsChartPart` in our example has a single input that expresses the res
 
 ### Settings
 
-The settings object contains the configurable elements of a part.  In our sample dashboard, the Markdown part uses settings to store the custom markdown content, along with a configurable title and subtitle.
+The settings object contains the configurable elements of a part.  In our sample dashboard, the `MarkdownPart` uses settings to store the custom markdown content, along with a configurable title and subtitle.
 
 ```json
 "settings": {
@@ -355,13 +357,14 @@ The settings object contains the configurable elements of a part.  In our sample
     "settings": {
       "content": "This is the team dashboard for the test VM we use on our team. Here are some useful links:\r\n\r\n1. [Create a Linux virtual machine](https://docs.microsoft.com/azure/virtual-machines/linux/quick-create-portal)\r\n1. [Create a Windows virtual machine](https://docs.microsoft.com/azure/virtual-machines/windows/quick-create-portal)\r\n1. [Create a virtual machine scale set](https://docs.microsoft.com/azure/virtual-machine-scale-sets/quick-create-portal)",
       "title": "Test VM Dashboard",
-      "subtitle": "Contoso"
+      "subtitle": "Contoso",
+      "markdownUri": null
     }
   }
 }
 ```
 
-Similarly, the video tile has its own settings that contain a pointer to the video to play, an autoplay setting, and optional title information.
+Similarly, the `VideoPart` has its own settings that contain a pointer to the video to play, an autoplay setting, and optional title information.
 
 ```json
 
@@ -379,7 +382,12 @@ Similarly, the video tile has its own settings that contain a pointer to the vid
 
 Tiles that are bound to first class manageable portal objects (called assets) have this relationship expressed via the `asset` object. In our example dashboard, the virtual machine tile contains this asset description. The `idInputName` property tells the portal that the ID input contains the unique identifier for the asset, in this case the resource ID. Most Azure resource types have assets defined in the portal.
 
-`"asset": {    "idInputName": "id",    "type": "VirtualMachine"    }`
+```json
+"asset": {
+    "idInputName": "id",
+    "type": "VirtualMachine"
+}
+```
 
 ## Next steps
 
