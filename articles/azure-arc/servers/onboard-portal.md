@@ -23,7 +23,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Generate the installation script from the Azure portal
 
-The script to automate the download and installation, and to establish the connection with Azure Arc, is available from the Azure portal. To complete the process, perform the following steps:
+Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. To complete the process, perform the following steps:
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com).
 
