@@ -83,7 +83,7 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl
   ```
 ## Deploy the application
 
-To deploy the application, you use a manifest file to create all the objects required to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). A [Kubernetes manifest file][kubernetes-deployment] defines a cluster's desired state, such as which container images to run. The manifest includes the following Kubernetes deployments and services:
+To deploy the application, you use a manifest file to create all the objects required to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). A Kubernetes manifest file defines a cluster's desired state, such as which container images to run. The manifest includes the following Kubernetes deployments and services:
 
 :::image type="content" source="media/aks-store-architecture.png" alt-text="Screenshot of Azure Store sample architecture." lightbox="media/aks-store-architecture.png":::
 
@@ -405,4 +405,3 @@ In this quickstart, you deployed an Azure Linux Container Host cluster. To learn
 > [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
 
 [kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
-[kubernetes-deployment]: /azure/aks/concepts-clusters-workloads.md#deployments-and-yaml-manifests.md
