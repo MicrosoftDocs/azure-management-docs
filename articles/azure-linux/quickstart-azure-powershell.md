@@ -407,3 +407,6 @@ In this quickstart, you deployed an Azure Linux Container Host AKS cluster. To l
 [import-azakscredential]: /powershell/module/az.aks/import-azakscredential
 [kubectl-get]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get
 [remove-azresourcegroup]: /powershell/module/az.resources/remove-azresourcegroup
+
+[kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
+[kubernetes-deployment]: ../concepts-clusters-workloads.md#deployments-and-yaml-manifests
