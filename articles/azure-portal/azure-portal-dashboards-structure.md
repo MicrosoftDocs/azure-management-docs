@@ -2,7 +2,7 @@
 title: The structure of Azure dashboards
 description: Walk through the JSON structure of an Azure dashboard using an example dashboard. Includes reference to resource properties.
 ms.topic: conceptual
-ms.date: 09/05/2023
+ms.date: 09/25/2024
 ---
 
 # The structure of Azure dashboards
@@ -17,13 +17,12 @@ The following JSON represents the dashboard shown above.
 
 ```json
 {
-{
   "properties": {
-    "lenses": {
-      "0": {
+    "lenses": [
+      {
         "order": 0,
-        "parts": {
-          "0": {
+        "parts": [
+          {
             "position": {
               "x": 0,
               "y": 0,
@@ -43,7 +42,7 @@ The following JSON represents the dashboard shown above.
               }
             }
           },
-          "1": {
+          {
             "position": {
               "x": 3,
               "y": 0,
@@ -65,7 +64,7 @@ The following JSON represents the dashboard shown above.
               }
             }
           },
-          "2": {
+          {
             "position": {
               "x": 0,
               "y": 2,
@@ -85,7 +84,7 @@ The following JSON represents the dashboard shown above.
               }
             }
           },
-          "3": {
+          {
             "position": {
               "x": 0,
               "y": 4,
@@ -100,22 +99,21 @@ The following JSON represents the dashboard shown above.
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Percentage CPU",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "4": {
+          {
             "position": {
               "x": 0,
               "y": 7,
@@ -130,26 +128,25 @@ The following JSON represents the dashboard shown above.
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Disk Read Operations/Sec",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Operations/Sec",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "5": {
+          {
             "position": {
               "x": 3,
               "y": 7,
@@ -164,26 +161,25 @@ The following JSON represents the dashboard shown above.
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Disk Read Bytes",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Disk Write Bytes",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "6": {
+          {
             "position": {
               "x": 6,
               "y": 7,
@@ -198,26 +194,25 @@ The following JSON represents the dashboard shown above.
                     "timespan": {
                       "duration": "PT1H"
                     },
-                    "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+                    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine",
                     "chartType": 0,
                     "metrics": [
                       {
                         "name": "Network In Total",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       },
                       {
                         "name": "Network Out Total",
-                        "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                        "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                       }
                     ]
                   }
                 }
               ],
-              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart",
-              "settings": {}
+              "type": "Extension/Microsoft_Azure_Monitoring/PartType/MetricsChartPart"
             }
           },
-          "7": {
+          {
             "position": {
               "x": 9,
               "y": 7,
@@ -228,31 +223,21 @@ The following JSON represents the dashboard shown above.
               "inputs": [
                 {
                   "name": "id",
-                  "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+                  "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine"
                 }
               ],
-              "type": "Extension/HubsExtension/PartType/ResourcePart",
+              "type": "Extension/Microsoft_Azure_Compute/PartType/VirtualMachinePart",
               "asset": {
                 "idInputName": "id",
                 "type": "VirtualMachine"
               }
             }
           }
-        }
+        ]
       }
-    },
+    ],
     "metadata": {
-      "model": {
-        "timeRange": {
-          "value": {
-            "relative": {
-              "duration": 24,
-              "timeUnit": 1
-            }
-          },
-          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
-        }
-      }
+      "model": {}
     }
   },
   "name": "Simple VM Dashboard",
@@ -261,7 +246,7 @@ The following JSON represents the dashboard shown above.
   "tags": {
     "hidden-title": "Simple VM Dashboard"
   },
-  "apiVersion": "2015-08-01-preview"
+  "apiVersion": "2022-12-01-preview"
 }
 ```
 
@@ -342,16 +327,16 @@ Each `MetricsChartPart` in our example has a single input that expresses the res
       "timespan": {
         "duration": "PT1H"
       },
-      "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
+      "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1",
       "chartType": 0,
       "metrics": [
         {
           "name": "Network In Total",
-          "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
         },
         {
           "name": "Network Out Total",
-          "resourceId": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
+          "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/SimpleWinVMResourceGroup/providers/Microsoft.Compute/virtualMachines/myVM1"
         }
       ]
     }
