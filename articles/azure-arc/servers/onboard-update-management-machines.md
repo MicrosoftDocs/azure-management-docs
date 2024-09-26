@@ -43,7 +43,10 @@ Perform the following steps to configure the hybrid machine with Arc-enabled ser
 
     1. Select the **Subscription** and **Resource group** where you want the server to be managed within Azure.
     1. In the **Region** drop-down list, select the Azure region to store the servers metadata.
-    1. If the machine is communicating through a proxy server to connect to the internet, specify the proxy server IP address or the name and port number that the machine will use to communicate with the proxy server. Enter the value in the format `http://<proxyURL>:<proxyport>`.
+    1. For **Connectivity method**, choose how the Azure Connected Machine agent should connect to the internet: 
+        * **Public endpoint** 
+        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
     1. Select **Next**.
 
 1. On the **Servers** page, select **Add Servers**, then select the **Subscription** and **Automation account** from the drop-down list that has the Update Management feature enabled and includes the machines you want to onboard to Azure Arc-enabled servers.
