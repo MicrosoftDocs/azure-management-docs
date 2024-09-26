@@ -64,9 +64,9 @@ Use of federated identity currently requires you to set up cloud storage to host
    az storage container create --name "${AZURE_STORAGE_CONTAINER}" --public-access blob
     ```
 
-  > [!NOTE]
-  > 'az storage account create' may fail if your Azure instance hasn't enabled the "Microsoft.Storage" service.
-  > If you hit a failure [register the Microsoft.Storage resource provider in your subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+   > [!NOTE]
+   > 'az storage account create' may fail if your Azure instance hasn't enabled the "Microsoft.Storage" service.
+   > If you hit a failure [register the Microsoft.Storage resource provider in your subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 
 1. Generate a discovery document. Upload it the storage account, and then verify that it's publicly accessible.
 
