@@ -87,7 +87,7 @@ You can use [Azure PowerShell](/powershell/azure/install-azure-powershell) to cr
 
 ## Generate the installation script from the Azure portal
 
-The script to automate the download and installation, and to establish the connection with Azure Arc, is available from the Azure portal. To complete the process, do the following steps:
+Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. To complete the process, do the following steps:
 
 1. From your browser, go to the [Azure portal](https://portal.azure.com).
 
@@ -100,7 +100,10 @@ The script to automate the download and installation, and to establish the conne
     1. Select the **Subscription** and **Resource group** for the machines.
     1. In the **Region** drop-down list, select the Azure region to store the servers' metadata.
     1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
-    1. If the machine is communicating through a proxy server to connect to the internet, specify the proxy server IP address or the name and port number that the machine will use to communicate with the proxy server. Using this configuration, the agent communicates through the proxy server using the HTTP protocol. Enter the value in the format `http://<proxyURL>:<proxyport>`.
+    1. For **Connectivity method**, choose how the Azure Connected Machine agent should connect to the internet: 
+        * **Public endpoint** 
+        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
     1. Select **Next**.
     1. In the **Authentication** section, under the **Service principal** drop-down list, select **Arc-for-servers**.  Then select, **Next**.
 
