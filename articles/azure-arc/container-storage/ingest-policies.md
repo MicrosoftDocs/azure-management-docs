@@ -9,7 +9,7 @@ ms.date: 09/26/2024
 
 # Set ingest policies (preview)
 
-This article describes how to set ingest policies in Azure Container Storage enabled by Azure Arc. The ingest characteristics of your subvolume are governed by the ingest policy that you set for that subvolume.
+This article describes how to set ingest policies in Azure Container Storage enabled by Azure Arc. The ingest policy that you set for that subvolume determine the ingest characteristics of your subvolume.
 
 ## Ingest policy parameters
 
@@ -17,7 +17,7 @@ You can configure the following parameters. The following table also lists the d
 
 | Parameter                  | Description                                                                                                                                                                                          | Available values                                                                                                                              | Default value            |
 |----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
-| `spec.ingest.order`          | The order in which files written to the subvolume are ingested. This is a best effort, not a guarantee.                                                                                            | `oldest-first`: the oldest files yet to be ingested are prioritized.<br/> `newest-first`: the newest files yet to be ingested are prioritized.  | `oldest-first`             |
+| `spec.ingest.order`          | The order in which files written to the subvolume are ingested. This order is a best effort, not a guarantee.                                                                                            | `oldest-first`: the oldest files yet to be ingested are prioritized.<br/> `newest-first`: the newest files yet to be ingested are prioritized.  | `oldest-first`             |
 | `spec.ingest.minDelaySec`    | The minimum number of seconds after the last file handle is closed before the file is eligible for ingest.                                                                                            | Any integer value of seconds between 0 and 31536000 (one year).                                                                                | 60 seconds               |
 | `spec.eviction.order`        | Once a file is ingested successfully, how the system evicts the local copy of that file.                                                                                                    | `unordered`: ingested files are evicted at some point after their `minDelaySec` elapses.<br/>  `never`: ingested files are never evicted.      | `unordered`                |
 | `spec.eviction.minDelaySec`  | The number of seconds after a file is ingested successfully before the system deletes the local copy of that file. This parameter has no effect if `spec.eviction.order` is set to `never`.  | Any integer value of seconds between 0 and 31536000 (one year).                                                                                | 300 seconds (5 minutes)  |
