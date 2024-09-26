@@ -20,7 +20,7 @@ Capabilities of the Azure Key Vault Secrets Provider extension include:
 - Extension components are deployed to availability zones, making them zone redundant
 
 > [!TIP]
-> If offline access is necessary, or if you need secrets synced in into the Kubernetes secrets store, use the [Secret Store extension](secret-store-extension.md) for secret management in your Arc-enabled Kubernetes clusters.
+> If offline access is necessary, or if you need secrets synced into the Kubernetes secrets store, use the [Secret Store extension](secret-store-extension.md) for secret management in your Arc-enabled Kubernetes clusters.
 
 ## Prerequisites
 

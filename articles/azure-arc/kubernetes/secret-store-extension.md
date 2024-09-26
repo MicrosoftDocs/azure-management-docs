@@ -3,6 +3,7 @@ title: Use the Azure Key Vault Secret Store extension to sync secrets to the Kub
 description: The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access.
 ms.date: 09/26/2024
 ms.topic: how-to
+ms.custom: references_regions
 ---
 
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
@@ -63,11 +64,11 @@ Use of federated identity currently requires you to set up cloud storage to host
    az storage container create --name "${AZURE_STORAGE_CONTAINER}" --public-access blob
     ```
 
-> [!NOTE]
-> 'az storage account create' may fail if your Azure instance hasn't enabled the "Microsoft.Storage" service.
-> If you hit a failure [register the Microsoft.Storage resource provider in your subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+  > [!NOTE]
+  > 'az storage account create' may fail if your Azure instance hasn't enabled the "Microsoft.Storage" service.
+  > If you hit a failure [register the Microsoft.Storage resource provider in your subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 
-1. Generate a discovery document. Upload it the storage account, and then verify that it's publically accessible.
+1. Generate a discovery document. Upload it the storage account, and then verify that it's publicly accessible.
 
    ```bash
    cat <<EOF > openid-configuration.json
@@ -116,7 +117,7 @@ Use of federated identity currently requires you to set up cloud storage to host
 
 Your cluster must also be configured to issue Service Account tokens with an issuer URL (`service-account-issuer`) field that points to the storage account you created in the previous section. For more background on the federation configuration, see [cluster configuration for an OIDC issuer](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters/configurations.html).
 
-Optionally, you can configure limits on the Secret Store 's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the Secret Store can change other objects in the cluster.
+Optionally, you can configure limits on the Secret Store's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the Secret Store can change other objects in the cluster.
 
 Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
 
