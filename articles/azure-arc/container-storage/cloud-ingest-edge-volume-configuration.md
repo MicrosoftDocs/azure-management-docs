@@ -14,7 +14,7 @@ This article describes the configuration for *Cloud Ingest Edge Volumes* (blob u
 
 ## What is Cloud Ingest Edge Volumes?
 
-*Cloud Ingest Edge Volumes* facilitates limitless data ingestion from edge to blob, including ADLSgen2. Files written to this storage type are seamlessly transferred to blob storage and once confirmed uploaded, are subsequently purged locally. This removal ensures space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, which enables local storage and synchronization upon reconnection to the network.
+*Cloud Ingest Edge Volumes* facilitates limitless data ingestion from edge to blob, including ADLSgen2. Files written to this storage type are seamlessly transferred to blob storage and once confirmed uploaded, are then purged locally. This removal ensures space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, which enables local storage and synchronization upon reconnection to the network.
 
 For example, you can write a file to your cloud ingest PVC, and a process runs a scan to check for new files every minute. Once identified, the file is sent for uploading to your designated blob destination. Following confirmation of a successful upload, Cloud Ingest Edge Volume waits for five minutes, and then deletes the local version of your file.
 
@@ -103,9 +103,9 @@ az k8s-extension list --cluster-name ${CLUSTER_NAME} --resource-group ${RESOURCE
     kubectl apply -f "cloudIngestPVC.yaml"
     ```
 
-## Attach sub-volume to Edge Volume
+## Attach subvolume to Edge Volume
 
-To create a sub-volume using extension identity to connect to your storage account container, use the following process:
+To create a subvolume using extension identity to connect to your storage account container, use the following process:
 
 1. Get the name of your Edge Volume using the following command:
 
@@ -117,9 +117,9 @@ To create a sub-volume using extension identity to connect to your storage accou
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-   - `metadata.name`: Create a name for your sub-volume.
+   - `metadata.name`: Create a name for your subvolume.
    - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
-   - `spec.path`: Create your own subdirectory name under the mount path. Note that the following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
+   - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
    - `spec.container`: The container name in your storage account.
    - `spec.storageaccountendpoint`: Navigate to your storage account in the Azure portal. On the **Overview** page, near the top right of the screen, select **JSON View**. You can find the `storageaccountendpoint` link under **properties.primaryEndpoints.blob**. Copy the entire link; for example, `https://mytest.blob.core.windows.net/`.
 
@@ -248,11 +248,11 @@ To create a sub-volume using extension identity to connect to your storage accou
 
 1. Change directories into the `/data` mount path as specified from your `deploymentExample.yaml`.
 
-1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach sub-volume to Edge Volume](#attach-sub-volume-to-edge-volume) section. Change directories into `/YOUR_PATH_NAME_HERE`, replacing the `YOUR_PATH_NAME_HERE` value with your details.
+1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume) section. Change directories into `/YOUR_PATH_NAME_HERE`, replacing the `YOUR_PATH_NAME_HERE` value with your details.
 
 1. As an example, create a file named `file1.txt` and write to it using `echo "Hello World" > file1.txt`.
 
-1. In the Azure portal, navigate to your storage account and find the container specified from Step 2 of [Attach sub-volume to Edge Volume](#attach-sub-volume-to-edge-volume). When you select your container, you should find `file1.txt` populated within the container. If the file hasn't yet appeared, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
+1. In the Azure portal, navigate to your storage account and find the container specified from Step 2 of [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume). When you select your container, you should find `file1.txt` populated within the container. If the file hasn't appeared yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
 
 ## Next steps
 

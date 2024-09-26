@@ -22,7 +22,7 @@ This article describes an alternate configuration for [Cloud Ingest Edge Volumes
 1. Select **Manage Access**.
    :::image type="content" source="media/onelake-manage-access.png" alt-text="Screenshot showing manage access screen in portal." lightbox="media/onelake-manage-access.png":::
 1. Select **Add people or groups**.
-1. Enter your extension name from your Azure Container Storage enabled by Azure Arc installation. This must be unique within your tenant.
+1. Enter your extension name from your Azure Container Storage enabled by Azure Arc installation. This name must be unique within your tenant.
    :::image type="content" source="media/add-extension-name.png" alt-text="Screenshot showing add extension name screen." lightbox="media/add-extension-name.png":::
 1. Change the drop-down for permissions from **Viewer** to **Contributor**.
    :::image type="content" source="media/onelake-set-contributor.png" alt-text="Screenshot showing set contributor screen." lightbox="media/onelake-set-contributor.png":::
@@ -57,9 +57,9 @@ This article describes an alternate configuration for [Cloud Ingest Edge Volumes
    kubectl apply -f "cloudIngestPVC.yaml"
    ```
 
-### Attach sub-volume to Edge Volume
+### Attach subvolume to Edge Volume
 
-You can use the following process to create a sub-volume using Extension Identity to connect to your OneLake LakeHouse.
+You can use the following process to create a subvolume using Extension Identity to connect to your OneLake LakeHouse.
 
 1. Get the name of your Edge Volume using the following command:
 
@@ -71,9 +71,9 @@ You can use the following process to create a sub-volume using Extension Identit
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-   - `metadata.name`: Create a name for your sub-volume.
+   - `metadata.name`: Create a name for your subvolume.
    - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
-   - `spec.path`: Create your own subdirectory name under the mount path. Note that the following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
+   - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
    - `spec.container`: Details of your One Lake Data Lake Lakehouse (for example, `<WORKSPACE>/<DATA_LAKE>.Datalake/Files`).
    - `spec.storageaccountendpoint`: Your storage account endpoint is the prefix of your Power BI web link. For example, if your OneLake page is `https://contoso-motors.powerbi.com/`, then your endpoint is `https://contoso-motors.dfs.fabric.microsoft.com`.
 
@@ -202,11 +202,11 @@ You can use the following process to create a sub-volume using Extension Identit
 
 1. Change directories into the `/data` mount path as specified in `deploymentExample.yaml`.
 
-1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach sub-volume to Edge Volume](#attach-sub-volume-to-edge-volume) section. Now, `cd` into `/YOUR_PATH_NAME_HERE`, replacing `YOUR_PATH_NAME_HERE` with your details.
+1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume) section. Now, `cd` into `/YOUR_PATH_NAME_HERE`, replacing `YOUR_PATH_NAME_HERE` with your details.
 
 1. As an example, create a file named `file1.txt` and write to it using `echo "Hello World" > file1.txt`.
 
-1. In the Azure portal, navigate to your storage account and find the container specified from step 2 of [Attach sub-volume to Edge Volume](#attach-sub-volume-to-edge-volume). When you select your container, you should find `file1.txt` populated within the container. If the file hasn't yet appeared, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
+1. In the Azure portal, navigate to your storage account and find the container specified from step 2 of [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume). When you select your container, you should find `file1.txt` populated within the container. If the file hasn't appeared yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
 
 ## Next steps
 
