@@ -41,7 +41,7 @@ The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") autom
 
 The Secret Store extension is recommended for scenarios where offline access is necessary, or if you need secrets synced in into the Kubernetes secret store. If you don't need these features, you can use the Azure Key Vault Secrets Provider extension instead.
 
-For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-sync-controller.md).
+For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
 
 > [!IMPORTANT]
 > Secret Store is currently in PREVIEW.
