@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 08/26/2024
+ms.date: 09/26/2024
 ---
 
 # Local Shared Edge Volumes
@@ -18,7 +18,7 @@ The *Local Shared Edge Volumes* feature provides highly available, failover-capa
 
 ## Create a Local Shared Edge Volumes Persistent Volume Claim (PVC) and configure a pod against the PVC
 
-1. Create a file named `localSharedPVC.yaml` with the following contents. Modify the `metadata::name` value with a name for your Persistent Volume Claim. Then, in line 8, specify the namespace that matches your intended consuming pod. The `metadata::name` value is referenced on the last line of `deploymentExample.yaml` in the next step.
+1. Create a file named `localSharedPVC.yaml` with the following contents. Modify the `metadata.name` value with a name for your Persistent Volume Claim. Then, in line 8, specify the namespace that matches your intended consuming pod. The `metadata.name` value is referenced on the last line of `deploymentExample.yaml` in the next step. The `spec.resources.requests.storage` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs:
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
@@ -39,7 +39,7 @@ The *Local Shared Edge Volumes* feature provides highly available, failover-capa
      storageClassName: unbacked-sc
    ```
 
-1. Create a file named `deploymentExample.yaml` with the following contents. Add the values for `containers::name` and `volumes::persistentVolumeClaim::claimName`:
+1. Create a file named `deploymentExample.yaml` with the following contents. Add values for `containers.name` and `volumes.persistentVolumeClaim.claimName`. The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs:
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
@@ -76,7 +76,7 @@ The *Local Shared Edge Volumes* feature provides highly available, failover-capa
              command:
                - "/bin/sh"
                - "-c"
-               - "dd if=/dev/urandom of=/data/esalocalsharedtestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
+               - "dd if=/dev/urandom of=/data/acsalocalsharedtestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
              volumeMounts:
                ### This name must match the following volumes::name attribute ###
                - name: wyvern-volume
