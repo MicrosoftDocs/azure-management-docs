@@ -81,156 +81,311 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl
   ```azurecli-interactive
     kubectl get pods --all-namespaces
   ```
-
 ## Deploy the application
 
-A [Kubernetes manifest file](/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests) defines a cluster's desired state, such as which container images to run.
+To deploy the application, you use a manifest file to create all the objects required to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). A Kubernetes manifest file defines a cluster's desired state, such as which container images to run. The manifest includes the following Kubernetes deployments and services:
 
-In this quickstart, you will use a manifest to create all objects needed to run the [Azure Vote application](https://github.com/Azure-Samples/azure-voting-app-redis). This manifest includes two Kubernetes deployments:
+:::image type="content" source="media/aks-store-architecture.png" alt-text="Screenshot of Azure Store sample architecture." lightbox="media/aks-store-architecture.png":::
 
-* The sample Azure Vote Python applications.
-* A Redis instance.
+- **Store front**: Web application for customers to view products and place orders.
+- **Product service**: Shows product information.
+- **Order service**: Places orders.
+- **Rabbit MQ**: Message queue for an order queue.
 
-Two [Kubernetes Services](/azure/aks/concepts-network-services) are also created:
+> [!NOTE]
+> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure Cosmos DB or Azure Service Bus.
 
-* An internal service for the Redis instance.
-* An external service to access the Azure Vote application from the internet.
-
-1. Create a file named `azure-vote.yaml` and copy in the following manifest.
-
-    * If you use the Azure Cloud Shell, this file can be created using `code`, `vi`, or `nano` as if working on a virtual or physical system.
+1. Create a file named `aks-store-quickstart.yaml` and copy in the following manifest:
 
     ```yaml
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-      name: azure-vote-back
+      name: rabbitmq
     spec:
       replicas: 1
       selector:
         matchLabels:
-          app: azure-vote-back
+          app: rabbitmq
       template:
         metadata:
           labels:
-            app: azure-vote-back
+            app: rabbitmq
         spec:
           nodeSelector:
             "kubernetes.io/os": linux
           containers:
-          - name: azure-vote-back
-            image: mcr.microsoft.com/oss/bitnami/redis:6.0.8
+          - name: rabbitmq
+            image: mcr.microsoft.com/mirror/docker/library/rabbitmq:3.10-management-alpine
+            ports:
+            - containerPort: 5672
+              name: rabbitmq-amqp
+            - containerPort: 15672
+              name: rabbitmq-http
             env:
-            - name: ALLOW_EMPTY_PASSWORD
-              value: "yes"
+            - name: RABBITMQ_DEFAULT_USER
+              value: "username"
+            - name: RABBITMQ_DEFAULT_PASS
+              value: "password"
             resources:
               requests:
-                cpu: 100m
+                cpu: 10m
                 memory: 128Mi
               limits:
                 cpu: 250m
                 memory: 256Mi
-            ports:
-            - containerPort: 6379
-              name: redis
+            volumeMounts:
+            - name: rabbitmq-enabled-plugins
+              mountPath: /etc/rabbitmq/enabled_plugins
+              subPath: enabled_plugins
+          volumes:
+          - name: rabbitmq-enabled-plugins
+            configMap:
+              name: rabbitmq-enabled-plugins
+              items:
+              - key: rabbitmq_enabled_plugins
+                path: enabled_plugins
+    ---
+    apiVersion: v1
+    data:
+      rabbitmq_enabled_plugins: |
+        [rabbitmq_management,rabbitmq_prometheus,rabbitmq_amqp1_0].
+    kind: ConfigMap
+    metadata:
+      name: rabbitmq-enabled-plugins
     ---
     apiVersion: v1
     kind: Service
     metadata:
-      name: azure-vote-back
+      name: rabbitmq
     spec:
-      ports:
-      - port: 6379
       selector:
-        app: azure-vote-back
+        app: rabbitmq
+      ports:
+        - name: rabbitmq-amqp
+          port: 5672
+          targetPort: 5672
+        - name: rabbitmq-http
+          port: 15672
+          targetPort: 15672
+      type: ClusterIP
     ---
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-      name: azure-vote-front
+      name: order-service
     spec:
       replicas: 1
       selector:
         matchLabels:
-          app: azure-vote-front
+          app: order-service
       template:
         metadata:
           labels:
-            app: azure-vote-front
+            app: order-service
         spec:
           nodeSelector:
             "kubernetes.io/os": linux
           containers:
-          - name: azure-vote-front
-            image: mcr.microsoft.com/azuredocs/azure-vote-front:v1
+          - name: order-service
+            image: ghcr.io/azure-samples/aks-store-demo/order-service:latest
+            ports:
+            - containerPort: 3000
+            env:
+            - name: ORDER_QUEUE_HOSTNAME
+              value: "rabbitmq"
+            - name: ORDER_QUEUE_PORT
+              value: "5672"
+            - name: ORDER_QUEUE_USERNAME
+              value: "username"
+            - name: ORDER_QUEUE_PASSWORD
+              value: "password"
+            - name: ORDER_QUEUE_NAME
+              value: "orders"
+            - name: FASTIFY_ADDRESS
+              value: "0.0.0.0"
             resources:
               requests:
-                cpu: 100m
-                memory: 128Mi
+                cpu: 1m
+                memory: 50Mi
               limits:
-                cpu: 250m
-                memory: 256Mi
-            ports:
-            - containerPort: 80
-            env:
-            - name: REDIS
-              value: "azure-vote-back"
+                cpu: 75m
+                memory: 128Mi
+          initContainers:
+          - name: wait-for-rabbitmq
+            image: busybox
+            command: ['sh', '-c', 'until nc -zv rabbitmq 5672; do echo waiting for rabbitmq; sleep 2; done;']
+            resources:
+              requests:
+                cpu: 1m
+                memory: 50Mi
+              limits:
+                cpu: 75m
+                memory: 128Mi
     ---
     apiVersion: v1
     kind: Service
     metadata:
-      name: azure-vote-front
+      name: order-service
     spec:
-      type: LoadBalancer
+      type: ClusterIP
+      ports:
+      - name: http
+        port: 3000
+        targetPort: 3000
+      selector:
+        app: order-service
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: product-service
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: product-service
+      template:
+        metadata:
+          labels:
+            app: product-service
+        spec:
+          nodeSelector:
+            "kubernetes.io/os": linux
+          containers:
+          - name: product-service
+            image: ghcr.io/azure-samples/aks-store-demo/product-service:latest
+            ports:
+            - containerPort: 3002
+            resources:
+              requests:
+                cpu: 1m
+                memory: 1Mi
+              limits:
+                cpu: 1m
+                memory: 7Mi
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: product-service
+    spec:
+      type: ClusterIP
+      ports:
+      - name: http
+        port: 3002
+        targetPort: 3002
+      selector:
+        app: product-service
+    ---
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: store-front
+    spec:
+      replicas: 1
+      selector:
+        matchLabels:
+          app: store-front
+      template:
+        metadata:
+          labels:
+            app: store-front
+        spec:
+          nodeSelector:
+            "kubernetes.io/os": linux
+          containers:
+          - name: store-front
+            image: ghcr.io/azure-samples/aks-store-demo/store-front:latest
+            ports:
+            - containerPort: 8080
+              name: store-front
+            env:
+            - name: VUE_APP_ORDER_SERVICE_URL
+              value: "http://order-service:3000/"
+            - name: VUE_APP_PRODUCT_SERVICE_URL
+              value: "http://product-service:3002/"
+            resources:
+              requests:
+                cpu: 1m
+                memory: 200Mi
+              limits:
+                cpu: 1000m
+                memory: 512Mi
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: store-front
+    spec:
       ports:
       - port: 80
+        targetPort: 8080
       selector:
-        app: azure-vote-front
+        app: store-front
+      type: LoadBalancer
     ```
 
-    For a breakdown of YAML manifest files, see [Deployments and YAML manifests](/azure/aks/concepts-clusters-workloads#deployments-and-yaml-manifests).
+    If you create and save the YAML file locally, then you can upload the manifest file to your default directory in CloudShell by selecting the **Upload/Download files** button and selecting the file from your local file system.
 
-1. Deploy the application using the [kubectl apply](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply) command and specify the name of your YAML manifest:
+1. Deploy the application using the [`kubectl apply`][kubectl-apply] command and specify the name of your YAML manifest.
 
-    ```console
-    kubectl apply -f azure-vote.yaml
-    ```
-
-    The following example resembles output showing the successfully created deployments and services:
-
-    ```output
-    deployment "azure-vote-back" created
-    service "azure-vote-back" created
-    deployment "azure-vote-front" created
-    service "azure-vote-front" created
+    ```azurecli-interactive
+    kubectl apply -f aks-store-quickstart.yaml
     ```
 
 ## Test the application
 
-When the application runs, a Kubernetes service exposes the application front-end to the internet. This process can take a few minutes to complete.
+You can validate that the application is running by visiting the public IP address or the application URL.
 
-Monitor progress using the [kubectl get service](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command with the `--watch` argument.
+Get the application URL using the following commands:
 
 ```azurecli-interactive
-kubectl get service azure-vote-front --watch
+runtime="5 minutes"
+endtime=$(date -ud "$runtime" +%s)
+while [[ $(date -u +%s) -le $endtime ]]
+do
+   STATUS=$(kubectl get pods -l app=store-front -o 'jsonpath={..status.conditions[?(@.type=="Ready")].status}')
+   echo $STATUS
+   if [ "$STATUS" == 'True' ]
+   then
+      export IP_ADDRESS=$(kubectl get service store-front --output 'jsonpath={..status.loadBalancer.ingress[0].ip}')
+      echo "Service IP Address: $IP_ADDRESS"
+      break
+   else
+      sleep 10
+   fi
+done
 ```
 
-The **EXTERNAL-IP** output for the `azure-vote-front` service will initially show as *pending*.
-
-```output
-NAME               TYPE           CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
-azure-vote-front   LoadBalancer   10.0.37.27   <pending>     80:30572/TCP   6s
+```azurecli-interactive
+curl $IP_ADDRESS
 ```
 
-Once the **EXTERNAL-IP** address changes from *pending* to an actual public IP address, use `CTRL-C` to stop the `kubectl` watch process. The following example output shows a valid public IP address assigned to the service:
-
-```output
-azure-vote-front   LoadBalancer   10.0.37.27   52.179.23.131   80:30572/TCP   2m
+Results:
+<!-- expected_similarity=0.3 -->
+```HTML
+<!doctype html>
+<html lang="">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <link rel="icon" href="/favicon.ico">
+      <title>store-front</title>
+      <script defer="defer" src="/js/chunk-vendors.df69ae47.js"></script>
+      <script defer="defer" src="/js/app.7e8cfbb2.js"></script>
+      <link href="/css/app.a5dc49f6.css" rel="stylesheet">
+   </head>
+   <body>
+      <div id="app"></div>
+   </body>
+</html>
 ```
 
-To see the Azure Vote app in action, open a web browser to the external IP address of your service.
-
-:::image type="content" source="./media/azure-voting-application.png" alt-text="Screenshot of browsing to Azure Vote sample application.":::
+```OUTPUT
+echo "You can now visit your web server at $IP_ADDRESS"
+```
 
 ## Delete the cluster
 
@@ -246,3 +401,5 @@ In this quickstart, you deployed an Azure Linux Container Host cluster. To learn
 
 > [!div class="nextstepaction"]
 > [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
+
+[kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
