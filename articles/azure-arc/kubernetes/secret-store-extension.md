@@ -22,9 +22,9 @@ This article shows you how to install and configure the Secret Store as an [Azur
 
 ## Prerequisites
 
-- A cluster [connected to Azure Arc](quickstart-connect-cluster.md), running Kubernetes version 1.27 or higher and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). Note: the region is defined by the resource group region used for creating the Arc cluster.
+- A cluster [connected to Azure Arc](quickstart-connect-cluster.md), running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
 - The examples throughout this guide use a [K3s](https://k3s.io/) cluster.
-- Ensure you've met the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
+- Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 
 Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
 
@@ -49,7 +49,7 @@ export SERVICE_ACCOUNT_NAME="workload-identity-sa"
 
 ## Configure an identity to access secrets
 
-To access and synchronize a given Azure Key Vault secret, the Secret Store requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [federation](/graph/api/resources/federatedidentitycredentials-overview). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The Secret Store extension uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections will set walk through how to set this up.
+To access and synchronize a given Azure Key Vault secret, the Secret Store requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [federation](/graph/api/resources/federatedidentitycredentials-overview). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The Secret Store extension uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
 
 ### Host OIDC public information about your cluster's Service Account issuer
 
@@ -92,13 +92,13 @@ Use of federated identity currently requires you to set up cloud storage to host
    curl -s "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}/.well-known/openid-configuration"
    ```
 
-1. Obtain the public key for your cluster's service account issuer from its private key. You will likely need to run this command as a superuser. The following example is for k3s. Your cluster may store the service account issuer private key at a different location.
+1. Obtain the public key for your cluster's service account issuer from its private key. You'll likely need to run this command as a superuser. The following example is for k3s. Your cluster may store the service account issuer private key at a different location.
 
    ``` console
    sudo openssl rsa -in /var/lib/rancher/k3s/server/tls/service.key -pubout -out sa.pub
    ```
 
-1. Download the latest [azwi command line tool](https://github.com/Azure/azure-workload-identity/releases), which you'll use to create a JWKS document from the public key, and untar it:
+1. Download the latest [azwi command line tool](https://github.com/Azure/azure-workload-identity/releases), which you can use to create a JWKS document from the public key, and untar it:
 
    ``` console
    tar -xzf <path to downloaded azwi tar.gz>
@@ -120,7 +120,7 @@ Optionally, you can configure limits on the Secret Store 's own permissions as a
 
 Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
 
-1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: --kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement".
+1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
    - Get the service account issuer url.
 
@@ -183,7 +183,7 @@ Next, create a user-assigned managed identity and give it permissions to access 
    az identity create --name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --location "${LOCATION}" --subscription "${SUBSCRIPTION}"
    ```
 
-1. Give the identity Key Vault Reader and Key Vault Secrets User permissions. You many need to wait a moment for replication of the identity creation before these commmands succeed:
+1. Give the identity Key Vault Reader and Key Vault Secrets User permissions. You may need to wait a moment for replication of the identity creation before these commands succeed:
 
    ```azurecli
    export USER_ASSIGNED_CLIENT_ID="$(az identity show --resource-group "${RESOURCE_GROUP}" --name "${USER_ASSIGNED_IDENTITY_NAME}" --query 'clientId' -otsv)"
@@ -227,7 +227,7 @@ The Secret Store is installed as an [Azure Arc extension](extensions.md)
 
 Be sure that your Kubernetes cluster is [connected to Azure Arc](quickstart-connect-cluster.md) before installing the extension.
 
-1. Set two environment variables for the resource group and name of your connected cluster. If you followed the above linked quickstart, this will be 'AzureArcTest' and 'AzureArcTest1' respectively.
+1. Set two environment variables for the resource group and name of your connected cluster. If you followed the quickstart linked earlier, these are 'AzureArcTest' and 'AzureArcTest1' respectively.
 
    ```azurecli
    export ARC_RESOURCE_GROUP="AzureArcTest"
@@ -343,7 +343,7 @@ kubectl describe crd secretsync
 
 ## Observe secrets synchronizing to the cluster
 
-Once the configuration is applied, secrets begin syncing to the cluster automatically at the cadence specified when installing the Secret Store .
+Once the configuration is applied, secrets begin syncing to the cluster automatically at the cadence specified when installing the Secret Store.
 
 ### View synchronized secrets
 
@@ -393,8 +393,8 @@ To troubleshoot an issue, start by looking at the state of the `SecretSync` obje
 | `UpdateFailedProviderError` | Secret update failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, configuration of the `SecretProviderClass`, or other issues. | Investigate further by looking at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
 | `UserInputValidationFailed` | Secret update failed because the secret sync class was configured incorrectly (such as an invalid secret type). | Review the secret sync class definition and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the secret sync class (```kubectl delete -f <path_to_secret_sync>```), and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
 | `ControllerSpcError` | Secret update failed because the Secret Store failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
-| `ControllerInternalError` | Secret update failed due to an internal error in the Secret Store . | Check the Secret Store logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
-| `SecretPatchFailedUnknownError` | Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the Secret Store or if there were issues during an update of the Secret Store . | Try deleting the secret and `SecretSync` object, then let the Secret Store recreate the secret by reapplying the secret sync CR: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>``` |
+| `ControllerInternalError` | Secret update failed due to an internal error in the Secret Store. | Check the Secret Store logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
+| `SecretPatchFailedUnknownError` | Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the Secret Store or if there were issues during an update of the Secret Store. | Try deleting the secret and `SecretSync` object, then let the Secret Store recreate the secret by reapplying the secret sync CR: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>``` |
 
 ## Remove the Secret Store
 
