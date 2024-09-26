@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 08/26/2024
+ms.date: 09/26/2024
 ---
 
 # Cloud Ingest Edge Volumes configuration
@@ -76,7 +76,7 @@ az k8s-extension list --cluster-name ${CLUSTER_NAME} --resource-group ${RESOURCE
 
 ## Create a Cloud Ingest Persistent Volume Claim (PVC)
 
-1. Create a file named `cloudIngestPVC.yaml` with the following contents. Edit the `metadata::name` line and create a name for your Persistent Volume Claim. This name is referenced on the last line of `deploymentExample.yaml` in the next step. Also, update the `metadata::namespace` value with your intended consuming pod. If you don't have an intended consuming pod, the `metadata::namespace` value is `default`.
+1. Create a file named `cloudIngestPVC.yaml` with the following contents. Edit the `metadata.name` line and create a name for your Persistent Volume Claim. This name is referenced on the last line of `deploymentExample.yaml` in the next step. Also, update the `metadata.namespace` value with your intended consuming pod. If you don't have an intended consuming pod, the `metadata.namespace` value is `default`. The `spec.resources.requests.storage` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs:
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
@@ -117,11 +117,11 @@ To create a sub-volume using extension identity to connect to your storage accou
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-   - `metadata::name`: Create a name for your sub-volume.
-   - `spec::edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
-   - `spec::path`: Create your own subdirectory name under the mount path. Note that the following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
-   - `spec::container`: The container name in your storage account.
-   - `spec::storageaccountendpoint`: Navigate to your storage account in the Azure portal. On the **Overview** page, near the top right of the screen, select **JSON View**. You can find the `storageaccountendpoint` link under **properties::primaryEndpoints::blob**. Copy the entire link (for example, `https://mytest.blob.core.windows.net/`).
+   - `metadata.name`: Create a name for your sub-volume.
+   - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
+   - `spec.path`: Create your own subdirectory name under the mount path. Note that the following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
+   - `spec.container`: The container name in your storage account.
+   - `spec.storageaccountendpoint`: Navigate to your storage account in the Azure portal. On the **Overview** page, near the top right of the screen, select **JSON View**. You can find the `storageaccountendpoint` link under **properties.primaryEndpoints.blob**. Copy the entire link; for example, `https://mytest.blob.core.windows.net/`.
 
     ```yaml
     apiVersion: "arccontainerstorage.azure.net/v1"
@@ -150,17 +150,17 @@ To create a sub-volume using extension identity to connect to your storage accou
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-   - `metadata::name`: Create a name for your **ingestPolicy**. This name must be updated and referenced in the `spec::ingestPolicy` section of your `edgeSubvolume.yaml`.
-   - `spec::ingest::order`: The order in which dirty files are uploaded. This is best effort, not a guarantee (defaults to **oldest-first**). Options for order are: **oldest-first** or **newest-first**.
-   - `spec::ingest::minDelaySec`: The minimum number of seconds before a dirty file is eligible for ingest (defaults to 60). This number can range between 0 and 31536000.
-   - `spec::eviction::order`: How files are evicted (defaults to **unordered**). Options for eviction order are: **unordered** or **never**.
-   - `spec::eviction::minDelaySec`: The number of seconds before a clean file is eligible for eviction (defaults to 300). This number can range between 0 and 31536000.
+   - `metadata.name`: Create a name for your **ingestPolicy**. This name must be updated and referenced in the `spec.ingestPolicy` section of your `edgeSubvolume.yaml`.
+   - `spec.ingest.order`: The order in which dirty files are uploaded. This is best effort, not a guarantee (defaults to **oldest-first**). Options for order are: **oldest-first** or **newest-first**.
+   - `spec.ingest.minDelaySec`: The minimum number of seconds before a dirty file is eligible for ingest (defaults to 60). This number can range between 0 and 31536000.
+   - `spec.eviction.order`: How files are evicted (defaults to **unordered**). Options for eviction order are: **unordered** or **never**.
+   - `spec.eviction.minDelaySec`: The number of seconds before a clean file is eligible for eviction (defaults to 300). This number can range between 0 and 31536000.
 
     ```yaml
     apiVersion: arccontainerstorage.azure.net/v1
     kind: EdgeIngestPolicy
     metadata:
-      name: <create-a-policy-name-here> # This must be updated and referenced in the spec::ingestPolicy section of the edgeSubvolume.yaml
+      name: <create-a-policy-name-here> # This must be updated and referenced in the spec.ingestPolicy section of the edgeSubvolume.yaml
     spec:
       ingest:
         order: <your-ingest-order>
@@ -178,7 +178,7 @@ To create a sub-volume using extension identity to connect to your storage accou
 
 ## Attach your app (Kubernetes native application)
 
-1. To configure a generic single pod (Kubernetes native application) against the Persistent Volume Claim (PVC), create a file named `deploymentExample.yaml` with the following contents. Modify the `containers::name` and `volumes::persistentVolumeClaim::claimName` values. If you updated the path name from `edgeSubvolume.yaml`, `exampleSubDir` on line 33 must be updated with your new path name.
+1. To configure a generic single pod (Kubernetes native application) against the Persistent Volume Claim (PVC), create a file named `deploymentExample.yaml` with the following contents. Modify the `containers.name` and `volumes.persistentVolumeClaim.claimName` values. If you updated the path name from `edgeSubvolume.yaml`, `exampleSubDir` on line 33 must be updated with your new path name. The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs:
 
    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
@@ -215,17 +215,17 @@ To create a sub-volume using extension identity to connect to your storage accou
              command:
                - "/bin/sh"
                - "-c"
-               - "dd if=/dev/urandom of=/data/exampleSubDir/esaingesttestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
+               - "dd if=/dev/urandom of=/data/exampleSubDir/acsaingesttestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
              volumeMounts:
-               ### This name must match the volumes::name attribute below ###
+               ### This name must match the volumes.name attribute below ###
                - name: wyvern-volume
                  ### This mountPath is where the PVC is attached to the pod's filesystem ###
                  mountPath: "/data"
          volumes:
-            ### User-defined 'name' that's used to link the volumeMounts. This name must match volumeMounts::name as previously specified. ###
+            ### User-defined 'name' that's used to link the volumeMounts. This name must match volumeMounts.name as previously specified. ###
            - name: wyvern-volume
              persistentVolumeClaim:
-               ### This claimName must refer to your PVC metadata::name (Line 5)
+               ### This claimName must refer to your PVC metadata.name (Line 5)
                claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
    ```
 
@@ -238,7 +238,7 @@ To create a sub-volume using extension identity to connect to your storage accou
 1. Use `kubectl get pods` to find the name of your pod. Copy this name to use in the next step.
 
    > [!NOTE]
-   > Because `spec::replicas` from `deploymentExample.yaml` was specified as `2`, two pods appear using `kubectl get pods`. You can choose either pod name to use for the next step.
+   > Because `spec.replicas` from `deploymentExample.yaml` was specified as `2`, two pods appear using `kubectl get pods`. You can choose either pod name to use for the next step.
 
 1. Run the following command and replace `POD_NAME_HERE` with your copied value from the last step:
 
