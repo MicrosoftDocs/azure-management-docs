@@ -27,11 +27,25 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ## Azure Key Vault Secrets Provider
 
-- **Supported distributions**: AKS on Azure Stack HCI,  AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine,  Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, VMware Tanzu Kubernetes Grid
+- **Supported distributions**: AKS on Azure Stack HCI, AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, VMware Tanzu Kubernetes Grid
 
 The Azure Key Vault Provider for Secrets Store CSI Driver allows for the integration of Azure Key Vault as a secrets store with a Kubernetes cluster via a CSI volume. For Azure Arc-enabled Kubernetes clusters, you can install the Azure Key Vault Secrets Provider extension to fetch secrets.
 
 For more information, see [Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters](tutorial-akv-secrets-provider.md).
+
+## Secret Store
+
+- **Supported distributions**: All Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters connected to Azure Arc, running Kubernetes 1.27 or later.
+
+The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state.
+
+The Secret Store extension is recommended for scenarios where offline access is necessary, or if you need secrets synced in into the Kubernetes secret store. If you don't need these features, you can use the Azure Key Vault Secrets Provider extension instead.
+
+For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
+
+> [!IMPORTANT]
+> Secret Store is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Microsoft Defender for Containers
 
