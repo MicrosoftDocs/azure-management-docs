@@ -39,7 +39,7 @@ ACR supports Conditional Access policy for Active Directory users only. It curre
 
 Create a Conditional Access policy and assign your test group of users as follows:
 
-   1. Sign in to the [Azure portal](https://portal.azure.com) by using an account with *global administrator* permissions.
+   1. Sign in to the [Azure portal](https://portal.azure.com) by using an account with *Conditional Access Administrator* permissions.
 
    1. Search for and select **Microsoft Entra ID**. Then select **Security** from the menu on the left-hand side.
 
