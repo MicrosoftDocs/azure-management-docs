@@ -25,6 +25,8 @@ items:
         items:
         - name: Cloud Ingest Edge Volumes configuration
           href: cloud-ingest-edge-volume-configuration.md
+        - name: Set ingest policy
+          href: ingest-policies.md
         - name: Alternate OneLake configuration for Cloud Ingest Edge Volumes
           href: alternate-onelake.md
         - name: Alternate key-based authentication for Cloud Ingest Edge Volumes
