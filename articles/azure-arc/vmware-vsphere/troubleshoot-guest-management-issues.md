@@ -2,7 +2,7 @@
 title: Troubleshoot Guest Management Issues
 description: Learn how to troubleshoot the guest management issues for Arc-enabled VMware vSphere.
 ms.topic: reference
-ms.date: 08/29/2024
+ms.date: 09/27/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.custom: linux-related-content
@@ -12,9 +12,6 @@ manager: jsuri
 # Customer intent: As a VI admin, I want to understand the troubleshooting process for guest management issues.
 ---
 # Troubleshoot Guest Management for Linux VMs
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 This article provides information on how to troubleshoot and resolve the issues that can occur when you enable guest management on Arc-enabled VMware vSphere virtual machines.
 

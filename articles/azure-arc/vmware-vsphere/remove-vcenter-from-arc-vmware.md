@@ -5,7 +5,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to
-ms.date: 03/12/2024
+ms.date: 09/27/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.custom:
@@ -14,9 +14,6 @@ ms.custom:
 ---
 
 # Remove your VMware vCenter  environment from Azure Arc
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 In this article, you learn how to cleanly remove your VMware vCenter environment from Azure Arc-enabled VMware vSphere. For VMware vSphere environments that you no longer want to manage with Azure Arc-enabled VMware vSphere, follow the steps in the article to:
 
