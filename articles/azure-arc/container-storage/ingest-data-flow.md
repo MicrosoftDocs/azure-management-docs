@@ -1,15 +1,15 @@
 ---
-title: Volumes and subvolumes (preview)
-description: Learn about Volumes and subvolumes in Azure Container Storage enabled by Azure Arc.
+title: Ingest data flow (preview)
+description: Learn ways to control data flow to the cloud in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
 ms.topic: conceptual
 ms.date: 09/26/2024
 ---
 
-# Volumes and subvolumes (preview)
+# Ingest data flow (preview)
 
-This article describes several ways Azure Container Storage enabled by Azure Arc offers to control data flow to the cloud. 
+This article describes several ways Azure Container Storage enabled by Azure Arc offers to control data flow to the cloud.
 
 ## Control options
 
