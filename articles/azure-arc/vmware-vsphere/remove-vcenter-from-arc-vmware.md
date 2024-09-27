@@ -82,7 +82,7 @@ To uninstall the Linux agent, the command to use depends on the Linux operating 
   sudo apt purge azcmagent
   ```
 
-- For RHEL, CentOS, Oracle Linux run the following command:
+- For RHEL and Oracle Linux, run the following command: 
 
     ```bash
     sudo yum remove azcmagent

@@ -56,7 +56,7 @@ Default: The default set of PAM service names includes:
 # [Arc agent installation fails on RHEL Linux distros](#tab/rhel)
 
 **Applies to:**<br>
-:heavy_check_mark: RedHat Linux :heavy_check_mark: CentOS :heavy_check_mark: Rocky Linux :heavy_check_mark: Oracle Linux :heavy_check_mark: SUSE Linux :heavy_check_mark: SUSE Linux Enterprise Server :heavy_check_mark: Alma Linux :heavy_check_mark: Fedora
+:heavy_check_mark: RedHat Linux :heavy_check_mark: Rocky Linux :heavy_check_mark: Oracle Linux :heavy_check_mark: SUSE Linux :heavy_check_mark: SUSE Linux Enterprise Server :heavy_check_mark: Alma Linux :heavy_check_mark: Fedora
 
 **Error message**: Provisioning of the resource failed with Code: `AZCM0143`; Message: `install_linux_azcmagent.sh: installation error`.
 
