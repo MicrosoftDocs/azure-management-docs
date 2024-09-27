@@ -39,6 +39,8 @@ items:
     items:
     - name: Volumes and subvolumes
       href: volumes-subvolumes.md
+    - name: Storage options
+      href: storage-options.md
 - name: Cache Volumes
   items:
   - name: Cache Volumes overview
