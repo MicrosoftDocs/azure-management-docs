@@ -35,6 +35,10 @@ items:
           href: blob-index-metadata-tags.md
     - name: Monitor deployment
       href: monitor-deployment-edge-volumes.md
+  - name: Conceptual
+    items:
+    - name: Volumes and subvolumes
+      href: volumes-subvolumes.md
 - name: Cache Volumes
   items:
   - name: Cache Volumes overview
