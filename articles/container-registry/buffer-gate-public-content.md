@@ -1,5 +1,5 @@
 ---
-title: Manage public content in private container registry
+title: Manage Public Content in Private Container Registry
 description: Practices and workflows in Azure Container Registry to manage dependencies on public images from Docker Hub and other public content
 ms.topic: how-to
 author: tejaswikolli-web

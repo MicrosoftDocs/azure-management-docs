@@ -1,5 +1,5 @@
 ---
-title: Supported content formats
+title: Supported Content Formats by ACR, Docker, OCI, and Helm
 description: Learn about content formats supported by Azure Container Registry, including Docker-compatible container images, Helm charts, OCI images, and OCI artifacts.
 ms.topic: conceptual
 author: tejaswikolli-web

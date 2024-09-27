@@ -1,5 +1,5 @@
 ---
-title: Lock images
+title: Lock Images to Prevent Deletion in Azure Container Registry
 description: Set attributes for a container image or repository so it can't be deleted or overwritten in an Azure container registry.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
@@ -7,6 +7,7 @@ author: tejaswikolli-web
 ms.author: tejaswikolli
 ms.service: azure-container-registry
 ms.date: 10/31/2023
+#customer intent: As a developer, I want to lock container images so that they cannot be accidentally deleted or overwritten.
 ---
 
 # Lock a container image in an Azure container registry
