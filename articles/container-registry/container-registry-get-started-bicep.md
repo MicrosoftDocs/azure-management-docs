@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Create registry - Bicep
+title: Quickstart - Create Registry - Bicep
 description: Learn how to create an Azure container registry by using a Bicep file.
 services: azure-resource-manager
 author: mumian

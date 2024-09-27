@@ -1,5 +1,5 @@
 ---
-title: "Artifact streaming in Azure Container Registry (Preview)"
+title: "Preview: Artifact Streaming in Azure Container Registry"
 description: "Artifact streaming is a feature in Azure Container Registry to enhance managing, scaling, and deploying artifacts through containerized platforms."
 author: tejaswikolli-web
 ms.service: azure-container-registry

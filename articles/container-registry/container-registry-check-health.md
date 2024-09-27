@@ -1,6 +1,7 @@
 ---
-title: Check registry health
-description: Learn how to run a quick diagnostic command to identify common problems when using an Azure container registry, including local Docker configuration and connectivity to the registry
+title: Quick Diagnostics for Azure Container Registry Health
+description: Learn how to run a quick diagnostic command to identify common problems with Azure container registry, including Docker configuration and connectivity.
+#customer intent: As a developer, I want to diagnose issues with Azure Container Registry so that I can ensure smooth operation.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
