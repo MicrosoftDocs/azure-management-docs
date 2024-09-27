@@ -133,7 +133,7 @@ Refer to the reference article for the cmdlet to understand the different method
 
 When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [Update-AzConnectedExtension](/powershell/module/az.connectedmachine/update-azconnectedextension) with the `-MachineName`, `-ResourceGroupName`, and `-ExtensionTarget` parameters.
 
-For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
+For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [Get-AzVMExtensionImage](/powershell/module/az.compute/get-azvmextensionimage). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
 
 To upgrade the Log Analytics agent extension for Windows that has a newer version available, run the following command:
 
