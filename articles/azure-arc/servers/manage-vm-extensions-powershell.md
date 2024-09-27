@@ -58,7 +58,9 @@ New-AzConnectedMachineExtension -Name "IaaSAntimalware" -ResourceGroupName "myRe
 ### Key Vault VM extension
 
 > [!WARNING]
-> PowerShell clients often add `\` to `"` in the settings.json which will cause akvvm_service fails with error: `[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object.`
+> Adding `\` to `"` in the settings.json will cause akvvm_service to fail with the following error: `[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object.`
+> 
+> While Powershell users commonly use the `\"` sequence to escape quotation marks in other code blocks, you'll want to avoid that formatting in the settings.json file.
 
 The following example enables the Key Vault VM extension on an Azure Arc-enabled server:
 
@@ -131,7 +133,7 @@ Refer to the reference article for the cmdlet to understand the different method
 
 When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [Update-AzConnectedExtension](/powershell/module/az.connectedmachine/update-azconnectedextension) with the `-MachineName`, `-ResourceGroupName`, and `-ExtensionTarget` parameters.
 
-For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To find out what the latest version available is, you can get this information from the **Extensions** page for the selected Arc-enabled server in the Azure portal, or by running [Get-AzVMExtensionImage](/powershell/module/az.compute/get-azvmextensionimage). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension, as shown in the example below.
+For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
 
 To upgrade the Log Analytics agent extension for Windows that has a newer version available, run the following command:
 

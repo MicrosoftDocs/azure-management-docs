@@ -17,13 +17,13 @@ Azure Arc-enabled servers enables you to deploy, remove, and update Azure VM ext
 - The [Azure portal](manage-vm-extensions-portal.md)
 - The [Azure CLI](manage-vm-extensions-cli.md)
 - [Azure PowerShell](manage-vm-extensions-powershell.md)
-- Azure [Resource Manager templates](manage-vm-extensions-template.md)
+- [Azure Resource Manager templates](manage-vm-extensions-template.md)
 
 > [!NOTE]
 > Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 > [!NOTE]
-> Currently you can only update extensions from the Azure portal or the Azure CLI. Performing this operation from Azure PowerShell, or using an Azure Resource Manager template is not supported at this time.
+> Currently, you can only _update_ extensions from the Azure portal or the Azure CLI. Updating extensions from Azure PowerShell or an Azure Resource Manager template is not supported at this time.
 
 ## Key benefits
 
