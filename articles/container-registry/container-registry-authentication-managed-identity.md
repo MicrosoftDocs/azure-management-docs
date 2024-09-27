@@ -317,7 +317,7 @@ docker pull mycontainerregistry.azurecr.io/aci-helloworld:v1
 
 ### Configure the VM with a system-managed identity
 
-A system-assigned managed identity is a feature of Azure that allows your virtual machine to automatically manage its own identity in Azure Active Directory. This section explains how to configure your VM with a system-assigned identity to securely access your Azure Container Registry.y
+A system-assigned managed identity is a feature of Azure that allows your virtual machine to automatically manage its own identity in Azure Active Directory. This section explains how to configure your VM with a system-assigned identity to securely access your Azure Container Registry.
 
 ### Configure the VM with a system-managed identity
 
