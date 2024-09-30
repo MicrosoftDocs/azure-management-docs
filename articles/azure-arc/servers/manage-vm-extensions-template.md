@@ -12,8 +12,8 @@ This article shows you how to use an Azure Resource Manager template (ARM templa
 
 VM extensions can be added to an Azure Resource Manager template and executed with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the supported VM extension on Linux or Windows machines using Azure PowerShell. Each sample below includes a template file and a parameters file with sample values to provide to the template.
 
->[!NOTE]
->While multiple extensions can be batched together and processed, they are installed serially. Once the first extension installation is complete, installation of the next extension is attempted.
+> [!NOTE]
+> While multiple extensions can be batched together and processed, they are installed serially. Once the first extension installation is complete, installation of the next extension is attempted.
 
 > [!NOTE]
 > Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
@@ -130,7 +130,7 @@ To easily deploy the Log Analytics agent, the following sample is provided to in
 }
 ```
 
-Save the template and parameter files to disk, and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group with the following command. The command uses the *TemplateFile* parameter to specify the template and the *TemplateParameterFile* parameter to specify a file that contains parameters and parameter values.
+Save the template and parameter files to disk and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group with the following command. The command uses the *TemplateFile* parameter to specify the template and the *TemplateParameterFile* parameter to specify a file that contains parameters and parameter values.
 
 ```powershell
 New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\LogAnalyticsAgent.json" -TemplateParameterFile "D:\Azure\Templates\LogAnalyticsAgentParms.json"
