@@ -69,7 +69,7 @@ Azure Arc supports the following Windows and Linux operating systems. x86-64 (64
 | Windows Client                      | 10          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
 | Windows Client                      | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
 | Windows IoT Enterprise              |             |       |        |                                                                                                  |
-| Windows Server                      | 2008 R2 SP1 | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Windows Server                      | 2008 R2 SP1 | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Windows Server                      | 2012        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2012 R2     | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2016        | ✅    | ❌    |                                                                                                  |
