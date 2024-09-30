@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard with Azure CLI
 description: "Quickstart: Learn how to create a dashboard in the Azure portal using the Azure CLI. A dashboard is a focused and organized view of your cloud resources."
 ms.topic: quickstart
 ms.custom: devx-track-azurecli, mode-api
-ms.date: 09/25/2024
+ms.date: 09/30/2024
 ---
 
 # Quickstart: Create an Azure portal dashboard with Azure CLI
@@ -46,7 +46,7 @@ The deployment starts and typically takes a few minutes to complete.
 
 Since Azure dashboards are resources, they can be represented as JSON. For more information, see [The structure of Azure dashboards](./azure-portal-dashboards-structure.md).
 
-Download the file [portal-dashboard-template-testvm.json](https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/azure-portal/portal-dashboard-template-testvm.json).
+Download the file [portal-dashboard-template-testvm.json](https://github.com/Azure-Samples/azure-docs-powershell-samples/blob/main/azure-portal/portal-dashboard-template-testvm.json).
 
 Then, customize the downloaded template file by changing the following to your values:
 

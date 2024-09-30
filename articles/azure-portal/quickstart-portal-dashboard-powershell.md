@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard with PowerShell
 description: Learn how to create a dashboard in the Azure portal using Azure PowerShell.
 ms.topic: quickstart
 ms.custom: devx-track-azurepowershell, mode-api
-ms.date: 03/27/2023
+ms.date: 09/30/2024
 ---
 
 # Quickstart: Create an Azure portal dashboard with PowerShell
@@ -95,7 +95,7 @@ The VM deployment now starts and typically takes a few minutes to complete. Afte
 Since Azure dashboards are resources, they can be represented as JSON. The following code downloads a JSON representation of a sample dashboard. For more information, see [The structure of Azure Dashboards](./azure-portal-dashboards-structure.md).
 
 ```azurepowershell-interactive
-$myPortalDashboardTemplateUrl = 'https://raw.githubusercontent.com/Azure/azure-docs-powershell-samples/master/azure-portal/portal-dashboard-template-testvm.json'
+$myPortalDashboardTemplateUrl = 'https://raw.githubusercontent.com/Azure-Samples/azure-docs-powershell-samples/refs/heads/main/azure-portal/portal-dashboard-template-testvm.json'
 
 $myPortalDashboardTemplatePath = "$HOME\portal-dashboard-template-testvm.json"
 
