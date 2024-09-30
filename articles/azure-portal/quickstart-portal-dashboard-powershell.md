@@ -8,9 +8,7 @@ ms.date: 09/30/2024
 
 # Quickstart: Create an Azure portal dashboard with PowerShell
 
-A dashboard in the Azure portal is a focused and organized view of your cloud resources. This article focuses on the process of using the [Az.Portal PowerShell module](/powershell/module/az.portal) to create a dashboard. The dashboard shows the performance of a virtual machine (VM) that you create, as well as some static information and links.
-
-A [dashboard](azure-portal-dashboards.md) in the Azure portal is a focused and organized view of your cloud resources. This quickstart shows how to use the Az.Portal PowerShell to create a dashboard. The example dashboard shows the performance of a virtual machine (VM), along with some static information and links.
+A [dashboard](azure-portal-dashboards.md) in the Azure portal is a focused and organized view of your cloud resources. This article focuses on the process of using the [Az.Portal PowerShell module](/powershell/module/az.portal) to create a dashboard. The example dashboard shows the performance of a virtual machine (VM) that you create, along with some static information and links.
 
 ## Prerequisites
 
@@ -31,7 +29,7 @@ Set-AzContext -SubscriptionId 00000000-0000-0000-0000-000000000000
 
 ## Define variables
 
-You'll be using several pieces of information repeatedly. Create variables to store the information.
+The example dashboard uses several pieces of information repeatedly. Create variables to store this information.
 
 ```azurepowershell-interactive
 # Name of resource group used throughout this article
@@ -67,9 +65,9 @@ New-AzResourceGroup -Name $resourceGroupName -Location $location
 
 ## Create a virtual machine
 
-The dashboard you create in the next part of this quickstart requires an existing VM. Create a VM by following these steps.
+The example dashboard requires an existing VM. Create a VM by following these steps.
 
-Store login credentials for the VM in a variable. The password must be complex. This is a new user name and password; it's not, for example, the account you use to sign in to Azure. For more information, see [username requirements](/azure/virtual-machines/windows/faq#what-are-the-username-requirements-when-creating-a-vm-)
+Store login credentials for the VM in a variable. The password must be complex. This is a new username and password (not the account you use to sign in to Azure). For more information, see [username requirements](/azure/virtual-machines/windows/faq#what-are-the-username-requirements-when-creating-a-vm-)
 and [password requirements](/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).
 
 ```azurepowershell-interactive
