@@ -38,18 +38,18 @@ If two agents use the same configuration, you'll encounter inconsistent behavior
 
 Azure Arc supports the following Windows and Linux operating systems. x86-64 (64-bit) architecture is fully supported. Some features are supported on ARM64, see below. The Azure Connected Machine agent doesn't run on 32-bit architectures.
 
-| Operating System                    | Version     | x86-64 | ARM64 | Notes                                                                                            |
+| Operating system                    | Version     | x86-64 | ARM64 | Notes                                                                                            |
 | ----------------------------------- | ----------- | ------ | ----- | ------------------------------------------------------------------------------------------------ |
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
 | Amazon Linux                        | 2           | ✅    | ❌    |                                                                                                  |
-| Amazon Linux                        | 2023        | ✅    | ✅    | see [ARM64 Architecture support](#arm64-architecture-support)                                    |
-| Azure Linux (CBL-Mariner)           | 1.0         | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Amazon Linux                        | 2023        | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
+| Azure Linux (CBL-Mariner)           | 1.0         | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ❌    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
 | Azure Stack HCI                     |             |       |        |                                                                                                  |
-| Centos                              | 7           | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
-| Centos                              | 8           | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
-| Debian                              | 10          | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Centos                              | 7           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Centos                              | 8           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Debian                              | 10          | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 11          | ✅    | ❌    |                                                                                                  |
 | Debian                              | 12          | ✅    | ❌    |                                                                                                  |
 | Oracle Linux                        | 7           | ✅    | ❌    |                                                                                                  |
@@ -61,8 +61,8 @@ Azure Arc supports the following Windows and Linux operating systems. x86-64 (64
 | Rocky Linux                         | 8           | ✅    | ❌    |                                                                                                  |
 | Rocky Linux                         | 9           | ✅    | ❌    |                                                                                                  |
 | SUSE Linux Enterprise Server (SLES) | 12 SP3-SP5  | ✅    | ❌    |                                                                                                  |
-| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | see [ARM64 Architecture support](#arm64-architecture-support)                                    |
-| Ubuntu                              | 16.04       | ⚠️    | ❌    | **Limited Support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
+| Ubuntu                              | 16.04       | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Ubuntu                              | 18.04       | ✅    | ❌    |                                                                                                  |
 | Ubuntu                              | 20.04       | ✅    | ❌    |                                                                                                  |
 | Ubuntu                              | 22.04       | ✅    | ❌    |                                                                                                  |
@@ -80,15 +80,17 @@ For Windows Server, both Desktop and Server Core experiences are supported. Azur
 
 The Azure Connected Machine agent isn't tested on operating systems hardened by the Center for Information Security (CIS) Benchmark.
 
-## ARM64 Architecture support
+## ARM64 architecture support
 
-Not all features, virtual machine extensions, and services are supported on ARM64 at this point. Below are a few features which are known to be supported. For full details on ARM64 compatibility or to check if other services are supported, please
-refer to the documentation for the service you wish to use.
+Not all features, virtual machine extensions, and services are supported on ARM64 at this point. Below are a few features which are known to be supported. For full details on ARM64 compatibility or to check if other services are supported, refer to the documentation for the service you wish to use.
+
 - RunCommand
 - CustomScriptExtension
 - Azure Monitor Agent
 
-Please note that Machine Configuration is NOT compatible with ARM64 at this time.
+> [!NOTE]
+> 
+> Machine configuration is not compatible with ARM64 at this time.
 
 ## Limited support operating systems
 
