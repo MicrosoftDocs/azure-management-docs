@@ -30,7 +30,7 @@ If you want to change the ingest policy from the default **edgeingestpolicy-
 apiVersion: arccontainerstorage.azure.net/v1 
 kind: EdgeIngestPolicy 
 metadata: 
-  name: <create-a-policy-name-here> # This must be updated and referenced in the spec::ingestPolicy section of the edgeSubvolume.yaml 
+  name: <create-a-policy-name-here> # This must be updated and referenced in the spec.ingestPolicy section of the edgeSubvolume.yaml 
 spec: 
   ingest: 
     order: <your-ingest-order> 
@@ -40,7 +40,7 @@ spec:
     minDelaySec: <your-min-delay-sec>
 ```
 
-Then, apply the **myedgeingest-policy.yaml** policy to your subvolume by running the following command:
+To apply **myedgeingest-policy.yaml**, run the following command:
 
 ```bash
 kubectl apply -f "myedgeingest-policy.yaml"
