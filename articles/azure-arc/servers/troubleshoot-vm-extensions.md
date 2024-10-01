@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Arc-enabled servers VM extension issues
 description: This article tells how to troubleshoot and resolve issues with Azure VM extensions that arise with Azure Arc-enabled servers.
-ms.date: 07/16/2021
+ms.date: 09/20/2024
 ms.topic: troubleshooting
 ---
 
@@ -11,23 +11,43 @@ This article provides information on troubleshooting and resolving issues that m
 
 ## General troubleshooting
 
-Data about the state of extension deployments can be retrieved from the Azure portal.
+Data about the state of extension deployments can be retrieved from the Azure portal by [selecting the applicable machine and then selecting **Settings>Extensions**](manage-vm-extensions-portal.md#list-extensions-installed).
 
 The following troubleshooting steps apply to all VM extensions.
 
-1. To check the Guest agent log, look at the activity when your extension was being provisioned in `%SystemDrive%\ProgramData\GuestConfig\ext_mgr_logs` for Windows, and for Linux under `/var/lib/GuestConfig/ext_mgr_logs`.
+1. Retry extension installation.
 
-2. Check the extension logs for the specific extension for more details in `%SystemDrive%\ProgramData\GuestConfig\extension_logs\<Extension>` for Windows. Extension output is logged to a file for each extension installed on Linux under `/var/lib/GuestConfig/extension_logs`.
+    Extensions can stall in Creating/Updating or Fail status for various reasons. In this case, remove the extension and install it again. To remove an extension, use the following command:
 
-3. Check extension-specific documentation troubleshooting sections for error codes, known issues etc. Additional troubleshooting information for each extension can be found in the **Troubleshoot and support** section in the overview for the extension. This includes the description of error codes written to the log. The extension articles are linked in the [extensions table](manage-vm-extensions.md#extensions).
+    ```powershell
+    Remove-AzConnectedMachineExtension -Name <Extension Name> -ResourceGroupName <RG Name> -MachineName <Machine Name>
+    ```
 
-4. Look at the system logs. Check for other operations that may have interfered with the extension, such as a long running installation of another application that required exclusive package manager access.
+1. Check the Guest agent log for the activity when your extension was being provisioned. For Windows, check in `%SystemDrive%\ProgramData\GuestConfig\ext_mgr_logs`, and for Linux check in `/var/lib/GuestConfig/ext_mgr_logs`.
 
+1. Check the extension logs for the specific extension for more details.
+
+    For Windows machines:
+    - Logs reside in `C:\ProgramData\GuestConfig`
+    - Extension settings and status files reside in `C:\Packages\Plugins`
+
+    For Linux machines:
+    - Logs reside in `/var/lib/GuestConfig`
+    - Extension settings and status files reside in `/var/lib/waagent`
+
+    Extension service logs are written to `…GuestConfig\ext_mgr_logs\gc_ext.log`. Errors regarding downloading or verifying the packages are shown there.  
+
+1. Check extension-specific documentation troubleshooting sections for error codes, known issues etc. More troubleshooting information for each extension can be found in the **Troubleshoot and support** section in the overview for the extension. This includes the description of error codes written to the log. The extension articles are linked in the [extensions table](manage-vm-extensions.md#extensions).
+
+1. Look at the system logs. Check for other operations that may have interfered with the extension, such as a long running installation of another application that required exclusive package manager access.
+
+
+<!--
 ## Troubleshooting specific extension scenarios
 
 ### VM Insights
 
-- When enabling VM Insights for an Azure Arc-enabled server, it installs the Dependency and Log Analytics agent. On a slow machine or one with a slow network connection, it is possible to see timeouts during the installation process. Microsoft is taking steps to address this in the Connected Machine agent to help improve this condition. In the interim, a retry of the installation may succeed.
+- Enabling VM Insights for an Azure Arc-enabled server installs the Dependency and Log Analytics agent. On a slow machine or one with a slow network connection, it is possible to see timeouts during the installation process. Microsoft is taking steps to address this in the Connected Machine agent to help improve this condition. In the interim, a retry of the installation may succeed.
 
 ### Log Analytics agent for Linux
 
@@ -38,6 +58,8 @@ The following troubleshooting steps apply to all VM extensions.
 - Error code 52 in the status message indicates a missing dependency. Check the output and logs for more information about which dependency is missing.
 
 - If an installation fails, review the **Troubleshoot and support** section in the overview for the extension. In most cases, there is an error code included in the status message. For the Log Analytics agent for Linux, status messages are explained [here](/azure/virtual-machines/extensions/oms-linux#troubleshoot-and-support), along with general troubleshooting information for this VM extension.
+
+-->
 
 ## Next steps
 
