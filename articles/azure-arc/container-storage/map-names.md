@@ -21,4 +21,4 @@ When you create your **edgeSubvolume.yaml** file [as described here](cloud-inges
 
 ## Next steps
 
-
+[Cloud Ingest Edge Volumes configuration](cloud-ingest-edge-volume-configuration.md)
