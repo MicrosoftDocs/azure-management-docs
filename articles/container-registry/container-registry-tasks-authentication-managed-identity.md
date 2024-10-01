@@ -1,6 +1,6 @@
 ---
-title: Managed identity in ACR task
-description: Enable a managed identity for Azure Resources in an Azure Container Registry task to allow the task to access other Azure resources including other private container registries.
+title: Managed Identity in ACR Task
+description: Enable a managed identity for Azure Resources in an Azure Container Registry task to access other Azure resources, without passing credentials.
 services: container-registry
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
