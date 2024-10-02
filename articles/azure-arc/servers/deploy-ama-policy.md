@@ -30,7 +30,7 @@ Data Collection Rules define the data collection process in Azure Monitor. They 
 
 1. Select the DCR to apply to your ARM template to view its overview.
 
-1. Select **Resources** to view a list of resources, such as Arc-enabled VMs, assigned to the DCR. To add more resources, select *Add**. If you created a new DCR, you'll need to add resources.
+1. Select **Resources** to view a list of resources, such as Arc-enabled VMs, assigned to the DCR. To add more resources, select **Add**. If you created a new DCR, you'll need to add resources.
 
 1. Select **Overview**, then select **JSON View** to view the JSON code for the DCR:
     
