@@ -37,7 +37,7 @@
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/move-regions.md",
-            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-agent-overview#move-connected-clusters-across-regions",
+            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-agent-overview#move-arc-enabled-kubernetes-clusters-across-azure-regions",
             "redirect_document_id": true
         },
         {

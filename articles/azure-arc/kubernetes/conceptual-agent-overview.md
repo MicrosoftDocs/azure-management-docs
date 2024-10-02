@@ -47,13 +47,13 @@ The following high-level steps are involved in [connecting a Kubernetes cluster 
    * An Azure Arc-enabled Kubernetes resource in [Azure Resource Manager](/azure/azure-resource-manager/management/overview). Azure tracks this resource as a projection of the customer-managed Kubernetes cluster, not the actual Kubernetes cluster itself.
    * Cluster metadata (such as Kubernetes version, agent version, and number of nodes) appearing on the Azure Arc-enabled Kubernetes resource as metadata.
 
+For more information on deploying the agents to a cluster, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md).
+
 ## Move Arc-enabled Kubernetes clusters across Azure regions
 
 In some circumstances, you may want to move your [Arc-enabled Kubernetes clusters](overview.md) to another region. For example, you might want to deploy features or services that are only available in specific regions, or you need to change regions due to internal policy and governance requirements or capacity planning considerations.
 
-Moving a connected cluster to a new region means deleting the `connectedClusters` Azure Resource Manager resource in the source region and then [connecting your cluster](quickstart-connect-cluster.md) again in the target region.
-
-Source control configurations, [Flux configurations](conceptual-gitops-flux2.md) and [extensions](conceptual-extensions.md) within the cluster are child resources of the connected cluster resource. To move these resources, you'll need to save details about the resources, then move the parent `connectedClusters` resource. After that, you can recreate the child resources in the target cluster resource.
+Moving a connected cluster to a new region means deleting the `connectedClusters` Azure Resource Manager resource in the source region, then deploying the agents to recreate the `connectedClusters` resource in the target region. For source control configurations, [Flux configurations](conceptual-gitops-flux2.md) and [extensions](conceptual-extensions.md) within the cluster, you'll need to save details about the resources, then recreate the child resources in the new cluster resource.
 
 Before you begin, ensure that Azure Arc-enabled Kubernetes resources (`Microsoft.Kubernetes/connectedClusters`) and any needed Azure Arc-enabled Kubernetes configuration resources (`Microsoft.KubernetesConfiguration/SourceControlConfigurations`, `Microsoft.KubernetesConfiguration/Extensions`, `Microsoft.KubernetesConfiguration/FluxConfigurations`) are [supported in the target region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-arc).
 
@@ -64,23 +64,16 @@ Before you begin, ensure that Azure Arc-enabled Kubernetes resources (`Microsoft
    * [Microsoft.KubernetesConfiguration/FluxConfigurations](/cli/azure/k8s-configuration/flux?view=azure-cli-latest&preserve-view=true#az-k8s-configuration-flux-list)
 
    > [!NOTE]
-   > LIST/GET of configuration resources **do not** return `ConfigurationProtectedSettings`. For such cases, the only option is to save the original request body and reuse them while creating the resources in the new region.
+   > LIST/GET of configuration resources don't return `ConfigurationProtectedSettings`. For such cases, the only option is to save the original request body and reuse them while creating the resources in the new region.
 
 1. [Delete](./quickstart-connect-cluster.md?tabs=azure-cli#clean-up-resources) the previous Arc deployment from the underlying Kubernetes cluster.
 1. With network access to the underlying Kubernetes cluster, [connect the cluster](./quickstart-connect-cluster.md#connect-an-existing-kubernetes-cluster) in the new region.
 1. Verify that the Arc connected cluster is successfully running in the new region:
 
    1. Run `az connectedk8s show -n <connected-cluster-name> -g <resource-group>` and ensure the `connectivityStatus` value is `Connected`.
-   1. Run [this command](./quickstart-connect-cluster.md?tabs=azure-cli#view-azure-arc-agents-for-kubernetes) to verify all Arc agents are successfully deployed on the underlying cluster.
-   1. Do a LIST of all configuration resources in the target cluster. This should match the original LIST response from the source cluster.
+   1. Run `kubectl get deployments,pods -n azure-arc` to [verify that all agents are successfully deployed](./quickstart-connect-cluster.md#view-azure-arc-agents-for-kubernetes).
 
-1. Using the response body you saved, recreate each of the configuration resources obtained in the LIST command from the source cluster on the target cluster.
-
-If you don't need to move the cluster, but just want to move configuration resources to an Arc-enabled Kubernetes cluster in a different region, do the following:
-
-1. Do a LIST to get all configuration resources in the source cluster as noted above, and save the response body.
-1. Delete the resources from the source cluster.
-1. In the target cluster, recreate each of the configuration resources obtained in the LIST command from the source cluster.
+1. Using the response body you saved, recreate each of the configuration resources obtained in the LIST command from the source cluster on the target cluster. To confirm, compare the results from a LIST of all configuration resources in the target cluster with the original LIST response from the source cluster.
 
 ## Next steps
 
