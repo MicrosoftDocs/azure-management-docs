@@ -43,6 +43,8 @@ items:
       href: volumes-subvolumes.md
     - name: Storage options
       href: storage-options.md
+    - name: Ingest data flow
+      href: ingest-data-flow.md
 - name: Cache Volumes
   items:
   - name: Cache Volumes overview

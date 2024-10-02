@@ -40,4 +40,4 @@ When the cluster is disconnected from the cloud, writes to the Ingest subvolume 
 ## Next steps
 
 - [Ingest policies](ingest-policies.md)
-- Ingest data flow controls
+- [Ingest data flow controls](ingest-data-flow.md)

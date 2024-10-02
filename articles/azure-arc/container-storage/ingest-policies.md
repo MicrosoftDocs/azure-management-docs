@@ -46,7 +46,7 @@ To apply **myedgeingest-policy.yaml**, run the following command:
 kubectl apply -f "myedgeingest-policy.yaml"
 ```
 
-You can then use this new ingest policy for new ingest subvolumes you create by putting its name in the `spec.ingestPolicy` field. You can also update the ingest policy of an existing subvolume by putting your newly-created policy name in the `spec.ingestPolicy` field of that subvolume, and once you reapply the configuration for that subvolume, the policy updates.
+You can then use this new ingest policy for new ingest subvolumes you create by putting its name in the `spec.ingestPolicy` field. You can also update the ingest policy of an existing subvolume by putting your newly created policy name in the `spec.ingestPolicy` field of that subvolume, and once you reapply the configuration for that subvolume, the policy updates.
 
 ## Next steps
 
