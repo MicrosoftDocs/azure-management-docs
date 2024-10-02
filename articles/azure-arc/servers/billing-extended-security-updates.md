@@ -1,7 +1,7 @@
 ---
 title: Billing service for Extended Security Updates for Windows Server 2012 through Azure Arc
 description: Learn about billing services for Extended Security Updates for Windows Server 2012 enabled by Azure Arc.
-ms.date: 04/10/2023
+ms.date: 10/02/2024
 ms.topic: conceptual
 ---
 
@@ -45,6 +45,10 @@ Note that estimates in the Azure Cost Management forecast may not accurately pro
 - **Activation:** Licenses are billed for their number and edition of cores from the point at which they're activated. The activated license doesn't need to be linked to any Azure Arc-enabled servers to initiate billing. Activation and reactivation are subject to back-billing. Note that licenses that were activated but not linked to any servers may be back-billed if they weren't billed upon creation. Customers are responsible for deletion of any activated but unlinked ESU licenses.
 
 - **Deactivation or deletion:** Licenses that are deactivated or deleted will be billed through up to five calendar days from the time of the change.
+
+## Billing for transition scenario for Volume Licensing
+
+Licenses for Windows Server 2012/R2 ESUs enabled by Azure Arc that have been provisioned with the specification of an Invoice Id for the Year 1 Volume Licensing entitlement won't be charged until October 10, 2024. These licenses won't be back-billed to October 2023. Licenses with Year 1 created after October 10, 2024 will be back-billed to October 10, 2024, the last day of the Year 1 of WS2012/R2 ESU program. Customers don't need to reactivate or recreate licenses between years of the WS2012/R2 ESU program.
 
 ## Services included with WS2012 ESUs enabled by Azure Arc
 
