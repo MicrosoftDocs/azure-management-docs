@@ -15,9 +15,9 @@ Data about the state of extension deployments can be retrieved from the Azure po
 
 The following troubleshooting steps apply to all VM extensions.
 
-1. Ensure that the Azure Connected Machine agent (azcmagent) is connected and that the depended services are *running/active*:
+1. Ensure that the Azure Connected Machine agent (azcmagent) is connected and that the dependent services are *running/active*.
 
-    Run the [**azcmagent show**](azcmagent-show.md) command and check the output for the status (Azure Arc Proxy can be ignored):
+    Run the [**azcmagent show**](azcmagent-show.md) command and check the output for the status (*Azure Arc Proxy* can be ignored):
     
     :::image type="content" source="media/troubleshoot-vm-extensions/dependent-services-status.png" alt-text="Screenshot of the table showing the status of dependent services as running or stopped.":::
 
