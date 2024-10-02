@@ -36,6 +36,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/move-regions.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-agent-overview#move-arc-enabled-kubernetes-clusters-across-azure-regions",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/azure-arc/kubernetes/conceptual-gitops-ci-cd.md",
             "redirect_url": "/azure/azure-arc/kubernetes/conceptual-gitops-flux2-ci-cd",
             "redirect_document_id": true
