@@ -4,7 +4,7 @@ description: Learn how to set ingest policies in Azure Container Storage enabled
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 09/26/2024
+ms.date: 10/02/2024
 ---
 
 # Set ingest policy (preview)
@@ -46,9 +46,7 @@ To apply **myedgeingest-policy.yaml**, run the following command:
 kubectl apply -f "myedgeingest-policy.yaml"
 ```
 
-You can then use this new ingest policy to ingest new subvolumes.
-
-You can also edit the ingest policy of an existing subvolume with your new policy name, and once you reapply the configuration for that subvolume, the policy updates.
+You can then use this new ingest policy for new ingest subvolumes you create by putting its name in the `spec.ingestPolicy` field. You can also update the ingest policy of an existing subvolume by putting your newly-created policy name in the `spec.ingestPolicy` field of that subvolume, and once you reapply the configuration for that subvolume, the policy updates.
 
 ## Next steps
 

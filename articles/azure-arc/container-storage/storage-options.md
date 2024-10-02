@@ -4,7 +4,7 @@ description: Learn about different data storage options in Azure Container Stora
 author: sethmanheim
 ms.author: sethm
 ms.topic: conceptual
-ms.date: 09/27/2024
+ms.date: 10/02/2024
 ---
 
 # Storage options using Azure Container Storage enabled by Azure Arc (preview)

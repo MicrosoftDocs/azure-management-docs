@@ -4,7 +4,7 @@ description: Learn ways to control data flow to the cloud in Azure Container Sto
 author: sethmanheim
 ms.author: sethm
 ms.topic: conceptual
-ms.date: 09/26/2024
+ms.date: 10/02/2024
 ---
 
 # Ingest data flow (preview)
@@ -13,7 +13,7 @@ This article describes several ways Azure Container Storage enabled by Azure Arc
 
 ## Control options
 
-One way to control data flow is by offering the ability to choose which data is uploaded first from the Ingest Subvolume to the cloud. As described in [Ingest policies](ingest-policies.md), the ingest order parameter is configurable for oldest data upload first or newest data upload first (FIFO or LIFO respectively).
+One way to control data flow is by offering the ability to choose which data is uploaded first from the ingest subvolume to the cloud. As described in [Ingest policies](ingest-policies.md), the ingest order parameter is configurable for oldest data upload first or newest data upload first (FIFO or LIFO respectively).
 
 Another control option is the ability to "throttle" data upload from an Ingest Edge Volume by limiting the number of active concurrent blob uploads. This throttling is accomplished by following these instructions:
 
@@ -28,7 +28,7 @@ Another control option is the ability to "throttle" data upload from an Ingest E
 When you update this information, any in-progress operations are disrupted, so it's recommended that you make this change at a time when disruption is acceptable.
 
 > [!IMPORTANT]
-> This throttling behavior is controlled at the Edge Volume level, not at the Subvolume level. Therefore, every Subvolume associated with the Edge Volume must share the user-specified number of concurrent blob uploads.
+> This throttling behavior is controlled at the Edge Volume level, not at the subvolume level. Therefore, every subvolume associated with the Edge Volume must share the user-specified number of concurrent blob uploads.
 
 ## Next steps
 
