@@ -19,7 +19,7 @@ You can enable the following subset of endpoints:
 |`download.microsoft.com`|Used to download the Windows installation package|At installation time, only| Public |
 |`login.windows.net`|Microsoft Entra ID|Always| Public |
 |`login.microsoftonline.com`|Microsoft Entra ID|Always| Public |
-|`*login.microsof.com`|Microsoft Entra ID|Always| Public |
+|`*login.microsoft.com`|Microsoft Entra ID|Always| Public |
 |`management.azure.com`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured |
 |`*.his.arc.azure.com`|Metadata and hybrid identity services|Always| Private |
 |`*.guestconfiguration.azure.com`| Extension management and guest configuration services |Always| Private |
