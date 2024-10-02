@@ -21,7 +21,7 @@ This diagram provides a high-level view of Azure Arc components. Kubernetes clus
 
 The following high-level steps are involved in [connecting a Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md):
 
-1. Create a Kubernetes cluster on your choice of infrastructure (VMware vSphere, Amazon Web Services, Google Cloud Platform, or any Cloud Native Computing Foundation (CNCF) certified Kubernetes distribution.). The cluster must already exist before you connect it to Azure Arc.
+1. Create a Kubernetes cluster on your choice of infrastructure (VMware vSphere, Amazon Web Services, Google Cloud Platform, or any Cloud Native Computing Foundation (CNCF) certified Kubernetes distribution). The cluster must already exist before you connect it to Azure Arc.
 
 1. Start the Azure Arc registration for your cluster. This process deploys the agent Helm chart on the cluster. After that, the cluster nodes initiate an outbound communication to the [Microsoft Container Registry](https://github.com/microsoft/containerregistry), pulling the images needed to create the following agents in the `azure-arc` namespace:
   
