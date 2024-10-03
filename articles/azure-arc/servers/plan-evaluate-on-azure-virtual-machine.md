@@ -39,7 +39,7 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
 ## Reconfigure Azure VM
 
 > [!NOTE]
-> For windows, set the environment variable to override the ARC on an Azure VM installation.
+> For Windows, set the environment variable to override the ARC on an Azure VM installation.
 >
 > ```powershell
 > [System.Environment]::SetEnvironmentVariable("MSFT_ARC_TEST",'true', [System.EnvironmentVariableTarget]::Machine)

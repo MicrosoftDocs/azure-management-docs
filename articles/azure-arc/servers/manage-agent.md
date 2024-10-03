@@ -1,7 +1,7 @@
 ---
 title:  Managing the Azure Connected Machine agent
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 09/25/2024
+ms.date: 10/02/2024
 ms.topic: conceptual
 ---
 
@@ -395,6 +395,7 @@ Proxy bypass value when set to `ArcData` only bypasses the traffic of the Azure 
 | --------------------- | ------------------ |
 | `AAD` | `login.windows.net`</br>`login.microsoftonline.com`</br> `pas.windows.net` |
 | `ARM` | `management.azure.com` |
+| `AMA` | `global.handler.control.monitor.azure.com`</br>`<virtual-machine-region-name>.handler.control.monitor.azure.com`</br> `<log-analytics-workspace-id>.ods.opinsights.azure.com`</br>`management.azure.com`</br>`<virtual-machine-region-name>.monitoring.azure.com`</br>`<data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com` |
 | `Arc` | `his.arc.azure.com`</br>`guestconfiguration.azure.com` |
 | `ArcData` <sup>1</sup> | `*.<region>.arcdataservices.com`|
 
