@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Arc resource bridge issues
 description: This article tells how to troubleshoot and resolve issues with the Azure Arc resource bridge when trying to deploy or connect to the service.
-ms.date: 09/20/2024
+ms.date: 10/03/2024
 ms.topic: troubleshooting
 ---
 
@@ -25,11 +25,7 @@ To collect Arc resource bridge logs on VMware using the appliance VM IP address:
    az arcappliance logs vmware --ip <appliance VM IP> --username <vSphere username> --password <vSphere password> --address <vCenter address> --out-dir <path to output directory>
    ```
 
-To collect Arc resource bridge logs for Azure Stack HCI using the appliance VM IP address:
-
-   ```azurecli
-   az arcappliance logs hci --ip <appliance VM IP> --cloudagent <cloud agent service IP/FQDN> --loginconfigfile <file path of kvatoken.tok> 
-   ```
+To collect Arc Resource Bridge logs for Azure Stack HCI, see [Collect logs](/azure-stack/hci/manage/collect-logs).
 
 If you're unsure of your appliance VM IP, there's also the option to use the kubeconfig. You can retrieve the kubeconfig by running the [get-credentials command](/cli/azure/arcappliance) then run the logs command.
 
@@ -111,6 +107,13 @@ When you use the `az arcappliance createconfig` or `az arcappliance run` command
 ### Resource bridge status `Offline` and `provisioningState` `Failed`
 
 When you deploy Arc resource bridge, the bridge might appear to be successfully deployed because no errors were encountered when running `az arcappliance deploy` or `az arcappliance create`. However, when viewing the bridge in Azure portal, you might see status showing as `Offline`, and `az arcappliance show` might show the `provisioningState` as `Failed`. This issue happens when required providers aren't registered before the bridge is deployed.
+
+For Azure Stack HCI, version 23H2 and later, the Arc Resource Bridge is automatically deployed during the cluster deployment and manual installation is no longer required.
+
+If your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM. If the issue persists, contact Microsoft Support.
+
+> [!NOTE]
+> Reinstalling the Arc Resource Bridge on Azure Stack HCI could cause issues with your existing Azure resources.
 
 To resolve this problem, delete the resource bridge, register the providers, then redeploy the resource bridge.
 
@@ -273,31 +276,7 @@ Resource move of Arc resource bridge isn't currently supported. Instead, delete 
 
 For general help resolving issues related to Azure Arc-enabled VMs on Azure Stack HCI, see [Troubleshoot Azure Arc-enabled virtual machines](/azure-stack/hci/manage/troubleshoot-arc-enabled-vms).
 
-### Action failed - no such host
-
-When you deploy Arc resource bridge, if you receive an error with `errorCode` as `PostOperationsError`, `errorResponse` as code `GuestInternetConnectivityError` and `no such host`, the appliance VM IPs may not be able to reach the endpoint specified in the error.
-
-Error example:
-
-`{ _errorCode_: _PostOperationsError_, _errorResponse_: _{\n\_message\_: \_{\\n  \\\_code\\\_: \\\_GuestInternetConnectivityError\\\_,\\n  \\\_message\\\_: \\\_Not able to connect to http://aszhcitest01.company.org:55000. Error returned: action failed after 5 attempts: Get \\\\\\\_http://aszhcitest01.company.org:55000\\\\\\\_: dial tcp: lookup aszhcitest01.company.org: on 127.0.0.53:53: no such host. Arc Resource Bridge network and internet connectivity validation failed: cloud-agent-connectivity-test. 1.  check your networking setup and ensure the URLs mentioned in : https://aka.ms/AAla73m are reachable from the Appliance VM.   2. Check firewall/proxy settings`
-
-In the example, the appliance VM IPs are unable to access `http://aszhcitest01.company.org:55000`, which is the MOC endpoint. Work with your network administrator to make sure that the DNS server is able to resolve the required URLs.
-
-To test connectivity to the DNS server:
-
-```ping <dns-server.com>```
-
-To check if the DNS server is able to resolve an address, run this command from a machine that can reach the DNS servers:
-
-```Resolve-DnsName -Name "http://aszhcitest01.company.org:55000" -Server "<dns-server.com>"```
-
-### Authentication handshake failure
-
-When running an `az arcappliance` command, you might see a connection error: `authentication handshake failed: x509: certificate signed by unknown authority`
-
-This error is often caused when trying to run commands from remote PowerShell, which Azure Arc resource bridge doesn't support.
-
-To install Arc resource bridge on an Azure Stack HCI cluster, `az arcappliance` commands must be run locally on a node in the cluster. Sign in to the node through Remote Desktop Protocol (RDP) or use a console session to run these commands.
+If you are running Azure Stack HCI, version 23H2 or later, and your Arc Resource Bridge is offline, do not attempt to reinstall or delete the Arc Resource Bridge. Instead, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance.
 
 ## Azure Arc-enabled VMware VCenter issues
 
