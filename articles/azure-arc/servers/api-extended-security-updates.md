@@ -116,7 +116,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ## Delete a license
 
-To delete a license, execute the following commands:
+To delete a license, execute the following command:
 
 ```
 DELETE  
