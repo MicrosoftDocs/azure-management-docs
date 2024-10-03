@@ -9,7 +9,7 @@ ms.topic: conceptual
 
 This article provides instructions to programmatically provision and manage Windows Server 2012 and Windows Server 2012 R2 Extended Security Updates lifecycle operations through the Azure Arc WS2012 ESU ARM APIs.
 
-For each of the API commands explained in this article, be sure to enter accurate parameter information for location, state, edition, type, and processors depending on your particular scenario
+For each of the API commands explained in this article, be sure to enter accurate parameter information for location, state, edition, type, and processors depending on your particular scenario.
 
 > [!NOTE]
 > You'll need to create a service principal to use the Azure API to manage ESUs. See [Connect hybrid machines to Azure at scale](onboard-service-principal.md) and [Azure REST API reference](/rest/api/azure/) for more information.
@@ -17,7 +17,7 @@ For each of the API commands explained in this article, be sure to enter accurat
 
 ## Provision a license
 
-To provision a license, execute the following commands:
+To provision a license, execute the following command:
 
 ```
 PUT  
@@ -58,7 +58,7 @@ az connectedmachine license create --license-name
 
 ## Link a license
 
-To link a license, execute the following commands:
+To link a license, execute the following command:
 
 ```
 PUT  
@@ -75,7 +75,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ## Unlink a license
 
-To unlink a license, execute the following commands:
+To unlink a license, execute the following command:
 
 ```
 PUT 
@@ -91,7 +91,7 @@ https://management.azure.com/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOUR
 
 ## Modify a license
 
-To modify a license, execute the following commands:
+To modify a license, execute the following command:
 
 ```
 PUT/PATCH 
