@@ -78,7 +78,7 @@ Networking changes in the infrastructure, environment or cluster can stop the ap
 
 ### Remote PowerShell isn't supported
 
-If you run `az arcappliance` CLI commands for Arc resource bridge via remote PowerShell, you might see an [authentication handshake failure error when trying to install the resource bridge on an Azure Stack HCI cluster](#authentication-handshake-failure) or another type of error.
+If you run `az arcappliance` CLI commands for Arc resource bridge via remote PowerShell, you might see an authentication handshake failure error when trying to install the resource bridge on an Azure Stack HCI cluster or another type of error.
 
 Using `az arcappliance` commands from remote PowerShell isn't currently supported. Instead, sign in to the node through Remote Desktop Protocol (RDP) or use a console session.
 
