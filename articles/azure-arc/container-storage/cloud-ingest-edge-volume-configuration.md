@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 09/26/2024
+ms.date: 10/03/2024
 ---
 
 # Cloud Ingest Edge Volumes configuration
@@ -156,19 +156,21 @@ To create a subvolume using extension identity to connect to your storage accoun
    - `spec.eviction.order`: How files are evicted (defaults to **unordered**). Options for eviction order are: **unordered** or **never**.
    - `spec.eviction.minDelaySec`: The number of seconds before a clean file is eligible for eviction (defaults to 300). This number can range between 0 and 31536000.
 
-    ```yaml
-    apiVersion: arccontainerstorage.azure.net/v1
-    kind: EdgeIngestPolicy
-    metadata:
-      name: <create-a-policy-name-here> # This must be updated and referenced in the spec.ingestPolicy section of the edgeSubvolume.yaml
-    spec:
-      ingest:
-        order: <your-ingest-order>
-        minDelaySec: <your-min-delay-sec>
-      eviction:
-        order: <your-eviction-order>
-        minDelaySec: <your-min-delay-sec>
-    ```
+   ```yaml
+   apiVersion: arccontainerstorage.azure.net/v1
+   kind: EdgeIngestPolicy
+   metadata:
+     name: <create-a-policy-name-here> # This must be updated and referenced in the spec.ingestPolicy section of the edgeSubvolume.yaml
+   spec:
+     ingest:
+       order: <your-ingest-order>
+       minDelaySec: <your-min-delay-sec>
+     eviction:
+       order: <your-eviction-order>
+       minDelaySec: <your-min-delay-sec>
+   ```
+
+   For more information about these specifications, see [Set ingest policy](ingest-policies.md).
 
 1. To apply `myedgeingest-policy.yaml`, run:
 
