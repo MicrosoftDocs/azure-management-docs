@@ -3,26 +3,26 @@ title: "Deploy and manage Azure Arc-enabled Kubernetes cluster extensions"
 ms.custom: devx-track-azurecli
 ms.date: 02/08/2024
 ms.topic: how-to
-description: "Create and manage extension instances on Azure Arc-enabled Kubernetes clusters."
+description: "Learn how to create and manage extension instances on Azure Arc-enabled Kubernetes clusters."
 ---
 
 # Deploy and manage Azure Arc-enabled Kubernetes cluster extensions
 
-You can create extension instances in an Arc-enabled Kubernetes cluster, setting required and optional parameters including options related to updates and configurations. You can also view, list, update, and delete extension instances.
+You can create extension instances in an Azure Arc-enabled Kubernetes cluster, setting required and optional parameters including options related to updates and configurations. You can also view, list, update, and delete extension instances.
 
-Before you begin, read the [conceptual overview of Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
+Before you begin, read the [overview of Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
 
 ## Prerequisites
 
-* The latest version of [Azure CLI](/cli/azure/install-azure-cli).
-* The latest versions of the `connectedk8s` and `k8s-extension` Azure CLI extensions. Install these extensions by running the following commands:
+* The latest version of the [Azure CLI](/cli/azure/install-azure-cli).
+* The latest versions of the `connectedk8s` and `k8s-extension` Azure CLI extensions. To install these extensions, run the following commands:
   
     ```azurecli
     az extension add --name connectedk8s
     az extension add --name k8s-extension
     ```
 
-    If the `connectedk8s` and `k8s-extension` extensions are already installed, make sure they're updated to the latest version using the following commands:
+    If the `connectedk8s` and `k8s-extension` extensions are already installed, make sure they're updated to the latest version by using these commands:
 
     ```azurecli
     az extension update --name connectedk8s
@@ -33,7 +33,7 @@ Before you begin, read the [conceptual overview of Arc-enabled Kubernetes cluste
   * If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).
   * [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 
-## Create extension instance
+## Create an extension instance
 
 To create a new extension instance, use `k8s-extension create`, passing in values for the required parameters.
 
@@ -105,7 +105,6 @@ Use one or more of these optional parameters as needed for your scenarios, along
 > You can choose to automatically upgrade your extension instance to the latest minor and patch versions by setting `auto-upgrade-minor-version` to `true`, or you can instead set the version of the extension instance manually using the `--version` parameter. We recommend enabling automatic upgrades for minor and patch versions so that you always have the latest security patches and capabilities.
 >
 > Because major version upgrades may include breaking changes, automatic upgrades for new major versions of an extension instance aren't supported. You can choose when to [manually upgrade extension instances](#upgrade-extension-instance) to a new major version.
-
 
 | Parameter name | Description |
 |--------------|------------|
@@ -270,7 +269,7 @@ Manual upgrades are also required to get a new major instance of an extension. Y
 
 To manually upgrade an extension instance, use `k8s-extension update` and set the `version` parameter to specify a version.
 
-This example updates an Azure Machine Learning extension instance to version x.y.z:
+This example updates an Azure Machine Learning extension instance to version `x.y.z`:
 
 ```azurecli
 az k8s-extension update --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters --name azureml --version x.y.z
@@ -286,7 +285,6 @@ az k8s-extension delete --name azuremonitor-containers --cluster-name <clusterNa
 
 > [!NOTE]
 > The Azure resource representing this extension gets deleted immediately. The Helm release on the cluster associated with this extension is only deleted when the agents running on the Kubernetes cluster have network connectivity and can reach out to Azure services again to fetch the desired state.
-
 
 ## Next steps
 

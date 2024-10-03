@@ -7,9 +7,9 @@ description: "See which extensions are currently available for Azure Arc-enabled
 
 # Available extensions for Azure Arc-enabled Kubernetes clusters
 
-[Cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md) provide an Azure Resource Manager-driven experience for installation and lifecycle management of different Azure capabilities on top of your cluster. These extensions can be [deployed to your clusters](extensions.md) to enable different scenarios and improve cluster management.
+[Cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md) provide an Azure Resource Manager-driven experience for installation and lifecycle management of different Azure capabilities on top of your cluster. You can [deploy extensions to your clusters](extensions.md) to support different scenarios and improve cluster management.
 
-The following extensions are currently available for use with Arc-enabled Kubernetes clusters. All of these extensions are [cluster-scoped](conceptual-extensions.md#extension-scope), except for Azure API Management on Azure Arc, which is namespace-scoped.
+The following extensions are currently available to use with Arc-enabled Kubernetes clusters. All of the extensions that are described in this article are [cluster-scoped](conceptual-extensions.md#extension-scope), except for Azure API Management on Azure Arc, which is namespace-scoped.
 
 ## Azure Monitor Container Insights
 
@@ -127,10 +127,10 @@ For more information, see [Introduction to Kubernetes compute target in Azure Ma
 
 For more information, see [Tutorial: Deploy applications using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 
-The most recent version of the Flux v2 extension and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
+The most recent version of the Flux v2 extension and the two earlier versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
 > [!IMPORTANT]
-> The [Flux v2.3.0 release](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the kustomize package. An upcoming minor version update of Microsoft's Flux extension will include these changes, consistent with the upstream OSS Flux project.
+> The [Flux v2.3.0 release](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream OSS Flux project.
 >
 > The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) kind will be promoted from `v2beta1` to `v2` (GA). The `v2` API is backwards compatible with `v2beta1`, with the exception of these deprecated fields, which will be removed:
 >
@@ -149,11 +149,11 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
 > - [Null yaml values are replaced by "null"](https://github.com/kubernetes-sigs/kustomize/pull/5519) in [v5.4.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.4.0)
 >
-> To avoid issues due to breaking changes, we recommend updating your manifests as soon as possible to ensure that your Flux configurations remain compliant with this release.
+> To avoid issues caused by breaking changes, we recommend that you update your manifests as soon as possible to ensure that your Flux configurations remain compliant with this release.
 
 
 > [!NOTE]
-> When a new version of the `microsoft.flux` extension is released, it may take several days for the new version to become available in all regions.
+> When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
 ### 1.12.0 (September 2024)
 
@@ -170,7 +170,7 @@ Changes made for this version:
 
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
 - Fixed issue with SBOM generation for `fluxconfig-agent` and `fluxconfig-controller`.
-- Support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
+- Added support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters that are described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
 
 ### 1.11.1 (August 2024)
 
@@ -185,7 +185,7 @@ Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3
 
 Changes made for this version:
 
-- Update flux OSS controllers.
+- Updated Flux OSS controllers.
 - Resolved the continuous restart issue of the Fluent Bit sidecar in `fluxconfig-agent` and `fluxconfig-controller`.
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
 - Enabled workload identity for the Kustomize controller. For setup instructions, see [Workload identity in AKS clusters](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#workload-identity-in-aks-clusters).
