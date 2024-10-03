@@ -7,7 +7,7 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 08/12/2024
+ms.date: 10/03/2024
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
@@ -31,6 +31,8 @@ Azure Arc-enabled SCVMM works with VMM 2019 and 2022 versions and supports SCVMM
 > If VMM server is running on Windows Server 2016 machine, ensure that [Open SSH package](https://github.com/PowerShell/Win32-OpenSSH/releases) is installed.
 > If you deploy an older version of appliance (version lesser than 0.2.25), Arc operation fails with the error *Appliance cluster is not deployed with AAD authentication*. To fix this issue, download the latest version of the onboarding script and deploy the Resource Bridge again.
 > Azure Arc Resource Bridge deployment using private link is currently not supported.
+
+### Azure Arc resource bridge prerequisites
 
 | **Requirement** | **Details** |
 | --- | --- |
