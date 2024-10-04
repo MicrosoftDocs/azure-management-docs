@@ -165,7 +165,7 @@ To use an existing dashboard as a template for a new dashboard, follow these ste
 
 1. In the page header, select ![clone icon](./media/azure-portal-dashboards/dashboard-clone.png) **Clone**.
 
-1. A duplicate copy of the dashboard, named **Clone of (your dashboard name)** opens in edit mode. You can then rename and customize the new dashboard.
+1. A duplicate copy of the dashboard, named **Clone of (your dashboard name)**, opens in edit mode. You can then rename and customize the new dashboard.
 
 ## Publish and share a dashboard
 
