@@ -2,7 +2,7 @@
 title: Create a dashboard in the Azure portal
 description: This article describes how to create and customize a dashboard in the Azure portal.
 ms.topic: how-to
-ms.date: 09/01/2023
+ms.date: 10/04/2024
 ---
 
 # Create a dashboard in the Azure portal
@@ -34,6 +34,9 @@ This example shows how to create a new private dashboard with an assigned name.
 1. To save the dashboard as is, select **Save** in the page header.
 
 The dashboard view now shows your new dashboard. Select the arrow next to the dashboard name to see other available dashboards. The list might include dashboards that other users have created and shared.
+
+> [!TIP]
+> If you have an existing dashboard and want to create a new one that is similar, you can [clone your dashboard](#clone-a-dashboard) and use the duplicate copy as a starting point.
 
 ## Edit a dashboard
 
@@ -162,7 +165,7 @@ To use an existing dashboard as a template for a new dashboard, follow these ste
 
 1. In the page header, select ![clone icon](./media/azure-portal-dashboards/dashboard-clone.png) **Clone**.
 
-1. A copy of the dashboard, named **Clone of *your dashboard name* ** opens in edit mode. You can then rename and customize the dashboard.
+1. A duplicate copy of the dashboard, named **Clone of *your dashboard name* ** opens in edit mode. You can then rename and customize the new dashboard.
 
 ## Publish and share a dashboard
 
