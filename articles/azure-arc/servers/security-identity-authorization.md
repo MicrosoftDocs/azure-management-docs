@@ -7,7 +7,7 @@ ms.date: 06/06/2024
 
 # Identity and authorization
 
-This article describes the Microsoft Entra ID managed identity for Azure Arc-enabled servers, which is used for authentication when communicating with Azure and details two built-in RBAC roles.
+This article describes the Microsoft Entra ID managed identity for Azure Arc-enabled servers, which is used for authentication when communicating with Azure, and details two built-in RBAC roles.
 
 ## Microsoft Entra ID managed identity
 
