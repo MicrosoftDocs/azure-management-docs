@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 10/03/2024
+ms.date: 10/04/2024
 ms.topic: overview
 ---
 
@@ -23,7 +23,7 @@ Azure Arc provides a centralized, unified way to:
 
 Currently, Azure Arc allows you to manage the following resource types hosted outside of Azure:
 
-* [Servers](servers/overview.md) and Virtual Machines: Manage Windows and Linux physical servers and virtual machines hosted outside of Azure. Provision, resize, delete, and manage virtual machines based on [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) and on [VMware vCenter](./vmware-vsphere/overview.md) or [System Center Virtual Machine Manager](./system-center-virtual-machine-manager/overview.md) managed on-premises environments. Enable self-service VM operations on-demand using Azure role-based access control (RBAC).
+* [Servers](servers/overview.md) and virtual machines: Manage Windows and Linux physical servers and virtual machines hosted outside of Azure. Provision, resize, delete, and manage virtual machines based on [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) and on [VMware vCenter](./vmware-vsphere/overview.md) or [System Center Virtual Machine Manager](./system-center-virtual-machine-manager/overview.md) managed on-premises environments. Enable self-service VM operations on-demand using Azure role-based access control (RBAC).
 * [Kubernetes clusters](kubernetes/overview.md): Attach and configure Kubernetes clusters running anywhere, with multiple supported distributions.
 * [Azure data services](data/overview.md): Run Azure data services on-premises, at the edge, and in public clouds using Kubernetes and the infrastructure of your choice. SQL Managed Instance
 and PostgreSQL (preview) services are currently available.
@@ -75,9 +75,9 @@ Any Azure service that is used on Azure Arc-enabled Kubernetes, such as Microsof
 
 For more information on pricing for configurations on top of Azure Arc-enabled Kubernetes, see the [Azure pricing page](https://azure.microsoft.com/pricing/).
 
-## Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager
+### Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager
 
-The following Azure Arc-enabled VMware vSphere and SCVMM capabilities are offered at no extra cost:
+The following Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager (SCVMM) capabilities are offered at no extra cost:
 
 - All the Azure Arc-enabled servers capabilities are offered at no extra cost.
 - Discovery and single pane of glass inventory view of your VMware vCenter and SCVMM managed estate (VMs, templates, networks, datastores, clouds/clusters/hosts/resource pools).
