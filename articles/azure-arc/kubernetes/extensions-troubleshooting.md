@@ -109,7 +109,7 @@ To help troubleshoot issues with the `sourceControlConfigurations` resource in F
 
 ```azurecli
 az provider show -n Microsoft.KubernetesConfiguration --debug
-az k8s-configuration create <parameters> --debug
+az k8s-configuration flux create <parameters> --debug
 ```
 
 ## Azure Monitor Container Insights
