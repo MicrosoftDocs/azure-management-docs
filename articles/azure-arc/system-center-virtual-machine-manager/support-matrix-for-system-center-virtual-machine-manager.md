@@ -7,7 +7,7 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 08/12/2024
+ms.date: 10/04/2024
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
@@ -26,6 +26,8 @@ The following requirements must be met in order to use Arc-enabled SCVMM.
 ### Supported SCVMM versions
 
 Azure Arc-enabled SCVMM works with VMM 2019 and 2022 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
+
+### Azure Arc resource bridge prerequisites
 
 > [!NOTE]
 > If VMM server is running on Windows Server 2016 machine, ensure that [Open SSH package](https://github.com/PowerShell/Win32-OpenSSH/releases) is installed.

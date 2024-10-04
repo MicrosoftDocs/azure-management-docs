@@ -60,7 +60,7 @@ Use the Azure CLI extension for `k8s-configuration` to link a connected cluster 
 1. Give the operator `cluster-admin` permissions.
 
     ```azurecli
-    az k8s-configuration create --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --operator-instance-name cluster-config --operator-namespace cluster-config --repository-url https://github.com/Azure/arc-k8s-demo --scope cluster --cluster-type connectedClusters
+    az k8s-configuration flux create --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --operator-instance-name cluster-config --operator-namespace cluster-config --repository-url https://github.com/Azure/arc-k8s-demo --scope cluster --cluster-type connectedClusters
     ```
 
     ```output
