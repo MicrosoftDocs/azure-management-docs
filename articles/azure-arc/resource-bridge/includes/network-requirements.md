@@ -13,7 +13,8 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 |--|--|--|--|--|
 |SFS API endpoint | 443 | `msk8s.api.cdp.microsoft.com` | Management machine & Appliance VM IPs need outbound connection. | Download product catalog, product bits, and OS images from SFS. |
 |Resource bridge (appliance) image download| 443 | `msk8s.sb.tlu.dl.delivery.mp.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. |  Download the Arc Resource Bridge OS images.|
-|Microsoft Container Registry| 443 | `mcr.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. | Download container images for Arc Resource Bridge.|
+|Microsoft Container Registry| 443 | `mcr.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. | Discover container images for Arc Resource Bridge.|
+|Microsoft Container Registry| 443 | `*.data.mcr.microsoft.com`| Management machine & Appliance VM IPs need outbound connection. | Download container images for Arc Resource Bridge.|
 |Windows NTP Server| 123 | `time.windows.com` | Management machine & Appliance VM IPs (if Hyper-V default is Windows NTP) need outbound connection on UDP | OS time sync in appliance VM & Management machine (Windows NTP).|
 |Azure Resource Manager| 443 | `management.azure.com`| Management machine & Appliance VM IPs need outbound connection. | Manage resources in Azure. |
 |Microsoft Graph | 443 | `graph.microsoft.com` | Management machine & Appliance VM IPs need outbound connection. | Required for Azure RBAC. |
