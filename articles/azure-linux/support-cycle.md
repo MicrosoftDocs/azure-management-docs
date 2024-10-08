@@ -26,12 +26,16 @@ For more information on the CVE service level agreement (SLA), see [CVE infrastr
 
 ### Major releases
 
-About every two years, Azure Linux releases a major image version containing new packages and package versions, an updated kernel, and enhancements to security, tooling, performance, and developer experience. Azure Linux releases a beta version of the major release about three months before the general availability (GA) release.
+About every three years, Azure Linux releases a major image version containing new packages and package versions, an updated kernel, and enhancements to security, tooling, performance, and developer experience. Azure Linux releases a beta version of the major release about three months before the general availability (GA) release.
 
-Azure Linux supports previous releases for six months following the GA release of the major image version. This support window enables a smooth migration between major releases while providing stable security and support.
+An Azure Linux release will support an AKS version throughout it's standard community support. For example, Azure Linux 2.0 will support AKS v1.31 throughout the standard [support lifecycle](./azure/aks/supported-kubernetes-versions).
 
-> [!NOTE]
-> The preview version of Azure Linux 3.0 is expected to release in March 2024.
+The table below contains the first and last AKS release supported by each version of Azure Linux. Note, AKS customers will automatically move to Azure Linux 3.0 when upgrading their AKS versions from 1.31 to 1.32. No additional action is required. 
+
+| Azure Linux Version | First supported AKS Version in Preview  |  First supported AKS Version in GA   | Last supported AKS version  |
+|---|---|---|---|
+| Azure Linux 2.0   | 1.24  | 1.26  | 1.31 |
+| Azure Linux 3.0   | 1.31  | 1.32 (tentative)  | TBD (roughly 3 years after 1.32 release) |
 
 ## Next steps
 

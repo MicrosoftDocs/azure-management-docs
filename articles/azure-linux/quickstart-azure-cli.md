@@ -66,6 +66,35 @@ az aks create --name testAzureLinuxCluster --resource-group testAzureLinuxResour
 ```
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 
+## [PREVIEW] Create an Azure Linux 3.0 cluster
+
+
+[!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
+
+1. Register the `AzureLinuxPreview` feature flag by using the [az feature register][az-feature-register] command, as shown in the following example:
+
+  ```azurecli-interactive
+  az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxPreview"
+  ```
+
+2. It takes a few minutes for the status to show *Registered*. Verify the registration status by using the [az feature show][az-feature-show] command:
+
+  ```azurecli-interactive
+  az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxPreview"
+  ```
+
+When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register][az-provider-register] command:
+
+   ```azurecli-interactive
+      az provider register --namespace "Microsoft.ContainerService"
+  ```
+
+3. Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux image. The following example creates an Azure Linux 3.0 cluster named *testAzureLinuxCluster* with one node: 
+
+  ```azurecli-interactive
+  az aks create --name testAzureLinuxCluster --resource-group testAzureLinuxResourceGroup --os-sku AzureLinux
+  ```
+
 ## Connect to the cluster
 
 To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/).

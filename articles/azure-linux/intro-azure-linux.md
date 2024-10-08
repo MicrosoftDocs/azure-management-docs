@@ -17,6 +17,11 @@ The Azure Linux Container Host is lightweight, containing only the packages need
 
 To learn more about Azure Linux, see the [Azure Linux GitHub repository](https://github.com/microsoft/CBL-Mariner).
 
+> [!NOTE]
+> Azure Linux 3.0 is available in preview on AKS. 
+>
+> For instructions on how to get started, please read the [CLI](./quickstart-azure-cli.md) docs.
+
 ## Azure Linux Container Host key benefits
 
 The Azure Linux Container Host offers the following key benefits:
@@ -36,6 +41,19 @@ The Azure Linux Container Host offers the following key benefits:
 - **Maintains compatibility with existing workloads**
   - All existing and future AKS extensions, add-ons, and open-source projects on AKS support Azure Linux. This includes support for runtime components like Dapr, IaC tools like Terraform, and monitoring solutions like Dynatrace.
   - Azure Linux ships with containerd as its container runtime and the upstream Linux kernel, which enables existing containers based on Linux images (like Alpine) to work seamlessly on Azure Linux.
+
+## What's new with Azure Linux 3.0? 
+With the latest [AKS Release](), Azure Linux 3.0 is available in preview for usage on AKS. Every 3-years, Azure Linux releases a new version of it's operating system with upgrades to major components. 
+
+Please see the [supported lifecycles](./support-cycle.md) section for information on Azure Linux 2.0 and Azure Linux 3.0 lifecycles. 
+
+The table below contains few of the major components upgraded as part of this release: 
+
+|Component| Version|
+|--|--|
+|Kernel| 6.6 |
+|ContainerD| 1.7 but will also offer 2.0 once it reaches stable |
+|SystemD | v255 | 
 
 ## Azure Linux Container Host supported GPU SKUs
 
