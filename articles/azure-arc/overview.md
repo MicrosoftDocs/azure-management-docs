@@ -73,7 +73,7 @@ Any Azure service that is used on Azure Arc-enabled servers, such as Microsoft D
 
 The following Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager (SCVMM) capabilities are offered at no extra cost:
 
-- All the Azure Arc-enabled servers' capabilities are offered at no extra cost.
+- All the Azure Arc control plane functionalities that are offered at no extra cost with Azure Arc-enabled servers.
 - Discovery and single pane of glass inventory view of your VMware vCenter and SCVMM managed estate (VMs, templates, networks, datastores, clouds/clusters/hosts/resource pools).
 - Lifecycle (create, resize, update, and delete) and power cycle (start, stop, and restart) operations of VMs, including the ability to delegate self-service access for these operations using Azure role-based access control (RBAC).
 - Management of VMs using Azure portal, CLI, REST APIs, SDKs, and automation through Infrastructure as Code (IaC) templates such as ARM, Terraform, and Bicep.
