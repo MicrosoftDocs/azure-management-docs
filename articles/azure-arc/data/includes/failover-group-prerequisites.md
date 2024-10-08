@@ -2,7 +2,7 @@
 author: MikeRayMSFT
 ms.author: mikeray
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 ms.topic: include
 ms.date: 08/01/2023
 ---
