@@ -1,7 +1,7 @@
 ---
 title: Upgrade Arc resource bridge
 description: Learn how to upgrade Arc resource bridge using either cloud-managed upgrade or manual upgrade.  
-ms.date: 08/26/2024
+ms.date: 10/03/2024
 ms.topic: how-to
 ---
 
@@ -15,7 +15,7 @@ Currently, private cloud providers differ in how they perform Arc resource bridg
 
 For **Arc-enabled VMware vSphere**, manual upgrade and cloud-managed upgrade are available. Appliances on version 1.0.15 and higher are automatically opted-in to cloud-managed upgrade. Cloud-managed upgrade helps ensure the appliance VM is kept within n-3 supported versions but not the latest version. If you would like to be on the latest version, you need to manual upgrade. In order for either upgrade option to work, [the upgrade prerequisites](#prerequisites) must be met. Microsoft may attempt to perform a cloud-managed upgrade of your Arc resource bridge at any time if your appliance will soon be out of support. While Microsoft offers cloud-managed upgrade, you’re still responsible for ensuring that your Arc resource bridge is within the supported n-3 versions. Disruptions could cause cloud-managed upgrade to fail and you may need to manual upgrade the Arc resource bridge. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version, rather than waiting for cloud-managed upgrade.
 
-For **Azure Arc VM management (preview) on Azure Stack HCI**, appliance version 1.0.15 or higher is only available on Azure Stack HCI build 23H2. In HCI 23H2, the LCM tool manages upgrades across all HCI, Arc resource bridge, and extension components as a "validated recipe" package. Any preview version of Arc resource bridge must be removed before updating from 22H2 to 23H2. Attempting to upgrade Arc resource bridge independent of other HCI environment components may cause problems in your environment that could result in a disaster recovery scenario. For more information, visit the [Arc VM management FAQ page](/azure-stack/hci/manage/azure-arc-vms-faq).
+For **Azure Arc VM management (preview) on Azure Stack HCI**, appliance version 1.0.15 or higher is only available on Azure Stack HCI build 23H2. In HCI 23H2, the LCM tool manages upgrades across all HCI, Arc resource bridge, and extension components as a "validated recipe" package. Any preview version of Arc resource bridge must be removed before updating from 22H2 to 23H2. Attempting to upgrade Arc resource bridge independent of other HCI environment components may cause problems in your environment that could result in a disaster recovery scenario. For more information, see [About updates for Azure Stack HCI](/azure-stack/hci/update/about-updates-23h2).
 
 For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, the manual upgrade feature is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to perform the recovery option to get to version 1.0.15 or higher. Review the steps for [performing the recovery operation](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). This deploys a new resource bridge and reconnects pre-existing Azure resources.
 

@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Arc-enabled servers VM extension issues
 description: This article tells how to troubleshoot and resolve issues with Azure VM extensions that arise with Azure Arc-enabled servers.
-ms.date: 09/20/2024
+ms.date: 10/02/2024
 ms.topic: troubleshooting
 ---
 
@@ -14,6 +14,14 @@ This article provides information on troubleshooting and resolving issues that m
 Data about the state of extension deployments can be retrieved from the Azure portal by [selecting the applicable machine and then selecting **Settings>Extensions**](manage-vm-extensions-portal.md#list-extensions-installed).
 
 The following troubleshooting steps apply to all VM extensions.
+
+1. Ensure that the Azure Connected Machine agent (azcmagent) is connected and that the dependent services are *running/active*.
+
+    Run the [**azcmagent show**](azcmagent-show.md) command and check the output for the status (*Azure Arc Proxy* can be ignored):
+    
+    :::image type="content" source="media/troubleshoot-vm-extensions/dependent-services-status.png" alt-text="Screenshot of the table showing the status of dependent services as running or stopped.":::
+
+    If the services are stopped, restart the services to resume extension operations.
 
 1. Retry extension installation.
 
