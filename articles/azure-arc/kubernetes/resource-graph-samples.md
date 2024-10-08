@@ -8,7 +8,7 @@ ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-
 
 # Azure Resource Graph sample queries for Azure Arc-enabled Kubernetes
 
-This article provides a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Arc-enabled Kubernetes.
+This article provides some examples of [Azure Resource Graph](/azure/governance/resource-graph/overview) queries for Azure Arc-enabled Kubernetes.
 
 ## Sample queries
 
