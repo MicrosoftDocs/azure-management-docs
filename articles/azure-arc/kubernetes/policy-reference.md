@@ -26,4 +26,4 @@ the link in the **Version** column to view the source on the
 
 - See the built-ins on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
 - Review the [Azure Policy definition structure](/azure/governance/policy/concepts/definition-structure-basics).
-- Understand [Azure Policy definitions effects](/azure/governance/policy/concepts/effects-basics).
+- Understand [Azure Policy definitions effects](/azure/governance/policy/concepts/effect-basics).
