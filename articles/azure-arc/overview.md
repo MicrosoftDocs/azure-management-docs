@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 11/03/2023
+ms.date: 10/04/2024
 ms.topic: overview
 ---
 
@@ -23,12 +23,11 @@ Azure Arc provides a centralized, unified way to:
 
 Currently, Azure Arc allows you to manage the following resource types hosted outside of Azure:
 
-* [Servers](servers/overview.md): Manage Windows and Linux physical servers and virtual machines hosted outside of Azure.
+* [Servers](servers/overview.md) and virtual machines: Manage Windows and Linux physical servers and virtual machines hosted outside of Azure. Provision, resize, delete, and manage virtual machines based on [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) and on [VMware vCenter](./vmware-vsphere/overview.md) or [System Center Virtual Machine Manager](./system-center-virtual-machine-manager/overview.md) managed on-premises environments.
 * [Kubernetes clusters](kubernetes/overview.md): Attach and configure Kubernetes clusters running anywhere, with multiple supported distributions.
 * [Azure data services](data/overview.md): Run Azure data services on-premises, at the edge, and in public clouds using Kubernetes and the infrastructure of your choice. SQL Managed Instance
 and PostgreSQL (preview) services are currently available.
 * [SQL Server](/sql/sql-server/azure-arc/overview): Extend Azure services to SQL Server instances hosted outside of Azure.
-* Virtual machines: Provision, resize, delete and manage virtual machines based on [VMware vSphere](./vmware-vsphere/overview.md) or [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) and enable VM self-service through role-based access.
 
 > [!NOTE]
 > For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](/azure/azure-arc/choose-service).
@@ -51,7 +50,7 @@ Some of the key scenarios that Azure Arc supports are:
 
 * Create [custom locations](./kubernetes/custom-locations.md) on top of your [Azure Arc-enabled Kubernetes](./kubernetes/overview.md) clusters, using them as target locations for deploying Azure services instances. Deploy your Azure service cluster extensions for [Azure Arc-enabled data services](./data/create-data-controller-direct-azure-portal.md), [App services on Azure Arc](/azure/app-service/overview-arc-integration) (including web, function, and logic apps) and [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 
-* Perform virtual machine lifecycle and management operations for [VMware vSphere](./vmware-vsphere/overview.md) and [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) environments.
+* Perform virtual machine lifecycle and management operations on [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview) and on-premises environments managed by [VMware vCenter](./vmware-vsphere/overview.md) and [System Center Virtual Machine Manager (SCVMM)](./system-center-virtual-machine-manager/overview.md) through interactive and non-interactive methods. Empower developers and application teams to self-serve VM operations on-demand using Azure role-based access control (RBAC).
 
 * A unified experience viewing your Azure Arc-enabled resources, whether you are using the Azure portal, the Azure CLI, Azure PowerShell, or Azure REST API.
 
@@ -70,6 +69,17 @@ The following Azure Arc control plane functionality is offered at no extra cost:
 
 Any Azure service that is used on Azure Arc-enabled servers, such as Microsoft Defender for Cloud or Azure Monitor, will be charged as per the pricing for that service. For more information, see the [Azure pricing page](https://azure.microsoft.com/pricing/).
 
+### Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager
+
+The following Azure Arc-enabled VMware vSphere and System Center Virtual Machine Manager (SCVMM) capabilities are offered at no extra cost:
+
+- All the Azure Arc-enabled servers' capabilities are offered at no extra cost.
+- Discovery and single pane of glass inventory view of your VMware vCenter and SCVMM managed estate (VMs, templates, networks, datastores, clouds/clusters/hosts/resource pools).
+- Lifecycle (create, resize, update, and delete) and power cycle (start, stop, and restart) operations of VMs, including the ability to delegate self-service access for these operations using Azure role-based access control (RBAC).
+- Management of VMs using Azure portal, CLI, REST APIs, SDKs, and automation through Infrastructure as Code (IaC) templates such as ARM, Terraform, and Bicep.
+
+Any Azure service that is used on Azure Arc-enabled VMware vSphere and SCVMM VMs, such as Microsoft Defender for Cloud or Azure Monitor, will be charged as per the pricing for that service. For more information, see the [Azure pricing page](https://azure.microsoft.com/pricing/).
+
 ### Azure Arc-enabled Kubernetes
 
 Any Azure service that is used on Azure Arc-enabled Kubernetes, such as Microsoft Defender for Cloud or Azure Monitor, will be charged as per the pricing for that service.
@@ -82,12 +92,13 @@ For information, see the [Azure pricing page](https://azure.microsoft.com/pricin
 
 ## Next steps
 
+* [Choose the right Azure Arc service for your physical and virtual machines](./choose-service.md).
 * Learn about [Azure Arc-enabled servers](./servers/overview.md).
 * Learn about [Azure Arc-enabled Kubernetes](./kubernetes/overview.md).
 * Learn about [Azure Arc-enabled data services](https://azure.microsoft.com/services/azure-arc/hybrid-data-services/).
 * Learn about [SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/overview).
-* Learn about [Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md).
 * Learn about [Azure Arc-enabled VM Management on Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview).
+* Learn about [Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md).
 * Learn about [Azure Arc-enabled System Center Virtual Machine Manager](system-center-virtual-machine-manager/overview.md).
 * Experience Azure Arc by exploring the [Azure Arc Jumpstart](https://aka.ms/AzureArcJumpstart).
 * Learn about best practices and design patterns through the [Azure Arc Landing Zone Accelerators](https://aka.ms/ArcLZAcceleratorReady).
