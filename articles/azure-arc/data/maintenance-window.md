@@ -3,7 +3,7 @@ title: Maintenance window - Azure Arc-enabled data services
 description: Article describes how to set a maintenance window
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun

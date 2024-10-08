@@ -3,7 +3,7 @@ title: Upgrade Azure SQL Managed Instance directly connected Azure Arc using the
 description: Article describes how to upgrade Azure SQL Managed Instance directly connected Azure Arc using Azure portal
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
