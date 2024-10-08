@@ -7,7 +7,7 @@ description: "This article provides a conceptual overview of the Azure Arc-enabl
 
 # Cluster extensions
 
-[Helm charts](https://helm.sh/) help you manage Kubernetes applications by providing the building blocks needed to define, install, and upgrade even the most complex Kubernetes applications.
+This article describes how you can use [Helm Charts](https://helm.sh/) has all the building blocks you need to define, install, and upgrade even the most complex Kubernetes applications.
 
 The cluster extension feature builds on top of the packaging components of Helm. With extensions, you use an Azure Resource Manager-driven experience for installation and lifecycle management of different capabilities on top of your Kubernetes cluster.
 
@@ -47,11 +47,11 @@ Each extension type defines the scope at which they operate on the cluster. Exte
 
 A cluster-scoped extension will be installed in the `release-namespace` specified during extension creation. Typically, only one instance of the cluster-scoped extension and its components, such as pods, operators, and Custom Resource Definitions (CRDs), are installed in the release namespace on the cluster.
 
-A namespace-scoped extension can be installed in a given namespace provided using the `–namespace` property. Since the extension can be deployed at a namespace scope, multiple instances of the namespace-scoped extension and its components can run on the cluster.  Each extension instance has permissions on the namespace where it is deployed to. All the above extensions are cluster-scoped except Event Grid on Kubernetes.
+A namespace-scoped extension can be installed in a given namespace provided using the `–namespace` property. Because the extension can be deployed for a namespace, multiple instances of the namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed. All the above extensions are cluster-scoped except Event Grid on Kubernetes.
 
 All of the [currently available extensions](extensions-release.md) are cluster-scoped, except for [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc) .
 
-## Next steps
+## Related content
 
 - Use our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
 - [Deploy cluster extensions](./extensions.md) on your Azure Arc-enabled Kubernetes cluster.

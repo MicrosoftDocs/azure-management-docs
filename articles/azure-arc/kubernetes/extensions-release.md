@@ -122,7 +122,7 @@ For more information, see [Deploy an Azure API Management gateway on Azure Arc (
 
 Use the Azure Machine Learning extension to deploy and run Azure Machine Learning on an Azure Arc-enabled Kubernetes cluster.
 
-For more information, see [Introduction to Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy Azure Machine Learning extension on AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
+For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
 ## Flux (GitOps)
 
@@ -130,31 +130,31 @@ For more information, see [Introduction to Kubernetes compute target in Azure Ma
 
 [GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) uses [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
 
-For more information, see [Tutorial: Deploy applications by using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
+For more information, see [Tutorial: Deploy applications by using GitOps by using Flux v2](tutorial-use-gitops-flux2.md).
 
 The most recent version of the Flux v2 extension and the two earlier versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
 > [!IMPORTANT]
-> The [Flux v2.3.0 release](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream OSS Flux project.
+> The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream OSS Flux project.
 >
-> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) kind will be promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
+> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API is promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
 >
 > - **`.spec.chart.spec.valuesFile`**: Replaced by `.spec.chart.spec.valuesFiles` in `v2`.
 > - **`.spec.postRenderers.kustomize.patchesJson6902`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
 > - **`.spec.postRenderers.kustomize.patchesStrategicMerge`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
 > - **`.status.lastAppliedRevision`**: Replaced by `.status.history.chartVersion` in `v2`.
 >
-> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) kind will be promoted from `v1beta2` to `v1` (GA). The `v1` API is backwards compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which will be replaced by `.spec.valuesFiles`.
+> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) API is promoted from `v1beta2` to `v1` (GA). The `v1` API is backward compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which is replaced by `.spec.valuesFiles`.
 >
-> Use the new fields which are already available in the current version of the APIs, instead of the fields that will be removed.
+> The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that are removed in the release.
 >
-> The kustomize package will be updated to v5.4.0, which contains the following breaking changes:
+> The Kustomize package is updated to v5.4.0, which contains the following breaking changes:
 >
-> - [Kustomization build fails when resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
+> - [Kustomization build fails when the resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
 > - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
 > - [Null YAML values are replaced by "null"](https://github.com/kubernetes-sigs/kustomize/pull/5519) in [v5.4.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.4.0)
 >
-> To avoid issues caused by breaking changes, we recommend that you update your manifests to ensure that your Flux configurations remain compliant with this release.
+> To avoid issues caused by breaking changes, we recommend that you update your manifest to ensure that your Flux configurations remain compliant with this release.
 
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
@@ -212,23 +212,23 @@ Changes made for this version:
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
-[Dapr](https://dapr.io/) is a portable, event-driven runtime that simplifies building resilient, stateless, and stateful applications that run on the cloud and edge and embrace the diversity of languages and developer frameworks. The Dapr extension eliminates the overhead of downloading Dapr tooling and manually installing and managing the runtime on your clusters.
+[Dapr](https://dapr.io/) is a portable, event-driven runtime that simplifies building resilient, stateless, and stateful applications that run in the cloud and edge and embrace the diversity of languages and developer frameworks. The Dapr extension eliminates the overhead of downloading Dapr tooling and manually installing and managing the runtime on your clusters.
 
 For more information, see [Dapr extension for AKS and Azure Arc-enabled Kubernetes](/azure/aks/dapr).
 
 ## Azure AI Video Indexer
 
-- **Supported distributions**: All Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devices. The solution is designed to run on Azure Stack Edge Profile, a heavy edge device, and supports many video formats, including MP4 and other common formats. It supports several languages in all basic audio-related models.
+Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devices. The solution is designed to run on an Azure Stack edge profile, a heavy edge device. The solution supports many video formats, including MP4 and other common formats. It supports several languages in all basic audio-related models.
 
 For more information, see [Try Azure AI Video Indexer enabled by Arc](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-quickstart).
 
 ## Edge Storage Accelerator
 
-- **Supported distributions**: AKS enabled by Azure Arc, AKS Edge Essentials, Ubuntu
+- **Supported distributions**: AKS enabled by Azure Arc, AKS Edge Essentials, Ubuntu.
 
-[Edge Storage Accelerator (ESA)](../edge-storage-accelerator/index.yml) is a first-party storage system designed for Arc-connected Kubernetes clusters. ESA can be deployed to write files to a "ReadWriteMany" persistent volume claim (PVC) where they are then transferred to Azure Blob Storage. ESA offers a range of features to support Azure IoT Operations and other Azure Arc Services.
+[Edge Storage Accelerator (ESA)](../edge-storage-accelerator/index.yml) is a first-party storage system designed for Arc-connected Kubernetes clusters. You can deploy ESA to write files to a "ReadWriteMany" persistent volume claim (PVC), where they are transferred to Azure Blob Storage. ESA offers a range of features to support Azure IoT Operations and other Azure Arc features.
 
 For more information, see [What is Edge Storage Accelerator?](../edge-storage-accelerator/overview.md).
 
@@ -236,7 +236,7 @@ For more information, see [What is Edge Storage Accelerator?](../edge-storage-ac
 
 - **Supported distributions**: AKS enabled by Azure Arc, Kubernetes using kind.
 
-The connected registry extension for Azure Arc allows you to synchronize container images between your Azure Container Registry (ACR) and your on-premises Azure Arc-enabled Kubernetes cluster. This extension can be deployed to either a local or remote cluster and utilizes a synchronization schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based ACR.
+Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
 
 For more information, see [Connected Registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
 
