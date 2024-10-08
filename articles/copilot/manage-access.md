@@ -1,7 +1,7 @@
 ---
 title:  Manage access to Microsoft Copilot in Azure
 description: Learn how administrators can manage user access to Microsoft Copilot in Azure.
-ms.date: 08/21/2024
+ms.date: 10/08/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -30,9 +30,9 @@ To manage access to Microsoft Copilot in Azure for users in your tenant, any Glo
 
 1. [Elevate your access](/azure/role-based-access-control/elevate-access-global-admin?tabs=azure-portal#step-1-elevate-access-for-a-global-administrator) so that your Global Administrator account can manage all subscriptions in your tenant.
 
-1. In the Azure portal, search for **Copilot for Azure admin center** and select it.
+1. In the Azure portal, search for **Copilot in Azure admin center** and select it.
 
-1. In **Copilot for Azure admin center**, under **Settings**, select **Access management**.
+1. In **Copilot in Azure admin center**, under **Settings**, select **Access management**.
 
 1. Select the toggle next to **On for entire tenant** to change it to **Off for entire tenant**.
 
