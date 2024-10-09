@@ -1,6 +1,6 @@
 ---
-title: Set up private endpoint with private link
-description: Set up a private endpoint on a container registry and enable access over a private link in a local virtual network. Private link access is a feature of the Premium service tier.
+title: Set Up Private Endpoint with Private Link for ACR
+description: Set up a private endpoint on a container registry and enable access over a private link in a local virtual network. Available in the Premium service tier of Azure Container Registry.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: tejaswikolli-web
