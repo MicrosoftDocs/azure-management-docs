@@ -20,7 +20,7 @@ To learn more about Azure Linux, see the [Azure Linux GitHub repository](https:/
 > [!NOTE]
 > Azure Linux 3.0 is available in preview on AKS. 
 >
-> For instructions on how to get started, please read the [CLI](./quickstart-azure-cli.md) docs.
+> For instructions on how to get started, please read the [How To Enable Azure Linux 3.0](./how-to-enable-azure-linux3.md) docs.
 
 ## Azure Linux Container Host key benefits
 

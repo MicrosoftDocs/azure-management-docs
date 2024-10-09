@@ -10,6 +10,8 @@
     #  href: azure-linux-supported-versions.md
 - name: Quickstarts
   items: 
+    - name: Enable Azure Linux 3.0 Preview
+      href: how-to-enable-azure-linux3.md
     - name: Deploy an Azure Linux Container Host Cluster
       items:
         - name: Use the Azure CLI
