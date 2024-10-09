@@ -3,7 +3,7 @@ title: Upgrade Active Directory connector for Azure SQL Managed Instance direct 
 description: The article describes how to upgrade an active directory connector for direct or indirect mode connected to SQL Managed Instance enabled by Azure Arc
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: mikhailalmeida
 ms.author: mialmei
 ms.reviewer: mikeray
