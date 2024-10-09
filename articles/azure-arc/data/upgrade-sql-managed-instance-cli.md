@@ -3,7 +3,7 @@ title: Upgrade Azure SQL Managed Instance indirectly connected to Azure Arc usin
 description: Article describes how to upgrade an Azure SQL Managed Instance indirectly connected to Azure Arc-enabled using the CLI
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray

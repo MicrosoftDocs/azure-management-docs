@@ -3,7 +3,7 @@ title: Enable automatic upgrades - Azure SQL Managed Instance for Azure Arc
 description: Article describes how to enable automatic upgrades for Azure SQL Managed Instance deployed for Azure Arc
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
