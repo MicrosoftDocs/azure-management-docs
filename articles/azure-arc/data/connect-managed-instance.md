@@ -3,7 +3,7 @@ title: Connect to SQL Managed Instance enabled by Azure Arc
 description: Connect to SQL Managed Instance enabled by Azure Arc
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
