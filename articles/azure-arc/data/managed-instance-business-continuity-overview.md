@@ -3,7 +3,7 @@ title: Business continuity overview - SQL Managed Instance enabled by Azure Arc
 description: Overview business continuity for SQL Managed Instance enabled by Azure Arc
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray

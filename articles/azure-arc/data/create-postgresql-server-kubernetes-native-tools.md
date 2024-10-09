@@ -3,7 +3,7 @@ title: Create a PostgreSQL server using Kubernetes tools
 description: Create a PostgreSQL server using Kubernetes tools
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-postgresql
+ms.subservice: azure-arc-postgresql-server
 author: twright-msft
 ms.author: twright
 ms.reviewer: mikeray

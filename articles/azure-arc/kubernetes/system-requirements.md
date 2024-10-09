@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc-enabled Kubernetes system requirements"
-ms.date: 08/28/2023
+ms.date: 10/08/2024
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 description: Learn about the system requirements to connect Kubernetes clusters to Azure Arc.
@@ -19,12 +19,13 @@ You must also have a [kubeconfig file](https://kubernetes.io/docs/concepts/confi
 The cluster must have at least one node with operating system and architecture type `linux/amd64` and/or `linux/arm64`.
 
 > [!IMPORTANT]
-> Many Arc-enabled Kubernetes features and scenarios are supported on ARM64 nodes, such as [cluster connect](cluster-connect.md) and [viewing Kubernetes resources in the Azure portal](kubernetes-resource-view.md). However, if using Azure CLI to enable these scenarios, [Azure CLI must be installed](/cli/azure/install-azure-cli) and run from an AMD64 machine. Azure RBAC on Arc-enabled Kubernetes is currently not supported on ARM64 nodes. Please use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) for ARM64 nodes. 
-> 
+> Many Arc-enabled Kubernetes features and scenarios are supported on ARM64 nodes, such as [cluster connect](cluster-connect.md) and [viewing Kubernetes resources in the Azure portal](kubernetes-resource-view.md). However, if using Azure CLI to enable these scenarios, [Azure CLI must be installed](/cli/azure/install-azure-cli) and run from an AMD64 machine. Azure RBAC on Arc-enabled Kubernetes is currently not supported on ARM64 nodes. For access to ARM64 nodes, use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization).
+>
 > Currently, Azure Arc-enabled Kubernetes [cluster extensions](conceptual-extensions.md) aren't supported on ARM64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type `linux/amd64`.
+
 ## Compute and memory requirements
 
-The Arc agents deployed on the cluster require:
+The [Arc agents deployed on the cluster](conceptual-agent-overview.md) require:
 
 - At least 850 MB of free memory
 - Capacity to use approximately 7% of a single CPU
@@ -62,7 +63,7 @@ For Azure PowerShell:
 
 To connect your cluster to Azure Arc, you must have a Microsoft Entra identity (user or service principal) which can be used to log in to [Azure CLI](/cli/azure/authenticate-azure-cli) or [Azure PowerShell](/powershell/azure/authenticate-azureps) and connect your cluster to Azure Arc.
 
-This identity must have 'Read' and 'Write' permissions on the Azure Arc-enabled Kubernetes resource type (`Microsoft.Kubernetes/connectedClusters`). If connecting the cluster to an existing resource group (rather than a new one created by this identity), the identity must have 'Read' permission for that resource group.
+This identity must have **Read** and **Write** permissions on the Azure Arc-enabled Kubernetes resource type (`Microsoft.Kubernetes/connectedClusters`). If connecting the cluster to an existing resource group (rather than a new one created by this identity), the identity must have **Read** permission for that resource group.
 
 The [Kubernetes Cluster - Azure Arc Onboarding built-in role](/azure/role-based-access-control/built-in-roles#kubernetes-cluster---azure-arc-onboarding) can be used for this identity. This role is useful for at-scale onboarding, as it has only the granular permissions required to connect clusters to Azure Arc, and doesn't have permission to update, delete, or modify any other clusters or other Azure resources.
 

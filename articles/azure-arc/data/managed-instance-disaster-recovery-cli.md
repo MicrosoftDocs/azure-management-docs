@@ -3,7 +3,7 @@ title: Configure failover group - CLI
 description: Describes how to configure disaster recovery with a failover group for SQL Managed Instance enabled by Azure Arc with the CLI
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun

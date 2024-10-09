@@ -3,7 +3,7 @@ title: Deploy Active Directory integrated Azure Arc-enabled PostgreSQL server us
 description: Explains how to deploy Active Directory integrated Azure Arc-enabled PostgreSQL server using Azure CLI
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-postgresql
+ms.subservice: azure-arc-postgresql-server
 ms.custom: devx-track-azurecli
 author: hasani-h
 ms.author: hasaniholder
