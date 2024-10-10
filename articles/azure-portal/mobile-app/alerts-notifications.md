@@ -1,7 +1,7 @@
 ---
 title: Manage alerts and notifications in the Azure mobile app
 description: Use Azure mobile app notifications to get up-to-date alerts and information on your resources and services.
-ms.date: 11/2/2023
+ms.date: 10/10/2024
 ms.topic: how-to
 ---
 
@@ -15,7 +15,14 @@ Azure mobile app notifications are a way to monitor and manage your Azure resour
 
 This article describes different options for configuring your notifications in the Azure mobile app.
 
+> [!TIP]
+Be sure to enable notifications for the Azure mobile app in your device settings.
+
 ## Enable push notifications for Service Health alerts
+
+To enable push notifications for Service Health in the Azure mobile app, you must have a role that includes write permissions on the Azure subscription, such as Contributor. This is because when you enable these notifications, the mobile app creates a resource group that contains all the resources required for the alerts. You can [check your access to the subscription in the Azure portal](/azure/role-based-access-control/check-access).
+
+You must also ensure that the `microsoft.insights` resource provider is [registered on the subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 
 To enable push notifications for Service Health on specific subscriptions:
 
