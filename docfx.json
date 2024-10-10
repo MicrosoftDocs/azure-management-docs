@@ -203,14 +203,15 @@
       "ms.service": {
         "articles/azure-arc/**/*.md": "azure-arc",
         "articles/azure-portal/**/*.md": "azure-portal",
-        "articles/azure-portal/supportability/**/*.md": "azure-supportability",
+        "articles/azure-portal/supportability/**/*.md": "azure",
         "articles/container-registry/**/*.md": "azure-container-registry",
         "articles/lighthouse/**/*.md": "azure-lighthouse",
         "articles/quotas/**/*.md": "azure-quotas"
       },
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
-        "articles/azure-arc/servers/**/*.md": "azure-arc-servers"
+        "articles/azure-arc/servers/**/*.md": "azure-arc-servers",
+        "articles/azure-portal/supportability/**/*.md": "azure-supportability"
       },
       "searchScope": {
         "articles/azure-arc/**/*.md": [
