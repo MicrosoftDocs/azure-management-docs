@@ -7,7 +7,7 @@ ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 09/09/2024
+ms.date: 10/08/2024
 ms.topic: conceptual
 ms.custom: references_regions, ignite-2023
 #Customer intent: As a data professional, I want to understand why my solutions would benefit from running with Azure Arc-enabled data services so that I can leverage the capability of the feature.
@@ -16,6 +16,12 @@ ms.custom: references_regions, ignite-2023
 # Release notes - Azure Arc-enabled data services
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
+
+## October 8, 2024
+
+**Image tag**: `v1.34.0_2024-10-08`
+
+For complete release version information, review [Version log](version-log.md#october-8-2024).
 
 ## September 9, 2024
 
