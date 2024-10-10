@@ -106,7 +106,7 @@ The following table lists the minimum and maximum limits for potential CPU and m
 | `image-automation-controller` | 100 m | 64 Mi | 1,000 m | 1 Gi |
 | `image-reflector-controller` | 100 m | 64 Mi | 1,000 m | 1 Gi |
 
-If you enabled a custom or built-in Azure Policy gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that the resource limits on the policy are greater than the limits shown in the preceding table or the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
+If you enabled a custom or built-in Azure Policy Gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that the resource limits on the policy are greater than the limits shown in the preceding table or the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
 
 ### Flux v1
 

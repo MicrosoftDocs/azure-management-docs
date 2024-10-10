@@ -13,7 +13,7 @@ The following extensions are currently available to use with Azure Arc-enabled K
 
 ## Container insights in Azure Monitor
 
-**Supported distributions**: All Cloud Native Computing Foundation (CNCF)-certified Kubernetes clusters
+- **Supported distributions**: All Cloud Native Computing Foundation (CNCF)-certified Kubernetes clusters.
 
 The Container insights feature in Azure Monitor gives you a view into the performance of workloads that are deployed on your Kubernetes cluster. Use this extension to collect memory and CPU utilization metrics from controllers, nodes, and containers.
 
@@ -52,7 +52,7 @@ For more information, see [Use the Secret Store extension to fetch secrets for o
 
 - **Supported distributions**: AKS enabled by Azure Arc, Cluster API Azure, Azure Red Hat OpenShift, Red Hat OpenShift (version 4.6 or later), Google Kubernetes Engine Standard, Amazon Elastic Kubernetes Service, VMware Tanzu Kubernetes Grid, Rancher Kubernetes Engine, and Canonical Kubernetes Distribution.
 
-Microsoft Defender for Containers is the cloud-native solution that is used to secure your containers so you can improve, monitor, and maintain the security of your clusters, containers, and their applications. It gathers information related to security like audit log data from the Kubernetes cluster, and provides recommendations and threat alerts based on gathered data.
+Microsoft Defender for Containers is the cloud-native solution that is used to secure your containers so you can improve, monitor, and maintain the security of your clusters, containers, and their applications. Microsoft Defender for Containers gathers information related to security, such as audit log data, from the Kubernetes cluster. Then, it provides recommendations and threat alerts based on the gathered data.
 
 For more information, see [Enable Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json).
 
@@ -69,13 +69,13 @@ For more information, see [Enable Microsoft Defender for Containers](/azure/defe
 
 For more information, see [Azure Arc-enabled Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md).
 
-## Azure Arc-enabled Data Services
+## Azure Arc-enabled data services
 
 - **Supported distributions**: AKS, AKS on Azure Stack HCI, Azure Red Hat OpenShift, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Container Platform, and Amazon Elastic Kubernetes Service.
 
-Makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
+Makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds by using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
 
-For more information, see [Azure Arc-enabled Data Services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
+For more information, see [Azure Arc-enabled data services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
 
 ## Azure App Service on Azure Arc
 
@@ -92,7 +92,7 @@ For more information, see [App Service, Functions, and Logic Apps on Azure Arc (
 
 ## Azure Event Grid on Kubernetes
 
-**Supported distributions**: AKS, Red Hat OpenShift.
+- **Supported distributions**: AKS, Red Hat OpenShift.
 
 Event Grid is an event broker you can use to integrate workloads that use event-driven architectures. Use this extension to create and manage Event Grid resources such as topics and event subscriptions with Azure Arc-enabled Kubernetes clusters.
 
@@ -105,7 +105,7 @@ For more information, see [Event Grid on Kubernetes with Azure Arc (Preview)](/a
 
 ## Azure API Management on Azure Arc
 
-**Supported distributions**: All CNCF-certified Kubernetes clusters.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
 With the integration between Azure API Management and Azure Arc on Kubernetes, you can deploy the API Management gateway component as an extension in an Azure Arc-enabled Kubernetes cluster. This extension is [namespace-scoped](conceptual-extensions.md#extension-scope), not cluster-scoped.
 
@@ -126,11 +126,11 @@ For more information, see [Introduction to the Kubernetes compute target in Azur
 
 ## Flux (GitOps)
 
-**Supported distributions**: All CNCF-certified Kubernetes clusters.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
 [GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) uses [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
 
-For more information, see [Tutorial: Deploy applications by using GitOps by using Flux v2](tutorial-use-gitops-flux2.md).
+For more information, see [Tutorial: Deploy applications by using GitOps and Flux v2](tutorial-use-gitops-flux2.md).
 
 The most recent version of the Flux v2 extension and the two earlier versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
@@ -234,7 +234,7 @@ For more information, see [What is Edge Storage Accelerator?](../edge-storage-ac
 
 ## Connected registry on Azure Arc-enabled Kubernetes
 
-- **Supported distributions**: AKS enabled by Azure Arc, Kubernetes using kind.
+- **Supported distributions**: AKS enabled by Azure Arc, Kubernetes by using the kind tool.
 
 Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
 
