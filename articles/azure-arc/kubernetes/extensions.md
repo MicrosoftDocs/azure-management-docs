@@ -29,7 +29,7 @@ Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster ext
     az extension update --name k8s-extension
     ```
 
-* An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you deploy [Flux (GitOps)](extensions-release.md#flux-gitops), you can use an Arm64-based cluster without using a `linux/amd64` node.
+* An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you deploy [Flux (GitOps)](extensions-release.md#flux-gitops), you can use an ARM64-based cluster without using a `linux/amd64` node.
   * If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md) to connect one.
   * [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 

@@ -39,17 +39,17 @@ Both the `config-agent` and `extensions-manager` components running in the clust
 > Protected configuration settings for an extension instance are stored for up to 48 hours in the Azure Arc-enabled Kubernetes services. As a result, if the cluster remains disconnected during the 48 hours after the extension resource is created in Azure, the extension changes from a `Pending` state to a `Failed` state. To prevent this, we recommend that you bring clusters online regularly.
 
 > [!IMPORTANT]
-> Currently, Azure Arc-enabled Kubernetes cluster extensions aren't supported on Arm64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type `linux/amd64`.
+> Currently, Azure Arc-enabled Kubernetes cluster extensions aren't supported on ARM64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type `linux/amd64`.
 
 ## Extension scope
 
 Each extension type defines the scope at which they operate on the cluster. Extension installations on Arc-enabled Kubernetes clusters are either *cluster-scoped* or *namespace-scoped*.
 
-A cluster-scoped extension is installed in the `release-namespace` that you specify when you create an instance of an extension. Typically, only one instance of the cluster-scoped extension and its components, such as pods, operators, and custom resource definitions (CRDs), are installed in the release namespace on the cluster.
+A cluster-scoped extension is installed in the value for `release-namespace` that you set when you create an instance of an extension. Typically, only one instance of a cluster-scoped extension and its components, including pods, operators, and custom resource definitions (CRDs), are installed in the release namespace on the cluster.
 
-You can install a namespace-scoped extension in a specific namespace by using the `–namespace` property. Because the extension can be deployed for a namespace, multiple instances of the namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed. All the extensions that are described in this article are cluster-scoped except the Event Grid on Kubernetes extension.
+You can install a namespace-scoped extension in a specific namespace by using the `–namespace` property. Because an extension can be deployed for a namespace, multiple instances of a namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed. All extensions that are described in this article are cluster-scoped except the Event Grid on Kubernetes extension.
 
-All the [currently available extensions](extensions-release.md) are cluster-scoped, except [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc) .
+All [currently available extensions](extensions-release.md) are cluster-scoped, except [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc).
 
 ## Related content
 

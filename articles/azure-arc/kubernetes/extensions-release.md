@@ -114,11 +114,11 @@ For more information, see [Deploy an Azure API Management gateway on Azure Arc (
 > [!IMPORTANT]
 > The API Management self-hosted gateway on Azure Arc is currently in public preview.
 >
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
 ## Azure Arc-enabled Machine Learning
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for Arm64 architectures.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for ARM64 architectures.
 
 Use the Azure Machine Learning extension to deploy and run Azure Machine Learning on an Azure Arc-enabled Kubernetes cluster.
 
