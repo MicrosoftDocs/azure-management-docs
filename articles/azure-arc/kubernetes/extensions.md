@@ -37,7 +37,7 @@ Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster ext
 
 To create a new extension instance, use the `k8s-extension create` command. In the code, use values from your scenario for the required parameter placeholders.
 
-This example creates an [Azure Monitor Container Insights](extensions-release.md#azure-monitor-container-insights) extension instance on an Azure Arc-enabled Kubernetes cluster:
+This example creates an [Azure Monitor Container Insights](extensions-release.md#container-insights-in-azure-monitor) extension instance on an Azure Arc-enabled Kubernetes cluster:
 
 ```azurecli
 az k8s-extension create --name azuremonitor-containers  --extension-type Microsoft.AzureMonitor.Containers --scope cluster --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
@@ -226,7 +226,7 @@ Check for output that looks like this example:
 ]
 ```
 
-## Update extension instance
+## Update an extension instance
 
 > [!NOTE]
 > Refer to documentation for the specific extension type to understand the specific settings in `--configuration-settings` and `--configuration-protected-settings` that are able to be updated. For `--configuration-protected-settings`, all settings are expected to be provided, even if only one setting is being updated. If any of these settings are omitted, those settings will be considered obsolete and deleted.

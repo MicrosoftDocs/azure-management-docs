@@ -76,7 +76,7 @@ The extension status returns as `Failed`:
 "{\"status\":\"Failed\",\"error\":{\"code\":\"ResourceOperationFailure\",\"message\":\"The resource operation completed with terminal provisioning state 'Failed'.\",\"details\":[{\"code\":\"ExtensionCreationFailed\",\"message\":\" error: Unable to get the status from the local CRD with the error : {Error : Retry for given duration didn't get any results with err {status not populated}}\"}]}}",
 ```
 
-In this case, the `extension-agent` pod tries to get its token from Azure Instance Metadata Service on the cluster, but the token request is intercepted by the [pod identity](/azure/aks/use-azure-ad-pod-identity). To fix this problem, [upgrade to the latest version](extensions.md#upgrade-extension-instance) of the `microsoft.flux` extension.
+In this case, the `extension-agent` pod tries to get its token from Azure Instance Metadata Service on the cluster, but the token request is intercepted by the [pod identity](/azure/aks/use-azure-ad-pod-identity). To fix this problem, [upgrade to the latest version](extensions.md#upgrade-an-extension-instance) of the `microsoft.flux` extension.
 
 ### Issues with kubelet identity when you install the microsoft.flux extension in an AKS cluster
 
@@ -88,7 +88,7 @@ To set Flux to use a kubelet identity, add the parameter `--config useKubeletIde
 az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type managedClusters --name flux --extension-type microsoft.flux --config useKubeletIdentity=true
 ```
 
-### Have the minimum required memory and CPU resources for the microsoft.flux extension installation
+### Have minimum required memory and CPU resources to install the microsoft.flux extension
 
 The controllers that are installed in your Kubernetes cluster when you install the `microsoft.flux` extension require minimum CPU and memory resources to properly schedule on a Kubernetes cluster node. Be sure that your cluster meets the minimum memory and CPU resources requirements.
 
