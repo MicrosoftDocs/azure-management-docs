@@ -3,7 +3,7 @@ title: Scale up and down an Azure Database for PostgreSQL server using CLI (az o
 description: Scale up and down an Azure Database for PostgreSQL server using CLI (az or kubectl)
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-postgresql
+ms.subservice: azure-arc-postgresql-server
 author: dhanmm
 ms.author: dhmahaja
 ms.reviewer: mikeray

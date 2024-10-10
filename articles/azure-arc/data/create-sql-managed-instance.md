@@ -3,7 +3,7 @@ title: Create a SQL Managed Instance enabled by Azure Arc
 description: Deploy SQL Managed Instance enabled by Azure Arc
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun

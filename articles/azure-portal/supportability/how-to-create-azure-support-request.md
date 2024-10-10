@@ -101,6 +101,9 @@ Next, we collect more details about the problem. Providing thorough and detailed
 
 1. Complete the **Contact info** section so that we know how to reach you.
 
+  > [!TIP]
+  > By enabling **Save contact changes for future support requests**, your personal contact info is saved for future use. However, the **Additional email for notification** value is not saved.
+
 Select **Next** after you finish entering this information.
 
 ### Review + create
