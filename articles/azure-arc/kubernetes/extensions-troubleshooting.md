@@ -34,7 +34,7 @@ For more information, see [How do I resolve "webhook doesn't support dry run" er
 
 The `microsoft.flux` extension installs Flux controllers and Azure GitOps agents in an Azure Arc-enabled Kubernetes cluster or Azure Kubernetes Service (AKS) cluster. If the extension isn't already installed in a cluster and you [create a GitOps configuration resource](tutorial-use-gitops-flux2.md) for the cluster, the extension is installed automatically.
 
-If you experience an error during installation or if the extension shows a `Failed` state, make sure that the cluster doesn't have any policies that restrict creating the flux-system namespace or any of the resources in that namespace.
+If you experience an error during installation or if the extension shows a `Failed` state, make sure that the cluster doesn't have any policies that restrict creating the `flux-system` namespace or any of the resources in that namespace.
 
 For an AKS cluster, ensure that the `Microsoft.ContainerService/AKS-ExtensionManager` feature flag is enabled in the Azure subscription:
 
@@ -132,7 +132,7 @@ Azure Monitor Container Insights requires its Kubernetes DaemonSet to run in pri
 juju config kubernetes-worker allow-privileged=true
 ```
 
-### Can't install Azure Monitor Agent (AMA) on Oracle Linux 9.x
+### Can't install AMA pods on Oracle Linux 9.x
 
 If you try to install Azure Monitor Agent (AMA) on an Oracle Linux (Red Hat Enterprise Linux (RHEL)) 9.x Kubernetes cluster, the AMA pods and the AMA-RS pod might not work correctly due to the `addon-token-adapter` container in the pod. When you check the logs of the `ama-logs-rs` pod, in `addon-token-adapter container`, you see output that's similar to the following example:
 
@@ -155,7 +155,7 @@ To fix this problem, you must explicitly load the `iptables_nat` module on each 
 
 ## Azure Arc-enabled Open Service Mesh
 
-This section provides commands that you can use to validate and troubleshoot the deployment of [Open Service Mesh (OSM)](tutorial-arc-enabled-open-service-mesh.md) extension components on your cluster.
+This section demonstrates commands you can use to validate and troubleshoot the deployment of [Open Service Mesh (OSM)](tutorial-arc-enabled-open-service-mesh.md) extension components on your cluster.
 
 ### Check the OSM controller deployment
 
@@ -283,7 +283,7 @@ NAME           ENDPOINTS           AGE
 osm-injector   10.240.1.172:9090   75m
 ```
 
-For OSM to function, there must be at least one endpoint for `osm-injector`. The IP address of your OSM injector endpoints varies, but the port `9090` must be the same.
+For OSM to function, there must be at least one endpoint for `osm-injector`. The IP address of your OSM injector endpoints varies, but the port value `9090` must be the same.
 
 ### Check webhooks: Validating and Mutating
 
@@ -332,7 +332,7 @@ Check for the service and the CA bundle of the **Mutating** webhook by using the
 kubectl get MutatingWebhookConfiguration arc-osm-webhook-osm -o json | jq '.webhooks[0].clientConfig.service'
 ```
 
-A well configured **Mutating** webhook has output that looks similar to this example:
+A well-configured **Mutating** webhook has output that looks similar to this example:
 
 ```output
 {
@@ -343,7 +343,7 @@ A well configured **Mutating** webhook has output that looks similar to this exa
 }
 ```
 
-Check whether the OSM controller has given the **Validating** (or **Mutating**) webhook a CA Bundle by using the following command:
+Check whether the OSM controller has given the **Validating** (or **Mutating**) webhook a CA bundle by using the following command:
 
 ```bash
 kubectl get ValidatingWebhookConfiguration osm-validator-mesh-osm -o json | jq -r '.webhooks[0].clientConfig.caBundle' | wc -c
@@ -359,7 +359,7 @@ Example output:
 1845
 ```
 
-The number in the output indicates the number of bytes, or the size of the CA Bundle. If the output is empty, 0, or a number under 1000, the CA Bundle isn't correctly provisioned. Without a correct CA Bundle, the `ValidatingWebhook` throws an error.
+The number in the output indicates the number of bytes, or the size of the CA bundle. If the output is empty, 0, or a number under 1,000, the CA bundle isn't correctly provisioned. Without a correct CA bundle, `ValidatingWebhook` throws an error.
 
 ### Check the `osm-mesh-config` resource
 
@@ -369,7 +369,7 @@ Check for the existence of the resource:
 kubectl get meshconfig osm-mesh-config -n arc-osm-system
 ```
 
-Check the content of the OSM MeshConfig:
+Check the value of the OSM `meshconfig` setting:
 
 ```azurecli-interactive
 kubectl get meshconfig osm-mesh-config -n arc-osm-system -o yaml
@@ -427,28 +427,28 @@ metadata:
   selfLink: ""
 ```
 
-`osm-mesh-config` resource values:
+The following table lists `osm-mesh-config` resource values:
 
 | Key | Type | Default value | Kubectl patch command examples |
 |-----|------|---------------|--------------------------------|
-| spec.traffic.enableEgress | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"enableEgress":false}}}'  --type=merge` |
-| spec.traffic.enablePermissiveTrafficPolicyMode | bool | `true` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":true}}}'  --type=merge` |
-| spec.traffic.outboundPortExclusionList | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"outboundPortExclusionList":[6379,8080]}}}'  --type=merge` |
-| spec.traffic.outboundIPRangeExclusionList | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"outboundIPRangeExclusionList":["10.0.0.0/32","1.1.1.1/24"]}}}'  --type=merge` |
-| spec.traffic.inboundPortExclusionList | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"inboundPortExclusionList":[6379,8080]}}}'  --type=merge` |
-| spec.certificate.serviceCertValidityDuration | string | `"24h"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"certificate":{"serviceCertValidityDuration":"24h"}}}'  --type=merge` |
-| spec.observability.enableDebugServer | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"enableDebugServer":false}}}'  --type=merge` |
-| spec.observability.osmLogLevel | string | `"info"`| `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"tracing":{"osmLogLevel": "info"}}}}'  --type=merge` |
-| spec.observability.tracing.enable | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"tracing":{"enable":true}}}}'  --type=merge` |
-| spec.sidecar.enablePrivilegedInitContainer | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"sidecar":{"enablePrivilegedInitContainer":true}}}'  --type=merge` |
-| spec.sidecar.logLevel | string | `"error"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"sidecar":{"logLevel":"error"}}}'  --type=merge` |
-| spec.featureFlags.enableWASMStats | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableWASMStats":"true"}}}'  --type=merge` |
-| spec.featureFlags.enableEgressPolicy | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableEgressPolicy":"true"}}}'  --type=merge` |
-| spec.featureFlags.enableMulticlusterMode | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableMulticlusterMode":"false"}}}'  --type=merge` |
-| spec.featureFlags.enableSnapshotCacheMode | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableSnapshotCacheMode":"false"}}}'  --type=merge` |
-| spec.featureFlags.enableAsyncProxyServiceMapping | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableAsyncProxyServiceMapping":"false"}}}'  --type=merge` |
-| spec.featureFlags.enableIngressBackendPolicy | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableIngressBackendPolicy":"true"}}}'  --type=merge` |
-| spec.featureFlags.enableEnvoyActiveHealthChecks | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableEnvoyActiveHealthChecks":"false"}}}'  --type=merge` |
+| `spec.traffic.enableEgress` | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"enableEgress":false}}}'  --type=merge` |
+| `spec.traffic.enablePermissiveTrafficPolicyMode` | bool | `true` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":true}}}'  --type=merge` |
+| `spec.traffic.outboundPortExclusionList` | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"outboundPortExclusionList":[6379,8080]}}}'  --type=merge` |
+| `spec.traffic.outboundIPRangeExclusionList` | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"outboundIPRangeExclusionList":["10.0.0.0/32","1.1.1.1/24"]}}}'  --type=merge` |
+| `spec.traffic.inboundPortExclusionList` | array | `[]` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"traffic":{"inboundPortExclusionList":[6379,8080]}}}'  --type=merge` |
+| `spec.certificate.serviceCertValidityDuration` | string | `"24h"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"certificate":{"serviceCertValidityDuration":"24h"}}}'  --type=merge` |
+| `spec.observability.enableDebugServer` | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"enableDebugServer":false}}}'  --type=merge` |
+| `spec.observability.osmLogLevel` | string | `"info"`| `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"tracing":{"osmLogLevel": "info"}}}}'  --type=merge` |
+| `spec.observability.tracing.enable` | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"observability":{"tracing":{"enable":true}}}}'  --type=merge` |
+| `spec.sidecar.enablePrivilegedInitContainer` | bool | `false` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"sidecar":{"enablePrivilegedInitContainer":true}}}'  --type=merge` |
+| `spec.sidecar.logLevel` | string | `"error"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"sidecar":{"logLevel":"error"}}}'  --type=merge` |
+| `spec.featureFlags.enableWASMStats` | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableWASMStats":"true"}}}'  --type=merge` |
+| `spec.featureFlags.enableEgressPolicy` | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableEgressPolicy":"true"}}}'  --type=merge` |
+| `spec.featureFlags.enableMulticlusterMode` | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableMulticlusterMode":"false"}}}'  --type=merge` |
+| `spec.featureFlags.enableSnapshotCacheMode` | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableSnapshotCacheMode":"false"}}}'  --type=merge` |
+| `spec.featureFlags.enableAsyncProxyServiceMapping` | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableAsyncProxyServiceMapping":"false"}}}'  --type=merge` |
+| `spec.featureFlags.enableIngressBackendPolicy` | bool | `"true"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableIngressBackendPolicy":"true"}}}'  --type=merge` |
+| `spec.featureFlags.enableEnvoyActiveHealthChecks` | bool | `"false"` | `kubectl patch meshconfig osm-mesh-config -n arc-osm-system -p '{"spec":{"featureFlags":{"enableEnvoyActiveHealthChecks":"false"}}}'  --type=merge` |
 
 ### Check namespaces
 
