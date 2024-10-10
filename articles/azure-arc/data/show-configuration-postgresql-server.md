@@ -4,7 +4,7 @@ titleSuffix: Azure Arc-enabled data services
 description: Show the configuration of an Azure Arc-enabled PostgreSQL server
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-postgresql
+ms.subservice: azure-arc-postgresql-server
 author: dhanmm
 ms.author: dhmahaja
 ms.reviewer: mikeray
