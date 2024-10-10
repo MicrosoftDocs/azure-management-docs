@@ -7,23 +7,23 @@ description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes clus
 
 # Cluster extensions
 
-This article describes how you can use [Helm Charts](https://helm.sh/) has all the building blocks you need to define, install, and upgrade even the most complex Kubernetes applications.
+This article describes how you can use Azure Arc-enabled Kubernetes cluster extensions via [Helm Charts](https://helm.sh/) to manage your Kubernetes applications. The cluster extensions feature in Azure Arc-enabled Kubernetes has all the building blocks you need to define, install, and upgrade even the most complex Kubernetes applications.
 
-The cluster extension feature builds on top of the packaging components of Helm. With extensions, you use an Azure Resource Manager-driven experience for installation and lifecycle management of different capabilities on top of your Kubernetes cluster.
+The cluster extension feature builds on the packaging components of Helm. With extensions, you use an Azure Resource Manager-driven experience for installation and lifecycle management of different capabilities on top of your Kubernetes cluster.
 
 A cluster operator or admin can [use the cluster extensions feature](extensions.md) to:
 
 - Install and manage key management, data, and application offerings on your Kubernetes cluster.
 - Use Azure Policy to automate at-scale deployment of cluster extensions across all clusters in your environment.
-- Subscribe to release flows (for example, *preview* or *stable*) for each extension.
-- Set up auto-upgrade for extensions or pin to a specific version and manually upgrade versions.
+- Subscribe to release flows (for example, `Preview` or `Stable`) for each extension.
+- Set up autoupgrade for extensions, or you can pin a specific version and manually upgrade versions.
 - Update extension properties or delete extension instances.
 
 Extensions are available to support a wide range of Azure services and scenarios. For a list of currently supported extensions, see [Available extensions for Azure Arc-enabled Kubernetes clusters](extensions-release.md).
 
 ## Architecture
 
-:::image type="content" source="media/conceptual-extensions.png" alt-text="Diagram showing the cluster extension installation workflow architecture." lightbox="media/conceptual-extensions.png":::
+:::image type="content" source="media/conceptual-extensions.png" border="false" alt-text="Diagram showing the cluster extension installation workflow architecture." lightbox="media/conceptual-extensions.png":::
 
 The cluster extension instance is created as an extension Azure Resource Manager resource (`Microsoft.KubernetesConfiguration/extensions`) on top of the Azure Arc-enabled Kubernetes resource (represented by `Microsoft.Kubernetes/connectedClusters`) in Azure Resource Manager.
 
