@@ -135,7 +135,7 @@ For more information, see [Tutorial: Deploy applications by using GitOps by usin
 The most recent version of the Flux v2 extension and the two earlier versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
 > [!IMPORTANT]
-> The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream OSS Flux project.
+> The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream open-source software (OSS) Flux project.
 >
 > The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API is promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
 >
@@ -148,7 +148,7 @@ The most recent version of the Flux v2 extension and the two earlier versions (N
 >
 > The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that are removed in the release.
 >
-> The Kustomize package is updated to v5.4.0, which contains the following breaking changes:
+> The Kustomize package is updated to v5.4.0. The version contains the following breaking changes:
 >
 > - [Kustomization build fails when the resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
 > - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
@@ -173,7 +173,7 @@ Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3
 Changes made for this version:
 
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
-- Fixed issue with SBOM generation for `fluxconfig-agent` and `fluxconfig-controller`.
+- Fixed issue with software bill of materials (SBOM) generation for `fluxconfig-agent` and `fluxconfig-controller`.
 - Added support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters that are described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
 
 ### 1.11.1 (August 2024)
@@ -193,7 +193,7 @@ Changes made for this version:
 - Resolved the continuous restart issue of the Fluent Bit sidecar in `fluxconfig-agent` and `fluxconfig-controller`.
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
 - Enabled workload identity for the Kustomize controller. For setup instructions, see [Workload identity in AKS clusters](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#workload-identity-in-aks-clusters).
-- Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This allows traffic to the API Server's domain name even when a Layer 7 firewall is present, facilitating deployments during extension installation. For more details, see [Configure annotation on Flux extension pods](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#configure-annotation-on-flux-extension-pods).
+- Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This change allows traffic to the API server's domain name, even when a Layer 7 firewall is present, facilitating deployments during extension installation. For more information, see [Configure annotation on Flux extension pods](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#configure-annotation-on-flux-extension-pods).
 
 ### 1.10.0 (June 2024)
 
@@ -208,7 +208,7 @@ Flux version: [Release v2.1.2](https://github.com/fluxcd/flux2/releases/tag/v2.1
 
 Changes made for this version:
 
-- The `FluxConfig` custom resource now includes support for [OCI repositories](https://fluxcd.io/flux/components/source/ocirepositories/). This enhancement means that Flux configurations can accommodate Git repository, Buckets, Azure Blob storage, or OCI repository as valid source types.
+- The `FluxConfig` custom resource now includes support for [Open Container Initiative (OCI) repositories](https://fluxcd.io/flux/components/source/ocirepositories/). This enhancement means that Flux configurations can accommodate Git repositories, Buckets, Azure Blob storage, or OCI repositories as valid source types.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
@@ -220,15 +220,15 @@ For more information, see [Dapr extension for AKS and Azure Arc-enabled Kubernet
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devices. The solution is designed to run on an Azure Stack edge profile, a heavy edge device. The solution supports many video formats, including MP4 and other common formats. It supports several languages in all basic audio-related models.
+Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devices. The solution is designed to run on an Azure Stack Edge profile, which is a heavy edge device. The solution supports many video formats, including MP4 and other common formats. It supports several languages in all basic audio-related models.
 
-For more information, see [Try Azure AI Video Indexer enabled by Arc](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-quickstart).
+For more information, see [Try Azure AI Video Indexer enabled by Azure Arc](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-quickstart).
 
 ## Edge Storage Accelerator
 
 - **Supported distributions**: AKS enabled by Azure Arc, AKS Edge Essentials, Ubuntu.
 
-[Edge Storage Accelerator (ESA)](../edge-storage-accelerator/index.yml) is a first-party storage system designed for Arc-connected Kubernetes clusters. You can deploy ESA to write files to a "ReadWriteMany" persistent volume claim (PVC), where they are transferred to Azure Blob Storage. ESA offers a range of features to support Azure IoT Operations and other Azure Arc features.
+[Edge Storage Accelerator (ESA)](../edge-storage-accelerator/index.yml) is a first-party storage system that's designed for Azure Arc-connected Kubernetes clusters. You can deploy ESA to write files to a 'ReadWriteMany' persistent volume claim (PVC), where they're transferred to Azure Blob Storage. ESA offers a range of features to support Azure IoT operations and other Azure Arc features.
 
 For more information, see [What is Edge Storage Accelerator?](../edge-storage-accelerator/overview.md).
 
@@ -238,7 +238,7 @@ For more information, see [What is Edge Storage Accelerator?](../edge-storage-ac
 
 Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
 
-For more information, see [Connected Registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
+For more information, see [Connected registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
 
 ## Related content
 

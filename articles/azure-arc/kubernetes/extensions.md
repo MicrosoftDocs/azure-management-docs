@@ -10,7 +10,7 @@ description: "Learn how to create and manage an extension instance on an Azure A
 
 You can create extension instances in an Azure Arc-enabled Kubernetes cluster, setting required and optional parameters including options related to updates and configurations. You can also view, list, update, and delete extension instances.
 
-Before you begin, read the [overview of Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
+Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ Before you begin, read the [overview of Arc-enabled Kubernetes cluster extension
     ```
 
 * An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you deploy [Flux (GitOps)](extensions-release.md#flux-gitops), you can use an ARM64-based cluster without using a `linux/amd64` node.
-  * If you haven't yet connected a cluster, use our [quickstart](quickstart-connect-cluster.md) to connect one.
+  * If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md) to connect one.
   * [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 
 ## Create an extension instance
@@ -104,7 +104,7 @@ You can use one or more of these optional parameters with the required parameter
 > [!NOTE]
 > You can choose to automatically upgrade your extension instance to the latest minor and patch versions by setting `auto-upgrade-minor-version` to `true`. You also can set the version of the extension instance manually using the `--version` parameter. We recommend enabling automatic upgrades for minor and patch versions so that you always have the latest security patches and capabilities.
 >
-> Because major version upgrades may include breaking changes, automatic upgrades for new major versions of an extension instance aren't supported. You can choose when to [manually upgrade extension instances](#upgrade-extension-instance) to a new major version.
+> Because major version upgrades may include breaking changes, automatic upgrades for new major versions of an extension instance aren't supported. You can choose when to [manually upgrade an extension instances](#upgrade-an-extension-instance) to a new major version.
 
 | Parameter name | Description |
 |--------------|------------|
@@ -231,7 +231,7 @@ Check for output that looks like this example:
 > [!NOTE]
 > Refer to documentation for the specific extension type to understand the specific settings in `--configuration-settings` and `--configuration-protected-settings` that are able to be updated. For `--configuration-protected-settings`, all settings are expected to be provided, even if only one setting is being updated. If any of these settings are omitted, those settings will be considered obsolete and deleted.
 
-To update an existing extension instance, use `k8s-extension update`, passing in values for the mandatory and optional parameters. The mandatory and optional parameters are slightly different than those used to create an extension instance.
+To update an existing extension instance, use `k8s-extension update`. Pass in values for the mandatory and optional parameters. The mandatory and optional parameters are slightly different from the parameters that you use to create an extension instance.
 
 This example updates the `auto-upgrade-minor-version` setting for an Azure Machine Learning extension instance to `true`:
 
@@ -239,35 +239,35 @@ This example updates the `auto-upgrade-minor-version` setting for an Azure Machi
 az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubernetes --scope cluster --cluster-name <clusterName> --resource-group <resourceGroupName> --auto-upgrade-minor-version true --cluster-type managedClusters
 ```
 
-### Required parameters for update
+### Required parameters for an update
 
 | Parameter name | Description |
 |----------------|------------|
 | `--name` | The name of the extension instance. |
-| `--cluster-name` | Name of the cluster on which the extension instance has to be created |
-| `--resource-group` | The resource group containing the cluster |
+| `--cluster-name` | The name of the cluster on which the extension instance is created. |
+| `--resource-group` | The resource group that contains the cluster. |
 | `--cluster-type` | The cluster type on which the extension instance has to be created. For Azure Arc-enabled Kubernetes clusters, use `connectedClusters`. For AKS clusters, use `managedClusters`.|
 
-### Optional parameters for update
+### Optional parameters for an update
 
 | Parameter name | Description |
 |--------------|------------|
-| `--auto-upgrade-minor-version` | Boolean property that specifies whether the extension minor version is automatically upgraded. The default setting is `true`.  If this parameter is set to true, you can't set the `version` parameter, as the version will be dynamically updated. If set to `false`, the extension won't be automatically upgraded, even for patch versions. |
-| `--version` | Version of the extension to be installed (specific version to pin the extension instance to). Must not be supplied if auto-upgrade-minor-version is set to `true`. |
-| `--configuration-settings` | Settings that can be passed into the extension to control its functionality. These are passed in as space-separated `key=value` pairs after the parameter name. If this parameter is used in the command, then `--configuration-settings-file` can't be used in the same command.  Only the settings that require an update need to be provided. The provided settings will be replaced with the specified values. |
-| `--configuration-settings-file` | Path to the JSON file with `key=value` pairs to be used for passing in configuration settings to the extension. If this parameter is used in the command, then `--configuration-settings` can't be used in the same command. |
-| `--configuration-protected-settings` | Settings that aren't retrievable using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. These are passed in as space-separated `key=value` pairs after the parameter name. If this parameter is used in the command, then `--configuration-protected-settings-file` can't be used in the same command. When you update a protected setting, all of the protected settings are expected to be specified. If any of these settings are omitted, those settings will be considered obsolete and deleted.  |
-| `--configuration-protected-settings-file` | Path to a JSON file with `key=value` pairs to be used for passing in sensitive settings to the extension. If this parameter is used in the command, then `--configuration-protected-settings` can't be used in the same command. |
-| `--scope` | Scope of installation for the extension - `cluster` or `namespace`. |
-| `--release-train` | Extension authors can publish versions in different release trains such as `Stable`, `Preview`, etc. If this parameter isn't set explicitly, `Stable` is used as default.  |
+| `--auto-upgrade-minor-version` | A Boolean property that specifies whether the extension minor version is automatically upgraded. The default setting is `true`. If this parameter is set to `true`, you can't set the `version` parameter because the version is dynamically updated. If the parameter is set to `false`, the extension won't be automatically upgraded, even for patch versions. |
+| `--version` | The version of the extension to be installed (a specific version to pin the extension instance to). Must not be supplied if `auto-upgrade-minor-version` is set to `true`. |
+| `--configuration-settings` | Settings that can be passed into the extension to control its functionality. These settings are passed in as space-separated `key=value` pairs after the parameter name. If the parameter is used in the command, `--configuration-settings-file` can't be used in the same command. Only the settings that require an update need to be provided. The provided settings are replaced with the specified values. |
+| `--configuration-settings-file` | The path to a JSON file that contains `key=value` pairs to be used for passing in configuration settings to the extension. If this parameter is used in the command, you can't use `--configuration-settings` in the same command. |
+| `--configuration-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. These settings are passed in as space-separated `key=value` pairs after the parameter name. If this parameter is used in the command, the `--configuration-protected-settings-file` can't be used in the same command. When you update a protected setting, configure all protected settings. If any of the settings are omitted, those settings are considered obsolete, and they're deleted.  |
+| `--configuration-protected-settings-file` | The path to a JSON file that contains `key=value` pairs to be used for passing in sensitive settings to the extension. If this parameter is used in the command, you can't use `--configuration-protected-settings` in the same command. |
+| `--scope` | The scope of installation for the extension. Use either `cluster` or `namespace`. |
+| `--release-train` | The author of an extension can publish versions in different release flows, such as `Stable` or `Preview`. If this parameter isn't set explicitly, `Stable` is used as default.  |
 
-## Upgrade extension instance
+## Upgrade an extension instance
 
-As noted earlier, if you set `auto-upgrade-minor-version` to true, the extension will automatically be upgraded when a new minor version is released. For most scenarios, we recommend enabling automatic upgrades. If you set `auto-upgrade-minor-version` to false, you'll have to upgrade the extension manually if you want a newer version.
+As noted earlier, if you set `auto-upgrade-minor-version` to true, the extension is automatically upgraded when a new minor version is released. For most scenarios, we recommend that you enable automatic upgrades. If you set `auto-upgrade-minor-version` to `false`, you must upgrade the extension manually if you want a more recent version.
 
-Manual upgrades are also required to get a new major instance of an extension. You can choose when to upgrade in order to avoid any unexpected breaking changes with major version upgrades.
+Manual upgrades also are required to get a new major instance of an extension. You can choose when to upgrade to avoid any unexpected breaking changes in major version upgrades.
 
-To manually upgrade an extension instance, use `k8s-extension update` and set the `version` parameter to specify a version.
+To manually upgrade an extension instance, use `k8s-extension update` and set the `version` parameter.
 
 This example updates an Azure Machine Learning extension instance to version `x.y.z`:
 
@@ -289,6 +289,6 @@ az k8s-extension delete --name azuremonitor-containers --cluster-name <clusterNa
 ## Related content
 
 * For a comprehensive list of commands and parameters, review the [az k8s-extension CLI reference](/cli/azure/k8s-extension).
-* Learn more about [how extensions work with Arc-enabled Kubernetes clusters](conceptual-extensions.md).
-* Review the [cluster extensions currently available for Azure Arc-enabled Kubernetes](extensions-release.md).
-* Get help [troubleshooting extension issues](extensions-troubleshooting.md).
+* Learn more about [how extensions work with Azure Arc-enabled Kubernetes clusters](conceptual-extensions.md).
+* Review [cluster extensions that are available for Azure Arc-enabled Kubernetes](extensions-release.md).
+* Get help with [troubleshooting extension issues](extensions-troubleshooting.md).

@@ -1,8 +1,8 @@
 ---
-title: "Cluster extensions - Azure Arc-enabled Kubernetes"
+title: "Cluster extensions in Azure Arc-enabled Kubernetes"
 ms.date: 03/22/2024
 ms.topic: conceptual
-description: "This article provides a conceptual overview of the Azure Arc-enabled Kubernetes cluster extensions capability."
+description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes cluster extensions capability."
 ---
 
 # Cluster extensions
@@ -15,7 +15,7 @@ A cluster operator or admin can [use the cluster extensions feature](extensions.
 
 - Install and manage key management, data, and application offerings on your Kubernetes cluster.
 - Use Azure Policy to automate at-scale deployment of cluster extensions across all clusters in your environment.
-- Subscribe to release trains (for example, preview or stable) for each extension.
+- Subscribe to release flows (for example, *preview* or *stable*) for each extension.
 - Set up auto-upgrade for extensions or pin to a specific version and manually upgrade versions.
 - Update extension properties or delete extension instances.
 
@@ -27,16 +27,16 @@ Extensions are available to support a wide range of Azure services and scenarios
 
 The cluster extension instance is created as an extension Azure Resource Manager resource (`Microsoft.KubernetesConfiguration/extensions`) on top of the Azure Arc-enabled Kubernetes resource (represented by `Microsoft.Kubernetes/connectedClusters`) in Azure Resource Manager.
 
-This representation in Azure Resource Manager allows you to author a policy that checks for all Azure Arc-enabled Kubernetes resources with or without a specific cluster extension. Once you've determined which clusters are missing the cluster extensions with desired property values, you can remediate these non-compliant resources using Azure Policy.
+This representation in Azure Resource Manager allows you to author a policy that checks for all Azure Arc-enabled Kubernetes resources, with or without a specific cluster extension. After you determine which clusters are missing cluster extensions that have specific property values, you can remediate noncompliant resources by using Azure Policy.
 
-The `config-agent` running in your cluster tracks new and updated extension resources on the Azure Arc-enabled Kubernetes resource. The `extensions-manager` agent running in your cluster reads the extension type that needs to be installed, then pulls the associated Helm chart from Azure Container Registry or Microsoft Container Registry and installs it on the cluster.
+The `config-agent` component that runs on your cluster tracks new and updated extension resources on the Azure Arc-enabled Kubernetes resource. The `extensions-manager` agent running in your cluster reads the extension type that needs to be installed. Then, it pulls the associated Helm chart from Azure Container Registry or Microsoft Container Registry and installs it on the cluster.
 
-Both the `config-agent` and `extensions-manager` components running in the cluster handle extension instance updates, version updates and extension instance deletion. These agents use the system-assigned managed identity of the cluster to securely communicate with Azure services.
+Both the `config-agent` and `extensions-manager` components running in the cluster handle extension instance updates, version updates, and deleting extension instances. These agents use the system-assigned managed identity of the cluster to securely communicate with Azure services.
 
 > [!NOTE]
-> `config-agent` checks for new or updated extension instances on top of Azure Arc-enabled Kubernetes cluster. The agents require connectivity for the desired state of the extension to be pulled down to the cluster. If agents are unable to connect to Azure, propagation of the desired state to the cluster is delayed.
+> `config-agent` checks for new or updated extension instances on top of Azure Arc-enabled Kubernetes cluster. The agents require connectivity for the desired state of the extension to be pulled to the cluster. If agents can't connect to Azure, propagation of the desired state to the cluster is delayed.
 >
-> Protected configuration settings for an extension instance are stored for up to 48 hours in the Azure Arc-enabled Kubernetes services. As a result, if the cluster remains disconnected during the 48 hours after the extension resource was created on Azure, the extension changes from a `Pending` state to `Failed` state. To prevent this, we recommend bringing clusters online regularly.
+> Protected configuration settings for an extension instance are stored for up to 48 hours in the Azure Arc-enabled Kubernetes services. As a result, if the cluster remains disconnected during the 48 hours after the extension resource is created in Azure, the extension changes from a `Pending` state to a `Failed` state. To prevent this, we recommend that you bring clusters online regularly.
 
 > [!IMPORTANT]
 > Currently, Azure Arc-enabled Kubernetes cluster extensions aren't supported on ARM64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type `linux/amd64`.
@@ -45,11 +45,11 @@ Both the `config-agent` and `extensions-manager` components running in the clust
 
 Each extension type defines the scope at which they operate on the cluster. Extension installations on Arc-enabled Kubernetes clusters are either *cluster-scoped* or *namespace-scoped*.
 
-A cluster-scoped extension will be installed in the `release-namespace` specified during extension creation. Typically, only one instance of the cluster-scoped extension and its components, such as pods, operators, and Custom Resource Definitions (CRDs), are installed in the release namespace on the cluster.
+A cluster-scoped extension is installed in the `release-namespace` that you specify when create an instance of an extension. Typically, only one instance of the cluster-scoped extension and its components, such as pods, operators, and custom resource definitions (CRDs), are installed in the release namespace on the cluster.
 
-A namespace-scoped extension can be installed in a given namespace provided using the `–namespace` property. Because the extension can be deployed for a namespace, multiple instances of the namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed. All the above extensions are cluster-scoped except Event Grid on Kubernetes.
+You can install a namespace-scoped extension in a specific namespace by using the `–namespace` property. Because the extension can be deployed for a namespace, multiple instances of the namespace-scoped extension and its components can run on a cluster. Each instance of the extension has permissions for the namespace where it's deployed. All the extensions that are described in this article are cluster-scoped except the Event Grid on Kubernetes extension.
 
-All of the [currently available extensions](extensions-release.md) are cluster-scoped, except for [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc) .
+All the [currently available extensions](extensions-release.md) are cluster-scoped, except [Azure API Management on Azure Arc](/azure/api-management/how-to-deploy-self-hosted-gateway-azure-arc) .
 
 ## Related content
 
