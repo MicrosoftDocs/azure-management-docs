@@ -16,7 +16,7 @@ Follow these steps to recover a published dashboard:
 
 1. From the Azure portal menu, select **Resource groups**, then select the resource group where you published the dashboard. (The default resource group is named **dashboards**.)
 
-1. Under **Activity log**, expand the **Delete Dashboard** operation, then select the **Delete Dashboard** item underneath it.
+1. Under **Activity log**, expand the **Delete Dashboard** operation, then select the **Delete Dashboard** item underneath it. If you don't see this operation, try changing the **Timespan** filter to a longer duration.
 
 1. Select the [**Change history** tab](/azure/azure-monitor/change/change-analysis-visualizations##view-the-activity-log-change-history), then select **\<deleted resource\>**.
 
