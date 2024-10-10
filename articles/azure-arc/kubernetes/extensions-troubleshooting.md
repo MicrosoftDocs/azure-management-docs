@@ -283,7 +283,7 @@ NAME           ENDPOINTS           AGE
 osm-injector   10.240.1.172:9090   75m
 ```
 
-For OSM to function, there must be at least one endpoint for `osm-injector`. The IP address of your OSM injector endpoints vary, but the port `9090` must be the same.
+For OSM to function, there must be at least one endpoint for `osm-injector`. The IP address of your OSM injector endpoints varies, but the port `9090` must be the same.
 
 ### Check webhooks: Validating and Mutating
 

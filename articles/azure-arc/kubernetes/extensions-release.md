@@ -118,7 +118,7 @@ For more information, see [Deploy an Azure API Management gateway on Azure Arc (
 
 ## Azure Arc-enabled Machine Learning
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for ARM64 architectures.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for Arm64 architectures.
 
 Use the Azure Machine Learning extension to deploy and run Azure Machine Learning on an Azure Arc-enabled Kubernetes cluster.
 
