@@ -115,7 +115,7 @@ You can use one or more of these optional parameters with the required parameter
 | `--configuration-protected-settings` | Settings that aren't retrievable using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. These settings are passed in as space-separated `key=value` pairs after the parameter name. If this parameter is used in the command, you can't use `--configuration-protected-settings-file` in the same command. |
 | `--configuration-protected-settings-file` | The path to a JSON file with `key=value` pairs to be used to pass sensitive settings into the extension. If this parameter is used in the command, you can't use `--configuration-protected-settings` in the same command. |
 | `--release-namespace` | This parameter indicates the namespace in which to create the release. This parameter is relevant only if `scope` is set to `cluster`. |
-| `--release-train` |  The author of an extension can publish versions in different release flows, such as `Stable` or `Preview`. If this parameter isn't set explicitly, `Stable` is the default.  |
+| `--release-train` |  The author of an extension can publish versions in different release trains, such as `Stable` or `Preview`. If this parameter isn't set explicitly, `Stable` is the default.  |
 | `--target-namespace` | Indicates the namespace within which to create the release. Permissions for the system account that's created for this extension instance is restricted to this namespace. This setting is relevant only if `scope` is set to `namespace`. |
 
 ## Show extension details
