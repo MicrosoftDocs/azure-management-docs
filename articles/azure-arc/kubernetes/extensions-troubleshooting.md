@@ -8,7 +8,7 @@ description: "Learn how to resolve common problems with Azure Arc-enabled Kubern
 
 # Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters
 
-This article describes troubleshooting tips for common problems related to [cluster extensions](extensions-release.md), such as for using GitOps (Flux v2) in Azure or Open Service Mesh (OSM).
+This article describes troubleshooting tips for common problems related to [cluster extensions](extensions-release.md) like GitOps (Flux v2) in Azure or Open Service Mesh (OSM).
 
 For help with troubleshooting Azure Arc-enabled Kubernetes problems in general, see [Troubleshoot Azure Arc-enabled Kubernetes issues](troubleshooting.md).
 
@@ -17,7 +17,7 @@ For help with troubleshooting Azure Arc-enabled Kubernetes problems in general, 
 > [!NOTE]
 > You can use the Flux v2 extension in either an Azure Arc-enabled Kubernetes cluster or in an Azure Kubernetes Service (AKS) cluster. These troubleshooting tips generally apply to all cluster types.
 
-For general help with troubleshooting problems when you use `fluxConfigurations` resources, run these Azure CLI commands with `--debug` parameters defined:
+For general help with troubleshooting problems when you use `fluxConfigurations` resources, run these Azure CLI commands with the `--debug` parameter:
 
 ```azurecli
 az provider show -n Microsoft.KubernetesConfiguration --debug
@@ -28,7 +28,7 @@ az k8s-configuration flux create <parameters> --debug
 
 Flux might fail and display an error similar to `dry-run failed, error: admission webhook "<webhook>" does not support dry run`. To resolve the problem, go to `ValidatingWebhookConfiguration` or `MutatingWebhookConfiguration`. In the configuration, set the value for `sideEffects` to `None` or `NoneOnDryRun`.
 
-For more information, see [How do I resolve "webhook doesn't support dry run" errors?](https://fluxcd.io/docs/faq/#how-do-i-resolve-webhook-does-not-support-dry-run-errors)
+For more information, see [How do I resolve "webhook does not support dry run" errors?](https://fluxcd.io/flux/cheatsheets/troubleshooting/#how-do-i-resolve-webhook-does-not-support-dry-run-errors).
 
 ### Errors installing the microsoft.flux extension
 
@@ -47,8 +47,6 @@ Next, run the following command to determine if there are other problems.
 In the command, for an Azure Arc-enabled cluster, set the cluster type parameter (`-t`) to `connectedClusters`. For an AKS cluster, set `-t` to `managedClusters`.
 
 The name of the `microsoft.flux` extension is `flux` if the extension was installed automatically when you created your GitOps configuration.
-
-To get details about the configuration, check the `statuses` object. Then run the command:
 
 ```azurecli
 az k8s-extension show -g <RESOURCE_GROUP> -c <CLUSTER_NAME> -n flux -t <connectedClusters or managedClusters>
@@ -106,12 +104,12 @@ The following table lists the minimum and maximum limits for potential CPU and m
 | `image-automation-controller` | 100 m | 64 Mi | 1,000 m | 1 Gi |
 | `image-reflector-controller` | 100 m | 64 Mi | 1,000 m | 1 Gi |
 
-If you enabled a custom or built-in Azure Policy Gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that the resource limits on the policy are greater than the limits shown in the preceding table or the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
+If you enabled a custom or built-in Azure Policy Gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that either the resource limits on the policy are greater than the limits shown in the preceding table or that the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
 
 ### Flux v1
 
 > [!NOTE]
-> We recommend that you [migrate to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible. Support for Flux v1-based cluster configuration resources that were created before January 1, 2024,  end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
+> We recommend that you [migrate to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible. Support for Flux v1-based cluster configuration resources that were created before January 1, 2024,  ends on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
 To help troubleshoot problems with the `sourceControlConfigurations` resource in Flux v1, run these Azure CLI commands, including the `--debug` parameter:
 
@@ -122,7 +120,7 @@ az k8s-configuration flux create <parameters> --debug
 
 ## Azure Monitor Container Insights
 
-This section provides help with troubleshooting problems with [Azure Monitor Container Insights for Azure Arc-enabled Kubernetes clusters](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=create-cli%2Cverify-portal).
+This section provides help with troubleshooting problems with [Container insights in Azure Monitor for Azure Arc-enabled Kubernetes clusters](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=create-cli%2Cverify-portal).
 
 ### Enable privileged mode for a Canonical Charmed Kubernetes cluster
 
