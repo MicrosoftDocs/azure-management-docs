@@ -25,7 +25,7 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 
 * View all connected Kubernetes clusters for inventory, grouping, and tagging, along with your Azure Kubernetes Service (AKS) clusters.
 
-* Configure clusters and deploy applications using [GitOps-based configuration management](tutorial-use-gitops-connected-cluster.md).
+* Configure clusters and deploy applications using [GitOps-based configuration management](tutorial-use-gitops-flux2.md).
 
 * View and monitor your clusters using [Azure Monitor for containers](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json).
 
