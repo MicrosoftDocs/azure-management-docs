@@ -259,7 +259,7 @@ az k8s-extension update --name azureml --extension-type Microsoft.AzureML.Kubern
 | `--configuration-protected-settings` | Settings that aren't retrievable by using `GET` API calls or `az k8s-extension show` commands. Typically used to pass in sensitive settings. These settings are passed in as space-separated `key=value` pairs after the parameter name. If this parameter is used in the command, the `--configuration-protected-settings-file` can't be used in the same command. When you update a protected setting, configure all protected settings. If any of the settings are omitted, those settings are considered obsolete, and they're deleted.  |
 | `--configuration-protected-settings-file` | The path to a JSON file that contains `key=value` pairs to be used for passing in sensitive settings to the extension. If this parameter is used in the command, you can't use `--configuration-protected-settings` in the same command. |
 | `--scope` | The scope of installation for the extension. Use either `cluster` or `namespace`. |
-| `--release-train` | The author of an extension can publish versions in different release flows, such as `Stable` or `Preview`. If this parameter isn't set explicitly, `Stable` is the default.  |
+| `--release-train` | The author of an extension can publish versions in different release trains, such as `Stable` or `Preview`. If this parameter isn't set explicitly, `Stable` is the default.  |
 
 ## Upgrade an extension instance
 
