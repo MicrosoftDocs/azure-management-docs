@@ -36,16 +36,14 @@ Once these steps are completed, you can deploy the cluster using the method of y
 - [Quickstart with Terraform](./quickstart-terraform.md)
 - [Quickstart with ARM](./quickstart-azure-resource-manager-template.md)
 
-## Unregister the Azure Linux 3.0 Feature Flag
-
-1. Unregister the `AzureLinuxV3Preview` feature flag by using the [az feature unregister][az-feature-unregister] command. 
-
-```azurecli-interactive
-az feature unregister --namespace "Microsoft.ContainerService" --name "AzureLinuxV3Preview"
-```
-
-2. Refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register][az-provider-register] command:
-
-```azurecli-interactive
+## Disable Azure Linux 3.0
+1. Unregister the `AzureLinuxV3Preview` feature flag using the [`az feature unregister`](/cli/azure/feature#az-feature-unregister) command. 
+    ```azurecli-interactive
+    az feature unregister --namespace "Microsoft.ContainerService" --name "AzureLinuxV3Preview"
+    ```
+1. Refresh the registration of the *Microsoft.ContainerService* resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
+    ```azurecli-interactive
     az provider register --namespace "Microsoft.ContainerService"
-```
+    ```
+## Next steps
+For more information about Azure Linux 3.0 Preview, see [What's new with Azure Linux 3.0?](./intro-azure-linux.md).
