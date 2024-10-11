@@ -50,5 +50,5 @@ This at-scale enforcement ensures a common baseline configuration (containing co
 ## Next steps
 
 * Use our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
-* [Create configurations](./tutorial-use-gitops-connected-cluster.md) on your Azure Arc-enabled Kubernetes cluster.
+* [Create configurations](tutorial-use-gitops-flux2.md) on your Azure Arc-enabled Kubernetes cluster.
 * [Use Azure Policy to apply configurations at scale](./use-azure-policy.md).
