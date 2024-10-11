@@ -8,7 +8,7 @@ description: "Learn how to create and manage an extension instance on an Azure A
 
 # Deploy and manage an Azure Arc-enabled Kubernetes cluster extension
 
-You can use an extension in an Azure Arc-enabled Kubernetes cluster to access Azure services and scenarios. This article describes how to set required and optional parameters in an extension instance, including options for updates and configurations. You also learn how to view, list, update, and delete extension instances.
+You can use an extension in an Azure Arc-enabled Kubernetes cluster to access Azure services and scenarios. This article describes how to create extension instances and set required and optional parameters, including options for updates and configurations. You also learn how to view, list, update, and delete extension instances.
 
 Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster extensions](conceptual-extensions.md) and review the [list of currently available extensions](extensions-release.md).
 
@@ -35,9 +35,9 @@ Before you begin, read the [overview of Azure Arc-enabled Kubernetes cluster ext
 
 ## Create an extension instance
 
-To create a new extension instance, use the `k8s-extension create` command. In the code, use values from your scenario for the required parameter placeholders.
+To create a new extension instance, use the `k8s-extension create` command. Use values from your scenario for the required parameter placeholders.
 
-This example creates an [Azure Monitor Container insights](extensions-release.md#container-insights-in-azure-monitor) extension instance on an Azure Arc-enabled Kubernetes cluster:
+This example creates a [Container insights in Azure Monitor](extensions-release.md#container-insights-in-azure-monitor) extension instance on an Azure Arc-enabled Kubernetes cluster:
 
 ```azurecli
 az k8s-extension create --name azuremonitor-containers  --extension-type Microsoft.AzureMonitor.Containers --scope cluster --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
@@ -82,7 +82,7 @@ Check for output that looks like this example:
 > [!NOTE]
 > The service doesn't retain sensitive information beyond 48 hours. If Azure Arc-enabled Kubernetes agents don't have network connectivity for more than 48 hours and can't determine whether to create an extension on the cluster, the extension transitions to a `Failed` state. In that scenario, you must run `k8s-extension create` again to create a fresh extension Azure resource.
 >
-> The Azure Monitor feature Container insights is a single extension. Only one Container insights extension is required per cluster. Before you install Container insights via an extension, you must delete any previous Helm chart installations of Azure Monitor Container Insights that don't use extensions. Before you run `az k8s-extension create`, complete the steps to [delete the Helm chart](/azure/azure-monitor/containers/kubernetes-monitoring-disable#remove-container-insights-with-helm).
+> Only one Container insights in Azure Monitor extension is required per cluster. Before you install Container insights via an extension, you must delete any previous Helm chart installations of Container insights that don't use extensions. Before you run `az k8s-extension create`, complete the steps to [delete the Helm chart](/azure/azure-monitor/containers/kubernetes-monitoring-disable#remove-container-insights-with-helm).
 
 ### Required parameters
 
@@ -229,7 +229,7 @@ Check for output that looks like this example:
 ## Update an extension instance
 
 > [!NOTE]
->To understand the specific settings in `--configuration-settings` and `--configuration-protected-settings` that can be updated, see the documentation for the specific extension type. For `--configuration-protected-settings`, provide all settings, even if only one setting is updated updated. If any of these settings are omitted, the settings will be considered obsolete, and they are deleted.
+>To understand the specific settings in `--configuration-settings` and `--configuration-protected-settings` that can be updated, see the documentation for the specific extension type. For `--configuration-protected-settings`, provide all settings, even if only one setting is updated. If any of these settings are omitted, the omitted settings will be considered obsolete, and they are deleted.
 
 To update an existing extension instance, use `k8s-extension update`. Pass in values for the mandatory and optional parameters. The mandatory and optional parameters are slightly different from the parameters that you use to create an extension instance.
 
@@ -277,7 +277,7 @@ az k8s-extension update --cluster-name <clusterName> --resource-group <resourceG
 
 ## Delete an extension instance
 
-To delete an extension instance on a cluster, use the `k8s-extension delete` command. In the code, use values from your scenario for the required parameter placeholders.
+To delete an extension instance on a cluster, use the `k8s-extension delete` command. Use values from your scenario for the required parameter placeholders.
 
 ```azurecli
 az k8s-extension delete --name azuremonitor-containers --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
