@@ -20,7 +20,7 @@ To learn more about Azure Linux, see the [Azure Linux GitHub repository](https:/
 > [!NOTE]
 > Azure Linux 3.0 is available in preview on AKS. 
 >
-> For instructions on how to get started, please read the [How To Enable Azure Linux 3.0](./how-to-enable-azure-linux3.md) docs.
+> To learn how to get started, see [Quickstart: Enable Azure Linux 3.0](./how-to-enable-azure-linux3.md).
 
 ## Azure Linux Container Host key benefits
 
@@ -42,12 +42,11 @@ The Azure Linux Container Host offers the following key benefits:
   - All existing and future AKS extensions, add-ons, and open-source projects on AKS support Azure Linux. This includes support for runtime components like Dapr, IaC tools like Terraform, and monitoring solutions like Dynatrace.
   - Azure Linux ships with containerd as its container runtime and the upstream Linux kernel, which enables existing containers based on Linux images (like Alpine) to work seamlessly on Azure Linux.
 
-## What's new with Azure Linux 3.0? 
-With the latest [AKS Release](), Azure Linux 3.0 is available in preview for usage on AKS. Every 3-years, Azure Linux releases a new version of it's operating system with upgrades to major components. 
+## What's new with Azure Linux 3.0?
 
-Please see the [supported lifecycles](./support-cycle.md) section for information on Azure Linux 2.0 and Azure Linux 3.0 lifecycles. 
+Azure Linux 3.0 is available in preview to use on AKS. Every three years, Azure Linux releases a new version of its operating system with upgrades to major components. 
 
-The table below contains few of the major components upgraded as part of this release: 
+The following table outlines information about the upgrades made to major components as part of this release: 
 
 |Component| Version|
 |--|--|
@@ -55,6 +54,7 @@ The table below contains few of the major components upgraded as part of this re
 |ContainerD| 1.7 but will also offer 2.0 once it reaches stable |
 |SystemD | v255 | 
 
+For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [Azure Linux Container Host support lifecycle](./support-cycle.md).
 ## Azure Linux Container Host supported GPU SKUs
 
 The Azure Linux Container Host supports the following GPU SKUs:
