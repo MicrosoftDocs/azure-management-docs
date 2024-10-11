@@ -9,7 +9,7 @@ description: "See a list of extensions that are currently available for Azure Ar
 
 [Cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md) provide an Azure Resource Manager-based experience to install and manage lifecycle for different Azure capabilities in your cluster. You can [deploy extensions to your clusters](extensions.md) to support different scenarios and to improve cluster management.
 
-The following extensions are currently available to use with Azure Arc-enabled Kubernetes clusters. With one exception, all the extensions that are described in this article are [cluster-scoped](conceptual-extensions.md#extension-scope). The Azure API Management on Azure Arc is scoped for the namespace.
+The following extensions are currently available to use with Azure Arc-enabled Kubernetes clusters. With one exception, all the extensions that are described in this article are [cluster-scoped](conceptual-extensions.md#extension-scope). The Azure API Management on Azure Arc is namespace-scoped.
 
 ## Container insights in Azure Monitor
 
@@ -29,7 +29,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 - **Supported distributions**: AKS on Azure Stack HCI, AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
 
-Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an instance of Azure Key Vault as a secrets store with a Kubernetes cluster via a CSI volume. For an Azure Arc-enabled Kubernetes clusters, you can install the Azure Key Vault Secrets Provider extension to fetch secrets.
+Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an instance of Azure Key Vault as a secrets store with a Kubernetes cluster via a CSI volume. For Azure Arc-enabled Kubernetes clusters, you can install the Azure Key Vault Secrets Provider extension to fetch secrets.
 
 For more information, see [Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters](tutorial-akv-secrets-provider.md).
 
@@ -37,7 +37,7 @@ For more information, see [Use the Azure Key Vault Secrets Provider extension to
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters that are connected to Azure Arc and running Kubernetes 1.27 or later.
 
-The Azure Key Vault Secret Store (Secret Store) extension for Kubernetes automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
+The Azure Key Vault Secret Store extension for Kubernetes (Secret Store) automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
 
 We recommend the Secret Store extension for scenarios that require offline access, or if you need secrets synced to the Kubernetes secret store. If you don't need to use these features, we recommend that you instead use the Azure Key Vault Secrets Provider extension.
 
@@ -130,25 +130,25 @@ For more information, see [Introduction to the Kubernetes compute target in Azur
 
 [GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) uses [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
 
-For more information, see [Tutorial: Deploy applications by using GitOps and Flux v2](tutorial-use-gitops-flux2.md).
+For more information, see [Tutorial: Deploy applications using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 
-The most recent version of the Flux v2 extension and the two earlier versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
+The most recent version of the Flux v2 extension and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
 > [!IMPORTANT]
 > The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream open-source software (OSS) Flux project.
 >
-> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API is promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
+> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API will be promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
 >
 > - **`.spec.chart.spec.valuesFile`**: Replaced by `.spec.chart.spec.valuesFiles` in `v2`.
 > - **`.spec.postRenderers.kustomize.patchesJson6902`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
 > - **`.spec.postRenderers.kustomize.patchesStrategicMerge`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
 > - **`.status.lastAppliedRevision`**: Replaced by `.status.history.chartVersion` in `v2`.
 >
-> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) API is promoted from `v1beta2` to `v1` (GA). The `v1` API is backward compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which is replaced by `.spec.valuesFiles`.
+> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) API will be promoted from `v1beta2` to `v1` (GA). The `v1` API is backward compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which is replaced by `.spec.valuesFiles`.
 >
-> The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that are removed in the release.
+> The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that will be removed in the upcoming release.
 >
-> The Kustomize package is updated to v5.4.0. The version contains the following breaking changes:
+> The Kustomize package will be updated to v5.4.0. The version contains the following breaking changes:
 >
 > - [Kustomization build fails when the resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
 > - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
