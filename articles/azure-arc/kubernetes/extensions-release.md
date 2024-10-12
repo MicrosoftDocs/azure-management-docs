@@ -7,9 +7,9 @@ description: "See a list of extensions that are currently available for Azure Ar
 
 # Available extensions for Azure Arc-enabled Kubernetes clusters
 
-[Cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md) provide an Azure Resource Manager-based experience to install and manage lifecycle for different Azure capabilities in your cluster. You can [deploy extensions to your clusters](extensions.md) to support different scenarios and to improve cluster management.
+[Cluster extensions for Azure Arc-enabled Kubernetes](conceptual-extensions.md) provide an Azure Resource Manager-based experience to install and manage lifecycles for different Azure capabilities in your cluster. You can [deploy extensions to your clusters](extensions.md) to support different scenarios and to improve cluster management.
 
-The following extensions are currently available to use with Azure Arc-enabled Kubernetes clusters. With one exception, all the extensions that are described in this article are [cluster-scoped](conceptual-extensions.md#extension-scope). The Azure API Management on Azure Arc is namespace-scoped.
+The following extensions are currently available to use with Azure Arc-enabled Kubernetes clusters. With one exception, all the extensions that are described in this article are [cluster-scoped](conceptual-extensions.md#extension-scope). Azure API Management on Azure Arc is namespace-scoped.
 
 ## Container insights in Azure Monitor
 
@@ -44,7 +44,7 @@ We recommend the Secret Store extension for scenarios that require offline acces
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
 
 > [!IMPORTANT]
-> Secret Store is currently in PREVIEW.
+> Secret Store is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -73,7 +73,7 @@ For more information, see [Azure Arc-enabled Open Service Mesh](tutorial-arc-ena
 
 - **Supported distributions**: AKS, AKS on Azure Stack HCI, Azure Red Hat OpenShift, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Container Platform, and Amazon Elastic Kubernetes Service.
 
-Makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds by using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
+This extension makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds by using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
 
 For more information, see [Azure Arc-enabled data services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
 
@@ -81,9 +81,9 @@ For more information, see [Azure Arc-enabled data services](../data/create-data-
 
 - **Supported distributions**: AKS, AKS on Azure Stack HCI, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
 
-Allows you to provision an App Service Kubernetes environment on top of Azure Arc-enabled Kubernetes clusters.
+Use this extension to provision an App Service Kubernetes environment on top of an Azure Arc-enabled Kubernetes cluster.
 
-For more information, see [App Service, Functions, and Logic Apps on Azure Arc (Preview)](/azure/app-service/overview-arc-integration).
+For more information, see [Set up an Azure Arc-enabled Kubernetes cluster to run App Service apps, function apps, and logic apps (Preview)](/azure/app-service/overview-arc-integration).
 
 > [!IMPORTANT]
 > App Service on Azure Arc is currently in public preview. Review the [public preview limitations for App Service Kubernetes environments](/azure/app-service/overview-arc-integration#public-preview-limitations) before you deploy this extension.
