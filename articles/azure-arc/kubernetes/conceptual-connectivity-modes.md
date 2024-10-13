@@ -36,5 +36,5 @@ The connectivity status of a cluster is determined by the time of the latest hea
 ## Next steps
 
 - Walk through our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
-- Learn more about creating connections between your cluster and a Git repository as a [configuration resource with Azure Arc-enabled Kubernetes](./conceptual-configurations.md).
+- Learn more about creating connections between your cluster and a Git repository as a [configuration resource with Azure Arc-enabled Kubernetes](./conceptual-gitops-flux2.md).
 - Review the [Azure Arc networking requirements](network-requirements.md).
