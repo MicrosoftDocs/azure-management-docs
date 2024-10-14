@@ -39,7 +39,7 @@ You can ask "**Is there any Azure outage ongoing?**" In this example, no outages
 
 You can also ask about a specific service event to see whether it's been resolved. If you know the tracking ID, you can ask "**Is incident {0} still active?**"
 
-:::image type="content" source="media/understand-service-health/aazure-service-health-still-active.png" alt-text="Screenshot of Microsoft Copilot in Azure checking whether a service health issue is still active.":::
+:::image type="content" source="media/understand-service-health/azure-service-health-still-active.png" alt-text="Screenshot of Microsoft Copilot in Azure checking whether a service health issue is still active.":::
 
 ## Next steps
 
