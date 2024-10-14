@@ -28,7 +28,7 @@ Here are a few examples of the kinds of prompts you can use to get service healt
 - "Is there any outage impacting me?"
 - "Can you tell me more about tracking ID {0}?"
 - "Is the event with tracking ID {0} still active?"
-- "What is the status of the event with tracking ID {0}"
+- "What is the status of the event with tracking ID {0}?"
 - "Is the incident related to (Azure service or feature) still active?"
 
 ## Examples
