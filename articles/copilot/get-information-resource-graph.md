@@ -16,7 +16,7 @@ author: JnHs
 
 You can ask Microsoft Copilot in Azure (preview) questions about your Azure resources and cloud environment. Using the combined power of large language models (LLMs) and [Azure Resource Graph](/azure/governance/resource-graph/overview), Microsoft Copilot in Azure (preview) helps you author Azure Resource Graph queries. You provide input using natural language from anywhere in the Azure portal, and Microsoft Copilot in Azure (preview) returns a working query that you can use with Azure Resource Graph. Azure Resource Graph also acts as an underpinning mechanism for other scenarios that require real-time access to your resource inventory.
 
-Azure Resource Graph's query language is based on the [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) used by Azure Data Explorer. However, you don't need to be familiar with KQL in order to use Microsoft Copilot in Azure (preview) to retrieve information about your Azure resources and environment. Experienced query authors can also use Microsoft Copilot in Azure to help streamline their query generation process.
+Azure Resource Graph's query language is based on the [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) used by Azure Data Explorer. However, you don't need to be familiar with KQL in order to use Microsoft Copilot in Azure (preview) to retrieve information about your Azure resources and environment. Experienced query authors can also use Microsoft Copilot in Azure to help streamline their query generation process. Once Copilot in Azure generates your query, you can run it in Azure Resource Graph, or copy the text to modify or save the query.
 
 While a high level of accuracy is typical, we strongly advise you to review the generated queries to ensure they meet your expectations.
 
@@ -50,7 +50,7 @@ If the generated query isn't exactly what you want, you can ask Microsoft Copilo
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-query-refine.png" alt-text="Screenshot of Microsoft Copilot in Azure (preview) generating and then revising a query to list VMs by OS.":::
 
-You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure (preview) generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer.
+You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure (preview) generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer. Alternately, you can select the **Copy** icon to copy the query.
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" lightbox="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" alt-text="Screenshot showing Microsoft Copilot in Azure generating a query and showing results in Azure Resource Graph Explorer.":::
 
