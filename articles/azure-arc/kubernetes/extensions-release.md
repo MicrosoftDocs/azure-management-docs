@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 09/24/2024
+ms.date: 10/14/2024
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -159,6 +159,21 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
+### 1.13.0 (October 2024)
+
+Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
+
+- source-controller: v1.4.1
+- kustomize-controller: v1.4.0
+- notification-controller: v1.4.0
+- helm-controller: v1.1.0
+- image-reflector-controller: v0.33.0
+- image-automation-controller: v0.39.0
+
+Changes made for this version:
+
+- Implemented fix to retrieve certificates from the correct location, resolving failures that occurred after switching the image from Alpine to Mariner.
+
 ### 1.12.0 (September 2024)
 
 Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)
@@ -194,21 +209,6 @@ Changes made for this version:
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
 - Enabled workload identity for the Kustomize controller. For setup instructions, see [Workload identity in AKS clusters](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#workload-identity-in-aks-clusters).
 - Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This change allows traffic to the API server's domain name, even when a Layer 7 firewall is present, facilitating deployments during extension installation. For more information, see [Configure annotation on Flux extension pods](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#configure-annotation-on-flux-extension-pods).
-
-### 1.10.0 (June 2024)
-
-Flux version: [Release v2.1.2](https://github.com/fluxcd/flux2/releases/tag/v2.1.2)
-
-- source-controller: v1.2.5
-- kustomize-controller: v1.1.1
-- helm-controller: v0.36.2
-- notification-controller: v1.1.0
-- image-automation-controller: v0.36.1
-- image-reflector-controller: v0.30.0
-
-Changes made for this version:
-
-- The `FluxConfig` custom resource now includes support for [Open Container Initiative (OCI) repositories](https://fluxcd.io/flux/components/source/ocirepositories/). This enhancement means that Flux configurations can accommodate Git repositories, Buckets, Azure Blob storage, or OCI repositories as valid source types.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
