@@ -24,6 +24,9 @@ While a high level of accuracy is typical, we strongly advise you to review the 
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
 
+>[!Note]
+>If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to get resource information](/azure/developer/github-copilot-azure/learn-examples) and more.
+
 ## Sample prompts
 
 Here are a few examples of the kinds of prompts you can use to generate Azure Resource Graph queries. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.

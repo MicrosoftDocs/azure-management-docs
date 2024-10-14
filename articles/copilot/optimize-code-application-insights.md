@@ -22,6 +22,9 @@ When you ask Microsoft Copilot in Azure to provide these recommendations, it aut
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
 
+>[!Note]
+>If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to optimize your application in Azure](/azure/developer/github-copilot-azure/optimize-examples) and more.
+
 ## Sample prompts
 
 Here are a few examples of the kinds of prompts you can use with Code Optimizations. Modify these prompts based on your real-life scenarios, or try additional prompts about specific areas for optimization.

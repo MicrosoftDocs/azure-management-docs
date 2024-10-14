@@ -28,6 +28,9 @@ Once you're there, start the conversation by letting Microsoft Copilot in Azure 
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
 
+>[!Note]
+>If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to deploy your application](/azure/developer/github-copilot-azure/deploy-examples) and more.
+
 ## Sample prompts
 
 The prompts you use can vary depending on the type of workload you want to deploy, and the stage of the conversation that you're in. Here are a few examples of the kinds of prompts you might use. Modify these prompts based on your real-life scenarios, or try additional prompts as the conversation continues.
