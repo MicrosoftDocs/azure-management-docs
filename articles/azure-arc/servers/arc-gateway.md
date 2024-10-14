@@ -152,8 +152,9 @@ When the resource is created, the success response includes the Arc gateway URL.
     **For Windows servers:**
     
     1. Obtain your gateway's Resource ID by running the `az connectedmachine gateway list` command. This command outputs information about all the gateway resources in your subscription. Note the ID parameter in the output (that is, the full ARM resource ID).
-    1. In the **try section** of the installation script, add the ID found in the previous step as the following parameter: `--gateway-id "[Your-gateway’s-Resource-ID]"` 
-    1. In the **catch section** of the installation script, add the ID found in the previous step as the following parameter: `gateway-id="[Your-gateway’s-Resource-ID]"` 
+    1. In the **try section** of the installation script, add the ID found in the previous step as the following parameter: `--gateway-id "[Your-gateway’s-Resource-ID]"`
+    1. In the **try section** of the installation script, add the AltDownload parameter: '-AltDownload "https://gbl.his.arc.azure.com/azcmagent/latest/AzureConnectedMachineAgent.msi"` 
+    1. In the **catch section** of the installation script, add the ID found in the previous step as the following parameter: `gateway-id="[Your-gateway’s-Resource-ID]"`
         
     Windows server onboarding script example:
 
@@ -198,10 +199,10 @@ When the resource is created, the success response includes the Arc gateway URL.
         [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor 3072; 
     
         # Download the installation package 
-        Invoke-WebRequest -UseBasicParsing -Uri "https://aka.ms/azcmagent-windows" -TimeoutSec 30 -OutFile "$env:TEMP\install_windows_azcmagent.ps1" -proxy "[Your Proxy URL]"; 
+        Invoke-WebRequest -UseBasicParsing -Uri "https://gbl.his.arc.azure.com/azcmagent-windows" -TimeoutSec 30 -OutFile "$env:TEMP\install_windows_azcmagent.ps1" -proxy "[Your Proxy URL]"; 
      
         # Install the hybrid agent 
-        & "$env:TEMP\install_windows_azcmagent.ps1" -proxy "[Your Proxy URL]"; 
+        & "$env:TEMP\install_windows_azcmagent.ps1" -proxy "[Your Proxy URL]" -AltDownload "https://gbl.his.arc.azure.com/azcmagent/latest/AzureConnectedMachineAgent.msi"; 
         if ($LASTEXITCODE -ne 0) { exit 1; } 
     
         # Run connect command 
