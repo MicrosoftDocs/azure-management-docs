@@ -50,7 +50,7 @@ If the generated query isn't exactly what you want, you can ask Microsoft Copilo
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-query-refine.png" alt-text="Screenshot of Microsoft Copilot in Azure (preview) generating and then revising a query to list VMs by OS.":::
 
-You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure (preview) generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer. Alternately, you can select the **Copy** icon to copy the query.
+You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure (preview) generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer. 
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" lightbox="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" alt-text="Screenshot showing Microsoft Copilot in Azure generating a query and showing results in Azure Resource Graph Explorer.":::
 
