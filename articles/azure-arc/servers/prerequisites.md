@@ -39,7 +39,7 @@ Azure Arc supports the following Windows and Linux operating systems. x86-64 (64
 | ----------------------------------- | ----------- | ------ | ----- | ------------------------------------------------------------------------------------------------ |
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
 | Amazon Linux                        | 2           | ✅    | ❌    |                                                                                                  |
-| Amazon Linux                        | 2023        | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
+| Amazon Linux                        | 2023        | ✅    | ✅    | See [ARM64 architecture support](#arm64-architecture-support)                                    |
 | Azure Linux (CBL-Mariner)           | 1.0         | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ❌    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
@@ -58,13 +58,13 @@ Azure Arc supports the following Windows and Linux operating systems. x86-64 (64
 | Rocky Linux                         | 8           | ✅    | ❌    |                                                                                                  |
 | Rocky Linux                         | 9           | ✅    | ❌    |                                                                                                  |
 | SUSE Linux Enterprise Server (SLES) | 12 SP3-SP5  | ✅    | ❌    |                                                                                                  |
-| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
+| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | See [ARM64 architecture support](#arm64-architecture-support)                                    |
 | Ubuntu                              | 16.04       | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Ubuntu                              | 18.04       | ✅    | ❌    |                                                                                                  |
 | Ubuntu                              | 20.04       | ✅    | ❌    |                                                                                                  |
 | Ubuntu                              | 22.04       | ✅    | ❌    |                                                                                                  |
-| Windows Client                      | 10          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
-| Windows Client                      | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
+| Windows Client                      | 10          | ✅    | ❌    | See [Client operating system guidance](#client-operating-system-guidance)                        |
+| Windows Client                      | 11          | ✅    | ❌    | See [Client operating system guidance](#client-operating-system-guidance)                        |
 | Windows IoT Enterprise              |             |       |        |                                                                                                  |
 | Windows Server                      | 2008 R2 SP1 | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Windows Server                      | 2012        | ✅    | ❌    |                                                                                                  |
