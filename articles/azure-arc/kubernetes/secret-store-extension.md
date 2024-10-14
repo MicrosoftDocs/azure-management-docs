@@ -26,6 +26,7 @@ This article shows you how to install and configure the Secret Store as an [Azur
 - A cluster [connected to Azure Arc](quickstart-connect-cluster.md), running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
 - The examples throughout this guide use a [K3s](https://k3s.io/) cluster.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
+- [cert-manager](https://cert-manager.io/) is required to support TLS for intracluster log communication. Installation instructions are included [later](#install-the-secret-store-azure-arc-extension).
 
 Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
 
@@ -223,6 +224,28 @@ Create a Kubernetes service account for the workload that needs access to secret
 The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](conceptual-extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
 The Secret Store is installed as an [Azure Arc extension](extensions.md)
+
+### Install cert-manager and trust-manager
+
+[cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) are required for secure communication of logs between cluster services.
+
+1. Install cert-manager.
+
+   ```azurecli
+   kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
+   ```
+
+1. Install trust-manager.
+
+   ```azurecli
+   helm repo add jetstack https://charts.jetstack.io
+   helm repo update
+   helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
+   kubectl create namespace azure-secret-store
+   kubectl label namespace azure-secret-store arc-diagnostics-extension-client="true"
+   ```
+
+   The "azure-secret-store" namespace must match the "--release-namespace" specified when creating the Secrets Store extension in the next step.
 
 ### Install the Secret Store Azure Arc extension
 
