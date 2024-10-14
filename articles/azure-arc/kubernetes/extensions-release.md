@@ -165,11 +165,11 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 
 - source-controller: v1.4.1
 - kustomize-controller: v1.4.0
-- notification-controller: v1.4.0
 - helm-controller: v1.1.0
-- image-reflector-controller: v0.33.0
+- notification-controller: v1.4.0
 - image-automation-controller: v0.39.0
-
+- image-reflector-controller: v0.33.0
+- 
 Changes made for this version:
 
 - Implemented fix to retrieve certificates from the correct location, resolving failures that occurred after switching the image from Alpine to Mariner.
