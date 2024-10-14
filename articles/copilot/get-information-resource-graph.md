@@ -1,7 +1,7 @@
 ---
 title: Get resource information using Microsoft Copilot in Azure (preview)
 description: Learn about scenarios where Microsoft Copilot in Azure (preview) can help with Azure Resource Graph.
-ms.date: 05/28/2024
+ms.date: 10/14/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
