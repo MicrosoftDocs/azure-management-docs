@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 07/29/2024
+ms.date: 10/15/2024
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
@@ -35,17 +35,18 @@ If two agents use the same configuration, you'll encounter inconsistent behavior
 
 Azure Arc supports Windows and Linux operating systems as listed in the table. x86-64 (64-bit) architecture is fully supported, while only some features are supported on Arm64 as noted in the table. The Azure Connected Machine agent doesn't run on 32-bit architectures.
 
-| Operating system                    | Version     | x86-64 | Arm64 | Notes                                                                                            |
+| Operating system                    | Version     | x86-64 | ARM64 | Notes                                                                                            |
 | ----------------------------------- | ----------- | ------ | ----- | ------------------------------------------------------------------------------------------------ |
+| AlmaLinux                           | 8           | ✅     | ✅    |                                                                                                  |
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
-| Amazon Linux                        | 2           | ✅    | ❌    |                                                                                                  |
-| Amazon Linux                        | 2023        | ✅    | ✅    | See [Arm64 architecture support](#arm64-architecture-support)                                    |
+| Amazon Linux                        | 2           | ✅    | ✅    |                                                                                                  |
+| Amazon Linux                        | 2023        | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
 | Azure Linux (CBL-Mariner)           | 1.0         | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
-| Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ❌    |                                                                                                  |
+| Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ✅    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
 | Azure Stack HCI                     |             |       |        |                                                                                                  |
-| CentOS                              | 7           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
-| CentOS                              | 8           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Centos                              | 7           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
+| Centos                              | 8           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 10          | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 11          | ✅    | ❌    |                                                                                                  |
 | Debian                              | 12          | ✅    | ❌    |                                                                                                  |
@@ -58,13 +59,14 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Rocky Linux                         | 8           | ✅    | ❌    |                                                                                                  |
 | Rocky Linux                         | 9           | ✅    | ❌    |                                                                                                  |
 | SUSE Linux Enterprise Server (SLES) | 12 SP3-SP5  | ✅    | ❌    |                                                                                                  |
-| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | See [Arm64 architecture support](#arm64-architecture-support)                                    |
+| SUSE Linux Enterprise Server (SLES) | 15          | ✅    | ✅    | see [ARM64 architecture support](#arm64-architecture-support)                                    |
 | Ubuntu                              | 16.04       | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Ubuntu                              | 18.04       | ✅    | ❌    |                                                                                                  |
-| Ubuntu                              | 20.04       | ✅    | ❌    |                                                                                                  |
-| Ubuntu                              | 22.04       | ✅    | ❌    |                                                                                                  |
-| Windows Client                      | 10          | ✅    | ❌    | See [Client operating system guidance](#client-operating-system-guidance)                        |
-| Windows Client                      | 11          | ✅    | ❌    | See [Client operating system guidance](#client-operating-system-guidance)                        |
+| Ubuntu                              | 20.04       | ✅    | ✅    |                                                                                                  |
+| Ubuntu                              | 22.04       | ✅    | ✅    |                                                                                                  |
+| Ubuntu                              | 24.04       | ✅    | ✅    |                                                                                                  |
+| Windows Client                      | 10          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
+| Windows Client                      | 11          | ✅    | ❌    | see [client operating system guidance](#client-operating-system-guidance)                        |
 | Windows IoT Enterprise              |             |       |        |                                                                                                  |
 | Windows Server                      | 2008 R2 SP1 | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Windows Server                      | 2012        | ✅    | ❌    |                                                                                                  |

@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 09/13/2024
+ms.date: 10/15/2024
 ms.custom: references_regions
 ---
 
@@ -20,9 +20,29 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window.
 > 
 
-## Version 1.46 - September 2024
+## Version 1.47 - October 2024
 
 Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Guest Configuration: Fix an issue that caused agent to become unresponsive.
+- Fixed a bug to trim error messages when updating AgentStatus.
+
+### New features and enhancements
+
+- Code enhancement to support cloud specific endpoints in the install script.
+- Addition of architecture detection to system properties.
+- Addition of EndpointConnectivityInfo to AgentData.
+- Expansion of ARM64 platform support for the following distributions:
+    - Ubuntu 20.04, 22.04, 24.04
+    - Azure Linux (CBL-Mariner) 2.0
+    - Amazon Linux 2
+    - Alma Linux 8
+
+## Version 1.46 - September 2024
+
+Download for [Windows](https://download.microsoft.com/download/6/c/0/6c0775bc-9ed7-49af-9637-79653f783062/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
 
 ### Fixed
 
