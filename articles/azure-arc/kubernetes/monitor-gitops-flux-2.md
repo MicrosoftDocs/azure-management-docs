@@ -1,6 +1,6 @@
 ---
 title: Monitor GitOps (Flux v2) status and activity
-ms.date: 10/18/2023
+ms.date: 10/16/2024
 ms.topic: how-to
 description: Learn how to monitor status, compliance, resource consumption, and reconciliation activity for GitOps with Flux v2.
 ---
@@ -35,7 +35,7 @@ To help debug reconciliation issues for a cluster, select **Configuration object
 
 :::image type="content" source="media/monitor-gitops-flux2/portal-configuration-object-details.png" alt-text="Screenshot showing detailed conditions for a configuration object.":::
 
-To view the Kubernetes objects that have been created as a result of Flux configurations being applied, select **Workloads** in the **Kubernetes resources** section of the cluster's left navigation pane. Here, you can view all details of any resources that have been created on the cluster.
+To view the Kubernetes objects that were created as a result of Flux configurations being applied, select **Workloads** in the **Kubernetes resources** section of the cluster's service menu. Here, you can view all details of any resources that have been created on the cluster.
 
 By default, you can filter by namespace and service name. You can also add any label filter that you may be using in your applications to help narrow down the search. 
 
@@ -87,7 +87,7 @@ Follow these steps to import dashboards that let you monitor Flux extension depl
 1. Download the [GitOps Flux - Application Deployments Dashboard](https://github.com/Azure/fluxv2-grafana-dashboards/blob/main/dashboards/GitOps%20Flux%20-%20Application%20Deployments%20Dashboard.json).
 1. Follow the steps to [import the JSON dashboard to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard).
 
-After you have imported the dashboard, it will display information from the clusters that you're monitoring, with several panels that provide details. For more details on an item, select the link to visit the Azure portal, where you can find more information about configurations, errors and logs.
+After you have imported the dashboard, it displays information from the clusters that you're monitoring, with several panels that provide details. For more details on an item, select the link to visit the Azure portal, where you can find information about configurations, errors and logs.
 
 :::image type="content" source="media/monitor-gitops-flux2/flux-application-deployments-dashboard.png" alt-text="Screenshot of the Flux Application Deployments Dashboard." lightbox="media/monitor-gitops-flux2/flux-application-deployments-dashboard.png":::
 
@@ -122,7 +122,7 @@ Follow the steps below to create an alert. Example queries are provided to detec
 1. In the left navigation menu of the dashboard, select **Alerting**.
 1. Select **Alert rules**.
 1. Select **+ Create alert rule**. The new alert rule page opens, with the **Grafana managed alerts** option selected by default.
-1. In **Rule name**, add a descriptive name. This name is displayed in the alert rule list, and it will be the used as the `alertname` label for every alert instance created from this rule.
+1. In **Rule name**, add a descriptive name. This name is displayed in the alert rule list, and it's used as the `alertname` label for every alert instance created from this rule.
 1. Under **Set a query and alert condition**:
 
    - Select a data source. The same data source used for the dashboard may be used here.
@@ -169,7 +169,7 @@ Follow the steps below to create an alert. Example queries are provided to detec
 
 1. If desired, add any custom labels. Then select **Save**.
 
-You can also [configure contact points](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/manage-contact-points/) and [configure notification policies](https://grafana.com/docs/grafana/latest/alerting/alerting-rules/create-notification-policy/) for your alerts.
+You can also [configure contact points and notification policies](https://grafana.com/docs/grafana/latest/alerting/configure-notifications/manage-contact-points/) for your alerts.
 
 ## Monitor resource consumption and reconciliations
 
@@ -228,7 +228,7 @@ Follow these steps to import dashboards that let you monitor Flux resource consu
 1. [Link the Managed Prometheus workspace to the Managed Grafana instance](/azure/azure-monitor/essentials/azure-monitor-workspace-manage#link-a-grafana-workspace). This takes a few minutes to complete.
 1. Follow the steps to [import these JSON dashboards to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard).
 
-After you have imported the dashboards, they'll display information from the clusters that you're monitoring. To show information only for a particular cluster or namespace, use the filters near the top of each dashboard.
+After you have imported the dashboards, they display information from the clusters that you're monitoring. To show information only for a particular cluster or namespace, use the filters near the top of each dashboard.
 
 The **Flux Control Plane** dashboard shows details about status resource consumption, reconciliations at the cluster level, and Kubernetes API requests.
 
