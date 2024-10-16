@@ -10,7 +10,7 @@ ms.custom: references_regions
 
 The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
 
-Synchronized secrets are critical business assets, so the Secret Store secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For additional protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
+Synchronized secrets are critical business assets, so the Secret Store secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
 
 > [!TIP]
 > The Secret Store extension is recommended for scenarios where offline access is necessary, or if you need secrets synced into the Kubernetes secret store. If you don't need these features, you can use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) for secret management in your Arc-enabled Kubernetes clusters. It is not recommended to run both the online Azure Key Vault Secrets Provider extension and the offline Secret Store extension side-by-side in a cluster.
@@ -26,6 +26,7 @@ This article shows you how to install and configure the Secret Store as an [Azur
 - A cluster [connected to Azure Arc](quickstart-connect-cluster.md), running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
 - The examples throughout this guide use a [K3s](https://k3s.io/) cluster.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
+- cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
 Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
 
@@ -224,6 +225,24 @@ The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled K
 
 The Secret Store is installed as an [Azure Arc extension](extensions.md)
 
+### Install cert-manager and trust-manager
+
+[cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) are required for secure communication of logs between cluster services and must be installed before the Arc extension.
+
+1. Install cert-manager.
+
+   ```azurecli
+   kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
+   ```
+
+1. Install trust-manager.
+
+   ```azurecli
+   helm repo add jetstack https://charts.jetstack.io
+   helm repo update
+   helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
+   ```
+
 ### Install the Secret Store Azure Arc extension
 
 Be sure that your Kubernetes cluster is [connected to Azure Arc](quickstart-connect-cluster.md) before installing the extension.
@@ -245,8 +264,7 @@ Be sure that your Kubernetes cluster is [connected to Azure Arc](quickstart-conn
      --resource-group ${ARC_RESOURCE_GROUP} \
      --release-train preview \
      --name ssarcextension \
-     --scope cluster \
-     --release-namespace azure-secret-store
+     --scope cluster 
    ```
 
    If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`:
