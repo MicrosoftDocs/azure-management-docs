@@ -26,7 +26,7 @@ This article shows you how to install and configure the Secret Store as an [Azur
 - A cluster [connected to Azure Arc](quickstart-connect-cluster.md), running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
 - The examples throughout this guide use a [K3s](https://k3s.io/) cluster.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
-- cert-manager is required to support TLS for intracluster log communication. The examples later in this guide will direct you though installation steps. For more formation about cert-manager see [cert-manager.io](https://cert-manager.io/)
+- cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more formation about cert-manager see [cert-manager.io](https://cert-manager.io/)
 
 Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
 
@@ -245,7 +245,7 @@ The Secret Store is installed as an [Azure Arc extension](extensions.md)
    kubectl create namespace ${SECRETS_STORE_EXTENTION_NAMESPACE}
    kubectl label namespace ${SECRETS_STORE_EXTENTION_NAMESPACE} arc-diagnostics-extension-client="true"
    ```
-   The namespace that will be used by the secrets store extension is also created and labelled to support diagnostics collection.
+   The secrets store extension's namespace is also created and labelled to support diagnostics collection.
 
 ### Install the Secret Store Azure Arc extension
 
