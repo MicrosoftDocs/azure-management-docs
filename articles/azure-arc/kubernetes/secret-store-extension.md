@@ -46,7 +46,6 @@ az account set --subscription "${SUBSCRIPTION}"
 export SERVICE_ACCOUNT_ISSUER="https://$AZURE_STORAGE_ACCOUNT.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}"
 export FEDERATED_IDENTITY_CREDENTIAL_NAME="myFedIdentity"
 export KUBERNETES_NAMESPACE="default"
-export SECRETS_STORE_EXTENTION_NAMESPACE=azure-secret-store
 export SERVICE_ACCOUNT_NAME="workload-identity-sa"
 ```
 
@@ -242,10 +241,7 @@ The Secret Store is installed as an [Azure Arc extension](extensions.md)
    helm repo add jetstack https://charts.jetstack.io
    helm repo update
    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
-   kubectl create namespace ${SECRETS_STORE_EXTENTION_NAMESPACE}
-   kubectl label namespace ${SECRETS_STORE_EXTENTION_NAMESPACE} arc-diagnostics-extension-client="true"
    ```
-   The secrets store extension's namespace is also created and labeled to support diagnostics collection.
 
 ### Install the Secret Store Azure Arc extension
 
@@ -268,8 +264,7 @@ Be sure that your Kubernetes cluster is [connected to Azure Arc](quickstart-conn
      --resource-group ${ARC_RESOURCE_GROUP} \
      --release-train preview \
      --name ssarcextension \
-     --scope cluster \
-     --release-namespace ${SECRETS_STORE_EXTENTION_NAMESPACE}
+     --scope cluster 
    ```
 
    If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`:
