@@ -230,7 +230,7 @@ If you're only planning to use Private Links to support a few machines or server
 
 ### Configure a new Azure Arc-enabled server to use Private link
 
-When connecting a machine or server with Azure Arc-enabled servers for the first time, you can optionally connect it to a Private Link Scope. The following steps are
+When connecting a machine or server with Azure Arc-enabled servers for the first time, you can optionally connect it to a Private Link Scope. 
 
 1. From your browser, go to the [Azure portal](https://portal.azure.com).
 
