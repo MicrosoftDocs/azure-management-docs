@@ -19,14 +19,14 @@ This topic describes some of the ways you can monitor your Flux activity and sta
 
 ## Monitor Flux configurations in the Azure portal
 
-After you've [created Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps**.
+After you [create Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps**.
 
 ### View details on cluster compliance and objects
 
 The **Compliance** state shows whether the current state of the cluster matches the desired state. Possible values:
 
 - **Compliant**: The cluster's state matches the desired state.
-- **Pending**: An updated desired state has been detected, but that state has not yet been reconciled on the cluster.
+- **Pending**: An updated desired state was detected, but that state isn't yet reconciled on the cluster.
 - **Not Compliant**: The current state doesn't match the desired state.
 
 :::image type="content" source="media/monitor-gitops-flux2/portal-gitops-compliance.png" alt-text="Screenshot of cluster compliance and other values in the Azure portal.":::
@@ -35,13 +35,13 @@ To help debug reconciliation issues for a cluster, select **Configuration object
 
 :::image type="content" source="media/monitor-gitops-flux2/portal-configuration-object-details.png" alt-text="Screenshot showing detailed conditions for a configuration object.":::
 
-To view the Kubernetes objects that were created as a result of Flux configurations being applied, select **Workloads** in the **Kubernetes resources** section of the cluster's service menu. Here, you can view all details of any resources that have been created on the cluster.
+To view the Kubernetes objects that were created as a result of Flux configurations being applied, select **Workloads** in the **Kubernetes resources** section of the cluster's service menu. Here, you can view all details of any resources that were created on the cluster.
 
 By default, you can filter by namespace and service name. You can also add any label filter that you may be using in your applications to help narrow down the search. 
 
 ### View Flux configuration state and details
 
-For each Flux configuration, the **State** column indicates whether the Flux configuration object has successfully been created on the cluster.
+For each Flux configuration, the **State** column indicates whether the Flux configuration object was successfully created on the cluster.
 
 Select any Flux configuration to see its **Overview** page, including the following information:
 
@@ -71,14 +71,14 @@ Follow these steps to import dashboards that let you monitor Flux extension depl
 > These steps describe the process for importing the dashboard to [Azure Managed Grafana](/azure/managed-grafana/overview). You can also [import this dashboard to any Grafana instance](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/#import-a-dashboard). With this option, a service principal must be used; managed identity is not supported for data connection outside of Azure Managed Grafana.
 
 1. Create an Azure Managed Grafana instance by using the [Azure portal](/azure/managed-grafana/quickstart-managed-grafana-portal) or [Azure CLI](/azure/managed-grafana/quickstart-managed-grafana-cli). Ensure that you're able to access Grafana by selecting its endpoint on the Overview page. You need at least **Grafana Editor** level permissions to view and edit dashboards. You can check your access by going to **Access control (IAM)** on the Grafana instance.  
-1. If you're using a managed identity for the Azure Managed Grafana instance, follow these steps to assign it the **Monitoring Reader** role on the subscription(s):
+1. If you're using a managed identity for the Azure Managed Grafana instance, follow these steps to assign it the **Monitoring Reader** role on the subscription where you created your Azure Managed Grafana instance:
 
    1. In the Azure portal, navigate to the subscription that you want to add.
    1. Select **Access control (IAM)**.
    1. Select **Add role assignment**.
    1. Select the **Monitoring Reader** role, then select **Next**.
    1. On the **Members** tab, select **Managed identity**, then choose **Select members**.
-   1. From the **Managed identity** list, select the subscription where you created your Azure Managed Grafana Instance. Then select **Azure Managed Grafana** and the name of your Azure Managed Grafana instance.
+   1. From the **Managed identity** list, select the subscription, then select **Azure Managed Grafana** and the name of your Azure Managed Grafana instance.
    1. Select **Review + Assign**.
 
    If you're using a service principal, grant the **Monitoring Reader** role to the service principal that you'll use for your data source connection. Follow these same steps, but select **User, group, or service principal** in the **Members** tab, then select your service principal. (If you aren't using Azure Managed Grafana, you must use a service principal for data connection access.)
@@ -87,7 +87,7 @@ Follow these steps to import dashboards that let you monitor Flux extension depl
 1. Download the [GitOps Flux - Application Deployments Dashboard](https://github.com/Azure/fluxv2-grafana-dashboards/blob/main/dashboards/GitOps%20Flux%20-%20Application%20Deployments%20Dashboard.json).
 1. Follow the steps to [import the JSON dashboard to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard).
 
-After you have imported the dashboard, it displays information from the clusters that you're monitoring, with several panels that provide details. For more details on an item, select the link to visit the Azure portal, where you can find information about configurations, errors and logs.
+After you import the dashboard, it displays information from the clusters that you're monitoring, with several panels that provide details. For more details on an item, select the link to visit the Azure portal, where you can find information about configurations, errors and logs.
 
 :::image type="content" source="media/monitor-gitops-flux2/flux-application-deployments-dashboard.png" alt-text="Screenshot of the Flux Application Deployments Dashboard." lightbox="media/monitor-gitops-flux2/flux-application-deployments-dashboard.png":::
 
@@ -115,9 +115,9 @@ For example, in the **Flux Configuration Compliance Status** table, you can sele
 
 ### Create alerts for extension and configuration failures
 
-After you've imported the dashboard as described in the previous section, you can set up alerts. These alerts notify you when Flux extensions or Flux configurations experience failures.
+After you import the dashboard as described in the previous section, you can set up alerts. These alerts notify you when Flux extensions or Flux configurations experience failures.
 
-Follow the steps below to create an alert. Example queries are provided to detect extension provisioning or extension upgrade failures, or to detect compliance state failures.
+Follow these steps to create an alert. Example queries are provided to detect extension provisioning or extension upgrade failures, or to detect compliance state failures.
 
 1. In the left navigation menu of the dashboard, select **Alerting**.
 1. Select **Alert rules**.
@@ -160,7 +160,7 @@ Follow the steps below to create an alert. Example queries are provided to detec
    - In **Configure no data and error handling**, indicate what should happen when the alert rule returns no data or returns an error.
    - To check the results from running the query, select **Preview**.
 
-1. Add the storage location, rule group, and any additional metadata that you want to associate with the rule.
+1. Add the storage location, rule group, and any other metadata that you want to associate with the rule.
 
    - For **Folder**, select the folder where the rule should be stored.
    - For **Group**, specify a predefined group.
@@ -225,10 +225,10 @@ Follow these steps to import dashboards that let you monitor Flux resource consu
    ```
   
 1. Download the [Flux Control Plane](https://github.com/Azure/fluxv2-grafana-dashboards/blob/main/dashboards/Flux%20Control%20Plane.json) and [Flux Cluster Stats](https://github.com/Azure/fluxv2-grafana-dashboards/blob/main/dashboards/Flux%20Cluster%20Stats.json) dashboards.
-1. [Link the Managed Prometheus workspace to the Managed Grafana instance](/azure/azure-monitor/essentials/azure-monitor-workspace-manage#link-a-grafana-workspace). This takes a few minutes to complete.
+1. [Link the Managed Prometheus workspace to the Managed Grafana instance](/azure/azure-monitor/essentials/azure-monitor-workspace-manage#link-a-grafana-workspace). This process takes a few minutes to complete.
 1. Follow the steps to [import these JSON dashboards to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard).
 
-After you have imported the dashboards, they display information from the clusters that you're monitoring. To show information only for a particular cluster or namespace, use the filters near the top of each dashboard.
+After you import the dashboards, they display information from the clusters that you're monitoring. To show information only for a particular cluster or namespace, use the filters near the top of each dashboard.
 
 The **Flux Control Plane** dashboard shows details about status resource consumption, reconciliations at the cluster level, and Kubernetes API requests.
 
@@ -240,11 +240,11 @@ The **Flux Cluster Stats** dashboard shows details about the number of reconcile
 
 ### Create alerts for resource consumption and reconciliation issues
 
-After you've imported the dashboard as described in the previous section, you can set up alerts. These alerts notify you of resource consumption and reconciliation issues that may require attention.
+After you import the dashboard as described in the previous section, you can set up alerts. These alerts notify you of resource consumption and reconciliation issues that may require attention.
 
 To enable these alerts, you deploy a Bicep template similar to the one shown here. The alert rules in this template are samples that can be modified as needed.
 
-Once you've downloaded the Bicep template and made your changes, [follow these steps to deploy the template](/azure/azure-resource-manager/bicep/template-specs).
+After you download the Bicep template and make your changes, [follow these steps to deploy the template](/azure/azure-resource-manager/bicep/template-specs).
 
 ```bicep
 param azureMonitorWorkspaceName string
