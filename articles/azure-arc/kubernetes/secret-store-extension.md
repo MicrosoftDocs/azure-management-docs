@@ -55,7 +55,7 @@ To access and synchronize a given Azure Key Vault secret, the Secret Store requi
 
 ### Host OIDC public information about your cluster's Service Account issuer
 
-Use of federated identity currently requires you to setup cloud storage to host OIDC format information about the public keys of your cluster's Service Account issuer. In this section, you set up a secured, public Open ID Connect (OIDC) issuer URL using Azure blob storage, then upload a minimal discovery document to the storage account. For background, see [OIDC configuration for self-managed clusters](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
+Use of federated identity currently requires you to set up cloud storage to host OIDC format information about the public keys of your cluster's Service Account issuer. In this section, you set up a secured, public Open ID Connect (OIDC) issuer URL using Azure blob storage, then upload a minimal discovery document to the storage account. For background, see [OIDC configuration for self-managed clusters](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
 
 1. Create an Azure storage account.
 
