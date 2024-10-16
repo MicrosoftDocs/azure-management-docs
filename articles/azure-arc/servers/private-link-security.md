@@ -123,7 +123,7 @@ See the visual diagram under the section [How it works](#how-it-works) for the n
 
 1. Enter a name for the Azure Arc Private Link Scope. It's best to use a meaningful and clear name.
 
-   Optionally, you can require every Azure Arc-enabled machine or server associated with this Azure Arc Private Link Scope to send data to the service through the private endpoint. To do so, check the box for **Allow public network access** so machines or servers associated with this Azure Arc Private Link Scope can communicate with the service over both private or public networks. You can change this setting after creating the scope if you change your mind.
+1. Optionally, you can require every Azure Arc-enabled machine or server associated with this Azure Arc Private Link Scope to send data to the service through the private endpoint. To do so, check the box for **Allow public network access** so machines or servers associated with this Azure Arc Private Link Scope can communicate with the service over both private or public networks. You can change this setting after creating the scope if you change your mind.
 
 1. Select the **Private endpoint** tab, then select **Create**.
 1. In the **Create private endpoint** window:
@@ -230,7 +230,7 @@ If you're only planning to use Private Links to support a few machines or server
 
 ### Configure a new Azure Arc-enabled server to use Private link
 
-When connecting a machine or server with Azure Arc-enabled servers for the first time, you can optionally connect it to a Private Link Scope. The following steps are
+When connecting a machine or server with Azure Arc-enabled servers for the first time, you can optionally connect it to a Private Link Scope. 
 
 1. From your browser, go to the [Azure portal](https://portal.azure.com).
 
