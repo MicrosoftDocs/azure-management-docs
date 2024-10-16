@@ -89,7 +89,9 @@ Validate endpoint creation:
 This functionality is currently packaged in an Azure CLI extension and an Azure PowerShell module.
 #### [Install Azure CLI extension](#tab/azure-cli)
 
-```az extension add --name ssh```
+```bash
+az extension add --name ssh
+```
 
 > [!NOTE]
 > The Azure CLI extension version must be greater than 2.0.0.
@@ -111,11 +113,15 @@ In order to use the SSH connect feature, you must update the Service Configurati
 
 #### [Azure CLI](#tab/azure-cli)
 
-```az rest --method put --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 --body "{\"properties\": {\"serviceName\": \"SSH\", \"port\": 22}}"```
+```bash
+az rest --method put --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 --body "{\"properties\": {\"serviceName\": \"SSH\", \"port\": 22}}"
+```
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-```Invoke-AzRestMethod -Method put -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 -Payload '{"properties": {"serviceName": "SSH", "port": 22}}'```
+```powershell
+Invoke-AzRestMethod -Method put -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 -Payload '{"properties": {"serviceName": "SSH", "port": 22}}'
+```
 
 ---
 
@@ -124,7 +130,9 @@ If you're using a nondefault port for your SSH connection, replace port 22 with 
 ### Optional: Install Azure AD login extension
 The `Azure AD based SSH Login – Azure Arc` VM extension can be added from the extensions menu of the Arc server. The Azure AD login extension can also be installed locally via a package manager via: `apt-get install aadsshlogin` or the following command.
 
-```az connectedmachine extension create --machine-name <arc enabled server name> --resource-group <resourcegroup> --publisher Microsoft.Azure.ActiveDirectory --name AADSSHLogin --type AADSSHLoginForLinux --location <location>```
+```bash
+az connectedmachine extension create --machine-name <arc enabled server name> --resource-group <resourcegroup> --publisher Microsoft.Azure.ActiveDirectory --name AADSSHLogin --type AADSSHLoginForLinux --location <location>
+```
 
 
 ## Examples

@@ -17,6 +17,8 @@ items:
       href: multi-node-cluster-edge-volumes.md
     - name: Install extension
       href: install-edge-volumes.md
+    - name: Map file to object path names
+      href: map-names.md
     - name: Configure your volumes
       items:
       - name: Local Shared Edge Volumes
@@ -25,6 +27,8 @@ items:
         items:
         - name: Cloud Ingest Edge Volumes configuration
           href: cloud-ingest-edge-volume-configuration.md
+        - name: Set ingest policy
+          href: ingest-policies.md
         - name: Alternate OneLake configuration for Cloud Ingest Edge Volumes
           href: alternate-onelake.md
         - name: Alternate key-based authentication for Cloud Ingest Edge Volumes
@@ -33,6 +37,14 @@ items:
           href: blob-index-metadata-tags.md
     - name: Monitor deployment
       href: monitor-deployment-edge-volumes.md
+  - name: Conceptual
+    items:
+    - name: Volumes and subvolumes
+      href: volumes-subvolumes.md
+    - name: Storage options
+      href: storage-options.md
+    - name: Ingest data flow
+      href: ingest-data-flow.md
 - name: Cache Volumes
   items:
   - name: Cache Volumes overview

@@ -13,7 +13,7 @@ This article describes the security considerations and controls available when u
 
 The security of your Azure Arc-enabled Servers deployment is a shared responsibility between you and Microsoft. Microsoft is responsible for:
 
-- To secure the cloud service that stores system metadata and orchestrate operations for the agents you connect to the service.
+- Securing the cloud service that stores system metadata and orchestrate operations for the agents you connect to the service.
 - Securing and protecting the privacy of your system metadata stored in Azure.
 - Documenting optional security features so you understand the benefits and drawbacks of deployment options.
 - Publishing regular agent updates with security, quality, performance, and feature improvements.

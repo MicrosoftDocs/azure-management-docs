@@ -1,17 +1,17 @@
 ---
 title: "Overview of Azure Arc-enabled Kubernetes"
-ms.date: 08/08/2023
+ms.date: 10/08/2024
 ms.topic: overview
 description: "Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure."
 ---
 
 # What is Azure Arc-enabled Kubernetes?
 
-Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure. By managing all of your Kubernetes resources in a single control plane, you can enable a more consistent development and operation experience to run cloud-native apps anywhere and on any Kubernetes platform.
+Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure. By managing all of your Kubernetes resources in a single control plane, you can enable a more consistent development and operation experience, helping you run cloud-native apps anywhere and on any Kubernetes platform.
 
 When the [Azure Arc agents are deployed to the cluster](quickstart-connect-cluster.md), an outbound connection to Azure is initiated, using industry-standard SSL to secure data in transit.
 
-Once clusters are connected to Azure, they're represented as their own resources in Azure Resource Manager, and they can be organized using resource groups and tagging.
+Clusters that you connect to Azure are represented as their own resources in Azure Resource Manager, and they can be organized using resource groups and tagging.
 
 ## Supported Kubernetes distributions
 
@@ -23,9 +23,9 @@ The Azure Arc team has worked with key industry partners to [validate conformanc
 
 Once your Kubernetes clusters are connected to Azure, at scale you can:
 
-* View all [connected Kubernetes clusters](quickstart-connect-cluster.md) running outside of Azure for inventory, grouping, and tagging, along with Azure Kubernetes Service (AKS) clusters.
+* View all connected Kubernetes clusters for inventory, grouping, and tagging, along with your Azure Kubernetes Service (AKS) clusters.
 
-* Configure clusters and deploy applications using [GitOps-based configuration management](tutorial-use-gitops-connected-cluster.md).
+* Configure clusters and deploy applications using [GitOps-based configuration management](tutorial-use-gitops-flux2.md).
 
 * View and monitor your clusters using [Azure Monitor for containers](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json).
 
@@ -37,14 +37,15 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 
 * Deploy machine learning workloads using [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json).
 
+* Deploy and manage Kubernetes applications from Azure Marketplace.
+
 * Deploy services that allow you to take advantage of specific hardware, comply with data residency requirements, or enable new scenarios. Examples of services include:
   * [Azure Arc-enabled data services](../data/overview.md)
   * [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json)
   * [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview)
   * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
-   - [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
-   * Deploy and manage Kubernetes applications targeted for Azure Arc-Enabled Kubernetes clusters from Azure Marketplace.
-   
+  * [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
+
    [!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
 
    ## Next steps

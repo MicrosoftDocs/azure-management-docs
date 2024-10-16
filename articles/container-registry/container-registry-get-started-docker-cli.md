@@ -1,5 +1,5 @@
 ---
-title: Push & pull container image
+title: Push & Pull Container Image using Azure Container Registry
 description: Push and pull Docker images to your private container registry in Azure using the Docker CLI
 ms.topic: how-to
 ms.date: 10/31/2023
@@ -168,6 +168,6 @@ Optionally install the [Docker Extension for Visual Studio Code](https://code.vi
 
 
 <!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
+[docker-linux]: https://docs.docker.com/desktop/install/linux-install/
+[docker-mac]: https://docs.docker.com/desktop/install/mac-install/
+[docker-windows]: https://docs.docker.com/desktop/install/windows-install/

@@ -44,14 +44,14 @@ Before deploying to all production machines, start by evaluating the deployment 
 
 Establish a formal plan describing the scope and details of the pilot. The following is a sample of what a plan should include to help get you started.
 
-* Objectives - Describes the business and technical drivers that led to the decision that a pilot is necessary.
-* Selection criteria - Specifies the criteria used to select which aspects of the solution will be demonstrated via a pilot.
-* Scope - Describes the scope of the pilot, which includes but not limited to solution components, anticipated schedule, duration of the pilot, and number of machines to target.
-* Success criteria and metrics - Define the pilot's success criteria and specific measures used to determine level of success.
-* Training plan - Describes the plan for training system engineers, administrators, etc. who are new to Azure and it services during the pilot.
-* Transition plan - Describes the strategy and criteria used to guide transition from pilot to production.
-* Rollback - Describes the procedures for rolling back a pilot to pre-deployment state.
-* Risks - List all identified risks for conducting the pilot and associated with production deployment.
+* **Objectives** - Describes the business and technical drivers that led to the decision that a pilot is necessary.
+* **Selection criteria** - Specifies the criteria used to select which aspects of the solution will be demonstrated via a pilot.
+* **Scope** - Describes the scope of the pilot, which includes but not limited to solution components, anticipated schedule, duration of the pilot, and number of machines to target.
+* **Success criteria and metrics** - Define the pilot's success criteria and specific measures used to determine level of success.
+* **Training plan** - Describes the plan for training system engineers, administrators, etc. who are new to Azure and it services during the pilot.
+* **Transition plan** - Describes the strategy and criteria used to guide transition from pilot to production.
+* **Rollback** - Describes the procedures for rolling back a pilot to pre-deployment state.
+* **Risks** - List all identified risks for conducting the pilot and associated with production deployment.
 
 ## Phase 1: Build a foundation
 

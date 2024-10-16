@@ -1,12 +1,13 @@
 ---
-title: Purge tags and manifests
-description: Use a purge command to delete multiple tags and manifests from an Azure container registry based on age and a tag filter, and optionally schedule purge operations.
+title: Purge Tags and Manifests in Azure Container Registry
+description: Use a purge command to delete multiple tags and manifests from an Azure container registry based on age and a tag filter.
 ms.topic: how-to
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 author: tejaswikolli-web
 ms.author: tejaswikolli
 ms.date: 10/31/2023
+#customer intent: As a developer, I want to purge old or unnecessary images so that my Azure container registry remains clean and efficient.
 ---
 
 # Automatically purge images from an Azure container registry
@@ -32,8 +33,8 @@ The `acr purge` container command deletes images by tag in a repository that mat
 `acr purge` is designed to run as a container command in an [ACR Task](container-registry-tasks-overview.md), so that it authenticates automatically with the registry where the task runs and performs actions there. The task examples in this article use the `acr purge` command [alias](container-registry-tasks-reference-yaml.md#aliases) in place of a fully qualified container image command.
 
 > [!IMPORTANT]
-- The standard command to execute the `acr purge` is `az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --optional parameter' /dev/null`.
-- We recommend running the complete `acr purge` command to use the ACR Purge. For example, run the `acr purge --help` as `az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --help' /dev/null`.
+> * The standard command to execute the `acr purge` is `az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --optional parameter' /dev/null`.
+> * We recommend running the complete `acr purge` command to use the ACR Purge. For example, run the `acr purge --help` as `az acr run --registry <YOUR_REGISTRY> --cmd 'acr purge --help' /dev/null`.
 
 At a minimum, specify the following when you run `acr purge`:
 

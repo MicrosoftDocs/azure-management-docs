@@ -3,7 +3,7 @@ title: Resize persistent volume claim (PVC) for Azure Arc-enabled data services 
 description: Explains how to resize a persistent volume claim for a volume used for Azure Arc-enabled data services.
 services: azure-arc
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray

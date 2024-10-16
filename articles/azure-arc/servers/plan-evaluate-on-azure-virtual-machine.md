@@ -1,14 +1,11 @@
 ---
 title: How to evaluate Azure Arc-enabled servers with an Azure virtual machine
 description: Learn how to evaluate Azure Arc-enabled servers using an Azure virtual machine.
-ms.date: 10/01/2021
+ms.date: 09/25/2024
 ms.topic: how-to
 ---
 
 # Evaluate Azure Arc-enabled servers on an Azure virtual machine
-
-> [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 Azure Arc-enabled servers is designed to help you connect servers running on-premises or in other clouds to Azure. Normally, you wouldn't connect an Azure virtual machine to Azure Arc because all the same capabilities are natively available for these VMs. Azure VMs already have a representation in Azure Resource Manager, VM extensions, managed identities, and Azure Policy. If you attempt to install Azure Arc-enabled servers on an Azure VM, you'll receive an error message stating that it is unsupported.
 
@@ -42,7 +39,7 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
 ## Reconfigure Azure VM
 
 > [!NOTE]
-> For windows, set the environment variable to override the ARC on an Azure VM installation.
+> For Windows, set the environment variable to override the ARC on an Azure VM installation.
 >
 > ```powershell
 > [System.Environment]::SetEnvironmentVariable("MSFT_ARC_TEST",'true', [System.EnvironmentVariableTarget]::Machine)
@@ -90,7 +87,7 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
    sudo ufw default allow incoming
    ```
 
-   If your Azure VM is running CentOS, Red Hat, or SUSE Linux Enterprise Server (SLES), perform the following steps to configure firewalld:
+   If your Azure VM is running Red Hat, or SUSE Linux Enterprise Server (SLES), perform the following steps to configure firewalld:
 
    ```bash
    sudo firewall-cmd --permanent --direct --add-rule ipv4 filter OUTPUT 1 -p tcp -d 169.254.169.254 -j REJECT

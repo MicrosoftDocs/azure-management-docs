@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Build and push container images of the Java Spring Boot App to Azure Container Registry 
+title: Build and Push Container Images of the Java Spring Boot App
 description: Learn to build and push a containerized Java Spring Boot app to the Azure Container Registry using Maven and Jib plugin.
 author: KarlErickson
 ms.author: karler

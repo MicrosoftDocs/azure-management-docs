@@ -1,6 +1,6 @@
 ---
-title: Firewall access rules
-description: Configure rules to access an Azure container registry from behind a firewall, by allowing access to REST API and data endpoint domain names or service-specific IP address ranges.
+title: Firewall Access Rules to access an Azure Container Registry
+description: Configure rules to access an Azure container registry from behind a firewall, allowing access to REST API and data endpoint domain names.
 ms.topic:  reference
 author: tejaswikolli-web
 ms.author: tejaswikolli

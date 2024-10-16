@@ -6,7 +6,7 @@ ms.author: amamun
 ms.reviewer: mikeray, randolphwest
 ms.date: 12/05/2023
 ms.service: azure-arc
-ms.subservice: azure-arc-data-sqlmi
+ms.subservice: azure-arc-sql-mi
 ms.topic: how-to
 ms.custom:
   - devx-track-azurecli

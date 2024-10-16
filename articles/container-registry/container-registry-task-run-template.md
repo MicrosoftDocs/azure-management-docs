@@ -1,6 +1,6 @@
 ---
-title: Quick task run with template
-description: Queue an ACR task run to build an image using an Azure Resource Manager template
+title: Quick Task Run with Template
+description: Queue an ACR task run to build an image using an Azure Resource Manager template in Azure Container Registry.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-arm-template
 author: tejaswikolli-web

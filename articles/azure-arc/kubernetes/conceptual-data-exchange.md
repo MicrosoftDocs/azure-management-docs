@@ -1,15 +1,15 @@
 ---
 title: "Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure"
-ms.date: 08/08/2023
+ms.date: 10/11/2024
 ms.topic: conceptual
 description: "The scenarios enabled by Azure Arc-enabled Kubernetes involve exchange of desired state configurations, metadata, and other scenario specific operational data."
 ---
 
 # Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure
 
-Azure Arc-enabled Kubernetes scenarios involve exchange of desired state configurations, metadata, and other scenario specific operational data between the Azure Arc-enabled Kubernetes cluster environment and Azure service. For all types of data, the Azure Arc agents initiate outbound communication to Azure services and thus require only egress access to endpoints listed under the [network prerequisites](network-requirements.md). Enabling inbound ports on firewall is not required for Azure Arc agents.
+Azure Arc-enabled Kubernetes scenarios involve exchange of desired state configurations, metadata, and other scenario specific operational data between the Azure Arc-enabled Kubernetes cluster environment and Azure service. For all types of data, the [Azure Arc agents](conceptual-agent-overview.md) initiate outbound communication to Azure services, so they only require only egress access to endpoints listed in the [network prerequisites](network-requirements.md). Enabling inbound ports on firewall isn't required for the Azure Arc agents.
 
-The following table presents a per-scenario breakdown of the data exchanged between these environments.
+The following table describes the data exchanged between these environments for different scenarios.
 
 ## Data exchange between cluster and Azure
 
@@ -35,9 +35,7 @@ The following table presents a per-scenario breakdown of the data exchanged betw
 | Custom Location | Metadata on namespace and ClusterRoleBinding/RoleBinding for authorization | Outbound session established with Arc service by clusterconnect-agent used to send requests to cluster |
 | Resources on top of custom location | Desired specifications of databases or application instances | Outbound session established with Arc service by clusterconnect-agent used to send requests to cluster |
 
-## Next steps
+## Related content
 
 * Walk through our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
-* Learn about creating connections between your cluster and a Git repository as a [configuration resource with Azure Arc-enabled Kubernetes](./conceptual-configurations.md).
-
-
+* Learn about creating connections between your cluster and a Git repository as a [configuration resource](./conceptual-gitops-flux2.md).
