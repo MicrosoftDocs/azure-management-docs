@@ -330,7 +330,11 @@ Once the migration is complete on your test clusters, you should verify the foll
 
 ### Rollback
 
-If you experience issues during the OS SKU migration, you can roll back to your previous OS SKU. To do this, you need to change the OS SKU field in your template and resubmit the deployment, which triggers another upgrade operation and restores the node pool to its previous OS SKU. Please note that OS SKU migration does not support rolling back to OS SKU Mariner.
+If you experience issues during the OS SKU migration, you can roll back to your previous OS SKU. To do this, you need to change the OS SKU field in your template and resubmit the deployment, which triggers another upgrade operation and restores the node pool to its previous OS SKU.
+
+ > [!NOTE]
+ > 
+ > OS SKU migration does not support rolling back to OS SKU Mariner.
 
 * Roll back to your previous OS SKU using the `az aks nodepool update` command. This command updates the OS SKU for your node pool from Azure Linux back to Ubuntu.
 
