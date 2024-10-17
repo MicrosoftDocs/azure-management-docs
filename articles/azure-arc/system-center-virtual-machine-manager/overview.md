@@ -25,7 +25,7 @@ Arc-enabled System Center VMM allows you to:
 - Browse your VMM resources (VMs, templates, VM networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 - Discover and onboard existing SCVMM managed VMs to Azure.
 - Install the Azure connected machine agent at scale on SCVMM VMs to [govern, protect, configure, and monitor them](../servers/overview.md#supported-cloud-operations).
-- Build automation and self-service pipelines using Terraform and Bicep templates, Azure REST APIs, Azure CLI, Azure PowerShell, and Python, Java, JavaScript, Go and .NET SDKs.
+- Build automation and self-service pipelines using Python, Java, JavaScript, Go and .NET SDKs, Terraform and Bicep templates, Azure REST APIs, Azure CLI, and Azure PowerShell.
 
 > [!NOTE]
 > For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
