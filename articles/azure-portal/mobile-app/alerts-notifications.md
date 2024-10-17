@@ -1,7 +1,7 @@
 ---
 title: Manage alerts and notifications in the Azure mobile app
 description: Use Azure mobile app notifications to get up-to-date alerts and information on your resources and services.
-ms.date: 10/10/2024
+ms.date: 10/17/2024
 ms.topic: how-to
 ---
 
@@ -14,6 +14,9 @@ Azure mobile app notifications offer users flexibility in how they receive push 
 Azure mobile app notifications are a way to monitor and manage your Azure resources from your mobile device. You can use the Azure mobile app to view the status of your resources, get alerts on issues, and take corrective actions.
 
 This article describes different options for configuring your notifications in the Azure mobile app.
+
+> [!TIP]
+> To receive push notifications on your mobile device, be sure that your device settings allow notifications for the Azure mobile app.
 
 ## Enable push notifications for Service Health alerts
 
