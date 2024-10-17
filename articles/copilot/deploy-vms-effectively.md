@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 05/28/2024
+ms.date: 10/18/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -16,9 +16,9 @@ author: JnHs
 
 Microsoft Copilot in Azure (preview) can help you deploy [virtual machines in Azure](/azure/virtual-machines/overview) that are efficient and effective. You can get suggestions for different options to save costs and choose the right type and size for your VMs.
 
-For best results, start on the **Virtual machines** page in Azure. When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
+For best results, start on the **Virtual machines** page in Azure. When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. For example, if you start from the **Create a virtual machine** page, Copilot in Azure will provide suggestions for the new VM you're creating. If the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
 
-While it can be helpful to have some familiarity with different VM configuration options such as pricing, scalability, availability, and size can be beneficial, Microsoft Copilot in Azure is designed to help you regardless of your level of expertise. In all cases, we recommend that you closely review the suggestions to confirm that they meet your needs.
+Microsoft Copilot in Azure is designed to help you regardless of your level of expertise on VM configuration options such as pricing, scalability, availability, and size. In all cases, we recommend that you closely review the suggestions to confirm that they meet your needs.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
@@ -36,7 +36,7 @@ Microsoft Copilot in Azure can guide you in suggesting different options to save
 
 ### Examples
 
-During the VM creation process, you can ask "**How do I reduce the cost of my virtual machine?**" Microsoft Copilot in Azure guides you through options to make your VM more cost-effective, providing options that you can enable.
+During the VM creation process, you can ask "**How do I reduce the cost of my virtual machine?**", or select the **Help me create a low-cost VM** button near the top of the pane. Microsoft Copilot in Azure guides you through options to make your VM more cost-effective. You can choose whether or not to enable each option.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-reduce-costs.png" lightbox="media/deploy-vms-effectively/vm-reduce-costs.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing ways to lower VM costs.":::
 
@@ -55,7 +55,7 @@ Microsoft Copilot in Azure can provide additional context to help you create hig
 
 ### Examples
 
-During the VM creation process, you can ask "**How do I create a resilient and high availability virtual machine?**" Microsoft Copilot in Azure guides you through options to configure your VM for high availability, providing options that you can enable.
+During the VM creation process, you can ask "**How do I create a resilient and high availability virtual machine?**", or select the **Help me create a VM optimized for high availability** button near the top of the pane. Microsoft Copilot in Azure guides you through options to configure your VM for high availability, providing options that you can enable.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-resilient-high-availability.png" lightbox="media/deploy-vms-effectively/vm-resilient-high-availability.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing ways to configure a VM for high availability.":::
 
@@ -65,12 +65,12 @@ Azure offers different size options for VMs based on your workload needs. Micros
 
 ### Sample prompts
 
-- Help me choose a size for my Virtual Machine
-- Which Virtual Machine size will best suit my requirements?
+- Help me choose a size for my virtual machine
+- Which VM size will best suit my requirements?
 
 ### Examples
 
-Ask "**Help me choose the right VM size for my workload?**" Microsoft Copilot in Azure asks for some more information to help it determine the best options. After that, it presents some options and lets you choose which recommended size to use for your VM.
+Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Microsoft Copilot in Azure asks for some more information to help it determine the best options. After that, it presents some options and lets you choose which recommended size to use for your VM.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" lightbox="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing size recommendations for a VM.":::
 
