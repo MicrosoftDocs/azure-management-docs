@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 10/03/2024
+ms.date: 10/17/2024
 ---
 
 # Cloud Ingest Edge Volumes configuration
@@ -107,7 +107,7 @@ az k8s-extension list --cluster-name ${CLUSTER_NAME} --resource-group ${RESOURCE
 
 To create a subvolume using extension identity to connect to your storage account container, use the following process:
 
-1. Get the name of your Edge Volume using the following command:
+1. Get the name of your Ingest Edge Volume using the following command:
 
     ```bash
     kubectl get edgevolumes
