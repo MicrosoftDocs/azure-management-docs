@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 11/01/2024
+ms.date: 10/18/2024
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -25,7 +25,6 @@ Azure Arc-enabled SCVMM allows you to:
 - Browse your VMM resources (VMs, templates, VM networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 - Discover and onboard existing SCVMM managed VMs to Azure.
 - Install the Azure Connected Machine agent at scale on SCVMM VMs to [govern, protect, configure, and monitor them](../servers/overview.md#supported-cloud-operations).
-- Build automation and self-service pipelines using Python; Java; JavaScript; Go and .NET SDKs; Terraform, ARM, and Bicep templates; Azure REST APIs; Azure CLI; and Azure PowerShell.
 
 > [!NOTE]
 > For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
@@ -68,7 +67,7 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
 
 ### Supported VMM versions
 
-Azure Arc-enabled SCVMM works with VMM 2025, 2022, and 2019 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
+Azure Arc-enabled SCVMM works with VMM 2022 and 2019 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
 
 ### Supported regions
 
