@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 11/15/2023
+ms.date: 10/21/2024
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
 ---
@@ -26,7 +26,7 @@ Under each inventory, you can select and enable one or more SCVMM resources in A
 
 You can further use the Azure resource to assign permissions or perform management operations.
 
-## Enable SCVMM cloud, VM templates and VM networks in Azure
+## Enable SCVMM cloud, VM templates, and VM networks in Azure
 
 To enable the SCVMM inventory resources, follow these steps:
 
