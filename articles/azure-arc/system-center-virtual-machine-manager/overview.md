@@ -50,7 +50,7 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 - Azure Arc-enabled servers interact on the guest operating system level, with no awareness of the underlying infrastructure fabric and the virtualization platform that they're running on. Since Azure Arc-enabled servers also support bare-metal machines, there might, in fact, not even be a host hypervisor in some cases.
 - Azure Arc-enabled SCVMM is a superset of Azure Arc-enabled servers that extends management capabilities beyond the guest operating system to the VM itself. This provides lifecycle management and CRUD (Create, Read, Update, and Delete) operations on an SCVMM VM. These lifecycle management capabilities are exposed in the Azure portal and look and feel just like a regular Azure VM. Azure Arc-enabled SCVMM also provides guest operating system management, in fact, it uses the same components as Azure Arc-enabled servers.
 
-You have the flexibility to start with either option, and incorporate the other one later without any disruption. With both options, you enjoy the same consistent experience.
+You have the flexibility to start with either option, and incorporate the other one later without any disruption. With both options, you'll enjoy the same consistent experience.
 
 ### Supported scenarios
 
