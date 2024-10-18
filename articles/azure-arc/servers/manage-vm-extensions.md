@@ -64,7 +64,7 @@ Arc-enabled servers support moving machines with one or more VM extensions insta
 |Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based User Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) to execute runbooks locally |
 |Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Install Azure extension for SQL Server](/sql/sql-server/azure-arc/connect#initiate-the-connection-from-azure) to initiate SQL Server connection to Azure |
 |Windows Admin Center (preview) |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled Servers using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
-|Windows OS Update Extension |WindowsOsUpdateExtension |Microsoft.SoftwareUpdateManagement |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
+|Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
 |Windows Patch Extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic Guest Patching for Azure Virtual Machines and Scale Sets](/azure/virtual-machines/automatic-vm-guest-patching) |
 
 ### Linux extensions
