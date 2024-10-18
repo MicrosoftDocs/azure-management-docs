@@ -27,7 +27,7 @@ The multicloud connector can work side-by-side with the [AWS connector in Defend
 
 In Azure, the following regions are supported for the multicloud connector:
 
-- East US, West Central US, Canada Central, West Europe
+- East US, East US 2, West US 2, West US 3, West Central US, Canada Central, West Europe, North Europe, Sweden Central, UK South, Southeast Asia, AU East
 
 The multicloud connector isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet).
 
