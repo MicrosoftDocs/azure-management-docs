@@ -6,9 +6,9 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 11/15/2023
+ms.date: 10/21/2024
 ms.topic: how-to
-keywords: "VMM, Arc, Azure"
+keywords: "VMM, Arc, Azure, System Center"
 ---
 
 # Enable SCVMM inventory resources from Azure portal

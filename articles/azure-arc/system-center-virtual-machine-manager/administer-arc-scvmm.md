@@ -1,17 +1,18 @@
 ---
-title:  Perform ongoing administration for Arc-enabled System Center Virtual Machine Manager
+title:  Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager
 ms.topic: how-to 
-ms.date: 12/04/2023
+ms.date: 10/21/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
+keywords: "VMM, Arc, Azure, System Center"
 ---
 
-# Perform ongoing administration for Arc-enabled System Center Virtual Machine Manager
+# Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager
 
 In this article, you learn how to perform various administrative operations related to Azure Arc-enabled System Center Virtual Machine Manager (SCVMM):
 
