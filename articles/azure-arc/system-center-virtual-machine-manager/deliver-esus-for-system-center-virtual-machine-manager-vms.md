@@ -8,7 +8,7 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-keywords: "VMM, Arc, Azure, System Center"
+keywords: "VMM, Arc, Azure"
 ---
 
 # Deliver ESUs for SCVMM VMs through Arc

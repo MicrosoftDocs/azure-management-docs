@@ -9,7 +9,6 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-keywords: "VMM, Arc, Azure, System Center"
 ---
 
 # Recover from accidental deletion of resource bridge virtual machine

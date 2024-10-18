@@ -8,7 +8,6 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.subservice: azure-arc-scvmm
-keywords: "VMM, Arc, Azure, System Center"
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
 ---

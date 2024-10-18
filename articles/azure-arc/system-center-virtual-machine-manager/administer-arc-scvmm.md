@@ -9,7 +9,6 @@ ms.custom: devx-track-azurecli
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-keywords: "VMM, Arc, Azure, System Center"
 ---
 
 # Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager

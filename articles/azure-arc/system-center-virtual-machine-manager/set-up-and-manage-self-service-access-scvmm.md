@@ -8,7 +8,7 @@ ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
 ms.date: 10/21/2024
-keywords: "VMM, Arc, Azure, System Center"
+keywords: "VMM, Arc, Azure"
 ---
 
 # Set up and manage self-service access to SCVMM resources
@@ -23,7 +23,7 @@ Once your SCVMM resources are enabled in Azure, as a final step, provide your te
 
 ## Provide access to use Azure Arc-enabled SCVMM resources
 
-To provision SCVMM VMs and change their size, add disks, change network interfaces, or delete them, your users need to have permission on the compute, network, storage, and to the VM template resources that they will use. These permissions are provided by the built-in Azure Arc SCVMM Private Cloud User role.
+To provision SCVMM VMs and change their size, add disks, change network interfaces, or delete them, your users need to have permission on the compute, network, storage, and to the VM template resources that they'll use. These permissions are provided by the built-in Azure Arc SCVMM Private Cloud User role.
 
 You must assign this role to an individual cloud, VM network, and VM template that a user or a group needs to access.
 
