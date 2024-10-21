@@ -46,7 +46,7 @@ When the registry is created, the output is similar to the following:
 {
   "adminUserEnabled": false,
   "creationDate": "2019-01-08T22:32:13.175925+00:00",
-  "id": "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/mycontainerregistry",
+  "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerRegistry/registries/mycontainerregistry",
   "location": "eastus",
   "loginServer": "mycontainerregistry.azurecr.io",
   "name": "mycontainerregistry",

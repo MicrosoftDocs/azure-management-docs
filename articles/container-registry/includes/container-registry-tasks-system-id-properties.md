@@ -15,8 +15,8 @@ In the command output, the `identity` section shows an identity of type `SystemA
 ```console
 [...]
   "identity": {
-    "principalId": "xxxxxxxx-2703-42f9-97d0-xxxxxxxxxxxx",
-    "tenantId": "xxxxxxxx-86f1-41af-91ab-xxxxxxxxxxxx",
+    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
+    "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
     "type": "SystemAssigned",
     "userAssignedIdentities": null
   },
