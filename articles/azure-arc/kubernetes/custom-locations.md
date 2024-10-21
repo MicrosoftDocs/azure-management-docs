@@ -76,12 +76,12 @@ This warning occurs because the service principal lacks the necessary permission
 
 1. Sign in to Azure CLI with your user account.
 
-1. Run the following command to fetch the `oid` (object ID) of the custom location, where `--id` is predefined and set to `bc313c14-388c-4e7d-a58e-70017303ee3b`: 
+1. Run the following command to fetch the `oid` (object ID) of the custom location, where `--id` is predefined and set to `aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb`: 
 
    **Important!** Copy and run the command exactly as it is shown below. Do not replace the value passed to the `--id` parameter with a different value.
 
    ```azurecli
-   az ad sp show --id bc313c14-388c-4e7d-a58e-70017303ee3b --query id -o tsv
+   az ad sp show --id aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb --query id -o tsv
    ```
 
 1. Sign in to Azure CLI using the service principal. Run the following command to enable the custom locations feature on the cluster, using the `oid` (object ID) value from the previous step for the `--custom-locations-oid` parameter:

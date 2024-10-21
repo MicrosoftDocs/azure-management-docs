@@ -60,7 +60,7 @@ Example of a `resource` entry:
         "instanceType": "<resource>",
         "location": "eastus",
         "resourceGroupName": "production-resources",
-        "subscriptionId": "482c901a-129a-4f5d-86e3-cc6b294590b2",
+        "subscriptionId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
         "isDeleted": false,
         "externalEndpoint": "32.191.39.83:1433",
         "vCores": "2",
@@ -76,7 +76,7 @@ Example of a `data` entry:
           "requestType": "usageUpload",
           "clusterId": "4b0917dd-e003-480e-ae74-1a8bb5e36b5d",
           "name": "DataControllerTestName",
-          "subscriptionId": "482c901a-129a-4f5d-86e3-cc6b294590b2",
+          "subscriptionId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
           "resourceGroup": "production-resources",
           "location": "eastus",
           "uploadRequest": {

@@ -79,14 +79,14 @@ The following bicep template can be used to create an Arc VMware machine. [Here]
 // Parameters
 param vmName string = 'contoso-vm'
 param vmAdminPassword string = 'examplepassword!#'
-param vCenterId string = '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/vcenters/contoso-vcenter'
-param templateId string = '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/contoso-template-win22'
-param resourcePoolId string = '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/contoso-respool'
-param datastoreId string = '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/Datastores/contoso-datastore'
-param networkId string = '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/VirtualNetworks/contoso-network'
+param vCenterId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/vcenters/contoso-vcenter'
+param templateId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/VirtualMachineTemplates/contoso-template-win22'
+param resourcePoolId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/ResourcePools/contoso-respool'
+param datastoreId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/Datastores/contoso-datastore'
+param networkId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ConnectedVMwarevSphere/VirtualNetworks/contoso-network'
 param extendedLocation object = {
   type: 'customLocation'
-  name: '/subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso-customlocation'
+  name: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso-customlocation'
 }
 param ipSettings object = {
   allocationMethod: 'static'
