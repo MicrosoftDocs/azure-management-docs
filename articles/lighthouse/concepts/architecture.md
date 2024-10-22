@@ -1,7 +1,7 @@
 ---
 title: Azure Lighthouse architecture
 description: Learn about the relationship between tenants in Azure Lighthouse, and the resources created in the customer's tenant that enable that relationship.
-ms.date: 07/10/2024
+ms.date: 10/22/2024
 ms.topic: conceptual
 ---
 
@@ -43,7 +43,7 @@ Azure Lighthouse creates a logical projection of resources from one tenant onto 
 
 Whenever a user, group, or service principal in the service provider tenant accesses resources in a customer's tenant, Azure Resource Manager receives a request. Resource Manager authenticates these requests, just as it does for requests made by users within the customer's own tenant. For Azure Lighthouse, it does this by confirming that two resources—the registration definition and the registration assignment—are present in the customer's tenant. If so, Resource Manager authorizes the access according to the information defined by those resources.
 
-:::image type="content" source="../media/logical-projection.jpg" alt-text="Diagram illustrating the logical projection in Azure Lighthouse.":::
+:::image type="content" source="../media/logical-projection.svg" lightbox="../media/logical-projection.svg" alt-text="Diagram illustrating the logical projection in Azure Lighthouse.":::
 
 Activity from users in the service provider's tenant is tracked in the activity log, which is stored in the customer's tenant. This allows the customer to [see what changes were made and by whom](../how-to/view-service-provider-activity.md).
 
