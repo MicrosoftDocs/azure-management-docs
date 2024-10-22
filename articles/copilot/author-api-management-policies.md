@@ -42,7 +42,7 @@ When you have questions about policy elements, you can get more information by s
 
 :::image type="content" source="media/author-api-management-policies/api-management-policy-explain.png" lightbox="media/author-api-management-policies/api-management-policy-explain.png" alt-text="Screenshot of right-clicking a section of an API Management policy to get an explanation from Microsoft Copilot in Azure .":::
 
-Microsoft Copilot in Azure explains how the code works, breaking down each specific section.
+Microsoft Copilot in Azure explains how the code works, breaking down each specific section and providing links to learn more.
 
 :::image type="content" source="media/author-api-management-policies/api-management-policy-explanation.png" alt-text="Screenshot of Microsoft Copilot in Azure providing information about a specific API Management policy.":::
 
