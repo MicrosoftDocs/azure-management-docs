@@ -1,7 +1,7 @@
 ---
 title: Author API Management policies using Microsoft Copilot in Azure
 description: Learn about how Microsoft Copilot in Azure can generate Azure API Management policies based on your requirements.
-ms.date: 05/28/2024
+ms.date: 10/21/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -38,11 +38,7 @@ When creating an API Management policy, you can say "**Generate a policy to conf
 
 :::image type="content" source="media/author-api-management-policies/api-management-policy-rate-limiting.png" lightbox="media/author-api-management-policies/api-management-policy-rate-limiting.png" alt-text="Screenshot of Microsoft Copilot in Azure generating a policy to configure rate limiting.":::
 
-In this example, a policy is generated based on the prompt "Generate a policy to remove a 'X-AspNet-Version' header from the response."
-
-:::image type="content" source="media/author-api-management-policies/api-management-policy-remove-header.png" lightbox="media/author-api-management-policies/api-management-policy-remove-header.png" alt-text="Screenshot of Microsoft Copilot in Azure generating a policy to remove a header.":::
-
-When you have questions about a certain policy element, you can get more information by selecting a section of the policy, right-clicking, and selecting **Explain**.
+When you have questions about policy elements, you can get more information by selecting a section of the policy, right-clicking, and selecting **Explain**.
 
 :::image type="content" source="media/author-api-management-policies/api-management-policy-explain.png" lightbox="media/author-api-management-policies/api-management-policy-explain.png" alt-text="Screenshot of right-clicking a section of an API Management policy to get an explanation from Microsoft Copilot in Azure .":::
 
