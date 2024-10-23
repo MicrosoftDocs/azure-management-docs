@@ -24,8 +24,6 @@
     href: execute-commands.md
   - name: Deploy VMs effectively
     href: deploy-vms-effectively.md
-  - name: Build infrastructure and deploy workloads
-    href: build-infrastructure-deploy-workloads.md
   - name: Use interactive deployments
     href: use-guided-deployments.md
   - name: Get monitoring information
