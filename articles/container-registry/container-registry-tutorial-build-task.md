@@ -1,6 +1,6 @@
 ---
-title: Tutorial - Build image on code commit
-description: In this tutorial, you learn how to configure an Azure Container Registry Task to automatically trigger container image builds in the cloud when you commit source code to a Git repository.
+title: Tutorial - Build Container Image on Code Commit in Azure
+description: Learn to configure Azure Container Registry tasks to trigger container image builds in the cloud on code commits to a Git repository.
 ms.topic: tutorial
 author: tejaswikolli-web
 ms.author: tejaswikolli

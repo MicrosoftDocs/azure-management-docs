@@ -1,6 +1,6 @@
 ---
-title: Tutorial - Trigger image build on base image update
-description: In this tutorial, you learn how to configure an Azure Container Registry Task to automatically trigger container image builds in the cloud when a base image is updated in the same registry.
+title: Tutorial- Trigger Image Build on Base Image Update in Azure
+description: Learn to configure an Azure Container Registry Task to trigger container image builds when a base image is updated.
 ms.topic: tutorial
 author: tejaswikolli-web
 ms.author: tejaswikolli

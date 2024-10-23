@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Create connected registry using the portal
+title: Quickstart - Create Connected Registry Using the Portal
 description: Use Azure portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
 ms.topic: quickstart
 ms.date: 10/31/2023
@@ -7,6 +7,7 @@ ms.author: memladen
 author: toddysm
 ms.custom: mode-ui, devx-track-azurecli
 ms.service: azure-container-registry
+#customer intent: As a user, I want to create a connected registry using the Azure portal so that I can synchronize images and other artifacts with the cloud registry.
 ---
 
 # Quickstart: Create a connected registry using the Azure portal (To be deprecated)

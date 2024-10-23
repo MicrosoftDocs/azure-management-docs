@@ -1,11 +1,12 @@
 ---
-title: Understand access to a connected registry
-description: Introduction to token-based authentication and authorization for connected registries in Azure Container Registry
+title: Access Control for Connected Registries in ACR
+description: Learn about token-based authentication and authorization for connected registries in Azure Container Registry.
 author: toddysm
 ms.author: memladen
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 10/31/2023
+#customer intent: As a user, I want to understand access control for connected registries so that I can manage them effectively.
 ---
 
 # Understand access to a connected registry

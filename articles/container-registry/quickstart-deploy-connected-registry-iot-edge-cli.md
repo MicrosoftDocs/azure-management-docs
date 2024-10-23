@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Deploy a connected registry to an IoT Edge device
+title: Quickstart- Deploy a Connected Registry to an IoT Edge Device
 description: Use Azure CLI commands and Azure portal to deploy a connected Azure container registry to an Azure IoT Edge device.
 ms.topic: quickstart
 ms.date: 10/31/2023

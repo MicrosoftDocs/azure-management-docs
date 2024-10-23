@@ -1,5 +1,5 @@
 ---
-title: Webhooks to respond to registry actions
+title: Using Webhooks to Respond to Registry Actions in Azure
 description: Learn how to use webhooks to trigger events when push or pull actions occur in your registry repositories.
 ms.topic: how-to
 ms.custom: devx-track-azurecli

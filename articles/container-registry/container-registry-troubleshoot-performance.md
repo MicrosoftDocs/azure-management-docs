@@ -1,6 +1,6 @@
 ---
-title: Troubleshoot registry performance
-description: Symptoms, causes, and resolution of common problems with the performance of a registry
+title: Troubleshooting Azure Container Registry Performance Issues
+description: Identify and resolve common performance issues with Azure Container Registry. Learn about symptoms, causes, and solutions to enhance performance.
 ms.topic: troubleshooting
 author: tejaswikolli-web
 ms.author: tejaswikolli

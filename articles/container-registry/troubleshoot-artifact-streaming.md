@@ -1,6 +1,6 @@
 ---
-title: "Troubleshoot Artifact streaming"
-description: "Troubleshoot Artifact streaming in Azure Container Registry to diagnose and resolve with managing, scaling, and deploying artifacts through containerized platforms."
+title: "Troubleshoot Artifact Streaming in Azure Container Registry"
+description: "Learn how to troubleshoot Artifact streaming in Azure Container Registry to diagnose and resolve issues with managing and deploying artifacts."
 ms.author: tejaswikolli
 ms.service: azure-container-registry
 ms.topic: troubleshooting-general #Don't change.
