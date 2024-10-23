@@ -1,11 +1,12 @@
 ---
-title: Using connected registry with Azure IoT Edge
-description: Overview of the connected Azure container registry in hierarchical IoT Edge scenarios
+title: Using Connected Registry with Azure IoT Edge
+description: Learn how to integrate connected Azure Container Registry in hierarchical IoT Edge scenarios to enhance deployment efficiency and security. 
 author: toddysm
 ms.author: memladen
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 10/31/2023
+#customer intent: As a developer, I want to understand how to use connected registry with IoT Edge so that I can improve deployment efficiency and security.
 ---
 
 # Using connected registry with Azure IoT Edge

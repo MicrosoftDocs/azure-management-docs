@@ -1,6 +1,6 @@
 ---
-title: Troubleshoot network issues with registry
-description: Symptoms, causes, and resolution of common problems when accessing an Azure container registry in a virtual network or behind a firewall
+title: Troubleshooting Network Issues with ACR
+description: Identify and resolve common network issues when accessing Azure Container Registry in a virtual network or behind a firewall. 
 ms.topic: troubleshooting
 author: tejaswikolli-web
 ms.author: tejaswikolli
