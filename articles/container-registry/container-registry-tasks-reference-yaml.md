@@ -1,6 +1,6 @@
 ---
-title: YAML reference - ACR Tasks
-description: Reference for defining tasks in YAML for ACR Tasks, including task properties, step types, step properties, and built-in variables.
+title: YAML Reference for Azure Container Registry (ACR) Tasks
+description: Guide to defining tasks in YAML for Azure Container Registry (ACR) Tasks, covering task properties, step types, and built-in variables.
 ms.topic: reference
 ms.custom: devx-track-azurecli
 author: tejaswikolli-web

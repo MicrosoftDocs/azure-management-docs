@@ -1,6 +1,6 @@
 ---
-title: Monitoring data reference for Azure Container Registry
-description: This article contains important reference material you need when you monitor Azure Container Registry.
+title: Monitoring Data Reference for Azure Container Registry
+description: Access essential reference material for monitoring Azure Container Registry, including metrics, logs, and activity logs for comprehensive insights.
 ms.date: 06/17/2024
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
@@ -42,7 +42,7 @@ The following table lists the metrics available for the Microsoft.ContainerRegis
 
 [!INCLUDE [horz-monitor-ref-logs-tables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-ref-logs-tables.md)]
 
-For a reference of all Azure Monitor Logs and Log Analytics tables, see the [Azure Monitor Log Table Reference](/azure/azure-monitor/reference/tables/tables-resourcetype).
+For a reference of all Azure Monitor Logs and Log Analytics tables, see the [Azure Monitor Log Table Reference](/azure/azure-monitor/reference/tables-index).
 
 ### Container Registry Microsoft.ContainerRegistry/registries
 

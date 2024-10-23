@@ -1,5 +1,5 @@
 ---
-title: Quickstart - Create connected registry using the CLI
+title: Quickstart - Create Connected Registry Using the CLI
 description: Use Azure CLI commands to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
 ms.topic: quickstart
 ms.date: 10/31/2023

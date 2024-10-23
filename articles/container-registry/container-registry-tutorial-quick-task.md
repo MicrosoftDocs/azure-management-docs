@@ -1,6 +1,6 @@
 ---
-title: Tutorial - Quick container image build
-description: In this tutorial, you learn how to build a Docker container image in Azure with Azure Container Registry Tasks (ACR Tasks), then deploy it to Azure Container Instances.
+title: Tutorial - Quick Docker Image Build with Azure ACR Tasks
+description: Learn how to build a Docker container image in Azure with Azure Container Registry Tasks (ACR Tasks), then deploy it to Azure Container Instances.
 ms.topic: tutorial
 author: tejaswikolli-web
 ms.author: tejaswikolli

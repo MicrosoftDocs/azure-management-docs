@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Deploying the connected registry Arc extension"
+title: "Quickstart: Deploying the Connected Registry Arc Extension"
 description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
 author: tejaswikolli-web
 ms.author: tejaswikolli
