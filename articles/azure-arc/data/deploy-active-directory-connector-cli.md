@@ -77,7 +77,7 @@ az arcdata ad-connector create
 ```azurecli
 # Setting environment variables needed for automatic account provisioning
 DOMAIN_SERVICE_ACCOUNT_USERNAME='sqlmi'
-DOMAIN_SERVICE_ACCOUNT_PASSWORD='arc@123!!'
+DOMAIN_SERVICE_ACCOUNT_PASSWORD='<password>'
 
 # Deploying active directory connector with automatic account provisioning
 az arcdata ad-connector create 
@@ -121,7 +121,7 @@ az arcdata ad-connector create
 ```azurecli
 # Setting environment variables needed for automatic account provisioning
 DOMAIN_SERVICE_ACCOUNT_USERNAME='sqlmi'
-DOMAIN_SERVICE_ACCOUNT_PASSWORD='arc@123!!'
+DOMAIN_SERVICE_ACCOUNT_PASSWORD='<password>'
 
 # Deploying active directory connector with automatic account provisioning
 az arcdata ad-connector create 
