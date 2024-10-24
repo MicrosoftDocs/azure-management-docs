@@ -61,7 +61,7 @@ Azure Container Storage enabled by Azure Arc is only available in the following 
 
 ## Azure IoT Operations
 
-If you are using Azure IoT Operations, proceed to Install extension: Configuration Operator as the extension is installed as part of the AIO package.
+If you are using Azure IoT Operations, proceed to [Configure your volumes](local-shared-edge-volumes.md).
 
 ## Next steps
 
