@@ -207,7 +207,7 @@ Check for output that looks like this example:
       "message": null
     },
     "extensionType": "microsoft.azuredefender.kubernetes",
-    "id": "/subscriptions/0e849346-4343-582b-95a3-e40e6a648ae1/resourceGroups/myRg/providers/Microsoft.Kubernetes/connectedClusters/myCluster/providers/Microsoft.KubernetesConfiguration/extensions/defender",
+    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myRg/providers/Microsoft.Kubernetes/connectedClusters/myCluster/providers/Microsoft.KubernetesConfiguration/extensions/defender",
     "identity": null,
     "installState": "Pending",
     "lastModifiedTime": "2020-09-02T00:41:16.8005162+00:00",

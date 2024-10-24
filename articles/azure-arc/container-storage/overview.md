@@ -59,6 +59,10 @@ Azure Container Storage enabled by Azure Arc is only available in the following 
 - North Europe
 - West Europe
 
+## Azure IoT Operations
+
+If you are using Azure IoT Operations, proceed to [Configure your volumes](local-shared-edge-volumes.md).
+
 ## Next steps
 
 - [Prepare Linux](prepare-linux-edge-volumes.md)
