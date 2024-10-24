@@ -2,7 +2,7 @@
 title: Set up and manage self-service access to VMware resources through Azure RBAC
 description: Learn how to manage access to your on-premises VMware resources through Azure role-based access control (Azure RBAC). 
 ms.topic: how-to
-ms.date: 11/06/2023
+ms.date: 10/24/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 author: PriskeyJeronika-MS

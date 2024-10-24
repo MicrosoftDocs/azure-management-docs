@@ -1,7 +1,7 @@
 ---
 title:  Deliver ESUs for VMware VMs through Arc
 description: Deliver ESUs for VMware VMs through Azure Arc. 
-ms.date: 12/06/2023
+ms.date: 10/24/2024
 ms.topic: how-to
 ms.services: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
