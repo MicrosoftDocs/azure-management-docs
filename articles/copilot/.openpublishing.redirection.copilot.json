@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path_from_root": "/articles/copilot/build-infrastructure-deploy-workloads.md",
+      "redirect_url": "/azure/copilot/use-guided-deployments",
+      "redirect_document_id": false
+  },
+    {
       "source_path_from_root": "/articles/copilot/limited-access.md",
       "redirect_url": "/azure/copilot/manage-access",
       "redirect_document_id": false
