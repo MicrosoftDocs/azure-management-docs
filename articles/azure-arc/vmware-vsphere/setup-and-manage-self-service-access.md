@@ -25,9 +25,9 @@ Once your VMware vSphere resources are enabled in Azure, the final step in setti
 
 ## Provide access to use Arc-enabled vSphere resources
 
-To provision VMware VMs and change their size, add disks, change network interfaces, or delete them, your users need to have permissions on the compute, network, storage, and to the VM template resources that they will use. These permissions are provided by the built-in **Azure Arc VMware Private Cloud User** role. 
+To provision VMware VMs and change their size, add disks, change network interfaces, or delete them, your users need to have permissions on the compute, network, storage, and to the VM template resources that they'll use. These permissions are provided by the built-in **Azure Arc VMware Private Cloud User** role. 
 
-You must assign this role on individual resource pool (or cluster or host), network, datastore, and template that a user or a group needs to access.   
+You must assign this role on individual resource pool (or cluster or host), network, datastore, and template that a user or a group needs to access.
 
 1. Go to the [**VMware vCenters** list in Arc center](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/vCenter).
 

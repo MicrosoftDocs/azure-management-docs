@@ -1,5 +1,5 @@
 ---
-title:  Deliver ESUs for VMware VMs through Arc
+title: Deliver ESUs for VMware VMs through Arc
 description: Deliver ESUs for VMware VMs through Azure Arc. 
 ms.date: 10/24/2024
 ms.topic: how-to
