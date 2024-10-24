@@ -4,7 +4,7 @@ description: Learn how to install the Edge Volumes offering from Azure Container
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 08/26/2024
+ms.date: 10/24/2024
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes (preview)
@@ -25,6 +25,14 @@ kubectl patch meshconfig osm-mesh-config \
   -n "arc-osm-system" \
   -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":'"false"'}}}'  \
   --type=merge
+```
+
+## Install Azure IoT Operations dependencies
+
+First, run the following command to install the Azure IoT Operations dependencies:
+
+```azurecli 
+az k8s-extension create    --cluster-name "${YOUR-CLUSTER-NAME}"  --name "${NAME}-certmgr"  --resource-group "${YOUR-RESOURCE-GROUP}"   --cluster-type connectedClusters   --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
 ```
 
 ## Install the Azure Container Storage enabled by Azure Arc extension
