@@ -52,12 +52,12 @@ The example below shows a parameters file which will delegate the subscriptions 
         "managedByAuthorizations": { 
             "value": [ 
                 { 
-                    "principalId": "00000000-0000-0000-0000-000000000000", 
+                    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222", 
                     "principalIdDisplayName": "Tier 1 Support", 
                     "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c" 
                 }, 
                 { 
-                    "principalId": "00000000-0000-0000-0000-000000000000", 
+                    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222", 
                     "principalIdDisplayName": "Automation Account - Full access", 
                     "roleDefinitionId": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9", 
                     "delegatedRoleDefinitionIds": [ 
