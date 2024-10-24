@@ -210,7 +210,7 @@ This template also includes the `managedbyTenantApprovers` element, which adds a
         "authorizations": {
             "value": [
                 { 
-                    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
+                    "principalId": "00000000-0000-0000-0000-000000000000",
                     "roleDefinitionId": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
                     "principalIdDisplayName": "PIM group"
                 }
@@ -224,12 +224,12 @@ This template also includes the `managedbyTenantApprovers` element, which adds a
                             "maximumActivationDuration": "PT8H",
                             "managedByTenantApprovers": [ 
                                 { 
-                                    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222", 
+                                    "principalId": "00000000-0000-0000-0000-000000000000", 
                                     "principalIdDisplayName": "PIM-Approvers" 
                                 } 
                             ]
                         },
-                        "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222", 
+                        "principalId": "00000000-0000-0000-0000-000000000000", 
                         "principalIdDisplayName": "Tier 2 Support",
                         "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c"
 

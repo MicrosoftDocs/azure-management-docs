@@ -27,7 +27,7 @@ This example shows a **principalId** with the User Access Administrator role. Th
 
 ```json
 {
-    "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
+    "principalId": "00000000-0000-0000-0000-000000000000",
     "principalIdDisplayName": "Policy Automation Account",
     "roleDefinitionId": "18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
     "delegatedRoleDefinitionIds": [
