@@ -13,7 +13,7 @@ keywords: "VMM, Arc, Azure, System Center"
 
 # Deliver ESUs for SCVMM VMs through Arc
 
-This article provides the steps to procure and deliver ESUs to WS 2012 and 2012 R2 SCVMM VMs onboarded to Azure Arc-enabled SCVMM.
+This article provides the steps to procure and deliver ESUs to Windows Server 2012 and 2012 R2 SCVMM VMs onboarded to Azure Arc-enabled SCVMM.
 
 Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) allows you to enroll all the Windows Server 2012/2012 R2 VMs managed by your SCVMM server in [Extended Security Updates (ESUs)](/windows-server/get-started/extended-security-updates-overview) at scale.
 
@@ -75,7 +75,7 @@ You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license
 
 For Azure Arc-enabled SCVMM VMs enrolled in WS2012/2012 R2 ESUs enabled by Azure Arc, free access is provided to these Azure services from **October 10, 2023**.
 
-- [Azure Update Manager](/azure/update-manager/overview): Unified management and governance of update compliance that includes not only Azure and hybrid machines, but also ESU update compliance for all your Windows Server 2012/2012 R2 SCVMM VMs. Enrollment in ESUs doesn't impact Azure Update Manager. After enrollment in ESUs through Azure Arc, the server becomes eligible for ESU patches. These patches can be delivered through Azure Update Manager or any other patching solution. You'll still need to configure updates from Microsoft Updates or [Windows Server Update Services](/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus). 
+- [Azure Update Manager](/azure/update-manager/overview): Unified management and governance of update compliance that includes not only Azure and hybrid machines, but also ESU update compliance for all your Windows Server 2012/2012 R2 SCVMM VMs. Enrollment in ESUs doesn't have an impact on Azure Update Manager. After enrollment in ESUs through Azure Arc, the server becomes eligible for ESU patches. These patches can be delivered through Azure Update Manager or any other patching solution. You'll still need to configure updates from Microsoft Updates or [Windows Server Update Services](/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus). 
 
 - [Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview): Track changes in Azure Arc-enabled SCVMM VMs. 
 
