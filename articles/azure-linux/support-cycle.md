@@ -28,7 +28,7 @@ For more information on the CVE service level agreement (SLA), see [CVE infrastr
 
 About every three years, Azure Linux releases a major image version containing new packages and package versions, an updated kernel, and enhancements to security, tooling, performance, and developer experience. Azure Linux releases a beta version of the major release about three months before the general availability (GA) release.
 
-An Azure Linux release supports an AKS version throughout its standard community support. For example, Azure Linux 2.0 will support AKS v1.31 throughout the standard [support lifecycle](./azure/aks/supported-kubernetes-versions).
+An Azure Linux release supports an AKS version throughout its standard community support. For example, Azure Linux 2.0 will support AKS v1.31 throughout the standard [support lifecycle](/azure/aks/supported-kubernetes-versions).
 
 The following table outlines the first and last AKS release supported by each version of Azure Linux:
 
