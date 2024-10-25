@@ -36,17 +36,17 @@ Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) allows you to en
 ## Prerequisites
 
 - The user account must have an Owner/Contributor role in a Resource Group in Azure to create and assign ESUs to SCVMM VMs. 
-- The SCVMM server managing the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [onboarded to Azure Arc](./quickstart-connect-system-center-virtual-machine-manager-to-arc.md). After onboarding, the WS 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [Azure-enabled](enable-scvmm-inventory-resources.md) and [guest management enabled](./enable-guest-management-at-scale.md). 
+- The SCVMM server managing the Windows Server 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [onboarded to Azure Arc](./quickstart-connect-system-center-virtual-machine-manager-to-arc.md). After onboarding, the Windows Server 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [Azure-enabled](enable-scvmm-inventory-resources.md) and [guest management enabled](./enable-guest-management-at-scale.md). 
 
 ## Create Azure Arc ESUs 
 
 1.	Sign in to the [Azure portal](https://portal.azure.com/).
 2.	On the **Azure Arc** page, select **Extended Security Updates** in the left pane. From here, you can view and create ESU **Licenses** and view **Eligible resources** for ESUs.
-3.	The **Licenses** tab displays Azure Arc WS 2012 licenses that are available. Select an existing license to apply or create a new license.
+3.	The **Licenses** tab displays Azure Arc Windows Server 2012 licenses that are available. Select an existing license to apply or create a new license.
+4.	To create a new Windows Server 2012 license, select **Create**, and then provide the information required to configure the license on the page. For detailed information on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server 2012](../servers/license-extended-security-updates.md).
 
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/select-or-create-license.png" alt-text="Screenshot of how to create a new license." lightbox="media/deliver-esus-for-scvmm-vms/select-or-create-license.png":::
 
-4.	To create a new WS 2012 license, select **Create**, and then provide the information required to configure the license on the page. For detailed information on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server 2012](../servers/license-extended-security-updates.md).
 5.	Review the information provided and select **Create**. The license you created appears in the list, and you can link it to one or more Azure Arc-enabled SCVMM VMs by following the steps in the next section.
 
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/new-license-created.png" alt-text="Screenshot showing the successful creation of a new license." lightbox="media/deliver-esus-for-scvmm-vms/new-license-created.png":::
@@ -63,7 +63,7 @@ You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/view-arc-enabled-machines.png" alt-text="Screenshot of Azure Arc-enabled server machines running Windows Server 2012 and 2012 R2 under the eligible resources tab." lightbox="media/deliver-esus-for-scvmm-vms/view-arc-enabled-machines.png":::
 
 2.	To enable ESUs for one or more machines, select them in the list, and then select **Enable ESUs**.
-3.	On the **Enable Extended Security Updates** page, you can see the number of machines selected to enable ESUs and the WS 2012 licenses available to apply. Select a license to link to the selected machine(s) and select **Enable**.
+3.	On the **Enable Extended Security Updates** page, you can see the number of machines selected to enable ESUs and the Windows Server 2012 licenses available to apply. Select a license to link to the selected machine(s) and select **Enable**.
 
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/enable-license.png" alt-text="Screenshot of how to select and enable license." lightbox="media/deliver-esus-for-scvmm-vms/enable-license.png":::
 
@@ -83,7 +83,7 @@ For Azure Arc-enabled SCVMM VMs enrolled in WS2012/2012 R2 ESUs enabled by Azure
 
 ## Upgrading from Windows Server 2012/2012 R2  
 
-You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license. Once you've linked a VM to an activated ESU license, the VM is eligible to receive Windows Server 2012 and 2012 R2 ESUs. When upgrading a Windows Server 2012/2012R machine to Windows Server 2016 or above, it's not necessary to remove the Azure Connected Machine agent from the machine. The new operating system will be visible for the machine in Azure within a few minutes of upgrade completion. Upgraded machines no longer require ESUs and are no longer eligible for them. Any ESU license associated with the machine isn't automatically unlinked from the machine. See [Unlink a license](/azure/azure-arc/servers/api-extended-security-updates#unlink-a-license) for instructions on doing so manually.
+You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license. Once you've linked a VM to an activated ESU license, the VM is eligible to receive Windows Server 2012 and 2012 R2 ESUs. When upgrading a Windows Server 2012/2012 R2 machine to Windows Server 2016 or above, it's not necessary to remove the Azure Connected Machine agent from the machine. The new operating system will be visible for the machine in Azure within a few minutes of upgrade completion. Upgraded machines no longer require ESUs and are no longer eligible for them. Any ESU license associated with the machine isn't automatically unlinked from the machine. See [Unlink a license](/azure/azure-arc/servers/api-extended-security-updates#unlink-a-license) for instructions on doing so manually.
 
 >[!Note]
 > - See [Troubleshoot delivery of Extended Security Updates for Windows Server 2012](../servers/troubleshoot-extended-security-updates.md) to troubleshoot any problems that occur during the enablement process.<br>
