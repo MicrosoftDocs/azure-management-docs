@@ -1,7 +1,7 @@
 ---
 title:  Deliver ESUs for SCVMM VMs through Arc
 description: Deliver ESUs for SCVMM VMs through Azure Arc. 
-ms.date: 10/25/2024
+ms.date: 10/28/2024
 ms.topic: how-to
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -25,7 +25,7 @@ Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) allows you to en
 
 - **Built-in inventory:** The coverage and enrollment status of Windows Server 2012/2012 R2 ESUs on eligible Azure Arc-enabled SCVMM VMs are identified in the Azure portal, highlighting gaps and status changes.
 
-- **Keyless delivery:** The enrollment of ESUs on Azure Arc-enabled Windows Server 2012/2012 R2 SCVMM VMs won't require the acquisition or activation of keys. 
+- **Keyless delivery:** The enrollment of ESUs on Azure Arc-enabled SCVMM Windows Server 2012/2012 R2 VMs won't require the acquisition or activation of keys. 
 
 - **Access to Azure management services:** ESUs enabled by Azure Arc give access to Azure management services such as [Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms), [Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview?tabs=python-2), and [Azure Policy Guest Configuration](/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy) at no additional cost.  
 
@@ -41,8 +41,11 @@ Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) allows you to en
 ## Create Azure Arc ESUs 
 
 1.	Sign in to the [Azure portal](https://portal.azure.com/).
+
 2.	On the **Azure Arc** page, select **Extended Security Updates** in the left pane. From here, you can view and create ESU **Licenses** and view **Eligible resources** for ESUs.
+
 3.	The **Licenses** tab displays Azure Arc Windows Server 2012 licenses that are available. Select an existing license to apply or create a new license.
+
 4.	To create a new Windows Server 2012 license, select **Create**, and then provide the information required to configure the license on the page. For detailed information on how to complete this step, see [License provisioning guidelines for Extended Security Updates for Windows Server 2012](../servers/license-extended-security-updates.md).
 
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/select-or-create-license.png" alt-text="Screenshot of how to create a new license." lightbox="media/deliver-esus-for-scvmm-vms/select-or-create-license.png":::
@@ -63,6 +66,7 @@ You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/view-arc-enabled-machines.png" alt-text="Screenshot of Azure Arc-enabled server machines running Windows Server 2012 and 2012 R2 under the eligible resources tab." lightbox="media/deliver-esus-for-scvmm-vms/view-arc-enabled-machines.png":::
 
 2.	To enable ESUs for one or more machines, select them in the list, and then select **Enable ESUs**.
+
 3.	On the **Enable Extended Security Updates** page, you can see the number of machines selected to enable ESUs and the Windows Server 2012 licenses available to apply. Select a license to link to the selected machine(s) and select **Enable**.
 
     :::image type="content" source="media/deliver-esus-for-scvmm-vms/enable-license.png" alt-text="Screenshot of how to select and enable license." lightbox="media/deliver-esus-for-scvmm-vms/enable-license.png":::
@@ -81,9 +85,11 @@ For Azure Arc-enabled SCVMM VMs enrolled in WS2012/2012 R2 ESUs enabled by Azure
 
 - [Azure Policy Guest Configuration](/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy): Audit the configuration settings in an Azure Arc-enabled SCVMM VM. 
 
-## Upgrading from Windows Server 2012/2012 R2  
+## Upgrade from Windows Server 2012/2012 R2  
 
-You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license. Once you've linked a VM to an activated ESU license, the VM is eligible to receive Windows Server 2012 and 2012 R2 ESUs. When upgrading a Windows Server 2012/2012 R2 machine to Windows Server 2016 or above, it's not necessary to remove the Azure Connected Machine agent from the machine. The new operating system will be visible for the machine in Azure within a few minutes of upgrade completion. Upgraded machines no longer require ESUs and are no longer eligible for them. Any ESU license associated with the machine isn't automatically unlinked from the machine. See [Unlink a license](/azure/azure-arc/servers/api-extended-security-updates#unlink-a-license) for instructions on doing so manually.
+You can select one or more Azure Arc-enabled SCVMM VMs to link to an ESU license. Once you've linked a VM to an activated ESU license, the VM is eligible to receive Windows Server 2012 and 2012 R2 ESUs. When upgrading a Windows Server 2012/2012 R2 machine to Windows Server 2016 or above, it's not necessary to remove the Azure Connected Machine agent from the machine. 
+
+The new operating system will be visible for the machine in Azure within a few minutes of upgrade completion. Upgraded machines no longer require ESUs and are no longer eligible for them. Any ESU license associated with the machine isn't automatically unlinked from the machine. See [Unlink a license](/azure/azure-arc/servers/api-extended-security-updates#unlink-a-license) for instructions on doing so manually.
 
 >[!Note]
 > - See [Troubleshoot delivery of Extended Security Updates for Windows Server 2012](../servers/troubleshoot-extended-security-updates.md) to troubleshoot any problems that occur during the enablement process.<br>
