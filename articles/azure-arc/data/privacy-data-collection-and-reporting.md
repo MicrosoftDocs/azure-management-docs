@@ -115,7 +115,7 @@ The following JSON document is an example of the SQL Server - Azure Arc resource
     "name": "SQL22-EE_PAYGTEST",
     "version": "SQL Server 2022",
     "edition": "Enterprise",
-    "containerResourceId": "/subscriptions/a5082b19-8a6e-4bc5-8fdd-8ef39dfebc39/resourcegroups/sashan-arc-eastasia/providers/Microsoft.HybridCompute/machines/SQL22-EE",
+    "containerResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/sashan-arc-eastasia/providers/Microsoft.HybridCompute/machines/SQL22-EE",
     "vCore": "8",
     "status": "Connected",
     "patchLevel": "16.0.1000.6",
@@ -197,12 +197,12 @@ The following JSON document is an example of the Azure Arc Data Controller resou
 
 ```json
 {
-    "id": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
+    "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
     "name": "contosodc",
     "type": "microsoft.azurearcdata/datacontrollers",
     "location": "eastus",
     "extendedLocation": {
-        "name": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso",
+        "name": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso",
         "type": "CustomLocation"
     },
     "tags": {},
@@ -248,7 +248,7 @@ The following JSON document is an example of the Azure Arc Data Controller resou
                     "azure": {
                         "autoUploadMetrics": "true",
                         "autoUploadLogs": "false",
-                        "subscription": "7894901a-dfga-rf4d-85r4-cc1234459df2",
+                        "subscription": "bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f",
                         "resourceGroup": "contoso-rg",
                         "location": "eastus",
                         "connectionMode": "direct"
@@ -285,13 +285,13 @@ The following JSON document is an example of the Azure Arc Data Controller resou
                 "annotations": {
                     "management.azure.com/apiVersion": "2022-03-01-preview",
                     "management.azure.com/cloudEnvironment": "AzureCloud",
-                    "management.azure.com/correlationId": "aa531c88-6dfb-46c3-af5b-d93f7eaaf0f6",
-                    "management.azure.com/customLocation": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso",
+                    "management.azure.com/correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
+                    "management.azure.com/customLocation": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.ExtendedLocation/customLocations/contoso",
                     "management.azure.com/location": "eastus",
                     "management.azure.com/operationId": "265b98a7-0fc2-4dce-9cef-26f9b6dd000c*705EDFCA81D01028EFA1C3E9CB3CEC2BF472F25894ACB2FFDF955711236F486D",
-                    "management.azure.com/resourceId": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
+                    "management.azure.com/resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
                     "management.azure.com/systemData": "{\"createdBy\":\"9c1a17be-338f-4b3c-90e9-55eb526c5aef\",\"createdByType\":\"User\",\"createdAt\":\"2023-01-03T21:35:36.8412132Z\",\"resourceUID\":\"74087467-4f98-4a23-bacf-a1e40404457f\"}",
-                    "management.azure.com/tenantId": "123488bf-8asd-41wf-91ab-211kl345db47",
+                    "management.azure.com/tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
                     "traceparent": "00-197d885376f938d6138babf8ed4d809c-1a584b84b3c8f5df-01"
                 },
                 "creationTimestamp": "2023-01-03T21:35:42Z",
@@ -376,7 +376,7 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
 ```json
 
 {
-    "id": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
+    "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
     "name": "sqlmi1",
     "type": "microsoft.azurearcdata/sqlmanagedinstances",
     "sku": {
@@ -385,7 +385,7 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
     },
     "location": "eastus",
     "extendedLocation": {
-        "name": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourcegroups/contoso-rg/providers/microsoft.extendedlocation/customlocations/contoso",
+        "name": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourcegroups/contoso-rg/providers/microsoft.extendedlocation/customlocations/contoso",
         "type": "CustomLocation"
     },
     "tags": {},
@@ -398,7 +398,7 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
         "lastModifiedAt": "2023-02-15T01:39:11.6582399Z"
     },
     "properties": {
-        "dataControllerId": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
+        "dataControllerId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/dataControllers/contosodc",
         "admin": "sqladmin",
         "k8sRaw": {
             "spec": {
@@ -493,13 +493,13 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
                 "annotations": {
                     "management.azure.com/apiVersion": "2022-03-01-preview",
                     "management.azure.com/cloudEnvironment": "AzureCloud",
-                    "management.azure.com/correlationId": "3a49178d-a09f-48d3-9292-3133f6591743",
-                    "management.azure.com/customLocation": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/microsoft.extendedlocation/customlocations/contoso",
+                    "management.azure.com/correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
+                    "management.azure.com/customLocation": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/microsoft.extendedlocation/customlocations/contoso",
                     "management.azure.com/location": "eastus",
                     "management.azure.com/operationId": "dbf2e708-78da-4762-8fd5-75ba43721b24*4C234309E6735F28E751F5734D64E8F98A910A88E54A1AD35C6469BCD0E6EA84",
-                    "management.azure.com/resourceId": "/subscriptions/7894901a-dfga-rf4d-85r4-cc1234459df2/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
+                    "management.azure.com/resourceId": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/contoso-rg/providers/Microsoft.AzureArcData/sqlManagedInstances/sqlmi1",
                     "management.azure.com/systemData": "{\"createdBy\":\"9c1a17be-338f-4b3c-90e9-55eb526c5aef\",\"createdByType\":\"User\",\"createdAt\":\"2023-01-04T01:33:57.5232885Z\",\"resourceUID\":\"40fa8b55-4b7d-4d6a-b783-043169d7fd03\"}",
-                    "management.azure.com/tenantId": "123488bf-8asd-41wf-91ab-211kl345db47",
+                    "management.azure.com/tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
                     "traceparent": "00-3c07cf4caa8b4778591b02b1bf3979ef-f2ee2c890c21ea8a-01"
                 },
                 "creationTimestamp": "2023-01-04T01:34:03Z",
@@ -669,7 +669,3 @@ In support situations, you may be asked to provide database instance logs, Kuber
 
 ## Related content
 [Upload usage data to Azure Monitor](upload-usage-data.md)
-
-
-
-

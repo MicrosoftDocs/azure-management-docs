@@ -112,7 +112,7 @@ To run the deboarding script, follow these steps:
 
 #### Inputs for the script
 
-- **vmmServerId**: The Azure resource ID of the SCVMM management server resource. </br> For example: */subscriptions/204898ee-cd13-4332-1111-88ca5c11111c/resourceGroups/Synthetics/providers/Microsoft.ScVmm/VMMServers/scvmmserverresource*
+- **vmmServerId**: The Azure resource ID of the SCVMM management server resource. </br> For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ScVmm/VMMServers/scvmmserverresource*
 
 - **ApplianceConfigFilePath (optional)**: Path to kubeconfig, output from deploy command. Providing applianceconfigfilepath also deletes the appliance VM running on the SCVMM management server.
 

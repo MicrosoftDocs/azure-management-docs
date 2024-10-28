@@ -32,7 +32,7 @@ This example shows an assignment granting the **Managed Services Registration As
 ```json
     "authorizations": [ 
         { 
-            "principalId": "cfa7496e-a619-4a14-a740-85c5ad2063bb", 
+            "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222", 
             "principalIdDisplayName": "MSP Operators", 
             "roleDefinitionId": "91c1777a-f3dc-4fae-b103-61d183457e46" 
         } 

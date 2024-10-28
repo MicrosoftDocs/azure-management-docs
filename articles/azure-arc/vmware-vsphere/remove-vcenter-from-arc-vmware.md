@@ -121,7 +121,7 @@ To run the deboarding script, follow these steps:
 
 #### Inputs for the script
 
-- **vCenterId**: The Azure resource ID of the VMware vCenter resource. </br> For example: */subscriptions/204898ee-cd13-4332-1111-88ca5c11111c/resourceGroups/Synthetics/providers/Microsoft.ConnectedVMwarevSphere/VCenters/vcenterresource*
+- **vCenterId**: The Azure resource ID of the VMware vCenter resource. </br> For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ConnectedVMwarevSphere/VCenters/vcenterresource*
 
 - **AVSId**: The Azure resource ID of the AVS instance. Specifying vCenterId or AVSId is mandatory.
 
