@@ -224,7 +224,17 @@ Before configuring the Credentials, you have to create and store secrets in the 
      az acr cache show -r MyRegistry -n MyRule
     ```
 
-#### Assign permissions to Key Vault
+#### Assign permissions to Key Vault using Role Base Access Controls (RBAC)
+
+1. Assign the required permissions on the level on Key Vault Secrets Officer using the RBAC Permissions [role-assignments-cli].
+    - For example, to assign permissions for the credentials access the KeyVault secret
+    ```azurecli-interactive
+   az role assignment create --assignee assignee \ 
+    --role roleNameOrId \ 
+    --scope /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/{providerName}/{resourceType}/{resourceSubType}/{resourceName}
+    ```
+
+#### Assign permissions to Key Vault using Access policies (Legacy)
 
 1. Get the principal ID of system identity in use to access Key Vault.
 
