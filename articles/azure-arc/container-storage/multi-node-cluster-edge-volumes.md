@@ -22,9 +22,9 @@ Install and configure Open Service Mesh (OSM) using the following commands:
 az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
 --config osm.osm.featureFlags.enableWASMStats=false" \
 --config osm.osm.enablePermissiveTrafficPolicy=false" \
---config osm.osm.configResyncInterval=10s"\
---config osm.osm.osmController.resource.requests.cpu=100m"\
---config osm.osm.osmBootstrap.resource.requests.cpu=100m"\
+--config osm.osm.configResyncInterval=10s" \
+--config osm.osm.osmController.resource.requests.cpu=100m" \
+--config osm.osm.osmBootstrap.resource.requests.cpu=100m" \
 --config osm.osm.injector.resource.requests.cpu=100m
 ```
 
@@ -46,9 +46,9 @@ First, install and configure Open Service Mesh (OSM) using the following command
 az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
 --config osm.osm.featureFlags.enableWASMStats=false" \
 --config osm.osm.enablePermissiveTrafficPolicy=false" \
---config osm.osm.configResyncInterval=10s"\
---config osm.osm.osmController.resource.requests.cpu=100m"\
---config osm.osm.osmBootstrap.resource.requests.cpu=100m"\
+--config osm.osm.configResyncInterval=10s" \
+--config osm.osm.osmController.resource.requests.cpu=100m" \
+--config osm.osm.osmBootstrap.resource.requests.cpu=100m" \
 --config osm.osm.injector.resource.requests.cpu=100m
 ```
 
