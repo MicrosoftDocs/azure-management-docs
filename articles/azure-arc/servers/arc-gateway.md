@@ -16,7 +16,7 @@ If you use enterprise firewalls or proxies to manage outbound traffic, the Azure
 This article explains how to set up and use Arc gateway (Public Preview).
 
 > [!IMPORTANT]
-> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/en-us/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public preview, or otherwise not yet released into general availability
+> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public preview, or otherwise not yet released into general availability
 >  
 
 
@@ -114,15 +114,15 @@ There are five steps to use the feature:
 
 On a machine with access to Azure, run the following PowerShell command to create your Arc gateway resource:
     
-    ```powershell
-    New-AzArcgateway 
-    -name <gateway’s name> 
-    -resource-group <resource group> 
-    -location <region> 
-    -subscription <subscription name or id> 
-    -gateway-type public  
-    -allowed-features *
-    ```
+```powershell
+New-AzArcgateway 
+-name <gateway’s name> 
+-resource-group <resource group> 
+-location <region> 
+-subscription <subscription name or id> 
+-gateway-type public  
+-allowed-features *
+```
 The gateway creation process takes 9-10 minutes to complete.
 
 ---
@@ -272,13 +272,13 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
     
 - Azure Monitor Agent 
 
-    - <log-analytics-workspace-id>.ods.opinsights.azure.com 
+    - \<log-analytics-workspace-id\>.ods.opinsights.azure.com 
     
-    - <data-collection-endpoint>.<virtual-machine-region-name>.ingest.monitor.azure.com 
+    - \<data-collection-endpoint\>.\<virtual-machine-region-name\>.ingest.monitor.azure.com 
 
 - Azure Key Vault Certificate Sync 
 
-    - <vault-name>.vault.azure.net
+    - \<vault-name\>.vault.azure.net
 
 - Azure Automation Hybrid Runbook Worker extension 
 
