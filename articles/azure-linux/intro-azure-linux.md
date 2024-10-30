@@ -53,6 +53,7 @@ The following table outlines information about the upgrades made to major compon
 |Kernel| 6.6 |
 |ContainerD| 1.7 but will also offer 2.0 once it reaches stable |
 |SystemD | v255 | 
+|Crypto Library| [SymCrypt](https://github.com/microsoft/SymCrypt)
 
 For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [Azure Linux Container Host support lifecycle](./support-cycle.md).
 ## Azure Linux Container Host supported GPU SKUs
