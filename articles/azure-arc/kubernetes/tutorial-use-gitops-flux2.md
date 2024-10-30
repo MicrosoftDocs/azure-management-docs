@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 10/03/2024
+ms.date: 10/30/2024
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
 ---
@@ -550,6 +550,22 @@ When you use this annotation, the deployed HelmRelease is patched with the refer
 
 ```azurecli
 az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --name flux --cluster-type <cluster-type> --config helm-controller.detectDrift=true 
+```
+
+### Post build variable substitution
+
+[Post build variable substitution](https://fluxcd.io/flux/components/kustomize/kustomizations/#post-build-variable-substitution) is available starting with [`microsoft.flux` v1.13.0](extensions-release.md#flux-gitops).
+
+To create a Flux extension with strict substitution policy enabled, run this command:
+
+```azurecli
+az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --extension-type microsoft.flux --config kustomize-controller.strict-substitution-mode=true
+```
+
+To update an existing Flux extension to enable strict substitution policy, run this command:
+
+```azurecli
+az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config kustomize-controller.strict-substitution-mode=true
 ```
 
 ### Vertical scaling
