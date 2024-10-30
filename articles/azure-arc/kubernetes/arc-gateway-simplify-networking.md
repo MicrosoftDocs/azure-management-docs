@@ -73,8 +73,11 @@ When you create the Arc gateway resource, you specify the subscription and resou
    -gateway-type public  
    -allowed-features *
    ```
+---
 
-### [Azure portal](#tab/azure-portal)
+It generally takes about ten minutes to finish creating the Arc gateway resource.
+
+You can alternately create your Arc gateway resource in the Azure portal by following these steps:
 
 1. In the Azure portal, navigate to  **Azure Arc > Azure Arc gateway (preview)**.
 1. Select **Create**.
@@ -84,21 +87,31 @@ When you create the Arc gateway resource, you specify the subscription and resou
 1. Select **Next: Tags**, then enter one or more custom tags if desired.
 1. Select **Review + Create**.
 1. After reviewing the details, select **Create.** 
----
 
-It generally takes about ten minutes to finish creating the Arc gateway resource.
+## Confirm access to required URLs
 
-## Confirm ...
+After the resource is created successfully, the success response will include the Arc gateway URL. Ensure your Arc gateway URL and all of the URLs below are allowed in the environment where your Arc resources live.  
 
-## Step 3
+
+|URL  |Purpose  |
+|---------|---------|
+|`[Your URL prefix].gw.arc.azure.com`       | Your gateway URL. This URL can be obtained by viewing your Arc gateway resource in the Azure portal, or by running `az arcgateway list` after you create the resource.         |
+|`management.azure.com`    |Azure Resource Manager Endpoint, required for ARM control channel.         |
+|`<region>.obo.arc.azure.com`     |Required when [Cluster connect](conceptual-cluster-connect.md) is configured.         |
+|`login.microsoftonline.com`, `<region>.login.microsoft.com`     | Microsoft Entra ID endpoint, used for acquiring identity access tokens.         |
+|`gbl.his.arc.azure.com`, `<region>.his.arc.azure.com`   |The cloud service endpoint for communicating with Arc Agents. Uses short names, for example `eus` for East US.          |
+|`mcr.microsoft.com`, `*.data.mcr.microsoft.com`     |Required to pull container images for Azure Arc agents.         |
+
+## Onboard Kubernetes clusters to Azure Arc with your Arc gateway resources
 
 ### [Azure CLI](#tab/azure-cli)
 
-content
+1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
+
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-more content
+1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-powershell#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
 
 ---
 
