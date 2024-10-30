@@ -94,4 +94,4 @@ Replace `<registry_name>` with the name of your Azure container registry and `<r
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [See more articles about Azure container registry](/search/?terms=Azure%20container%20registry%20and%20terraform).
+> [See more articles about Azure Container Registry](/search/?terms=Azure%20container%20registry%20and%20terraform).
