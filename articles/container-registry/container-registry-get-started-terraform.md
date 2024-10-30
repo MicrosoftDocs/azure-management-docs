@@ -4,7 +4,7 @@ description: In this quickstart, you create a unique resource group and an Azure
 ms.topic: quickstart
 ms.date: 10/30/2024
 ms.custom: devx-track-terraform
-ms.service: container-registry
+ms.service: azure-container-registry
 author: tejaswikolli-web
 ms.author: tejaswikolli
 #customer intent: As a Terraform user, I want to see how to create a unique Azure resource group and container registry.
