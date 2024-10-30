@@ -41,21 +41,21 @@ In this quickstart, you create an Azure Container Registry and a resource group 
 > [!NOTE]
 > The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-container-registry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-container-registry/TestRecord.md).
 > 
-> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
+> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform).
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory in which to test and run the sample Terraform code, and make it the current directory.
 
 1. Create a file named `main.tf`, and insert the following code:
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-container-registry/main.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-batch-pools-with-start-task/main.tf":::
 
 1. Create a file named `outputs.tf`, and insert the following code:
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-container-registry/outputs.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-batch-pools-with-start-task/outputs.tf":::
 
 1. Create a file named `providers.tf`, and insert the following code:
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-container-registry/providers.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-batch-pools-with-start-task/providers.tf":::
 
 1. Create a file named `variables.tf`, and insert the following code:
-    :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-container-registry/variables.tf":::
+    :::code language="Terraform" source="~/terraform_samples/quickstart/101-batch-pools-with-start-task/variables.tf":::
 
 ## Initialize Terraform
 
