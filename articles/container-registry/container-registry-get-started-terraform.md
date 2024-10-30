@@ -4,7 +4,7 @@ description: In this quickstart, you create a unique resource group and an Azure
 ms.topic: quickstart
 ms.date: 10/30/2024
 ms.custom: devx-track-terraform
-ms.service: container-registry
+ms.service: azure-container-registry
 author: tejaswikolli-web
 ms.author: tejaswikolli
 #customer intent: As a Terraform user, I want to see how to create a unique Azure resource group and container registry.
@@ -41,9 +41,9 @@ In this quickstart, you create an Azure Container Registry and a resource group 
 > [!NOTE]
 > The sample code for this article is located in the [Azure Terraform GitHub repo](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-container-registry). You can view the log file containing the [test results from current and previous versions of Terraform](https://github.com/Azure/terraform/tree/master/quickstart/101-azure-container-registry/TestRecord.md).
 > 
-> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform)
+> See more [articles and sample code showing how to use Terraform to manage Azure resources](/azure/terraform).
 
-1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
+1. Create a directory in which to test and run the sample Terraform code, and make it the current directory.
 
 1. Create a file named `main.tf`, and insert the following code:
     :::code language="Terraform" source="~/terraform_samples/quickstart/101-azure-container-registry/main.tf":::
@@ -94,4 +94,4 @@ Replace `<registry_name>` with the name of your Azure container registry and `<r
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [See more articles about Azure container registry](/search/?terms=Azure%20container%20registry%20and%20terraform).
+> [See more articles about Azure Container Registry](/search/?terms=Azure%20container%20registry%20and%20terraform).
