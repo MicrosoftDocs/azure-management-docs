@@ -554,7 +554,7 @@ az k8s-extension update --resource-group <resource-group> --cluster-name <cluste
 
 ### Post build variable substitution
 
-[Post build variable substitution](https://fluxcd.io/flux/components/kustomize/kustomizations/#post-build-variable-substitution) is available starting with [`microsoft.flux` v1.13.0](extensions-release.md#flux-gitops).
+[Post build variable substitution](https://fluxcd.io/flux/components/kustomize/kustomizations/#post-build-variable-substitution) is available starting with [`microsoft.flux` v1.13.1](extensions-release.md#flux-gitops).
 
 To create a Flux extension with strict substitution policy enabled, run this command:
 
