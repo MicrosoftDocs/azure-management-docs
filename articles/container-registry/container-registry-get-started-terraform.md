@@ -25,8 +25,8 @@ In this quickstart, you create an Azure Container Registry and a resource group 
 > * Define a variable for the prefix of the resource group name and with a default value of "rg".
 > * Generate a random pet name for the resource group.
 > * Create an Azure resource group with the generated name at a specified location.
-> * Generate a random string of five lowercase letters to be used as part of the Container Registry name.
-> * Create a Container Registry with the generated string as part of its name and in the same location and resource group as above.
+> * Generate a random string of five lowercase letters to be used as part of the container registry name.
+> * Create a container registry with the generated string as part of its name and in the same location and resource group as above.
 > * Output the names of the created resource group and container registry.
 > * Output the login server of the created container registry.
 
@@ -73,13 +73,13 @@ In this quickstart, you create an Azure Container Registry and a resource group 
 
 ### [Azure CLI](#tab/azure-cli)
 
-Run [az acr show](/cli/azure/acr#az-acr-show) to view the Azure container registry.
+Run [az acr show](/cli/azure/acr#az-acr-show) to view the container registry.
 
 ```azurecli
 az acr show --name <registry_name> --resource-group <resource_group_name>
 ```
 
-Replace `<registry_name>` with the name of your Azure container registry and `<resource_group_name>` with the name of your resource group.
+Replace `<registry_name>` with the name of your container registry and `<resource_group_name>` with the name of your resource group.
 
 ---
 
