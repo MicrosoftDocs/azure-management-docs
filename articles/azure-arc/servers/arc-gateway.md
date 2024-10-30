@@ -1,31 +1,30 @@
 ---
-title: How to simplify network configuration requirements through Azure Arc gateway (Public preview)
-description: Learn how to simplify network configuration requirements through Azure Arc gateway (Public preview).
+title: How to simplify network configuration requirements through Azure Arc gateway (Public Preview)
+description: Learn how to simplify network configuration requirements through Azure Arc gateway (Public Preview).
 ms.date: 10/30/2024
 ms.topic: how-to
 ---
 
-# Simplify network configuration requirements through Azure Arc gateway (Limited preview)
-
+# Simplify network configuration requirements through Azure Arc gateway (Public Preview)
 
 If you use enterprise firewalls or proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven (7) endpoints. With Azure Arc gateway, you can:
 
-- Connect to Azure Arc by opening public network access to only seven Fully Qualified Domains (FQDNs).
+- Connect to Azure Arc by opening public network access to only seven (7) Fully Qualified Domains (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
 
 This article explains how to set up and use Arc gateway (Public Preview).
 
 > [!IMPORTANT]
-> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public preview, or otherwise not yet released into general availability
+> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability
 >  
 
 ## How it works
 
 Azure Arc gateway consists of two main components:
 
-**The Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
+- **The Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
 
-**The Arc Proxy:** A new component added to Arc agentry. This component runs as a service called "Azure Arc Proxy" and acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for the gateway router. This router is part of Arc core agentry and runs within the context of an Arc-enabled resource.
+- **The Arc Proxy:** A new component added to Arc agentry. This component runs as a service called "Azure Arc Proxy" and acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for the gateway router. This router is part of Arc core agentry and runs within the context of an Arc-enabled resource.
 
 When the gateway is in place, traffic flows via the following hops: **Arc agentry → Arc Proxy → Enterprise proxy → Arc gateway  → Target service**
 
@@ -33,13 +32,13 @@ When the gateway is in place, traffic flows via the following hops: **Arc agentr
 
 ## Restrictions and limitations
 
-The Arc gateway object has limits you should consider when planning your setup. These limitations apply only to the Limited public preview. These limitations might not apply when the Arc gateway feature is generally available.
+The Arc gateway object has limits you should consider when planning your setup. These limitations apply only to the public preview. These limitations might not apply when the Arc gateway feature is generally available.
 
-- TLS Terminating Proxies aren't supported.
-- ExpressRoute/Site-to-Site VPN used with the Arc gateway (Limited preview) isn't supported.
-- There's a limit of five Arc gateway (Limited preview) resources per Azure subscription.
+- TLS Terminating Proxies aren't supported (Public Preview)
+- ExpressRoute/Site-to-Site VPN or private endpoints used with the Arc gateway (Public Preview) isn't supported.
+- There's a limit of five (5) Arc gateway (Public Preview) resources per Azure subscription.
 
-## How to use the Arc gateway (Public preview)
+## How to use the Arc gateway (Public Preview)
 
 There are five steps to use the feature:
 
@@ -48,8 +47,6 @@ There are five steps to use the feature:
 1. Onboard Azure Arc resources with your Arc gateway resource.
 1. Configure existing Azure Arc resources to use Arc gateway.
 1. Verify that the setup succeeded.
-
-
 
 ### Step 1: Create an Arc gateway resource
 
@@ -215,7 +212,7 @@ To clean up your gateway, detach the gateway resource from the applicable server
 
     `az connectedmachine gateway delete   --resource group [resource group name] --gateway-name [gateway resource name]` 
 
-    This operation can take couple of minutes.  
+    This operation may take a few minutes.  
 
 ## Troubleshooting
 
