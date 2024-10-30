@@ -54,6 +54,10 @@
       href: remove-scvmm-from-azure-arc.md
     - name: Perform recovery operations for Arc resource bridge
       href: disaster-recovery.md
+- name: Troubleshoot
+  items:
+  - name: Troubleshoot common deployment errors
+    href: troubleshoot-scvmm.md
 - name: Reference
   items:
   - name: Azure CLI
