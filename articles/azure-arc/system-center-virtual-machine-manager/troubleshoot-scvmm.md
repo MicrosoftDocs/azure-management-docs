@@ -45,4 +45,6 @@ This article provides troubleshooting steps that help you resolve the common err
 
 ## Next steps
 
+[Support matrix for Azure Arc-enabled System Center Virtual Machine Manager](support-matrix-for-system-center-virtual-machine-manager.md).
+
 
