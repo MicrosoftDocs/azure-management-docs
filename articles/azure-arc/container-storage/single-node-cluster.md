@@ -18,10 +18,16 @@ This article describes how to prepare Linux using a single-node or 2-node cluste
 
 This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or 2-node cluster.
 
-1. Install Open Service Mesh (OSM) using the following command:
+1. Install Open Service Mesh (OSM) using the following commands:
 
    ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
+   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
+   --config osm.osm.featureFlags.enableWASMStats=false" \
+   --config osm.osm.enablePermissiveTrafficPolicy=false" \
+   --config osm.osm.configResyncInterval=10s" \
+   --config osm.osm.osmController.resource.requests.cpu=100m" \
+   --config osm.osm.osmBootstrap.resource.requests.cpu=100m" \
+   --config osm.osm.injector.resource.requests.cpu=100m
    ```
 
 1. Disable **ACStor** by creating a file named **config.json** with the following contents:

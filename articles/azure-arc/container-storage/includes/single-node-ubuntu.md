@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 08/16/2024
+ms.date: 10/29/2024
 author: sethmanheim
 ms.author: sethm
 ---
@@ -12,8 +12,14 @@ This section describes how to prepare Linux with Ubuntu if you run a single-node
 
 1. Install Open Service Mesh (OSM) using the following command:
 
-   ```bash
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
+   ```azurecli
+   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
+   --config osm.osm.featureFlags.enableWASMStats=false" \
+   --config osm.osm.enablePermissiveTrafficPolicy=false" \
+   --config osm.osm.configResyncInterval=10s" \
+   --config osm.osm.osmController.resource.requests.cpu=100m" \
+   --config osm.osm.osmBootstrap.resource.requests.cpu=100m" \
+   --config osm.osm.injector.resource.requests.cpu=100m
    ```
 
 1. Run the following command to determine if you set `fs.inotify.max_user_instances` to 1024:
