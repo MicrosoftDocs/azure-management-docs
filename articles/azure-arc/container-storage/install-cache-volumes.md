@@ -4,7 +4,7 @@ description: Learn how to install the Cache Volumes offering from Azure Containe
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 10/24/2024
+ms.date: 10/29/2024
 
 ---
 
@@ -24,22 +24,6 @@ If you require a larger cache disk size, create **config.json** with the followi
 {
   "cachedStorageSize": "20Gi"
 }
-```
-
-## Prepare the `azure-arc-containerstorage` namespace
-
-In this step, you prepare a namespace in Kubernetes for `azure-arc-containerstoragee` and add it to your Open Service Mesh (OSM) configuration for link security. If you want to use a namespace other than `azure-arc-containerstorage`, substitute it in the `export extension_namespace`:
-
-```bash
-export extension_namespace=azure-arc-containerstorage
-kubectl create namespace "${extension_namespace}"
-kubectl label namespace "${extension_namespace}" openservicemesh.io/monitored-by=osm
-kubectl annotate namespace "${extension_namespace}" openservicemesh.io/sidecar-injection=enabled
-# Disable OSM permissive mode.
-kubectl patch meshconfig osm-mesh-config \
-  -n "arc-osm-system" \
-  -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":'"false"'}}}'  \
-  --type=merge
 ```
 
 ## Install Azure IoT Operations dependencies

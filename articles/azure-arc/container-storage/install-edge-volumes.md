@@ -4,28 +4,12 @@ description: Learn how to install the Edge Volumes offering from Azure Container
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
-ms.date: 10/24/2024
+ms.date: 10/28/2024
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes (preview)
 
 This article describes the steps to install the Azure Container Storage enabled by Azure Arc extension.
-
-## Prepare the `azure-arc-containerstorage` namespace
-
-In this step, you prepare a namespace in Kubernetes for `azure-arc-containerstorage` and add it to your Open Service Mesh (OSM) configuration for link security. If you want to use a namespace other than `azure-arc-containerstorage`, substitute it in the `export extension_namespace`:
-
-```bash
-export extension_namespace=azure-arc-containerstorage
-kubectl create namespace "${extension_namespace}"
-kubectl label namespace "${extension_namespace}" openservicemesh.io/monitored-by=osm
-kubectl annotate namespace "${extension_namespace}" openservicemesh.io/sidecar-injection=enabled
-# Disable OSM permissive mode.
-kubectl patch meshconfig osm-mesh-config \
-  -n "arc-osm-system" \
-  -p '{"spec":{"traffic":{"enablePermissiveTrafficPolicyMode":'"false"'}}}'  \
-  --type=merge
-```
 
 ## Install Azure IoT Operations dependencies
 

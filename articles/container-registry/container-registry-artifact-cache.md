@@ -224,7 +224,7 @@ Before configuring the Credentials, you have to create and store secrets in the 
      az acr cache show -r MyRegistry -n MyRule
     ```
 
-#### Assign permissions to Key Vault
+#### Assign permissions to Key Vault using Access policies (Legacy)
 
 1. Get the principal ID of system identity in use to access Key Vault.
 

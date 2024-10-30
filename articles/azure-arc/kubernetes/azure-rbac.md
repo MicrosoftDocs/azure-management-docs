@@ -38,6 +38,9 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 > Azure RBAC does not currently support Kubernetes clusters operating on ARM64 architecture. Please use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) to manage access control for ARM64-based Kubernetes clusters. 
 > 
 > For Azure Kubernetes Service (AKS) clusters, this [feature is available natively](/azure/aks/manage-azure-rbac) and doesn't require the AKS cluster to be connected to Azure Arc.
+>
+> For Azure Kubernetes Service (AKS) clusters enabled by Azure Arc on Azure Stack HCI 23H2, enabling Azure RBAC is currently only supported during Kubernetes cluster creation. To create an AKS cluster enabled by Azure Arc with Azure RBAC enabled, follow the [Use Azure RBAC for Kubernetes authorization](/azure/aks/hybrid/azure-rbac-23h2) guide. Note that Azure RBAC is not supported for Azure Stack HCI, version 22H2.
+
 ## Enable Azure RBAC on the cluster
 
 1. Get the cluster MSI identity by running the following command:

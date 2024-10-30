@@ -20,7 +20,7 @@ This article shows you how to host Helm charts repositories in an Azure containe
 
 > [!IMPORTANT]
 > - In November 2020, Helm 2 reached end of life. Starting on March 30th, 2025 Azure Container Registry will no longer support Helm 2. Therefore, the legacy "Helm repositories" functionality will also be retired. **We recommend that you transition to Helm 3 immediately.**
-> - Starting October 30, 2024, the CLI command [az acr helm push][az-acr-helm-push] will be retired to prevent pushing new Helm charts to legacy Helm repositories.
+> - Starting January 21st, 2025 the CLI command [az acr helm push][az-acr-helm-push] will be retired to prevent pushing new Helm charts to legacy Helm repositories.
 > - Starting March 30th, 2025 the CLI command group [az acr helm][az-acr-helm] will be retired, ending all legacy Helm repository capabilities in Azure Container Registry.
 > - ***All Helm charts not stored as an OCI artifact will be deleted from Azure Container Registry on March 30th, 2025.***
 > - ***Learn how to find all Helm charts stored in a Helm repository here: [az acr helm list][az-acr-helm-list]. If the Helm chart you are using is listed then it is stored in a legacy Helm repository and is at risk of deletion.*** 
