@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 08/16/2024
+ms.date: 10/29/2024
 author: sethmanheim
 ms.author: sethm
 ---
@@ -35,6 +35,13 @@ This section describes how to prepare Linux with AKS Edge Essentials if you run 
 1. Install and configure Open Service Mesh (OSM) using the following commands:
 
    ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
+   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
+   --config osm.osm.featureFlags.enableWASMStats=false" \
+   --config osm.osm.enablePermissiveTrafficPolicy=false" \
+   --config osm.osm.configResyncInterval=10s" \
+   --config osm.osm.osmController.resource.requests.cpu=100m" \
+   --config osm.osm.osmBootstrap.resource.requests.cpu=100m" \
+   --config osm.osm.injector.resource.requests.cpu=100m
+
    kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featureFlags":{"enableWASMStats": false }, "traffic":{"outboundPortExclusionList":[443,2379,2380], "inboundPortExclusionList":[443,2379,2380]}}}' --type=merge
    ```
