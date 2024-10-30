@@ -19,25 +19,6 @@ This article explains how to set up and use Arc gateway (Public Preview).
 > The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public preview, or otherwise not yet released into general availability
 >  
 
-
-<!-->
-## Supported scenarios
-
-Azure Arc gateway supports the following scenarios:
-
-- Azure Monitor (Azure Monitor Agent + Dependency Agent) <sup>1</sup>
-- Microsoft Defender for Cloud <sup>2</sup>
-- Windows Admin Center
-- SSH
-- Microsoft Sentinel
-- Azure Update Management
-- Azure Extension for SQL Server
-
-<sup>1</sup> Traffic to Log Analytics workspaces isn't covered by Arc gateway, so the FQDNs for your Log Analytics workspaces must still be allowed in your firewalls or enterprise proxies.  
-
-<sup>2</sup> To send Microsoft Defender traffic via Arc gateway, you must configure the extension’s proxy settings.  
--->
-
 ## How it works
 
 Azure Arc gateway consists of two main components:
@@ -144,11 +125,13 @@ When the resource is created, the success response includes the Arc gateway URL.
 ### Step 3: Onboard Azure Arc resources with your Arc gateway resource.
 
 1. Generate the installation script.
+ 
     Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](learn/quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
      
-> [!IMPORTANT]
->   When generating the onboarding script, select **Proxy Server** under **Connectivity method** to reveal the dropdown for **Gateway resource**.
->       
+    > [!IMPORTANT]
+    >   When generating the onboarding script, select **Proxy Server** under **Connectivity method** to reveal the dropdown for **Gateway resource**.
+    >       
+
 1. Run the installation script to onboard your servers to Azure Arc.
     
     In the script, the Arc gateway resource's ARM ID is shown as `--gateway-id`.
