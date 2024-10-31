@@ -6,7 +6,7 @@ ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 10/29/2024
-zone_pivot_groups: platform-select
+zone_pivot_groups: platform-select-with-other
 ---
 
 # Prepare Linux for Edge Volumes using a multi-node cluster (preview)
