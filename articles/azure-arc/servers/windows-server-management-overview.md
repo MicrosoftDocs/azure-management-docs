@@ -14,9 +14,9 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 |Azure Update Manager  |Windows Server 2012 and above  |Assess the update status and deploy updates to machines (one off, recurring, maintenance windows) with visibility into update compliance and auditing.  |
 |Azure Change Tracking and Inventory  |Windows Server 2012 and above  |Discovery of and changes of software, services/daemons, files, and registries of Azure Arc-enabled servers.  |
 |Azure Machine Configuration  |Windows Server 2012 and above  |Configuration of machine properties for OS, app, and environment settings, with Azure Policy. Available natively with the Azure Connected Machine agent.  |
-|Windows Admin Center  |Windows Server 2016 and above  |Secure management of servers from Azure console with event viewer, file explorer, configuration, and troubleshooting capabilities.  |
+|Windows Admin Center in Azure for Arc  |Windows Server 2016 and above  |Securely manage hybrid machines from anywhere–without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
 |Remote Support  |Windows Server 2025 only  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
-|Advanced Networking  |Windows Server 2025 only  |Accelerated networking capabilities help users scale down hardware investments, improving workload performance and reducing network latency.  |
+|Network HUD  |Windows Server 2025 only  |A host networking diagnostics and operational tool. Runs spot checks, health checks, and cluster wide checks to make sure your host networking set-up is healthy and set up in an optimal and expected way.  |
 |Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
 |Azure Site Recovery Configuration  |Windows Server 2022 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
 
