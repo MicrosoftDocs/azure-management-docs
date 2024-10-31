@@ -13,7 +13,7 @@ zone_pivot_groups: platform-select-with-other
 
 This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
 
-::: zone pivot="aks-others"
+::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
 
 Install and configure Open Service Mesh (OSM) using the following commands:
