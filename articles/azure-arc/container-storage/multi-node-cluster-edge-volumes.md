@@ -56,7 +56,7 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 ::: zone-end
 
 ::: zone pivot="other"
-## Other platforms
+## Prepare Linux with other platforms
 
 The available platform options are production-like environments that Microsoft has validated. They are not necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
 
