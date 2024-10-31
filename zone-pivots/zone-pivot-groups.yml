@@ -23,11 +23,11 @@ groups:
   title: Platform
   prompt: Choose a platform
   pivots:
-  - id: aks
+  - id: aks-other
     title: AKS enabled by Arc
-  - id: aks-ee
+  - id: aks-ee-other
     title: AKS Edge Essentials
-  - id: ubuntu
+  - id: ubuntu-other
     title: Ubuntu
   - id: other
     title: Other platform

@@ -13,7 +13,7 @@ zone_pivot_groups: platform-select-with-other
 
 This article describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux-edge-volumes.md#prerequisites).
 
-::: zone pivot="aks"
+::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
 
 This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or two-node cluster.
@@ -32,11 +32,11 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 
 ::: zone-end
 
-::: zone pivot="aks-ee"
+::: zone pivot="aks-ee-other"
 [!INCLUDE [single-node-edge-essentials](includes/single-node-edge-essentials.md)]
 ::: zone-end
 
-::: zone pivot="ubuntu"
+::: zone pivot="ubuntu-other"
 [!INCLUDE [single-node-ubuntu](includes/single-node-ubuntu.md)]
 ::: zone-end
 

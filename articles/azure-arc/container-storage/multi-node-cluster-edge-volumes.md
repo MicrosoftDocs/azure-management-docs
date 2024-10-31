@@ -13,7 +13,7 @@ zone_pivot_groups: platform-select-with-other
 
 This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
 
-::: zone pivot="aks"
+::: zone pivot="aks-others"
 ## Prepare Linux with AKS enabled by Azure Arc
 
 Install and configure Open Service Mesh (OSM) using the following commands:
@@ -30,12 +30,12 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 
 ::: zone-end
 
-::: zone pivot="aks-ee"
+::: zone pivot="aks-ee-other"
 [!INCLUDE [multi-node](includes/multi-node-edge-essentials.md)]
 
 ::: zone-end
 
-::: zone pivot="ubuntu"
+::: zone pivot="ubuntu-other"
 ## Prepare Linux with Ubuntu
 
 This section describes how to prepare Linux with Ubuntu if you run a multi-node cluster.
