@@ -172,7 +172,7 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 
 Changes in this version include:
 
-- Added support for the `--feature-gates=StrictPostBuildSubstitutions=true controller` flag to enable [post build variable substitution](tutorial-use-gitops-flux2.md#post-build-variable-substitution).
+- Added support for the `--feature-gates=StrictPostBuildSubstitutions=true controller` flag to enable [strict post-build variable substitution](tutorial-use-gitops-flux2.md#strict-post-build-variable-substitution).
 - Addressed security vulnerabilities in the `fluxconfig-agent` by updating the Go packages.
 
 ### 1.13.0 (October 2024)
