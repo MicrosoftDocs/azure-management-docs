@@ -552,9 +552,9 @@ When you use this annotation, the deployed HelmRelease is patched with the refer
 az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --name flux --cluster-type <cluster-type> --config helm-controller.detectDrift=true 
 ```
 
-### Post build variable substitution
+### Strict post-build variable substitution
 
-[Post build variable substitution](https://fluxcd.io/flux/components/kustomize/kustomizations/#post-build-variable-substitution) is available starting with [`microsoft.flux` v1.13.1](extensions-release.md#flux-gitops).
+[Strict post-build variable substitution](https://fluxcd.io/flux/components/kustomize/kustomizations/#post-build-variable-substitution) is available starting with [`microsoft.flux` v1.13.1](extensions-release.md#flux-gitops).
 
 To create a Flux extension with strict substitution policy enabled, run this command:
 
