@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 10/14/2024
+ms.date: 10/30/2024
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -159,6 +159,22 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
+## 1.13.1 (October 2024)
+
+Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
+
+- source-controller: v1.4.1
+- kustomize-controller: v1.4.0
+- helm-controller: v1.1.0
+- notification-controller: v1.4.0
+- image-automation-controller: v0.39.0
+- image-reflector-controller: v0.33.0
+
+Changes in this version include:
+
+- Added support for the `--feature-gates=StrictPostBuildSubstitutions=true controller` flag to enable [strict post-build variable substitution](tutorial-use-gitops-flux2.md#strict-post-build-variable-substitution).
+- Addressed security vulnerabilities in the `fluxconfig-agent` by updating the Go packages.
+
 ### 1.13.0 (October 2024)
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
@@ -170,7 +186,7 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 - image-automation-controller: v0.39.0
 - image-reflector-controller: v0.33.0
 
-Changes made for this version:
+Changes in this version include:
 
 - Implemented fix to retrieve certificates from the correct location, resolving failures that occurred after switching the image from Alpine to Mariner.
 
@@ -185,30 +201,11 @@ Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3
 - image-automation-controller: v0.38.0
 - image-reflector-controller: v0.32.0
 
-Changes made for this version:
+Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
 - Fixed issue with software bill of materials (SBOM) generation for `fluxconfig-agent` and `fluxconfig-controller`.
 - Added support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters that are described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
-
-### 1.11.1 (August 2024)
-
-Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)
-
-- source-controller: v1.3.0
-- kustomize-controller: v1.3.0
-- helm-controller: v1.0.1
-- notification-controller: v1.3.0
-- image-automation-controller: v0.38.0
-- image-reflector-controller: v0.32.0
-
-Changes made for this version:
-
-- Updated Flux OSS controllers.
-- Resolved the continuous restart issue of the Fluent Bit sidecar in `fluxconfig-agent` and `fluxconfig-controller`.
-- Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
-- Enabled workload identity for the Kustomize controller. For setup instructions, see [Workload identity in AKS clusters](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#workload-identity-in-aks-clusters).
-- Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This change allows traffic to the API server's domain name, even when a Layer 7 firewall is present, facilitating deployments during extension installation. For more information, see [Configure annotation on Flux extension pods](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2#configure-annotation-on-flux-extension-pods).
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
