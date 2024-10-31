@@ -1,7 +1,7 @@
 ---
 title: Connect Windows Server machines to Azure through Azure Arc Setup
 description: In this article, you learn how to connect Windows Server machines to Azure Arc using the built-in Windows Server Azure Arc Setup wizard.
-ms.date: 04/05/2024
+ms.date: 10/31/2024
 ms.topic: conceptual
 ---
 
@@ -107,3 +107,5 @@ To uninstall Azure Arc Setup from a Windows Server 2025 machine from the command
 * Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
 
 * Learn how to manage your machine using [Azure Policy](/azure/governance/policy/overview), for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verifying the machine is reporting to the expected Log Analytics workspace, enable monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
+
+* To learn more about Windows Server licensing on a pay-per-usage basis for your Arc-enabled servers, see [Windows Server Pay-as-you-go](/windows-server/get-started/windows-server-pay-as-you-go).
