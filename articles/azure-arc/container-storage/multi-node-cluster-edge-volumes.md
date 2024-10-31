@@ -55,6 +55,40 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 [!INCLUDE [multi-node-ubuntu](includes/multi-node-ubuntu.md)]
 ::: zone-end
 
+::: zone pivot="other"
+The available platform options are production-like environments that Microsoft has validated. They are not necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
+
+1. Run the following command to increase the user watch and instance limits:
+
+   ```bash
+   echo fs.inotify.max_user_instances=8192 | sudo tee -a /etc/sysctl.conf
+   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+   ```
+
+1. For better performance, increase the file descriptor limit:
+
+   ```bash
+   echo fs.file-max = 100000 | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+   ```
+
+1. Install the required **NVME over TCP** module for your kernel using the following command:
+
+   ```bash
+   sudo apt install linux-modules-extra-`uname -r`
+   ```
+
+1. Set the number of HugePages to 512 using the following command:
+
+   ```bash
+   HUGEPAGES_NR=512
+   echo $HUGEPAGES_NR | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
+   echo "vm.nr_hugepages=$HUGEPAGES_NR" | sudo tee /etc/sysctl.d/99-hugepages.conf
+   ```
+
+::: zone-end
+
 ## Next steps
 
 [Install Extension](install-edge-volumes.md)

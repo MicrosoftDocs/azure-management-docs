@@ -5,7 +5,7 @@ author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 10/29/2024
+ms.date: 10/31/2024
 zone_pivot_groups: platform-select
 ---
 
@@ -38,6 +38,32 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 
 ::: zone pivot="ubuntu"
 [!INCLUDE [single-node-ubuntu](includes/single-node-ubuntu.md)]
+::: zone-end
+
+::: zone pivot="other"
+The available platform options are production-like environments that Microsoft has validated. They are not necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
+
+1. Run the following command to increase the user watch and instance limits:
+
+   ```bash
+   echo fs.inotify.max_user_instances=8192 | sudo tee -a /etc/sysctl.conf
+   echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+   ```
+
+1. For better performance, increase the file descriptor limit:
+
+   ```bash
+   echo fs.file-max = 100000 | sudo tee -a /etc/sysctl.conf
+   sudo sysctl -p
+   ```
+
+1. Install the local path provisioner:
+
+   ```bash
+   kubectl apply -f https://raw.githubusercontent.com/Azure/AKS-Edge/main/samples/storage/local-path-provisioner/local-path-storage.yaml
+   ```
+
 ::: zone-end
 
 ## Next steps

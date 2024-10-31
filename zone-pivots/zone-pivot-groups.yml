@@ -19,6 +19,8 @@ groups:
     title: AKS Edge Essentials
   - id: ubuntu
     title: Ubuntu
+  - id: other
+    title: Other platform
 - id: identity-select
   title: Authentication
   prompt: Choose authentication
