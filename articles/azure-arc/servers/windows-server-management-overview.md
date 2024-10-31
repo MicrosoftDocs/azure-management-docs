@@ -11,14 +11,14 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 
 |Benefit  |Supported Operating Systems  |Description  |
 |---------|---------|---------|
-|Azure Update Manager  |Windows Server 2012 and above  |         |
-|Azure Change Tracking and Inventory  |Windows Server 2012 and above  |         |
-|Azure Machine Configuration  |Windows Server 2012 and above  |         |
-|Windows Admin Center  |Windows Server 2016 and above  |         |
-|Remote Support  |Windows Server 2025 only  |         |
-|Advanced Networking  |Windows Server 2025 only  |         |
-|Best Practices Assessment  |Windows Server 2016 and above  |         |
-|Azure Site Recovery Configuration  |Windows Server 2022 and above  |         |
+|Azure Update Manager  |Windows Server 2012 and above  |Assess the update status and deploy updates to machines (one off, recurring, maintenance windows) with visibility into update compliance and auditing.  |
+|Azure Change Tracking and Inventory  |Windows Server 2012 and above  |Discovery of and changes of software, services/daemons, files, and registries of Azure Arc-enabled servers.  |
+|Azure Machine Configuration  |Windows Server 2012 and above  |Configuration of machine properties for OS, app, and environment settings, with Azure Policy. Available natively with the Azure Connected Machine agent.  |
+|Windows Admin Center  |Windows Server 2016 and above  |Secure management of servers from Azure console with event viewer, file explorer, configuration, and troubleshooting capabilities.  |
+|Remote Support  |Windows Server 2025 only  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
+|Advanced Networking  |Windows Server 2025 only  |Accelerated networking capabilities help users scale down hardware investments, improving workload performance and reducing network latency.  |
+|Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
+|Azure Site Recovery Configuration  |Windows Server 2022 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
 
 Together, these capabilities afford robust governance, configuration, and remote management capabilities for Azure Arc-enabled server customers.  
 
@@ -71,6 +71,8 @@ You can enroll in Windows Server Management enabled by Azure Arc through the Azu
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
 1. Navigate to the **Azure Arc** page, then select **Windows Server Benefits and Licenses** (under Licensing in the table of content).
+
+:::image type="content" source="media/windows-server-management-overview/windows-benefits.png" alt-text="Screen of Azue Portal showing Windows Server benefits and licenses with benefits pop up.":::
 
 1. Select the Azure Arc-enabled servers that are eligible for enrollment in benefits and choose **Activate Azure benefits**.
 
