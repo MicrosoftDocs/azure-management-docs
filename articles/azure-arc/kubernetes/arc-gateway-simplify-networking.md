@@ -13,7 +13,7 @@ If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway 
 The Azure Arc gateway (preview) lets you:
 
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
-- View and audit all traffic that the Arc agents sends to Azure via the Arc gateway.
+- View and audit all traffic that the Arc agents send to Azure via the Arc gateway.
 
 > [!IMPORTANT]
 > Azure Arc gateway is currently in preview.
@@ -28,9 +28,9 @@ The **Arc gateway resource** is an Azure Resource that serves as a common front 
 
 The **Arc Proxy** is a new component that runs as its own pod (called "Azure Arc Proxy"). This component acts as a forward proxy used by Azure Arc agents and extensions. There is no configuration required on your part for the Azure Arc Proxy. As of [version 1.21.10 of the Arc-enabled Kubernetes agents](release-notes.md), this pod is now part of the core Arc agents, and it runs within the context of an Arc-enabled Kubernetes Cluster.  
 
-When the gateway is in place, traffic flows via the following hops: Arc Agentry → Azure Arc Proxy → Enterprise Proxy → Arc gateway → Target Service as shown below.
+When the gateway is in place, traffic flows via the following hops: Arc Agents → Azure Arc Proxy → Enterprise Proxy → Arc gateway → Target Service.
 
-<-- Image TK -->
+### IMAGE STILL NEEDED HERE
 
 ## Current limitations
 
@@ -201,10 +201,10 @@ Get-AzConnectedKubernetes -ClusterName <cluster_name> -ResourceGroupName <resour
 
 ---
 
-## Troubleshooting
+## Monitoring traffic
 
 To audit your gateway's traffic, view the gateway router's logs:
 
 1. Run `kubectl get pods -n azure-arc`
 1. Identify the Arc Proxy pod (its name will begin with `arc-proxy-`).
-1. Run kubectl logs -n azure-arc <Arc Proxy pod name> 
+1. Run `kubectl logs -n azure-arc <Arc Proxy pod name>` 
