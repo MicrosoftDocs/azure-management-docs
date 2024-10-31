@@ -3,12 +3,11 @@ title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
 ms.date: 10/31/2024
 ms.topic: conceptual
-ms.custom: references_regions
 ---
 
 # Windows Server Management enabled by Azure Arc
 
-Windows Server Management enabled by Azure Arc offers those with Windows Server licenses that have active Software Assurances or Windows Server licenses that are active subscription licenses the following key benefits:
+Windows Server Management enabled by Azure Arc offers customers with Windows Server licenses that have active Software Assurances or Windows Server licenses that are active subscription licenses the following key benefits:
 
 |Benefit  |Supported Operating Systems  |Description  |
 |---------|---------|---------|
@@ -39,13 +38,13 @@ Upon attestation, customers receive access to the following at no additional cos
 - Advanced Networking
 - Best Practices Assessment
 
-Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers will incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
+Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
 
-Customers need to explicitly attest for their Azure Arc-enabled servers or enroll in Windows Server pay-as-you-go to be exempt from billing for these services. Eligibility is not inferred directly from the enablement to Azure Arc. Eligibility is not inferred from licensing status for the Azure Arc-enabled SQL Server instances that may be connected to an Azure Arc-enabled.   
+Customers need to explicitly attest for their Azure Arc-enabled servers or enroll in Windows Server pay-as-you-go to be exempt from billing for these services. Eligibility isn't inferred directly from the enablement to Azure Arc. Eligibility is not inferred from licensing status for the Azure Arc-enabled SQL Server instances that may be connected to an Azure Arc-enabled.   
 
-Customer invoices will reflect both the complementary benefits included and the enrollment in these benefits through attestation or through Windows Server pay-as-you-go.  
+Customer invoices reflect both the complementary benefits included and the enrollment in these benefits through attestation or through Windows Server pay-as-you-go.  
 
-Customers that are not attesting or enrolled through Windows Server pay-as-you-go can purchase Azure Update Manager, Azure Change Tracking and Inventory, and Azure Machine Configuration for their Azure Arc-enabled servers. The other services are not available through Azure Arc for non-SA and non-pay-as-you-go customers.
+Customers that aren't attesting or enrolled through Windows Server pay-as-you-go can purchase Azure Update Manager, Azure Change Tracking and Inventory, and Azure Machine Configuration for their Azure Arc-enabled servers. The other services aren't available through Azure Arc for non-SA and non-pay-as-you-go customers.
 
 ## Requirements
 
@@ -53,13 +52,13 @@ Customers that are not attesting or enrolled through Windows Server pay-as-you-g
 
 - Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2012 or higher with both Standard/Datacenter editions are supported.  
 
-- Networking: Connectivity methods supported include Public Endpoint, Proxy, Azure Arc Gateway, and Private Endpoint. No additional endpoints need to be whitelisted.  
+- Networking: Connectivity methods supported include Public Endpoint, Proxy, Azure Arc Gateway, and Private Endpoint. No additional endpoints need to be allowed.  
 
-- Licensing: The Azure Arc-enabled server must be officially licensed through a valid licensing channel. Unlicensed servers are not eligible for these benefits. Azure Arc-enabled servers enrolled in Windows Server pay-as-you-go are automatically activated for these benefits.  
+- Licensing: The Azure Arc-enabled server must be officially licensed through a valid licensing channel. Unlicensed servers aren't eligible for these benefits. Azure Arc-enabled servers enrolled in Windows Server pay-as-you-go are automatically activated for these benefits.  
 
-- Connectivity: The Azure Arc-enabled server must be *Connected* for enrollment. Disconnected and expired servers are not eligible. Usage of the included benefits require connectivity.   
+- Connectivity: The Azure Arc-enabled server must be *Connected* for enrollment. Disconnected and expired servers aren't eligible. Usage of the included benefits require connectivity.   
 
-- Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability with the exception of China North 2, China North 3, and China East 2.  
+- Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability except for China North 2, China North 3, and China East 2.  
 
 - Modes: Customers can use Monitor mode and extension allowlists or blocklists with their attestation to Azure Arc-enabled servers.  
 
@@ -77,7 +76,7 @@ You can enroll in Windows Server Management enabled by Azure Arc through the Azu
 
 1. Review the terms to make the attestation and select **Activate** for the Azure benefits for the selected Azure Arc-enabled servers. 
 
-Upon activation of Azure benefits, the Azure Arc-enabled servers will show as *Activated* within 10 minutes. 
+Upon activation of Azure benefits, the Azure Arc-enabled servers shows as *Activated* within 10 minutes. 
 
 ### [PowerShell](#tab/powershell)
 
