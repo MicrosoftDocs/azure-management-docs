@@ -102,19 +102,109 @@ After the resource is created successfully, the success response will include th
 |`gbl.his.arc.azure.com`, `<region>.his.arc.azure.com`   |The cloud service endpoint for communicating with Arc Agents. Uses short names, for example `eus` for East US.          |
 |`mcr.microsoft.com`, `*.data.mcr.microsoft.com`     |Required to pull container images for Azure Arc agents.         |
 
-## Onboard Kubernetes clusters to Azure Arc with your Arc gateway resources
+## Onboard Kubernetes clusters to Azure Arc with your Arc gateway resource
 
 ### [Azure CLI](#tab/azure-cli)
 
 1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
+1. Connect your Kubernetes cluster, using one of the following methods:
 
+   - If your cluster is not behind an outbound proxy server, run the following Azure CLI command:
+
+     `az connectedk8s connect-g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id>`
+
+   - If your cluster is behind an outbound proxy server:
+
+     1. On the deployment machine, set the environment variables needed for Azure CLI to use the outbound proxy server:
+
+       `export HTTP_PROXY=<proxy-server-ip-address>:<port>`
+       `export HTTPS_PROXY=<proxy-server-ip-address>:<port>`
+       `export NO_PROXY=<cluster-apiserver-ip-address>:<port>`
+
+     1. On the Kubernetes cluster, run the connect command with the `proxy-https` and `proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
+
+       `az connectedk8s connect -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id> --proxy-https <proxy_value> --proxy-http http://<proxy-server-ip-address>:<port> --proxy-skip-range <excludedIP>,<excludedCIDR> --location <region>`
+
+       > [!NOTE]
+       >
+       > Some network requests, such as those involving in-cluster service-to-service communication, must be separated from traffic that's routed via the proxy server for outbound communication. The `--proxy-skip-range` parameter can be used to specify the CIDR range and endpoints in a comma-separated way, so that communication from the agents to these endpoints doesn't go via the outbound proxy. At a minimum, the CIDR range of the services in the cluster should be specified as value for this parameter. For example, if `kubectl get svc -A` returns a list of services where all the services have `ClusterIP` values in the range `10.0.0.0/16`, then the value to specify for `--proxy-skip-range` is `10.0.0.0/16,kubernetes.default.svc,.svc.cluster.local,.svc`.
+       >
+       > `--proxy-http`, `--proxy-https`, and `--proxy-skip-range` are expected for most outbound proxy environments. `--proxy-cert` is only required if you need to inject trusted certificates expected by proxy into the trusted certificate store of agent pods.
+       >
+       > The outbound proxy has to be configured to allow websocket connections. 
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
 1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-powershell#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
+1. Connect your Kubernetes cluster, using one of the following methods:
+
+    - If your cluster is not behind an outbound proxy server, run the following Azure PowerShell command:
+
+     `New-AzConnectedKubernetes -ClusterName <clustername> -ResourceGroupName <rg> -Location <region>> –GatewayResourceId <resourceId>`
+
+   - If your cluster is behind an outbound proxy server:
+
+     1. On the deployment machine, set the environment variables needed for Azure PowerShell to use the outbound proxy server:
+
+       `$Env:HTTP_PROXY = "<proxy-server-ip-address>:<port>"`
+       `$Env:HTTPS_PROXY = "<proxy-server-ip-address>:<port>"`
+       `$Env:NO_PROXY = "<cluster-apiserver-ip-address>:<port>"`
+
+     1. On the Kubernetes cluster, run the connect command with the proxy parameter specified:
+
+       `New-AzConnectedKubernetes -ClusterName <cluster-name> -ResourceGroupName <resource-group> -Location <region> -HttpProxy 'http://<proxy-server-ip-address>:<port>', -HttpsProxy 'https://<proxy-server-ip-address>:<port>' -NoProxy <excludedIP>,<excludedCIDR>`
 
 ---
 
-## Step 4
+## Configure existing clusters to use the Arc gateway
 
-TK
+To update existing clusters so that they use the Arc gateway, run the following command:
+
+### [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az connectedk8s update -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id>
+```
+
+To verify that the update was successful, run the following command and confirm that the response is `true`:
+
+```azurecli
+ az connectedk8s show -g <resource_group> -n <cluster_name> --query 'gateway.enabled' 
+```
+
+### [Azure PowerShell](#tab/azure-powershell)
+
+```azurepowershell
+$connectedCluster = Get-AzConnectedKubernetes -ClusterName <clustername> -ResourceGroupName <rg> 
+Get-AzConnectedKubernetes -InputObject $connectedCluster -GatewayResourceId <resourceId> 
+```
+
+---
+
+After your clusters have been updated to use the Arc gateway, some of the Arc endpoints that were previously allowed in your enterprise proxy or firewalls are no longer needed and can be removed. We recommend waiting at least one hour before you remove any endpoints that are no longer needed. Be sure not to remove any of the [endpoints that are required for Arc gateway](#confirm-access-to-required-urls).
+
+## Remove the Arc gateway
+
+To stop using the Arc gateway and remove the Arc gateway resource, first detach your gateway resource from all clusters. After that, you can delete the gateway resource.
+
+### [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az connectedk8s update -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id> 
+```
+
+### [Azure PowerShell](#tab/azure-powershell)
+
+```azurepowershell
+Get-AzConnectedKubernetes -ClusterName <cluster_name> -ResourceGroupName <resource_group> | Set-AzConnectedKubernetes -DisableGateway   
+```
+
+---
+
+## Troubleshooting
+
+To audit your gateway's traffic, view the gateway router's logs:
+
+1. Run `kubectl get pods -n azure-arc`
+1. Identify the Arc Proxy pod (its name will begin with `arc-proxy-`).
+1. Run kubectl logs -n azure-arc <Arc Proxy pod name> 
