@@ -58,9 +58,9 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 ::: zone pivot="other"
 ## Prepare Linux with other platforms
 
-The available platform options are production-like environments that Microsoft has validated. They are not necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
+The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
 
-1. Run the following command to increase the user watch and instance limits:
+1. Run the following commands to increase the user watch and instance limits:
 
    ```bash
    echo fs.inotify.max_user_instances=8192 | sudo tee -a /etc/sysctl.conf
@@ -68,20 +68,20 @@ The available platform options are production-like environments that Microsoft h
    sudo sysctl -p
    ```
 
-1. For better performance, increase the file descriptor limit:
+1. Run the following commands to increase the file descriptor limit for better performance:
 
    ```bash
    echo fs.file-max = 100000 | sudo tee -a /etc/sysctl.conf
    sudo sysctl -p
    ```
 
-1. Install the required **NVME over TCP** module for your kernel using the following command:
+1. Run the following command to install the required **NVME over TCP** module for your kernel:
 
    ```bash
    sudo apt install linux-modules-extra-`uname -r`
    ```
 
-1. Set the number of HugePages to 512 using the following command:
+1. Run the following command to set the number of `HugePages` to 512:
 
    ```bash
    HUGEPAGES_NR=512
