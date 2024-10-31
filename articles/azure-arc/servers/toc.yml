@@ -130,6 +130,8 @@
       href: ssh-arc-powershell-remoting.md
     - name: Troubleshoot SSH access to Azure Arc-enabled servers
       href: ssh-arc-troubleshoot.md
+  - name: Windows Server Management
+     href: windows-server-management-overview.md
   - name: Extended Security Updates
     items:
     - name: Prepare to deliver Extended Security Updates
