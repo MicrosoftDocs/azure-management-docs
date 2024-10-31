@@ -86,7 +86,6 @@ The available platform options are production-like environments that Microsoft h
    echo $HUGEPAGES_NR | sudo tee /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages
    echo "vm.nr_hugepages=$HUGEPAGES_NR" | sudo tee /etc/sysctl.d/99-hugepages.conf
    ```
-
 ::: zone-end
 
 ## Next steps

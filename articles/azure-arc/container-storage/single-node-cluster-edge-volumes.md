@@ -63,7 +63,6 @@ The available platform options are production-like environments that Microsoft h
    ```bash
    kubectl apply -f https://raw.githubusercontent.com/Azure/AKS-Edge/main/samples/storage/local-path-provisioner/local-path-storage.yaml
    ```
-
 ::: zone-end
 
 ## Next steps
