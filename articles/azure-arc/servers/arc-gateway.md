@@ -1,7 +1,7 @@
 ---
 title: How to simplify network configuration requirements through Azure Arc gateway (Public Preview)
 description: Learn how to simplify network configuration requirements through Azure Arc gateway (Public Preview).
-ms.date: 10/30/2024
+ms.date: 11/01/2024
 ms.topic: how-to
 ---
 
@@ -18,7 +18,7 @@ This article explains how to set up and use Arc gateway (Public Preview).
 > The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability
 >  
 
-## How it works
+## How the Azure Arc gateway works
 
 Azure Arc gateway consists of two main components:
 
@@ -30,7 +30,7 @@ When the gateway is in place, traffic flows via the following hops: **Arc agentr
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway.":::
 
-## Restrictions and limitations
+## Current limitations
 
 The Arc gateway object has limits you should consider when planning your setup. These limitations apply only to the public preview. These limitations might not apply when the Arc gateway feature is generally available.
 
@@ -40,7 +40,7 @@ The Arc gateway object has limits you should consider when planning your setup. 
 
 ## How to use the Arc gateway (Public Preview)
 
-There are five steps to use the feature:
+There are five steps to use the Arc gateway:
 
 1. Create an Arc gateway resource.
 1. Ensure the required URLs are allowed in your environment.
@@ -49,6 +49,8 @@ There are five steps to use the feature:
 1. Verify that the setup succeeded.
 
 ### Step 1: Create an Arc gateway resource
+
+You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azure PowerShell.
 
 ### [Portal](#tab/portal)
 
@@ -134,6 +136,8 @@ When the resource is created, the success response includes the Arc gateway URL.
     In the script, the Arc gateway resource's ARM ID is shown as `--gateway-id`.
 
 ### Step 4: Configure existing Azure Arc resources to use Arc gateway
+
+You can configure existing Azure Arc resources to use Arc gateway by using the Azure portal, Azure CLI, or Azure PowerShell.
 
 ### [Portal](#tab/portal)
 
