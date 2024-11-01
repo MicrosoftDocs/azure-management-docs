@@ -14,7 +14,7 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 |Azure Update Manager  |Windows Server 2012 and above  |Assess the update status and deploy updates to machines (one off, recurring, maintenance windows) with visibility into update compliance and auditing.  |
 |Azure Change Tracking and Inventory  |Windows Server 2012 and above  |Discovery of and changes of software, services/daemons, files, and registries of Azure Arc-enabled servers.  |
 |Azure Machine Configuration  |Windows Server 2012 and above  |Configuration of machine properties for OS, app, and environment settings, with Azure Policy. Available natively with the Azure Connected Machine agent.  |
-|Windows Admin Center in Azure for Arc  |Windows Server 2016 and above  |Securely manage hybrid machines from anywhere–without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
+|Windows Admin Center in Azure for Arc  |Windows Server 2016 and above  |Securely manage hybrid machines from anywhere without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
 |Remote Support  |Windows Server 2016 and above  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
 |Network HUD  |Windows Server 2025 only  |A host networking diagnostics and operational tool. Runs spot checks, health checks, and cluster wide checks to make sure your host networking set-up is healthy and set up in an optimal and expected way.  |
 |Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
@@ -57,7 +57,7 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 - Licensing: The Azure Arc-enabled server must be officially licensed through a valid licensing channel. Unlicensed servers aren't eligible for these benefits. Azure Arc-enabled servers enrolled in Windows Server pay-as-you-go are automatically activated for these benefits.  
 
-- Connectivity: The Azure Arc-enabled server must be *Connected* for enrollment. Disconnected and expired servers aren't eligible. Usage of the included benefits require connectivity.   
+- Connectivity: The Azure Arc-enabled server must be *Connected* for enrollment. Disconnected and expired servers aren't eligible. Usage of the included benefits requires connectivity.   
 
 - Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability except for China North 2, China North 3, and China East 2.  
 
@@ -73,13 +73,13 @@ You can enroll in Windows Server Management enabled by Azure Arc through the Azu
 
 1. Navigate to the **Azure Arc** page, then select **Windows Server Benefits and Licenses** (under Licensing in the table of content).
 
-:::image type="content" source="media/windows-server-management-overview/windows-benefits.png" alt-text="Screen of Azue Portal showing Windows Server benefits and licenses with benefits pop up.":::
+    :::image type="content" source="media/windows-server-management-overview/windows-benefits.png" alt-text="Screenshot of Azure Portal showing Windows Server benefits and licenses with benefits pop up.":::
 
 1. Select the Azure Arc-enabled servers that are eligible for enrollment in benefits and choose **Activate Azure benefits**.
 
 1. Review the terms to make the attestation and select **Activate** for the Azure benefits for the selected Azure Arc-enabled servers. 
 
-Upon activation of Azure benefits, the Azure Arc-enabled servers shows as *Activated* within 10 minutes. 
+Upon activation of Azure benefits, the Azure Arc-enabled servers show as *Activated* within 10 minutes. 
 
 ### [PowerShell](#tab/powershell)
 
