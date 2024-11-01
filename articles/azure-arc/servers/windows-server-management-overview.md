@@ -23,7 +23,7 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 Together, these capabilities afford robust governance, configuration, and remote management capabilities for Azure Arc-enabled server customers.  
 
 > [!IMPORTANT]
-> Customers enrolled in [Windows Server pay-as-you-go](/windows-server/get-started/windows-server-pay-as-you-go) enabled by Azure Arc are enrolled in these benefits.
+> Customers enrolled in Windows Server pay-as-you-go enabled by Azure Arc are enrolled in these benefits.
 > 
 
 ## Billing
@@ -41,7 +41,7 @@ Upon attestation, customers receive access to the following at no additional cos
 
 Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
 
-Customers need to explicitly attest for their Azure Arc-enabled servers or enroll in [Windows Server pay-as-you-go](/windows-server/get-started/windows-server-pay-as-you-go) to be exempt from billing for these services. Eligibility isn't inferred directly from the enablement to Azure Arc. Eligibility is not inferred from licensing status for the Azure Arc-enabled SQL Server instances that may be connected to an Azure Arc-enabled.   
+Customers need to explicitly attest for their Azure Arc-enabled servers or enroll in Windows Server pay-as-you-go to be exempt from billing for these services. Eligibility isn't inferred directly from the enablement to Azure Arc. Eligibility is not inferred from licensing status for the Azure Arc-enabled SQL Server instances that may be connected to an Azure Arc-enabled.   
 
 Customer invoices reflect both the complementary benefits included and the enrollment in these benefits through attestation or through Windows Server pay-as-you-go.  
 
