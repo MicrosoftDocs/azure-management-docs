@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot platform issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 12/15/2023
+ms.date: 11/01/2024
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Learn how to resolve common issues with Azure Arc-enabled Kubernetes clusters and GitOps."
@@ -21,9 +21,11 @@ az account set --subscription 'subscriptionId'
 az account show
 ```
 
+If you see an error such as `cli.azext_connectedk8s.custom: Failed to download and install kubectl`, run `az aks install-cli --install-location ~/.azure/kubectl-client/kubectl`  before trying to run `az connectedk8s connect` again. This command installs the kubectl client, which is required for the command to work.
+
 ## Azure Arc agents
 
-All agents for Azure Arc-enabled Kubernetes are deployed as pods in the `azure-arc` namespace. All pods should be running and passing their health checks.
+All [agents for Azure Arc-enabled Kubernetes](conceptual-agent-overview.md) are deployed as pods in the `azure-arc` namespace. All pods should be running and passing their health checks.
 
 First, verify the Azure Arc Helm Chart release:
 
@@ -74,7 +76,7 @@ All pods should show `STATUS` as `Running` with either `3/3` or `2/2` under the 
 
 ## Resource provisioning failed/Service timeout error
 
-If you see these errors, check [Azure status](https://azure.status.microsoft/en-us/status) to see if there are any active events impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event has been resolved, then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events, and you continue to face issues while onboarding, [open a support ticket](/azure/azure-portal/supportability/how-to-create-azure-support-request) so we can investigate the problem.
+If you see these errors, check [Azure status](https://azure.status.microsoft/en-us/status) to see if there are any active events impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event has been resolved, then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events, and you continue to face issues while onboarding, [open a support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) so we can investigate the problem.
 
 ## Overage claims error
 
