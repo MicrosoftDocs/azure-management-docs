@@ -15,10 +15,10 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 |Azure Change Tracking and Inventory  |Windows Server 2012 and above  |Discovery of and changes of software, services/daemons, files, and registries of Azure Arc-enabled servers.  |
 |Azure Machine Configuration  |Windows Server 2012 and above  |Configuration of machine properties for OS, app, and environment settings, with Azure Policy. Available natively with the Azure Connected Machine agent.  |
 |Windows Admin Center in Azure for Arc  |Windows Server 2016 and above  |Securely manage hybrid machines from anywhere–without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
-|Remote Support  |Windows Server 2025 only  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
+|Remote Support  |Windows Server 2016 and above  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
 |Network HUD  |Windows Server 2025 only  |A host networking diagnostics and operational tool. Runs spot checks, health checks, and cluster wide checks to make sure your host networking set-up is healthy and set up in an optimal and expected way.  |
 |Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
-|Azure Site Recovery Configuration  |Windows Server 2022 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
+|Azure Site Recovery Configuration  |Windows Server 2016 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
 
 Together, these capabilities afford robust governance, configuration, and remote management capabilities for Azure Arc-enabled server customers.  
 
@@ -33,10 +33,11 @@ Upon attestation, customers receive access to the following at no additional cos
 - Azure Update Manager
 - Azure Change Tracking and Inventory
 - Azure Machine Configuration
-- Windows Admin Center
+- Windows Admin Center in Azure for Arc
 - Remote Support
-- Advanced Networking
+- Network HUD
 - Best Practices Assessment
+- Azure Site Recovery Configuration
 
 Azure Change Tracking and Inventory and Best Practices Assessment require a Log Analytics workspace that may incur data ingestion costs. While the configuration of Azure Site Recovery is included as a benefit, customers incur costs for the Azure Site Recovery service itself, including for any storage, compute, and networking associated with the service. 
 
