@@ -1,6 +1,6 @@
 ---
 title: Introduction to the Azure Linux Container Host for AKS
-description: Learn about the Azure Linux Container Host to use the container-optimized OS in your AKS clusters.
+description: Learn about the Azure Linux Container Host.
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
@@ -39,7 +39,7 @@ The Azure Linux Container Host offers the following key benefits:
   - Azure Linux passes all the [CIS Level 1 benchmarks][cis-benchmarks], making it the only Linux distribution on AKS that does so.
   - For more information on Azure Linux Container Host security principles, see the [AKS security concepts](/azure/aks/concepts-security).
 - **Maintains compatibility with existing workloads**
-  - All existing and future AKS extensions, add-ons, and open-source projects on AKS support Azure Linux. This includes support for runtime components like Dapr, IaC tools like Terraform, and monitoring solutions like Dynatrace.
+  - All existing and future AKS extensions, add-ons, and open-source projects on AKS support Azure Linux. Extension support includes support for runtime components like Dapr, IaC tools like Terraform, and monitoring solutions like Dynatrace.
   - Azure Linux ships with containerd as its container runtime and the upstream Linux kernel, which enables existing containers based on Linux images (like Alpine) to work seamlessly on Azure Linux.
 
 ## What's new with Azure Linux 3.0?
@@ -51,7 +51,7 @@ The following table outlines information about the upgrades made to major compon
 |Component| Version|
 |--|--|
 |Kernel| 6.6 |
-|ContainerD| 1.7 but will also offer 2.0 once it reaches stable |
+|ContainerD| 1.7 and 2.0 support |
 |SystemD | v255 | 
 |Crypto Library| [SymCrypt](https://github.com/microsoft/SymCrypt)
 

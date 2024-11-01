@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Enable Azure Linux 3.0 for AKS clusters and node pools (Preview) '
+title: 'Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service clusters and node pools (Preview) '
 description: Learn how to enable Azure Linux 3.0 for AKS clusters and node pools.
 author: suhuruli
 ms.author: suhuruli
@@ -9,16 +9,16 @@ ms.topic: quickstart
 ms.date: 10/10/2024
 
 ---
-# Quickstart: Enable Azure Linux 3.0 for AKS clusters and node pools (Preview)
+# Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service (AKS) clusters and node pools (Preview)
 
-This article shows you how to enable Azure Linux 3.0 as the default Azure Linux node OS for new AKS clusters and node pools running AKS version 1.31 or later. Once enabled, any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option will default to using Azure Linux 3.0.
+This article shows you how to enable Azure Linux 3.0 as the default Azure Linux node OS for new AKS clusters and node pools running AKS version 1.31 or later. Once enabled, any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option defaults to using Azure Linux 3.0.
 
 ## Limitations
 
 * Not supported on Kubernetes version 1.30 and below.
-* Existing clusters or nodepools running Azure Linux 2.0 cannot be upgraded to 3.0. New nodepools or clusters will need to be created. 
+* Existing clusters or node pools running Azure Linux 2.0 can't be upgraded to 3.0. New node pools or clusters need to be created. 
 * Azure Linux 3.0 FIPS image is in preview and is FIPS compliant but not verified as the crypto modules are [Modules in Process with NIST](https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Modules-In-Process/IUT-List).
-* **Supported Regions**: Azure Linux 3.0 support is in preview as part of the `v20241025` release. Please visit the [AKS Release Tracker](https://releases.aks.azure.com/) for the latest on which regions have received this release. 
+* **Supported Regions**: Azure Linux 3.0 support is in preview as part of the `v20241025` release. Visit the [AKS Release Tracker](https://releases.aks.azure.com/) for the latest on which regions are on this release. 
 
 ## Enable Azure Linux 3.0  
 
@@ -37,7 +37,7 @@ Once these steps are completed, you can deploy the cluster using the method of y
 - [Quickstart with CLI](./quickstart-azure-cli.md)
 - [Quickstart with PowerShell](./quickstart-azure-powershell.md)
 - [Quickstart with Terraform](./quickstart-terraform.md)
-- [Quickstart with ARM](./quickstart-azure-resource-manager-template.md)
+- [Quickstart with Azure Resource Manager (ARM)](./quickstart-azure-resource-manager-template.md)
 
 ## Disable Azure Linux 3.0
 1. Unregister the `AzureLinuxV3Preview` feature flag using the [`az feature unregister`](/cli/azure/feature#az-feature-unregister) command. 
