@@ -7,7 +7,7 @@ ms.topic: conceptual
 
 # Billing service for Windows Server pay-as-you-go enabled by Azure Arc
 
-Machines must be onboarded to Azure Arc through the deployment of the [Azure Connected Machine agent](agent-overview.md). Azure Arc-enabled servers need to be in a connected state. Azure Arc-enabled servers doesn't support disconnected machines.  
+Machines must be onboarded to Azure Arc through the deployment of the [Azure Connected Machine agent](agent-overview.md). Azure Arc-enabled servers need to be in a connected state. Azure Arc-enabled servers don't support disconnected machines.  
 
 Windows Server pay-as-you-go enabled by Azure Arc supports both Windows Server 2025 Standard and Datacenter editions. Windows Server Datacenter and Standard editions are billed at the same rate for pay-as-you-go enabled by Azure Arc. There's no difference between virtual and physical machines from a billing perspective. Also, there's no minimum CPU core count per machine or per subscription, nor a fixed increment in which CPU cores are counted.
 

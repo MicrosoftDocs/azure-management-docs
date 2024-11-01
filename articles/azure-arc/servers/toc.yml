@@ -137,7 +137,7 @@
     - name: Configure Windows Server pay-as-you-go
       href: /windows-server/get-started/windows-server-pay-as-you-go
     - name: Billing service for Windows Server pay-as-you-go
-      href: billing-windows-server-paygo.md
+      href: billing-windows-server-pay-go.md
   - name: Extended Security Updates
     items:
     - name: Prepare to deliver Extended Security Updates
