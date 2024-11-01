@@ -18,6 +18,7 @@ This article shows you how to enable Azure Linux 3.0 as the default Azure Linux 
 * Not supported on Kubernetes version 1.30 and below.
 * Existing clusters or nodepools running Azure Linux 2.0 cannot be upgraded to 3.0. New nodepools or clusters will need to be created. 
 * Azure Linux 3.0 FIPS image is in preview and is FIPS compliant but not verified as the crypto modules are [Modules in Process with NIST](https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Modules-In-Process/IUT-List).
+* **Supported Regions**: Azure Linux 3.0 support is in preview as part of the `v20241025` release. Please visit the [AKS Release Tracker](https://releases.aks.azure.com/) for the latest on which regions have received this release. 
 
 ## Enable Azure Linux 3.0  
 
