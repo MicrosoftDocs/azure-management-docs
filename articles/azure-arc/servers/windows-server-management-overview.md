@@ -49,7 +49,7 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 ## Requirements
 
-- Agent Version: Connected Machine Agent version 1.38 or higher is required, and 1.46 or higher is recommended.  
+- Agent Version: Connected Machine Agent version 1.38 or higher is required; and 1.46 or higher is recommended.  
 
 - Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2012 or higher with both Standard/Datacenter editions are supported.  
 
