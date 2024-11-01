@@ -19,6 +19,18 @@ groups:
     title: AKS Edge Essentials
   - id: ubuntu
     title: Ubuntu
+- id: platform-select-with-other
+  title: Platform
+  prompt: Choose a platform
+  pivots:
+  - id: aks-other
+    title: AKS enabled by Arc
+  - id: aks-ee-other
+    title: AKS Edge Essentials
+  - id: ubuntu-other
+    title: Ubuntu
+  - id: other
+    title: Other platform
 - id: identity-select
   title: Authentication
   prompt: Choose authentication
