@@ -30,7 +30,7 @@ groups:
   - id: ubuntu-other
     title: Ubuntu
   - id: other
-    title: Other platform
+    title: Other
 - id: identity-select
   title: Authentication
   prompt: Choose authentication
