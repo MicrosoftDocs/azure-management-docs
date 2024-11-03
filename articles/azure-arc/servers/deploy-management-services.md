@@ -11,10 +11,10 @@ This article explains how to enable multiple Azure Management Services across yo
 
 Currently, four management services are available for deployment at scale through this workflow:
 
-- Change Tracking and Inventory
-- Azure Update Manager
-- Azure Monitor Insights
-- Microsoft Defender for Cloud
+- [Change Tracking and Inventory](/azure/automation/change-tracking/overview): Collect inventory and track changes.
+- [Azure Update Manager](/azure/update-manager/overview): Manage and govern updates for all your machines.
+- [Azure Monitor Insights](/azure/azure-monitor/insights/insights-overview): Monitor the operating system and any workloads on the machine.
+- [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction): Perform security monitoring in Azure.
 
 To enable these services on your machines, use the following procedure:
 
