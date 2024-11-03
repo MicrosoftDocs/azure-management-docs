@@ -1,0 +1,44 @@
+---
+title: Deploy Azure Management services to Arc-enabled servers at scale
+description: Learn how to deploy Azure Management services to Arc-enabled servers at scale.
+ms.date: 11/03/2024
+ms.topic: how-to
+---
+
+# Deploy Azure Management services to Arc-enabled servers at scale (Preview)
+
+This article explains how to enable multiple Azure Management Services across your entire fleet of Azure Arc-enabled machines in one streamlined workflow. You can quickly view available management services and configure them for scalable deployment across your machines. 
+
+Currently, four management services are available for deployment at scale through this workflow:
+
+- Change Tracking and Inventory
+- Azure Update Manager
+- Azure Monitor Insights
+- Microsoft Defender for Cloud
+
+To enable these services on your machines, use the following procedure:
+
+1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
+
+1. Navigate to **Machines-Azure Arc**.
+
+1. Select the machines to which you want to deploy management services.
+
+1. Select **Enable services (preview)**.
+
+1. Select the management services you want deployed on the machines.
+
+    The Eligibility column indicates if an extension is available for each machine. Machines where these extensions are already deployed may show as ineligible. Reasons for ineligibility can be viewed by selecting the link.
+
+1. If necessary, select **Edit** to edit the configuration for a service (for example, Log Analytics workspaces).
+
+1. Select **Next**, review the management services to be deployed to the machines, and then select **Enable**.
+
+
+
+
+
+
+
+
+

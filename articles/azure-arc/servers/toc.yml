@@ -118,6 +118,8 @@
       href: run-command.md
     - name: Organize and inventory servers
       href: organize-inventory-servers.md
+    - name: Azure Management Services
+      href: windows-server-management-overview.md
     - name: Onboard to Microsoft Defender for Cloud
       href: /azure/defender-for-cloud/quickstart-onboard-machines?toc=/azure/azure-arc/servers/toc.json&bc=/azure/azure-arc/servers/breadcrumb/toc.json
     - name: Manage with Windows Admin Center
