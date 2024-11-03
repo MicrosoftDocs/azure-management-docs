@@ -24,9 +24,13 @@ To enable these services on your machines, use the following procedure:
 
 1. Select the machines to which you want to deploy management services.
 
+    :::image type="content" source="media/deploy-management-services/management-services-select-machines.png" alt-text="Screenshot of Azure portal showing Arc-enabled machines selected for Management Services.":::
+   
 1. Select **Enable services (preview)**.
 
 1. Select the management services you want deployed on the machines.
+
+    :::image type="content" source="media/deploy-management-services/management-services-select-services.png" alt-text="Screenshot of Management Services that can be selected.":::
 
     The Eligibility column indicates if an extension is available for each machine. Machines where these extensions are already deployed may show as ineligible. Reasons for ineligibility can be viewed by selecting the link.
 
