@@ -11,7 +11,7 @@ ms.date: 10/10/2024
 ---
 # Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service (AKS) clusters and node pools (Preview)
 
-This article shows you how to enable Azure Linux 3.0 as the default Azure Linux node OS for new AKS clusters and node pools running AKS version 1.31 or later. Once enabled, any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option defaults to using Azure Linux 3.0.
+This article shows you how to enable Azure Linux 3.0 as the default Azure Linux node OS for new AKS clusters and node pools running AKS version 1.31. Once enabled, any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option defaults to using Azure Linux 3.0.
 
 ## Limitations
 
