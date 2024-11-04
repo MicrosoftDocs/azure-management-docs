@@ -48,7 +48,6 @@ The table below lists the URLs that must be available in order to install and us
 |`aka.ms`|Used to resolve the download script during installation|At installation time, only| Public |
 |`download.microsoft.com`|Used to download the Windows installation package|At installation time, only| Public |
 |`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only| Public |
-|`login.windows.net`|Microsoft Entra ID|Always| Public |
 |`login.microsoftonline.com`|Microsoft Entra ID|Always| Public |
 |`*login.microsoft.com`|Microsoft Entra ID|Always| Public |
 |`pas.windows.net`|Microsoft Entra ID|Always| Public |
