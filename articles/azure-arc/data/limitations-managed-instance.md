@@ -34,6 +34,7 @@ This article describes limitations of SQL Managed Instance enabled by Azure Arc.
 - Transactional replication is currently not supported.
 - Log shipping is currently blocked.
 - All user databases need to be in a full recovery model because they participate in an always-on-availability group
+- The length of the Instance name in SQL Managed Instance in Azure Arc needs to be 15 characters or less, including the suffix for the index of the instance.
 
 ## Roles and responsibilities
 
