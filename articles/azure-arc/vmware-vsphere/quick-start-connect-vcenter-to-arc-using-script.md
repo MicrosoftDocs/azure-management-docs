@@ -3,7 +3,7 @@ title: Connect VMware vCenter Server to Azure Arc by using the helper script
 description: In this quickstart, you learn how to use the helper script to connect your VMware vCenter Server instance to Azure Arc.
 ms.topic: quickstart 
 ms.custom: references_regions
-ms.date: 09/04/2024
+ms.date: 11/05/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 author: PriskeyJeronika-MS
@@ -71,15 +71,13 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 
 ## Download the onboarding script
 
-1. Go to the Azure portal.
+1. Go to [Azure portal](https://aka.ms/SCVMM/MgmtServers).
+2. Search and select **Azure Arc**.
+3. In the **Overview** page, select **Add resources** under **Manage resources across environments**.
 
-2. Search for **Azure Arc** and select it.
+     :::image type="content" source="media/quick-start-connect-vcenter-to-arc-using-script/add-vmware-vcenter.png" alt-text="Screenshot that shows how to add VMware vCenter through Azure Arc.":::
 
-3. On the **Overview** page, select **Add** under **Add your infrastructure for free** or move to the **Infrastructure** tab.
-
-4. In the **Platform** section, select **Add** under **VMware vCenter**.
-
-    :::image type="content" source="media/quick-start-connect-vcenter-to-arc-using-script/add-vmware-vcenter.png" alt-text="Screenshot that shows how to add VMware vCenter through Azure Arc.":::
+4. In the **Host environments** section, in **VMware vSphere** select **Add**.
 
 5. Select **Create a new resource bridge**, and then select **Next**.
 
