@@ -20,7 +20,9 @@ This article shows you how to enable Azure Linux 3.0 as the default Azure Linux 
 * Azure Linux 3.0 FIPS image is in preview and is FIPS compliant but not verified as the crypto modules are [Modules in Process with NIST](https://csrc.nist.gov/Projects/Cryptographic-Module-Validation-Program/Modules-In-Process/IUT-List).
 * **Supported Regions**: Azure Linux 3.0 support is in preview as part of the `v20241025` release. Visit the [AKS Release Tracker](https://releases.aks.azure.com/) for the latest on which regions are on this release. 
 
-## Enable Azure Linux 3.0  
+## Enable Azure Linux 3.0 as default for new clusters and nodepools
+
+[!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
 1. Register the `AzureLinuxV3Preview` feature flag using the [`az feature register`](/cli/azure/feature#az-feature-register) command.  
 
@@ -32,12 +34,16 @@ This article shows you how to enable Azure Linux 3.0 as the default Azure Linux 
 
 1. Verify the registration status using the [`az feature show`](/cli/azure/feature#az-feature-show) command.  
 
-Once these steps are completed, you can deploy the cluster using the method of your choice to use Azure Linux 3.0 as the node OS: 
+    ```azurecli-interactive
+    az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxV3Preview"
+    ```
 
-- [Quickstart with CLI](./quickstart-azure-cli.md)
-- [Quickstart with PowerShell](./quickstart-azure-powershell.md)
-- [Quickstart with Terraform](./quickstart-terraform.md)
-- [Quickstart with Azure Resource Manager (ARM)](./quickstart-azure-resource-manager-template.md)
+1. Once these steps are completed, you can deploy the cluster using the method of your choice to use Azure Linux 3.0 as the node OS:
+
+    - [Quickstart with CLI](./quickstart-azure-cli.md)
+    - [Quickstart with PowerShell](./quickstart-azure-powershell.md)
+    - [Quickstart with Terraform](./quickstart-terraform.md)
+    - [Quickstart with Azure Resource Manager (ARM)](./quickstart-azure-resource-manager-template.md)
 
 ## Disable Azure Linux 3.0
 1. Unregister the `AzureLinuxV3Preview` feature flag using the [`az feature unregister`](/cli/azure/feature#az-feature-unregister) command. 
