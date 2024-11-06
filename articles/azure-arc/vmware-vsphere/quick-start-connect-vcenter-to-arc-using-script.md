@@ -88,7 +88,7 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 9. Provide a name for **Custom location**. This is the name that you'll see when you deploy virtual machines. Name it for the datacenter or the physical location of your datacenter. For example: *contoso-nyc-dc.*
 10. Leave the option **Use the same subscription and resource group as your resource bridge** selected.
 11. Provide a name for your vCenter Server instance in Azure. For example: **contoso-nyc-vcenter**.
-12. You can choose to **Enable Kubernetes Service on VMware [Preview]**. If you choose to do so, please ensure you update the namespace of your custom location to "default" in the onboarding script: $customLocationNamespace = ("default".ToLower() -replace '[^a-z0-9-]', ''). For more details about this update, refer to the [known issues from AKS on VMware (preview)](/azure/aks/hybrid/aks-vmware-known-issues)
+12. You can choose to **Enable Kubernetes Service on VMware [Preview]**. If you choose to do so, ensure you update the namespace of your custom location to "default" in the onboarding script: $customLocationNamespace = ("default".ToLower() -replace '[^a-z0-9-]', ''). For more information about this update, refer the [known issues from AKS on VMware (preview)](/azure/aks/hybrid/aks-vmware-known-issues)
 13. Select **Next: Tags >**.
 14. Assign Azure tags to your resources in **Value** under **Physical location tags**. You can add additional tags to help you organize your resources to facilitate administrative tasks using custom tags.
 15. Select **Next: Download and run script**.
