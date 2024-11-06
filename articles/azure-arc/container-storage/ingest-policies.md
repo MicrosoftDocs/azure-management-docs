@@ -1,5 +1,5 @@
 ---
-title: Set ingest policy (preview)
+title: Set ingest policy
 description: Learn how to set ingest policies in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 10/02/2024
 ---
 
-# Set ingest policy (preview)
+# Set ingest policy
 
 This article describes how to set ingest policies in Azure Container Storage enabled by Azure Arc. The ingest policy that you set for that subvolume determine the ingest characteristics of your subvolume.
 
