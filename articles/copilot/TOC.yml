@@ -54,6 +54,8 @@
     href: analyze-cost-management.md
   - name: Query attack surface
     href: query-attack-surface.md
+  - name: Investigate Azure Firewall IDPS attacks
+    href: /azure/firewall/firewall-copilot
 - name: Resources
   items:
   - name: Azure updates
