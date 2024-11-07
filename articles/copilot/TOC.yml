@@ -55,7 +55,7 @@
   - name: Query attack surface
     href: query-attack-surface.md
   - name: Investigate Azure Firewall IDPS attacks
-    href: /azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios
+    href: /azure/firewall/firewall-copilot
 - name: Resources
   items:
   - name: Azure updates

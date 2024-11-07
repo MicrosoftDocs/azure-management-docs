@@ -29,7 +29,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Understand service health events and status](understand-service-health.md)
   - [Analyze, estimate, and optimize costs](analyze-cost-management.md)
   - [Query your attack surface](query-attack-surface.md)
-  - [Investigate Azure Firewall IDPS attacks](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
+  - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
 - Work smarter with Azure services:
   - [Execute commands](execute-commands.md)
   - [Deploy virtual machines effectively](deploy-vms-effectively.md)
