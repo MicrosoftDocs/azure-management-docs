@@ -107,7 +107,7 @@ metadata:
 
 ## Create the federated identity credential
 
-Use the [`az identity federated-credential create` command](/cli/azure/identity/federated-credential#az-identity-federated-credential-create) to create the federated identity credential between the managed identity, the service account issuer, and the subject. This step establishes the trust relationship between the Kubernetes cluster and Microsoft Entra for exchanging tokens. For more information about federated identity credentials in Microsoft Entra, see [Overview of federated identity credentials in Microsoft Entra ID](/graph/api/resources/federatedidentitycredentials-overview?view=graph-rest-1.0).
+Use the [`az identity federated-credential create` command](/cli/azure/identity/federated-credential#az-identity-federated-credential-create) to create the federated identity credential between the managed identity, the service account issuer, and the subject. This step establishes the trust relationship between the Kubernetes cluster and Microsoft Entra for exchanging tokens. For more information about federated identity credentials in Microsoft Entra, see [Overview of federated identity credentials in Microsoft Entra ID](/graph/api/resources/federatedidentitycredentials-overview).
 
 ```azurecli
 az identity federated-credential create \ 
@@ -164,7 +164,7 @@ To configure  workload identity settings on Ubuntu Linux with K3s, follow the be
     - 'service-account-issuer=${OIDC_ISSUER}'
     - 'service-account-max-token-expiration=24h'`
 
-1.  Save the config.yaml. 
+1. Save the config.yaml. 
 1. Restart the k3s API server using the command `systemctl restart k3s`. 
 
 To configure workload identity on AKS Edge Essentials cluster, **link needed**.
