@@ -40,7 +40,7 @@
     href: generate-cli-scripts.md
   - name: Generate PowerShell scripts
     href: generate-powershell-scripts.md
-  - name: Generate Terraform infrastructure
+  - name: Generate Terraform and Bicep configurations
     href: generate-terraform-configurations.md
   - name: Author API Management policies
     href: author-api-management-policies.md
