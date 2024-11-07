@@ -1,5 +1,5 @@
 ---
-title: Azure Container Storage enabled by Azure Arc FAQ and release notes (preview)
+title: Azure Container Storage enabled by Azure Arc FAQ and release notes
 description: Learn about new features and known issues in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 08/30/2024
 
 ---
 
-# Azure Container Storage enabled by Azure Arc FAQ and release notes (preview)
+# Azure Container Storage enabled by Azure Arc FAQ and release notes
 
 This article provides information about new features and known issues in Azure Container Storage enabled by Azure Arc, and answers some frequently asked questions.
 
