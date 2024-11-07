@@ -1,8 +1,8 @@
 ---
 title: "Workload identity federation in Azure Arc-enabled Kubernetes (preview)"
-ms.date: 11/01/2024
+ms.date: 11/06/2024
 ms.topic: conceptual
-description: "Learn how workload identity federation can be used with Azure Arc-enabled Kubernetes clusters.."
+description: "Learn how workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
 ---
 
 # Workload identity federation in Azure Arc-enabled Kubernetes (preview)
@@ -29,7 +29,7 @@ The following table shows the required OIDC issuer endpoints for Microsoft Entra
 |---------|---------|
 |`{IssuerURL}/.well-known/openid-configuration`     |  Also known as the OIDC discovery document. Contains the metadata about the issuer's configurations.        |
 |`{IssuerURL}/openid/v1/jwks`    |Contains the public signing key(s) that Microsoft Entra ID uses to verify the authenticity of the service account token.          |
-|
+
 The following diagram summarizes the authentication sequence using OpenID Connect.
 
 ### Another diagram TBD
@@ -62,4 +62,4 @@ Keep in mind the following current limitations:
 
 ## Next steps
 
-To learn how to enable workload identity on your Azure Arc enabled Kubernetes cluster and configure your application to use workload identity, see Deploy and configure workload identity on an Arc enabled Kubernetes cluster.
+To learn how to enable workload identity on your Azure Arc enabled Kubernetes cluster and configure your application to use workload identity, see [Deploy and configure workload identity on an Arc enabled Kubernetes cluster](workload-identity.md).
