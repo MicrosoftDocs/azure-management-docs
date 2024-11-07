@@ -41,7 +41,7 @@
   - name: Generate PowerShell scripts
     href: generate-powershell-scripts.md
   - name: Generate Terraform and Bicep configurations
-    href: generate-terraform-configurations.md
+    href: generate-terraform-bicep.md
   - name: Author API Management policies
     href: author-api-management-policies.md
   - name: Work with AKS clusters
