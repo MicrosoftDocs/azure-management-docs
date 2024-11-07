@@ -1,13 +1,13 @@
 ---
-title: How to simplify network configuration requirements through Azure Arc gateway (Public Preview)
-description: Learn how to simplify network configuration requirements through Azure Arc gateway (Public Preview).
+title: How to simplify network configuration requirements with Azure Arc gateway (Public Preview)
+description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
 ms.date: 11/01/2024
 ms.topic: how-to
 ---
 
-# Simplify network configuration requirements through Azure Arc gateway (Public Preview)
+# Simplify network configuration requirements with Azure Arc gateway (Public Preview)
 
-If you use enterprise firewalls or proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven (7) endpoints. With Azure Arc gateway, you can:
+If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven (7) endpoints. With Azure Arc gateway, you can:
 
 - Connect to Azure Arc by opening public network access to only seven (7) Fully Qualified Domains (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
@@ -24,7 +24,7 @@ Azure Arc gateway consists of two main components:
 
 - **The Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
 
-- **The Arc Proxy:** A new component added to Arc agentry. This component runs as a service called "Azure Arc Proxy" and acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for the gateway router. This router is part of Arc core agentry and runs within the context of an Arc-enabled resource.
+- **The Arc Proxy:** A new component added to Arc agentry. This component runs as a service called "Azure Arc Proxy" and acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for the Arc Proxy. This Proxy is part of Arc core agentry and runs within the context of an Arc-enabled resource.
 
 When the gateway is in place, traffic flows via the following hops: **Arc agentry → Arc Proxy → Enterprise proxy → Arc gateway  → Target service**
 
@@ -44,8 +44,7 @@ There are five steps to use the Arc gateway:
 
 1. Create an Arc gateway resource.
 1. Ensure the required URLs are allowed in your environment.
-1. Onboard Azure Arc resources with your Arc gateway resource.
-1. Configure existing Azure Arc resources to use Arc gateway.
+1. Onboard Azure Arc resources with your Arc gateway resource or configure existing Azure Arc resources to use Arc gateway.
 1. Verify that the setup succeeded.
 
 ### Step 1: Create an Arc gateway resource
@@ -56,7 +55,7 @@ You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azu
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
-1. On the **Azure Arc - Azure Arc gateway** page, select **Create**.
+1. Navigate to the **Azure Arc | Azure Arc gateway** page, and then select **Create**.
 
 1. Select the subscription and resource group where you want the Arc gateway resource to be managed within Azure. An Arc gateway resource can be used by any Arc-enabled resource in the same Azure tenant.
 
@@ -72,7 +71,8 @@ You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azu
 
 1. Review your input details, and then select **Create**.
 
-1. The gateway creation process takes 9-10 minutes to complete.
+> [!NOTE]
+> Information the user should notice even if skimmingThe gateway creation process takes 9-10 minutes to complete.
 
 
 ### [CLI](#tab/cli)
@@ -109,7 +109,7 @@ The gateway creation process takes 9-10 minutes to complete.
 
 ### Step 2: Ensure the required URLs are allowed in your environment
 
-When the resource is created, the success response includes the Arc gateway URL. Ensure your Arc gateway URL and all URLs in the following table are allowed in the environment where your Arc resources live:
+When the resource is created, the success response includes the Arc gateway URL. Ensure your Arc gateway URL and all URLs in the following table are allowed in the environment where your Arc resources live. The required URLs are:
 
 |URL  |Purpose  |
 |---------|---------|
@@ -222,11 +222,11 @@ To clean up your gateway, detach the gateway resource from the applicable server
 
 You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 
-To view proxy logs on **Windows**:
+To view Arc proxy logs on **Windows**:
 1. Run `azcmagent logs` in PowerShell.
 1. In the resulting .zip file, the logs are located in the `C:\ProgramData\Microsoft\ArcProxy` folder.
 
-To view proxy logs on **Linux**:
+To view Arc proxy logs on **Linux**:
 1. Run `sudo azcmagent logs`and share the resulting file.
 1. In the resulting log file, the logs are located in the `/usr/local/arcproxy/logs/` folder.
 
