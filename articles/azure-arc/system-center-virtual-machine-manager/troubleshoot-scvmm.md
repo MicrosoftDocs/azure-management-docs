@@ -7,14 +7,14 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 11/08/2024
+ms.date: 11/07/2024
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
 
-This article provides troubleshooting steps that help you resolve the common errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
+This article provides troubleshooting steps that help you resolve the errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
 
 ## CreateConfigKvaCustomerError
 
@@ -46,6 +46,7 @@ This article provides troubleshooting steps that help you resolve the common err
 
 ## Next steps
 
-[Support matrix for Azure Arc-enabled System Center Virtual Machine Manager](support-matrix-for-system-center-virtual-machine-manager.md).
+- [Troubleshoot common deployment errors](/azure/azure-arc/resource-bridge/troubleshoot-resource-bridge).
+- [Support matrix for Azure Arc-enabled System Center Virtual Machine Manager](support-matrix-for-system-center-virtual-machine-manager.md).
 
 
