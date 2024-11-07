@@ -56,8 +56,10 @@
       href: disaster-recovery.md
 - name: Troubleshoot
   items:
-  - name: Troubleshoot common deployment errors
+  - name: Troubleshoot SCVMM-specific deployment errors
     href: troubleshoot-scvmm.md
+  - name: Troubleshoot common deployment errors
+    href: /azure/azure-arc/resource-bridge/troubleshoot-resource-bridge
 - name: Reference
   items:
   - name: Azure CLI

@@ -1,22 +1,22 @@
 ---
-title: Troubleshoot Arc-enabled SCVMM deployment errors
-description: Learn how to troubleshoot Arc-enabled SCVMM deployment errors. 
+title: Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
+description: Learn how to troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors. 
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 10/30/2024
+ms.date: 11/08/2024
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
 
-# Troubleshoot Arc-enabled SCVMM deployment errors
+# Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
 
-This article provides troubleshooting steps that help you resolve the common errors encountered during the deployment of Arc-enabled SCVMM.
+This article provides troubleshooting steps that help you resolve the common errors encountered during the deployment of Azure Arc resource bridge to onboard to Azure Arc-enabled SCVMM.
 
-## Common deployment errors
+## CreateConfigKvaCustomerError
 
 ### PSSessionAccessDenied
 
@@ -30,6 +30,8 @@ This article provides troubleshooting steps that help you resolve the common err
 
 [Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/PSSessionMIResultFailed.md).
 
+## KVAInvalidEntityCustomerError
+
 ### ValidateInsufficientLibSharePermission
 
 [Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/ValidateInsufficientLibSharePermission.md).
@@ -41,7 +43,6 @@ This article provides troubleshooting steps that help you resolve the common err
 ### ValidateVlanIDNotAvailableOnVMNetwork
 
 [Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/ValidateVlanIDNotAvailableOnVMNetwork.md).
-
 
 ## Next steps
 
