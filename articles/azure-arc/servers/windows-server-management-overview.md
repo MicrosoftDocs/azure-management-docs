@@ -14,11 +14,11 @@ Windows Server Management enabled by Azure Arc offers customers with Windows Ser
 |Azure Update Manager  |Windows Server 2012 and above  |Assess the update status and deploy updates to machines (one off, recurring, maintenance windows) with visibility into update compliance and auditing.  |
 |Azure Change Tracking and Inventory  |Windows Server 2012 and above  |Discovery of and changes of software, services/daemons, files, and registries of Azure Arc-enabled servers.  |
 |Azure Machine Configuration  |Windows Server 2012 and above  |Configuration of machine properties for OS, app, and environment settings, with Azure Policy. Available natively with the Azure Connected Machine agent.  |
-|Windows Admin Center in Azure for Arc  |Windows Server 2016 and above  |Securely manage hybrid machines from anywhere without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
-|Remote Support  |Windows Server 2016 and above  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
+|Windows Admin Center in Azure for Arc  |Windows Server 2025 only  |Securely manage hybrid machines from anywhere without needing a VPN, public IP address, or other inbound connectivity to your machine with RDP, Hyper-V management, event viewer, and much more.  |
+|Remote Support  |Windows Server 2025 only  |Offers customers with professional support the ability to grant JIT access with detailed execution transcripts and revocation rights.  |
 |Network HUD  |Windows Server 2025 only  |A host networking diagnostics and operational tool. Runs spot checks, health checks, and cluster wide checks to make sure your host networking set-up is healthy and set up in an optimal and expected way.  |
-|Best Practices Assessment  |Windows Server 2016 and above  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
-|Azure Site Recovery Configuration  |Windows Server 2016 and above  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
+|Best Practices Assessment  |Windows Server 2025 only  |Collection and analysis of server data to generate issues and remediation guidance and performance improvements.  |
+|Azure Site Recovery Configuration  |Windows Server 2025 only  |Configuration of Azure Site Recovery to ensure business continuity, provides replication and data resilience for critical workloads.  |
 
 Together, these capabilities afford robust governance, configuration, and remote management capabilities for Azure Arc-enabled server customers.  
 
@@ -51,7 +51,7 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 - Agent Version: Connected Machine Agent version 1.38 or higher is required; and 1.46 or higher is recommended.  
 
-- Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2012 or higher with both Standard/Datacenter editions are supported.  
+- Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2016 or higher with both Standard/Datacenter editions supported.  
 
 - Networking: Connectivity methods supported include Public Endpoint, Proxy, Azure Arc Gateway, and Private Endpoint. No additional endpoints need to be allowed.  
 
@@ -59,7 +59,9 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 - Connectivity: The Azure Arc-enabled server must be *Connected* for enrollment. Disconnected and expired servers aren't eligible. Usage of the included benefits requires connectivity.   
 
-- Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability except for China North 2, China North 3, and China East 2.  
+- Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability except for US Gov Virginia, US Gov Arizona, China North 2, China North 3, and China East 2.
+
+- Environments: Supported environments include Hyper-V, VMware, SCVMM, Stack HCI, AVS, bare-metal, AWS, GCP, and OCI where servers are connected to Azure Arc. 
 
 - Modes: Customers can use Monitor mode and extension allowlists or blocklists with their attestation to Azure Arc-enabled servers.  
 
