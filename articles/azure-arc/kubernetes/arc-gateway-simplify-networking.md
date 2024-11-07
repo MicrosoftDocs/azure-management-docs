@@ -107,31 +107,23 @@ After the resource is created successfully, the success response will include th
 ### [Azure CLI](#tab/azure-cli)
 
 1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
-1. Connect your Kubernetes cluster, using one of the following methods:
+1. On the deployment machine, set the environment variables needed for Azure CLI to use the outbound proxy server:
 
-   - If your cluster is not behind an outbound proxy server, run the following Azure CLI command:
+   `export HTTP_PROXY=<proxy-server-ip-address>:<port>`
+   `export HTTPS_PROXY=<proxy-server-ip-address>:<port>`
+   `export NO_PROXY=<cluster-apiserver-ip-address>:<port>`
 
-     `az connectedk8s connect-g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id>`
+1. On the Kubernetes cluster, run the connect command with the `proxy-https` and `proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
 
-   - If your cluster is behind an outbound proxy server:
+   `az connectedk8s connect -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id> --proxy-https <proxy_value> --proxy-http http://<proxy-server-ip-address>:<port> --proxy-skip-range <excludedIP>,<excludedCIDR> --location <region>`
 
-     1. On the deployment machine, set the environment variables needed for Azure CLI to use the outbound proxy server:
-
-       `export HTTP_PROXY=<proxy-server-ip-address>:<port>`
-       `export HTTPS_PROXY=<proxy-server-ip-address>:<port>`
-       `export NO_PROXY=<cluster-apiserver-ip-address>:<port>`
-
-     1. On the Kubernetes cluster, run the connect command with the `proxy-https` and `proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
-
-       `az connectedk8s connect -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id> --proxy-https <proxy_value> --proxy-http http://<proxy-server-ip-address>:<port> --proxy-skip-range <excludedIP>,<excludedCIDR> --location <region>`
-
-       > [!NOTE]
-       >
-       > Some network requests, such as those involving in-cluster service-to-service communication, must be separated from traffic that's routed via the proxy server for outbound communication. The `--proxy-skip-range` parameter can be used to specify the CIDR range and endpoints in a comma-separated way, so that communication from the agents to these endpoints doesn't go via the outbound proxy. At a minimum, the CIDR range of the services in the cluster should be specified as value for this parameter. For example, if `kubectl get svc -A` returns a list of services where all the services have `ClusterIP` values in the range `10.0.0.0/16`, then the value to specify for `--proxy-skip-range` is `10.0.0.0/16,kubernetes.default.svc,.svc.cluster.local,.svc`.
-       >
-       > `--proxy-http`, `--proxy-https`, and `--proxy-skip-range` are expected for most outbound proxy environments. `--proxy-cert` is only required if you need to inject trusted certificates expected by proxy into the trusted certificate store of agent pods.
-       >
-       > The outbound proxy has to be configured to allow websocket connections. 
+   > [!NOTE]
+   >
+   > Some network requests, such as those involving in-cluster service-to-service communication, must be separated from traffic that's routed via the proxy server for outbound communication. The `--proxy-skip-range` parameter can be used to specify the CIDR range and endpoints in a comma-separated way, so that communication from the agents to these endpoints doesn't go via the outbound proxy. At a minimum, the CIDR range of the services in the cluster should be specified as value for this parameter. For example, if `kubectl get svc -A` returns a list of services where all the services have `ClusterIP` values in the range `10.0.0.0/16`, then the value to specify for `--proxy-skip-range` is `10.0.0.0/16,kubernetes.default.svc,.svc.cluster.local,.svc`.
+   >
+   > `--proxy-http`, `--proxy-https`, and `--proxy-skip-range` are expected for most outbound proxy environments. `--proxy-cert` is only required if you need to inject trusted certificates expected by proxy into the trusted certificate store of agent pods.
+   >
+   > The outbound proxy has to be configured to allow websocket connections. 
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
