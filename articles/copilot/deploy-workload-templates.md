@@ -39,21 +39,21 @@ To create an ecommerce website using Django framework, you can say **"I want to 
 
 :::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Example of a template recommendation from Microsoft Copilot in Azure (preview).":::
 
-:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" alt-text="Example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
+:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
 
 For some workload templates, Copilot in Azure provides an enhanced deployment experience to help you quickly set up your workload in Azure. You have two options: quickly deploy your workload by running all of the steps at once, or choose to learn with step-by-step guidance. For example, try the following prompts:
 
 - **"I want a template suggestion to deploy a Postgres vector database"**:
 
-  :::image type="content" source="media/deploy-workload-templates/deploy-postgres-vector-database.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for a Postgres vector database.":::
+  :::image type="content" source="media/deploy-workload-templates/deploy-postgres-vector-database.png" lightbox="media/deploy-workload-templates/deploy-postgres-vector-database.png"  alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for a Postgres vector database.":::
 
 - **"Template suggestion to deploy an AI model on AKS with the AI toolchain operator"**
 
-  :::image type="content" source="media/deploy-workload-templates/deploy-ai-model-aks.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for an AI model on AKS.":::
+  :::image type="content" source="media/deploy-workload-templates/deploy-ai-model-aks.png" lightbox="media/deploy-workload-templates/deploy-ai-model-aks.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for an AI model on AKS.":::
 
 - **"I want a template suggestion to create an Ubuntu Virtual Machine and attach an Azure Data Disk."**
 
-  :::image type="content" source="media/deploy-workload-templates/deploy-ubuntu-azure-data-disk.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for an AI model on AKS.":::
+  :::image type="content" source="media/deploy-workload-templates/deploy-ubuntu-azure-data-disk.png" lightbox="media/deploy-workload-templates/deploy-ubuntu-azure-data-disk.png"alt-text="Screenshot of Microsoft Copilot in Azure providing an interactive deployment experience for an Ubuntu VM with an Azure Data Disk.":::
 
 ## Next steps
 
