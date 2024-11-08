@@ -35,7 +35,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Create resources using interactive deployments](use-guided-deployments.md)
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
-  - [Work smarter with Azure Stack HCI](work-smarter-edge.md)
+  - [Work smarter with Azure Local](work-smarter-edge.md)
   - [Secure and protect storage accounts](improve-storage-accounts.md)
   - [Improve Azure SQL Database-driven applications](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
 - Write and optimize code:
