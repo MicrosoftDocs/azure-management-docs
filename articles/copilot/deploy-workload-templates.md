@@ -1,7 +1,7 @@
 ---
-title: Create resources using interactive deployments from Microsoft Copilot in Azure
-description: Learn how Microsoft Copilot in Azure (preview) can provide quick or guided deployment assistance.
-ms.date: 07/24/2024
+title: Discover and deploy workload templates from Microsoft Copilot in Azure
+description: Learn how Microsoft Copilot in Azure (preview) can provide workload templates for your scenario.
+ms.date: 11/07/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: build-2024, linux-related-content
@@ -11,13 +11,23 @@ author: JnHs
 
 # Create resources using interactive deployments from Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you deploy certain resources and workloads by providing quick or guided deployment assistance.
+Microsoft Copilot in Azure (preview) can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
+
+For example, to create an ecommerce website using Django framework, you can say "I want to create an ecommerce website using Django framework." Copilot in Azure shows a recommendation with a link to the GitHub repository that you can use.
+
+:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Example of a template recommendation from Microsoft Copilot in Azure (preview).":::
+
+:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" alt-text="Example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
 
 Interactive deployments are currently available for select workloads. For other types of deployments, Copilot in Azure helps by [providing links to templates](#template-suggestions) that you can customize and deploy, often with various deployment options such as Azure CLI, Terraform, Bicep, or ARM. If a template isn't available for your scenario, Copilot in Azure provides information to help you choose and deploy the best resources for your scenario.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
+
+## Sample prompts
+
+Here are a few examples of the kinds of prompts you can use to execute commands. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
 
 ## Deploy a LEMP stack on an Azure Linux VM
 

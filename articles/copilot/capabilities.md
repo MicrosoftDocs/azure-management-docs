@@ -33,7 +33,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
 - Work smarter with Azure services:
   - [Execute commands](execute-commands.md)
   - [Deploy virtual machines effectively](deploy-vms-effectively.md)
-  - [Create resources using interactive deployments](use-guided-deployments.md)
+  - [Discover and deploy workload templates](deploy-workload-templates.md)
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
   - [Work smarter with Azure Stack HCI](work-smarter-edge.md)
