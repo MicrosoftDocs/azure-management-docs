@@ -91,7 +91,7 @@ conceptualContent:
             - url: ./generate-powershell-scripts.md
               itemType: get-started
               text: Generate PowerShell scripts
-            - url: ./generate-terraform-configurations.md
+            - url: ./generate-terraform-bicep.md
               itemType: get-started
               text: Generate Terraform configurations
             - url: ./generate-kubernetes-yaml.md
