@@ -74,11 +74,11 @@ While familiarity with the size options can be beneficial, Copilot in Azure is d
 
 ### VM size examples
 
-Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Microsoft Copilot in Azure asks for some more information to help it determine the best options. 
+Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Microsoft Copilot in Azure asks for some more information to help it determine the best options.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" lightbox="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Microsoft Copilot in Azure asking for details to help determine the appropriate VM size.":::
 
-After that, it presents some options and lets you choose which recommended size to use for your VM.
+After that, Copilot in Azure presents some options and lets you choose which of the recommended sizes to use for your VM.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-choose-size-options.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing size recommendations for a VM.":::
 
