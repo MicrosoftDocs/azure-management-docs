@@ -39,7 +39,7 @@ In this example, Microsoft Copilot in Azure responds to the prompt "**summarize 
 
 If you follow up by asking "**tell me more about the alerts**", Microsoft Copilot in Azure provides more details about the current alerts.
 
-:::image type="content" source="media/work-smarter-edge/tell-me-more-about-alerts.png" alt-text="Screenshot showing Microsoft Copilot in Azure summarizing Azure Local instances." lightbox="media/work-smarter-edge/tell-me-more-about-alerts.png":::
+:::image type="content" source="media/work-smarter-edge/tell-me-more-about-alerts.png" alt-text="Screenshot showing Microsoft Copilot in Azure summarizing the active alerts." lightbox="media/work-smarter-edge/tell-me-more-about-alerts.png":::
 
 ## Next steps
 
