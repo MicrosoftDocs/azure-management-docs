@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 08/07/2024
+ms.date: 11/07/2024
 ms.topic: overview
 ---
 
@@ -52,8 +52,8 @@ Installing the Connected Machine agent for Window applies the following system-w
     | Directory | Description |
     |-----------|-------------|
     | %ProgramFiles%\AzureConnectedMachineAgent | azcmagent CLI and instance metadata service executables.|
-    | %ProgramFiles%\AzureConnectedMachineAgent\ExtensionService\GC | Extension service executables.|
-    | %ProgramFiles%\AzureConnectedMachineAgent\GCArcService\GC | Guest configuration (policy) service executables.|
+    | %ProgramFiles%\AzureConnectedMachineAgent\ExtensionService2\GC | Extension service executables.|
+    | %ProgramFiles%\AzureConnectedMachineAgent\GCArcService2\GC | Guest configuration (policy) service executables.|
     | %ProgramData%\AzureConnectedMachineAgent | Configuration, log and identity token files for azcmagent CLI and instance metadata service.|
     | %ProgramData%\GuestConfig | Extension package downloads, guest configuration (policy) definition downloads, and logs for the extension and guest configuration services.|
     | %SYSTEMDRIVE%\packages | Extension package executables |
