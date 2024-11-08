@@ -76,7 +76,7 @@ While familiarity with the size options can be beneficial, Copilot in Azure is d
 
 Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Microsoft Copilot in Azure asks for some more information to help it determine the best options.
 
-:::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" lightbox="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Microsoft Copilot in Azure asking for details to help determine the appropriate VM size.":::
+:::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Microsoft Copilot in Azure asking for details to help determine the appropriate VM size.":::
 
 After that, Copilot in Azure presents some options and lets you choose which of the recommended sizes to use for your VM.
 
@@ -108,7 +108,7 @@ While familiarity with the pricing information of different VM configurations ca
 
 You can say **"Help me copy VMs in any region."** Microsoft Copilot in Azure prompts you to select a region and a name for the new VM, then begins the create experience.
 
-:::image type="content" source="media/deploy-vms-effectively/vm-copy-region.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to copy a VM.":::
+:::image type="content" source="media/deploy-vms-effectively/vm-copy-region.png" lightbox="media/deploy-vms-effectively/vm-copy-region.png"alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to copy a VM.":::
 
 ## Next steps
 
