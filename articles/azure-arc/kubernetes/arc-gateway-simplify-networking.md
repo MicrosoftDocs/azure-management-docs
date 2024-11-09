@@ -30,7 +30,7 @@ The **Arc Proxy** is a new component that runs as its own pod (called "Azure Arc
 
 When the gateway is in place, traffic flows via the following hops: Arc Agents → Azure Arc Proxy → Enterprise Proxy → Arc gateway → Target Service.
 
-### IMAGE STILL NEEDED HERE
+:::image type="content" source="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.svg" alt-text="Diagram showing the architecture for Azure Arc gateway (preview) with Arc-enabled Kubernetes.":::
 
 ## Current limitations
 
