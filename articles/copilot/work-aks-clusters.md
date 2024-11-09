@@ -43,7 +43,7 @@ Here are a few examples of the kinds of prompts you can use to run kubectl comma
 - "Can you delete my deployment named `my-deployment` in namespace `my-namespace`?"
 - "Scale the number of replicas of my deployment `my-deployment` to 5"
 - "How do I get the status of all nodes in my AKS cluster?"
-- "List all services in my aks cluster with kubectl"
+- "List all services in my AKS cluster with kubectl"
 
 ### Cluster command example
 
@@ -103,7 +103,7 @@ You can say **"Install AKS backup"** to start the process of installing the AKS 
 
 ## Configure monitoring on clusters
 
-Microsoft Copilot in Azure can streamline the process of installing Azure Monitor on your AKS clusters. When montioring is configured, it provides visibility into cluster, node, and container level insight if already configured.
+Microsoft Copilot in Azure can streamline the process of installing Azure Monitor on your AKS clusters. When monitoring is configured, it provides visibility into cluster, node, and container level insight if already configured.
 
 When you ask for help with monitoring, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Insights** pane of the cluster, where you can confirm installation or view data.
 
@@ -122,7 +122,7 @@ When you ask for help with monitoring, Microsoft Copilot in Azure automatically 
 
 Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured.
 
-When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Servuce mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Service mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
 
 ### Istio sample prompts
 
