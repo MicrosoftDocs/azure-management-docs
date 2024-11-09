@@ -62,7 +62,7 @@ When you create the Arc gateway resource, you specify the subscription and resou
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-1. On a machine with access to Azure, run the following Azure CLI command to create your Arc gateway resource, replacing the placeholders with your desired values:
+1. On a machine with access to Azure, run the following Azure PowerShell command to create your Arc gateway resource, replacing the placeholders with your desired values:
 
    ```azurepowershell
    New-AzArcgateway 
@@ -182,7 +182,7 @@ To stop using the Arc gateway and remove the Arc gateway resource, first detach 
 ### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
-az connectedk8s update -g <resource_group> -n <cluster_name> --gateway-resource-id <gateway_resource_id> 
+az connectedk8s update -g <resource_group> -n <cluster_name> --disable-gateway 
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
