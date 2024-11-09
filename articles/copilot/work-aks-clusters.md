@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 07/29/2024
+ms.date: 11/09/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -36,17 +36,35 @@ This video shows how Copilot in Azure can assist with kubectl commands for manag
 
 Here are a few examples of the kinds of prompts you can use to run kubectl commands on an AKS cluster. Modify these prompts based on your real-life scenarios, or try additional prompts to get different kinds of information.
 
+- "List all my namespaces"
 - "List all of my failed pods in this cluster"
 - "Check the rollout status for deployment `aksdeployment`"
 - "Get all pods that are in pending states in all namespaces"
 - "Can you delete my deployment named `my-deployment` in namespace `my-namespace`?"
 - "Scale the number of replicas of my deployment `my-deployment` to 5"
+- "How do I get the status of all nodes in my AKS cluster?"
+- "List all services in my aks cluster with kubectl"
 
 ### Cluster command example
 
 You can say **"List all namespaces in my cluster."** If you're not already working with a cluster, you'll be prompted to select one. Microsoft Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. When you confirm, the **Run command** pane opens with the generated command included.
 
 :::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
+
+## Start and stop node pools
+
+You can start and stop AKS node pools by prompting Microsoft Copilot in Azure, without having to navigate to each cluster individually. You can also take actions on node pools starting from a prompt to Copilot in Azure.
+
+When you ask for help with node pools, you'll be prompted to select which node pool to work with. From there, Microsoft Copilot in Azure prompts you to confirm the action.
+
+### Node pool sample prompts
+
+- "Stop a node pool."
+- "Start my nodepool."
+- "I want to halt a node pool."
+- "Stop the node pool in my cluster."
+- "Can you start a node pool?"
+- "I want to take action on a node pool."
 
 ## Enable IP address authorization
 
@@ -82,6 +100,36 @@ Here are a few examples of the kinds of prompts you can use to manage AKS cluste
 You can say **"Install AKS backup"** to start the process of installing the AKS backup extension. After you select a cluster, you'll be prompted to open its **Backup** pane. From there, select **Launch install backup** to open the experience. After reviewing the prerequisites for the extension, you can step through the installation process.
 
 :::image type="content" source="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
+
+## Configure monitoring on clusters
+
+Microsoft Copilot in Azure can streamline the process of installing Azure Monitor on your AKS clusters. When montioring is configured, it provides visibility into cluster, node, and container level insight if already configured.
+
+When you ask for help with monitoring, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Insights** pane of the cluster, where you can confirm installation or view data.
+
+### Monitoring sample prompts
+
+- "Configure monitoring on my AKS cluster"
+- "Navigate to the monitoring page"
+- "Navigate to the monitoring page for my cluster"
+- "I want to configure monitoring"
+- "Configure monitoring for my AKS cluster"
+- "Can you configure monitoring?"
+- "Navigate to the monitoring page of my AKS cluster"
+- "Navigate to the monitoring page for a different cluster"
+
+## Install and work with Istio
+
+Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured.
+
+When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Servuce mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+
+### Istio sample prompts
+
+- "Enable Istio"
+- "I want to enable Istio on my AKS cluster"
+- "Navigate to the Istio page"
+- "I want to navigate to the Istio page"
 
 ## Update AKS pricing tier
 
