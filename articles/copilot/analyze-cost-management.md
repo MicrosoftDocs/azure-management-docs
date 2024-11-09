@@ -18,7 +18,7 @@ Microsoft Copilot in Azure (preview) can help you analyze, estimate and optimize
 
 When you ask Microsoft Copilot in Azure  questions about your costs, it automatically pulls context based on the last scope that you accessed using Cost Management. If the context isn't clear, you'll be prompted to select a scope or provide more context.
 
-For Open AI token-based models, Microsoft Copilot in Azure can provide simulations that estimate your costs for increasing or decreasing usage. You can also get estimates for changes to your Open AI-token based models, such as moving from GPT-35-Turbo to GPT-4.
+For OpenAI token-based models, Microsoft Copilot in Azure can provide simulations that estimate your costs for increasing or decreasing usage. You can also get estimates for changes to your OpenAI-token based models, such as moving from GPT-35-Turbo to GPT-4.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
