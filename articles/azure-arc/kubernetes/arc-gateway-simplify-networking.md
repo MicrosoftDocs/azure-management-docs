@@ -50,15 +50,15 @@ When you create the Arc gateway resource, you specify the subscription and resou
 
 1. On a machine with access to Azure, run the following Azure CLI command:
 
-  ```azurecli
-  az extension add -n arcgateway
-  ```
+   ```azurecli
+   az extension add -n arcgateway
+   ```
 
 1. Next, run the following Azure CLI Command to create your Arc gateway resource, replacing the placeholders with your desired values:
 
-  ```azurecli
-  az arcgateway create --name <gateway's name> --resource-group <resource group> --location <region> --gateway-type public --allowed-features * --subscription <subscription name or id>
-  ```
+   ```azurecli
+   az arcgateway create --name <gateway's name> --resource-group <resource group> --location <region> --gateway-type public --allowed-features * --subscription <subscription name or id>
+   ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
