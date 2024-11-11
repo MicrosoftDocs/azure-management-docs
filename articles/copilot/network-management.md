@@ -33,7 +33,7 @@ In the current release, product selection guidance responses are limited to:
 
 And resiliency related queries are limited to the following networking services:
 
-   - Azure Application Gateway
+  - Azure Application Gateway
   - Azure Firewall
   - Azure Front Door
   - Azure Load Balancer
@@ -87,14 +87,12 @@ In this example, the prompt **"Is my application gateway resilient?"** Copilot a
 Here are some sample prompts and responses for network resource inventory, topology, and traffic path queries:
 
 - What is the data path between my source VM and destination VM?
+- Show me the data path between my VM and storage account.
 - List all my Azure networking services in my subscription.
 - How many flows are going through the gateway?
 - How many VMs are behind the gateway?
-- Draw topology diagram for AzNet resources.
 - Help me discover my network inventory.
 - How large is my network?
-- Show me an overview of my network topology.
-- How can I visualize my network setup across different regions?
 - Display the network resources in my subscription.
 
 In this example, the prompt **"What is the data path between my source VM and destination VM?"** Copilot asks you to select the source and destination VMs by first presenting the resource selection choice screen from your subscription. Once you select the source and destination VMs, it then discovers the data path between the source and destination, drawing a connected graph showing all the network elements/services in the path.
@@ -114,10 +112,16 @@ Here are some sample prompts and responses for network connectivity troubleshoot
 - Why can’t I connect my on-premises VM to Azure VM?
 - Why does the Azure portal show that my peering connection is established but we aren't receiving any traffic?
 - Troubleshoot my virtual network peerings.
+- What is the health status of my NIC and its public IP
 - Why did the deployment of ExpressRoute Gateway fail?
 - Is some NSG blocking my traffic to the internet from my VM in Azure?
 - Why am I unable to send mail and SMTP is failing?
 - Troubleshoot the virtual network to find any gateways and their associated public IPs that are missing a service tag.
+- Who are the top 10 DDOS attackers from my VM
+- How many times has my public IP been DDOS attacked in the past 14 days
+- List the top DDOS attack vectors on my public IP
+- [Has there been any malicious traffic intercepted by my Azure Firewall](/azure/firewall/firewall-copilot) 
+
  
 In this example, the prompt **"Why can't my VM connect to the internet?"** Copilot asks you to select the source VM in Azure from where you're trying to connect to the internet. It then analyzes the path your traffic takes to the internet and identifies any configuration or data path issues that are blocking the traffic from reaching the internet.
 
