@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway (preview)"
 ms.custom: devx-track-azurecli
-ms.date: 10/20/2024
+ms.date: 11/11/2024
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
 ---
@@ -177,7 +177,7 @@ After your clusters have been updated to use the Arc gateway, some of the Arc en
 
 ## Remove the Arc gateway
 
-To stop using the Arc gateway and remove the Arc gateway resource, first detach your gateway resource from all clusters. After that, you can delete the gateway resource.
+To disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster, run the following command:
 
 ### [Azure CLI](#tab/azure-cli)
 
