@@ -51,7 +51,7 @@ To determine if you set `fs.inotify.max_user_instances` to 1024, run the follo
 sysctl fs.inotify.max_user_instances
 ```
 
-After you run this command, if it returns less than 1024, run the following command to increase the maximum number of files and reload the sysctl settings:
+After you run this command, if it returns less than 1024, run the following command to increase the maximum number of files and reload the `sysctl` settings:
 
 ```bash
 echo 'fs.inotify.max_user_instances = 1024' | sudo tee -a /etc/sysctl.conf 
@@ -60,7 +60,7 @@ sudo sysctl -p
 
 ## Step 3: Install Azure IoT Operations dependencies
 
-Run the following command:
+Run the following command to install the Azure IoT Operations dependencies:
 
 ```azurecli
 az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager

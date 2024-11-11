@@ -15,10 +15,11 @@ In this tutorial, you learn how to configure a Local Shared Edge Volume. This vo
 
 The tutorial covers the following tasks:
 
-- Create a Local Shared Edge Volume PVC.
-- Create an example deployment.
-- Connect to your pod.
-- Write a sample file.
+> [!div class="checklist"]
+> * Create a Local Shared Edge Volume PVC
+> * Create an example deployment
+> * Connect to your pod
+> * Write a sample file
 
 ## Prerequisites
 
