@@ -1,5 +1,5 @@
 ---
-title: Attach your application using the Azure IoT Operations data processor or Kubernetes native application (preview)
+title: Attach your application using the Azure IoT Operations data processor or Kubernetes native application
 description: Learn how to attach your app using the Azure IoT Operations data processor or Kubernetes native application in Azure Container Storage enabled by Azure Arc Cache Volumes.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 09/24/2024
 zone_pivot_groups: attach-app
 ---
 
-# Attach your application (preview)
+# Attach your application
 
 This article assumes you created a Persistent Volume (PV) and a Persistent Volume Claim (PVC). For information about creating a PV, see [Create a persistent volume](create-persistent-volume.md). For information about creating a PVC, see [Create a Persistent Volume Claim](create-persistent-volume-claim.md).
 

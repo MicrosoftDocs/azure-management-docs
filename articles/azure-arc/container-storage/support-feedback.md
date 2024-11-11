@@ -1,5 +1,5 @@
 ---
-title: Support and feedback for Azure Container Storage enabled by Azure Arc (preview)
+title: Support and feedback for Azure Container Storage enabled by Azure Arc
 description: Learn how to get support and provide feedback on Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -8,9 +8,9 @@ ms.date: 08/26/2024
 
 ---
 
-# Support and feedback for Azure Container Storage enabled by Azure Arc (preview)
+# Support and feedback for Azure Container Storage enabled by Azure Arc
 
-If you experience an issue or need support during the preview, see the following video and steps to request support for Azure Container Storage enabled by Azure Arc in the Azure portal:
+If you experience an issue or need support, see the following video and steps to request support for Azure Container Storage enabled by Azure Arc in the Azure portal:
 
 > [!VIDEO f477de99-2036-41a3-979a-586a39b1854f]
 
