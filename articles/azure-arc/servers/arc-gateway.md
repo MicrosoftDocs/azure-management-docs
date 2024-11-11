@@ -38,6 +38,14 @@ The Arc gateway object has limits you should consider when planning your setup. 
 - ExpressRoute/Site-to-Site VPN or private endpoints used with the Arc gateway (Public Preview) isn't supported.
 - There's a limit of five (5) Arc gateway (Public Preview) resources per Azure subscription.
 
+## Required permissions
+
+To create Arc gateway resources and manage their association with Arc-enabled servers, the following permissions are required:
+
+- Microsoft.HybridCompute/settings/write
+- Microsoft.hybridcompute/gateways/read
+- Microsoft.hybridcompute/gateways/write
+
 ## How to use the Arc gateway (Public Preview)
 
 There are four steps to use the Arc gateway:
