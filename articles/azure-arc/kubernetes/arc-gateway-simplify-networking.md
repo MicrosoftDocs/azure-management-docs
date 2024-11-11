@@ -188,10 +188,34 @@ Get-AzConnectedKubernetes -ClusterName <cluster_name> -ResourceGroupName <resour
 
 ---
 
-## Monitoring traffic
+## Monitor traffic
 
 To audit your gateway's traffic, view the gateway router's logs:
 
 1. Run `kubectl get pods -n azure-arc`
 1. Identify the Arc Proxy pod (its name will begin with `arc-proxy-`).
 1. Run `kubectl logs -n azure-arc <Arc Proxy pod name>`
+
+## Additional scenarios
+
+During the public preview, Arc gateway covers endpoints required for onboarding a cluster, and a portion of endpoints required for additional Arc-enabled scenarios. Based on the scenarios you adopt, additional endpoints are still required to be allowed in your proxy.
+
+All endpoints listed for the following scenarios must be allowed in your enterprise proxy when Arc gateway is in use:
+
+- [Container insights in Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-firewall):
+  - `*.ods.opinsights.azure.com`
+  - `*.oms.opinsights.azure.com`
+  - `*.monitoring.azure.com`
+- [Azure Key Vault](/azure/key-vault/general/access-behind-firewall):
+  - `<vault-name>.vault.azure.net`
+- [Azure Policy](/azure/governance/policy/concepts/policy-for-kubernetes):
+  - `data.policy.core.windows.net`
+  - `store.policy.core.windows.net`
+- [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-enable?pivots=defender-for-container-arc&toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=aks-deploy-portal%2Ck8s-deploy-asc%2Ck8s-verify-asc%2Ck8s-remove-arc%2Caks-removeprofile-api):
+  - `*.ods.opinsights.azure.com`
+  - `*.oms.opinsights.azure.com`
+- [Azure Arc-enabled data services](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud)
+  - `*.ods.opinsights.azure.com`
+  - `*.oms.opinsights.azure.com`
+  - `*.monitoring.azure.com`
+ 
