@@ -44,6 +44,8 @@ Here are a few examples of the kinds of prompts you can use to generate Bicep te
 - "Give me a Bicep template for creating a key vault, a managed identity, and a role assignment for the managed identity to access the key vault."
 - "How to use Bicep to create Azure OpenAI service?"
 
+:::image type="content" source="media/generate-terraform-bicep/bicep-example.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a Bicep template for creating a storage account.":::
+
 ## Next steps
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
