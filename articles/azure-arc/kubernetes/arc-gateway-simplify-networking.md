@@ -133,9 +133,9 @@ After the resource is created successfully, the success response will include th
 
      1. On the deployment machine, set the environment variables needed for Azure PowerShell to use the outbound proxy server:
 
-       `$Env:HTTP_PROXY = "<proxy-server-ip-address>:<port>"`
-       `$Env:HTTPS_PROXY = "<proxy-server-ip-address>:<port>"`
-       `$Env:NO_PROXY = "<cluster-apiserver-ip-address>:<port>"`
+          `$Env:HTTP_PROXY = "<proxy-server-ip-address>:<port>"`
+          `$Env:HTTPS_PROXY = "<proxy-server-ip-address>:<port>"`
+          `$Env:NO_PROXY = "<cluster-apiserver-ip-address>:<port>"`
 
      1. On the Kubernetes cluster, run the connect command with the proxy parameter specified:
 
