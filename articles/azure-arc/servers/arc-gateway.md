@@ -70,9 +70,8 @@ You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azu
 1. Select **Review & Create**.
 
 1. Review your input details, and then select **Create**.
-
-> [!NOTE]
-> Information the user should notice even if skimmingThe gateway creation process takes 9-10 minutes to complete.
+    
+    The gateway creation process takes 9-10 minutes to complete.
 
 
 ### [CLI](#tab/cli)
@@ -244,7 +243,7 @@ To associate a machine with a new Arc gateway:
 
 ### [PowerShell](#tab/powershell)
 
-1. On the machine you want to associate with a new Arc gateway, run the following commands:
+1. On the machine you want to associate with a new Arc gateway, run the following command:
     
     ```powershell
     Set-AzArcGatewaySettings  
@@ -375,7 +374,7 @@ During Public Preview, Arc gateway covers the endpoints required for onboarding 
 - Microsoft Defender  
 - Azure Extension for SQL Server 
 
-### Scenarios that do require additional endpoints
+### Scenarios that require additional endpoints
 
 Endpoints listed with the following scenarios must be allowed in your enterprise proxy when using Arc gateway:
 
@@ -420,7 +419,7 @@ When using the onboarding script (or the `azcmagent connect` command) to onboard
 
 1. Select the Arc gateway resource to associate with your Arc-enabled server.
 
-1. Navigate to the Associated Resources page for your gateway resource.
+1. Navigate to the **Associated Resources** page for your gateway resource.
 
 1. Select **Add**. 
 
@@ -461,22 +460,22 @@ Set-AzArcGatewaySettings
 
 When detaching an Arc gateway resource from a machine, you must refresh the Arc proxy to clear the Arc gateway configuration. To do so, perform the following procedure:
 
-1. Stop arc proxy  
+1. Stop arc proxy. 
 
     - Windows: `Stop-Service arcproxy` 
     - Linux: `sudo systemctl stop arcproxyd` 
 
-1. Delete the `cloudconfig.json` file  
+1. Delete the `cloudconfig.json` file.
 
     - Windows: "C:\ProgramData\AzureConnectedMachineAgent\Config\cloudconfig.json" 
     - Linux: "/var/opt/azcmagent/cloudconfig.json" 
 
-1. Start arc proxy
+1. Start arc proxy.
 
     - Windows: `Start-Service arcproxy` 
     - Linux: `sudo systemctl start arcproxyd` 
 
-1. Restart himds (Optional, but recommended) 
+1. Restart himds (optional, but recommended).
 
     - Windows: `Restart-Service himds` 
     - Linux: `sudo systemctl restart himdsd` 
@@ -498,7 +497,7 @@ In this scenario, the machine incorrectly displays in Azure portal as a resource
 
 1. Select the Arc gateway resource.
 
-1. Navigate to the Associated Resources page for your gateway resource.
+1. Navigate to the **Associated Resources** page for your gateway resource.
 
 1. Select the server, and then select **Remove**.
 
