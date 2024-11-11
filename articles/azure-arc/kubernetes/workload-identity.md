@@ -176,4 +176,3 @@ For configuring workload identity on AKS HCI cluster, see **link needed**.
 ## Next steps
 
 - Explore a [sample for configuring an application to use workload identity](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
-- Learn how to use the workload identity feature to [sync secrets in Azure Arc-enabled Kubernetes clusters for offline access](/azure/azure-arc/kubernetes/secret-store-extension).
