@@ -44,6 +44,12 @@ You can create an Arc gateway resource by using Azure CLI or Azure PowerShell.
 
 When you create the Arc gateway resource, you specify the subscription and resource group in which the resource is created, along with an Azure region. However, all Arc-enabled resources in the same tenant can use the resource, regardless of their own subscription or region.
 
+To create Arc gateway resources, and manage their association with Arc-enabled Clusters, the following permissions are required:
+
+- `Microsoft.Kubernetes/connectedClusters/settings/default/write`
+- `Microsoft.hybridcompute/gateways/read`
+- `Microsoft.hybridcompute/gateways/write`
+
 ## Create the Arc gateway resource
 
 ### [Azure CLI](#tab/azure-cli)
