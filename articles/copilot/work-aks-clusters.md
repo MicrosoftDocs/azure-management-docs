@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 11/09/2024
+ms.date: 11/11/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -66,6 +66,12 @@ When you ask for help with node pools, you'll be prompted to select which node p
 - "Can you start a node pool?"
 - "I want to take action on a node pool."
 
+### Node pool example
+
+When you say **"stop my nodepool"**, Copilot in Azure prompts you to confirm which node pool to stop. After you make a selection, you're prompted to confirm the action.
+
+:::image type="content" source="media/work-aks-clusters/aks-node-pool.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a request to stop an AKS node pool.":::
+
 ## Enable IP address authorization
 
 Use Microsoft Copilot in Azure to quickly make changes to the IP addresses that are allowed to access an AKS cluster. When you reference your own IP address, Microsoft Copilot in Azure can add it to the authorized IP ranges, without your providing the exact address. If you want to include alternative IP addresses, Microsoft Copilot in Azure asks if you want to open the **Networking** pane for your AKS cluster and helps you edit the relevant field.
@@ -118,6 +124,12 @@ When you ask for help with monitoring, Microsoft Copilot in Azure automatically 
 - "Navigate to the monitoring page of my AKS cluster"
 - "Navigate to the monitoring page for a different cluster"
 
+### Monitoring example
+
+When you're working with an AKS cluster, you can say **"help me set up monitoring on my cluster"**. Copilot in Azure guides you to **Insights** for the current cluster, where you can configure Azure Monitor.
+
+:::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
+
 ## Install and work with Istio
 
 Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured.
@@ -130,6 +142,12 @@ When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls
 - "I want to enable Istio on my AKS cluster"
 - "Navigate to the Istio page"
 - "I want to navigate to the Istio page"
+
+### Istio example
+
+When you're working with an AKS cluster, you can say **"enable istio"**. Copilot in Azure guides you to **Service mesh** for the current cluster, where you can configure Istio.
+
+:::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
 
 ## Update AKS pricing tier
 
