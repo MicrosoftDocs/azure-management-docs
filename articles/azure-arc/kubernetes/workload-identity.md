@@ -153,7 +153,7 @@ All pod annotations are optional. If an annotation isn't specified, the default 
 
 ## Configure workload identity settings on the Kubernetes cluster
 
-For the API server on Kubernetes cluster to retrieve the public signed keys for validating tokens, the API server needs to be configured with the publicly accessible OIDC issuer URL.
+ The API server on the Kubernetes cluster needs to be configured to issue service account tokens that include the publicly accessible OIDC issuer URL (so that Entra knows where to find the public keys to validate the token).
 
 To configure  workload identity settings on Ubuntu Linux with K3s, follow the below steps to complete the configuration:  
 
