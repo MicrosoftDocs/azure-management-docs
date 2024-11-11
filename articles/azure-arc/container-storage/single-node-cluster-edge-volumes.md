@@ -1,5 +1,5 @@
 ---
-title: Prepare Linux for Edge Volumes using a single-node or 2-node cluster (preview)
+title: Prepare Linux for Edge Volumes using a single-node or 2-node cluster
 description: Learn how to prepare Linux for Edge Volumes with a single-node or 2-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: sethmanheim
 ms.author: sethm
@@ -9,7 +9,7 @@ ms.date: 11/01/2024
 zone_pivot_groups: platform-select-with-other
 ---
 
-# Prepare Linux for Edge Volumes using a single-node or two-node cluster (preview)
+# Prepare Linux for Edge Volumes using a single-node or two-node cluster
 
 This article describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux-edge-volumes.md#prerequisites).
 

@@ -1,5 +1,5 @@
 ---
-title: Prepare Linux for Cache Volumes using a single-node or 2-node cluster (preview)
+title: Prepare Linux for Cache Volumes using a single-node or 2-node cluster
 description: Learn how to prepare Linux for Cache Volumes with a single-node or 2-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: sethmanheim
 ms.author: sethm
@@ -9,7 +9,7 @@ ms.date: 08/26/2024
 zone_pivot_groups: platform-select
 ---
 
-# Prepare Linux for Cache Volumes using a single-node or 2-node cluster (preview)
+# Prepare Linux for Cache Volumes using a single-node or 2-node cluster
 
 This article describes how to prepare Linux using a single-node or 2-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
 
