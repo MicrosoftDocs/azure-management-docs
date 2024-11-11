@@ -1,13 +1,13 @@
 ---
 title: "Workload identity federation in Azure Arc-enabled Kubernetes (preview)"
-ms.date: 11/06/2024
+ms.date: 11/11/2024
 ms.topic: conceptual
 description: "Learn how workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
 ---
 
 # Workload identity federation in Azure Arc-enabled Kubernetes (preview)
 
-Software workloads running on Kubernetes clusters needs an identity in order to authenticate and access resources or communicate with other services. For a software workload running outside of Azure, you need to use application credentials, such as a secret or certificate, to access resources that are protected by Microsoft Entra (such as Azure Key Vault or Azure Blob storage). These credentials pose a security risk and have to be stored securely and rotated regularly. You also run the risk of service downtime if the credentials expire.
+Software workloads running on Kubernetes clusters need an identity in order to authenticate and access resources or communicate with other services. For a software workload running outside of Azure, you need to use application credentials, such as a secret or certificate, to access resources that are protected by Microsoft Entra (such as Azure Key Vault or Azure Blob storage). These credentials pose a security risk and have to be stored securely and rotated regularly. You also run the risk of service downtime if the credentials expire.
 
 Workload identity federation lets you configure a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) or [app registration](/entra/identity-platform/app-objects-and-service-principals) in Microsoft Entra ID to trust tokens from an external identity provider (IdP), such as Kubernetes. The user-assigned managed identity or app registration in Microsoft Entra ID becomes an identity for software workloads running on Arc-enabled Kubernetes clusters. Once that trust relationship is created, your workload can exchange trusted tokens from the Arc-enabled Kubernetes clusters for access tokens from Microsoft identity platform. Your software workload uses that access token to access the resources protected by Microsoft Entra. With workload identity federation, you can thus eliminate the maintenance burden of manually managing credentials, and eliminate the risk of leaking secrets or having certificates expire.
 
@@ -21,7 +21,7 @@ Workload identity federation lets you configure a [user-assigned managed ident
 
 The Arc-enabled Kubernetes cluster acts as the token issuer. Microsoft Entra ID uses OIDC to discover public signing keys and verify the authenticity of the service account token before exchanging it for a Microsoft Entra token. Your workload can exchange a service account token projected to its volume for a Microsoft Entra token using the Azure Identity client library or the Microsoft Authentication Library (MSAL).
 
-### Diagram TBD
+:::image type="content" source="media/conceptual-workload-identity/workload-identity-arc-enabled-kubernetes.jpg" alt-text="Diagram showing the process flow for the workload identity feature for Azure Arc-enabled Kubernetes.":::
 
 The following table shows the required OIDC issuer endpoints for Microsoft Entra Workload ID.
 
@@ -29,10 +29,6 @@ The following table shows the required OIDC issuer endpoints for Microsoft Entra
 |---------|---------|
 |`{IssuerURL}/.well-known/openid-configuration`     |  Also known as the OIDC discovery document. Contains the metadata about the issuer's configurations.        |
 |`{IssuerURL}/openid/v1/jwks`    |Contains the public signing key(s) that Microsoft Entra ID uses to verify the authenticity of the service account token.          |
-
-The following diagram summarizes the authentication sequence using OpenID Connect.
-
-### Another diagram TBD
 
 ## Service account labels and annotations
 

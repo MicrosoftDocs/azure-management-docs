@@ -1,6 +1,6 @@
 ---
 title: "Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)"
-ms.date: 11/06/2024
+ms.date: 11/11/2024
 ms.topic: how-to
 description: "workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
 ---
@@ -10,7 +10,7 @@ description: "workload identity federation can be used with Azure Arc-enabled Ku
 You can enable the [workload identity feature](conceptual-workload-identity.md) on an Azure Arc-enabled Kubernetes cluster by using Azure CLI. The process follows these high-level steps:
 
 1. Enable the workload identity feature on a new or existing Arc-enabled Kubernetes cluster.
-1. Create a Microsoft Entra Workload ID and Kubernetes service account.
+1. Create a managed identity (or app registration) and Kubernetes service account.
 1. Configure the managed identity for token federation.
 1. Configure service account annotations and application pod labels to use workload identity.  
 1. Configure workload identity settings on the Kubernetes cluster.
@@ -61,7 +61,7 @@ export OIDC_ISSUER="$(az connectk8s show --name AzureArcTest1 --resource-group A
     --output tsv)"
 ```
 
-The environment variable should contain the issuer URL, similar to the following example:
+To view the environment variable, enter `echo ${OIDC_ISSUER}`. The environment variable should contain the issuer URL, similar to the following example:
 
 `https://northamerica.oic.prod-arc.azure.com/00000000-0000-0000-0000-000000000000/12345678-1234-1234-1234-123456789123/ `
 
@@ -165,7 +165,9 @@ To configure  workload identity settings on Ubuntu Linux with K3s, follow the be
     - 'service-account-max-token-expiration=24h'`
 
 1. Save the config.yaml. 
-1. Restart the k3s API server using the command `systemctl restart k3s`. 
+1. Restart the k3s API server using the command `systemctl restart k3s`.
+
+   We recommend rotating service account keys frequently. For more information, see [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation).
 
 To configure workload identity on AKS Edge Essentials cluster, **link needed**.
 
