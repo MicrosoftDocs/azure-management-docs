@@ -2,7 +2,7 @@
 title: "Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)"
 ms.date: 11/11/2024
 ms.topic: how-to
-description: "workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
+description: "Workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
 ---
 
 # Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)
@@ -32,7 +32,7 @@ To use the workload identity feature, you must have Azure CLI version 2.64 or hi
 
 ## Enable workload identity on your cluster
 
-Follow the appropriate steps to enable the workload identity feature for either a new Arc-enabled Kubernetes cluster or an existing one. In both cases, make sure to replace the name and resource gropu with your values, and configure parameters as desired.
+Follow the appropriate steps to enable the workload identity feature for either a new Arc-enabled Kubernetes cluster or an existing one. In both cases, make sure to replace the name and resource group with your values, and configure parameters as desired.
 
 |Parameter  |Description  |Required  |
 |---------|---------|---------|
