@@ -147,13 +147,6 @@ You can now see that the file you wrote is in the directory.
 
 ## Next steps
 
-In this tutorial, you learned how to:
-
-- Create a Local Shared Edge Volume PVC.
-- Create an example deployment.
-- Connect to your Pod.
-- Write a sample file. 
-
 After you complete these steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or third-party monitoring with Prometheus and Grafana.
 
 - [Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
