@@ -1,5 +1,5 @@
 ---
-title: Create a Persistent Volume Claim (PVC) (preview)
+title: Create a Persistent Volume Claim (PVC)
 description: Learn how to create a Persistent Volume Claim (PVC) in Cache Volumes.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 09/24/2024
 
 ---
 
-# Create a Persistent Volume Claim (PVC) (preview)
+# Create a Persistent Volume Claim (PVC)
 
 The PVC is a persistent volume claim against the persistent volume that you can use to mount a Kubernetes pod.
 

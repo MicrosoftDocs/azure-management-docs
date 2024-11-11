@@ -5,6 +5,14 @@ items:
   href: overview.md
 - name: Azure Arc Jumpstart
   href: jumpstart.md
+- name: Quickstarts
+  items:
+  - name: Install Container Storage on a single-node Ubuntu cluster
+    href: quickstart-install.md
+- name: Tutorials
+  items:
+  - name: Configure a Local Shared Edge Volume
+    href: tutorial-configure-edge-volume.md
 - name: Edge Volumes
   items:
   - name: How-to

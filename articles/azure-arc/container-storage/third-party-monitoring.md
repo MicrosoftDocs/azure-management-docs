@@ -1,5 +1,5 @@
 ---
-title: Third-party monitoring with Prometheus and Grafana (preview)
+title: Third-party monitoring with Prometheus and Grafana
 description: Learn how to monitor your Azure Container Storage enabled by Azure Arc deployment using third-party monitoring with Prometheus and Grafana.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 08/26/2024
 
 ---
 
-# Third-party monitoring with Prometheus and Grafana (preview)
+# Third-party monitoring with Prometheus and Grafana
 
 This article describes how to monitor your deployment using third-party monitoring with Prometheus and Grafana.
 
