@@ -204,19 +204,155 @@ The result should indicate the following values:
 Additionally, to verify successful set-up, you can run the following command: `azcmagent check`
 The result should indicate that the `connection.type` is set to gateway, and the **Reachable** column should indicate **true** for all URLs.
 
-## Cleanup instructions
 
-To clean up your gateway, detach the gateway resource from the applicable server(s); the resource can then be deleted safely:
+## Associate a machine with a new Arc gateway
 
-1. Set the connection type of the Azure Arc-enabled server to "direct" instead of "gateway":  
+To associate a machine with a new Arc gateway:
 
-    `azcmagent config set connection.type direct` 
+### [Portal](#tab/portal)
 
-1. Run the following command to delete the resource: 
+1. On the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
 
-    `az connectedmachine gateway delete   --resource group [resource group name] --gateway-name [gateway resource name]` 
+1. Select the new Arc gateway Resource to associate with the machine.
 
-    This operation may take a few minutes.  
+1. Go to the Associated Resources page for your gateway resource.
+
+1. Select **Add**.
+
+1. Select the Arc-enabled machine to associate with the new Arc gateway resource. 
+
+1. Select **Apply**.
+
+1. Update your Arc-enabled server to use Arc gateway by running `azcmagent config set connection.type gateway`.
+
+### [CLI](#tab/cli)
+
+1. On the machine you want to associate with a new Arc gateway, run the following commands:
+
+     ```azurecli
+    az arcgateway settings update
+        --resource-group [Resource Group]
+        --subscription [subscription name]
+        --base-provider Microsoft.HybridCompute
+        --base-resource-type machines
+        --base-resource-name [Arc-Server’s name]
+        --settings-resource-name default--gateway-resource-id [Full Arm resource id of the new Arc gateway resource]
+    ```
+1. Update your Arc-enabled server to use Arc gateway by running the following command:
+
+    `azcmagent config set connection.type gateway`
+
+### [PowerShell](#tab/powershell)
+
+1. On the machine you want to associate with a new Arc gateway, run the following commands:
+    
+    ```powershell
+    Set-AzArcGatewaySettings  
+        -ResourceGroup <res-group>  
+        -Subscription <subscription name>  
+        -BaseProvider <RP Name>  
+        -BaseResourceType <Resource Type>  
+        -Name <Arc-server's resource name>  
+        -SettingsResourceName "default"  
+        -GatewayResourceId <Full Arm resourceid>
+    ```
+    
+1. Update your Arc-enabled server to use Arc gateway by running the following command:
+
+    `azcmagent config set connection.type gateway`
+
+---
+
+## Remove Arc gateway association (to use the direct route instead)
+
+1. Set the connection type of the Arc-enabled Server to "direct” instead of “gateway" by running the following command:
+
+    `azcmagent config set connection.type direct`
+
+    > [!NOTE]
+    > If you take this step, all [Azure Arc network requirements](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud) must be met in your environment to continue leveraging Azure Arc.  
+    > 
+
+1. Detach the Arc gateway resource from the machine:
+
+### [Portal](#tab/portal)
+
+1. On the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+
+1. Select the Arc gateway Resource.
+
+1. Go to the **Associated Resources** page for your gateway resource and select the server.
+
+1. Select **Remove**.
+
+### [CLI](#tab/cli)
+
+On a machine with access to Azure, run the following Azure CLI command:
+
+```azurecli
+az arcgateway settings update --resource-group <Resource Group> --subscription <subscription name> --base-provider Microsoft.HybridCompute --base-resource-type machines --base-resource-name <Arc-Server’s name>  --gateway-resource-id ""
+```
+
+> [!NOTE]
+> If you’re running this Azure CLI command within Windows PowerShell, set the `--gateway-resource-id` to null.
+> 
+
+### [PowerShell](#tab/powershell)
+
+On a machine with access to Azure, run the following PowerShell command:
+
+```powershell
+Set-AzArcGatewaySettings  
+    -ResourceGroup <res-group>  
+    -Subscription <subscription name>  
+    -BaseProvider <RP Name>  
+    -BaseResourceType <Resource Type>  
+    -Name <Arc-server's resource name>  
+    -SettingsResourceName "default"  
+    -GatewayResourceId ""
+```
+
+---
+
+### Delete an Arc gateway resource
+
+> [!NOTE]
+> This operation can take 4 to 5 minutes to complete.
+> 
+
+### [Portal](#tab/portal)
+
+1. On the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+
+1. Select the Arc gateway Resource.
+
+1. Select **Delete**.
+
+
+### [CLI](#tab/cli)
+
+On a machine with access to Azure, run the following Azure CLI command:
+
+```azurecli-interactive
+az arcgateway delete --resource-group <Resource Group> --gateway-name <Arc gateway Resource Name >
+```
+
+### [PowerShell](#tab/powershell)
+
+On a machine with access to Azure, run the following PowerShell command:
+
+
+```powershell
+Remove-AzArcGateway  
+    -ResourceGroup <res-group>  
+    -GatewayName <RP Name>
+```
+
+
+---
+
+
+
 
 ## Troubleshooting
 
@@ -271,3 +407,138 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 - Windows OS Update Extension / Azure Update Manager 
 
     - Your environment must meet all the [prerequisites](/windows/privacy/manage-windows-11-endpoints) for Windows Update 
+
+## Known issues
+
+Following is a description of currently known issues for the Arc gateway.
+
+### Refresh needed after Azure Connected Machine agent onboarding
+
+When leveraging the onboarding script (or the azcmagent connect command) to onboard a server with the gateway resource ID specified, the resource will successfully use Arc gateway. However, due to a known bug (with a fix currently underway), the Arc-enabled server won't display as an Associated Resource in Azure Portal unless the resource’s settings are refreshed. Use the following procedure to perform this refresh:
+
+   
+### [Portal](#tab/portal)
+
+1. In the Azure portal, navigate to the **Azure Arc | Arc gateway** page.
+
+1. Select the Arc gateway resource to associate with your Arc-enabled server.
+
+1. Navigate to the Associated Resources page for your gateway resource.
+
+1. Select **Add**. 
+
+1. Select the Arc-enabled resource to associate with your Arc gateway resource and select **Apply**.
+
+### [CLI](#tab/cli)
+
+On a machine with access to Azure, run the following Azure CLI command:
+
+```azurecli
+az arcgateway settings update --resource-group <Resource Group> --subscription <subscription name> --base-provider Microsoft.HybridCompute --base-resource-type machines --base-resource-name <Arc-Server’s name>  --gateway-resource-id <Full Arm resource id of the new Arc gateway resource>
+```
+
+### [PowerShell](#tab/powershell)
+
+On a machine with access to Azure, run the following PowerShell command:
+
+```powershell
+Set-AzArcGatewaySettings  
+
+    -ResourceGroup <res-group>  
+
+    -Subscription <subscription name>  
+
+    -BaseProvider <RP Name>  
+
+    -BaseResourceType <Resource Type>  
+
+    -Name <Arc-server's resource name>  
+
+    -SettingsResourceName "default"  
+
+    -GatewayResourceId <Full Arm resourceid>
+```
+---
+
+
+### Arc proxy must be refreshed after detaching a gateway resource from the machine
+
+When detaching an Arc gateway resource from a machine, you must refresh the Arc proxy to clear the Arc gateway configuration. To do so, perform the following procedure:
+
+1. Stop arc proxy  
+
+    - Windows: `Stop-Service arcproxy` 
+    - Linux: `sudo systemctl stop arcproxyd` 
+
+1. Delete the `cloudconfig.json` file  
+
+    - Windows: "C:\ProgramData\AzureConnectedMachineAgent\Config\cloudconfig.json" 
+    - Linux: "/var/opt/azcmagent/cloudconfig.json" 
+
+1. Start arc proxy
+
+    - Windows: `Start-Service arcproxy` 
+    - Linux: `sudo systemctl start arcproxyd` 
+
+1. Restart himds (Optional, but recommended) 
+
+    - Windows: `Restart-Service himds` 
+    - Linux: `sudo systemctl restart himdsd` 
+
+
+### If an Arc-enabled machine with an Arc gateway is deleted from Azure Arc and re-Arc-enabled without an Arc gateway, a refresh is needed to update its status in the Azure portal
+
+> [!IMPORTANT]
+> This issue occurs only when the resource is re-Arc-enabled with the same ARM ID as its initial enablement.
+> 
+
+In this scenario, the machine incorrectly displays in Azure portal as a resource associated with the Arc gateway. To prevent this, if you intend to Arc-enable a machine without an Arc gateway that was previously Arc-enabled with an Arc gateway, you must update the Arc gateway association after onboarding. To do so, use the following procedure:
+
+### [Portal](#tab/portal)
+
+1. In the Azure portal, navigate to the **Azure Arc | Arc gateway** page.
+
+1. Select the Arc gateway resource.
+
+1. Navigate to the Associated Resources page for your gateway resource.
+
+1. Select the server, and then select **Remove**.
+
+### [CLI](#tab/cli)
+
+On a machine with access to Azure, run the following Azure CLI command:
+
+```azurecli
+az arcgateway settings update --resource-group <Resource Group> --subscription <subscription name> --base-provider Microsoft.HybridCompute --base-resource-type machines --base-resource-name <Arc-Server’s name>  --gateway-resource-id ""
+```
+
+> [!NOTE]
+> If you’re running this Azure CLI command within Windows PowerShell, set the `--gateway-resource-id` to null.
+> 
+### [PowerShell](#tab/powershell)
+
+On a machine with access to Azure, run the following PowerShell command:
+
+```powershell
+Set-AzArcGatewaySettings  
+
+    -ResourceGroup <res-group>  
+
+    -Subscription <subscription name>  
+
+    -BaseProvider <RP Name>  
+
+    -BaseResourceType <Resource Type>  
+
+    -Name <Arc-server's resource name>  
+
+    -SettingsResourceName "default"  
+
+    -GatewayResourceId ""
+```
+
+---
+
+### If an Arc gateway is deleted while a machine is still connected to it, Azure portal must be used to associate the machine with any other Arc gateway resources
+
+To avoid this issue, detach all Arc-enabled resources from an Arc gateway before deleting the gateway resource. If you encounter this error, use Azure portal to associate the machine with a new Arc gateway resource.
