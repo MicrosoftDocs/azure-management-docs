@@ -173,7 +173,7 @@ You can configure existing Azure Arc resources to use Arc gateway by using the A
 1. On a machine with access to Azure, run the following commands:
     
     ```powershell
-    Set-AzArcGatewaySettings  
+    Update-AzArcSetting  
         -ResourceGroup <res-group>  
         -Subscription <subscription name>  
         -BaseProvider <RP Name>  
@@ -194,8 +194,8 @@ On the onboarded server, run the following command: `azcmagent show`
 The result should indicate the following values:
 
 - **Agent Status** should show as **Connected**.
-- **Using HTTPS Proxy** should show as **http://localhost:40343**
-- **Upstream Proxy** should show as your enterprise proxy (if you set one)
+- **Using HTTPS Proxy** should show as **http://localhost:40343**.
+- **Upstream Proxy** should show as your enterprise proxy (if you set one). Gateway URL should reflect your gateway resource's URL.
 
 Additionally, to verify successful set-up, you can run the following command: `azcmagent check`
 The result should indicate that the `connection.type` is set to gateway, and the **Reachable** column should indicate **true** for all URLs.
@@ -436,19 +436,12 @@ On a machine with access to Azure, run the following PowerShell command:
 
 ```powershell
 Set-AzArcGatewaySettings  
-
     -ResourceGroup <res-group>  
-
     -Subscription <subscription name>  
-
     -BaseProvider <RP Name>  
-
     -BaseResourceType <Resource Type>  
-
     -Name <Arc-server's resource name>  
-
     -SettingsResourceName "default"  
-
     -GatewayResourceId <Full Arm resourceid>
 ```
 ---
