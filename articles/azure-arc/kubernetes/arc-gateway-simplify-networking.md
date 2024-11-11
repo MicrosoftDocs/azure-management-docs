@@ -40,7 +40,7 @@ During the public preview, the following limitations apply. Consider these facto
 - You can't use ExpressRoute/site-to-site VPN or private endpoints in addition to the Arc gateway.
 - There is a limit of five Arc gateway resources per Azure subscription.
 
-You can create an Arc gateway resource by using Azure CLI, Azure PowerShell, or in the Azure portal.
+You can create an Arc gateway resource by using Azure CLI or Azure PowerShell.
 
 When you create the Arc gateway resource, you specify the subscription and resource group in which the resource is created, along with an Azure region. However, all Arc-enabled resources in the same tenant can use the resource, regardless of their own subscription or region.
 
@@ -73,29 +73,18 @@ When you create the Arc gateway resource, you specify the subscription and resou
    -gateway-type public  
    -allowed-features *
    ```
+
 ---
 
 It generally takes about ten minutes to finish creating the Arc gateway resource.
-
-You can alternately create your Arc gateway resource in the Azure portal by following these steps:
-
-1. In the Azure portal, navigate to  **Azure Arc > Azure Arc gateway (preview)**.
-1. Select **Create**.
-1. Select a subscription and resource group.
-1. For **Name**, enter a name for the Arc gateway resource.
-1. For **Location**, specify a region.
-1. Select **Next: Tags**, then enter one or more custom tags if desired.
-1. Select **Review + Create**.
-1. After reviewing the details, select **Create.** 
 
 ## Confirm access to required URLs
 
 After the resource is created successfully, the success response will include the Arc gateway URL. Ensure your Arc gateway URL and all of the URLs below are allowed in the environment where your Arc resources live.  
 
-
 |URL  |Purpose  |
 |---------|---------|
-|`[Your URL prefix].gw.arc.azure.com`       | Your gateway URL. This URL can be obtained by viewing your Arc gateway resource in the Azure portal, or by running `az arcgateway list` after you create the resource.         |
+|`[Your URL prefix].gw.arc.azure.com`       | Your gateway URL. This URL can be obtained by running `az arcgateway list` after you create the resource.         |
 |`management.azure.com`    |Azure Resource Manager Endpoint, required for ARM control channel.         |
 |`<region>.obo.arc.azure.com`     |Required when [Cluster connect](conceptual-cluster-connect.md) is configured.         |
 |`login.microsoftonline.com`, `<region>.login.microsoft.com`     | Microsoft Entra ID endpoint, used for acquiring identity access tokens.         |
@@ -123,7 +112,7 @@ After the resource is created successfully, the success response will include th
    >
    > `--proxy-http`, `--proxy-https`, and `--proxy-skip-range` are expected for most outbound proxy environments. `--proxy-cert` is only required if you need to inject trusted certificates expected by proxy into the trusted certificate store of agent pods.
    >
-   > The outbound proxy has to be configured to allow websocket connections. 
+   > The outbound proxy has to be configured to allow websocket connections.
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
@@ -199,4 +188,4 @@ To audit your gateway's traffic, view the gateway router's logs:
 
 1. Run `kubectl get pods -n azure-arc`
 1. Identify the Arc Proxy pod (its name will begin with `arc-proxy-`).
-1. Run `kubectl logs -n azure-arc <Arc Proxy pod name>` 
+1. Run `kubectl logs -n azure-arc <Arc Proxy pod name>`
