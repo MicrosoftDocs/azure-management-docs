@@ -1,7 +1,7 @@
 ---
 title:  Managing the Azure Connected Machine agent
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 10/02/2024
+ms.date: 11/11/2024
 ms.topic: conceptual
 ---
 
@@ -149,7 +149,7 @@ The next time computers in your selected scope refresh their policy, they'll sta
 
 For organizations that use Microsoft Configuration Manager (MECM) or Windows Server Update Services (WSUS) to deliver updates to their servers, you need to configure WSUS to synchronize the Azure Connected Machine Agent packages and approve them for installation on your servers. Follow the guidance for [Windows Server Update Services](/windows-server/administration/windows-server-update-services/manage/setting-up-update-synchronizations#to-specify-update-products-and-classifications-for-synchronization) or [MECM](/mem/configmgr/sum/get-started/configure-classifications-and-products#to-configure-classifications-and-products-to-synchronize) to add the following products and classifications to your configuration:
 
-* **Product Name**: Azure Connected Machine Agent (select all 3 sub-options)
+* **Product Name**: Azure Connected Machine Agent (select all sub-options)
 * **Classifications**: Critical Updates, Updates
 
 Once the updates are being synchronized, you can optionally add the Azure Connected Machine Agent product to your auto-approval rules so your servers automatically stay up to date with the latest agent software.
