@@ -155,7 +155,7 @@ All pod annotations are optional. If an annotation isn't specified, the default 
 
  The API server on the Kubernetes cluster needs to be configured to issue service account tokens that include the publicly accessible OIDC issuer URL (so that Entra knows where to find the public keys to validate the token).
 
-To configure  workload identity settings on Ubuntu Linux with K3s, follow the below steps to complete the configuration:  
+To configure workload identity settings on Ubuntu Linux with K3s, follow the below steps to complete the configuration:  
 
 1. Create k3s config file.
 1. Edit `/etc/rancher/k3s/config.yaml ` to add these settings:
@@ -164,7 +164,7 @@ To configure  workload identity settings on Ubuntu Linux with K3s, follow the be
     - 'service-account-issuer=${OIDC_ISSUER}'
     - 'service-account-max-token-expiration=24h'`
 
-1. Save the config.yaml. 
+1. Save the config.yaml.
 1. Restart the k3s API server using the command `systemctl restart k3s`.
 
    We recommend rotating service account keys frequently. For more information, see [Service-Account Issuer Key Rotation](https://docs.k3s.io/cli/certificate#service-account-issuer-key-rotation).
@@ -175,4 +175,5 @@ For configuring workload identity on AKS HCI cluster, see **link needed**.
 
 ## Next steps
 
-To use workload identity feature to sync secrets in Azure Arc-enabled Kubernetes clusters for offline access, see [Use the Azure Key Vault Secret Store extension to sync secrets to the Kubernetes secret store for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension).
+- Explore a [sample for configuring an application to use workload identity](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
+- Learn how to use the workload identity feature to [sync secrets in Azure Arc-enabled Kubernetes clusters for offline access](/azure/azure-arc/kubernetes/secret-store-extension).

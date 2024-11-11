@@ -17,7 +17,7 @@ Workload identity federation lets you configure a [user-assigned managed ident
 
 ## How workload identity works with Azure Arc-enabled Kubernetes clusters
 
-[Microsoft Entra Workload ID](/azure/active-directory/develop/workload-identities-overview) uses [Service Account Token Volume Projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection) (that is, a service account) so that workload pods can use a Kubernetes identity. A Kubernetes token is issued, and [OpenID Connect (OIDC) federation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens) lets Kubernetes applications access Azure resources securely with Microsoft Entra ID, based on annotated service accounts.
+Workload identity support for Azure Arc enabled Kubernetes uses [Service Account Token Volume Projection](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#serviceaccount-token-volume-projection) (that is, a service account) so that workload pods can use a Kubernetes identity. A Kubernetes token is issued, and [OpenID Connect (OIDC) federation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens) lets Kubernetes applications access Azure resources securely with Microsoft Entra ID, based on annotated service accounts.
 
 The Arc-enabled Kubernetes cluster acts as the token issuer. Microsoft Entra ID uses OIDC to discover public signing keys and verify the authenticity of the service account token before exchanging it for a Microsoft Entra token. Your workload can exchange a service account token projected to its volume for a Microsoft Entra token using the Azure Identity client library or the Microsoft Authentication Library (MSAL).
 
@@ -32,7 +32,7 @@ The following table shows the required OIDC issuer endpoints for Microsoft Entra
 
 ## Service account labels and annotations
 
-Microsoft Entra Workload ID supports the following mappings related to a service account:
+[Microsoft Entra Workload ID](/azure/active-directory/develop/workload-identities-overview) supports the following mappings related to a service account:
 
 - **One-to-one**: A service account references a Microsoft Entra object. 
 - **Many-to-one**: Multiple service accounts reference the same Microsoft Entra object.
