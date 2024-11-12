@@ -47,7 +47,7 @@ export KEYVAULT_NAME="my-kv-$(openssl rand -hex 4)"
 export KEYVAULT_SECRET_NAME="my-secret"
 export USER_ASSIGNED_IDENTITY_NAME="my-identity"
 export FEDERATED_IDENTITY_CREDENTIAL_NAME="my-credential"
-export KUBERNETES_NAMESPACE="default"
+export KUBERNETES_NAMESPACE="my-namespace"
 export SERVICE_ACCOUNT_NAME="my-service-account"
 ```
 
@@ -82,9 +82,7 @@ Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
    - Get the service account issuer URL.
 
       ```console
-      export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} \ 
-      --query "oidcIssuerProfile.issuerUrl" \  
-      --output tsv)"
+      export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
       echo $SERVICE_ACCOUNT_ISSUER
       ```
 
