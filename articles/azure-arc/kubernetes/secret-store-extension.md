@@ -93,7 +93,7 @@ Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
       sudo nano /etc/systemd/system/k3s.service
       ```
 
-   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the above output from `echo $SERVICE_ACCOUNT_ISSUER`.
+   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the above output from `echo $SERVICE_ACCOUNT_ISSUER`, remembering to include the trailing forward slash of this URL: 
 
       ```console
       ExecStart=/usr/local/bin/k3s \
