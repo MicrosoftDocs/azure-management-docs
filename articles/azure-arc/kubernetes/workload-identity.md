@@ -178,8 +178,8 @@ To configure workload identity settings on Ubuntu Linux with K3s, follow the bel
 
    ```yml
       `kube-apiserver-arg:  
-    - 'service-account-issuer=${OIDC_ISSUER}'
-    - 'service-account-max-token-expiration=24h'`
+        - 'service-account-issuer=${OIDC_ISSUER}'
+        - 'service-account-max-token-expiration=24h'`
    ```
 
 1. Save the config.yaml.
