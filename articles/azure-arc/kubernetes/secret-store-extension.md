@@ -60,13 +60,13 @@ To access and synchronize a given Azure Key Vault secret, the Secret Store requi
 If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md), and enable workload identity as part of the `connect` command as you do so:
 
 ```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} AzureArcTest1 --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
 ```
 
 If your cluster is already connected to Azure Arc, enable workload identity using the `update` command.  
 
 ```azurecli
-az connectedk8s update --name ${CLUSTER_NAME} AzureArcTest1 --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
 ```
 
 ### Configure your cluster to enable token validation
