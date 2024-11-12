@@ -29,7 +29,7 @@ Here are a few examples of the kinds of prompts you can use to discover and depl
 - "Do you have a template to help me deploy Azure AI Services?"
 - "Move a .NET application I have to Azure"
 - "Deploy python function app running on docker"
-- "I want to take advantage of open AI or other advanced models in a protected environment that is subject to Enterprise Data Protection (EDP) policies so I can use company data in the process."
+- "I want to take advantage of OpenAI or other advanced models in a protected environment that is subject to Enterprise Data Protection (EDP) policies so I can use company data in the process."
 - "I want to create assistants API in Azure OpenAI"
 - "Any workload templates to help with RAG in Python?"
 
@@ -40,9 +40,9 @@ To create an ecommerce website using Django framework, you can say **"I want to 
 > [!TIP]
 > For information on using `azd` templates, see [What is the Azure Developer CLI?](/azure/developer/azure-developer-cli/overview?tabs=windows)
 
-:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Example of a template recommendation from Microsoft Copilot in Azure (preview).":::
+:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Screenshot of example of a template recommendation from Microsoft Copilot in Azure (preview).":::
 
-:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
+:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Screenshot of example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
 
 For some workload templates, Copilot in Azure provides an enhanced deployment experience to help you quickly set up your workload in Azure. You have two options: quickly deploy your workload by running all of the steps at once, or choose to learn with step-by-step guidance. For example, try the following prompts:
 
