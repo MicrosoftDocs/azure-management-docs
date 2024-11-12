@@ -151,7 +151,7 @@
       - name: Azure Arc-enabled Machine Learning
         displayName: ML, AzureML, compute
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
-  - name: Use Arc gateway to simplify network Connectivity
+  - name: Simplify network connectivity
     href: arc-gateway-simplify-networking.md
   - name: Troubleshooting
     items:
