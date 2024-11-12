@@ -53,6 +53,7 @@ To get started with Copilot for Azure, try a few prompts from this list. Feel fr
 | [Azure Monitor](get-monitoring-information.md) | Runs an investigation on a specific resource. | "Had an alert in my HCI at 8 am this morning, run an anomaly investigation for me." |
 | [Azure Monitor](get-monitoring-information.md) | Lists alerts using natural language. | "Show me all alerts triggered during the last 24 hours." |
 | [Azure Monitor](get-monitoring-information.md) | Provides a summary of alerts, including the number of critical alerts. | "Tell me more about these alerts. How many critical alerts are there?" |
+| [Azure Networking](network-management.md) | Network planning and troubleshooting connectivity issues |"Why can't my VM connect to the internet?" |
 | [Azure App Service](troubleshoot-app-service.md) | Analyzes performance issues with an app. | "Troubleshoot performance issues with my app." |
 | [Azure App Service](troubleshoot-app-service.md) | Diagnoses high CPU usage issues. | "It seems like there's a high CPU issue with my web app." |
 | [Azure App Service](troubleshoot-app-service.md) | Enables auto-heal for web apps. | "Enable auto heal on my web app." |

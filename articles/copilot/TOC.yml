@@ -36,6 +36,8 @@
     href: improve-storage-accounts.md
   - name: Troubleshoot deployed apps
     href: troubleshoot-app-service.md
+  - name: Plan, design, and troubleshoot networks
+    href: network-management.md
   - name: Generate Azure CLI scripts
     href: generate-cli-scripts.md
   - name: Generate PowerShell scripts
