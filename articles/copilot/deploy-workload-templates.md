@@ -1,7 +1,7 @@
 ---
 title: Discover and deploy workload templates from Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure (preview) can provide workload templates for your scenario.
-ms.date: 11/07/2024
+ms.date: 11/11/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: build-2024, linux-related-content
@@ -13,7 +13,7 @@ author: JnHs
 
 Microsoft Copilot in Azure (preview) can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
 
-For a subset of these workload templates, Copilot in Azure provides an enhanced deployment experience to help you quickly set up your workload in Azure.
+For a subset of these workload templates, Copilot in Azure provides an enhanced deployment experience directly within the portal, to help you quickly set up your workload in Azure.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
@@ -35,7 +35,10 @@ Here are a few examples of the kinds of prompts you can use to discover and depl
 
 ## Examples
 
-To create an ecommerce website using Django framework, you can say **"I want to create an ecommerce website using Django framework."** Copilot in Azure shows a recommendation with a link to the GitHub repository that you can use.
+To create an ecommerce website using Django framework, you can say **"I want to create an ecommerce website using Django framework."** Copilot in Azure shows a recommendation with a link to the GitHub repository that you can use that you can use to run the Azure Development CLI (`azd`) template.
+
+> [!TIP]
+> For more information on using `azd` templates, see [What is the Azure Developer CLI?](/azure/developer/azure-developer-cli/overview?tabs=windows)
 
 :::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Example of a template recommendation from Microsoft Copilot in Azure (preview).":::
 
