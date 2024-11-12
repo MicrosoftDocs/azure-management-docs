@@ -28,10 +28,15 @@ This article shows you how to install and configure the Secret Store as an [Azur
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
-Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
+Install the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) and login, if you haven't already:
 
 ```azurecli
 az login
+```
+
+Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
+
+```azurecli
 export RESOURCE_GROUP="AzureArcTest"
 export CLUSTER_NAME="AzureArcTest1"
 export LOCATION="EastUS"
@@ -77,7 +82,7 @@ Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
    - Get the service account issuer URL.
 
       ```console
-      export SERVICE_ACCOUNT_ISSUER="$(az connectk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} \ 
+      export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} \ 
       --query "oidcIssuerProfile.issuerUrl" \  
       --output tsv)"
       echo $SERVICE_ACCOUNT_ISSUER
