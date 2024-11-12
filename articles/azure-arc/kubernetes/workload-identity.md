@@ -64,7 +64,7 @@ az connectedk8s connect --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GR
 To enable workload identity on an existing Arc-enabled Kubernetes cluster, use the `update` command.  
 
 ```azurecli
-az connectedk8s update --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" --enable-oidc-issuer –-enable-workload-identity
+az connectedk8s update --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" --enable-oidc-issuer --enable-workload-identity
 ```
 
 ## Retrieve the OIDC issuer URL
@@ -176,9 +176,11 @@ To configure workload identity settings on Ubuntu Linux with K3s, follow the bel
 1. Create k3s config file.
 1. Edit `/etc/rancher/k3s/config.yaml` to add these settings:
 
-   `kube-apiserver-arg:  
+   ```yml
+      `kube-apiserver-arg:  
     - 'service-account-issuer=${OIDC_ISSUER}'
     - 'service-account-max-token-expiration=24h'`
+   ```
 
 1. Save the config.yaml.
 1. Restart the k3s API server using the command `systemctl restart k3s`.
