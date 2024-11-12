@@ -1,6 +1,6 @@
 ---
 title: Use the Azure Key Vault Secret Store extension to sync secrets to the Kubernetes secret store for offline access in Azure Arc-enabled Kubernetes clusters
-description: The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access.
+description: The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access.
 ms.date: 09/26/2024
 ms.topic: how-to
 ms.custom: references_regions
@@ -8,17 +8,17 @@ ms.custom: references_regions
 
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
 
-The Azure Key Vault Secret Store extension for Kubernetes ("Secret Store") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
+The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
 
-Synchronized secrets are critical business assets, so the Secret Store secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
+Synchronized secrets are critical business assets, so the SSE secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
 
 > [!TIP]
-> The Secret Store extension is recommended for scenarios where offline access is necessary, or if you need secrets synced into the Kubernetes secret store. If you don't need these features, you can use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) for secret management in your Arc-enabled Kubernetes clusters. It is not recommended to run both the online Azure Key Vault Secrets Provider extension and the offline Secret Store extension side-by-side in a cluster.
+> The SSE is recommended for scenarios where offline access is necessary, or if you need secrets synced into the Kubernetes secret store. If you don't need these features, you can use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) for secret management in your Arc-enabled Kubernetes clusters. It is not recommended to run both the online Azure Key Vault Secrets Provider extension and the offline SSE side-by-side in a cluster.
 
-This article shows you how to install and configure the Secret Store as an [Azure Arc-enabled Kubernetes extension](conceptual-extensions.md).
+This article shows you how to install and configure the SSE as an [Azure Arc-enabled Kubernetes extension](conceptual-extensions.md).
 
 > [!IMPORTANT]
-> Secret Store is currently in PREVIEW.
+> SSE is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Prerequisites
@@ -41,6 +41,7 @@ export RESOURCE_GROUP="AzureArcTest"
 export CLUSTER_NAME="AzureArcTest1"
 export LOCATION="EastUS"
 export SUBSCRIPTION="$(az account show --query id --output tsv)"
+az account set --subscription "${SUBSCRIPTION}"
 export AZURE_TENANT_ID="$(az account show -s $SUBSCRIPTION --query tenantId --output tsv)"
 export CURRENT_USER="$(az ad signed-in-user show --query userPrincipalName --output tsv)"
 export KEYVAULT_NAME="my-kv-$(openssl rand -hex 4)"
@@ -53,27 +54,27 @@ export SERVICE_ACCOUNT_NAME="my-service-account"
 
 ## Configure an identity to access secrets
 
-To access and synchronize a given Azure Key Vault secret, the Secret Store requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The Secret Store extension uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
+To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
 
 ### Enable workload identity on your cluster
 
-If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md), and enable workload identity as part of the `connect` command as you do so:
+If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable the 'OIDC issuer' (explained below) as part of the `connect` command:
 
 ```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer true 
 ```
 
-If your cluster is already connected to Azure Arc, enable workload identity using the `update` command.  
+If your cluster is already connected to Azure Arc, enable the OIDC issuer using the `update` command:
 
 ```azurecli
-az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer true 
 ```
 
 ### Configure your cluster to enable token validation
 
-Your cluster must also be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Entra ID find the public keys necessary for it to validate these tokens. These keys were hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above. 
+Your cluster must be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
 
-Optionally, you can also configure limits on the Secret Store's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the Secret Store can change other objects in the cluster.
+Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
 Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
 
@@ -175,9 +176,9 @@ Create a Kubernetes service account for the workload that needs access to secret
    az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name ${USER_ASSIGNED_IDENTITY_NAME} --resource-group ${RESOURCE_GROUP} --issuer ${SERVICE_ACCOUNT_ISSUER} --subject system:serviceaccount:${KUBERNETES_NAMESPACE}:${SERVICE_ACCOUNT_NAME}
    ```
 
-## Install and use the Secret Store
+## Install and use the SSE
 
-The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
+The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
 ### Install cert-manager and trust-manager
 
@@ -197,9 +198,9 @@ The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled K
    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
    ```
 
-### Install the Secret Store Azure Arc extension
+### Install the SSE
 
-1. Install the Secret Store extension to your Arc-enabled cluster using the following command:
+1. Install the SSE to your Arc-enabled cluster using the following command:
 
    ``` console
    az k8s-extension create \
@@ -216,9 +217,9 @@ The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled K
 
    | Parameter name                    | Description                         | Default value                         |
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
-   | `rotationPollIntervalInSeconds`          | Specifies how quickly the Secret Store  checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
+   | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
 
-## Configure the Secret Store
+## Configure the SSE
 
 Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/). You create two types of custom resources:
 
@@ -275,9 +276,9 @@ spec:
     type: Opaque
     data:
     - sourcePath: ${KEYVAULT_SECRET_NAME}/0                # Name of the secret in Azure Key Vault with an optional version number (defaults to latest)
-      targetKey: ${KEYVAULT_SECRET_NAME}-data-key0         # Target name of the secret in the Kubernetes Secret Store (must be unique)
+      targetKey: ${KEYVAULT_SECRET_NAME}-data-key0         # Target name of the secret in the Kubernetes secret store (must be unique)
     - sourcePath: ${KEYVAULT_SECRET_NAME}/1                # [optional] Next version of the AKV secret. Note that versions of the secret must match the configured objectVersionHistory in the secrets provider class 
-      targetKey: ${KEYVAULT_SECRET_NAME}-data-key1         # [optional] Next target name of the secret in the K8s Secret Store
+      targetKey: ${KEYVAULT_SECRET_NAME}-data-key1         # [optional] Next target name of the secret in the K8s secret store
 EOF
 ```
 
@@ -290,7 +291,7 @@ kubectl apply -f ./spc.yaml
 kubectl apply -f ./ss.yaml
 ```
 
-The Secret Store automatically looks for the secrets and begins syncing them to the cluster.
+The SSE automatically looks for the secrets and begins syncing them to the cluster.
 
 ### View configuration options
 
@@ -307,7 +308,7 @@ kubectl describe crd secretsync
 
 ## Observe secrets synchronizing to the cluster
 
-Once the configuration is applied, secrets begin syncing to the cluster automatically at the cadence specified when installing the Secret Store.
+Once the configuration is applied, secrets begin syncing to the cluster automatically at the cadence specified when installing the SSE.
 
 ### View synchronized secrets
 
@@ -340,7 +341,7 @@ kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.da
 
 ## Troubleshooting
 
-The Secret Store is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which manages access to, and pulling secrets from, the Azure Key Vault. Each synchronized secret has a `SecretSync` object that contains the status of the synchronization of that secret from Azure Key Vault to the cluster secret store.
+The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which manages access to, and pulling secrets from, the Azure Key Vault. Each synchronized secret has a `SecretSync` object that contains the status of the synchronization of that secret from Azure Key Vault to the cluster secret store.
 
 To troubleshoot an issue, start by looking at the state of the `SecretSync` object, as described in [View last sync status](#view-last-sync-status). The following table lists common status types, their meanings, and potential troubleshooting steps to resolve errors.
 
@@ -348,21 +349,21 @@ To troubleshoot an issue, start by looking at the state of the `SecretSync` obje
 |------------|--------------|-------------------------------------|
 | `CreateSucceeded` | The secret was created successfully. | n/a |
 | `CreateFailedProviderError` | Secret creation failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, misconfiguration of the `SecretProviderClass`, or other issues. | Investigate further by looking at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
-| `CreateFailedInvalidLabel` | The secret creation failed because the secret already exists without the correct Kubernetes label that the Secret Store uses to manage its secrets.| Remove the existing label and secret and allow the Secret Store to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the Secret Store to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `CreateFailedInvalidAnnotation` | Secret creation failed because the secret already exists without the correct Kubernetes annotation that the Secret Store uses to manage its secrets. | Remove the existing annotation and secret and allow the Secret Store to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the Secret Store to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `UpdateNoValueChangeSucceeded` | The Secret Store checked Azure Key Vault for updates at the end of the configured poll interval, but there were no changes to sync. | n/a |
-| `UpdateValueChangeOrForceUpdateSucceeded` | The Secret Store checked Azure Key Vault for updates and successfully updated the value. | n/a |
-| `UpdateFailedInvalidLabel` | Secret update failed because the label on the secret that the Secret Store uses to manage its secrets was modified. | Remove the existing label and secret, and allow the Secret Store to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the Secret Store to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `UpdateFailedInvalidAnnotation` | Secret update failed because the annotation on the secret that the Secret Store uses to manage its secrets was modified. | Remove the existing annotation and secret and allow the Secret Store to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the Secret Store to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
+| `CreateFailedInvalidLabel` | The secret creation failed because the secret already exists without the correct Kubernetes label that the SSE uses to manage its secrets.| Remove the existing label and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
+| `CreateFailedInvalidAnnotation` | Secret creation failed because the secret already exists without the correct Kubernetes annotation that the SSE uses to manage its secrets. | Remove the existing annotation and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
+| `UpdateNoValueChangeSucceeded` | The SSE checked Azure Key Vault for updates at the end of the configured poll interval, but there were no changes to sync. | n/a |
+| `UpdateValueChangeOrForceUpdateSucceeded` | The SSE checked Azure Key Vault for updates and successfully updated the value. | n/a |
+| `UpdateFailedInvalidLabel` | Secret update failed because the label on the secret that the SSE uses to manage its secrets was modified. | Remove the existing label and secret, and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
+| `UpdateFailedInvalidAnnotation` | Secret update failed because the annotation on the secret that the SSE uses to manage its secrets was modified. | Remove the existing annotation and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
 | `UpdateFailedProviderError` | Secret update failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, configuration of the `SecretProviderClass`, or other issues. | Investigate further by looking at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
 | `UserInputValidationFailed` | Secret update failed because the secret sync class was configured incorrectly (such as an invalid secret type). | Review the secret sync class definition and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the secret sync class (```kubectl delete -f <path_to_secret_sync>```), and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `ControllerSpcError` | Secret update failed because the Secret Store failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
-| `ControllerInternalError` | Secret update failed due to an internal error in the Secret Store. | Check the Secret Store logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
-| `SecretPatchFailedUnknownError` | Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the Secret Store or if there were issues during an update of the Secret Store. | Try deleting the secret and `SecretSync` object, then let the Secret Store recreate the secret by reapplying the secret sync CR: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>``` |
+| `ControllerSpcError` | Secret update failed because the SSE failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
+| `ControllerInternalError` | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
+| `SecretPatchFailedUnknownError` | Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the SSE or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the secret sync CR: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>``` |
 
-## Remove the Secret Store
+## Remove the SSE
 
-To remove the Secret Store and stop synchronizing secrets, uninstall it with the `az k8s-extension delete` command:
+To remove the SSE and stop synchronizing secrets, uninstall it with the `az k8s-extension delete` command:
 
 ```console
 az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters    
