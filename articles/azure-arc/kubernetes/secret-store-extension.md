@@ -58,16 +58,16 @@ To access and synchronize a given Azure Key Vault secret, the SSE requires acces
 
 ### Enable workload identity on your cluster
 
-If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable the 'OIDC issuer' (explained below) as part of the `connect` command:
+If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable workload identity as part of the `connect` command:
 
 ```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer true 
+az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
 ```
 
-If your cluster is already connected to Azure Arc, enable the OIDC issuer using the `update` command:
+If your cluster is already connected to Azure Arc, enable workload identity using the `update` command:
 
 ```azurecli
-az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer true 
+az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
 ```
 
 ### Configure your cluster to enable token validation
