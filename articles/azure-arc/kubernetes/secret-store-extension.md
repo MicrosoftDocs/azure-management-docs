@@ -28,7 +28,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
-Install the [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt) and login, if you haven't already:
+Install the [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli-linux?pivots=apt) and login, if you haven't already:
 
 ```azurecli
 az login
