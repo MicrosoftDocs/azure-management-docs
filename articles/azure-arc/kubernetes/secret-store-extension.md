@@ -32,111 +32,64 @@ Before you begin, set environment variables to be used for configuring Azure and
 
 ```azurecli
 az login
-export RESOURCE_GROUP="oidc-issuer"
-export LOCATION="westus2"
-export AZURE_STORAGE_ACCOUNT="oidcissuer$(openssl rand -hex 4)"
-export AZURE_STORAGE_CONTAINER="oidc-test"
+export RESOURCE_GROUP="AzureArcTest"
+export CLUSTER_NAME="AzureArcTest1"
+export LOCATION="EastUS"
 export SUBSCRIPTION="$(az account show --query id --output tsv)"
 export AZURE_TENANT_ID="$(az account show -s $SUBSCRIPTION --query tenantId --output tsv)"
 export CURRENT_USER="$(az ad signed-in-user show --query userPrincipalName --output tsv)"
-export KEYVAULT_NAME="azwi-kv-$(openssl rand -hex 4)"
+export KEYVAULT_NAME="my-kv-$(openssl rand -hex 4)"
 export KEYVAULT_SECRET_NAME="my-secret"
-export USER_ASSIGNED_IDENTITY_NAME="myIdentity"
-az account set --subscription "${SUBSCRIPTION}"
-export SERVICE_ACCOUNT_ISSUER="https://$AZURE_STORAGE_ACCOUNT.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}"
-export FEDERATED_IDENTITY_CREDENTIAL_NAME="myFedIdentity"
+export USER_ASSIGNED_IDENTITY_NAME="my-identity"
+export FEDERATED_IDENTITY_CREDENTIAL_NAME="my-credential"
 export KUBERNETES_NAMESPACE="default"
-export SERVICE_ACCOUNT_NAME="workload-identity-sa"
+export SERVICE_ACCOUNT_NAME="my-service-account"
 ```
 
 ## Configure an identity to access secrets
 
-To access and synchronize a given Azure Key Vault secret, the Secret Store requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [federation](/graph/api/resources/federatedidentitycredentials-overview). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The Secret Store extension uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
+To access and synchronize a given Azure Key Vault secret, the Secret Store requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The Secret Store extension uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
 
-### Host OIDC public information about your cluster's Service Account issuer
+### Enable workload identity on your cluster
 
-Use of federated identity currently requires you to set up cloud storage to host OIDC format information about the public keys of your cluster's Service Account issuer. In this section, you set up a secured, public Open ID Connect (OIDC) issuer URL using Azure blob storage, then upload a minimal discovery document to the storage account. For background, see [OIDC configuration for self-managed clusters](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters.html).
+If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md), and enable workload identity as part of the `connect` command as you do so:
 
-1. Create an Azure storage account.
+```azurecli
+az connectedk8s connect --name ${CLUSTER_NAME} AzureArcTest1 --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+```
 
-   ``` console
-   az group create --name "${RESOURCE_GROUP}" --location "${LOCATION}"
-   az storage account create --resource-group "${RESOURCE_GROUP}" --name "${AZURE_STORAGE_ACCOUNT}" --allow-blob-public-access true
-   az storage container create --name "${AZURE_STORAGE_CONTAINER}" --public-access blob
-    ```
+If your cluster is already connected to Azure Arc, enable workload identity using the `update` command.  
 
-   > [!NOTE]
-   > 'az storage account create' may fail if your Azure instance hasn't enabled the "Microsoft.Storage" service.
-   > If you hit a failure [register the Microsoft.Storage resource provider in your subscription](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+```azurecli
+az connectedk8s update --name ${CLUSTER_NAME} AzureArcTest1 --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer –-enable-workload-identity 
+```
 
-1. Generate a discovery document. Upload it the storage account, and then verify that it's publicly accessible.
+### Configure your cluster to enable token validation
 
-   ```bash
-   cat <<EOF > openid-configuration.json
-   {
-     "issuer": "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}/",
-     "jwks_uri": "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}/openid/v1/jwks",
-     "response_types_supported": [
-       "id_token"
-     ],
-     "subject_types_supported": [
-       "public"
-     ],
-     "id_token_signing_alg_values_supported": [
-       "RS256"
-     ]
-   }
-   EOF
-   ```
+Your cluster must also be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Entra ID find the public keys necessary for it to validate these tokens. These keys were hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above. 
 
-   ``` console
-   az storage blob upload --container-name "${AZURE_STORAGE_CONTAINER}" --file openid-configuration.json --name .well-known/openid-configuration
-   curl -s "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}/.well-known/openid-configuration"
-   ```
-
-1. Obtain the public key for your cluster's service account issuer from its private key. You'll likely need to run this command as a superuser. The following example is for k3s. Your cluster may store the service account issuer private key at a different location.
-
-   ``` console
-   sudo openssl rsa -in /var/lib/rancher/k3s/server/tls/service.key -pubout -out sa.pub
-   ```
-
-1. Download the latest [azwi command line tool](https://github.com/Azure/azure-workload-identity/releases), which you can use to create a JWKS document from the public key, and untar it:
-
-   ``` console
-   tar -xzf <path to downloaded azwi tar.gz>
-   ```
-  
-1. Generate the JWKS document. Upload it to the storage account, and then verify that it's publicly accessible.
-
-   ``` console
-   ./azwi jwks --public-keys sa.pub --output-file jwks.json
-   az storage blob upload --container-name "${AZURE_STORAGE_CONTAINER}" --file jwks.json --name openid/v1/jwks
-   curl -s "https://${AZURE_STORAGE_ACCOUNT}.blob.core.windows.net/${AZURE_STORAGE_CONTAINER}/openid/v1/jwks"
-   ```
-
-### Configure your cluster's Service Account token issuer with the hosted URL
-
-Your cluster must also be configured to issue Service Account tokens with an issuer URL (`service-account-issuer`) field that points to the storage account you created in the previous section. For more background on the federation configuration, see [cluster configuration for an OIDC issuer](https://azure.github.io/azure-workload-identity/docs/installation/self-managed-clusters/configurations.html).
-
-Optionally, you can configure limits on the Secret Store's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the Secret Store can change other objects in the cluster.
+Optionally, you can also configure limits on the Secret Store's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the Secret Store can change other objects in the cluster.
 
 Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
 
 1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
-   - Get the service account issuer url.
+   - Get the service account issuer URL.
 
-     ```console
+      ```console
+      export SERVICE_ACCOUNT_ISSUER="$(az connectk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} \ 
+      --query "oidcIssuerProfile.issuerUrl" \  
+      --output tsv)"
       echo $SERVICE_ACCOUNT_ISSUER
       ```
 
    - Open the K3s server configuration file.
 
-     ```console
+      ```console
       sudo nano /etc/systemd/system/k3s.service
       ```
 
-   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the output from `echo $SERVICE_ACCOUNT_ISSUER`.
+   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the above output from `echo $SERVICE_ACCOUNT_ISSUER`.
 
       ```console
       ExecStart=/usr/local/bin/k3s \
@@ -221,9 +174,7 @@ Create a Kubernetes service account for the workload that needs access to secret
 
 ## Install and use the Secret Store
 
-The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](conceptual-extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
-
-The Secret Store is installed as an [Azure Arc extension](extensions.md)
+The Secret Store is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
 ### Install cert-manager and trust-manager
 
@@ -245,23 +196,14 @@ The Secret Store is installed as an [Azure Arc extension](extensions.md)
 
 ### Install the Secret Store Azure Arc extension
 
-Be sure that your Kubernetes cluster is [connected to Azure Arc](quickstart-connect-cluster.md) before installing the extension.
-
-1. Set two environment variables for the resource group and name of your connected cluster. If you followed the quickstart linked earlier, these are 'AzureArcTest' and 'AzureArcTest1' respectively.
-
-   ```azurecli
-   export ARC_RESOURCE_GROUP="AzureArcTest"
-   export ARC_CLUSTER_NAME="AzureArcTest1"
-   ```
-
 1. Install the Secret Store extension to your Arc-enabled cluster using the following command:
 
    ``` console
    az k8s-extension create \
-     --cluster-name ${ARC_CLUSTER_NAME} \
+     --cluster-name ${CLUSTER_NAME} \
      --cluster-type connectedClusters \
      --extension-type microsoft.azure.secretstore \
-     --resource-group ${ARC_RESOURCE_GROUP} \
+     --resource-group ${RESOURCE_GROUP} \
      --release-train preview \
      --name ssarcextension \
      --scope cluster 
@@ -420,7 +362,7 @@ To troubleshoot an issue, start by looking at the state of the `SecretSync` obje
 To remove the Secret Store and stop synchronizing secrets, uninstall it with the `az k8s-extension delete` command:
 
 ```console
-az k8s-extension delete --name ssarcextension --cluster-name $ARC_CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters    
+az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters    
 ```
 
 Uninstalling the extension doesn't remove secrets, `SecretSync` objects, or CRDs from the cluster. These objects must be removed directly with `kubectl`.
