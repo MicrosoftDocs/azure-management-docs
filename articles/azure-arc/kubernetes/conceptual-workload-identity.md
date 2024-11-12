@@ -34,15 +34,15 @@ The following table shows the required OIDC issuer endpoints for Microsoft Entra
 
 [Microsoft Entra Workload ID](/azure/active-directory/develop/workload-identities-overview) supports the following mappings related to a service account:
 
-- **One-to-one**: A service account references a Microsoft Entra object. 
+- **One-to-one**: A service account references a Microsoft Entra object.
 - **Many-to-one**: Multiple service accounts reference the same Microsoft Entra object.
 - **One-to-many**: A service account references multiple Microsoft Entra objects by changing the client ID annotation. For more information, see [How to federate multiple identities with a Kubernetes service account](https://azure.github.io/azure-workload-identity/docs/faq.html#how-to-federate-multiple-identities-with-a-kubernetes-service-account).
 
 ## Requirements
 
-Azure Arc-enabled Kubernetes clusters support Microsoft Entra Workload Identity [starting with agent version 1.21](release-notes.md). 
+Azure Arc-enabled Kubernetes clusters support Microsoft Entra Workload Identity [starting with agent version 1.21](release-notes.md).
 
-Azure CLI version 2.47.0 or later is required. Run `az --version` to find the version, and run `az upgrade` to upgrade the version. For more information on installing or upgrading, see [Install Azure CLI](/cli/azure/install-azure-cli).
+To use the workload identity feature, you must have Azure CLI version 2.64 or higher, and `az connectedk8s` version 1.10.0 or higher. Be sure to update your Azure CLI version before updating your `az connectedk8s` version. If you use Azure Cloud Shell, the latest version of Azure CLI will be installed.
 
 Microsoft Entra Workload ID works especially well with the [Azure Identity client libraries](/azure/aks/workload-identity-overview?tabs=dotnet#azure-identity-client-libraries) or the [Microsoft Authentication Library (MSAL)](/azure/active-directory/develop/msal-overview) collection, together with application registration. Your workload can use any of these libraries to seamlessly authenticate and access Azure cloud resources.
 

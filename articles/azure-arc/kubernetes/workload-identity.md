@@ -29,7 +29,7 @@ For an overview of this feature, see [Workload identity federation in Azure Arc-
   - AKS on Edge Essentials
   - AKS on HCI 23H2
 
-To use the workload identity feature, you must have Azure CLI version 2.64 or higher, and `az connectedk8s` version 1.10.0 or higher. If you use Azure Cloud Shell, the latest version of Azure CLI will be installed.
+To use the workload identity feature, you must have Azure CLI version 2.64 or higher, and `az connectedk8s` version 1.10.0 or higher. Be sure to update your Azure CLI version before updating your `az connectedk8s` version. If you use Azure Cloud Shell, the latest version of Azure CLI will be installed.
 
 ## Enable workload identity on your cluster
 
@@ -190,7 +190,7 @@ To configure workload identity settings on Ubuntu Linux with K3s, follow the bel
 To disable workload identity feature on an Azure Arc-enabled Kubernetes cluster, run the following command:
 
 ```azurecli
-az connectedK8s update
+az connectedk8s update
     --resource-group "${RESOURCE_GROUP}"
     --name "${CLUSTER_NAME}"
     --disable-workload-identity
