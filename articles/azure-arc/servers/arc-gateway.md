@@ -91,7 +91,7 @@ You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azu
 1. On a machine with access to Azure, run the following commands to create your Arc gateway resource:
 
     ```azurecli
-    az connectedmachine gateway create --name [Your gateway’s Name] --resource-group [Your Resource Group] --location [Location] --gateway-type public --allowed-features * --subscription [subscription name or id]
+    az arcgateway create --name [Your gateway’s Name] --resource-group [Your Resource Group] --location [Location]
     ```
     The gateway creation process takes 9-10 minutes to complete.
 
@@ -118,7 +118,7 @@ When the resource is created, the success response includes the Arc gateway URL.
 
 |URL  |Purpose  |
 |---------|---------|
-|[Your URL Prefix].gw.arc.azure.com  |Your gateway URL (This URL can be obtained by running `az connectedmachine gateway list` after you create your gateway Resource)  |
+|[Your URL Prefix].gw.arc.azure.com  |Your gateway URL (This URL can be obtained by running `az arcgateway list` after you create your gateway Resource)  |
 |management.azure.com  |Azure Resource Manager Endpoint, required for Azure Resource Manager control channel  |
 |login.microsoftonline.com  |Microsoft Entra ID’s endpoint, for acquiring Identity access tokens  |
 |gbl.his.arc.azure.com  |The cloud service endpoint for communicating with Azure Arc agents  |
