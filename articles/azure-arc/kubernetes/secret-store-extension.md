@@ -28,7 +28,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
-Install the [Azure CLI](/cli/azure/install-azure-cli-linux?pivots=apt) and login, if you haven't already:
+Install the [Azure CLI](/cli/azure/install-azure-cli-linux?pivots=apt) and sign in, if you haven't already:
 
 ```azurecli
 az login
@@ -72,7 +72,7 @@ az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP}
 
 ### Configure your cluster to enable token validation
 
-Your cluster must be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
+Your cluster must be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
 
 Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
@@ -200,7 +200,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
 
 ### Install the SSE
 
-1. Install the SSE to your Arc-enabled cluster using the following command:
+- Install the SSE to your Arc-enabled cluster using the following command:
 
    ``` console
    az k8s-extension create \
