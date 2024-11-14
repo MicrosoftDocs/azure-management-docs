@@ -193,7 +193,7 @@ As mentioned in the [Manifest digest](container-registry-concepts.md#manifest-di
          "quarantineState": "Passed",
          "readEnabled": true,
          "writeEnabled": true
-        },
+       },
        "configMediaType": "application/vnd.docker.container.image.v1+json",
        "createdTime": "2020-05-16T04:25:14.3112885Z",
        "digest": "sha256:eef2ef471f9f9d01fd2ed81bd2492ddcbc0f281b0a6e4edb700fbf9025448388",
