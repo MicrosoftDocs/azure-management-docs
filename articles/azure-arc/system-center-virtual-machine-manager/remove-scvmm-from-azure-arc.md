@@ -116,7 +116,9 @@ To run the deboarding script, follow these steps:
 
 #### Inputs for the script
 
-- **vmmServerId**: The Azure resource ID of the SCVMM management server resource. </br> For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ScVmm/VMMServers/scvmmserverresource*
+- **vmmServerId**: The Azure resource ID of the SCVMM management server resource. 
+
+    For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ScVmm/VMMServers/scvmmserverresource*
 
 - **ApplianceConfigFilePath (optional)**: Path to kubeconfig, output from the deploy command. Providing applianceconfigfilepath also deletes the appliance VM running on the SCVMM management server.
 
@@ -157,7 +159,7 @@ If you aren't using the deboarding script, follow these steps to remove the SCVM
 
 At this point, all your Arc-enabled SCVMM resources are removed from Azure.
 
-## 3. Remove Azure Arc resource bridge related items in your VMM management server
+## 3. Remove Azure Arc resource bridge related items in your SCVMM management server
 
 During onboarding, to create a connection between your SCVMM management server and Azure, an Azure Arc resource bridge was deployed in your SCVMM managed environment. As the last step, you must delete the resource bridge VM and the VM template created during onboarding.
 
