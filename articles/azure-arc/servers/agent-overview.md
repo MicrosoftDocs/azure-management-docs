@@ -267,11 +267,11 @@ We provide several options for deploying the agent. For more information, see [P
 
 ## Cloning guidelines
 
-Once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original, golden image machine to Azure until you've created and specialized each machine. 
+Once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine. 
 
-If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure then used that server as the golden image for cloning. Since the resource information was recorded into the image, clone machines created from that image try to send heartbeat messages to the same resource.
+If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure and then used that server as the golden image for cloning. Since the resource information was recorded into the image, cloned machines created from that image try to send heartbeat messages to the same resource.
 
-To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machine to the cloud using a unique resource name.
+To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machines to the cloud using a unique resource name.
 
 
 ## Disaster Recovery
