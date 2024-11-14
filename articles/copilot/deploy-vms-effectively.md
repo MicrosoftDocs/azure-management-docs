@@ -126,7 +126,7 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggest changes (such as selecting a new size, zone, or region) that have available capacity based on the prior deployment.
 
-:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
 
 ## Next steps
 
