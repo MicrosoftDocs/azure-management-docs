@@ -56,8 +56,7 @@ To better understand cost details, you can say "**Can you break down my October 
 
 For a detailed look at month-to-month changes, say "**Can you compare how my costs have changed from September to October by service?"
 
-:::image type="content" source="media/analyze-cost-management/cost-management-compare.png" alt-text="Screenshot showing Microsoft Copilot in Azure comparing costs by service from September to October 2024.
-":::
+:::image type="content" source="media/analyze-cost-management/cost-management-compare.png" alt-text="Screenshot showing Microsoft Copilot in Azure comparing costs by service from September to October 2024.":::
 
 You can also get an estimate of upcoming expenses by saying "**Can you forecast my cost by month for the next 3 months?"
 
