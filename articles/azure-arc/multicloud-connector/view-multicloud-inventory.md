@@ -9,16 +9,9 @@ ms.date: 06/11/2024
 
 The **Inventory** solution of the multicloud connector shows an up-to-date view of your resources from other public clouds in Azure, providing you with a single place to see all your cloud resources. Currently, AWS public cloud environments are supported.
 
-> [!IMPORTANT]
-> Multicloud connector enabled by Azure Arc is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 After you enable the **Inventory** solution, metadata from the assets in the source cloud is included with the asset representations in Azure. You can also apply Azure tags or Azure policies to these resources. This solution allows you to query for all your cloud resources through Azure Resource Graph, such as querying to find all Azure and AWS resources with a specific tag.
 
 The **Inventory** solution scans your source cloud regularly to update the view represented in Azure. You can specify the interval to query when you [connect your public cloud](connect-to-aws.md) and configure the **Inventory** solution.
-
-> [!TIP]
-> At this time, we recommend that you don't use the multicloud connector **Inventory** solution with EC2 instances that have already been [connected to Azure Arc](../servers/deployment-options.md) and reside in a different subscription than your connector resource. Doing so will create a duplicate record of the EC2 instance in Azure.
 
 ## Supported AWS services
 
@@ -99,11 +92,22 @@ After you connect your AWS cloud and enable the **Inventory** solution, the mult
 
 Resources that are discovered in AWS and projected in Azure are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping).
 
+> [!NOTE]
+> If you have EC2 instances that have already been **[connected to Azure Arc](/azure/azure-arc/servers/deployment-options),** the connector will create the EC2 Inventory resource as child resource of the Microsoft.HybridCompute/machines if the **[pre-requisites](multicloud-connector/connect-to-aws#azure-prerequisites)** have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created. 
+
+## Permission options
+
+  1. **Global Read**: Provides read only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated Cloud Formation Template
+
+  1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new Cloud Formation Template will need to be uploaded.
+
 ## Periodic sync options
 
 The periodic sync time that you select when configuring the **Inventory** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, changes to your AWS resources are reflected in Azure. For instance, if a resource is deleted in AWS, that resource is also deleted in Azure.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, your Azure representation may become out of sync with your AWS resources, as Azure won't be able to rescan and detect any changes.
+
+## Periodic sync options
 
 ## Querying for resources in Azure Resource Graph
 
