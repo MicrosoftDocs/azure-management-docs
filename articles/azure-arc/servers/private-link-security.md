@@ -141,7 +141,7 @@ To understand more about the network traffic flows, see the diagram in the [How 
 
 1. Select **Review + Create**.
 
-   :::image type="content" source="./media/private-link-security/create-private-link-scope.png" alt-text="Screenshot showing the Create Private Link Scope window" border="true":::
+   :::image type="content" source="./media/private-link-security/create-private-link-scope.png" alt-text="Screenshot showing the Create Private Link Scope window." border="true":::
 
 1. Let the validation pass, and then select **Create**.
 
@@ -209,7 +209,7 @@ When connecting a machine or server with Azure Arc-enabled servers for the first
    1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
    1. Under **Connectivity method**, select **Private endpoint** and select the Azure Arc Private Link Scope created in Part 1 from the drop-down list.
 
-      :::image type="content" source="./media/private-link-security/arc-enabled-servers-create-script.png" alt-text="Selecting Private Endpoint connectivity option" border="true":::
+      :::image type="content" source="./media/private-link-security/arc-enabled-servers-create-script.png" alt-text="Screenshot that shows selecting Private Endpoint connectivity option." border="true":::
 
    1. Select **Next: Tags**.
 
@@ -240,7 +240,7 @@ For Azure Arc-enabled servers that were set up prior to your private link scope,
 
 1. Select the servers in the list that you want to associate with the Private Link Scope, and then select **Select** to save your changes.
 
-   :::image type="content" source="./media/private-link-security/select-servers-private-link-scope.png" lightbox="./media/private-link-security/select-servers-private-link-scope.png" alt-text="Selecting Azure Arc resources" border="true":::
+   :::image type="content" source="./media/private-link-security/select-servers-private-link-scope.png" lightbox="./media/private-link-security/select-servers-private-link-scope.png" alt-text="Screenshot that shows selecting Azure Arc resources." border="true":::
 
 It might take up to 15 minutes for the Private Link Scope to accept connections from the recently associated server(s).
 
