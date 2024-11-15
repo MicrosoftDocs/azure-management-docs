@@ -6,7 +6,7 @@ ms.date: 06/11/2024
 ms.custom: references_regions
 ---
 
-# What is Multicloud connector enabled by Azure Arc (preview)?
+# What is Multicloud connector enabled by Azure Arc?
 
 Multicloud connector enabled by Azure Arc lets you connect non-Azure public cloud resources to Azure, providing a centralized source for management and governance. Currently, AWS public cloud environments are supported.
 
@@ -19,10 +19,6 @@ For more information about how the multicloud connector works, including Azure a
 
 The multicloud connector can work side-by-side with the [AWS connector in Defender for Cloud](/azure/defender-for-cloud/quickstart-onboard-aws). If you choose, you can use both of these connectors.
 
-> [!IMPORTANT]
-> Multicloud connector enabled by Azure Arc is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 ## Supported regions
 
 In Azure, the following regions are supported for the multicloud connector:
@@ -33,7 +29,7 @@ The multicloud connector isn't available in national clouds (Azure Government, M
 
 In AWS, we scan for resources in the following regions:
 
-- us-east-1, us-east-2, us-west-1, us-west-2, ca-central-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-3, eu-west-1, eu-west-2, eu-central-1, eu-north-1, sa-east-1
+- us-east-1, us-east-2, us-west-1, us-west-2, ca-central-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-3, eu-west-1, eu-west-2, eu-central-1, eu-north-1, sa-east-1, ap-south
 
 Scanned AWS resources are automatically [mapped to corresponding Azure regions](resource-representation.md#region-mapping).
 
