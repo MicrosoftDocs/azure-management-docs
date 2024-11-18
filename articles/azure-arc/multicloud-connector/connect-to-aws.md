@@ -23,11 +23,11 @@ To create the connector and to use multicloud inventory, you need the following 
 - **AWSCloudFormationFullAccess**
 - **IAMFullAccess**
 
-For Arc onboarding, there are [additional prerequisites that must be met](onboard-multicloud-vms-arc.md#prerequisites).
+For Arc onboarding, there are [more prerequisites that must be met](onboard-multicloud-vms-arc.md#prerequisites).
 
 #### AWS solution permissions
 
-When you upload your CloudFormation template, additional permissions will be requested, based on the solutions that you selected:
+When you upload your CloudFormation template, more permissions will be requested, based on the solutions that you selected:
 
 - For **Inventory**, you can choose your permission:
 
@@ -78,7 +78,7 @@ To add your AWS public cloud to Azure, use the Azure portal to enter details and
       1. Choose your permissions. If **Add all supported AWS services** is checked, you must have **Global read** access. 
             
       1. Choose whether or not to enable periodic sync. By default, this is enabled so that the connector will scan your AWS account regularly. If you uncheck the box, your AWS account will only be scanned once.
-      1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account will be scanned.
+      1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account are scanned.
       1. Choose whether or not to enable **Include all supported AWS regions**. By selecting this option, all current and future AWS regions are scanned. 
             
       1. Choose which regions to scan for resources in your AWS account. By default, all available regions are selected. If you selected **Include all supported AWS regions**, all regions must be selected.
@@ -89,12 +89,12 @@ To add your AWS public cloud to Azure, use the Azure portal to enter details and
    
       1. Select a **Connectivity method** to determine whether the Connected Machine agent should connect to the internet via a public endpoint or by proxy server. If you select **Proxy server**, provide a **Proxy server URL** to which the EC2 instance can connect.
       1. Choose whether or not to enable periodic sync. By default, this is enabled so that the connector will scan your AWS account regularly. If you uncheck the box, your AWS account will only be scanned once.
-      1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account will be scanned.
+      1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account are scanned.
       1. Choose whether or not to enable **Include all supported AWS regions**. By selecting this option, all current and future AWS regions are scanned. 
             
       1. Choose which regions to scan for EC2 instances in your AWS account. By default, all available regions are selected. If you selected **Include all supported AWS regions**, all regions must be selected.
             
-      1. Choose to filter for EC2 instances by AWS tag. If you enter a tag value here, only EC2 instances that contain that tag will be onboarded to Arc. By leaving this value empty, all EC2 Instances discovered will be onboarded to Arc. 
+      1. Choose to filter for EC2 instances by AWS tag. If you enter a tag value here, only EC2 instances that contain that tag are onboarded to Arc. By leaving this value empty, all EC2 Instances discovered are onboarded to Arc. 
             
 1. On the **Authentication template** page, download the CloudFormation template that you'll upload to AWS. This template is created based on the information you provided in **Basics** and the solutions you selected. You can [upload the template](#upload-cloudformation-template-to-aws) right away, or wait until you finish adding your public cloud.
 
@@ -105,7 +105,7 @@ If you didn't upload your template during this process, follow the steps in the 
 
 ## Upload CloudFormation template to AWS
 
-After you've saved the CloudFormation template generated in the previous section, you need to upload it to your AWS public cloud. If you upload the template before you finish connecting your AWS cloud in the Azure portal, your AWS resources will be scanned immediately. If you complete the **Add public cloud** process in the Azure portal before uploading the template, it will take a bit longer to scan your AWS resources and make them available in Azure.
+After you've saved the CloudFormation template generated in the previous section, you need to upload it to your AWS public cloud. If you upload the template before you finish connecting your AWS cloud in the Azure portal, your AWS resources are scanned immediately. If you complete the **Add public cloud** process in the Azure portal before uploading the template, it will take a bit longer to scan your AWS resources and make them available in Azure.
 
 ### Create stack
 
@@ -141,9 +141,9 @@ If your AWS account is an organization account, you also need to create a StackS
       
       1. **EC2SSMIAMRoleAutoAssignment**: Specifies whether IAM roles used for SSM tasks are automatically assigned to EC2 instances. By default this is set to *true* and all EC2 discovered will have the IAM role assigned. If you set this to *false,* you must to manually assign the IAM role to the EC2 instances that you want onboarded to Arc.
             
-      1. **EC2SSMIAMRoleAutoAssignmentSchedule**: Specifies whether the EC2 IAM Role used for SSM tasks should be auto-assigned periodically. By default, this is set to *enable,* meaning that any future EC2 machine discovered will have the IAM role automatically assigned. If you set this to *disable,* you must manually assign the IAM role to any newly deployed EC2 instance that you want onboarded to Arc. 
+      1. **EC2SSMIAMRoleAutoAssignmentSchedule**: Specifies whether the EC2 IAM Role used for SSM tasks should be autoassigned periodically. By default, this is set to *enable,* meaning that any future EC2 machine discovered will have the IAM role automatically assigned. If you set this to *disable,* you must manually assign the IAM role to any newly deployed EC2 instance that you want onboarded to Arc. 
             
-      1. **EC2SSMIAMRoleAutoAssignmentScheduleInterval**:  Specifies the periodic interval for auto-assignment of the EC2 IAM Role used for SSM tasks (such as, 15 minutes, 6 hours, or 1 day). If you set the **EC2SSMIAMRoleAutoAssignment** to *true* and **EC2SSMIAMRoleAutoAssignmentSchedule** to *enable*, you can choose how often you want to scan for new EC2 instances to be assigned the IAM role. By default, this is *1 day*.
+      1. **EC2SSMIAMRoleAutoAssignmentScheduleInterval**:  Specifies the periodic interval for autoassignment of the EC2 IAM Role used for SSM tasks (such as, 15 minutes, 6 hours, or 1 day). If you set the **EC2SSMIAMRoleAutoAssignment** to *true* and **EC2SSMIAMRoleAutoAssignmentSchedule** to *enable*, you can choose how often you want to scan for new EC2 instances to be assigned the IAM role. By default, this is *1 day*.
             
       1. **EC2SSMIAMRolePolicyUpdateAllowed**: Specifies whether existing EC2 IAM roles used for SSM tasks are allowed to update with required permissions policies if they are missing. By default, this is set to *true*. If you choose to set to *false*, you must manually add this IAM role permission to the EC2 instance. 
             
