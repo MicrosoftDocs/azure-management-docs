@@ -33,7 +33,7 @@ When you upload your CloudFormation template, additional permissions will be req
 
   1. **Global Read**: Provides read-only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated CloudFormation template.
     
-  1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new Cloud Formation Template will need to be uploaded.
+  1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template must be uploaded.
     
 - For **Arc Onboarding**, our service requires **EC2 Write** access in order to install the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview).
 
