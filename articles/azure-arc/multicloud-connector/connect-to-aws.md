@@ -81,7 +81,7 @@ To add your AWS public cloud to Azure, use the Azure portal to enter details and
       1. If **Enable periodic sync** is checked, confirm or change the **Recur every** selection to specify how often your AWS account will be scanned.
       1. Choose whether or not to enable **Include all supported AWS regions**. By selecting this option, all current and future AWS regions are scanned. 
             
-      1. Choose which regions to scan for resources in your AWS account. By default, all available regions are selected. If you have selected **Include all supported AWS regions**, all regions must be selected.
+      1. Choose which regions to scan for resources in your AWS account. By default, all available regions are selected. If you selected **Include all supported AWS regions**, all regions must be selected.
             
       1. When you have finished making selections, select **Save** to return to the **Solutions** page.
 
