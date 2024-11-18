@@ -140,7 +140,7 @@ After you connect your AWS cloud and enable the **Inventory** solution, the mult
 Resources that are discovered in AWS and projected in Azure are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping).
 
 > [!NOTE]
-> If you have EC2 instances that have already been **[connected to Azure Arc](/azure/azure-arc/servers/deployment-options),** the connector will create the EC2 Inventory resource as child resource of the Microsoft.HybridCompute/machines if the **[pre-requisites](multicloud-connector/connect-to-aws#azure-prerequisites)** have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created. 
+> If you have EC2 instances that have already been [connected to Azure Arc](/azure/azure-arc/servers/deployment-options), the connector will create the EC2 Inventory resource as child resource of the Microsoft.HybridCompute/machines if the [prerequisites](connect-to-aws.md#azure-prerequisites) have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created. 
 
 ## Permission options
 
