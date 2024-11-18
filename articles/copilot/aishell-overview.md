@@ -1,5 +1,5 @@
 ---
-title: Copilot in Azure is now available directly in the CLI
+title: Use Microsoft Copilot in Azure with AI Shell
 description: Learn about the things you can do with Microsoft Copilot in Azure from the command line.
 ms.date: 11/18/2024
 ms.topic: conceptual
@@ -8,7 +8,7 @@ ms.author: sewhee
 author: sdwheeler
 ---
 
-# Copilot in Azure is now available directly in the CLI
+# Use Microsoft Copilot in Azure with AI Shell
 
 AI Shell introduced a seamless way to access Copilot in Azure directly from your command-line
 interface (CLI). This enhancement allows developers, administrators, and DevOps teams to generate
@@ -34,7 +34,7 @@ Azure's AI-driven suggestions, using natural language prompts, directly in your 
 - **Command generation**: Generate Azure CLI or PowerShell commands by describing what you need in
   natural language directly from the CLI. For example, ask AI Shell to:
 
-  > Set up a virtual network in West US with three subnets
+  `Set up a virtual network in West US with three subnets`
 
   Copilot in Azure provides you with the exact command needed in the AI Shell terminal.
 

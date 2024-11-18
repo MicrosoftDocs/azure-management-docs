@@ -2,8 +2,6 @@
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Use Copilot in Azure with AI Shell
-  href: aishell-overview.md
 - name: Concepts
   items:
   - name: Capabilities
@@ -18,6 +16,8 @@
     href: manage-access.md
   - name: Write effective prompts
     href: write-effective-prompts.md
+  - name: Use Copilot in Azure with AI Shell
+    href: aishell-overview.md
 - name: Enhanced scenarios
   items:
   - name: Get resource information
