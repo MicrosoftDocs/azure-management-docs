@@ -119,7 +119,7 @@ Follow these steps to create a stack and upload your template:
       
       1. **EC2SSMIAMRoleAutoAssignment**: Specifies whether IAM roles used for SSM tasks are automatically assigned to EC2 instances. By default this is set to *true* and all EC2 discovered will have the IAM role assigned. If you set this to *false,* you must manually assign the IAM role to the EC2 instances that you want onboarded to Arc.
             
-      1. **EC2SSMIAMRoleAutoAssignmentSchedule**: Specifies whether the EC2 IAM Role used for SSM tasks should be auto-assigned periodically. By default, this is set to *enable,* meaning that any future EC2 machine discovered will have the IAM role automatically assigned. If you set this to *disable,* youmust manually assign the IAM role to any newly deployed EC2 that you want onboarded to Azure Arc.
+      1. **EC2SSMIAMRoleAutoAssignmentSchedule**: Specifies whether the EC2 IAM Role used for SSM tasks should be auto-assigned periodically. By default, this is set to *enable,* meaning that any future EC2 machine discovered will have the IAM role automatically assigned. If you set this to *disable,* you must manually assign the IAM role to any newly deployed EC2 that you want onboarded to Azure Arc.
             
       1. **EC2SSMIAMRoleAutoAssignmentScheduleInterval**:  Specifies the periodic interval for auto-assignment of the EC2 IAM Role used for SSM tasks (for example, 15 minutes, 6 hours, or 1 day). If you set the **EC2SSMIAMRoleAutoAssignment** to *true* and **EC2SSMIAMRoleAutoAssignmentSchedule** to *enable*, you can choose how often you want to scan for new EC2 instances to be assigned the IAM role. By default, this is *1 day*.
             
@@ -139,7 +139,7 @@ If your AWS account is an organization account, you also need to create a StackS
 
    1. If you have selected the **Arc Onboarding** solution, fill out the following details in the Stack parameters:
       
-      1. **EC2SSMIAMRoleAutoAssignment**: Specifies whether IAM roles used for SSM tasks are automatically assigned to EC2 instances. By default this is set to *true* and all EC2 discovered will have the IAM role assigned. If you set this to *false,* you must to manually assign the IAM role to the EC2 instances that you want onboarded to Arc.
+      1. **EC2SSMIAMRoleAutoAssignment**: Specifies whether IAM roles used for SSM tasks are automatically assigned to EC2 instances. By default this is set to *true* and all EC2 discovered will have the IAM role assigned. If you set this to *false,* you must manually assign the IAM role to the EC2 instances that you want onboarded to Arc.
             
       1. **EC2SSMIAMRoleAutoAssignmentSchedule**: Specifies whether the EC2 IAM Role used for SSM tasks should be autoassigned periodically. By default, this is set to *enable,* meaning that any future EC2 machine discovered will have the IAM role automatically assigned. If you set this to *disable,* you must manually assign the IAM role to any newly deployed EC2 instance that you want onboarded to Arc. 
             
