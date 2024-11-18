@@ -115,7 +115,7 @@ Follow these steps to create a stack and upload your template:
 1. Select **Template is ready**, then select **Upload a template file**. Select **Choose file** and browse to select your template. Then select **Next**.
 1. In **Specify stack details**, enter a stack name. 
 
-   1. If you have selected the **Arc Onboarding** solution, fill out the following details in the Stack parameters:
+   1. If you selected the **Arc Onboarding** solution, fill out the following details in the Stack parameters:
       
       1. **EC2SSMIAMRoleAutoAssignment**: Specifies whether IAM roles used for SSM tasks are automatically assigned to EC2 instances. By default this is set to *true* and all EC2 discovered will have the IAM role assigned. If you set this to *false,* you will need to manually assign the IAM role to the EC2 instances you would like onboarded to Arc.
             
