@@ -144,7 +144,7 @@ Resources that are discovered in AWS and projected in Azure are placed in Azure 
 
 ## Permission options
 
-1. **Global Read**: Provides read only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated Cloud Formation Template
+1. **Global Read**: Provides read only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated CloudFormation template.
 
   1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template will need to be uploaded.
 
