@@ -154,8 +154,6 @@ The periodic sync time that you select when configuring the **Inventory** soluti
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, your Azure representation may become out of sync with your AWS resources, as Azure won't be able to rescan and detect any changes.
 
-## Periodic sync options
-
 ## Querying for resources in Azure Resource Graph
 
 [Azure Resource Graph](/azure/governance/resource-graph/overview) is an Azure service designed to extend Azure Resource Management by providing efficient and performant resource exploration. Running queries at scale across a given set of subscriptions helps you effectively govern your environment.
