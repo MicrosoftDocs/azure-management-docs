@@ -72,7 +72,7 @@ To add your AWS public cloud to Azure, use the Azure portal to enter details and
 
    - For **Inventory**, you can modify the following options:
    
-      1. Choose whether or not to enable **Add all supported AWS services.** By default, this is enabled so that all services (available now and services added in the future) will be scanned. 
+      1. Choose whether or not to enable **Add all supported AWS services.** By default, this is enabled so that all services (available now and services added in the future) are scanned. 
             
       1. Choose the **AWS Services** for which you want to scan and import resources. By default, all available services are selected.
       1. Choose your permissions. If **Add all supported AWS services** is checked, you must have **Global read** access. 
