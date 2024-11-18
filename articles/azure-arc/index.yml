@@ -11,7 +11,7 @@ metadata:
   ms.service: azure-arc
   ms.topic: hub-page
   ms.author: jroth
-  ms.date: 02/15/2024
+  ms.date: 11/18/2024
   ms.custom:
     - e2e-hybrid
     - ignite-2023
@@ -163,7 +163,7 @@ additionalContent:
           summary: Extend AKS to your on-premises environment.
           url: https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-hybrid-options-overview
         # Card
-        - title: Multicloud connector enabled by Azure Arc (preview)
+        - title: Multicloud connector enabled by Azure Arc
           summary: Connect non-Azure public cloud resources to centralize management and governance in Azure.
           url: ./multicloud-connector/overview.md
         # Card
