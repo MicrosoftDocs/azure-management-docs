@@ -25,7 +25,8 @@ To create the connector and to use multicloud inventory, you need the following 
 
 For Arc onboarding, there are [additional prerequisites that must be met](onboard-multicloud-vms-arc.md#prerequisites).
 
-#### AWS Solution Permissions
+#### AWS solution permissions
+
 When you upload your CloudFormation template, additional permissions will be requested, based on the solutions that you selected:
 
 - For **Inventory**, you can choose your permission:
