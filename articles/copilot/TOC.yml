@@ -2,6 +2,8 @@
   href: index.yml
 - name: Overview
   href: overview.md
+- name: Use Copilot in Azure with AI Shell
+  href: aishell-overview.md
 - name: Concepts
   items:
   - name: Capabilities
