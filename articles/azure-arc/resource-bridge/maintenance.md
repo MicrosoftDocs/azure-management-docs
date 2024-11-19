@@ -23,7 +23,7 @@ Arc resource bridge consists of an on-premises appliance VM. The appliance VM [s
 
 If the credentials change, the credentials stored in the Arc resource bridge must be updated with the [`update-infracredentials` command](/cli/azure/arcappliance/update-infracredentials). This command must be run from a management machine, and it requires a [kubeconfig file](system-requirements.md#kubeconfig).
 
-For more information on maintaining credentials for Arc-enabled VMware, see [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding). For Arc-enabled SCVMM, see [Update the SCVMM account credentials](../system-center-virtual-machine-manager/administer-arc-scvmm).
+For more information on maintaining credentials for Arc-enabled VMware, see [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding). For Arc-enabled SCVMM, see [Update the SCVMM account credentials](../system-center-virtual-machine-manager/administer-arc-scvmm.md).
 
 ## Troubleshoot Arc resource bridge
 
