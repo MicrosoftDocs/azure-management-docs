@@ -11,10 +11,6 @@ The **Arc onboarding** solution of the multicloud connector auto-discovers VMs i
 
 This simplified experience lets you use Azure management services, such as Azure Monitor, providing a centralized way to manage Azure and AWS VMs together.
 
-> [!IMPORTANT]
-> Multicloud connector enabled by Azure Arc is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 You can enable the **Arc onboarding** solution when you [connect your public cloud to Azure](connect-to-aws.md).
 
 ## Prerequisites
@@ -23,7 +19,7 @@ In addition to the [general prerequisites](connect-to-aws.md#prerequisites) for 
 
 - You must have **AmazonEC2FullAccess** permissions in your public cloud.
 - EC2 instances must meet the [general prerequisites for installing the Connected Machine agent](../servers/prerequisites.md).
-- EC2 instances must have the SSM agent installed. Most EC2 instances have this preconfigured.
+- EC2 instances must have the SSM agent installed. Most EC2 instances have this preconfigured if you use a [supported OS](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html).
 - The **ArcForServerSSMRole** IAM role [attached on each EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role). This role attachment must be done after you upload your Cloud Formation Template in the Connector creation steps.
 
 ## AWS resource representation in Azure
@@ -43,6 +39,10 @@ For more information, see [Connected machine agent network requirements](../serv
 The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, any time there is a newly discovered EC2 instance that meets the prerequisites, the Arc agent will be installed automatically.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances won't be automatically onboarded to Azure Arc, as Azure won't be able to scan for new instances.
+
+## EC2 Filter Options
+
+You can choose to filter to scan for EC2 based on AWS regions or AWS tags. You can select which regions you would like to scan for EC2 resources. You can also filter by AWS tag to only onboard EC2 machines that have the matching tag (case-insensitive) to be eligible for EC2 onboarding. 
 
 ## Next steps
 
