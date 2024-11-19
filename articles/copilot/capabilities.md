@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 08/29/2024
+ms.date: 11/15/2024
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.custom:
@@ -29,19 +29,21 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Understand service health events and status](understand-service-health.md)
   - [Analyze, estimate, and optimize costs](analyze-cost-management.md)
   - [Query your attack surface](query-attack-surface.md)
+  - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
 - Work smarter with Azure services:
   - [Execute commands](execute-commands.md)
   - [Deploy virtual machines effectively](deploy-vms-effectively.md)
-  - [Create resources using interactive deployments](use-guided-deployments.md)
+  - [Discover and deploy workload templates](deploy-workload-templates.md)
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
   - [Work smarter with Azure Local](work-smarter-edge.md)
   - [Secure and protect storage accounts](improve-storage-accounts.md)
+  - [Troubleshoot network connectivity](network-management.md)
   - [Improve Azure SQL Database-driven applications](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
 - Write and optimize code:
   - [Generate Azure CLI scripts](generate-cli-scripts.md)
   - [Generate PowerShell scripts](generate-powershell-scripts.md)
-  - [Generate Terraform configurations](generate-terraform-configurations.md)
+  - [Generate Terraform and Bicep configurations](generate-terraform-configurations.md)
   - [Discover performance recommendations with Code Optimizations](optimize-code-application-insights.md)
   - [Author API Management policies](author-api-management-policies.md)
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)

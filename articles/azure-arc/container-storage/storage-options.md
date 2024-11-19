@@ -1,5 +1,5 @@
 ---
-title: Storage options using Azure Container Storage enabled by Azure Arc (preview)
+title: Storage options using Azure Container Storage enabled by Azure Arc
 description: Learn about different data storage options in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -7,7 +7,7 @@ ms.topic: conceptual
 ms.date: 10/31/2024
 ---
 
-# Storage options using Azure Container Storage enabled by Azure Arc (preview)
+# Storage options using Azure Container Storage enabled by Azure Arc
 
 Azure Container Storage enabled by Azure Arc offers many different storage options for customer data. This article describes the available options.
 

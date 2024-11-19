@@ -1,5 +1,5 @@
 ---
-title: Volumes and subvolumes (preview)
+title: Volumes and subvolumes
 description: Learn about Volumes and subvolumes in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -7,7 +7,7 @@ ms.topic: conceptual
 ms.date: 10/02/2024
 ---
 
-# Overview of volumes and subvolumes (preview)
+# Overview of volumes and subvolumes
 
 In Azure Container Storage enabled by Azure Arc, a *volume* refers to a [Persistent Volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), the Kubernetes resource object.
 

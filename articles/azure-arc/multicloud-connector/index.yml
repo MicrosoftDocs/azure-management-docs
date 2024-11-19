@@ -1,15 +1,15 @@
 ### YamlMime:Landing
 
-title: Multicloud connector enabled by Azure Arc (preview) # < 60 chars
+title: Multicloud connector enabled by Azure Arc # < 60 chars
 summary: Connect non-Azure public cloud resources to Azure for centralized management and governance. # < 160 chars
  
 metadata:
-  title: Multicloud connector enabled by Azure Arc (preview)
+  title: Multicloud connector enabled by Azure Arc
   description: Connect non-Azure public cloud resources to Azure for centralized management and governance.
   ms.service: azure-arc
   ms.author: jroth
   ms.topic: landing-page
-  ms.date: 08/19/2024
+  ms.date: 11/18/2024
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
 

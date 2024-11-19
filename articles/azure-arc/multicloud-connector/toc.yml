@@ -16,6 +16,8 @@
     href: view-multicloud-inventory.md
   - name: Onboard VMs to Azure Arc
     href: onboard-multicloud-vms-arc.md
+  - name: Troubleshooting
+    href: troubleshoot-multicloud-connector.md
 - name: Reference
   items:
   - name: Azure Arc

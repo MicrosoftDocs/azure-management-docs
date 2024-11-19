@@ -81,6 +81,8 @@ The Connected Machine agent sends a regular heartbeat message to the service eve
 
 If a machine remains disconnected for 45 days, its status may change to **Expired**. An expired machine can no longer connect to Azure and requires a server administrator to disconnect and then reconnect it to Azure to continue managing it with Azure Arc. The exact date upon which a machine expires is determined by the expiration date of the managed identity's credential, which is valid up to 90 days and renewed every 45 days.
 
+If a machine is receiving 429 error messages or shows intermittent connection statuses, it could be an incorrectly cloned machine. See [Cloning guidelines](agent-overview.md#cloning-guidelines) for more information.
+
 ## Service limits
 
 There's no limit to how many Arc-enabled servers and VM extensions you can deploy in a resource group or subscription. The standard 800 resource limit per resource group applies to the Azure Arc Private Link Scope resource type.

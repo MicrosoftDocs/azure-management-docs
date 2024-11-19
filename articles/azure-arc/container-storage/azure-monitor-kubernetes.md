@@ -1,5 +1,5 @@
 ---
-title: Azure Monitor and Kubernetes monitoring (preview)
+title: Azure Monitor and Kubernetes monitoring
 description: Learn how to monitor your deployment using Azure Monitor and Kubernetes monitoring in Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 08/26/2024
 
 ---
 
-# Azure Monitor and Kubernetes monitoring (preview)
+# Azure Monitor and Kubernetes monitoring
 
 This article describes how to monitor your deployment using Azure Monitor and Kubernetes monitoring.
 
