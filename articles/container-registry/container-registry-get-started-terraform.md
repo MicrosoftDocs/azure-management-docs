@@ -2,7 +2,7 @@
 title: 'Quickstart: Create an Azure container registry using Terraform'
 description: In this quickstart, you create a unique resource group and an Azure container registry in a specified location using Terraform.
 ms.topic: quickstart
-ms.date: 11/07/2024
+ms.date: 11/19/2024
 ms.custom: devx-track-terraform
 ms.service: azure-container-registry
 author: tejaswikolli-web
