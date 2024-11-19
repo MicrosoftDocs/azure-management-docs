@@ -113,7 +113,7 @@ Starting March 2024, Azure Kubernetes Service (AKS) enabled by Azure Arc on VMwa
 The following capabilities are available in the AKS Arc on VMware preview:
 
 - **Simplified infrastructure deployment on Arc-enabled VMware vSphere**: Onboard VMware vSphere to Azure using a single-step process with the AKS Arc extension installed.
-- **Azure CLI**: A consistent command-line experience, with [AKS Arc on Azure Stack HCI 23H2](/azure/aks/hybrid/aks-create-clusters-cli), for creating and managing Kubernetes clusters. Note that the preview only supports a limited set of commands.
+- **Azure CLI**: A consistent command-line experience, with [AKS Arc on Azure Local 23H2](/azure/aks/hybrid/aks-create-clusters-cli), for creating and managing Kubernetes clusters. Note that the preview only supports a limited set of commands.
 - **Cloud-based management**: Use familiar tools such as Azure CLI to create and manage Kubernetes clusters on VMware.
 - **Support for managing and scaling node pools and clusters**.
 

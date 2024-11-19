@@ -195,7 +195,7 @@ Metadata information about a connected machine is collected after the Connected 
 * Public key for managed identity
 * Policy compliance status and details (if using guest configuration policies)
 * SQL Server installed (Boolean value)
-* Cluster resource ID (for Azure Stack HCI nodes)
+* Cluster resource ID (for Azure Local nodes)
 * Hardware manufacturer
 * Hardware model
 * CPU family, socket, physical core, and logical core counts
