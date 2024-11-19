@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway (preview)"
 ms.custom: devx-track-azurecli
-ms.date: 11/11/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
 ---
@@ -30,7 +30,7 @@ The **Arc Proxy** is a new component that runs as its own pod (called "Azure Arc
 
 When the gateway is in place, traffic flows via the following hops: Arc Agents → Azure Arc Proxy → Enterprise Proxy → Arc gateway → Target Service.
 
-:::image type="content" source="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.svg" lightbox="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.svg" alt-text="Diagram showing the architecture for Azure Arc gateway (preview) with Arc-enabled Kubernetes.":::
+:::image type="content" source="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.png" lightbox="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.png" alt-text="Diagram showing the architecture for Azure Arc gateway (preview) with Arc-enabled Kubernetes.":::
 
 ## Current limitations
 
