@@ -14,7 +14,7 @@ content_well_notification:
 
 # Quickstart: Create an Azure container registry using Terraform
 
-In this quickstart, you create an Azure Container Registry and a resource group using Terraform. Container Registry is a managed Docker registry service used for storing private Docker container images. It's typically used with Azure Kubernetes Service (AKS), Azure App Service, and other Azure services to pull down container images. The registry is stored within a resource group, which is a logical container for resources deployed on Azure. These resources are created with unique names by combining a prefix with a random string, ensuring they are unique within your Azure subscription.
+In this quickstart, you create an Azure container registry and a resource group using Terraform. Azure Container Registry is a managed Docker registry service used for storing private Docker container images. It's typically used with Azure Kubernetes Service (AKS), Azure App Service, and other Azure services to pull down container images. The registry is stored within a resource group, which is a logical container for resources deployed on Azure. These resources are created with unique names by combining a prefix with a random string, ensuring they are unique within your Azure subscription.
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
 
