@@ -67,9 +67,9 @@ conceptualContent:
             - url: ./deploy-vms-effectively.md
               itemType: get-started
               text: Deploy VMs effectively
-            - url: ./use-guided-deployments.md
+            - url: ./deploy-workload-templates.md
               itemType: get-started
-              text: Create resources with interactive deployments
+              text: Discover and deploy workload templates
             - url: ./work-aks-clusters.md
               itemType: get-started
               text: Work with AKS clusters efficiently
@@ -91,7 +91,7 @@ conceptualContent:
             - url: ./generate-powershell-scripts.md
               itemType: get-started
               text: Generate PowerShell scripts
-            - url: ./generate-terraform-configurations.md
+            - url: ./generate-terraform-bicep.md
               itemType: get-started
               text: Generate Terraform configurations
             - url: ./generate-kubernetes-yaml.md

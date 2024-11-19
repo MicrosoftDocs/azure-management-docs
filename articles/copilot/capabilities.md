@@ -29,10 +29,11 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Understand service health events and status](understand-service-health.md)
   - [Analyze, estimate, and optimize costs](analyze-cost-management.md)
   - [Query your attack surface](query-attack-surface.md)
+  - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
 - Work smarter with Azure services:
   - [Execute commands](execute-commands.md)
   - [Deploy virtual machines effectively](deploy-vms-effectively.md)
-  - [Create resources using interactive deployments](use-guided-deployments.md)
+  - [Discover and deploy workload templates](deploy-workload-templates.md)
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
   - [Work smarter with Azure Stack HCI](work-smarter-edge.md)
@@ -41,7 +42,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
 - Write and optimize code:
   - [Generate Azure CLI scripts](generate-cli-scripts.md)
   - [Generate PowerShell scripts](generate-powershell-scripts.md)
-  - [Generate Terraform configurations](generate-terraform-configurations.md)
+  - [Generate Terraform and Bicep configurations](generate-terraform-configurations.md)
   - [Discover performance recommendations with Code Optimizations](optimize-code-application-insights.md)
   - [Author API Management policies](author-api-management-policies.md)
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)

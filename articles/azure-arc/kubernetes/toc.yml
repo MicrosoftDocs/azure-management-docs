@@ -55,6 +55,8 @@
       - name: Azure RBAC integration
         displayName: azure ad, azure active directory, identity, access, role
         href: conceptual-azure-rbac.md
+      - name: Workload identity federation
+        href: conceptual-workload-identity.md
   - name: Extend Azure capabilities to clusters anywhere
     items:
       - name: Cluster extensions
@@ -117,6 +119,8 @@
     - name: Use Azure RBAC for authorization checks
       displayName: azure active directory, identity, access
       href: azure-rbac.md
+    - name: Use workload identity
+      href: workload-identity.md
   - name: Manage your cluster
     items:
     - name: Deploy and manage cluster extensions
