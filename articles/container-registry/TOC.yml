@@ -29,6 +29,8 @@
       href: quickstart-client-libraries.md
     - name: Build and push Java images - CLI
       href: container-registry-java-quickstart.md
+    - name: Get started with Azure Container Registry using Terraform
+      href: container-registry-get-started-terraform.md
   - name: Tutorials
     expanded: false
     items:
