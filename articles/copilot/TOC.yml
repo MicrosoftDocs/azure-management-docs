@@ -30,7 +30,7 @@
     href: get-monitoring-information.md
   - name: Optimize your code
     href: optimize-code-application-insights.md
-  - name: Work smarter with Azure Stack HCI
+  - name: Work smarter with Azure Local
     href: work-smarter-edge.md
   - name: Secure and protect storage accounts
     href: improve-storage-accounts.md
