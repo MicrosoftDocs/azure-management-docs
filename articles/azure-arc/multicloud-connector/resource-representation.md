@@ -11,10 +11,6 @@ The multicloud connector enabled by Azure Arc lets you connect non-Azure public 
 
 This article describes how AWS resources from a connected public cloud are represented in your Azure environment.
 
-> [!IMPORTANT]
-> Multicloud connector enabled by Azure Arc is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 ## Resource group name
 
 After you [connect your AWS public cloud to Azure](connect-to-aws.md), the multicloud connector creates a new resource group with the following naming convention:
@@ -39,9 +35,10 @@ Resources that are discovered in AWS and projected in Azure are placed in Azure 
 |us-west-1 | EastUS |
 |us-west-2 | EastUS |
 |ca-central-1 | EastUS |
-|ap-southeast-1 | SoutheastAsia |
-|ap-northeast-1 | SoutheastAsia |
-|ap-northeast-3 | SoutheastAsia |
+|ap-southeast-1 | Southeast Asia |
+|ap-northeast-1 | Southeast Asia |
+|ap-northeast-3 | Southeast Asia |
+|ap-south | Southeast Asia |
 |ap-southeast-2 | AU East |
 |eu-west-1 | West Europe |
 |eu-central-1 | West Europe |
