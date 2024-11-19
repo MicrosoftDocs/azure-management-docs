@@ -1,6 +1,6 @@
 ---
 title: "Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)"
-ms.date: 11/11/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 description: "Workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
 ---
@@ -16,11 +16,18 @@ You can enable the [workload identity feature](conceptual-workload-identity.md) 
 1. Configure workload identity settings on the Kubernetes cluster.
 1. Disable workload identity on the cluster.
 
-For an overview of this feature, see [Workload identity federation in Azure Arc-enabled Kubernetes (preview)](conceptual-workload-identity.md)
+For an overview of this feature, see [Workload identity federation in Azure Arc-enabled Kubernetes (preview)](conceptual-workload-identity.md).
 
 > [!IMPORTANT]
 > The Azure Arc workload identity federation feature is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+> [!TIP]
+> This article describes the steps required to deploy and configure workload identity on an Arc-enabled Kubernetes cluster. To learn how to enable workload identity on other types of clusters, see the following articles:
+>
+> - [Azure Kubernetes Service (AKS)](/azure/aks/workload-identity-deploy-cluster)
+> - [AKS enabled by Azure Arc](/azure/aks/hybrid/workload-identity)
+> - [AKS Edge Essentials](/azure/aks/hybrid/aks-edge-workload-identity)
 
 ## Prerequisites
 
