@@ -50,17 +50,17 @@ Next, you can ask "**How can we reduce our costs?**" Microsoft Copilot in Azure 
 
 :::image type="content" source="media/analyze-cost-management/cost-management-reduce-2.png" alt-text="Screenshot showing Microsoft Copilot in Azure continuing a list of recommendations to reduce costs.":::
 
-To better understand cost details, you can say "**Can you break down my October costs by Meter and Product?"
+To better understand cost details, you can say "**Can you break down my October costs by Meter and Product?**"
 
 :::image type="content" source="media/analyze-cost-management/cost-management-understand.png" alt-text="Screenshot showing Microsoft Copilot in Azure showing details about charges grouped by Meter and Product.":::
 
-For a detailed look at month-to-month changes, say "**Can you compare how my costs have changed from September to October by service?"
+For a detailed look at month-to-month changes, say "**Can you compare how my costs have changed from September to October by service?**"
 
 :::image type="content" source="media/analyze-cost-management/cost-management-compare.png" alt-text="Screenshot showing Microsoft Copilot in Azure comparing costs by service from September to October 2024.":::
 
-You can also get an estimate of upcoming expenses by saying "**Can you forecast my cost by month for the next 3 months?"
+You can also get an estimate of upcoming expenses by saying "**Can you forecast my cost by month for the next 3 months?**"
 
-:::image type="content" source="media/analyze-cost-management/cost-management-forecast.png" alt-text="Screenshot showing Microsoft Copilot in Azure forecsting costs for a subscription for the next three months.":::
+:::image type="content" source="media/analyze-cost-management/cost-management-forecast.png" alt-text="Screenshot showing Microsoft Copilot in Azure forecasting costs for a subscription for the next three months.":::
 
 For OpenAI token-based models, you can ask questions to estimate costs for usage changes. For example, you can say "**How much would the cost change if GPT-35-Turbo usage increased by 15?**"
 
