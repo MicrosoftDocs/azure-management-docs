@@ -1,7 +1,7 @@
 ---
 title: Write effective prompts for Microsoft Copilot in Azure
 description: Maximize productivity and intent understanding with prompt engineering in Microsoft Copilot in Azure.
-ms.date: 04/16/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:

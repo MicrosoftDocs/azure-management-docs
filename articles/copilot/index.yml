@@ -15,7 +15,7 @@ metadata:
     - build-2024
     - copilot-learning-hub
   ms.topic: hub-page
-  ms.date: 11/15/2024
+  ms.date: 11/19/2024
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -125,5 +125,13 @@ additionalContent:
         - title: Copilot learning hub
           summary: Get started on your Copilot learning journey.
           url: /copilot/
+        # Card
+        - title: Copilot in Azure with AI Shell
+          summary: Access Copilot in Azure from your CLI.
+          url: ./ai-shell-overview.md
+        # Card
+        - title: Copilot in Azure with the Azure mobile app
+          summary: Use Copilot in Azure from within the app.
+          url: /azure/azure-portal/mobile-app/microsoft-copilot-in-azure
 
 

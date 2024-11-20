@@ -1,7 +1,7 @@
 ---
 title: Generate Azure CLI scripts using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can generate Azure CLI scripts for you to customize and use.
-ms.date: 04/25/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: ignite-2023, ignite-2023-copilotinAzure, devx-track-azurecli, build-2024
@@ -15,6 +15,9 @@ Microsoft Copilot in Azure (preview) can generate [Azure CLI](/cli/azure/) scrip
 
 When you tell Microsoft Copilot in Azure about a task you want to perform by using Azure CLI, it provides a script with the necessary commands. You'll see which placeholder values that you need to update with the actual values based on your environment.
 
+> [!TIP]
+> You can also get help from Copilot in Azure [directly from your command-line interface](ai-shell-overview.md).
+
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
@@ -27,12 +30,12 @@ Here are a few examples of the kinds of prompts you can use to generate Azure CL
 - "How do I list all my VMs using Azure CLI?"
 - "Create a virtual network with two subnets using the address space of 10.0.0.0/16 using az cli"
 - "I need to assign a dns name to a vm using a script"
-- "How to attach a disk to a VM using az cli ?"
-- "How to create and manage a Linux pool in Azure Batch using cli?"
-- "Show me how to backup and restore a web app from a backup using cli"
+- "How to attach a disk to a VM using az cli"
+- "How to create and manage a Linux pool in Azure Batch using cli"
+- "Show me how to back up and restore a web app from a backup using cli"
 - "Create VNet service endpoints for Azure Database for PostgreSQL using CLI"
 - "I want to create a function app with a named storage account connection using Azure CLI"
-- "How to create an App Service app and deploy code to a staging environment using CLI?"
+- "How to create an App Service app and deploy code to a staging environment using CLI"
 - "I want to use Azure CLI to deploy and manage AKS using a private service endpoint."
 
 ## Examples
