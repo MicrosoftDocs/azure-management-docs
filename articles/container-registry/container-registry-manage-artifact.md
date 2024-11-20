@@ -57,9 +57,9 @@ az login
 az acr login -n $REGISTRY  
 ```
 
-This setup enables you to seamlessly push and pull artifacts to and from your Azure Container Registry. Now ORAS can be used with ACR without additional authentication using `oras login` command. 
+This setup enables you to seamlessly push and pull artifacts to and from your Azure Container Registry. Now ORAS can be used with ACR without additional authentication by using `oras login` command. 
 
-If Docker isn't available, you can utilize the AD token provided for authentication. Authenticate with your [individual Microsoft Entra identity](container-registry-authentication.md?tabs=azure-cli#individual-login-with-azure-ad) using an AD token. Always use "000..." for the `USER_NAME` as the token is parsed through the `PASSWORD` variable. Note that the token used by `az acr login` is valid for 3 hours.
+If Docker isn't available, you can use the AD token provided for authentication. Authenticate with your [individual Microsoft Entra identity](container-registry-authentication.md?tabs=azure-cli#individual-login-with-azure-ad) using an AD token. Always use "000..." for the `USER_NAME` as the token is parsed through the `PASSWORD` variable. The token used by `az acr login` is valid for three hours.
 
 > [!NOTE]
 > ACR and ORAS support multiple authentication options for users and system automation. This article uses individual identity for demonstration convenience. For more authentication options see [Authenticate with an Azure container registry.][acr-authentication].
