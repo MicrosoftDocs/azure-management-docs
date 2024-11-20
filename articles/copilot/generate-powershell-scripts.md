@@ -1,7 +1,7 @@
 ---
 title: Generate PowerShell scripts using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can generate PowerShell scripts for you to customize and use.
-ms.date: 05/28/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -15,6 +15,9 @@ author: JnHs
 Microsoft Copilot in Azure (preview) can generate [PowerShell](/powershell/azure/) scripts that you can use to create or manage resources.
 
 When you tell Microsoft Copilot in Azure about a task you want to perform by using PowerShell, it provides a script with the necessary cmdlets. You'll see which placeholder values that you need to update with the actual values based on your environment.
+
+> [!TIP]
+> You can also get help from Copilot in Azure [directly from your command-line interface](ai-shell-overview.md).
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
