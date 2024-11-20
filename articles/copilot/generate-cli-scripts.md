@@ -30,12 +30,12 @@ Here are a few examples of the kinds of prompts you can use to generate Azure CL
 - "How do I list all my VMs using Azure CLI?"
 - "Create a virtual network with two subnets using the address space of 10.0.0.0/16 using az cli"
 - "I need to assign a dns name to a vm using a script"
-- "How to attach a disk to a VM using az cli ?"
-- "How to create and manage a Linux pool in Azure Batch using cli?"
-- "Show me how to backup and restore a web app from a backup using cli"
+- "How to attach a disk to a VM using az cli"
+- "How to create and manage a Linux pool in Azure Batch using cli"
+- "Show me how to back up and restore a web app from a backup using cli"
 - "Create VNet service endpoints for Azure Database for PostgreSQL using CLI"
 - "I want to create a function app with a named storage account connection using Azure CLI"
-- "How to create an App Service app and deploy code to a staging environment using CLI?"
+- "How to create an App Service app and deploy code to a staging environment using CLI"
 - "I want to use Azure CLI to deploy and manage AKS using a private service endpoint."
 
 ## Examples
