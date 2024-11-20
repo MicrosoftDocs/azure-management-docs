@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 06/11/2024
+ms.date: 11/20/2024
 ---
 
 ### [Azure Cloud](#tab/azure-cloud)
