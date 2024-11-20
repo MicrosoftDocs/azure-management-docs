@@ -26,7 +26,7 @@ Take extra care when using Azure Arc on systems that are:
 * Restored from backup as a second instance of the server
 * Used to create a "golden image" from which other virtual machines are created
 
-If two agents use the same configuration, you'll encounter inconsistent behaviors when both agents try to act as one Azure resource. The best practice for these situations is to use an automation tool or script to onboard the server to Azure Arc after its cloned, restored from backup, or created from a golden image.
+If two agents use the same source id, you'll encounter inconsistent behaviors when both agents try to act as one Azure resource. The best practice for these situations is to use an automation tool or script to onboard the server to Azure Arc after its cloned, restored from backup, or created from a golden image. For more information about cloning machines to use as Arc-enabled servers, see [Cloning guidelines](agent-overview.md#cloning-guidelines).
 
 > [!NOTE]
 > For more information on using Azure Arc-enabled servers in VMware environments, see the [VMware FAQ](vmware-faq.md).

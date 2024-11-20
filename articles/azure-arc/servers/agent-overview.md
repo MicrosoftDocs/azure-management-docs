@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 08/07/2024
+ms.date: 11/14/2024
 ms.topic: overview
 ---
 
@@ -52,8 +52,8 @@ Installing the Connected Machine agent for Window applies the following system-w
     | Directory | Description |
     |-----------|-------------|
     | %ProgramFiles%\AzureConnectedMachineAgent | azcmagent CLI and instance metadata service executables.|
-    | %ProgramFiles%\AzureConnectedMachineAgent\ExtensionService\GC | Extension service executables.|
-    | %ProgramFiles%\AzureConnectedMachineAgent\GCArcService\GC | Guest configuration (policy) service executables.|
+    | %ProgramFiles%\AzureConnectedMachineAgent\ExtensionService2\GC | Extension service executables.|
+    | %ProgramFiles%\AzureConnectedMachineAgent\GCArcService2\GC | Guest configuration (policy) service executables.|
     | %ProgramData%\AzureConnectedMachineAgent | Configuration, log and identity token files for azcmagent CLI and instance metadata service.|
     | %ProgramData%\GuestConfig | Extension package downloads, guest configuration (policy) definition downloads, and logs for the extension and guest configuration services.|
     | %SYSTEMDRIVE%\packages | Extension package executables |
@@ -264,6 +264,15 @@ The agent requests the following metadata information from Azure:
 Agent deployment and machine connection require certain [prerequisites](prerequisites.md). There are also [networking requirements](network-requirements.md) to be aware of.
 
 We provide several options for deploying the agent. For more information, see [Plan for deployment](plan-at-scale-deployment.md) and [Deployment options](deployment-options.md).
+
+## Cloning guidelines
+
+You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine. 
+
+If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure and then used that server as the golden image for cloning. Since the resource information was recorded into the image, cloned machines created from that image try to send heartbeat messages to the same resource.
+
+To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machines to the cloud using a unique resource name.
+
 
 ## Disaster Recovery
 

@@ -1,5 +1,5 @@
 ---
-title: Create a persistent volume (preview)
+title: Create a persistent volume
 description: Learn about creating persistent volumes in Cache Volumes.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 08/26/2024
 
 ---
 
-# Create a persistent volume (preview)
+# Create a persistent volume
 
 This article describes how to create a persistent volume using storage key authentication.
 

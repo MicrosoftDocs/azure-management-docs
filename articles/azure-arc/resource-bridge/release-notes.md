@@ -9,7 +9,40 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases.
 
-We generally recommend using the most recent versions of the agents. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3).
+We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3).
+
+## Version 1.3.0 (October 2024)
+
+- Appliance: 1.3.0
+- CLI extension: 1.3.0
+- SFS release: 0.1.34.10926
+- Kubernetes: 1.29.4
+- Mariner: 2.0.20240609
+
+### Arc-enabled SCVMM
+
+- Validation - fail if user is not part of an Admin User Group like DomainAdmins
+- Conditional Validation on Gateway IP for SCVMM IP Pool Scenario and sshkeygen removal
+- Silently Clean Appliance VM Resources like HW Profiles, ISO Files and VM Templates in Delete command
+- CAPVMM update to 1.1.19
+- SCVMM Image Provisioning Decompress Mariner Vhdx disk space error message improvement
+- SCVMM appliance deployment failing in Deploy due to IPPool missing access to HG
+
+### Arc-enabled VMware vSphere
+
+- Remove root folder privilege validations from vSphere
+- extra validations on the canary image
+
+### Arc resource bridge platform
+
+- New error additional info field to add more context to errors
+- Add ACR image pull test suite
+- Add timeout for API Server Endpoint
+- Added DNSError category
+
+### Bug fixes
+
+- CVE fixes
 
 ## Version 1.2.0 (July 2024)
 

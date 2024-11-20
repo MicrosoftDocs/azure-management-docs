@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot platform issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 12/15/2023
+ms.date: 11/01/2024
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Learn how to resolve common issues with Azure Arc-enabled Kubernetes clusters and GitOps."
@@ -21,9 +21,11 @@ az account set --subscription 'subscriptionId'
 az account show
 ```
 
+If you see an error such as `cli.azext_connectedk8s.custom: Failed to download and install kubectl`, run `az aks install-cli --install-location ~/.azure/kubectl-client/kubectl`  before trying to run `az connectedk8s connect` again. This command installs the kubectl client, which is required for the command to work.
+
 ## Azure Arc agents
 
-All agents for Azure Arc-enabled Kubernetes are deployed as pods in the `azure-arc` namespace. All pods should be running and passing their health checks.
+All [agents for Azure Arc-enabled Kubernetes](conceptual-agent-overview.md) are deployed as pods in the `azure-arc` namespace. All pods should be running and passing their health checks.
 
 First, verify the Azure Arc Helm Chart release:
 
@@ -74,7 +76,7 @@ All pods should show `STATUS` as `Running` with either `3/3` or `2/2` under the 
 
 ## Resource provisioning failed/Service timeout error
 
-If you see these errors, check [Azure status](https://azure.status.microsoft/en-us/status) to see if there are any active events impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event has been resolved, then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events, and you continue to face issues while onboarding, [open a support ticket](/azure/azure-portal/supportability/how-to-create-azure-support-request) so we can investigate the problem.
+If you see these errors, check [Azure status](https://azure.status.microsoft/en-us/status) to see if there are any active events impacting the status of the Azure Arc-enabled Kubernetes service. If so, wait until the service event is resolved, then try onboarding again after [deleting the existing connected cluster resource](quickstart-connect-cluster.md#clean-up-resources). If there are no service events, and you continue to face issues while onboarding, [open a support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) so we can investigate the problem.
 
 ## Overage claims error
 
@@ -93,13 +95,13 @@ Connecting clusters to Azure Arc requires access to an Azure subscription and `c
 
 ### DNS resolution issues
 
-Visit [Debugging DNS Resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/) for help resolving issues with DNS resolution on your cluster.
+For help with issues related to DNS resolution on your cluster, see [Debugging DNS Resolution](https://kubernetes.io/docs/tasks/administer-cluster/dns-debugging-resolution/).
 
 ### Outbound network connectivity issues
 
 Issues with outbound network connectivity from the cluster may arise for different reasons. First make sure all of the [network requirements](network-requirements.md) have been met.
 
-If you encounter connectivity issues, and your cluster is behind an outbound proxy server, make sure you've passed proxy parameters during the onboarding of your cluster and that the proxy is configured correctly. For more information, see [Connect using an outbound proxy server](quickstart-connect-cluster.md#connect-using-an-outbound-proxy-server).
+If you encounter connectivity issues, and your cluster is behind an outbound proxy server, make sure you passed proxy parameters during the onboarding of your cluster and that the proxy is configured correctly. For more information, see [Connect using an outbound proxy server](quickstart-connect-cluster.md#connect-using-an-outbound-proxy-server).
 
 You may see an error similar to the following:
 
@@ -207,7 +209,7 @@ az extension add --name k8s-configuration
 
 If your cluster is behind an outbound proxy or firewall, verify that websocket connections are enabled for `*.servicebus.windows.net`, which is required specifically for the [Cluster Connect](cluster-connect.md) feature. Additionally, make sure you're using the latest version of the `connectedk8s` Azure CLI extension if you're experiencing problems using cluster connect.
 
-If the `clusterconnect-agent` and `kube-aad-proxy` pods are missing, then the cluster connect feature is likely disabled on the cluster. If so, `az connectedk8s proxy` will fail to establish a session with the cluster, and you may see an error reading `Cannot connect to the hybrid connection because no agent is connected in the target arc resource.`
+If the `clusterconnect-agent` and `kube-aad-proxy` pods are missing, then the cluster connect feature is likely disabled on the cluster. If so, `az connectedk8s proxy` fails to establish a session with the cluster, and you may see an error reading `Cannot connect to the hybrid connection because no agent is connected in the target arc resource.`
 
 To resolve this error, enable the cluster connect feature on your cluster:
 

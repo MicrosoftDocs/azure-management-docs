@@ -9,16 +9,9 @@ ms.date: 06/11/2024
 
 The **Inventory** solution of the multicloud connector shows an up-to-date view of your resources from other public clouds in Azure, providing you with a single place to see all your cloud resources. Currently, AWS public cloud environments are supported.
 
-> [!IMPORTANT]
-> Multicloud connector enabled by Azure Arc is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
 After you enable the **Inventory** solution, metadata from the assets in the source cloud is included with the asset representations in Azure. You can also apply Azure tags or Azure policies to these resources. This solution allows you to query for all your cloud resources through Azure Resource Graph, such as querying to find all Azure and AWS resources with a specific tag.
 
 The **Inventory** solution scans your source cloud regularly to update the view represented in Azure. You can specify the interval to query when you [connect your public cloud](connect-to-aws.md) and configure the **Inventory** solution.
-
-> [!TIP]
-> At this time, we recommend that you don't use the multicloud connector **Inventory** solution with EC2 instances that have already been [connected to Azure Arc](../servers/deployment-options.md) and reside in a different subscription than your connector resource. Doing so will create a duplicate record of the EC2 instance in Azure.
 
 ## Supported AWS services
 
@@ -28,14 +21,31 @@ The following table shows the AWS services that are scanned, the resource types 
 
 | AWS service  | AWS resource type  | Azure namespace |
 |--------------|--------------------|--------------------------------------|
+| Access Analyzer | `accessAnalyzerAnalyzers`     | `Microsoft.AwsConnector/accessAnalyzerAnalyzers`|
 | API Gateway   | `apiGatewayRestApis`     | `Microsoft.AwsConnector/apiGatewayRestApis`|
 | API Gateway   | `apiGatewayStages`     | `Microsoft.AwsConnector/apiGatewayStages`|
+| App Sync   | `appSyncGraphQLApis`     | `Microsoft.AwsConnector/appSyncGraphQLApis`|
+| Autoscaling  | `autoScalingAutoScalingGroups`     | `Microsoft.AwsConnector/autoScalingAutoScalingGroups`|
 | Cloud Formation   | `cloudFormationStacks`     | `Microsoft.AwsConnector/cloudFormationStacks`|
 | Cloud Formation   | `cloudFormationStackSets`     | `Microsoft.AwsConnector/cloudFormationStackSets`|
+| Cloud Front   | `cloudFront`     | `Microsoft.AwsConnector/cloudFrontDistributions`|
 | Cloud Trail   | `cloudTrailTrails`     | `Microsoft.AwsConnector/cloudTrailTrails`|
 | Cloud Watch   | `cloudWatchAlarms`     | `Microsoft.AwsConnector/cloudWatchAlarms`|
+| Code Build   | `codeBuildProjects`     | `Microsoft.AwsConnector/codeBuildProjects`|
+| Code Build   | `codeBuildSourceCredentialsInfos`     | `Microsoft.AwsConnector/codeBuildSourceCredentialsInfos`|
+| Config  | `configServiceConfigurationRecorders`     | `Microsoft.AwsConnector/configServiceConfigurationRecorders`|
+| Config   | `configServiceConfigurationRecorderStatuses`     | `Microsoft.AwsConnector/configServiceConfigurationRecorderStatuses`|
+| Config  | `configServiceDeliveryChannels`     | `Microsoft.AwsConnector/configServiceDeliveryChannels`|
+| DAX  | `daxClusters`     | `Microsoft.AwsConnector/daxClusters`|
+| DMS  | `databaseMigrationServiceReplicationInstances`     | `Microsoft.AwsConnector/databaseMigrationServiceReplicationInstances`|
+| Dynamo DB    | `dynamoDBContinuousBackupsDescriptions`     | `Microsoft.AwsConnector/dynamoDBContinuousBackupsDescriptions`|
 | Dynamo DB    | `dynamoDBTables`     | `Microsoft.AwsConnector/dynamoDBTables`|
 | EC2    | `ec2Instances`    | `Microsoft.HybridCompute/machines/EC2InstanceId`, `Microsoft.AwsConnector/Ec2Instances`|
+| EC2    | `ec2AccountAttributes`    | `Microsoft.AwsConnector/ec2AccountAttributes`|
+| EC2    | `ec2Addresses`    | `Microsoft.AwsConnector/ec2Addresses`|
+| EC2    | `ec2FlowLogs`    | `Microsoft.AwsConnector/ec2FlowLogs`|
+| EC2    | `ec2Images`    | `Microsoft.AwsConnector/ec2Images`|
+| EC2    | `ec2Ipams`    | `Microsoft.AwsConnector/ec2Ipams`|
 | EC2    | `ec2KeyPairs`    | `Microsoft.AwsConnector/ec2KeyPairs`|
 | EC2    | `ec2Subnets`    | `Microsoft.AwsConnector/ec2Subnets`|
 | EC2    | `ec2Volumes`   | `Microsoft.AwsConnector/ec2Volumes`|
@@ -47,19 +57,31 @@ The following table shows the AWS services that are scanned, the resource types 
 | EC2    | `ec2VPCPeeringConnections` | `Microsoft.AwsConnector/ec2VPCPeeringConnections`|
 | EC2    | `ec2InstanceStatuses` | `Microsoft.AwsConnector/ec2InstanceStatuses`|
 | EC2    | `ec2SecurityGroups` | `Microsoft.AwsConnector/ec2SecurityGroups`|
+| EC2    | `ec2Snapshots` | `Microsoft.AwsConnector/ec2Snapshots`|
+| ECR   | `ecrImageDetails`     | `Microsoft.AwsConnector/ecrImageDetails`|
 | ECR   | `ecrRepositories`     | `Microsoft.AwsConnector/ecrRepositories`|
 | ECS   | `ecsClusters`     | `Microsoft.AwsConnector/ecsClusters`|
 | ECS   | `ecsServices`     | `Microsoft.AwsConnector/ecsServices`|
 | ECS   | `ecsTaskDefinitions`     | `Microsoft.AwsConnector/ecsTaskDefinitions`|
 | EFS   | `efsFileSystems`     | `Microsoft.AwsConnector/efsFileSystems`|
 | EFS   | `efsMountTargets`     | `Microsoft.AwsConnector/efsMountTargets`|
+| EKS   | `eksClusters`     | `Microsoft.AwsConnector/eksClusters`|
+| EKS   | `eksNodegroups`     | `Microsoft.AwsConnector/eksNodegroups`|
+| Elastic Beanstalk   | `elasticBeanstalkApplications`     | `Microsoft.AwsConnector/elasticBeanstalkApplications`|
+| Elastic Beanstalk   | `elasticBeanstalkConfigurationTemplates`     | `Microsoft.AwsConnector/elasticBeanstalkConfigurationTemplates`|
 | Elastic Beanstalk   | `elasticBeanstalkEnvironments`     | `Microsoft.AwsConnector/elasticBeanstalkEnvironments`|
 | Elastic Load Balancer V2    | `elasticLoadBalancingV2LoadBalancers`| `Microsoft.AwsConnector/elasticLoadBalancingV2LoadBalancers`|
 | Elastic Load Balancer V2    | `elasticLoadBalancingV2Listeners`| `Microsoft.AwsConnector/elasticLoadBalancingV2Listeners`|
 | Elastic Load Balancer V2    | `elasticLoadBalancingV2TargetGroups`| `Microsoft.AwsConnector/elasticLoadBalancingV2TargetGroups`|
-| Elastic Search   | `elasticsearchDomains` | `Microsoft.AwsConnector/elasticsearchDomains`|
+| Elastic Load Balancer V2    | `elasticLoadBalancingV2TargetHealthDescriptions`| `Microsoft.AwsConnector/elasticLoadBalancingV2TargetHealthDescriptions`|
+| EMR   | `emrClusters` | `Microsoft.AwsConnector/emrClusters`|
 | GuardDuty   | `guardDutyDetectors` | `Microsoft.AwsConnector/guardDutyDetectors`|
-| IAM   | `iamGroups` | `Microsoft.AwsConnector/iamGroups`|
+| IAM   | `iamAccessKeyLastUseds` | `Microsoft.AwsConnector/iamAccessKeyLastUseds`|
+| IAM   | `iamAccessKeyMetaData` | `Microsoft.AwsConnector/iamAccessKeyMetaData`|
+| IAM   | `iamMFADevices` | `Microsoft.AwsConnector/iamMFADevices`|
+| IAM   | `iamPasswordPolicies` | `Microsoft.AwsConnector/iamPasswordPolicies`|
+| IAM   | `iamPolicyVersions` | `Microsoft.AwsConnector/iamPolicyVersions`|
+| IAM   | `iamRoles` | `Microsoft.AwsConnector/iamRoles`|
 | IAM   | `iamManagedPolicies` | `Microsoft.AwsConnector/iamManagedPolicies`|
 | IAM   | `iamServerCertificates` | `Microsoft.AwsConnector/iamServerCertificates`|
 | IAM   | `iamUserPolicies` | `Microsoft.AwsConnector/iamUserPolicies`|
@@ -73,31 +95,58 @@ The following table shows the AWS services that are scanned, the resource types 
 | Logs   | `logsMetricFilters` | `Microsoft.AwsConnector/logsMetricFilters`|
 | Logs   | `logsSubscriptionFilters` | `Microsoft.AwsConnector/logsSubscriptionFilters`|
 | Macie   | `macieAllowLists` | `Microsoft.AwsConnector/macieAllowLists`|
+| Macie2   | `macie2JobSummaries` | `Microsoft.AwsConnector/macie2JobSummaries`|
 | Network Firewalls   | `networkFirewallFirewalls` | `Microsoft.AwsConnector/networkFirewallFirewalls`|
 | Network Firewalls   | `networkFirewallFirewallPolicies` | `Microsoft.AwsConnector/networkFirewallFirewallPolicies`|
 | Network Firewalls   | `networkFirewallRuleGroups` | `Microsoft.AwsConnector/networkFirewallRuleGroups`|
+| Open Search Service   | `openSearchDomainStatuses` | `Microsoft.AwsConnector/openSearchDomainStatuses`|
 | Organization   | `organizationsAccounts` | `Microsoft.AwsConnector/organizationsAccounts`|
 | Organization   | `organizationsOrganizations` | `Microsoft.AwsConnector/organizationsOrganizations`|
 | RDS   | `rdsDBInstances` | `Microsoft.AwsConnector/rdsDBInstances`|
 | RDS   | `rdsDBClusters` | `Microsoft.AwsConnector/rdsDBClusters`|
 | RDS   | `rdsEventSubscriptions` | `Microsoft.AwsConnector/rdsEventSubscriptions`|
+| RDS   | `rdsDBSnapshots` | `Microsoft.AwsConnector/rdsDBSnapshots`|
+| RDS   | `rdsDBSnapshotAttributesResults` | `Microsoft.AwsConnector/rdsDBSnapshotAttributesResults`|
+| RDS   | `rdsEventSubscriptions` | `Microsoft.AwsConnector/rdsEventSubscriptions`|
 | Redshift   | `redshiftClusters` | `Microsoft.AwsConnector/redshiftClusters`|
 | Redshift   | `redshiftClusterParameterGroups` | `Microsoft.AwsConnector/redshiftClusterParameterGroups`|
+| Route 53   | `route53DomainsDomainSummaries` | `Microsoft.AwsConnector/route53DomainsDomainSummaries`|
 | Route 53   | `route53HostedZones` | `Microsoft.AwsConnector/route53HostedZones`|
 | SageMaker  | `sageMakerApps` | `Microsoft.AwsConnector/sageMakerApps`|
 | SageMaker   | `sageMakerDevices` | `Microsoft.AwsConnector/sageMakerDevices`|
 | SageMaker   | `sageMakerImages` | `Microsoft.AwsConnector/sageMakerImages`|
+| SageMaker   | `sageMakerNotebookInstanceSummaries` | `Microsoft.AwsConnector/sageMakerNotebookInstanceSummaries`|
+| Secrets Manager   | `secretsManagerResourcePolicies` | `Microsoft.AwsConnector/secretsManagerResourcePolicies`|
+| Secrets Manager   | `secretsManagerSecrets` | `Microsoft.AwsConnector/secretsManagerSecrets`|
+| Secrets Manager   | `secretsManagerSecrets` | `Microsoft.AwsConnector/secretsManagerSecrets`|
 | S3   | `s3Buckets` | `Microsoft.AwsConnector/s3Buckets`|
+| S3   | `s3AccessControlPolicies` | `Microsoft.AwsConnector/s3AccessControlPolicies`|
+| S3   | `s3ControlMultiRegionAccessPointPolicyDocuments` | `Microsoft.AwsConnector/s3ControlMultiRegionAccessPointPolicyDocuments`|
 | S3   | `s3BucketPolicies` | `Microsoft.AwsConnector/s3BucketPolicies`|
 | S3   | `s3AccessPoints` | `Microsoft.AwsConnector/s3AccessPoints`|
 | SNS   | `snsTopics` | `Microsoft.AwsConnector/snsTopics`|
+| SNS   | `snsSubscriptions` | `Microsoft.AwsConnector/snsSubscriptions`|
 | SQS   | `sqsQueues` | `Microsoft.AwsConnector/sqsQueues`|
+| SSM   | `ssmInstanceInformations` | `Microsoft.AwsConnector/ssmInstanceInformations`|
+| SSM   | `ssmParameters` | `Microsoft.AwsConnector/ssmParameters`|
+| SSM   | `ssmResourceComplianceSummaryItems` | `Microsoft.AwsConnector/ssmResourceComplianceSummaryItems`|
+| WAF   | `wafWebACLSummaries` | `Microsoft.AwsConnector/wafWebACLSummaries`|
+| WAFv2   | `wafv2LoggingConfigurations` | `Microsoft.AwsConnector/wafv2LoggingConfigurations`|
 
 ## AWS resource representation in Azure
 
 After you connect your AWS cloud and enable the **Inventory** solution, the multicloud connector creates a new resource group using the naming convention `aws_yourAwsAccountId`. Azure representations of your AWS resources are created in this resource group, using the `AwsConnector` namespace values described in the previous section. You can apply Azure tags and policies to these resources.
 
 Resources that are discovered in AWS and projected in Azure are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping).
+
+> [!NOTE]
+> If you have EC2 instances that have already been [connected to Azure Arc](/azure/azure-arc/servers/deployment-options), the connector will create the EC2 Inventory resource as child resource of the Microsoft.HybridCompute/machines if the [prerequisites](connect-to-aws.md#azure-prerequisites) have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created. 
+
+## Permission options
+
+1. **Global Read**: Provides read only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated CloudFormation template.
+
+  1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template will need to be uploaded.
 
 ## Periodic sync options
 
