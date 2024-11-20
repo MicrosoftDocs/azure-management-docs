@@ -3,7 +3,7 @@ title: Use the Azure Key Vault Secret Store extension to sync secrets to the Kub
 description: The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an Azure Key Vault to a Kubernetes cluster for offline access.
 ms.date: 09/26/2024
 ms.topic: how-to
-ms.custom: references_regions
+ms.custom: references_regions, ignite-2024
 ---
 
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
