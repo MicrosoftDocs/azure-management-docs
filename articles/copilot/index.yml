@@ -14,6 +14,7 @@ metadata:
     - ignite-2023-copilotinAzure
     - build-2024
     - copilot-learning-hub
+    - ignite-2024
   ms.topic: hub-page
   ms.date: 11/15/2024
 highlightedContent:
@@ -125,5 +126,3 @@ additionalContent:
         - title: Copilot learning hub
           summary: Get started on your Copilot learning journey.
           url: /copilot/
-
-
