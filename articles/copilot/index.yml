@@ -14,6 +14,7 @@ metadata:
     - ignite-2023-copilotinAzure
     - build-2024
     - copilot-learning-hub
+    - ignite-2024
   ms.topic: hub-page
   ms.date: 11/19/2024
 highlightedContent:
@@ -133,5 +134,3 @@ additionalContent:
         - title: Copilot in Azure with the Azure mobile app
           summary: Use Copilot in Azure from within the app.
           url: /azure/azure-portal/mobile-app/microsoft-copilot-in-azure
-
-
