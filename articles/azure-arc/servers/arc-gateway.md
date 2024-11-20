@@ -1,7 +1,7 @@
 ---
 title: How to simplify network configuration requirements with Azure Arc gateway (Public Preview)
 description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
-ms.date: 11/19/2024
+ms.date: 11/20/2024
 ms.topic: how-to
 ---
 
@@ -9,14 +9,13 @@ ms.topic: how-to
 
 If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven (7) endpoints. With Azure Arc gateway, you can:
 
-- Connect to Azure Arc by opening public network access to only seven (7) Fully Qualified Domains (FQDNs).
+- Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
 
 This article explains how to set up and use Arc gateway (Public Preview).
 
 > [!IMPORTANT]
-> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability
->  
+> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability.
 
 ## How the Azure Arc gateway works
 
@@ -32,11 +31,12 @@ When the gateway is in place, traffic flows via the following hops: **Arc agentr
 
 ## Current limitations
 
-The Arc gateway object has limits you should consider when planning your setup. These limitations apply only to the public preview. These limitations might not apply when the Arc gateway feature is generally available.
+During the public preview, the following limitations apply. Consider these factors when planning your configuration.
 
 - TLS Terminating Proxies aren't supported (Public Preview)
 - ExpressRoute/Site-to-Site VPN or private endpoints used with the Arc gateway (Public Preview) isn't supported.
 - There's a limit of five (5) Arc gateway (Public Preview) resources per Azure subscription.
+- The Arc gateway can only be used for connectivity in the Azure public cloud.
 
 ## Required permissions
 
