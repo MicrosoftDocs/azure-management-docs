@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 11/01/2024
+ms.date: 11/21/2024
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -61,10 +61,14 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
 - Administrators can use the Azure portal to browse SCVMM inventory and register SCVMM cloud, virtual machines, VM networks, and VM templates into Azure.
 - Administrators can provide app teams/developers fine-grained permissions on those SCVMM resources through Azure RBAC.
 - App teams can use Azure interfaces (portal, CLI, or REST API) to manage the lifecycle of on-premises VMs they use for deploying their applications (CRUD, Start/Stop/Restart).
-- Administrators can install Azure Connected Machine agents on SCVMM VMs at-scale and install corresponding extensions to use Azure management services like Microsoft Defender for Cloud, Azure Update Manager, Azure Monitor, etc.  
+- Administrators can install Azure Connected Machine agents on SCVMM VMs at-scale and install corresponding extensions to use Azure management services like Microsoft Defender for Cloud, Azure Update Manager, Azure Monitor, etc.
 
->[!NOTE]
-> Azure Arc-enabled SCVMM doesn't support VMware vCenter VMs managed by SCVMM. To onboard VMware VMs to Azure Arc, we recommend you to use [Azure Arc-enabled VMware vSphere](../vmware-vsphere/overview.md). 
+### Unsupported scenarios
+
+Azure Arc-enabled SCVMM doesn't support:
+
+- Azure-based management of VMware vCenter VMs managed by SCVMM. To onboard VMware VMs to Azure Arc, we recommend you to use [Azure Arc-enabled VMware vSphere](/azure-arc/vmware-vsphere/overview).
+- Azure-based management of Azure Local VMs managed by SCVMM. To onboard Azure Local VMs to Azure Arc, we recommend you to use [Azure Arc VM management capabilities of Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview).
 
 ### Supported VMM versions
 
