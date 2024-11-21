@@ -22,7 +22,7 @@ To recover from Arc resource bridge VM deletion, you need to deploy a new resour
 1. Copy the Azure region and resource IDs of the Arc resource bridge, custom location, and vCenter Azure resources.
 
 2. The onboarding script (or `az arcappliance run` command) creates a few `YAML` files to store some metadata about the appliance.
-    - If the `YAML` files are not accessible, manually delete the resource bridge VM from the vCenter (if VM exists), and the resource bridge from Azure.
+    - If the `YAML` files are not accessible, manually delete the resource bridge from Azure and also the resource bridge VM from the vCenter (if the VM exists).
     - If the `YAML` files are accessible, run the script from the same folder where these files are present, and the script will handle the deletion of the resource bridge.
 
 3. Download the [onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) from the Azure portal and update the following section in the script, using the same information as the original resources in Azure.
