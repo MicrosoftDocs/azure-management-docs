@@ -1,7 +1,7 @@
 ---
 title: Azure Arc network requirements
 description: A consolidated list of network requirements for Azure Arc features and Azure Arc-enabled services. Lists endpoints, ports, and protocols.
-ms.date: 06/25/2024
+ms.date: 11/20/2024
 ms.topic: reference
 ---
 
@@ -10,6 +10,9 @@ ms.topic: reference
 This article lists the endpoints, ports, and protocols required for Azure Arc-enabled services and features.
 
 [!INCLUDE [network-requirement-principles](includes/network-requirement-principles.md)]
+
+> [!TIP]
+> For the Azure public cloud, you can reduce the number of required endpoints by using the Azure Arc gateway for [Arc-enabled servers](servers/arc-gateway.md) or [Arc-enabled Kubernetes](kubernetes/arc-gateway-simplify-networking.md).
 
 ## Azure Arc-enabled Kubernetes endpoints
 
