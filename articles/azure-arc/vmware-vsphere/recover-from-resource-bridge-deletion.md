@@ -11,7 +11,7 @@ ms.author: v-gjeronika
 manager: jsuri
 ---
 
-# Recover from accidental deletion of resource bridge VM
+# Recover Arc resource bridge connection
 
 In this article, you learn how to restore the Azure Arc resource bridge connection to a working state in case of an accidental deletion of the resource bridge VM or if the resource bridge becomes irrecoverable.
 
