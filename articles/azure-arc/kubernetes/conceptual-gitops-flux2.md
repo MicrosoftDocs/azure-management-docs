@@ -1,7 +1,7 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 03/27/2024
+ms.date: 11/21/2024
 ms.topic: conceptual
 ms.custom: devx-track-azurecli, references-regions
 ---
@@ -103,7 +103,7 @@ The most recent version of the Flux v2 extension (`microsoft.flux`) and the two 
 
 ## GitOps with private link
 
-If you've added support for [private link to an Azure Arc-enabled Kubernetes cluster](private-link.md), then the `microsoft.flux` extension works out-of-the-box with communication back to Azure. For connections to your Git repository, Helm repository, or any other endpoints that are needed to deploy your Kubernetes manifests, you must provision these endpoints behind your firewall, or list them on your firewall, so that the Flux Source controller can successfully reach them.
+If you added [support for private link to an Azure Arc-enabled Kubernetes cluster](private-link.md), then the `microsoft.flux` extension works out-of-the-box with communication back to Azure. For connections to your Git repository, Helm repository, or any other endpoints that are needed to deploy your Kubernetes manifests, you must provision these endpoints behind your firewall, or list them on your firewall, so that the Flux Source controller can successfully reach them.
 
 ## Data residency
 
@@ -249,8 +249,8 @@ We recommend testing your migration scenario in a development environment before
 Use these Azure CLI commands to find and then delete existing `sourceControlConfigurations` in a cluster:
 
 ```azurecli
-az k8s-configuration list --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
-az k8s-configuration delete --name <configuration name> --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
+az k8s-configuration flux list --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
+az k8s-configuration flux delete --name <configuration name> --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
 ```
 
 You can also find and delete existing GitOps configurations for a cluster in the Azure portal. To do so, navigate to the cluster where the configuration was created and select **GitOps** in the left pane. Select the configuration, then select **Delete**.
