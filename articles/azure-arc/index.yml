@@ -72,10 +72,10 @@ conceptualContent:
         - url: ./kubernetes/quickstart-connect-cluster.md
           itemType: quickstart
           text: Connect a cluster to Azure Arc
-        - url: /azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=/azure/azure-arc/kubernetes/toc.json
+        - url: ./kubernetes//use-azure-policy-flux-2.md
           itemType: how-to-guide
           text: Apply configurations on clusters using GitOps
-        - url: ./kubernetes/tutorial-arc-enabled-open-service-mesh.md
+        - url: ./kubernetes/cluster-connect.md
           itemType: how-to-guide
           text: Access connected clusters from anywhere
       # footerLink (optional)
