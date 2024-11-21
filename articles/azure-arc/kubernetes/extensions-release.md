@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 10/30/2024
+ms.date: 11/21/2024
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -159,7 +159,7 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-## 1.13.1 (October 2024)
+### 1.13.1 (October 2024)
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
 
@@ -221,13 +221,13 @@ Azure AI Video Indexer enabled by Arc runs video and audio analysis on edge devi
 
 For more information, see [Try Azure AI Video Indexer enabled by Azure Arc](/azure/azure-video-indexer/azure-video-indexer-enabled-by-arc-quickstart).
 
-## Edge Storage Accelerator
+## Azure Container Storage enabled by Azure Arc
 
-- **Supported distributions**: AKS enabled by Azure Arc, AKS Edge Essentials, Ubuntu.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-[Edge Storage Accelerator (ESA)](../edge-storage-accelerator/index.yml) is a first-party storage system that's designed for Azure Arc-connected Kubernetes clusters. You can deploy ESA to write files to a 'ReadWriteMany' persistent volume claim (PVC), where they're transferred to Azure Blob Storage. ESA offers a range of features to support Azure IoT operations and other Azure Arc features.
+[Azure Container Storage enabled by Azure Arc](../container-storage/index.yml) is a first-party storage system that's designed for Azure Arc-connected Kubernetes clusters. You can deploy Azure Container Storage enabled by Azure Arc to write files to a 'ReadWriteMany' persistent volume claim (PVC), where they're transferred to Azure Blob Storage. Azure Container Storage enabled by Azure Arc offers a range of features to support Azure IoT operations and other Azure Arc features.
 
-For more information, see [What is Edge Storage Accelerator?](../edge-storage-accelerator/overview.md).
+For more information, see [What is Azure Container Storage enabled by Azure Arc?](../container-storage/overview.md).
 
 ## Connected registry on Azure Arc-enabled Kubernetes
 
