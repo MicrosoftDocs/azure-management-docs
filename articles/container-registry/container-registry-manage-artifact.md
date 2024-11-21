@@ -23,9 +23,8 @@ This article is divided into two main sections:
 * **Azure container registry** - Create a container registry in your Azure subscription. For example, use the [Azure portal](container-registry-get-started-portal.md) or the [Azure CLI][az-acr-create].  
 * **Azure CLI** - Version `2.29.1` or later is required. See [Install Azure CLI][azure-cli-install] for installation and/or upgrade.
 * **ORAS CLI** - Version `v1.1.0` or later version is required. See: [ORAS installation][oras-install-docs].
-* **Docker (Optional)** - To complete the walkthrough, a container image is referenced.
-You can use [Docker installed locally][docker-install] to build and push a container image, or use [`acr build`][az-acr-build] to build remotely in Azure.  
-While Docker Desktop isn't required, the `oras` cli utilizes the Docker desktop credential store for storing credentials. If Docker Desktop is installed, it must be running for `oras login`.
+* **Docker (Optional)** - To complete the walkthrough, a container image is referenced. The `oras` CLI utilizes the Docker desktop credential store for storing credentials. 
+You can use [Docker installed locally][docker-install] to build and push a container image, or use [`acr build`][az-acr-build] to build remotely in Azure.
 
 ## Configure the registry
 
@@ -56,35 +55,20 @@ Authenticate with the ACR, for allowing you to pull and push container images.
 ```azurecli
 az login  
 az acr login -n $REGISTRY  
-``` 
-
-If Docker isn't available, you can utilize the AD token provided for authentication. Authenticate with your [individual Microsoft Entra identity](container-registry-authentication.md?tabs=azure-cli#individual-login-with-azure-ad) using an AD token. Always use "000..." for the `USER_NAME` as the token is parsed through the `PASSWORD` variable.
-
-```azurecli
-# Login to Azure
-az login
 ```
 
-### Sign in with ORAS
+This setup enables you to seamlessly push and pull artifacts to and from your Azure Container Registry. Now ORAS can be used with ACR without additional authentication by using `oras login` command. 
 
-Provide the credentials to `oras login`.
+If Docker isn't available, you can use the AD token provided for authentication. Authenticate with your [individual Microsoft Entra identity](container-registry-authentication.md?tabs=azure-cli#individual-login-with-azure-ad) using an AD token. Always use "000..." for the `USER_NAME` as the token is parsed through the `PASSWORD` variable. The token used by `az acr login` is valid for three hours.
 
-```bash
-oras login $REGISTRY \
-    --username $USER_NAME \
-    --password $PASSWORD
-```
-
-This setup enables you to seamlessly push and pull artifacts to and from your Azure Container Registry. Adjust the variables as needed for your specific configuration.
+> [!NOTE]
+> ACR and ORAS support multiple authentication options for users and system automation. This article uses individual identity for demonstration convenience. For more authentication options see [Authenticate with an Azure container registry.][acr-authentication].
 
 ## Push and Pull OCI Artifacts with ORAS
 
 You can use an [Azure container registry][acr-landing] to store and manage [Open Container Initiative (OCI) artifacts](container-registry-image-formats.md#oci-artifacts) as well as Docker and OCI container images.
 
 To demonstrate this capability, this section shows how to use the [OCI Registry as Storage (ORAS)][oras-cli] CLI to push and pull OCI artifacts to/from an Azure container registry. You can manage various OCI artifacts in an Azure container registry using different command-line tools appropriate to each artifact.
-
-> [!NOTE]
-> ACR and ORAS support multiple authentication options for users and system automation. This article uses individual identity, using an Azure token. For more authentication options see [Authenticate with an Azure container registry.][acr-authentication]
 
 ### Push an artifact
 

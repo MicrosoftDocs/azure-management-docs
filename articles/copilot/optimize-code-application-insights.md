@@ -1,7 +1,7 @@
 ---
 title: Discover performance recommendations with Code Optimizations using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can use Application Insight Code Optimizations to help optimize your apps.
-ms.date: 11/20/2023
+ms.date: 11/20/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -22,7 +22,7 @@ When you ask Microsoft Copilot in Azure to provide these recommendations, it aut
 
 [!INCLUDE [preview-note](includes/preview-note.md)]
 
->[!Note]
+>[!TIP]
 >If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to optimize your application in Azure](/azure/developer/github-copilot-azure/optimize-examples) and more.
 
 ## Sample prompts

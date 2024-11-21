@@ -1,4 +1,5 @@
 {
+  "BaseConfiguration": "docutune-default.json",
   "Docsets": [
     {
       "DocsetName": "azure-management",

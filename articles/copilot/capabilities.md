@@ -1,13 +1,14 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 11/15/2024
+ms.date: 11/19/2024
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
+  - ignite-2024
 ms.author: jenhayes
 author: JnHs
 ---
@@ -79,9 +80,7 @@ While Microsoft Copilot in Azure can perform many types of tasks, it's important
 Keep in mind these current limitations:
 
 - Any action taken on more than 10 resources must be performed outside of Microsoft Copilot in Azure.
-
 - You can only make 15 requests during any given chat, and you only have 10 chats in a 24 hour period.
-
 - Some responses that display lists will be limited to the top five items.
 - For some tasks and queries, using a resource's name will not work, and the Azure resource ID must be provided.
 - Microsoft Copilot in Azure is currently available in English only.
@@ -90,4 +89,5 @@ Keep in mind these current limitations:
 
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Microsoft Copilot in Azure.
 - Learn about [managing access to Copilot in Azure](manage-access.md) in your organization.
+- Learn how to use Copilot in Azure with [AI Shell](ai-shell-overview.md) or [in the Azure mobile app](/azure/azure-portal/mobile-app/microsoft-copilot-in-azure).
 - Explore the [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/).

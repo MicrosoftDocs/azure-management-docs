@@ -17,7 +17,7 @@ This topic provides an overview of how Azure Lighthouse lets you use Microsoft S
 > Though we refer to service providers and customers in this topic, this guidance also applies to [enterprises using Azure Lighthouse to manage multiple tenants](../concepts/enterprise.md).
 
 > [!NOTE]
-> You can manage delegated resources that are located in different [regions](/azure/availability-zones/az-overview#regions). However, you can't delegate resources across a national cloud and the Azure public cloud, or across two separate [national clouds](/azure/active-directory/develop/authentication-national-cloud).
+> You can manage delegated resources that are located in different [regions](/azure/reliability/availability-zones-overview#regions). However, you can't delegate resources across a national cloud and the Azure public cloud, or across two separate [national clouds](/azure/active-directory/develop/authentication-national-cloud).
 
 ## Architectural considerations
 

@@ -1,7 +1,7 @@
 ---
 title: Execute commands using Microsoft Copilot in Azure (preview)
 description: Learn about scenarios where Microsoft Copilot in Azure (preview) can help you perform tasks.
-ms.date: 08/28/2024
+ms.date: 11/19/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -53,3 +53,4 @@ You can also specify the resource name in your prompt. When you say things like 
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Microsoft Copilot in Azure.
+- Learn how to use Copilot in Azure with [AI Shell](ai-shell-overview.md). 

@@ -23,21 +23,17 @@ For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, the manual up
 
 Before an Arc resource bridge can be upgraded, the following prerequisites must be met:
 
-- The appliance VM must be on a General Availability version (1.0.15 or higher). If not, the Arc resource bridge VM needs to be redeployed. If you're using Arc-enabled VMware/AVS, you can [perform disaster recovery](../vmware-vsphere/recover-from-resource-bridge-deletion.md). If you're using Arc-enabled SCVMM, follow this [disaster recovery guide](../system-center-virtual-machine-manager/disaster-recovery.md).
-
 - The appliance VM must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
 
-- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be up to date. To test that the credentials within the Arc resource bridge VM are valid, perform an operation on an Arc-enabled VM from Azure. You can also [update the credentials](/azure/azure-arc/resource-bridge/maintenance) to be certain.
+- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled VM from Azure.
 
-- There must be sufficient space on the management machine (~3.5 GB) and appliance VM (35 GB) to download required images.
-  
+- The appliance VM needs 35 GB of free space.
+
 - For Arc-enabled VMware, upgrading the resource bridge requires 200 GB of free space on the datastore. A new template is also created.
 
-- The outbound connection from the Appliance VM IPs (`k8snodeippoolstart/end`, VM IP 1/2) to `msk8s.sb.tlu.dl.delivery.mp.microsoft.com`, port 443 must be enabled. Be sure the full list of [required endpoints for Arc resource bridge](network-requirements.md) are also enabled.
+- (Manual upgrade only) When performing a manual upgrade, run the upgrade command from the management machine used to initially deploy the Arc resource bridge. The [appliance configuration files](system-requirements.md#configuration-files) initially created at deployment are also needed. You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements).
 
-- When performing a manual upgrade, run the upgrade command from the management machine used to initially deploy the Arc resource bridge, which should still contain the [appliance configuration files](system-requirements.md#configuration-files). You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements) and also contains the appliance configuration files.
-
-- Arc resource bridge configured with DHCP can't be upgraded and aren't supported in a production environment. Instead, a new Arc resource bridge should be deployed using [static IP configuration](system-requirements.md#static-ip-configuration).  
+- (Manual upgrade only) The management machine needs 3.5 GB of free space.
 
 ## Overview
 
