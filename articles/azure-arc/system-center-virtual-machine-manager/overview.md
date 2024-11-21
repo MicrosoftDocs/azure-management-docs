@@ -67,7 +67,7 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
 
 Azure Arc-enabled SCVMM doesn't support:
 
-- Azure-based management of VMware vCenter VMs managed by SCVMM. To onboard VMware VMs to Azure Arc, we recommend you to use [Azure Arc-enabled VMware vSphere](/azure-arc/vmware-vsphere/overview).
+- Azure-based management of VMware vCenter VMs managed by SCVMM. To onboard VMware VMs to Azure Arc, we recommend you to use [Azure Arc-enabled VMware vSphere](azure/azure-arc/vmware-vsphere/overview).
 - Azure-based management of Azure Local VMs managed by SCVMM. To onboard Azure Local VMs to Azure Arc, we recommend you to use [Azure Arc VM management capabilities of Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview).
 
 ### Supported VMM versions
