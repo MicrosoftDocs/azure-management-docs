@@ -11,6 +11,9 @@ This article lists the endpoints, ports, and protocols required for Azure Arc-en
 
 [!INCLUDE [network-requirement-principles](includes/network-requirement-principles.md)]
 
+> [!TIP]
+> For the Azure public cloud, you can reduce the number of required endpoints by using the Azure Arc gateway for [Arc-enabled servers](servers/arc-gateway.md) or [Arc-enabled Kubernetes](kubernetes/arc-gateway-simplify-networking.md).
+
 ## Azure Arc-enabled Kubernetes endpoints
 
 Connectivity to the Arc Kubernetes-based endpoints is required for all Kubernetes-based Arc offerings, including:
