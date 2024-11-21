@@ -224,7 +224,7 @@ sections:
             Or, assign the role to a service principal identified by its application ID:
           
             ```azurecli
-            az role assignment create --scope resource_id --role AcrPull --assignee ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0
+            az role assignment create --scope resource_id --role AcrPull --assignee 00000000-0000-0000-0000-000000000000
             ```
           
           The assignee is then able to authenticate and access images in the registry.
