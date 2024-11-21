@@ -21,7 +21,9 @@ The following sections describe the maintenance tasks for Arc resource bridge.
 
 Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) (for example, a user account for VMware vCenter) that are used to access the control center of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge. This allows the resource bridge visibility to on-premises resources for guest management in Azure.
 
-If the credentials change, the credentials stored in the Arc resource bridge must be updated with the [`update-infracredentials` command](/cli/azure/arcappliance/update-infracredentials). This command must be run from a management machine, and it requires a [kubeconfig file](system-requirements.md#kubeconfig).
+If the credentials change, the credentials stored in the Arc resource bridge must be updated with the [`update-infracredentials` command](/cli/azure/arcappliance/update-infracredentials). This command must be run from a management machine, and it requires a [kubeconfig file](system-requirements.md#kubeconfig). 
+
+You can test if the credentials within the appliance VM are valid by going to Azure Portal and performing an action on an Arc-enabled Private Cloud VM. If you receive an error, then it is possible that the credentials need to be updated.
 
 For more information on maintaining credentials for Arc-enabled VMware, see [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding). For Arc-enabled SCVMM, see [Update the SCVMM account credentials](../system-center-virtual-machine-manager/administer-arc-scvmm.md).
 
