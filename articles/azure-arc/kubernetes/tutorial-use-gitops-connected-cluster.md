@@ -2,7 +2,7 @@
 title: 'Tutorial: Deploy configurations using GitOps on an Azure Arc-enabled Kubernetes cluster'
 description: This tutorial demonstrates applying configurations on an Azure Arc-enabled Kubernetes cluster.
 ms.topic: tutorial 
-ms.date: 05/08/2023
+ms.date: 11/21/2024
 ms.custom: template-tutorial, devx-track-azurecli
 ---
 
@@ -194,7 +194,7 @@ For more information, see the [Flux documentation](https://aka.ms/FluxcdReadme).
 Use the Azure CLI to validate that the configuration was successfully created.
 
 ```azurecli
-az k8s-configuration show --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --cluster-type connectedClusters
+az k8s-configuration flux show --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --cluster-type connectedClusters
 ```
 
 The configuration resource will be updated with compliance status, messages, and debugging information.
@@ -362,7 +362,7 @@ Delete a configuration using the Azure CLI or Azure portal. After you run the de
 When a configuration with `namespace` scope is deleted, the namespace is not deleted by Azure Arc to avoid breaking existing workloads. If needed, you can delete this namespace manually using `kubectl`.
 
 ```azurecli
-az k8s-configuration delete --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --cluster-type connectedClusters
+az k8s-configuration flux delete --name cluster-config --cluster-name AzureArcTest1 --resource-group AzureArcTest --cluster-type connectedClusters
 ```
 
 > [!NOTE]
