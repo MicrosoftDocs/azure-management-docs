@@ -1,7 +1,7 @@
 ---
 title: Query your attack surface with Defender EASM using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help query Attack Surface Insights from Defender EASM.
-ms.date: 04/25/2024
+ms.date: 11/22/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -47,7 +47,7 @@ Here are a few examples of the kinds of prompts you can use to query attack surf
 
 You can use a natural language query to better understand your attack surface. In this example, the query is "**find all the page and host assets in my inventory with an ip address that is (list of IP addresses)**". Copilot in Azure queries your Defender EASM inventory and provides details about the assets matching your criteria. You can then follow up with additional questions as needed.
 
-:::image type="content" source="media/query-attack-surface/query-assets-inventory.png" alt-text="Screenshot showing Copilot in Azure providing results for a natural language attack surface query." lightbox="media/query-attack-surface/query-assets-inventory.png":::
+:::image type="content" source="media/query-attack-surface/query-assets-ip-addresses.png" alt-text="Screenshot showing Copilot in Azure providing results for a natural language attack surface query." lightbox="media/query-attack-surface/query-assets-ip-addresses.png":::
 
 ## Next steps
 
