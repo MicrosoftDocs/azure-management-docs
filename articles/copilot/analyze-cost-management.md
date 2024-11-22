@@ -63,7 +63,7 @@ You can also get an estimate of upcoming expenses by saying "**Can you forecast 
 
 :::image type="content" source="media/analyze-cost-management/cost-management-forecast.png" alt-text="Screenshot showing Microsoft Copilot in Azure forecasting costs for a subscription for the next three months.":::
 
-For OpenAI token-based models, you can ask questions to estimate costs for usage changes. For example, you can say "**How much would the cost change if GPT-35-Turbo usage increased by 15?**"
+For OpenAI token-based models, you can ask questions to estimate costs for usage changes. For example, you can say "**How much would the cost change if GPT-35-Turbo usage increased by 15%?**"
 
 :::image type="content" source="media/analyze-cost-management/cost-management-simulation-usage.png" alt-text="Screenshot showing Microsoft Copilot in Azure simulating cost changes for increased GPT-35-Turbo usage.":::
 
