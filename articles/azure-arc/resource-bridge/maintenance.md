@@ -34,7 +34,7 @@ If you experience problems with the appliance VM, the appliance configuration fi
 You might want to [collect logs](/cli/azure/arcappliance/logs#az-arcappliance-logs-vmware), which requires you to pass credentials to the on-premises control center:
 
 - For VMWare vSphere, use the username and password provided to Arc resource bridge at deployment.
-- For Azure Stack HCI, see [Collect logs](/azure-stack/hci/manage/collect-logs).
+- For Azure Local, see [Collect logs](/azure/azure-local/manage/collect-logs).
 
 ## Delete Arc resource bridge
 

@@ -1,6 +1,6 @@
 ---
 title: Azure Arc resource bridge overview
-description: Learn how to use Azure Arc resource bridge to support VM self-servicing on Azure Stack HCI, VMware, and System Center Virtual Machine Manager.
+description: Learn how to use Azure Arc resource bridge to support VM self-servicing on Azure Local, VMware, and System Center Virtual Machine Manager.
 ms.date: 08/26/2024
 ms.topic: overview
 ms.custom: references_regions
@@ -8,7 +8,7 @@ ms.custom: references_regions
 
 # What is Azure Arc resource bridge?
 
-Azure Arc resource bridge is a Microsoft managed product that is part of the core Azure Arc platform. It is designed to host other Azure Arc services. In this release, the resource bridge supports VM self-servicing and management from Azure, for virtualized Windows and Linux virtual machines hosted in an on-premises environment on Azure Stack HCI ([Azure Arc VM management](/azure-stack/hci/manage/azure-arc-vm-management-overview)), VMware ([Arc-enabled VMware vSphere](../vmware-vsphere/overview.md)), and System Center Virtual Machine Manager ([Arc-enabled SCVMM](../system-center-virtual-machine-manager/overview.md)).
+Azure Arc resource bridge is a Microsoft managed product that is part of the core Azure Arc platform. It is designed to host other Azure Arc services. In this release, the resource bridge supports VM self-servicing and management from Azure, for virtualized Windows and Linux virtual machines hosted in an on-premises environment on Azure Local ([Azure Arc VM management](/azure/azure-local/manage/azure-arc-vm-management-overview)), VMware ([Arc-enabled VMware vSphere](../vmware-vsphere/overview.md)), and System Center Virtual Machine Manager ([Arc-enabled SCVMM](../system-center-virtual-machine-manager/overview.md)).
 
 Azure Arc resource bridge is a Kubernetes management cluster installed on the customer’s on-premises infrastructure as an appliance VM (also known as the Arc appliance). The resource bridge is provided credentials to the infrastructure control plane that allows it to apply guest management services on the on-premises resources. Arc resource bridge enables projection of on-premises resources as ARM resources and management from ARM as "Arc-enabled" Azure resources.
 
@@ -32,15 +32,15 @@ Azure Arc resource bridge can host other Azure services or solutions running on-
 
 * Cluster extension: The Azure service deployed to run on-premises. Currently, it supports three services:
 
-  * Azure Arc VM management on Azure Stack HCI
+  * Azure Arc VM management on Azure Local
   * Azure Arc-enabled VMware
   * Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)
 
-* Custom locations: A deployment target where you can create Azure resources. It maps to different resource for different Azure services. For example, for Arc-enabled VMware, the custom locations resource maps to an instance of vCenter, and for Azure Arc VM management on Azure Stack HCI, it maps to an HCI cluster instance.
+* Custom locations: A deployment target where you can create Azure resources. It maps to different resource for different Azure services. For example, for Arc-enabled VMware, the custom locations resource maps to an instance of vCenter, and for Azure Arc VM management on Azure Local, it maps to an Azure Local instance.
 
-Custom locations and cluster extension are both Azure resources, which are linked to the Azure Arc resource bridge resource in Azure Resource Manager. When you create an on-premises VM from Azure, you can select the custom location, and that routes that *create action* to the mapped vCenter, Azure Stack HCI cluster, or SCVMM.
+Custom locations and cluster extension are both Azure resources, which are linked to the Azure Arc resource bridge resource in Azure Resource Manager. When you create an on-premises VM from Azure, you can select the custom location, and that routes that *create action* to the mapped vCenter, Azure Local instance, or SCVMM.
 
-Some resources are unique to the infrastructure. For example, vCenter has a resource pool, network, and template resources. During VM creation, these resources need to be specified. With Azure Stack HCI, you just need to select the custom location, network, and template to create a VM.
+Some resources are unique to the infrastructure. For example, vCenter has a resource pool, network, and template resources. During VM creation, these resources need to be specified. With Azure Local, you just need to select the custom location, network, and template to create a VM.
 
 To summarize, the Azure resources are projections of the resources running in your on-premises private cloud. If the on-premises resource isn't healthy, it can impact the health of the related resources that are projected in Azure. For example, if the resource bridge is deleted by accident, all the resources projected in Azure by the resource bridge are impacted. The on-premises VMs in your on-premises private cloud aren't impacted, as they're running on vCenter, but you won't be able to start or stop the VMs from Azure. Directly managing or modifying the resource bridge using on-premises applications isn't recommended.
 
@@ -48,9 +48,9 @@ To summarize, the Azure resources are projections of the resources running in yo
 
 Through Azure Arc resource bridge, you can accomplish the following tasks for each private cloud infrastructure from Azure:
 
-### Azure Stack HCI
+### Azure Local
 
-You can provision and manage on-premises Windows and Linux virtual machines (VMs) running on Azure Stack HCI clusters.
+You can provision and manage on-premises Windows and Linux virtual machines (VMs) running on Azure Local instances.
 
 ### VMware vSphere
 
@@ -84,17 +84,17 @@ A customer deploys Arc Resource Bridge onto their on-premises VMware environment
 
 :::image type="content" source="../media/overview/resource-bridge-vmware.png" alt-text="Diagram showing VMware VMs connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-vmware.png":::
 
-### Create physical HCI VMs on-premises from Azure
+### Create physical Azure Local VMs on-premises from Azure
 
-A customer has multiple datacenter locations in Canada and New York. They install an Arc resource bridge in each datacenter and connect their Azure Stack HCI VMs to Azure in each location. They can then sign into Azure portal and see all their Arc-enabled VMs from the two physical locations together in one central cloud location. From the portal, the customer can choose to create a new VM; that VM is also created on-premises at the selected datacenter, allowing the customer to manage VMs in different physical locations centrally through Azure.
+A customer has multiple datacenter locations in Canada and New York. They install an Arc resource bridge in each datacenter and connect their Azure Local VMs to Azure in each location. They can then sign into Azure portal and see all their Arc-enabled VMs from the two physical locations together in one central cloud location. From the portal, the customer can choose to create a new VM; that VM is also created on-premises at the selected datacenter, allowing the customer to manage VMs in different physical locations centrally through Azure.
 
-:::image type="content" source="../media/overview/resource-bridge-multi-datacenter.png" alt-text="Diagram showing Azure Stack HCI VMs in two datacenters connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-multi-datacenter.png":::
+:::image type="content" source="../media/overview/resource-bridge-multi-datacenter.png" alt-text="Diagram showing Azure Local VMs in two datacenters connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-multi-datacenter.png":::
 
 ## Version and region support
 
 ### Supported regions
 
-In order to use Arc resource bridge in a region, Arc resource bridge and the Arc-enabled feature for a private cloud must be supported in the region. For example, to use Arc resource bridge with Azure Stack HCI in East US, Arc resource bridge and the Arc VM management feature for Azure Stack HCI must be supported in East US. To confirm feature availability across regions for each private cloud provider, review their deployment guide and other documentation. There could be instances where Arc resource bridge is available in a region where the private cloud feature isn't yet available.
+In order to use Arc resource bridge in a region, Arc resource bridge and the Arc-enabled feature for a private cloud must be supported in the region. For example, to use Arc resource bridge with Azure Local in East US, Arc resource bridge and the Arc VM management feature for Azure Local must be supported in East US. To confirm feature availability across regions for each private cloud provider, review their deployment guide and other documentation. There could be instances where Arc resource bridge is available in a region where the private cloud feature isn't yet available.
 
 Arc resource bridge supports the following Azure regions:
 
@@ -127,7 +127,7 @@ While Azure has redundancy features at every level of failure, if a service impa
 The following private cloud environments and their versions are officially supported for Arc resource bridge:
 
 * VMware vSphere version 7.0, 8.0
-* Azure Stack HCI
+* Azure Local
 * SCVMM
 
 ### Supported versions
@@ -151,6 +151,5 @@ Arc resource bridge currently doesn't support private link.
 
 * Learn how [Azure Arc-enabled VMware vSphere extends Azure's governance and management capabilities to VMware vSphere infrastructure](../vmware-vsphere/overview.md).
 * Learn how [Azure Arc-enabled SCVMM extends Azure's governance and management capabilities to System Center managed infrastructure](../system-center-virtual-machine-manager/overview.md).
-* Learn about [provisioning and managing on-premises Windows and Linux VMs running on Azure Stack HCI clusters](/azure-stack/hci/manage/azure-arc-vm-management-overview).
+* Learn about [provisioning and managing on-premises Windows and Linux VMs running on Azure Local instances](/azure/azure-local/manage/azure-arc-vm-management-overview).
 * Review the [system requirements](system-requirements.md) for deploying and managing Arc resource bridge.
-

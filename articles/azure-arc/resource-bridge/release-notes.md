@@ -184,7 +184,7 @@ We generally recommend using the most recent versions. The [version support poli
 ### Fabric/Private cloud provider
 
 - SCVMM `createconfig` command improvements
-- Azure Stack HCI - extend `deploy` command timeout from 30 to 120 minutes
+- Azure Local - extend `deploy` command timeout from 30 to 120 minutes
 - All private clouds - enable provider credential parameters to be passed in each command
 - All private clouds - basic validations for select `createconfig` command inputs
 - VMware - basic reprompts for select `createconfig` command inputs

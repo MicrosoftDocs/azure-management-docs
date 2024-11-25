@@ -20,7 +20,7 @@ On Arc-enabled Kubernetes clusters, a custom location represents an abstraction 
 Since the custom location is an Azure Resource Manager resource that supports [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview), an administrator or operator can determine which users have access to create resource instances on:
 
 * A namespace within a Kubernetes cluster to target deployment of SQL Managed Instance enabled by Azure Arc or Azure Arc-enabled PostgreSQL server.
-* The compute, storage, networking, and other vCenter or Azure Stack HCI resources to deploy and manage VMs.
+* The compute, storage, networking, and other vCenter or Azure Local resources to deploy and manage VMs.
 
 For example, a cluster operator could create a custom location **Contoso-Michigan-Healthcare-App** representing a namespace on a Kubernetes cluster in your organization's Michigan Data Center. The operator can assign Azure RBAC permissions to application developers on this custom location so that they can deploy healthcare-related web applications. The developers can then deploy these applications to **Contoso-Michigan-Healthcare-App** without having to know details of the namespace and Kubernetes cluster.
 

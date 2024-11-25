@@ -15,7 +15,7 @@ This article describes the basic requirements for installing the Connected Machi
 Azure Arc-enabled servers support the installation of the Connected Machine agent on physical servers and virtual machines hosted outside of Azure, including on platforms like:
 
 * VMware (including Azure VMware Solution)
-* Azure Stack HCI
+* Azure Local
 * Other cloud environments
 
 You shouldn't install Azure Arc on virtual machines hosted in Azure, Azure Stack Hub, or Azure Stack Edge, as they already have similar capabilities. You can, however, [use an Azure VM to simulate an on-premises environment](plan-evaluate-on-azure-virtual-machine.md) for testing purposes, only.
@@ -44,7 +44,7 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Azure Linux (CBL-Mariner)           | 1.0         | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ✅    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
-| Azure Stack HCI                     |             |       |        |                                                                                                  |
+| Azure Local                    |             |       |        |                                                                                                  |
 | Centos                              | 7           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Centos                              | 8           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 10          | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
@@ -78,7 +78,7 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Windows Server                      | 2019        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2022        | ✅    | ❌    |                                                                                                  |
 
-For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Stack HCI.
+For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Local.
 
 The Azure Connected Machine agent isn't tested on operating systems hardened by the Center for Information Security (CIS) Benchmark.
 
@@ -145,7 +145,7 @@ For example, a computer running Windows 11 that's responsible for digital signag
 
 Microsoft doesn't recommend running Azure Arc on short-lived (ephemeral) servers or virtual desktop infrastructure (VDI) VMs. Azure Arc is designed for long-term management of servers and isn't optimized for scenarios where you are regularly creating and deleting servers. For example, Azure Arc doesn't know if the agent is offline due to planned system maintenance or if the VM was deleted, so it won't automatically clean up server resources that stopped sending heartbeats. As a result, you could encounter a conflict if you re-create the VM with the same name and there's an existing Azure Arc resource with the same name.
 
-[Azure Virtual Desktop on Azure Stack HCI](/azure/virtual-desktop/azure-stack-hci-overview) doesn't use short-lived VMs and supports running Azure Arc in the desktop VMs.
+[Azure Virtual Desktop on Azure Local](/azure/virtual-desktop/azure-local-overview) doesn't use short-lived VMs and supports running Azure Arc in the desktop VMs.
 
 ## Software requirements
 

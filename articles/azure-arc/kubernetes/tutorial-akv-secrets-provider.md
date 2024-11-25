@@ -26,7 +26,7 @@ Capabilities of the Azure Key Vault Secrets Provider extension include:
 
 - A cluster with a supported Kubernetes distribution that's [connected to Azure Arc](quickstart-connect-cluster.md). The following Kubernetes distributions are currently supported for this scenario:
   - Cluster API Azure
-  - Azure Kubernetes Service (AKS) clusters on Azure Stack HCI
+  - Azure Kubernetes Service (AKS) clusters on Azure Local
   - AKS enabled by Azure Arc
   - Google Kubernetes Engine
   - OpenShift Kubernetes Distribution
