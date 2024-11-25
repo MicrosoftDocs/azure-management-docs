@@ -15,7 +15,7 @@ Clusters that you connect to Azure are represented as their own resources in Azu
 
 ## Supported Kubernetes distributions
 
-Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters. This includes clusters running on other public cloud providers (such as GCP or AWS) and clusters running on your on-premises data center (such as VMware vSphere or Azure Stack HCI).
+Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (CNCF) certified Kubernetes clusters. This includes clusters running on other public cloud providers (such as GCP or AWS) and clusters running on your on-premises data center (such as VMware vSphere or Azure Local).
 
 The Azure Arc team has worked with key industry partners to [validate conformance of their Kubernetes distributions with Azure Arc-enabled Kubernetes](./validation-program.md).
 

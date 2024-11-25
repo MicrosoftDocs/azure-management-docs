@@ -58,11 +58,10 @@ Azure Arc-enabled servers allow you the flexibility to evaluate and operationali
 
 ## Additional notes
 
-- You'll be billed if you connect an activated Azure Arc ESU license to environments like Azure Stack HCI or Azure VMware Solution. These environments are eligible for free Windows Server 2012 ESUs enabled by Azure Arc and shouldn't be activated through Azure Arc.
+- You'll be billed if you connect an activated Azure Arc ESU license to environments like Azure Local or Azure VMware Solution. These environments are eligible for free Windows Server 2012 ESUs enabled by Azure Arc and shouldn't be activated through Azure Arc.
 
 - You'll be billed for all of the cores provisioned in the license. If provision licenses for free ESU usage like Visual Studio Development environments, you shouldn't provision additional cores for the scope of licensing applied to non-paid ESU coverage.
 
-- Migration and modernization of End-of-Life infrastructure to Azure, including Azure VMware Solution and Azure Stack HCI, can reduce the need for paid WS2012 ESUs. You must decrement the cores with their Azure Arc ESU licenses or deactivate and delete ESU licenses to benefit from the cost savings associated with Azure Arc’s flexible monthly billing model. This isn't an automatic process.
- 
-- For customers seeking to transition from Volume Licensing based MAK Keys for Year 1 of WS2012/R2 ESUs to WS2012/R2 ESUs enabled by Azure Arc for Year 2, [there's a transition process](license-extended-security-updates.md#scenario-5-you-have-already-purchased-the-traditional-windows-server-2012-esus-through-volume-licensing) that is exempt from back-billing. 
+- Migration and modernization of End-of-Life infrastructure to Azure, including Azure VMware Solution and Azure Local, can reduce the need for paid WS2012 ESUs. You must decrement the cores with their Azure Arc ESU licenses or deactivate and delete ESU licenses to benefit from the cost savings associated with Azure Arc’s flexible monthly billing model. This isn't an automatic process.
 
+- For customers seeking to transition from Volume Licensing based MAK Keys for Year 1 of WS2012/R2 ESUs to WS2012/R2 ESUs enabled by Azure Arc for Year 2, [there's a transition process](license-extended-security-updates.md#scenario-5-you-have-already-purchased-the-traditional-windows-server-2012-esus-through-volume-licensing) that is exempt from back-billing.

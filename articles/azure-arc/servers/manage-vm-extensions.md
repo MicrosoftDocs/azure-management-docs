@@ -153,7 +153,7 @@ The following extensions are available for Windows and Linux machines:
 |Windows 10 Enterprise (including multi-session) and Pro (Server scenarios only) |X |X |X |X | |X | | |
 |Windows 8 Enterprise and Pro (Server scenarios only) | |X |X | | |X | | |
 |Windows 7 SP1 (Server scenarios only) | |X |X | | |X | | |
-|Azure Stack HCI (Server scenarios only) | | |X | | |X | | |
+|Azure Local (Server scenarios only) | | |X | | |X | | |
 
 ### Linux extension availability
 

@@ -69,7 +69,7 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
 
 3. Block access to the Azure IMDS endpoint.
    > [!NOTE]
-   > The configurations below need to be applied for 169.254.169.254 and 169.254.169.253. These are endpoints used for IMDS in Azure and Azure Stack HCI respectively. 
+   > The configurations below need to be applied for 169.254.169.254 and 169.254.169.253. These are endpoints used for IMDS in Azure and Azure Local respectively. 
 
    While still connected to the server, run the following commands to block access to the Azure IMDS endpoint. For Windows, run the following PowerShell command:
 

@@ -14,7 +14,7 @@ There are several different ways you can connect your existing Windows and Linux
 - Azure Arc-enabled servers
 - Azure Arc-enabled VMware vSphere
 - Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)
-- Azure Stack HCI
+- Azure Local
 
 Each of these services extends the Azure control plane to your existing infrastructure and enables the use of [Azure security, governance, and management capabilities using the Connected Machine agent](/azure/azure-arc/servers/overview). Other services besides Azure Arc-enabled servers also use an [Azure Arc resource bridge](/azure/azure-arc/resource-bridge/overview), a part of the core Azure Arc platform that provides self-servicing and additional management capabilities.
 
@@ -25,7 +25,7 @@ General recommendations about the right service to use are as follows:
 |VMware VM (not running on AVS) |[Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md) |
 |Azure VMware Solution (AVS) VM |[Azure Arc-enabled VMware vSphere for Azure VMware Solution](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) |
 |VM managed by System Center Virtual Machine Manager |[Azure Arc-enabled SCVMM](system-center-virtual-machine-manager/overview.md) |
-|Azure Stack HCI VM |[Azure Stack HCI](/azure-stack/hci/overview) |
+|Azure Local machine |[Azure Local](/azure/azure-local/overview) |
 |Physical server |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another hypervisor |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another cloud provider |[Azure Arc-enabled servers](servers/overview.md) |
@@ -54,7 +54,7 @@ Where your machine runs determines the best Azure Arc service to use. Organizati
 
 > [!IMPORTANT]
 > Azure Arc-enabled VMware vSphere and Azure Arc-enabled SCVMM have all the capabilities of Azure Arc-enabled servers, but also provide specific, additional capabilities.
-> 
+
 ## Azure Arc-enabled VMware vSphere
 
 [Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md) simplifies the management of hybrid IT resources distributed across VMware vSphere and Azure.
@@ -95,13 +95,12 @@ Azure Arc-enabled System Center Virtual Machine Manager also allows you to manag
 
 - Install the Azure Arc-connected machine agents at scale on SCVMM VMs to govern, protect, configure, and monitor them.
 
-## Azure Stack HCI
+## Azure Local
 
-[Azure Stack HCI](/azure-stack/hci/overview) is a hyperconverged infrastructure operating system delivered as an Azure service. This is a hybrid solution that is designed to host virtualized Windows and Linux VM or containerized workloads and their storage. Azure Stack HCI is a hybrid product that is offered on validated hardware and connects on-premises estates to Azure, enabling cloud-based services, monitoring and management. This helps customers manage their infrastructure from Azure and run virtualized workloads on-premises, making it easy for them to consolidate aging infrastructure and connect to Azure.
+[Azure Local](/azure/azure-local/overview) is a hyperconverged infrastructure operating system delivered as an Azure service. This is a hybrid solution that is designed to host virtualized Windows and Linux VM or containerized workloads and their storage. Azure Local is a hybrid product that is offered on validated hardware and connects on-premises estates to Azure, enabling cloud-based services, monitoring and management. This helps customers manage their infrastructure from Azure and run virtualized workloads on-premises, making it easy for them to consolidate aging infrastructure and connect to Azure.
 
 > [!NOTE]
-> Azure Stack HCI comes with Azure resource bridge installed and uses the Azure Arc control plane for infrastructure and workload management, allowing you to monitor, update, and secure your HCI infrastructure from the Azure portal.
-> 
+> Azure Local comes with Azure resource bridge installed and uses the Azure Arc control plane for infrastructure and workload management, allowing you to monitor, update, and secure your Azure Local infrastructure from the Azure portal.
 
 ### Capabilities
 
@@ -113,11 +112,11 @@ Azure Arc-enabled System Center Virtual Machine Manager also allows you to manag
 
 - Install Azure connected machine agent and Azure Arc-enabled Kubernetes agent on your VM and Kubernetes clusters to use Azure services (i.e., Azure Monitor, Azure Defender for cloud, etc.).
 
-- Leverage Azure Virtual Desktop for Azure Stack HCI to deploy session hosts on to your on-premises infrastructure to better meet your performance or data locality requirements.
+- Leverage Azure Virtual Desktop for Azure Local to deploy session hosts on to your on-premises infrastructure to better meet your performance or data locality requirements.
 
 - Empower developers and application teams to self-serve VM and Kubernetes cluster operations on demand using Azure role-based access control (RBAC).
 
-- Monitor, update, and secure your Azure Stack HCI infrastructure and workloads across fleets of locations directly from the Azure portal.
+- Monitor, update, and secure your Azure Local infrastructure and workloads across fleets of locations directly from the Azure portal.
 
 - Deploy and manage static and DHCP-based logical networks on-premises to host your workloads.
 
@@ -129,7 +128,7 @@ Azure Arc-enabled System Center Virtual Machine Manager also allows you to manag
 
 The following table provides a quick way to see the major capabilities of the three Azure Arc services that connect your existing Windows and Linux machines to Azure Arc.
 
-| _ |Arc-enabled servers  |Arc-enabled VMware vSphere  |Arc-enabled SCVMM  |Azure Stack HCI  |
+| _ |Arc-enabled servers  |Arc-enabled VMware vSphere  |Arc-enabled SCVMM  |Azure Local  |
 |---------|---------|---------|---------|---------|---------|
 |Microsoft Defender for Cloud     |✓         |✓         |✓         |✓         |
 |Microsoft Sentinel     | ✓        |✓         |✓         |✓         |

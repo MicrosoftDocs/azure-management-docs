@@ -15,7 +15,7 @@ As part of its normal operation, the Azure Connected Machine agent collects syst
 
 See [instance metadata](/azure/azure-arc/servers/agent-overview#instance-metadata) for a complete list of metadata collected by Azure Arc. This list is regularly updated to reflect the data collected by the most recent release of the Azure Connected Machine agent. It's not possible to opt out of this data collection because it's used across Azure experiences to help filter and identify your servers.
 
-To collect cloud metadata, the Azure Connected Machine agent queries the instance metadata endpoints for AWS, GCP, Oracle Cloud, Azure Stack HCI and Azure. The agent checks if it’s in a cloud once, each time the "himds" service is started. Your security software may notice the agent reaching out to the following endpoints as part of that process: 169.254.169.254, 169.254.169.253, and metadata.google.internal.
+To collect cloud metadata, the Azure Connected Machine agent queries the instance metadata endpoints for AWS, GCP, Oracle Cloud, Azure Local, and Azure. The agent checks if it’s in a cloud once, each time the "himds" service is started. Your security software may notice the agent reaching out to the following endpoints as part of that process: 169.254.169.254, 169.254.169.253, and metadata.google.internal.
 
 All data is handled according to [Microsoft’s privacy standards](https://www.microsoft.com/en-us/trust-center/privacy).
 
