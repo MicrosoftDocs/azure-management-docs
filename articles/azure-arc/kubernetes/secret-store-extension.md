@@ -52,13 +52,16 @@ export KUBERNETES_NAMESPACE="my-namespace"
 export SERVICE_ACCOUNT_NAME="my-service-account"
 ```
 
-## Set up workload identity federation for your cluster
+## Activate workload identity federation in your cluster
 
-To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what your workload uses to access secrets from the Kubernetes secret store. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
+The SSE uses a feature called [workload identity federation](conceptual-workload-identity.md) to access and synchronize Azure Key Vault secrets. This section describes how to set this up. Following sections will explain how it is used in detail.
 
 ### [Arc-enabled Kubernetes](#tab/arc-k8s)
 
-If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable workload identity as part of the `connect` command:
+> [!TIP]
+> The following steps are based on the [How-to guide](/azure/azure-arc/kubernetes/workload-identity) for configuring Arc-enabled Kubernetes with workload identity federation. Refer to that documentation for any additional assistance.
+
+If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable workload identity federation as part of the `connect` command:
 
 ```azurecli
 az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
@@ -70,7 +73,7 @@ If your cluster is already connected to Azure Arc, enable workload identity usin
 az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
 ```
 
-Now configure your to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
+Now configure your cluster to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
 
 Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
@@ -105,11 +108,35 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
    sudo systemctl restart k3s
    ```
 
-### [AKS enabled by Azure Arc](#tab/aks-arc)
+### [AKS on Azure Local](#tab/aks-local)
 
-Follow 
+Refer to the [How-to guide](/azure/aks/hybrid/workload-identity) for configuring AKS on Azure Local with workload identity federation by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
+
+Return to these steps after this initial configuration. There is no need to complete the remainder of that guide.
+
+Validate the activation of workload identity federation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+
+   ```console
+   export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
+   echo $SERVICE_ACCOUNT_ISSUER
+   ```
+
+### [AKS Edge Essentials](#tab/aks-ee)
+
+Refer to the [How-to guide](/aks/hybrid/aks-edge-workload-identity) for configuring AKS Edge Essentials with workload identity federation. 
+
+Return to these steps after this initial configuration. There is no need to complete the remainder of that guide.
+
+Validate the activation of workload identity federation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+
+   ```console
+   export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
+   echo $SERVICE_ACCOUNT_ISSUER
+   ```
 
 ## Create a secret and configure an identity to access it
+
+To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account using the workload identity feature that you activated above. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
 
 ### Create an Azure Key Vault
 
@@ -178,13 +205,11 @@ Create a Kubernetes service account for the workload that needs access to secret
    az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name ${USER_ASSIGNED_IDENTITY_NAME} --resource-group ${RESOURCE_GROUP} --issuer ${SERVICE_ACCOUNT_ISSUER} --subject system:serviceaccount:${KUBERNETES_NAMESPACE}:${SERVICE_ACCOUNT_NAME}
    ```
 
-## Install and use the SSE
+## Install the SSE
 
 The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes cluster](overview.md) can be extended with [Azure Arc-enabled Kubernetes extensions](extensions.md). Extensions enable Azure capabilities on your connected cluster and provide an Azure Resource Manager-driven experience for the extension installation and lifecycle management.
 
-### Install cert-manager and trust-manager
-
-[cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) are required for secure communication of logs between cluster services and must be installed before the Arc extension.
+[cert-manager](https://cert-manager.io/) and [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) are also required for secure communication of logs between cluster services and must be installed before the Arc extension.
 
 1. Install cert-manager.
 
@@ -200,9 +225,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
    ```
 
-### Install the SSE
-
-- Install the SSE to your Arc-enabled cluster using the following command:
+1. Install the SSE to your Arc-enabled cluster using the following command:
 
    ``` console
    az k8s-extension create \
