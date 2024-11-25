@@ -9,7 +9,7 @@ ms.date: 05/22/2024
 
 This article describes the system requirements for deploying Azure Arc resource bridge.
 
-Arc resource bridge is used with other partner products, such as [Azure Stack HCI](/azure-stack/hci/manage/azure-arc-vm-management-overview), [Arc-enabled VMware vSphere](../vmware-vsphere/index.yml), and [Arc-enabled System Center Virtual Machine Manager (SCVMM)](../system-center-virtual-machine-manager/index.yml). These products may have additional requirements.  
+Arc resource bridge is used with other partner products, such as [Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview), [Arc-enabled VMware vSphere](../vmware-vsphere/index.yml), and [Arc-enabled System Center Virtual Machine Manager (SCVMM)](../system-center-virtual-machine-manager/index.yml). These products may have additional requirements.  
 
 ## Required Azure permissions
 
@@ -23,7 +23,7 @@ Arc resource bridge is used with other partner products, such as [Azure Stack HC
 
 If deploying Arc resource bridge on VMware, Azure CLI 64-bit is required to be installed on the management machine to run the deployment commands.
 
-If deploying on Azure Stack HCI, then Azure CLI 32-bit should be installed on the management machine.
+If deploying on Azure Local, then Azure CLI 32-bit should be installed on the management machine.
 
 The Arc appliance CLI extension, `arcappliance`, needs to be installed by running this command: `az extension add --name arcappliance`
 
@@ -42,7 +42,7 @@ These minimum requirements enable most scenarios for products that use Arc resou
 
 The IP address prefix (subnet) where Arc resource bridge will be deployed requires a minimum prefix of /29. The IP address prefix must have enough available IP addresses for the gateway IP, control plane IP, appliance VM IP, and reserved appliance VM IP. Arc resource bridge only uses the IP addresses assigned to the IP pool range (Start IP, End IP) and the Control Plane IP. We recommend that the End IP immediately follow the Start IP. Ex: Start IP = 192.168.0.2, End IP = 192.168.0.3. Work with your network engineer to ensure that there is an available subnet with the required available IP addresses and IP address prefix for Arc resource bridge.
 
-The IP address prefix is the subnet's IP address range for the virtual network and subnet mask (IP Mask) in CIDR notation, for example `192.168.7.1/29`. You provide the IP address prefix (in CIDR notation) during the creation of the configuration files for Arc resource bridge. 
+The IP address prefix is the subnet's IP address range for the virtual network and subnet mask (IP Mask) in CIDR notation, for example `192.168.7.1/29`. You provide the IP address prefix (in CIDR notation) during the creation of the configuration files for Arc resource bridge.
 
 Consult your network engineer to obtain the IP address prefix in CIDR notation. An IP Subnet CIDR calculator may be used to obtain this value.
 
@@ -50,7 +50,7 @@ Consult your network engineer to obtain the IP address prefix in CIDR notation. 
 
 If deploying Arc resource bridge to a production environment, static configuration must be used when deploying Arc resource bridge. Static IP configuration is used to assign three static IPs (that are in the same subnet) to the Arc resource bridge control plane, appliance VM, and reserved appliance VM.
 
-DHCP is only supported in a test environment for testing purposes only for VM management on Azure Stack HCI. It should not be used in a production environment. DHCP isn't supported on any other Arc-enabled private cloud, including Arc-enabled VMware, Arc for AVS, or Arc-enabled SCVMM. 
+DHCP is only supported in a test environment for testing purposes only for VM management on Azure Local. It should not be used in a production environment. DHCP isn't supported on any other Arc-enabled private cloud, including Arc-enabled VMware, Arc for AVS, or Arc-enabled SCVMM.
 
 If using DHCP, you must reserve the IP addresses used by the control plane and appliance VM. In addition, these IPs must be outside of the assignable DHCP range of IPs. Ex: The control plane IP should be treated as a reserved/static IP that no other machine on the network will use or receive from DHCP. If the control plane IP or appliance VM IP changes, this impacts the resource bridge availability and functionality.
 
@@ -69,7 +69,7 @@ Management machine requirements:
 
 - communication over port 443 to the private cloud management console (ex: VMware vCenter machine)
 
-- Internal and external DNS resolution. The DNS server must resolve internal names, such as the vCenter endpoint for vSphere or cloud agent service endpoint for Azure Stack HCI. The DNS server must also be able to resolve external addresses that are [required URLs](network-requirements.md#outbound-connectivity-requirements) for deployment.
+- Internal and external DNS resolution. The DNS server must resolve internal names, such as the vCenter endpoint for vSphere or cloud agent service endpoint for Azure Local. The DNS server must also be able to resolve external addresses that are [required URLs](network-requirements.md#outbound-connectivity-requirements) for deployment.
 - Internet access
   
 ## Appliance VM IP address requirements
