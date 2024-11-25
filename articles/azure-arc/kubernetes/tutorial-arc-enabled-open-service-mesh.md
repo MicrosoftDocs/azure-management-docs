@@ -29,7 +29,7 @@ Azure Arc-enabled Open Service Mesh can be deployed through Azure portal, Azure 
 - Support is available for the two most recently released minor versions of Arc-enabled Open Service Mesh. Find the latest version [here](https://github.com/Azure/osm-azure/releases). Supported release versions are appended with notes. Ignore the tags associated with intermediate releases.
 - The following Kubernetes distributions are currently supported:
   - AKS (Azure Kubernetes Service) Engine
-  - AKS clusters on Azure Stack HCI
+  - AKS clusters on Azure Local
   - AKS enabled by Azure Arc
   - Cluster API Azure
   - Google Kubernetes Engine

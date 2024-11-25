@@ -27,7 +27,7 @@ For more information, see [Understand Azure Policy for Kubernetes clusters](/azu
 
 ## Azure Key Vault Secrets Provider
 
-- **Supported distributions**: AKS on Azure Stack HCI, AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
+- **Supported distributions**: AKS on Azure Local, AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
 
 Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an instance of Azure Key Vault as a secrets store with a Kubernetes cluster via a CSI volume. For Azure Arc-enabled Kubernetes clusters, you can install the Azure Key Vault Secrets Provider extension to fetch secrets.
 
@@ -63,7 +63,7 @@ For more information, see [Enable Microsoft Defender for Containers](/azure/defe
 
 ## Azure Arc-enabled Open Service Mesh
 
-- **Supported distributions**: AKS, AKS on Azure Stack HCI,  AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, Rancher Kubernetes Engine, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
+- **Supported distributions**: AKS, AKS on Azure Local,  AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, Rancher Kubernetes Engine, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
 
 [Open Service Mesh (OSM)](https://docs.openservicemesh.io/) is a lightweight, extensible, Cloud Native service mesh that allows users to uniformly manage, secure, and get out-of-the-box observability features for highly dynamic microservice environments.
 
@@ -71,7 +71,7 @@ For more information, see [Azure Arc-enabled Open Service Mesh](tutorial-arc-ena
 
 ## Azure Arc-enabled data services
 
-- **Supported distributions**: AKS, AKS on Azure Stack HCI, Azure Red Hat OpenShift, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Container Platform, and Amazon Elastic Kubernetes Service.
+- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, Canonical Kubernetes Distribution, OpenShift Container Platform, and Amazon Elastic Kubernetes Service.
 
 This extension makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds by using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
 
@@ -79,7 +79,7 @@ For more information, see [Azure Arc-enabled data services](../data/create-data-
 
 ## Azure App Service on Azure Arc
 
-- **Supported distributions**: AKS, AKS on Azure Stack HCI, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
+- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
 
 Use this extension to provision an App Service Kubernetes environment on top of an Azure Arc-enabled Kubernetes cluster.
 

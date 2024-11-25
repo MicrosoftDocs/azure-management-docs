@@ -54,8 +54,8 @@
   href: ./vmware-vsphere/overview.md
 - name: Azure Arc-enabled System Center Virtual Machine Manager >
   href: ./system-center-virtual-machine-manager/overview.md
-- name: Azure Arc VM management on Azure Stack HCI >
-  href: /azure-stack/hci/manage/azure-arc-vm-management-overview
+- name: Azure Arc VM management on Azure Local >
+  href: /azure/azure-local/manage/azure-arc-vm-management-overview
   displayName: stack, hci
 - name: SQL Server enabled by Azure Arc >
   href: /sql/sql-server/azure-arc/overview
