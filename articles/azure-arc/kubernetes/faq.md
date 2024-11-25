@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc-enabled Kubernetes and GitOps frequently asked questions"
-ms.date: 05/04/2023
+ms.date: 11/25/2024
 ms.topic: conceptual
 description: "This article contains a list of frequently asked questions related to Azure Arc-enabled Kubernetes and Azure GitOps."
 ms.custom: references_regions
@@ -14,17 +14,17 @@ This article addresses frequently asked questions about Azure Arc-enabled Kubern
 
 AKS is the managed Kubernetes offering by Azure. AKS simplifies deploying a managed Kubernetes cluster in Azure by offloading much of the complexity and operational overhead to Azure. Since the Kubernetes masters are managed by Azure, you only manage and maintain the agent nodes.
 
-Azure Arc-enabled Kubernetes allows you to extend Azure’s management capabilities (like Azure Monitor and Azure Policy) by connecting Kubernetes clusters to Azure. You maintain the underlying Kubernetes cluster itself.
+Azure Arc-enabled Kubernetes allows you to extend Azure's management capabilities (like Azure Monitor and Azure Policy) by connecting Kubernetes clusters to Azure. You maintain the underlying Kubernetes cluster itself.
 
 ## Do I need to connect my AKS clusters running on Azure to Azure Arc?
 
-Currently, connecting an Azure Kubernetes Service (AKS) cluster to Azure Arc is not required for most scenarios. You may want to connect a cluster to run certain Azure Arc-enabled services such as App Services and Data Services on top of the cluster. This can be done using the [custom locations](custom-locations.md) feature of Azure Arc-enabled Kubernetes.
+Connecting an Azure Kubernetes Service (AKS) cluster to Azure Arc is not required for most scenarios. You may want to connect a cluster to run certain Azure Arc-enabled services such as App Services and Data Services on top of the cluster. This can be done using the [custom locations](custom-locations.md) feature of Azure Arc-enabled Kubernetes.
 
-## Should I connect my AKS-HCI cluster and Kubernetes clusters on Azure Stack Edge to Azure Arc?
+## Should I connect my AKS on Azure Local or Azure Stack Edge to Azure Arc?
 
-Connecting your AKS-HCI cluster or Kubernetes clusters on Azure Stack Edge to Azure Arc provides clusters with resource representation in Azure Resource Manager. This resource representation extends capabilities like Cluster Configuration, Azure Monitor, and Azure Policy (Gatekeeper) to connected Kubernetes clusters.
+Connecting your AKS on Azure Local or Azure Stack Edge to Azure Arc provides clusters with resource representation in Azure Resource Manager. This resource representation extends capabilities like cluster configuration, Azure Monitor, and Azure Policy (Gatekeeper) to connected Kubernetes clusters.
 
-If the Azure Arc-enabled Kubernetes cluster is on Azure Stack Edge, AKS on Azure Stack HCI (>= April 2021 update), or AKS on Windows Server 2019 Datacenter (>= April 2021 update), then the Kubernetes configuration is included at no charge.
+For Azure Stack Edge, AKS on Azure Local (>= April 2021 update), or AKS on Windows Server 2019 Datacenter (>= April 2021 update), the Kubernetes configuration is included at no charge.
 
 ## How do I address expired Azure Arc-enabled Kubernetes resources?
 

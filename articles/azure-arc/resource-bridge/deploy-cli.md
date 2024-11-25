@@ -14,7 +14,7 @@ To learn about installing Arc resource bridge with a corresponding partner produ
 
 - [Connect VMware vCenter Server to Azure with Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md)
 - [Connect System Center Virtual Machine Manager (SCVMM) to Azure with Arc resource bridge](../system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc.md#download-the-onboarding-script)
-- [Azure Stack HCI VM Management through Arc resource bridge](/azure-stack/hci/manage/azure-arc-vm-management-overview)
+- [Azure Arc VM Management on Azure Local through Arc resource bridge](/azure/azure-local/manage/azure-arc-vm-management-overview)
 
 This article provides an overview of the [Azure CLI commands](/cli/azure/arcappliance) that are used to manage Arc resource bridge deployment, in the order in which they're typically used for deployment.
 
@@ -29,7 +29,7 @@ Three configuration files are generated: resource.yaml, appliance.yaml and infra
 This command also calls the `validate` command to check the configuration files.
 
 > [!NOTE]
-> Azure Stack HCI uses different commands to create the Arc resource bridge configuration files.
+> Azure Local uses different commands to create the Arc resource bridge configuration files.
 
 ## `az arcappliance validate`
 
