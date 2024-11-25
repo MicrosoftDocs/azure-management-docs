@@ -23,8 +23,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 ## Prerequisites
 
-- An Arc-enabled cluster, running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
-- This cluster can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster.
+- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
@@ -110,11 +109,11 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
 
 ### [AKS on Azure Local](#tab/aks-local)
 
-Refer to the [How-to guide](/azure/aks/hybrid/workload-identity) for configuring AKS on Azure Local with workload identity federation by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
+Use the [How-to guide](/azure/aks/hybrid/workload-identity) to actitvate workload identity federation on AKS on Azure Local by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
 
-Return to these steps after this initial configuration. There is no need to complete the remainder of that guide.
+Return to these steps after the initial activation. There is no need to complete the remainder of that guide.
 
-Validate the activation of workload identity federation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+Validate the activation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
 
    ```console
    export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
@@ -123,11 +122,11 @@ Validate the activation of workload identity federation has been succesful by ob
 
 ### [AKS Edge Essentials](#tab/aks-ee)
 
-Refer to the [How-to guide](/aks/hybrid/aks-edge-workload-identity) for configuring AKS Edge Essentials with workload identity federation. 
+Use the [How-to guide](/azure/aks/hybrid/aks-edge-workload-identity) to activate workload identity federation on AKS Edge Essentials. 
 
-Return to these steps after this initial configuration. There is no need to complete the remainder of that guide.
+Return to these steps after the initial activation. There is no need to complete the remainder of that guide.
 
-Validate the activation of workload identity federation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
+Validate the activation has been succesful by obtaining the cluster's service account issuer URL. You'll use this URL in the following steps:  
 
    ```console
    export SERVICE_ACCOUNT_ISSUER="$(az connectedk8s show --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --query "oidcIssuerProfile.issuerUrl" --output tsv)"
@@ -181,7 +180,7 @@ Next, create a user-assigned managed identity and give it permissions to access 
 
 ### Create a federated identity credential
 
-Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes Service Account.  This uses the workload identity federation capability that you activated earlier.
+Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes Service Account.
 
 1. Create a Kubernetes Service Account that will be federated to the managed identity. Annotate it with details of the associated user-assigned managed identity.
 
