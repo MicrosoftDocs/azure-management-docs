@@ -53,14 +53,14 @@ kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featu
 
 This section describes how to prepare Linux with Ubuntu if you run a multi-node cluster.
 
-1. Install and configure Open Service Mesh (OSM) using the following command:
+Install and configure Open Service Mesh (OSM) using the following command:
 
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
-   kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featureFlags":{"enableWASMStats": false }, "traffic":{"outboundPortExclusionList":[443,2379,2380], "inboundPortExclusionList":[443,2379,2380]}}}' --type=merge
-   ```
+```azurecli
+az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
+kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featureFlags":{"enableWASMStats": false }, "traffic":{"outboundPortExclusionList":[443,2379,2380], "inboundPortExclusionList":[443,2379,2380]}}}' --type=merge
+```
 
-   [!INCLUDE [multi-node-ubuntu](includes/multi-node-ubuntu.md)]
+[!INCLUDE [multi-node-ubuntu](includes/multi-node-ubuntu.md)]
 
 ::: zone-end
 
