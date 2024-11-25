@@ -50,7 +50,7 @@ Some of the key scenarios that Azure Arc supports are:
 
 * Create [custom locations](./kubernetes/custom-locations.md) on top of your [Azure Arc-enabled Kubernetes](./kubernetes/overview.md) clusters, using them as target locations for deploying Azure services instances. Deploy your Azure service cluster extensions for [Azure Arc-enabled data services](./data/create-data-controller-direct-azure-portal.md), [App services on Azure Arc](/azure/app-service/overview-arc-integration) (including web, function, and logic apps) and [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 
-* Perform virtual machine lifecycle and management operations on [Azure Local](/azure/azure-local/azure-arc-vm-management-overview) and on-premises environments managed by [VMware vCenter](./vmware-vsphere/overview.md) and [System Center Virtual Machine Manager (SCVMM)](./system-center-virtual-machine-manager/overview.md) through interactive and non-interactive methods. Empower developers and application teams to self-serve VM operations on-demand using Azure role-based access control (RBAC).
+* Perform virtual machine lifecycle and management operations on [Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview) and on-premises environments managed by [VMware vCenter](./vmware-vsphere/overview.md) and [System Center Virtual Machine Manager (SCVMM)](./system-center-virtual-machine-manager/overview.md) through interactive and non-interactive methods. Empower developers and application teams to self-serve VM operations on-demand using Azure role-based access control (RBAC).
 
 * A unified experience viewing your Azure Arc-enabled resources, whether you are using the Azure portal, the Azure CLI, Azure PowerShell, or Azure REST API.
 
