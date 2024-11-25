@@ -1,7 +1,7 @@
 ---
 title: Connect hybrid machines to Azure using a deployment script
 description: In this article, you learn how to install the agent and connect machines to Azure by using Azure Arc-enabled servers using the deployment script you create in the Azure portal.
-ms.date: 10/23/2023
+ms.date: 11/25/2024
 ms.topic: how-to
 ms.custom: linux-related-content
 ---
@@ -85,10 +85,7 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
     # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
     Restart-Service -Name himds
     ```
-
-    >[!NOTE]
-    >The agent does not support setting proxy authentication.
-    >
+    For more information, see [Agent-specific proxy configuration](manage-agent.md#agent-specific-proxy-configuration).
 
 3. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:
 
