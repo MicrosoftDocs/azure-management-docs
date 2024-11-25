@@ -25,7 +25,7 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 --config "osm.osm.configResyncInterval=10s" \
 --config "osm.osm.osmController.resource.requests.cpu=100m" \
 --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
---config "osm.osm.injector.resource.requests.cpu=100m
+--config "osm.osm.injector.resource.requests.cpu=100m"
 ```
 
 ::: zone-end
@@ -49,7 +49,7 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 --config "osm.osm.configResyncInterval=10s" \
 --config "osm.osm.osmController.resource.requests.cpu=100m" \
 --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
---config "osm.osm.injector.resource.requests.cpu=100m
+--config "osm.osm.injector.resource.requests.cpu=100m"
 ```
 
 [!INCLUDE [multi-node-ubuntu](includes/multi-node-ubuntu.md)]
