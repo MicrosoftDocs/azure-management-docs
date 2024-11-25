@@ -133,6 +133,8 @@ Validate the activation has been succesful by obtaining the cluster's service ac
    echo $SERVICE_ACCOUNT_ISSUER
    ```
 
+---
+
 ## Create a secret and configure an identity to access it
 
 To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account using the workload identity feature that you activated above. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
