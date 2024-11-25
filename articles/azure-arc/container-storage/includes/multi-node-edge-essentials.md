@@ -41,7 +41,7 @@ This section describes how to prepare Linux with AKS Edge Essentials if you run 
    --config "osm.osm.configResyncInterval=10s" \
    --config "osm.osm.osmController.resource.requests.cpu=100m" \
    --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m
+   --config "osm.osm.injector.resource.requests.cpu=100m"
 
    kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featureFlags":{"enableWASMStats": false }, "traffic":{"outboundPortExclusionList":[443,2379,2380], "inboundPortExclusionList":[443,2379,2380]}}}' --type=merge
    ```

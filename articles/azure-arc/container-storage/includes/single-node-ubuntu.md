@@ -19,7 +19,7 @@ This section describes how to prepare Linux with Ubuntu if you run a single-node
    --config "osm.osm.configResyncInterval=10s" \
    --config "osm.osm.osmController.resource.requests.cpu=100m" \
    --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m
+   --config "osm.osm.injector.resource.requests.cpu=100m"
    ```
 
 1. Run the following command to determine if you set `fs.inotify.max_user_instances` to 1024:

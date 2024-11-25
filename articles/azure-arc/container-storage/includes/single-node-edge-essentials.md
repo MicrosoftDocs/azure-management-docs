@@ -102,5 +102,5 @@ This section describes how to prepare Linux with AKS Edge Essentials if you run 
    --config "osm.osm.configResyncInterval=10s" \
    --config "osm.osm.osmController.resource.requests.cpu=100m" \
    --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m
+   --config "osm.osm.injector.resource.requests.cpu=100m"
    ```
