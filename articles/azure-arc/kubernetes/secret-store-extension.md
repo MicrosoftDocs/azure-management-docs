@@ -52,11 +52,11 @@ export KUBERNETES_NAMESPACE="my-namespace"
 export SERVICE_ACCOUNT_NAME="my-service-account"
 ```
 
-## Configure an identity to access secrets
+## Set up workload identity federation for your cluster
 
-To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what you use in a Kubernetes pod or other workload to access secrets from the Kubernetes secret store. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
+To access and synchronize a given Azure Key Vault secret, the SSE requires access to an Azure managed identity with appropriate Azure permissions to access that secret. The managed identity must be linked to a Kubernetes service account through [workload identity federation](conceptual-workload-identity.md). The Kubernetes service account is what your workload uses to access secrets from the Kubernetes secret store. The SSE uses the associated federated Azure managed identity to pull secrets from Azure Key Vault to your Kubernetes secret store. The following sections describe how to set this up.
 
-### Enable workload identity on your cluster
+### [Arc-enabled Kubernetes](#tab/arc-k8s)
 
 If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable workload identity as part of the `connect` command:
 
@@ -70,13 +70,9 @@ If your cluster is already connected to Azure Arc, enable workload identity usin
 az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
 ```
 
-### Configure your cluster to enable token validation
-
-Your cluster must be configured to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
+Now configure your to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
 
 Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
-
-Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
 
 1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
@@ -108,6 +104,12 @@ Your Kubernetes cluster must be running Kubernetes version 1.27 or higher.
    sudo systemctl daemon-reload
    sudo systemctl restart k3s
    ```
+
+### [AKS enabled by Azure Arc](#tab/aks-arc)
+
+Follow 
+
+## Create a secret and configure an identity to access it
 
 ### Create an Azure Key Vault
 
@@ -152,7 +154,7 @@ Next, create a user-assigned managed identity and give it permissions to access 
 
 ### Create a federated identity credential
 
-Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes Service Account.
+Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes Service Account.  This uses the workload identity federation capability that you activated earlier.
 
 1. Create a Kubernetes Service Account that will be federated to the managed identity. Annotate it with details of the associated user-assigned managed identity.
 
