@@ -40,7 +40,7 @@ The following table shows the AWS services that are scanned, the resource types 
 | DMS  | `databaseMigrationServiceReplicationInstances`     | `Microsoft.AwsConnector/databaseMigrationServiceReplicationInstances`|
 | Dynamo DB    | `dynamoDBContinuousBackupsDescriptions`     | `Microsoft.AwsConnector/dynamoDBContinuousBackupsDescriptions`|
 | Dynamo DB    | `dynamoDBTables`     | `Microsoft.AwsConnector/dynamoDBTables`|
-| EC2    | `ec2Instances`    | `Microsoft.HybridCompute/machines/EC2InstanceId`, `Microsoft.AwsConnector/Ec2Instances`|
+| EC2    | `ec2Instances`    | `Microsoft.HybridCompute/machines/EC2InstanceId/providers/Microsoft.AwsConnector/Ec2Instances`|
 | EC2    | `ec2AccountAttributes`    | `Microsoft.AwsConnector/ec2AccountAttributes`|
 | EC2    | `ec2Addresses`    | `Microsoft.AwsConnector/ec2Addresses`|
 | EC2    | `ec2FlowLogs`    | `Microsoft.AwsConnector/ec2FlowLogs`|
@@ -65,7 +65,7 @@ The following table shows the AWS services that are scanned, the resource types 
 | ECS   | `ecsTaskDefinitions`     | `Microsoft.AwsConnector/ecsTaskDefinitions`|
 | EFS   | `efsFileSystems`     | `Microsoft.AwsConnector/efsFileSystems`|
 | EFS   | `efsMountTargets`     | `Microsoft.AwsConnector/efsMountTargets`|
-| EKS   | `eksClusters`     | `Microsoft.AwsConnector/eksClusters`|
+| EKS   | `eksClusters`     | `Microsoft.Kubernetes/connectedclusters/clusterName_region/providers/Microsoft.AwsConnector/eksClusters`|
 | EKS   | `eksNodegroups`     | `Microsoft.AwsConnector/eksNodegroups`|
 | Elastic Beanstalk   | `elasticBeanstalkApplications`     | `Microsoft.AwsConnector/elasticBeanstalkApplications`|
 | Elastic Beanstalk   | `elasticBeanstalkConfigurationTemplates`     | `Microsoft.AwsConnector/elasticBeanstalkConfigurationTemplates`|
