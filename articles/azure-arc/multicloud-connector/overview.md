@@ -25,7 +25,7 @@ In Azure, the following regions are supported for the multicloud connector:
 
 - East US, East US 2, West US 2, West US 3, West Central US, Canada Central, West Europe, North Europe, Sweden Central, UK South, Southeast Asia, AU East
 
-The multicloud connector isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet).
+The multicloud connector isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet). The multicloud connector doesn't store customer data outside the region the customer deploys the service instance in.
 
 In AWS, we scan for resources in the following regions:
 
