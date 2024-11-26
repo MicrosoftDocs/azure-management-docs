@@ -216,16 +216,11 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
    ```azurecli
    helm repo add jetstack https://charts.jetstack.io/ --force-update
    helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.16.2 --set crds.enabled=true 
-
-   ```azurecli
-   kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml
    ```
 
 1. Install trust-manager.
 
    ```azurecli
-   helm repo add jetstack https://charts.jetstack.io
-   helm repo update
    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait
    ```
 
