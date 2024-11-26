@@ -7,7 +7,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 11/07/2024
+ms.date: 11/26/2024
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
@@ -20,33 +20,31 @@ This article provides troubleshooting steps that help you resolve the errors enc
 
 ### PSSessionAccessDenied
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/PSSessionAccessDenied.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298170).
 
 ### PSSessionGet-SCVMMServer
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/PSSessionGet-SCVMMServer.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297694).
 
 ### PSSessionMIResultFailed
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/PSSessionMIResultFailed.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298171).
 
 ## KVAInvalidEntityCustomerError
 
 ### ValidateInsufficientLibSharePermission
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/ValidateInsufficientLibSharePermission.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297975).
 
 ### ValidateInsufficientPrivilege
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/ValidateInsufficientPrivilege.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298222).
 
 ### ValidateVlanIDNotAvailableOnVMNetwork
 
-[Learn about the cause and recommended action](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/ValidateVlanIDNotAvailableOnVMNetwork.md).
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).
 
 ## Next steps
 
 - [Troubleshoot common deployment errors](/azure/azure-arc/resource-bridge/troubleshoot-resource-bridge).
 - [Support matrix for Azure Arc-enabled System Center Virtual Machine Manager](support-matrix-for-system-center-virtual-machine-manager.md).
-
-
