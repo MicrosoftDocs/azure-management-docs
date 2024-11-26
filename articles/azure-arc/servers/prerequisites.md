@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 10/15/2024
+ms.date: 11/26/2024
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
@@ -77,6 +77,8 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Windows Server                      | 2016        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2019        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2022        | ✅    | ❌    |                                                                                                  |
+| Windows Server                      | 2025        | ✅    | ❌    |                                                                                                  |
+
 
 For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Local.
 
