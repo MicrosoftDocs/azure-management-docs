@@ -77,6 +77,8 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Windows Server                      | 2016        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2019        | ✅    | ❌    |                                                                                                  |
 | Windows Server                      | 2022        | ✅    | ❌    |                                                                                                  |
+| Windows Server                      | 2025        | ✅    | ❌    |                                                                                                  |
+
 
 For Windows Server, both Desktop and Server Core experiences are supported. Azure Editions are supported on Azure Local.
 
