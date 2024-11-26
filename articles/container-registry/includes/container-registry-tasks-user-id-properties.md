@@ -19,9 +19,9 @@ In the command output, the `identity` section shows the identity of type `UserAs
     "tenantId": null,
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/xxxxxxxx-d12e-4760-9ab6-xxxxxxxxxxxx/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myACRTasksId": {
-        "clientId": "xxxxxxxx-f17e-4768-bb4e-xxxxxxxxxxxx",
-        "principalId": "xxxxxxxx-1335-433d-bb6c-xxxxxxxxxxxx"
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myACRTasksId": {
+        "clientId": "00001111-aaaa-2222-bbbb-3333cccc4444",
+        "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222"
       }
 [...]
 ``` 
