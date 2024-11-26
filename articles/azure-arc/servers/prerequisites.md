@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 10/15/2024
+ms.date: 11/26/2024
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
