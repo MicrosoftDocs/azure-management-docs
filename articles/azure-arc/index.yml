@@ -126,9 +126,9 @@ conceptualContent:
         - url: ./system-center-virtual-machine-manager/overview.md
           itemType: overview
           text: Azure Arc-enabled System Center Virtual Machine Manager
-        - url: /azure-stack/hci/manage/azure-arc-vm-management-overview
+        - url: /azure/azure-local/manage/azure-arc-vm-management-overview
           itemType: overview
-          text: Azure Arc VM management on Azure Stack HCI
+          text: Azure Arc VM management on Azure Local
       # Card
     - title: Training modules
       links:
