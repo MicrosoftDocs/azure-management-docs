@@ -1,5 +1,5 @@
 ---
-title: Set Up Conditional Access for Azure Container Registry.
+title: Set Up Conditional Access for Azure Container Registry
 description: Learn how to configure conditional access to your Azure Container Registry by using Azure CLI and Azure portal to enhance security.
 ms.author: tejaswikolli
 ms.service: azure-container-registry
