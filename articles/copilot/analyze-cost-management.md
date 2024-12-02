@@ -1,7 +1,7 @@
 ---
 title: Analyze, estimate and optimize cloud costs using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can use Microsoft Cost Management to help you manage your costs.
-ms.date: 11/14/2024
+ms.date: 12/17/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -71,3 +71,4 @@ For OpenAI token-based models, you can ask questions to estimate costs for usage
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
 - Learn more about [Microsoft Cost Management](/azure/cost-management-billing/costs/overview-cost-management).
+- Learn how Copilot in Azure can help [reduce storage account costs](improve-storage-accounts.md#reduce-storage-costs).
