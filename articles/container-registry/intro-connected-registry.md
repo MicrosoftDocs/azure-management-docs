@@ -35,7 +35,7 @@ The connected registry is a preview feature of the **Premium** container registr
 
 ## Available regions
 
-A connected registry can be deployed in any region where ACR is available.
+A connected registry can be deployed in any region where Azure Container Registry is available.
 
 ## Scenarios
 
