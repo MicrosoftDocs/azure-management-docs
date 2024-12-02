@@ -1,7 +1,7 @@
 ---
 title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
-ms.date: 11/01/2024
+ms.date: 12/02/2024
 ms.topic: conceptual
 ---
 
@@ -49,9 +49,9 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 ## Requirements
 
-- Agent Version: Connected Machine Agent version 1.38 or higher is required; and 1.46 or higher is recommended.  
+- Agent Version: Connected Machine Agent version 1.47 or higher is required.  
 
-- Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2016 or higher with both Standard/Datacenter editions supported.  
+- Operating Systems: The Azure Arc-enabled server’s Operating Systems must be Windows Server 2012 or higher with both Standard/Datacenter editions supported.  
 
 - Networking: Connectivity methods supported include Public Endpoint, Proxy, Azure Arc Gateway, and Private Endpoint. No additional endpoints need to be allowed.  
 
