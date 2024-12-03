@@ -1,8 +1,8 @@
 ---
 title:  Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager
-description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager
+description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager.
 ms.topic: how-to 
-ms.date: 10/21/2024
+ms.date: 03/12/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
@@ -23,14 +23,11 @@ Each of these operations requires either SSH key to the resource bridge VM or th
 
 ## Upgrade the Arc resource bridge manually
 
-Azure Arc-enabled SCVMM requires the Arc resource bridge to connect your SCVMM environment with Azure. Periodically, new images of Arc resource bridge are released to include security and feature updates. The Arc resource bridge can be manually upgraded from the SCVMM server. You must meet all upgrade [prerequisites](../resource-bridge/upgrade.md#prerequisites) before attempting to upgrade. The SCVMM server must have the kubeconfig and appliance configuration files stored locally. If the SCVMM account credentials changed after the initial deployment of the resource bridge, [update the new account credentials](administer-arc-scvmm.md#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding) before attempting manual upgrade.
+Azure Arc-enabled SCVMM requires the Arc resource bridge to connect your SCVMM environment with Azure. Periodically, new images of Arc resource bridge are released to include security and feature updates. The Arc resource bridge can be manually upgraded from the SCVMM server. You must meet all upgrade [prerequisites](../resource-bridge/upgrade.md#prerequisites) before attempting to upgrade. The SCVMM server must have the kubeconfig and appliance configuration .yaml files stored locally. If the SCVMM account credentials changed after the initial deployment of the Azure Arc resource bridge, [update the new account credentials](administer-arc-scvmm.md#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding) before attempting manual upgrade.
 
-> [!NOTE]
-> The manual upgrade feature is available for resource bridge version 1.0.14 and later. Resource bridges below version 1.0.14 must [perform the recovery option](./disaster-recovery.md) to upgrade to version 1.0.15 or later.
+The manual upgrade generally takes between 30-90 minutes, depending on the network speed. The upgrade command takes your Azure Arc resource bridge to the immediate next version, which might not be the latest available version. Multiple upgrades could be needed to reach a [supported version](../resource-bridge/upgrade.md#supported-versions). You can check your resource bridge version by checking the Azure resource of your Arc resource bridge.
 
-The manual upgrade generally takes between 30-90 minutes, depending on the network speed. The upgrade command takes your Arc resource bridge to the immediate next version, which might not be the latest available version. Multiple upgrades could be needed to reach a [supported version](../resource-bridge/upgrade.md#supported-versions). You can check your resource bridge version by checking the Azure resource of your Arc resource bridge.
-
-To manually upgrade your Arc resource bridge, make sure you've installed the latest `az arcappliance` CLI extension by running the extension upgrade command from the SCVMM server:
+To manually upgrade your Arc resource bridge, make sure you've installed the latest `az arcappliance` CLI extension by running the following extension upgrade command from the SCVMM server:
 
 ```azurecli
 az extension add --upgrade --name arcappliance 
@@ -39,7 +36,7 @@ az extension add --upgrade --name arcappliance
 To manually upgrade your resource bridge, use the following command:
 
 ```azurecli
-az arcappliance upgrade scvmm --config-file <file path to ARBname-appliance.yaml> 
+az arcappliance upgrade scvmm --config-file C:\Users\admin\contosoARB01-appliance.yaml 
 ```
 
 ## Update the SCVMM account credentials (using a new password or a new SCVMM account after onboarding)
@@ -63,7 +60,7 @@ az arcappliance update-infracredentials scvmm --kubeconfig kubeconfig
 For more information on the commands, see [`az arcappliance get-credentials`](/cli/azure/arcappliance#az-arcappliance-get-credentials) and [`az arcappliance update-infracredentials scvmm`](/cli/azure/arcappliance/update-infracredentials#az-arcappliance-update-infracredentials-scvmm).
 
 
-To update the credentials used by the SCVMM cluster extension on the resource bridge. This command can be run from anywhere with `connectedscvmm` CLI extension installed.
+To update the credentials used by the SCVMM cluster extension on the resource bridge, run the following command. This command can be run from anywhere with the `connectedscvmm` CLI extension installed.
 
 ```azurecli
 az connectedscvmm scvmm connect --custom-location <name of the custom location> --location <Azure region>  --name <name of the SCVMM resource in Azure>       --resource-group <resource group for the SCVMM resource>  --username   <username for the SCVMM account>  --password  <password to the SCVMM account>
@@ -81,7 +78,7 @@ az arcappliance get-credentials -n <name of the appliance> -g <resource group na
 az arcappliance logs scvmm --kubeconfig kubeconfig --out-dir <path to specified output directory>
 ```
 
-If the Kubernetes cluster on the resource bridge isn't in functional state, you can use the following commands. These commands require connectivity to IP address of the Azure Arc resource bridge VM via SSH.
+If the Kubernetes cluster on the Azure Arc resource bridge isn't in functional state, you can use the following commands. These commands require connectivity to IP address of the Azure Arc resource bridge VM via SSH.
 
 ```azurecli
 az account set -s <subscription id>
@@ -93,3 +90,4 @@ az arcappliance logs scvmm --out-dir <path to specified output directory> --ip X
 
 - [Troubleshoot common issues related to resource bridge](../resource-bridge/troubleshoot-resource-bridge.md).
 - [Understand disaster recovery operations for resource bridge](./disaster-recovery.md).
+- [Azure Arc resource bridge maintenance operations](../resource-bridge/maintenance.md).
