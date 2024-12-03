@@ -3,7 +3,7 @@ title: Manage an Azure support request
 description: Learn about viewing support requests and how to send messages, upload files, and manage options.
 tags: billing
 ms.topic: how-to
-ms.date: 03/08/2024
+ms.date: 12/03/2024
 ---
 
 # Manage an Azure support request
@@ -46,11 +46,11 @@ To view details about a support request to view details, including its severity 
 
     - If your request isn't assigned, you see a screen like the following. Select a new severity level, then select **Change**.
 
-        :::image type="content" source="media/how-to-manage-azure-support-request/unassigned-can-change-severity.png" alt-text="Select a new severity level":::
+      :::image type="content" source="media/how-to-manage-azure-support-request/unassigned-can-change-severity.png" alt-text="Select a new severity level":::
 
-    - If your request is assigned, you see a screen like the following. Select **OK**, then create a [new message](#send-a-message) to request a change in severity level.
+    - If your request is assigned, you see a screen like the following. Select **OK**, then create a [new message](#send-a-message) to request a change in severity level. If you have an urgent need to change the severity level, and the support engineer assigned to your case is unavailable, you can call [customer service](https://support.microsoft.com/en-us/topic/customer-service-phone-numbers-c0389ade-5640-e588-8b0e-28de8afeb3f2#ID0EBBD=signinorgid) (available at all hours) and ask the agent to change the severity level for you.
 
-        :::image type="content" source="media/how-to-manage-azure-support-request/assigned-cant-change-severity.png" alt-text="Can't select a new severity level":::
+      :::image type="content" source="media/how-to-manage-azure-support-request/assigned-cant-change-severity.png" alt-text="Can't select a new severity level":::
 
 ## Allow collection of advanced diagnostic information
 
