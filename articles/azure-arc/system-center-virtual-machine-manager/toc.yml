@@ -68,10 +68,8 @@
       href: /cli/azure/scvmm
     - name: Azure Arc Resource Bridge
       href: /cli/azure/arcappliance
-- name: REST API
-    items:
-    - name: Azure Arc-enabled SCVMM REST API reference
-      href: /rest/api/azure-arc-scvmm/operation-groups
+  - name: Azure Arc-enabled SCVMM REST API reference
+    href: /rest/api/azure-arc-scvmm/operation-groups
   - name: ARM Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
   - name: Bicep Templates
