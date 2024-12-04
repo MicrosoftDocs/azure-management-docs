@@ -38,7 +38,7 @@ By using Azure Arc-enabled SCVMM's capabilities to discover your SCVMM managed e
 
 ## How does it work?
 
-To Arc-enable an SCVMM management server, deploy [Azure Arc resource bridge](../resource-bridge/overview.md) in the VMM environment. Azure Arc resource bridge is a virtual appliance that connects VMM management server to Azure. Azure Arc resource bridge enables you to represent the SCVMM resources (clouds, VMs, templates etc.) in Azure and do various operations on them.
+To Arc-enable an SCVMM management server, deploy [Azure Arc resource bridge](../resource-bridge/overview.md) in the VMM environment. Azure Arc Resource Bridge is a virtual appliance that connects VMM management server to Azure. Azure Arc resource bridge enables you to represent the SCVMM resources (clouds, VMs, templates etc.) in Azure and do various operations on them.
 
 ## Architecture
 
