@@ -1,7 +1,7 @@
 ---
 title: Onboard Azure Arc-enabled server to Microsoft Sentinel
 description: Learn how to add your Azure Arc-enabled servers to Microsoft Sentinel and proactively monitor their security status.
-ms.date: 07/16/2021
+ms.date: 12/04/2024
 ms.topic: conceptual
 ---
 
