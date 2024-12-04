@@ -397,8 +397,6 @@ To deploy the application, you use a manifest file to create all the objects req
       type: LoadBalancer
     ```
 
-    For a breakdown of YAML manifest files, see [Deployments and YAML manifests](../concepts-clusters-workloads.md#deployments-and-yaml-manifests).
-
     If you create and save the YAML file locally, then you can upload the manifest file to your default directory in CloudShell by selecting the **Upload/Download files** button and selecting the file from your local file system.
 
 1. Deploy the application using the [`kubectl apply`][kubectl-apply] command and specify the name of your YAML manifest.
