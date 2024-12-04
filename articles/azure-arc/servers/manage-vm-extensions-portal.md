@@ -1,7 +1,7 @@
 ---
 title: Enable VM extension from the Azure portal
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments from the Azure portal.
-ms.date: 10/15/2021
+ms.date: 12/04/2024
 ms.topic: how-to
 ---
 
@@ -21,17 +21,17 @@ VM extensions can be applied to your Azure Arc-enabled server-managed machine vi
 
 1. From your browser, go to the [Azure portal](https://portal.azure.com).
 
-2. In the portal, browse to **Machines - Azure Arc** and select your machine from the list.
+1. In the portal, browse to **Machines - Azure Arc** and select your machine from the list.
 
-3. Choose **Extensions**, then select **Add**.
+1. Choose **Settings>Extensions**, then select **Add**.
 
-4. Choose the extension you want from the list of available extensions and follow the instructions in the wizard. In this example, we will deploy the Log Analytics VM extension.
+1. Choose the extension you want from the extensions displayed, or use the **Search** field to find the applicable extension, and then select **Next**.
 
-    ![Install Log Analytics VM extension](./media/manage-vm-extensions/mma-extension-config.png)
+    Depending on the extension selected, you may need to provide specific configuration information. For example, to deploy the Azure Monitor Agent for Windows with a proxy, a proxy address and authentication information is required:
 
-    To complete the installation, you are required to provide the workspace ID and primary key. If you are not familiar with how to find this information, see [obtain workspace ID and key](/azure/azure-monitor/agents/agent-windows#workspace-id-and-key).
-
-5. After confirming the required information provided, select **Review + Create**. A summary of the deployment is displayed and you can review the status of the deployment.
+    :::image type="content" source="media/manage-vm-extensions/ama-extension-config.png" alt-text="Screenshot showing the configuration fields for the Azure Monitor Agent extension.":::
+  
+1. After providing the applicable configuration information, select **Review + Create** to view a summary of the deployment, then select **Create**.
 
 >[!NOTE]
 >While multiple extensions can be batched together and processed, they are installed serially. Once the first extension installation is complete, installation of the next extension is attempted.
@@ -44,7 +44,7 @@ You can get a list of the VM extensions on your Azure Arc-enabled server from th
 
 2. In the portal, browse to **Machines - Azure Arc** and select your machine from the list.
 
-3. Choose **Extensions**, and the list of installed extensions is returned.
+3. Choose **Settings>Extensions**, and the list of installed extensions is returned.
 
     :::image type="content" source="media/manage-vm-extensions/list-vm-extensions.png" alt-text="List VM extension deployed to selected machine." border="true":::
 
@@ -68,7 +68,7 @@ You can upgrade one, or select multiple extensions eligible for an upgrade from 
 
 2. In the portal, browse to **Machines - Azure Arc** and select your hybrid machine from the list.
 
-3. Choose **Extensions**, and review the status of extensions under the **Update available** column.
+3. Choose **Settings>Extensions**, and review the status of extensions under the **Update available** column.
 
 You can upgrade one extension by one of three ways:
 
@@ -90,7 +90,7 @@ You can remove one or more extensions from an Azure Arc-enabled server from the 
 
 2. In the portal, browse to **Machines - Azure Arc** and select your hybrid machine from the list.
 
-3. Choose **Extensions**, and then select an extension from the list of installed extensions.
+3. Choose **Settings>Extensions**, and then select an extension from the list of installed extensions.
 
 4. Select **Uninstall** and when prompted to verify, select **Yes** to proceed.
 

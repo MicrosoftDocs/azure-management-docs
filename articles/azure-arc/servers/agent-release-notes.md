@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 10/15/2024
+ms.date: 12/04/2024
 ms.custom: references_regions
 ---
 
@@ -17,7 +17,7 @@ The Azure Connected Machine agent receives improvements on an ongoing basis. To 
 This page is updated monthly, so revisit it regularly. If you're looking for items older than six months, you can find them in [archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md).
 
 > [!WARNING]
-> Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window.
+> Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
 
 ## Version 1.47 - October 2024

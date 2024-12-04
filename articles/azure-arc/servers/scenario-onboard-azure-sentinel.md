@@ -1,27 +1,27 @@
 ---
 title: Onboard Azure Arc-enabled server to Microsoft Sentinel
 description: Learn how to add your Azure Arc-enabled servers to Microsoft Sentinel and proactively monitor their security status.
-ms.date: 07/16/2021
+ms.date: 12/04/2024
 ms.topic: conceptual
 ---
 
 # Onboard Azure Arc-enabled servers to Microsoft Sentinel
 
-This article is intended to help you onboard your Azure Arc-enabled server to [Microsoft Sentinel](/azure/sentinel/overview) and start collecting security-related events. Microsoft Sentinel provides a single solution for alert detection, threat visibility, proactive hunting, and threat response across the enterprise.
+This article helps you onboard your Azure Arc-enabled machines to [Microsoft Sentinel](/azure/sentinel/overview) to start collecting security-related events. Microsoft Sentinel provides a single solution for alert detection, threat visibility, proactive hunting, and threat response across the enterprise.
 
 ## Prerequisites
 
-Before you start, make sure that you've met the following requirements:
+Before you start, make sure you meet the following requirements:
 
-- A [Log Analytics workspace](/azure/azure-monitor/logs/data-platform-logs). For more information about Log Analytics workspaces, see [Designing your Azure Monitor Logs deployment](/azure/azure-monitor/logs/workspace-design).
+- A [Log Analytics workspace](/azure/azure-monitor/logs/data-platform-logs). For more information about Log Analytics workspaces, see [Designing your Azure Monitor Logs deployment](/azure/azure-monitor/logs/workspace-design)
 
-- Microsoft Sentinel [enabled in your subscription](/azure/sentinel/quickstart-onboard).
+- Microsoft Sentinel [enabled in your subscription](/azure/sentinel/quickstart-onboard)
 
-- Your machine or server is connected to Azure Arc-enabled servers.
+- Your machine is connected to Azure Arc-enabled servers
 
 ## Onboard Azure Arc-enabled servers to Microsoft Sentinel
 
-Microsoft Sentinel comes with a number of connectors for Microsoft solutions, available out of the box and providing real-time integration. For physical and virtual machines, you can install the Log Analytics agent that collects the logs and forwards them to Microsoft Sentinel. Azure Arc-enabled servers supports deploying the Log Analytics agent using the following methods:
+Microsoft Sentinel comes with many connectors for Microsoft solutions, available out of the box and providing real-time integration. For physical and virtual machines, you can install the Log Analytics agent that collects the logs and forwards them to Microsoft Sentinel. Azure Arc-enabled servers supports deploying the Log Analytics agent using the following methods:
 
 - Using the VM extensions framework.
 
@@ -34,7 +34,7 @@ Microsoft Sentinel comes with a number of connectors for Microsoft solutions, av
 
 - Using Azure Policy.
 
-    Using this approach, you use the Azure Policy [Deploy Log Analytics agent to Linux or Windows Azure Arc machines](/azure/governance/policy/samples/built-in-policies#monitoring) built-in policy to audit if the Azure Arc-enabled server has the Log Analytics agent installed. If the agent is not installed, it automatically deploys it using a remediation task. Alternatively, if you plan to monitor the machines with Azure Monitor for VMs, instead use the [Enable Azure Monitor for VMs](/azure/governance/policy/samples/built-in-initiatives#monitoring) initiative to install and configure the Log Analytics agent.
+    Using this approach, you use the Azure Policy [Deploy Log Analytics agent to Linux or Azure Arc machines](/azure/governance/policy/samples/built-in-policies#monitoring) built-in policy to audit if the Azure Arc-enabled server has the Log Analytics agent installed. If the agent isn't installed, it automatically deploys it using a remediation task. Alternatively, if you plan to monitor the machines with Azure Monitor for VMs, instead use the [Enable Azure Monitor for VMs](/azure/governance/policy/samples/built-in-initiatives#monitoring) initiative to install and configure the Log Analytics agent.
 
 We recommend installing the Log Analytics agent for Windows or Linux using Azure Policy.
 
