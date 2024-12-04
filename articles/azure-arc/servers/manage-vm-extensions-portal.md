@@ -23,9 +23,9 @@ VM extensions can be applied to your Azure Arc-enabled server-managed machine vi
 
 2. In the portal, browse to **Machines - Azure Arc** and select your machine from the list.
 
-3. Choose **Extensions**, then select **Add**.
+3. Choose **Settings>Extensions**, then select **Add**.
 
-4. Choose the extension you want from the list of available extensions and follow the instructions in the wizard. In this example, we will deploy the Log Analytics VM extension.
+4. Choose the extension you want from the available extensions displayed, or use the **Search** field to find the applicable extension. In this example, we will deploy the Log Analytics VM extension.
 
     ![Install Log Analytics VM extension](./media/manage-vm-extensions/mma-extension-config.png)
 

@@ -50,13 +50,13 @@ Perform the following steps to configure the Windows server with Azure Arc-enabl
 
 1. Select **Set up** to proceed with configuring the Windows server with Azure Arc-enabled servers.
 
-The Windows server will connect to Azure, download the Connected Machine agent, install it and register with Azure Arc-enabled servers. To track the progress, select **Notifications** in the menu.
+The Windows server connects to Azure, downloads the Connected Machine agent, installs it, and registers with Azure Arc-enabled servers. To track the progress, select **Notifications** in the menu.
 
 To confirm installation of the Connected Machine Agent, in Windows Admin Center select [**Events**](/windows-server/manage/windows-admin-center/use/manage-servers#events) from the left-hand pane to review *MsiInstaller* events in the Application Event Log.
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. View your machine in the [Azure portal](https://portal.azure.com).
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server connected successfully. View your machine in the [Azure portal](https://portal.azure.com).
 
 :::image type="content" source="./learn/media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="A successful machine connection" border="false":::
 
