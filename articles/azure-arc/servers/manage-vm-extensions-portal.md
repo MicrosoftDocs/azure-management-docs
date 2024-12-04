@@ -27,7 +27,7 @@ VM extensions can be applied to your Azure Arc-enabled server-managed machine vi
 
 1. Choose the extension you want from the extensions displayed, or use the **Search** field to find the applicable extension, and then select **Next**.
 
-    Depending on the extension you selected, you may need to provide specific configuration information. For example, to deploy the Azure Monitor Agent for Windows with a proxy, a proxy address and authentication information is required:
+    Depending on the extension selected, you may need to provide specific configuration information. For example, to deploy the Azure Monitor Agent for Windows with a proxy, a proxy address and authentication information is required:
 
     :::image type="content" source="media/manage-vm-extensions/ama-extension-config.png" alt-text="Screenshot showing the configuration fields for the Azure Monitor Agent extension.":::
   
@@ -44,7 +44,7 @@ You can get a list of the VM extensions on your Azure Arc-enabled server from th
 
 2. In the portal, browse to **Machines - Azure Arc** and select your machine from the list.
 
-3. Choose **Extensions**, and the list of installed extensions is returned.
+3. Choose **Settings>Extensions**, and the list of installed extensions is returned.
 
     :::image type="content" source="media/manage-vm-extensions/list-vm-extensions.png" alt-text="List VM extension deployed to selected machine." border="true":::
 
@@ -68,7 +68,7 @@ You can upgrade one, or select multiple extensions eligible for an upgrade from 
 
 2. In the portal, browse to **Machines - Azure Arc** and select your hybrid machine from the list.
 
-3. Choose **Extensions**, and review the status of extensions under the **Update available** column.
+3. Choose **Settings>Extensions**, and review the status of extensions under the **Update available** column.
 
 You can upgrade one extension by one of three ways:
 
@@ -90,7 +90,7 @@ You can remove one or more extensions from an Azure Arc-enabled server from the 
 
 2. In the portal, browse to **Machines - Azure Arc** and select your hybrid machine from the list.
 
-3. Choose **Extensions**, and then select an extension from the list of installed extensions.
+3. Choose **Settings>Extensions**, and then select an extension from the list of installed extensions.
 
 4. Select **Uninstall** and when prompted to verify, select **Yes** to proceed.
 
