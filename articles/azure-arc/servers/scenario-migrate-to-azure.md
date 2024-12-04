@@ -1,19 +1,19 @@
 ---
 title: Migrate Azure Arc-enabled server to Azure
 description: Learn how to migrate your Azure Arc-enabled servers running on-premises or other cloud environment to Azure.
-ms.date: 07/16/2021
+ms.date: 12/04/2024
 ms.topic: conceptual
 ---
 
 # Migrate your on-premises or other cloud Azure Arc-enabled server to Azure
 
-This article is intended to help you plan and successfully migrate your on-premises server or virtual machine managed by Azure Arc-enabled servers to Azure. By following these steps, you are able to transition management from Azure Arc-enabled servers based on the supported VM extensions installed and Azure services based on its Arc server resource identity.
+This article is intended to help you plan and successfully migrate your on-premises server or virtual machine managed by Azure Arc-enabled servers to Azure. By following these steps, you transition management from Azure Arc-enabled servers based on the supported VM extensions installed and Azure services based on its Arc server resource identity.
 
 Before performing these steps, review the Azure Migrate [Prepare on-premises machines for migration to Azure](/azure/migrate/prepare-for-migration) article to understand requirements how to prepare for using Azure Migrate.
 
 In this article, you:
 
-* Inventory Azure Arc-enabled servers supported VM extensions installed.
+* Inventory the Azure Arc-enabled servers supported VM extensions installed.
 * Uninstall all VM extensions from the Azure Arc-enabled server.
 * Identify Azure services configured to authenticate with your Azure Arc-enabled server-managed identity and prepare to update those services to use the Azure VM identity after migration.
 * Review Azure role-based access control (Azure RBAC) access rights granted to the Azure Arc-enabled server resource to maintain who has access to the resource after it has been migrated to an Azure VM.
@@ -29,7 +29,7 @@ With Azure PowerShell, use the [Get-AzConnectedMachineExtension](/powershell/mod
 
 With the Azure CLI, use the [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) command with the `--machine-name` and `--resource-group` parameters. By default, the output of Azure CLI commands is in JSON (JavaScript Object Notation). To change the default output to a list or table, for example, use [az configure --output](/cli/azure/reference-index). You can also add `--output` to any command for a one time change in output format.
 
-After identifying which VM extensions are deployed, you can remove them using the [Azure portal](manage-vm-extensions-portal.md), using the [Azure PowerShell](manage-vm-extensions-powershell.md), or using the [Azure CLI](manage-vm-extensions-cli.md). If the Log Analytics VM extension or Dependency agent VM extension was deployed using Azure Policy and the [VM insights initiative](/azure/azure-monitor/vm/vminsights-enable-policy), it is necessary to [create an exclusion](/azure/governance/policy/tutorials/create-and-manage#remove-a-non-compliant-or-denied-resource-from-the-scope-with-an-exclusion) to prevent re-evaluation and deployment of the extensions on the Azure Arc-enabled server before the migration is complete.
+After identifying which VM extensions are deployed, you can remove them using the [Azure portal](manage-vm-extensions-portal.md), using the [Azure PowerShell](manage-vm-extensions-powershell.md), or using the [Azure CLI](manage-vm-extensions-cli.md). If the Log Analytics VM extension or Dependency agent VM extension was deployed using Azure Policy and the [VM insights initiative](/azure/azure-monitor/vm/vminsights-enable-policy), it's necessary to [create an exclusion](/azure/governance/policy/tutorials/create-and-manage#remove-a-non-compliant-or-denied-resource-from-the-scope-with-an-exclusion) to prevent re-evaluation and deployment of the extensions on the Azure Arc-enabled server before the migration is complete.
 
 ## Step 2: Review access rights
 
@@ -47,7 +47,7 @@ Follow the guidance to [uninstall the agent](manage-agent.md#uninstall-the-agent
 
 ## Step 4: Install the Azure Guest Agent
 
-The VM that is migrated to Azure from on-premises doesn't have the Linux or Windows Azure Guest Agent installed. In these scenarios, you have to manually install the VM agent. For more information about how to install the VM Agent, see [Azure Virtual Machine Windows Agent Overview](/azure/virtual-machines/extensions/agent-windows) or [Azure Virtual Machine Linux Agent Overview](/azure/virtual-machines/extensions/agent-linux).
+The VM migrated to Azure from on-premises doesn't have the Linux or Windows Azure Guest Agent installed. In these scenarios, you have to manually install the VM agent. For more information about how to install the VM Agent, see [Azure Virtual Machine Windows Agent Overview](/azure/virtual-machines/extensions/agent-windows) or [Azure Virtual Machine Linux Agent Overview](/azure/virtual-machines/extensions/agent-linux).
 
 ## Step 5: Migrate server or machine to Azure
 
