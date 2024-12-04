@@ -68,12 +68,12 @@
       href: /cli/azure/scvmm
     - name: Azure Arc Resource Bridge
       href: /cli/azure/arcappliance
-  - name: Azure Arc-enabled SCVMM REST API reference
+  - name: Azure REST API
     href: /rest/api/azure-arc-scvmm/operation-groups
-  - name: ARM Templates
-    href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
   - name: Bicep Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
+  - name: ARM Templates
+    href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
   - name: Terraform Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
   - name: Python SDK
