@@ -24,7 +24,7 @@ To migrate an Azure Arc-enabled server from one Azure region to another, you hav
 2. Use the **azcmagent** tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can do this manually while logged on interactively, with a Microsoft identity platform [access token](/azure/active-directory/develop/access-tokens), or with the service principal you used for onboarding (or a [new service principal that you create](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale)).
 
     > [!NOTE]
-    >     Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
+    > Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
     > 
 
 3. Run the `azcmagent` tool with the [Connect](azcmagent-connect.md) parameter to re-register the Connected Machine agent with Azure Arc-enabled servers in the other region.
