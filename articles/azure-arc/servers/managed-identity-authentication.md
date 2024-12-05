@@ -7,7 +7,7 @@ ms.date: 12/05/2024
 
 # Authenticate against Azure resources with Azure Arc-enabled servers
 
-Applications or processes running directly on an Azure Arc-enabled servers can use managed identities to access other Azure resources that support Microsoft Entra ID-based authentication. An application can obtain an [access token](/azure/active-directory/develop/developer-glossary#access-token) representing its identity, which is system-assigned for Azure Arc-enabled servers, and use it as a 'bearer' token to authenticate itself to another service.
+Applications or processes running directly on an Azure Arc-enabled server can use managed identities to access other Azure resources that support Microsoft Entra ID-based authentication. An application can obtain an [access token](/azure/active-directory/develop/developer-glossary#access-token) representing its identity, which is system-assigned for Azure Arc-enabled servers, and use it as a 'bearer' token to authenticate itself to another service.
 
 Refer to the [managed identity overview](/azure/active-directory/managed-identities-azure-resources/overview) documentation for a detailed description of managed identities, and understand the distinction between system-assigned and user-assigned identities.
 
@@ -49,7 +49,7 @@ The system environment variable **IDENTITY_ENDPOINT** is used to discover the id
 
 The method to obtain and use a system-assigned managed identity to authenticate with Azure resources is similar to how it's performed with an Azure VM.
 
-For an Azure Arc-enabled Windows server, using PowerShell, you invoke the web request to get the token from the local host in the specific port. Specify the request using the IP address or the environmental variable **IDENTITY_ENDPOINT**.
+For an Azure Arc-enabled Windows server, using PowerShell, invoke the web request to get the token from the local host in the specific port. Specify the request using the IP address or the environmental variable **IDENTITY_ENDPOINT**.
 
 ```powershell
 $apiVersion = "2020-06-01"
