@@ -1,7 +1,7 @@
 ---
 title:  How to migrate Azure Arc-enabled servers across regions
 description: Learn how to migrate an Azure Arc-enabled server from one region to another.
-ms.date: 3/29/2022
+ms.date: 12/05/2024
 ms.topic: how-to
 ---
 
@@ -21,15 +21,17 @@ To migrate an Azure Arc-enabled server from one Azure region to another, you hav
 
 1. Remove any VM extensions that are installed on the machine. You can do this by using the [Azure portal](manage-vm-extensions-portal.md#remove-extensions), [Azure CLI](manage-vm-extensions-cli.md#remove-extensions), or [Azure PowerShell](manage-vm-extensions-powershell.md#remove-extensions).
 
-2. Use the **azcmagent** tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can run this manually while logged on interactively, with a Microsoft identity platform [access token](/azure/active-directory/develop/access-tokens), or with the service principal you used for onboarding (or with a [new service principal that you create](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale)).
+2. Use the **azcmagent** tool with the [Disconnect](azcmagent-disconnect.md) parameter to disconnect the machine from Azure Arc and delete the machine resource from Azure. You can do this manually while logged on interactively, with a Microsoft identity platform [access token](/azure/active-directory/develop/access-tokens), or with the service principal you used for onboarding (or a [new service principal that you create](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale)).
 
-    Disconnecting the machine from Azure Arc-enabled servers does not remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
+    > [!NOTE]
+    > Disconnecting the machine from Azure Arc-enabled servers doesn't remove the Connected Machine agent, and you don't need to remove the agent as part of this process.
+    > 
 
 3. Run the `azcmagent` tool with the [Connect](azcmagent-connect.md) parameter to re-register the Connected Machine agent with Azure Arc-enabled servers in the other region.
 
 4. Redeploy the VM extensions that were originally deployed to the machine from Azure Arc-enabled servers.
 
-    If you deployed the Azure Monitor for VMs (insights) agent or the Log Analytics agent using an Azure Policy definition, the agents are redeployed after the next [evaluation cycle](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
+    If you deployed the Azure Monitor agent using an Azure Policy definition, the agent is redeployed after the next [evaluation cycle](/azure/governance/policy/how-to/get-compliance-data#evaluation-triggers).
 
 ## Next steps
 

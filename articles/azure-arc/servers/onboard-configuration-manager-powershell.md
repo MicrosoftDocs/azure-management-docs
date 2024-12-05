@@ -1,7 +1,7 @@
 ---
 title: Connect machines at scale by running PowerShell scripts with Configuration Manager
 description: You can use Configuration Manager to run a PowerShell script that automates at-scale onboarding to Azure Arc-enabled servers.
-ms.date: 01/20/2022
+ms.date: 12/05/2024
 ms.topic: how-to
 ---
 
@@ -28,11 +28,11 @@ The following prerequisites must be met to use PowerShell scripts in Configurati
 
 ## Generate a service principal and prepare the installation script
 
-Before you can run the script to connect your machines, you'll need to do the following:
+Before you can run the script to connect your machines, you must:
 
 1. Follow the steps to [create a service principal for onboarding at scale](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale). Assign the **Azure Connected Machine Onboarding** role to your service principal, and limit the scope of the role to the target Azure landing zone. Make a note of the Service Principal Secret, as you'll need this value later.
 
-2. Follow the steps to [generate the installation script from the Azure portal](onboard-service-principal.md#generate-the-installation-script-from-the-azure-portal). While you will use this installation script later, do not run the script in PowerShell.
+2. Follow the steps to [generate the installation script from the Azure portal](onboard-service-principal.md#generate-the-installation-script-from-the-azure-portal). While you'll use this installation script later, don't run the script in PowerShell.
 
 ## Create the script in Configuration Manager
 
@@ -69,11 +69,11 @@ Select a collection of targets for your script by doing the following:
 1. In the **Device Collections** list, select the collection of devices on which you want to run the script.
 1. Select a collection of your choice, and then select **Run Script**.
 1. On the **Script** page of the **Run Script** wizard, choose the script you authored and approved.
-1. Click **Next**, and then complete the wizard.
+1. Select **Next**, and then complete the wizard.
 
 ## Verify successful connection to Azure Arc
 
-The script status monitoring will indicate whether the script has successfully installed the Connected Machine Agent to the collection of devices. Successfully onboarded Azure Arc-enabled servers will also be visible in the [Azure portal](https://aka.ms/hybridmachineportal).
+The script status monitoring indicates whether the script has successfully installed the Connected Machine Agent to the collection of devices. Successfully onboarded Azure Arc-enabled servers will also be visible in the [Azure portal](https://aka.ms/hybridmachineportal).
 
 :::image type="content" source="media/onboard-configuration-manager-powershell/verify-onboarding-configuration-manager-powershell.png" alt-text="Screenshot of the Azure portal showing successful onboarding of Azure Arc-enabled servers.":::
 
