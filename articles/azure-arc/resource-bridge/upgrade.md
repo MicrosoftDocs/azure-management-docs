@@ -23,9 +23,11 @@ For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, the manual up
 
 Before an Arc resource bridge can be upgraded, the following prerequisites must be met:
 
-- The appliance VM must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
+- Arc resource bridge must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
 
 - The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled VM from Azure.
+
+- Arc resource bridge must be in the same location path where it was originally deployed.
 
 - The appliance VM needs 35 GB of free space.
 

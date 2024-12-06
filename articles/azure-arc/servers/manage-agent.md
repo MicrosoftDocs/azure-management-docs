@@ -103,7 +103,7 @@ The latest version of the Azure Connected Machine agent for Windows-based machin
 
 * Microsoft Update
 
-* [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/Home.aspx)
+* [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/Search.aspx?q=AzureConnectedMachineAgent)
 
 * [Microsoft Download Center](https://aka.ms/AzureConnectedMachineAgent)
 
