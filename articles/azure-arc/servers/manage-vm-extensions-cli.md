@@ -1,25 +1,25 @@
 ---
 title: Enable VM extension using Azure CLI
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments using the Azure CLI.
-ms.date: 03/30/2022
+ms.date: 12/06/2024
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ---
 
 # Enable Azure VM extensions using the Azure CLI
 
-This article shows you how to deploy, upgrade, update, and uninstall VM extensions, supported by Azure Arc-enabled servers, to a Linux or Windows hybrid machine using the Azure CLI.
+This article explains how to deploy, upgrade, update, and uninstall VM extensions supported by Azure Arc-enabled servers to a Linux or Windows hybrid machine using the Azure CLI.
 
 > [!NOTE]
-> Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 [!INCLUDE [Azure CLI Prepare your environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
 ## Install the Azure CLI extension
 
-The ConnectedMachine commands aren't shipped as part of the Azure CLI. Before using the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the ConnectedMachine extension. These management operations can be performed from your workstation, you don't need to run them on the Azure Arc-enabled server.
+The ConnectedMachine commands aren't shipped as part of the Azure CLI. Before using the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the ConnectedMachine extension. These management operations can be performed from your workstation; you don't need to run them on the Azure Arc-enabled server.
 
-Run the following command to get it:
+Run the following command to install the Azure CLI ConnectedMachine extension:
 
 ```azurecli
 az extension add --name connectedmachine
@@ -28,12 +28,6 @@ az extension add --name connectedmachine
 ## Enable extension
 
 To enable a VM extension on your Azure Arc-enabled server, use [az connectedmachine extension create](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
-
-The following example enables the Log Analytics VM extension on an Azure Arc-enabled server:
-
-```azurecli
-az connectedmachine extension create --machine-name "myMachineName" --name "OmsAgentForLinux or MicrosoftMonitoringAgent" --location "regionName" --settings '{\"workspaceId\":\"myWorkspaceId\"}' --protected-settings '{\"workspaceKey\":\"myWorkspaceKey\"}' --resource-group "myResourceGroup" --type-handler-version "1.13" --type "OmsAgentForLinux or MicrosoftMonitoringAgent" --publisher "Microsoft.EnterpriseCloud.Monitoring" 
-```
 
 The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
@@ -61,7 +55,7 @@ az connectedmachine extension create --resource-group "resourceGroupName" --mach
 
 ## List extensions installed
 
-To get a list of the VM extensions on your Azure Arc-enabled server, use [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
+To get a list of VM extensions on your Azure Arc-enabled server, use [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
 
 Example:
 
@@ -86,7 +80,7 @@ The following example shows the partial JSON output from the `az connectedmachin
 
 ## Update extension configuration
 
-Some VM extensions require configuration settings in order to install them on the Arc-enabled server, like the Custom Script Extension and the Log Analytics agent VM extension. To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
+Some VM extensions require configuration settings in order to install them on an Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
 
 The following example shows how to configure the Custom Script Extension:
 
@@ -100,23 +94,11 @@ When a new version of a supported VM extension is released, you can upgrade it t
 
 For the `--extension-targets` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
 
-To upgrade the Log Analytics agent extension for Windows that has a newer version available, run the following command:
-
-```azurecli
-az connectedmachine upgrade-extension --machine-name "myMachineName" --resource-group "myResourceGroup" --extension-targets '{"Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent":{"targetVersion":"1.0.18053.0"}}'
-```
-
 You can review the version of installed VM extensions at any time by running the command [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list). The `typeHandlerVersion` property value represents the version of the extension.
 
 ## Remove extensions
 
 To remove an installed VM extension on your Azure Arc-enabled server, use [az connectedmachine extension delete](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
-
-For example, to remove the Log Analytics VM extension for Linux, run the following command:
-
-```azurecli
-az connectedmachine extension delete --machine-name "myMachineName" --name "OmsAgentForLinux" --resource-group "myResourceGroup"
-```
 
 ## Next steps
 
