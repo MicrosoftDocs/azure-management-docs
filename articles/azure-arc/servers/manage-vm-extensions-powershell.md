@@ -1,14 +1,14 @@
 ---
 title: Enable VM extension using Azure PowerShell
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments using Azure PowerShell.
-ms.date: 03/30/2022
+ms.date: 12/06/2024
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell
 ---
 
 # Enable Azure VM extensions using Azure PowerShell
 
-This article shows you how to deploy, update, and uninstall Azure VM extensions, supported by Azure Arc-enabled servers, to a Linux or Windows hybrid machine using Azure PowerShell.
+This article explains how to deploy, update, and uninstall Azure VM extensions, supported by Azure Arc-enabled servers, to a Linux or Windows hybrid machine using Azure PowerShell.
 
 > [!NOTE]
 > Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
@@ -17,7 +17,7 @@ This article shows you how to deploy, update, and uninstall Azure VM extensions,
 
 - A computer with Azure PowerShell. For instructions, see [Install and configure Azure PowerShell](/powershell/azure/).
 
-Before using Azure PowerShell to manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to install the `Az.ConnectedMachine` module. These management operations can be performed from your workstation, you don't need to run them on the Azure Arc-enabled server.
+Before using Azure PowerShell to manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to install the `Az.ConnectedMachine` module. These management operations can be performed from your workstation; you don't need to run them on the Azure Arc-enabled server.
 
 Run the following command on your Azure Arc-enabled server:
 
@@ -30,16 +30,6 @@ When the installation completes, the following message is returned:
 ## Enable extension
 
 To enable a VM extension on your Azure Arc-enabled server, use [New-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/new-azconnectedmachineextension) with the `-Name`, `-ResourceGroupName`, `-MachineName`, `-Location`, `-Publisher`, -`ExtensionType`, and `-Settings` parameters.
-
-The following example enables the Log Analytics VM extension on a Azure Arc-enabled Linux server:
-
-```powershell
-$Setting = @{ "workspaceId" = "workspaceId" }
-$protectedSetting = @{ "workspaceKey" = "workspaceKey" }
-New-AzConnectedMachineExtension -Name OMSLinuxAgent -ResourceGroupName "myResourceGroup" -MachineName "myMachineName" -Location "regionName" -Publisher "Microsoft.EnterpriseCloud.Monitoring" -Settings $Setting -ProtectedSetting $protectedSetting -ExtensionType "OmsAgentForLinux"
-```
-
-To enable the Log Analytics VM extension on an Azure Arc-enabled Windows server, change the value for the `-ExtensionType` parameter to `"MicrosoftMonitoringAgent"` in the previous example.
 
 The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
@@ -135,23 +125,11 @@ When a new version of a supported VM extension is released, you can upgrade it t
 
 For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [Get-AzVMExtensionImage](/powershell/module/az.compute/get-azvmextensionimage). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
 
-To upgrade the Log Analytics agent extension for Windows that has a newer version available, run the following command:
-
-```powershell
-Update-AzConnectedExtension -MachineName "myMachineName" -ResourceGroupName "myResourceGroup" -ExtensionTarget '{\"Microsoft.EnterpriseCloud.Monitoring.MicrosoftMonitoringAgent\":{\"targetVersion\":\"1.0.18053.0\"}}'
-```
-
 You can review the version of installed VM extensions at any time by running the command [Get-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/get-azconnectedmachineextension). The `TypeHandlerVersion` property value represents the version of the extension.
 
 ## Remove extensions
 
 To remove an installed VM extension on your Azure Arc-enabled server, use [Remove-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName` and `-ResourceGroupName` parameters.
-
-For example, to remove the Log Analytics VM extension for Linux, run the following command:
-
-```powershell
-Remove-AzConnectedMachineExtension -MachineName myMachineName -ResourceGroupName myResourceGroup -Name OmsAgentforLinux
-```
 
 ## Next steps
 
