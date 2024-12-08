@@ -48,9 +48,13 @@ login.live.com
 #### Azure portal framework
 
 ```
-*.portal.azure.com
+portal.azure.com
+hosting.portal.azure.net
+hosting-ms.portal.azure.net
+hosting.partners.azure.net
+reactblade.portal.azure.net
+ms.hosting.portal.azure.net
 *.hosting.portal.azure.net
-*.reactblade.portal.azure.net
 management.azure.com
 *.ext.azure.com
 *.graph.windows.net
