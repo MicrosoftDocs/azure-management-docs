@@ -40,6 +40,16 @@ The following table outlines the first and last AKS release supported by each ve
 | Azure Linux 2.0   | 1.24  | 1.26  | 1.31 |
 | Azure Linux 3.0   | 1.31  | 1.32 (tentative)  | TBD (roughly three years after 1.32 release) |
 
+### AKS LTS Releases
+
+- Azure Linux 2.0 is the node OS throughout AKS version v1.27 Standard Support and Long-term support. 
+- Azure Linux 2.0 has a lifecycle which ends when AKS version v1.30 ends Standard Support. Therefore, the node OS for AKS version v1.30 will transition from Azure Linux 2.0 to Azure Linux 3.0 during the LTS period. 
+
+| AKS version |  Azure Linux during AKS Standard Support | Azure Linux version during AKS Long-Term Support  |
+|---|---|---|
+|1.27 | Azure Linux 2.0   | Azure Linux 2.0 |
+| 1.30 | Azure Linux 2.0   | Azure Linux 3.0 |
+
 ## Next steps
 
 - Learn more about [Azure Linux Container Host support](./support-help.md).
