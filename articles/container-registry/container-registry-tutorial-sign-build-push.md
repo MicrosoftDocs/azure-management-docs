@@ -274,6 +274,9 @@ The following steps show how to create a self-signed certificate for testing pur
     | Workload identity credential | `workloadid`               |
     | Managed identity credential  | `managedid`                |
     | Azure CLI credential         | `azurecli`                 |
+
+ > [!NOTE]
+ > Notation uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR functionalities except the CMK-encrypted registry.
     
 5. View the graph of signed images and associated signatures.
 
