@@ -315,6 +315,9 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
         └── sha256:d7258166ca820f5ab7190247663464f2dcb149df4d1b6c4943dcaac59157de8e
     ```
 
+> [!NOTE]
+ > Notation uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
+
 ## Verify a container image with Notation CLI 
 
 1. Add the root certificate to a named trust store for signature verification. If you do not have the root certificate, you can obtain it from your CA. The following example adds the root certificate `$ROOT_CERT` to the `$STORE_NAME` trust store. 
