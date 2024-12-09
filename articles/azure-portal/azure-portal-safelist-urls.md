@@ -55,6 +55,7 @@ management.azure.com
 *.ext.azure.com
 *.graph.windows.net
 *.graph.microsoft.com
+hosting.partners.azure.net
 ```
 
 #### Account data
