@@ -4,7 +4,7 @@ description: Learn how to quickly create an Azure Linux Container Host for AKS c
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: references_regions, devx-track-azurecli, linux-related-content
+ms.custom: references_regions, devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: quickstart
 ms.date: 04/18/2023
 ---
@@ -26,17 +26,6 @@ Get started with the Azure Linux Container Host by using the Azure CLI to deploy
   - When you're prompted, install the Azure CLI extension on first use. For more information about extensions, see [Use extensions with the Azure CLI](/cli/azure/azure-cli-extensions-overview).
   - Run [`az version`](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index?#az-upgrade).
 
-## Define environment variables
-
-Define the following environment variables for use throughout this quickstart:
-
-```azurecli-interactive
-export RANDOM_ID="$(openssl rand -hex 3)"
-export MY_RESOURCE_GROUP_NAME="myAzureLinuxResourceGroup$RANDOM_ID"
-export REGION="westeurope"
-export MY_AZ_CLUSTER_NAME="myAzureLinuxCluster$RANDOM_ID"
-```
-
 ## Create a resource group
 
 An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it is required to specify a location. This location is:
@@ -47,6 +36,10 @@ An Azure resource group is a logical group in which Azure resources are deployed
 Create a resource group using the `az group create` command.
 
 ```azurecli-interactive
+export RANDOM_ID="$(openssl rand -hex 3)"
+export MY_RESOURCE_GROUP_NAME="myAzureLinuxResourceGroup$RANDOM_ID"
+export REGION="westeurope"
+
 az group create --name $MY_RESOURCE_GROUP_NAME --location $REGION
 ```
 
@@ -71,6 +64,8 @@ Results:
 Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux image.
 
 ```azurecli-interactive
+export MY_AZ_CLUSTER_NAME="myAzureLinuxCluster$RANDOM_ID"
+
 az aks create --name $MY_AZ_CLUSTER_NAME --resource-group $MY_RESOURCE_GROUP_NAME --os-sku AzureLinux
 ```
 
