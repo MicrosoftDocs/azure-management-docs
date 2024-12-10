@@ -109,7 +109,7 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
 
 ### [AKS on Azure Local](#tab/aks-local)
 
-Use the [How-to guide](/azure/aks/hybrid/workload-identity) to actitvate workload identity federation on AKS on Azure Local by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
+Use the [How-to guide](/azure/aks/hybrid/workload-identity) to activate workload identity federation on AKS on Azure Local by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
 
 Return to these steps after the initial activation. There is no need to complete the remainder of that guide.
 
