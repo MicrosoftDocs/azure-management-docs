@@ -49,7 +49,7 @@ You can ask Microsoft Copilot in Azure (preview) to write queries with prompts l
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-explorer-list-vms.png" alt-text="Screenshot of Microsoft Copilot in Azure responding to a request to list VMs.":::
 
-If the generated query isn't exactly what you want, you can ask Microsoft Copilot in Azure (preview) to make changes. In this example, the first prompt is "**Write a KQL query to list my VMs by OS.**" After the query is shown, the additional prompt "Sorted alphabetically" results in a revised query that lists the OS alphabetically by name.
+If the generated query isn't exactly what you want, you can ask Microsoft Copilot in Azure (preview) to make changes. In this example, the first prompt is "**Write a KQL query to list my VMs by OS.**" After the query is shown, the additional prompt "**Sorted alphabetically**" results in a revised query that lists the OS alphabetically by name.
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-query-refine.png" alt-text="Screenshot of Microsoft Copilot in Azure (preview) generating and then revising a query to list VMs by OS.":::
 
