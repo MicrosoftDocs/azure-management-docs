@@ -48,7 +48,7 @@ azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorL
 Here is an example blocklist that blocks all extensions with the capability of running arbitrary scripts:
 
 ```
-azcmagent config set extensions.blocklist “Microsoft.Cplat.Core/RunCommandHandlerWindows, Microsoft.Cplat.Core/RunCommandHandlerLinux,Microsoft.Compute/CustomScriptExtension,Microsoft.Azure.Extensions/CustomScript,Microsoft.Azure.Automation.HybridWorker/HybridWorkerForWindows,Microsoft.Azure.Automation.HybridWorkerForLinux,Microsoft.EnterpriseCloud.Monitoring/MicrosoftMonitoringAgent, Microsoft.EnterpriseCloud.Monitoring/OMSAgentForLinux”
+azcmagent config set extensions.blocklist "Microsoft.Cplat.Core/RunCommandHandlerWindows, Microsoft.Cplat.Core/RunCommandHandlerLinux,Microsoft.Compute/CustomScriptExtension,Microsoft.Azure.Extensions/CustomScript,Microsoft.Azure.Automation.HybridWorker/HybridWorkerForWindows,Microsoft.Azure.Automation/HybridWorkerForLinux,Microsoft.EnterpriseCloud.Monitoring/MicrosoftMonitoringAgent, Microsoft.EnterpriseCloud.Monitoring/OMSAgentForLinux"
 ```
 
 Specify extensions with their publisher and type, separated by a forward slash `/`. See the list of the [most common extensions](manage-vm-extensions.md) in the docs or list the VM extensions already installed on your server in the [portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed), or [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed).
