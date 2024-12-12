@@ -4,83 +4,89 @@ description: Learn how to quickly create an Azure Linux Container Host for AKS c
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: references_regions, devx-track-azurecli, linux-related-content
+ms.custom: references_regions, devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: quickstart
 ms.date: 04/18/2023
 ---
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using the Azure CLI
 
-Get started with the Azure Linux Container Host by using the Azure CLI to deploy an Azure Linux Container Host for AKS cluster. After installing the prerequisites, you will create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster. 
+Get started with the Azure Linux Container Host by using the Azure CLI to deploy an Azure Linux Container Host for AKS cluster. After installing the prerequisites, you will create a resource group, create an AKS cluster, connect to the cluster, and run a sample multi-container application in the cluster.
 
-## Prerequisites 
+## Prerequisites
 
 - [!INCLUDE [quickstarts-free-trial-note](~/reusable-content/ce-skilling/azure/includes/quickstarts-free-trial-note.md)]
-
 - Use the Bash environment in [Azure Cloud Shell](/azure/cloud-shell/overview). For more information, see [Azure Cloud Shell Quickstart - Bash](/azure/cloud-shell/quickstart).
-   :::image type="icon" source="~/reusable-content/ce-skilling/azure/media/cloud-shell/launch-cloud-shell-button.png" alt-text="Button to launch the Azure Cloud Shell." border="false" link="https://shell.azure.com":::
+
+  :::image type="icon" source="~/reusable-content/ce-skilling/azure/media/cloud-shell/launch-cloud-shell-button.png" border="false" link="https://portal.azure.com/#cloudshell/":::
+
 - If you prefer to run CLI reference commands locally, [install](/cli/azure/install-azure-cli) the Azure CLI. If you're running on Windows or macOS, consider running Azure CLI in a Docker container. For more information, see [How to run the Azure CLI in a Docker container](/cli/azure/run-azure-cli-docker).
 
   - If you're using a local installation, sign in to the Azure CLI by using the [az login](/cli/azure/reference-index#az-login) command. To finish the authentication process, follow the steps displayed in your terminal. For other sign-in options, see [Sign in with the Azure CLI](/cli/azure/authenticate-azure-cli).
-
   - When you're prompted, install the Azure CLI extension on first use. For more information about extensions, see [Use extensions with the Azure CLI](/cli/azure/azure-cli-extensions-overview).
-
-  - Run [az version](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index?#az-upgrade).
+  - Run [`az version`](/cli/azure/reference-index?#az-version) to find the version and dependent libraries that are installed. To upgrade to the latest version, run [az upgrade](/cli/azure/reference-index?#az-upgrade).
 
 ## Create a resource group
 
-An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it is required to specify a location. This location is: 
+An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it is required to specify a location. This location is:
+
 - The storage location of your resource group metadata.
 - Where your resources will run in Azure if you don't specify another region when creating a resource.
-
-To create a resource group named *testAzureLinuxResourceGroup* in the *eastus* region, follow this step:
 
 Create a resource group using the `az group create` command.
 
 ```azurecli-interactive
-az group create --name testAzureLinuxResourceGroup --location eastus
-```
-The following output resembles that your resource group was successfully created: 
+export RANDOM_ID="$(openssl rand -hex 3)"
+export MY_RESOURCE_GROUP_NAME="myAzureLinuxResourceGroup$RANDOM_ID"
+export REGION="westeurope"
 
-```json
+az group create --name $MY_RESOURCE_GROUP_NAME --location $REGION
+```
+
+Results:
+<!-- expected_similarity=0.3 -->
+```JSON
 {
-  "id": "/subscriptions/<guid>/resourceGroups/testAzureLinuxResourceGroup",
-  "location": "eastus",
+  "id": "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/$MY_RESOURCE_GROUP_NAMExxxxxx",
+  "location": "$REGION",
   "managedBy": null,
-  "name": "testAzureLinuxResourceGroup",
+  "name": "$MY_RESOURCE_GROUP_NAME",
   "properties": {
     "provisioningState": "Succeeded"
   },
-  "tags": null
+  "tags": null,
+  "type": "Microsoft.Resources/resourceGroups"
 }
 ```
-> [!NOTE]
-> The above example uses *eastus*, but Azure Linux Container Host clusters are available in all regions.
 
 ## Create an Azure Linux Container Host cluster
 
-Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux image. The following example creates an Azure Linux cluster named *testAzureLinuxCluster* with one node: 
+Create an AKS cluster using the `az aks create` command with the `--os-sku` parameter to provision the AKS cluster with an Azure Linux image.
 
 ```azurecli-interactive
-az aks create --name testAzureLinuxCluster --resource-group testAzureLinuxResourceGroup --os-sku AzureLinux
+export MY_AZ_CLUSTER_NAME="myAzureLinuxCluster$RANDOM_ID"
+
+az aks create --name $MY_AZ_CLUSTER_NAME --resource-group $MY_RESOURCE_GROUP_NAME --os-sku AzureLinux
 ```
+
 After a few minutes, the command completes and returns JSON-formatted information about the cluster.
 
 ## Connect to the cluster
 
-To manage a Kubernetes cluster, use the Kubernetes command-line client, [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/).
+To manage a Kubernetes cluster, use the Kubernetes command-line client, `kubectl`. `kubectl` is already installed if you use Azure Cloud Shell. To install `kubectl` locally, use the `az aks install-cli` command.
 
-1. Configure `kubectl` to connect to your Kubernetes cluster using the `az aks get-credentials` command.
+1. Configure `kubectl` to connect to your Kubernetes cluster using the `az aks get-credentials` command. This command downloads credentials and configures the Kubernetes CLI to use them.
 
-  ```azurecli-interactive
-  az aks get-credentials --resource-group testAzureLinuxResourceGroup --name testAzureLinuxCluster
-  ```
+    ```azurecli-interactive
+    az aks get-credentials --resource-group $MY_RESOURCE_GROUP_NAME --name $MY_AZ_CLUSTER_NAME
+    ```
 
-2. Verify the connection to your cluster using the [kubectl get](https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#get) command. The command returns a list of the pods.
+1. Verify the connection to your cluster using the `kubectl get` command. This command returns a list of the cluster nodes.
 
-  ```azurecli-interactive
-    kubectl get pods --all-namespaces
-  ```
+    ```bash
+    kubectl get nodes
+    ```
+
 ## Deploy the application
 
 To deploy the application, you use a manifest file to create all the objects required to run the [AKS Store application](https://github.com/Azure-Samples/aks-store-demo). A Kubernetes manifest file defines a cluster's desired state, such as which container images to run. The manifest includes the following Kubernetes deployments and services:
@@ -93,16 +99,17 @@ To deploy the application, you use a manifest file to create all the objects req
 - **Rabbit MQ**: Message queue for an order queue.
 
 > [!NOTE]
-> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure Cosmos DB or Azure Service Bus.
+> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure CosmosDB or Azure Service Bus.
 
 1. Create a file named `aks-store-quickstart.yaml` and copy in the following manifest:
 
     ```yaml
     apiVersion: apps/v1
-    kind: Deployment
+    kind: StatefulSet
     metadata:
       name: rabbitmq
     spec:
+      serviceName: rabbitmq
       replicas: 1
       selector:
         matchLabels:
@@ -152,7 +159,7 @@ To deploy the application, you use a manifest file to create all the objects req
         [rabbitmq_management,rabbitmq_prometheus,rabbitmq_amqp1_0].
     kind: ConfigMap
     metadata:
-      name: rabbitmq-enabled-plugins
+      name: rabbitmq-enabled-plugins            
     ---
     apiVersion: v1
     kind: Service
@@ -211,6 +218,27 @@ To deploy the application, you use a manifest file to create all the objects req
               limits:
                 cpu: 75m
                 memory: 128Mi
+            startupProbe:
+              httpGet:
+                path: /health
+                port: 3000
+              failureThreshold: 5
+              initialDelaySeconds: 20
+              periodSeconds: 10
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 3000
+              failureThreshold: 3
+              initialDelaySeconds: 3
+              periodSeconds: 5
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 3000
+              failureThreshold: 5
+              initialDelaySeconds: 3
+              periodSeconds: 3
           initContainers:
           - name: wait-for-rabbitmq
             image: busybox
@@ -221,7 +249,7 @@ To deploy the application, you use a manifest file to create all the objects req
                 memory: 50Mi
               limits:
                 cpu: 75m
-                memory: 128Mi
+                memory: 128Mi    
     ---
     apiVersion: v1
     kind: Service
@@ -257,13 +285,30 @@ To deploy the application, you use a manifest file to create all the objects req
             image: ghcr.io/azure-samples/aks-store-demo/product-service:latest
             ports:
             - containerPort: 3002
+            env: 
+            - name: AI_SERVICE_URL
+              value: "http://ai-service:5001/"
             resources:
               requests:
                 cpu: 1m
                 memory: 1Mi
               limits:
-                cpu: 1m
-                memory: 7Mi
+                cpu: 2m
+                memory: 20Mi
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 3002
+              failureThreshold: 3
+              initialDelaySeconds: 3
+              periodSeconds: 5
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 3002
+              failureThreshold: 5
+              initialDelaySeconds: 3
+              periodSeconds: 3
     ---
     apiVersion: v1
     kind: Service
@@ -300,7 +345,7 @@ To deploy the application, you use a manifest file to create all the objects req
             ports:
             - containerPort: 8080
               name: store-front
-            env:
+            env: 
             - name: VUE_APP_ORDER_SERVICE_URL
               value: "http://order-service:3000/"
             - name: VUE_APP_PRODUCT_SERVICE_URL
@@ -312,6 +357,27 @@ To deploy the application, you use a manifest file to create all the objects req
               limits:
                 cpu: 1000m
                 memory: 512Mi
+            startupProbe:
+              httpGet:
+                path: /health
+                port: 8080
+              failureThreshold: 3
+              initialDelaySeconds: 5
+              periodSeconds: 5
+            readinessProbe:
+              httpGet:
+                path: /health
+                port: 8080
+              failureThreshold: 3
+              initialDelaySeconds: 3
+              periodSeconds: 3
+            livenessProbe:
+              httpGet:
+                path: /health
+                port: 8080
+              failureThreshold: 5
+              initialDelaySeconds: 3
+              periodSeconds: 3
     ---
     apiVersion: v1
     kind: Service
@@ -330,7 +396,7 @@ To deploy the application, you use a manifest file to create all the objects req
 
 1. Deploy the application using the [`kubectl apply`][kubectl-apply] command and specify the name of your YAML manifest.
 
-    ```azurecli-interactive
+    ```bash
     kubectl apply -f aks-store-quickstart.yaml
     ```
 
@@ -389,17 +455,14 @@ echo "You can now visit your web server at $IP_ADDRESS"
 
 ## Delete the cluster
 
-If you're not going to continue through the following tutorials, to avoid Azure charges clean up any unnecessary resources. Use the `az group delete` command to remove the resource group and all related resources. 
-
-```azurecli-interactive
-az group delete --name testAzureLinuxCluster --yes --no-wait
-```
+If you no longer need them, you can clean up unnecessary resources to avoid Azure charges. You can remove the resource group, container service, and all related resources using the `az group delete` command.
 
 ## Next steps
 
-In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host, and walk through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial. 
+In this quickstart, you deployed an Azure Linux Container Host cluster. To learn more about the Azure Linux Container Host, and walk through a complete cluster deployment and management example, continue to the Azure Linux Container Host tutorial.
 
 > [!div class="nextstepaction"]
 > [Azure Linux Container Host tutorial](./tutorial-azure-linux-create-cluster.md)
 
+<!-- LINKS -->
 [kubectl-apply]: https://kubernetes.io/docs/reference/generated/kubectl/kubectl-commands#apply
