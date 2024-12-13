@@ -2,7 +2,7 @@
 title: Azure portal keyboard shortcuts
 description: The Azure portal supports global keyboard shortcuts to help you perform actions, navigate, and go to locations in the Azure portal. 
 ms.topic: conceptual
-ms.date: 04/12/2024
+ms.date: 12/13/2024
 ms.custom: accessibility
 ---
 
@@ -49,5 +49,5 @@ Individual services may have their own additional keyboard shortcuts. Examples i
 
 ## Next steps
 
-- [Turn on high contrast or change theme](set-preferences.md#choose-a-theme-or-enable-high-contrast) in the Azure portal.
+- [Manage settings](set-preferences.md) in the Azure portal.
 - Learn about [supported browsers and devices](azure-portal-supported-browsers-devices.md).
