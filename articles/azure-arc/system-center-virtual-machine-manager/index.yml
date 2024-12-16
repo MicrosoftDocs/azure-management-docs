@@ -62,18 +62,18 @@ landingContent:
           - text: REST API
             url: /rest/api/azure-arc-scvmm/operation-groups
           - text: Bicep
-            url: /bicep/samples/azure-arc-scvmm
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
           - text: Arm
-            url: /arm/samples/azure-arc-scvmm
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
           - text: Terraform
-            url: /terraform/samples/azure-arc-scvmm
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
           - text: Python SDK
-            url: /python/samples/azure-arc-scvmm
+            url: /python/api/overview/azure/mgmt-scvmm-readme?view=azure-python
           - text: Java SDK
-            url: /java/samples/azure-arc-scvmm
-          - text: Javascript SDK
-            url: /javascript/samples/azure-arc-scvmm
+            url: /java/api/overview/azure/resourcemanager-scvmm-readme?view=azure-java-stable
+          - text: JavaScript SDK
+            url: /javascript/api/overview/azure/arm-scvmm-readme?view=azure-node-latest
           - text: Go SDK
-            url: /go/samples/azure-arc-scvmm
+            url: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
 
   
