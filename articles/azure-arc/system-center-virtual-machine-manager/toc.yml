@@ -6,8 +6,6 @@
     href: overview.md
   - name: Plan for deployment
     href: support-matrix-for-system-center-virtual-machine-manager.md
-  - name: Switch to the new version
-    href: switch-to-the-new-version-scvmm.md
 - name: Quickstarts
   items:
   - name: Connect an SCVMM server to Azure Arc
