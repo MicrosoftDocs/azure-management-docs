@@ -8,7 +8,7 @@ metadata:
   author: PriskeyJeronika-MS
   ms.service: azure-arc
   ms.topic: landing-page
-  ms.date: 04/28/2022
+  ms.date: 12/16/2024
   ms.author: v-gjeronika
 
 landingContent:
@@ -59,6 +59,21 @@ landingContent:
         links:  
           - text: Azure CLI
             url: /cli/azure/scvmm
-          - text: REST API
+          - text: Azure REST API
             url: /rest/api/azure-arc-scvmm/operation-groups
+          - text: Bicep templates
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
+          - text: ARM templates
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
+          - text: Terraform templates
+            url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
+          - text: Python SDK
+            url: /python/api/overview/azure/mgmt-scvmm-readme?view=azure-python
+          - text: Java SDK
+            url: /java/api/overview/azure/resourcemanager-scvmm-readme?view=azure-java-stable
+          - text: JavaScript SDK
+            url: /javascript/api/overview/azure/arm-scvmm-readme?view=azure-node-latest
+          - text: Go SDK
+            url: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
+
   
