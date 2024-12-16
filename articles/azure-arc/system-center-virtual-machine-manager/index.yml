@@ -59,13 +59,13 @@ landingContent:
         links:  
           - text: Azure CLI
             url: /cli/azure/scvmm
-          - text: REST API
+          - text: Azure REST API
             url: /rest/api/azure-arc-scvmm/operation-groups
-          - text: Bicep
+          - text: Bicep templates
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
-          - text: Arm
+          - text: ARM templates
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
-          - text: Terraform
+          - text: Terraform templates
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
           - text: Python SDK
             url: /python/api/overview/azure/mgmt-scvmm-readme?view=azure-python
