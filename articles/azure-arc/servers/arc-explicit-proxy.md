@@ -18,14 +18,14 @@ This article explains the steps to configure Azure Firewall with the Explicit Pr
 
 ## Restrictions and limitations
 
-- This solution leverages Azure Firewall Explicit Proxy as a forward proxy. The Explicit Proxy feature doesn't support TLS Inspection.
+- This solution uses Azure Firewall Explicit Proxy as a forward proxy. The Explicit Proxy feature doesn't support TLS Inspection.
 - TLS certificates can't be applied to the Azure Firewall Explicit Proxy.
-- This solution can't yet be used in conjunction with [Arc gateway](arc-gateway.md).
+- This solution can't yet be used with [Arc gateway](arc-gateway.md).
 - This solution isn't supported yet by Azure Local or Azure Arc VMs running in Azure Local.
 
 ## How the Azure Firewall Explicit Proxy feature works
 
-Azure Arc agents can utilize a forward proxy to connect to Azure services. The Azure Firewall Explicit Proxy feature enables you to leverage an Azure Firewall within your virtual network (VNet) as the forward proxy for your Connected Machine agents. As the Azure Firewall Explicit Proxy operates within your private VNet, and you have a secure connection to it via ExpressRoute or Site-to-Site VPN, all Azure Arc traffic can be routed to its intended destination within the Microsoft network without requiring any public internet access.
+Azure Arc agents can utilize a forward proxy to connect to Azure services. The Azure Firewall Explicit Proxy feature enables you to use an Azure Firewall within your virtual network (VNet) as the forward proxy for your Connected Machine agents. As the Azure Firewall Explicit Proxy operates within your private VNet, and you have a secure connection to it via ExpressRoute or Site-to-Site VPN, all Azure Arc traffic can be routed to its intended destination within the Microsoft network without requiring any public internet access.
 
 :::image type="content" source="media/arc-explicit-proxy/arc-explicit-proxy-overview.png" alt-text="Diagram showing the components and flow of the Azure Firewall Explicit Proxy." lightbox="media/arc-explicit-proxy/arc-explicit-proxy-overview.png":::
 
@@ -44,7 +44,7 @@ Using the Azure Firewall Explicit Proxy feature to route Azure Arc traffic throu
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 1. Navigate to the **Azure Firewalls** page and create a new firewall.
-1. Enter your **Subscription**, **Resource Group**, **Name** and **Region**.
+1. Enter your **Subscription**, **Resource Group**, **Name**, and **Region**.
 1. Select the **Standard** or **Premium** SKU.
 
 ### Enable the Explicit Proxy (Preview) feature
@@ -60,7 +60,7 @@ Using the Azure Firewall Explicit Proxy feature to route Azure Arc traffic throu
     > [!NOTE]
     > It’s common to enter “8080” for the HTTP Port, and “8443” for the HTTPS port.
 
-1. Click **Apply** to save the changes.  
+1. Select **Apply** to save the changes.  
 
 ### Create an application rule
 
@@ -109,22 +109,22 @@ To set the forward proxy for existing Arc-enabled servers, run the following com
 
 ## Troubleshooting
 
-To verify that traffic is successfully being proxied via your Azure Firewall Explicit Proxy, you should first ensure that the Explicit proxy is accessible and working as expected from your network. This can be done by running the following command: `curl -x <proxy IP> <target FQDN>`  
+To verify that traffic is successfully being proxied via your Azure Firewall Explicit Proxy, you should first ensure that the Explicit proxy is accessible and working as expected from your network. To do so, run the following command: `curl -x <proxy IP> <target FQDN>`  
 
-Additionally, you can view the Azure Firewall Application Rule Logs to verify traffic. Explicit proxy relies on Application rules, so all the logs will be available at *AZFWApplicationRules* table, as in this example:
+Additionally, you can view the Azure Firewall Application Rule Logs to verify traffic. Explicit proxy relies on Application rules, so all the logs are available at *AZFWApplicationRules* table, as in this example:
 
 :::image type="content" source="media/arc-explicit-proxy/arc-explicit-proxy-troubleshooting.png" alt-text="Screenshot of the application rules table highlighting source IP, source port, destination port, and FQDN.":::
 
 ## Azure Firewall Costs 
 
-Azure Firewall pricing is based on deployment hours and total data processed. Additional details on pricing for Azure Firewall can be found on the [Azure Firewall Pricing Page](https://azure.microsoft.com/en-us/pricing/details/azure-firewall/?msockid=1c55508c2bbf693b0bf545c52ad26864). 
+Azure Firewall pricing is based on deployment hours and total data processed. Details on pricing for Azure Firewall can be found on the [Azure Firewall Pricing Page](https://azure.microsoft.com/pricing/details/azure-firewall/?msockid=1c55508c2bbf693b0bf545c52ad26864). 
 
 ## Integration with Private Link  
 
-You can use this solution in conjunction with [Azure Private Link for Arc-enabled Kubernetes (Public Preview)](/azure/azure-arc/kubernetes/private-link). If you’d like to use these two solutions together, it’s recommended to specify available for Azure Arc-enabled servers. This way, traffic to Arc endpoints that support Private Link will bypass the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, while traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.   
+You can use this solution with [Azure Private Link for Arc-enabled Kubernetes (Public Preview)](/azure/azure-arc/kubernetes/private-link). If you’d like to use these two solutions together, it’s recommended to specify available for Azure Arc-enabled servers. This way, traffic to Arc endpoints that support Private Link bypasses the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, while traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.   
 
 
-## Additional resources
+## More resources
 
 - [Azure Firewall Explicit proxy (preview)](/azure/firewall/explicit-proxy) 
 
