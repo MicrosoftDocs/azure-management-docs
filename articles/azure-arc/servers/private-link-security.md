@@ -35,7 +35,7 @@ Azure Arc Private Link Scope connects private endpoints (and the virtual network
 - Azure Key Vault
 - Azure Blob storage, required for Custom Script Extension.
 
-:::image type="content" source="./media/private-link-security/private-link-topology.png" alt-text="Diagram of basic resource topology" border="true":::
+:::image type="content" source="./media/private-link-security/private-link-topology.png" alt-text="Diagram of basic resource topology." border="true" lightbox="./media/private-link-security/private-link-topology.png":::
 
 Connectivity to any other Azure resource from an Azure Arc-enabled server requires configuring Private Link for each service, which is optional, but recommended. Azure Private Link requires separate configuration per service.
 

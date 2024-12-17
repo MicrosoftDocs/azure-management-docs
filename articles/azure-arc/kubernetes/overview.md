@@ -46,9 +46,9 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
   * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
   * [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
 
-   [!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
+[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
 
-   ## Next steps
+## Next steps
 
 * Learn about best practices and design patterns through the [Cloud Adoption Framework for hybrid and multicloud](/azure/cloud-adoption-framework/scenarios/hybrid/arc-enabled-kubernetes/eslz-arc-kubernetes-identity-access-management).
 * Try out Arc-enabled Kubernetes without provisioning a full environment by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_k8s).
