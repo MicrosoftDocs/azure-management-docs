@@ -16,7 +16,7 @@ When you [enable guest management](enable-guest-management-at-scale.md) on VMwar
 
 ## Agent components
 
-:::image type="content" source="media/azure-arc-agent/connected-machine-agent-inline.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." lightbox="media/azure-arc-agent/connected-machine-agent-expanded.png":::
+:::image type="content" source="media/azure-arc-agent/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." lightbox="media/azure-arc-agent/connected-machine-agent.png":::
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 
