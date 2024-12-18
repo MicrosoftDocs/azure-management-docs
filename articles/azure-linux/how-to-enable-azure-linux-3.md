@@ -26,9 +26,8 @@ Any new AKS clusters or node pools created using the `--os-sku=AzureLinux` flag 
     - [Quickstart with Terraform](./quickstart-terraform.md)
     - [Quickstart with Azure Resource Manager (ARM)](./quickstart-azure-resource-manager-template.md)
 
-# Upgrading Existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0
+## Upgrade existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0
 
-To upgrade existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0 you can upgrade to AKS version 1.32. No additional action is required. For more details on upgrading your AKS cluster see [Upgrade an AKS cluster] (https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-cluster?tabs=azure-cli).  
-
+To upgrade existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0, you can upgrade them to AKS version 1.32. For more information about AKS cluster upgrades, see [Upgrade an AKS cluster](/azure/aks/upgrade-aks-cluster). 
 ## Next steps
 For more information about Azure Linux 3.0, see [What's new with Azure Linux 3.0?](./intro-azure-linux.md).
