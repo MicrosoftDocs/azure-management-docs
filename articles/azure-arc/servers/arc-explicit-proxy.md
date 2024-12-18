@@ -42,10 +42,17 @@ Using the Azure Firewall Explicit Proxy feature to route Azure Arc traffic throu
 > If you have an existing Azure Firewall in your VNet, you can skip this step.
 > 
 
-1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
-1. Navigate to the **Azure Firewalls** page and create a new firewall.
+1. From your browser, sign in to the [Azure portal](https://portal.azure.com/) and navigate to the **Azure Firewalls** page.
+
+1. Select **Create** to create a new firewall.
+
 1. Enter your **Subscription**, **Resource Group**, **Name**, and **Region**.
-1. Select the **Standard** or **Premium** SKU.
+
+1. For the **Firewall SKU**, select **Standard** or **Premium** .
+
+1. Select **Review + create**, then then select **Create** to create the firewall.
+
+See [Deploy and configure Azure Firewall](/azure/firewall/deploy-firewall-basic-portal-policy) for more information.
 
 ### Enable the Explicit Proxy (Preview) feature
 
@@ -58,7 +65,7 @@ Using the Azure Firewall Explicit Proxy feature to route Azure Arc traffic throu
 1. Enter the desired values for the HTTP and HTTPS ports.
 
     > [!NOTE]
-    > It’s common to enter “8080” for the HTTP Port, and “8443” for the HTTPS port.
+    > It’s common to use *8080* for the HTTP Port, and *8443* for the HTTPS port.
 
 1. Select **Apply** to save the changes.  
 
@@ -70,19 +77,19 @@ Create an application rule to allow communication to the required endpoints for 
 > This is an optional step that can be taken if you want to create an allow list for your Azure Firewall Explicit Proxy.   
 > 
 
-1. Navigate to the Firewall Policy.  
+1. Navigate to the applicable firewall policy.  
 
 1. In **Settings**, navigate to the **Application Rules** pane.  
 
-1. Select **Add a Rule Collection**.  
+1. Select **Add a rule collection**.  
 
-1. Provide a name for the Rule Collection. 
+1. Provide a **Name** for the rule collection. 
 
 1. Set the rule **Priority** based on other rules you may have. 
 
-1. Provide a name for the rule. 
+1. Provide a **Name** for the rule. 
 
-1. For the source, enter “*”, or any source IPs you may have. 
+1. For the **Source**, enter “*”, or any source IPs you may have. 
 
 1. Set **Protocol** as **http:80,https:443**.  
 
@@ -97,7 +104,7 @@ Create an application rule to allow communication to the required endpoints for 
 
 To set your Azure Firewall as the forward proxy while onboarding new servers:
 
-1. Generate the onboarding script.
+1. [Generate the onboarding script](/azure/azure-arc/servers/onboard-portal).
 
 1. Set **Connectivity Method** as **Proxy Server**, and set the **Proxy Server URL** as `http://<Your Azure Firewall’s Private IP>:<Explicit Proxy HTTPS Port>`.
 
@@ -122,7 +129,6 @@ Azure Firewall pricing is based on deployment hours and total data processed. De
 ## Integration with Private Link  
 
 You can use this solution with [Azure Private Link for Arc-enabled Kubernetes (Public Preview)](/azure/azure-arc/kubernetes/private-link). If you’d like to use these two solutions together, it’s recommended to specify available for Azure Arc-enabled servers. This way, traffic to Arc endpoints that support Private Link bypasses the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, while traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.   
-
 
 ## More resources
 
