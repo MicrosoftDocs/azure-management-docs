@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service clusters and node pools (Generally Available) '
+title: 'Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service (AKS) clusters and node pools (Generally Available)'
 description: Learn how to enable Azure Linux 3.0 for AKS clusters and node pools.
 author: suhuruli
 ms.author: suhuruli
