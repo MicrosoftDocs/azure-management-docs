@@ -58,7 +58,7 @@ This feature is available in all the service tiers (also known as SKUs). For inf
 
 * You can use the Azure Cloud Shell or a local installation of the Azure CLI to run the command examples in this article. If you'd like to use it locally, version 2.0.74 or later is required. Run `az --version` for the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
-* Sign in to the [Azure portal](https://ms.portal.azure.com/). 
+* Sign in to the [Azure portal](https://portal.azure.com/). 
 
 ## Enable soft delete policy for registry - CLI
 
