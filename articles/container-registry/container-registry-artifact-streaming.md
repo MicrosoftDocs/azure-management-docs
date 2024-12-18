@@ -58,7 +58,7 @@ Artifact streaming is currently in preview. The following limitations apply:
 
 * You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of the Azure CLI to run the command examples in this article. If you'd like to use it locally, version 2.54.0 or later is required. Run `az --version` for finding the version. If you need to install or upgrade, see [Install Azure CLI][Install Azure CLI].
 
-* Sign in to the [Azure portal](https://ms.portal.azure.com/). 
+* Sign in to the [Azure portal](https://portal.azure.com/). 
 
 
 ## Start artifact streaming 
