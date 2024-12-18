@@ -302,7 +302,7 @@ You can enable Artifact cache in your Azure Container Registry with or without a
 
 ### Prerequisites
 
-* Sign in to the [Azure portal](https://ms.portal.azure.com/)
+* Sign in to the [Azure portal](https://portal.azure.com/)
 * You have an existing Key Vault to store credentials. Learn more about [creating and storing credentials in a Key Vault.][create-and-store-keyvault-credentials]
 * You have the existing Key vaults without the Role based access(RBAC) controls.
 
