@@ -2,7 +2,7 @@
 title: Tutorial - Monitor a hybrid machine with Azure Monitor VM insights
 description: Learn how to collect and analyze data from a hybrid machine in Azure Monitor.
 ms.topic: tutorial
-ms.date: 04/25/2022
+ms.date: 12/18/2024
 ---
 
 # Tutorial: Monitor a hybrid machine with VM insights
@@ -11,7 +11,7 @@ ms.date: 04/25/2022
 
 <!---This tutorial shows you how to configure and collect data from your Linux or Windows machines by enabling VM insights following a simplified set of steps, which streamlines the experience and takes a shorter amount of time.--->
 
-In this tutorial, you will learn how to:
+In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 > * Enable and configure VM insights for your Linux or Windows non-azure VMs
@@ -26,10 +26,6 @@ In this tutorial, you will learn how to:
 * See [Supported operating systems](/azure/azure-monitor/vm/vminsights-enable-overview#supported-operating-systems) to ensure that the servers operating system you're enabling is supported by VM insights.
 
 * Review firewall requirements for the Log Analytics agent provided in the [Log Analytics agent overview](/azure/azure-monitor/agents/log-analytics-agent#network-requirements). The VM insights Map Dependency agent doesn't transmit any data itself, and it doesn't require any changes to firewalls or ports.
-
-<!---## Sign in to Azure portal
-
-Sign in to the [Azure portal](https://portal.azure.com).--->
 
 ## Enable VM insights
 
@@ -51,7 +47,7 @@ Sign in to the [Azure portal](https://portal.azure.com).--->
 
     :::image type="content" source="./media/tutorial-enable-vm-insights/onboard-vminsights-vm-portal-status.png" alt-text="Screenshot of Insights installation page for machine showing progress status message." border="false":::
 
-    When the process is complete, a message displays that the machine has been onboarded and that insight has been successfully deployed.
+    When the process is complete, a message displays that the machine has been onboarded and that Insights has been successfully deployed.
 
 ## View data collected
 
@@ -65,7 +61,7 @@ Sign in to the [Azure portal](https://portal.azure.com).--->
 
 1. Expand the processes for your machine. Select one of the processes to view its details and to highlight its dependencies.
 
-1. Select your machine again and then select **Log Events**. You see a list of tables that are stored in the Log Analytics workspace for the machine. This list will be different depending whether you're using a Windows or Linux machine.
+1. Select your machine again and then select **Log Events**. You see a list of tables that are stored in the Log Analytics workspace for the machine. This list differs between Windows or Linux machines.
 
 1. Select the **Event** table. The **Event** table includes all events from the Windows event log. Log Analytics opens with a simple query to retrieve collected event log entries.
 
