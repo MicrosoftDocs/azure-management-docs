@@ -2,7 +2,7 @@
 title: Tutorial - New policy assignment with Azure portal
 description: In this tutorial, you use Azure portal to create an Azure Policy assignment to identify non-compliant resources.
 ms.topic: tutorial
-ms.date: 04/20/2022
+ms.date: 12/18/2024
 ---
 
 # Tutorial: Create a policy assignment to identify non-compliant resources
@@ -11,7 +11,7 @@ The first step in understanding compliance in Azure is to identify the status of
 
 This tutorial steps you through the process of creating and assigning a policy in order to identify which of your Azure Arc-enabled servers don't have the Log Analytics agent for Windows or Linux installed. These machines are considered _non-compliant_ with the policy assignment.
 
-In this tutorial, you will learn how to:
+In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
 > * Create policy assignment and assign a definition to it
@@ -26,23 +26,22 @@ before you begin.
 
 ## Create a policy assignment
 
-Follow the steps below to create a policy assignment and assign the policy definition _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_:
+Use the following procedure to create a policy assignment and assign the policy definition _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_.
 
 1. Launch the Azure Policy service in the Azure portal by selecting **All services**, then searching
    for and selecting **Policy**.
 
    :::image type="content" source="./media/tutorial-assign-policy-portal/all-services-page.png" alt-text="Screenshot of All services window showing search for policy service." border="true":::
 
-1. Select **Assignments** on the left side of the Azure Policy page. An assignment is a policy that
-   has been assigned to take place within a specific scope.
+1. Select **Assignments** on the left side of the Azure Policy page. An assignment is a policy assigned to take place within a specific scope.
 
     :::image type="content" source="./media/tutorial-assign-policy-portal/assignments-tab.png" alt-text="Screenshot of All services Policy window showing policy assignments." border="true":::
 
-1. Select **Assign Policy** from the top of the **Policy - Assignments** page.
+1. Select **Assign Policy** from the top of the **Policy | Assignments** page.
 
 1. On the **Assign Policy** page, select the **Scope** by clicking the ellipsis and selecting either
    a management group or subscription. Optionally, select a resource group. A scope determines what
-   resources or grouping of resources the policy assignment gets enforced on. Then click **Select**
+   resources or grouping of resources the policy assignment gets enforced on. Then select **Select**
    at the bottom of the **Scope** page.
 
    This example uses the **Parnell Aerospace** subscription. Your subscription will differ.
@@ -60,7 +59,7 @@ Follow the steps below to create a policy assignment and assign the policy defin
    For a partial list of available built-in policies, see [Azure Policy samples](/azure/governance/policy/samples/).
 
 1. Search through the policy definitions list to find the _\[Preview]: Log Analytics extension should be installed on your Windows Azure Arc machines_
-   definition (if you have enabled the Azure Connected Machine agent on a Windows-based machine). For a Linux-based machine, find the corresponding _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_ policy definition. Click on that policy and click **Add**.
+   definition (if you have enabled the Azure Connected Machine agent on a Windows-based machine). For a Linux-based machine, find the corresponding _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_ policy definition. Choose that policy and select **Add**.
 
 1. The **Assignment name** is automatically populated with the policy name you selected, but you can
    change it. For this example, leave the policy name as is, and don't change any of the remaining options on the page.
@@ -80,7 +79,7 @@ If there are any existing resources that aren't compliant with this new assignme
 under **Non-compliant resources**.
 
 When a condition is evaluated against your existing resources and found true, then those resources
-are marked as non-compligitant with the policy. The following table shows how different policy effects
+are marked as non-compliant with the policy. The following table shows how different policy effects
 work with the condition evaluation for the resulting compliance state. Although you don't see the
 evaluation logic in the Azure portal, the compliance state results are shown. The compliance state
 result is either compliant or non-compliant.
@@ -107,7 +106,7 @@ To remove the assignment created, follow these steps:
 
 ## Next steps
 
-In this tutorial, you assigned a policy definition to a scope and evaluated its compliance report. The policy definition validates that all the resources in the scope are compliant and identifies which ones aren't. Now you are ready to monitor your Azure Arc-enabled servers machine by enabling [VM insights](/azure/azure-monitor/vm/vminsights-overview).
+In this tutorial, you assigned a policy definition to a scope and evaluated its compliance report. The policy definition validates that all the resources in the scope are compliant and identifies which ones aren't. Now you're ready to monitor your Azure Arc-enabled servers machine by enabling [VM insights](/azure/azure-monitor/vm/vminsights-overview).
 
 To learn how to monitor and view the performance, running process and their dependencies from your machine, continue to the tutorial:
 
