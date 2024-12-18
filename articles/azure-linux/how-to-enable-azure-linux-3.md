@@ -19,7 +19,7 @@ Starting AKS version 1.32 Azure Linux 3.0 is the default Azure Linux node OS for
 
 ## Create new Azure Linux 3.0 clusters and node pools
 
-Any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option and running AKS version 1.32 defaults to using Azure Linux 3.0. You can deploy clusters or node pools using the method of your choice to use Azure Linux 3.0 as the node OS:
+Any new AKS clusters or node pools created using the `--os-sku=AzureLinux` flag and that run AKS version 1.32 default to Azure Linux 3.0. You can deploy clusters or node pools using the method of your choice to use Azure Linux 3.0 as the node OS:
 
     - [Quickstart with CLI](./quickstart-azure-cli.md)
     - [Quickstart with PowerShell](./quickstart-azure-powershell.md)
