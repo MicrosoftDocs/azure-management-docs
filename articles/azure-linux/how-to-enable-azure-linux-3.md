@@ -17,7 +17,7 @@ Starting AKS version 1.32 Azure Linux 3.0 is the default Azure Linux node OS for
 
 * Not supported on Kubernetes version 1.31 and below.
 
-# Creating new Azure Linux 3.0 clusters and node pools
+## Create new Azure Linux 3.0 clusters and node pools
 
 Any new AKS clusters or node pools created with the `--os-sku=AzureLinux` option and running AKS version 1.32 defaults to using Azure Linux 3.0. You can deploy clusters or node pools using the method of your choice to use Azure Linux 3.0 as the node OS:
 
