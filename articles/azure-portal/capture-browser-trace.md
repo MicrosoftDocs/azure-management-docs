@@ -1,7 +1,7 @@
 ---
 title: Capture a browser trace for troubleshooting
 description: Capture network information from a browser trace to help troubleshoot issues with the Azure portal.
-ms.date: 05/01/2023
+ms.date: 12/19/2024
 ms.topic: how-to
 ---
 
@@ -12,14 +12,11 @@ If you're troubleshooting an issue with the Azure portal, and you need to contac
 > [!WARNING]
 > Browser traces often contain sensitive information and might include authentication tokens linked to your identity. Please remove any sensitive information before sharing traces with others. Microsoft support uses these traces for troubleshooting purposes only.
 
-You can capture this information any [supported browser](azure-portal-supported-browsers-devices.md): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
+You can capture this information any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
 
 ## Microsoft Edge
 
-The following steps show how to use the developer tools in Microsoft Edge. For more information, see [Microsoft Edge DevTools](/microsoft-edge/devtools-guide-chromium).
-
-> [!NOTE]
-> The screenshots below show the DevTools in Focus Mode with a vertical **Activity Bar**. Depending on your settings, your configuration may look different. For more information, see [Simplify DevTools using Focus Mode](/microsoft-edge/devtools-guide-chromium/experimental-features/focus-mode).
+The following steps show how to use the developer tools in Microsoft Edge. For more information, see [Microsoft Edge DevTools](/microsoft-edge/devtools-guide-chromium/overview).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
@@ -51,7 +48,7 @@ The following steps show how to use the developer tools in Microsoft Edge. For m
 
    :::image type="content" source="media/capture-browser-trace/edge-browser-trace-results.png" alt-text="Screenshot showing session output in Edge.":::
 
-1. After you have reproduced the unexpected portal behavior, select **Stop recording network log**, then select **Export HAR** and save the file.
+1. After you have reproduced the unexpected portal behavior, select **Stop recording network log** again, then select **Export HAR (sanitized)...** and save the file. If you don't see the **Export HAR** icon, expand the width of your Edge developer tools window.
 
    :::image type="content" source="media/capture-browser-trace/edge-network-export-har.png" alt-text="Screenshot showing how to Export HAR on the Network tab in Edge.":::
 
