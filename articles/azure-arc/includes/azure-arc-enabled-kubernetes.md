@@ -2,7 +2,7 @@
 ms.service: azure-arc
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ms.topic: include
-ms.date: 10/08/2024
+ms.date: 12/19/2024
 author: JnHS
 ms.author: jenhayes
 ---
@@ -143,7 +143,7 @@ Search-AzGraph -Query "resources | where type =~ 'Microsoft.Kubernetes/connected
 
 ---
 
-### List all Flux configurations in a non-compliant state
+### List all Flux configurations in a noncompliant state
 
 Returns the `fluxConfiguration` IDs of configurations that are failing to sync resources on the cluster.
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 07/07/2022
+ms.date: 12/19/2024
 author: johnmarco
 ms.author: johnmarc
 ---
