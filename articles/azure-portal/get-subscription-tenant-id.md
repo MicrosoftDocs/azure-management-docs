@@ -1,7 +1,7 @@
 ---
 title: Get subscription and tenant IDs in the Azure portal
 description: Learn how to locate and copy the IDs of Azure tenants and subscriptions.
-ms.date: 09/27/2023
+ms.date: 12/19/2024
 ms.topic: how-to
 ---
 
