@@ -38,9 +38,9 @@ General recommendations about the right service to use are as follows:
 
 |If your machine is a... |...connect to Azure with... |
 |---------|---------|
-|VMware VM (not running on AVS) |[Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md), to get the complete set of Azure capabilities, [Azure Arc-enabled servers](servers/overview.md) to use Azure services only |
+|VMware VM (not running on AVS) |[Azure Arc-enabled VMware vSphere](vmware-vsphere/overview.md), to get the complete set of Azure capabilities. <br> [Azure Arc-enabled servers](servers/overview.md) to use Azure services only. |
 |Azure VMware Solution (AVS) VM |[Azure Arc-enabled VMware vSphere for Azure VMware Solution](/azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows) |
-|VM managed by System Center Virtual Machine Manager |[Azure Arc-enabled SCVMM](system-center-virtual-machine-manager/overview.md), to get the complete set of Azure capabilities, [Azure Arc-enabled servers](servers/overview.md) to use Azure services only |
+|VM managed by System Center Virtual Machine Manager |[Azure Arc-enabled SCVMM](system-center-virtual-machine-manager/overview.md), to get the complete set of Azure capabilities. <br> [Azure Arc-enabled servers](servers/overview.md) to use Azure services only. |
 |Azure Local machine, including the ones managed by SCVMM |[Azure Local](/azure/azure-local/overview) |
 |Physical server |[Azure Arc-enabled servers](servers/overview.md) |
 |VM on another hypervisor |[Azure Arc-enabled servers](servers/overview.md) |
