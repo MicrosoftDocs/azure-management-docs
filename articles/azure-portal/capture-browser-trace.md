@@ -10,13 +10,13 @@ ms.topic: how-to
 If you're troubleshooting an issue with the Azure portal, and you need to contact Microsoft support, you may want to first capture some additional information. For example, it can be helpful to share a browser trace, a step recording, and console output. This information can provide important details about what exactly is happening in the portal when your issue occurs.
 
 > [!WARNING]
-> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. Please remove any sensitive information before sharing traces with others. Microsoft support uses these traces for troubleshooting purposes only.
+> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. We recommend ensuring that sensitive information is removed before sharing traces with others. Microsoft support uses these traces for troubleshooting purposes only.
 
 You can capture this information any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
 
 ## Microsoft Edge
 
-The following steps show how to use the developer tools in Microsoft Edge. For more information, see [Microsoft Edge DevTools](/microsoft-edge/devtools-guide-chromium/overview).
+The following steps show how to use the developer tools in Microsoft Edge to capture a browser trace. For more information, see [Microsoft Edge DevTools](/microsoft-edge/devtools-guide-chromium/overview).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
@@ -44,19 +44,13 @@ The following steps show how to use the developer tools in Microsoft Edge. For m
 
    :::image type="content" source="media/capture-browser-trace/edge-start-session.png" alt-text="Screenshot showing how to record the network log in Edge.":::
 
-   You'll see session output similar to the following image.
-
-   :::image type="content" source="media/capture-browser-trace/edge-browser-trace-results.png" alt-text="Screenshot showing session output in Edge.":::
-
 1. After you have reproduced the unexpected portal behavior, select **Stop recording network log** again, then select **Export HAR (sanitized)...** and save the file. If you don't see the **Export HAR** icon, expand the width of your Edge developer tools window.
 
    :::image type="content" source="media/capture-browser-trace/edge-network-export-har.png" alt-text="Screenshot showing how to Export HAR on the Network tab in Edge.":::
 
-1. Stop the Steps Recorder and save the recording.
+1. Stop the Steps Recorder, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
-
-   :::image type="content" source="media/capture-browser-trace/edge-console-select.png" alt-text="Sccreenshot showing how to save the console output in Edge.":::
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
@@ -64,7 +58,7 @@ The following steps show how to use the developer tools in Microsoft Edge. For m
 
 ## Google Chrome
 
-The following steps show how to use the developer tools in Google Chrome. For more information, see [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools).
+The following steps show how to use the developer tools in Google Chrome to capture a browser trace. For more information, see [Chrome DevTools](https://developers.chrome.com/docs/devtools).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
@@ -78,33 +72,27 @@ The following steps show how to use the developer tools in Google Chrome. For mo
 
    1. Select the **Console** tab, select **Console settings**, then select **Preserve Log**.
 
-      ![Screenshot that highlights the Preserve log option on the Console tab in Chrome.](media/capture-browser-trace/chromium-console-preserve-log.png)
+      :::image type="content" source="media/capture-browser-trace/chrome-console-preserve-log.png" alt-text="Screenshot that highlights the Preserve log option on the Console tab in Chrome.":::
 
    1. Select the **Network** tab, then select **Preserve log**.
 
-      ![Screenshot that highlights the Preserve log option on the Network tab in Chrome.](media/capture-browser-trace/chromium-network-preserve-log.png)
+      :::image type="content" source="media/capture-browser-trace/chrome-network-preserve-log.png" alt-text="Screenshot that highlights the Preserve log option on the Network tab in Chrome.":::
 
 1. On the **Network** tab, select **Stop recording network log** and **Clear**.
 
-   ![Screenshot of "Stop recording network log" and "Clear" on the Network tab in Chrome.](media/capture-browser-trace/chromium-stop-clear-session.png)
+   :::image type="content" source="media/capture-browser-trace/chrome-stop-clear-session.png" alt-text="Screenshot showing the Stop recording network log and Clear options on the Network tab in Chrome.":::
 
 1. Select **Record network log**, then reproduce the issue in the portal.
 
-   ![Screenshot that shows how to record the network log in Chrome.](media/capture-browser-trace/chromium-start-session.png)
+   :::image type="content" source="media/capture-browser-trace/chrome-start-session.png" alt-text="Screenshot that shows how to record the network log in Chrome.":::
 
-    You'll see session output similar to the following image.
+1. After you have reproduced the unexpected portal behavior, select **Stop recording network log**, then select **Export HAR (sanitized)...** and save the file.
 
-    ![Screenshot that shows the session output in Chrome.](media/capture-browser-trace/chromium-browser-trace-results.png)
+   :::image type="content" source="media/capture-browser-trace/chrome-network-export-har.png" alt-text="Screenshot that shows how to export a HAR file on the Network tab in Chrome.":::
 
-1. After you have reproduced the unexpected portal behavior, select **Stop recording network log**, then select **Export HAR** and save the file.
-
-   ![Screenshot that shows how to Export HAR on the Network tab in Chrome.](media/capture-browser-trace/chromium-network-export-har.png)
-
-1. Stop the Steps Recorder and save the recording.
+1. Stop the Steps Recorder, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
-
-    ![Screenshot that shows how to save the console output in Chrome.](media/capture-browser-trace/chromium-console-select.png)
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
@@ -148,8 +136,6 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Reproduce the issue in the portal. You'll see session output similar to the following image.
 
-    ![Screenshot that shows the output after you've reproduced the issue.](media/capture-browser-trace/safari-browser-trace-results.png)
-
 1. After you have reproduced the unexpected portal behavior, select **Export** and save the file.
 
     ![Screenshot of the "Export" command on the Network tab.](media/capture-browser-trace/safari-network-export-har.png)
@@ -166,11 +152,11 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 ## Firefox
 
-The following steps show how to use the developer tools in Firefox. For more information, see [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools).
+The following steps show how to use the developer tools in Firefox. For more information, see [Firefox DevTools User Docs](https://firefox-source-docs.mozilla.org/devtools-user/index.html).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/HT208721).
+1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -180,29 +166,25 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
     1. Select the **Console** tab, select the **Settings** icon, and then select **Persist Logs**.
 
-       :::image type="content" source="media/capture-browser-trace/firefox-console-persist-logs.png" alt-text="Screenshot of the Console setting for Persist Logs.":::
+       :::image type="content" source="media/capture-browser-trace/firefox-console-persist-logs.png" alt-text="Screenshot of the Console setting for Persist Logs in Firefox":::
 
     1. Select the **Network** tab, select the **Settings** icon, and then select **Persist Logs**.
 
-       :::image type="content" source="media/capture-browser-trace/firefox-network-persist-logs.png" alt-text="Screenshot of the Network setting for Persist Logs.":::
+       :::image type="content" source="media/capture-browser-trace/firefox-network-persist-logs.png" alt-text="Screenshot of the Network setting for Persist Logs in Firefox.":::
 
 1. On the **Network** tab, select **Clear**.
 
-    ![Screenshot of the "Clear" option on the Network tab.](media/capture-browser-trace/firefox-clear-session.png)
+    :::image type="content" source="media/capture-browser-trace/firefox-clear-session.png" alt-text="Screenshot of the Clear option on the Network tab in Firefox.":::
 
-1. Reproduce the issue in the portal. You'll see session output similar to the following image.
-
-    ![Screenshot showing example browser trace results.](media/capture-browser-trace/firefox-browser-trace-results.png)
+1. Reproduce the issue in the portal.
 
 1. After you have reproduced the unexpected portal behavior, select **Save All As HAR**.
 
-    ![Screenshot of the "Save All As HAR" command on the Network tab.](media/capture-browser-trace/firefox-network-export-har.png)
+   :::image type="content" source="media/capture-browser-trace/firefox-network-export-har.png" alt-text="Screenshot of the Save All As HAR command on the Network tab in Firefox.":::
 
 1. Stop the Steps Recorder on Windows or the screen recording on Mac, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save All Messages to File**, and save the console output to a text file.
-
-   :::image type="content" source="media/capture-browser-trace/firefox-console-select.png" alt-text="Screenshot of the Save All Messages to File command on the Console tab.":::
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
