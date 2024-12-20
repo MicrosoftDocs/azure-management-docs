@@ -128,7 +128,7 @@ Azure Firewall pricing is based on deployment hours and total data processed. De
 
 ## Integration with Private Link  
 
-You can use this solution with [Azure Private Link for Arc-enabled Kubernetes (Public Preview)](/azure/azure-arc/kubernetes/private-link). If you’d like to use these two solutions together, it’s recommended to specify available for Azure Arc-enabled servers. This way, traffic to Arc endpoints that support Private Link bypasses the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, while traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.   
+It's possible to use this solution in conjunction with Azure Private Link for Arc-enabled Servers. If you’d like to use these two solutions together, it’s recommended to leverage the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent?tabs=windows) available for Azure Arc-enabled Servers. This way, traffic to Azure Arc endpoints that support Private Link will bypass the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, and traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.
 
 ## More resources
 
