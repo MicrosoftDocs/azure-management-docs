@@ -100,7 +100,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
 ## Safari
 
-The following steps show how to use the developer tools in Apple Safari on Mac. For more information, see [Safari Developer Tools overview](https://support.apple.com/guide/safari-developer/safari-developer-tools-overview-dev073038698/11.0/mac).
+The following steps show how to use the developer tools in Apple Safari on Mac. For more information, see [Safari Developer Tools](https://developer.apple.com/safari/tools/).
 
 1. Enable the developer tools in Safari:
 
@@ -108,7 +108,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
    1. Select the **Advanced** tab, then select **Show Develop menu in menu bar**.
 
-      ![Screenshot of the Safari advanced preferences options.](media/capture-browser-trace/safari-show-develop-menu.png)
+      :::image type="content" source="media/capture-browser-trace/safari-show-develop-menu.png" alt-text="Screenshot of the Safari Advanced Preferences options.":::
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
@@ -118,33 +118,31 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Select **Develop**, then select **Show Web Inspector**.
 
-   ![Screenshot of the "Show Web Inspector" command.](media/capture-browser-trace/safari-show-web-inspector.png)
+   :::image type="content" source="media/capture-browser-trace/safari-show-develop-menu.png" alt-text="Screenshot of the Show Web Inspector option on the Safari Develop menu.":::
 
 1. By default, the browser keeps trace information only for the page that's currently loaded. Set the following options so the browser keeps all trace information, even if your repro steps require going to more than one page:
 
     1. Select the **Console** tab, then select **Preserve Log**.
 
-       ![Screenshot that shows the Preserve Log on the Console tab.](media/capture-browser-trace/safari-console-preserve-log.png)
+       :::image type="content" source="media/capture-browser-trace/safari-console-preserve-log.png" alt-text="Screenshot of the Preserve Log option in the Console tab on Safari.":::
 
     1. Select the **Network** tab, then select **Preserve Log**.
 
-       ![Screenshot that shows the Preserve Log option on the Network tab.](media/capture-browser-trace/safari-network-preserve-log.png)
+       :::image type="content" source="media/capture-browser-trace/safari-network-preserve-log.png" alt-text="Screenshot of the Preserve Log option in the Network tab on Safari.":::
 
 1. On the **Network** tab, select **Clear Network Items**.
 
-    ![Screenshot of "Clear Network Items" on the Network tab.](media/capture-browser-trace/safari-clear-session.png)
+   :::image type="content" source="media/capture-browser-trace/safari-clear-session.png" alt-text="Screenshot of the Clear Network Items option in the Network tab on Safari.":::
 
-1. Reproduce the issue in the portal. You'll see session output similar to the following image.
+1. Reproduce the issue in the portal.
 
 1. After you have reproduced the unexpected portal behavior, select **Export** and save the file.
 
-    ![Screenshot of the "Export" command on the Network tab.](media/capture-browser-trace/safari-network-export-har.png)
+   :::image type="content" source="media/capture-browser-trace/safari-network-export-har.png" alt-text="Screenshot of the Export command in the Network tab on Safari.":::
 
 1. Stop the screen recorder, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab, and expand the window. Place your cursor at the start of the console output then drag and select the entire contents of the output. Use Command-C to copy the output and save it to a text file.
-
-    ![Screenshot that shows where you can view and copy the console output.](media/capture-browser-trace/safari-console-select.png)
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
