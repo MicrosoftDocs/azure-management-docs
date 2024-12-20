@@ -118,7 +118,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Select **Develop**, then select **Show Web Inspector**.
 
-   :::image type="content" source="media/capture-browser-trace/safari-show-develop-menu.png" alt-text="Screenshot of the Show Web Inspector option on the Safari Develop menu.":::
+   :::image type="content" source="media/capture-browser-trace/safari-show-web-inspector.png" alt-text="Screenshot of the Show Web Inspector option on the Safari Develop menu.":::
 
 1. By default, the browser keeps trace information only for the page that's currently loaded. Set the following options so the browser keeps all trace information, even if your repro steps require going to more than one page:
 
