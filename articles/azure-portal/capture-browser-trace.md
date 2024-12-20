@@ -174,7 +174,7 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
 1. On the **Network** tab, select **Clear**.
 
-    :::image type="content" source="media/capture-browser-trace/firefox-clear-session.png" alt-text="Screenshot of the Clear option on the Network tab in Firefox.":::![](media/capture-browser-trace/firefox-clear-session.png)
+    :::image type="content" source="media/capture-browser-trace/firefox-clear-session.png" alt-text="Screenshot of the Clear option on the Network tab in Firefox.":::
 
 1. Reproduce the issue in the portal.
 
