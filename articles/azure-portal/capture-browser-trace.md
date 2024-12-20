@@ -48,7 +48,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
    :::image type="content" source="media/capture-browser-trace/edge-network-export-har.png" alt-text="Screenshot showing how to Export HAR on the Network tab in Edge.":::
 
-1. Stop the Steps Recorder and save the recording.
+1. Stop the Steps Recorder, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -90,7 +90,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
    :::image type="content" source="media/capture-browser-trace/chrome-network-export-har.png" alt-text="Screenshot that shows how to export a HAR file on the Network tab in Chrome.":::
 
-1. Stop the Steps Recorder and save the recording.
+1. Stop the Steps Recorder, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -136,8 +136,6 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Reproduce the issue in the portal. You'll see session output similar to the following image.
 
-    ![Screenshot that shows the output after you've reproduced the issue.](media/capture-browser-trace/safari-browser-trace-results.png)
-
 1. After you have reproduced the unexpected portal behavior, select **Export** and save the file.
 
     ![Screenshot of the "Export" command on the Network tab.](media/capture-browser-trace/safari-network-export-har.png)
@@ -154,11 +152,11 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 ## Firefox
 
-The following steps show how to use the developer tools in Firefox. For more information, see [Firefox Developer Tools](https://developer.mozilla.org/docs/Tools).
+The following steps show how to use the developer tools in Firefox. For more information, see [Firefox DevTools User Docs](https://firefox-source-docs.mozilla.org/devtools-user/index.html).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/HT208721).
+1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -168,29 +166,25 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
     1. Select the **Console** tab, select the **Settings** icon, and then select **Persist Logs**.
 
-       :::image type="content" source="media/capture-browser-trace/firefox-console-persist-logs.png" alt-text="Screenshot of the Console setting for Persist Logs.":::
+       :::image type="content" source="media/capture-browser-trace/firefox-console-persist-logs.png" alt-text="Screenshot of the Console setting for Persist Logs in Firefox":::
 
     1. Select the **Network** tab, select the **Settings** icon, and then select **Persist Logs**.
 
-       :::image type="content" source="media/capture-browser-trace/firefox-network-persist-logs.png" alt-text="Screenshot of the Network setting for Persist Logs.":::
+       :::image type="content" source="media/capture-browser-trace/firefox-network-persist-logs.png" alt-text="Screenshot of the Network setting for Persist Logs in Firefox.":::
 
 1. On the **Network** tab, select **Clear**.
 
-    ![Screenshot of the "Clear" option on the Network tab.](media/capture-browser-trace/firefox-clear-session.png)
+    :::image type="content" source="media/capture-browser-trace/firefox-clear-session.png" alt-text="Screenshot of the Clear option on the Network tab in Firefox.":::![](media/capture-browser-trace/firefox-clear-session.png)
 
-1. Reproduce the issue in the portal. You'll see session output similar to the following image.
-
-    ![Screenshot showing example browser trace results.](media/capture-browser-trace/firefox-browser-trace-results.png)
+1. Reproduce the issue in the portal.
 
 1. After you have reproduced the unexpected portal behavior, select **Save All As HAR**.
 
-    ![Screenshot of the "Save All As HAR" command on the Network tab.](media/capture-browser-trace/firefox-network-export-har.png)
+   :::image type="content" source="media/capture-browser-trace/firefox-network-export-har.png" alt-text="Screenshot of the Save All As HAR command on the Network tab in Firefox.":::
 
 1. Stop the Steps Recorder on Windows or the screen recording on Mac, and save the recording.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save All Messages to File**, and save the console output to a text file.
-
-   :::image type="content" source="media/capture-browser-trace/firefox-console-select.png" alt-text="Screenshot of the Save All Messages to File command on the Console tab.":::
 
 1. Package the browser trace HAR file, console output, and screen recording files in a compressed format such as .zip.
 
