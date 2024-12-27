@@ -40,7 +40,7 @@ Host <myRG>-<myMachine>-<localUser>
 ```
 #### Leveraging the -Options parameter
 Leveraging the [Options](/powershell/module/microsoft.powershell.core/new-pssession#-options) parameter allows you to specify a hashtable of SSH options used when connecting to a remote SSH-based session.
-Create the hashtable by following the format of the following sample. Be mindful of the locations of quotation marks.
+Create the hashtable using the format of the following sample. Be mindful of the locations of quotation marks.
 ```powershell
 $options = @{ProxyCommand = '"<path to proxy>\.clientsshproxy\sshProxy_windows_amd64_1_3_022941.exe -r <path to relay info>\az_ssh_config\<myRG>-<myMachine>\<myRG>-<myMachine>-relay_info"'}
 ```
