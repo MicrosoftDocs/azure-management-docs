@@ -20,8 +20,10 @@ SSH access to Arc-enabled servers provides the following key benefits:
 
 ## Prerequisites
 To enable this functionality, ensure the following: 
- - Ensure the Arc-enabled server has a hybrid agent version of "1.31.xxxx" or higher.  Run: ```azcmagent show``` on your Arc-enabled Server.
- - Ensure the Arc-enabled server has the "sshd" service enabled. For Linux machines `openssh-server` can be installed via a package manager and needs to be enabled.  SSHD needs to be [enabled on Windows](/windows-server/administration/openssh/openssh_install_firstuse).
+ - Ensure the Arc-enabled server has a hybrid agent version of "1.31.xxxx" or higher.  Run: ```azcmagent show``` on your Arc-enabled server.
+ - Ensure the Arc-enabled server has the "sshd" service enabled.
+   - For Linux machines, `openssh-server` can be installed via a package manager and needs to be enabled.
+   - SSHD needs to be [enabled on Windows](/windows-server/administration/openssh/openssh_install_firstuse).
  - Ensure you have the Owner or Contributer role assigned.
 
 Authenticating with Microsoft Entra credentials has additional requirements:
@@ -37,7 +39,7 @@ Authenticating with Microsoft Entra credentials has additional requirements:
 
 ### Availability
 
-SSH access to Arc-enabled servers is currently supported in all public cloud regions supported by Arc-Enabled servers.
+SSH access to Arc-enabled servers is currently supported in all public cloud regions supported by Arc-enabled servers.
 
 > [!NOTE]
 > There currently is no support for non-public clouds.
@@ -110,7 +112,7 @@ Install-Module -Name Az.Ssh.ArcProxy -Scope CurrentUser -Repository PSGallery
 ---
 
 ### Enable functionality on your Arc-enabled server
-In order to use the SSH connect feature, you must update the Service Configuration in the Connectivity Endpoint on the Arc-Enabled Server to allow SSH connection to a specific port. You may only allow connection to a single port. The CLI tools attempt to update the allowed port at runtime, but the port can be manually configured with the following:
+In order to use the SSH connect feature, you must update the Service Configuration in the Connectivity Endpoint on the Arc-enabled server to allow SSH connection to a specific port. You may only allow connection to a single port. The CLI tools attempt to update the allowed port at runtime, but the port can be manually configured with the following:
 
 > [!NOTE]
 > There may be a delay after updating the Service Configuration until you are able to connect.
