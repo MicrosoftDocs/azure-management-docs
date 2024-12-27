@@ -147,5 +147,5 @@ To view examples, view the Az CLI documentation page for [az ssh](/cli/azure/ssh
 ## Next steps
 
 - Learn about [OpenSSH for Windows](/windows-server/administration/openssh/openssh_overview)
-- Learn about troubleshooting [SSH access to Azure  servers](ssh-arc-troubleshoot.md).
+- Learn about troubleshooting [SSH access to Azure Arc-enabled servers](ssh-arc-troubleshoot.md).
 - Learn about troubleshooting [agent connection issues](troubleshoot-agent-onboard.md).
