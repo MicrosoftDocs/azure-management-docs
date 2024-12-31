@@ -50,9 +50,9 @@ Using the Azure Firewall Explicit Proxy feature to route Azure Arc traffic throu
 
 1. For the **Firewall SKU**, select **Standard** or **Premium** .
 
-1. Select **Review + create**, then then select **Create** to create the firewall.
+1. Select **Review + create**, then select **Create** to create the firewall.
 
-See [Deploy and configure Azure Firewall](/azure/firewall/deploy-firewall-basic-portal-policy) for more information.
+For more information, see [Deploy and configure Azure Firewall](/azure/firewall/deploy-firewall-basic-portal-policy).
 
 ### Enable the Explicit Proxy (Preview) feature
 
@@ -74,7 +74,7 @@ See [Deploy and configure Azure Firewall](/azure/firewall/deploy-firewall-basic-
 Create an application rule to allow communication to the required endpoints for your scenarios.
 
 > [!NOTE]
-> This is an optional step that can be taken if you want to create an allow list for your Azure Firewall Explicit Proxy.   
+> Creating an application rule is an optional step if you want to create an allowlist for your Azure Firewall Explicit Proxy.   
 > 
 
 1. Navigate to the applicable firewall policy.  
@@ -128,7 +128,7 @@ Azure Firewall pricing is based on deployment hours and total data processed. De
 
 ## Integration with Private Link  
 
-It's possible to use this solution in conjunction with Azure Private Link for Arc-enabled Servers. If you’d like to use these two solutions together, it’s recommended to leverage the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent?tabs=windows) available for Azure Arc-enabled Servers. This way, traffic to Azure Arc endpoints that support Private Link will bypass the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, and traffic to endpoints that don’t support Private Link will route via the Explicit Proxy.
+You can use this solution with Azure Private Link for Arc-enabled Servers. To use these two solutions together, it’s recommended to use the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent?tabs=windows) available for Azure Arc-enabled Servers. This way, traffic to Azure Arc endpoints that support Private Link bypasses the Explicit Proxy and have their traffic routed directly to the relevant Private Endpoint, and traffic to endpoints that don’t support Private Link route via the Explicit Proxy.
 
 ## More resources
 
