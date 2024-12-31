@@ -42,6 +42,8 @@
       href: network-requirements.md
     - name: Simplify network configuration requirements
       href: arc-gateway.md
+    - name: access Azure services over Azure Firewall
+      href: arc-explicit-proxy.md
     - name: Private Link networking
       href: private-link-security.md
     - name: Deployment options
