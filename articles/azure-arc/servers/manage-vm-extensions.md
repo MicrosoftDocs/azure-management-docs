@@ -1,7 +1,7 @@
 ---
 title: VM extension management with Azure Arc-enabled servers
 description: Azure Arc-enabled servers can manage deployment of virtual machine extensions that provide post-deployment configuration and automation tasks with non-Azure VMs.
-ms.date: 09/25/2024
+ms.date: 01/02/2025
 ms.topic: conceptual
 ---
 
@@ -177,6 +177,8 @@ The following extensions are available for Windows and Linux machines:
 |SUSE Linux Enterprise Server 15 |X |X |X |X |X |X |X |
 |SUSE Linux Enterprise Server 15 SP5 |X |X |X |X | |X |X |
 |SUSE Linux Enterprise Server 12 SP5 |X |X |X |X |X | |X |X |
+|Ubuntu 24.04 LTS |X |X |X |X | |X |X |X |
+|Ubuntu 22.04 LTS |X |X |X |X | |X |X |X |
 |Ubuntu 20.04 LTS |X |X |X |X | |X |X |
 |Ubuntu 18.04 LTS |X |X |X |X |X |X |X |
 |Ubuntu 16.04 LTS |X |X |X | | |X |X |
