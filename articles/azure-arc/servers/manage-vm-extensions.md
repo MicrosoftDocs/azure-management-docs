@@ -159,30 +159,30 @@ The following extensions are available for Windows and Linux machines:
 
 |Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom Script |Key Vault |Hybrid Runbook |Antimalware Extension |Connected Machine agent |
 |-----------------|--------------------|-----------------------|-------|--------------|----------|---------------|----------------------|------------------------|
-|Amazon Linux 2 | | |X | | |X |X |
-|Debian 10 |X | |X |X | |X | |
-|Debian 9 |X |X |X |X | | | |
-|Debian 8 | |X |X | | |X | |
-|Debian 7 | | |X | | |X | |
-|OpenSUSE 13.1+ | | |X |X | | | |
-|Oracle Linux 8 |X | |X |X | |X |X |
-|Oracle Linux 7 |X | |X |X | |X |X |
-|Oracle Linux 6 | | |X |X | |X |X |
-|Red Hat Enterprise Linux Server 8 |X | |X |X | |X |X |
-|Red Hat Enterprise Linux Server 7 |X |X |X |X | |X |X |
-|Red Hat Enterprise Linux Server 6 | |X |X | | |X | |
-|SUSE Linux Enterprise Server 15.2 |X | |X |X |X | |X |
-|SUSE Linux Enterprise Server 15.1 |X | |X |X |X |X |X |
-|SUSE Linux Enterprise Server 15 SP1 |X |X |X |X |X |X |X |
-|SUSE Linux Enterprise Server 15 |X |X |X |X |X |X |X |
-|SUSE Linux Enterprise Server 15 SP5 |X |X |X |X | |X |X |
+|Amazon Linux 2 | | |X | | |X |X |X |
+|Debian 10 |X | |X |X | |X | |X |
+|Debian 9 |X |X |X |X | | | |X |
+|Debian 8 | |X |X | | |X | |X |
+|Debian 7 | | |X | | |X | |X |
+|OpenSUSE 13.1+ | | |X |X | | | |X |
+|Oracle Linux 8 |X | |X |X | |X |X |X |
+|Oracle Linux 7 |X | |X |X | |X |X |X |
+|Oracle Linux 6 | | |X |X | |X |X |X |
+|Red Hat Enterprise Linux Server 8 |X | |X |X | |X |X |X |
+|Red Hat Enterprise Linux Server 7 |X |X |X |X | |X |X |X |
+|Red Hat Enterprise Linux Server 6 | |X |X | | |X | |X |
+|SUSE Linux Enterprise Server 15.2 |X | |X |X |X | |X |X |
+|SUSE Linux Enterprise Server 15.1 |X | |X |X |X |X |X |X |
+|SUSE Linux Enterprise Server 15 SP1 |X |X |X |X |X |X |X |X |
+|SUSE Linux Enterprise Server 15 |X |X |X |X |X |X |X |X |
+|SUSE Linux Enterprise Server 15 SP5 |X |X |X |X | |X |X |X |
 |SUSE Linux Enterprise Server 12 SP5 |X |X |X |X |X | |X |X |
 |Ubuntu 24.04 LTS |X |X |X |X | |X |X |X |
 |Ubuntu 22.04 LTS |X |X |X |X | |X |X |X |
-|Ubuntu 20.04 LTS |X |X |X |X | |X |X |
-|Ubuntu 18.04 LTS |X |X |X |X |X |X |X |
-|Ubuntu 16.04 LTS |X |X |X | | |X |X |
-|Ubuntu 14.04 LTS | | |X | | |X | |
+|Ubuntu 20.04 LTS |X |X |X |X | |X |X |X |
+|Ubuntu 18.04 LTS |X |X |X |X |X |X |X |X |
+|Ubuntu 16.04 LTS |X |X |X | | |X |X |X |
+|Ubuntu 14.04 LTS | | |X | | |X | |X |
 
 For the regional availabilities of different Azure services and VM extensions available for Azure Arc-enabled servers, [refer to Azure Global's Product Availability Roadmap](https://global.azure.com/product-availability/roadmap).
 
