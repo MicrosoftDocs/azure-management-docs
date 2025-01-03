@@ -245,7 +245,7 @@ When a configuration is created or updated, a few things happen:
 1. If using the option of SSH with Flux-generated keys, `flux` generates an SSH key and logs the public key.
 1. The `config-agent` reports status back to the configuration resource in Azure.
 
-While the provisioning process happens, the configuration resource will move through a few state changes. Monitor progress with the `az k8s-configuration show ...` command above:
+While the provisioning process happens, the configuration resource will move through a few state changes. Monitor progress with the [az k8s-configuration flux show](/cli/azure/k8s-configuration/flux#az-k8s-configuration-flux-show) command above:
 
 | Stage change | Description |
 | ------------- | ------------- |
@@ -266,7 +266,7 @@ If you generated your own SSH keys, then you already have the private and public
 Use the following in Azure CLI if Flux is generating the keys.
 
 ```azurecli
-az k8s-configuration show --resource-group <resource group name> --cluster-name <connected cluster name> --name <configuration name> --cluster-type connectedClusters --query 'repositoryPublicKey' 
+az k8s-configuration flux show --resource-group <resource group name> --cluster-name <connected cluster name> --name <configuration name> --cluster-type connectedClusters --query 'repositoryPublicKey' 
 "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAREDACTED"
 ```
 
