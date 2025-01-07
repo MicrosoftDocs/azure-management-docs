@@ -17,7 +17,7 @@ This article describes how to upgrade the Azure Arc resource bridge associated w
 
 ## Overview
 
-Deployment of a new resource bridge consists is a process of several steps: downloading the resource bridge VM VHDX from the cloud, using the VHDX to deploy a new VM, verifying that new resource bridge VM is running, associating the existing resources to the new resource bridge VM, connecting it to Azure and deleting the old resource bridge VM. All these steps are executed sequentially after you trigger the upgrade.
+Deploying a new resource bridge consists is a process consisting of several steps: downloading the resource bridge VM VHDX from the cloud, using the VHDX to deploy a new VM, verifying that new resource bridge VM is running, associating the existing resources to the new resource bridge VM, connecting it to Azure and deleting the old resource bridge VM. All these steps are executed sequentially after you trigger the upgrade.
 
 The upgrade generally takes 30-90 minutes, depending on the network speeds. A short intermittent downtime might happen during the handoff between the old resource bridge to the new resource bridge. Additional downtime can occur if prerequisites aren't met, or if a change in the network (DNS, firewall, proxy, etc.,) impacts the resource bridge's network connectivity.
 
