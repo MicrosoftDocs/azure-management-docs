@@ -15,27 +15,9 @@ keywords: "VMM, Arc, Azure"
 
 This article describes how to upgrade the Azure Arc resource bridge associated with your SCVMM environment.
 
-## Prerequisites
-
-Before you upgrade a resource bridge, the following prerequisites must be met:
-
-- The Azure Arc resource bridge must be online and healthy with a status of Running. You can check the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) to verify.  
-- The credentials in the resource bridge VM must be valid. You can update the credentials by following the steps given in [this article](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding). To test the credentials, perform an operation on an Azure-enabled VM from Azure.
-- The resource bridge must be in the same location path where it was originally deployed.
-- The resource bridge VM needs 35GB of free space.
-- The VMM server on which the resource bridge is deployed needs 11GB of free space. The library share used to store the downloaded VHDX needs at least 7GB of free space.
-- The Azure resource of the resource bridge must not have any resource locks placed on it.
-- The workstation machine from which the upgrade is triggered must have the `kubeconfig` and the three .yaml appliance configuration files initially created during deployment stored locally.  
-
 ## Overview
 
-Deployment of a new resource bridge consists of several steps:
-
-1. Download the resource bridge VM VHDX from the cloud.
-1. Use the VHDX to deploy a new VM.
-1. Verify that new resource bridge VM is running.
-1. Associate the existing resources to the new resource bridge VM.
-1. Connect it to Azure and delete the old resource bridge VM.
+Deployment of a new resource bridge consists is a process of several steps: downloading the resource bridge VM VHDX from the cloud, using the VHDX to deploy a new VM, verifying that new resource bridge VM is running, associating the existing resources to the new resource bridge VM, connecting it to Azure and deleting the old resource bridge VM. All these steps are executed sequentially after you trigger the upgrade.
 
 The upgrade generally takes 30-90 minutes, depending on the network speeds. A short intermittent downtime might happen during the handoff between the old resource bridge to the new resource bridge. Additional downtime can occur if prerequisites aren't met, or if a change in the network (DNS, firewall, proxy, etc.,) impacts the resource bridge's network connectivity.
 
@@ -55,6 +37,18 @@ To check if your resource bridge has an upgrade available, run the following com
 az arcappliance get-upgrades --resource-group [REQUIRED] --name [REQUIRED] 
 ```
 
+## Prerequisites
+
+Before you upgrade a resource bridge, the following prerequisites must be met:
+
+- The Azure Arc resource bridge must be online and healthy with a status of Running. You can check the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) to verify.  
+- The credentials in the resource bridge VM must be valid. You can update the credentials by following the steps given in [this article](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding). To test the credentials, perform an operation on an Azure-enabled VM from Azure.
+- The resource bridge must be in the same location path where it was originally deployed.
+- The resource bridge VM needs 35GB of free space.
+- The VMM server on which the resource bridge is deployed needs 11GB of free space. The library share used to store the downloaded VHDX needs at least 7GB of free space.
+- The Azure resource of the resource bridge must not have any resource locks placed on it.
+- The workstation machine from which the upgrade is triggered must have the `kubeconfig` and the three `.yaml` appliance configuration files initially created during deployment stored locally.  
+
 ## Upgrade the Azure Arc resource bridge
 
 The Azure Arc resource bridge can be manually upgraded, and the upgrade command takes your Azure Arc resource bridge to the immediate next version, which might not be the latest available version. Multiple upgrades could be needed to reach a [supported version](/azure/azure-arc/resource-bridge/release-notes). To manually upgrade your resource bridge, follow these steps:
@@ -63,7 +57,7 @@ The Azure Arc resource bridge can be manually upgraded, and the upgrade command 
      ```azurecli
      az extension add --upgrade --name arcappliance
      ```
-2. To manually upgrade your resource bridge, run the following command from workstation machine which has the `kubeconfig` and the three .yaml appliance configuration files stored locally:
+2. To manually upgrade your resource bridge, run the following command from workstation machine which has the `kubeconfig` and the three `.yaml` appliance configuration files stored locally:
 
      ```azurecli
      az arcappliance upgrade scvmm --config-file <file path to ARBname-appliance.yaml>  
