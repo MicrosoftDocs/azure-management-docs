@@ -27,7 +27,7 @@ When you ask Microsoft Copilot in Azure for information about the state of your 
 Here are a few examples of the kinds of prompts you can use to work with your Azure Local instances. Modify these prompts based on your real-life scenarios, or try additional prompts to get different types of information.
 
 - "Summarize my Azure Local instances"
-- "Give me a summary of my Azure Local instances in subscription <subscriptionName>"
+- "Give me a summary of my Azure Local instances in subscription subscriptionName"
 - "Tell me more about the alerts"
 
 ## Examples
