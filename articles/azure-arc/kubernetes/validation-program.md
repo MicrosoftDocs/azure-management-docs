@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc-enabled Kubernetes validation"
-ms.date: 10/26/2023
+ms.date: 01/07/2025
 ms.topic: how-to
 description: "Describes Arc validation program for Kubernetes distributions"
 ---
