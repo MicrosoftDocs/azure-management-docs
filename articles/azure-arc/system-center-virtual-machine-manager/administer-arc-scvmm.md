@@ -13,7 +13,7 @@ manager: jsuri
 
 # Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 
-In this article, you learn how to perform various maintenance and administrative operations related to Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)such as:
+In this article, you learn how to perform various maintenance and administrative operations related to Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) such as:
 
 - Maintain the Azure Arc resource bridge manually following the best practices
 - Update the SCVMM account credentials
@@ -23,7 +23,7 @@ In this article, you learn how to perform various maintenance and administrative
 
 The Azure Arc resource bridge establishes line of sight between the on-premises SCVMM management server and Azure. The components of the resource bridge make it possible to bring the goodness of Azure to your on-premises SCVMM managed virtual machines. The following are a few best practices that you can follow as it deems fit for your organization: 
 
-- **Securely maintain the .yaml and kubeconfig files**: After the successful deployment of the Azure Arc resource bridge, three configuration files are created: \<resource-bridge-name\>-resource.yaml, \<resource-bridge-name\>-appliance.yaml and \<resource-bridge-name\>-infra.yaml. The resource bridge VM hosts a management Kubernetes cluster. By default, a kubeconfig file which will be used to maintain the resource bridge VM, is generated in the current CLI directory during the resource bridge deployment process. It is mandatory to securely store and maintain these files since they are required for the management and upgrade of the resource bridge. 
+- **Securely maintain the `.yaml` and `kubeconfig` files**: After the successful deployment of the Azure Arc resource bridge, three configuration files are created: `\<resource-bridge-name\>-resource.yaml`, `\<resource-bridge-name\>-appliance.yaml` and `\<resource-bridge-name\>-infra.yaml`. The resource bridge VM hosts a management Kubernetes cluster. By default, a `kubeconfig` file which will be used to maintain the resource bridge VM, is generated in the current CLI directory during the resource bridge deployment process. It is mandatory to securely store and maintain these files since they are required for the management and upgrade of the resource bridge. 
 
 - **Resource bridge lock**: Considering the critical nature of the resource bridge, you, as an administrator, can lock the Azure resource of the resource bridge to protect it from accidental deletion and hence preventing loss of connectivity to SCVMM server from Azure. To place a resource lock on your resource bridge, navigate to its Azure resource and select **Locks** under the **Settings** blade. You can add a **Delete** lock from here which prevents self-service users from accidentally deleting the resource bridge. 
 
