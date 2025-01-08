@@ -1,6 +1,6 @@
 ---
 title: "Upgrade Azure Arc-enabled Kubernetes agents"
-ms.date: 12/13/2023
+ms.date: 01/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Control agent upgrades for Azure Arc-enabled Kubernetes"
