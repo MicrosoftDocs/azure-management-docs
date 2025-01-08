@@ -1,5 +1,5 @@
 ---
-title:  Terraform based VM management
+title:  Terraform based SCVMM VM management
 description: This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 ms.topic: how-to 
 ms.date: 01/08/2025
@@ -10,13 +10,11 @@ ms.author: v-gjeronika
 manager: jsuri
 ---
 
-# Terraform based VM management
+# Terraform based SCVMM VM management
 
 This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 
-[Hashicorp Terraform](https://www.terraform.io/) is an open-source IaC (Infrastructure-as-Code) tool to configure and deploy cloud infrastructure. It codifies infrastructure in configuration files that describe the desired state for your topology. Terraform enables the management of your SCVMM based virtual infrastructure by using AzAPI Terraform providers.
-
-The complete set of Terraform templates available with Azure Arc enabled SCVMM can be accessed [here](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform).
+[Hashicorp Terraform](https://www.terraform.io/) is an open-source IaC (Infrastructure-as-Code) tool to configure and deploy cloud infrastructure. Terraform enables the management of your SCVMM based virtual infrastructure by using AzAPI Terraform providers. The complete set of Terraform templates available with Azure Arc enabled SCVMM can be accessed [here](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform).
 
 The following scenarios are covered in this article:
 
@@ -119,11 +117,10 @@ machine_name         = "vm-name"
 vm_username          = "Administrator"
 vm_password          = "your_vm_password"
 vmmserver_id         = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/vmmServers/your-vmmserver-name"
-availability_set_name = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/AvailabilitySets/your-availabilityset-name" //this parameter is optional
+availability_set_name = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/AvailabilitySets/your-availabilityset-name" #this parameter is optional
 cloud_id             = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/Clouds/your-vmmcloud-name"
 template_id          = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/VirtualMachineTemplates/your-template-name"
 virtual_network_id   = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/VirtualNetworks/your-vmnetwork-name"
-inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/vmmServers/your-vmmserver-name/InventoryItems/your-inventory-item-uuid" 
 custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/your-customlocation-name"
 ```
 
@@ -183,17 +180,18 @@ resource "azapi_resource" "test_inventory_vm001" {
   parent_id = azapi_resource.test_machine01.id
   body = {
     properties = {
-      availabilitySets = [
-        {
-          name = var.availability_set_name
-        }
-      ]
       infrastructureProfile = {
         templateId   = var.template_id
         cloudId      = var.cloud_id
         vmName       = var.machine_name
       }
-    # Override VM template to customize VM creation #Optional
+    # Availability sets, OS profile and hardware profile are optional
+      availabilitySets = [
+      {
+      name = var.availability_set_name
+      }
+      ]
+    # Override VM template to customize VM creation 
       osProfile = {
         computerName    = "myVM"
         adminPassword   = var.vm_password
