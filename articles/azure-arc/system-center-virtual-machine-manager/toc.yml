@@ -46,6 +46,8 @@
       href: deliver-esus-for-system-center-virtual-machine-manager-vms.md
   - name: Administer
     items:
+    - name: Upgrade Azure Arc resource bridge
+      href: upgrade-azure-arc-resource-bridge.md
     - name: Administer Arc-enabled SCVMM
       href: administer-arc-scvmm.md
     - name: Remove your SCVMM environment from Azure Arc
