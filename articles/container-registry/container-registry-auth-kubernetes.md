@@ -39,7 +39,7 @@ Kubernetes uses an *image pull secret* to store information needed to authentica
 Create an image pull secret with the following `kubectl` command:
 
 ```console
-kubectl create secret docker-registry <secret-name> \
+kubectl create secret acr-secret <secret-name> \
     --namespace <namespace> \
     --docker-server=<container-registry-name>.azurecr.io \
     --docker-username=<service-principal-ID> \
