@@ -17,7 +17,7 @@ This article describes how to upgrade the Azure Arc resource bridge associated w
 
 ## Overview
 
-Deploying a new resource bridge consists is a process consisting of several steps: downloading the resource bridge VM VHDX from the cloud, using the VHDX to deploy a new VM, verifying that new resource bridge VM is running, associating the existing resources to the new resource bridge VM, connecting it to Azure and deleting the old resource bridge VM. All these steps are executed sequentially after you trigger the upgrade.
+Deploying a new resource bridge is a process consisting of several steps: downloading the resource bridge VM VHDX from the cloud, using the VHDX to deploy a new VM, verifying that new resource bridge VM is running, associating the existing resources to the new resource bridge VM, connecting it to Azure and deleting the old resource bridge VM. All these steps are executed sequentially after you trigger the upgrade.
 
 The upgrade generally takes 30-90 minutes, depending on the network speeds. A short intermittent downtime might happen during the handoff between the old resource bridge to the new resource bridge. Additional downtime can occur if prerequisites aren't met, or if a change in the network (DNS, firewall, proxy, etc.) impacts the resource bridge's network connectivity.
 
@@ -34,7 +34,7 @@ To check the current version of your resource bridge, run `az arcappliance show`
 To check if your resource bridge has an upgrade available, run the following command:  
 
 ```azurecli
-az arcappliance get-upgrades --resource-group [REQUIRED] --name [REQUIRED] 
+az arcappliance get-upgrades --resource-group <ResourceGroup> --name <ARBName>
 ```
 
 ## Prerequisites
@@ -44,7 +44,6 @@ Before you upgrade a resource bridge, the following prerequisites must be met:
 - The Azure Arc resource bridge must be online and healthy with a status of Running. You can check the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) to verify.  
 - The credentials in the resource bridge VM must be valid. You can update the credentials by following the steps given in [this article](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding). To test the credentials, perform an operation on an Azure-enabled VM from Azure.
 - The resource bridge must be in the same location path where it was originally deployed.
-- The resource bridge VM needs 35 GB of free space.
 - The VMM server on which the resource bridge is deployed needs 11 GB of free space. The library share used to store the downloaded VHDX needs at least 7 GB of free space.
 - The Azure resource of the resource bridge must not have any resource locks placed on it.
 - The workstation machine from which the upgrade is triggered must have the `kubeconfig` and the three `.yaml` appliance configuration files initially created during deployment stored locally.  
@@ -72,4 +71,5 @@ Once the upgrade is successful, you can navigate to the [Azure resource of your 
 
 ## Next Step
 
-[Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors](/azure/azure-arc/system-center-virtual-machine-manager/troubleshoot-scvmm).
+- [Troubleshoot SCVMM-specific upgrade errors](/azure/azure-arc/system-center-virtual-machine-manager/troubleshoot-scvmm).
+- Learn how to [administer Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm).
