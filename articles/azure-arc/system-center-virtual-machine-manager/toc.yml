@@ -14,7 +14,7 @@
   items:
   - name: Create a virtual machine on SCVMM Management server
     href: create-virtual-machine.md
-  - name: Terraform based VM management
+  - name: Terraform based SCVMM VM management
     href: terraform-vm-management.md
 - name: Concepts
   items:

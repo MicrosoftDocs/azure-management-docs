@@ -95,7 +95,7 @@ variable "availability_set_name" {
 }
 
 variable "vmmserver_id" {
-  description = "The ID of the vCenter."
+  description = "The ID of the SCVMM server."
   type        = string
 }
 
@@ -121,7 +121,7 @@ availability_set_name = "/subscriptions/your-subscription-id/resourceGroups/your
 cloud_id             = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/Clouds/your-vmmcloud-name"
 template_id          = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/VirtualMachineTemplates/your-template-name"
 virtual_network_id   = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.SCVMM/VirtualNetworks/your-vmnetwork-name"
-custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/your-customlocation-name"
+custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/Microsoft.extendedlocation/customlocations/your-customlocation-name"
 ```
 
 ### Step 3: Define the VM configuration in a *main.tf* file
