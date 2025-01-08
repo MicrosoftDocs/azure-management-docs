@@ -30,7 +30,7 @@ The Azure Arc resource bridge establishes line of sight between the on-premises 
      >[!Important]
      >Both Read-only and Delete type resource locks disables the upgrade of the resource bridge and it is necessary to remove the locks before triggering an upgrade. 
 
-- **Resource bridge health alert**: The Azure Arc resource bridge needs to be maintained online and healthly with a *Running* status to ensure the continuous functioning of the Azure Arc enabled SCVMM offering. The resource bridge can periodically get into an *offline* status due to rotation of credentials as part of your regular security practices or any change in the network. To be notified of any unintended downtime of the resource bridge, you can setup health alerts on the Azure resource of your resource bridge by following these steps: 
+- **Resource bridge health alert**: The Azure Arc resource bridge needs to be maintained online and healthy with a *Running* status to ensure the continuous functioning of the Azure Arc enabled SCVMM offering. The resource bridge can periodically get into an *offline* status due to rotation of credentials as part of your regular security practices or any change in the network. To be notified of any unintended downtime of the resource bridge, you can setup health alerts on the Azure resource of your resource bridge by following these steps: 
 
      1. In the Azure portal, search and navigate to **Service Health**.
      1. In the left pane, select **Resource Health** > **Resource Health**.
