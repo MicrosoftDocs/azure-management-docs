@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 12/19/2023
+ms.date: 01/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Learn how to resolve common problems with Azure Arc-enabled Kubernetes cluster extensions."
@@ -42,11 +42,7 @@ For an AKS cluster, ensure that the `Microsoft.ContainerService/AKS-ExtensionMan
 az feature register --namespace Microsoft.ContainerService --name AKS-ExtensionManager
 ```
 
-Next, run the following command to determine if there are other problems.
-
-In the command, for an Azure Arc-enabled cluster, set the cluster type parameter (`-t`) to `connectedClusters`. For an AKS cluster, set `-t` to `managedClusters`.
-
-The name of the `microsoft.flux` extension is `flux` if the extension was installed automatically when you created your GitOps configuration.
+Next, run the following command to determine if there are other problems. Set the cluster type parameter (`-t`) to `connectedClusters` for For an Azure Arc-enabled cluster, or to `managedClusters` for an AKS cluster. If the extension was installed automatically when you created your GitOps configuration, the name of the `microsoft.flux` extension is `flux`.
 
 ```azurecli
 az k8s-extension show -g <RESOURCE_GROUP> -c <CLUSTER_NAME> -n flux -t <connectedClusters or managedClusters>
@@ -76,21 +72,11 @@ The extension status returns as `Failed`:
 
 In this case, the `extension-agent` pod tries to get its token from Azure Instance Metadata Service on the cluster, but the token request is intercepted by the [pod identity](/azure/aks/use-azure-ad-pod-identity). To fix this problem, [upgrade to the latest version](extensions.md#upgrade-an-extension-instance) of the `microsoft.flux` extension.
 
-### Issues with kubelet identity when you install the microsoft.flux extension in an AKS cluster
+### Memory and CPU resource requirements for installing the microsoft.flux extension
 
-One of the authentication options in an AKS cluster is to use a *kubelet identity* as a user-assigned managed identity. By choosing to use a kubelet identity, you can help reduce operational overhead and increase security when users connect to Azure resources like Azure Container Registry.
+The controllers that are installed in your Kubernetes cluster when you install the `microsoft.flux` extension must have enough CPU and memory resources to properly schedule on a Kubernetes cluster node. Be sure that your cluster meets the minimum memory and CPU resource requirements.
 
-To set Flux to use a kubelet identity, add the parameter `--config useKubeletIdentity=true` when you install the Flux extension:
-
-```console
-az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type managedClusters --name flux --extension-type microsoft.flux --config useKubeletIdentity=true
-```
-
-### Have minimum required memory and CPU resources to install the microsoft.flux extension
-
-The controllers that are installed in your Kubernetes cluster when you install the `microsoft.flux` extension require minimum CPU and memory resources to properly schedule on a Kubernetes cluster node. Be sure that your cluster meets the minimum memory and CPU resources requirements.
-
-The following table lists the minimum and maximum limits for potential CPU and memory resource requirements in this scenario:
+The following table lists the minimum and maximum limits for potential CPU and memory resource requirements for this scenario:
 
 | Container name | Minimum CPU | Minimum memory | Maximum CPU | Maximum memory |
 | -------------- | ----------- | -------- |
@@ -285,6 +271,8 @@ For OSM to function, there must be at least one endpoint for `osm-injector`. The
 
 ### Check webhooks: Validating and Mutating
 
+Check the **Validating** webhook by running the following command:
+
 ```bash
 kubectl get ValidatingWebhookConfiguration --selector app=osm-controller
 ```
@@ -295,6 +283,8 @@ If the **Validating** webhook is healthy, output that looks similar to the follo
 NAME                     WEBHOOKS   AGE
 osm-validator-mesh-osm   1          81m
 ```
+
+Check the **Mutating** webhook by running the following command:
 
 ```bash
 kubectl get MutatingWebhookConfiguration --selector app=osm-injector
