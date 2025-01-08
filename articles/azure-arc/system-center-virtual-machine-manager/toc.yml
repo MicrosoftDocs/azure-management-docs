@@ -14,6 +14,8 @@
   items:
   - name: Create a virtual machine on SCVMM Management server
     href: create-virtual-machine.md
+  - name: Terraform based SCVMM VM management
+    href: terraform-vm-management.md
 - name: Concepts
   items:
   - name: Azure Arc agent
@@ -46,6 +48,8 @@
       href: deliver-esus-for-system-center-virtual-machine-manager-vms.md
   - name: Administer
     items:
+    - name: Upgrade Azure Arc resource bridge
+      href: upgrade-azure-arc-resource-bridge.md
     - name: Administer Arc-enabled SCVMM
       href: administer-arc-scvmm.md
     - name: Remove your SCVMM environment from Azure Arc
