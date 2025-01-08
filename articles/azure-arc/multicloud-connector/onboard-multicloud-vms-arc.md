@@ -7,7 +7,7 @@ ms.date: 01/08/2025
 
 # Onboard VMs to Azure Arc through the multicloud connector
 
-The **Arc onboarding** solution of the multicloud connector auto-discovers VMs in a [connected public cloud](connect-to-aws.md), then installs the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview) to onboard the VMs to Azure Arc. Currently, EC2 instances in AWS public cloud environments are supported.
+The **Arc onboarding** solution of the multicloud connector autodiscovers VMs in a [connected public cloud](connect-to-aws.md), then installs the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview) to onboard the VMs to Azure Arc. Currently, EC2 instances in AWS public cloud environments are supported.
 
 This simplified experience lets you use Azure management services, such as Azure Monitor, providing a centralized way to manage Azure and AWS VMs together.
 
@@ -15,7 +15,7 @@ You can enable the **Arc onboarding** solution when you [connect your public clo
 
 ## Prerequisites
 
-In addition to the [general prerequisites](connect-to-aws.md#prerequisites) for connecting a public cloud, be sure to meet the requirements for the **Arc onboarding** solution. This includes requirements for each EC2 instance that will be onboarded to Azure Arc.
+In addition to the [general prerequisites](connect-to-aws.md#prerequisites) for connecting a public cloud, be sure to meet the requirements for the **Arc onboarding** solution. This includes requirements for each EC2 instance to be onboarded to Azure Arc.
 
 - You must have **AmazonEC2FullAccess** permissions in your public cloud.
 - EC2 instances must meet the [general prerequisites for installing the Connected Machine agent](../servers/prerequisites.md).
@@ -38,9 +38,9 @@ For more information, see [Connected machine agent network requirements](../serv
 
 ## Periodic sync options
 
-The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, any time there is a newly discovered EC2 instance that meets the prerequisites, the Arc agent will be installed automatically.
+The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance that meets the prerequisites is discovered, the Arc agent is automatically installed.
 
-If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances won't be automatically onboarded to Azure Arc, as Azure won't be able to scan for new instances.
+If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
 ## EC2 Filter Options
 
