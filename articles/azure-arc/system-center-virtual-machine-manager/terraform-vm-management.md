@@ -107,7 +107,7 @@ variable "custom_location_id" {
 
 ### Step 2: Define the metadata and credentials in a *tfvars* file 
 
-Here is a sample `createscvmmvm.tfvars` file with placeholders.
+Here is a sample `createscvmmVM.tfvars` file with placeholders.
 
 ```terraform
 subscription_id      = "your-subscription-id"
@@ -263,9 +263,9 @@ resource "azapi_resource" "guestAgent" {
 Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
 
 - Initialize Terraform (if not already initialized): `terraform init`
-- Validate the configuration: `terraform validate -var-file="createVMsample.tfvars"`
-- Plan the changes: `terraform plan -var-file="createVMsample.tfvars"`
-- Apply the changes: `terraform apply -var-file="createVMsample.tfvars"`
+- Validate the configuration: `terraform validate -var-file="createscvmmVM.tfvars"`
+- Plan the changes: `terraform plan -var-file="createscvmmVM.tfvars"`
+- Apply the changes: `terraform apply -var-file="createscvmmVM.tfvars"`
 
 Confirm the prompt by entering yes to apply the changes.
 
