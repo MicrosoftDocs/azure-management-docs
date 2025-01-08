@@ -2,7 +2,7 @@
 title: Onboard VMs to Azure Arc through the multicloud connector
 description: Learn how to enable the Arc onboarding solution with the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
-ms.date: 06/11/2024
+ms.date: 01/08/2025
 ---
 
 # Onboard VMs to Azure Arc through the multicloud connector
@@ -28,6 +28,8 @@ After you connect your AWS cloud and enable the **Arc onboarding** solution, the
 
 When EC2 instances are connected to Azure Arc, representations of these machines appear in this resource group. These resources are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping). You can filter for which Azure regions you would like to scan for. By default, all regions are scanned, but you can choose to exclude certain regions when you [configure the solution](connect-to-aws.md#add-your-public-cloud-in-the-azure-portal).
 
+The `aws_yourAwsAccountId` resource group inherits permissions from its subscription. You can grant additional access to user accounts in your tenant as needed to enable specific scenarios.  
+
 ## Connectivity method
 
 When creating the [**Arc onboarding** solution](connect-to-aws.md#add-your-public-cloud-in-the-azure-portal), you select whether the Connected Machine agent should connect to the internet via a public endpoint or by proxy server. If you select **Proxy server**, you must provide a **Proxy server URL** to which the EC2 instance can connect.
@@ -42,7 +44,7 @@ If you prefer, you can turn periodic sync off when configuring this solution. If
 
 ## EC2 Filter Options
 
-You can choose to filter to scan for EC2 based on AWS regions or AWS tags. You can select which regions you would like to scan for EC2 resources. You can also filter by AWS tag to only onboard EC2 machines that have the matching tag (case-insensitive) to be eligible for EC2 onboarding. 
+You can choose to filter to scan for EC2 based on AWS regions or AWS tags. You can select which regions you would like to scan for EC2 resources. You can also filter by AWS tag to only onboard EC2 machines that have the matching tag (case-insensitive) to be eligible for EC2 onboarding.
 
 ## Next steps
 
