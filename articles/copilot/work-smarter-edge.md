@@ -28,8 +28,7 @@ Here are a few examples of the kinds of prompts you can use to work with your Az
 
 - "Summarize my Azure Local instances"
 - "Tell me more about the alerts"
-- "Find any anomalies in my Azure Local instances"
-- "Find any anomalies from the most recent alert"
+- "Generate a summary of my Arc Machines in subscription subName"
 
 ## Examples
 

@@ -1,8 +1,8 @@
 ---
-title:  Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager
+title:  Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager.
 ms.topic: how-to 
-ms.date: 12/03/2024
+ms.date: 01/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
@@ -11,37 +11,38 @@ ms.author: v-gjeronika
 manager: jsuri
 ---
 
-# Perform ongoing administration for Azure Arc-enabled System Center Virtual Machine Manager
+# Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 
-In this article, you learn how to perform various administrative operations related to Azure Arc-enabled System Center Virtual Machine Manager (SCVMM):
+In this article, you learn how to perform various maintenance and administrative operations related to Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) such as:
 
-- Upgrade the Azure Arc resource bridge manually
+- Maintain the Azure Arc resource bridge manually following the best practices
 - Update the SCVMM account credentials
-- Collect logs from the Arc resource bridge
+- Collect logs from the Azure Arc resource bridge
 
-Each of these operations requires either SSH key to the resource bridge VM or the kubeconfig file that provides access to the Kubernetes cluster on the resource bridge VM.
+## Best practices to maintain the Azure Arc-enabled SCVMM resources 
 
-## Upgrade the Arc resource bridge manually
+The Azure Arc resource bridge establishes line of sight between the on-premises SCVMM management server and Azure. The components of the resource bridge make it possible to bring the goodness of Azure to your on-premises SCVMM managed virtual machines. The following are a few best practices that you can follow as it deems fit for your organization: 
 
-Azure Arc-enabled SCVMM requires the Arc resource bridge to connect your SCVMM environment with Azure. Periodically, new images of Arc resource bridge are released to include security and feature updates. The Arc resource bridge can be manually upgraded from the SCVMM server. You must meet all upgrade [prerequisites](../resource-bridge/upgrade.md#prerequisites) before attempting to upgrade. The SCVMM server must have the kubeconfig and appliance configuration .yaml files stored locally. If the SCVMM account credentials changed after the initial deployment of the Azure Arc resource bridge, [update the new account credentials](administer-arc-scvmm.md#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding) before attempting manual upgrade.
+- **Securely maintain the `.yaml` and `kubeconfig` files**: After the successful deployment of the Azure Arc resource bridge, three configuration files are created: `\<resource-bridge-name\>-resource.yaml`, `\<resource-bridge-name\>-appliance.yaml` and `\<resource-bridge-name\>-infra.yaml`. The resource bridge VM hosts a management Kubernetes cluster. By default, a `kubeconfig` file which will be used to maintain the resource bridge VM, is generated in the current CLI directory during the resource bridge deployment process. It's mandatory to securely store and maintain these files since they're required for the management and upgrade of the resource bridge. 
 
-The manual upgrade generally takes between 30-90 minutes, depending on the network speed. The upgrade command takes your Azure Arc resource bridge to the immediate next version, which might not be the latest available version. Multiple upgrades could be needed to reach a [supported version](../resource-bridge/upgrade.md#supported-versions). You can check your resource bridge version by checking the Azure resource of your Arc resource bridge.
+- **Resource bridge lock**: Considering the critical nature of the resource bridge, you, as an administrator, can lock the Azure resource of the resource bridge to protect it from accidental deletion and hence preventing loss of connectivity to SCVMM server from Azure. To place a resource lock on your resource bridge, navigate to its Azure resource and select **Locks** under the **Settings** blade. You can add a **Delete** lock from here which prevents self-service users from accidentally deleting the resource bridge. 
 
-To manually upgrade your Arc resource bridge, make sure you've installed the latest `az arcappliance` CLI extension by running the following extension upgrade command from the SCVMM server:
+     >[!Important]
+     >Both Read-only and Delete type resource locks disables the upgrade of the resource bridge and it is necessary to remove the locks before triggering an upgrade. 
 
-```azurecli
-az extension add --upgrade --name arcappliance 
-```
+- **Resource bridge health alert**: The Azure Arc resource bridge needs to be maintained online and healthy with a *Running* status to ensure the continuous functioning of the Azure Arc enabled SCVMM offering. The resource bridge can periodically get into an *offline* status due to rotation of credentials as part of your regular security practices or any change in the network. To be notified of any unintended downtime of the resource bridge, you can set up health alerts on the Azure resource of your resource bridge by following these steps: 
 
-To manually upgrade your resource bridge, use the following command:
-
-```azurecli
-az arcappliance upgrade scvmm --config-file C:\Users\admin\contosoARB01-appliance.yaml 
-```
+     1. In the Azure portal, search and navigate to **Service Health**.
+     1. In the left pane, select **Resource Health** > **Resource Health**.
+     1. In the **Subscription** dropdown, choose the subscription in which your resource bridge is located. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. After the list of resource bridge is populated, choose the resource bridge for which you want to set up the alert and select **Add resource health alert**. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without choosing any resource bridges. 
+         :::image type="content" source="media/administer-arc-scvmm/service-health.png" alt-text="Screenshot of Service Health.":::
+     1. Configure the conditions in the alert rule depending on if you want to receive continuous notifications on the health status or if you want to receive notifications only when the resource bridge becomes unhealthy. 
+     1. Configure the action group with the type of notification and the recipient of the alert. 
+     1. Complete creating the alert rule by filling in the details of the alert rule location, identifiers, and optional tags.  
 
 ## Update the SCVMM account credentials (using a new password or a new SCVMM account after onboarding)
 
-Azure Arc-enabled SCVMM uses the SCVMM account credentials you provided during the onboarding to communicate with your SCVMM management server. These credentials are only persisted locally on the Arc resource bridge VM.
+Azure Arc-enabled SCVMM uses the SCVMM account credentials you provided during the onboarding to communicate with your SCVMM management server. These credentials are stored locally on the Arc resource bridge VM.
 
 As part of your security practices, you might need to rotate credentials for your SCVMM accounts. As credentials are rotated, you must also update the credentials provided to Azure Arc to ensure the functioning of Azure Arc-enabled SCVMM. You can also use the same steps in case you need to use a different SCVMM account after onboarding. You must ensure the new account also has all the [required SCVMM permissions](quickstart-connect-system-center-virtual-machine-manager-to-arc.md#prerequisites).
 
@@ -91,3 +92,4 @@ az arcappliance logs scvmm --out-dir <path to specified output directory> --ip X
 - [Troubleshoot common issues related to resource bridge](../resource-bridge/troubleshoot-resource-bridge.md).
 - [Understand disaster recovery operations for resource bridge](./disaster-recovery.md).
 - [Azure Arc resource bridge maintenance operations](../resource-bridge/maintenance.md).
+- [Protect your Azure resource with a lock](/azure/azure-resource-manager/management/lock-resources?tabs=json).
