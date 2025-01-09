@@ -1,6 +1,6 @@
 ---
 title: Manage hybrid infrastructure at scale with Azure Arc
-description: Azure Lighthouse helps you use Azure Arc tp effectively manage customers' machines and Kubernetes clusters outside of Azure.
+description: Azure Lighthouse helps you use Azure Arc to effectively manage customers' machines and Kubernetes clusters outside of Azure.
 ms.date: 01/09/2025
 ms.topic: how-to
 ---
@@ -28,9 +28,9 @@ For example, you can [ensure the same set of policies are applied across custome
 
 ## Manage hybrid Kubernetes clusters at scale with Azure Arc-enabled Kubernetes
 
-You can manage Kubernetes clusters that have been [connected to a customer's subscription with Azure Arc](../../azure-arc/kubernetes/quickstart-connect-cluster.md), just as if they were running in Azure.
+You can manage Kubernetes clusters that are [connected to a customer's subscription with Azure Arc](../../azure-arc/kubernetes/quickstart-connect-cluster.md), just as if they were running in Azure.
 
-If your customer has created a service principal account to onboard Kubernetes clusters to Azure Arc, you can access this account so that you can [onboard and manage clusters](../../azure-arc/kubernetes/quickstart-connect-cluster.md). To do so, a user in the managing tenant must have been granted the [Kubernetes Cluster - Azure Arc Onboarding built-in role](/azure/role-based-access-control/built-in-roles#kubernetes-cluster---azure-arc-onboarding) when the subscription containing the service principal account was [onboarded to Azure Lighthouse](onboard-customer.md).
+If your customer uses a service principal account to onboard Kubernetes clusters to Azure Arc, you can access this account so that you can [onboard and manage clusters](../../azure-arc/kubernetes/quickstart-connect-cluster.md). To do so, a user in the managing tenant must have the [Kubernetes Cluster - Azure Arc Onboarding built-in role](/azure/role-based-access-control/built-in-roles#kubernetes-cluster---azure-arc-onboarding) when the subscription containing the service principal account was [onboarded to Azure Lighthouse](onboard-customer.md).
 
 You can deploy [configurations and Helm charts](../../azure-arc/kubernetes/tutorial-use-gitops-flux2.md) using [GitOps for connected clusters](../../azure-arc/kubernetes/conceptual-gitops-flux2.md).
 
