@@ -34,10 +34,10 @@ After you elevate your access, your account will have the User Access Administra
 
 ### Assign the Monitoring Reader role at root scope
 
-Once you have elevated your access, you can assign the appropriate permissions to an account so that it can query tenant-level activity log data. This account must have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) Azure built-in role assigned at the root scope of your managing tenant.
+After you elevate your access, you can assign the appropriate permissions to an account so that it can query tenant-level activity log data. This account must have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) Azure built-in role assigned at the root scope of your managing tenant.
 
 > [!IMPORTANT]
-> Granting a role assignment at root scope means that the same permissions will apply to every resource in the tenant. Because this is a broad level of access, we recommend [assigning this role to a service principal account and using that account to query data](#use-a-service-principal-account-to-query-the-activity-log).
+> Granting a role assignment at root scope means that the same permissions apply to every resource in the tenant. Because this is such a broad level of access, we recommend [assigning this role to a service principal account and using that account to query data](#use-a-service-principal-account-to-query-the-activity-log).
 >
 > You can also assign the Monitoring Reader role at root scope to individual users or to user groups so that they can [view delegation information directly in the Azure portal](#view-delegation-changes-in-the-azure-portal). If you do so, be aware that this is a broad level of access which should be limited to the fewest number of users possible.
 
@@ -61,7 +61,7 @@ az role assignment create --assignee 00000000-0000-0000-0000-000000000000 --role
 
 ### Remove elevated access for the Global Administrator account
 
-After you assign the Monitoring Reader role at root scope to the desired account, be sure to [remove the elevated access](/azure/role-based-access-control/elevate-access-global-adminl#remove-elevated-access-for-users) for the Global Administrator account, since this high level of access is no longer needed.
+After you assign the Monitoring Reader role at root scope to the desired account, be sure to [remove the elevated access](/azure/role-based-access-control/elevate-access-global-admin#remove-elevated-access-for-users) for the Global Administrator account, since this high level of access is no longer needed.
 
 ## View delegation changes in the Azure portal
 
@@ -69,28 +69,27 @@ Users who have been assigned the Monitoring Reader role at root scope can view d
 
 1. Navigate to the **My customers** page, then select **Activity log** from the left-hand navigation menu.
 1. Ensure that **Directory Activity** is selected in the filter near the top of the screen.
-
-A list of delegation changes will appear. You can select **Edit columns** to show or hide the **Status**, **Event category**, **Time**, **Time stamp**, **Subscription**, **Event initiated by**, **Resource group**, **Resource type**, and **Resource** values.
+1. Select the timespan for which you want to view delegation changes.
 
 :::image type="content" source="../media/delegation-activity-portal.jpg" alt-text="Screenshot of delegation changes in the Azure portal.":::
 
 ## Use a service principal account to query the activity log
 
-Because the Monitoring Reader role at root scope is such a broad level of access, you may wish to assign the role to a service principal account and use that account to query data using the script below.
+Because the Monitoring Reader role at root scope is such a broad level of access, we recommend assigning the role to a service principal account and using that account to query data via a script.
 
 > [!IMPORTANT]
 > Currently, tenants with a large amount of delegation activity may run into errors when querying this data.
 
 When using a service principal account to query the activity log, we recommend the following best practices:
 
-- [Create a new service principal account](/azure/active-directory/develop/howto-create-service-principal-portal) to be used only for this function, rather than assigning this role to an existing service principal used for other automation.
-- Be sure that this service principal does not have access to any delegated customer resources.
-- [Use a certificate to authenticate](/azure/active-directory/develop/howto-create-service-principal-portal#set-up-authentication) and [store it securely in Azure Key Vault](/azure/key-vault/general/security-features).
+- [Create a new service principal account](/entra/identity-platform/howto-create-service-principal-portal) to be used only for this function, rather than assigning this role to an existing service principal used for other automation.
+- Be sure that this service principal doesn't have access to any delegated customer resources.
+- [Use a certificate to authenticate](/entra/identity-platform/howto-create-service-principal-portal#set-up-authentication) and [store it securely in Azure Key Vault](/azure/key-vault/general/security-features).
 - Limit the users who have access to act on behalf of the service principal.
 
-Once you've created a new service principal account with Monitoring Reader access to the root scope of your managing tenant, you can use it to query and report on delegation activity in your tenant.
+After you create a service principal account that has Monitoring Reader access at the root scope of your managing tenant, you can use it to query and report on delegation activity.
 
-[This Azure PowerShell script](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/tools/monitor-delegation-changes) can be used to query the past day of activity and report any added or removed delegations (or attempts that were not successful). It queries the [Tenant Activity Log](/rest/api/monitor/TenantActivityLogs/List) data, then constructs the following values to report on delegations that are added or removed:
+[This Azure PowerShell script](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/tools/monitor-delegation-changes) can be used to query the past day of activity and report any added or removed delegations (or attempts that weren't successful). It queries the [Tenant Activity Log](/rest/api/monitor/TenantActivityLogs/List) data, then constructs the following values to report on delegations that are added or removed:
 
 - **DelegatedResourceId**: The ID of the delegated subscription or resource group
 - **CustomerTenantId**: The customer tenant ID
@@ -100,10 +99,10 @@ Once you've created a new service principal account with Monitoring Reader acces
 
 When querying this data, keep in mind:
 
-- If multiple resource groups are delegated in a single deployment, separate entries will be returned for each resource group.
-- Changes made to a previous delegation (such as updating the permission structure) will be logged as an added delegation.
-- As noted above, an account must have the Monitoring Reader Azure built-in role at root scope (/) in order to access this tenant-level data.
-- You can use this data in your own workflows and reporting. For example, you can use the [HTTP Data Collector API (preview)](/azure/azure-monitor/logs/data-collector-api) to log data to Azure Monitor from a REST API client, then use [action groups](/azure/azure-monitor/alerts/action-groups) to create notifications or alerts.
+- If multiple resource groups are delegated in a single deployment, separate entries are returned for each resource group.
+- Changes made to a previous delegation (such as updating the permission structure) are logged as an added delegation.
+- As noted earlier, an account must have the Monitoring Reader Azure built-in role at root scope (/) in order to access this tenant-level data.
+- You can use this data in your own workflows and reporting. For example, you can use the [Logs Ingestion API](/azure/azure-monitor/logs/logs-ingestion-api-overview) to log data to Azure Monitor from a REST API client, then use [action groups](/azure/azure-monitor/alerts/action-groups) to create notifications or alerts.
 
 ```azurepowershell-interactive
 # Log in first with Connect-AzAccount if you're not using Cloud Shell
