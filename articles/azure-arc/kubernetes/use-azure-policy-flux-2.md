@@ -7,9 +7,9 @@ description: "Use Azure Policy to apply Flux v2 configurations at scale on Azure
 
 # Deploy applications consistently at scale using Flux v2 configurations and Azure Policy
 
-You can use [Azure Policy ](/azure/governance/policy/)to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or AKS (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and [create a policy assignment](/azure/governance/policy/tutorials/create-and-manage).
+You can use [Azure Policy](/azure/governance/policy/)to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or AKS (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and [create a policy assignment](/azure/governance/policy/tutorials/create-and-manage).
 
-Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can do this by assigning a policy that deploys the extension to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration that will be applied to the clusters in that scope.
+Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can do this by assigning a policy that deploys the extension to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration to be applied to the clusters in that scope.
 
 To enable separation of concerns, you can create multiple policy assignments, each with a different Flux v2 configuration pointing to a different source. For example, one Git repository can be used by cluster admins while other repositories can be used by application teams.
 
@@ -33,7 +33,7 @@ To find all of the Flux v2 policy definitions, search for **flux**. For more inf
 ## Prerequisites
 
 * One or more Arc-enabled Kubernetes clusters and/or AKS clusters.
-* `Microsoft.Authorization/policyAssignments/write` permissions on the scope (subscription or resource group) where you'll create the policy assignments.
+* `Microsoft.Authorization/policyAssignments/write` permissions on the scope (subscription or resource group) to create the policy assignments.
 
 ## Create a policy assignment to install the Flux extension
 
@@ -76,7 +76,7 @@ For existing clusters, you might need to manually run a remediation task. This t
 
 1. In the Azure portal, navigate to an Azure Arc-enabled Kubernetes or AKS cluster that's within the scope of the policy assignment.
 1. In the service menu, under **Settings**, select **GitOps**. In the **Configurations** list, you should see the configuration created by the policy assignment.
-1. In the service menu, under **Kubernetes resources**, select **Namespaces**. You should see the namespace that were created by the Flux configuration.
+1. In the service menu, under **Kubernetes resources**, select **Namespaces**. You should see the namespace that was created by the Flux configuration.
 
 ## Customize a policy
 
