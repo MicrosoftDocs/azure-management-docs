@@ -1,7 +1,7 @@
 ---
 title: Manage hybrid infrastructure at scale with Azure Arc
-description: Azure Lighthouse helps you effectively manage customers' machines and Kubernetes clusters outside of Azure.
-ms.date: 12/01/2023
+description: Azure Lighthouse helps you use Azure Arc tp effectively manage customers' machines and Kubernetes clusters outside of Azure.
+ms.date: 01/09/2025
 ms.topic: how-to
 ---
 
@@ -13,7 +13,7 @@ ms.topic: how-to
 
 With [Azure Arc–enabled servers](../../azure-arc/servers/overview.md), customers can manage Windows and Linux machines hosted outside of Azure on their corporate network, in the same way they manage native Azure virtual machines. Through Azure Lighthouse, service providers can then manage these connected non-Azure machines along with their customers' Azure resources.
 
-[Azure Arc–enabled Kubernetes](../../azure-arc/kubernetes/overview.md) lets customers attach and configure Kubernetes clusters outside of Azure. When a Kubernetes cluster is connected to Azure Arc, it appears in the Azure portal with an Azure Resource Manager ID and a managed identity. Through Azure Lighthouse, service providers can connect Kubernetes clusters and manage them along with their customer's Azure Kubernetes Service (AKS) clusters and other Azure resources.
+[Azure Arc–enabled Kubernetes](../../azure-arc/kubernetes/overview.md) lets customers attach and configure Kubernetes clusters outside of Azure. Through Azure Lighthouse, service providers can connect Kubernetes clusters and manage them along with their customer's Azure Kubernetes Service (AKS) clusters and other Azure resources.
 
 > [!TIP]
 > Though we refer to service providers and customers in this topic, this guidance also applies to [enterprises using Azure Lighthouse to manage multiple tenants](../concepts/enterprise.md).
@@ -24,7 +24,7 @@ As a service provider, you can connect and disconnect on-premises Windows Server
 
 When viewing resources for a delegated subscription in the Azure portal, you'll see these connected machines labeled with **Azure Arc**. You can manage these connected machines using Azure constructs, such as Azure Policy and tagging, just as you would manage the customer's Azure resources. You can also work across customer tenants to manage all connected machines together.
 
-For example, you can [ensure the same set of policies are applied across customers' hybrid machines](../../azure-arc/servers/learn/tutorial-assign-policy-portal.md). You can also use Microsoft Defender for Cloud to monitor compliance across all of your customers' hybrid environments, or [use Azure Monitor to collect data directly](../../azure-arc/servers/learn/tutorial-enable-vm-insights.md) into a Log Analytics workspace. [Virtual machine extensions](../../azure-arc/servers/manage-vm-extensions.md) can be deployed to non-Azure Windows and Linux VMs, simplifying management of your customers' hybrid machines.
+For example, you can [ensure the same set of policies are applied across customers' hybrid machines](../../azure-arc/servers/learn/tutorial-assign-policy-portal.md). You can [use Microsoft Defender for Cloud to monitor compliance](/azure/defender-for-cloud/quickstart-onboard-machines) across all of your customers' hybrid environments, or [use Azure Monitor to collect data directly](../../azure-arc/servers/learn/tutorial-enable-vm-insights.md) into a Log Analytics workspace. [Virtual machine extensions](../../azure-arc/servers/manage-vm-extensions.md) can be deployed to non-Azure Windows and Linux VMs, simplifying management of your customers' hybrid machines.
 
 ## Manage hybrid Kubernetes clusters at scale with Azure Arc-enabled Kubernetes
 

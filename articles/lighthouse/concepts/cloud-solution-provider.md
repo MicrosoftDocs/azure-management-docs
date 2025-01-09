@@ -1,7 +1,7 @@
 ---
 title: Cloud Solution Provider program considerations
 description: For CSP partners, Azure delegated resource management helps improve security and control by enabling granular permissions.
-ms.date: 12/07/2023
+ms.date: 01/09/2025
 ms.topic: conceptual
 ---
 
@@ -16,7 +16,7 @@ With [Azure Lighthouse](../overview.md), you can use Azure delegated resource ma
 
 ## Administer on Behalf of (AOBO)
 
-With AOBO, any user with the [Admin Agent](/partner-center/permissions-overview#manage-csp-commercial-transactions-in-partner-center-microsoft-entra-id-and-csp-roles) role in your tenant will have AOBO access to Azure subscriptions that you create through the CSP program. Any users who need access to any customers' subscriptions must be a member of this group. AOBO doesn’t allow the flexibility to create distinct groups that work with different customers, or to enable different roles for groups or users.
+With AOBO, any user with the [Admin Agent](partner-center/account-settings/permissions-overview#admin-agent-role) role in your tenant will have AOBO access to Azure subscriptions that you create through the CSP program. Any users who need access to any customers' subscriptions must be a member of this group. AOBO doesn’t allow the flexibility to create distinct groups that work with different customers, or to enable different roles for groups or users.
 
 ![Diagram showing tenant management using AOBO.](../media/csp-1.jpg)
 
@@ -42,7 +42,7 @@ Onboarding a subscription that you created through the CSP program follows the s
 
 ## Link your partner ID to track your impact on delegated resources
 
-Members of the [Microsoft Cloud Partner Program](https://partner.microsoft.com/) can link a partner ID with the credentials used to manage delegated customer resources. This link allows Microsoft to identify and recognize partners who drive Azure customer success. It also allows [CSP (Cloud Solution Provider)](/partner-center/csp-overview) partners to receive [partner earned credit (PEC)](/partner-center/partner-earned-credit) for customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started).
+Members of the [Microsoft AI Cloud Partner Program](https://partner.microsoft.com/) can link a partner ID with the credentials used to manage delegated customer resources. This link allows Microsoft to identify and recognize partners who drive Azure customer success. It also allows [CSP (Cloud Solution Provider)](/partner-center/csp-overview) partners to receive [partner earned credit (PEC)](/partner-center/partner-earned-credit) for customers who have [signed the Microsoft Customer Agreement (MCA)](/partner-center/confirm-customer-agreement) and are [under the Azure plan](/partner-center/azure-plan-get-started).
 
 To earn recognition for Azure Lighthouse activities, you'll need to [link your partner ID](/azure/cost-management-billing/manage/link-partner-id) with at least one user account in your managing tenant, and ensure that the linked account has access to each of your onboarded subscriptions. For simplicity, we recommend creating a service principal account in your tenant, associating it with your Partner ID, then granting it access to every customer you onboard with an [Azure built-in role that is eligible for partner earned credit](/partner-center/azure-roles-perms-pec).
 

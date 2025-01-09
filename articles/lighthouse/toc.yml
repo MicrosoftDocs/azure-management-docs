@@ -107,15 +107,15 @@
   - name: Azure PowerShell
     href: /powershell/module/az.managedservices#managed_services
   - name: Azure SDK for .NET
-    href: /dotnet/api/Microsoft.Azure.Management.ManagedServices
+    href: /dotnet/api/overview/azure/resourcemanager.managedservices-readme
   - name: Azure SDK for .NET (NuGet)
-    href: https://www.nuget.org/packages/Microsoft.Azure.Management.ManagedServices/
+    href: https://www.nuget.org/packages/Azure.ResourceManager.ManagedServices/
   - name: Azure SDK for Python
     href: /python/api/azure-mgmt-managedservices
   - name: REST
     href: /rest/api/managedservices/
   - name: OpenAPI
-    href: https://github.com/Azure/azure-rest-api-specs/tree/master/specification/managedservices/resource-manager/Microsoft.ManagedServices/stable/2019-09-01
+    href: https://github.com/Azure/azure-rest-api-specs/tree/master/specification/managedservices/resource-manager/Microsoft.ManagedServices/stable/2022-10-01
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: ./samples/policy-reference.md
