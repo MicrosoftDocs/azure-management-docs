@@ -1,15 +1,15 @@
 ---
 title: "Deploy applications consistently at scale using Flux v2 configurations and Azure Policy"
-ms.date: 12/13/2023
+ms.date: 01/08/2025
 ms.topic: how-to
 description: "Use Azure Policy to apply Flux v2 configurations at scale on Azure Arc-enabled Kubernetes or AKS clusters."
 ---
 
 # Deploy applications consistently at scale using Flux v2 configurations and Azure Policy
 
-You can use Azure Policy to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or AKS (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and create a policy assignment.
+You can use [Azure Policy](/azure/governance/policy/)to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or AKS (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and [create a policy assignment](/azure/governance/policy/tutorials/create-and-manage).
 
-Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can do this by first assigning a policy that deploys the extension to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration that will be applied to the clusters in that scope.
+Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can do this by assigning a policy that deploys the extension to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration to be applied to the clusters in that scope.
 
 To enable separation of concerns, you can create multiple policy assignments, each with a different Flux v2 configuration pointing to a different source. For example, one Git repository can be used by cluster admins while other repositories can be used by application teams.
 
@@ -33,16 +33,16 @@ To find all of the Flux v2 policy definitions, search for **flux**. For more inf
 ## Prerequisites
 
 * One or more Arc-enabled Kubernetes clusters and/or AKS clusters.
-* `Microsoft.Authorization/policyAssignments/write` permissions on the scope (subscription or resource group) where you'll create the policy assignments.
+* `Microsoft.Authorization/policyAssignments/write` permissions on the scope (subscription or resource group) to create the policy assignments.
 
 ## Create a policy assignment to install the Flux extension
 
-In order for a policy to apply Flux v2 configurations to a cluster, the Flux extension must first be installed on the cluster. To ensure that the extension is installed to each of your clusters, assign the **Configure installation of Flux extension on Kubernetes cluster** policy definition to the desired scope.
+In order for a policy to apply Flux v2 configurations to a cluster, the Flux extension must first be installed on the cluster. To ensure that the extension is installed on each of your clusters, assign the **Configure installation of Flux extension on Kubernetes cluster** policy definition to the desired scope.
 
 1. In the Azure portal, navigate to **Policy**.
 1. In the **Authoring** section of the sidebar, select **Definitions**.
-1. In the "Kubernetes" category, select the **Configure installation of Flux extension on Kubernetes cluster** built-in policy definition.
-1. Select **Assign**.
+1. Find the **Configure installation of Flux extension on Kubernetes cluster** built-in policy definition, and select it.
+1. Select **Assign policy**.
 1. Set the **Scope** to the management group, subscription, or resource group to which the policy assignment will apply.
     * If you want to exclude any resources from the policy assignment scope, set **Exclusions**.
 1. Give the policy assignment an easily identifiable **Assignment name** and **Description**.
@@ -53,42 +53,36 @@ In order for a policy to apply Flux v2 configurations to a cluster, the Flux ext
 
 Next, return to the **Definitions** list (in the **Authoring** section of **Policy**) to apply the configuration policy definition to the same scope.
 
-1. In the "Kubernetes" category, select the **Configure Kubernetes clusters with Flux v2 configuration using public Git repository**
-built-in policy definition, or one of the other policy definitions to apply Flux configurations.
-1. Select **Assign**.
+1. Find and select the **Configure Kubernetes clusters with Flux v2 configuration using public Git repository** built-in policy definition, or one of the other policy definitions to apply Flux configurations.
+1. Select **Assign policy**.
 1. Set the **Scope** to the same scope that you selected when assigning the first policy, including any exclusions.
 1. Give the policy assignment an easily identifiable **Assignment name** and **Description**.
 1. Ensure **Policy enforcement** is set to **Enabled**.
-1. Select **Next**, then select **Next** again to open the **Parameters** tab.
-1. Set the parameter values to be used.
-    * For more information about parameters, see the [tutorial on deploying Flux v2 configurations](./tutorial-use-gitops-flux2.md).
-    * When creating Flux configurations, you must provide a value for one (and only one) of these parameters: `repositoryRefBranch`, `repositoryRefTag`, `repositoryRefSemver`, `repositoryRefCommit`.
+1. Select **Next** to open the **Parameters** tab.
+1. Set the parameter values to be used, using the parameter names from the policy definition.
+    * For more information about parameters, see [GitOps (Flux v2) supported parameters](./gitops-flux2-parameters.md).
+    * When creating Flux configurations via policy, you must provide a value for one (and only one) of these parameters: `repositoryRefBranch`, `repositoryRefTag`, `repositoryRefSemver`, `repositoryRefCommit`.
 1. Select **Next** to open the **Remediation** task.
 1. Enable **Create a remediation task**.
-1. Verify that **Create a Managed Identity** is checked, and that the identity has **Contributor** permissions. For more information, see [Quickstart: Create a policy assignment to identify non-compliant resources](/azure/governance/policy/assign-policy-portal) and [Remediate non-compliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources).
+1. Verify that **Create a Managed Identity** is checked, and that **Contributor** is listed in the **Permissions** section. For more information, see [Quickstart: Create a policy assignment to identify non-compliant resources](/azure/governance/policy/assign-policy-portal) and [Remediate non-compliant resources with Azure Policy](/azure/governance/policy/how-to/remediate-resources).
 
 1. Select **Review + create**, then select **Create**.
 
-The configuration is then applied to new Azure Arc-enabled Kubernetes or AKS clusters created within the scope of policy assignment.
+The configuration is then applied to new clusters created within the scope of policy assignment.
 
 For existing clusters, you might need to manually run a remediation task. This task typically takes 10 to 20 minutes for the policy assignment to take effect.
 
 ## Verify the policy assignment
 
-1. In the Azure portal, navigate to one of your Azure Arc-enabled Kubernetes or AKS clusters.
-1. In the **Settings** section of the sidebar, select **GitOps**.
-
-   In the configurations list, you should see the configuration created by the policy assignment.
-
-1. In the **Kubernetes resources** section of the sidebar, select **Namespaces** and **Workloads**.
-
-   You should see the namespace and artifacts that were created by the Flux configuration. You should also see the objects described by the manifests in the Git repo deployed on the cluster.
+1. In the Azure portal, navigate to an Azure Arc-enabled Kubernetes or AKS cluster that's within the scope of the policy assignment.
+1. In the service menu, under **Settings**, select **GitOps**. In the **Configurations** list, you should see the configuration created by the policy assignment.
+1. In the service menu, under **Kubernetes resources**, select **Namespaces**. You should see the namespace that was created by the Flux configuration.
 
 ## Customize a policy
 
-The built-in policies cover the main scenarios for using GitOps with Flux v2 in your Kubernetes clusters. However, due to limitations on the number of parameters allowed in Azure Policy assignments (max of 20), not all parameters are present in the built-in policies. Also, to fit within the 20-parameter limit, only a single kustomization can be created with the built-in policies.  
+The built-in policies cover the main scenarios for using GitOps with Flux v2 in your Kubernetes clusters. However, due to the limit of 20 parameters allowed in Azure Policy assignments, not all parameters are included in the built-in policies. Also, to fit within this 20-parameter limit, only a single kustomization can be created with the built-in policies.  
 
-If you have a scenario that differs from the built-in policies, you can overcome the limitations by creating [custom policies](/azure/governance/policy/tutorials/create-custom-policy-definition) using the built-in policies as templates. You can create custom policies that contain only the parameters you need, and hard-code the rest, therefore working around the 20-parameter limit.
+If you have a scenario that differs from the built-in policies, you can overcome these limitations by creating [custom policies](/azure/governance/policy/tutorials/create-custom-policy-definition) using the built-in policies as templates. To work around the 20-parameter limit, create custom policies that contain only the parameters you need and hard-code the rest.
 
 ## Next steps
 
