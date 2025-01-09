@@ -16,7 +16,7 @@ With [Azure Lighthouse](../overview.md), you can use Azure delegated resource ma
 
 ## Administer on Behalf of (AOBO)
 
-With AOBO, any user with the [Admin Agent](partner-center/account-settings/permissions-overview#admin-agent-role) role in your tenant will have AOBO access to Azure subscriptions that you create through the CSP program. Any users who need access to any customers' subscriptions must be a member of this group. AOBO doesn’t allow the flexibility to create distinct groups that work with different customers, or to enable different roles for groups or users.
+With AOBO, any user with the [Admin Agent](/partner-center/account-settings/permissions-overview#admin-agent-role) role in your tenant will have AOBO access to Azure subscriptions that you create through the CSP program. Any users who need access to any customers' subscriptions must be a member of this group. AOBO doesn’t allow the flexibility to create distinct groups that work with different customers, or to enable different roles for groups or users.
 
 ![Diagram showing tenant management using AOBO.](../media/csp-1.jpg)
 

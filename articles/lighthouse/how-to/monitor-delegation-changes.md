@@ -1,7 +1,7 @@
 ---
 title: Monitor delegation changes in your managing tenant
 description: Learn how to monitor all Azure Lighthouse delegation activity to your managing tenant. 
-ms.date: 05/23/2023
+ms.date: 01/09/2025
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
@@ -26,7 +26,7 @@ To access tenant-level Activity Log data, an account must be assigned the [Monit
 
 ### Elevate access for a Global Administrator account
 
-To assign a role at root scope (/), you will need to have the Global Administrator role with elevated access. This elevated access should be added only when you need to make the role assignment, then removed when you are done.
+To assign a role at root scope (/), you must have the Global Administrator role with elevated access. This elevated access should be enabled only when you need to make the role assignment, then removed after you're done.
 
 For detailed instructions on adding and removing elevation, see [Elevate access to manage all Azure subscriptions and management groups](/azure/role-based-access-control/elevate-access-global-admin).
 
@@ -34,11 +34,11 @@ After you elevate your access, your account will have the User Access Administra
 
 ### Assign the Monitoring Reader role at root scope
 
-Once you have elevated your access, you can assign the appropriate permissions to an account so that it can query tenant-level activity log data. This account will need to have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) Azure built-in role assigned at the root scope of your managing tenant.
+Once you have elevated your access, you can assign the appropriate permissions to an account so that it can query tenant-level activity log data. This account must have the [Monitoring Reader](/azure/role-based-access-control/built-in-roles#monitoring-reader) Azure built-in role assigned at the root scope of your managing tenant.
 
 > [!IMPORTANT]
 > Granting a role assignment at root scope means that the same permissions will apply to every resource in the tenant. Because this is a broad level of access, we recommend [assigning this role to a service principal account and using that account to query data](#use-a-service-principal-account-to-query-the-activity-log).
-> 
+>
 > You can also assign the Monitoring Reader role at root scope to individual users or to user groups so that they can [view delegation information directly in the Azure portal](#view-delegation-changes-in-the-azure-portal). If you do so, be aware that this is a broad level of access which should be limited to the fewest number of users possible.
 
 Use one of the following methods to make the root scope assignment.
@@ -61,7 +61,7 @@ az role assignment create --assignee 00000000-0000-0000-0000-000000000000 --role
 
 ### Remove elevated access for the Global Administrator account
 
-After you've assigned the Monitoring Reader role at root scope to the desired account, be sure to [remove the elevated access](/azure/role-based-access-control/elevate-access-global-admin) for the Global Administrator account, as this level of access will no longer be needed.
+After you assign the Monitoring Reader role at root scope to the desired account, be sure to [remove the elevated access](/azure/role-based-access-control/elevate-access-global-adminl#remove-elevated-access-for-users) for the Global Administrator account, since this high level of access is no longer needed.
 
 ## View delegation changes in the Azure portal
 
