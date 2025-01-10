@@ -1,7 +1,7 @@
 ---
 title: Capture a browser trace for troubleshooting
 description: Capture network information from a browser trace to help troubleshoot issues with the Azure portal.
-ms.date: 12/19/2024
+ms.date: 01/10/2025
 ms.topic: how-to
 ---
 
@@ -10,9 +10,11 @@ ms.topic: how-to
 If you're troubleshooting an issue with the Azure portal, and you need to contact Microsoft support, you may want to first capture some additional information. For example, it can be helpful to share a browser trace, a step recording, and console output. This information can provide important details about what exactly is happening in the portal when your issue occurs.
 
 > [!WARNING]
-> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. We recommend ensuring that sensitive information is removed before sharing traces with others. Microsoft support uses these traces for troubleshooting purposes only.
+> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. We generally recommend ensuring that sensitive information is not included in any trace files that you share.
+>
+> In certain cases, such as when investigating issues related to signing in to Azure, Microsoft support may request a trace file that includes this sensitive information. Microsoft support uses these traces for troubleshooting purposes only.
 
-You can capture this information any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
+You can capture a browser trace in any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
 
 ## Microsoft Edge
 
