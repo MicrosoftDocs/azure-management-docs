@@ -34,8 +34,10 @@
     href: optimize-code-application-insights.md
   - name: Work smarter with Azure Local
     href: work-smarter-edge.md
-  - name: Secure and protect storage accounts
+  - name: Manage storage accounts
     href: improve-storage-accounts.md
+  - name: Troubleshoot disk performance
+    href: troubleshoot-disk-performance.md
   - name: Troubleshoot deployed apps
     href: troubleshoot-app-service.md
   - name: Plan, design, and troubleshoot networks
