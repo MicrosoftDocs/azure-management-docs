@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 11/19/2024
+  ms.date: 01/08/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -76,7 +76,10 @@ conceptualContent:
               text: Work with AKS clusters efficiently
             - url: ./improve-storage-accounts.md
               itemType: get-started
-              text: Secure and protect storage accounts
+              text: Manage and troubleshoot storage accounts
+            - url: ./troubleshoot-disk-performance.md
+              itemType: get-started
+              text: Troubleshoot disk performance
             - url: ./work-smarter-edge.md
               itemType: get-started
               text: Work smarter with hybrid infrastructure
