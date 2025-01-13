@@ -20,6 +20,8 @@
     href: ai-shell-overview.md
 - name: Enhanced scenarios
   items:
+  - name: Find your recommendations
+    href: ./copilot-advisor.md
   - name: Get resource information
     href: get-information-resource-graph.md
   - name: Execute commands

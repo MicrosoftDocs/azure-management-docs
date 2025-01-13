@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 06/25/2024
+ms.date: 01/13/2025
 ---
 
 Azure Arc-enabled server endpoints are required for all server based Arc offerings. 
@@ -45,9 +45,8 @@ The table below lists the URLs that must be available in order to install and us
 
 | Agent resource | Description | When required| Private link capable |
 |---------|---------|--------|---------|
-|`aka.ms`|Used to resolve the download script during installation|At installation time, only| Public |
-|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only| Public |
-|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only| Public |
+|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only <sup>1</sup> | Public |
+|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only <sup>1</sup> | Public |
 |`login.microsoftonline.com`|Microsoft Entra ID|Always| Public |
 |`*login.microsoft.com`|Microsoft Entra ID|Always| Public |
 |`pas.windows.net`|Microsoft Entra ID|Always| Public |
@@ -60,10 +59,13 @@ The table below lists the URLs that must be available in order to install and us
 |`*.waconazure.com`|For Windows Admin Center connectivity|If using Windows Admin Center|Public|
 |`*.blob.core.windows.net`|Download source for Azure Arc-enabled servers extensions|Always, except when using private endpoints| Not used when private link is configured |
 |`dc.services.visualstudio.com`|Agent telemetry|Optional, not used in agent versions 1.24+| Public |
-| `*.<region>.arcdataservices.com` <sup>1</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.3. | Always | Public |
+| `*.<region>.arcdataservices.com` <sup>2</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.3. | Always | Public |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
 
-<sup>1</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
+<sup>1</sup> Access to this URL also needed when performing updates automatically.
+
+<sup>2</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
+
 
 For extension versions up to and including [February 13, 2024](../../data/release-notes.md#february-13-2024), use `san-af-<region>-prod.azurewebsites.net`. Beginning with [March 12, 2024](../../data/release-notes.md#march-12-2024) both Azure Arc data processing, and Azure Arc data telemetry use `*.<region>.arcdataservices.com`. 
 
@@ -79,9 +81,8 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 
 | Agent resource | Description | When required| Endpoint used with private link |
 |---------|---------|--------|---------|
-|`aka.ms`|Used to resolve the download script during installation|At installation time, only| Public |
-|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only| Public |
-|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only| Public |
+|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only <sup>1</sup> | Public |
+|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only <sup>1</sup> | Public |
 |`login.microsoftonline.us`|Microsoft Entra ID|Always| Public |
 |`pasff.usgovcloudapi.net`|Microsoft Entra ID|Always| Public |
 |`management.usgovcloudapi.net`|Azure Resource Manager - to create or delete the Arc server resource|When connecting or disconnecting a server, only| Public, unless a [resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) is also configured |
@@ -91,13 +92,14 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 |`dc.applicationinsights.us`|Agent telemetry|Optional, not used in agent versions 1.24+| Public |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
 
+<sup>1</sup> Access to this URL also needed when performing updates automatically.
+
 #### [Microsoft Azure operated by 21Vianet](#tab/azure-china)
 
 | Agent resource | Description | When required|
 |---------|---------|--------|
-|`aka.ms`|Used to resolve the download script during installation|At installation time, only|
-|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only|
-|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only|
+|`download.microsoft.com`|Used to download the Windows installation package|At installation time, only <sup>1</sup> |
+|`packages.microsoft.com`|Used to download the Linux installation package|At installation time, only <sup>1</sup> |
 |`login.chinacloudapi.cn`|Microsoft Entra ID|Always|
 |`login.partner.chinacloudapi.cn`|Microsoft Entra ID|Always|
 |`pas.chinacloudapi.cn`|Microsoft Entra ID|Always|
@@ -109,6 +111,8 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 |`*.servicebus.chinacloudapi.cn`|For Windows Admin Center and SSH scenarios|If using SSH or Windows Admin Center from Azure|
 |`*.blob.core.chinacloudapi.cn`|Download source for Azure Arc-enabled servers extensions|Always, except when using private endpoints|
 |`dc.applicationinsights.azure.cn`|Agent telemetry|Optional, not used in agent versions 1.24+|
+
+<sup>1</sup> Access to this URL also needed when performing updates automatically.
 
 ---
 
