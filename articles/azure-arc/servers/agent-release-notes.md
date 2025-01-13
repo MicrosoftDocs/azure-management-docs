@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 12/04/2024
+ms.date: 01/13/2025
 ms.custom: references_regions
 ---
 
@@ -20,9 +20,31 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
 
-## Version 1.47 - October 2024
+## Version 1.48 - December 2024
 
 Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Addressed a security issue related to Redirection Guard.
+- Resolved a bug that caused issues during the upgrade of the RunCommand extension.
+- Fixed high port usage in the Azure Arc proxy.
+- Fixed an issue with the Alma Linux install script.
+- Improved handling of disassociated Gateway URLs.
+- Resolved an issue with disk space queries.
+- Improved HIMDS behavior when IMDS data is unavailable.
+
+### New features and enhancements
+
+- Added support for extension telemetry.
+- Updated the OpenSSL library for security enhancements.
+- Improved error reporting for `azcmagent` commands.
+- Increased connectivity check timeout for better reliability.
+- Expanded ARM64 platform support to include RHEL 9.
+
+## Version 1.47 - October 2024
+
+Download for [Windows](https://download.microsoft.com/download/2/1/d/21dfb0f5-ed95-46d5-8146-ece13381056a/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
 
 ### Fixed
 
