@@ -17,28 +17,27 @@ Azure Arc-enabled servers enable you to deploy, remove, and update Azure VM exte
 - [Azure Resource Manager templates](manage-vm-extensions-template.md)
 
 > [!NOTE]
-> Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
-
-> [!NOTE]
+> Azure Arc-enabled servers don't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+>
 > Currently, you can only _update_ extensions from the Azure portal or the Azure CLI. Updating extensions from Azure PowerShell or an Azure Resource Manager template is not supported at this time.
 
 ## Key benefits
 
-Azure Arc-enabled servers VM extension support provides the following key benefits:
+VM extension support for Azure Arc-enabled servers provides the following key benefits:
 
-- Collect log data for analysis with [Logs in Azure Monitor](/azure/azure-monitor/logs/data-platform-logs) by enabling the Azure Monitor agent VM extension. Log data analysis makes it useful for doing complex analysis across log data from different kinds of sources.
+- Collect log data for analysis with [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs) by enabling the Azure Monitor agent VM extension. You cvan do complex analysis across log data from different kinds of sources.
 
-- With [VM insights](/azure/azure-monitor/vm/vminsights-overview), it analyzes the performance of your Windows and Linux VMs, and monitors their processes and dependencies on other resources and external processes. This is achieved through enabling both the Azure Monitor agent and Dependency agent VM extensions.
+- With [VM insights](/azure/azure-monitor/vm/vminsights-overview), analyze the performance of your Windows and Linux VMs, and monitor their processes and dependencies on other resources and external processes. You achieve these capabilities by enabling both the Azure Monitor agent and Dependency agent VM extensions.
 
-- Download and execute scripts on hybrid connected machines using the Custom Script Extension. This extension is useful for post deployment configuration, software installation, or any other configuration or management tasks.
+- Download and execute scripts on hybrid connected machines by using the Custom Script Extension. This extension is useful for post-deployment configuration, software installation, or any other configuration or management tasks.
 
-- Automatically refresh of certificates stored in an [Azure Key Vault](/azure/key-vault/general/overview).
+- Automatically refresh certificates stored in [Azure Key Vault](/azure/key-vault/general/overview).
 
 ## Availability
 
-VM extension functionality is available only in the list of [supported regions](overview.md#supported-regions). Ensure you onboard your machine in one of these regions.
+VM extension functionality is available only in the [supported regions](overview.md#supported-regions). Ensure that you onboard your machine in one of these regions.
 
-Additionally, you can configure lists of the extensions you wish to allow and block on servers. See [Extension allowlists and blocklists](/azure/azure-arc/servers/security-overview#extension-allowlists-and-blocklists) for more information.
+Additionally, you can configure lists of the extensions that you want to allow and block on servers. for more information, see [Extension allowlists and blocklists](/azure/azure-arc/servers/security-overview#extension-allowlists-and-blocklists).
 
 ## Extensions
 
@@ -91,7 +90,7 @@ If they aren't already registered, follow the steps under [Register Azure resour
 
 Be sure to review the documentation for each VM extension referenced in the previous table to understand if it has any network or system requirements. This can help you avoid experiencing any connectivity issues with an Azure service or feature that relies on that VM extension.
 
-### Required Permissions
+### Required permissions
 
 To deploy an extension to Arc-enabled servers, a user requires the following permissions.
 
@@ -103,7 +102,7 @@ The role **Azure Connected Machine Resource Administrator** includes the permiss
 
 ### Azure Monitor agent VM extension
 
-Before you install the extension we suggest you review the [deployment options for the Azure Monitor agent](concept-log-analytics-extension-deployment.md) to understand the different methods available and which meets your requirements.
+Before you install the extension, we suggest that you review the [deployment options for the Azure Monitor agent](concept-log-analytics-extension-deployment.md) to understand the available methods and which one meets your requirements.
 
 ### Azure Key Vault VM extension
 
@@ -112,33 +111,33 @@ The Key Vault VM extension doesn't support the following Linux operating systems
 - Red Hat Enterprise Linux (RHEL) 7 (x64)
 - Amazon Linux 2 (x64)
 
-Deploying the Key Vault VM extension is only supported using:
+Deploying the Key Vault VM extension is only supported when you're using:
 
 - The Azure CLI
-- The Azure PowerShell
-- Azure Resource Manager template
+- Azure PowerShell
+- An Azure Resource Manager template
 
-Before you deploy the extension, you need to complete the following:
+Before you deploy the extension, you need to complete the following steps:
 
 1. [Create a vault and certificate](/azure/key-vault/certificates/quick-create-portal) (self-signed or import).
 
-2. Grant the Azure Arc-enabled server access to the certificate secret. If you're using the [RBAC preview](/azure/key-vault/general/rbac-guide), search for the name of the Azure Arc resource and assign it the **Key Vault Secrets User (preview)** role. If you're using [Key Vault access policy](/azure/key-vault/general/assign-access-policy-portal), assign Secret **Get** permissions to the Azure Arc resource's system assigned identity.
+2. Grant the Azure Arc-enabled server access to the certificate secret. If you're using the [RBAC preview](/azure/key-vault/general/rbac-guide), search for the name of the Azure Arc resource and assign it the **Key Vault Secrets User (preview)** role. If you're using [Key Vault access policy](/azure/key-vault/general/assign-access-policy-portal), assign secret **Get** permissions to the Azure Arc resource's system-assigned identity.
 
 ### Connected Machine agent
 
 Verify your machine matches the [supported versions](prerequisites.md#supported-operating-systems) of Windows and Linux operating system for the Azure Connected Machine agent.
 
-The minimum version of the Connected Machine agent that is supported with this feature on Windows and Linux is the 1.0 release.
+The minimum version of the Connected Machine agent that's supported with this feature on Windows and Linux is the 1.0 release.
 
-To upgrade your machine to the version of the agent required, see [Upgrade agent](manage-agent.md#upgrade-the-agent).
+To upgrade your machine to the required version of the agent, see [Upgrade agent](manage-agent.md#upgrade-the-agent).
 
 ## Operating system extension availability
 
-The following extensions are available for Windows and Linux machines:
+The following extensions are available for Windows and Linux machines.
 
 ### Windows extension availability
 
-|Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom Script |Key Vault |Hybrid Runbook |Antimalware Extension |Windows Admin Center |
+|Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom script |Key Vault |Hybrid runbook |Antimalware extension |Windows Admin Center |
 |-----------------|--------------------|-----------------------|-------|--------------|----------|---------------|----------------------|---------------------|
 |Windows Server 2022 |X |X |X |X | |X | |X |
 |Windows Server 2019 |X |X |X |X |X | | |X |
@@ -157,7 +156,7 @@ The following extensions are available for Windows and Linux machines:
 
 ### Linux extension availability
 
-|Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom Script |Key Vault |Hybrid Runbook |Antimalware Extension |Connected Machine agent |
+|Operating system |Azure Monitor agent |Dependency VM Insights |Qualys |Custom script |Key Vault |Hybrid runbook |Antimalware extension |Connected Machine agent |
 |-----------------|--------------------|-----------------------|-------|--------------|----------|---------------|----------------------|------------------------|
 |Amazon Linux 2 | | |X | | |X |X |X |
 |Debian 10 |X | |X |X | |X | |X |
@@ -184,8 +183,8 @@ The following extensions are available for Windows and Linux machines:
 |Ubuntu 16.04 LTS |X |X |X | | |X |X |X |
 |Ubuntu 14.04 LTS | | |X | | |X | |X |
 
-For the regional availabilities of different Azure services and VM extensions available for Azure Arc-enabled servers, [refer to Azure Global's Product Availability Roadmap](https://global.azure.com/product-availability/roadmap).
+For the regional availabilities of Azure services and VM extensions that are available for Azure Arc-enabled servers, refer to the [Azure Global Product Availability Roadmap](https://global.azure.com/product-availability/roadmap).
 
-## Next steps
+## Related content
 
-You can deploy, manage, and remove VM extensions using the [Azure CLI](manage-vm-extensions-cli.md), [Azure PowerShell](manage-vm-extensions-powershell.md), from the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
+- You can deploy, manage, and remove VM extensions by using the [Azure CLI](manage-vm-extensions-cli.md), [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
