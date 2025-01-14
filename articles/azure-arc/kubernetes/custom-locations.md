@@ -57,8 +57,12 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 
 ## Enable custom locations on your cluster
 
-> [!TIP]
-> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function. To enable the custom locations feature, follow the steps below:
+> [!IMPORTANT]
+> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function.
+> 
+> The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. 
+
+To enable the custom locations feature, follow the steps below:
 
 If you are signed in to Azure CLI as a Microsoft Entra user, use the following command:
 
@@ -72,7 +76,9 @@ If you run the above command while signed in to Azure CLI using a service princi
 Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
 ```
 
-This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. To avoid this error, follow these steps:
+This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. You'll need to manually retrieve the custom location OID. 
+
+Manually retrieve the custom location OID by following these steps:
 
 1. Sign in to Azure CLI with your user account.
 
