@@ -60,7 +60,7 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 > [!IMPORTANT]
 > The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function.
 > 
-> The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. 
+> The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. To check if custom location was enabled, run `az customlocation show` and check `ProvisioningState` is `Succeeded`.
 
 To enable the custom locations feature, follow the steps below:
 
