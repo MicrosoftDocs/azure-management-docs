@@ -33,9 +33,9 @@ You can apply VM extensions to your machine managed through Azure Arc-enabled se
 1. After you provide the applicable configuration information, select **Review + Create** to view a summary of the deployment. Then select **Create**.
 
 > [!NOTE]
-> Although multiple extensions can be batched and processed together, they're installed serially. After installaton of the first extension is complete, the next extension is installed.
+> Although multiple extensions can be batched and processed together, they're installed serially. After installation of the first extension is complete, the next extension is installed.
 
-## List installed extensions
+## List extensions installed
 
 You can get a list of the VM extensions on your Azure Arc-enabled server from the Azure portal:
 
@@ -93,7 +93,7 @@ You can use the Azure portal to remove one or more extensions from an Azure Arc-
 
 3. Select **Settings** > **Extensions**, and then select an extension from the list of installed extensions.
 
-4. Select **Uninstall**.  When you're prompted to verify, select **Yes** to proceed.
+4. Select **Uninstall**. When you're prompted to verify, select **Yes** to proceed.
 
 ## Related content
 

@@ -52,7 +52,7 @@ New-AzConnectedMachineExtension -Name "IaaSAntimalware" -ResourceGroupName "myRe
 > [!WARNING]
 > Adding `\` to `"` in the settings.json file will cause `akvvm_service` to fail with the following error: `[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object.`
 >
-> Although Powershell users commonly use the `\"` sequence to escape quotation marks in other code blocks, you should avoid that formatting in the settings.json file.
+> Although PowerShell users commonly use the `\"` sequence to escape quotation marks in other code blocks, you should avoid that formatting in the settings.json file.
 
 The following example enables the Key Vault VM extension on an Azure Arc-enabled server:
 
@@ -101,7 +101,7 @@ $protectedSettings = @{
 New-AzConnectedMachineExtension -ResourceGroupName $resourceGroup -Location $location -MachineName $machineName -Name "Datadog$($osType)Agent" -Publisher "Datadog.Agent" -ExtensionType "Datadog$($osType)Agent" -Setting $settings -ProtectedSetting $protectedSettings
 ```
 
-## List installed extensions
+## List extensions installed
 
 To get a list of the VM extensions on your Azure Arc-enabled server, use [Get-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/get-azconnectedmachineextension) with the `-MachineName` and `-ResourceGroupName` parameters.
 
@@ -134,7 +134,7 @@ You can review the version of installed VM extensions at any time by running the
 
 ## Remove extensions
 
-To remove an installed VM extension on your Azure Arc-enabled server, use [Remove-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName` and `-ResourceGroupName` parameters.
+To remove an installed VM extension on your Azure Arc-enabled server, use [Remove-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName`, and `-ResourceGroupName` parameters.
 
 ## Related content
 

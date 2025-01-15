@@ -29,7 +29,7 @@ az extension add --name connectedmachine
 
 ## Enable an extension
 
-To enable a VM extension on your Azure Arc-enabled server, use [az connectedmachine extension create](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
+To enable a VM extension on your Azure Arc-enabled server, use [`az connectedmachine extension create`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
 
 The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
@@ -55,9 +55,9 @@ The following example enables the Datadog extension on an Azure Arc-enabled Wind
 az connectedmachine extension create --resource-group "resourceGroupName" --machine-name "myMachineName" --location "regionName" --publisher "Datadog.Agent" --type "DatadogWindowsAgent" --settings '{"site": "us3.datadoghq.com"}' --protected-settings '{"api_key": "YourDatadogAPIKey" }'
 ```
 
-## List installed extensions
+## List extensions installed
 
-To get a list of VM extensions on your Azure Arc-enabled server, use [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
+To get a list of VM extensions on your Azure Arc-enabled server, use [`az connectedmachine extension list`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
 
 Here's an example:
 
@@ -82,7 +82,7 @@ The following example shows the partial JSON output from the `az connectedmachin
 
 ## Update an extension configuration
 
-Some VM extensions require configuration settings so that you can install them on an Azure Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
+Some VM extensions require configuration settings so that you can install them on an Azure Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [`az connectedmachine extension update`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
 
 The following example shows how to configure the Custom Script Extension:
 
@@ -92,18 +92,18 @@ az connectedmachine extension update --name "CustomScriptExtension" --type "Cust
 
 ## Upgrade extensions
 
-When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [az connectedmachine upgrade-extension](/cli/azure/connectedmachine) with the `--machine-name`, `--resource-group`, and `--extension-targets` parameters.
+When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [`az connectedmachine upgrade-extension`](/cli/azure/connectedmachine) with the `--machine-name`, `--resource-group`, and `--extension-targets` parameters.
 
 For the `--extension-targets` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, go to the **Extensions** page for the selected Azure Arc-enabled server in the Azure portal or run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You can specify multiple extensions in a single upgrade request by providing both:
 
 - A comma-separated list of extensions, defined by their publisher and type (separated by a period)
 - The target version for each extension
 
-You can review the version of installed VM extensions at any time by running the command [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list). The `typeHandlerVersion` property value represents the version of the extension.
+You can review the version of installed VM extensions at any time by running the command [`az connectedmachine extension list`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list). The `typeHandlerVersion` property value represents the version of the extension.
 
 ## Remove extensions
 
-To remove an installed VM extension from your Azure Arc-enabled server, use [az connectedmachine extension delete](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
+To remove an installed VM extension from your Azure Arc-enabled server, use [`az connectedmachine extension delete`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
 
 ## Related content
 
