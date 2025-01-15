@@ -1,6 +1,6 @@
 ---
-title: Enable VM extension using Azure Resource Manager template
-description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments using an Azure Resource Manager template.
+title: Enable VM Extensions Using Azure Resource Manager Template
+description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using an Azure Resource Manager template.
 ms.date: 06/02/2022
 ms.topic: how-to
 ms.custom: devx-track-arm-template
@@ -8,15 +8,14 @@ ms.custom: devx-track-arm-template
 
 # Enable Azure VM extensions by using ARM template
 
-This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure VM extensions, supported by Azure Arc-enabled servers.
+This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure virtual machine (VM) extensions that are supported by Azure Arc-enabled servers.
 
-VM extensions can be added to an Azure Resource Manager template and executed with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the supported VM extension on Linux or Windows machines using Azure PowerShell. Each sample below includes a template file and a parameters file with sample values to provide to the template.
-
-> [!NOTE]
-> While multiple extensions can be batched together and processed, they are installed serially. Once the first extension installation is complete, installation of the next extension is attempted.
+You can add VM extensions to an Azure Resource Manager template and execute them with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the supported VM extension on Linux or Windows machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
 
 > [!NOTE]
-> Azure Arc-enabled servers does not support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+> Although you can batch multiple extensions and process them together, they're installed serially. After installation of the first extension installation is complete, the next extension is installed.
+>
+> Azure Arc-enabled servers don't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 ## Deploy the Log Analytics VM extension
 
@@ -372,7 +371,7 @@ Save the template file to disk. You can then deploy the extension to the connect
 New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
 ```
 
-## Deploy Azure Key Vault VM extension (preview)
+## Deploy the Azure Key Vault VM extension (preview)
 
 The following JSON shows the schema for the Key Vault VM extension (preview). The extension does not require protected settings - all its settings are considered public information. The extension requires a list of monitored certificates, polling frequency, and the destination certificate store. Specifically:
 
@@ -524,8 +523,7 @@ Save the template file to disk. You can then deploy the extension to the connect
 New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\KeyVaultExtension.json"
 ```
 
-## Next steps
+## Related content
 
-* You can deploy, manage, and remove VM extensions using the [Azure PowerShell](manage-vm-extensions-powershell.md), from the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
-
-* Troubleshooting information can be found in the [Troubleshoot VM extensions guide](troubleshoot-vm-extensions.md).
+* You can deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
+* You can find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
