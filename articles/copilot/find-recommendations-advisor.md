@@ -38,7 +38,7 @@ Here are a few examples of the kinds of prompts you can use to find recommendati
 
 You can prompt Copilot in Azure to "**Show me my reliability recommendations.**" Copilot in Azure asks if you want to pick specific resources for which to view associated recommendations. If you select **No**, Copilot in Azure returns a list of top reliability recommendations for you, including links to each recommendation page in Advisor.
 
-If you select **Yes**, Copilot in Azure shows the **Select Resources** pane. Here, you can see all of the resources to which you have access. You can filter resources by **Subscription**, **Resource group**, **Type**, or **Location**, or search for specific resources using text. After you select one or more resources, Copilot in Azure returns a list of recommendations.
+If you select **Yes**, Copilot in Azure shows the **Select Resources** pane. Here, you can see all of the resources to which you have access. You can filter resources by **Subscription**, **Resource group**, **Type**, or **Location**, or search for specific resources using text. After you select one or more resources, Copilot in Azure returns a list of recommendations specific to those resources.
 
 ## Next steps
 
