@@ -29,6 +29,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Get resource information through Azure Resource Graph queries](get-information-resource-graph.md)
   - [Understand service health events and status](understand-service-health.md)
   - [Analyze, estimate, and optimize costs](analyze-cost-management.md)
+  - [Find Azure Advisor recommendations](find-recommendations-advisor.md)
   - [Query your attack surface](query-attack-surface.md)
   - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
 - Work smarter with Azure services:
