@@ -7,7 +7,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 11/26/2024
+ms.date: 01/15/2025
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
@@ -43,6 +43,10 @@ This article provides troubleshooting steps that help you resolve the errors enc
 ### ValidateVlanIDNotAvailableOnVMNetwork
 
 [Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).
+
+### PostOperationTimeout
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).
 
 ## Next steps
 
