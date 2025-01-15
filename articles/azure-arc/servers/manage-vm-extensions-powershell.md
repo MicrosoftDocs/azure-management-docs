@@ -33,7 +33,7 @@ This article explains how to deploy, update, and uninstall Azure virtual machine
 
 To enable a VM extension on your Azure Arc-enabled server, use [New-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/new-azconnectedmachineextension) with the `-Name`, `-ResourceGroupName`, `-MachineName`, `-Location`, `-Publisher`, -`ExtensionType`, and `-Settings` parameters.
 
-The following example enables the Custom Script extension on an Azure Arc-enabled server:
+The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
 ```powershell
 $Setting = @{ "commandToExecute" = "powershell.exe -c Get-Process" }

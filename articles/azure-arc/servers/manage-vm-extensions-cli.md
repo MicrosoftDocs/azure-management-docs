@@ -31,7 +31,7 @@ az extension add --name connectedmachine
 
 To enable a VM extension on your Azure Arc-enabled server, use [az connectedmachine extension create](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
 
-The following example enables the Custom Script extension on an Azure Arc-enabled server:
+The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
 ```azurecli
 az connectedmachine extension create --machine-name "myMachineName" --name "CustomScriptExtension" --location "regionName" --type "CustomScriptExtension" --publisher "Microsoft.Compute" --settings "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -gt 10000 }\\\"\"}" --type-handler-version "1.10" --resource-group "myResourceGroup"
@@ -82,9 +82,9 @@ The following example shows the partial JSON output from the `az connectedmachin
 
 ## Update an extension configuration
 
-Some VM extensions require configuration settings so that you can install them on an Azure Arc-enabled server (like the Custom Script extension). To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
+Some VM extensions require configuration settings so that you can install them on an Azure Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
 
-The following example shows how to configure the Custom Script extension:
+The following example shows how to configure the Custom Script Extension:
 
 ```azurecli
 az connectedmachine extension update --name "CustomScriptExtension" --type "CustomScriptExtension" --publisher "Microsoft.HybridCompute" --settings "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -lt 100 }\\\"\"}" --type-handler-version "1.10" --machine-name "myMachine" --resource-group "myResourceGroup"

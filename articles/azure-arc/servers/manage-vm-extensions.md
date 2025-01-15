@@ -29,7 +29,7 @@ VM extension support for Azure Arc-enabled servers provides the following key be
 
 - With [VM insights](/azure/azure-monitor/vm/vminsights-overview), analyze the performance of your Windows and Linux VMs, and monitor their processes and dependencies on other resources and external processes. You achieve these capabilities by enabling the VM extensions for both the Azure Monitor agent and the Dependency agent.
 
-- Download and run scripts on hybrid connected machines by using the Custom Script extension. This extension is useful for post-deployment configuration, software installation, or any other configuration or management tasks.
+- Download and run scripts on hybrid connected machines by using the Custom Script Extension. This extension is useful for post-deployment configuration, software installation, or any other configuration or management tasks.
 
 - Automatically refresh certificates stored in [Azure Key Vault](/azure/key-vault/general/overview).
 
@@ -46,7 +46,7 @@ In this release, we support the following VM extensions on Windows and Linux mac
 To learn about the Azure Connected Machine agent package and the Extension agent component, see [Agent overview](agent-overview.md).
 
 > [!NOTE]
-> The Desired State Configuration VM extension is no longer available for Azure Arc-enabled servers. We recommend that you [migrate to machine configuration](/azure/governance/machine-configuration/migrate-from-azure-automation) or use the Custom Script extension to manage the post-deployment configuration of your server.
+> The Desired State Configuration VM extension is no longer available for Azure Arc-enabled servers. We recommend that you [migrate to machine configuration](/azure/governance/machine-configuration/migrate-from-azure-automation) or use the Custom Script Extension to manage the post-deployment configuration of your server.
 
 Azure Arc-enabled servers support moving machines with one or more VM extensions installed between resource groups or another Azure subscription without experiencing any impact to their configuration. The source and destination subscriptions must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). This support is enabled starting with the Connected Machine agent version 1.8.21197.005. For more information about moving resources and considerations before proceeding, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
@@ -56,14 +56,14 @@ Azure Arc-enabled servers support moving machines with one or more VM extensions
 |----------|----------|-----|-----------------------|
 |Microsoft Defender for Cloud integrated vulnerability scanner |Qualys |WindowsAgent.AzureSecurityCenter |[Microsoft Defender for Cloud integrated vulnerability assessment solution for Azure and hybrid machines](/azure/security-center/deploy-vulnerability-assessment-vm)|
 |Microsoft Antimalware extension |Microsoft.Azure.Security |IaaSAntimalware |[Microsoft Antimalware extension for Windows](/azure/virtual-machines/extensions/iaas-antimalware-windows) |
-|Custom Script extension |Microsoft.Compute | CustomScriptExtension |[Windows custom script extension](/azure/virtual-machines/extensions/custom-script-windows)|
+|Custom Script Extension |Microsoft.Compute | CustomScriptExtension |[Windows Custom Script Extension](/azure/virtual-machines/extensions/custom-script-windows)|
 |Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentWindows | [Dependency agent virtual machine extension for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)|
-|Azure Key Vault Certificate Sync | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) |
+|Azure Key Vault virtual machine extension for Windows | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) |
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorWindowsAgent |[Install the Azure Monitor agent](/azure/azure-monitor/agents/azure-monitor-agent-manage) |
 |Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) to execute runbooks locally |
-|Azure extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Install Azure extension for SQL Server](/sql/sql-server/azure-arc/connect#initiate-the-connection-from-azure) to initiate a SQL Server connection to Azure |
+|Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Install Azure Extension for SQL Server](/sql/sql-server/azure-arc/connect#initiate-the-connection-from-azure) to initiate a SQL Server connection to Azure |
 |Windows Admin Center (preview) |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
-|Windows OS Update extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
+|Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
 |Windows Patch extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching) |
 
 ### Linux extensions
@@ -71,13 +71,13 @@ Azure Arc-enabled servers support moving machines with one or more VM extensions
 |Extension |Publisher |Type |Additional information |
 |----------|----------|-----|-----------------------|
 |Microsoft Defender for Cloud integrated vulnerability scanner |Qualys |LinuxAgent.AzureSecurityCenter |[Microsoft Defender for Cloud integrated vulnerability assessment solution for Azure and hybrid machines](/azure/security-center/deploy-vulnerability-assessment-vm)|
-|Custom Script extension |Microsoft.Azure.Extensions |CustomScript |[Linux Custom Script extension version 2](/azure/virtual-machines/extensions/custom-script-linux) |
+|Custom Script Extension |Microsoft.Azure.Extensions |CustomScript |[Linux Custom Script Extension version 2](/azure/virtual-machines/extensions/custom-script-linux) |
 |Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentLinux |[Dependency agent virtual machine extension for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) |
-|Azure Key Vault Certificate Sync | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |
+|Azure Key Vault virtual machine extension for Linux | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorLinuxAgent |[Install the Azure Monitor agent](/azure/azure-monitor/agents/azure-monitor-agent-manage) |
 |Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) to execute runbooks locally|
-|Linux OS Update extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
-|Linux Patch extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|
+|Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
+|Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|
 
 ## Prerequisites
 
