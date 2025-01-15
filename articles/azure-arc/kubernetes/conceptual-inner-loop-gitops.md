@@ -1,6 +1,6 @@
 ---
 title: "Inner Loop Developer Experience for Teams Adopting GitOps"
-ms.date: 01/15/2025
+ms.date: 08/09/2023
 ms.topic: conceptual
 author: sudivate
 ms.author: sudivate
@@ -8,7 +8,7 @@ description: "Learn how an established inner loop can enhance developer producti
 ---
 # Inner Loop Developer Experience for teams adopting GitOps
 
-This article describes how an established inner loop can enhance developer productivity and help in a seamless transition from inner dev loop to outer loop for teams [adopting GitOps](conceptual-gitops-flux2.md).
+This article describes how an established inner loop can enhance developer productivity and help in a seamless transition from inner dev loop to outer loop for teams adopting GitOps.
 
 ## Inner dev loop frameworks
 
@@ -28,7 +28,7 @@ Depending on the maturity and complexity of the service, dev teams can choose th
 - All remote
 - Hybrid
 
-Many frameworks support these capabilities. Microsoft offers [Bridge to Kubernetes](/visualstudio/bridge/overview-bridge-to-kubernetes) for [local tunnel debugging](/visualstudio/bridge/bridge-to-kubernetes-vs-code#install-and-use-local-tunnel-debugging). Many other similar market offerings are available, such as DevSpace, Scaffold, and Tilt.
+Many frameworks  support these capabilities. Microsoft offers [Bridge to Kubernetes](/visualstudio/bridge/overview-bridge-to-kubernetes) for [local tunnel debugging](/visualstudio/bridge/bridge-to-kubernetes-vs-code#install-and-use-local-tunnel-debugging). Many other similar market offerings are available, such as DevSpace, Scaffold, and Tilt.
 
 > [!NOTE]
 > The market offering [DevSpace](https://github.com/loft-sh/devspace) shouldn't be confused with Microsoft’s offering, [Bridge to Kubernetes](/visualstudio/bridge/overview-bridge-to-kubernetes), which was previously named DevSpace.
