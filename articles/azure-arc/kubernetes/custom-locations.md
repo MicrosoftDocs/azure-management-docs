@@ -57,26 +57,32 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 
 ## Enable custom locations on your cluster
 
-> [!TIP]
-> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function. To enable the custom locations feature, follow the steps below:
+> [!IMPORTANT]
+> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function.
+> 
+> The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. 
 
-If you are signed in to Azure CLI as a Microsoft Entra user, use the following command:
+### To enable the custom locations feature as a Microsoft Entra user, follow the steps below:
+
+1. Sign into Azure CLI as a Microsoft Entra user and run the following command:
 
 ```azurecli
 az connectedk8s enable-features -n <clusterName> -g <resourceGroupName> --features cluster-connect custom-locations
 ```
 
-If you run the above command while signed in to Azure CLI using a service principal, you may observe the following warning:
+1. To confirm that custom location was successfully enabled, run the following command and check that `ProvisioningState` is `Succeeded`:
 
-```console
-Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
+```azurecli
+az customlocation show -n <customLocationName> -g <resourceGroupName>
 ```
 
-This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. To avoid this error, follow these steps:
+### To enable the custom locations feature with a service principal, follow the steps below:
 
-1. Sign in to Azure CLI with your user account.
+Manually retrieve the custom location OID by following these steps:
 
-1. Run the following command to fetch the `oid` (object ID) of the custom location, where `--id` is predefined and set to `bc313c14-388c-4e7d-a58e-70017303ee3b`: 
+1. Sign in to Azure CLI as a Microsoft Entra user.
+
+1. Run the following command to fetch the custom location `oid` (object ID), where `--id` refers to the Custom Location service app itself, and is predefined and set to `bc313c14-388c-4e7d-a58e-70017303ee3b`: 
 
    **Important!** Copy and run the command exactly as it is shown below. Do not replace the value passed to the `--id` parameter with a different value.
 
@@ -89,6 +95,12 @@ This warning occurs because the service principal lacks the necessary permission
     ```azurecli
     az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <cl-oid> --features cluster-connect custom-locations
     ```
+
+1. Confirm that custom location is successfully enabled by running the following command and checking that `ProvisioningState` is `Succeeded`:
+
+```azurecli
+az customlocation show -n <customLocationName> -g <resourceGroupName>
+```
 
 ## Create custom location
 
@@ -182,6 +194,13 @@ az customlocation delete -n <customLocationName> -g <resourceGroupName>
 ## Troubleshooting
 
 If custom location creation fails with the error `Unknown proxy error occurred`, modify your network policy to allow pod-to-pod internal communication within the `azure-arc` namespace. Be sure to also add the `azure-arc` namespace as part of the no-proxy exclusion list for your configured policy.
+
+If you try to enable custom location while logged into Azure CLI using a service principal, you may observe the following warning:
+
+```console
+Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
+```
+This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. Follow the instructions provided above to enable the custom location feature using a service principal. 
 
 ## Next steps
 
