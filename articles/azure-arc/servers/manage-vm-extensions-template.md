@@ -15,7 +15,7 @@ You can add VM extensions to an ARM template and execute them with the deploymen
 > [!NOTE]
 > Although you can batch multiple extensions and process them together, they're installed serially. After installation of the first extension installation is complete, the next extension is installed.
 >
-> Azure Arc-enabled servers don't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 ## Deploy the Log Analytics VM extension
 

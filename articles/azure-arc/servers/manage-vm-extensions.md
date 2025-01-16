@@ -17,7 +17,7 @@ With Azure Arc-enabled servers, you can deploy, remove, and update Azure VM exte
 - [Azure Resource Manager templates](manage-vm-extensions-template.md)
 
 > [!NOTE]
-> Azure Arc-enabled servers don't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 >
 > Currently, you can update extensions only from the Azure portal or the Azure CLI. Updating extensions from Azure PowerShell or an Azure Resource Manager template is not supported at this time.
 
@@ -48,7 +48,7 @@ To learn about the Azure Connected Machine agent package and the Extension agent
 > [!NOTE]
 > The Desired State Configuration VM extension is no longer available for Azure Arc-enabled servers. We recommend that you [migrate to machine configuration](/azure/governance/machine-configuration/migrate-from-azure-automation) or use the Custom Script Extension to manage the post-deployment configuration of your server.
 
-Azure Arc-enabled servers support moving machines with one or more VM extensions installed between resource groups or another Azure subscription without experiencing any impact to their configuration. The source and destination subscriptions must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). This support is enabled starting with the Connected Machine agent version 1.8.21197.005. For more information about moving resources and considerations before you proceed, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
+Azure Arc-enabled servers supports moving machines with one or more VM extensions installed between resource groups or another Azure subscription without experiencing any impact to their configuration. The source and destination subscriptions must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). This support is enabled starting with the Connected Machine agent version 1.8.21197.005. For more information about moving resources and considerations before you proceed, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
 ### Windows extensions
 
