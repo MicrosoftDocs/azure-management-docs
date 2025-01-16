@@ -6,11 +6,11 @@ ms.topic: how-to
 ms.custom: devx-track-arm-template
 ---
 
-# Enable Azure VM extensions by using ARM template
+# Enable Azure VM extensions by using an ARM template
 
 This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure virtual machine (VM) extensions that are supported by Azure Arc-enabled servers.
 
-You can add VM extensions to an Azure Resource Manager template and execute them with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the supported VM extension on Linux or Windows machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
+You can add VM extensions to an ARM template and execute them with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the extensions on Linux or Windows machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
 
 > [!NOTE]
 > Although you can batch multiple extensions and process them together, they're installed serially. After installation of the first extension installation is complete, the next extension is installed.
@@ -19,7 +19,7 @@ You can add VM extensions to an Azure Resource Manager template and execute them
 
 ## Deploy the Log Analytics VM extension
 
-To easily deploy the Log Analytics agent, use the following sample to install the agent on either Windows or Linux.
+To easily deploy the Log Analytics agent, use one of the following samples to install the agent on either Linux or Windows.
 
 ### Template file for Linux
 
@@ -137,7 +137,7 @@ New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateF
 
 ## Deploy the Custom Script Extension
 
-To use the Custom Script Extension, run the following sample on Windows and Linux. If you're unfamiliar with the Custom Script Extension, see [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows) or [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux). There are a couple of differing characteristics that you should understand when you're using this extension with hybrid machines:
+To use the Custom Script Extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are few differing characteristics that you should understand when you're using this extension with hybrid machines:
 
 * The list of supported operating systems with the Azure VM Custom Script Extension is not applicable to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
 
@@ -145,7 +145,7 @@ To use the Custom Script Extension, run the following sample on Windows and Linu
 
 * If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
 
-The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following Azure Resource Manager template for Linux and Windows.
+The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following templates.
 
 ### Template file for Linux
 
@@ -293,7 +293,7 @@ The Custom Script Extension configuration specifies things like script location 
 
 ## Deploy the Dependency agent extension
 
-To use the Azure Monitor Dependency agent extension, run the following sample for Windows and Linux. If you're unfamiliar with the Dependency agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+To use the Azure Monitor Dependency agent extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Dependency agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
 
 ### Template file for Linux
 
@@ -515,7 +515,7 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 Save the template file to disk. You can then deploy the extension to the connected machine by using the following command.
 
 > [!NOTE]
-> The VM extension would require a system-assigned identity to be assigned to authenticate to Key Vault. See [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md) for Windows and Linux Azure Arc-enabled servers.
+> The VM extension would require a system-assigned identity to be assigned to authenticate to Key Vault. See [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md) for Linux and Windows Azure Arc-enabled servers.
 
 ```powershell
 New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\KeyVaultExtension.json"

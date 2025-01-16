@@ -10,13 +10,13 @@ ms.topic: how-to
 This article shows you how to deploy, update, and uninstall Azure virtual machine (VM) extensions supported by Azure Arc-enabled servers. It shows you how to perform these tasks on a Linux or Windows hybrid machine by using the Azure portal.
 
 > [!NOTE]
-> The Azure Key Vault VM extension does not support deployment from the Azure portal. Use the Azure CLI, the Azure PowerShell, or an Azure Resource Manager template to deploy this extension.
+> The Azure Key Vault VM extension does not support deployment from the Azure portal. Use the Azure CLI, Azure PowerShell, or an Azure Resource Manager template to deploy this extension.
 >
 > Azure Arc-enabled servers don't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 ## Enable extensions
 
-You can apply VM extensions to your machine managed through Azure Arc-enabled servers by using the Azure portal.
+You can apply VM extensions to your machine managed through Azure Arc-enabled servers by using the Azure portal:
 
 1. In your browser, go to the [Azure portal](https://portal.azure.com).
 
@@ -30,7 +30,7 @@ You can apply VM extensions to your machine managed through Azure Arc-enabled se
 
     :::image type="content" source="media/manage-vm-extensions/ama-extension-config.png" alt-text="Screenshot that shows configuration fields for the Azure Monitor agent extension.":::
   
-1. After you provide the applicable configuration information, select **Review + Create** to view a summary of the deployment. Then select **Create**.
+1. After you provide the applicable configuration information, select **Review + create** to view a summary of the deployment. Then select **Create**.
 
 > [!NOTE]
 > Although multiple extensions can be batched and processed together, they're installed serially. After installation of the first extension is complete, the next extension is installed.
@@ -60,7 +60,7 @@ Upgrading an extension to the newest version does not affect the configuration o
 
 :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-status.png" alt-text="Screenshot that shows a list of virtual machine extensions with their update status." border="true":::
 
-You can upgrade one or multiple extensions that are eligible for an upgrade by performing the following steps in the Azure portal:
+You can upgrade one or multiple extensions that are eligible for an upgrade by performing the following steps in the Azure portal.
 
 > [!NOTE]
 > Currently, you can upgrade extensions only from the Azure portal. Performing this operation from the Azure CLI or an Azure Resource Manager template is not supported at this time.
@@ -69,7 +69,7 @@ You can upgrade one or multiple extensions that are eligible for an upgrade by p
 
 2. In the portal, go to **Machines - Azure Arc** and select your hybrid machine from the list.
 
-3. Choose **Settings** > **Extensions**, and then review the status of extensions in the **Update available** column.
+3. Select **Settings** > **Extensions**, and then review the status of extensions in the **Update available** column.
 
 4. Perform the upgrade by using one of these methods:
 

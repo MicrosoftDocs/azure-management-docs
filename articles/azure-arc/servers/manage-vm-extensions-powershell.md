@@ -31,7 +31,7 @@ This article explains how to deploy, update, and uninstall Azure virtual machine
 
 ## Enable an extension
 
-To enable a VM extension on your Azure Arc-enabled server, use [New-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/new-azconnectedmachineextension) with the `-Name`, `-ResourceGroupName`, `-MachineName`, `-Location`, `-Publisher`, -`ExtensionType`, and `-Settings` parameters.
+To enable a VM extension on your Azure Arc-enabled server, use [`New-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/new-azconnectedmachineextension) with the `-Name`, `-ResourceGroupName`, `-MachineName`, `-Location`, `-Publisher`, -`ExtensionType`, and `-Settings` parameters.
 
 The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
@@ -103,7 +103,7 @@ New-AzConnectedMachineExtension -ResourceGroupName $resourceGroup -Location $loc
 
 ## List extensions installed
 
-To get a list of the VM extensions on your Azure Arc-enabled server, use [Get-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/get-azconnectedmachineextension) with the `-MachineName` and `-ResourceGroupName` parameters.
+To get a list of the VM extensions on your Azure Arc-enabled server, use [`Get-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/get-azconnectedmachineextension) with the `-MachineName` and `-ResourceGroupName` parameters.
 
 Here's an example:
 
@@ -117,24 +117,24 @@ custom  westus2   CustomScriptExtension Succeeded
 
 ## Update an extension configuration
 
-To reconfigure an installed extension, you can use the [Update-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/update-azconnectedmachineextension) cmdlet with the `-Name`, `-MachineName`, `-ResourceGroupName`, and `-Settings` parameters.
+To reconfigure an installed extension, you can use the [`Update-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/update-azconnectedmachineextension) cmdlet with the `-Name`, `-MachineName`, `-ResourceGroupName`, and `-Settings` parameters.
 
 To understand the methods for providing the changes that you want to the extension, refer to the reference article for the cmdlet.
 
 ## Upgrade extensions
 
-When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [Update-AzConnectedExtension](/powershell/module/az.connectedmachine/update-azconnectedextension) with the `-MachineName`, `-ResourceGroupName`, and `-ExtensionTarget` parameters.
+When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [`Update-AzConnectedExtension`](/powershell/module/az.connectedmachine/update-azconnectedextension) with the `-MachineName`, `-ResourceGroupName`, and `-ExtensionTarget` parameters.
 
-For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, go to the **Extensions** page for the selected Azure Arc-enabled server in the Azure portal or run [Get-AzVMExtensionImage](/powershell/module/az.compute/get-azvmextensionimage). You can specify multiple extensions in a single upgrade request by providing both:
+For the `-ExtensionTarget` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, go to the **Extensions** page for the selected Azure Arc-enabled server in the Azure portal or run [`Get-AzVMExtensionImage`](/powershell/module/az.compute/get-azvmextensionimage). You can specify multiple extensions in a single upgrade request by providing both:
 
 - A comma-separated list of extensions, defined by their publisher and type (separated by a period)
 - The target version for each extension
 
-You can review the version of installed VM extensions at any time by running the command [Get-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/get-azconnectedmachineextension). The `TypeHandlerVersion` property value represents the version of the extension.
+You can review the version of installed VM extensions at any time by running the command [`Get-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/get-azconnectedmachineextension). The `TypeHandlerVersion` property value represents the version of the extension.
 
 ## Remove extensions
 
-To remove an installed VM extension on your Azure Arc-enabled server, use [Remove-AzConnectedMachineExtension](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName`, and `-ResourceGroupName` parameters.
+To remove an installed VM extension on your Azure Arc-enabled server, use [`Remove-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName`, and `-ResourceGroupName` parameters.
 
 ## Related content
 

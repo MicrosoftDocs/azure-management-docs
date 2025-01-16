@@ -25,7 +25,7 @@ With Azure Arc-enabled servers, you can deploy, remove, and update Azure VM exte
 
 VM extension support for Azure Arc-enabled servers provides the following key benefits:
 
-- Collect log data for analysis with [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs) by enabling the Azure Monitor agent VM extension. You can do complex analysis across log data from different kinds of sources.
+- Collect log data for analysis with [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs) by enabling the Azure Monitor agent VM extension. You can do complex analysis across log data from various sources.
 
 - With [VM insights](/azure/azure-monitor/vm/vminsights-overview), analyze the performance of your Windows and Linux VMs, and monitor their processes and dependencies on other resources and external processes. You achieve these capabilities by enabling the VM extensions for both the Azure Monitor agent and the Dependency agent.
 
@@ -35,7 +35,7 @@ VM extension support for Azure Arc-enabled servers provides the following key be
 
 ## Availability
 
-VM extension functionality is available only in the [supported regions](overview.md#supported-regions). Ensure that you onboard your machine in one of these regions.
+VM extension functionality is available only in the [supported regions](overview.md#supported-regions). Be sure to onboard your machine in one of these regions.
 
 Additionally, you can configure lists of the extensions that you want to allow and block on servers. For more information, see [Extension allowlists and blocklists](/azure/azure-arc/servers/security-overview#extension-allowlists-and-blocklists).
 
@@ -48,7 +48,7 @@ To learn about the Azure Connected Machine agent package and the Extension agent
 > [!NOTE]
 > The Desired State Configuration VM extension is no longer available for Azure Arc-enabled servers. We recommend that you [migrate to machine configuration](/azure/governance/machine-configuration/migrate-from-azure-automation) or use the Custom Script Extension to manage the post-deployment configuration of your server.
 
-Azure Arc-enabled servers support moving machines with one or more VM extensions installed between resource groups or another Azure subscription without experiencing any impact to their configuration. The source and destination subscriptions must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). This support is enabled starting with the Connected Machine agent version 1.8.21197.005. For more information about moving resources and considerations before proceeding, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
+Azure Arc-enabled servers support moving machines with one or more VM extensions installed between resource groups or another Azure subscription without experiencing any impact to their configuration. The source and destination subscriptions must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). This support is enabled starting with the Connected Machine agent version 1.8.21197.005. For more information about moving resources and considerations before you proceed, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
 ### Windows extensions
 
@@ -60,8 +60,8 @@ Azure Arc-enabled servers support moving machines with one or more VM extensions
 |Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentWindows | [Dependency agent virtual machine extension for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)|
 |Azure Key Vault virtual machine extension for Windows | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) |
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorWindowsAgent |[Install the Azure Monitor agent](/azure/azure-monitor/agents/azure-monitor-agent-manage) |
-|Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) to execute runbooks locally |
-|Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Install Azure Extension for SQL Server](/sql/sql-server/azure-arc/connect#initiate-the-connection-from-azure) to initiate a SQL Server connection to Azure |
+|Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally) |
+|Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Install Azure Extension for SQL Server](/sql/sql-server/azure-arc/connect#initiate-the-connection-from-azure) (to initiate a SQL Server connection to Azure) |
 |Windows Admin Center (preview) |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
 |Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
 |Windows Patch extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching) |
@@ -75,7 +75,7 @@ Azure Arc-enabled servers support moving machines with one or more VM extensions
 |Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentLinux |[Dependency agent virtual machine extension for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) |
 |Azure Key Vault virtual machine extension for Linux | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorLinuxAgent |[Install the Azure Monitor agent](/azure/azure-monitor/agents/azure-monitor-agent-manage) |
-|Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) to execute runbooks locally|
+|Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally)|
 |Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
 |Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|
 
@@ -141,7 +141,7 @@ The following extensions are available for Windows and Linux machines.
 |-----------------|--------------------|-----------------------|-------|--------------|----------|---------------|----------------------|---------------------|
 |Windows Server 2022 |X |X |X |X | |X | |X |
 |Windows Server 2019 |X |X |X |X |X | | |X |
-|Windows Server 2016 |X |X |X |X |X |X |Built-in |X |
+|Windows Server 2016 |X |X |X |X |X |X |Built in |X |
 |Windows Server 2012 R2 |X |X |X |X | |X |X | |
 |Windows Server 2012 |X |X |X |X |X |X |X | |
 |Windows Server 2008 R2 SP1 |X |X |X |X | |X |X | |

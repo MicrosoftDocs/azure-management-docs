@@ -31,7 +31,7 @@ This article is applicable to both self-managed Ansible Automation Platform and 
 
 To use the examples in this article, you need an automation execution environment with both the Azure collection and the Azure CLI installed. Both are required to run the automation.
 
-If you don't have an automation execution environment that meets these requirements, you can [use this example](https://github.com/scottharwell/cloud-ee).
+If you don't have an automation execution environment that meets these requirements, you can use [this example](https://github.com/scottharwell/cloud-ee).
 
 For more information about building and configuring automation execution environments, see the [Red Hat Ansible documentation](https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html).
 
@@ -51,9 +51,9 @@ To use the [Azure Infrastructure Configuration Demo collection](https://github.c
 
    - **Execution Environment**: Select with the Azure collection and Azure CLI instead.
 
-   - **Source Control Type:** Select **Git**
+   - **Source Control Type**: Select **Git**.
 .
-   - **Source Control URL:** Enter `https://github.com/ansible-content-lab/azure.infrastructure_config_demos.git`.
+   - **Source Control URL**: Enter `https://github.com/ansible-content-lab/azure.infrastructure_config_demos.git`.
 
    :::image type="content" source="media/migrate-ama/configure-content.png" alt-text="Screenshot of the Projects window to edit details." lightbox="media/migrate-ama/configure-content.png":::
 
@@ -76,7 +76,7 @@ The following mapping within the collection can help you identify which extensio
 |Azure Monitor agent  |`azure_monitor_agent`  |
 |Azure Automation Hybrid Runbook Worker extension  |`azure_hybrid_rubook`  |
 
-You need to create templates so that you can enable and disable Arc-enabled server VM extensions, as described in the following sections.
+You need to create templates so that you can enable and disable Azure Arc-enabled server VM extensions, as described in the following sections.
 
 > [!NOTE]
 > There are additional VM extensions not included in this collection. They're outlined in [Virtual machine extension management with Azure Arc-enabled servers](manage-vm-extensions.md#extensions).
@@ -120,8 +120,8 @@ To create the template:
       extension: microsoft_defender
      ```
 
-   > [!NOTE]
-   > Change `<your_resource_group>`, `<your_region>`, `<first_arc_host>`, and `<second_arc_host>` to match the names of your Azure resources. If you have a large number of Azure Arc hosts, use Jinja2 formatting to extract the list from your inventory sources.
+     > [!NOTE]
+     > Change `<your_resource_group>`, `<your_region>`, `<first_arc_host>`, and `<second_arc_host>` to match the names of your Azure resources. If you have a large number of Azure Arc hosts, use Jinja2 formatting to extract the list from your inventory sources.
 
 1. Select the **Prompt on launch** checkbox for variables so that you can change the extension at runtime.
 1. Select **Save**.
@@ -159,7 +159,7 @@ This template is responsible for disabling an Azure Arc-enabled server VM extens
      ```
 
      > [!NOTE]
-     > Change `<your_resource_group>`, <your_region>, <first_arc_host>, and <second_arc_host> to match the names of your Azure resources. If you have a large number of Azure Arc hosts, use Jinja2 formatting to extract the list from your inventory sources.
+     > Change `<your_resource_group>`, `<your_region>`, `<first_arc_host>`, and `<second_arc_host>` to match the names of your Azure resources. If you have a large number of Azure Arc hosts, use Jinja2 formatting to extract the list from your inventory sources.
 
 1. Select the **Prompt on launch** checkbox for variables so that you can change the extension at runtime.
 1. Select **Save**.
