@@ -1,7 +1,7 @@
 ---
 title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
-ms.date: 12/02/2024
+ms.date: 01/15/2025
 ms.topic: conceptual
 ---
 
@@ -61,7 +61,7 @@ Customers that aren't attesting or enrolled through Windows Server pay-as-you-go
 
 - Regions: Activation is available in all regions where Azure Arc-enabled servers has regional availability except for US Gov Virginia, US Gov Arizona, China North 2, China North 3, and China East 2.
 
-- Environments: Supported environments include Hyper-V, VMware, SCVMM, Stack HCI, AVS, bare-metal, AWS, GCP, and OCI where servers are connected to Azure Arc. 
+- Environments: Supported environments include Hyper-V, VMware, SCVMM, Stack HCI, AVS, and bare-metal where servers are connected to Azure Arc. 
 
 - Modes: Customers can use Monitor mode and extension allowlists or blocklists with their attestation to Azure Arc-enabled servers.  
 

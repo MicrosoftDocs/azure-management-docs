@@ -1,7 +1,7 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 11/21/2024
+ms.date: 01/16/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurecli, references-regions
 ---
@@ -13,6 +13,7 @@ Azure provides an automated application deployments capability using GitOps that
 * Continual visibility into the status of applications running on clusters.
 * Separation of concerns between application development teams and infrastructure teams. Application teams don't need to have experience with Kubernetes deployments. Platform engineering teams typically create a self-serve model for application teams, empowering them to run deployments with higher confidence.
 * Ability to recreate clusters with the same desired state in case of a crash or to scale out.
+* Ability to [deploy applications at scale](#apply-flux-configurations-at-scale) through Azure Policy.
 
 With GitOps, you declare the desired state of your Kubernetes clusters in files in Git repositories. The Git repositories may contain the following files:
 
