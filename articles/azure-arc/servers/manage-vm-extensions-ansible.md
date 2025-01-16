@@ -52,7 +52,7 @@ To use the [Azure Infrastructure Configuration Demo collection](https://github.c
    - **Execution Environment**: Select with the Azure collection and Azure CLI instead.
 
    - **Source Control Type**: Select **Git**.
-.
+
    - **Source Control URL**: Enter `https://github.com/ansible-content-lab/azure.infrastructure_config_demos.git`.
 
    :::image type="content" source="media/migrate-ama/configure-content.png" alt-text="Screenshot of the Projects window to edit details." lightbox="media/migrate-ama/configure-content.png":::
