@@ -9,6 +9,9 @@ ms.date: 09/20/2024
 
 To keep your Azure Arc resource bridge deployment online and operational, you need to perform maintenance operations such as updating credentials,  monitoring upgrades, and ensuring the appliance VM is online.
 
+> [!IMPORTANT]
+> Arc resource bridge can't be offline for longer than 90 days. After 90 days, the security key within the appliance expires and can't be recovered. As a best practice, you should create a resource health alert in Azure Portal for Arc resource bridge. The Resource type for Arc resource bridge is listed as `Microsoft.ResourceConnector/appliances` in Resource Health.
+
 ## Prerequisites
 
 To maintain the on-premises appliance VM, the [appliance configuration files generated during deployment](deploy-cli.md#az-arcappliance-createconfig) need to be saved in a secure location and made available on the management machine.
@@ -19,7 +22,7 @@ The following sections describe the maintenance tasks for Arc resource bridge.
 
 ## Update credentials in the appliance VM
 
-Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) (for example, a user account for VMware vCenter) that are used to access the control center of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge. This allows the resource bridge visibility to on-premises resources for guest management in Azure.
+Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) (for example, a user account for VMware vCenter) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge. This allows the resource bridge visibility to on-premises resources for guest management in Azure.
 
 If the credentials change, the credentials stored in the Arc resource bridge must be updated with the [`update-infracredentials` command](/cli/azure/arcappliance/update-infracredentials). This command must be run from a management machine, and it requires a [kubeconfig file](system-requirements.md#kubeconfig). 
 
