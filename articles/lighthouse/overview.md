@@ -41,7 +41,7 @@ There are no additional costs associated with using Azure Lighthouse to manage A
 
 ## Cross-region and cloud considerations
 
-Azure Lighthouse is a non-regional service. You can manage delegated resources that are located in different [regions](/azure/cloud-adoption-framework/ready/azure-setup-guide/regions). However, you can't delegate resources across a [national cloud](/entra/identity-platform/authentication-national-cloud) and the Azure public cloud, or across two separate national clouds.
+Azure Lighthouse is a nonregional service. You can manage delegated resources that are located in different [regions](/azure/cloud-adoption-framework/ready/azure-setup-guide/regions). However, you can't delegate resources across a [national cloud](/entra/identity-platform/authentication-national-cloud) and the Azure public cloud, or across two separate national clouds.
 
 ## Support for Azure Lighthouse
 

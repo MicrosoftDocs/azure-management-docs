@@ -22,9 +22,9 @@ To access **Service providers** in the Azure portal, enter "Service providers" i
 
 To view details about the current service providers who use Azure Lighthouse to work on the customer's tenant, select **Service provider offers** from the service menu of **Service providers**.
 
-Each offer shows the service provider's name and the offer associated with it. Select an offer to view a description and other details, including the role assignments that the service provider has been granted.
+Each offer shows the service provider's name and the offer associated with it. Select an offer to view a description and other details, including the role assignments that the service provider was granted.
 
-In the **Delegations** column, you can see how many subscriptions and/or resource groups have been delegated to the service provider for that offer. The service provider can work on these subscriptions and/or resource groups according to the access levels specified in the offer.
+In the **Delegations** column for an offer you can see how many subscriptions and/or resource groups were delegated to the service provider. The service provider can work on these subscriptions and/or resource groups according to the access levels specified in the offer.
 
 ## Add service provider offers
 
@@ -36,7 +36,7 @@ To add an offer from a template, select **Add offer** in the command bar, then c
 
 ## Update service provider offers
 
-After a customer adds an offer, a service provider may publish an updated version of the same offer to Azure Marketplace, such as to add a new role definition. If a new version of the offer has been published, an "update" icon in the row for that offer. Select this icon to see the changes in the current version of the offer.
+After a customer adds an offer, a service provider may publish an updated version of the same offer to Azure Marketplace, such as to add a new role definition. If a new version of the offer is published, an "update" icon appears in the row for that offer. Select this icon to see the changes in the current version of the offer.
 
  ![Update offer icon](../media/update-offer.jpg)
 
@@ -49,7 +49,7 @@ You can remove a service provider offer at any time by selecting the trash can i
 Once you confirm the deletion, that service provider can no longer access the resources that were formerly delegated for that offer.
 
 > [!IMPORTANT]
-> If a subscription has two or more offers from the same service provider, removing one of them could cause some service provider users to lose the access granted via the other delegations. This only occurs when the same user and role are included in multiple delegations, and then one of the delegations is removed. To fix this, the [onboarding process](onboard-customer.md) should be repeated for the offers that you don't want to remove.
+> If a subscription has two or more offers from the same service provider, removing one of them could cause some service provider users to lose the access granted via the other delegations. This problem only occurs when the same user and role are included in multiple delegations, then one of the delegations is removed. To restore access, the [onboarding process](onboard-customer.md) should be repeated for the offers that you don't want to remove.
 
 ## Delegate resources
 
@@ -70,13 +70,13 @@ Delegations represent an association of specific customer resources (subscriptio
 Filters at the top of the pane let you sort and group your delegation information. You can also filter by specific service providers, offers, or keywords.
 
 > [!NOTE]
-> When [viewing role assignments for the delegated scope in the Azure portal](/azure/role-based-access-control/role-assignments-list-portal#list-role-assignments-at-a-scope) or via APIs, customers won't see role assignments for users from the service provider tenant who have access through Azure Lighthouse. Similarly, users in the service provider tenant won't see role assignments for users in a customer's tenant, regardless of the role they've been assigned.
+> When [viewing role assignments for the delegated scope in the Azure portal](/azure/role-based-access-control/role-assignments-list-portal#list-role-assignments-at-a-scope) or via APIs, customers can't see role assignments for users from the service provider tenant who have access through Azure Lighthouse. Similarly, users in the service provider tenant can't see role assignments for users in a customer's tenant, regardless of the role they've been assigned.
 >
-> Note that [classic administrator](/azure/role-based-access-control/classic-administrators) assignments in a customer tenant may be visible to users in the managing tenant, or the other way around, because classic administrator roles don't use the Resource Manager deployment model.
+> [Classic administrator](/azure/role-based-access-control/classic-administrators) assignments in a customer tenant may be visible to users in the managing tenant, or the other way around, because classic administrator roles don't use the Resource Manager deployment model.
 
 ## Audit and restrict delegations in your environment
 
-Customers may want to review all subscriptions and/or resource groups that have been delegated to Azure Lighthouse, or place restrictions on the tenants to which they can be delegated. These options are especially useful for customers with a large number of subscriptions, or who have many users who perform management tasks.
+Customers may want to review all subscriptions and/or resource groups that are delegated to Azure Lighthouse, or place restrictions on the tenants to which they can be delegated. These options are especially useful for customers with a large number of subscriptions, or who have many users who perform management tasks.
 
 We provide an [Azure Policy built-in policy definition](/azure/governance/policy/samples/built-in-policies#lighthouse) to [audit delegation of scopes to a managing tenant](https://github.com/Azure/azure-policy/blob/master/built-in-policies/policyDefinitions/Lighthouse/Delegations_Audit.json). You can assign this policy to a management group that includes all of the subscriptions that you want to audit. When you check for compliance with this policy, any delegated subscriptions and/or resource groups within that management group are shown in a noncompliant state. You can then review the results and confirm that there are no unexpected delegations.
 

@@ -7,7 +7,7 @@ ms.topic: conceptual
 
 # Recommended security practices
 
-When using [Azure Lighthouse](../overview.md), it's important to consider security and access control. Users in your tenant will have direct access to customer subscriptions and resource groups, so it's important to take steps that help maintain your tenant's security. We also recommend that you only enable the minimum access that's needed to effectively manage your customers' resources. This topic provides recommendations to help you implement these security practices.
+When using [Azure Lighthouse](../overview.md), it's important to consider security and access control. Users in your tenant will have direct access to customer subscriptions and resource groups, so it's important to take steps that help maintain your tenant's security. We also recommend that you only enable the minimum access necessary to effectively manage your customers' resources. This topic provides recommendations to help you implement these security practices.
 
 > [!TIP]
 > These recommendations also apply to [enterprises managing multiple tenants](enterprise.md) with Azure Lighthouse.
@@ -41,7 +41,7 @@ For example, you may want to use a structure like this:
 |VM Specialists     |User group         |\<principalId\>         |VM Contributor         |9980e02c-c2be-4d73-94e8-173b1dc7cf3c  |
 |Automation     |Service principal name (SPN)         |\<principalId\>         |Contributor         |b24988ac-6180-42a0-ab88-20f7382dd24c  |
 
-Once you've created these groups, you can assign users as needed. Only add users who truly need to have the access granted by that group.
+After you create these groups, you can assign users as needed. Only add users who truly need to have the access granted by that group.
 
 Be sure to review group membership regularly and remove any users that are no longer necessary to include.
 

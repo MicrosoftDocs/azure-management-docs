@@ -12,7 +12,7 @@ Service providers using [Azure Lighthouse](../overview.md) can visit **My custom
 To view information about a customer, you must have been granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role that includes Reader access) when that customer was onboarded.
 
 > [!TIP]
-> While we'll refer to service providers and customers here, [enterprises managing multiple tenants](../concepts/enterprise.md) can use the same process to consolidate their management experience.
+> Though we refer to service providers and customers here, [enterprises managing multiple tenants](../concepts/enterprise.md) can use the same process to consolidate their management experience.
 
 To access **My customers** in the Azure portal, enter "My customers" in the search box in the Azure portal page header. You can also navigate to **Azure Lighthouse** in the Azure portal, then select **Manage your customers**.
 
@@ -36,11 +36,11 @@ For additional details, use the following options:
 - To see details about role assignments for delegated subscriptions or resource groups, select the entry in the **Delegations** column.
 
 > [!NOTE]
-> If a customer renames a subscription after it's been delegated, you'll see the updated subscription name. However, if they rename their tenant, you might still see the older tenant name in some places in the Azure portal.
+> If a customer renames a subscription after it was delegated, you'll see the updated subscription name. However, if they rename their tenant, you might still see the older tenant name in some places in the Azure portal.
 
 ## View and manage delegations
 
-Delegations show the subscription or resource group that has been delegated, along with the users and permissions that have access to it. To view this info, select **Delegations** from the service menu.
+Delegations show the subscription or resource group that's been delegated, along with the users and permissions that have access to it. To view this info, select **Delegations** from the service menu.
 
 Options at the top of the pane let you sort, filter, and group this information by specific customers, offers, or keywords.
 
@@ -50,13 +50,13 @@ The users and permissions associated with each delegation appear in the **Role a
 
 ### Remove delegations
 
-If you included users with the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) when onboarding a customer to Azure Lighthouse, those users can remove delegations by selecting the trash can icon that appears in the row for that delegation. Removing a delegation means that no users in the service provider's tenant will be able to access the resources that had been previously delegated.
+If you included users with the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) when onboarding a customer to Azure Lighthouse, those users can remove delegations by selecting the trash can icon that appears in the row for that delegation. When you remove a delegation, users in the service provider's tenant lose the access that had previously been granted through that delegation.
 
 For more information, see [Remove access to a delegation](remove-delegation.md).
 
 ## View delegation change activity
 
-The **Activity log** section of **My customers** keeps track of every time that a customer subscription or resource group is delegated to your tenant. It also records whenever any previously delegated resources are removed. This information can only be viewed by users who have been [assigned the Monitoring Reader role at root scope](monitor-delegation-changes.md).
+The **Activity log** section of **My customers** keeps track of every time that a customer subscription or resource group is delegated to your tenant. It also records whenever any previously delegated resources are removed. To view this information, users must be [assigned the Monitoring Reader role at root scope](monitor-delegation-changes.md).
 
 For more information, see [View delegation changes in the Azure portal](monitor-delegation-changes.md#view-delegation-changes-in-the-azure-portal).
 
@@ -66,18 +66,18 @@ You can work directly in the context of a delegated subscription within the Azur
 
 1. Select the **Settings** icon from the global controls in the Azure portal page header.
 1. In [Directories + subscriptions](../../azure-portal/set-preferences.md#directories--subscriptions), ensure that the **Advanced filters** toggle is [turned off](../../azure-portal/set-preferences.md#subscription-filters).
-1. In the **Default subscription filter** section, select the appropriate directory and subscription. If you've been granted access to a resource group rather than to an entire subscription, select the subscription to which that resource group belongs. You'll work in the context of that subscription, but will only be able to access the designated resource group(s) to which you have access.
+1. In the **Default subscription filter** section, select the appropriate directory and subscription. If you were granted access to a resource group rather than to an entire subscription, select the subscription to which that resource group belongs. You'll work in the context of that subscription, but will only be able to access the designated resource group(s) to which you have access.
 
 :::image type="content" source="../media/subscription-filter-delegated.png" alt-text="Screenshot of the default subscription filter with one delegated subscription selected.":::
 
-When you access an Azure service that supports [cross-tenant management experiences](../concepts/cross-tenant-management-experience.md), the service will default to the context of the delegated subscription that you included in your filter.
+When you access an Azure service that supports [cross-tenant management experiences](../concepts/cross-tenant-management-experience.md), the service defaults to the context of the delegated subscription that you included in your filter.
 
 You can change the default subscription at any time by following the steps above and choosing a different subscription, or multiple subscriptions. If you want the filter to include all of the subscriptions to which you have access, select **All directories**, then check the **Select all** box.
 
 :::image type="content" source="../media/subscription-filter-all.png" alt-text="Screenshot of the default subscription filter with all directories and subscriptions selected":::
 
 > [!IMPORTANT]
-> Checking the **Select all** box sets the filter to show all of the subscriptions to which you *currently* have access. If you later gain access to additional subscriptions—for example, if you onboard a new customer to Azure Lighthouse—these subscriptions will not automatically be added to your filter. You'll need to return to **Directories + subscriptions** and select the additional subscriptions (or uncheck and then recheck **Select all** again).
+> Checking the **Select all** box sets the filter to show all of the subscriptions to which you *currently* have access. If you later gain access to more subscriptions—for example, if you onboard a new customer to Azure Lighthouse—these subscriptions aren't automatically added to your filter. To include them, return to **Directories + subscriptions** and select the additional subscriptions (or uncheck and then recheck **Select all** again).
 
 You can also work on delegated subscriptions or resource groups by selecting the subscription or resource group from within an individual service that supports [cross-tenant management experiences](../concepts/cross-tenant-management-experience.md#enhanced-services-and-scenarios). If you don't see the subscription, check to make sure it's not excluded from your **Default subscription filter**.
 

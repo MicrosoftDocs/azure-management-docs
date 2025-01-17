@@ -22,9 +22,9 @@ If you [onboarded your customer through Azure Resource Manager templates (ARM te
 
 ## Update your ARM template
 
-To update your delegation, you will need to deploy an ARM template that includes the changes you'd like to make.
+To update your delegation, you need to deploy an ARM template that includes the changes you'd like to make.
 
-If you're only updating authorizations (such as adding a new user group with a role you hadn't previously included, or changing the role for an existing user), you can use the same **mspOfferName** as in the [ARM template](onboard-customer.md#create-an-azure-resource-manager-template) that you used for the previous delegation. Use your previous template as a starting point. Then, make the changes you need, such as replacing one Azure built-in role with another, or adding a completely new authorization to the template.
+If you're only updating authorizations (such as adding a new user group with a role you hadn't previously included, or changing the role for an existing user), you can use the same **mspOfferName** as in the [ARM template](onboard-customer.md#create-an-azure-resource-manager-template) that you used for the previous delegation. Use your previous template as a starting point. Then, make the changes you need, such as replacing one Azure built-in role with another, or adding a new authorization to the template.
 
 In most cases, we recommend having only one **mspOfferName** in use by the same customer and managing tenant. You don't need to change the **mspOfferName** if the managing tenant remains the same. If you do change the **mspOfferName**, this will be considered a new, separate offer. Changing the **mspOfferName** is required if you're switching to a different the managing tenant.
 
@@ -52,9 +52,9 @@ After the deployment is complete, [confirm that it was successful](onboard-custo
 
 ## Update Managed Service offers
 
-If you onboarded your customer through a Managed Service offer published to Azure Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](/azure/marketplace/update-existing-offer) with updates to the [authorizations](/azure/marketplace/create-managed-service-offer-plans#authorizations) in the plan for that customer. The customer will then be able to [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
+If you onboarded your customer through a Managed Service offer published to Azure Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](/azure/marketplace/update-existing-offer) with updates to the [authorizations](/azure/marketplace/create-managed-service-offer-plans#authorizations) in the plan for that customer. The customer can then [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
 
-If you want to change the managing tenant, you'll need to [create and publish a new Managed Service offer](publish-managed-services-offers.md) for the customer to accept.
+To change the managing tenant for a delegation, you must [create and publish a new Managed Service offer](publish-managed-services-offers.md) for the customer to accept.
 
 > [!IMPORTANT]
 > We recommend that you avoid having multiple Managed Service offers between the same customer and managing tenant. If you publish a new offer for a current customer that uses the same managing tenant, be sure that the earlier offer is removed before the customer accepts the newer offer.
