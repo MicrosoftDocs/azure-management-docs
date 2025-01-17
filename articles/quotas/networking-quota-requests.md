@@ -18,7 +18,7 @@ If you don't see **Quotas** on Azure Home, type "quotas" in the search box, then
 You can also use the following options to view your network quota usage and limits:
 
 - [Azure CLI](/cli/azure/network#az-network-list-usages)
-- [Azure PowerShell](/powershell/module/azurerm.network/get-azurermnetworkusage)
+- [Azure PowerShell](/powershell/module/az.network/get-aznetworkusage)
 - [REST API](/rest/api/virtualnetwork/virtualnetworks/listusage)
 - **Usage + quotas** (in the left pane when viewing your subscription in the Azure portal) 
 
