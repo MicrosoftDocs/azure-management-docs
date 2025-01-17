@@ -1,7 +1,7 @@
 ---
 title: Monitor service provider activity
 description: Customers can monitor logged activity to see actions performed by service providers through Azure Lighthouse.
-ms.date: 05/23/2023
+ms.date: 01/16/2025
 ms.topic: how-to
 ---
 
@@ -16,20 +16,20 @@ Customers who have delegated subscriptions to service providers through [Azure L
 You can also [view and retrieve activity log events](/azure/azure-monitor/essentials/activity-log#other-methods-to-retrieve-activity-log-events) programmatically.
 
 > [!NOTE]
-> Users in a service provider's tenant can view activity log results for a delegated subscription if they were granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role which includes Reader access) when that subscription was onboarded to Azure Lighthouse.
+> Users in a service provider's tenant can view activity log results for a delegated subscription if they were granted the [Reader](/azure/role-based-access-control/built-in-roles#general) role (or another built-in role which includes Reader access) when that subscription was onboarded to Azure Lighthouse.
 
-In the activity log, you'll see the name of the operation and its status, along with the date and time it was performed. The **Event initiated by** column shows which user performed the operation, whether it was a user in a service provider's tenant acting through Azure Lighthouse, or a user in the customer's own tenant. Note that the name of the user is shown, rather than the tenant or the role that the user has been assigned for that subscription.
+The activity log shows the name of the operation and its status, along with the date and time it was performed. The **Event initiated by** column shows the name of the user who performed the operation, whether it was a user in a service provider's tenant acting through Azure Lighthouse, or a user in the customer's own tenant. The tenant and role belonging to that user aren't shown here.
 
 > [!NOTE]
-> Users from the service provider appear in the activity log, but these users and their role assignments aren't shown in **Access Control (IAM)** or when retrieving role assignment info via APIs.
+> Users from the service provider appear in the activity log. However, these users and their role assignments aren't shown in **Access Control (IAM)**, or when retrieving role assignment info via APIs.
 
 Logged activity is available in the Azure portal for the past 90 days. You can also [store this data for a longer period](/azure/azure-monitor/essentials/activity-log-insights#retention-period) if needed.
 
 ## Set alerts for critical operations
 
-To stay aware of critical operations that service providers (or users in the customer's own tenant) are performing, we recommend creating [activity log alerts](/azure/azure-monitor/alerts/alerts-types#activity-log-alerts). For example, you may want to track all administrative actions for a subscription, or be notified when any virtual machine in a particular resource group is deleted. When you create alerts, they'll include actions performed by users both in the customer's tenant and in any managing tenants.
+To stay aware of critical operations that service providers (or users in the customer's own tenant) are performing, we recommend creating [activity log alerts](/azure/azure-monitor/alerts/alerts-types#activity-log-alerts). For example, you may want to track all administrative actions for a subscription, or be notified when any virtual machine in a particular resource group is deleted. When you create alerts, they include actions performed by users both in the customer's tenant and in any managing tenants.
 
-For more information, see [Create, view, and manage activity log alerts](/azure/azure-monitor/alerts/alerts-activity-log).
+For more information, see [Create or edit an activity log, service health, or resource health alert rule](/azure/azure-monitor/alerts/alerts-activity-log).
 
 ## Create log queries
 
@@ -41,7 +41,7 @@ For more information, see [Log queries in Azure Monitor](/azure/azure-monitor/lo
 
 To view activity from individual users across multiple domains, use the [Activity Logs by Domain](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/workbook-activitylogs-by-domain) sample workbook.
 
-Results can be filtered by domain name. You can also apply additional filters such as category, level, or resource group.
+Results can be filtered by domain name. You can also apply filters such as category, level, or resource group.
 
 ## Next steps
 
