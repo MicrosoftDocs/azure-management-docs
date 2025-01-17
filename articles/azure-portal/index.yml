@@ -41,7 +41,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Azure portal how-to video series
-            url: azure-portal-video-series.md
+            url: https://www.youtube.com/playlist?list=PLLasX02E8BPBKgXP4oflOL29TtqTzwhxR
 
   # Card
   - title: Customize the Azure portal
