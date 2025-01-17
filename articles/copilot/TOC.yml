@@ -20,50 +20,56 @@
     href: ai-shell-overview.md
 - name: Enhanced scenarios
   items:
-  - name: Find your recommendations
-    href: find-recommendations-advisor.md
-  - name: Get resource information
-    href: get-information-resource-graph.md
-  - name: Execute commands
-    href: execute-commands.md
-  - name: Deploy VMs effectively
-    href: deploy-vms-effectively.md
-  - name: Discover workloads
-    href: deploy-workload-templates.md
-  - name: Get monitoring information
-    href: get-monitoring-information.md
-  - name: Optimize your code
-    href: optimize-code-application-insights.md
-  - name: Work smarter with Azure Local
-    href: work-smarter-edge.md
-  - name: Manage storage accounts
-    href: improve-storage-accounts.md
-  - name: Troubleshoot disk performance
-    href: troubleshoot-disk-performance.md
-  - name: Troubleshoot deployed apps
-    href: troubleshoot-app-service.md
-  - name: Plan, design, and troubleshoot networks
-    href: network-management.md
-  - name: Generate Azure CLI scripts
-    href: generate-cli-scripts.md
-  - name: Generate PowerShell scripts
-    href: generate-powershell-scripts.md
-  - name: Generate Terraform and Bicep configurations
-    href: generate-terraform-bicep.md
-  - name: Author API Management policies
-    href: author-api-management-policies.md
-  - name: Work with AKS clusters
-    href: work-aks-clusters.md
-  - name: Generate Kubernetes YAML files
-    href: generate-kubernetes-yaml.md
-  - name: Understand service health
-    href: understand-service-health.md
-  - name: Analyze costs
-    href: analyze-cost-management.md
-  - name: Query attack surface
-    href: query-attack-surface.md
-  - name: Investigate Azure Firewall IDPS attacks
-    href: /azure/firewall/firewall-copilot
+  - name: Understand your Azure environment
+    items:
+    - name: Get resource information
+      href: get-information-resource-graph.md
+    - name: Understand service health
+      href: understand-service-health.md
+    - name: Analyze costs
+      href: analyze-cost-management.md
+    - name: Find your recommendations
+      href: ./copilot-advisor.md
+    - name: Query attack surface
+      href: query-attack-surface.md
+    - name: Investigate Azure Firewall IDPS attacks
+      href: /azure/firewall/firewall-copilot
+  - name: Work smarter with Azure services
+    items:
+    - name: Execute commands
+      href: execute-commands.md
+    - name: Deploy VMs effectively
+      href: deploy-vms-effectively.md
+    - name: Discover workloads
+      href: deploy-workload-templates.md
+    - name: Work with AKS clusters
+      href: work-aks-clusters.md
+    - name: Get monitoring information
+      href: get-monitoring-information.md
+    - name: Work smarter with Azure Local
+      href: work-smarter-edge.md
+    - name: Manage storage accounts
+      href: improve-storage-accounts.md
+    - name: Troubleshoot disk performance
+      href: troubleshoot-disk-performance.md
+    - name: Plan, design, and troubleshoot networks
+      href: network-management.md
+  - name: Write and optimize code
+    items:
+    - name: Generate Azure CLI scripts
+      href: generate-cli-scripts.md
+    - name: Generate PowerShell scripts
+      href: generate-powershell-scripts.md
+    - name: Generate Terraform and Bicep configurations
+      href: generate-terraform-bicep.md
+    - name: Optimize your code
+      href: optimize-code-application-insights.md
+    - name: Author API Management policies
+      href: author-api-management-policies.md
+    - name: Generate Kubernetes YAML files
+      href: generate-kubernetes-yaml.md
+    - name: Troubleshoot deployed apps
+      href: troubleshoot-app-service.md
 - name: Resources
   items:
   - name: Azure updates
