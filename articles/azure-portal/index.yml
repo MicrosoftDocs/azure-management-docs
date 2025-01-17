@@ -8,7 +8,7 @@ metadata:
   description: Learn how to manage your Azure subscriptions and resources using the Azure portal web-based console. The Azure portal is an alternative to using command-line tools.
   ms.topic: landing-page
   ms.service: azure-portal
-  ms.date: 01/29/2024
+  ms.date: 01/17/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -41,7 +41,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Azure portal how-to video series
-            url: azure-portal-video-series.md
+            url: https://www.youtube.com/playlist?list=PLLasX02E8BPBKgXP4oflOL29TtqTzwhxR
 
   # Card
   - title: Customize the Azure portal
