@@ -63,13 +63,13 @@ The SSE uses a feature called [workload identity federation](conceptual-workload
 If your cluster isn't yet connected to Azure Arc, [follow these steps](quickstart-connect-cluster.md). During these steps, enable workload identity federation as part of the `connect` command:
 
 ```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
+az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer
 ```
 
 If your cluster is already connected to Azure Arc, enable workload identity using the `update` command:
 
 ```azurecli
-az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer --enable-workload-identity
+az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer
 ```
 
 Now configure your cluster to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set above.
@@ -109,7 +109,7 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
 
 ### [AKS on Azure Local](#tab/aks-local)
 
-Use the [How-to guide](/azure/aks/hybrid/workload-identity) to activate workload identity federation on AKS on Azure Local by using the `--enable-oidc-issuer` and `--enable-workload-identity` flags.
+Use the [How-to guide](/azure/aks/hybrid/workload-identity) to activate workload identity federation on AKS on Azure Local by using the `--enable-oidc-issuer` flag.
 
 Return to these steps after the initial activation. There is no need to complete the remainder of that guide.
 
