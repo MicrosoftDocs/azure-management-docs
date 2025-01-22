@@ -10,7 +10,7 @@ ms.date: 1/21/2025
 To keep your Azure Arc resource bridge deployment online and operational, you need to perform maintenance operations such as updating credentials, monitoring upgrades, and ensuring the appliance VM is online.
 
 > [!IMPORTANT]
-> Arc resource bridge can't be offline for longer than 90 days. After 90 days, the security key within the appliance expires and can't be recovered. As a best practice, [create a resource health alert](#create-resource-health-alerts)in the Azure portal for Arc resource bridge so that you're notified if an Arc resource bridge becomes unavailable.
+> Arc resource bridge can't be offline for longer than 90 days. After 90 days, the security key within the appliance expires and can't be recovered. As a best practice, [create a resource health alert](#create-resource-health-alerts) in the Azure portal so that you're notified if an Arc resource bridge becomes unavailable.
 
 ## Prerequisites
 
