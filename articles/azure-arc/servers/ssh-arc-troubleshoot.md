@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot SSH access to Azure Arc-enabled servers
 description: Learn how to troubleshoot and resolve issues with SSH access to Arc-enabled servers.
-ms.date: 07/01/2023
+ms.date: 01/22/2025
 ms.topic: troubleshooting
 ---
 
