@@ -1,8 +1,8 @@
 ---
 title: Troubleshooting Common Issues and Solutions ACR Transfer
 description: Find solutions to common issues with Azure Container Registry (ACR) Transfer, including deployment failures, Key Vault access, and storage access.
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+author: rayoflores
 ms.date: 10/31/2023
 ms.topic: troubleshooting
 ms.service: azure-container-registry

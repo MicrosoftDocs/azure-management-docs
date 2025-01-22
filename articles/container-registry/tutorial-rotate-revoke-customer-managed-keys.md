@@ -4,7 +4,7 @@ description: Learn how to rotate, update, and revoke a customer-managed key on A
 ms.topic: tutorial
 ms.date: 10/31/2023
 ms.custom: subject-rbac-steps, devx-track-azurecli
-ms.author: tejaswikolli
+author: rayoflores
 ms.service: azure-container-registry
 #customer intent: As a DevOps engineer, I want to manage encryption keys so that I can maintain security and compliance.
 ---

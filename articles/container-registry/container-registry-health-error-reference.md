@@ -2,8 +2,8 @@
 title: Error Reference for Registry Health Checks
 description: Error codes and possible solutions to problems found by running the az acr check-health diagnostic command in Azure Container Registry
 ms.topic: reference
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 ---

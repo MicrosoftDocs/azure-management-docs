@@ -2,8 +2,8 @@
 title: Pull Images from a Connected Registry with Azure IoT Edge
 description: Learn how to use Azure Container Registry CLI commands to configure a client token and pull images from a connected registry on an IoT Edge device.
 ms.topic: quickstart
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+author: rayoflores
 ms.date: 10/31/2023
 ms.custom: mode-other, devx-track-azurecli
 ms.devlang: azurecli

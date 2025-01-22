@@ -1,10 +1,10 @@
 ---
 title: Troubleshoot Customer-Managed Keys in Azure Container Registry
 description: Learn how to troubleshoot the most common problems for a registry that's enabled with a customer-managed key.
-author: tejaswikolli-web
+author: rayoef
 ms.topic: tutorial
 ms.date: 10/31/2023
-ms.author: tejaswikolli
+author: rayoflores
 ms.service: azure-container-registry
 #customer intent: As a user, I want to troubleshoot customer-managed keys so that I can resolve common issues.
 ---
