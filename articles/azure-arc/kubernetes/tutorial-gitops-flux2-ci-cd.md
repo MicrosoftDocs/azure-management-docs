@@ -133,8 +133,8 @@ The CI/CD workflow populates the manifest directory with extra manifests to depl
 
 1. Check the state of the deployment in Azure portal.
    * If successful, you see both `dev` and `stage` namespaces created in your cluster.
-   * You can also confirm that on the Azure portal page of your cluster, a configuration `cluster-config` is created on the f`GitOps` tab.
-
+   * You can also confirm that on the Azure portal page of your cluster, a configuration `cluster-config` is created on the `GitOps` tab.
+      
 ### Import the CI/CD pipelines
 
 Now that you synced a GitOps connection, you need to import the CI/CD pipelines that create the manifests.
