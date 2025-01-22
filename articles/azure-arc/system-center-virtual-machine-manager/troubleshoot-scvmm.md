@@ -7,7 +7,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 01/15/2025
+ms.date: 01/22/2025
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
@@ -44,9 +44,15 @@ This article provides troubleshooting steps that help you resolve the errors enc
 
 [Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).
 
+## PostOperationsError
+
 ### PostOperationTimeout
 
 [Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).
+
+### PostOperationsErrorKubeadmControlPlane
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).
 
 ## Next steps
 
