@@ -147,7 +147,7 @@
         "articles/azure-arc/servers/**/*.md": "johnmarco",
         "articles/azure-portal/**/*.md": "JnHs",
         "articles/azure-portal/**/*.yml": "JnHs",
-        "articles/container-registry/**/*.md": "rayoef ",
+        "articles/container-registry/**/*.md": "rayoef",
         "articles/lighthouse/**/*.md": "JnHs",
         "articles/quotas/**/*.md": "JnHs",
         "articles/quotas/**/*.yml": "JnHs"
