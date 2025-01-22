@@ -6,7 +6,7 @@ ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ---
 

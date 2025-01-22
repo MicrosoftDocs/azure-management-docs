@@ -4,7 +4,7 @@ description: Set up a private endpoint on a container registry and enable access
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

@@ -4,7 +4,7 @@ description: Details on how to effectively manage registry size by deleting cont
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 #customer intent: As a user, I want to delete image resources in Azure Container Registry so that I can manage registry storage effectively.

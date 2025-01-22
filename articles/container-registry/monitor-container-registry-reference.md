@@ -5,7 +5,7 @@ ms.date: 06/17/2024
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ---
 

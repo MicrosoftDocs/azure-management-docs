@@ -3,7 +3,7 @@ title: A Comprehensive Guide on ACR Transfer with Azure CLI
 description: Learn how to use ACR Transfer with Azure CLI to efficiently manage and transfer container images in Azure Container Registry.
 ms.topic: how-to
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry

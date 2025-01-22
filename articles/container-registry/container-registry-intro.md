@@ -4,7 +4,7 @@ description: Get basic information about the Azure service that provides cloud-b
 author: rayoef
 ms.topic: overview
 ms.date: 10/31/2023
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: mvc
 ---

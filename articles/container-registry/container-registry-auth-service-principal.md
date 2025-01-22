@@ -5,7 +5,7 @@ ms.topic: conceptual
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ---
 

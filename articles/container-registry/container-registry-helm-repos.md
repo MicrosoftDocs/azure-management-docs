@@ -4,7 +4,7 @@ description: Learn how to store Helm charts for your Kubernetes applications usi
 ms.topic: article
 ms.custom: devx-track-azurecli
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 9/18/2024
 ---

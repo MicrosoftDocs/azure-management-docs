@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-azurepowershell, linux-related-content
 author: rayoef
 ms.service: azure-container-registry
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 #customer intent: As a developer, I want to use managed identities to authenticate to Azure Container Registry so that I can securely access container images without managing credentials.
 

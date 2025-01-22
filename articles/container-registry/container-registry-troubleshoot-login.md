@@ -3,7 +3,7 @@ title: Troubleshooting Login Issues with Azure Container Registry
 description: Identify symptoms, causes, and resolution of common problems when logging into an Azure Container Registry
 ms.topic: troubleshooting
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

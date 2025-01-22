@@ -4,7 +4,7 @@ description: Learn how to schedule Azure Container Registry (ACR) tasks using ti
 ms.topic: tutorial
 ms.custom: devx-track-azurecli
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

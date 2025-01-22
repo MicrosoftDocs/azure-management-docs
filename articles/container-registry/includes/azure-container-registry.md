@@ -3,7 +3,7 @@ ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/07/2022
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ---
 
 ### List Container Registry vulnerability assessment results

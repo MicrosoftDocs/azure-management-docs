@@ -4,7 +4,7 @@ description: Configure an ACR Task to read Docker Hub credentials stored in an A
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

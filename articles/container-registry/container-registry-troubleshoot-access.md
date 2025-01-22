@@ -3,7 +3,7 @@ title: Troubleshooting Network Issues with ACR
 description: Identify and resolve common network issues when accessing Azure Container Registry in a virtual network or behind a firewall. 
 ms.topic: troubleshooting
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

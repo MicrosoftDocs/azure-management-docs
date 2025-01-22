@@ -4,7 +4,7 @@ description: In this tutorial, learn how to encrypt your Premium registry with a
 ms.topic: tutorial
 ms.custom: devx-track-azurecli
 ms.date: 10/31/2023
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ---
 

@@ -4,7 +4,7 @@ description: Push and pull Docker images to your private container registry in A
 ms.topic: how-to
 ms.date: 10/31/2023
 author: rayoef
-author: rayoflores
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: H1Hack27Feb2017
 ---
