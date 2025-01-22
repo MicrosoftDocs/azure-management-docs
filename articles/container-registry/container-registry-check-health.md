@@ -5,8 +5,8 @@ description: Learn how to run a quick diagnostic command to identify common prob
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ---
 # Check the health of an Azure container registry

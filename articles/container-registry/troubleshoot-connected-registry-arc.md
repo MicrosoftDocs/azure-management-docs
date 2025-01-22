@@ -1,7 +1,7 @@
 ---
 title: "Known issues: Connected Registry Arc Extension"
 description: "Learn how to troubleshoot the most common problems for a Connected Registry Arc Extension and resolve issues with ease."
-author: tejaswikolli-web
+author: rayoef
 ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: troubleshooting-known-issue #Don't change.

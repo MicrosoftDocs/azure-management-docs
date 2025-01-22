@@ -3,8 +3,8 @@ title: Store Helm Charts in Azure Container Registry
 description: Learn how to store Helm charts for your Kubernetes applications using repositories in Azure Container Registry
 ms.topic: article
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 9/18/2024
 ---

@@ -3,8 +3,8 @@ title: Schedule Azure Container Registry (ACR) Tasks
 description: Learn how to schedule Azure Container Registry (ACR) tasks using timer triggers. This tutorial covers setting up and managing scheduled tasks efficiently.
 ms.topic: tutorial
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

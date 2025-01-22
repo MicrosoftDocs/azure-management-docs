@@ -147,7 +147,7 @@
         "articles/azure-arc/servers/**/*.md": "johnmarco",
         "articles/azure-portal/**/*.md": "JnHs",
         "articles/azure-portal/**/*.yml": "JnHs",
-        "articles/container-registry/**/*.md": "tejaswikolli-web",
+        "articles/container-registry/**/*.md": "rayoef",
         "articles/lighthouse/**/*.md": "JnHs",
         "articles/quotas/**/*.md": "JnHs",
         "articles/quotas/**/*.yml": "JnHs"
@@ -191,7 +191,7 @@
         "articles/azure-arc/servers/**/*.md": "johnmarc",
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
-        "articles/container-registry/**/*.md": "tejaswikolli",
+        "articles/container-registry/**/*.md": "rayoflores",
         "articles/lighthouse/**/*.md": "jenhayes",
         "articles/quotas/**/*.md": "jenhayes",
         "articles/quotas/**/*.yml": "jenhayes"
