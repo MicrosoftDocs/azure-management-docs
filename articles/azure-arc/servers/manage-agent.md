@@ -278,7 +278,7 @@ Disconnecting the agent deletes the corresponding Azure resource for the server 
 > [!CAUTION]
 > When disconnecting the agent from Arc-enabled VMs running on Azure Local, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `–force-local-only` flag can cause your Arc VM on Azure Local to be deleted both from Azure and on-premises.
 
-### Step 3a: Uninstall the Windows agent
+### Step 3: Uninstall the Windows agent (if applicable)
 
 Both of the following methods remove the agent, but they don't remove the *C:\Program Files\AzureConnectedMachineAgent* folder on the machine.
 
@@ -319,7 +319,7 @@ You can uninstall the agent manually from the Command Prompt or by using an auto
        ForEach-Object {MsiExec.exe /x "$($_.PsChildName)" /qn}
        ```
 
-### Step 3b: Uninstall the Linux agent
+### Step 4: Uninstall the Linux agent (if applicable)
 
 > [!NOTE]
 > To uninstall the agent, you must have *root* access permissions or an account that has elevated rights using sudo.
