@@ -2,8 +2,8 @@
 title: Configure Public Registry Access in Azure
 description: Configure IP rules to enable access to an Azure container registry from selected public IP addresses or address ranges.
 ms.topic: how-to
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 ---

@@ -4,8 +4,8 @@ description: Use a purge command to delete multiple tags and manifests from an A
 ms.topic: how-to
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 #customer intent: As a developer, I want to purge old or unnecessary images so that my Azure container registry remains clean and efficient.
 ---

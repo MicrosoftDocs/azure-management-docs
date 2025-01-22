@@ -4,8 +4,8 @@ description: Learn how to provide access to images in your private container reg
 ms.topic: conceptual
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ---
 
