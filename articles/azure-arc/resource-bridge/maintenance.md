@@ -22,7 +22,7 @@ The following sections describe common maintenance tasks for Arc resource bridge
 
 ## Update credentials in the appliance VM
 
-Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) (for example, a user account for VMware vCenter) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge. This allows the resource bridge visibility to on-premises resources for guest management in Azure.
+Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) (for example, a user account for VMware vCenter) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge, which gives the resource bridge visibility to on-premises resources for guest management in Azure.
 
 If the credentials change, the credentials stored in the Arc resource bridge must be updated with the [`update-infracredentials` command](/cli/azure/arcappliance/update-infracredentials). This command must be run from a management machine, and it requires a [kubeconfig file](system-requirements.md#kubeconfig).
 
@@ -36,7 +36,7 @@ If you experience problems with the appliance VM, the appliance configuration fi
 
 You might want to [collect logs](/cli/azure/arcappliance/logs#az-arcappliance-logs-vmware), which requires you to pass credentials to the on-premises control center:
 
-- For VMWare vSphere, use the username and password provided to Arc resource bridge at deployment.
+- For VMware vSphere, use the username and password provided to Arc resource bridge at deployment.
 - For Azure Local, see [Collect logs](/azure/azure-local/manage/collect-logs).
 
 ## Delete Arc resource bridge
@@ -47,7 +47,7 @@ Use the [`az arcappliance delete` command](deploy-cli.md#az-arcappliance-delete)
 
 ## Create resource health alerts
 
-You can [create a resource health alert rule](/azure/service-health/resource-health-alert-monitor-guide) in the Azure portal to monitor the state of your Arc resource bridge. Follow the steps below to create an alert that notifies you if an Arc resource bridge becomes unavailable.
+You can [create a resource health alert rule](/azure/service-health/resource-health-alert-monitor-guide) in the Azure portal to monitor the state of your Arc resource bridge. Follow these steps to create an alert that notifies you if an Arc resource bridge becomes unavailable.
 
 1. In the Azure portal, navigate to **Service Health**.
 1. In the service menu, under **RESOURCE HEALTH**, select **Resource health**.
@@ -61,7 +61,7 @@ You can [create a resource health alert rule](/azure/service-health/resource-hea
    1. For resource type, select `Microsoft.ResourceConnector/appliances`.
    1. For resource, select the resource bridge resources that you want to include. To include new resource bridges in your selected scope, check **Include all future resources**.
 
-1. Select **Next: Condition** to continue. In the **Condition** tab, set **Event status** to **Active**. Set *Current resource status** to **Unavailable,  set the following conditions:
+1. Select **Next: Condition** to continue. In the **Condition** tab, set the following conditions:
 
    - **Event status**: **Active**
    - **Current resource status**: **Unavailable**
@@ -69,7 +69,7 @@ You can [create a resource health alert rule](/azure/service-health/resource-hea
 
 1. Select one or more **Reason type** values for your alert:
 
-   - **Plastform Initiated** : Alerts you when a resource becomes unavailable due to platform issues.
+   - **Platform Initiated** : Alerts you when a resource becomes unavailable due to platform issues.
    - **Unknown**: Alerts you when a resource becomes unavailable, but the reason isn't known.
    - **User Initiated**: Alerts you when a resource becomes unavailable due to an action taken by a user.
 
