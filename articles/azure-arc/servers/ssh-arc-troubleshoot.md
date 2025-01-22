@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot SSH access to Azure Arc-enabled servers
 description: Learn how to troubleshoot and resolve issues with SSH access to Arc-enabled servers.
-ms.date: 07/01/2023
+ms.date: 01/22/2025
 ms.topic: troubleshooting
 ---
 
@@ -136,36 +136,6 @@ This issue occurs when the updated command creates a new service configuration b
     ```azurecli
     az rest --method delete --uri https://management.azure.com/subscriptions/<SUB_ID>/resourceGroups/<RG_NAME>/providers/Microsoft.HybridCompute/machines/<VM_NAME>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15
     ```
-
- ## Disable SSH to Arc-enabled servers
- 
- This functionality can be disabled by completing the following actions:
-
- #### [Azure CLI](#tab/azure-cli)
- 
-  - Remove the SSH port and functionality from the Arc-enabled server: 
-    ```azurecli
-    az rest --method delete --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 --body '{\"properties\": {\"serviceName\": \"SSH\", \"port\": \"22\"}}'
-    ```
-
-  - Delete the default connectivity endpoint: 
-    ```azurecli
-    az rest --method delete --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default?api-version=2023-03-15
-    ```
-
-#### [Azure PowerShell](#tab/azure-powershell)
-
-  - Remove the SSH port and functionality from the Arc-enabled server: 
-    ```azurepowershell
-    Invoke-AzRestMethod -Method delete -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 -Payload '{"properties": {"serviceName": "SSH", "port": "22"}}'
-    ```
-
-  - Delete the default connectivity endpoint: 
-    ```azurepowershell
-    Invoke-AzRestMethod -Method delete -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default?api-version=2023-03-15
-    ```
-
----
 
 ## Next steps
 
