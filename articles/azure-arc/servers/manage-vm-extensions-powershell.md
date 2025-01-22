@@ -1,7 +1,7 @@
 ---
 title: Enable VM Extensions Using Azure PowerShell
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using Azure PowerShell.
-ms.date: 12/06/2024
+ms.date: 01/22/2025
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell
 ---
@@ -23,11 +23,9 @@ This article explains how to deploy, update, and uninstall Azure virtual machine
 
   Run the following command on your Azure Arc-enabled server:
 
-  `Install-Module -Name Az.ConnectedMachine`.
-
-  When the installation finishes, it returns the following message:
-
-  `The installed extension 'Az.ConnectedMachine' is experimental and not covered by customer support. Please use with discretion.`
+```powershell
+Install-Module -Name Az.ConnectedMachine
+```
 
 ## Enable an extension
 
