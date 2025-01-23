@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 11/21/2024
+ms.date: 01/23/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -45,6 +45,9 @@ To Arc-enable an SCVMM management server, deploy [Azure Arc resource bridge](../
 The following image shows the architecture for the Azure Arc-enabled SCVMM:
 
 :::image type="content" source="media/architecture/azure-arc-scvmm-architecture.png" alt-text="Screenshot of Arc enabled SCVMM - architecture." lightbox="media/architecture/azure-arc-scvmm-architecture.png":::
+
+>[!Note]
+> The above architecture diagram was created as part of Arc Jumpstart. To download it's source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
 
 ## How is Azure Arc-enabled SCVMM different from Azure Arc-enabled servers
 
