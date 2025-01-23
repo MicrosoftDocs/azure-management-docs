@@ -70,11 +70,6 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 az connectedk8s enable-features -n <clusterName> -g <resourceGroupName> --features cluster-connect custom-locations
 ```
 
-1. To confirm that custom location was successfully enabled, run the following command and check that `ProvisioningState` is `Succeeded`:
-
-```azurecli
-az customlocation show -n <customLocationName> -g <resourceGroupName>
-```
 
 ### To enable the custom locations feature with a service principal, follow the steps below:
 
@@ -95,12 +90,6 @@ Manually retrieve the custom location OID by following these steps:
     ```azurecli
     az connectedk8s enable-features -n <cluster-name> -g <resource-group-name> --custom-locations-oid <cl-oid> --features cluster-connect custom-locations
     ```
-
-1. Confirm that custom location is successfully enabled by running the following command and checking that `ProvisioningState` is `Succeeded`:
-
-```azurecli
-az customlocation show -n <customLocationName> -g <resourceGroupName>
-```
 
 ## Create custom location
 
@@ -150,6 +139,12 @@ az customlocation show -n <customLocationName> -g <resourceGroupName>
      | `--location, --l` | Location of the custom location Azure Resource Manager resource in Azure. If not specified, the location of the connected cluster is used. |
      | `--tags` | Space-separated list of tags in the format `key[=value]`. Use '' to clear existing tags. |
      | `--kubeconfig` | Admin `kubeconfig` of cluster. |
+
+1. Confirm that custom location was successfully enabled by running the following command and checking that `ProvisioningState` is `Succeeded`:
+
+```azurecli
+az customlocation show -n <customLocationName> -g <resourceGroupName>
+```
 
 ## Show details of a custom location
 
