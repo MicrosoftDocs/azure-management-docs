@@ -6,7 +6,7 @@ description: "Learn how an established inner loop can enhance developer producti
 ---
 # Inner loop developer experience for teams adopting GitOps
 
-This article describes how an established inner loop dev framework can enhance developer productivity for teams adopting GitOps with Arc-enabled Kubernetes or AKS clusters.
+This article describes how an established inner loop dev framework can enhance developer productivity for teams adopting GitOps with Arc-enabled Kubernetes or Azure Container Service (AKS) clusters.
 
 ## Inner dev loop frameworks
 
@@ -30,9 +30,9 @@ Many frameworks support these capabilities, and various market offerings are ava
 
 ## Inner loop to outer loop transition
 
-Once you've evaluated and chosen an inner loop dev framework, you can build a seamless inner loop to outer loop transition.
+After you evaluate and select an inner loop dev framework, you can build a seamless inner loop to outer loop transition.
 
-Using the [CI/CD workflow using GitOps](conceptual-gitops-flux2-ci-cd.md) example scenario, a developer works on application code within an application repository. This application repository also holds high-level deployment Helm and/or Kustomize templates.
+As described in the [CI/CD workflow using GitOps](conceptual-gitops-flux2-ci-cd.md) example scenario, a developer works on application code within an application repository. This application repository also holds high-level deployment Helm and/or Kustomize templates.
 
 The CI/CD pipelines:
 
@@ -53,25 +53,25 @@ This diagram shows the workflow for the inner loop to outer loop transition.
 
 :::image type="content" source="media/inner-loop-to-outer-loop.png" alt-text="Diagram showing inner loop to outer loop transition." lightbox="media/inner-loop-to-outer-loop.png":::
 
-In this example, our application developer, who we'll call Alice:
+In this example, our application developer:
 
 - Authors a devspace.yaml file to configure the inner loop.
 - Writes and tests application code using the inner loop for efficiency.
 - Deploys to staging or prod with outer loop.
 
-When Alice wants to update, run, and debug the application, either in local or remote cluster, she does the following:
+To update, run, and debug the application, either in a local or remote cluster, the application developer takes the following steps:
 
 1. Updates the local configuration for the development environment represented in .env file.
 1. Runs `devspace use context` and selects the Kubernetes cluster context.
 1. Selects a namespace to work with by running `devspace use namespace <namespace_name>`.
 1. Iterates changes to the application code, and deploys and debugs the application onto the target cluster by running `devspace dev`.
-1. Runs `devspace dev` to generate low-level manifests based on her local configuration, and deploys the application. These low-level manifests are configured with DevSpace hooks in devspace.yaml.
+1. Runs `devspace dev` to generate low-level manifests based on the local configuration, and deploys the application. These low-level manifests are configured with DevSpace hooks in devspace.yaml.
 
    - Since DevSpace enables hot reloading, using file sync to copy Alice's latest changes inside the container, she doesn't need to rebuild the container every time she makes code changes.
    - Running `devspace dev` also deploys any dependencies configured in devspace.yaml, such as back-end dependencies to front-end.
 
-1. Tests her changes by accessing the application through the forwarding configured through devspace.yaml.
-1. After finalizing her changes, purges the deployment by running `devspace purge` and creating a new pull request to merge her changes to the dev branch of the application repository.
+1. Tests the changes by accessing the application through the forwarding configured through devspace.yaml.
+1. After finalizing the changes, purges the deployment by running `devspace purge` and creating a new pull request to merge the changes to the dev branch of the application repository.
 
 > [!NOTE]
 > Find the sample code for this workflow in our [GitHub repo](https://github.com/Azure/arc-cicd-demo-src).
