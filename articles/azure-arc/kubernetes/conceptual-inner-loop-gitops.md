@@ -67,7 +67,7 @@ To update, run, and debug the application, either in a local or remote cluster, 
 1. Iterates changes to the application code, and deploys and debugs the application onto the target cluster by running `devspace dev`.
 1. Runs `devspace dev` to generate low-level manifests based on the local configuration, and deploys the application. These low-level manifests are configured with DevSpace hooks in devspace.yaml.
 
-   - Since DevSpace enables hot reloading, using file sync to copy Alice's latest changes inside the container, she doesn't need to rebuild the container every time she makes code changes.
+   - Since DevSpace enables hot reloading, using file sync to copy the latest changes inside the container, the container doesn't have to be rebuilt for each code change.
    - Running `devspace dev` also deploys any dependencies configured in devspace.yaml, such as back-end dependencies to front-end.
 
 1. Tests the changes by accessing the application through the forwarding configured through devspace.yaml.
