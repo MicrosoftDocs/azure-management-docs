@@ -1,7 +1,7 @@
 ---
 title: How to evaluate Azure Arc-enabled servers with an Azure virtual machine
 description: Learn how to evaluate Azure Arc-enabled servers using an Azure virtual machine.
-ms.date: 09/25/2024
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -16,13 +16,12 @@ While you cannot install Azure Arc-enabled servers on an Azure VM for production
 
 ## Prerequisites
 
-* Your account is assigned to the [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor) role.
+* Your account is assigned to the [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor) role. To register and manage the Azure VM with Azure Arc-enabled servers, you are a member of the [Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator) or [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role in the resource group.
 * The Azure virtual machine is running an [operating system supported by Azure Arc-enabled servers](prerequisites.md#supported-operating-systems). If you don't have an Azure VM, you can deploy a [simple Windows VM](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fAzure%2fazure-quickstart-templates%2fmaster%2fquickstarts%2fmicrosoft.compute%2fvm-simple-windows%2fazuredeploy.json) or a [simple Ubuntu Linux 18.04 LTS VM](https://portal.azure.com/#create/Microsoft.Template/uri/https%3a%2f%2fraw.githubusercontent.com%2fAzure%2fazure-quickstart-templates%2fmaster%2fquickstarts%2fmicrosoft.compute%2fvm-simple-windows%2fazuredeploy.json).
 * Your Azure VM can communicate outbound to download the Azure Connected Machine agent package for Windows from the [Microsoft Download Center](https://aka.ms/AzureConnectedMachineAgent), and Linux from the Microsoft [package repository](https://packages.microsoft.com/). If outbound connectivity to the Internet is restricted following your IT security policy, you can download the agent package manually and copy it to a folder on the Azure VM.
 * An account with elevated (that is, an administrator or as root) privileges on the VM, and RDP or SSH access to the VM.
-* To register and manage the Azure VM with Azure Arc-enabled servers, you are a member of the [Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator) or [Contributor](/azure/role-based-access-control/built-in-roles#contributor) role in the resource group.
 
-## Plan
+## Summary of steps
 
 To start managing your Azure VM as an Azure Arc-enabled server, you need to make the following changes to the Azure VM before you can install and configure Azure Arc-enabled servers.
 
@@ -36,7 +35,7 @@ After you make these changes, your Azure VM behaves like any machine or server o
 
 When Azure Arc-enabled servers is configured on the VM, you see two representations of it in Azure. One is the Azure VM resource, with a `Microsoft.Compute/virtualMachines` resource type, and the other is an Azure Arc resource, with a `Microsoft.HybridCompute/machines` resource type. As a result of preventing management of the guest operating system from the shared physical host server, the best way to think about the two resources is the Azure VM resource is the virtual hardware for your VM, and let's you control the power state and view information about its SKU, network, and storage configurations. The Azure Arc resource manages the guest operating system in that VM, and can be used to install extensions, view compliance data for Azure Policy, and complete any other supported task by Azure Arc-enabled servers.
 
-## Reconfigure Azure VM
+## Step by step guide
 
 > [!NOTE]
 > For Windows, set the environment variable to override the ARC on an Azure VM installation.
