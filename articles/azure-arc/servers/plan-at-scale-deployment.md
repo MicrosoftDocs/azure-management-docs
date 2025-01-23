@@ -1,7 +1,7 @@
 ---
 title: Plan and deploy Azure Arc-enabled servers
 description: Learn how to enable a large number of machines to Azure Arc-enabled servers to simplify configuration of essential security, management, and monitoring capabilities in Azure.
-ms.date: 02/26/2024
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -61,12 +61,11 @@ In this phase, system engineers or administrators enable the core features in th
 |-----|-------|---------|
 | [Create a resource group](/azure/azure-resource-manager/management/manage-resource-groups-portal#create-resource-groups) | A dedicated resource group to include only Azure Arc-enabled servers and centralize management and monitoring of these resources. | One hour |
 | Apply [Tags](/azure/azure-resource-manager/management/tag-resources) to help organize machines. | Evaluate and develop an IT-aligned [tagging strategy](/azure/cloud-adoption-framework/decision-guides/resource-tagging/) that can help reduce the complexity of managing your Azure Arc-enabled servers and simplify making management decisions. | One day |
-| Design and deploy [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs) | Evaluate [design and deployment considerations](/azure/azure-monitor/logs/workspace-design) to determine if your organization should use an existing or implement another Log Analytics workspace to store collected log data from hybrid servers and machines.<sup>1</sup> | One day |
+| Design and deploy [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs) | Evaluate [design and deployment considerations](/azure/azure-monitor/logs/workspace-design) to determine if your organization should use an existing or implement another Log Analytics workspace to store collected log data from hybrid servers and machines. | One day |
 | [Develop an Azure Policy](/azure/governance/policy/overview) governance plan | Determine how you will implement governance of hybrid servers and machines at the subscription or resource group scope with Azure Policy. | One day |
 | Configure [Role based access control (RBAC)](/azure/role-based-access-control/overview) | Develop an access plan to control who has access to manage Azure Arc-enabled servers and ability to view their data from other Azure services and solutions. | One day |
 | Identify machines with Log Analytics agent already installed | Run the following log query in [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview) to support conversion of existing Log Analytics agent deployments to extension-managed agent:<br> Heartbeat <br> &#124; summarize arg_max(TimeGenerated, OSType, ResourceId, ComputerEnvironment) by Computer <br> &#124; where ComputerEnvironment == "Non-Azure" and isempty(ResourceId) <br> &#124; project Computer, OSType | One hour |
 
-<sup>1</sup> When evaluating your Log Analytics workspace design, consider integration with Azure Automation in support of its Update Management and Change Tracking and Inventory feature, as well as Microsoft Defender for Cloud and Microsoft Sentinel. If your organization already has an Automation account and enabled its management features linked with a Log Analytics workspace, evaluate whether you can centralize and streamline management operations, as well as minimize cost, by using those existing resources versus creating a duplicate account, workspace, etc.
 
 ## Phase 2: Deploy Azure Arc-enabled servers
 
