@@ -122,28 +122,27 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
    - For a Microsoft Entra single user account:
 
-      ```azurepowershell
-      $AAD_ENTITY_ID = (az ad signed-in-user show --query userPrincipalName -o tsv)
-      ```
+     ```azurepowershell
+     $AAD_ENTITY_ID = (az ad signed-in-user show --query userPrincipalName -o tsv)
+     ```
 
    - For a Microsoft Entra application:
 
-      ```azurepowershell
-      $AAD_ENTITY_ID = (az ad sp show --id <id> --query objectId -o tsv)
-      ```
+     ```azurepowershell
+     $AAD_ENTITY_ID = (az ad sp show --id <id> --query objectId -o tsv)
+     ```
 
 1. Authorize the entity with appropriate permissions.
 
    - If you use native Kubernetes ClusterRoleBinding or RoleBinding for authorization checks on the cluster, with the `kubeconfig` file pointing to the `apiserver` of your cluster for direct access, you can create one mapped to the Microsoft Entra entity that needs to access this cluster. For example:
 
-      ```console
-      kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
-      ```
+     ```console
+     kubectl create clusterrolebinding demo-user-binding --clusterrole cluster-admin --user=$AAD_ENTITY_ID
+     ```
 
    - If you use [Azure RBAC for authorization checks](azure-rbac.md) on the cluster, you can create an applicable [Azure role assignment](azure-rbac.md#built-in-roles) mapped to the Microsoft Entra entity. For example:
 
      ```azurepowershell
-     
      az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      az role assignment create --role "Azure Arc Enabled Kubernetes Cluster User Role" --assignee $AAD_ENTITY_ID --scope $ARM_ID_CLUSTER
      ```
