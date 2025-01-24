@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 11/26/2024
+ms.date: 01/24/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
@@ -9,6 +9,14 @@ ms.custom: devx-track-azurepowershell
 # Connected Machine agent prerequisites
 
 This article describes the basic requirements for installing the Connected Machine agent to onboard a physical server or virtual machine to Azure Arc-enabled servers. Some [onboarding methods](deployment-options.md) may have more requirements.
+
+The prerequisites for the Connected Machine agent are:
+
+- [Ensure supported environments are used](#supported-environments).
+- [Ensure supported operating systems and architectures are used](#supported-operating-systems).
+- [Verify necessary software requirements are met](#software-requirements).
+- [Confirm required permissions and Azure roles are assigned](#required-permissions).
+- [Register required Azure resource providers](#azure-resource-providers).
 
 ## Supported environments
 
@@ -133,7 +141,7 @@ Use
 For Linux, the relevant package repository will only contain releases that are applicable, so no special considerations are required. 
 
 
-### Client operating system guidance
+## Client operating system guidance
 
 The Azure Arc service and Azure Connected Machine Agent are supported on Windows 10 and 11 client operating systems only when using those computers in a server-like environment. That is, the computer should always be:
 
@@ -143,7 +151,7 @@ The Azure Arc service and Azure Connected Machine Agent are supported on Windows
 
 For example, a computer running Windows 11 that's responsible for digital signage, point-of-sale solutions, and general back office management tasks is a good candidate for Azure Arc. End-user productivity machines, such as a laptop, which may go offline for long periods of time, shouldn't use Azure Arc and instead should consider [Microsoft Intune](/mem/intune) or [Microsoft Configuration Manager](/mem/configmgr).
 
-### Short-lived servers and virtual desktop infrastructure
+## Short-lived servers and virtual desktop infrastructure
 
 Microsoft doesn't recommend running Azure Arc on short-lived (ephemeral) servers or virtual desktop infrastructure (VDI) VMs. Azure Arc is designed for long-term management of servers and isn't optimized for scenarios where you are regularly creating and deleting servers. For example, Azure Arc doesn't know if the agent is offline due to planned system maintenance or if the VM was deleted, so it won't automatically clean up server resources that stopped sending heartbeats. As a result, you could encounter a conflict if you re-create the VM with the same name and there's an existing Azure Arc resource with the same name.
 
@@ -182,12 +190,6 @@ You'll need the following Azure built-in roles for different aspects of managing
 * To read, modify, and delete a machine, you must have the [Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator) role for the resource group.
 * To select a resource group from the drop-down list when using the **Generate script** method, you'll also need the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for that resource group (or another role that includes **Reader** access).
 * When associating a Private Link Scope with an Arc Server, you must have Microsoft.HybridCompute/privateLinkScopes/read permission on the Private Link Scope Resource.
-
-## Azure subscription and service limits
-
-There are no limits to the number of Azure Arc-enabled servers you can register in any single resource group, subscription, or tenant.
-
-Each Azure Arc-enabled server is associated with a Microsoft Entra object and counts against your directory quota. See [Microsoft Entra service limits and restrictions](/azure/active-directory/enterprise-users/directory-service-limits-restrictions) for information about the maximum number of objects you can have in a Microsoft Entra directory.
 
 ## Azure resource providers
 
