@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge deployment command overview
 description: Learn about the Azure CLI commands that can be used to manage your Azure Arc resource bridge deployment.
-ms.date: 10/03/2024
+ms.date: 01/23/2025
 ms.topic: overview
 ms.custom: devx-track-azurecli
 ---
@@ -9,6 +9,10 @@ ms.custom: devx-track-azurecli
 # Azure Arc resource bridge deployment command overview
 
 [Azure CLI](/cli/azure/install-azure-cli) is required to deploy the Azure Arc resource bridge. When deploying Arc resource bridge with a corresponding partner product, Azure CLI commands may be combined into an automation script, along with additional provider-specific commands.
+
+The following diagram illustrates the deployment architecture for Arc resource bridge.
+
+:::image type="content" source="media/deploy-cli/arc-resource-bridge-deploy-overview.png" alt-text="Diagram showing the deployment architecture for Azure Arc resource bridge.":::
 
 To learn about installing Arc resource bridge with a corresponding partner product, see:
 
@@ -39,7 +43,7 @@ The `validate` command checks the configuration files for a valid schema, cloud 
 
 This command downloads the OS images from Microsoft that are used to deploy the on-premises appliance VM. Once downloaded, the images are then uploaded to the local cloud image gallery to prepare for the creation of the appliance VM.
 
-This command generally takes 10-30 minutes to complete, depending on the network speed. Allow the command to complete before continuing with the deployment.
+This command generally takes 10-30 minutes to complete, depending on the network speed. Allow the `prepare` command to complete before continuing with the deployment.
 
 ## `az arcappliance deploy`
 
