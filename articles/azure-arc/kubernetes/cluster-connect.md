@@ -1,6 +1,6 @@
 ---
 title: "Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters."
-ms.date: 10/27/2023
+ms.date: 01/24/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes clusters from anywhere without requiring any inbound port to be enabled on the firewall."
@@ -25,24 +25,9 @@ Before you begin, review the [conceptual overview of the cluster connect feature
   - If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
   
-- Enable the [network requirements for Arc-enabled Kubernetes](network-requirements.md)
-  
-- Enable these endpoints for outbound access:
-
-  | Endpoint | Port |
-  |----------------|-------|
-  |`*.servicebus.windows.net` | 443 |
-  |`guestnotificationservice.azure.com`, `*.guestnotificationservice.azure.com` | 443 |
-
-  > [!NOTE]
-  > To translate the `*.servicebus.windows.net` wildcard into specific endpoints, use the command `\GET https://guestnotificationservice.azure.com/urls/allowlist?api-version=2020-01-01&location=<location>`. Within this command, the region must be specified for the `<location>` placeholder.
-
-[!INCLUDE [arc-region-note](../includes/arc-region-note.md)]
-
-
+- Enable the [network requirements for Arc-enabled Kubernetes](network-requirements.md), including all endpoints listed as required for cluster connect.
 
 ### [Azure CLI](#tab/azure-cli)
-
 
 - [Install](/cli/azure/install-azure-cli) or [update](/cli/azure/update-azure-cli) Azure CLI to the latest version.
 
@@ -90,7 +75,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
 
 #### [Azure CLI](#tab/azure-cli)
 
-1. Get the `objectId` associated with your Microsoft Entra entity. If you are using a single user account, get the user principal name (UPN) associated with your Microsoft Entra entity. 
+1. Get the `objectId` associated with your Microsoft Entra entity. If you are using a single user account, get the user principal name (UPN) associated with your Microsoft Entra entity.
 
    - For a Microsoft Entra group account:
 
@@ -240,7 +225,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
     ```console
     $TOKEN = ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String((kubectl get secret demo-user-secret -o jsonpath='{$.data.token}'))))
     ```
-    
+
 1. Get the token to output to console.
   
      ```console
