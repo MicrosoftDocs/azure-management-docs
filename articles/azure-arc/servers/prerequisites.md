@@ -10,14 +10,6 @@ ms.custom: devx-track-azurepowershell
 
 This article describes the basic requirements for installing the Connected Machine agent to onboard a physical server or virtual machine to Azure Arc-enabled servers. Some [onboarding methods](deployment-options.md) may have more requirements.
 
-The prerequisites for the Connected Machine agent are:
-
-- [Ensure supported environments are used](#supported-environments).
-- [Ensure supported operating systems and architectures are used](#supported-operating-systems).
-- [Verify necessary software requirements are met](#software-requirements).
-- [Confirm required permissions and Azure roles are assigned](#required-permissions).
-- [Register required Azure resource providers](#azure-resource-providers).
-
 ## Supported environments
 
 Azure Arc-enabled servers support the installation of the Connected Machine agent on physical servers and virtual machines hosted outside of Azure, including on platforms like:
