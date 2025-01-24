@@ -1,7 +1,7 @@
 ---
 title: Plan and deploy Azure Arc-enabled servers
 description: Learn how to enable a large number of machines to Azure Arc-enabled servers to simplify configuration of essential security, management, and monitoring capabilities in Azure.
-ms.date: 01/23/2025
+ms.date: 01/24/2025
 ms.topic: how-to
 ---
 
@@ -37,6 +37,12 @@ Consider the following basic requirements when planning your deployment:
 * To read, modify, and delete a machine, you must have the **Azure Connected Machine Resource Administrator** Azure built-in role.
 
 For more details, see the [prerequisites](prerequisites.md) and [network requirements](network-requirements.md) for installing the Connected Machine agent.
+
+### Azure subscription and service limits
+
+There are no limits to the number of Azure Arc-enabled servers you can register in any single resource group, subscription, or tenant.
+
+Each Azure Arc-enabled server is associated with a Microsoft Entra object and counts against your directory quota. See [Microsoft Entra service limits and restrictions](/azure/active-directory/enterprise-users/directory-service-limits-restrictions) for information about the maximum number of objects you can have in a Microsoft Entra directory.
 
 ## Pilot
 
