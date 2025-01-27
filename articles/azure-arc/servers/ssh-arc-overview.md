@@ -1,7 +1,7 @@
 ---
 title: SSH access to Azure Arc-enabled servers
 description: Use SSH remoting to access and manage Azure Arc-enabled servers.
-ms.date: 01/22/2025
+ms.date: 01/27/2025
 ms.topic: conceptual
 ms.custom: references_regions
 ---
@@ -19,15 +19,19 @@ SSH access to Arc-enabled servers provides the following key benefits:
  - Support for other OpenSSH based tooling with config file support
 
 ## Prerequisites
-To enable this functionality, ensure the following: 
- - Ensure the Arc-enabled server has a hybrid agent version of "1.31.xxxx" or higher.  Run: ```azcmagent show``` on your Arc-enabled server.
- - Ensure the Arc-enabled server has the "sshd" service enabled.
-   - For Linux machines, `openssh-server` can be installed via a package manager and needs to be enabled.
-   - SSHD needs to be [enabled on Windows](/windows-server/administration/openssh/openssh_install_firstuse).
- - Ensure you have the Owner or Contributer role assigned.
 
-Authenticating with Microsoft Entra credentials has additional requirements:
- - `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) must be installed on the Arc-enabled server. These packages are installed with the `Azure AD based SSH Login – Azure Arc` VM extension. 
+- Arc-enabled Server:
+    - Hybrid Agent version: 1.31.xxxx or higher
+    - SSH service ("sshd") must be enabled. (For Linux, install `openssh-server` via a package manager; For Windows, [enable OpenSSH](/windows-server/administration/openssh/openssh_install_firstuse).)
+
+- User Permissions: Owner or Contributor role assigned for the target Arc-enabled server.
+
+## Requirements for authenticating with Microsoft Entra
+ 
+If you're using Microsoft Entra for authentication, the following is required:
+
+ - `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) must be installed on the Arc-enabled server. These packages are installed with the `Azure AD based SSH Login – Azure Arc` VM extension.
+ 
  - Configure role assignments for the VM.  Two Azure roles are used to authorize VM login:
    - **Virtual Machine Administrator Login**: Users who have this role assigned can log in to an Azure virtual machine with administrator privileges.
    - **Virtual Machine User Login**: Users who have this role assigned can log in to an Azure virtual machine with regular user privileges.
@@ -62,7 +66,7 @@ This operation can take 2-5 minutes to complete.  Before moving on, check that t
 
 ### Create default connectivity endpoint
 > [!NOTE]
-> The following step will not need to be run for most users as it should complete automatically at first connection.
+> The following step doesn't need to be run for most users as it should complete automatically at first connection.
 > This step must be completed for each Arc-enabled server.
 
 #### [Create the default endpoint with Azure CLI:](#tab/azure-cli)
@@ -115,7 +119,7 @@ Install-Module -Name Az.Ssh.ArcProxy -Scope CurrentUser -Repository PSGallery
 In order to use the SSH connect feature, you must update the Service Configuration in the Connectivity Endpoint on the Arc-enabled server to allow SSH connection to a specific port. You may only allow connection to a single port. The CLI tools attempt to update the allowed port at runtime, but the port can be manually configured with the following:
 
 > [!NOTE]
-> There may be a delay after updating the Service Configuration until you are able to connect.
+> There may be a delay after updating the Service Configuration until you're able to connect.
 
 #### [Azure CLI](#tab/azure-cli)
 
