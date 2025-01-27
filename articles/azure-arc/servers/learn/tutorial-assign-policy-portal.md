@@ -2,14 +2,14 @@
 title: Tutorial - New policy assignment with Azure portal
 description: In this tutorial, you use Azure portal to create an Azure Policy assignment to identify non-compliant resources.
 ms.topic: tutorial
-ms.date: 12/18/2024
+ms.date: 01/27/2025
 ---
 
 # Tutorial: Create a policy assignment to identify non-compliant resources
 
-The first step in understanding compliance in Azure is to identify the status of your resources. Azure Policy supports auditing the state of your Azure Arc-enabled server with guest configuration policies. Azure Policy's guest configuration definitions can audit or apply settings inside the machine. 
+The first step in understanding compliance in Azure is to identify the status of your resources. Azure Policy supports auditing the state of your Azure Arc-enabled server with machine configuration policies. Azure Policy's machine configuration definitions can audit or apply settings inside the machine. 
 
-This tutorial steps you through the process of creating and assigning a policy in order to identify which of your Azure Arc-enabled servers don't have the Log Analytics agent for Windows or Linux installed. These machines are considered _non-compliant_ with the policy assignment.
+This tutorial steps you through the process of creating and assigning a policy in order to identify which of your Azure Arc-enabled servers don't have [Microsoft Defender for Servers](/azure/defender-for-cloud/defender-for-servers-overview) enabled.
 
 In this tutorial, you'll learn how to:
 
@@ -26,7 +26,7 @@ before you begin.
 
 ## Create a policy assignment
 
-Use the following procedure to create a policy assignment and assign the policy definition _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_.
+Use the following procedure to create a policy assignment and assign the policy definition *Azure Defender for servers should be enabled*.
 
 1. Launch the Azure Policy service in the Azure portal by selecting **All services**, then searching
    for and selecting **Policy**.
@@ -58,8 +58,7 @@ Use the following procedure to create a policy assignment and assign the policy 
 
    For a partial list of available built-in policies, see [Azure Policy samples](/azure/governance/policy/samples/).
 
-1. Search through the policy definitions list to find the _\[Preview]: Log Analytics extension should be installed on your Windows Azure Arc machines_
-   definition (if you have enabled the Azure Connected Machine agent on a Windows-based machine). For a Linux-based machine, find the corresponding _\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines_ policy definition. Choose that policy and select **Add**.
+1. Search through the policy definitions list to find the *Azure Defender for servers should be enabled* definition. Choose that policy and select **Add**.
 
 1. The **Assignment name** is automatically populated with the policy name you selected, but you can
    change it. For this example, leave the policy name as is, and don't change any of the remaining options on the page.
@@ -71,14 +70,14 @@ environment.
 
 ## Identify non-compliant resources
 
-Select **Compliance** in the left side of the page. Then locate the **\[Preview]: Log Analytics extension should be installed on your Windows Azure Arc machines** or **\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines** policy assignment you created.
+Select **Compliance** in the left side of the page. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
 
 :::image type="content" source="./media/tutorial-assign-policy-portal/compliance-policy.png" alt-text="Screenshot of Policy Compliance page showing policy compliance for the selected scope." border="true":::
 
 If there are any existing resources that aren't compliant with this new assignment, they appear
 under **Non-compliant resources**.
 
-When a condition is evaluated against your existing resources and found true, then those resources
+When a condition is evaluated against your existing resources and found true, those resources
 are marked as non-compliant with the policy. The following table shows how different policy effects
 work with the condition evaluation for the resulting compliance state. Although you don't see the
 evaluation logic in the Azure portal, the compliance state results are shown. The compliance state
@@ -100,7 +99,7 @@ condition triggers evaluation of the existence condition for the related resourc
 To remove the assignment created, follow these steps:
 
 1. Select **Compliance** (or **Assignments**) in the left side of the Azure Policy page and locate
-   the **\[Preview]: Log Analytics extension should be installed on your Windows Azure Arc machines** or **\[Preview]: Log Analytics extension should be installed on your Linux Azure Arc machines** policy assignment you created.
+   the **Azure Defender for servers should be enabled** policy assignment you created.
 
 1. Right-click the policy assignment and select **Delete assignment**.
 
