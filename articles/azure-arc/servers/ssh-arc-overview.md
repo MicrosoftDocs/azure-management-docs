@@ -26,20 +26,19 @@ SSH access to Arc-enabled servers provides the following key benefits:
 
 - User Permissions: Owner or Contributor role assigned for the target Arc-enabled server.
 
-## Requirements for authenticating with Microsoft Entra
+## Authenticating with Microsoft Entra
  
-If you're using Microsoft Entra for authentication, the following is required:
+If you're using Microsoft Entra for authentication, you must install `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) on the Arc-enabled server. These packages are installed with the `Azure AD based SSH Login – Azure Arc` VM extension.
+ 
+You must also configure role assignments for the VM. Two Azure roles are used to authorize VM login:
 
- - `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) must be installed on the Arc-enabled server. These packages are installed with the `Azure AD based SSH Login – Azure Arc` VM extension.
+- **Virtual Machine Administrator Login**: Users who have this role assigned can log in to an Azure virtual machine with administrator privileges.
+- **Virtual Machine User Login**: Users who have this role assigned can log in to an Azure virtual machine with regular user privileges.
  
- - Configure role assignments for the VM.  Two Azure roles are used to authorize VM login:
-   - **Virtual Machine Administrator Login**: Users who have this role assigned can log in to an Azure virtual machine with administrator privileges.
-   - **Virtual Machine User Login**: Users who have this role assigned can log in to an Azure virtual machine with regular user privileges.
- 
-    An Azure user who has the Owner or Contributor role assigned for a VM doesn't automatically have privileges to Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines. 
+An Azure user with the Owner or Contributor role assigned for a VM doesn't automatically have privileges to Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines. 
 
-    > [!NOTE]
-    > The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
+> [!NOTE]
+> The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
 
 ### Availability
 
