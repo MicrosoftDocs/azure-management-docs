@@ -1,7 +1,7 @@
 ---
 title: Allow the Azure portal URLs on your firewall or proxy server
 description: To optimize connectivity between your network and the Azure portal and its services, we recommend you add these URLs to your allowlist.
-ms.date: 07/12/2024
+ms.date: 01/27/2025
 ms.topic: conceptual
 ---
 
@@ -12,7 +12,7 @@ To optimize connectivity between your network and the Azure portal and its servi
 Network administrators often deploy proxy servers, firewalls, or other devices, which can help secure and give control over how users access the internet. Rules designed to protect users can sometimes block or slow down legitimate business-related internet traffic. This traffic includes communications between you and Azure over the URLs listed here.
 
 > [!TIP]
-> For help diagnosing issues with network connections to these domains, check https://portal.azure.com/selfhelp.
+> For help diagnosing issues with network connections to these domains, visit [Self-diagnostics](https://portal.azure.com/selfhelp).
 
 You can use [service tags](/azure/virtual-network/service-tags-overview) to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of fully qualified domain names (FQDNs) or specific IP addresses when you create security rules and routes.
 
@@ -31,8 +31,67 @@ The URL endpoints to allow for the Azure portal are specific to the Azure cloud 
 > The service tags required to access the Azure portal (including authentication and resource listing) are **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.Frontend**, and **AzureFrontDoor.FirstParty**. Access to other services may require additional permissions, as described below.  
 > However, there is a possibility that unnecessary communication other than communication to access the portal may also be allowed. If granular control is required, FQDN-based access control such as Azure Firewall is required.
 
-#### Azure portal authentication
+<!-- #### Azure portal authentication
 
+```
+*.auth.microsoft.com
+*.msftidentity.com
+*.msidentity.com
+account.activedirectory.windowsazure.com
+accounts.accesscontrol.windows.net
+adminwebservice.microsoftonline.com
+api.passwordreset.microsoftonline.com
+autologon.microsoftazuread-sso.combecws
+.microsoftonline.com
+ccs.login.microsoftonline.com
+clientconfig.microsoftonline-p.net
+companymanager.microsoftonline.com
+device.login.microsoftonline.com
+graph.microsoft.com
+graph.windows.net
+login-us.microsoftonline.com
+login.microsoft.com
+login.microsoftonline-p.com
+login.microsoftonline.com
+login.windows.net
+logincert.microsoftonline.com
+loginex.microsoftonline.com
+nexus.microsoftonline-p.com
+passwordreset.microsoftonline.com
+provisioningapi.microsoftonline.com
+*.hip.live.com
+*.microsoftonline-p.com
+*.microsoftonline.com
+*.msauth.net
+*.msauthimages.net
+*.msecnd.net
+*.msftauth.net
+*.msftauthimages.net
+*.phonefactor.net
+enterpriseregistration.windows.net
+policykeyservice.dc.ad.msft.net
+account.live.com
+login.live.com
+20.20.32.0/19
+20.190.128.0/18
+20.231.128.0/19
+40.126.0.0/18
+2603:1006:2000::/48
+2603:1007:200::/48
+2603:1016:1400::/48
+2603:1017::/48
+2603:1026:3000::/48
+2603:1027:1::/48
+2603:1036:3000::/48
+2603:1037:1::/48
+2603:1046:2000::/48
+2603:1047:1::/48
+2603:1056:2000::/48
+2603:1057:2::/48
+```
+-->
+
+#### Azure portal authentication
 ```
 login.microsoftonline.com
 *.aadcdn.msftauth.net
@@ -44,6 +103,9 @@ login.live.com
 *.aadcdn.microsoftonline-p.com
 *.microsoftonline-p.com
 ```
+
+> [!IMPORTANT]
+> Depending on your environment, you may need to allow additional URLs related to authentication, such as those listed in sections 56, 59, and 97 of [Microsoft 365 URLs and IP address ranges](/microsoft-365/enterprise/urls-and-ip-address-ranges#microsoft-365-common-and-office-online).
 
 #### Azure portal framework
 
