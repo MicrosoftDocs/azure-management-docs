@@ -56,7 +56,7 @@ An Azure user with the Owner or Contributor role assigned for a VM doesn't autom
 
 ### Availability
 
-SSH access to Arc-enabled servers is currently supported in all public cloud regions supported by Arc-enabled servers and may work on private cloud environments; however functionality on private clouds is not thoroughly tested, if you encounter an error please see [troubleshooting ssh arc](https://learn.microsoft.com/azure/azure-arc/servers/ssh-arc-troubleshoot?tabs=azure-cli).
+SSH access to Arc-enabled servers is currently supported in all cloud regions supported by Arc-enabled servers.
 
 ## Getting started
 
