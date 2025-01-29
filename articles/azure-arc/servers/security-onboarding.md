@@ -2,7 +2,7 @@
 title: Security onboarding and updates
 description: Azure Arc-enabled servers planning and deployment guidance.
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 01/29/2025
 ---
 
 # Planning and deployment guidance
@@ -64,6 +64,12 @@ If you don't want to use automatic upgrades for extensions, you can disable them
 ### Manual extension updates
 
 For extensions that don’t support automatic upgrades or have automatic upgrades disabled, you can use the Azure portal, CLI, or PowerShell to upgrade extensions to the newest version. The CLI and PowerShell commands also support downgrading an extension, in case you need to revert to an earlier version.
+
+## Operating system updates
+
+**In-place upgrades:** Performing an in-place upgrade of the operating system on your Arc-enabled machine won't impact the Azure Arc connection. The Connected Machine agent should continue to function normally, and there's no need to re-onboard the server with Azure.
+
+**Reinstalling the operating system:** If you reinstall the operating system from scratch on the same hardware, the Connected Machine agent will be removed. This won't automatically delete the Azure resource associated with the machine. You can use `azcmagent disconnect` before reinstall to disconnect the machine, or delete the resource from Azure using the portal or a command-line tool. After reinstalling the operating system, reinstall the Connected Machine agent on the machine, and re-run `azcmagent connect` to re-register with Azure Arc.
 
 ## Using disk encryption
 
