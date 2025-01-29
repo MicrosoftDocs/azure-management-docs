@@ -67,9 +67,9 @@ For extensions that don’t support automatic upgrades or have automatic upgrade
 
 ## Operating system updates
 
-In-place upgrades: Performing an in-place upgrade of the operating system on your Arc-enabled machine won't impact the Azure Arc connection. The Connected Machine agent should continue to function normally, and there's no need to re-onboard the server with Azure.
+**In-place upgrades:** Performing an in-place upgrade of the operating system on your Arc-enabled machine won't impact the Azure Arc connection. The Connected Machine agent should continue to function normally, and there's no need to re-onboard the server with Azure.
 
-Reinstalling the operating system: If you reinstall the operating system from scratch on the same hardware, the Connected Machine agent will be removed. However, the Azure Arc resource associated with the machine will persist. After reinstalling the operating system, reinstall the Connected Machine agent on the machine. The machine will then automatically re-register with Azure Arc.
+**Reinstalling the operating system:** If you reinstall the operating system from scratch on the same hardware, the Connected Machine agent will be removed. This won't automatically delete the Azure resource associated with the machine. You can use `azcmagent disconnect` before reinstall to disconnect the machine, or delete the resource from Azure using the portal or a command-line tool. After reinstalling the operating system, reinstall the Connected Machine agent on the machine, and re-run `azcmagent connect` to re-register with Azure Arc.
 
 ## Using disk encryption
 
