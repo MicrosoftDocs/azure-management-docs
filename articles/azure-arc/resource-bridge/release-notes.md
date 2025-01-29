@@ -11,6 +11,32 @@ Azure Arc resource bridge is updated on an ongoing basis. To stay up to date wit
 
 We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3).
 
+
+
+## Version 1.3.1 (December 2024)
+
+- Appliance: 1.3.1
+- CLI extension: 1.3.1
+- Kubernetes: 1.29.4
+- Mariner: 2.0.20241029
+
+### Arc-enabled SCVMM
+
+- CreateConfig CLI command - Improve prompt messages, re-order Library Share input prompt
+- CreateConfig CLI command - Display Library Share, Cloud Names, and IP Pools inputs in alphabetical order
+- Image Provisioning from remote machine - Decompress Vhdx disk space error message improvement
+- Add retry and error message improvement for SCVMM createClient
+- Validate VLAN ID check error message improvement
+- Add TSG link in error message - validate checks, prep-createclient, createVM
+
+### Arc resource bridge platform
+
+- Error category framework update
+
+### Bug fixes
+
+- Azure Stack HCI CVE fix
+
 ## Version 1.3.0 (October 2024)
 
 - Appliance: 1.3.0
