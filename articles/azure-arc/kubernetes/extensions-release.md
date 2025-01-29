@@ -161,7 +161,6 @@ The most recent version of the Flux v2 extension and the two previous versions (
 
 ### 1.14.1 (January 2025)
 
-Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)
 
 > [!NOTE]
 > The API version `2024-11-01` for `fluxconfiguration` is not yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
