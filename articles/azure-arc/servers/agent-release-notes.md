@@ -41,6 +41,8 @@ Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](man
 - Improved error reporting for `azcmagent` commands.
 - Increased connectivity check timeout for better reliability.
 - Expanded ARM64 platform support to include RHEL 9.
+- Introduced a scheduled task that checks for agent updates on a daily basis. Currently, the update mechanism is inactive and no changes are made to your server even if a newer agent version is available. In the future, you'll be able to schedule updates of the Azure Connected Machine agent from Azure. For more information, see [Automatic agent upgrades](manage-agent.md#automatic-agent-upgrades).
+
 
 ## Version 1.47 - October 2024
 
