@@ -166,12 +166,14 @@ Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3
 > [!NOTE]
 > The API version `2024-11-01` for `fluxconfiguration` is not yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
 
-- source-controller: v1.3.0
-- kustomize-controller: v1.3.0
-- helm-controller: v1.0.1
-- notification-controller: v1.3.0
-- image-automation-controller: v0.38.0
-- image-reflector-controller: v0.32.0
+Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
+
+- source-controller: v1.4.1
+- kustomize-controller: v1.4.0
+- helm-controller: v1.1.0
+- notification-controller: v1.4.0
+- image-automation-controller: v0.39.0
+- image-reflector-controller: v0.33.0
 
 Changes in this version include:
 
