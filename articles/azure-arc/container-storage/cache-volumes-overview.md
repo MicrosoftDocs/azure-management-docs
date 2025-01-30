@@ -14,7 +14,7 @@ This article describes the Cache Volumes offering from Azure Container Storage e
 
 ## How does Cache Volumes work?
 
-:::image type="content" source="media/container-storage-overview.png" alt-text="Diagram of Azure Container Storage enabled by Azure Arc architecture." lightbox="media/container-storage-overview.png":::
+:::image type="content" source="media/container-storage-cache-volumes-overview.png" alt-text="Diagram of Cache Volumes in Azure Container Storage enabled by Azure Arc." lightbox="media/container-storage-cache-volumes-overview.png":::
 
 Cache Volumes works by performing the following operations:
 
