@@ -2,7 +2,7 @@
 title:  Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager.
 ms.topic: how-to 
-ms.date: 01/08/2025
+ms.date: 01/30/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
@@ -34,11 +34,18 @@ The Azure Arc resource bridge establishes line of sight between the on-premises 
 
      1. In the Azure portal, search and navigate to **Service Health**.
      1. In the left pane, select **Resource Health** > **Resource Health**.
-     1. In the **Subscription** dropdown, choose the subscription in which your resource bridge is located. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. After the list of resource bridge is populated, choose the resource bridge for which you want to set up the alert and select **Add resource health alert**. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without choosing any resource bridges. 
+     1. In the **Subscription** dropdown, choose the subscription in which your resource bridge is located. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. After the list of resource bridge is populated, choose the resource bridge for which you want to set up the alert and select **Add resource health alert**. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without choosing any resource bridges. This adds health alerts for any resource bridges you may deploy in the future.
          :::image type="content" source="media/administer-arc-scvmm/service-health.png" alt-text="Screenshot of Service Health.":::
-     1. Configure the conditions in the alert rule depending on if you want to receive continuous notifications on the health status or if you want to receive notifications only when the resource bridge becomes unhealthy. 
-     1. Configure the action group with the type of notification and the recipient of the alert. 
+     1. Configure the conditions in the alert rule depending on if you want to receive continuous notifications on the health status or if you want to receive notifications only when the resource bridge becomes unhealthy. To receive notifications only when the resource bridge becomes unhealthy, set the following conditions in the **Condition** tab:  
+           - **Event status**: Active 
+           - **Current resource status**: Unavailable 
+           - **Previous resource status**: Available  
+     1. In the **Actions** tab, configure the action group with the type of notification and the recipient of the alert. 
      1. Complete creating the alert rule by filling in the details of the alert rule location, identifiers, and optional tags.  
+
+Alternatively, you can create health alert from the Azure resource of your resource bridge. 
+
+:::image type="content" source="media/administer-arc-scvmm/resource-health.png" alt-text="Screenshot of Resource Health."::: 
 
 ## Update the SCVMM account credentials (using a new password or a new SCVMM account after onboarding)
 
