@@ -39,8 +39,6 @@ items:
           href: ingest-policies.md
         - name: Alternate OneLake configuration for Cloud Ingest Edge Volumes
           href: alternate-onelake.md
-        - name: Alternate key-based authentication for Cloud Ingest Edge Volumes
-          href: alternate-key-based.md
         - name: Blob index and metadata tags
           href: blob-index-metadata-tags.md
     - name: Monitor deployment
