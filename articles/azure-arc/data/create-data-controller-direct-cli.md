@@ -81,7 +81,7 @@ az arcdata dc create --name arc-dc1 --resource-group my-resource-group ----custo
 az arcdata dc create --name <name> -g $ENV:resourceGroup --custom-location $ENV:customLocationName --cluster-name $ENV:clusterName --connectivity-mode direct --profile-name <the-deployment-profile> --auto-upload-metrics true --auto-upload-logs true --storage-class <storageclass>
 
 # Example
-az arcdata dc create --name arc-dc1 --g $ENV:resourceGroup --custom-location $ENV:customLocationName --cluster-name $ENV:clusterName --connectivity-mode direct --profile-name azure-arc-aks-premium-storage  --auto-upload-metrics true --auto-upload-logs true --storage-class mystorageclass
+az arcdata dc create --name arc-dc1 --resource-group $ENV:resourceGroup --custom-location $ENV:customLocationName --cluster-name $ENV:clusterName --connectivity-mode direct --profile-name azure-arc-aks-premium-storage  --auto-upload-metrics true --auto-upload-logs true --storage-class mystorageclass
 
 ```
 
