@@ -141,7 +141,7 @@ To resolve this problem, delete the resource bridge, register the providers, the
 
 Arc resource bridge consists of an appliance VM that is deployed to the on-premises infrastructure. The appliance VM maintains a connection to the management endpoint (ex: VMware vCenter) of the on-premises infrastructure using locally stored credentials. If these credentials aren't updated, the resource bridge is no longer able to communicate with the management endpoint. This can cause problems when trying to upgrade the resource bridge or manage VMs through Azure.
 
-To fix this problem, the credentials in the appliance VM need to be updated. For more information, see Update credentials in the appliance VM.
+To fix this problem, the credentials in the appliance VM need to be updated. For more information, see [Update credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm).
 
 ### Private link is unsupported
 
