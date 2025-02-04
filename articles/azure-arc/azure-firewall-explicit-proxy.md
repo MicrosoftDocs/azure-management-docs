@@ -11,18 +11,24 @@ The [Azure Firewall Explicit proxy feature](/azure/firewall/explicit-proxy) can 
 
 This article explains the steps to configure Azure Firewall with the Explicit Proxy feature as the forward proxy for your Arc-enabled servers or Kubernetes resources.
 
-## How the Azure Firewall Explicit Proxy feature works
+## How the Azure Firewall Explicit proxy feature works
 
-Azure Arc agents can utilize a forward proxy to connect to Azure services. The Azure Firewall Explicit Proxy feature enables you to use an Azure Firewall within your virtual network (VNet) as the forward proxy for your Arc agents. As the Azure Firewall Explicit proxy operates within your private VNet, and you have a secure connection to it via ExpressRoute or Site-to-Site VPN, all Azure Arc traffic can be routed to its intended destination within the Microsoft network without requiring any public internet access.
+Azure Arc agents can use a forward proxy to connect to Azure services. The Azure Firewall Explicit proxy feature enables you to use an Azure Firewall within your virtual network (VNet) as the forward proxy for your Arc agents.
+
+As the Azure Firewall Explicit proxy operates within your private VNet, and you have a secure connection to it via ExpressRoute or Site-to-Site VPN, all Azure Arc traffic can be routed to its intended destination within the Microsoft network, without requiring any public internet access.
 
 :::image type="content" source="media/azure-firewall-explicit-proxy/arc-explicit-proxy-overview.png" alt-text="Diagram showing the components and flow of the Azure Firewall Explicit Proxy for Azure Arc." lightbox="media/azure-firewall-explicit-proxy/arc-explicit-proxy-overview.png":::
 
-## Restrictions and current limitations
+### Restrictions and current limitations
 
 - This solution uses Azure Firewall Explicit proxy as a forward proxy. The Explicit proxy feature doesn't support TLS Inspection.
 - TLS certificates can't be applied to the Azure Firewall Explicit proxy.
 - This solution can't currently be used with [Arc gateway for Azure Arc-enabled servers](servers/arc-gateway.md) or [Arc gateway for Arc-enabled Kubernetes](kubernetes/arc-gateway-simplify-networking.md).
 - This solution isn't currently supported by Azure Local or Azure Arc VMs running in Azure Local.
+
+### Azure Firewall costs
+
+Azure Firewall pricing is based on deployment hours and total data processed. Details on pricing for Azure Firewall can be found on the [Azure Firewall Pricing page](https://azure.microsoft.com/pricing/details/azure-firewall/?msockid=1c55508c2bbf693b0bf545c52ad26864).
 
 ## Prerequisites and network requirements
 
@@ -118,16 +124,12 @@ Additionally, you can view the Azure Firewall Application rule logs to verify tr
 
 :::image type="content" source="media/azure-firewall-explicit-proxy/arc-explicit-proxy-troubleshooting.png" alt-text="Screenshot showing the AZFWApplicationRule information.":::
 
-## Azure Firewall costs
-
-Azure Firewall pricing is based on deployment hours and total data processed. Details on pricing for Azure Firewall can be found on the [Azure Firewall Pricing Page](https://azure.microsoft.com/pricing/details/azure-firewall/?msockid=1c55508c2bbf693b0bf545c52ad26864).
-
-## Integration with Private Link
+## Private Link integration
 
 You can use Azure Firewall Explicit proxy in conjunction with Azure Private Link. To use these solutions together, configure your environment so that traffic to endpoints that don’t support Private Link route via the Explicit proxy, while allowing traffic to Azure Arc endpoints that do support Private Link to bypass the Explicit proxy and instead route traffic directly to the relevant private endpoint:
 
-- For Arc-enabled servers, use the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent#proxy-bypass-for-private-endpoints?tabs=windows).
-- For Azure Arc-enabled Kubernetes, include Microsoft Entra ID, Azure Resource Manager, Azure Front Door, and Microsoft Container Registry endpoints in your cluster's proxy skip range.
+- For [Azure Private Link for Arc-enabled servers](servers/private-link-security.md), use the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent#proxy-bypass-for-private-endpoints?tabs=windows).
+- For [Azure Private Link for Arc-enabled Kubernetes (preview)](kubernetes/private-link.md), include Microsoft Entra ID, Azure Resource Manager, Azure Front Door, and Microsoft Container Registry endpoints in your cluster's proxy skip range.
 
 ## Next steps
 
