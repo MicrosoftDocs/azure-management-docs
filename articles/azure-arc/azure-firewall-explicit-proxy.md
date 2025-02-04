@@ -11,6 +11,10 @@ The [Azure Firewall Explicit proxy feature](/azure/firewall/explicit-proxy) can 
 
 This article explains the steps to configure Azure Firewall with the Explicit Proxy feature as the forward proxy for your Arc-enabled servers or Kubernetes resources.
 
+> [!IMPORTANT]
+> Azure Firewall Explicit proxy is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 ## How the Azure Firewall Explicit proxy feature works
 
 Azure Arc agents can use a forward proxy to connect to Azure services. The Azure Firewall Explicit proxy feature enables you to use an Azure Firewall within your virtual network (VNet) as the forward proxy for your Arc agents.
