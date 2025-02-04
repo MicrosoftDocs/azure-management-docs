@@ -49,19 +49,12 @@ Use the [`az arcappliance delete` command](deploy-cli.md#az-arcappliance-delete)
 
 You can [create a resource health alert rule](/azure/service-health/resource-health-alert-monitor-guide) in the Azure portal to monitor the state of your Arc resource bridge. Follow these steps to create an alert that notifies you if an Arc resource bridge becomes unavailable.
 
-1. In the Azure portal, navigate to **Service Health**.
+1. In the Azure portal, search and navigate to **Service Health**.
 1. In the service menu, under **RESOURCE HEALTH**, select **Resource health**.
-1. Select **Add resource health alert**.
-
-   :::image type="content" source="media/maintenance/add-resource-health-alert.png" alt-text="Screenshot of the Resource health section within Service Health in the Azure portal.":::
-
-1. Select the **Scope** tab and complete the following:
-
-   1. Select the subscription and resource group(s) that contains your Arc resource bridge resources.
-   1. For resource type, select `Microsoft.ResourceConnector/appliances`.
-   1. For resource, select the resource bridge resources that you want to include. To include new resource bridges in your selected scope, check **Include all future resources**.
-
-1. Select **Next: Condition** to continue. In the **Condition** tab, set the following conditions:
+1. In the **Subscription** dropdown, select the subscription used to deploy your resource bridge.
+1. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. 
+1. Select the resource bridge(s) from the list for which you want to configure alerts. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without selecting any resource bridges. This will also add health alerts for resource bridges you may deploy in the future.
+1. To receive notifications only when the resource bridge becomes unhealthy, set the following conditions in the **Condition** tab:
 
    - **Event status**: **Active**
    - **Current resource status**: **Unavailable**
