@@ -159,6 +159,26 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
+### 1.14.1 (January 2025)
+
+
+> [!NOTE]
+> The API version `2024-11-01` for `fluxconfiguration` is not yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
+
+Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
+
+- source-controller: v1.4.1
+- kustomize-controller: v1.4.0
+- helm-controller: v1.1.0
+- notification-controller: v1.4.0
+- image-automation-controller: v0.39.0
+- image-reflector-controller: v0.33.0
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+- Added support for authentication against Azure DevOps repositories using AKS Workload Identity for AKS clusters. Although these changes have been implemented in the agents, this feature won't be available for use until the API version `2024-11-01` is fully released.
+
 ### 1.13.1 (October 2024)
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
@@ -189,23 +209,6 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 Changes in this version include:
 
 - Implemented fix to retrieve certificates from the correct location, resolving failures that occurred after switching the image from Alpine to Mariner.
-
-### 1.12.0 (September 2024)
-
-Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)
-
-- source-controller: v1.3.0
-- kustomize-controller: v1.3.0
-- helm-controller: v1.0.1
-- notification-controller: v1.3.0
-- image-automation-controller: v0.38.0
-- image-reflector-controller: v0.32.0
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
-- Fixed issue with software bill of materials (SBOM) generation for `fluxconfig-agent` and `fluxconfig-controller`.
-- Added support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters that are described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 

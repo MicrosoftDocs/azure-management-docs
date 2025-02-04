@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 01/13/2025
+ms.date: 01/30/2025
 ms.custom: references_regions
 ---
 
@@ -41,6 +41,7 @@ Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](man
 - Improved error reporting for `azcmagent` commands.
 - Increased connectivity check timeout for better reliability.
 - Expanded ARM64 platform support to include RHEL 9.
+- Updated the `mssqldiscovered` property to include the detection for SQL Server Integration, Analysis, and Reporting services (SSIS, SSAS, SSRS and PBIRS).
 - Introduced a scheduled task that checks for agent updates on a daily basis. Currently, the update mechanism is inactive and no changes are made to your server even if a newer agent version is available. In the future, you'll be able to schedule updates of the Azure Connected Machine agent from Azure. For more information, see [Automatic agent upgrades](manage-agent.md#automatic-agent-upgrades).
 
 
