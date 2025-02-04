@@ -82,9 +82,7 @@ If you want to create an allowlist for your Azure Firewall Explicit proxy, you c
 1. Provide a **Name** for the rule.
 1. For the **Source**, enter “*”, or any source IPs you may have.
 1. Set **Protocol** as **http:80,https:443**.  
-1. Set **Destination** as a comma-separated list of URLs required for your scenario.
-
-   For details on required URLs, see [Azure Arc network requirements](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud).
+1. Set **Destination** as a comma-separated list of URLs required for your scenario. For details on required URLs, see [Azure Arc network requirements](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud).
 
 1. Select **Add** to save the rule collection and rule.  
 
