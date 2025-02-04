@@ -1,13 +1,13 @@
 ---
-title: How to access Azure services over Azure Firewall Explicit Proxy (Public Preview)
-description: Learn how to access Azure services over Azure Firewall Explicit Proxy (Public Preview).
-ms.date: 12/17/2024
+title: Access Azure Arc resources over Azure Firewall Explicit Proxy (public preview)
+description: Learn about using Azure Arc without exposing your on-premises environment to the public internet.
+ms.date: 02/04/2025
 ms.topic: how-to
 ---
 
 # Access Azure services over Azure Firewall Explicit Proxy (Public Preview)
 
-If you want to use Azure Arc without exposing your on-premises environment to the public internet, you can use the Azure Firewall Explicit Proxy feature to route all Azure Arc traffic securely through your private connection (ExpressRoute or Site-to-Site VPN) to Azure.
+The [Azure Firewall Explicit proxy feature](/azure/firewall/explicit-proxy) can route all Azure Arc traffic securely through your private connection (ExpressRoute or Site-to-Site VPN) to Azure. This feature allows you to use Azure Arc without exposing your on-premises environment to the public internet.
 
 This article explains the steps to configure Azure Firewall with the Explicit Proxy feature as the forward proxy for your Arc-enabled resources.
 

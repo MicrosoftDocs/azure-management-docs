@@ -10,6 +10,8 @@
   items:
   - name: Custom locations
     href: ./platform/conceptual-custom-locations.md
+  - name: Azure Firewall Explicit proxy
+    href: azure-firewall-explicit-proxy.md
 - name: Samples
   items:
   - name: Azure Resource Graph queries
