@@ -9,7 +9,7 @@ description: "Learn about the latest releases of Arc-enabled Kubernetes."
 
 Azure Arc-enabled Kubernetes is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the [Azure Arc-enabled Kubernetes agents](conceptual-agent-overview.md).
 
-When any of the Arc-enabled Kubernetes agents are updated, all of the agents in the `azure-arc` namespace are incremented with a new version number, so that the version numbers are consistent across agents. When a new version is released, all of the agents are upgraded together to the newest version (whether or not there are functionality changes in a given agent), unless you have [disabled automatic upgrades](agent-upgrade.md) for the cluster.
+When any of the Arc-enabled Kubernetes agents are updated, all of the agents in the `azure-arc` namespace are incremented with a new version number, so that the version numbers are consistent across agents. When a new version is released, all of the agents are upgraded together to the newest version (whether or not there are functionality changes in a given agent), unless you [disabled automatic upgrades](agent-upgrade.md) for the cluster.
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
@@ -53,7 +53,7 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 ## Version 1.14.5 (December 2023)
 
-- Migrated auto-upgrade to use latest Helm release
+- Migrated automatic upgrade to use latest Helm release
 
 ## Version 1.13.4 (October 2023)
 
