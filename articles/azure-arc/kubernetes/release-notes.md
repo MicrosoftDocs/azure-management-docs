@@ -15,8 +15,8 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 ## Version 1.22.4 (January 2025)
 
-- Fixed issue with resource health reporting by removing checks that set health status incorrectly
-- Special characters allowed in password for proxy server
+- Fixed issue with resource health reporting
+- Allow special characters in password for proxy server
 - Security vulnerability fixes
 
 ## Version 1.21.10 (November 2024)
