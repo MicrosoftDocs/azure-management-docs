@@ -51,11 +51,11 @@ There are two ways to upgrade Arc resource bridge: cloud-managed upgrades manage
 
 Arc resource bridges on a supported [private cloud provider](#private-cloud-providers) with an appliance version 1.0.15 or higher are automatically opted into cloud-managed upgrade. With cloud-managed upgrade, Microsoft may attempt to upgrade your Arc resource bridge at any time if it is on an appliance version that will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work. While Microsoft offers cloud-managed upgrade, you’re still responsible for checking that your resource bridge is healthy, online, in a "Running" status, and within the supported n-3 versions. Disruptions could cause cloud-managed upgrades to fail. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version, rather than waiting for cloud-managed upgrade.
 
-To check your resource bridge status and the appliance version, run the `az arcappliance show` command from your management machine or check the Azure resource of your Arc resource bridge. If your appliance VM isn't in a healthy, Running state, cloud-managed upgrade might fail.
+To check your resource bridge status and the appliance version, run the `az arcappliance show` command from your management machine or check the version of your Arc resource bridge Azure resource and ensure the status is **Running**. If your appliance VM isn't in a healthy, Running state, cloud-managed upgrade might fail.
 
 Cloud-managed upgrades are handled through Azure. A notification is pushed to Azure to reflect the state of the appliance VM as it upgrades. As the resource bridge progresses through the upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
 
-To check the status of a cloud-managed upgrade, check the Azure resource in ARM, or run the following Azure CLI command from the management machine:  
+To check the status of a cloud-managed upgrade, run the following Azure CLI command from the management machine:  
 
 ```azurecli
 az arcappliance show --resource-group [REQUIRED] --name [REQUIRED] 
