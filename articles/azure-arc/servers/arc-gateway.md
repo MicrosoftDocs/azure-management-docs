@@ -101,8 +101,8 @@ You can create an Arc gateway resource using the Azure portal, Azure CLI, or Azu
 ### [PowerShell](#tab/powershell)
 
 On a machine with access to Azure, run the following PowerShell command to create your Arc gateway resource:
-    
-    ```powershell
+
+```powershell
     New-AzArcgateway `
         -name <gateway’s name> `
         -resource-group <resource group> `
@@ -110,7 +110,7 @@ On a machine with access to Azure, run the following PowerShell command to creat
         -subscription <subscription name or id> `
         -gateway-type public  `
         -allowed-features *
-    ```
+```
 The gateway creation process takes 9-10 minutes to complete.
 
 ---
@@ -518,15 +518,15 @@ In this scenario, the machine incorrectly displays in Azure portal as a resource
 
 On a machine with access to Azure, run the following Azure CLI command:
 
-    ```azurecli
-    az arcgateway settings update `
-        --resource-group <Your Resource Group> `
-        --subscription <subscription name > `
-        --base-provider Microsoft.HybridCompute `
-        --base-resource-type machines `
-        --base-resource-name <Arc-Server’s name > `
-        --gateway-resource-id ""
-    ```
+```azurecli
+       az arcgateway settings update `
+           --resource-group <Your Resource Group> `
+           --subscription <subscription name > `
+           --base-provider Microsoft.HybridCompute `
+           --base-resource-type machines `
+           --base-resource-name <Arc-Server’s name > `
+           --gateway-resource-id ""
+```
 
 > [!NOTE]
 > If you’re running this Azure CLI command within Windows PowerShell, set the `--gateway-resource-id` to null.
@@ -535,7 +535,7 @@ On a machine with access to Azure, run the following Azure CLI command:
 
 On a machine with access to Azure, run the following PowerShell command:
 
-    ```powershell
+```powershell
     Update-AzArcSetting  `
         -ResourceGroupName <Your Resource Group> `
         -SubscriptionId <Subscription ID > `
