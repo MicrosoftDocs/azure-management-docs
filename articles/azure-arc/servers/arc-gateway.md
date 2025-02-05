@@ -170,7 +170,7 @@ You can configure existing Azure Arc resources to use Arc gateway by using the A
         --base-provider Microsoft.HybridCompute
         --base-resource-type machines
         --base-resource-name [Arc-Server’s name]
-        --settings-resource-name default--gateway-resource-id [Full Arm resource id of the new Arc gateway resource]
+        --gateway-resource-id [Full Arm resource id of the new Arc gateway resource]
     ```
 1. Update your Arc-enabled server to use Arc gateway by running the following command:
 
