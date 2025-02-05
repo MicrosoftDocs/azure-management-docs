@@ -130,7 +130,7 @@ Additionally, you can view the Azure Firewall Application rule logs to verify tr
 
 You can use Azure Firewall Explicit proxy in conjunction with Azure Private Link. To use these solutions together, configure your environment so that traffic to endpoints that don’t support Private Link route via the Explicit proxy, while allowing traffic to Azure Arc endpoints that do support Private Link to bypass the Explicit proxy and instead route traffic directly to the relevant private endpoint:
 
-- For [Azure Private Link for Arc-enabled servers](servers/private-link-security.md), use the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent#proxy-bypass-for-private-endpoints?tabs=windows).
+- For [Azure Private Link for Arc-enabled servers](servers/private-link-security.md), use the [Proxy Bypass feature](/azure/azure-arc/servers/manage-agent?tabs=windows#proxy-bypass-for-private-endpoints).
 - For [Azure Private Link for Arc-enabled Kubernetes (preview)](kubernetes/private-link.md), include Microsoft Entra ID, Azure Resource Manager, Azure Front Door, and Microsoft Container Registry endpoints in your cluster's proxy skip range.
 
 ## Next steps
