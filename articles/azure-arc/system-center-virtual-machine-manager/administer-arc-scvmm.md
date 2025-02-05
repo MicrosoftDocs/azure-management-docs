@@ -43,9 +43,9 @@ The Azure Arc resource bridge establishes line of sight between the on-premises 
      1. In the **Actions** tab, configure the action group with the type of notification and the recipient of the alert. 
      1. Complete creating the alert rule by filling in the details of the alert rule location, identifiers, and optional tags.  
 
-      Alternatively, you can create health alert from the Azure resource of your resource bridge. 
+     Alternatively, you can create health alert from the Azure resource of your resource bridge. 
 
-      :::image type="content" source="media/administer-arc-scvmm/resource-health.png" alt-text="Screenshot of resource health."::: 
+     :::image type="content" source="media/administer-arc-scvmm/resource-health.png" alt-text="Screenshot of resource health."::: 
 
 ## Update the SCVMM account credentials (using a new password or a new SCVMM account after onboarding)
 
