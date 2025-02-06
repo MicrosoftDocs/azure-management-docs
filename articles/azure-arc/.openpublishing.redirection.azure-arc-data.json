@@ -166,6 +166,15 @@
             "redirect_document_id": false
           },
           {
+            "source_path_from_root": "/articles/azure-arc/data/adding-exporters-and-pipelines.md",
+            "redirect_url": "/azure/azure-arc/data/overview",
+            "redirect_document_id": false
+          },          {
+            "source_path_from_root": "/articles/azure-arc/data/deploy-telemetry-router.md",
+            "redirect_url": "/azure/azure-arc/data/overview",
+            "redirect_document_id": false
+          },
+          {
             "source_path_from_root": "/articles/azure-arc/data/concepts-distributed-postgres-hyperscale.md",
             "redirect_url": "/azure/azure-arc/data/release-notes",
             "redirect_document_id": false
