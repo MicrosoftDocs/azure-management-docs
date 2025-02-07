@@ -40,7 +40,7 @@ Here are a few examples of the kinds of prompts you can use to get information a
 
 When asked about logs for a particular resource, Microsoft Copilot in Azure generates an example KQL expression and allows you to further explore the data in Azure Monitor logs. This capability is available for all customers using Log Analytics, and can be used in the context of a particular Azure Kubernetes Service (AKS) cluster that uses Azure Monitor logs.
 
-To get details about your container logs, start on the **Logs** page for your AKS cluster.
+To get details about your container logs, navigate to your AKS cluster. In the service menu, under **Monitoring**, select **Logs**. From there, ask Copilot for information about your container logs.
 
 ### Logs sample prompts
 
