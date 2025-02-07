@@ -35,7 +35,6 @@ Image import into an Azure container registry has the following benefits over us
 ## Limitations
 
 * The maximum number of manifests for an imported image is 50.
-* The maximum layer size for an image imported from a public registry is 2 GiB.
 
 ### [Azure CLI](#tab/azure-cli)
 
