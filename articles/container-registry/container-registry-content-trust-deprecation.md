@@ -19,9 +19,9 @@ Docker Content Trust allows image publishers to sign their images and image cons
 The [Notary Project](https://notaryproject.dev/) is a set of specifications and tools intended to provide a cross-industry standard for securing software supply chains by using authentic container images and other OCI artifacts. [Notation](https://github.com/notaryproject/notation), a tool from the Notary Project, implements Notary Project specifications and includes CLI and libraries for signing and verifying container images and artifacts. Microsoft now offers signing and verification solutions based on the Notary Project to help ACR customers to ensure the integrity and authenticity of container images:
 
 -	**Portability and Interoperability**: [Notary Project signatures](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/signature-specification.md) adhere to [Open Container Initiative (OCI) standards](https://github.com/opencontainers/image-spec/tree/v1.1.0) and can be stored in OCI-compliant registries, such as ACR, facilitating signature portability and interoperability across different cloud environments.
--	**Secure Key Management**: Manage your signing keys and certificates securely with [Azure Key Vault (AKV)](https://learn.microsoft.com/en-us/azure/key-vault/general/basic-concepts), with [Trusted Signing](https://learn.microsoft.com/en-us/azure/trusted-signing/overview) support coming soon.
+-	**Secure Key Management**: Manage your signing keys and certificates securely with [Azure Key Vault (AKV)](/azure/key-vault/general/basic-concepts), with [Trusted Signing](/azure/trusted-signing/overview) support coming soon.
 -	**CI/CD Pipeline Integration**: Implement signing in your CI/CD pipelines, including Azure DevOps (ADO) and GitHub workflows, with more options coming soon.
--	**Comprehensive Verification**: Verify container images within your CI/CD pipelines, such as ADO and GitHub workflows, and on [Azure Kubernetes Service (AKS)](https://learn.microsoft.com/en-us/azure/aks/) to prevent the use and deployment of untrusted images.
+-	**Comprehensive Verification**: Verify container images within your CI/CD pipelines, such as ADO and GitHub workflows, and on [Azure Kubernetes Service (AKS)](/azure/aks/) to prevent the use and deployment of untrusted images.
 
 ### Disable Docker Content Trust
 
