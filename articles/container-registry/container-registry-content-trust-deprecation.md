@@ -8,7 +8,7 @@ author: yizha1
 ms.service: azure-container-registry
 --- 
 
-# What's New: Transition from Docker Content Trust to the Notary Project for signing and verifying container images
+# Transition from Docker Content Trust to the Notary Project for signing and verifying container images
 
 Azure Container Registry will be deprecating [Docker Content Trust](./container-registry-content-trust.md). To help with this transition, we will provide guidance on disabling Docker Content Trust and adopting the Notary Project for signing and verifying container images.
 
@@ -23,7 +23,7 @@ The [Notary Project](https://notaryproject.dev/) is a set of specifications and 
 -	**CI/CD Pipeline Integration**: Implement signing in your CI/CD pipelines, including Azure DevOps (ADO) and GitHub workflows, with more options coming soon.
 -	**Comprehensive Verification**: Verify container images within your CI/CD pipelines, such as ADO and GitHub workflows, and on [Azure Kubernetes Service (AKS)](/azure/aks/) to prevent the use and deployment of untrusted images.
 
-### Disable Docker Content Trust
+## Disable Docker Content Trust
 
 To disable Docker Content Trust, you can follow these steps:
 
