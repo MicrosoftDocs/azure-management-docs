@@ -12,31 +12,29 @@ ms.service: azure-container-registry
 
 Azure Container Registry will be deprecating [Docker Content Trust](./container-registry-content-trust.md). To help with this transition, we will provide guidance on disabling Docker Content Trust and adopting the Notary Project for signing and verifying container images.
 
-## Docker Content trust Deprecation
+## Docker Content Trust Deprecation
 
 Docker Content Trust allows image publishers to sign their images and image consumers to verify that the images they pull are signed. With advancements in technology, Docker Content Trust no longer meets the requirements of modern supply chain security for containers. As a result, Docker Content Trust will be deprecated and not available in ACR.
 
 The [Notary Project](https://notaryproject.dev/) is a set of specifications and tools intended to provide a cross-industry standard for securing software supply chains by using authentic container images and other OCI artifacts. [Notation](https://github.com/notaryproject/notation), a tool from the Notary Project, implements Notary Project specifications and includes CLI and libraries for signing and verifying container images and artifacts. Microsoft now offers signing and verification solutions based on the Notary Project to help ACR customers to ensure the integrity and authenticity of container images:
 
 -	**Portability and Interoperability**: [Notary Project signatures](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/signature-specification.md) adhere to [Open Container Initiative (OCI) standards](https://github.com/opencontainers/image-spec/tree/v1.1.0) and can be stored in OCI-compliant registries, such as ACR, facilitating signature portability and interoperability across different cloud environments.
--	**Secure Key Management**: Manage your signing keys and certificates securely with [Azure Key Vault (AKV)](/azure/key-vault/general/basic-concepts), with [Trusted Signing](/azure/trusted-signing/overview) support coming soon.
+-	**Secure Key Management**: Manage your signing keys and certificates securely with [Azure Key Vault (AKV)](/azure/key-vault/general/basic-concepts), with more Key Management System (KMS) options coming soon.
 -	**CI/CD Pipeline Integration**: Implement signing in your CI/CD pipelines, including Azure DevOps (ADO) and GitHub workflows, with more options coming soon.
 -	**Comprehensive Verification**: Verify container images within your CI/CD pipelines, such as ADO and GitHub workflows, and on [Azure Kubernetes Service (AKS)](/azure/aks/) to prevent the use and deployment of untrusted images.
 
 ## Disable Docker Content Trust
 
-To disable Docker Content Trust, you can follow these steps:
-
-1. Set the `DOCKER_CONTENT_TRUST` environment variable to 0. For example, in the Bash shell:
+To disable Docker Content Trust, set the `DOCKER_CONTENT_TRUST` environment variable to 0. For example, in the Bash shell:
 
 ```bash
 export DOCKER_CONTENT_TRUST=0
 ```
 
-1. Use the `--disable-content-trust` argument with Docker commands. For example:
+Alternatively, you can unset the environment variable:
 
 ```bash
-docker build --disable-content-trust=true -t myacr.azurecr.io/myimage:v1 .
+unset DOCKER_CONTENT_TRUST
 ```
 
 ## Use the Notary Project for signing and verifying container images
