@@ -35,7 +35,7 @@ Here are a few examples of the kinds of prompts you can use to execute commands.
 
 When you say **"Restore my deleted storage account**, Copilot in Azure launches the **Restored deleted account** experience. From here, you can select the subscription and the storage account that you want to recover.
 
-:::image type="content" source="media/execute-commands/restore-deleted-account.png" alt-text="Screenshot of Microsoft Copilot in Azure responding to a request to restore a deleted storage account.":::
+:::image type="content" source="media/execute-commands/restore-deleted-account.png" alt-text="Screenshot of Microsoft Copilot in Azure responding to a request to restore a deleted storage account." lightbox="media/execute-commands/restore-deleted-account.png":::
 
 If you say **"Find the VMs running right now and stop them"**, Copilot in Azure first queries to find all VMs running in your selected subscriptions. It then shows you the results and asks you to confirm that the selected VMs should be stopped. You can uncheck a box to exclude a resource from the command. After you confirm, the command is run, with progress shown in your notifications.
 
@@ -43,7 +43,7 @@ If you say **"Find the VMs running right now and stop them"**, Copilot in Azure 
 
 Similarly, if you say **"Delete my VMs in West US 2"**, Copilot in Azure runs a query and then asks you to confirm before running the delete command.
 
-:::image type="content" source="media/execute-commands/delete-vms.png" alt-text="Screenshot of Copilot in Azure responding to a request to delete VMs.":::
+:::image type="content" source="media/execute-commands/delete-vms.png" alt-text="Screenshot of Copilot in Azure responding to a request to delete VMs." lightbox="media/execute-commands/delete-vms.png":::
 
 You can also specify the resource name in your prompt. When you say things like **"Restart my VM named server1**", Copilot in Azure looks for that resource, then prompts you to confirm the operation.
 
