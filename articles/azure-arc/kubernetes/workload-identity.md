@@ -81,7 +81,7 @@ az connectedk8s update --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GRO
 Fetch the OIDC issuer URL and save it to an environmental variable. This issuer URL will be used in the following step.
 
 ```azurecli
-export OIDC_ISSUER="$(az connectk8s show --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" \ 
+export OIDC_ISSUER="$(az connectedk8s show --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" \ 
     --query "oidcIssuerProfile.issuerUrl" \  
     --output tsv)"
 ```
