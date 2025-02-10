@@ -25,17 +25,27 @@ The [Notary Project](https://notaryproject.dev/) is a set of specifications and 
 
 ## Disable Docker Content Trust
 
-To disable Docker Content Trust, set the `DOCKER_CONTENT_TRUST` environment variable to 0. For example, in the Bash shell:
+There are several ways to disable Docker Content Trust:
 
-```bash
-export DOCKER_CONTENT_TRUST=0
-```
+- Disable Docker Content Trust from the shell by setting the `DOCKER_CONTENT_TRUST` environment variable to `0`. For example, in the Bash shell:
 
-Alternatively, you can unset the environment variable:
+   ```bash
+   export DOCKER_CONTENT_TRUST=0
+   ```
 
-```bash
-unset DOCKER_CONTENT_TRUST
-```
+   Alternatively, you can unset the environment variable:
+
+   ```bash
+   unset DOCKER_CONTENT_TRUST
+   ```
+
+- Disable Docker Content Trust from Azure portal. Navigate to the registry in the Azure portal. Under `Policies`, select `Content Trust`, then choose `Disabled` and click `Save`.
+
+- Disable Docker Content Trust using Azure CLI:
+
+   ```
+   az acr config content-trust update -r myregistry --status disabled
+   ```
 
 ## Use the Notary Project for signing and verifying container images
 
