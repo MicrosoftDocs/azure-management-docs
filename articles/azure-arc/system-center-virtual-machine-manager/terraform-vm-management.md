@@ -2,7 +2,7 @@
 title:  Terraform based SCVMM VM management
 description: This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 ms.topic: how-to 
-ms.date: 01/08/2025
+ms.date: 02/11/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -19,6 +19,13 @@ This article describes how to programmatically perform lifecycle operations on t
 The following scenarios are covered in this article:
 
 - Create a new SCVMM-managed on-premises Virtual Machine from Azure
+- Enable a SCVMM-managed on-premises Virtual Machine for management in Azure 
+- Delete a SCVMM-managed on-premises Virtual Machine from Azure 
+
+## Best practices
+
+- **Use version control**: Keep your Terraform configuration files under version control (for example, Git) to track changes over time. 
+- **State management**: Regularly back up your Terraform state files to avoid data loss. 
 
 ## Scenario 1: Create a new Virtual Machine
 
@@ -26,7 +33,7 @@ The following scenarios are covered in this article:
 
 Ensure to have the following prerequisites before you create a new virtual machine:
 
-- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role.
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with required permissions to perform lifecycle operations on a virtual machine.
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state.
 - A workstation machine with Terraform installed.
 - An Azure-enabled cloud resource on which you have Arc SCVMM Private Cloud Resource User role.
@@ -269,10 +276,212 @@ Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
 
 Confirm the prompt by entering yes to apply the changes.
 
-## Best practices
+## Scenario 2: Enable a SCVMM-managed on-premises virtual machine for management in Azure
 
-- **Use version control**: Keep your Terraform configuration files under version control (for example, Git) to track changes over time.
-- **State management**: Regularly back up your Terraform state files to avoid data loss.
+### Prerequisites 
+
+Ensure to have the following prerequisites before you create a new virtual machine: 
+
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a virtual machine. 
+- An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
+- A workstation machine with Terraform installed. 
+
+### Step 1: Define the VM variables in a variables.tf file 
+
+Here is a sample `variables.tf` file with placeholders. 
+
+```terraform
+variable "subscription_id" {
+  description = "The subscription ID for the Azure account."
+  type        = string
+}
+
+variable "resource_group_name" {
+  description = "The name of the resource group."
+  type        = string
+}
+
+variable "location" {
+  description = "The location/region where the resources will be created."
+  type        = string
+}
+
+variable "machine_name" {
+  description = "The name of the machine."
+  type        = string
+}
+
+variable "inventory_item_id" {
+  description = "The ID of the Inventory Item for the VM."
+  type        = string
+}
+
+variable "vm_username" {
+  description = "The admin username for the VM."
+  type        = string
+}
+
+variable "vm_password" {
+  description = "The admin password for the VM."
+  type        = string
+}
+
+variable "vmmserver_id" {
+  description = "The ID of the vCenter."
+  type        = string
+}
+
+variable "custom_location_id" {
+  description = "The ID of the custom location."
+  type        = string
+}
+```
+
+### Step 2: Define the metadata and credentials in a tfvars file 
+
+Here is a sample `createscvmmVM.tfvars` file with placeholders. 
+
+```terraform
+subscription_id      = "204898ee-cd13-4332-b9d4-55ca5c25496d"
+resource_group_name  = "sidsingh-test-rg"
+location             = "eastus2euap"
+machine_name         = "test_machine03"
+vm_username          = "Administrator"
+vm_password          = "your_vm_password"
+inventory_item_id    = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/sidsingh-dev-rg/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
+custom_location_id   = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/sidsingh-dev-rg/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
+vmmserver_id         = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/sidsingh-dev-rg/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
+``` 
+
+### Step 3: Define the VM configuration in a main.tf file 
+
+Here is a sample `main.tf` file with placeholders. 
+
+```terraform
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = ">= 3.0"
+    }
+    azapi = {
+      source  = "azure/azapi"
+      version = ">= 1.0.0"
+    }
+  }
+}
+
+# Configure the AzureRM provider with the subscription ID
+provider "azurerm" {
+  features {}
+  subscription_id = var.subscription_id
+}
+
+# Configure the AzAPI provider with the subscription ID
+provider "azapi" {
+  subscription_id = var.subscription_id
+}
+
+# Retrieve the resource group details
+data "azurerm_resource_group" "example" {
+  name = var.resource_group_name
+}
+
+# Create a Hybrid Machine resource in Azure
+resource "azapi_resource" "test_machine03" {
+  schema_validation_enabled = false
+  parent_id = data.azurerm_resource_group.example.id
+  type = "Microsoft.HybridCompute/machines@2023-06-20-preview"
+  name = var.machine_name
+  location = var.location
+  body = {
+      kind = "SCVMM"
+      identity = {
+        type = "SystemAssigned"
+      }
+  }
+}
+
+# Enable a Virtual Machine instance using the Hybrid machine and Inventory Item ID
+resource "azapi_resource" "test_inventory_vm003" {
+  schema_validation_enabled = false
+  type = "Microsoft.SCVMM/VirtualMachineInstances@2024-06-01"
+  name = "default"
+  parent_id = azapi_resource.test_machine03.id
+  body = {
+    properties = {
+      infrastructureProfile = {
+        inventoryItemId = var.inventory_item_id
+        vmmServerId   = var.vmmserver_id
+      }
+    }
+    extendedLocation = {
+      type = "CustomLocation"
+      name = var.custom_location_id
+    }
+  }
+  depends_on = [azapi_resource.test_machine03]
+}
+
+# Install Arc agent on the VM
+# resource "azapi_resource" "guestAgent" {
+#   type      = "Microsoft.SCVMM/virtualMachineInstances/guestAgents@2024-06-01"
+#   parent_id = azapi_resource.test_inventory_vm003.id
+#   name      = "default"
+#   body = {
+#     properties = {
+#       credentials = {
+#         username = var.vm_username
+#         password = var.vm_password
+#       }
+#       provisioningAction = "install"
+#     }
+#   }
+#   schema_validation_enabled = false
+#   ignore_missing_property   = false
+#   depends_on = [azapi_resource.test_inventory_vm003]
+# }
+```
+
+### Step 4: Run Terraform commands 
+
+Use the -var-file flag to pass the `.tfvars` file during Terraform commands. 
+
+- **Initialize Terraform** (if not already initialized): terraform init 
+- **Validate the configuration**: terraform validate -var-file="enablescvmmVM.tfvars" 
+- **Plan the changes**: terraform plan -var-file="enablescvmmVM.tfvars" 
+- **Apply the changes**: terraform apply -var-file="enablescvmmVM.tfvars" 
+
+To confirm the prompt and apply the changes, enter **Yes**.
+
+## Scenario 3: Delete a SCVMM-managed on-premises virtual machine from Azure
+
+### Prerequisites 
+
+Ensure to have the following prerequisites before you create a new virtual machine: 
+
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine. 
+- An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
+- A workstation machine with Terraform installed. 
+- The virtual machine to be deleted must be enabled for management in Azure and must have an Azure resource. 
+
+Following are the considerations before you delete the VM: 
+
+- This action deletes the machine from the on-premises and is irreversible. Before you proceed, ensure that the VM doesn't break any dependencies and take backups of any important data, if needed. 
+
+- To delete a SCVMM-managed VM from Azure, remove the VM definition (or comment out) from your Terraform configuration and run: 
+
+```terraform
+terraform plan 
+```
+
+Terraform will show that the VM is planned for deletion because it no longer exists in the configuration. If you agree with the changes, run: 
+
+```terraform
+terraform apply 
+```
+
+This destroys the VM if it’s no longer in the configuration. 
 
 ## Next steps
 
