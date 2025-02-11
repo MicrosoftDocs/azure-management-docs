@@ -471,15 +471,15 @@ Following are the considerations before you delete the VM:
 
 - To delete a SCVMM-managed VM from Azure, remove the VM definition (or comment out) from your Terraform configuration and run: 
 
-```terraform
-terraform plan 
-```
+   ```terraform
+   terraform plan 
+   ```
 
-Terraform will show that the VM is planned for deletion because it no longer exists in the configuration. If you agree with the changes, run: 
+   Terraform shows that the VM is planned for deletion because it no longer exists in the configuration. If you agree with the changes, run: 
 
-```terraform
-terraform apply 
-```
+   ```terraform
+   terraform apply 
+   ```
 
 This destroys the VM if it’s no longer in the configuration. 
 
