@@ -146,7 +146,7 @@ The following metadata is collected during the deployment of Azure Arc resource 
       - Password (Password is stored as Kubernetes secret inside the Azure Arc resource bridge VM which resides in your datacenter and isn't propagated to Azure.) 
 - **SCVMM server version**
 - **SCVMM server FQDN/IP**
-- Other parameters specific to the deployment target of Azure Arc resource bridge VM such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. Only the parameters specific to the Azure Arc resource bridge VM is collected and not the entire information of your environment. 
+- Other parameters specific to the deployment target of Azure Arc resource bridge VM such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. Only the parameters specific to the Azure Arc resource bridge VM are collected and not the entire information of your environment. 
 
 After the successful deployment of Azure Arc resource bridge, the metadata of the resources associated with the VMM server is collected: 
 - VMM Cloud 
