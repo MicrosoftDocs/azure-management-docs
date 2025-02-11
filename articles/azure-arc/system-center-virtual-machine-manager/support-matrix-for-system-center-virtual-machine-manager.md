@@ -142,54 +142,54 @@ The following firewall URL exceptions are required for the Azure Arc agents:
 The following metadata is collected during the deployment of Azure Arc resource bridge: 
 
 - **SCVMM server credentials**
-      - Username 
-      - Password (Password is stored as Kubernetes secret inside the Azure Arc resource bridge VM which resides in your datacenter and isn't propagated to Azure.) 
+  - Username 
+  - Password (Password is stored as Kubernetes secret inside the Azure Arc resource bridge VM which resides in your datacenter and isn't propagated to Azure.) 
 - **SCVMM server version**
 - **SCVMM server FQDN/IP**
 - Other parameters specific to the deployment target of Azure Arc resource bridge VM such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. Only the parameters specific to the Azure Arc resource bridge VM are collected and not the entire information of your environment. 
 
 After the successful deployment of Azure Arc resource bridge, the metadata of the resources associated with the VMM server is collected: 
 - VMM Cloud 
-      - Name  
-      - UUID
-      - Storage QoS policies
-      - Cloud Capacity 
-           - CPU 
-           - Memory 
-           - VM 
+  - Name  
+  - UUID
+  - Storage QoS policies
+  - Cloud Capacity 
+    - CPU 
+    - Memory 
+    - VM 
 - VM Network 
-      - Name 
-      - UUID 
+  - Name 
+  - UUID 
 - VM Template 
-      - Name 
-      - UUID 
-      - Operating System 
-      - Memory 
-      - CPU Count 
-      - VM Generation 
-      - Disks 
-      - NICs 
+  - Name 
+  - UUID 
+  - Operating System 
+  - Memory 
+  - CPU Count 
+  - VM Generation 
+  - Disks 
+  - NICs 
 - Virtual Machine
-      - Name 
-      - UUID 
-      - Power status 
-      - Operating System 
-      - Operating System SKU 
-      - Domain Name 
-      - Computer Name 
-      - CPU 
-      - Memory 
-      - NIC Properties 
-      - IP Address 
-      - Address Type 
-      - Disks 
-      - Availability Sets 
-      - AD/DNS FQDN
-      - Host Operating System 
-      - Host type 
+  - Name 
+  - UUID 
+  - Power status 
+  - Operating System 
+  - Operating System SKU 
+  - Domain Name 
+  - Computer Name 
+  - CPU 
+  - Memory 
+  - NIC Properties 
+  - IP Address 
+  - Address Type 
+  - Disks 
+  - Availability Sets 
+  - AD/DNS FQDN
+  - Host Operating System 
+  - Host type 
 - Host 
-      - Operating System 
-      - Host type 
+  - Operating System 
+  - Host type 
 
 After the installation of Azure Connected Machine agent in the individual VMs, the agent collects the metadata listed [here](/azure/azure-arc/servers/agent-overview#instance-metadata). 
 
