@@ -2,11 +2,15 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 02/27/2025
+ms.date: 02/12/2025
 ms.custom: references_regions
 ---
 
 # What's new with Azure Connected Machine agent
+
+> [!WARNING]
+> Effective January 2026, the Azure Connected Machine agent will no longer accept certificates with negative serial numbers, in compliance with RFC 5280 Section 4.1.2.2, which states that "the serial number MUST be a positive integer assigned by the CA to each certificate."
+> 
 
 The Azure Connected Machine agent receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about:
 
@@ -20,9 +24,31 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
 
-## Version 1.48 - January 2025
+## Version 1.49 - February 2025
 
 Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Added retry logic for reading the status file before sending a report if the agent fails to deserialize it the first time.
+- Suppressed terminal error due to a certificate having a negative serial number. This error will be re-enabled in January 2026; customers should update their certificates before then, especially if using SSL inspection.
+
+### New features and enhancements
+
+- Increased package size limit for AMA only.
+- Preserved `HandlerManifest.json` file during deletion to prevent extension removal failures.
+- Added detection for MySQL.
+- Compressed archived logs.
+- Display certificate chain information for failed requests (if the TLS handshake reaches the cert stage).
+- Display absolute path for log zip files to improve visibility.
+- Updated recommended actions for failures to reach Service endpoints.
+- Windows only 
+    - The agent now saves MSI certificates both on disk and in the Windows cert store (only for Windows Servers 2019 (10.0.17763) and newer).
+    - Added authentication option to use certificates from the Windows cert store for `azcmagent connect` and `azcmagent disconnect`.
+
+## Version 1.48 - January 2025
+
+Download for [Windows](https://download.microsoft.com/download/2/8/6/2867a351-6546-4af8-b97f-cc4483ef4192/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
 
 ### Fixed
 
