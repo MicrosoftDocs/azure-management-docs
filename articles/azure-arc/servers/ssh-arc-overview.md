@@ -20,11 +20,25 @@ SSH access to Arc-enabled servers provides the following key benefits:
 
 ## Prerequisites
 
+- User Permissions: Owner or Contributor role assigned for the target Arc-enabled server.
 - Arc-enabled Server:
     - Hybrid Agent version: 1.31.xxxx or higher
-    - SSH service ("sshd") must be enabled. (For Linux, install `openssh-server` via a package manager; For Windows, [enable OpenSSH](/windows-server/administration/openssh/openssh_install_firstuse).)
+    - SSH service ("sshd") must be enabled. 
 
-- User Permissions: Owner or Contributor role assigned for the target Arc-enabled server.
+For Linux, install `openssh-server` via a package manager. You can check whether sshd is running on Linux by running the following command.
+
+```shell
+ps -aux | grep sshd
+```
+
+For Windows, see [Enable OpenSSH](/windows-server/administration/openssh/openssh_install_firstuse). You can check whether ssh is installed and running by the following commands.
+
+```powershell
+Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
+
+# Check the sshd service is running
+Get-Service sshd
+```
 
 ## Authenticating with Microsoft Entra
  
@@ -42,10 +56,7 @@ An Azure user with the Owner or Contributor role assigned for a VM doesn't autom
 
 ### Availability
 
-SSH access to Arc-enabled servers is currently supported in all public cloud regions supported by Arc-enabled servers.
-
-> [!NOTE]
-> There currently is no support for non-public clouds.
+SSH access to Arc-enabled servers is currently supported in all cloud regions supported by Arc-enabled servers.
 
 ## Getting started
 
