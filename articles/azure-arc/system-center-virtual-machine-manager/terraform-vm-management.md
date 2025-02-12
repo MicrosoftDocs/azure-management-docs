@@ -33,7 +33,7 @@ The following scenarios are covered in this article:
 
 Ensure to have the following prerequisites before you create a new virtual machine:
 
-- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with required permissions to perform lifecycle operations on a virtual machine.
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine.
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state.
 - A workstation machine with Terraform installed.
 - An Azure-enabled cloud resource on which you have Arc SCVMM Private Cloud Resource User role.
@@ -282,7 +282,7 @@ Confirm the prompt by entering yes to apply the changes.
 
 Ensure to have the following prerequisites before you create a new virtual machine: 
 
-- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a virtual machine. 
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine.
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
 - A workstation machine with Terraform installed. 
 
@@ -327,7 +327,7 @@ variable "vm_password" {
 }
 
 variable "vmmserver_id" {
-  description = "The ID of the vCenter."
+  description = "The ID of the SCVMM server."
   type        = string
 }
 
@@ -344,13 +344,13 @@ Here is a sample `createscvmmVM.tfvars` file with placeholders.
 ```terraform
 subscription_id      = "your-subscription-id"
 resource_group_name  = "your-resource-group"
-location             = "eastus2euap"
+location             = "eastus"
 machine_name         = "test_machine03"
 vm_username          = "Administrator"
 vm_password          = "your_vm_password"
 inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
-custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
 vmmserver_id         = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
+custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
 ``` 
 
 ### Step 3: Define the VM configuration in a *main.tf* file 
@@ -388,10 +388,10 @@ data "azurerm_resource_group" "example" {
 }
 
 # Create a Hybrid Machine resource in Azure
-resource "azapi_resource" "test_machine03" {
+resource "azapi_resource" "vm-name" {
   schema_validation_enabled = false
   parent_id = data.azurerm_resource_group.example.id
-  type = "Microsoft.HybridCompute/machines@2023-06-20-preview"
+  type = "Microsoft.HybridCompute/machines@2024-07-10"
   name = var.machine_name
   location = var.location
   body = {
@@ -423,7 +423,7 @@ resource "azapi_resource" "test_inventory_vm003" {
   depends_on = [azapi_resource.test_machine03]
 }
 
-# Install Arc agent on the VM
+Install Arc agent on the VM
 # resource "azapi_resource" "guestAgent" {
 #   type      = "Microsoft.SCVMM/virtualMachineInstances/guestAgents@2024-06-01"
 #   parent_id = azapi_resource.test_inventory_vm003.id
@@ -460,7 +460,7 @@ Confirm the prompt by entering yes to apply the changes.
 
 Ensure to have the following prerequisites before you create a new virtual machine: 
 
-- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine. 
+- An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine.
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
 - A workstation machine with Terraform installed. 
 - The virtual machine to be deleted must be enabled for management in Azure and must have an Azure resource. 
@@ -481,7 +481,7 @@ Following are the considerations before you delete the VM:
    terraform apply 
    ```
 
-This destroys the VM if it’s no longer in the configuration. 
+   This destroys the VM if it’s no longer in the configuration. 
 
 ---
 
