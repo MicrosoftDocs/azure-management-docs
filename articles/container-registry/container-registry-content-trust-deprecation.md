@@ -10,7 +10,7 @@ ms.service: azure-container-registry
 
 # Transition from Docker Content Trust to the Notary Project
 
-Azure Container Registry will be deprecating [Docker Content Trust](./container-registry-content-trust.md) on March 1, 2025. To help with this transition, we are providing guidance for how to disable Docker Content Trust and adopt the Notary Project to sign and verify container images.
+Azure Container Registry will be deprecating [Docker Content Trust](./container-registry-content-trust.md) on March 1, 2025. To help with this transition, we're providing guidance for how to disable Docker Content Trust and adopt the Notary Project to sign and verify container images.
 
 ## Docker Content Trust deprecation
 
@@ -39,7 +39,7 @@ Before you can transition to the Notation Project solutions, you have to disable
    unset DOCKER_CONTENT_TRUST
    ```
 
-- Disable Docker Content Trust from Azure portal. Navigate to the registry in the Azure portal. Under **Policies**, select **Content Trust**, then choose **Disabled** and click **Save**.
+- Disable Docker Content Trust from Azure portal. Navigate to the registry in the Azure portal. Under **Policies**, select **Content Trust**, then choose **Disabled** and select **Save**.
 
 - Disable Docker Content Trust using the Azure CLI:
 
@@ -49,7 +49,7 @@ Before you can transition to the Notation Project solutions, you have to disable
 
 ## Use the Notary Project to sign and verify container images
 
-After you've disabled Docker Content Trust, you can sign and verify container images with the Notary Project. Use the following references to get started.
+After you disable Docker Content Trust, you can sign and verify container images with the Notary Project. Use the following references to get started.
 
 Sign container images:
 
