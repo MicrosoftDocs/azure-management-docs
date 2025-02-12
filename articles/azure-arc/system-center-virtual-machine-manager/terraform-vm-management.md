@@ -286,7 +286,7 @@ Ensure to have the following prerequisites before you create a new virtual machi
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
 - A workstation machine with Terraform installed. 
 
-### Step 1: Define the VM variables in a variables.tf file 
+### Step 1: Define the VM variables in a *variables.tf* file 
 
 Here is a sample `variables.tf` file with placeholders. 
 
@@ -337,23 +337,23 @@ variable "custom_location_id" {
 }
 ```
 
-### Step 2: Define the metadata and credentials in a tfvars file 
+### Step 2: Define the metadata and credentials in a *tfvars* file 
 
 Here is a sample `createscvmmVM.tfvars` file with placeholders. 
 
 ```terraform
-subscription_id      = "204898ee-cd13-4332-b9d4-55ca5c25496d"
-resource_group_name  = "sidsingh-test-rg"
+subscription_id      = "your-subscription-id"
+resource_group_name  = "your-resource-group"
 location             = "eastus2euap"
 machine_name         = "test_machine03"
 vm_username          = "Administrator"
 vm_password          = "your_vm_password"
-inventory_item_id    = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/sidsingh-dev-rg/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
-custom_location_id   = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourcegroups/sidsingh-dev-rg/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
-vmmserver_id         = "/subscriptions/204898ee-cd13-4332-b9d4-55ca5c25496d/resourceGroups/sidsingh-dev-rg/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
+inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
+custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
+vmmserver_id         = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
 ``` 
 
-### Step 3: Define the VM configuration in a main.tf file 
+### Step 3: Define the VM configuration in a *main.tf* file 
 
 Here is a sample `main.tf` file with placeholders. 
 
@@ -445,14 +445,14 @@ resource "azapi_resource" "test_inventory_vm003" {
 
 ### Step 4: Run Terraform commands 
 
-Use the -var-file flag to pass the `.tfvars` file during Terraform commands. 
+Use the -var-file flag to pass the *.tfvars* file during Terraform commands. 
 
-- **Initialize Terraform** (if not already initialized): terraform init 
-- **Validate the configuration**: terraform validate -var-file="enablescvmmVM.tfvars" 
-- **Plan the changes**: terraform plan -var-file="enablescvmmVM.tfvars" 
-- **Apply the changes**: terraform apply -var-file="enablescvmmVM.tfvars" 
+- Initialize Terraform (if not already initialized): `terraform init`
+- Validate the configuration: `terraform validate -var-file="enablescvmmVM.tfvars"`
+- Plan the changes: `terraform plan -var-file="enablescvmmVM.tfvars"`
+- Apply the changes: `terraform apply -var-file="enablescvmmVM.tfvars"`
 
-To confirm the prompt and apply the changes, enter **Yes**.
+Confirm the prompt by entering yes to apply the changes.
 
 ## Scenario 3: Delete a SCVMM-managed on-premises virtual machine from Azure
 
