@@ -61,10 +61,10 @@ Signing container images:
 Verifying container images:
 
 - Verification in ADO pipelines, see [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign#verify-the-signed-image)
-- Verification in GitHub workflows, see [Verify a container image with Notation using a GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
+- Verification in GitHub workflows, see [Verify a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
 - Verification on AKS, see [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
 
-## Addtional references
+## Additional references
 
+- [Notary Project Terms](https://notaryproject.dev/docs/faq/#notary-project-terms)
 - [Containers Secure Supply Chain Framework](https://aka.ms/csscframework)
-- [Notary Project terms](https://notaryproject.dev/docs/faq/#notary-project-terms)
