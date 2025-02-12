@@ -23,21 +23,19 @@ You can use Azure CLI or the Azure portal to perform these tasks.
 
 ## Prerequisites
 
-To deploy an application, you must have an existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md). Be sure to [upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version before you get started.
-
-- An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`. If deploying [Flux (GitOps)](extensions-release.md#flux-gitops), you can use an ARM64-based cluster without a `linux/amd64` node.
-  - If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).
+- An existing Azure Arc-enabled Kubernetes connected cluster, with at least one node of operating system and architecture type `linux/amd64`.
+  - If you don't have a connected cluster yet, use our [quickstart](quickstart-connect-cluster.md).
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 - If using Azure CLI to review, deploy, and manage Azure Marketplace applications:
   - The latest version of [Azure CLI](/cli/azure/install-azure-cli).
-  - The latest version of the  `k8s-extension` Azure CLI extension. Install the extension by running `az extension add --name k8s-extension`. If the `k8s-extension` extension is already installed, make sure it's updated to the latest version by running `az extension update --name k8s-extension`.
+  - The latest version of the `k8s-extension` Azure CLI extension. Install the extension by running `az extension add --name k8s-extension`. If the `k8s-extension` extension is already installed, make sure you have the latest version by running `az extension update --name k8s-extension`.
 
 > [!NOTE]
 > This feature is currently supported only in the following regions:
 >
 >- East US, East US2, EastUS2 EUAP, West US, West US2, Central US, West Central US, South Central US, West Europe, North Europe, Canada Central, South East Asia, Australia East, Central India, Japan East, Korea Central, UK South, UK West, Germany West Central, France Central, East Asia, West US3, Norway East, South African North, North Central US, Australia South East, Switzerland North, Japan West, South India
 
-## Discover Kubernetes applications that supports Azure Arc-enabled clusters
+## Discover Kubernetes applications that support Azure Arc-enabled clusters
 
 ### [Azure portal](#tab/azure-portal)
 
@@ -47,9 +45,9 @@ To discover Kubernetes applications in the Azure Marketplace from within the Azu
 1. From **Marketplace**, you can search for an offer or publisher directly by name, or you can browse all offers. To find Kubernetes application offers, select **Containers** from the **Categories** section in the left menu.
 
    > [!IMPORTANT]
-   > The **Containers** category includes both Kubernetes apps and standalone container images. Be sure to select only **Kubernetes apps** offers when following these steps. Container images have a different deployment process, and generally can't be deployed on Arc-enabled Kubernetes clusters.
+   > The **Containers** category includes both Kubernetes apps and standalone container images. Select only **Kubernetes Apps** offers when following these steps. Container images have a different deployment process, and generally can't be deployed on Arc-enabled Kubernetes clusters.
 
-1. Several Kubernetes app offers appear on the page. To view all of the Kubernetes application offers, select **See more**.
+1. Several Kubernetes application offers appear on the page. To view all of the Kubernetes application offers, select **See more**.
 
    :::image type="content" source="media/deploy-marketplace/marketplace-see-more.png" alt-text="Screenshot showing the See more link for the Containers category in Azure Marketplace.":::
 
@@ -67,7 +65,7 @@ You can use Azure CLI to get a list of extensions, including Azure Marketplace a
 az k8s-extension extension-types list-by-cluster --cluster-type connectedClusters --cluster-name <clusterName> --resource-group <resourceGroupName>
 ```
 
-The command will return a list of extension types that can be deployed on the connected clusters, similar to the example shown here.
+The command returns a list of extension types that can be deployed on the connected clusters, similar to the example shown here.
 
 ```json
 "id": "/subscriptions/{sub}/resourceGroups/{rg} /providers/Microsoft.Kubernetes/connectedClusters/{clustername} /providers/Microsoft.KubernetesConfiguration/extensiontypes/contoso",
@@ -98,7 +96,7 @@ The command will return a list of extension types that can be deployed on the co
 }
 ```
 
-When you find an application that you want to deploy, note the following values from the response received: `planId`, `publisherId`, `offerID`, and `extensionType`. You'll need these values to accept the application's terms and deploy the application.
+When you find an application that you want to deploy, note the following values from the response received: `planId`, `publisherId`, `offerID`, and `extensionType`. You need these values to accept the application's terms and deploy the application.
 
 ---
 
@@ -106,7 +104,7 @@ When you find an application that you want to deploy, note the following values 
 
 ### [Azure portal](#tab/azure-portal)
 
-Once you've identified an offer you want to deploy, select it and follow these steps:
+Once you identify an offer you want to deploy, select it and follow these steps:
 
 1. In the **Plans + Pricing** tab, review the options. If there are multiple plans available, find the one that meets your needs. Review the terms on the page to make sure they're acceptable, and then select **Create**.
 
@@ -114,7 +112,7 @@ Once you've identified an offer you want to deploy, select it and follow these s
 
 1. Select the subscription, resource group, and Arc-enabled cluster to which you want to deploy the application.
 
-1. Complete all pages of the deployment wizard to specify all configuration options that the application requires. The options will vary depending on the offer.
+1. Complete all pages of the deployment wizard to specify all configuration options that the application requires. These options will vary depending on the offer.
 
 1. When you're finished, select **Review + Create**, then select **Create** to deploy the offer.
 
@@ -213,7 +211,7 @@ az k8s-extension delete --name <extension-name> --cluster-name <clusterName> --r
 
 ## Troubleshooting
 
-For help resolving issues, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
+For with resolving issues, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
 ## Next steps
 
