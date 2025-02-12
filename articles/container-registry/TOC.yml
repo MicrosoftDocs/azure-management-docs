@@ -183,12 +183,12 @@
         displayName: permissions, authorization
       - name: Content trust
         href: container-registry-content-trust.md
+      - name: Transition from Docker Content Trust to the Notary Project
+        href: container-registry-content-trust-deprecation.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
         href: container-registry-tutorial-sign-build-push.md
       - name: Sign container images with Notation and AKV using a CA issued certificate
         href: container-registry-tutorial-sign-trusted-ca.md
-      - name: Transition from Docker Content Trust to the Notary Project for signing and verifying container images 
-        href: container-registry-content-trust-deprecation.md
     - name: Registries and other Azure services
       expanded: false
       items:
