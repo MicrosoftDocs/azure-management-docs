@@ -25,13 +25,13 @@ SSH access to Arc-enabled servers provides the following key benefits:
     - Hybrid Agent version: 1.31.xxxx or higher
     - SSH service ("sshd") must be enabled. 
 
-For Linux install `openssh-server` via a package manager. You can check if sshd is running on linux by running 
+For Linux, install `openssh-server` via a package manager. You can check whether sshd is running on Linux by running the following command.
 
 ```shell
 ps -aux | grep sshd
 ```
 
-On Windows see on [enable OpenSSH](/windows-server/administration/openssh/openssh_install_firstuse). You can check if ssh is installed and running by the following commands:
+For Windows, see [Enable OpenSSH](/windows-server/administration/openssh/openssh_install_firstuse). You can check whether ssh is installed and running by the following commands.
 
 ```powershell
 Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
