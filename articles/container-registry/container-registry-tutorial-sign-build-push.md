@@ -351,14 +351,12 @@ Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-edit
 
 ## Next steps
 
-Notation also provides CI/CD solutions on Azure Pipeline and GitHub Actions Workflow:
+Notation provides CI/CD solutions on Azure pipelines and GitHub Actions:
 
-- [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
-- [Sign and verify a container image with Notation in GitHub Actions Workflow](https://github.com/marketplace/actions/notation-actions)
+- To sign in ADO pipelines, see [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
+- To sign in GitHub workflows, see [Sign a container image with Notation using a GitHub Workflows](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+- To verify in GitHub workflows, see [Verify a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
 
-To validate signed image deployment in AKS or Kubernetes:
-
-- [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- [Use Ratify to validate and audit image deployment in any Kubernetes cluster](https://ratify.dev/)
+To verify container images on Azure Kubernetes Service (AKS) clusters, see [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks).
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
