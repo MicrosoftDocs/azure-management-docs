@@ -27,7 +27,7 @@ The following scenarios are covered in this article:
 - **Use version control**: Keep your Terraform configuration files under version control (for example, Git) to track changes over time. 
 - **State management**: Regularly back up your Terraform state files to avoid data loss. 
 
-## Scenario 1: Create a new Virtual Machine
+# [Scenario 1: Create a VM](#tab/scenario1)
 
 ### Prerequisites
 
@@ -276,9 +276,9 @@ Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
 
 Confirm the prompt by entering yes to apply the changes.
 
-## Scenario 2: Enable a SCVMM-managed on-premises virtual machine for management in Azure
+# [Scenario 2: Enable a VM for Azure management](#tab/scenario2)
 
-### Prerequisites 
+### Prerequisites
 
 Ensure to have the following prerequisites before you create a new virtual machine: 
 
@@ -454,7 +454,7 @@ Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
 
 Confirm the prompt by entering yes to apply the changes.
 
-## Scenario 3: Delete a SCVMM-managed on-premises virtual machine from Azure
+# [Scenario 3: Delete a VM](#tab/scenario3)
 
 ### Prerequisites 
 
@@ -482,6 +482,8 @@ Following are the considerations before you delete the VM:
    ```
 
 This destroys the VM if it’s no longer in the configuration. 
+
+---
 
 ## Next steps
 
