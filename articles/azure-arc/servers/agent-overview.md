@@ -107,6 +107,8 @@ Installing the Connected Machine agent for Window applies the following system-w
   * %ProgramData%\GuestConfig
   * %SystemDrive%\packages
 
+<ins> Before starting the installation exclude, precautionally, those path from you Antimalware/Antivirus scan, it's possibile that interact with the installation files and can corrupt the installation files. <ins>
+
 ### Linux agent installation details
 
 The preferred package format for the distribution (`.rpm` or `.deb`) that is hosted in the Microsoft [package repository](https://packages.microsoft.com/) provides the Connected Machine agent for Linux. The shell script bundle [Install_linux_azcmagent.sh](https://aka.ms/azcmagent) installs and configures the agent.
