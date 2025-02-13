@@ -70,7 +70,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 - Installation of the Azure Connected Machine agent [at scale](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale) on VMs on SCVMM 2022 UR1 or later and SCVMM 2019 UR5 or later.
 - Installation of the Azure Connected Machine agent on SCVMM VMs [using a script](/azure/azure-arc/system-center-virtual-machine-manager/install-arc-agents-using-script).
-- Support for Azure services to [govern, protect, configure, and monitor](https://learn.microsoft.com/en-us/azure/azure-arc/servers/overview#supported-cloud-operations) Arc-enabled SCVMM VMs.
+- Support for Azure services to [govern, protect, configure, and monitor](/azure/azure-arc/servers/overview#supported-cloud-operations) Arc-enabled SCVMM VMs.
 - Ability to [recover](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery) the Azure Arc resource bridge in case of accidental deletion.  
 
 
