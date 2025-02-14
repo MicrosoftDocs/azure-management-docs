@@ -5,7 +5,7 @@ description: This article describes the new features and enhancements supported 
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 02/13/2025
+ms.date: 02/14/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -18,12 +18,12 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 - The latest releases
 - New features
 - Improvements to existing features
-- Known issues
 - Bug fixes
+- Known issues
 
 ## January 2025
 
-- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for SCVMM VMs with active Windows Server Software Assurance licenses with cost-benefits on Azure Update Manager, Azure Change Tracking and Inventory billing, and exclusive capabilities.  
+- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for SCVMM VMs with active Windows Server Software Assurance licenses with cost-benefits on Azure Update Manager, Azure Change Tracking and Inventory billing, and exclusive capabilities.
 
 ## December 2024
 
