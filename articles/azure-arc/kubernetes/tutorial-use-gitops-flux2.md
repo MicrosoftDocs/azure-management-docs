@@ -514,7 +514,7 @@ For usage details, see the following resources:
 * [Flux for Helm users](https://fluxcd.io/docs/use-cases/helm/)
 * [Manage Helm releases](https://fluxcd.io/docs/guides/helmreleases/)
 * [Migrate to the Helm controller](https://fluxcd.io/docs/migration/helm-operator-migration/)
-* [ Helm controller](https://fluxcd.io/docs/components/helm/)
+* [Helm controller](https://fluxcd.io/docs/components/helm/)
 
 > [!TIP]
 > Because of how Helm handles index files, processing Helm charts is an expensive operation and can have a high memory footprint. As a result, reconciling a large number of Helm charts at once can cause memory spikes and `OOMKilled` errors. By default, the controller sets its memory limit at 1Gi and its memory requests at 64Mi. To increase this limit and requests due to a high number of large Helm chart reconciliations, run the following command after installing the microsoft.flux extension:
