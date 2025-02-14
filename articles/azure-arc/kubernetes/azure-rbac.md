@@ -1,6 +1,6 @@
 ---
 title: "Azure RBAC on Azure Arc-enabled Kubernetes clusters"
-ms.date: 05/28/2024
+ms.date: 02/14/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Use Azure RBAC for authorization checks on Azure Arc-enabled Kubernetes clusters."
@@ -429,27 +429,11 @@ To create an example Conditional Access policy to use with the cluster:
 1. On the menu for Microsoft Entra ID on the left side, select **Enterprise applications**.
 1. On the menu for enterprise applications on the left side, select **Conditional Access**.
 1. On the menu for Conditional Access on the left side, select **Policies** > **New policy**.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-new-policy.png" alt-text="Screenshot showing how to add a conditional access policy in the Azure portal." lightbox="media/azure-rbac/conditional-access-new-policy.png":::
-
 1. Enter a name for the policy, such as **arc-k8s-policy**.
-
 1. Select **Users and groups**. Under **Include**, choose **Select users and groups**. Then choose the users and groups where you want to apply the policy. For this example, choose the same Microsoft Entra group that has administrative access to your cluster.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-users-groups.png" alt-text="Screenshot that shows selecting users or groups to apply the Conditional Access policy." lightbox="media/azure-rbac/conditional-access-users-groups.png":::
-
 1. Select **Cloud apps or actions**. Under **Include**, choose **Select apps**. Then search for and select the server application that you created earlier.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-apps.png" alt-text="Screenshot showing how to select a server application in the Azure portal." lightbox="media/azure-rbac/conditional-access-apps.png":::
-
-
 1. Under **Access controls**, select **Grant**. Select **Grant access** > **Require device to be marked as compliant**.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-grant-compliant.png" alt-text="Screenshot showing how to allow only compliant devices in the Azure portal." lightbox="media/azure-rbac/conditional-access-grant-compliant.png":::
-
 1. Under **Enable policy**, select **On** > **Create**.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-enable-policies.png" alt-text="Screenshot showing how to enable a conditional access policy in the Azure portal." lightbox="media/azure-rbac/conditional-access-enable-policies.png":::
 
 Access the cluster again. For example, run the `kubectl get nodes` command to view nodes in the cluster:
 
@@ -462,8 +446,6 @@ Follow the instructions to sign in again. An error message states that you're su
 1. In the Azure portal, go to **Microsoft Entra ID**.
 1. Select **Enterprise applications**. Then under **Activity**, select **Sign-ins**.
 1. An entry at the top shows **Failed** for **Status** and **Success** for **Conditional Access**. Select the entry, and then select **Conditional Access** in **Details**. Notice that your Conditional Access policy is listed.
-
-    :::image type="content" source="media/azure-rbac/conditional-access-sign-in-activity.png" alt-text="Screenshot showing a failed sign-in entry in the Azure portal." lightbox="media/azure-rbac/conditional-access-sign-in-activity.png":::
 
 <a name='configure-just-in-time-cluster-access-with-azure-ad'></a>
 
