@@ -114,7 +114,7 @@ $data = @{
     }; 
 }; 
 $json = $data | ConvertTo-Json; 
-$response = Invoke-RestMethod -Method PUT -Uri $uri.AbsoluteUri -ContentType $contentType -Headers $header -Body $json; 
+$response = Invoke-RestMethod -Method PATCH -Uri $uri.AbsoluteUri -ContentType $contentType -Headers $header -Body $json; 
 $response.properties
 ```
 ---
