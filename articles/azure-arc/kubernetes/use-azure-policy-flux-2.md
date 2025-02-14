@@ -7,11 +7,11 @@ description: "Use Azure Policy to apply Flux v2 configurations at scale on Azure
 
 # Deploy applications consistently at scale using Flux v2 configurations and Azure Policy
 
-You can use [Azure Policy](/azure/governance/policy/) to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or AKS (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and [create a policy assignment](/azure/governance/policy/tutorials/create-and-manage).
+You can use [Azure Policy](/azure/governance/policy/) to apply Flux v2 configurations (`Microsoft.KubernetesConfiguration/fluxConfigurations` resource type) at scale on Azure Arc-enabled Kubernetes (`Microsoft.Kubernetes/connectedClusters`) or Azure Kubernetes Service (AKS) (`Microsoft.ContainerService/managedClusters`) clusters. To use Azure Policy, you select a built-in policy definition and [create a policy assignment](/azure/governance/policy/tutorials/create-and-manage).
 
-Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can do this by assigning a policy that deploys the extension to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration to be applied to the clusters in that scope.
+Before you assign the policy that creates Flux configurations, you must ensure that the Flux extension is deployed to your clusters. You can assign a policy to ensure the extension is deployed to all clusters in the selected scope (all resource groups in a subscription or management group, or to specific resource groups). Then, when creating the policy assignment to deploy configurations, you set parameters for the Flux configuration to be applied to the clusters in that scope.
 
-To enable separation of concerns, you can create multiple policy assignments, each with a different Flux v2 configuration pointing to a different source. For example, one Git repository can be used by cluster admins while other repositories can be used by application teams.
+To enable separation of concerns, you can create multiple policy assignments, each with a different Flux v2 configuration pointing to a different source. For example, cluster admins can use one Git repository, while application teams use another.
 
 ## Built-in policy definitions
 
