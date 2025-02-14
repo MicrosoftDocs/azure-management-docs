@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 10/30/2024
+ms.date: 02/14/2025
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
 ---
@@ -415,7 +415,7 @@ For more information on OpenShift guidance for onboarding Flux, see the [Flux do
 The Azure portal is useful for managing GitOps configurations and the Flux extension in Azure Arc-enabled Kubernetes or AKS clusters. In the Azure portal, you can see all of the Flux configurations associated with each cluster and get detailed information, including the overall compliance state of each cluster.
 
 > [!NOTE]
-> Some options are not currently supported in the Azure portal. See the Azure CLI steps for additional options, including suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters.
+> Some options aren't currently supported in the Azure portal. See the Azure CLI steps for additional options, including suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters.
 
 Follow these steps to apply a sample Flux configuration to a cluster. As part of this process, Azure installs the `microsoft.flux` extension on the cluster, if it wasn't already installed in a previous deployment.
 
@@ -473,9 +473,7 @@ To view all of the configurations for a cluster, navigate to the cluster and sel
 
 Select the name of a configuration to view more details such as the configuration's status, properties, and source. You can then select **Configuration objects** to view all of the objects that were created to enable the GitOps configuration. This lets you quickly see the compliance state and other details about each object.
 
-:::image type="content" source="media/tutorial-use-gitops-flux2/portal-configuration-objects.png" alt-text="Screenshots showing configuration objects and their state in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-configuration-objects.png":::
-
-To see other Kubernetes resources deployed on the cluster, return to the cluster overview page and select **Kubernetes resources** from the service menu.
+To [see other Kubernetes resources deployed on the cluster](kubernetes-resource-view.md), return to the cluster overview page and select **Kubernetes resources (preview)** from the service menu.
 
 To view detailed conditions for a configuration object, select its name.
 
@@ -739,7 +737,7 @@ az k8s-extension delete -g flux-demo-rg -c flux-demo-arc -n flux -t connectedClu
 
 #### Delete the Flux configuration
 
-To delete a Flux configuration, navigate to the cluster where the configuration was created and select **GitOps** from the service menu. Select the configuration you want to delete. From the top of the page, select **Delete**, then select **Delete** again when prompted to confirm.
+To delete a Flux configuration, navigate to the cluster where the configuration was created. In the service menu, under **Settings**, select **GitOps**. Select the configuration you want to delete. From the top of the page, select **Delete**, then select **Delete** again when prompted to confirm.
 
 When you delete a Flux configuration, all of the Flux configuration objects in the cluster are deleted. However, this action doesn't delete the `microsoft.flux` extension itself.
 
@@ -750,7 +748,7 @@ When you delete the Flux extension, both the `microsoft.flux` extension resource
 > [!IMPORTANT]
 > Be sure to delete all Flux configurations in the cluster before you delete the Flux extension. Deleting the extension without first deleting the Flux configurations may leave your cluster in an unstable condition.
 
-For an Azure Arc-enabled Kubernetes cluster, navigate to the cluster and select **Extensions**. Select the `flux` extension and select **Uninstall**, then confirm the deletion.
+For an Azure Arc-enabled Kubernetes cluster, navigate to the cluster. In the service menu, under **Settings**, select **Extensions**. Select the `flux` extension and select **Uninstall**, then confirm the deletion.
 
 For AKS clusters, you can't use the Azure portal to delete the extension. Instead, use the following Azure CLI command:
 
