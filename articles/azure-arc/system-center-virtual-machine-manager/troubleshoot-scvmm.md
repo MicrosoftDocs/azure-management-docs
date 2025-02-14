@@ -7,7 +7,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to 
-ms.date: 01/22/2025
+ms.date: 02/14/2025
 keywords: "VMM, Arc, Azure, System Center"
 
 ---
@@ -53,6 +53,12 @@ This article provides troubleshooting steps that help you resolve the errors enc
 ### PostOperationsErrorKubeadmControlPlane
 
 [Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).
+
+## PreflightCheckErrorOnPrem
+
+### Upgrade_PreflightCheckErrorOnPrem
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).
 
 ## Next steps
 
