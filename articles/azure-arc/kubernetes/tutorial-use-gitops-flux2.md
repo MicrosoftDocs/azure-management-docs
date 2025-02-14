@@ -420,7 +420,8 @@ The Azure portal is useful for managing GitOps configurations and the Flux exten
 Follow these steps to apply a sample Flux configuration to a cluster. As part of this process, Azure installs the `microsoft.flux` extension on the cluster, if it wasn't already installed in a previous deployment.
 
 1. Navigate to your cluster in the Azure portal.
-1. From the service menu, under **Settings**, select **GitOps** > **Create**.
+1. From the service menu, under **Settings**, select **GitOps**.
+1. Select **Create**.
 1. In the **Basics** section:
 
    1. Enter a name for the configuration.
@@ -428,7 +429,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
    1. Under **Scope**, select **Cluster** so that the Flux operator has access to apply the configuration to all namespaces in the cluster. To use `namespace` scope with this tutorial, [see the changes needed](conceptual-gitops-flux2.md#multi-tenancy).
    1. Select **Next** to continue to the **Source** section.
 
-   :::image type="content" source="media/tutorial-use-gitops-flux2/portal-configuration-basics.png" alt-text="Screenshot showing the Basics options for a GitOps configuration in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-configuration-basics.png":::
+   :::image type="content" source="media/tutorial-use-gitops-flux2/portal-configuration-basics.png" alt-text="Screenshot showing the Basics options for a GitOps configuration in the Azure portal." :::
 
 1. In the **Source** section:
 
@@ -438,7 +439,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
    1. For **Repository type**, select **Public**.
    1. Leave the other options set to the default, then select **Next**.
 
-   :::image type="content" source="media/tutorial-use-gitops-flux2/portal-configuration-source.png" alt-text="Screenshow showing the Source options for a GitOps configuration in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-configuration-source.png":::
+   :::image type="content" source="media/tutorial-use-gitops-flux2/portal-configuration-source.png" alt-text="Screenshow showing the Source options for a GitOps configuration in the Azure portal." :::
 
 1. In the **Kustomizations** section, create two [kustomizations](gitops-flux2-parameters.md#kustomization): `infrastructure` and `staging`. These kustomizations are Flux resources, each associated with a path in the repository, that represent the set of manifests that Flux should reconcile to the cluster.
 
