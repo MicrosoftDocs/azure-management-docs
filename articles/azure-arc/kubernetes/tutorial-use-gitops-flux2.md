@@ -19,16 +19,13 @@ Before you dive in, take a moment to [learn how GitOps with Flux works conceptua
 >
 > You can also create Flux configurations by using Bicep, ARM templates, or Terraform AzAPI provider. For more information, see [Microsoft.KubernetesConfiguration fluxConfigurations](/azure/templates/microsoft.kubernetesconfiguration/fluxconfigurations).
 
-> [!IMPORTANT]
-> The `microsoft.flux` extension released major version 1.0.0. This includes the [multi-tenancy feature](conceptual-gitops-flux2.md#multi-tenancy). If you have existing GitOps Flux v2 configurations that use a previous version of the `microsoft.flux` extension, you can upgrade to the [latest version](extensions-release.md#flux-gitops) manually using the Azure CLI: `az k8s-extension create -g <RESOURCE_GROUP> -c <CLUSTER_NAME> -n flux --extension-type microsoft.flux -t <CLUSTER_TYPE>` (use `-t connectedClusters` for Arc clusters and `-t managedClusters` for AKS clusters).
-
 ## Prerequisites
 
 To deploy applications using GitOps with Flux v2, you need:
 
 ### [Azure CLI](#tab/azure-cli)
 
-#### For Azure Arc-enabled Kubernetes clusters
+#### Azure Arc-enabled Kubernetes clusters
 
 * An Azure Arc-enabled Kubernetes connected cluster that's up and running. ARM64-based clusters are supported starting with [`microsoft.flux` version 1.7.0](extensions-release.md#flux-gitops).
   
@@ -36,13 +33,13 @@ To deploy applications using GitOps with Flux v2, you need:
 
 * Read and write permissions on the `Microsoft.Kubernetes/connectedClusters` resource type.
 
-#### For Azure Kubernetes Service clusters
+#### Azure Kubernetes Service clusters
 
 * An MSI-based AKS cluster that's up and running.
 
   > [!IMPORTANT]
-  > Ensure that the AKS cluster is created with MSI (not SPN), because the `microsoft.flux` extension won't work with SPN-based AKS clusters.
-  > For new AKS clusters created with `az aks create`, the cluster is MSI-based by default. For already created SPN-based clusters that need to be converted to MSI, run `az aks update -g $RESOURCE_GROUP -n $CLUSTER_NAME --enable-managed-identity`. For more information, see [Use a managed identity in AKS](/azure/aks/use-managed-identity).
+  > Ensure that the AKS cluster is created with MSI (not SPN), because the `microsoft.flux` extension doesn't work with SPN-based AKS clusters.
+  > For new AKS clusters created with `az aks create`, the cluster is MSI-based by default. To convert SPN-based clusters to MSI, run `az aks update -g $RESOURCE_GROUP -n $CLUSTER_NAME --enable-managed-identity`. For more information, see [Use a managed identity in AKS](/azure/aks/use-managed-identity).
 
 * Read and write permissions on the `Microsoft.ContainerService/managedClusters` resource type.
 
@@ -136,7 +133,7 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 
 ### [Azure portal](#tab/azure-portal)
 
-#### For Azure Arc-enabled Kubernetes clusters
+#### Azure Arc-enabled Kubernetes clusters
 
 * An Azure Arc-enabled Kubernetes connected cluster that's up and running. ARM64-based clusters are supported starting with [`microsoft.flux` version 1.7.0](extensions-release.md#flux-gitops).
   
@@ -144,12 +141,12 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 
 * Read and write permissions on the `Microsoft.Kubernetes/connectedClusters` resource type.
 
-#### For Azure Kubernetes Service clusters
+#### Azure Kubernetes Service clusters
 
 * An MSI-based AKS cluster that's up and running.
 
   > [!IMPORTANT]
-  > Ensure that the AKS cluster is created with MSI (not SPN), because the `microsoft.flux` extension won't work with SPN-based AKS clusters.
+  > Ensure that the AKS cluster is created with MSI (not SPN), because the `microsoft.flux` extension doesn't work with SPN-based AKS clusters.
   > For new AKS clusters created with `az aks create`, the cluster is MSI-based by default. For already created SPN-based clusters that need to be converted to MSI, run `az aks update -g $RESOURCE_GROUP -n $CLUSTER_NAME --enable-managed-identity`. For more information, see [Use a managed identity in AKS](/azure/aks/use-managed-identity).
 
 * Read and write permissions on the `Microsoft.ContainerService/managedClusters` resource type.
@@ -191,7 +188,7 @@ The GitOps agents require outbound (egress) TCP to the repo source on either por
 Use the `k8s-configuration` Azure CLI extension or the Azure portal to enable GitOps in an AKS or Arc-enabled Kubernetes cluster. For a demonstration, use the public [gitops-flux2-kustomize-helm-mt](https://github.com/Azure/gitops-flux2-kustomize-helm-mt) repository.
 
 > [!IMPORTANT]
-> The demonstration repo is designed to simplify your use of this tutorial and illustrate some key principles. To keep up to date, the repo can get breaking changes occasionally from version upgrades. These changes won't affect your new application of this tutorial, only previous tutorial applications that have not been deleted. To learn how to handle these changes please see the [breaking change disclaimer](https://github.com/Azure/gitops-flux2-kustomize-helm-mt#breaking-change-disclaimer-%EF%B8%8F).
+> The demonstration repo is designed to simplify your use of this tutorial and illustrate key principles. To keep up to date, the repo can occasionally get breaking changes from version upgrades. These changes don't affect new use of this tutorial, only previous applications. For more information, see the [breaking change disclaimer](https://github.com/Azure/gitops-flux2-kustomize-helm-mt#breaking-change-disclaimer-%EF%B8%8F).
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -415,7 +412,7 @@ For more information on OpenShift guidance for onboarding Flux, see the [Flux do
 The Azure portal is useful for managing GitOps configurations and the Flux extension in Azure Arc-enabled Kubernetes or AKS clusters. In the Azure portal, you can see all of the Flux configurations associated with each cluster and get detailed information, including the overall compliance state of each cluster.
 
 > [!NOTE]
-> Some options aren't currently supported in the Azure portal. See the Azure CLI steps for additional options, including suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters.
+> Some options aren't currently supported in the Azure portal, such as suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters. To use these options, see the Azure CLI stepss.
 
 Follow these steps to apply a sample Flux configuration to a cluster. As part of this process, Azure installs the `microsoft.flux` extension on the cluster, if it wasn't already installed in a previous deployment.
 
@@ -425,7 +422,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
 1. In the **Basics** section:
 
    1. Enter a name for the configuration.
-   1. Enter the namespace within which the Flux custom resources will be installed. This can be an existing namespace or a new one that will be created when the configuration is deployed.
+   1. Enter the namespace within which to install the Flux custom resources. You can use an existing namespace, or specify a new one to be created when the configuration is deployed.
    1. Under **Scope**, select **Cluster** so that the Flux operator has access to apply the configuration to all namespaces in the cluster. To use `namespace` scope with this tutorial, [see the changes needed](conceptual-gitops-flux2.md#multi-tenancy).
    1. Select **Next** to continue to the **Source** section.
 
@@ -453,7 +450,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
 
          :::image type="content" source="media/tutorial-use-gitops-flux2/portal-kustomization-infrastructure.png" alt-text="Screenshot showing the options to create the infrastructure kustomization in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-kustomization-infrastructure.png":::
 
-   1. You'll see the `infrastructure` kustomization in the **Kustomizations** section. To create the next kustomization, select **Create**.
+   1. The `infrastructure` kustomization now appears in the **Kustomizations** section. To create the next kustomization, select **Create** again.
    1. In the **Create a Kustomization** screen:
 
       1. For **Instance name**, enter **staging**.
@@ -472,7 +469,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
 
 To view all of the configurations for a cluster, navigate to the cluster and select **GitOps** from the service menu.
 
-Select the name of a configuration to view more details such as the configuration's status, properties, and source. You can then select **Configuration objects** to view all of the objects that were created to enable the GitOps configuration. This lets you quickly see the compliance state and other details about each object.
+Select the name of a configuration to view more details such as the configuration's status, properties, and source. You can then select **Configuration objects** to view all of the objects that were created to enable the GitOps configuration, including the compliance state and other details about each object.
 
 To [see other Kubernetes resources deployed on the cluster](kubernetes-resource-view.md), return to the cluster overview page and select **Kubernetes resources (preview)** from the service menu.
 
@@ -492,7 +489,7 @@ For information about available parameters and how to use them, see [GitOps (Flu
 
 ### Work with local secret authentication reference
 
-To use a local secret authentication reference, the secret must exist within the same namespace where the `fluxConfiguration` will be deployed. The secret must also contain all of the authentication parameters needed for the source.
+To use a local secret authentication reference, the secret must exist within the same namespace where the `fluxConfiguration` is deployed. The secret must also contain all of the authentication parameters needed for the source.
 
 For information on creating secrets for various `fluxConfiguration` sources, see [Local secret for authentication with source](gitops-flux2-parameters.md#local-secret-for-authentication-with-source).
 
@@ -516,11 +513,11 @@ For usage details, see the following resources:
 
 * [Flux for Helm users](https://fluxcd.io/docs/use-cases/helm/)
 * [Manage Helm releases](https://fluxcd.io/docs/guides/helmreleases/)
-* [Migrate to Flux v2 Helm from Flux v1 Helm](https://fluxcd.io/docs/migration/helm-operator-migration/)
-* [Flux Helm controller](https://fluxcd.io/docs/components/helm/)
+* [Migrate to the Helm controller](https://fluxcd.io/docs/migration/helm-operator-migration/)
+* [ Helm controller](https://fluxcd.io/docs/components/helm/)
 
 > [!TIP]
-> Because of how Helm handles index files, processing Helm charts is an expensive operation and can have very high memory footprint. As a result, reconciling a large number of Helm charts at once can cause memory spikes and `OOMKilled` errors. By default, the controller sets its memory limit at 1Gi and its memory requests at 64Mi. To increase this limit and requests due to a high number of large Helm chart reconciliations, run the following command after installing the microsoft.flux extension:
+> Because of how Helm handles index files, processing Helm charts is an expensive operation and can have a high memory footprint. As a result, reconciling a large number of Helm charts at once can cause memory spikes and `OOMKilled` errors. By default, the controller sets its memory limit at 1Gi and its memory requests at 64Mi. To increase this limit and requests due to a high number of large Helm chart reconciliations, run the following command after installing the microsoft.flux extension:
 >
 > `az k8s-extension update -g <resource-group> -c <cluster-name> -n flux -t connectedClusters --config source-controller.resources.limits.memory=2Gi source-controller.resources.requests.memory=300Mi`
 
@@ -622,7 +619,7 @@ Valid values are `debug`, `info`, or `error`. For instance, to change the `log-l
 az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name flux --config source-controller.log-level=error kustomize-controller.log-level=error
 ```
 
-Starting with [`microsoft.flux` v1.9.1](extensions-release.md#flux-gitops), `fluxconfig-agent` and `fluxconfig-controller` support `info` and `error` log levels (but not `debug`). These can be modified by using the k8s-extension command as follows:
+Starting with [`microsoft.flux` v1.9.1](extensions-release.md#flux-gitops), `fluxconfig-agent` and `fluxconfig-controller` support `info` and `error` log levels (but not `debug`). To modify these options, use the `k8s-extension` command:
 
 ```azurecli
 --config fluxconfig-agent.log-level=<info/error>
@@ -651,7 +648,7 @@ For more information on Azure DevOps SSH-RSA deprecation,  see [End of SSH-RSA s
 
 ### Configure annotation on Flux extension pods
 
-When configuring a solution other than Azure Firewall, [network and FQDN/application rules](/azure/aks/outbound-rules-control-egress#required-outbound-network-rules-and-fqdns-for-aks-clusters) are required for an AKS cluster. Starting with [`microsoft.flux` v1.11.1](extensions-release.md#flux-gitops), Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This allows traffic to the API Server's domain name even when a Layer 7 firewall is present, facilitating deployments during extension installation. To configure this annotation when using the Flux extension, use the following commands.
+When configuring a solution other than Azure Firewall, [network and FQDN/application rules](/azure/aks/outbound-rules-control-egress#required-outbound-network-rules-and-fqdns-for-aks-clusters) are required for an AKS cluster. Starting with [`microsoft.flux` v1.11.1](extensions-release.md#flux-gitops), Flux controller pods can now set the annotation `kubernetes.azure.com/set-kube-service-host-fqdn` in their pod specifications. This annotation allows traffic to the API Server's domain name even when a Layer 7 firewall is present, facilitating deployments during extension installation. To configure this annotation when using the Flux extension, use the following commands.
 
 ```azurecli
 # Create flux extension with annotation
