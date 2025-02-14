@@ -2,7 +2,7 @@
 title:  Terraform based SCVMM VM management
 description: This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 ms.topic: how-to 
-ms.date: 02/11/2025
+ms.date: 02/14/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -345,13 +345,16 @@ Here is a sample `createscvmmVM.tfvars` file with placeholders.
 subscription_id      = "your-subscription-id"
 resource_group_name  = "your-resource-group"
 location             = "eastus"
-machine_name         = "test_machine03"
+machine_name         = "vm-name"
 vm_username          = "Administrator"
 vm_password          = "your_vm_password"
 inventory_item_id    = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver/InventoryItems/b3b8c107-9a7a-4ac2-b0aa-010ba7caba64"
 vmmserver_id         = "/subscriptions/your-subscription-id/resourceGroups/your-resource-group/providers/Microsoft.ScVmm/vmmServers/arcscvmm-777-2-vmmserver"
 custom_location_id   = "/subscriptions/your-subscription-id/resourcegroups/your-resource-group/providers/microsoft.extendedlocation/customlocations/arcscvmm-777-2-cl"
 ``` 
+
+>[!NOTE]
+>`vm_username` and `vm_password` are optional parameters. They are needed only to install the Azure Arc agent on the VM.
 
 ### Step 3: Define the VM configuration in a *main.tf* file 
 
@@ -403,11 +406,11 @@ resource "azapi_resource" "vm-name" {
 }
 
 # Enable a Virtual Machine instance using the Hybrid machine and Inventory Item ID
-resource "azapi_resource" "test_inventory_vm003" {
+resource "azapi_resource" "test_inventory_vm" {
   schema_validation_enabled = false
   type = "Microsoft.SCVMM/VirtualMachineInstances@2024-06-01"
   name = "default"
-  parent_id = azapi_resource.test_machine03.id
+  parent_id = azapi_resource.vm-name.id
   body = {
     properties = {
       infrastructureProfile = {
@@ -420,27 +423,27 @@ resource "azapi_resource" "test_inventory_vm003" {
       name = var.custom_location_id
     }
   }
-  depends_on = [azapi_resource.test_machine03]
+  depends_on = [azapi_resource.vm-name]
 }
 
-Install Arc agent on the VM
-# resource "azapi_resource" "guestAgent" {
-#   type      = "Microsoft.SCVMM/virtualMachineInstances/guestAgents@2024-06-01"
-#   parent_id = azapi_resource.test_inventory_vm003.id
-#   name      = "default"
-#   body = {
-#     properties = {
-#       credentials = {
-#         username = var.vm_username
-#         password = var.vm_password
-#       }
-#       provisioningAction = "install"
-#     }
-#   }
-#   schema_validation_enabled = false
-#   ignore_missing_property   = false
-#   depends_on = [azapi_resource.test_inventory_vm003]
-# }
+# Install Arc agent on the VM (optional step)
+ resource "azapi_resource" "guestAgent" {
+   type      = "Microsoft.SCVMM/virtualMachineInstances/guestAgents@2024-06-01"
+   parent_id = azapi_resource.test_inventory_vm.id
+   name      = "default"
+   body = {
+     properties = {
+       credentials = {
+         username = var.vm_username
+         password = var.vm_password
+       }
+       provisioningAction = "install"
+     }
+   }
+   schema_validation_enabled = false
+   ignore_missing_property   = false
+   depends_on = [azapi_resource.test_inventory_vm]
+ }
 ```
 
 ### Step 4: Run Terraform commands 
