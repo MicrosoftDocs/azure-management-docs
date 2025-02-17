@@ -107,7 +107,8 @@ Installing the Connected Machine agent for Window applies the following system-w
   * %ProgramData%\GuestConfig
   * %SystemDrive%\packages
 
-<ins> Before starting the installation exclude, precautionally, those path from you Antimalware/Antivirus scan, it's possibile that interact with the installation files and can corrupt the installation files. <ins>
+> [!NOTE]
+> Before installation, temporarily exclude the installation files' location from your antivirus/antimalware scan. This prevents potential interference and file corruption during installation.
 
 ### Linux agent installation details
 
