@@ -8,46 +8,49 @@ ms.topic: how-to
 # Modernize server management from Configuration Manager to Azure Arc
 
 
+# Modernize Server Management with Azure Arc
+
+Azure Arc delivers a modern server management experience for Microsoft Endpoint Configuration Manager (MECM) and Systems Center Configuration Manager (SCCM) customers. Analogous to Microsoft Intune for client endpoints, Azure delivers the next iteration of Microsoft’s server management capabilities. This documentation outlines the mapping between Configuration Manager functionalities and Azure Arc-enabled servers, a condensed roadmap of upcoming Azure management capabilities, advantages of Azure Arc-based management, and guidance on modernization.
+
+## Functionality Mapping
+
+Core Functionality | Azure Management Experience
+--- | ---
+**OS Patching** | Azure Update Manager provides a centralized solution for update assessment and management across Windows and Linux:<ul><li>Automated patch assessment and deployment</li><li>Scheduling capabilities for update management</li><li>Compliance reporting and monitoring</li></ul>Azure Update Manager supports Azure VMs and servers running on-premises and other public clouds via a VM extension for Azure Arc-enabled servers.
+**Configuration** | Azure Machine Configuration (formerly Azure Policy Guest Configuration) aligns with SCCM's desired state configuration features, enabling:<ul><li>Definition and enforcement of configuration policies for application and operating system settings</li><li>Continuous assessment of machine compliance with out-of-box reporting on compliance status</li><li>Automated remediation of non-compliant settings</li></ul>Customers can author customized Desired State Configuration for custom policies and configurations. Machine Configuration is available natively for Azure Arc-enabled servers and as a VM extension for Azure VMs.
+**Reporting** | Azure Change Tracking and Inventory delivers unified reporting of software, registries, applications, and daemons across Azure VMs and Azure Arc-enabled servers, including a history of their changes and out-of-box logging.<br><br>Azure Resource Graph can be used for custom queries and reporting across a fleet of Azure Arc-enabled servers. The Azure portal offers at-scale and granular visualizations for Azure VMs and Azure Arc-enabled servers.
+**Scripting** | Run Command allows administrators to remotely and securely execute scripts for various server management tasks, including application management, security enforcement, and diagnostics:<ul><li>Centralized script management (creation, update, deletion, sequencing, and listing operations for scripts)</li><li>Task automation for installing software, configuring firewall rules, running health checks, and troubleshooting issues</li></ul>Run Command is available for both Azure Arc-enabled servers and Azure VMs.
+**Software Distribution** | Virtual Machine Apps (VM Apps) allows administrators to safely package and distribute software to their Azure VMs. Customers can upload VM Application images to their Azure Compute Gallery and specify the target scope of Azure VMs. Azure Arc-enabled servers do not currently support VM Apps. Customers can use Run Command scripts and customized Machine Configuration for software distribution.
+
+## Condensed Roadmap
+
+The Azure Arc and Azure Update Manager products are actively investing in closing core capability gaps with SCCM.
+
+* **Software Distribution:** Azure Arc-enabled servers will introduce support for Virtual Machine apps, enabling point-and-click software distribution on non-Azure infrastructure.
+* **App Patching:** Azure Update Manager will introduce support for third-party application patching across Azure VMs and Azure Arc-enabled servers.
+* **Distribution Points:** Local caching options will provide an alternative to direct download from Azure for key content distribution scenarios (apps, patches, extensions, and updates).
+* **Unified Operations:** At-scale onboarding, consumption experiences, and pricing across key Azure management services for modernization from SCCM.
+
+## Azure Arc Advantages
+
+Azure Arc offers key modernization advantages across pricing, Linux support, and Copilot and Migrate integrations.
+
+* **Pricing:** Azure Arc-enabled server customers with Windows Server Software Assurance, Windows Server Pay-as-you-Go licensing, or those running workloads on Azure VMs benefit from these management services at no additional cost (excluding associated log data ingestion). Other servers connected to Azure Arc use pay-as-you-go pricing plans.
+* **Linux Support:** Unlike SCCM and MECM, Azure server management capabilities natively support Linux, including Red Hat Enterprise Linux, Ubuntu, Oracle Linux, Debian, and more, enabling consistent management across Windows and Linux server estates.
+* **Azure Copilot:** Integrated natively across key management and operational scenarios, Azure Copilot delivers an AI-enhanced server management experience for querying and remediating across Azure VMs and Azure Arc-enabled servers.
+* **Migration:** Azure Arc offers assessment capabilities that ease customer migration and modernization to Azure. Customers can use the same Azure management capabilities across Azure Arc and Azure VMs, reducing operational overhead.
+
+## Modernization Guidance
+
+To help define their SCCM modernization strategy, we outline key guidance and recommendations.
+
+* **Onboarding:** Connect servers to Azure Arc using a Scheduled Task with Configuration Manager. This installs the Azure Connected Machine agent and establishes connectivity to Azure. Customers with active Windows Server Software Assurance should attest to their coverage.
+* **Gradual Management:** Deploy Azure Arc in phases to evaluate specific capabilities over time. Popular evaluation services include Microsoft Defender for Servers, Microsoft Sentinel, and Azure Monitor for security and monitoring.
+* **Joint Management:** Manage servers using both Configuration Manager and Azure Arc-enabled servers simultaneously. Customers often separate tasks across solutions (e.g., SCCM for software distribution, Azure Update Manager for OS patching, and Azure Machine Configuration for OS configuration).
+* **SCVMM:** For organizations using System Center Virtual Machine Manager (SCVMM), Azure Arc offers integration capabilities with Azure Arc-enabled SCVMM, facilitating VM lifecycle management and connection of SCVMM environments through Azure Arc.
+* **SCOM:** For organizations using Systems Center Operations Manager (SCOM), Azure Arc and Azure VMs support Azure Monitor, enabling logging, alerting, and visualization of application and infrastructure performance. Azure Monitor includes robust reporting with Azure Workbooks and Azure Dashboards. Customers can use SCOM Managed Instance (SCOM MI).
+
+Ultimately, Azure Arc represents a significant evolution in server management, offering a cloud-native approach to hybrid and multi-cloud environments. While it may not fully replicate all SCCM functionalities, its advantages in pricing flexibility, Linux support, and AI integrations make it a compelling option for organizations looking to modernize their infrastructure management. As Azure Arc continues to evolve, it is poised to become an increasingly powerful tool for unified server management across diverse environments.
 
 
-Azure Arc-enabled servers allow customers to develop an inventory across hybrid, multicloud, and edge workloads with the organizational and reporting capabilities native to Azure management. Azure Arc-enabled servers support a breadth of platforms and distributions across Windows and Linux. Arc-enabled servers are also domain agnostic and integrate with Azure Lighthouse for multitenant customers.
 
-By projecting resources into the Azure management plane, Azure Arc empowers customers to use the organizational, tagging, and querying capabilities native to Azure.
-
-## Organize resources with built-in Azure hierarchies
-
-Azure provides four levels of management scope:
-
-- Management groups
-- Subscriptions
-- Resource groups
-- Resources
-
-These levels of management help to manage access, policies, and compliance more efficiently. For example, if you apply a policy at one level, it propagates down to lower levels, helping improve governance posture. Moreover, these levels can be used to scope policies and security controls. For Arc-enabled servers, the different business units, applications, or workloads can be used to derive the hierarchical structure in Azure. Once resources are onboarded to Azure Arc, you can seamlessly move an Arc-enabled server between different resource groups and scopes.
-
-:::image type="content" source="media/organize-inventory-servers/management-levels.png" alt-text="Diagram showing the four levels of management scope.":::
-
-## Tagging resources to capture additional customizable metadata
-
-Tags are metadata elements you apply to your Azure resources. They're key-value pairs that help identify resources, based on settings relevant to your organization. For example, you can tag the environment for a resource as *Production* or *Testing*. Alternatively, you can use tagging to capture the ownership for a resource, separating the *Creator* or *Administrator*. Tags can also capture details on the resource itself, such as the physical datacenter, business unit, or workload. You can apply tags to your Azure resources, resource groups, and subscriptions. This extends to infrastructure outside of Azure as well, through Azure Arc.
-
-
-You can define tags in Azure portal through a simple point and select method. Tags can be defined when onboarding servers to Azure Arc-enabled servers or on a per-server basis. Alternatively, you can use Azure CLI, Azure PowerShell, ARM templates, or Azure policy for scalable tag deployments. Tags can be used to filter operations as well, such as the deployment of extensions or service attachments. This provides not only a more comprehensive inventory of your servers, but also operational flexibility and ease of management.
-
-:::image type="content" source="media/organize-inventory-servers/server-tags.png" alt-text="Screenshot of Azure portal showing tags applied to a server.":::
-
-## Reporting and querying with Azure Resource Graph (ARG)
-
-Numerous types of data are collected with Azure Arc-enabled servers as part of the instance metadata. This data includes the platform, operating system, presence of SQL server, presence of PostgreSQL, presence of MySQL, or AWS and GCP details. These attributes can be queried at scale using Azure Resource Graph. 
-
-Azure Resource Graph is an Azure service designed to extend Azure Resource Management. It provides efficient and performant resource exploration with the ability to query at scale across a given set of subscriptions so that you can effectively govern your environment. These queries can include complex filtering, grouping, and sorting by resource properties.
-
-Results can be easily visualized and exported to other reporting solutions. Moreover there are dozens of built-in Azure Resource Graph queries capturing salient information across Azure VMs and Arc-enabled servers, such as their VM extensions, regional breakdown, and operating systems. 
-
-## Additional resources
-
-* [What is Azure Resource Graph?](/azure/governance/resource-graph/overview)
-
-* [Azure Resource Graph sample queries for Azure Arc-enabled servers](resource-graph-samples.md)
-
-* [Use tags to organize your Azure resources and management hierarchy](/azure/azure-resource-manager/management/tag-resources?tabs=json)
