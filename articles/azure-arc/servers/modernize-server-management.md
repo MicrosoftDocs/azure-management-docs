@@ -1,6 +1,6 @@
 ---
-title: How to organize and inventory servers using hierarchies, tagging, and reporting
-description: Learn how to organize and inventory servers using hierarchies, tagging, and reporting.
+title: How to modernize server management from Configuration Manager to Azure Arc
+description: Learn how to modernize server management from Configuration Manager to Azure Arc.
 ms.date: 02/18/2025
 ms.topic: how-to
 ---
