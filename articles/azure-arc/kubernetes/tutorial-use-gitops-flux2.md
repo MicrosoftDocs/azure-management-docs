@@ -662,7 +662,7 @@ az k8s-extension update --resource-group <resource-group> --cluster-name <cluste
 
 ### Workload identity in Arc-enabled Kubernetes clusters and AKS clusters
 
-You can create Flux configurations in clusters with workload identity enabled. Flux configurations in [AKS clusters with workload identity enabled](/azure/aks/workload-identity-deploy-cluster) is supported starting with `microsoft.flux` v1.8.0, and in Azure Arc-enabled clusters with workload identity enabled starting with [`microsoft.flux` v.15.1](extensions-release.md#flux-gitops).
+You can create Flux configurations in clusters with workload identity enabled. Flux configurations in [AKS clusters with workload identity enabled](/azure/aks/workload-identity-deploy-cluster) is supported starting with `microsoft.flux` v1.8.0, and in [Azure Arc-enabled clusters with workload identity enabled](workload-identity.md) starting with [`microsoft.flux` v.15.1](extensions-release.md#flux-gitops).
 
 To create Flux configurations in clusters with workload identity enabled, modify the extension as shown in the following steps.
 
