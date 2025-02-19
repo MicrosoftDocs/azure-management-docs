@@ -15,7 +15,7 @@ The Azure portal includes a Kubernetes resource view for easy access to the Kube
 
 - An account that can authenticate to the cluster and access the resources in the portal:
 
-  - If using [Azure RBAC](azure-rbac.md), ensure that the Microsoft Entra account has a role that lets it authenticate to the cluster, such as [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles):
+  - If using [Azure role-based access control (Azure RBAC)](azure-rbac.md), ensure that the Microsoft Entra account has a role that lets it authenticate to the cluster, such as [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles):
 
    ```azurecli
    az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee $AAD_ENTITY_OBJECT_ID --scope $ARM_ID_CLUSTER
@@ -46,11 +46,11 @@ To see the Kubernetes resources, navigate to your cluster in the Azure portal. I
 The Kubernetes resource view also includes a YAML editor. A built-in YAML editor means you can update Kubernetes objects from within the portal and apply changes immediately.
 
 >[!WARNING]
-> The Azure portal Kubernetes management capabilities and the YAML editor are built for learning and flighting new deployments in a development and test setting. Performing direct production changes by editing the YAML is not recommended. For production environments, consider using [GitOps to apply configurations](tutorial-use-gitops-flux2.md).
+> The Azure portal Kubernetes management capabilities and the YAML editor are built for learning and flighting new deployments in a development and test setting. Performing direct production changes by editing the YAML isn't recommended. For production environments, consider using [GitOps to apply configurations](tutorial-use-gitops-flux2.md).
 
 After you edit the YAML, select **Review + save**, confirm the changes, and then save again.
 
-:::image type="content" source="media/kubernetes-resource-view/yaml-editor.png" alt-text="Screenshot showing the YAML editor for Kubernetes objects displayed in the Azure portal." lightbox="media/kubernetes-resource-view/yaml-editor.png":::
+:::image type="content" source="media/kubernetes-resource-view/yaml-editor.png" alt-text="Screenshot showing the YAML editor for Kubernetes objects displayed in the Azure portal.":::
 
 ## Next steps
 
