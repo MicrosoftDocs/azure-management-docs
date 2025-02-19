@@ -173,12 +173,12 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 Changes in this version include:
 
 - Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-- Support of workload identity in Arc-enabled clusters. For more information, see [Workload identity in Arc-enabled Kubernetes cluster and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+- Support of workload identity in Arc-enabled clusters. For more information, see [Workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
 
 ### 1.14.1 (January 2025)
 
 > [!NOTE]
-> The API version `2024-11-01` for `fluxconfiguration` is not yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
+> The API version `2024-11-01` for `fluxconfiguration` isn't yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
 
