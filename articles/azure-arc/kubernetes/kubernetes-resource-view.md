@@ -31,7 +31,7 @@ The Azure portal includes a Kubernetes resource view for easy access to the Kube
 
 ## View Kubernetes resources
 
-To see the Kubernetes resources, navigate to your cluster in the Azure portal. In the service menu, expand **Kubernetes resources (preview)**. Within this section, you'll find:
+To see the Kubernetes resources, navigate to your cluster in the Azure portal. In the service menu, expand **Kubernetes resources (preview)**. Within this section, there are several options to view information:
 
 - **Namespaces**: The namespaces of your cluster. The filter at the top of the namespace list provides a quick way to filter and display your namespace resources.
 - **Workloads**: Information about deployments, pods, replica sets, stateful sets, daemon sets, jobs, and cron jobs deployed to your cluster.
