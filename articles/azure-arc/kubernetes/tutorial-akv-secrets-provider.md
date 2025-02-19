@@ -38,7 +38,7 @@ Capabilities of the Azure Key Vault Secrets Provider extension include:
   - `linuxgeneva-microsoft.azurecr.io`
   - `upstreamarc.azurecr.io`
   - `*.blob.core.windows.net`
-- Ensure you've met the [general prerequisites for cluster extensions](extensions.md#prerequisites). You must use version 0.4.0 or newer of the `k8s-extension` Azure CLI extension.
+- Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites). You must use version 0.4.0 or newer of the `k8s-extension` Azure CLI extension.
 
 ## Install the Azure Key Vault Secrets Provider extension on an Arc-enabled Kubernetes cluster
 
@@ -420,13 +420,13 @@ az k8s-extension delete --cluster-type connectedClusters --cluster-name $CLUSTER
 > [!NOTE]
 > Uninstalling the extension doesn't delete the Custom Resource Definitions (CRDs) that were created when the extension was installed.
 
-To confirm that the extension instance has been deleted, run the following command:
+To confirm that the extension instance was deleted, run the following command:
 
 ```azurecli-interactive
 az k8s-extension list --cluster-type connectedClusters --cluster-name $CLUSTER_NAME --resource-group $RESOURCE_GROUP
 ```
 
-If the extension was successfully removed, you won't see the Azure Key Vault Secrets Provider extension listed in the output. If you don't have any other extensions installed on your cluster, you'll see an empty array.
+If the extension was successfully removed, the Azure Key Vault Secrets Provider extension isn't listed in the output. If no other extensions are installed on your cluster, an empty array is returned.
 
 If you no longer need it, be sure to delete the Kubernetes secret associated with the service principal by running the following command:
 
@@ -436,7 +436,7 @@ kubectl delete secret secrets-store-creds
 
 ## Reconciliation and troubleshooting
 
-The Azure Key Vault Secrets Provider extension is self-healing. If somebody tries to change or delete an extension component that was deployed when the extension was installed, that component is reconciled to its original state. The only exceptions are for Custom Resource Definitions (CRDs). If CRDs are deleted, they won't be reconciled. To restore deleted CRDs, use the `az k8s-extension create` command again with the existing extension instance name.
+The Azure Key Vault Secrets Provider extension is self-healing. If somebody tries to change or delete an extension component that was deployed when the extension was installed, that component is reconciled to its original state. The only exceptions are for Custom Resource Definitions (CRDs). Deleted CRDs aren't reconciled. To restore deleted CRDs, use the `az k8s-extension create` command again with the existing extension instance name.
 
 For more information about resolving common issues, see the open source troubleshooting guides for [Azure Key Vault provider for Secrets Store CSI driver](https://azure.github.io/secrets-store-csi-driver-provider-azure/docs/troubleshooting/) and [Secrets Store CSI Driver](https://secrets-store-csi-driver.sigs.k8s.io/troubleshooting.html).
 
