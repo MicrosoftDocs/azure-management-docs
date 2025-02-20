@@ -33,6 +33,17 @@ To add one or more users to a group from the Azure mobile app:
 1. Search or scroll to find users you want to add to the group, then select one or more users by tapping the circle next to their name.
 1. Select **Add** in the top right corner to add the selected users to the group.
 
+## Edit profile details for a user
+
+To edit a user’s profile details in the Azure mobile app:
+
+1. In **Microsoft Entra ID**, select **Users**.
+1. Search or scroll to find the desired user, then tap to select their profile.
+1. On the **Profile** card, select **Details**. The selected profile's details will be displayed.
+1. Select the **pencil** icon in the top right corner.
+1. Tap on any configurable line item to make changes or go back. 
+1. Once you finish making your updates, tap **Save** on the top right. If you have correct permissions, changes will be saved successfully. If not, you will be informed that you do not have authorization to make changes. 
+
 ## Add group memberships for a specified user
 
 You can also add a single user to one or more groups in the **Users** section of **Microsoft Entra ID** in the Azure mobile app. To do so:
