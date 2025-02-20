@@ -10,7 +10,7 @@ ms.date: 10/04/2024
 Dashboards are a focused and organized view of your cloud resources in the Azure portal. Use dashboards as a workspace where you can monitor resources and quickly launch tasks for day-to-day operations. For example, you can build custom dashboards based on projects, tasks, or user roles in your organization.
 
 > [!IMPORTANT]
-> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](dashboard-hub).
+> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub).
 
 The Azure portal provides a default dashboard as a starting point. You can edit this default dashboard, and you can create and customize additional dashboards.
 
