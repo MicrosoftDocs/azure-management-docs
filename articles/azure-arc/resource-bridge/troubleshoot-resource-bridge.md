@@ -106,36 +106,6 @@ This error occurs because when you sign in to Azure, the token has a maximum lif
 
 When you use the `az arcappliance createconfig` or `az arcappliance run` command, an interactive experience shows the list of VMware entities which you can select to deploy the virtual appliance. This list shows all user-created resource pools along with default cluster resource pools, but the default host resource pools aren't listed. When the appliance is deployed to a host resource pool, there's no high availability if the host hardware fails. We recommend that you don't deploy the appliance in a host resource pool.
 
-### Resource bridge status is Offline and Provisioning State is Failed
-
-When you deploy Arc resource bridge, the bridge might appear to be successfully deployed because no errors were encountered when running `az arcappliance deploy` or `az arcappliance create`. However, when viewing the bridge in Azure portal, you might see status showing as `Offline`, and `az arcappliance show` might show the `provisioningState` as `Failed`. This issue happens when required providers aren't registered before the bridge is deployed.
-
-For Azure Local, version 23H2 and later, the Arc Resource Bridge is automatically deployed during the cluster deployment and manual installation is no longer required.
-
-If your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM. If the issue persists, contact Microsoft Support.
-
-> [!NOTE]
-> Reinstalling the Arc Resource Bridge on Azure Local could cause issues with your existing Azure resources.
-
-To resolve this problem, delete the resource bridge, register the providers, then redeploy the resource bridge.
-
-1. Delete the resource bridge:
-
-   ```azurecli
-   az arcappliance delete <fabric> --config-file <path to appliance.yaml>
-   ```
-
-1. Register the providers:
-
-   ```azurecli
-   az provider register --namespace Microsoft.ExtendedLocation –-wait
-   az provider register --namespace Microsoft.ResourceConnector –-wait
-   ```
-
-1. Redeploy the resource bridge.
-
-> [!NOTE]
-> Partner products (such as Arc-enabled VMware vSphere) might have their own required providers to register. For information about these additional providers, see the product's documentation.
 
 ### Expired credentials in the appliance VM
 
