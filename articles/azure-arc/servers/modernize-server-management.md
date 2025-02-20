@@ -23,7 +23,7 @@ Core Functionality | Azure Management Experience
 
 The Azure Arc and Azure Update Manager products are actively investing in closing core capability gaps with SCCM.
 
-* **Software Distribution:** Azure Arc-enabled servers introduces support for Virtual Machine apps, enabling point-and-click software distribution on non-Azure infrastructure.
+* **Software Distribution:** Azure Arc-enabled servers introduce support for Virtual Machine apps, enabling point-and-click software distribution on non-Azure infrastructure.
 * **App Patching:** Azure Update Manager introduces support for third-party application patching across Azure VMs and Azure Arc-enabled servers.
 * **Distribution Points:** Local caching options provide an alternative to direct download from Azure for key content distribution scenarios (apps, patches, extensions, and updates).
 * **Unified Operations:** At-scale onboarding, consumption experiences, and pricing across key Azure management services for modernization from SCCM.
