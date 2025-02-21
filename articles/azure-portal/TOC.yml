@@ -68,7 +68,7 @@
   - name: Alerts and notifications
     href: mobile-app/alerts-notifications.md
     displayName: mobile, app, push
-  - name: Virtual Machines
+  - name: Virtual machines
     href: mobile-app/virtual-machines.md
     displayName: mobile, app, resource, virtualmachines
   - name: Cloud Shell
