@@ -80,20 +80,7 @@ Azure Arc-enabled SCVMM works with VMM 2025, 2022, and 2019 versions and support
 
 ### Supported regions
 
-Azure Arc-enabled SCVMM is currently supported in the following regions:
-
-- East US
-- East US 2
-- West US 2
-- West US 3
-- Central US
-- South Central US
-- UK South
-- North Europe
-- West Europe
-- Sweden Central
-- Southeast Asia
-- Australia East
+For the most up-to-date information about regional availability of Azure Arc-enabled SCVMM, see [Product Availability by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 ## Data Residency
 
