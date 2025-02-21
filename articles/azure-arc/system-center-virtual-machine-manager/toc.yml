@@ -88,3 +88,8 @@
     href: /javascript/api/overview/azure/arm-scvmm-readme
   - name: Go SDK
     href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
+- name: Resources
+  items:
+  - name: Regional Availability
+    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table/azure/azure-arc
+  
