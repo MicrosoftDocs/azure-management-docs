@@ -41,8 +41,8 @@ To edit a user’s profile details in the Azure mobile app:
 1. Search or scroll to find the desired user, then tap to select their profile.
 1. On the **Profile** card, select **Details**. The selected profile's details are displayed.
 1. Select the edit (pencil) icon in the top right corner.
-1. Tap on any editable line item to make changes.
-1. Once you finish making your updates, tap **Save** on the top right corner. If you have permission to edit a profile, the changes will be saved successfully. If not, you will be informed that you do not have authorization to make changes. 
+1. To make changes, tap on any editable line item.
+1. Once you finish making your updates, tap **Save** on the top right corner. If you have permission to edit a profile, the changes are saved successfully. If not, you are informed that you do not have authorization to make changes. 
 
 ## Add group memberships for a specified user
 
@@ -69,7 +69,7 @@ To [manage authentication methods](/entra/identity/authentication/concept-authen
 
 [Microsoft Entra ID Protection](/entra/id-protection/overview-identity-protection) provides organizations with reporting they can use to [investigate identity risks in their environment](/entra/id-protection/howto-identity-protection-investigate-risk).
 
-If you have the [necessary permissions and license](/entra/id-protection/overview-identity-protection#required-roles), you'll see details in the **Risky users** and **Risky sign-ins** sections within **Microsoft Entra ID**. You can open these sections to view more information and perform some management tasks.
+If you have the [necessary permissions and license](/entra/id-protection/overview-identity-protection#required-roles), you see details in the **Risky users** and **Risky sign-ins** sections within **Microsoft Entra ID**. You can open these sections to view more information and perform some management tasks.
 
 ### Manage risky users
 
@@ -93,7 +93,7 @@ If you have the [necessary permissions and license](/entra/id-protection/overvie
 
 ## Activate Privileged Identity Management (PIM) roles
 
-If you have been made eligible for an administrative role through Microsoft Entra Privileged Identity Management (PIM), you must activate the role assignment when you need to perform privileged actions. This activation can be done from within the Azure mobile app.
+If you are eligible for an administrative role through Microsoft Entra Privileged Identity Management (PIM), you must activate the role assignment when you need to perform privileged actions. This activation can be done from within the Azure mobile app.
 
 For more information, see [Activate PIM roles using the Azure mobile app](/entra/id-governance/privileged-identity-management/pim-how-to-activate-role).
 
