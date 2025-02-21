@@ -11,7 +11,7 @@ With the Azure mobile app you can monitor, manage, and troubleshoot your virtual
 
 Common use cases for the virtual machines feature include: 
 - **On-the-go management**: If a VM becomes unresponsive, quickly restart it to maintain service availability and minimize downtime.
-- Incident response: When you receive an Azure alert, you can easily check the health of your VM.
+- **Incident response**: When you receive an Azure alert, you can easily check the health of your VM.
 - Access control: Manage user permissions for a VM while you're on the go.
 - Monitoring and status checks - Check in on your VM's health, performance metrics, and activity.
 
