@@ -40,7 +40,7 @@ To edit a user’s profile details in the Azure mobile app:
 1. In **Microsoft Entra ID**, select **Users**.
 1. Search or scroll to find the desired user, then tap to select their profile.
 1. On the **Profile** card, select **Details**. The selected profile's details are displayed.
-1. Select the **pencil** icon in the top right corner.
+1. Select the edit (pencil) icon in the top right corner.
 1. Tap on any configurable line item to make changes or go back. 
 1. Once you finish making your updates, tap **Save** on the top right. If you have correct permissions, changes will be saved successfully. If not, you will be informed that you do not have authorization to make changes. 
 
