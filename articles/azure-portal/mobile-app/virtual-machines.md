@@ -40,7 +40,8 @@ From the VM's page, you have options to:
 
 :::image type="content" source="media/virtual-machines/virtual-machines-autoshutdown.jpg" alt-text="Screenshot showing the VM autoshutdown view in the Azure mobile app.":::
 
-Tip: Integrate with Azure Monitor to get access to deeper insights in the Azure mobile app. 
+> [!TIP] 
+> Integrate with [Azure Monitor](/azure/azure-monitor/vm/vminsights-enable) to get access to deeper insights in the Azure mobile app. 
 
 ## Next steps
 
