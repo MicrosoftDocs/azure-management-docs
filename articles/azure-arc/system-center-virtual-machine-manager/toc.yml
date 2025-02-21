@@ -91,5 +91,5 @@
 - name: Resources
   items:
   - name: Regional Availability
-    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table/azure/azure-arc
+    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
   
