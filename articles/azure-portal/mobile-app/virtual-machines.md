@@ -17,7 +17,7 @@ Common use cases for the virtual machines feature include:
 
 ## Navigate to your virtual machine
 
-For on-the-go access to your virtual machines, you'll first navigate to it.
+For on-the-go access to your virtual machine, you'll first navigate to it.
 
 1. Open the Azure mobile app and sign in.
 2. Select **Virtual Machines** from the home screen or search for a specific VM in the search bar.
