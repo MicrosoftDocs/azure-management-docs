@@ -20,7 +20,7 @@ Common use cases for the virtual machines feature include:
 For on-the-go access to your virtual machines, you'll first navigate to it.
 
 1. Open the Azure mobile app and sign in.
-2. Select Virtual Machines from the home screen or search for a specific VM in the search bar.
+2. Select **Virtual Machines** from the home screen or search for a specific VM in the search bar.
 3. Tap on the VM.
 
 From the VM's page, you have options to:
