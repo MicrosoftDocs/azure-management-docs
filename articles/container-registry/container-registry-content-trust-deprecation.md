@@ -10,11 +10,11 @@ ms.service: azure-container-registry
 
 # Transition from Docker Content Trust to the Notary Project
 
-Azure Container Registry will be deprecating [Docker Content Trust](./container-registry-content-trust.md) on April 1, 2025. To help with this transition, we're providing guidance for how to disable Docker Content Trust and adopt the Notary Project to sign and verify container images.
+Azure Container Registry will retire [Docker Content Trust](./container-registry-content-trust.md) on March 31, 2028. To help with this transition, we're providing guidance for how to disable Docker Content Trust and adopt the Notary Project to sign and verify container images.
 
 ## Docker Content Trust deprecation
 
-Docker Content Trust allows image publishers to sign their images and image consumers to verify that the images they pull are signed. With advancements in technology, Docker Content Trust no longer meets the requirements of modern supply chain security for containers. As a result, Docker Content Trust will be deprecated and not available in Azure Container Registry (ACR) after April 1, 2028.
+Docker Content Trust allows image publishers to sign their images and image consumers to verify that the images they pull are signed. With advancements in technology, Docker Content Trust no longer meets the requirements of modern supply chain security for containers. As a result, Docker Content Trust will be deprecated starting from March 31, 2025 and completely removed from Azure Container Registry (ACR) on March 31, 2028.
 
 Instead of using Docker Content Trust, Microsoft offers signing and verification solutions based on the Notary Project. The [Notary Project](https://notaryproject.dev/) is a set of specifications and tools intended to provide a cross-industry standard for securing software supply chains by using authentic container images and other OCI artifacts. [Notation](https://github.com/notaryproject/notation), a tool from the Notary Project, implements Notary Project specifications and includes CLI and libraries for signing and verifying container images and artifacts. The benefits of using the Notary Project solutions to ensure the integrity and authenticity of container images include:
 
