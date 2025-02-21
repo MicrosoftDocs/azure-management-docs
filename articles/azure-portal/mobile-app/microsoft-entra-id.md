@@ -42,7 +42,7 @@ To edit a user’s profile details in the Azure mobile app:
 1. On the **Profile** card, select **Details**. The selected profile's details are displayed.
 1. Select the edit (pencil) icon in the top right corner.
 1. Tap on any editable line item to make changes.
-1. Once you finish making your updates, tap **Save** on the top right. If you have correct permissions, changes will be saved successfully. If not, you will be informed that you do not have authorization to make changes. 
+1. Once you finish making your updates, tap **Save** on the top right corner. If you have permission to edit a profile, the changes will be saved successfully. If not, you will be informed that you do not have authorization to make changes. 
 
 ## Add group memberships for a specified user
 
