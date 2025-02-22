@@ -202,7 +202,7 @@ To add Azure Linux to an existing ARM template, you need to add `"osSKU": "Azure
     * **Linux Admin Username**: Enter a username to connect using SSH, such as *azureUser*.
     * **SSH RSA Public Key**: Copy and paste the *public* part of your SSH key pair (by default, the contents of *~/.ssh/id_rsa.pub*).
 
-<!--remove broken image    :::image type="content" source="./media/create-aks-cluster-using-template-portal.png" alt-text="Screenshot of Resource Manager template to create an Azure Kubernetes Service cluster in the portal."::: -->
+    <!--remove broken image    :::image type="content" source="./media/create-aks-cluster-using-template-portal.png" alt-text="Screenshot of Resource Manager template to create an Azure Kubernetes Service cluster in the portal."::: -->
 
 1. Select **Review + Create**.
 
