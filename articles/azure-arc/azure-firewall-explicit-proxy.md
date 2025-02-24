@@ -1,7 +1,7 @@
 ---
 title: Access Azure Arc resources over Azure Firewall Explicit Proxy (public preview)
 description: Learn about using Azure Arc without exposing your on-premises environment to the public internet.
-ms.date: 02/04/2025
+ms.date: 02/24/2025
 ms.topic: how-to
 ---
 
@@ -20,8 +20,6 @@ This article explains the steps to configure Azure Firewall with the Explicit Pr
 Azure Arc agents can use a forward proxy to connect to Azure services. The Azure Firewall Explicit proxy feature enables you to use an Azure Firewall within your virtual network (VNet) as the forward proxy for your Arc agents.
 
 As the Azure Firewall Explicit proxy operates within your private VNet, and you have a secure connection to it via ExpressRoute or Site-to-Site VPN, all Azure Arc traffic can be routed to its intended destination within the Microsoft network, without requiring any public internet access.
-
-:::image type="content" source="media/azure-firewall-explicit-proxy/arc-explicit-proxy-overview.png" alt-text="Diagram showing the components and flow of the Azure Firewall Explicit Proxy for Azure Arc." lightbox="media/azure-firewall-explicit-proxy/arc-explicit-proxy-overview.png":::
 
 ### Restrictions and current limitations
 
