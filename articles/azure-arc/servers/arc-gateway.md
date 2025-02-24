@@ -29,6 +29,10 @@ When the gateway is in place, traffic flows via the following hops: **Arc agentr
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
 
+> [!NOTE]
+> The above architecture diagram was created as part of Azure Arc Jumpstart. To download its source file in a high-resolution format, please visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+>
+
 ## Current limitations
 
 During the public preview, the following limitations apply. Consider these factors when planning your configuration.
