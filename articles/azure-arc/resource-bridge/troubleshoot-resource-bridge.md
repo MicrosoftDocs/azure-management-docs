@@ -9,7 +9,9 @@ ms.topic: troubleshooting
 
 This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
 
-For troubleshooting issues with Arc-enabled System Center Virtual Machine Manager, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> [!NOTE] 
+> - For *Arc-enabled System Center Virtual Machine Manager*, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For *Azure Local*, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
@@ -83,14 +85,6 @@ Networking changes in the infrastructure, environment or cluster can stop the ap
 If you run `az arcappliance` CLI commands for Arc resource bridge via remote PowerShell, you might see an authentication handshake failure error when trying to install the resource bridge on an Azure Local instance or another type of error.
 
 Using `az arcappliance` commands from remote PowerShell isn't currently supported. Instead, sign in to the node through Remote Desktop Protocol (RDP) or use a console session.
-
-### Resource bridge configurations can't be updated
-
-In this release, all the parameters are specified at time of creation. To update Arc resource bridge, you must delete it and redeploy it again.
-
-For example, if you specify the wrong location or subscription during deployment, resource creation fails. If you only try to recreate the resource without redeploying the resource bridge VM, the status gets stuck at `WaitForHeartBeat`.
-
-To resolve this issue, delete the appliance and update the appliance YAML file. After that, redeploy and create the resource bridge.
 
 ### Appliance Network Unavailable
 
@@ -261,7 +255,7 @@ To resolve the error, one or more network misconfigurations might need to be add
 
 ### Move Arc resource bridge location
 
-Resource move of Arc resource bridge isn't currently supported. Instead, delete the Arc resource bridge and redeploy it to the desired location.
+Resource move of Arc resource bridge isn't currently supported. 
 
 ## Azure Arc-enabled VMs on Azure Local issues
 
