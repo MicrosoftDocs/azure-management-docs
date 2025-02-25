@@ -11,7 +11,7 @@ manager: jsuri
 keywords: "VMM, Arc, Azure, System Center"
 ---
 
-# Deliver ESUs for SCVMM VMs through Arc
+# Deliver Extended Security Updates for SCVMM VMs through Arc
 
 This article provides the steps to procure and deliver ESUs to Windows Server 2012 and 2012 R2 SCVMM VMs onboarded to Azure Arc-enabled SCVMM.
 
