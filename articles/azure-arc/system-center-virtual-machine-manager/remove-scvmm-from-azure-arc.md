@@ -5,7 +5,7 @@ author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 02/25/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom:
@@ -14,11 +14,19 @@ ms.custom:
 
 # Remove your SCVMM environment from Azure Arc
 
-In this article, you learn how to cleanly remove your SCVMM managed environment from Azure Arc-enabled SCVMM. For SCVMM environments that you no longer want to manage with Azure Arc-enabled SCVMM, follow the steps in this article to:
+This article describes how to cleanly remove your SCVMM managed environment from Azure Arc-enabled SCVMM. For SCVMM environments that you no longer want to manage with Azure Arc-enabled SCVMM, follow these steps:
 
-1.	Remove the Azure Connected Machine agent from SCVMM virtual machines
-2.	Remove your SCVMM environment from Azure Arc
-3.	Remove Azure Arc resource bridge related items in your SCVMM management server
+1.	Remove the Azure Connected Machine agent from SCVMM virtual machines.
+2.	Remove your SCVMM environment from Azure Arc.
+3.	Remove Azure Arc resource bridge related items in your SCVMM management server.
+
+
+## Prerequisite
+
+Before you remove your SCVMM environment from Azure Arc, the following prerequisite must be met:
+
+- When you enable SCVMM resources in Azure, an Azure resource representing them is created. Before you can delete the SCVMM management server resource in Azure, you must delete all the Azure resources that represent your related SCVMM resources.
+
 
 ## 1. Remove the Azure Connected Machine agent from SCVMM virtual machines
 
@@ -26,14 +34,16 @@ To prevent continued billing of Azure management services after you remove the S
 
 Once guest management is enabled, you can install VM extensions on them and use Azure management services like the Log Analytics on them. To cleanly remove guest management, you must follow the steps below to remove any VM extensions from the virtual machine, disconnect the agent, and uninstall the software from your virtual machine. 
 
->[!Note]
+>[!NOTE]
 > It's important to complete each of these three steps to fully remove all the related software components from your virtual machines.
 
-### Step 1: Remove VM extensions
+### 1. Remove VM extensions
 
-If you've deployed Azure VM extensions to an Azure Arc-enabled SCVMM VM, you must uninstall the extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and they won't be recognized if you later connect the VM to Azure Arc again. To uninstall extensions, follow these steps:
+If you've deployed Azure VM extensions to an Azure Arc-enabled SCVMM VM, you must uninstall the extensions before disconnecting the agent or uninstalling the software. Uninstalling the Azure Connected Machine agent doesn't automatically remove extensions, and they won't be recognized if you later connect the VM to Azure Arc again.
 
-1. Go to [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview)
+To uninstall extensions, follow these steps:
+
+1. Sign in to the [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview)
 
 2. Select **SCVMM management servers**.
 
@@ -47,7 +57,7 @@ If you've deployed Azure VM extensions to an Azure Arc-enabled SCVMM VM, you mus
 
 7. Select the extensions and select **Uninstall**.
 
-### Step 2: Disconnect the agent from Azure Arc
+### 2. Disconnect the agent from Azure Arc
 
 Disconnecting the agent clears the local state of the agent and removes agent information from our systems. To disconnect the agent, sign in and run the following command as an administrator/root account on the virtual machine.
 
@@ -55,7 +65,7 @@ Disconnecting the agent clears the local state of the agent and removes agent in
     azcmagent disconnect --force-local-only
 ```
 
-### Step 3: Uninstall the agent
+### 3. Uninstall the agent
 
 #### For Windows virtual machines
 
@@ -116,6 +126,8 @@ To run the deboarding script, follow these steps:
 
 #### Inputs for the script
 
+The essential inputs required for the script to successfully remove your SCVMM environment from Azure Arc are:
+
 - **vmmServerId**: The Azure resource ID of the SCVMM management server resource. 
 
     For example: */subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/Synthetics/providers/Microsoft.ScVmm/VMMServers/scvmmserverresource*
@@ -128,10 +140,7 @@ To run the deboarding script, follow these steps:
 
 If you aren't using the deboarding script, follow these steps to remove the SCVMM resources manually:
 
->[!NOTE]
->When you enable SCVMM resources in Azure, an Azure resource representing them is created. Before you can delete the SCVMM management server resource in Azure, you must delete all the Azure resources that represent your related SCVMM resources.
-
-1. Go to [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview)
+1. Sign in to the [Azure Arc center in Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/overview).
 
 2. Select **SCVMM management servers**.
 
@@ -165,6 +174,6 @@ During onboarding, to create a connection between your SCVMM management server a
 
 You can find both the virtual machine and the template on the *resource pool/cluster/host/cloud* that you provided during [Azure Arc-enabled SCVMM onboarding](./quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
 
-## Next steps
+## Next step
 
 [Connect your System Center Virtual Machine Manager management server to Azure Arc again](./quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
