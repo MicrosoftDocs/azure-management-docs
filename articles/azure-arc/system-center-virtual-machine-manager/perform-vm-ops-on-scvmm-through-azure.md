@@ -31,13 +31,6 @@ This article describes how to perform various operations on the Azure Arc-enable
 To perform guest OS operations on Arc-enabled SCVMM VMs, you must enable guest management on the VMs. When you enable guest management, the Arc Connected Machine Agent is installed on the VM.
 
 
-## Prerequisites
-
-To enable guest management on the SCVMM VM, the following prerequisites must be met:
-
-
-
-
 ## Enable guest management
 
 Before you can install an extension, you must enable guest management on the SCVMM VM.  
@@ -54,7 +47,7 @@ To enable guest management, follow these steps:
 
    - is powered on and the resource bridge has network connectivity to the host running the VM.
 
-2. Sign in to [Azure portal](https://portal.azure.com).
+2. Sign in to the [Azure portal](https://portal.azure.com).
 
 3. Search for and select the SCVMM VM for which you want to enable guest management and select **Configuration**.
 
