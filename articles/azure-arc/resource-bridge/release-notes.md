@@ -9,12 +9,29 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases.
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3).
+We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3). When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
 
+## Version 1.4.0 (February 2025)
+
+- Support version: n
+- Appliance: 1.4.0
+- CLI extension: 1.4.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250102
+
+### Arc-enabled SCVMM
+
+- Validate command - Add custom timeouts
+
+### Arc resource bridge platform
+
+- Enhanced telemetry for error type categorization
+- Support for US Gov Virginia/Fairfax region
 
 ## Version 1.3.1 (December 2024)
 
+- Support version: n-1
 - Appliance: 1.3.1
 - CLI extension: 1.3.1
 - Kubernetes: 1.29.4
@@ -39,6 +56,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.3.0 (October 2024)
 
+- Support version: skipped, upgrades go directly to patch version 1.3.1
 - Appliance: 1.3.0
 - CLI extension: 1.3.0
 - SFS release: 0.1.34.10926
@@ -72,6 +90,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.2.0 (July 2024)
 
+- Support version: n-2
 - Appliance: 1.2.0
 - CLI extension: 1.2.0
 - SFS release: 0.1.32.10710
@@ -102,6 +121,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.1.1 (April 2024)
 
+- Support version: n-3
 - Appliance: 1.1.1
 - CLI extension: 1.1.1
 - SFS release: 0.1.26.10327
