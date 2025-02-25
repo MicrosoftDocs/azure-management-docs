@@ -2,7 +2,7 @@
 title: Perform VM operations on SCVMM VMs through Azure
 description: Learn how to manage SCVMM VMs in Azure through Arc-enabled SCVMM.
 ms.topic: how-to 
-ms.date: 03/12/2024
+ms.date: 02/25/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -14,15 +14,15 @@ manager: jsuri
 
 This article describes how to perform various operations on the Azure Arc-enabled SCVMM VMs such as:
 
-- **Start**, **Stop**, or **Restart** a VM from the top-navigation menu
+- **Start**, **Stop**, or **Restart** a VM from the top-navigation menu.
 
-- Control access from **Access control (IAM)** or add Azure tags from **Tags** under **Overview**. Alternatively, you can also add tags by selecting **Add tags** or edit them under **Essentials**
+- Control access from **Access control (IAM)** or add Azure tags from **Tags** under **Overview**. Alternatively, you can also add tags by selecting **Add tags** or edit them under **Essentials**.
 
-- Add, remove, or update network interfaces by navigating to **Networking** under **Settings**
+- Add, remove, or update network interfaces by navigating to **Networking** under **Settings**.
 
-- Add, remove, and update disks and update VM size (CPU cores, memory) from **Networking** and **Disk** option under **Settings** or from the **Properties** tab
+- Add, remove, and update disks and update VM size (CPU cores, memory) from **Networking** and **Disk** option under **Settings** or from the **Properties** tab.
 
-- Enable **Guest management** from **Configuration** under **Settings** or from the **Properties** tab
+- Enable **Guest management** from **Configuration** under **Settings** or from the **Properties** tab.
 
 - Install extensions (enabling guest management is required). All the [extensions](../servers/manage-vm-extensions.md#extensions) that are available with Arc-enabled Servers are supported.
 
@@ -35,7 +35,16 @@ To perform guest OS operations on Arc-enabled SCVMM VMs, you must enable guest m
 
 To enable guest management on the SCVMM VM, the following prerequisites must be met:
 
-Make sure your target machine:
+
+
+
+## Enable guest management
+
+Before you can install an extension, you must enable guest management on the SCVMM VM.  
+
+To enable guest management, follow these steps:
+
+1. Make sure your target machine:
 
    - is running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
 
@@ -45,18 +54,11 @@ Make sure your target machine:
 
    - is powered on and the resource bridge has network connectivity to the host running the VM.
 
+2. Sign in to [Azure portal](https://portal.azure.com).
 
-## Enable guest management
+3. Search for and select the SCVMM VM for which you want to enable guest management and select **Configuration**.
 
-Before you can install an extension, you must enable guest management on the SCVMM VM.  
-
-To enable guest management, follow these steps:
-
-1. Sign in to [Azure portal](https://portal.azure.com).
-
-2. Search for and select the SCVMM VM for which you want to enable guest management and select **Configuration**.
-
-3. Select **Enable guest management** and provide the administrator username and password to enable guest management.  Then select **Apply**.
+4. Select **Enable guest management** and provide the administrator username and password to enable guest management.  Then select **Apply**.
 
 For Linux, use the root account, and for Windows, use an account that is a member of the Local Administrators group.
 
@@ -73,7 +75,7 @@ If you no longer need the VM, you can delete it.
 
 To delete a virtual machine, follow these steps:
 
-1. Sign in to [Azure portal](https://portal.azure.com).
+1. Sign in to the [Azure portal](https://portal.azure.com).
 
 2. Search for and select the VM you want to delete.
 
