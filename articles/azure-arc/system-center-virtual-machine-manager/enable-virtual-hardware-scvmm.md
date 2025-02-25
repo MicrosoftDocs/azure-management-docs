@@ -28,7 +28,7 @@ Before you enable virtual hardware and VM CRUD capabilities, the following prere
 
 To enable the virtual hardware management and self-service access, follow these steps:
 
-1. Sign in to [Azure portal](https://portal.azure.com/).
+1. Sign in to the [Azure portal](https://portal.azure.com/).
 
 1. Navigate to the Virtual machines inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM management server** status under virtual hardware management.
 
