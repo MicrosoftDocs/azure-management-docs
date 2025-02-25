@@ -12,7 +12,7 @@ ms.custom: subject-resourcegraph-sample
 
 This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Container Registry.
 
-[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
+[!INCLUDE [azure-resource-graph-copilot](~/reusable-content/ce-skilling/azure/includes/azure-resource-graph-copilot.md)]
 
 ## Sample queries
 

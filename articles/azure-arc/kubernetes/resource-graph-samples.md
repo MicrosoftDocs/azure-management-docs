@@ -10,7 +10,7 @@ ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-
 
 This article provides some examples of [Azure Resource Graph](/azure/governance/resource-graph/overview) queries for Azure Arc-enabled Kubernetes.
 
-[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
+[!INCLUDE [azure-resource-graph-copilot](~/reusable-content/ce-skilling/azure/includes/azure-resource-graph-copilot.md)]
 
 ## Sample queries
 
