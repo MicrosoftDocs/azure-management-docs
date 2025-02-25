@@ -2,7 +2,7 @@
 title:  Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
 description: Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
 ms.topic: how-to 
-ms.date: 01/05/2024
+ms.date: 02/25/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -12,19 +12,23 @@ manager: jsuri
 
 # Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
 
-In this article, you learn how to enable virtual hardware management and VM CRUD operational ability on an SCVMM VM that has Arc agents installed via the Arc-enabled Servers route.
+This article describes how to enable virtual hardware management and VM CRUD operational ability on an SCVMM VM that has Arc agents installed via the Arc-enabled Servers route.
 
 >[!IMPORTANT]
 > This article is applicable only if you've installed Arc agents directly in SCVMM machines before onboarding to Azure Arc-enabled SCVMM by deploying Arc resource bridge. 
 
 ## Prerequisites
 
+Before you enable virtual hardware and VM CRUD capabilities, the following prerequisites must be met:
+
 - An Azure subscription and resource group where you have *Arc ScVmm VM Administrator* role. 
 - Your SCVMM management server instance must be [onboarded](quickstart-connect-system-center-virtual-machine-manager-to-arc.md) to Azure Arc.
 
 ## Enable virtual hardware management and self-service access to SCVMM VMs with Arc agent installed
 
-1. From your browser, go to [Azure portal](https://portal.azure.com/).
+To enable the virtual hardware management and self-service access, follow these steps:
+
+1. Sign in to [Azure portal](https://portal.azure.com/).
 
 1. Navigate to the Virtual machines inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM management server** status under virtual hardware management.
 
@@ -34,7 +38,7 @@ In this article, you learn how to enable virtual hardware management and VM CRUD
 
 1. After you link to SCVMM management server, the virtual hardware status will reflect as **Enabled** for all the VMs, and you can perform virtual hardware operations. 
 
-## Next steps
+## Next step
 
 [Set up and manage self-service access to SCVMM resources](set-up-and-manage-self-service-access-scvmm.md).
 
