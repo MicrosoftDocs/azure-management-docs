@@ -22,7 +22,7 @@ landingContent:
         links:
           - text: Install Extension
             url: install-edge-volumes.md
-          - text: Install Cache Volumes
+          - text: Install Cache Volumes (preview)
             url: install-cache-volumes.md
   - title: Resources
     linkLists:

@@ -27,7 +27,7 @@ Azure Container Storage enabled by Azure Arc serves as a native persistent stora
 
 ## What are the different Azure Container Storage enabled by Azure Arc offerings?
 
-The original Azure Container Storage enabled by Azure Arc offering is [*Cache Volumes*](cache-volumes-overview.md). The newest offering is [*Edge Volumes*](install-edge-volumes.md).
+The original Azure Container Storage enabled by Azure Arc offering is [*Cache Volumes (preview)*](cache-volumes-overview.md). The newest offering is [*Edge Volumes*](install-edge-volumes.md).
 
 ## What are Azure Container Storage enabled by Azure Arc Edge Volumes?
 

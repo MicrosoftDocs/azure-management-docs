@@ -1,5 +1,5 @@
 ---
-title: Install Cache Volumes
+title: Install Cache Volumes (preview)
 description: Learn how to install the Cache Volumes offering from Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -8,7 +8,7 @@ ms.date: 10/29/2024
 
 ---
 
-# Install Azure Container Storage enabled by Azure Arc Cache Volumes
+# Install Azure Container Storage enabled by Azure Arc Cache Volumes (preview)
 
 This article describes the steps to install the Azure Container Storage enabled by Azure Arc extension.
 
