@@ -8,41 +8,62 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 
 # Remotely and securely configure servers using Run command (Preview)
 
-Run Command on Azure Arc-enabled servers (Public Preview) uses the Connected Machine agent to let you remotely and securely run a script inside your servers. This can be helpful for myriad scenarios across troubleshooting, recovery, diagnostics, and maintenance.
+Use the Run command on Azure Arc-enabled servers (Public Preview) to securely execute scripts or commands on virtual machines (VMs) without connecting to them directly through Remote Desktop Protocol or SSH. 
 
-## Supported environment and configuration
+Because you don't have to log into each VM individually, the Run command lowers the overhead and effort to perform administrative tasks like installing software, restarting services, or troublehsooting VM performance issues.   
 
-- **Experiences:** Run Command is currently supported through Azure CLI and PowerShell. 
+When you use the Run command to execute a script or command from the Azure CLI or Powershell, Azure directs the Connected Machine agent installed on the VM to complete the specified action. You don't have to install any additional extensions to the VM.
 
-- **Operating Systems:** Run Command supports both Windows and Linux operating systems. 
+## Prerequisites
 
-- **Environments:** Run Command supports non-Azure environments including on-premises, VMware, SCVMM, AWS, GCP, and OCI.  
-
-- **Cost:** Run Command is free of charge, however storage of scripts in Azure may incur billing.
-
-- **Configuration:** Run Command doesn't require more configuration or the deployment of any extensions. The
-Connected Machine agent version must be 1.33 or higher. 
+- The Connected Machine agent version on the VM must be 1.33 or higher.
 
 
-## Limiting access to Run Command using RBAC
+## Supported environments
 
-Listing the run commands or showing details of a command requires the `Microsoft.HybridCompute/machines/runCommands/read` permission. The built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher levels have this permission.
+The Run command is available across many configurations: 
 
-Running a command requires the `Microsoft.HybridCompute/machines/runCommands/write` permission. The [Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher levels have this permission.
+- **Experiences:** Azure CLI and PowerShell 
 
-You can use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) to use Run Command.
+- **Operating Systems:** Windows and Linux
 
-## Blocking run commands locally
+- **Environments:** Non-Azure environments including on-premises, VMware, SCVMM, AWS, GCP, and OCI  
 
-The Connected Machine agent supports local configurations that allow you to set an allowlist or a blocklist. See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+- **Cost:** Free of charge. However, storage of scripts in Azure may incur billing. 
 
-For Windows:
+
+## Maintain VM security
+
+While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure the VM also stays secure.
+
+- Limit access to the Run command in a subscription
+- Allow or block certain Run commands locally 
+
+### Limit access to Run Command using role-based access (RBAC)
+
+You can use RBAC to control what roles in a subscription are able to execute commands and scripts with the Run command. The following table describes action you can take with the Run command, the permission needed to perform the action, and the RBAC role that grants the permission.
+
+|Action  |Permission  | RBAC with permission |
+|---------|---------|---------|
+|- List Run commands - Show details of command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
+|Run a command|`Microsoft.HybridCompute/machines/runCommands/write`|[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher|
+
+To control access to the Run command functionality, use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) that grants a Run command permission.
+
+### Block run commands locally
+
+You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+
+
+#### Windows
+The following example adds the Run command extension to a blocklist on a Windows VM.
 
 `azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"`
 
-For Linux:
+#### Linux
+The following example add the Run command extensions to an allowlist on a Linux VM.
 
-`azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerlinux"`
+`azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
 
 
 ## Azure CLI
