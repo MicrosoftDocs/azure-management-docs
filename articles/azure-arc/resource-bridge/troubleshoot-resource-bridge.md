@@ -251,7 +251,7 @@ To resolve the error, one or more network misconfigurations might need to be add
 
 1. Appliance VM needs to be able to reach a DNS server that can resolve internal names, such as vCenter endpoint for vSphere or cloud agent endpoint for Azure Local. The DNS server also needs to be able to resolve external/internal addresses, such as Azure service addresses and container registry names for download of the Arc resource bridge container images from the cloud.
 
-   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. If not, [delete the appliance](/cli/azure/arcappliance/delete), recreate the Arc resource bridge configuration files with the correct DNS server settings, and then deploy Arc resource bridge using the new configuration files.
+   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. 
 
 ### Move Arc resource bridge location
 
@@ -261,7 +261,7 @@ Resource move of Arc resource bridge isn't currently supported.
 
 For general help resolving issues related to Azure Arc-enabled VMs on Azure Local, see [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms).
 
-If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, do not attempt to reinstall or delete the Arc Resource Bridge. Instead, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance.
+If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance. You should not delete the Arc Resource Bridge VM without guidance from Microsoft Support.
 
 ### Action failed - no such host
 
