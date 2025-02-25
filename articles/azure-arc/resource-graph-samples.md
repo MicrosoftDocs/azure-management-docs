@@ -10,7 +10,7 @@ ms.custom: subject-resourcegraph-sample
 
 This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Arc.
 
-[!INCLUDE [azure-resource-graph-copilot](~/reusable-content/ce-skilling/azure/includes/subfolder/azure-resource-graph-copilot.md)]
+[!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
 
 ## General Arc sample queries
 
