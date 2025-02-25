@@ -1,6 +1,6 @@
 ---
 title: "Azure RBAC on Azure Arc-enabled Kubernetes clusters"
-ms.date: 02/14/2025
+ms.date: 02/25/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Use Azure RBAC for authorization checks on Azure Arc-enabled Kubernetes clusters."
@@ -8,7 +8,7 @@ description: "Use Azure RBAC for authorization checks on Azure Arc-enabled Kuber
 
 # Use Azure RBAC on Azure Arc-enabled Kubernetes clusters
 
-Kubernetes [ClusterRoleBinding and RoleBinding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) object types help to define authorization in Kubernetes natively. By using this feature, you can use Microsoft Entra ID and role assignments in Azure to control authorization checks on the cluster. Azure role assignments let you granularly control which users can read, write, and delete Kubernetes objects such as deployment, pod, and service.
+You can use [Microsoft Entra ID ](/entra/fundamentals/whatis)and [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) to control authorization checks on your Azure Arc-enabled Kubernetes cluster. Azure role assignments let you granularly control which users can read, write, and delete Kubernetes objects such as deployment, pod, and service. Kubernetes [ClusterRoleBinding and RoleBinding](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) object types help to define authorization in Kubernetes natively.
 
 For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled Kubernetes](conceptual-azure-rbac.md).
 
@@ -16,7 +16,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 
 - [Install or upgrade the Azure CLI](/cli/azure/install-azure-cli) to the latest version.
 
-- Install the latest version of `connectedk8s` Azure CLI extension:
+- Install the latest version of the `connectedk8s` Azure CLI extension:
 
     ```azurecli
     az extension add --name connectedk8s
@@ -33,13 +33,13 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
   - [Upgrade your agents](agent-upgrade.md#manually-upgrade-agents) to the latest version.
 
 > [!NOTE]
-> Azure RBAC is not available for Red Hat OpenShift or managed Kubernetes offerings where user access to the API server is restricted (ex: Amazon Elastic Kubernetes Service (EKS), Google Kubernetes Engine (GKE)).
+> Azure RBAC isn't supported for Red Hat OpenShift or managed Kubernetes offerings where user access to the API server is restricted (such as Amazon Elastic Kubernetes Service (EKS) or Google Kubernetes Engine (GKE)).
 >
-> Azure RBAC does not currently support Kubernetes clusters operating on ARM64 architecture. Please use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) to manage access control for ARM64-based Kubernetes clusters. 
-> 
+> Azure RBAC doesn't currently support Kubernetes clusters operating on Arm64 architecture. For these clusters, use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) to manage access control 
+>
 > For Azure Kubernetes Service (AKS) clusters, this [feature is available natively](/azure/aks/manage-azure-rbac) and doesn't require the AKS cluster to be connected to Azure Arc.
 >
-> For Azure Kubernetes Service (AKS) clusters enabled by Azure Arc on Azure Local 23H2, enabling Azure RBAC is currently only supported during Kubernetes cluster creation. To create an AKS cluster enabled by Azure Arc with Azure RBAC enabled, follow the [Use Azure RBAC for Kubernetes authorization](/azure/aks/hybrid/azure-rbac-23h2) guide. Note that Azure RBAC is not supported for Azure Local, version 22H2.
+> For Azure Kubernetes Service (AKS) clusters enabled by Azure Arc on Azure Local, version 23H2, Azure RBAC is currently supported only if enabled when the clusters are created. To create an AKS cluster enabled by Azure Arc with Azure RBAC enabled, see [Use Azure RBAC for Kubernetes authorization](/azure/aks/hybrid/azure-rbac-23h2). Azure RBAC is not supported for Azure Local, version 22H2.
 
 ## Enable Azure RBAC on the cluster
 
@@ -62,13 +62,15 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
    ```
 
    > [!NOTE]
-   > Before you run the preceding command, ensure that the `kubeconfig` file on the machine is pointing to the cluster on which you'll enable the Azure RBAC feature.
+   > Before you run the `enable-features` command, ensure that the `kubeconfig` file on the machine points to the cluster on which you want to enable Azure RBAC.
    >
-   > Use `--skip-azure-rbac-list` with the preceding command for a comma-separated list of usernames, emails, and OpenID connections undergoing authorization checks by using Kubernetes native `ClusterRoleBinding` and `RoleBinding` objects instead of Azure RBAC.
+   > Use `--skip-azure-rbac-list` with this command for a comma-separated list of usernames, emails, and OpenID connections undergoing authorization checks by using Kubernetes native `ClusterRoleBinding` and `RoleBinding` objects instead of Azure RBAC.
+
+Next, follow the steps in the appropriate section, depending on whether you're using a generic cluster where no reconciler is running on the `apiserver` specification, or a cluster created by using Cluster API.
 
 ### Generic cluster where no reconciler is running on the `apiserver` specification
 
-1. SSH into every master node of the cluster and take the following steps:
+1. SSH into every master node of the cluster, then complete the following steps:
 
     **If your `kube-apiserver` is a [static pod](https://kubernetes.io/docs/tasks/configure-pod-container/static-pod/):**
 
@@ -103,7 +105,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
            readOnly: true
        ```
 
-    **If your `kube-apiserver` is a not a static pod:**
+    **If your `kube-apiserver` isn't a static pod:**
 
     1. Open the `apiserver` manifest in edit mode:
 
@@ -138,7 +140,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
    - --authorization-mode=Node,RBAC,Webhook
    ```
 
-   If the Kubernetes cluster is version 1.19.0 or later, you also need to set the following `apiserver` argument:
+   Set the following `apiserver` argument:
 
    ```yml
    - --authentication-token-webhook-version=v1
@@ -164,9 +166,9 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 
 1. Edit the `KubeadmControlPlane` object by running `kubectl edit kcp <clustername>-control-plane`:
 
-   1. Add the following snippet under `files`:
+   1. Add the following specification under `files`:
 
-      ```console
+      ```yml
       - contentFrom:
           secret:
             key: guard-authn-webhook.yaml
@@ -183,9 +185,9 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
         permissions: "0644"
       ```
 
-   1. Add the following snippet under `apiServer` > `extraVolumes`:
+   1. Add the following specification under `apiServer` > `extraVolumes`:
 
-      ```console
+      ```yml
       - hostPath: /etc/kubernetes/guard-authn-webhook.yaml
           mountPath: /etc/guard/guard-authn-webhook.yaml
           name: guard-authn
@@ -196,9 +198,9 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
           readOnly: true
       ```
 
-   1. Add the following snippet under `apiServer` > `extraArgs`:
+   1. Add the following specification under `apiServer` > `extraArgs`:
 
-      ```console
+      ```yml
       authentication-token-webhook-cache-ttl: 5m0s
       authentication-token-webhook-config-file: /etc/guard/guard-authn-webhook.yaml
       authentication-token-webhook-version: v1
@@ -216,37 +218,38 @@ Owners of the Azure Arc-enabled Kubernetes resource can use either built-in role
 
 ### Built-in roles
 
+The following built-in roles provide access to perform common tasks on Kubernetes clusters. These roles can be granted to Microsoft Entra ID users, groups, or service principals.
+
 | Role | Description |
 |---|---|
 | [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
 | [Azure Arc Kubernetes Writer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-writer) | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing secrets and running pods as any `ServiceAccount` value in the namespace, so it can be used to gain the API access levels of any `ServiceAccount` value in the namespace. |
-| [Azure Arc Kubernetes Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-admin) | Allows admin access. It's intended to be granted within a namespace through `RoleBinding`. If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. This role doesn't allow write access to resource quota or to the namespace itself. |
-| [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows superuser access to execute any action on any resource. When you use it in `ClusterRoleBinding`, it gives full control over every resource in the cluster and in all namespaces. When you use it in `RoleBinding`, it gives full control over every resource in the role binding's namespace, including the namespace itself.|
+| [Azure Arc Kubernetes Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-admin) | Allows admin access. This role is often granted within a namespace through [the `RoleBinding` object](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding). If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. However, this role doesn't allow write access to resource quota or to the namespace itself. |
+| [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows the ability to execute any action on any resource within the granted scope. When you use it in []`ClusterRoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the cluster and in all namespaces. When you use it in []`RoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the role binding's namespace, including the namespace itself.|
 
-You can create role assignments scoped to the Azure Arc-enabled Kubernetes cluster in the Azure portal on the **Access Control (IAM)** pane of the cluster resource. You can also use the following Azure CLI commands:
+You can create built-in role assignments scoped to the cluster by using either the Azure portal or the Azure CLI. However, only Azure CLI can be used to create role assignments scoped to namespaces.
+
+To create role assignments scoped to the Azure Arc-enabled Kubernetes cluster in the Azure portal, navigate to the cluster and then select **Access Control (IAM)** from the service menu.
+
+To create role assignments by using Azure CLI, use the following command:
 
 ```azurecli
 az role assignment create --role "Azure Arc Kubernetes Cluster Admin" --assignee <AZURE-AD-ENTITY-ID> --scope $ARM_ID
 ```
 
-In those commands, `AZURE-AD-ENTITY-ID` can be a username (for example, `testuser@mytenant.onmicrosoft.com`) or even the `appId` value of a service principal.
+`AZURE-AD-ENTITY-ID` can be a username (for example, `testuser@mytenant.onmicrosoft.com`) or the `appId` value of a service principal.
 
-Here's another example of creating a role assignment scoped to a specific namespace within the cluster:
+To create a role assignment scoped to a specific namespace within the cluster, modify the scope:
 
 ```azurecli
 az role assignment create --role "Azure Arc Kubernetes Viewer" --assignee <AZURE-AD-ENTITY-ID> --scope $ARM_ID/namespaces/<namespace-name>
 ```
 
-> [!NOTE]
-> You can create role assignments scoped to the cluster by using either the Azure portal or the Azure CLI. However, only Azure CLI can be used to create role assignments scoped to namespaces.
-
 ### Custom roles
 
-You can choose to create your own role definition for use in role assignments.
+You can choose to create your own role definition for use in role assignments. For more information, see [the full list of data actions that you can use to construct a role definition](/azure/role-based-access-control/resource-provider-operations#microsoftkubernetes).
 
-Walk through the following example of a role definition that allows a user to only read deployments. For more information, see [the full list of data actions that you can use to construct a role definition](/azure/role-based-access-control/resource-provider-operations#microsoftkubernetes).
-
-Copy the following JSON object into a file called *custom-role.json*. Replace the `<subscription-id>` placeholder with the actual subscription ID. The custom role uses one of the data actions and lets you view all deployments in the scope (cluster or namespace) where the role assignment is created.
+The following example shows a custom role definition that allows a user to read deployments, but provides no other access. The custom role uses one of the data actions and lets you view all deployments in the scope (cluster or namespace) where the role assignment is created.
 
 ```json
 {
@@ -264,13 +267,15 @@ Copy the following JSON object into a file called *custom-role.json*. Replace th
 }
 ```
 
+To use this role definition, copy the following JSON object into a file called *custom-role.json*. Replace the `<subscription-id>` placeholder with the actual subscription ID. Then, complete these steps:
+
 1. Create the role definition by running the following command from the folder where you saved *custom-role.json*:
 
    ```azurecli
    az role definition create --role-definition @custom-role.json
    ```
 
-1. Create a role assignment by using this custom role definition:
+1. Create a role assignment to assign this custom role definition:
 
    ```azurecli
    az role assignment create --role "Arc Deployment Viewer" --assignee <AZURE-AD-ENTITY-ID> --scope $ARM_ID/namespaces/<namespace-name>
@@ -280,8 +285,8 @@ Copy the following JSON object into a file called *custom-role.json*. Replace th
 
 There are two ways to get the *kubeconfig* file that you need to access the cluster:
 
-- You use the [cluster Connect](cluster-connect.md) feature (`az connectedk8s proxy`) of the Azure Arc-enabled Kubernetes cluster.
-- The cluster admin shares the *kubeconfig* file with every other user.
+- Use the [cluster connect](cluster-connect.md) feature (`az connectedk8s proxy`) of the Azure Arc-enabled Kubernetes cluster.
+- The cluster admin can share the *kubeconfig* file with every user.
 
 ### Use cluster connect
 
@@ -294,10 +299,6 @@ az connectedk8s proxy -n <clusterName> -g <resourceGroupName>
 After the proxy process is running, you can open another tab in your console to [start sending your requests to the cluster](#send-requests-to-the-cluster).
 
 ### Use a shared kubeconfig file
-
-Using a shared kubeconfig requires slightly different steps depending on your Kubernetes version.
-
-### [Kubernetes version >= 1.26](#tab/kubernetes-latest)
 
 1. Run the following command to set the credentials for the user. Specify `serverApplicationId` as `6256c85f-0aad-4d50-b960-e6e9b21efe35` and `clientApplicationId` as `3f4439ff-e698-4d6d-84fe-09c9d574f06b`:
 
@@ -331,12 +332,9 @@ Using a shared kubeconfig requires slightly different steps depending on your Ku
        name: azure
    ```
 
-   > [!NOTE]
-   >[Exec plugin](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins) is a Kubernetes authentication strategy that allows `kubectl` to execute an external command to receive user credentials to send to `apiserver`. Starting with Kubernetes version 1.26, the default Azure authorization plugin is no longer included in `client-go` and `kubectl`. With later versions, in order to use the exec plugin to receive user credentials you must use [Azure Kubelogin](https://azure.github.io/kubelogin/index.html), a `client-go` credential (exec) plugin that implements Azure authentication.
+1. [Exec plugin](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#client-go-credential-plugins) is a Kubernetes authentication strategy that allows `kubectl` to execute an external command to receive user credentials to send to `apiserver`. Starting with Kubernetes version 1.26, in order to use the exec plugin to receive user credentials, you must use [Azure kubelogin](https://azure.github.io/kubelogin/index.html), a `client-go` credential (exec) plugin that implements Azure authentication. To install Azure kubelogin:
 
-1. Install Azure Kubelogin:
-
-   - For Windows or Mac, follow the [Azure Kubelogin installation instructions](https://azure.github.io/kubelogin/install.html#installation).
+   - For Windows or Mac, follow the [Azure kubelogin installation instructions](https://azure.github.io/kubelogin/install.html#installation).
    - For Linux or Ubuntu, download the [latest version of kubelogin](https://github.com/Azure/kubelogin/releases), then run the following commands:
 
      ```bash
@@ -357,42 +355,6 @@ Using a shared kubeconfig requires slightly different steps depending on your Ku
    kubelogin convert-kubeconfig --pop-enabled --pop-claims 'u=<ARM ID of cluster>"
    ```
 
-### [Kubernetes < v1.26](#tab/Kubernetes-earlier)
-
-1. Run the following command to set the credentials for the user. Specify `serverApplicationId` as `6256c85f-0aad-4d50-b960-e6e9b21efe35` and `clientApplicationId` as `3f4439ff-e698-4d6d-84fe-09c9d574f06b`:
-
-   ```console
-   kubectl config set-credentials <testuser>@<mytenant.onmicrosoft.com> \
-   --auth-provider=azure \
-   --auth-provider-arg=environment=AzurePublicCloud \
-   --auth-provider-arg=client-id=<clientApplicationId> \
-   --auth-provider-arg=tenant-id=<tenantId> \
-   --auth-provider-arg=apiserver-id=<serverApplicationId>
-   ```
-
-1. Open the *kubeconfig* file that you created earlier. Under `contexts`, verify that the context associated with the cluster points to the user credentials that you created in the previous step. To set the current context to these user credentials, run the following command:
-
-   ```console
-   kubectl config set-context --current=true --user=<testuser>@<mytenant.onmicrosoft.com>
-   ```
-
-1. Add the **config-mode** setting under `user` > `config`:
-  
-   ```console
-   name: testuser@mytenant.onmicrosoft.com
-   user:
-       auth-provider:
-       config:
-           apiserver-id: $SERVER_APP_ID
-           client-id: $CLIENT_APP_ID
-           environment: AzurePublicCloud
-           tenant-id: $TENANT_ID
-           config-mode: "1"
-       name: azure
-   ```
-
----
-
 ## Send requests to the cluster
 
 1. Run any `kubectl` command. For example:
@@ -406,13 +368,7 @@ Using a shared kubeconfig requires slightly different steps depending on your Ku
 
 1. Enter the username (`testuser@mytenant.onmicrosoft.com`) and the associated password.
 
-1. If you see an error message like this, it means you're unauthorized to access the requested resource:
-
-    ```console
-    Error from server (Forbidden): nodes is forbidden: User "testuser@mytenant.onmicrosoft.com" cannot list resource "nodes" in API group "" at the cluster scope: User doesn't have access to the resource in Azure. Update role assignment to allow access.
-    ```
-
-    An administrator needs to create a new role assignment that authorizes this user to have access on the resource.
+1. If you see an error message that says the users doesn't have access to the resource in Azure, it means you're unauthorized to access the requested resource. In this case, an administrator in your Azure tenant needs to create a new role assignment that authorizes this user to have access on the resource.
 
 <a name='use-conditional-access-with-azure-ad'></a>
 
@@ -421,19 +377,23 @@ Using a shared kubeconfig requires slightly different steps depending on your Ku
 When you're integrating Microsoft Entra ID with your Azure Arc-enabled Kubernetes cluster, you can also use [Conditional Access](/azure/active-directory/conditional-access/overview) to control access to your cluster.
 
 > [!NOTE]
-> [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview) is a Microsoft Entra ID P2 capability.
+> [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing).
 
 To create an example Conditional Access policy to use with the cluster:
 
 1. At the top of the Azure portal, search for and select **Microsoft Entra ID**.
-1. On the menu for Microsoft Entra ID on the left side, select **Enterprise applications**.
-1. On the menu for enterprise applications on the left side, select **Conditional Access**.
-1. On the menu for Conditional Access on the left side, select **Policies** > **New policy**.
-1. Enter a name for the policy, such as **arc-k8s-policy**.
-1. Select **Users and groups**. Under **Include**, choose **Select users and groups**. Then choose the users and groups where you want to apply the policy. For this example, choose the same Microsoft Entra group that has administrative access to your cluster.
-1. Select **Cloud apps or actions**. Under **Include**, choose **Select apps**. Then search for and select the server application that you created earlier.
-1. Under **Access controls**, select **Grant**. Select **Grant access** > **Require device to be marked as compliant**.
-1. Under **Enable policy**, select **On** > **Create**.
+1. In the service menu, under **Manage**, select **Enterprise applications**.
+1. In the service menu, under **Security**, select **Conditional Access**.
+1. In the service menu, select **Policies**. Then select **Create new policy**.
+1. Enter a name for the policy, such as `arc-k8s-policy`.
+1. Under **Assignments**, select the current value under **Users or workload identities**. Then, under **What does this policy apply to?**, verify that **Users and groups** is selected.
+1. Under **Include**, choose **Select users and groups**. Then choose the users and groups where you want to apply the policy. For this example, choose the same Microsoft Entra group that has administrative access to your cluster.
+1. Select the current value under **Cloud apps or actions**. Then, under **Select what this policy applies to**, verify that **Cloud apps** is selected.
+1. Under **Include**, choose **Select resources**. Then search for and select the server application that you created earlier.
+1. Under **Access controls**, select the current value under **Grant**. Then, select **Grant access**.
+1. Check the box for **Require device to be marked as compliant**, then select **Select**.
+1. Under **Enable policy**, select **On**.
+1. To apply the Conditional Access policy, select **Create**.
 
 Access the cluster again. For example, run the `kubectl get nodes` command to view nodes in the cluster:
 
@@ -441,53 +401,41 @@ Access the cluster again. For example, run the `kubectl get nodes` command to vi
 kubectl get nodes
 ```
 
-Follow the instructions to sign in again. An error message states that you're successfully logged in, but your admin requires the device that's requesting access to be managed by Microsoft Entra ID in order to access the resource. Follow these steps:
+To confirm that the policy is applied correctly, follow the instructions to sign in again. An error message states that you're successfully logged in, but your admin requires the device that's requesting access to be managed by Microsoft Entra ID in order to access the resource. Follow these steps to view more details:
 
 1. In the Azure portal, go to **Microsoft Entra ID**.
-1. Select **Enterprise applications**. Then under **Activity**, select **Sign-ins**.
-1. An entry at the top shows **Failed** for **Status** and **Success** for **Conditional Access**. Select the entry, and then select **Conditional Access** in **Details**. Notice that your Conditional Access policy is listed.
+1. In the service menu, under **Manage**, select **Enterprise applications**.
+1. In the service menu, under **Activity**, select **Sign-in logs**.
+1. Select the entry at the top that shows **Failed** for **Status** and **Success** for **Conditional Access**. Then, under **Details**, select **Conditional Access.** You'll see the Conditional Access policy that you created, requiring that your device must be compliant.
 
 <a name='configure-just-in-time-cluster-access-with-azure-ad'></a>
 
 ## Configure just-in-time cluster access with Microsoft Entra ID
 
-Another option for cluster access control is to use [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure) for just-in-time requests.
+Another option for cluster access control is [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure). Microsoft Entra PIM lets you limit general permissions to a lower level, while permitting users to temporarily elevate their access to a higher level when needed for just-in-time requests.
 
 >[!NOTE]
-> [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more on Microsoft Entra ID SKUs, see the [pricing guide](https://azure.microsoft.com/pricing/details/active-directory/).
+> [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing).
 
 To configure just-in-time access requests for your cluster, complete the following steps:
 
 1. At the top of the Azure portal, search for and select **Microsoft Entra ID**.
 1. Take note of the tenant ID. For the rest of these instructions, we'll refer to that ID as `<tenant-id>`.
+1. In the service menu, under **Manage**, select **Groups**. Then select **New group**.
+1. For **Group type**, verify that **Security** is selected. Enter a group name, such as `myJITGroup`. Make any additional selections, then select **Create**.
 
-    :::image type="content" source="media/azure-rbac/jit-get-tenant-id.png" alt-text="Screenshot showing Microsoft Entra ID details in the Azure portal." lightbox="media/azure-rbac/jit-get-tenant-id.png":::
+    :::image type="content" source="media/azure-rbac/jit-new-group-created.png" alt-text="Screenshot showing details for the new group in the Azure portal.":::
 
-1. On the menu for Microsoft Entra ID on the left side, under **Manage**, select **Groups** > **New group**.
-
-1. Make sure that **Security** is selected for **Group type**.  Enter a group name, such as **myJITGroup**. Under **Microsoft Entra roles can be assigned to this group (Preview)**, select **Yes**. Finally, select **Create**.
-
-    :::image type="content" source="media/azure-rbac/jit-new-group-created.png" alt-text="Screenshot showing details for the new group in the Azure portal." lightbox="media/azure-rbac/jit-new-group-created.png":::
-
-1. You're brought back to the **Groups** page. Select your newly created group and take note of the object ID. For the rest of these instructions, we'll refer to this ID as `<object-id>`.
-
-    :::image type="content" source="media/azure-rbac/jit-get-object-id.png" alt-text="Screenshot showing the object ID for the new group in the Azure portal." lightbox="media/azure-rbac/jit-get-object-id.png":::
-
-1. Back in the Azure portal, on the menu for **Activity** on the left side, select **Privileged Access (Preview)**. Then select **Enable Privileged Access**.
-
-    :::image type="content" source="media/azure-rbac/jit-enabling-priv-access.png" alt-text="Screenshot showing selections for enabling privileged access in the Azure portal." lightbox="media/azure-rbac/jit-enabling-priv-access.png":::
-
+1. You're brought back to the **Groups** page. Search for and slect your newly created group, and take note of the object ID. For the rest of these instructions, we'll refer to this ID as `<object-id>`.
+1. In the service menu, under **Activity**, select **Privileged Identity Management**. Then select **Enable PIM for this group**.
 1. Select **Add assignments** to begin granting access.
+1. Under **Select role**, choose **Member**. Then select the users and groups to whom you want to grant cluster access. A group admin can modify these assignments at any time. When you're ready to move on, select **Next**.
 
-    :::image type="content" source="media/azure-rbac/jit-add-active-assignment.png" alt-text="Screenshot showing how to add active assignments in the Azure portal." lightbox="media/azure-rbac/jit-add-active-assignment.png":::
+    :::image type="content" source="media/azure-rbac/jit-adding-assignment.png" alt-text="Screenshot showing how to add assignments in the Azure portal.":::
 
-1. Select a role of **Member**, and select the users and groups to whom you want to grant cluster access. A group admin can modify these assignments at any time. When you're ready to move on, select **Next**.
+1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**. For more information on assignment types, see [Assign eligibility for a privileged access group (preview) in Privileged Identity Management](/azure/active-directory/privileged-identity-management/groups-assign-member-owner#assign-an-owner-or-member-of-a-group).
 
-    :::image type="content" source="media/azure-rbac/jit-adding-assignment.png" alt-text="Screenshot showing how to add assignments in the Azure portal." lightbox="media/azure-rbac/jit-adding-assignment.png":::
-
-1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**. For more on assignment types, see [Assign eligibility for a privileged access group (preview) in Privileged Identity Management](/azure/active-directory/privileged-identity-management/groups-assign-member-owner#assign-an-owner-or-member-of-a-group).
-
-    :::image type="content" source="media/azure-rbac/jit-set-active-assignment.png" alt-text="Screenshot showing assignment properties in the Azure portal." lightbox="media/azure-rbac/jit-set-active-assignment.png":::
+    :::image type="content" source="media/azure-rbac/jit-set-active-assignment.png" alt-text="Screenshot showing assignment properties in the Azure portal." :::
 
 After you've made the assignments, verify that just-in-time access is working by accessing the cluster. For example, use the `kubectl get nodes` command to view nodes in the cluster:
 
@@ -508,5 +456,5 @@ node-3    Ready    agent    6m33s    v1.18.14
 
 ## Next steps
 
-- Securely connect to the cluster by using [Cluster Connect](cluster-connect.md).
 - Read about the [architecture of Azure RBAC on Arc-enabled Kubernetes](conceptual-azure-rbac.md).
+- Securely connect to an Arc-enabled Kubernetes cluster by using [cluster connect](cluster-connect.md).
