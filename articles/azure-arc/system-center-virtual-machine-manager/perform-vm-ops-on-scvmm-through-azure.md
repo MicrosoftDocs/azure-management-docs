@@ -12,17 +12,17 @@ manager: jsuri
 
 # Manage SCVMM VMs in Azure through Arc-enabled SCVMM
 
-This article describes how to perform various operations on the Azure Arc-enabled SCVMM VMs such as:
+In this article, you learn how to perform various operations on the Azure Arc-enabled SCVMM VMs such as:
 
-- **Start**, **Stop**, or **Restart** a VM from the top-navigation menu.
+- Start, stop, and restart a VM.
 
-- Control access from **Access control (IAM)** or add Azure tags from **Tags** under **Overview**. Alternatively, you can also add tags by selecting **Add tags** or edit them under **Essentials**.
+- Control access and add Azure tags.
 
-- Add, remove, or update network interfaces by navigating to **Networking** under **Settings**.
+- Add, remove, and update network interfaces.
 
-- Add, remove, and update disks and update VM size (CPU cores, memory) from **Networking** and **Disk** option under **Settings** or from the **Properties** tab.
+- Add, remove, and update disks and update VM size (CPU cores, memory).
 
-- Enable **Guest management** from **Configuration** under **Settings** or from the **Properties** tab.
+- Enable guest management.
 
 - Install extensions (enabling guest management is required). All the [extensions](../servers/manage-vm-extensions.md#extensions) that are available with Arc-enabled Servers are supported.
 
@@ -31,13 +31,9 @@ This article describes how to perform various operations on the Azure Arc-enable
 To perform guest OS operations on Arc-enabled SCVMM VMs, you must enable guest management on the VMs. When you enable guest management, the Arc Connected Machine Agent is installed on the VM.
 
 
-## Enable guest management
+## Prerequisites
 
-Before you can install an extension, you must enable guest management on the SCVMM VM.  
-
-To enable guest management, follow these steps:
-
-1. Make sure your target machine:
+Before you enable guest management, ensure your target machine:
 
    - is running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
 
@@ -47,11 +43,17 @@ To enable guest management, follow these steps:
 
    - is powered on and the resource bridge has network connectivity to the host running the VM.
 
-2. Sign in to the [Azure portal](https://portal.azure.com).
+## Enable guest management
 
-3. Search for and select the SCVMM VM for which you want to enable guest management and select **Configuration**.
+Before you can install an extension, you must enable guest management on the SCVMM VM.
 
-4. Select **Enable guest management** and provide the administrator username and password to enable guest management.  Then select **Apply**.
+To enable guest management, follow these steps:
+
+1. Sign in to the [Azure portal](https://portal.azure.com).
+
+2. Search for and select the SCVMM VM for which you want to enable guest management and select **Configuration**.
+
+3. Select **Enable guest management** and provide the administrator username and password to enable guest management.  Then select **Apply**.
 
 For Linux, use the root account, and for Windows, use an account that is a member of the Local Administrators group.
 
