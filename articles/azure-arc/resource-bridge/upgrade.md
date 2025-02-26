@@ -63,6 +63,9 @@ az arcappliance show --resource-group [REQUIRED] --name [REQUIRED]
 
 ## Manual upgrade
 
+> [!WARNING] 
+> For Azure Local, you must use the built-in LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
+
 Arc resource bridge can be manually upgraded from the management machine. You must meet all upgrade prerequisites before attempting to upgrade. The management machine must have the kubeconfig and [appliance configuration files](system-requirements.md#configuration-files) stored locally, or you won't be able to run the upgrade.
 
 Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades could be needed to reach a [supported version](#supported-versions). You can check your appliance version by checking the Azure resource of your Arc resource bridge.
@@ -100,13 +103,13 @@ For example, if the current version is 1.0.18, then the typical n-3 supported ve
 - n-2 version: 1.0.16
 - n-3 version: 1.0.15
 
-There might be instances where supported versions aren't sequential. For example, version 1.0.18 is released and later found to contain a bug. A hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
+There might be instances where supported versions aren't sequential. For example, if there is a patch version for a minor version, the upgrade path may skip the minor version and directly upgrade to the patch version. In this case, n-3 versions would exclude the minor version and include the patch version. Another example is if version 1.0.18 is released and later found to contain a bug. A hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
 
-Arc resource bridge typically releases a new version on a monthly cadence, at the end of the month, although it's possible that delays could push the release date further out. Regardless of when a new release comes out, if you're within n-3 supported versions, then your Arc resource bridge version is supported. To stay updated on releases, visit the [Arc resource bridge release notes](release-notes.md).
+To see exactly what versions are in support, please refer to [Arc resource bridge release notes](release-notes.md).
 
 If a resource bridge isn't upgraded to one of the supported versions (n-3), it falls outside the support window and will be unsupported. It might not always be possible to upgrade an unsupported resource bridge to a newer version, as component services used by Arc resource bridge may no longer be compatible. In addition, the unsupported resource bridge might not be able to provide reliable monitoring and health metrics.
 
-If an Arc resource bridge can't be upgraded to a supported version, you must delete it and deploy a new resource bridge. Depending on which private cloud product you're using, there might be other steps required to reconnect the resource bridge to existing resources. For details, check the partner product's Arc resource bridge recovery documentation.
+If an Arc resource bridge can't be upgraded to a supported version, please contact Microsoft Support to determine options.
 
 ## Notification and upgrade availability
 
