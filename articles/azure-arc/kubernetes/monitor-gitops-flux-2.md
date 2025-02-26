@@ -1,6 +1,6 @@
 ---
 title: Monitor GitOps (Flux v2) status and activity
-ms.date: 10/16/2024
+ms.date: 02/26/2025
 ms.topic: how-to
 description: Learn how to monitor status, compliance, resource consumption, and reconciliation activity for GitOps with Flux v2.
 ---
@@ -19,7 +19,7 @@ This topic describes some of the ways you can monitor your Flux activity and sta
 
 ## Monitor Flux configurations in the Azure portal
 
-After you [create Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps**.
+After you [create Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps** from the service menu.
 
 ### View details on cluster compliance and objects
 
