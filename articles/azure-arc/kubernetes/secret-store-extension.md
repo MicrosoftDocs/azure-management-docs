@@ -23,7 +23,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 ## Prerequisites
 
-- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher, and in one of the supported regions (East US, East US2, West US, West US2, West US3, West Europe, North Europe). The region is defined by the resource group region used for creating the Arc cluster.
+- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
@@ -33,7 +33,7 @@ Install the [Azure CLI](/cli/azure/install-azure-cli-linux?pivots=apt) and sign 
 az login
 ```
 
-Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources.
+Before you begin, set environment variables to be used for configuring Azure and cluster resources. If you already have a managed identity, Azure Key Vault, or other resource listed here, update the names in the environment variables to reflect those resources. Note that the KEYVAULT_NAME must be globally unique; keyvault creation will fail later if this name is already in use within Azure.
 
 ```azurecli
 export RESOURCE_GROUP="AzureArcTest"
@@ -43,7 +43,7 @@ export SUBSCRIPTION="$(az account show --query id --output tsv)"
 az account set --subscription "${SUBSCRIPTION}"
 export AZURE_TENANT_ID="$(az account show -s $SUBSCRIPTION --query tenantId --output tsv)"
 export CURRENT_USER="$(az ad signed-in-user show --query userPrincipalName --output tsv)"
-export KEYVAULT_NAME="my-kv"
+export KEYVAULT_NAME="my-UNIQUE-kv-name"
 export KEYVAULT_SECRET_NAME="my-secret"
 export USER_ASSIGNED_IDENTITY_NAME="my-identity"
 export FEDERATED_IDENTITY_CREDENTIAL_NAME="my-credential"
