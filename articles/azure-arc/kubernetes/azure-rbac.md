@@ -420,13 +420,12 @@ Another option for cluster access control is [Privileged Identity Management (PI
 To configure just-in-time access requests for a group of users, complete the following steps:
 
 1. At the top of the Azure portal, search for and select **Microsoft Entra ID**.
-1. Take note of the tenant ID. For the rest of these instructions, we'll refer to that ID as `<tenant-id>`.
 1. In the service menu, under **Manage**, select **Groups**. Then select **New group**.
 1. For **Group type**, verify that **Security** is selected. Enter a group name, such as `myJITGroup`. Make any additional selections, then select **Create**.
 
     :::image type="content" source="media/azure-rbac/jit-new-group-created.png" alt-text="Screenshot showing details for the new group in the Azure portal.":::
 
-1. You're brought back to the **Groups** page. Search for and select your newly created group, and take note of the object ID. For the rest of these instructions, we'll refer to this ID as `<object-id>`.
+1. You're brought back to the **Groups** page. Search for and select your newly created group.
 1. In the service menu, under **Activity**, select **Privileged Identity Management**. Then select **Enable PIM for this group**.
 1. Select **Add assignments** to begin granting access.
 1. Under **Select role**, choose **Member**. Then select the users and groups to whom you want to grant cluster access. A group admin can modify these assignments at any time. When you're ready to move on, select **Next**.
