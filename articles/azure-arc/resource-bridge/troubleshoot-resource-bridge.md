@@ -41,6 +41,27 @@ az arcappliance get-credentials -n <Arc resource bridge name> -g <resource group
 az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified output directory>
    ```
 
+### Error downloading release file information
+
+> [!WARNING] 
+> For Azure Local, you must use the built-in LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
+
+When upgrading Arc resource bridge using Azure CLI, you may get the following error: 
+
+```azurecli
+az arcappliance upgrade vmware' failed: (DownloadError) "{\n\"message\": \"Error downloading file release information.: Unable to find file release: ^mariner-2-0-(.*)-vhdx-rpm-(.*)$ with version:  in product release: arc-appliance-stable-releases\"\n}
+```
+
+If you are using an az arcappliance Azure CLI extension version that is below 1.4.0 and attempting to upgrade to appliance version 1.4.0, you need to update your Azure CLI extension to the latest version:
+
+```azurecli
+az extension add --upgrade --name arcappliance
+```
+
+Once your az arcappliance extension is 1.4.0, re-try the upgrade to appliance version 1.4.0. When upgrading an Arc resource bridge, the upgrade will be to the next version which may not be the latest version. Refer to [Arc resource bridge release notes](release-notes.md).
+
+
+
 ### Download/upload connectivity was not successful
 
 If your network speed is slow, you might not be able to successfully download the Arc resource bridge VM image, resulting in this error: `ErrorCode: ValidateKvaError, Error: Pre-deployment validation of your download/upload connectivity was not successful. Timeout error occurred during download and preparation of appliance image to the on-premises fabric storage. Common causes of this timeout error are slow network download/upload speeds, a proxy limiting the network speed or slow storage performance.`
