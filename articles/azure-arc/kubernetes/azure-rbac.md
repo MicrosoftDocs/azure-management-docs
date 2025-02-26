@@ -35,7 +35,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 > [!NOTE]
 > Azure RBAC isn't supported for Red Hat OpenShift or managed Kubernetes offerings where user access to the API server is restricted (such as Amazon Elastic Kubernetes Service (EKS) or Google Kubernetes Engine (GKE)).
 >
-> Azure RBAC doesn't currently support Kubernetes clusters operating on Arm64 architecture. For these clusters, use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) to manage access control 
+> Azure RBAC doesn't currently support Kubernetes clusters operating on Arm64 architecture. For these clusters, use [Kubernetes RBAC](identity-access-overview.md#kubernetes-rbac-authorization) to manage access control.
 >
 > For Azure Kubernetes Service (AKS) clusters, this [feature is available natively](/azure/aks/manage-azure-rbac) and doesn't require the AKS cluster to be connected to Azure Arc.
 >
@@ -225,7 +225,7 @@ The following built-in roles provide access to perform common tasks on Kubernete
 | [Azure Arc Kubernetes Viewer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-viewer) | Allows read-only access to see most objects in a namespace. This role doesn't allow viewing secrets, because `read` permission on secrets would enable access to `ServiceAccount` credentials in the namespace. These credentials would in turn allow API access through that `ServiceAccount` value (a form of privilege escalation). |
 | [Azure Arc Kubernetes Writer](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-writer) | Allows read/write access to most objects in a namespace. This role doesn't allow viewing or modifying roles or role bindings. However, this role allows accessing secrets and running pods as any `ServiceAccount` value in the namespace, so it can be used to gain the API access levels of any `ServiceAccount` value in the namespace. |
 | [Azure Arc Kubernetes Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-admin) | Allows admin access. This role is often granted within a namespace through [the `RoleBinding` object](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding). If you use it in `RoleBinding`, it allows read/write access to most resources in a namespace, including the ability to create roles and role bindings within the namespace. However, this role doesn't allow write access to resource quota or to the namespace itself. |
-| [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows the ability to execute any action on any resource within the granted scope. When you use it in []`ClusterRoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the cluster and in all namespaces. When you use it in []`RoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the role binding's namespace, including the namespace itself.|
+| [Azure Arc Kubernetes Cluster Admin](/azure/role-based-access-control/built-in-roles#azure-arc-kubernetes-cluster-admin) | Allows the ability to execute any action on any resource within the granted scope. When you use it in [`ClusterRoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the cluster and in all namespaces. When you use it in [`RoleBinding`](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding), it allows full control over every resource in the role binding's namespace, including the namespace itself.|
 
 You can create built-in role assignments scoped to the cluster by using either the Azure portal or the Azure CLI. However, only Azure CLI can be used to create role assignments scoped to namespaces.
 
@@ -377,7 +377,7 @@ After the proxy process is running, you can open another tab in your console to 
 When you're integrating Microsoft Entra ID with your Azure Arc-enabled Kubernetes cluster, you can also use [Conditional Access](/azure/active-directory/conditional-access/overview) to control access to your cluster.
 
 > [!NOTE]
-> [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing).
+> [Microsoft Entra Conditional Access](/azure/active-directory/conditional-access/overview) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/security/business/microsoft-entra-pricing).
 
 To create an example Conditional Access policy to use with the cluster:
 
@@ -415,7 +415,7 @@ To confirm that the policy is applied correctly, follow the instructions to sign
 Another option for cluster access control is [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure), which enables a higher level of access for users for just-in-time requests.
 
 >[!NOTE]
-> [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing).
+> [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/security/business/microsoft-entra-pricing).
 
 To configure just-in-time access requests for a group of users, complete the following steps:
 
