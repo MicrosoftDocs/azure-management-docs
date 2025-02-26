@@ -23,7 +23,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 ## Prerequisites
 
-- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher. The region is defined by the resource group region used for creating the Arc cluster.
+- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enanabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
