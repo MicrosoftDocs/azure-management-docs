@@ -87,7 +87,7 @@
     },
     {
       "source_path_from_root": "/articles/container-registry/tutorial-enable-artifact-cache-cli.md",
-      "redirect_url": "/azure/container-registry/fact-cache-cli",
+      "redirect_url": "/azure/container-registry/artifact-cache-cli",
       "redirect_document_id": false
     },
     {

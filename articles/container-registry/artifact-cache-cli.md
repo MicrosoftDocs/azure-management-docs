@@ -104,11 +104,11 @@ You can use access policies to assign the appropriate permissions to users so th
 
 ## Pull your image
 
-1. Pull the image from your cache using the Docker command by the registry login server name, repository name, and its desired tag. For example, to pull the image from the repository `hello-world` with desired tag `latest` for the registry login server `myregistry.azurecr.io`, run:
+Pull the image from your cache using the Docker command by the registry login server name, repository name, and its desired tag. For example, to pull the image from the repository `hello-world` with desired tag `latest` for the registry login server `myregistry.azurecr.io`, run:
 
-    ```azurecli-interactive
-     docker pull myregistry.azurecr.io/hello-world:latest
-    ```
+```azurecli-interactive
+ docker pull myregistry.azurecr.io/hello-world:latest
+```
 
 ## Clean up resources
 
