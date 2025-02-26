@@ -8,7 +8,7 @@ ms.topic: tutorial
 
 # Azure Arc-enabled Open Service Mesh
 
-[Open Service Mesh (OSM)](https://docs.openservicemesh.io/) is a lightweight, extensible, Cloud Native service mesh that allows users to uniformly manage, secure, and get out-of-the-box observability features for highly dynamic microservice environments.
+[Open Service Mesh (OSM)](httpscs.openservicemesh.io/) is a lightweight, extensible, Cloud Native service mesh that allows users to uniformly manage, secure, and get out-of-the-box observability features for highly dynamic microservice environments.
 
 OSM runs an Envoy-based control plane on Kubernetes, can be configured with [SMI](https://smi-spec.io/) APIs, and works by injecting an Envoy proxy as a sidecar container next to each instance of your application. [Read more](https://docs.openservicemesh.io/#features) on the service mesh scenarios enabled by Open Service Mesh.
 
@@ -64,13 +64,13 @@ If you're using an OpenShift cluster, skip to the [OpenShift installation steps]
 Create the extension:
 
 > [!NOTE]
-> To pin a specific version of OSM, add the `--version x.y.z` flag to the `create` command. Note that this will set the value for `auto-upgrade-minor-version` to false.
+> To pin a specific version of OSM, add the `--version x.y.z` flag to the `create` command. Note that this command sets the value for `auto-upgrade-minor-version` to false.
 
 ```azurecli-interactive
 az k8s-extension create --cluster-name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm
 ```
 
-You should see output similar to this example. It may take 3-5 minutes for the actual OSM helm chart to get deployed to the cluster. Until this deployment happens, `installState` will remain `Pending`.
+You should see output similar to this example. It may take 3-5 minutes for the actual OSM helm chart to get deployed to the cluster. Until this deployment happens, `installState` remains `Pending`.
 
 ```json
 {
@@ -127,7 +127,7 @@ The following sections describe certain custom installations of Azure Arc-enable
    oc adm policy add-scc-to-user privileged -z <service account name> -n <service account namespace>
    ```
 
-It may take 3-5 minutes for the actual OSM helm chart to get deployed to the cluster. Until this deployment happens, `installState` will remain `Pending`.
+It may take 3-5 minutes for the actual OSM helm chart to get deployed to the cluster. Until this deployment happens, `installState` remains `Pending`.
 
 To ensure that the privileged init container setting doesn't revert to the default, pass in the `"osm.osm.enablePrivilegedInitContainer" : "true"` configuration setting to all subsequent `az k8s-extension create` commands.
 
@@ -532,7 +532,7 @@ InsightsMetrics
 The **Requests** tab shows a summary of all the http requests sent via service to service in OSM.
 
 - You can view all the services by selecting the service in the grid.
-- You can view total requests, request error rateand P90 latency.
+- You can view total requests, request error rate and P90 latency.
 - You can drill down to destination and view trends for HTTP error/success code, success rate, pod resource utilization, and latencies at different percentiles.
 
 #### Connections tab
@@ -575,18 +575,18 @@ Use the following command:
 az k8s-extension delete --cluster-type connectedClusters --cluster-name $CLUSTER_NAME --resource-group $RESOURCE_GROUP --name osm -y
 ```
 
-Verify that the extension instance has been deleted:
+Verify that the extension instance was deleted:
 
 ```azurecli-interactive
 az k8s-extension list --cluster-type connectedClusters --cluster-name $CLUSTER_NAME --resource-group $RESOURCE_GROUP
 ```
 
-This output should not include OSM. If you do not have any other extensions installed on your cluster, it's just an empty array.
+This output shouldn't include OSM. If you don't have any other extensions installed on your cluster, it's just an empty array.
 
-When you use the `az k8s-extension` command to delete the OSM extension, the `arc-osm-system` namespace is not removed, and the actual resources within the namespace (like mutating webhook configuration and osm-controller pod) take around 10 minutes to delete.
+When you use the `az k8s-extension` command to delete the OSM extension, the `arc-osm-system` namespace isn't removed. The actual resources within the namespace (like mutating webhook configuration and osm-controller pod) take around 10 minutes to delete.
 
 > [!NOTE]
-> Use the az k8s-extension CLI to uninstall OSM components managed by Arc. Using the OSM CLI to uninstall is not supported by Arc and can result in undesirable behavior.
+> Use the az k8s-extension CLI to uninstall OSM components managed by Arc. Using the OSM CLI to uninstall isn't supported by Arc and can result in undesirable behavior.
 
 ## Next steps
 
