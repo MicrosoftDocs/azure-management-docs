@@ -39,7 +39,7 @@ For a conceptual overview of this feature, see [Azure RBAC on Azure Arc-enabled 
 >
 > For Azure Kubernetes Service (AKS) clusters, this [feature is available natively](/azure/aks/manage-azure-rbac) and doesn't require the AKS cluster to be connected to Azure Arc.
 >
-> For Azure Kubernetes Service (AKS) clusters enabled by Azure Arc on Azure Local, version 23H2, Azure RBAC is currently supported only if enabled when the clusters are created. To create an AKS cluster enabled by Azure Arc with Azure RBAC enabled, see [Use Azure RBAC for Kubernetes authorization](/azure/aks/hybrid/azure-rbac-23h2). Azure RBAC is not supported for Azure Local, version 22H2.
+> For Azure Kubernetes Service (AKS) clusters enabled by Azure Arc on Azure Local, version 23H2, Azure RBAC is currently supported only if enabled when the clusters are created. To create an AKS cluster enabled by Azure Arc with Azure RBAC enabled, see [Use Azure RBAC for Kubernetes authorization](/azure/aks/hybrid/azure-rbac-23h2). Azure RBAC isn't supported for Azure Local, version 22H2.
 
 ## Enable Azure RBAC on the cluster
 
@@ -412,12 +412,12 @@ To confirm that the policy is applied correctly, follow the instructions to sign
 
 ## Configure just-in-time cluster access with Microsoft Entra ID
 
-Another option for cluster access control is [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure). Microsoft Entra PIM lets you limit general permissions to a lower level, while permitting users to temporarily elevate their access to a higher level when needed for just-in-time requests.
+Another option for cluster access control is [Privileged Identity Management (PIM)](/azure/active-directory/privileged-identity-management/pim-configure), which enables a higher level of access for users for just-in-time requests.
 
 >[!NOTE]
 > [Microsoft Entra PIM](/azure/active-directory/privileged-identity-management/pim-configure) is a Microsoft Entra ID P2 capability. For more information about Microsoft Entra ID SKUs, see the [pricing guide](https://www.microsoft.com/en-us/security/business/microsoft-entra-pricing).
 
-To configure just-in-time access requests for your cluster, complete the following steps:
+To configure just-in-time access requests for a group of users, complete the following steps:
 
 1. At the top of the Azure portal, search for and select **Microsoft Entra ID**.
 1. Take note of the tenant ID. For the rest of these instructions, we'll refer to that ID as `<tenant-id>`.
@@ -426,16 +426,18 @@ To configure just-in-time access requests for your cluster, complete the followi
 
     :::image type="content" source="media/azure-rbac/jit-new-group-created.png" alt-text="Screenshot showing details for the new group in the Azure portal.":::
 
-1. You're brought back to the **Groups** page. Search for and slect your newly created group, and take note of the object ID. For the rest of these instructions, we'll refer to this ID as `<object-id>`.
+1. You're brought back to the **Groups** page. Search for and select your newly created group, and take note of the object ID. For the rest of these instructions, we'll refer to this ID as `<object-id>`.
 1. In the service menu, under **Activity**, select **Privileged Identity Management**. Then select **Enable PIM for this group**.
 1. Select **Add assignments** to begin granting access.
 1. Under **Select role**, choose **Member**. Then select the users and groups to whom you want to grant cluster access. A group admin can modify these assignments at any time. When you're ready to move on, select **Next**.
 
     :::image type="content" source="media/azure-rbac/jit-adding-assignment.png" alt-text="Screenshot showing how to add assignments in the Azure portal.":::
 
-1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**. For more information on assignment types, see [Assign eligibility for a privileged access group (preview) in Privileged Identity Management](/azure/active-directory/privileged-identity-management/groups-assign-member-owner#assign-an-owner-or-member-of-a-group).
+1. Choose an assignment type of **Active**, choose the desired duration, and provide a justification. When you're ready to proceed, select **Assign**.
 
     :::image type="content" source="media/azure-rbac/jit-set-active-assignment.png" alt-text="Screenshot showing assignment properties in the Azure portal." :::
+
+For more information about these steps and options, see [Assign eligibility for a group in Privileged Identity Management](/entra/id-governance/privileged-identity-management/groups-assign-member-owner).
 
 After you've made the assignments, verify that just-in-time access is working by accessing the cluster. For example, use the `kubectl get nodes` command to view nodes in the cluster:
 
