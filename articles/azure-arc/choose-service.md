@@ -30,7 +30,7 @@ The following table provides a quick way to see the major capabilities of the Az
 |Azure Monitor     |✓         |✓         |✓         |✓         |
 |Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓         |✓         |✓         |
 |Discover & onboard VMs to Azure     |         |✓         |✓         |         |
-|Lifecycle and powercycle operations (craete/delete/start/stop VMs, etc.)     |         |✓         |✓         |✓         |
+|Lifecycle and powercycle operations (create/delete/start/stop VMs, etc.)     |         |✓         |✓         |✓         |
 |Self-serve VM provisioning     |         |✓         |✓         |✓         |
 |SQL Server enabled by Azure Arc     |✓         |✓         |✓         |✓         |
 

@@ -91,3 +91,7 @@
   items:
    - name: Azure Arc Jumpstart
      href: https://aka.ms/AzureArcJumpstart
+   - name: Regional Availability
+     href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
+
+  

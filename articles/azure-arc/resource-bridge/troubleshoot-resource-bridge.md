@@ -9,7 +9,9 @@ ms.topic: troubleshooting
 
 This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
 
-For troubleshooting issues with Arc-enabled System Center Virtual Machine Manager, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> [!NOTE] 
+> - For *Arc-enabled System Center Virtual Machine Manager*, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For *Azure Local*, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
@@ -84,14 +86,6 @@ If you run `az arcappliance` CLI commands for Arc resource bridge via remote Pow
 
 Using `az arcappliance` commands from remote PowerShell isn't currently supported. Instead, sign in to the node through Remote Desktop Protocol (RDP) or use a console session.
 
-### Resource bridge configurations can't be updated
-
-In this release, all the parameters are specified at time of creation. To update Arc resource bridge, you must delete it and redeploy it again.
-
-For example, if you specify the wrong location or subscription during deployment, resource creation fails. If you only try to recreate the resource without redeploying the resource bridge VM, the status gets stuck at `WaitForHeartBeat`.
-
-To resolve this issue, delete the appliance and update the appliance YAML file. After that, redeploy and create the resource bridge.
-
 ### Appliance Network Unavailable
 
 If Arc resource bridge experiences network problems, you might see an `Appliance Network Unavailable` error. In general, any network or infrastructure connectivity issue to the appliance VM may cause this error. This error can also surface as `Error while dialing dial tcp xx.xx.xxx.xx:55000: connect: no route to host`. The problem could be that communication from the host to the Arc resource bridge VM needs to be opened over TCP port 22 with the help of your network administrator. A temporary network issue may not allow the host to reach the Arc resource bridge VM. Once the network issue is resolved, you can retry the operation. You can also check that the appliance VM for Arc resource bridge isn't stopped or offline. With Azure Local, this error can be caused when the host storage is full.
@@ -106,36 +100,6 @@ This error occurs because when you sign in to Azure, the token has a maximum lif
 
 When you use the `az arcappliance createconfig` or `az arcappliance run` command, an interactive experience shows the list of VMware entities which you can select to deploy the virtual appliance. This list shows all user-created resource pools along with default cluster resource pools, but the default host resource pools aren't listed. When the appliance is deployed to a host resource pool, there's no high availability if the host hardware fails. We recommend that you don't deploy the appliance in a host resource pool.
 
-### Resource bridge status is Offline and Provisioning State is Failed
-
-When you deploy Arc resource bridge, the bridge might appear to be successfully deployed because no errors were encountered when running `az arcappliance deploy` or `az arcappliance create`. However, when viewing the bridge in Azure portal, you might see status showing as `Offline`, and `az arcappliance show` might show the `provisioningState` as `Failed`. This issue happens when required providers aren't registered before the bridge is deployed.
-
-For Azure Local, version 23H2 and later, the Arc Resource Bridge is automatically deployed during the cluster deployment and manual installation is no longer required.
-
-If your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM. If the issue persists, contact Microsoft Support.
-
-> [!NOTE]
-> Reinstalling the Arc Resource Bridge on Azure Local could cause issues with your existing Azure resources.
-
-To resolve this problem, delete the resource bridge, register the providers, then redeploy the resource bridge.
-
-1. Delete the resource bridge:
-
-   ```azurecli
-   az arcappliance delete <fabric> --config-file <path to appliance.yaml>
-   ```
-
-1. Register the providers:
-
-   ```azurecli
-   az provider register --namespace Microsoft.ExtendedLocation –-wait
-   az provider register --namespace Microsoft.ResourceConnector –-wait
-   ```
-
-1. Redeploy the resource bridge.
-
-> [!NOTE]
-> Partner products (such as Arc-enabled VMware vSphere) might have their own required providers to register. For information about these additional providers, see the product's documentation.
 
 ### Expired credentials in the appliance VM
 
@@ -287,17 +251,17 @@ To resolve the error, one or more network misconfigurations might need to be add
 
 1. Appliance VM needs to be able to reach a DNS server that can resolve internal names, such as vCenter endpoint for vSphere or cloud agent endpoint for Azure Local. The DNS server also needs to be able to resolve external/internal addresses, such as Azure service addresses and container registry names for download of the Arc resource bridge container images from the cloud.
 
-   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. If not, [delete the appliance](/cli/azure/arcappliance/delete), recreate the Arc resource bridge configuration files with the correct DNS server settings, and then deploy Arc resource bridge using the new configuration files.
+   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. 
 
 ### Move Arc resource bridge location
 
-Resource move of Arc resource bridge isn't currently supported. Instead, delete the Arc resource bridge and redeploy it to the desired location.
+Resource move of Arc resource bridge isn't currently supported. 
 
 ## Azure Arc-enabled VMs on Azure Local issues
 
 For general help resolving issues related to Azure Arc-enabled VMs on Azure Local, see [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms).
 
-If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, do not attempt to reinstall or delete the Arc Resource Bridge. Instead, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance.
+If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance. You should not delete the Arc Resource Bridge VM without guidance from Microsoft Support.
 
 ### Action failed - no such host
 

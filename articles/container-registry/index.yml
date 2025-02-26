@@ -28,25 +28,22 @@ landingContent:
     linkLists:
     - linkListType: quickstart
       links:
-          - text: Create container registry - CLI
-            url: container-registry-get-started-azure-cli.md
-          - text: Create container registry - Portal
-            url: container-registry-get-started-portal.md
-          - text: Create container registry - ARM template
-            url: container-registry-get-started-geo-replication-template.md
-          - text: Push and pull image with Docker
-            url: container-registry-get-started-docker-cli.md
-          - text: Azure Container Registry service tiers
-            url: container-registry-skus.md
-    - linkListType: learn 
+        - text: Create container registry - CLI
+          url: container-registry-get-started-azure-cli.md
+        - text: Create container registry - Portal
+          url: container-registry-get-started-portal.md
+        - text: Create container registry - ARM template
+          url: container-registry-get-started-geo-replication-template.md
+        - text: Push and pull image with Docker
+          url: container-registry-get-started-docker-cli.md
+        - text: Azure Container Registry service tiers
+          url: container-registry-skus.md
+    - linkListType: learn
       links:
-          - text: Build and store container images with Azure Container Registry
-            url: /training/modules/build-and-store-container-images/
-    - linkListType: video
-      links:
-          - text: Azure Container Registry videos
-            url: https://azure.microsoft.com/resources/videos/index/?services=container-registry&sort=newest
-  # Card
+        - text: Module - Build and store container images with Azure Container Registry
+          url: /training/modules/build-and-store-container-images/
+        - text: Module - Configure Azure Container Registry for container app deployments
+          url: /training/modules/configure-azure-container-registry-container-app-deployments/ 
   - title: Manage registries
     linkLists:
       - linkListType: quickstart

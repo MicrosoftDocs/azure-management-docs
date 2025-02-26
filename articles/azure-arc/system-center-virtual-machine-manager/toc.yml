@@ -4,6 +4,8 @@
   items:
   - name: About Azure Arc-enabled SCVMM
     href: overview.md
+  - name: What's new
+    href: whats-new.md
   - name: Plan for deployment
     href: support-matrix-for-system-center-virtual-machine-manager.md
 - name: Quickstarts
@@ -88,3 +90,8 @@
     href: /javascript/api/overview/azure/arm-scvmm-readme
   - name: Go SDK
     href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
+- name: Resources
+  items:
+  - name: Regional Availability
+    href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
+  
