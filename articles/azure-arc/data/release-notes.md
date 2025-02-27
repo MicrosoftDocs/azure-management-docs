@@ -19,7 +19,7 @@ This article highlights capabilities, features, and enhancements recently releas
 
 ## February 9, 2025
 
-**Image tag**: ``v1.35.0_2024-11-128``
+**Image tag**: `v1.35.0_2024-11-12`
 
 For complete release version information, review [Version log](version-log.md#february-9-2025).
 

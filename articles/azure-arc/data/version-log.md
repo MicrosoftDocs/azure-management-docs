@@ -22,7 +22,7 @@ This article identifies the component versions with each release of Azure Arc-en
 
 |Component|Value|
 |-----------|-----------|
-|Container images tag |`v1.35.0_2024-11-128`|
+|Container images tag |`v1.35.0_2024-11-12`|
 |**CRD names and version:**| |
 |`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
 |`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
