@@ -1,6 +1,6 @@
 ---
 title: Create a persistent volume
-description: Learn about creating persistent volumes in Cache Volumes.
+description: Learn about creating persistent volumes in Cache Volumes (preview).
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
@@ -53,7 +53,7 @@ This section describes the prerequisites for creating a persistent volume (PV).
 
 ## Create Persistent Volume (PV)
 
-You must create a Persistent Volume (PV) for Cache Volumes to create a local instance and bind to a remote BLOB storage account.
+You must create a Persistent Volume (PV) for Cache Volumes (preview) to create a local instance and bind to a remote BLOB storage account.
 
 Make a note of the `metadata: name:` as you must specify it in the `spec: volumeName` of the PVC that binds to it. Use your storage account and container that you created as part of the [prerequisites](#prerequisites).
 

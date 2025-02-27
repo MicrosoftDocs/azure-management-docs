@@ -13,7 +13,7 @@ zone_pivot_groups: attach-app
 This article assumes you created a Persistent Volume (PV) and a Persistent Volume Claim (PVC). For information about creating a PV, see [Create a persistent volume](create-persistent-volume.md). For information about creating a PVC, see [Create a Persistent Volume Claim](create-persistent-volume-claim.md).
 
 ::: zone pivot="attach-iot-op"
-## Add Cache Volumes to your aio-dp-runner-worker-0 pods
+## Add Cache Volumes (preview) to your aio-dp-runner-worker-0 pods
 
 These pods are part of a **statefulSet**. You can't edit the statefulSet in place to add mount points. Instead, follow this procedure:
 

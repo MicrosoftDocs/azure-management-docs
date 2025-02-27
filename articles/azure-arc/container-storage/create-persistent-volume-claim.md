@@ -1,6 +1,6 @@
 ---
 title: Create a Persistent Volume Claim (PVC)
-description: Learn how to create a Persistent Volume Claim (PVC) in Cache Volumes.
+description: Learn how to create a Persistent Volume Claim (PVC) in Cache Volumes (preview).
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
