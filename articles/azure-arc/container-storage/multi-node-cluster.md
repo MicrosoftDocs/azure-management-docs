@@ -1,5 +1,5 @@
 ---
-title: Prepare Linux for Cache Volumes using a multi-node cluster
+title: Prepare Linux for Cache Volumes (preview) using a multi-node cluster
 description: Learn how to prepare Linux for Cache Volumes with a multi-node cluster using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: sethmanheim
 ms.author: sethm
@@ -44,7 +44,7 @@ kubectl patch meshconfig osm-mesh-config -n "arc-osm-system" -p '{"spec":{"featu
    ```
 
    > [!NOTE]
-   > The location/path of this file is referenced later, when you install the Cache Volumes Arc extension.
+   > The location/path of this file is referenced later, when you install the Cache Volumes (preview) Arc extension.
 
 ::: zone-end
 
