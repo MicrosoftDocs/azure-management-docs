@@ -1,6 +1,6 @@
 ---
 title: "Overview of Azure Arc-enabled Kubernetes"
-ms.date: 10/08/2024
+ms.date: 02/27/2025
 ms.topic: overview
 description: "Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure."
 ---
@@ -43,7 +43,7 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
   * [Azure Arc-enabled data services](../data/overview.md)
   * [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json)
   * [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview)
-  * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
+  * [Azure Container Apps on Arc-enabled Kubernetes](/azure/container-apps/azure-arc-overview)
   * [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
 
 [!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
