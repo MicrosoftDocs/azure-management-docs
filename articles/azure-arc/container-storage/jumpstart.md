@@ -26,16 +26,6 @@ For more information, see the following articles:
 - [See the Jumpstart documentation](https://aka.ms/esajumpstart).
 - [See the Jumpstart architecture diagrams](https://aka.ms/arcposters).
 
-## Azure Arc Jumpstart Drops for Azure Container Storage enabled by Azure Arc
-
-Azure Container Storage enabled by Azure Arc created Jumpstart Drops as part of another collaboration with [Azure Arc Jumpstart](https://azurearcjumpstart.com/).
-
-[Jumpstart Drops](https://aka.ms/jumpstartdrops) is a curated online collection of tools, scripts, and other assets that simplify the daily tasks of developers, IT, OT, and day-2 operations professionals. Jumpstart Drops is designed to showcase the power of Microsoft's products and services and promote mutual support and knowledge sharing among community members.
-
-For more information, see the article [Create an Azure Container Storage enabled by Azure Arc instance on a Single Node Ubuntu K3s system](https://arcjumpstart.com/create_an_edge_storage_accelerator_(esa)_instance_on_a_single_node_ubuntu_k3s_system).
-
-This Jumpstart Drop provides Kubernetes files to create an Azure Container Storage enabled by Azure Arc Cache Volumes (preview) instance on an install on Ubuntu with K3s.
-
 ## Next steps
 
 - [Azure Container Storage enabled by Azure Arc overview](overview.md)
