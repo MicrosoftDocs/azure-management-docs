@@ -14,7 +14,7 @@ This article describes the Cache Volumes (preview) offering from Azure Container
 
 ## How does Cache Volumes (preview) work?
 
-:::image type="content" source="media/container-storage-cache-volumes-overview.png" alt-text="Diagram of Cache Volumes in Azure Container Storage enabled by Azure Arc." lightbox="media/container-storage-cache-volumes-overview.png":::
+:::image type="content" source="media/container-storage-cache-volumes-overview.png" alt-text="Diagram of Cache Volumes (preview) in Azure Container Storage enabled by Azure Arc." lightbox="media/container-storage-cache-volumes-overview.png":::
 
 Cache Volumes (preview) works by performing the following operations:
 
