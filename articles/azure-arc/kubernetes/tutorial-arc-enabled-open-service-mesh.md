@@ -523,7 +523,7 @@ InsightsMetrics
 
 ### View the OSM workbook
 
-1. Access the Azure portal using this [link](https://aka.ms/azmon/osmux), then navigate to your Arc connected Kubernetes cluster
+1. Access the Azure portal using this [link](https://aka.ms/azmon/osmux), then navigate to your Arc connected Kubernetes cluster.
 2. Go to Azure Monitor and navigate to the **Reports** tab to access the OSM workbook.
 3. Select a time range and namespace to scope your services.
 
@@ -592,4 +592,4 @@ When you use the `az k8s-extension` command to delete the OSM extension, the `ar
 
 - Just want to try things out? Get started quickly with an [Azure Arc Jumpstart](https://aka.ms/arc-jumpstart-osm) scenario using Cluster API.
 - Get [troubleshooting help for Azure Arc-enabled OSM](extensions-troubleshooting.md#azure-arc-enabled-open-service-mesh).
-- - Explore other [extensions for Arc-enabled Kubernetes](extensions-release.md).
+- Explore other [extensions for Arc-enabled Kubernetes](extensions-release.md).
