@@ -78,8 +78,6 @@
       href: container-registry-image-tag-version.md
     - name: Artifact streaming
       href: container-registry-artifact-streaming.md
-    - name: Artifact cache
-      href: container-registry-artifact-cache.md
     - name: Geo-replication
       href: container-registry-geo-replication.md
     - name: Zone redundancy
@@ -92,7 +90,6 @@
       displayName: multi-architecture
     - name: Manage public images
       href: buffer-gate-public-content.md
-   
   - name: How-to guides
     expanded: false
     items:
@@ -272,6 +269,18 @@
         href: /azure/operational-excellence/relocation-container-registry?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json
       - name: View task logs
         href: container-registry-tasks-logs.md
+      - name: Optimize image pulls with artifact cache 
+        items:
+        - name: Overview
+          href: artifact-cache-overview.md
+        - name: Enable artifact cache - CLI
+          href: artifact-cache-cli.md
+        - name: Enable artifact cache - Portal
+          href: artifact-cache-portal.md
+        - name: Wildcard support
+          href: wildcards-artifact-cache.md
+        - name: Troubleshoot artifact cache
+          href: troubleshoot-artifact-cache.md
 - name: Connected registry
   expanded: true
   items:

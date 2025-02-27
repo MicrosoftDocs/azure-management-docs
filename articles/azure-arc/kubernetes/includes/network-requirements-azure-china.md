@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 02/15/2024
+ms.date: 02/18/2025
 ---
 
 > [!IMPORTANT]
@@ -16,8 +16,7 @@ ms.date: 02/15/2024
 | `mcr.azk8s.cn` | Required to pull container images for Azure Arc agents.          |
 | `https://gbl.his.arc.azure.cn` |  Required to get the regional endpoint for pulling system-assigned Managed Identity certificates. |
 | `https://*.his.arc.azure.cn` |  Required to pull system-assigned Managed Identity certificates. |
-|`https://k8connecthelm.azureedge.net` | `az connectedk8s connect` uses Helm 3 to deploy Azure Arc agents on the Kubernetes cluster. This endpoint is needed for Helm client download to facilitate deployment of the agent helm chart. |
-|`guestnotificationservice.azure.cn`<br/>`*.guestnotificationservice.azure.cn`<br/>`sts.chinacloudapi.cn`<br/>`https://k8sconnectcsp.azureedge.net` | For [Cluster Connect](../cluster-connect.md) and for [Custom Location](../custom-locations.md) based scenarios. |
+|`guestnotificationservice.azure.cn`<br/>`*.guestnotificationservice.azure.cn`<br/>`sts.chinacloudapi.cn` | For [Cluster Connect](../cluster-connect.md) and for [Custom Location](../custom-locations.md) based scenarios. |
 |`*.servicebus.chinacloudapi.cn` | For [Cluster Connect](../cluster-connect.md) and for [Custom Location](../custom-locations.md) based scenarios. |
 |`https://graph.chinacloudapi.cn/` | Required when [Azure RBAC](../azure-rbac.md) is configured. |
 |`*.arc.azure.cn` | Required to manage connected clusters in Azure portal.|

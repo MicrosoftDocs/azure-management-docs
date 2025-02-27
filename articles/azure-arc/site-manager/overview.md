@@ -58,6 +58,12 @@ Site manager supports resources that exist in [supported regions](https://azure.
 
 Site manager is free to use, but integrates with other Azure services that have their own pricing models. For your managed resources and monitoring configuration, including Azure Monitor alerts, refer to the individual service's pricing page.
 
+## Architecture
+
+[![Diagram of Azure Arc site manager solution architecture.](media/overview/jumpstart-gems-diagrams-1-25.png)](media/overview/jumpstart-gems-diagrams-1-25.png#lightbox)
+> [!Note]
+> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, please visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+
 ## Next steps
 
 [Quickstart: Create a site in Azure Arc site manager (preview)](./quickstart.md)

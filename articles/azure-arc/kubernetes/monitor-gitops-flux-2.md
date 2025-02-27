@@ -1,6 +1,6 @@
 ---
 title: Monitor GitOps (Flux v2) status and activity
-ms.date: 10/16/2024
+ms.date: 02/26/2025
 ms.topic: how-to
 description: Learn how to monitor status, compliance, resource consumption, and reconciliation activity for GitOps with Flux v2.
 ---
@@ -19,7 +19,7 @@ This topic describes some of the ways you can monitor your Flux activity and sta
 
 ## Monitor Flux configurations in the Azure portal
 
-After you [create Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps**.
+After you [create Flux configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) on your cluster, you can view status information in the Azure portal by navigating to a cluster and selecting **GitOps** from the service menu.
 
 ### View details on cluster compliance and objects
 
@@ -29,13 +29,13 @@ The **Compliance** state shows whether the current state of the cluster matches 
 - **Pending**: An updated desired state was detected, but that state isn't yet reconciled on the cluster.
 - **Not Compliant**: The current state doesn't match the desired state.
 
-:::image type="content" source="media/monitor-gitops-flux2/portal-gitops-compliance.png" alt-text="Screenshot of cluster compliance and other values in the Azure portal.":::
+:::image type="content" source="media/monitor-gitops-flux2/portal-gitops-compliance.png" alt-text="Screenshot of cluster compliance and other values in the Azure portal." lightbox="media/monitor-gitops-flux2/portal-gitops-compliance.png":::
 
 To help debug reconciliation issues for a cluster, select **Configuration objects**. Here, you can view logs of each of the configuration objects that Flux creates for each Flux configuration. Select an object name to view its logs.
 
-:::image type="content" source="media/monitor-gitops-flux2/portal-configuration-object-details.png" alt-text="Screenshot showing detailed conditions for a configuration object.":::
+:::image type="content" source="media/monitor-gitops-flux2/portal-configuration-object-details.png" alt-text="Screenshot showing detailed conditions for a configuration object." lightbox="media/monitor-gitops-flux2/portal-configuration-object-details.png":::
 
-To view the Kubernetes objects that were created as a result of Flux configurations being applied, select **Workloads** in the **Kubernetes resources** section of the cluster's service menu. Here, you can view all details of any resources that were created on the cluster.
+To view the Kubernetes objects that were created as a result of Flux configurations being applied, select **Workloads** in the [Kubernetes resources](kubernetes-resource-view.md) section of the cluster's service menu. Here, you can view all details of any resources that were created on the cluster.
 
 By default, you can filter by namespace and service name. You can also add any label filter that you may be using in your applications to help narrow down the search. 
 
@@ -51,7 +51,7 @@ Select any Flux configuration to see its **Overview** page, including the follow
 - Repo URL and branch
 - Links to view different kustomizations
 
-:::image type="content" source="media/monitor-gitops-flux2/portal-gitops-overview.png" alt-text="Screenshot of the Overview page of a Flux configuration in the Azure portal.":::
+:::image type="content" source="media/monitor-gitops-flux2/portal-gitops-overview.png" alt-text="Screenshot of the Overview page of a Flux configuration in the Azure portal." lightbox="media/monitor-gitops-flux2/portal-gitops-overview.png":::
 
 ## Use dashboards to monitor GitOps status and activity
 
@@ -68,7 +68,7 @@ To import and use these dashboards, you need:
 Follow these steps to import dashboards that let you monitor Flux extension deployment and status across clusters, and the compliance status of Flux configuration on those clusters.
 
 > [!NOTE]
-> These steps describe the process for importing the dashboard to [Azure Managed Grafana](/azure/managed-grafana/overview). You can also [import this dashboard to any Grafana instance](https://grafana.com/docs/grafana/latest/dashboards/manage-dashboards/#import-a-dashboard). With this option, a service principal must be used; managed identity is not supported for data connection outside of Azure Managed Grafana.
+> These steps describe the process for importing the dashboard to [Azure Managed Grafana](/azure/managed-grafana/overview). You can also [import this dashboard to any Grafana instance](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/). With this option, a service principal must be used; managed identity is not supported for data connection outside of Azure Managed Grafana.
 
 1. Create an Azure Managed Grafana instance by using the [Azure portal](/azure/managed-grafana/quickstart-managed-grafana-portal) or [Azure CLI](/azure/managed-grafana/quickstart-managed-grafana-cli). Ensure that you're able to access Grafana by selecting its endpoint on the Overview page. You need at least **Grafana Editor** level permissions to view and edit dashboards. You can check your access by going to **Access control (IAM)** on the Grafana instance.  
 1. If you're using a managed identity for the Azure Managed Grafana instance, follow these steps to assign it the **Monitoring Reader** role on the subscription where you created your Azure Managed Grafana instance:
@@ -79,13 +79,13 @@ Follow these steps to import dashboards that let you monitor Flux extension depl
    1. Select the **Monitoring Reader** role, then select **Next**.
    1. On the **Members** tab, select **Managed identity**, then choose **Select members**.
    1. From the **Managed identity** list, select the subscription, then select **Azure Managed Grafana** and the name of your Azure Managed Grafana instance.
-   1. Select **Review + Assign**.
+   1. Select **Review + assign**.
 
-   If you're using a service principal, grant the **Monitoring Reader** role to the service principal that you'll use for your data source connection. Follow these same steps, but select **User, group, or service principal** in the **Members** tab, then select your service principal. (If you aren't using Azure Managed Grafana, you must use a service principal for data connection access.)
+   If you're using a service principal, grant the **Monitoring Reader** role to the service principal that you'll use for your data source connection. Follow these same steps, but change the **Assign access to** selection to **User, group, or service principal**. Then choose **Select members** and select your service principal. (If you're using a Grafana instance outside of  Azure Managed Grafana, you must use a service principal for data connection access.)
 
 1. [Create the Azure Monitor Data Source connection](https://grafana.com/docs/grafana/latest/datasources/azure-monitor/) in your Azure Managed Grafana instance. This connection lets the dashboard access Azure Resource Graph data.
 1. Download the [GitOps Flux - Application Deployments Dashboard](https://github.com/Azure/fluxv2-grafana-dashboards/blob/main/dashboards/GitOps%20Flux%20-%20Application%20Deployments%20Dashboard.json).
-1. Follow the steps to [import the JSON dashboard to Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard).
+1. Follow the steps to [import the JSON dashboard to Azure Managed Grafana](/azure/managed-grafana/how-to-create-dashboard#import-a-json-dashboard) or [import the dashboard to another Grafana instance](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/).
 
 After you import the dashboard, it displays information from the clusters that you're monitoring, with several panels that provide details. For more details on an item, select the link to visit the Azure portal, where you can find information about configurations, errors and logs.
 
