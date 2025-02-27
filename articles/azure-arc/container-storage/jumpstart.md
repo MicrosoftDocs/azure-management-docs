@@ -26,6 +26,15 @@ For more information, see the following articles:
 - [See the Jumpstart documentation](https://aka.ms/esajumpstart).
 - [See the Jumpstart architecture diagrams](https://aka.ms/arcposters).
 
+## Azure Arc Jumpstart Drops for Azure Container Storage enabled by Azure Arc
+
+[Jumpstart Drops](https://aka.ms/jumpstartdrops) is a curated online collection of tools, scripts, and other assets that simplify the daily tasks of developers, IT, OT, and day-2 operations professionals. Jumpstart Drops is designed to showcase the power of Microsoft's products and services and promote mutual support and knowledge sharing among community members.
+
+Azure Container Storage enabled by Azure Arc created Jumpstart Drops as part of another collaboration with [Azure Arc Jumpstart](https://azurearcjumpstart.com/):
+
+- [Create an Azure Container Storage enabled by Azure Arc Edge Volumes with CloudSync](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Create%20an%20Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20Edge%20Volumes%20with%20CloudSync&fs=true) : This example can be used to install Azure Container Storage enabled by Azure Arc to provide a Cloud Backed ReadWriteMany Edge Volume on an Ubuntu system with K3s.
+- [Create an Azure Container Storage enabled by Azure Arc Edge Volumes Local FS instance](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Create%20an%20Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20Edge%20Volumes%20Local%20FS%20instance&fs=true): This example can be used to install Azure Container Storage to provide a local unbacked ReadWriteMany Edge Volume on an Ubuntu system with K3s.
+
 ## Next steps
 
 - [Azure Container Storage enabled by Azure Arc overview](overview.md)
