@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 02/18/2025
+ms.date: 02/27/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -76,6 +76,19 @@ For more information, see [Azure Arc-enabled Open Service Mesh](tutorial-arc-ena
 This extension makes it possible for you to run Azure data services on-premises, at the edge, and in public clouds by using Kubernetes and the infrastructure of your choice. This extension enables the *custom locations* feature, providing a way to configure Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings.
 
 For more information, see [Azure Arc-enabled data services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
+
+## Azure Container Apps on Azure Arc and Azure Logic Apps Hybrd
+
+- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
+
+Use this extension to provision an Azure Container Apps Connected Environment and Container Apps on top of an Azure Arc-enabled Kubernetes cluster.  This extension also enables the [Logic Apps Hybrid Deployment Model (Public Preview)](/azure/logic-apps/set-up-standard-workflows-hybrid-deployment-requirements)
+
+For more information, see [Azure Container Apps on Azure Arc (Preview)](/azure/container-apps/azure-arc-overview).
+
+> [!IMPORTANT]
+> Azure Container Apps on Azure Arc is currently in public preview. Review the [public preview limitations](/azure/container-apps/azure-arc-overview#public-preview-limitations) before you deploy this extension.  This extension cannot be installed on the same cluster as the Application services extension.  If installed, the Application services extension must be removed before deploying this extension.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Azure App Service on Azure Arc
 

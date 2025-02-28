@@ -1,6 +1,6 @@
 ---
 title: "Create and manage custom locations on Azure Arc-enabled Kubernetes"
-ms.date: 03/26/2024
+ms.date: 02/27/2025
 ms.topic: how-to
 ms.custom: references_regions, devx-track-azurecli
 description: "Use custom locations to deploy Azure PaaS services on Azure Arc-enabled Kubernetes clusters"
@@ -8,7 +8,7 @@ description: "Use custom locations to deploy Azure PaaS services on Azure Arc-en
 
 # Create and manage custom locations on Azure Arc-enabled Kubernetes
 
- The *custom locations* feature provides a way to configure your Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server, or application instances, such as App Services, Functions, Event Grid, Logic Apps, and API Management.
+ The *custom locations* feature provides a way to configure your Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server, or application instances, such as Container Apps, Logic Apps, Event Grid, and API Management.
 
 A [custom location](conceptual-custom-locations.md) has a one-to-one mapping to a namespace within the Azure Arc-enabled Kubernetes cluster. The custom location Azure resource combined with Azure role-based access control (Azure RBAC) can be used to grant granular permissions to application developers or database admins, enabling them to deploy resources such as databases or application instances on top of Arc-enabled Kubernetes clusters in a multitenant environment.
 
@@ -100,7 +100,7 @@ Manually retrieve the custom location OID by following these steps:
      > [!NOTE]
      > Outbound proxy without authentication and outbound proxy with basic authentication are supported by the Azure Arc-enabled data services cluster extension. Outbound proxy that expects trusted certificates is currently not supported.
 
-   - [Azure App Service on Azure Arc](/azure/app-service/manage-create-arc-environment#install-the-app-service-extension)
+   - [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-enable-cluster?tabs=azure-cli#install-the-container-apps-extension)
 
    - [Event Grid on Kubernetes](/azure/event-grid/kubernetes/install-k8s-extension)
 
@@ -200,6 +200,6 @@ This warning occurs because the service principal lacks the necessary permission
 ## Next steps
 
 - Securely connect to the cluster using [Cluster Connect](cluster-connect.md).
-- Continue with [Azure App Service on Azure Arc](/azure/app-service/overview-arc-integration) for end-to-end instructions on installing extensions, creating custom locations, and creating the App Service Kubernetes environment.
+- Continue with [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-overview) for end-to-end instructions on installing extensions, creating custom locations, and creating the Container Apps connected environment.
 - Create an Event Grid topic and an event subscription for [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 - Learn more about currently available [Azure Arc-enabled Kubernetes extensions](extensions-release.md).
