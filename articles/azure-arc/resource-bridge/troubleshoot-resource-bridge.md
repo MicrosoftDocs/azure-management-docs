@@ -99,7 +99,7 @@ You might see this error: `Access to the file in the SSH folder was denied. This
 
 ### Arc resource bridge is offline
 
-Networking changes in the infrastructure, environment or cluster can stop the appliance VM from being able to communicate with its counterpart Azure resource. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for further investigation.
+There are a number of reasons Arc resource bridge may be offline. In general, if Arc resource bridge is unable to communicate with Azure, the appliance VM will go offline. For Arc-enabled VMware and SCVMM, you may need to [update the credentials stored within Arc resource bridge](maintenance.md#update-credentials-in-the-appliance-vm). Communication to Azure may have been impacted by networking changes in the infrastructure, environment or cluster. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for investigation. As a best practice, [create a resource health alert](maintenance.md#create-resource-health-alerts) to stay informed if an Arc resource bridge becomes unavailable. Arc resource bridge can't be offline for longer than 45 days. After 45 days, the security key within the appliance VM may no longer be valid and can't be refreshed. If you are unable to get Arc resource bridge back online, please contact Microsoft Support.
 
 ### Remote PowerShell isn't supported
 
@@ -505,4 +505,4 @@ If you don't see your problem here or you can't resolve your issue, try one of t
 
 - Get answers from Azure experts through [Microsoft Q&A](/answers/topics/azure-arc.html).
 - Connect with [@AzureSupport](https://x.com/azuresupport), the official Microsoft Azure account for improving customer experience. Azure Support connects the Azure community to answers, support, and experts.
-- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md).
+- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md)
