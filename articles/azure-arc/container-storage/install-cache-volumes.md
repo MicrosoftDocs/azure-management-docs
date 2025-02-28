@@ -42,8 +42,36 @@ Install the Azure Container Storage enabled by Azure Arc extension using the fol
 > If you created a **config.json** file from the previous steps in [Prepare Linux](prepare-linux.md), append `--config-file "config.json"` to the following `az k8s-extension create` command. Any values set at installation time persist throughout the installation lifetime (including manual and auto-upgrades).
 
 ```bash
-az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name hydraext --extension-type microsoft.arc.containerstorage
+az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name hydraext --extension-type microsoft.arc.containerstorage --config previewFeaturesAllowed="cacheVolumes"
 ```
+
+## Configuration operator
+
+### Configuration CRD
+
+The Azure Container Storage enabled by Azure Arc extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage enabled by Azure Arc extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage enabled by Azure Arc to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure non-standard configurations for Kubernetes clusters with differing storage capabilities.
+
+1. Create a file named **cacheConfig.yaml** with the following contents:
+
+    ```yaml
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: CacheConfiguration
+    metadata:
+      name: cache-configuration
+    spec:
+      diskStorageClasses:
+        - local-path
+      cacheNodeStorageSize: "10Gi"
+      metadataStorageSize: "4Gi"
+      failoverCacheVolumeConsumers: true
+      serviceMesh: "osm" # or "none"
+    ```
+
+1. To apply this .yaml file, run:
+
+    ```bash
+    kubectl apply -f "cacheConfig.yaml"
+    ```
 
 ## Next steps
 

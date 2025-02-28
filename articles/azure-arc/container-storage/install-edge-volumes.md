@@ -69,34 +69,45 @@ If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials*
 
 #### Multi-node cluster with Ubuntu or Edge Essentials
 
-If you run a 3 or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions. This configuration installs the ACStor storage subsystem to provide fault-tolerant, replicated storage for Kubernetes clusters with 3 or more nodes:
+Azure Container Storage Enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage. On clusters with 3 or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a 3 or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+
+1. Azure Container Storage Enabled by Azure Arc is not set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
+  
+    ```bash
+    fdisk /dev/sd3 
+    mkfs.ext4 /dev/sd3a 
+    mkdir /acsa 
+    mount /dev/sd3a /acsa
+    ```
+    This sets up spare system disk `sd3` with a configured disk partition `sd3a` to be available on `/acsa` for ACStor use.
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
-   > [!NOTE]
-   > To relocate storage to a different location on disk, update `diskMountPoint` with your desired path.
+    > [!NOTE]
+    > To relocate storage to a different location on disk, update `diskMountPoint` with your desired path. Avoid **/mnt** as your desired path, unless you are deploying on a *DNds VM*.
 
-   ```yaml
-   apiVersion: arccontainerstorage.azure.net/v1
-   kind: EdgeStorageConfiguration
-   metadata:
-     name: edge-storage-configuration
-   spec:
-     defaultDiskStorageClasses:
-       - acstor-arccontainerstorage-storage-pool
-     serviceMesh: "osm"
-   ---
-   apiVersion: arccontainerstorage.azure.net/v1
-   kind: ACStorConfiguration
-   metadata:
-     name: acstor-configuration
-   spec:
-       diskMountPoint: /mnt
-       diskCapacity: 10Gi
-       createStoragePool:
-           enabled: true
-           replicas: 3
-   ```
+    ```yaml
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: EdgeStorageConfiguration
+    metadata:
+      name: edge-storage-configuration
+    spec:
+      defaultDiskStorageClasses:
+        - acstor-arccontainerstorage-storage-pool
+      serviceMesh: "osm"
+    ---
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: ACStorConfiguration
+    metadata:
+      name: acstor-configuration
+    spec:
+      diskMountPoint: /acsa
+      diskCapacity: 10Gi
+      createStoragePool:
+        enabled: true
+        replicas: 3
+    ```
+    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage Enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it will take up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it is critical to ensure that you have sized this pool appropriately, since it cannot be grown at this time.
 
 1. To apply this .yaml file, run:
 

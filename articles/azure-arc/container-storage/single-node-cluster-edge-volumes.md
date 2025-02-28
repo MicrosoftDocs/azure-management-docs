@@ -30,6 +30,7 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
    --config "osm.osm.injector.resource.requests.cpu=100m"
    ```
 
+
 ::: zone-end
 
 ::: zone pivot="aks-ee-other"
