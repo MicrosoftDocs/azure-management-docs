@@ -99,7 +99,7 @@ You might see this error: `Access to the file in the SSH folder was denied. This
 
 ### Arc resource bridge is offline
 
-Networking changes in the infrastructure, environment or cluster can stop the appliance VM from being able to communicate with its counterpart Azure resource. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for further investigation.
+Networking changes in the infrastructure, environment or cluster can also stop the appliance VM from being able to communicate with Azure, causing it to go offline. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for further investigation. As a best practice, [create a resource health alert](maintenance.md#create-resource-health-alerts) to stay informed if an Arc resource bridge becomes unavailable.Arc resource bridge can't be offline for longer than 45 days. After 45 days, the security key within the appliance VM may no longer be valid and can't be refreshed. 
 
 ### Remote PowerShell isn't supported
 
