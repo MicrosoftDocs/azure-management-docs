@@ -93,7 +93,7 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
 
    - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the previous output from `echo $SERVICE_ACCOUNT_ISSUER`, remembering to include the trailing forward slash of this URL: 
    
-           ```console
+      ```console
       ExecStart=/usr/local/bin/k3s \
        server --write-kubeconfig-mode=644 \
           --kube-apiserver-arg="--service-account-issuer=<SERVICE_ACCOUNT_ISSUER>" \
