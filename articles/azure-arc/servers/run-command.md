@@ -32,135 +32,77 @@ The Run command is available across many configurations:
 - **Cost:** Free of charge. However, storage of scripts in Azure may incur billing. 
 
 
-## Maintain VM security
+## Run Command operations
 
-While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure the VM also stays secure.
+Run Command on Azure Arc-enabled servers supports the following operations:
 
-- Limit access to the Run command in a subscription
-- Allow or block certain Run commands locally 
-
-### Limit access to Run Command using role-based access (RBAC)
-
-You can use RBAC to control what roles in a subscription are able to execute commands and scripts with the Run command. The following table describes action you can take with the Run command, the permission needed to perform the action, and the RBAC role that grants the permission.
-
-|Action  |Permission  | RBAC with permission |
-|---------|---------|---------|
-|- List Run commands - Show details of command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
-|Run a command|`Microsoft.HybridCompute/machines/runCommands/write`|[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher|
-
-To control access to the Run command functionality, use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) that grants a Run command permission.
-
-### Block run commands locally
-
-You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+|Operation  |Description  |
+|---------|---------|
+|Create |The operation to create a run command. This runs the run command. |
+|Delete |The operation to delete a run command. If it's running, delete will also stop the run command. |
+|Get |The operation to get a run command. |
+|List |The operation to get all the run commands of an Azure Arc-enabled server. |
+|Update |The operation to update the run command. This stops the previous run command. |
+ 
+> [!NOTE]
+> Output and error blobs are overwritten each time the run command script executes.
 
 
-#### Windows
-The following example adds the Run command extension to a blocklist on a Windows VM.
-
-`azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"`
-
-#### Linux
-The following example add the Run command extensions to an allowlist on a Linux VM.
-
-`azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
-
-
-## Azure CLI
+## Azure CLI sample requests
 
 The following examples use [az connectedmachine run-command](/cli/azure/connectedmachine/run-command) to run a shell script on an Azure Windows machine.
 
-### Execute a script with the machine
+- Execute a script and return the captured output
+  ```azurecli
+  az connectedmachine run-command create --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG" --script "Write-Host Hello World!"
+  ```
+- List all previously deployed Run commands and their properties
+  ```azurecli
+  az connectedmachine run-command list --machine-name "myMachine" --resource-group "myRG"
+  ```
+- Get execution progress, including the latest output, start/end time, exit code, and terminal state of the execution.
+  ```azurecli
+  az connectedmachine run-command show --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG"
+  ```
+  > [!NOTE]
+  > Output and error fields in `instanceView` is limited to the last 4KB. To access the full output and error, you can forward the output and error data to storage append blobs using `-outputBlobUri` and `-errorBlobUri` parameters while executing Run Command.
+- Remove the script, deployed by the Run command, from a machine. If the script is exectuing, the script is terminated.
+  ```azurecli
+  az connectedmachine run-command delete --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG"
+  ```
 
-This command delivers the script to the machine, executes it, and returns the captured output.
+## PowerShell sample requests
 
-```azurecli
-az connectedmachine run-command create --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG" --script "Write-Host Hello World!"
-```
+The following examples use [New-AzConnectedMachineRunCommand](/powershell/module/az.connectedmachine/new-azconnectedmachineruncommand) to run a shell script on an Azure Windows machine.
 
-### List all deployed RunCommand resources on a machine
+- Execute a script and return the captured output
+  ```powershell
+  New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -Location "EastUS" -RunCommandName "RunCommandName" –SourceScript "echo Hello World!"
+  ``` 
+- Execute a script on the machine using SourceScriptUri parameter.`OutputBlobUri` and `ErrorBlobUri` are optional parameters.
+  ```powershell
+  New-AzConnectedMachineRunCommand -ResourceGroupName -MachineName -RunCommandName -SourceScriptUri “< SAS URI of a storage blob with read access or public URI>” -OutputBlobUri “< SAS URI of a storage append blob with read, add, create, write access>” -ErrorBlobUri “< SAS URI of a storage append blob with read, add, create, write access>”
+  ```
+- Returns a full list of previously deployed Run Commands along with their properties.
+  ```powershell
+  Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine"
+  ```
+- Get execution progress, including the latest output, start/end time, exit code, and terminal state of the execution.
+  ```powershell
+  Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" - MachineName "myMachine" -RunCommandName "RunCommandName"
+  ```
+- Create or update Run Command on a Windows machine using a SAS URL of a storage blob that contains a PowerShell script. `SourceScriptUri` can be a storage blob’s full SAS URL or public URL.
+  ```powershell
+  New-AzConnectedMachineRunCommand -ResourceGroupName MyRG0 -MachineName MyMachine -RunCommandName MyRunCommand -Location EastUS2EUAP -SourceScriptUri <SourceScriptUri>
+  ```
+  > [!NOTE]
+  > SAS URL must provide read access to the blob. An expiration time of 24 hours is suggested for SAS URL. SAS URLs can be generated on the Azure portal using blob options, or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, your SAS URL = "base blob URL" + "?" + "SAS token from `New-AzStorageBlobSASToken`"
+- Get a Run command for machine with Instance View. Instance View contains the execution state of run command (Succeeded, Failed, etc.), exit code, standard output, and standard error generated by executing the script using Run Command. A non-zero ExitCode indicates an unsuccessful execution.
+  ```powershell
+  Get-AzConnectedMachineRunCommand -ResourceGroupName MyRG -MachineName MyMachine -RunCommandName MyRunCommand
+  ```
+- 
 
-This command returns a full list of previously deployed run commands along with their properties.
-
-```azurecli
-az connectedmachine run-command list --machine-name "myMachine" --resource-group "myRG"
-```
-
-### Get execution status and results
-
-This command retrieves current execution progress, including latest output, start/end time, exit code, and terminal state of the execution.
-
-```azurecli
-az connectedmachine run-command show --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG"
-```
-
-> [!NOTE]
-> Output and error fields in `instanceView` is limited to the last 4KB. To access the full output and error, you can forward the output and error data to storage append blobs using `-outputBlobUri` and `-errorBlobUri` parameters while executing Run Command.
-> 
-
-### Delete RunCommand resource from the machine
-
-Remove the RunCommand resource previously deployed on the machine. If the script execution is still in progress, execution will be terminated.
-
-```azurecli
-az connectedmachine run-command delete --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG"
-```
-
-## PowerShell
-
-### Execute a script with the machine
-
-```powershell
-New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -Location "EastUS" -RunCommandName "RunCommandName" –SourceScript "echo Hello World!"
-```
-
-### Execute a script on the machine using SourceScriptUri parameter
-
-`OutputBlobUri` and `ErrorBlobUri` are optional parameters.
-
-```powershell
-New-AzConnectedMachineRunCommand -ResourceGroupName -MachineName -RunCommandName -SourceScriptUri “< SAS URI of a storage blob with read access or public URI>” -OutputBlobUri “< SAS URI of a storage append blob with read, add, create, write access>” -ErrorBlobUri “< SAS URI of a storage append blob with read, add, create, write access>”
-```
-
-### List all deployed RunCommand resources on a machine
-
-This command returns a full list of previously deployed Run Commands along with their properties.
-
-```powershell
-Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine"
-```
-
-### Get execution status and results
-
-This command retrieves current execution progress, including latest output, start/end time, exit code, and terminal state of the execution.
-
-```powershell
-Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" - MachineName "myMachine" -RunCommandName "RunCommandName"
-```
-
-### Create or update Run Command on a machine using SourceScriptUri (storage blob SAS URL)
-
-Create or update Run Command on a Windows machine using a SAS URL of a storage blob that contains a PowerShell script. `SourceScriptUri` can be a storage blob’s full SAS URL or public URL.
-
-```powershell
-New-AzConnectedMachineRunCommand -ResourceGroupName MyRG0 -MachineName MyMachine -RunCommandName MyRunCommand -Location EastUS2EUAP -SourceScriptUri <SourceScriptUri>
-```
-
-> [!NOTE]
-> SAS URL must provide read access to the blob. An expiration time of 24 hours is suggested for SAS URL. SAS URLs can be generated on the Azure portal using blob options, or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, your SAS URL = "base blob URL" + "?" + "SAS token from `New-AzStorageBlobSASToken`"
-> 
-
-### Get a Run Command Instance View for a machine after creating or updating Run Command
-
-Get a Run Command for machine with Instance View. Instance View contains the execution state of run command (Succeeded, Failed, etc.), exit code, standard output, and standard error generated by executing the script using Run Command. A non-zero ExitCode indicates an unsuccessful execution.
-
-```powershell
-Get-AzConnectedMachineRunCommand -ResourceGroupName MyRG -MachineName MyMachine -RunCommandName MyRunCommand
-```
-
-`InstanceViewExecutionState`: Status of user's Run Command script. Refer to this state to know whether your script was successful or not. 
-
-`ProvisioningState`: Status of general extension provisioning end to end (whether extension platform was able to trigger Run Command script or not).
 
 ### Create or update Run Command on a machine using SourceScript (script text)
 
@@ -226,21 +168,7 @@ Remove the RunCommand resource previously deployed on the machine. If the script
 Remove-AzConnetedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -RunCommandName "RunCommandName"
 ```
 
-## Run Command operations
 
-Run Command on Azure Arc-enabled servers supports the following operations:
-
-|Operation  |Description  |
-|---------|---------|
-|Create |The operation to create a run command. This runs the run command. |
-|Delete |The operation to delete a run command. If it's running, delete will also stop the run command. |
-|Get |The operation to get a run command. |
-|List |The operation to get all the run commands of an Azure Arc-enabled server. |
-|Update |The operation to update the run command. This stops the previous run command. |
- 
-> [!NOTE]
-> Output and error blobs are overwritten each time the run command script executes.
-> 
 
 ## Example scenarios
 
@@ -406,6 +334,39 @@ If you no longer need the Run Command extension, you can delete it using the fol
 ```rest
 DELETE https://management.azure.com/subscriptions/ aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
 ```
+
+## Maintain VM security
+
+While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure the VM also stays secure.
+
+- Limit access to the Run command in a subscription
+- Allow or block certain Run commands locally 
+
+### Limit access to Run Command using role-based access (RBAC)
+
+You can use RBAC to control what roles in a subscription are able to execute commands and scripts with the Run command. The following table describes action you can take with the Run command, the permission needed to perform the action, and the RBAC role that grants the permission.
+
+|Action  |Permission  | RBAC with permission |
+|---------|---------|---------|
+|- List Run commands - Show details of command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
+|Run a command|`Microsoft.HybridCompute/machines/runCommands/write`|[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher|
+
+To control access to the Run command functionality, use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) that grants a Run command permission.
+
+### Block run commands locally
+
+You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+
+
+#### Windows
+The following example adds the Run command extension to a blocklist on a Windows VM.
+
+`azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"`
+
+#### Linux
+The following example add the Run command extensions to an allowlist on a Linux VM.
+
+`azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
 
 ## Disabling Run Command
 

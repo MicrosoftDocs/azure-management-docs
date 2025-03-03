@@ -102,6 +102,20 @@
       href: manage-agent.md
     - name: Migrate machine across regions
       href: manage-howto-migrate.md
+    - name: Run command
+      items:
+      - name: Overview
+        href: run-command-overview.md
+      - name: REST API operations
+        href: run-command-rest.md
+      - name: Azure CLI commands
+        href: run-command-cli.md
+      - name: Powershell commands
+        href: run-command-powershell.md
+      - name: Security for Run commands
+        href: run-command-security.md
+      - name: Disable the Run command extension
+        href: run-command-disable.md
   - name: Scenarios
     items:
     - name: Test Arc-enabled servers using an Azure VM
