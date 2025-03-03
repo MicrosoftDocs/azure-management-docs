@@ -59,7 +59,7 @@ The table below lists the URLs that must be available in order to install and us
 |`*.waconazure.com`|For Windows Admin Center connectivity|If using Windows Admin Center|Public|
 |`*.blob.core.windows.net`|Download source for Azure Arc-enabled servers extensions|Always, except when using private endpoints| Not used when private link is configured |
 |`dc.services.visualstudio.com`|Agent telemetry|Optional, not used in agent versions 1.24+| Public |
-| `*.<region>.arcdataservices.com` <sup>2</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.3. | Always | Public |
+| `*.<region>.arcdataservices.com` <sup>2</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | Always | Public |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
 
 <sup>1</sup> Access to this URL also needed when performing updates automatically.
@@ -118,9 +118,10 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 
 ### Transport Layer Security 1.2 protocol
 
-To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**.
+To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**. The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2.
 
 |Platform/Language | Support | More Information |
 | --- | --- | --- |
 |Linux | Linux distributions tend to rely on [OpenSSL](https://www.openssl.org) for TLS 1.2 support. | Check the [OpenSSL Changelog](https://www.openssl.org/news/changelog.html) to confirm your version of OpenSSL is supported.|
 | Windows Server 2012 R2 and higher | Supported, and enabled by default. | To confirm that you are still using the [default settings](/windows-server/security/tls/tls-registry-settings).|
+| Windows Server 2012 | Partially supported. **Not recommended.**|  Some endpoints as noted above will work, but some endpoints require TLS 1.2 or higher which is not available on Windows Server 2012.|
