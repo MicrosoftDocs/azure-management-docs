@@ -1,7 +1,7 @@
 ---
 title:  Managing the Azure Connected Machine agent
 description: This article describes the different management tasks that you'll typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 01/16/2025
+ms.date: 03/04/2025
 ms.topic: conceptual
 ---
 
@@ -382,15 +382,6 @@ azcmagent config clear proxy.url
 ```
 
 You do not need to restart any services when reconfiguring the proxy settings with the `azcmagent config` command.
-
-To use a proxy which requires Basic proxy authentication, specify the proxy URL as:
-
-```bash
-azcmagent config set proxy.url "http://username:password@ProxyServerFQDN:port/"
-```
-
-> [!NOTE]
-> The proxy URL including password is stored unencrypted in the agent configuration file.
 
 ### Proxy bypass for private endpoints
 
