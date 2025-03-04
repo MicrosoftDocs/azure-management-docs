@@ -77,16 +77,16 @@ This extension makes it possible for you to run Azure data services on-premises,
 
 For more information, see [Azure Arc-enabled data services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
 
-## Azure App Service on Azure Arc
+## Azure Container Apps on Azure Arc and Azure Logic Apps Hybrid
 
-- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
+- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, and OpenShift Container Platform.
 
-Use this extension to provision an App Service Kubernetes environment on top of an Azure Arc-enabled Kubernetes cluster.
+Use this extension to provision an Azure Container Apps Connected Environment and Container Apps on top of an Azure Arc-enabled Kubernetes cluster.  This extension also enables the [Logic Apps Hybrid Deployment Model (public preview)](/azure/logic-apps/set-up-standard-workflows-hybrid-deployment-requirements).
 
-For more information, see [Set up an Azure Arc-enabled Kubernetes cluster to run App Service apps, function apps, and logic apps (Preview)](/azure/app-service/overview-arc-integration).
+For more information, see [Azure Container Apps on Azure Arc (Preview)](/azure/container-apps/azure-arc-overview).
 
 > [!IMPORTANT]
-> App Service on Azure Arc is currently in public preview. Review the [public preview limitations for App Service Kubernetes environments](/azure/app-service/overview-arc-integration#public-preview-limitations) before you deploy this extension.
+> Azure Container Apps on Azure Arc is currently in public preview. Review the [public preview limitations](/azure/container-apps/azure-arc-overview#public-preview-limitations) before you deploy this extension.  This extension can't be installed on the same cluster as the Application services extension. If installed, the Application services extension must be removed before deploying this extension.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
