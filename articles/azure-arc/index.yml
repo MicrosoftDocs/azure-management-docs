@@ -167,9 +167,9 @@ additionalContent:
           summary: Connect non-Azure public cloud resources to centralize management and governance in Azure.
           url: ./multicloud-connector/overview.md
         # Card
-        - title: App Service, Functions, and Logic Apps on Azure Arc (preview)
-          summary: Run App Service, Functions, and Logic Apps on Azure Arc-enabled Kubernetes clusters.
-          url: /azure/app-service/overview-arc-integration
+        - title: Azure Container Apps on Azure Arc (preview)
+          summary: Run Container Apps on Azure Arc-enabled Kubernetes clusters.
+          url: /azure/container-apps/azure-arc-overview
         # Card
         - title: Azure IoT Operations Preview – enabled by Azure Arc
           summary: Azure IoT Operations is a unified data plane for the edge that helps organizations deploy the industrial metaverse.
