@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard with PowerShell
 description: Learn how to create a dashboard in the Azure portal using Azure PowerShell.
 ms.topic: quickstart
 ms.custom: devx-track-azurepowershell, mode-api
-ms.date: 10/03/2024
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Create an Azure portal dashboard with PowerShell
@@ -65,7 +65,10 @@ New-AzResourceGroup -Name $resourceGroupName -Location $location
 
 ## Create a virtual machine
 
-The example dashboard requires an existing VM. Create a VM by following these steps.
+> [!IMPORTANT]
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see [Azure Virtual Machines security overview](/azure/security/fundamentals/virtual-machines-overview?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json).
+
+The example dashboard requires a virtual machine. If you have a VM already, you can update your template to use that VM. Otherwise, you can create an example VM by following these steps.
 
 Store login credentials for the VM in a variable. The password must be complex. This is a new username and password (not the account you use to sign in to Azure). For more information, see [username requirements](/azure/virtual-machines/windows/faq#what-are-the-username-requirements-when-creating-a-vm-)
 and [password requirements](/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).

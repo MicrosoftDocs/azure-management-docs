@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard with Azure CLI
 description: "Quickstart: Learn how to create a dashboard in the Azure portal using the Azure CLI. A dashboard is a focused and organized view of your cloud resources."
 ms.topic: quickstart
 ms.custom: devx-track-azurecli, mode-api
-ms.date: 09/30/2024
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Create an Azure portal dashboard with Azure CLI
@@ -29,7 +29,10 @@ Select a subscription by using the [az account set](/cli/azure/account#az-accoun
 
 ## Create a virtual machine
 
-Create a virtual machine by using the [az vm create](/cli/azure/vm#az-vm-create) command:
+> [!IMPORTANT]
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see [Azure Virtual Machines security overview](/azure/security/fundamentals/virtual-machines-overview?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json).
+
+The example dashboard requires a virtual machine. If you have a VM already, you can update your template to use that VM. Otherwise, you can create an example VM to use in this dashboard by using the [az vm create](/cli/azure/vm#az-vm-create) command:
 
 ```azurecli
 az vm create --resource-group myResourceGroup --name myVM1 --image win2016datacenter \
@@ -107,12 +110,6 @@ To remove the virtual machine and associated dashboard that you created, delete 
 
 ```azurecli
 az group delete --name myResourceGroup
-```
-
-To remove only the dashboard, use the [az portal dashboard delete](/cli/azure/portal/dashboard#az-portal-dashboard-delete) command:
-
-```azurecli
-az portal dashboard delete --resource-group myResourceGroup --name "Simple VM Dashboard"
 ```
 
 ## Next steps
