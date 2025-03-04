@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 11/11/2024
+ms.date: 03/04/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -131,24 +131,80 @@ When you're working with an AKS cluster, you can say **"help me set up monitorin
 
 :::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
 
-## Install and work with Istio
+## Deploy and work with cluster tools
 
-Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured.
+Microsoft Copilot in Azure can streamline the process of installing tools on your AKS clusters, such as Istio, Periscope, and CanIPull.
 
-When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Service mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+When you ask for help deploying a tool, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster.
 
-### Istio sample prompts
+### Install and work with Istio
+
+Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured. When you ask Copilot in Azure for help with Istio, you'll be guided to the **Service mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+
+#### Istio sample prompts
 
 - "Enable Istio"
 - "I want to enable Istio on my AKS cluster"
 - "Navigate to the Istio page"
 - "I want to navigate to the Istio page"
 
-### Istio example
+#### Istio example
 
 When you're working with an AKS cluster, you can say **"enable istio"**. Copilot in Azure guides you to **Service mesh** for the current cluster, where you can configure Istio.
 
 :::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
+
+### Deploy Periscope and collect logs
+
+The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagnose and troubleshoot issues within AKS clusters. It collects and exports logs and diagnostic information from nodes and pods, making it easier to identify and resolve problems.
+
+#### Periscope sample prompts
+
+- "Help me deploy Periscope to my AKS cluster"
+- "Deploy Periscope to my cluster"
+- "Add Periscope to my cluster"
+- "Add periscope logging to my cluster"
+- "Help me collect diagnostics logs from my AKS cluster"
+
+#### Periscope example
+
+You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure will prompt you to select one.
+
+:::image type="content" source="media/work-aks-clusters/aks-periscope-select.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a prompt about deploying Periscope on AKS.":::
+
+Once you make the selection, Copilot in Azure asks you to confirm, then deploys Periscope to your cluster.
+
+:::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
+
+### Deploy AKS CanIPull and troubleshoot image pull issues
+
+The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic utility designed to perform health checks on AKS clusters, specifically focusing on image pulls. This tool helps ensure that your AKS clusters can successfully pull container images from container registries, which is crucial for the smooth operation of your applications.
+
+#### CanIPull sample prompts
+
+- "Help me deploy CanIpull to my AKS cluster"
+- "Help me deploy CanIpull to my AKS cluster"
+- "Deploy CanIpull to my cluster"
+- "Add CanIpull to my cluster"
+- "Add CanIpull health check to my cluster"
+- "Do I have access to a specific Azure Container Registry from my AKS cluster?"
+- "Help me test if ACR is attached to my AKS cluster"
+
+#### CanIPull example
+
+When you say **"Help me deploy Can I pull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
+
+Next, you're prompted to select an Azure Container Registry to pull from. After you confirm the deployment, Copilot deploys CanIPull to the selected node.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-confirm.png" alt-text="Screenshot of Copilot in Azure confirming deployment of CanIPull to a cluster.":::
+
+After the deployment completes, you're prompted to navigate to the **Run Command** pane, where you can view CanIPull logs and check for issues.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-run-command.png" alt-text="Screenshot showing Copilot in Azure prompting to open the Run Command pane.":::
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-run-command-logs.png" alt-text="Screenshot showing log information in the Run Command pane.":::
 
 ## Update AKS pricing tier
 
