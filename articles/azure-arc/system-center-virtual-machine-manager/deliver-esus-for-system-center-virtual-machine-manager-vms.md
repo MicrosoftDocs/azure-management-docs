@@ -13,7 +13,7 @@ keywords: "VMM, Arc, Azure, System Center"
 
 # Deliver Extended Security Updates for SCVMM VMs through Arc
 
-This article provides the steps to procure and deliver ESUs to Windows Server 2012 and 2012 R2 SCVMM VMs onboarded to Azure Arc-enabled SCVMM.
+This article provides the steps to procure and deliver Extended Security Updates (ESUs) to Windows Server 2012 and 2012 R2 System Center Virtual Machine Manager (SCVMM) VMs onboarded to Azure Arc-enabled SCVMM.
 
 Azure Arc-enabled System Center Virtual Machine Manager (SCVMM) allows you to enroll all the Windows Server 2012/2012 R2 VMs managed by your SCVMM server in [Extended Security Updates (ESUs)](/windows-server/get-started/extended-security-updates-overview) at scale.
 
@@ -37,7 +37,7 @@ Delivering ESUs for SCVMM VMs through Arc offers the following benefits:
 
 ## Prerequisites
 
-Before you procure and deliver ESUs for SCVMM VMs through Arc, the following prerequisites must be met:
+Before you procure and deliver ESUs for SCVMM VMs through Arc, ensure you meet these prerequisites:
 
 - The user account must have an Owner/Contributor role in a Resource Group in Azure to create and assign ESUs to SCVMM VMs. 
 - The SCVMM server managing the Windows Server 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [onboarded to Azure Arc](./quickstart-connect-system-center-virtual-machine-manager-to-arc.md). After onboarding, the Windows Server 2012 and 2012 R2 VMs, for which the ESUs are to be applied, should be [Azure-enabled](enable-scvmm-inventory-resources.md) and [guest management enabled](./enable-guest-management-at-scale.md). 
@@ -102,7 +102,7 @@ The new operating system will be visible for the machine in Azure within a few m
 >[!NOTE]
 > - See [Troubleshoot delivery of Extended Security Updates for Windows Server 2012](../servers/troubleshoot-extended-security-updates.md) to troubleshoot any problems that occur during the enablement process.<br>
 > - Review the [additional scenarios](../servers/deliver-extended-security-updates.md#additional-scenarios) in which you may be eligible to receive ESU patches at no additional cost.<br>
-> - See the [billing principles](/azure/azure-arc/servers/deliver-extended-security-updates) for ESUs enabled by Azure Arc.
+> - See the [Deliver Extended Security Updates](/azure/azure-arc/servers/deliver-extended-security-updates) for billing principles for ESUs enabled by Azure Arc.
 
 ## Next step
 
