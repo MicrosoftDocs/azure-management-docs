@@ -16,9 +16,9 @@ ms.custom:
 
 This article describes how to cleanly remove your SCVMM managed environment from Azure Arc-enabled SCVMM. For SCVMM environments that you no longer want to manage with Azure Arc-enabled SCVMM, follow these steps:
 
-- Remove the Azure Connected Machine agent from SCVMM virtual machines.
-- Remove your SCVMM environment from Azure Arc.
-- Remove Azure Arc resource bridge related items in your SCVMM management server.
+1. [Remove the Azure Connected Machine agent from SCVMM virtual machines](#remove-the-azure-connected-machine-agent-from-scvmm-virtual-machines).
+2. [Remove your SCVMM environment from Azure Arc](#remove-your-scvmm-environment-from-azure-arc).
+3. [Remove Azure Arc resource bridge related items in your SCVMM management server](#remove-azure-arc-resource-bridge-related-items-in-your-scvmm-management-server).
 
 
 
@@ -61,7 +61,7 @@ Disconnecting the agent clears the local state of the agent and removes agent in
 
 ### Uninstall the agent
 
-#### For Windows virtual machines
+#### [For Windows virtual machines](#tab/for-windows-virtual-machines)
 
 To uninstall the Windows agent from the machine, follow these steps:
 
@@ -70,7 +70,7 @@ To uninstall the Windows agent from the machine, follow these steps:
 3. In Programs and Features, select **Azure Connected Machine Agent**, select **Uninstall**, and select **Yes**.
 4. Delete the `C:\Program Files\AzureConnectedMachineAgent` folder.
 
-#### For Linux virtual machines
+#### [For Linux virtual machines](#tab/for-linux-virtual-machines)
 
 To uninstall the Linux agent, the command to use depends on the Linux operating system. You must have `root` access permissions or your account must have elevated rights using sudo.
 
@@ -91,6 +91,8 @@ To uninstall the Linux agent, the command to use depends on the Linux operating 
      ```bash
     sudo zypper remove azcmagent
     ```
+
+---
 
 ## Remove your SCVMM environment from Azure Arc
 
