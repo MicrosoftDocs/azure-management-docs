@@ -2,7 +2,7 @@
 title:  Terraform based SCVMM VM management
 description: This article describes how to programmatically perform lifecycle operations on the SCVMM managed on-premises virtual machines using the Terraform templates.
 ms.topic: how-to 
-ms.date: 02/14/2025
+ms.date: 03/05/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -20,7 +20,7 @@ The following scenarios are covered in this article:
 
 - Create a new SCVMM-managed on-premises Virtual Machine from Azure
 - Enable a SCVMM-managed on-premises Virtual Machine for management in Azure 
-- Delete a SCVMM-managed on-premises Virtual Machine from Azure 
+- Remove the Azure based management capability for a SCVMM-managed on-premises Virtual Machine
 
 ## Best practices
 
@@ -457,7 +457,7 @@ Use the -var-file flag to pass the *.tfvars* file during Terraform commands.
 
 Confirm the prompt by entering yes to apply the changes.
 
-# [Scenario 3: Delete a VM](#tab/scenario3)
+# [Scenario 3: Remove from Azure](#tab/scenario3)
 
 ### Prerequisites 
 
@@ -466,25 +466,25 @@ Ensure to have the following prerequisites before you create a new virtual machi
 - An Azure subscription and resource group where you have Arc SCVMM VM Contributor role or a custom RBAC role with the required permissions to perform lifecycle operations on a Virtual Machine.
 - An Arc-enabled SCVMM server with the Azure Arc resource bridge in a Running state. 
 - A workstation machine with Terraform installed. 
-- The virtual machine to be deleted must be enabled for management in Azure and must have an Azure resource. 
+- The virtual machine that is to be removed from Azure based management must be enabled for management in Azure and must have an Azure resource. 
 
-Following are the considerations before you delete the VM: 
+Following are the considerations before you remove the VM from Azure:
 
-- This action deletes the machine from the on-premises and is irreversible. Before you proceed, ensure that the VM doesn't break any dependencies and take backups of any important data, if needed. 
+- This action removes the Azure Resource Manager representation of the machine. The machine needs to be enabled in Azure again to manage it from Azure. Before you proceed, ensure that the VM doesn't break any dependencies and take backups of any important data, if needed. 
 
-- To delete a SCVMM-managed VM from Azure, remove the VM definition (or comment out) from your Terraform configuration and run: 
+- To remove a SCVMM-managed VM from Azure-based management, remove the VM definition (or comment out) from your Terraform configuration and run: 
 
    ```terraform
    terraform plan 
    ```
 
-   Terraform shows that the VM is planned for deletion because it no longer exists in the configuration. If you agree with the changes, run: 
+   Terraform shows that the VM is planned for removal from Azure because it no longer exists in the configuration. If you agree with the changes, run: 
 
    ```terraform
    terraform apply 
    ```
 
-   This destroys the VM if it’s no longer in the configuration. 
+   This destroys the Azure representation of the VM if it’s no longer in the configuration.
 
 ---
 
