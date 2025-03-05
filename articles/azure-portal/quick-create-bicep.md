@@ -29,7 +29,7 @@ The virtual machine name is hard-coded as **SimpleWinVM** in the ARM template, t
 and [password requirements](/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).
 
 > [!IMPORTANT]
-> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see [Azure Virtual Machines security overview](/azure/security/fundamentals/virtual-machines-overview?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json).
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see the [security best practices for VMs and operating systems](/azure/security/fundamentals/iaas).
 
 ## Deploy the Bicep file
 

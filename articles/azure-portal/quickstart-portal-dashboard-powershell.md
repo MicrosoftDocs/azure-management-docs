@@ -66,7 +66,7 @@ New-AzResourceGroup -Name $resourceGroupName -Location $location
 ## Create a virtual machine
 
 > [!IMPORTANT]
-> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see [Azure Virtual Machines security overview](/azure/security/fundamentals/virtual-machines-overview?toc=%2Fazure%2Fvirtual-machines%2Ftoc.json).
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see the [security best practices for VMs and operating systems](/azure/security/fundamentals/iaas).
 
 The example dashboard requires a virtual machine. If you have a VM already, you can update your template to use that VM. Otherwise, you can create an example VM by following these steps.
 
