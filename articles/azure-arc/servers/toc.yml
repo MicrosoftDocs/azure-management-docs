@@ -112,7 +112,7 @@
         href: run-command-cli.md
       - name: PowerShell
         href: run-command-powershell.md
-      - name: Security for the Run command
+      - name: Limit access to Run command
         href: run-command-security.md
   - name: Scenarios
     items:
