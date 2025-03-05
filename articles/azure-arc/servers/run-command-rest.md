@@ -134,10 +134,10 @@ You can either provide the script inline or you can link to the script file.
       }
     }
     ```
+    
+    - The ScriptUri is a shared access signature (SAS) URI for the storage blob, and it must provide read access to the blob. An expiry time of 24 hours is suggested for the SAS URI. You can generate a SAS URI on Azure portal using blobs options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URI format is: `base blob URL + "?"` + the SAS token from `New-AzStorageBlobSASToken`. 
 
-        - The ScriptUri is a shared access signature (SAS) URI for the storage blob, and it must provide read access to the blob. An expiry time of 24 hours is suggested for the SAS URI. You can generate a SAS URI on Azure portal using blobs options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URI format is: `base blob URL + "?"` + the SAS token from `New-AzStorageBlobSASToken`. 
-
-        - Output and error blobs must be the AppendBlob type and their SAS URIs must provide read, append, create, write access to the blob. An expiration time of 24 hours is suggested for SAS URI. You can generate SAS URIs on Azure portal using blob's options, or SAS token from using `New-AzStorageBlobSASToken`.
+    - Output and error blobs must be the AppendBlob type and their SAS URIs must provide read, append, create, write access to the blob. An expiration time of 24 hours is suggested for SAS URI. You can generate SAS URIs on Azure portal using blob's options, or SAS token from using `New-AzStorageBlobSASToken`.
 
     To learn more about shared access signatures, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](/azure/storage/common/storage-sas-overview).
 
