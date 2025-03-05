@@ -2,7 +2,7 @@
 title: Extensions security
 description: Extensions security for Azure Arc-enabled servers.
 ms.topic: conceptual
-ms.date: 06/06/2024
+ms.date: 03/05/2025
 ---
 
 # Extensions security
@@ -24,6 +24,8 @@ All extension operations originate from Azure through an API call, CLI, PowerShe
 ## Script execution
 
 The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts will run in the extension manager’s user context – Local System on Windows or root on Linux – meaning these scripts will have unrestricted access to the machine. If you do not intend to use these features, you can block them using an allowlist or blocklist. An example is provided in the next section.
+
+You can use available controls to restrict or disable unnecessary management features. For instance, unless you intend to use custom script extension for remote code execution, it's best to disable its use as it can be used by attackers to remotely execute commands to place malware or other malicious code into your virtual machine. You can use the allowlist mechanism to disable use of the custom script extension if its use doesn't meet your security requirements.
 
 ## Local agent security controls
 
