@@ -58,7 +58,7 @@ To enable guest management, follow these steps:
 For Linux, use the root account, and for Windows, use an account that is a member of the Local Administrators group.
 
 >[!NOTE]
->You can install Arc agents at scale on Arc-enabled SCVMM VMs through Azure Portal only if you are running: 
+>You can install Arc agents at scale on Arc-enabled SCVMM VMs through Azure portal only if you are running: 
 >- SCVMM 2022 UR1 or later versions of SCVMM server and console.
 >- SCVMM 2019 UR5 or later versions of SCVMM server and console.
 >- VMs running Windows Server 2012 R2, 2016, 2019, 2022, Windows 10, and Windows 11. <br>
