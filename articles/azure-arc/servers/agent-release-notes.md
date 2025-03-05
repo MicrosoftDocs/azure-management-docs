@@ -37,7 +37,7 @@ Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](man
 
 - Increased package size limit for AMA only.
 - Preserved `HandlerManifest.json` file during deletion to prevent extension removal failures.
-- Added detection for MySQL.
+- Added detection for PostgreSQL and MySQL.
 - Compressed archived logs.
 - Display certificate chain information for failed requests (if the TLS handshake reaches the cert stage).
 - Display absolute path for log zip files to improve visibility.

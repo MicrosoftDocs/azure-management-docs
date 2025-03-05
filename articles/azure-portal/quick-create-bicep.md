@@ -3,7 +3,7 @@ title: Create an Azure portal dashboard by using a Bicep file
 description: Learn how to create an Azure portal dashboard by using a Bicep file.
 ms.topic: quickstart
 ms.custom: subject-bicepqs, devx-track-bicep
-ms.date: 12/11/2023
+ms.date: 03/04/2025
 ---
 
 # Quickstart: Create a dashboard in the Azure portal by using a Bicep file
@@ -23,11 +23,13 @@ The Bicep file used in this quickstart is from [Azure Quickstart Templates](http
 
 The Bicep file defines one Azure resource, a [Microsoft.Portal dashboards resource](/azure/templates/microsoft.portal/dashboards?pivots=deployment-language-bicep) that displays data about the VM that you'll create as part of the deployment.
 
-The dashboard created by deploying this Bicep file requires an existing virtual machine. Before deploying the Bicep file, the script deploys an ARM template called [prereq.azuredeploy.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.portal/azure-portal-dashboard/prereqs/prereq.azuredeploy.json) that creates a virtual machine.
+The example dashboard created by deploying this Bicep file requires an existing virtual machine. Before deploying the Bicep file, the script deploys an ARM template called [prereq.azuredeploy.json](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.portal/azure-portal-dashboard/prereqs/prereq.azuredeploy.json) that creates a virtual machine to be used in the dashboard.
 
-The virtual machine name is hard-coded as **SimpleWinVM** in the ARM template, to match what's used in the `main.bicep` file that creates the dashboard. You'll need to create your own administration username and password for this VM. This is a new username and password (not the account you use to sign in to Azure). The password must be complex. For more information, see [username requirements](/azure/virtual-machines/windows/faq#what-are-the-username-requirements-when-creating-a-vm-)
+The virtual machine name is hard-coded as **SimpleWinVM** in the ARM template, to match what's used in the `main.bicep` file that creates the dashboard. You'll need to create your own administration username and password for this example VM. This is a new username and password (not the account you use to sign in to Azure). The password must be complex. For more information, see [username requirements](/azure/virtual-machines/windows/faq#what-are-the-username-requirements-when-creating-a-vm-)
 and [password requirements](/azure/virtual-machines/windows/faq#what-are-the-password-requirements-when-creating-a-vm-).
 
+> [!IMPORTANT]
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see the [security best practices for VMs and operating systems](/azure/security/fundamentals/iaas).
 
 ## Deploy the Bicep file
 
@@ -82,7 +84,7 @@ After the deployment finishes, you should see a message indicating the deploymen
 
 ## Clean up resources
 
-If you want to remove the VM and associated dashboard, delete the resource group that contains them.
+To remove the example VM and associated dashboard, delete the resource group that contains them.
 
 1. In the Azure portal, search for **SimpleWinVmResourceGroup**, then select it in the search results.
 

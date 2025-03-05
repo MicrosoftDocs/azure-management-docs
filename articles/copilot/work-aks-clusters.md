@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 11/11/2024
+ms.date: 03/04/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -15,7 +15,7 @@ author: JnHs
 
 Microsoft Copilot in Azure (preview) can help you work more efficiently with [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters.
 
-When you ask Microsoft Copilot in Azure for help with AKS, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you'll be prompted to specify a cluster.
+When you ask Microsoft Copilot in Azure for help with AKS, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you're prompted to specify a cluster.
 
 This video shows how Copilot in Azure can assist with AKS cluster management and configurations.
 
@@ -27,7 +27,7 @@ This video shows how Copilot in Azure can assist with AKS cluster management and
 
 ## Run cluster commands
 
-You can use Microsoft Copilot in Azure to run kubectl commands based on your prompts. When you make a request that can be achieved by a kubectl command, you'll see the command along with the option to execute it directly in the **Run command** pane. This pane lets you [run commands on your cluster through the Azure API](/azure/aks/access-private-cluster?tabs=azure-portal), without directly connecting to the cluster. You can also copy the generated command and run it directly.
+You can use Microsoft Copilot in Azure to run kubectl commands based on your prompts. When you make a request that can be achieved by a kubectl command, you see the command along with the option to execute it directly in the **Run command** pane. This pane lets you [run commands on your cluster through the Azure API](/azure/aks/access-private-cluster?tabs=azure-portal), without directly connecting to the cluster. You can also copy the generated command and run it directly.
 
 This video shows how Copilot in Azure can assist with kubectl commands for managing AKS clusters.
 
@@ -48,7 +48,7 @@ Here are a few examples of the kinds of prompts you can use to run kubectl comma
 
 ### Cluster command example
 
-You can say **"List all namespaces in my cluster."** If you're not already working with a cluster, you'll be prompted to select one. Microsoft Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. When you confirm, the **Run command** pane opens with the generated command included.
+You can say **"List all namespaces in my cluster."** If you're not already working with a cluster, you're prompted to select one. Microsoft Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. When you confirm, the **Run command** pane opens with the generated command included.
 
 :::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
 
@@ -56,7 +56,7 @@ You can say **"List all namespaces in my cluster."** If you're not already worki
 
 You can start and stop AKS node pools by prompting Microsoft Copilot in Azure, without having to navigate to each cluster individually. You can also take actions on node pools starting from a prompt to Copilot in Azure.
 
-When you ask for help with node pools, you'll be prompted to select which node pool to work with. From there, Microsoft Copilot in Azure prompts you to confirm the action.
+When you ask for help with node pools, you're prompted to select which node pool to work with. From there, Microsoft Copilot in Azure prompts you to confirm the action.
 
 ### Node pool sample prompts
 
@@ -91,7 +91,7 @@ Here are a few examples of the kinds of prompts you can use to manage the IP add
 
 Microsoft Copilot in Azure can help streamlines the process of installing the Azure [Backup extension](/azure/backup/azure-kubernetes-service-backup-overview) to an AKS cluster. On clusters where the extension is already installed, it helps you [configure backups](/azure/backup/azure-kubernetes-service-cluster-backup#configure-backups) and view existing backups.
 
-When you ask for help with backups, you'll be prompted to select a cluster. From there, Microsoft Copilot in Azure prompts you to open the **Backup** pane for that cluster, where you can proceed with installing the extension, configuring backups, or viewing existing backups.
+When you ask for help with backups, you're prompted to select a cluster. From there, Microsoft Copilot in Azure prompts you to open the **Backup** pane for that cluster, where you can proceed with installing the extension, configuring backups, or viewing existing backups.
 
 ### Backup sample prompts
 
@@ -104,7 +104,7 @@ Here are a few examples of the kinds of prompts you can use to manage AKS cluste
 
 ### Backup example
 
-You can say **"Install AKS backup"** to start the process of installing the AKS backup extension. After you select a cluster, you'll be prompted to open its **Backup** pane. From there, select **Launch install backup** to open the experience. After reviewing the prerequisites for the extension, you can step through the installation process.
+You can say **"Install AKS backup"** to start the process of installing the AKS backup extension. After you select a cluster, you're prompted to open its **Backup** pane. From there, select **Launch install backup** to open the experience. After reviewing the prerequisites for the extension, you can step through the installation process.
 
 :::image type="content" source="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
 
@@ -112,7 +112,7 @@ You can say **"Install AKS backup"** to start the process of installing the AKS 
 
 Microsoft Copilot in Azure can streamline the process of installing Azure Monitor on your AKS clusters. When monitoring is configured, it provides visibility into cluster, node, and container level insight if already configured.
 
-When you ask for help with monitoring, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Insights** pane of the cluster, where you can confirm installation or view data.
+When you ask for help with monitoring, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you're prompted to specify a cluster. From there, you're guided to the **Insights** pane of the cluster, where you can confirm installation or view data.
 
 ### Monitoring sample prompts
 
@@ -131,24 +131,80 @@ When you're working with an AKS cluster, you can say **"help me set up monitorin
 
 :::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
 
-## Install and work with Istio
+## Deploy and work with cluster tools
 
-Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured.
+Microsoft Copilot in Azure can streamline the process of installing tools on your AKS clusters, such as Istio, Periscope, and CanIPull.
 
-When you ask for help with Istio, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you'll be prompted to specify a cluster. From there, you'll be guided to the **Service mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+When you ask to deploy an AKS tool, Microsoft Copilot in Azure automatically pulls context from the cluster you're viewing or the current conversation.  If the context isn't clear, you're prompted to specify a cluster.
 
-### Istio sample prompts
+### Install and work with Istio
+
+Microsoft Copilot in Azure can streamline the process of installing Istio on your AKS clusters. It also helps you view and create traffic management rules after Istio is configured. When you ask Copilot in Azure for help with Istio, you're guided to the **Service mesh** pane of the cluster, where you can confirm installation or manage traffic management rules.
+
+#### Istio sample prompts
 
 - "Enable Istio"
 - "I want to enable Istio on my AKS cluster"
 - "Navigate to the Istio page"
 - "I want to navigate to the Istio page"
 
-### Istio example
+#### Istio example
 
 When you're working with an AKS cluster, you can say **"enable istio"**. Copilot in Azure guides you to **Service mesh** for the current cluster, where you can configure Istio.
 
-:::image type="content" source="media/work-aks-clusters/aks-monitor.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
+:::image type="content" source="media/work-aks-clusters/aks-istio.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to deploy Istio on an AKS cluster.":::
+
+### Deploy Periscope and collect logs
+
+The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagnose and troubleshoot issues within AKS clusters. It collects and exports logs and diagnostic information from nodes and pods, making it easier to identify and resolve problems.
+
+#### Periscope sample prompts
+
+- "Help me deploy Periscope to my AKS cluster"
+- "Deploy Periscope to my cluster"
+- "Add Periscope to my cluster"
+- "Add periscope logging to my cluster"
+- "Help me collect diagnostics logs from my AKS cluster"
+
+#### Periscope example
+
+You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one.
+
+:::image type="content" source="media/work-aks-clusters/aks-periscope-select.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a prompt about deploying Periscope on AKS.":::
+
+Once you make the selection, Copilot in Azure asks you to confirm, then deploys Periscope to your cluster.
+
+:::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
+
+### Deploy AKS CanIPull and troubleshoot image pull issues
+
+The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic utility designed to perform health checks on AKS clusters, specifically focusing on image pulls. This tool helps ensure that your AKS clusters can successfully pull container images from container registries, a crucial task for the smooth operation of your applications.
+
+#### CanIPull sample prompts
+
+- "Help me deploy CanIpull to my AKS cluster"
+- "Help me deploy CanIpull to my AKS cluster"
+- "Deploy CanIpull to my cluster"
+- "Add CanIpull to my cluster"
+- "Add CanIpull health check to my cluster"
+- "Do I have access to a specific Azure Container Registry from my AKS cluster?"
+- "Help me test if ACR is attached to my AKS cluster"
+
+#### CanIPull example
+
+When you say **"Help me deploy Can I pull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
+
+Next, you're prompted to select an Azure Container Registry to pull from. After you confirm the deployment, Copilot deploys CanIPull to the selected node.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-confirm.png" alt-text="Screenshot of Copilot in Azure confirming deployment of CanIPull to a cluster.":::
+
+After the deployment completes, you're prompted to navigate to the **Run Command** pane, where you can view CanIPull logs and check for issues.
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-run-command.png" alt-text="Screenshot showing Copilot in Azure prompting to open the Run Command pane.":::
+
+:::image type="content" source="media/work-aks-clusters/aks-canipull-run-command-logs.png" alt-text="Screenshot showing log information in the Run Command pane.":::
 
 ## Update AKS pricing tier
 
