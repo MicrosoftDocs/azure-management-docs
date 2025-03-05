@@ -66,9 +66,7 @@ For Linux, use the root account, and for Windows, use an account that is a membe
 
 ## Delete a VM
 
-If you no longer need the VM, you can delete it.
-
-To delete a virtual machine, follow these steps:
+To delete a VM that you no longer need, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
