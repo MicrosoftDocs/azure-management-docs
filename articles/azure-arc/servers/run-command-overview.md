@@ -42,8 +42,8 @@ The Run command is available across many configurations:
 
 ## Next steps
 Learn how to use Run command:
-- [Azure CLI requests for Run command on Azure Arc-enabled servers](./run-command-cli)
-- [PowerShell requests for Run command on Azure Arc-enabled servers](./run-command-powershell)
-- [REST API requests for Run command on Azure Arc-enabled servers](./run-command-rest)
+- [Azure CLI requests for Run command on Azure Arc-enabled servers](run-command-cli.md)
+- [PowerShell requests for Run command on Azure Arc-enabled servers](run-command-powershell.md)
+- [REST API requests for Run command on Azure Arc-enabled servers](run-command-rest.md)
 
 

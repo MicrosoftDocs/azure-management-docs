@@ -210,6 +210,6 @@ DELETE https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee
 ```
 
 ## Related content
-- [Azure CLI requests for Run command on Azure Arc-enabled servers](./run-command-cli)
-- [PowerShell requests for Run command on Azure Arc-enabled servers](./run-command-powershell)
-- [What is Run command on Azure Arc-enabled servers?](./run-command)
+- [Azure CLI requests for Run command on Azure Arc-enabled servers](run-command-cli.md)
+- [PowerShell requests for Run command on Azure Arc-enabled servers](run-command-powershell.md)
+- [What is Run command on Azure Arc-enabled servers?](run-command.md)

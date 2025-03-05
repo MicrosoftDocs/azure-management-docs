@@ -48,4 +48,4 @@ azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandle
 ```
 
 ## Related content
-- [What is Run command on Azure Arc-enabled servers?](./run-command)
+- [What is Run command on Azure Arc-enabled servers?](run-command.md)
