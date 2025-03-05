@@ -138,6 +138,6 @@ Remove-AzConnetedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMac
 ```
 
 ## Related content
-- [Azure CLI requests for Run command on Azure Arc-enabled servers](run-command-.md)
+- [Azure CLI requests for Run command on Azure Arc-enabled servers](run-command.md)
 - [REST API requests for Run command on Azure Arc-enabled servers](run-command-rest.md)
 - [What is Run command on Azure Arc-enabled servers?](run-command.md)
