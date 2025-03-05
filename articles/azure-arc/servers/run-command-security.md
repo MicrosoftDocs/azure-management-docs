@@ -8,7 +8,7 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 
 # Maintain security for Run commands (Preview)
 
-While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure the VM also stays secure.
+While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure remote access to the Arc-enabled server is limited.
 
 - Limit access to the Run command in a subscription
 - Allow or block certain Run commands locally 
@@ -28,17 +28,24 @@ To control access to the Run command functionality, use one of the [built-in rol
 
 You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). 
 
-> [TIP!] 
-> If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
+>[TIP!] 
+>If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
 
 See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
 
-### Windows
+### Windows example
 The following example adds the Run command extension to a blocklist on a Windows VM.
 
-`azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"`
+```azurecli
+azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"
+```
 
-### Linux
+### Linux example
 The following example add the Run command extensions to an allowlist on a Linux VM.
 
-`azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
+```azurecli
+azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
+```
+
+## Related topics
+- [What is Run command on Azure Arc-enabled servers?](./run-command)
