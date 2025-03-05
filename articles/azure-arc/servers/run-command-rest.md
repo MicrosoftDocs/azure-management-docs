@@ -209,7 +209,7 @@ When you no longer need the Run command extension, you can delete it using the f
 DELETE https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
 ```
 
-## Related topics
+## Related content
 - [Azure CLI requests for Run command on Azure Arc-enabled servers](./run-command-cli)
 - [PowerShell requests for Run command on Azure Arc-enabled servers](./run-command-powershell)
 - [What is Run command on Azure Arc-enabled servers?](./run-command)

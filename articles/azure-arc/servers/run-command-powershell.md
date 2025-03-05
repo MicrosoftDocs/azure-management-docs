@@ -137,7 +137,7 @@ Remove the RunCommand resource previously deployed on the machine. If the script
 Remove-AzConnetedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -RunCommandName "RunCommandName"
 ```
 
-## Related topics
+## Related content
 - [Azure CLI requests for Run command on Azure Arc-enabled servers](./run-command-cli)
 - [REST API requests for Run command on Azure Arc-enabled servers](./run-command-rest)
 - [What is Run command on Azure Arc-enabled servers?](./run-command)

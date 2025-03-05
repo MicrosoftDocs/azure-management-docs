@@ -10,9 +10,9 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 
 Use the Run command on Azure Arc-enabled servers (Public Preview) to securely execute scripts or commands on virtual machines (VMs) without connecting to them directly through Remote Desktop Protocol or SSH. 
 
-Because you don't have to log into each VM individually, the Run command lowers the overhead and effort to perform administrative tasks like installing software, restarting services, or troublehsooting VM performance issues.   
+Because you don't have to log into each VM individually, the Run command lowers the overhead and effort to perform administrative tasks like installing software, restarting services, or troubleshooting VM performance issues.   
 
-When you use the Run command to execute a script or command from the Azure CLI or Powershell, Azure directs the Connected Machine agent installed on the VM to complete the specified action. You don't have to install any additional extensions to the VM.
+When you use the Run command to execute a script or command from the Azure CLI or PowerSShell, Azure directs the Connected Machine agent installed on the VM to complete the specified action. You don't have to install any additional extensions to the VM.
 
 ## Prerequisites
 

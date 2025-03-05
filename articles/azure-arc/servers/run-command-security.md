@@ -47,5 +47,5 @@ The following example add the Run command extensions to an allowlist on a Linux 
 azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
 ```
 
-## Related topics
+## Related content
 - [What is Run command on Azure Arc-enabled servers?](./run-command)

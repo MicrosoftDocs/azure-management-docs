@@ -49,7 +49,7 @@ az connectedmachine run-command show --name "myRunCommand" --machine-name "myMac
 
 ### Delete RunCommand resource from the machine
 
-Remove the RunCommand resource previously deployed on the machine. If the script execution is still in progress, execution will be terminated.
+Remove the RunCommand resource previously deployed on the machine. If the script execution is still in progress, execution is terminated.
 
 ```azurecli
 az connectedmachine run-command delete --name "myRunCommand" --machine-name "myMachine" --resource-group "myRG"
