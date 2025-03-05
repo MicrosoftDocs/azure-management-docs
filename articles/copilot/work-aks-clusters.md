@@ -152,7 +152,7 @@ Microsoft Copilot in Azure can streamline the process of installing Istio on you
 
 When you're working with an AKS cluster, you can say **"enable istio"**. Copilot in Azure guides you to **Service mesh** for the current cluster, where you can configure Istio.
 
-:::image type="content" source="media/work-aks-clusters/aks-istio.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to configure monitoring on an AKS cluster.":::
+:::image type="content" source="media/work-aks-clusters/aks-istio.png" alt-text="Screenshot showing Microsoft Copilot in Azure helping to deploy Istio on an AKS cluster.":::
 
 ### Deploy Periscope and collect logs
 
