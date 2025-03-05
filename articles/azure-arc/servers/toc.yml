@@ -106,16 +106,14 @@
       items:
       - name: Overview
         href: run-command-overview.md
-      - name: REST API operations
+      - name: REST API
         href: run-command-rest.md
-      - name: Azure CLI commands
+      - name: Azure CLI
         href: run-command-cli.md
-      - name: Powershell commands
+      - name: Powershell
         href: run-command-powershell.md
-      - name: Security for Run commands
+      - name: Security for the Run command
         href: run-command-security.md
-      - name: Disable the Run command extension
-        href: run-command-disable.md
   - name: Scenarios
     items:
     - name: Test Arc-enabled servers using an Azure VM

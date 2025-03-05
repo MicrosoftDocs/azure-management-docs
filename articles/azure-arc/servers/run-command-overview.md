@@ -6,9 +6,9 @@ ms.topic: overview
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 
-# What is Run command on Azure Arc-enabled servers?
+# What is Run command on Azure Arc-enabled servers (Preview)?
 
-The Run command on Azure Arc-enabled servers (Public Preview) lets you securely execute scripts or commands on virtual machines (VMs) without connecting to them directly through Remote Desktop Protocol or SSH. 
+The Run command on Azure Arc-enabled servers (Public Preview) lets you securely execute scripts or commands on Arc-enabled virtual machines (VMs) without connecting to them directly through Remote Desktop Protocol or SSH. 
 
 Because you don't have to log into each VM individually, the Run command lowers the overhead and effort to perform administrative tasks like installing software, restarting services, or troubleshooting VM performance issues.   
 

@@ -1,9 +1,44 @@
 ---
-title: Security for Run commands
-description: 
+title: Maintain security for Run commands
+description: Learn how to use RBAC roles and allowlists and blocklists to limit who can use Run commands and where they can execute.
 ms.date: 02/28/2025
-ms.topic: how-to
+ms.topic: conceptual
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 
-TBD
+# Maintain security for Run commands (Preview)
+
+While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure the VM also stays secure.
+
+- Limit access to the Run command in a subscription
+- Allow or block certain Run commands locally 
+
+## Limit access to Run command using role-based access (RBAC)
+
+You can use RBAC to control what roles in a subscription are able to execute commands and scripts with the Run command. The following table describes action you can take with the Run command, the permission needed to perform the action, and the RBAC role that grants the permission.
+
+|Action  |Permission  | RBAC with permission |
+|---------|---------|---------|
+|- List Run commands - Show details of command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
+|Run a command|`Microsoft.HybridCompute/machines/runCommands/write`|[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher|
+
+To control access to the Run command functionality, use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) that grants a Run command permission.
+
+## Block run commands locally
+
+You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). 
+
+> [TIP!] 
+> If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
+
+See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+
+### Windows
+The following example adds the Run command extension to a blocklist on a Windows VM.
+
+`azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandlerwindows"`
+
+### Linux
+The following example add the Run command extensions to an allowlist on a Linux VM.
+
+`azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`

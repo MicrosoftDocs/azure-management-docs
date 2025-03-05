@@ -1,14 +1,14 @@
 ---
 title: REST
-description: 
+description: Learn how to use the REST API to remotely execute scripts and commands on Arc-enabled servers.
 ms.date: 02/28/2025
-ms.topic: concept
+ms.topic: conceptual
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 
-# REST API requests for Run command on Azure Arc-enabled servers
+# REST API requests for Run command on Azure Arc-enabled servers (Preview)
 
-Using the [REST API](/rest/api/hybridcompute/machine-run-commands?view=rest-hybridcompute-2024-11-10-preview) for Run command on Azure Arc-enabled servers (Preview), you can securely execute scripts or commands on virtual machines without connecting directly to them through Remote Desktop Protocol or SSH. 
+Using the [REST API](/rest/api/hybridcompute/machine-run-commands) for Run command on Azure Arc-enabled servers (Preview), you can securely execute scripts or commands on Arc-enabled virtual machines without connecting directly to them through Remote Desktop Protocol or SSH. 
 
 This article provides supported REST API operations and an example scenario to help you understand how to use the REST API.
 
@@ -22,11 +22,11 @@ You can use the following REST API operations to execute Run commands on an Azur
 
 |Operation  |Description  |
 |---------|---------|
-|[Create](/rest/api/hybridcompute/machine-run-commands/create-or-update?view=rest-hybridcompute-2024-11-10-preview&tabs=HTTP) |The operation to create a Run command. Runs the Run command. |
-|[Delete](/rest/api/hybridcompute/machine-run-commands/delete?view=rest-hybridcompute-2024-11-10-preview&tabs=HTTP) |The operation to delete a Run command. If it's running, delete also stops the Run command. |
-|[Get](/rest/api/hybridcompute/machine-run-commands/get?view=rest-hybridcompute-2024-11-10-preview&tabs=HTTP) |The operation to get a Run command. |
-|[List](/rest/api/hybridcompute/machine-run-commands/list?view=rest-hybridcompute-2024-11-10-preview&tabs=HTTP) |The operation to get all the Run commands of an Azure Arc-enabled server. |
-|[Update](/rest/api/hybridcompute/machine-run-commands/update?view=rest-hybridcompute-2024-11-10-preview&tabs=HTTP) |The operation to update the Run command. Stops the previous Run command. |
+|[Create](/rest/api/hybridcompute/machine-run-commands/create-or-update) |The operation to create a Run command. Runs the Run command. |
+|[Delete](/rest/api/hybridcompute/machine-run-commands/delete) |The operation to delete a Run command. If it's running, delete also stops the Run command. |
+|[Get](/rest/api/hybridcompute/machine-run-commands/get) |The operation to get a Run command. |
+|[List](/rest/api/hybridcompute/machine-run-commands/list) |The operation to get all the Run commands of an Azure Arc-enabled server. |
+|[Update](/rest/api/hybridcompute/machine-run-commands/update) |The operation to update the Run command. Stops the previous Run command. |
  
 > [!NOTE]
 > Output and error blobs are overwritten each time the Run command script executes.
