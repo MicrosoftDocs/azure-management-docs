@@ -1,12 +1,12 @@
 ---
-title: Maintain security for Run commands
+title: Limit access to Run command
 description: Learn how to use RBAC roles and allowlists and blocklists to limit who can use Run commands and where they can execute.
 ms.date: 02/28/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 
-# Maintain security for Run commands (Preview)
+# Limit access to Run commands (Preview)
 
 While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure remote access to the Arc-enabled server is limited.
 
