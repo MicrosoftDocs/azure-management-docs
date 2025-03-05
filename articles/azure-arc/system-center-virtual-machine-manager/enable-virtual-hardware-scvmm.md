@@ -19,7 +19,7 @@ This article describes how to enable virtual hardware management and VM CRUD ope
 
 ## Prerequisites
 
-Before you enable virtual hardware and VM CRUD capabilities, the following prerequisites must be met:
+Before you enable virtual hardware and VM CRUD capabilities, ensure you meet these prerequisites:
 
 - An Azure subscription and resource group where you have *Arc ScVmm VM Administrator* role. 
 - Your SCVMM management server instance must be [onboarded](quickstart-connect-system-center-virtual-machine-manager-to-arc.md) to Azure Arc.
