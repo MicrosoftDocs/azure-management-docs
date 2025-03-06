@@ -41,6 +41,26 @@ az arcappliance get-credentials -n <Arc resource bridge name> -g <resource group
 az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified output directory>
    ```
 
+### Get login credentials error on Azure CLI v2.70.0
+
+You may encounter an error when running az arcappliance commands that looks like this:
+
+`File "C:\Program Files\Common Files\AzureCliExtensionDirectory\arcappliance\azext_arcappliance\helpers.py", line 103, in get_tenant_id_and_cloud
+    _, _, tenant = profile.get_login_credentials(resource=cmd.cli_ctx.cloud.endpoints.active_directory_graph_resource_id)
+TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`
+
+Azure CLI v2.70.0 released a breaking change which triggers this error in arcappliance CLI extension v1.4.0 and below. A fix is in development but in the meantime, you need to downgrade Azure CLI to v2.69.0. 
+
+If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+
+Also, for the Arc-enabled VMware onboarding script, you need to comment out the below code in the script to not update the AZ CLI to latest again:
+
+```
+if (shouldInstallAzCli) {
+   installAzCli64Bit
+}
+```
+
 ### Error downloading release file information
 
 > [!WARNING] 
@@ -60,23 +80,21 @@ az extension add --upgrade --name arcappliance
 
 Once your az arcappliance extension is 1.4.0, re-try the upgrade to appliance version 1.4.0. When upgrading an Arc resource bridge, the upgrade will be to the next version which may not be the latest version. Refer to [Arc resource bridge release notes](release-notes.md).
 
-
-
 ### Download/upload connectivity was not successful
 
-If your network speed is slow, you might not be able to successfully download the Arc resource bridge VM image, resulting in this error: `ErrorCode: ValidateKvaError, Error: Pre-deployment validation of your download/upload connectivity was not successful. Timeout error occurred during download and preparation of appliance image to the on-premises fabric storage. Common causes of this timeout error are slow network download/upload speeds, a proxy limiting the network speed or slow storage performance.`
+If your network speed is slow, you might not be able to successfully download the Arc resource bridge VM image, resulting in this error: `ErrorCode: ValidateKvaError, Error: Pre-deployment validation of your download/upload connectivity was not successful. out error occurred during download and preparation of appliance image to the on-premises fabric storage. Common causes of this out error are slow network download/upload speeds, a proxy limiting the network speed or slow storage performance.`
 
 As a workaround, try creating a VM directly on the on-premises private cloud, and then run the Arc resource bridge deployment script from that VM. Doing this should result in a faster upload of the image to the datastore.
 
-### Context timed out during phase `ApplyingKvaImageOperator`
+### Context d out during phase `ApplyingKvaImageOperator`
 
-When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _ApplyingKvaImageOperator_\_\n}_ }`
+When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM d out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context d out during phase _ApplyingKvaImageOperator_\_\n}_ }`
 
-This error typically occurs when trying to download the `KVAIO` image (400 MB compressed) over a network that is slow or experiencing intermittent connectivity. The `KVAIO` controller manager waits for the image download to complete, and times out.
+This error typically occurs when trying to download the `KVAIO` image (400 MB compressed) over a network that is slow or experiencing intermittent connectivity. The `KVAIO` controller manager waits for the image download to complete, and s out.
 
 Check that your network speed between the Arc resource bridge VM and Microsoft Container Registry (`mcr.microsoft.com`) is stable and at least 2 Mbps. If your network connectivity and speed are stable, and you're still getting this error, wait at least 30 minutes before you retry, as it could be due to Microsoft Container Registry receiving a high volume of traffic.
 
-### Context timed out during phase `WaitingForAPIServer`
+### Context d out during phase `WaitingForAPIServer`
 
 When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _WaitingForAPIServer`
 
@@ -344,13 +362,21 @@ A combination of these errors usually indicates that the management machine has 
 
 To fix the issue, reestablish the connection between the management machine and datastore, then try deploying Arc resource bridge again.
 
-### x509 certificate has expired or isn't yet valid
+### Time difference causing x509 certificate has expired
 
 When you deploy Arc resource bridge, you may encounter the error:
 
 `Error: { _errorCode_: _PostOperationsError_, _errorResponse_: _{\n\_message\_: \_{\\n  \\\_code\\\_: \\\_GuestInternetConnectivityError\\\_,\\n  \\\_message\\\_: \\\_Not able to connect to https://msk8s.api.cdp.microsoft.com. Error returned: action failed after 3 attempts: Get \\\\\\\_https://msk8s.api.cdp.microsoft.com\\\\\\\_: x509: certificate has expired or isn't yet valid: current time 2022-01-18T11:35:56Z is before 2023-09-07T19:13:21Z. Arc Resource Bridge network and internet connectivity validation failed: http-connectivity-test-arc. 1.  check your networking setup and ensure the URLs mentioned in : https://aka.ms/AAla73m are reachable from the Appliance VM.   2. Check firewall/proxy settings`
 
-This error is caused when there's a clock/time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+
+### Clock skew error between appliance VM and management machine
+
+If you encounter an error similar to the following:
+
+`"ErrorCode": "PostOperationsError", "errorResponse": "{\n\"message\": \"{\\n  \\\"code\\\": \\\"ClockSkewError\\\",\\n  \\\"message\\\": \\\"The time in Appliance VM is too far behind in the past compared to Management Machine : Time in Appliance VM is 2025-02-24T10:59:59Z, time in Management Machine is 2025-02-24T16:49:13Z. Max allowed difference is 30m0s. Recommendation: Please verify that the time of the workstation machine and the appliance VM are in sync.`
+
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again. 
 
 ### Resolves to multiple networks
 
