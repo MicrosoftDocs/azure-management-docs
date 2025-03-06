@@ -99,6 +99,9 @@ You can then select whether to copy the tile to a different private or shared da
 
 ## Modify tile settings
 
+> [!IMPORTANT]
+> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub.md).
+
 Some tiles might require more configuration to show the information you want. For example, the **Metrics chart** tile has to be set up to display a metric from Azure Monitor. You can also customize tile data to override the dashboard's default time settings and filters, or to change the title and subtitle of a tile.
 
 > [!NOTE]
