@@ -41,7 +41,7 @@ In summary, a [single-node Kubernetes cluster](single-node-cluster.md) might be 
 
 ## Minimum hardware requirements
 
-### Single-node or 2-node cluster
+### Single-node or two-node cluster
 
 - Standard_D8ds_v5 VM recommended
 - Equivalent specifications per node:

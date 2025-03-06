@@ -22,7 +22,7 @@ In this automated setup, Azure Container Storage enabled by Azure Arc is deploye
 
 For more information, see the following articles:
 
-- [Jumpstart scenario: Fault Detection with Azure Container Storage on AKS Edge Essentials single node deployment](https://jumpstart.azure.com/azure_arc_jumpstart/azure_edge_iot_ops/aks_edge_essentials_single_acsa)
+- [Jumpstart scenario: Fault Detection with Azure Container Storage on AKS Edge Essentials single-node deployment](https://jumpstart.azure.com/azure_arc_jumpstart/azure_edge_iot_ops/aks_edge_essentials_single_acsa)
 - [Watch the Jumpstart scenario on YouTube](https://youtu.be/Qnh2UH1g6Q4).
 
 ## Azure Arc Jumpstart Drops for Azure Container Storage enabled by Azure Arc

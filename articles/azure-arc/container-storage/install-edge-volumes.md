@@ -39,11 +39,11 @@ az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name
 
 The Azure Container Storage enabled by Azure Arc extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage enabled by Azure Arc extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage enabled by Azure Arc to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure non-standard configurations for Kubernetes clusters with differing storage capabilities.
 
-#### [Single node or 2-node cluster](#tab/single)
+#### [Single-node or two-node cluster](#tab/single)
 
-#### Single node or 2-node cluster with Ubuntu or Edge Essentials
+#### Single-node or two-node cluster with Ubuntu or Edge Essentials
 
-If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+If you run a single-node or two-node cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
@@ -56,7 +56,6 @@ If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials*
      defaultDiskStorageClasses:
        - "default"
        - "local-path"
-     serviceMesh: "osm" 
    ```
 
 1. To apply this .yaml file, run:
@@ -69,9 +68,9 @@ If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials*
 
 #### Multi-node cluster with Ubuntu or Edge Essentials
 
-Azure Container Storage Enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage. On clusters with 3 or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a 3 or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage enabled by Azure Arc. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
 
-1. Azure Container Storage Enabled by Azure Arc is not set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
+1. Azure Container Storage enabled by Azure Arc is not set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
   
     ```bash
     fdisk /dev/sd3 
@@ -79,7 +78,7 @@ Azure Container Storage Enabled by Azure Arc contains a component, *ACStor*, whi
     mkdir /acsa 
     mount /dev/sd3a /acsa
     ```
-    This sets up spare system disk `sd3` with a configured disk partition `sd3a` to be available on `/acsa` for ACStor use.
+    This sets up spare system disk `sd3` with a configured disk partition `sd3a` to be available on `/acsa` for ACStor to use.
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
@@ -94,7 +93,6 @@ Azure Container Storage Enabled by Azure Arc contains a component, *ACStor*, whi
     spec:
       defaultDiskStorageClasses:
         - acstor-arccontainerstorage-storage-pool
-      serviceMesh: "osm"
     ---
     apiVersion: arccontainerstorage.azure.net/v1
     kind: ACStorConfiguration
@@ -107,7 +105,7 @@ Azure Container Storage Enabled by Azure Arc contains a component, *ACStor*, whi
         enabled: true
         replicas: 3
     ```
-    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage Enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it will take up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it is critical to ensure that you have sized this pool appropriately, since it cannot be grown at this time.
+    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it will take up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it is critical to ensure that you have sized this pool appropriately, since it cannot be grown at this time.
 
 1. To apply this .yaml file, run:
 
@@ -132,7 +130,6 @@ If you run a single-node or multi-node cluster with **Arc-connected AKS** or **A
      defaultDiskStorageClasses:
        - "default"
        - "local-path"
-     serviceMesh: "osm" 
    ```
 
 1. To apply this .yaml file, run:

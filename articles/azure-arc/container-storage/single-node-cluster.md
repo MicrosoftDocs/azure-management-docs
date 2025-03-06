@@ -1,6 +1,6 @@
 ---
-title: Prepare Linux for Cache Volumes (preview) using a single-node or 2-node cluster
-description: Learn how to prepare Linux for Cache Volumes with a single-node or 2-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
+title: Prepare Linux for Cache Volumes (preview) using a single-node or two-node cluster
+description: Learn how to prepare Linux for Cache Volumes with a single-node or two-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
@@ -9,26 +9,14 @@ ms.date: 08/26/2024
 zone_pivot_groups: platform-select
 ---
 
-# Prepare Linux for Cache Volumes (preview) using a single-node or 2-node cluster
+# Prepare Linux for Cache Volumes (preview) using a single-node or two-node cluster
 
-This article describes how to prepare Linux using a single-node or 2-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
+This article describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
 
 ::: zone pivot="aks"
 ## Prepare Linux with AKS enabled by Azure Arc
 
-This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or 2-node cluster.
-
-1. Install Open Service Mesh (OSM) using the following commands:
-
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
-   --config "osm.osm.featureFlags.enableWASMStats=false" \
-   --config "osm.osm.enablePermissiveTrafficPolicy=false" \
-   --config "osm.osm.configResyncInterval=10s" \
-   --config "osm.osm.osmController.resource.requests.cpu=100m" \
-   --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m"
-   ```
+This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or two-node cluster.
 
 1. Disable **ACStor** by creating a file named **config.json** with the following contents:
 
@@ -71,4 +59,4 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 
 ## Next steps
 
-[Install Azure Container Storage enabled by Azure Arc](install-edge-volumes.md)
+[Install Azure Container Storage enabled by Azure Arc Cache Volumes (preview)](install-cache-volumes.md)
