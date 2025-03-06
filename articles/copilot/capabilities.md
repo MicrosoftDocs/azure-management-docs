@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 01/08/2025
+ms.date: 03/05/2025
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.custom:
@@ -42,6 +42,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Manage and troubleshoot storage accounts](improve-storage-accounts.md)
   - [Troubleshoot disk performance](troubleshoot-disk-performance.md)
   - [Troubleshoot network connectivity](network-management.md)
+  - [Troubleshoot Azure Arc extension issues](troubleshoot-arc-extension.md)
   - [Improve Azure SQL Database-driven applications](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
 - Write and optimize code:
   - [Generate Azure CLI scripts](generate-cli-scripts.md)
