@@ -82,19 +82,19 @@ Once your az arcappliance extension is 1.4.0, re-try the upgrade to appliance ve
 
 ### Download/upload connectivity was not successful
 
-If your network speed is slow, you might not be able to successfully download the Arc resource bridge VM image, resulting in this error: `ErrorCode: ValidateKvaError, Error: Pre-deployment validation of your download/upload connectivity was not successful. out error occurred during download and preparation of appliance image to the on-premises fabric storage. Common causes of this out error are slow network download/upload speeds, a proxy limiting the network speed or slow storage performance.`
+If your network speed is slow, you might not be able to successfully download the Arc resource bridge VM image, resulting in this error: `ErrorCode: ValidateKvaError, Error: Pre-deployment validation of your download/upload connectivity was not successful. Timeout error occurred during download and preparation of appliance image to the on-premises fabric storage. Common causes of this timeout error are slow network download/upload speeds, a proxy limiting the network speed or slow storage performance.`
 
 As a workaround, try creating a VM directly on the on-premises private cloud, and then run the Arc resource bridge deployment script from that VM. Doing this should result in a faster upload of the image to the datastore.
 
-### Context d out during phase `ApplyingKvaImageOperator`
+### Context timed out during phase `ApplyingKvaImageOperator`
 
-When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM d out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context d out during phase _ApplyingKvaImageOperator_\_\n}_ }`
+When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _ApplyingKvaImageOperator_\_\n}_ }`
 
-This error typically occurs when trying to download the `KVAIO` image (400 MB compressed) over a network that is slow or experiencing intermittent connectivity. The `KVAIO` controller manager waits for the image download to complete, and s out.
+This error typically occurs when trying to download the `KVAIO` image (400 MB compressed) over a network that is slow or experiencing intermittent connectivity. The `KVAIO` controller manager waits for the image download to complete, and times out.
 
 Check that your network speed between the Arc resource bridge VM and Microsoft Container Registry (`mcr.microsoft.com`) is stable and at least 2 Mbps. If your network connectivity and speed are stable, and you're still getting this error, wait at least 30 minutes before you retry, as it could be due to Microsoft Container Registry receiving a high volume of traffic.
 
-### Context d out during phase `WaitingForAPIServer`
+### Context timed out during phase `WaitingForAPIServer`
 
 When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _WaitingForAPIServer`
 
