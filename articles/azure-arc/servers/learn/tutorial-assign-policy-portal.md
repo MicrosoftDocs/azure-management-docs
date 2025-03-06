@@ -2,12 +2,12 @@
 title: Tutorial - New policy assignment with Azure portal
 description: In this tutorial, you use Azure portal to create an Azure Policy assignment to identify non-compliant resources.
 ms.topic: tutorial
-ms.date: 01/27/2025
+ms.date: 03/06/2025
 ---
 
 # Tutorial: Create a policy assignment to identify non-compliant resources
 
-The first step in understanding compliance in Azure is to identify the status of your resources. Azure Policy supports auditing the state of your Azure Arc-enabled server with machine configuration policies. Azure Policy's machine configuration definitions can audit or apply settings inside the machine. 
+The first step in understanding compliance in Azure is to identify the status of your resources. [Azure Policy](/azure/governance/policy/overview) supports auditing the state of your Azure Arc-enabled server with machine configuration policies. Azure Policy's machine configuration definitions can audit or apply settings inside the machine.
 
 This tutorial steps you through the process of creating and assigning a policy in order to identify which of your Azure Arc-enabled servers don't have [Microsoft Defender for Servers](/azure/defender-for-cloud/defender-for-servers-overview) enabled.
 
@@ -28,29 +28,19 @@ before you begin.
 
 Use the following procedure to create a policy assignment and assign the policy definition *Azure Defender for servers should be enabled*.
 
-1. Launch the Azure Policy service in the Azure portal by selecting **All services**, then searching
-   for and selecting **Policy**.
+1. Launch the Azure Policy service in the Azure portal by searching for and selecting **Policy**.
 
-   :::image type="content" source="./media/tutorial-assign-policy-portal/all-services-page.png" alt-text="Screenshot of All services window showing search for policy service." border="true":::
+1. In the service menu, under **Authoring**, select **Assignments**. An assignment is a policy assigned to take place within a specific scope.
 
-1. Select **Assignments** on the left side of the Azure Policy page. An assignment is a policy assigned to take place within a specific scope.
+1. Select **Assign Policy** from the top of the **Assignments** pane.
 
-    :::image type="content" source="./media/tutorial-assign-policy-portal/assignments-tab.png" alt-text="Screenshot of All services Policy window showing policy assignments." border="true":::
+    :::image type="content" source="./media/tutorial-assign-policy-portal/assignments-tab.png" alt-text="Screenshot of the Policy Assignments page in the Azure portal." border="true":::
 
-1. Select **Assign Policy** from the top of the **Policy | Assignments** page.
+1. On the **Assign Policy** page, select the **Scope** by selecting the ellipsis and selecting either a management group or subscription. Optionally, select a resource group. The scope determines which resources or grouping of resources the policy assignment gets enforced on. Then, choose **Select** at the bottom of the **Scope** pane.
 
-1. On the **Assign Policy** page, select the **Scope** by clicking the ellipsis and selecting either
-   a management group or subscription. Optionally, select a resource group. A scope determines what
-   resources or grouping of resources the policy assignment gets enforced on. Then select **Select**
-   at the bottom of the **Scope** page.
+1. Resources can be excluded based on the **Scope**. **Exclusions** start at one level lower than the level of the **Scope**. **Exclusions** are optional, so leave it blank for now.
 
-   This example uses the **Parnell Aerospace** subscription. Your subscription will differ.
-
-1. Resources can be excluded based on the **Scope**. **Exclusions** start at one level lower than
-   the level of the **Scope**. **Exclusions** are optional, so leave it blank for now.
-
-1. Select the **Policy definition** ellipsis to open the list of available definitions. Azure Policy
-   comes with built-in policy definitions you can use. Many are available, such as:
+1. Select the **Policy definition** ellipsis to open the list of available definitions. Azure Policy comes with many built-in policy definitions you can use, such as:
 
    - Enforce tag and its value
    - Apply tag and its value
@@ -60,17 +50,15 @@ Use the following procedure to create a policy assignment and assign the policy 
 
 1. Search through the policy definitions list to find the *Azure Defender for servers should be enabled* definition. Choose that policy and select **Add**.
 
-1. The **Assignment name** is automatically populated with the policy name you selected, but you can
-   change it. For this example, leave the policy name as is, and don't change any of the remaining options on the page.
- 
+1. The **Assignment name** is automatically populated with the policy name you selected, but you can change it. For this example, leave the policy name as is, and don't change any of the remaining options on the page.
+
 1. For this example, we don't need to change any settings on the other tabs. Select **Review + Create** to review your new policy assignment, then select **Create**.
 
-You're now ready to identify non-compliant resources to understand the compliance state of your
-environment.
+You're now ready to identify non-compliant resources to understand the compliance state of your environment.
 
 ## Identify non-compliant resources
 
-Select **Compliance** in the left side of the page. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
+In the service menu, select **Compliance**. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
 
 :::image type="content" source="./media/tutorial-assign-policy-portal/compliance-policy.png" alt-text="Screenshot of Policy Compliance page showing policy compliance for the selected scope." border="true":::
 
@@ -98,16 +86,15 @@ condition triggers evaluation of the existence condition for the related resourc
 
 To remove the assignment created, follow these steps:
 
-1. Select **Compliance** (or **Assignments**) in the left side of the Azure Policy page and locate
-   the **Azure Defender for servers should be enabled** policy assignment you created.
-
-1. Right-click the policy assignment and select **Delete assignment**.
+1. In the service menu, select **Compliance** (or select  **Assignments** under **Authoring**).
+1. Locate the **Azure Defender for servers should be enabled** policy assignment you created.
+1. Right-click the policy assignment, then select **Delete assignment**.
 
 ## Next steps
 
 In this tutorial, you assigned a policy definition to a scope and evaluated its compliance report. The policy definition validates that all the resources in the scope are compliant and identifies which ones aren't. Now you're ready to monitor your Azure Arc-enabled servers machine by enabling [VM insights](/azure/azure-monitor/vm/vminsights-overview).
 
-To learn how to monitor and view the performance, running process and their dependencies from your machine, continue to the tutorial:
+To learn how to monitor and view the performance, running process, and dependencies from your machine, continue to the tutorial:
 
 > [!div class="nextstepaction"]
 > [Enable VM insights](tutorial-enable-vm-insights.md)
