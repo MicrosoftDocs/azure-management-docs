@@ -6,8 +6,6 @@ author: sethmanheim
 ms.author: sethm
 ---
 
-Then, perform the following steps in your Kubernetes cluster:
-
 > [!IMPORTANT]
 > You must complete the following steps for each node in your Kubernetes cluster.
 
