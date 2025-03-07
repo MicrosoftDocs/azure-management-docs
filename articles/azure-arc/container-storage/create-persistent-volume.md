@@ -1,8 +1,8 @@
 ---
 title: Create a persistent volume
 description: Learn about creating persistent volumes in Cache Volumes (preview).
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 

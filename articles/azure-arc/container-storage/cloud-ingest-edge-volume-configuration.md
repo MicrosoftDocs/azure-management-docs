@@ -1,8 +1,8 @@
 ---
 title: Cloud Ingest Edge Volumes configuration
 description: Learn about Cloud Ingest Edge Volumes configuration for Edge Volumes.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 10/17/2024
