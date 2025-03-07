@@ -206,7 +206,7 @@
         "articles/azure-portal/supportability/**/*.md": "azure",
         "articles/container-registry/**/*.md": "azure-container-registry",
         "articles/lighthouse/**/*.md": "azure-lighthouse",
-        "articles/quotas/**/*.md": "azure-quotas"
+        "articles/quotas/**/*.md": "azure-portal"
       },
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
