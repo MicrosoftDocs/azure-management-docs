@@ -8,7 +8,7 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 
 # REST API requests for Run command on Azure Arc-enabled servers (Preview)
 
-Using the [REST API](/rest/api/hybridcompute/machine-run-commands) for Run command on Azure Arc-enabled servers (Preview), you can securely execute scripts or commands on Arc-enabled virtual machines without connecting directly to them through Remote Desktop Protocol or SSH. 
+Using the [REST API](/rest/api/hybridcompute/machine-run-commands) for Run command on Azure Arc-enabled servers (Preview), you can remotely and securely execute scripts or commands on Arc-enabled virtual machines without connecting directly to them through Remote Desktop Protocol or SSH. 
 
 This article provides supported REST API operations and an example scenario to help you understand how to use the REST API.
 
@@ -135,7 +135,7 @@ You can either provide the script inline or you can link to the script file.
     }
     ```
     
-    - The ScriptUri is a shared access signature (SAS) URI for the storage blob, and it must provide read access to the blob. An expiry time of 24 hours is suggested for the SAS URI. You can generate a SAS URI on Azure portal using blobs options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URI format is: `base blob URL + "?"` + the SAS token from `New-AzStorageBlobSASToken`. 
+    - The `scriptUri` is a shared access signature (SAS) URI for the storage blob, and it must provide read access to the blob. An expiry time of 24 hours is suggested for the SAS URI. You can generate a SAS URI on Azure portal using blobs options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URI format is: `base blob URL + "?"` + the SAS token from `New-AzStorageBlobSASToken`. 
 
     - Output and error blobs must be the AppendBlob type and their SAS URIs must provide read, append, create, write access to the blob. An expiration time of 24 hours is suggested for SAS URI. You can generate SAS URIs on Azure portal using blob's options, or SAS token from using `New-AzStorageBlobSASToken`.
 
@@ -151,7 +151,7 @@ GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4
 
 ### Step 3: Update the Run Command
 
-Let’s suppose you want to open up access to another endpoint, `*.waconazure.com,` for connectivity to Windows Admin Center. You can update the existing Run command with new parameters using the PATCH operation:
+You can update the existing Run command with new parameters using the PATCH operation. The following example opens  access to another endpoint, `*.waconazure.com,` for connectivity to Windows Admin Center.
 
 
 ```rest

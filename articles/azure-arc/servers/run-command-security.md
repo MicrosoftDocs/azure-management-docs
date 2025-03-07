@@ -11,7 +11,7 @@ ms.custom: devx-track-azurecli, devx-track-azurepowershell
 While remote access enabled by the Run command lowers overhead for performing certain tasks on a VM, there are a few ways you can make sure remote access to the Arc-enabled server is limited.
 
 - Limit access to the Run command in a subscription
-- Allow or block certain Run commands locally 
+- Allow or block Run commands on specific servers locally 
 
 ## Limit access to Run command using role-based access (RBAC)
 
@@ -28,7 +28,7 @@ To control access to the Run command functionality, use one of the [built-in rol
 
 You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). 
 
->[TIP!] 
+>[TIP!]
 >If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
 
 See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
