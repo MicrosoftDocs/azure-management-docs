@@ -2,8 +2,8 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 08/16/2024
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ---
 
 > [!NOTE]

@@ -1,8 +1,8 @@
 ---
 title: Blob index and metadata tags
 description: Learn about blob index and metadata tags in Edge Volumes.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 08/26/2024
