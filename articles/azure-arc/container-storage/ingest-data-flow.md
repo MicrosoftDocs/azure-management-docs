@@ -1,8 +1,8 @@
 ---
 title: Ingest data flow
 description: Learn ways to control data flow to the cloud in Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: conceptual
 ms.date: 10/02/2024
 ---

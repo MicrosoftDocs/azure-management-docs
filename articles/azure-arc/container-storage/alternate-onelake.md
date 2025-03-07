@@ -1,8 +1,8 @@
 ---
 title: Alternate OneLake configuration for Cloud Ingest Edge Volumes
 description: Learn about an alternate Cloud Ingest Edge Volumes configuration.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 09/26/2024

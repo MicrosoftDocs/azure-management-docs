@@ -1,8 +1,8 @@
 ---
 title: Map file to object path names in Azure Container Storage enabled by Azure Arc
 description: Learn how to map file to object path names in Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.date: 10/31/2024
 ---

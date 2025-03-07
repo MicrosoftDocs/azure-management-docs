@@ -1,8 +1,8 @@
 ---
 title: Local Shared Edge Volume configuration for Edge Volumes
 description: Learn about Local Shared Edge Volume configuration for Edge Volumes.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 09/26/2024

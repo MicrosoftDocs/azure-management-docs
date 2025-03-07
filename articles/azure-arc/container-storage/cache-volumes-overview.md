@@ -1,8 +1,8 @@
 ---
 title: Cache Volumes (preview) overview
 description: Learn about the Cache Volumes offering from Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: overview
 ms.date: 08/26/2024
 
