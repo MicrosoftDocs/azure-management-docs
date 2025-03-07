@@ -188,14 +188,21 @@ az customlocation delete -n <customLocationName> -g <resourceGroupName>
 
 ## Troubleshooting
 
+### Get login credentials error on Azure CLI v2.70.0
+
+You may encounter an error that contains: `TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`. Azure CLI v2.70.0 released a breaking change which triggers this error. A fix is in development but in the meantime, you need to downgrade Azure CLI to v2.69.0. If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+
+### Unknown proxy error
 If custom location creation fails with the error `Unknown proxy error occurred`, modify your network policy to allow pod-to-pod internal communication within the `azure-arc` namespace. Be sure to also add the `azure-arc` namespace as part of the no-proxy exclusion list for your configured policy.
 
+### Service principal warning
 If you try to enable custom location while logged into Azure CLI using a service principal, you may observe the following warning:
 
 ```console
 Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
 ```
 This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. Follow the instructions provided above to enable the custom location feature using a service principal. 
+
 
 ## Next steps
 
