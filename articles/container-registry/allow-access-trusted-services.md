@@ -42,9 +42,8 @@ Where indicated, access by the trusted service requires additional configuration
 |---------|---------|------|
 | Azure Container Instances | [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi) | Yes, either system-assigned or user-assigned identity |
 | Microsoft Defender for Cloud | Vulnerability scanning by [Microsoft Defender for container registries](scan-images-defender.md) | No |
-|ACR Tasks     | [Access the parent registry or a different registry from an ACR Task](container-registry-tasks-cross-registry-authentication.md)       | Yes |
-|Machine Learning | [Deploy](/azure/machine-learning/how-to-deploy-custom-container) or [train](/azure/machine-learning/how-to-train-with-custom-image) a model in a Machine Learning workspace using a custom Docker container image | Yes |
-|Azure Container Registry | [Import images](container-registry-import-images.md) to or from a network-restricted Azure container registry | No |
+| Machine Learning | [Deploy](/azure/machine-learning/how-to-deploy-custom-container) or [train](/azure/machine-learning/how-to-train-with-custom-image) a model in a Machine Learning workspace using a custom Docker container image | Yes |
+| Azure Container Registry | [Import images](container-registry-import-images.md) to or from a network-restricted Azure container registry | No |
 
 > [!NOTE]
 > Currently, enabling the allow trusted services setting doesn't apply to App Service.
@@ -88,24 +87,6 @@ Here's a typical workflow to enable an instance of a trusted service to access a
 1. In the network-restricted registry, configure the setting to allow access by trusted services.
 1. Use the identity's credentials to authenticate with the network-restricted registry.
 1. Pull images from the registry, or perform other operations allowed by the role.
-
-### Example: ACR Tasks
-
-The following example demonstrates using ACR Tasks as a trusted service. See [Cross-registry authentication in an ACR task using an Azure-managed identity](container-registry-tasks-cross-registry-authentication.md) for task details.
-
-1. Create or update an Azure container registry.
-[Create](container-registry-tasks-cross-registry-authentication.md#option-2-create-task-with-system-assigned-identity) an ACR task.
-    * Enable a system-assigned managed identity when creating the task.
-    * Disable default auth mode (`--auth-mode None`) of the task.
-1. Assign the task identity [an Azure role to access the registry](container-registry-tasks-authentication-managed-identity.md#3-grant-the-identity-permissions-to-access-other-azure-resources). For example, assign the AcrPush role, which has permissions to pull and push images.
-1. [Add managed identity credentials for the registry](container-registry-tasks-authentication-managed-identity.md#4-optional-add-credentials-to-the-task) to the task.
-1. To confirm that the task bypasses network restrictions, [disable public access](container-registry-access-selected-networks.md#disable-public-network-access) in the registry.
-1. Run the task. If the registry and task are configured properly, the task runs successfully, because the registry allows access.
-
-To test disabling access by trusted services:
-
-1. Disable the setting to allow access by trusted services.
-1. Run the task again. In this case, the task run fails, because the registry no longer allows access by the task.
 
 ## Next steps
 
