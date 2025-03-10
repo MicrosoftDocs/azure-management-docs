@@ -22,7 +22,7 @@ In this article, you learn how to install Arc agents at scale for SCVMM VMs and 
 
 >[!NOTE]
 >This article is applicable only if you are running:  
->- SCVMM 2025 or later versions ofSCVMM server or console
+>- SCVMM 2025 or later versions of SCVMM server or console
 >- SCVMM 2022 UR1 or later versions of SCVMM server or console
 >- SCVMM 2019 UR5 or later versions of SCVMM server or console
 >- VMs running Windows Server 2012 R2, 2016, 2019, 2022, 2025, Windows 10, and Windows 11  
