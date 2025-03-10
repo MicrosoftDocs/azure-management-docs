@@ -44,9 +44,10 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
 > [System.Environment]::SetEnvironmentVariable("MSFT_ARC_TEST",'true', [System.EnvironmentVariableTarget]::Machine)
 > ```
 >
-> For Linux, set the environment variable to override the ARC on an Azure VM installation.
+> For Linux, set the environment variable to override the ARC on an Azure VM installation. Also set it in the environment of daemons.
 > ```bash
 > export MSFT_ARC_TEST=true
+> systemctl set-environment MSFT_ARC_TEST=true
 > ```
 
 1. Remove any VM extensions on the Azure VM.
