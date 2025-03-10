@@ -7,7 +7,7 @@ ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 02/11/2025
+ms.date: 03/10/2025
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
@@ -91,6 +91,7 @@ Ensure the following before you install Arc agents at scale for SCVMM VMs:
 
 Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs managed by:
 
+- SCVMM 2025 or later versions of SCVMM server or console
 - SCVMM 2022 UR1 or later versions of SCVMM server or console
 - SCVMM 2019 UR5 or later versions of SCVMM server or console
 
@@ -101,7 +102,7 @@ For VMs managed by other SCVMM versions, [install Arc agents through the script]
 
 ### Supported operating systems
 
-Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2022, 2019, 2016, 2012R2, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
+Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2025, 2022, 2019, 2016, 2012R2, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
 
 ### Software requirements
 
