@@ -8,41 +8,41 @@ ms.custom: devx-track-ansible
 
 # Migrate to Azure Monitor Agent on Azure Arc using Red Hat Ansible Automation Platform
 
-This article covers how to use Red Hat Ansible Automation Platform to migrate non-Azure machines from the Azure Log Analytics agent to Azure Monitor agent. This migration is crucial as Microsoft is transitioning users to the Azure Monitor agent, which offers enhanced monitoring capabilities and performance compared to the older Log Analytics agent. This includes onboarding the machines to Azure Arc-enabled servers. Once you have completed the configuration steps in this article, you'll be able to run a workflow against an automation controller inventory that performs the following tasks:
+This article covers how to use Red Hat Ansible Automation Platform to migrate non-Azure machines from the Azure Log Analytics agent to Azure Monitor agent. This migration is crucial as Microsoft is transitioning users to the Azure Monitor agent, which offers enhanced monitoring capabilities and performance compared to the older Log Analytics agent. This includes onboarding the machines to Azure Arc-enabled servers. Once you've completed the configuration steps in this article, you can run a workflow against an automation controller inventory to perform the following tasks:
 
 - Ensure that the Azure Connected Machine agent is installed on each machine. 
 - Install and enable the Azure Monitor agent.
 - Disable and uninstall the Log Analytics agent.
 
-Content from the [Ansible Content Lab for Cloud Automation](https://cloud.lab.ansible.io/) has already been developed to automate this scenario.  This article will walk through how you can import that content as a project in an automation controller to build a workflow to perform the tasks above.
+Content from the [Ansible Content Lab for Cloud Automation](https://cloud.lab.ansible.io/) has already been developed to automate this scenario. This article details how you can import that content as a project in an automation controller to build a workflow to perform the tasks.
 
 Ansible Automation Platform can automate the deployment of Azure services across your IT landscape to make onboarding to Azure Arc fast and reliable.
 
 > [!NOTE]
-> The Ansible content examples in this article target Linux hosts, but the playbooks can be altered to accommodate Windows hosts as well. 
+> The Ansible content examples in this article use Linux hosts, but the playbooks can be altered to accommodate Windows hosts as well. 
 
 
 ## Prerequisites
 
-- Azure Log Analytics workspace
+- **Azure Log Analytics workspace**
 
-    This article assumes you are using the Azure Log Analytics agent and that the servers are pre-configured to report data to a Log Analytics workspace. You will need the name and resource group of the workspace from which you are migrating.
+    This article assumes you're using the Azure Log Analytics agent and that the servers are preconfigured to report data to a Log Analytics workspace. You'll need the name and resource group of the workspace from which you're migrating.
     
-- Automation controller 2.x
+- **Automation controller 2.x**
 
     This article is applicable to both self-managed Ansible Automation Platform and Red Hat Ansible Automation Platform on Microsoft Azure.
     
-- Automation execution environment
+- **Automation execution environment**
 
     To use the examples in this article, you'll need an automation execution environment with both the Azure Collection and the Azure CLI installed, since both are required to run the automation.
     
     If you don't have an automation execution environment that meets these requirements, you can [use this example](https://github.com/scottharwell/cloud-ee).
     
-    See the [Red Hat Ansible documentation](https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html) for more information about building and configuring automation execution environments.
+    For more information about building and configuring automation execution environments, see the [Red Hat Ansible documentation](https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html).
 
 ### Host inventory
 
-You will need an inventory of Linux hosts configured in automation controller that contains a list of VMs that will use Azure Arc and the Azure Monitor Agent.
+You'll need an inventory of Linux hosts configured in automation controller that contains a list of VMs that use Azure Arc and the Azure Monitor Agent.
 
 ### Azure Resource Manager credential
 
@@ -56,7 +56,7 @@ A “Machine Credential” configured in Automation Controller for SSH access to
 
 The examples in this article rely on content developed and incubated by Red Hat through the [Ansible Content Lab for Cloud Content](https://cloud.lab.ansible.io/).
 
-This article also uses the [Azure Infrastructure Configuration Demo](https://github.com/ansible-content-lab/azure.infrastructure_config_demos) collection. This collection contains a number of roles and playbooks that manage Azure use cases including those with Azure Arc-enabled servers. To use this collection in Automation Controller, follow the steps below to set up a project with the repository:
+This article also uses the [Azure Infrastructure Configuration Demo](https://github.com/ansible-content-lab/azure.infrastructure_config_demos) collection. This collection contains many roles and playbooks that manage Azure use cases including those with Azure Arc-enabled servers. To use this collection in Automation Controller, follow these steps to set up a project with the repository:
 
 1. Log in to automation controller.
 1. In the left menu, select **Projects**.
@@ -77,9 +77,9 @@ Once saved, the project should be synchronized with the automation controller.
 
 ## Migrating Azure agents
 
-In this example, we will assume that our Linux servers are already running the Azure Log Analytics agent, but do not yet have the Azure Connected Machine agent installed. If your organization relies on other Azure services that use the Log Analytics agent, you may need to plan for extra data collection rules prior to migrating to the Azure Monitor agent.
+For this example, assume that our Linux servers are already running the Azure Log Analytics agent, but don't yet have the Azure Connected Machine agent installed. If your organization relies on other Azure services that use the Log Analytics agent, you may need to plan for extra data collection rules prior to migrating to the Azure Monitor agent.
 
-We will create a workflow that leverages the following playbooks to install the Azure Connected Machine agent, deploy the Azure Monitor Agent, disable the Log Analytics agent, and then uninstall the Log Analytics agent:
+We'll create a workflow that uses the following playbooks to install the Azure Connected Machine agent, deploy the Azure Monitor Agent, disable the Log Analytics agent, and then uninstall the Log Analytics agent:
 
 - install_arc_agent.yml
 - replace_log_analytics_with_arc_linux.yml
@@ -96,7 +96,7 @@ This workflow performs the following tasks:
 
 This template is responsible for installing the Azure Arc [Connected Machine agent](./agent-overview.md) on hosts within the provided inventory. A successful run will have installed the agent on all machines. 
 
-Follow the steps below to create the template:
+Follow these steps to create the template:
 
 1. On the right menu, select **Templates**.
 1. Select **Add**.
@@ -139,7 +139,7 @@ Follow the steps below to create the template:
 
 This template is responsible for migrating from the Log Analytics agent to the Azure Monitor agent by enabling the Azure Monitor Agent extension and disabling the Azure Log Analytics extension (if used via the Azure Connected Machine agent).
 
-Follow the steps below to create the template:
+Follow these steps to create the template:
 
 1. On the right menu, select **Templates**.
 1. Select **Add**.
@@ -169,12 +169,12 @@ Follow the steps below to create the template:
    ```
 
    > [!NOTE]
-   > The `linux_hosts` variable is used to create a list of hostnames to send to the Azure Collection and is not directly related to a host inventory. You may set this list in any way that Ansible supports. In this case, the variable attempts to pull host names from groups with “linux” in the group name.
+   > The `linux_hosts` variable is used to create a list of hostnames to send to the Azure Collection and isn't directly related to a host inventory. You may set this list in any way that Ansible supports. In this case, the variable attempts to pull host names from groups with “linux” in the group name.
 1. Select **Save**.
 
 ### Create template to uninstall Log Analytics
 
-This template will attempt to run the Log Analytics agent uninstall script if the Log Analytics agent was installed outside of the Azure Connected Machine agent.
+This template attempts to run the Log Analytics agent uninstall script if the Log Analytics agent was installed outside of the Azure Connected Machine agent.
 
 Follow the steps below to create the template:
 
@@ -228,7 +228,7 @@ An automation controller workflow allows you to construct complex automation by 
 1. Select **Save**.
 1. Select **Save** at the top right corner of the workflow designer.
 
-You will now have a workflow that looks like the following:
+You'll now have a workflow that looks like the following:
 :::image type="content" source="media/migrate-ama/workflow.png" alt-text="Diagram showing workflow of Azure Monitor agent migration process.":::
 
 ### Add a survey to the workflow
@@ -277,7 +277,7 @@ Your workflow has now been created.
 
 ### Running the workflow
 
-Now that you have the workflow created, you can run the workflow at any time. When you click the “launch” 🚀 icon, the survey that you configured will be presented so that you can update the variables across automation runs. This will allow you to move Log Analytics connected servers that are assigned to different regions or resource groups as needed.
+Now that you have the workflow created, you can run the workflow at any time. When you select the “launch” 🚀 icon, the survey that you configured will be presented so that you can update the variables across automation runs. This allows you to move Log Analytics connected servers that are assigned to different regions or resource groups as needed.
 
 :::image type="content" source="media/migrate-ama/launch.png" alt-text="Screenshot of Launch window for workflow.":::
 
