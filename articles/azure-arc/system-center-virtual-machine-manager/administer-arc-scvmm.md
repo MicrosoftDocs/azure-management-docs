@@ -36,16 +36,16 @@ The following are a few best practices that you can follow as it deems fit for y
 
 To be notified of any unintended downtime of the resource bridge, you can set up health alerts on the Azure resource of your resource bridge by following these steps: 
 
-     1. Sign in to the [Azure portal](https://portal.azure.com), search and navigate to **Service Health**.
-     1. In the left pane, select **Resource Health** > **Resource Health**.
-     1. In the **Subscription** dropdown, choose the subscription in which your resource bridge is located. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. After the list of resource bridge is populated, choose the resource bridge for which you want to set up the alert and select **Add resource health alert**. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without choosing any resource bridges. This adds health alerts for any resource bridges you may deploy in the future.<br>
+  1. Sign in to the [Azure portal](https://portal.azure.com), search and navigate to **Service Health**.
+  1. In the left pane, select **Resource Health** > **Resource Health**.
+  1. In the **Subscription** dropdown, choose the subscription in which your resource bridge is located. In the **Resource type** dropdown, select **Azure Arc Resource Bridge**. After the list of resource bridge is populated, choose the resource bridge for which you want to set up the alert and select **Add resource health alert**. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without choosing any resource bridges. This adds health alerts for any resource bridges you may deploy in the future.<br>
          :::image type="content" source="media/administer-arc-scvmm/service-health.png" alt-text="Screenshot of Service Health.":::
-     1. Configure the conditions in the alert rule depending on if you want to receive continuous notifications on the health status or if you want to receive notifications only when the resource bridge becomes unhealthy. To receive notifications only when the resource bridge becomes unhealthy, set the following conditions in the **Condition** tab:  
-           - **Event status**: Active 
-           - **Current resource status**: Unavailable 
-           - **Previous resource status**: Available  
-     1. In the **Actions** tab, configure the action group with the type of notification and the recipient of the alert. 
-     1. Complete creating the alert rule by filling in the details of the alert rule location, identifiers, and optional tags.
+  1. Configure the conditions in the alert rule depending on if you want to receive continuous notifications on the health status or if you want to receive notifications only when the resource bridge becomes unhealthy. To receive notifications only when the resource bridge becomes unhealthy, set the following conditions in the **Condition** tab:  
+        - **Event status**: Active 
+        - **Current resource status**: Unavailable 
+        - **Previous resource status**: Available  
+  1. In the **Actions** tab, configure the action group with the type of notification and the recipient of the alert. 
+  1. Complete creating the alert rule by filling in the details of the alert rule location, identifiers, and optional tags.
        
         Alternatively, you can create health alert from the Azure resource of your resource bridge.<br>
         :::image type="content" source="media/administer-arc-scvmm/resource-health.png" alt-text="Screenshot of resource health."::: 
@@ -58,10 +58,10 @@ As part of your security practices, you might need to rotate credentials for you
 
 There are two different sets of credentials stored on the Arc resource bridge. You can use the same account credentials for both.
 
-- **[Account for Arc resource bridge](#update-the-credentials-used-by-the-account-for-arc-resource-bridge)**: This account is used for deploying the Arc resource bridge VM and will be used for upgrade.
-- **[Account for SCVMM cluster extension](#update-the-credentials-used-by-the-account-for-scvmm-cluster-extension)**: This account is used to discover inventory and perform all the VM operations through Azure Arc-enabled SCVMM.
+- **Account for Arc resource bridge**. This account is used for deploying the Arc resource bridge VM and will be used for upgrade.
+- **Account for SCVMM cluster extension**. This account is used to discover inventory and perform all the VM operations through Azure Arc-enabled SCVMM.
 
-### Update the credentials used by the account for Arc resource bridge
+### Update the credentials of the account for Arc resource bridge
 
 To update the credentials of the account for Arc resource bridge, run the following Azure CLI commands. Run the commands from a workstation that can access cluster configuration IP address of the Arc resource bridge locally:
 
@@ -72,7 +72,7 @@ az arcappliance update-infracredentials scvmm --kubeconfig kubeconfig
 ```
 For more information on the commands, see [`az arcappliance get-credentials`](/cli/azure/arcappliance#az-arcappliance-get-credentials) and [`az arcappliance update-infracredentials scvmm`](/cli/azure/arcappliance/update-infracredentials#az-arcappliance-update-infracredentials-scvmm).
 
-### Update the credentials used by the account for SCVMM cluster extension
+### Update the credentials used by the SCVMM cluster extension
 
 To update the credentials used by the SCVMM cluster extension on the resource bridge, run the following command. This command can be run from anywhere with the `connectedscvmm` CLI extension installed.
 
