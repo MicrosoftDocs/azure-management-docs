@@ -1,11 +1,11 @@
 ### YamlMime:Landing
 
 title: Azure Container Storage enabled by Azure Arc
-summary: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-enabled Kubernetes clusters.
+summary: A first-party storage system designed for Arc-connected Kubernetes clusters
 
 metadata:
-  title: Azure Container Storage enabled by Azure Arc documentation
-  description: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-enabled Kubernetes clusters.
+  title: Azure Container Storage enabled by Azure Arc
+  description: A first-party storage system designed for Arc-connected Kubernetes clusters
   ms.topic: landing-page
   author: asergaz
   ms.service: azure-arc
