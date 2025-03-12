@@ -113,11 +113,11 @@ Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, whi
    kubectl apply -f "edgeConfig.yaml"
    ```
 
-#### [Arc-connected AKS/AKS Arc](#tab/arc)
+#### [Arc-enabled AKS/AKS Arc](#tab/arc)
 
-#### Arc-connected AKS or AKS Arc
+#### Arc-enabled AKS or AKS Arc
 
-If you run a single-node or multi-node cluster with **Arc-connected AKS** or **AKS enabled by Arc**, follow these instructions:
+If you run a single-node or multi-node cluster with **Arc-enabled AKS** or **AKS enabled by Arc**, follow these instructions:
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 

@@ -6,9 +6,9 @@ author: asergaz
 ms.author: sergaz
 ---
 
-### Arc-connected Kubernetes cluster
+### Arc-enabled Kubernetes cluster
 
-These instructions assume that you already have an Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
+These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
 
 If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
 

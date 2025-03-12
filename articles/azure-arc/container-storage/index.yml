@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Azure Container Storage enabled by Azure Arc documentation
-summary: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters.
+title: Azure Container Storage enabled by Azure Arc
+summary: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-enabled Kubernetes clusters.
 
 metadata:
   title: Azure Container Storage enabled by Azure Arc documentation
-  description: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters.
+  description: Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-enabled Kubernetes clusters.
   ms.topic: landing-page
   author: asergaz
   ms.service: azure-arc
   ms.author: sergaz 
-  ms.date: 08/26/2024
+  ms.date: 03/12/2025
 
 landingContent:
   - title: About Azure Container Storage enabled by Azure Arc
@@ -19,22 +19,16 @@ landingContent:
         links:
           - text: What is Azure Container Storage enabled by Azure Arc?
             url: overview.md
-      - linkListType: how-to-guide
+      - linkListType: get-started
         links:
-          - text: Install Extension
-            url: install-edge-volumes.md
-          - text: Install Cache Volumes (preview)
-            url: install-cache-volumes.md
-  - title: Resources
-    linkLists:
-      - linkListType: whats-new
-        links:
-          - text: FAQ and release notes
-            url: release-notes.md
-          - text: Support and feedback
-            url: support-feedback.md
+          - text: Azure Arc Jumpstart scenarios
+            url: jumpstart.md
   - title: Get started
     linkLists:
+      - linkListType: quickstart
+        links:
+          - text: Install Azure Container Storage on a single-node Ubuntu cluster
+            url: quickstart-install.md
       - linkListType: how-to-guide
         links:
           - text: Install Edge Volumes
@@ -45,3 +39,11 @@ landingContent:
             url: cloud-ingest-edge-volume-configuration.md
           - text: Monitor deployment
             url: monitor-deployment-edge-volumes.md
+  - title: Resources
+    linkLists:
+      - linkListType: whats-new
+        links:
+          - text: FAQ and release notes
+            url: release-notes.md
+          - text: Support and feedback
+            url: support-feedback.md

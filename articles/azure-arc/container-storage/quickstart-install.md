@@ -18,7 +18,7 @@ This quickstart shows you how to install Azure Container Storage enabled by Azur
 Before you begin, you need the following prerequisites:
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
-- An Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
+- An Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
 
 ### Parameters
 
@@ -27,7 +27,7 @@ You need the following parameter values to complete this quickstart:
 | Parameter name  | Description                                                   |
 |-----------------|---------------------------------------------------------------|
 | `resource-group`  | The name of the Azure Resource Group that your cluster is in.  |
-| `cluster-name`    | The name of your Arc-connected Kubernetes cluster.             |
+| `cluster-name`    | The name of your Arc-enabled Kubernetes cluster.             |
 
 ## Step 1: Set maximum user instances
 
