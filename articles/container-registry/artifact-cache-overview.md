@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: conceptual #Don't change
 ms.custom: devx-track-azurecli
-ms.date: 02/26/2025
+ms.date: 02/28/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 The artifact cache feature of Azure Container Registry lets you cache container images in both public and private repositories.
 
-Artifact cache enables faster and more *reliable pull operations* through Azure Container Registry (ACR), using features like geo-replication and Availability Zone support for higher availability and faster image pulls. Cached registries are accessible over private networks to align with firewall configurations and compliance standards.
+Artifact cache enables faster and more *reliable pull operations* through Azure Container Registry (ACR). It uses features like geo-replication and availability zone support for higher availability and faster image pulls. You can access cached registries over private networks to align with your firewall configurations and compliance standards.
 
 Artifact cache addresses the challenge of pull limits imposed by public registries. We recommend authenticating your cache rules with your upstream source credentials. Then, you can pull images from the local ACR, helping to mitigate rate limits.
 
@@ -49,10 +49,10 @@ When using artifact cache, keep in mind the following limitations:
 
 ## Upstream support
 
-Artifact cache currently supports the following upstream registries. Review the following table for details about which types of pulls are supported and how they can be used.
+Artifact cache currently supports the following upstream registries. Review the following table for details about which types of pulls are supported and how to use them.
 
 >[!WARNING]
-> You must generate a credential set by using [Azure CLI](artifact-cache-cli.md#create-the-credentials) or the [Azure portal](artifact-cache-portal.md#create-new-credentials) to source content from Docker Hub.
+> To source content from Docker Hub, you must generate a credential set by using [Azure CLI](artifact-cache-cli.md#create-the-credentials) or the [Azure portal](artifact-cache-portal.md#create-new-credentials).
 
 | Upstream registry                          | Support                                                  | Availability             |
 |----------------------------------------------|----------------------------------------------------------|--------------------------|

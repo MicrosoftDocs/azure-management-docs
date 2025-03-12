@@ -30,15 +30,12 @@ Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](man
 
 ### Fixed
 
-- If an extension package fails to download **10 times**, the request is now marked as **Failed** instead of continuing until timeout.
+- If an extension package fails to download **10 times**, the download request will fail instead of continuing until timeout.
 - Fixed a deadlock issue in the Policy agent that occurred in certain edge cases.
-- **Proxy Configuration:** Now correctly applied when sending logs to HIS in autoupgrade scripts.
-- Updated **OpenSSL** from version **3.4.0 to 3.4.1** for security and stability improvements. 
 
 ### New features and enhancements
 
-- Added logic to proxy settings from the config file to extensions.
-- **Tags Input:** Now supports escaped characters using backslashes when running `azcmagent connect`.
+- **Tags Input:** Now supports **escaped characters** using backslashes when running `azcmagent connect`.
 - **Location Flag:** Automatically removes spaces from user-provided values for `--location`.
 - **Request Logging:** The optional `Client-Id` header is now logged for requests made to HIMDS.
 

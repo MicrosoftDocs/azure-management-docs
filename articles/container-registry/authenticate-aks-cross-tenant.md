@@ -1,12 +1,12 @@
 ---
 title: Cross-Tenant Authentication from AKS to ACR
-description: Configure an AKS cluster's service principal with permissions to access your Azure container registry in a different AD tenant
+description: Configure an AKS cluster's service principal with permissions to access your Azure container registry in a different Microsoft Entra tenant.
 ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-ms.date: 10/31/2023
-#customer intent: As a developer, I want to configure an AKS cluster's service principal with permissions to access my Azure container registry in a different AD tenant so that I can pull images from the registry.
+ms.date: 02/28/2025
+#customer intent: As a developer, I want to configure an AKS cluster's service principal with permissions to access my Azure container registry in a different Microsoft Entra tenant so that I can pull images from the registry.
 ---
 
 # Pull images from a container registry to an AKS cluster in a different Microsoft Entra tenant
@@ -21,16 +21,16 @@ In some cases, you might have your Azure AKS cluster in one Microsoft Entra tena
 Assumptions for this example:
 
 * The AKS cluster is in **Tenant A** and the Azure container registry is in **Tenant B**. 
-* The AKS cluster is configured with service principal authentication in **Tenant A**. Learn more about how to create and use a [service principal for your AKS cluster](/azure/aks/kubernetes-service-principal).
+* The AKS cluster is configured with service principal authentication in **Tenant A**. For more information, see [Create and use a service principal for your AKS cluster](/azure/aks/kubernetes-service-principal).
 
-You need at least the Contributor role in the AKS cluster's subscription and the Owner role in the container registry's subscription.
+You need at least the **Contributor** role in the AKS cluster's subscription and the **Owner** role in the container registry's subscription.
 
-You use the following steps to:
+Use the following steps to:
 
-* Create a new multitenant app (service principal) in **Tenant A**. 
-* Provision the app in **Tenant B**.
-* Configure the service principal to pull from the registry in **Tenant B**
-* Update the AKS cluster in **Tenant A** to authenticate using the new service principal
+1. Create a new multitenant app (service principal) in **Tenant A**. 
+1. Provision the app in **Tenant B**.
+1. Configure the service principal to pull from the registry in **Tenant B**.
+1. Update the AKS cluster in **Tenant A** to authenticate using the new service principal.
 
 ## Step-by-step instructions
 
@@ -44,7 +44,7 @@ You use the following steps to:
 1. In **Supported account types**, select **Accounts in any organizational directory**.
 1. In **Redirect URI**, enter *https://www.microsoft.com*.
 1. Select **Register**.
-1. On the **Overview** page, take note of the **Application (client) ID**. It will be used in Step 2 and Step 4.
+1. On the **Overview** page, take note of the **Application (client) ID**. You use this ID in Step 2 and Step 4.
 
     :::image type="content" source="media/authenticate-kubernetes-cross-tenant/service-principal-overview.png" alt-text="Service principal application ID":::
 1. In **Certificates & secrets**, under **Client secrets**, select **+ New client secret**.
@@ -64,7 +64,7 @@ You use the following steps to:
 1. Select **Consent on behalf of your organization** and then **Accept**. 
     
     :::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-consent.png" alt-text="Grant tenant access to application":::
- 
+
 ### Step 3: Grant service principal permission to pull from registry
 
 In **Tenant B**, assign the AcrPull role to the service principal, scoped to the target container registry. You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
@@ -75,13 +75,13 @@ In **Tenant B**, assign the AcrPull role to the service principal, scoped to the
 
 ### Step 4: Update AKS with the Microsoft Entra application secret
 
-Use the multitenant application (client) ID and client secret collected in Step 1 to [update the AKS service principal credential](/azure/aks/update-credentials#update-aks-cluster-with-service-principal-credentials).
+Use the multitenant application (client) ID and client secret you collected in Step 1 to [update the AKS service principal credential](/azure/aks/update-credentials#update-aks-cluster-with-service-principal-credentials).
 
 Updating the service principal can take several minutes.
 
 ## Next steps
 
-* Learn more [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md)
-* Learn more about image pull secrets in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod)
-- Learn about [Application and service principal objects in Microsoft Entra ID](/azure/active-directory/develop/app-objects-and-service-principals)
-- Learn more about [scenarios to authenticate with Azure Container Registry](authenticate-kubernetes-options.md) from a Kubernetes cluster
+* Learn more about [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
+* Learn more about image pull secrets in the [Kubernetes documentation](https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod).
+* Learn about [Application and service principal objects in Microsoft Entra ID](/azure/active-directory/develop/app-objects-and-service-principals).
+* Learn more about [scenarios to authenticate with Azure Container Registry](authenticate-kubernetes-options.md) from a Kubernetes cluster.

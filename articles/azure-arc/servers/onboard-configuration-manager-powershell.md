@@ -1,7 +1,7 @@
 ---
 title: Connect machines at scale by running PowerShell scripts with Configuration Manager
 description: You can use Configuration Manager to run a PowerShell script that automates at-scale onboarding to Azure Arc-enabled servers.
-ms.date: 12/05/2024
+ms.date: 03/12/2025
 ms.topic: how-to
 ---
 
@@ -75,7 +75,7 @@ Select a collection of targets for your script by doing the following:
 
 The script status monitoring indicates whether the script has successfully installed the Connected Machine Agent to the collection of devices. Successfully onboarded Azure Arc-enabled servers will also be visible in the [Azure portal](https://aka.ms/hybridmachineportal).
 
-:::image type="content" source="media/onboard-configuration-manager-powershell/verify-onboarding-configuration-manager-powershell.png" alt-text="Screenshot of the Azure portal showing successful onboarding of Azure Arc-enabled servers.":::
+:::image type="content" source="media/onboard-portal/arc-for-servers-successful-onboard.png" alt-text="Screenshot of the Azure portal showing successful onboarding of Azure Arc-enabled servers.":::
 
 ## Next steps
 
