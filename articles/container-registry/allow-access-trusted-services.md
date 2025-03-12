@@ -5,32 +5,32 @@ ms.topic: how-to
 author: rayoef
 ms.service: azure-container-registry
 ms.author: rayoflores
-ms.date: 10/31/2023
+ms.date: 02/28/2025
 #customer intent: As a developer, I want to securely access a network-restricted container registry using trusted Azure services so that I can pull or push images.
 
 ---
 
 # Allow trusted services to securely access a network-restricted container registry
 
-Azure Container Registry can allow select trusted Azure services to access a registry that's configured with network access rules. When trusted services are allowed, a trusted service instance can securely bypass the registry's network rules and perform operations such as pull or push images. This article explains how to enable and use trusted services with a network-restricted Azure container registry.
+With Azure Container Registry, you can allow select trusted Azure services to access a registry that's configured with network access rules. When you allow trusted services, a trusted service instance can securely bypass the registry's network rules and perform operations such as pulling or pushing images. This article explains how to enable and use trusted services with a network-restricted Azure container registry.
 
-Use the Azure Cloud Shell or a local installation of the Azure CLI to run the command examples in this article. If you'd like to use it locally, version 2.18 or later is required. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+Use the Azure Cloud Shell or a local installation of the Azure CLI to run the command examples in this article. Use version 2.18 or later to run it locally. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
 ## Limitations
 
-* Certain registry access scenarios with trusted services require a [managed identity for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Except where noted that a user-assigned managed identity is supported, only a system-assigned identity may be used.
+* Certain registry access scenarios with trusted services require a [managed identity for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). Except where noted that a user-assigned managed identity is supported, only a system-assigned identity can be used.
 * Allowing trusted services doesn't apply to a container registry configured with a [service endpoint](container-registry-vnet.md). The feature only affects registries that are restricted with a [private endpoint](container-registry-private-link.md) or that have [public IP access rules](container-registry-access-selected-networks.md) applied.
 
 ## About trusted services
 
-Azure Container Registry has a layered security model, supporting multiple network configurations that restrict access to a registry, including:
+Azure Container Registry has a layered security model that supports multiple network configurations to restrict access to a registry. These configurations include:
 
 * [Private endpoint with Azure Private Link](container-registry-private-link.md). When configured, a registry's private endpoint is accessible only to resources within the virtual network, using private IP addresses.  
 * [Registry firewall rules](container-registry-access-selected-networks.md), which allow access to the registry's public endpoint only from specific public IP addresses or address ranges. You can also configure the firewall to block all access to the public endpoint when using private endpoints.
 
-When deployed in a virtual network or configured with firewall rules, a registry denies access to users or services from outside those sources.
+When you deploy a registry in a virtual network or configure it with firewall rules, it denies access to users or services from outside those sources.
 
-Several multi-tenant Azure services operate from networks that can't be included in these registry network settings, preventing them from performing operations such as pull or push images to the registry. By designating certain service instances as "trusted", a registry owner can allow select Azure resources to securely bypass the registry's network settings to perform registry operations.
+Several multitenant Azure services operate from networks that you can't include in these registry network settings. As a result, these services can't perform operations such as pulling or pushing images to the registry. By designating certain service instances as "trusted", a registry owner can allow select Azure resources to securely bypass the registry's network settings to perform registry operations.
 
 ### Trusted services
 
@@ -47,7 +47,7 @@ Where indicated, access by the trusted service requires additional configuration
 |Azure Container Registry | [Import images](container-registry-import-images.md) to or from a network-restricted Azure container registry | No |
 
 > [!NOTE]
-> Currently, enabling the allow trusted services setting doesn't apply to App Service.
+> Currently, enabling the `allow trusted services` setting doesn't apply to App Service.
 
 ## Allow trusted services - CLI
 
@@ -74,29 +74,29 @@ To disable or re-enable the setting in the portal:
 1. In the portal, navigate to your container registry.
 1. Under **Settings**, select **Networking**.
 1. In **Allow public network access**, select **Selected networks** or **Disabled**.
-1. Do one of the following:
+1. Do one of the following steps:
     * To disable access by trusted services, under **Firewall exception**, uncheck **Allow trusted Microsoft services to access this container registry**.
     * To allow trusted services, under **Firewall exception**, check **Allow trusted Microsoft services to access this container registry**.
 1. Select **Save**.
 
 ## Trusted services workflow
 
-Here's a typical workflow to enable an instance of a trusted service to access a network-restricted container registry. This workflow is needed when a service instance's managed identity is used to bypass the registry's network rules.
+Here's a typical workflow to enable an instance of a trusted service to access a network-restricted container registry. This workflow is needed when you use a service instance's managed identity to bypass the registry's network rules.
 
 1. Enable a managed identity in an instance of one of the [trusted services](#trusted-services) for Azure Container Registry.
 1. Assign the identity an [Azure role](container-registry-roles.md) to your registry. For example, assign the ACRPull role to pull container images.
-1. In the network-restricted registry, configure the setting to allow access by trusted services.
+1. Configure the setting in the network-restricted registry to allow access by trusted services.
 1. Use the identity's credentials to authenticate with the network-restricted registry.
 1. Pull images from the registry, or perform other operations allowed by the role.
 
 ### Example: ACR Tasks
 
-The following example demonstrates using ACR Tasks as a trusted service. See [Cross-registry authentication in an ACR task using an Azure-managed identity](container-registry-tasks-cross-registry-authentication.md) for task details.
+The following example demonstrates using ACR Tasks as a trusted service. For task details, see [Cross-registry authentication in an ACR task using an Azure-managed identity](container-registry-tasks-cross-registry-authentication.md).
 
 1. Create or update an Azure container registry.
-[Create](container-registry-tasks-cross-registry-authentication.md#option-2-create-task-with-system-assigned-identity) an ACR task.
-    * Enable a system-assigned managed identity when creating the task.
-    * Disable default auth mode (`--auth-mode None`) of the task.
+   [Create](container-registry-tasks-cross-registry-authentication.md#option-2-create-task-with-system-assigned-identity) an ACR task.
+   * Enable a system-assigned managed identity when creating the task.
+   * Disable default auth mode (`--auth-mode None`) of the task.
 1. Assign the task identity [an Azure role to access the registry](container-registry-tasks-authentication-managed-identity.md#3-grant-the-identity-permissions-to-access-other-azure-resources). For example, assign the AcrPush role, which has permissions to pull and push images.
 1. [Add managed identity credentials for the registry](container-registry-tasks-authentication-managed-identity.md#4-optional-add-credentials-to-the-task) to the task.
 1. To confirm that the task bypasses network restrictions, [disable public access](container-registry-access-selected-networks.md#disable-public-network-access) in the registry.
