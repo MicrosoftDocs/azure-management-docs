@@ -31,7 +31,7 @@ You can control whether the Connected Machine agent allows access to the VM thro
 > [!TIP]
 > If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
 
-See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
+To learn more, see [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists).
 
 ### Windows example
 The following example adds the Run command extension to a blocklist on a Windows VM.
