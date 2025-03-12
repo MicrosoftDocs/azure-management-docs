@@ -126,8 +126,6 @@
       href: migrate-legacy-agents.md
     - name: Deploy and configure Azure Monitor Agent using Azure Policy
       href: deploy-ama-policy.md
-    - name: Remotely configure servers using Run command
-      href: run-command.md
     - name: Organize and inventory servers
       href: organize-inventory-servers.md
     - name: Azure Management Services
