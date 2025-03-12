@@ -58,10 +58,11 @@ As part of your security practices, you might need to rotate credentials for you
 
 There are two different sets of credentials stored on the Arc resource bridge. You can use the same account credentials for both.
 
-- **Account for Arc resource bridge**. This account is used for deploying the Arc resource bridge VM and will be used for upgrade.
-- **Account for SCVMM cluster extension**. This account is used to discover inventory and perform all the VM operations through Azure Arc-enabled SCVMM.
+### [Account for Arc resource bridge](#tab/account-for-arc-resource-bridge)
 
-### Update the credentials of the account for Arc resource bridge
+This account is used for deploying the Arc resource bridge VM and will be used for upgrade.
+
+**Update the credentials of the account for Arc resource bridge**
 
 To update the credentials of the account for Arc resource bridge, run the following Azure CLI commands. Run the commands from a workstation that can access cluster configuration IP address of the Arc resource bridge locally:
 
@@ -72,13 +73,18 @@ az arcappliance update-infracredentials scvmm --kubeconfig kubeconfig
 ```
 For more information on the commands, see [`az arcappliance get-credentials`](/cli/azure/arcappliance#az-arcappliance-get-credentials) and [`az arcappliance update-infracredentials scvmm`](/cli/azure/arcappliance/update-infracredentials#az-arcappliance-update-infracredentials-scvmm).
 
-### Update the credentials used by the SCVMM cluster extension
+### [Account for SCVMM cluster extension](#tab/account-for-scvmm-cluster-extension)
+
+This account is used to discover inventory and perform all the VM operations through Azure Arc-enabled SCVMM.
+
+**Update the credentials used by the SCVMM cluster extension**
 
 To update the credentials used by the SCVMM cluster extension on the resource bridge, run the following command. This command can be run from anywhere with the `connectedscvmm` CLI extension installed.
 
 ```azurecli
 az connectedscvmm scvmm connect --custom-location <name of the custom location> --location <Azure region>  --name <name of the SCVMM resource in Azure>       --resource-group <resource group for the SCVMM resource>  --username   <username for the SCVMM account>  --password  <password to the SCVMM account>
 ```
+---
 
 ## Collect logs from the Arc resource bridge
 
