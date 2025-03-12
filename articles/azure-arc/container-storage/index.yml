@@ -19,16 +19,30 @@ landingContent:
         links:
           - text: What is Azure Container Storage enabled by Azure Arc?
             url: overview.md
-      - linkListType: get-started
+      - linkListType: concept
         links:
-          - text: Azure Arc Jumpstart scenarios
-            url: jumpstart.md
+          - text: Volumes and subvolumes
+            url: volumes-subvolumes.md
+          - text: Storage options
+            url: storage-options.md
+          - text: Ingest data flow
+            url: ingest-data-flow.md
   - title: Get started
     linkLists:
       - linkListType: quickstart
         links:
           - text: Install Azure Container Storage on a single-node Ubuntu cluster
             url: quickstart-install.md
+      - linkListType: tutorial
+        links:
+          - text: Configure a Local Shared Edge Volume
+            url: tutorial-configure-edge-volume.md
+      - linkListType: training
+        links:
+          - text: Azure Arc Jumpstart scenarios
+            url: jumpstart.md
+  - title: Edge Volumes
+    linkLists:
       - linkListType: how-to-guide
         links:
           - text: Install Edge Volumes
