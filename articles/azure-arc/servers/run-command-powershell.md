@@ -27,7 +27,7 @@ This command delivers the script to the machine, executes it, and returns the ca
 New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -Location "eastus" -RunCommandName "RunCommandName" –SourceScript "echo Hello World!"
 ```
 
-> [NOTE!]
+> [!NOTE]
 > You can add multiple commands in the `-SourceScript` parameter. Use `;` to separate each command. 
 > Example: `–SourceScript "id; echo Hello World!"`
 

@@ -19,7 +19,7 @@ You can use RBAC to control what roles in a subscription are able to execute com
 
 |Action  |Permission  | RBAC with permission |
 |---------|---------|---------|
-|- List Run commands - Show details of command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
+|List Run commands or show details of the command|`Microsoft.HybridCompute/machines/runCommands/read`|Built-in [Reader](/azure/role-based-access-control/built-in-roles) role and higher|
 |Run a command|`Microsoft.HybridCompute/machines/runCommands/write`|[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles) role and higher|
 
 To control access to the Run command functionality, use one of the [built-in roles](/azure/role-based-access-control/built-in-roles) or create a [custom role](/azure/role-based-access-control/custom-roles) that grants a Run command permission.
@@ -28,7 +28,7 @@ To control access to the Run command functionality, use one of the [built-in rol
 
 You can control whether the Connected Machine agent allows access to the VM through Run commands by adding the Run command extension to an allowlist (inclusive) or a blocklist (exclusive). 
 
-> [TIP!]
+> [!TIP]
 > If you wanted to disable the Run command at some time in the future, you'd add the Run command extension to a blocklist. 
 
 See [Extension allowlists and blocklists](security-extensions.md#allowlists-and-blocklists) to learn more.
