@@ -1,8 +1,8 @@
 ---
 title: Prepare Linux
 description: Learn how to prepare Linux in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content, references_regions
 ms.date: 08/26/2024

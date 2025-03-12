@@ -54,6 +54,8 @@
       href: troubleshoot-disk-performance.md
     - name: Plan, design, and troubleshoot networks
       href: network-management.md
+    - name: Troubleshoot Azure Arc extensions
+      href: troubleshoot-arc-extension.md
   - name: Write and optimize code
     items:
     - name: Generate Azure CLI scripts

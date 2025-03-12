@@ -1,8 +1,8 @@
 ---
 title: Monitor your Azure Container Storage enabled by Azure Arc Edge Volumes deployment
 description: Learn how to monitor your Azure Container Storage enabled by Azure Arc Edge Volumes deployment.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 

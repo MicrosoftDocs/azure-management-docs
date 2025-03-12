@@ -16,11 +16,14 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/template-deployments/deploy-to-azure-button.svg" alt-text="Button to deploy the Resource Manager template to Azure." border="false" link="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fquickstarts%2Fmicrosoft.portal%2Fazure-portal-dashboard%2Fazuredeploy.json":::
 
+> [!IMPORTANT]
+> The steps outlined in this quickstart are solely for education purposes and aren't intended for deployments to a production environment. For information about best practices for production virtual machines, see the [security best practices for VMs and operating systems](/azure/security/fundamentals/iaas).
+
 ## Prerequisites
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this VM by following these steps:
+- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this examle VM by following these steps:
 
     1. In the Azure portal, select **Cloud Shell** from the global controls at the top of the page.
 
@@ -81,7 +84,7 @@ This example uses the Azure portal to deploy the template. You can also use othe
 
 ## Clean up resources
 
-If you want to remove the VM and associated dashboard, delete the resource group that contains them.
+To remove the VM and associated dashboard, delete the resource group that contains them.
 
 1. In the Azure portal, search for **SimpleWinVmResourceGroup**, then select it in the search results.
 

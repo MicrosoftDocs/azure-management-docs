@@ -82,13 +82,16 @@ conceptualContent:
               text: Troubleshoot disk performance
             - url: ./work-smarter-edge.md
               itemType: get-started
-              text: Work smarter with hybrid infrastructure
+              text: Work smarter with Azure Local
             - url: ./get-monitoring-information.md
               itemType: get-started
               text: Get monitoring information
             - url: ./network-management.md
               itemType: get-started
               text: Troubleshoot network connectivity
+            - url: ./troubleshoot-arc-extension.md
+              itemType: get-started
+              text: Troubleshoot Azure Arc extension issues
         # Card
         - title: Write and optimize code
           links:

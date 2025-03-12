@@ -3,8 +3,8 @@ title: Configure a Local Shared Edge Volume
 description: In this tutorial, you learn how to configure a Local Shared Edge Volume.
 ms.topic: tutorial
 ms.date: 11/11/2024
-ms.author: sethm 
-author: sethmanheim
+ms.author: sergaz 
+author: asergaz
 
 
 ---

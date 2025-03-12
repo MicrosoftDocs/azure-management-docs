@@ -46,7 +46,7 @@ Consider these current limitations when planning your Private Link setup.
 * Other Azure services that you use, such as Azure Monitor, may require their own private endpoints in your virtual network.
 
     > [!NOTE]
-    > The [Cluster Connect](conceptual-cluster-connect.md) (and hence the [Custom location](custom-locations.md)) feature is currently not supported on Azure Arc-enabled Kubernetes clusters with private connectivity enabled. Network connectivity using private links for Azure Arc services such as Azure Arc-enabled data services, and Azure Arc-enabled App services that use these features, are also currently not supported.
+    > The [Cluster Connect](conceptual-cluster-connect.md) (and hence the [Custom location](custom-locations.md)) feature is currently not supported on Azure Arc-enabled Kubernetes clusters with private connectivity enabled. Network connectivity using private links for Azure Arc services such as Azure Arc-enabled data services and Azure container Apps on Azure Arc are also currently not supported.
 
 ## Cluster extensions that support network connectivity through private links
 

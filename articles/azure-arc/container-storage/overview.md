@@ -1,8 +1,8 @@
 ---
 title: What is Azure Container Storage enabled by Azure Arc?
 description: Learn about Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: overview
 ms.date: 09/24/2024
 ms.custom: references_regions

@@ -41,6 +41,26 @@ az arcappliance get-credentials -n <Arc resource bridge name> -g <resource group
 az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified output directory>
    ```
 
+### Get login credentials error on Azure CLI v2.70.0
+
+You may encounter an error when running az arcappliance commands that looks like this:
+
+`File "C:\Program Files\Common Files\AzureCliExtensionDirectory\arcappliance\azext_arcappliance\helpers.py", line 103, in get_tenant_id_and_cloud
+    _, _, tenant = profile.get_login_credentials(resource=cmd.cli_ctx.cloud.endpoints.active_directory_graph_resource_id)
+TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`
+
+Azure CLI v2.70.0 released a breaking change which triggers this error in arcappliance CLI extension v1.4.0 and below. A fix is in development but in the meantime, you need to downgrade Azure CLI to v2.69.0. 
+
+If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+
+Also, for the Arc-enabled VMware onboarding script, you need to comment out the below code in the script to not update the AZ CLI to latest again:
+
+```
+if (shouldInstallAzCli) {
+   installAzCli64Bit
+}
+```
+
 ### Error downloading release file information
 
 > [!WARNING] 
@@ -59,8 +79,6 @@ az extension add --upgrade --name arcappliance
 ```
 
 Once your az arcappliance extension is 1.4.0, re-try the upgrade to appliance version 1.4.0. When upgrading an Arc resource bridge, the upgrade will be to the next version which may not be the latest version. Refer to [Arc resource bridge release notes](release-notes.md).
-
-
 
 ### Download/upload connectivity was not successful
 
@@ -99,7 +117,7 @@ You might see this error: `Access to the file in the SSH folder was denied. This
 
 ### Arc resource bridge is offline
 
-Networking changes in the infrastructure, environment or cluster can stop the appliance VM from being able to communicate with its counterpart Azure resource. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for further investigation.
+There are a number of reasons Arc resource bridge may be offline. In general, if Arc resource bridge is unable to communicate with Azure, the appliance VM will go offline. For Arc-enabled VMware and SCVMM, you may need to [update the credentials stored within Arc resource bridge](maintenance.md#update-credentials-in-the-appliance-vm). Communication to Azure may have been impacted by networking changes in the infrastructure, environment or cluster. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for investigation. As a best practice, [create a resource health alert](maintenance.md#create-resource-health-alerts) to stay informed if an Arc resource bridge becomes unavailable. Arc resource bridge can't be offline for longer than 45 days. After 45 days, the security key within the appliance VM may no longer be valid and can't be refreshed. If you are unable to get Arc resource bridge back online, please contact Microsoft Support.
 
 ### Remote PowerShell isn't supported
 
@@ -344,13 +362,21 @@ A combination of these errors usually indicates that the management machine has 
 
 To fix the issue, reestablish the connection between the management machine and datastore, then try deploying Arc resource bridge again.
 
-### x509 certificate has expired or isn't yet valid
+### Time difference causing x509 certificate has expired
 
 When you deploy Arc resource bridge, you may encounter the error:
 
 `Error: { _errorCode_: _PostOperationsError_, _errorResponse_: _{\n\_message\_: \_{\\n  \\\_code\\\_: \\\_GuestInternetConnectivityError\\\_,\\n  \\\_message\\\_: \\\_Not able to connect to https://msk8s.api.cdp.microsoft.com. Error returned: action failed after 3 attempts: Get \\\\\\\_https://msk8s.api.cdp.microsoft.com\\\\\\\_: x509: certificate has expired or isn't yet valid: current time 2022-01-18T11:35:56Z is before 2023-09-07T19:13:21Z. Arc Resource Bridge network and internet connectivity validation failed: http-connectivity-test-arc. 1.  check your networking setup and ensure the URLs mentioned in : https://aka.ms/AAla73m are reachable from the Appliance VM.   2. Check firewall/proxy settings`
 
-This error is caused when there's a clock/time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+
+### Clock skew error between appliance VM and management machine
+
+If you encounter an error similar to the following:
+
+`"ErrorCode": "PostOperationsError", "errorResponse": "{\n\"message\": \"{\\n  \\\"code\\\": \\\"ClockSkewError\\\",\\n  \\\"message\\\": \\\"The time in Appliance VM is too far behind in the past compared to Management Machine : Time in Appliance VM is 2025-02-24T10:59:59Z, time in Management Machine is 2025-02-24T16:49:13Z. Max allowed difference is 30m0s. Recommendation: Please verify that the time of the workstation machine and the appliance VM are in sync.`
+
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again. 
 
 ### Resolves to multiple networks
 
@@ -379,9 +405,9 @@ To resolve this issue, manually delete the existing template. Then run [`az arca
 
 When you deploy Arc resource bridge on VMware, you specify the folder in which the template and VM are created. The selected folder must be a VM and template folder type. Other types of folder, such as storage folders, network folders, or host and cluster folders, can't be used for the resource bridge deployment.
 
-### Cannot retrieve resource - not found or does not exist
+### Cannot retrieve resource - resource not found or does not exist
 
-When you deploy Arc resource bridge, you specify where the appliance VM is deployed. The appliance VM can't be moved from that location path. If the appliance VM moves location and you try to upgrade, you might see errors similar the following:
+When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. moves location and you try to upgrade, you might see errors similar the following:
 
 `{\n  \"code\": \"PreflightcheckError\",\n  \"message\": \"{\\n  \\\"code\\\": \\\"InvalidEntityError\\\",\\n  \\\"message\\\": \\\"Cannot retrieve <resource> 'resource-name': <resource> 'resource-name' not found\\\"\\n }\"\n }"`
 
@@ -505,4 +531,4 @@ If you don't see your problem here or you can't resolve your issue, try one of t
 
 - Get answers from Azure experts through [Microsoft Q&A](/answers/topics/azure-arc.html).
 - Connect with [@AzureSupport](https://x.com/azuresupport), the official Microsoft Azure account for improving customer experience. Azure Support connects the Azure community to answers, support, and experts.
-- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md).
+- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md)
