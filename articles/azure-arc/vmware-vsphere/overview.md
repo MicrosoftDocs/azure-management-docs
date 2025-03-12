@@ -79,7 +79,7 @@ If you're trying to enable Arc for Azure VMware Solution (AVS) private cloud, se
 
 ## Supported regions
 
-For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table) page.
+For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 ## Data Residency
 
