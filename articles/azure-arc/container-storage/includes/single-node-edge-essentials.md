@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 10/29/2024
+ms.date: 03/12/2025
 author: asergaz
 ms.author: sergaz
 ---

@@ -4,7 +4,7 @@ description: Learn about Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
 ms.topic: overview
-ms.date: 09/24/2024
+ms.date: 03/12/2025
 ms.custom: references_regions
 
 ---

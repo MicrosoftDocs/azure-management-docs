@@ -4,7 +4,7 @@ description: Learn how to install the Edge Volumes offering from Azure Container
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.date: 10/28/2024
+ms.date: 03/12/2025
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes

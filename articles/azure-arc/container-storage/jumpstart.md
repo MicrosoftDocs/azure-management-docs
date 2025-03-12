@@ -4,7 +4,7 @@ description: Learn about Azure Arc Jumpstart and Azure Container Storage enabled
 author: asergaz
 ms.author: sergaz
 ms.topic: overview
-ms.date: 08/26/2024
+ms.date: 03/12/2025
 
 ---
 
