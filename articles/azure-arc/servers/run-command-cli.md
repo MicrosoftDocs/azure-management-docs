@@ -1,5 +1,5 @@
 ---
-title: CLI
+title: Azure CLI Requests for the Run Command on Azure Arc-enabled Servers (Preview)
 description: Learn how to use the Azure CLI to remotely execute scripts and commands on Arc-enabled servers.
 ms.date: 02/28/2025
 ms.topic: conceptual
@@ -58,4 +58,4 @@ az connectedmachine run-command delete --name "myRunCommand" --machine-name "myM
 ## Related content
 - [PowerShell requests for Run command on Azure Arc-enabled servers](run-command-powershell.md)
 - [REST API requests for Run command on Azure Arc-enabled servers](run-command-rest.md)
-- [What is Run command on Azure Arc-enabled servers?](run-command.md.md)
+- [What is Run command on Azure Arc-enabled servers?](run-command.md)

@@ -105,7 +105,7 @@
     - name: Run command
       items:
       - name: Overview
-        href: run-command-overview.md
+        href: run-command.md
       - name: REST API
         href: run-command-rest.md
       - name: Azure CLI

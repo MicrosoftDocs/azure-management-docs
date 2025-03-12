@@ -1,5 +1,5 @@
 ---
-title: REST
+title: REST API Requests for the Run Command on Azure Arc-enabled Servers (Preview)
 description: Learn how to use the REST API to remotely execute scripts and commands on Arc-enabled servers.
 ms.date: 02/28/2025
 ms.topic: conceptual
@@ -15,6 +15,7 @@ This article provides supported REST API operations and an example scenario to h
 ## Prerequisites
 
 - The Connected Machine agent version on the Arc-enabled server must be 1.33 or higher.
+- You need an access token to use the REST API. See [Getting Started with REST](/rest/api/azure/).
 
 ## Supported REST API operations
 
@@ -22,7 +23,7 @@ You can use the following REST API operations to execute Run commands on an Azur
 
 |Operation  |Description  |
 |---------|---------|
-|[Create](/rest/api/hybridcompute/machine-run-commands/create-or-update) |The operation to create a Run command. Runs the Run command. |
+|[Create or update](/rest/api/hybridcompute/machine-run-commands/create-or-update) |The operation to create or update a Run command. Runs the Run command. |
 |[Delete](/rest/api/hybridcompute/machine-run-commands/delete) |The operation to delete a Run command. If it's running, delete also stops the Run command. |
 |[Get](/rest/api/hybridcompute/machine-run-commands/get) |The operation to get a Run command. |
 |[List](/rest/api/hybridcompute/machine-run-commands/list) |The operation to get all the Run commands of an Azure Arc-enabled server. |
@@ -43,7 +44,7 @@ The code samples use the following information:
 - **Server's operating system** - Windows Server 2012 / R2 servers
 
 
-### Step 1: Endpoint access with Run Command
+### Step 1: Create endpoint access with a Run Command
 
 First, create a Run command script to provide access to the `www.microsoft.com/pkiops/certs` endpoint on your target Arc-enabled server using the PUT operation.
 
@@ -52,7 +53,7 @@ You can either provide the script inline or you can link to the script file.
 - To provide the script in line:
 
     ```rest
-    PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
+    PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2024-11-10-preview
     ```
 
     ```json
@@ -93,10 +94,10 @@ You can either provide the script inline or you can link to the script file.
 
 - To link to the script file: 
     >[!NOTE]
-    >This sample assumes you have prepared a file named `newnetfirewallrule.ps1`, containing the in-line script and that you've uploaded this script to blob storage.
+    >This sample assumes you prepared a file named `newnetfirewallrule.ps1`, containing the in-line script and that you uploaded the script to blob storage.
 
     ```rest
-    PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
+    PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2024-11-10-preview
     ```
 
     ```json
@@ -137,16 +138,16 @@ You can either provide the script inline or you can link to the script file.
     
     - The `scriptUri` is a shared access signature (SAS) URI for the storage blob, and it must provide read access to the blob. An expiry time of 24 hours is suggested for the SAS URI. You can generate a SAS URI on Azure portal using blobs options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URI format is: `base blob URL + "?"` + the SAS token from `New-AzStorageBlobSASToken`. 
 
-    - Output and error blobs must be the AppendBlob type and their SAS URIs must provide read, append, create, write access to the blob. An expiration time of 24 hours is suggested for SAS URI. You can generate SAS URIs on Azure portal using blob's options, or SAS token from using `New-AzStorageBlobSASToken`.
+    - Output and error blobs must be the AppendBlob type and their SAS URIs must provide read, append, create, and write access to the blob. An expiration time of 24 hours is suggested for SAS URI. You can generate SAS URIs on Azure portal using blob's options, or SAS token from using `New-AzStorageBlobSASToken`.
 
     To learn more about shared access signatures, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](/azure/storage/common/storage-sas-overview).
 
 ### Step 2: Verify Run Command details
 
-Verify that you've correctly provisioned the Run command using the GET operation.
+Verify that you correctly provisioned the Run command using the GET operation.
 
 ```rest
-GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
+GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2024-11-10-preview
 ```
 
 ### Step 3: Update the Run Command
@@ -155,7 +156,7 @@ You can update the existing Run command with new parameters using the PATCH oper
 
 
 ```rest
-PATCH https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
+PATCH https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2024-11-10-preview
 ```
 
 ```json
@@ -198,7 +199,7 @@ PATCH https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4
 Before you delete the Run command for endpoint access, make sure there are no other Run commands for the Arc-enabled server. You can use the LIST operation to get all of the Run commands on the Arc-enabled server:
 
 ```rest
-LIST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/
+LIST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands?api-version=2024-11-10-preview
 ```
 
 ### Step 5: Delete a Run Command
@@ -206,7 +207,7 @@ LIST https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e
 When you no longer need the Run command extension, you can delete it using the following DELETE operation:
 
 ```rest
-DELETE https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2023-10-03-preview
+DELETE https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/ContosoRG/providers/Microsoft.HybridCompute/machines/2012DatacenterServer1/runCommands/EndpointAccessCommand?api-version=2024-11-10-preview
 ```
 
 ## Related content
