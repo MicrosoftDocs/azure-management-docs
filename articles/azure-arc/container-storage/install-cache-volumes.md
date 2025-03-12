@@ -82,7 +82,7 @@ If you run a single-node or two-node cluster with **Ubuntu** or **Edge Essential
 
 #### Multi-node cluster with Ubuntu or Edge Essentials
 
-Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage enabled by Azure Arc. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes clusters with **Ubuntu** or **Edge Essentials**, follow these instructions:
+Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage enabled by Azure Arc. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
 
 1. Azure Container Storage enabled by Azure Arc isn't set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
   

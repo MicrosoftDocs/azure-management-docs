@@ -47,4 +47,4 @@ This section describes how to prepare Linux with Ubuntu if you run a multi-node 
 
 ## Next steps
 
-[Install Azure Container Storage enabled by Azure Arc](install-cache-volumes.md)
+[Install Azure Container Storage enabled by Azure Arc Cache Volumes (preview)](install-cache-volumes.md)
