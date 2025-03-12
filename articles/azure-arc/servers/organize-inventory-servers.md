@@ -1,7 +1,7 @@
 ---
 title: How to organize and inventory servers using hierarchies, tagging, and reporting
 description: Learn how to organize and inventory servers using hierarchies, tagging, and reporting.
-ms.date: 03/03/2023
+ms.date: 03/21/2025
 ms.topic: how-to
 ---
 
@@ -28,10 +28,7 @@ These levels of management help to manage access, policies, and compliance more 
 
 Tags are metadata elements you apply to your Azure resources. They're key-value pairs that help identify resources, based on settings relevant to your organization. For example, you can tag the environment for a resource as *Production* or *Testing*. Alternatively, you can use tagging to capture the ownership for a resource, separating the *Creator* or *Administrator*. Tags can also capture details on the resource itself, such as the physical datacenter, business unit, or workload. You can apply tags to your Azure resources, resource groups, and subscriptions. This extends to infrastructure outside of Azure as well, through Azure Arc.
 
-
 You can define tags in Azure portal through a simple point and select method. Tags can be defined when onboarding servers to Azure Arc-enabled servers or on a per-server basis. Alternatively, you can use Azure CLI, Azure PowerShell, ARM templates, or Azure policy for scalable tag deployments. Tags can be used to filter operations as well, such as the deployment of extensions or service attachments. This provides not only a more comprehensive inventory of your servers, but also operational flexibility and ease of management.
-
-:::image type="content" source="media/organize-inventory-servers/server-tags.png" alt-text="Screenshot of Azure portal showing tags applied to a server.":::
 
 ## Reporting and querying with Azure Resource Graph (ARG)
 
