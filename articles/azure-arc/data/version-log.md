@@ -9,7 +9,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.custom:
   - ignite-2023
-ms.date: 02/28/2024
+ms.date: 03/13/2025
 ms.topic: conceptual
 #Customer intent: As a data professional, I want to understand what versions of components align with specific releases.
 ---
@@ -17,6 +17,30 @@ ms.topic: conceptual
 # Version log
 
 This article identifies the component versions with each release of Azure Arc-enabled data services.
+
+## February 28, 2025
+
+|Component|Value|
+|-----------|-----------|
+|Container images tag |`1.37.0_2025-03-11`|
+|`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
+|`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
+|`exporttasks.tasks.arcdata.microsoft.com`| v1beta1, v1, v2|
+|`failovergroups.sql.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
+|`kafkas.arcdata.microsoft.com`| v1beta1 through v1beta4|
+|`monitors.arcdata.microsoft.com`| v1beta1, v1, v3|
+|`postgresqls.arcdata.microsoft.com`| v1beta1 through v1beta6|
+|`postgresqlrestoretasks.tasks.postgresql.arcdata.microsoft.com`| v1beta1|
+|`sqlmanagedinstances.sql.arcdata.microsoft.com`| v1beta1, v1 through v13|
+|`sqlmanagedinstancemonitoringprofiles.arcdata.microsoft.com`| v1beta1, v1beta2|
+|`sqlmanagedinstancereprovisionreplicatasks.tasks.sql.arcdata.microsoft.com`| v1beta1|
+|`sqlmanagedinstancerestoretasks.tasks.sql.arcdata.microsoft.com`| v1beta1, v1|
+|`telemetrycollectors.arcdata.microsoft.com`| v1beta1 through v1beta5|
+|`telemetryrouters.arcdata.microsoft.com`| v1beta1 through v1beta5|
+|Azure Resource Manager (ARM) API version|2023-11-01-preview|
+|`arcdata` Azure CLI extension version|1.5.22 ([Download](https://aka.ms/az-cli-arcdata-ext))|
+|Arc-enabled Kubernetes helm chart extension version|1.37.0|
+|SQL Database version | 978 |
 
 ## February 28, 2025
 
