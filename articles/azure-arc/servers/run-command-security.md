@@ -41,7 +41,7 @@ azcmagent config set extensions.blocklist "microsoft.cplat.core/runcommandhandle
 ```
 
 ### Linux example
-The following example add the Run command extensions to an allowlist on a Linux VM.
+The following example adds the Run command extensions to an allowlist on a Linux VM.
 
 ```azurecli
 azcmagent config set extensions.allowlist "microsoft.cplat.core/runcommandhandlerlinux"`
