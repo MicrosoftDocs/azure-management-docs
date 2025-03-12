@@ -62,11 +62,11 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
 ## Create new credentials
 
-Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault.][set-and-retrieve-a-secret].
+Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
 
 1. In the **Cache** pane, select **Credentials**, then select **Create credentials**.
 
-   :::image type="content" source="./media/container-registry-artifact-cache/add-credential-set-05.png" alt-text="Screenshot for adding credentials in Azure portal.":::code language="{language}" source="{source}" range="{range}":::
+   :::image type="content" source="./media/container-registry-artifact-cache/add-credential-set-05.png" alt-text="Screenshot for adding credentials in Azure portal.":::
 
    :::image type="content" source="./media/container-registry-artifact-cache/create-credential-set-06.png" alt-text="Screenshot for create new credentials in Azure portal.":::
 
@@ -77,7 +77,7 @@ Before configuring the credentials, make sure you're able to [create and store s
 
 ## Next steps
 
-* Learn about troubleshooting issues with artifact caching (troubleshoot-artifact-cache.md).
+* Learn about [troubleshooting issues with artifact caching](troubleshoot-artifact-cache.md).
 * Learn how to [enable artifact cache using the Azure CLI](artifact-cache-cli.md).
 
 <!-- LINKS - External -->

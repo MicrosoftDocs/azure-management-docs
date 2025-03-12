@@ -27,10 +27,10 @@ You need at least the **Contributor** role in the AKS cluster's subscription and
 
 Use the following steps to:
 
-* Create a new multitenant app (service principal) in **Tenant A**. 
-* Provision the app in **Tenant B**.
-* Configure the service principal to pull from the registry in **Tenant B**.
-* Update the AKS cluster in **Tenant A** to authenticate using the new service principal.
+1. Create a new multitenant app (service principal) in **Tenant A**. 
+1. Provision the app in **Tenant B**.
+1. Configure the service principal to pull from the registry in **Tenant B**.
+1. Update the AKS cluster in **Tenant A** to authenticate using the new service principal.
 
 ## Step-by-step instructions
 

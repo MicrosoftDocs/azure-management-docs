@@ -28,7 +28,7 @@ In this article, we use an example ACR instance named `MyRegistry`.
 
 ## Create the credentials
 
-Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault.][set-and-retrieve-a-secret].
+Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
 
 1. Run [`az acr credential set create`][az-acr-credential-set-create]:
 
