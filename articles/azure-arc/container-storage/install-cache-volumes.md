@@ -100,8 +100,29 @@ Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, whi
     > To relocate storage to a different location on disk, update `diskMountPoint` with your desired path. Avoid **/mnt** as your desired path, unless you're deploying on a *DNds VM*.
 
     ```yaml
-    ##TODO: Need YAML
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: CacheConfiguration
+    metadata:
+      name: cache-configuration
+    spec:
+      diskStorageClasses:
+        - acstor-arccontainerstorage-storage-pool
+      cacheNodeStorageSize: "10Gi"
+      metadataStorageSize: "4Gi"
+      failoverCacheVolumeConsumers: true
+    ---
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: ACStorConfiguration
+    metadata:
+      name: acstor-configuration
+    spec:
+      diskMountPoint: /acsa
+      diskCapacity: 10Gi
+      createStoragePool:
+        enabled: true
+        replicas: 3
     ```
+
     The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it takes up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it's critical to ensure that you have sized this pool appropriately, since it can't be grown at this time.
 
 1. To apply this .yaml file, run:
