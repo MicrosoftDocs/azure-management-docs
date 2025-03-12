@@ -57,21 +57,7 @@ This command retrieves current execution progress for a Run command, including l
 
 ```powershell-interactive
 Get-AzConnectedMachineRunCommand -ResourceGroupName "myRG" - MachineName "myMachine" -RunCommandName "RunCommandName"
-```
-
-### DELETE Create or update Run Command on a machine using SourceScriptUri (storage blob SAS URL) 
-
-**THIS IS THE SAME AS THE SECOND SCRIPT - DELETE**
-
-Create or update a Run command on a Windows machine using a SAS URL of a storage blob that contains a PowerShell script. `SourceScriptUri` can be a storage blob’s full SAS URL or public URL.
-
-```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName MyRG0 -MachineName MyMachine -RunCommandName MyRunCommand -Location EastUS -SourceScriptUri <SourceScriptUri>
-```
-
-> [!NOTE]
-> SAS URL must provide read access to the blob. An expiration time of 24 hours is suggested for SAS URL. SAS URLs can be generated on the Azure portal using blob options, or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, your SAS URL = "base blob URL" + "?" + "SAS token from `New-AzStorageBlobSASToken`"
-> 
+``` 
 
 ### Get status information for a Run command through Instance View
 
@@ -86,19 +72,7 @@ In addition to other information, the response returns these fields:
 
 - `ProvisioningState`: Status of general extension provisioning end to end (whether extension platform was able to trigger the Run command script or not).
 
-### DELETE Create or update Run Command on a machine using SourceScript (script text)
-
-**THIS IS THE SAME AS THE FIRST!!! - DELETE**
-
-Create or update a Run command on a machine passing the script content directly to `-SourceScript` parameter. Use `;` to separate multiple commands.
-
-```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand2" -Location "EastUS" -SourceScript "id; echo HelloWorld"
-```
-
 ### Create or update Run Command on a machine and capture standard output and standard error messages
-
-**THIS DUPLICATES EXAMPLE TWO. SHOULD PROBABLY DELETE BUT MIGHT UPDATE THE SECOND TO REMOVE ERROR AND OUTPUT BLOBS (DID THIS)**
 
 Create or update Run command on a machine and stream standard output and standard error messages to output and error Append blobs.
 
@@ -114,7 +88,7 @@ New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" - MachineName "MyMac
 
 Create or update Run command on a machine as a different user with `RunAsUser` and `RunAsPassword` parameters. 
 
-Before you can use these parameters, you'll need to:
+Before you can use these parameters, you need to:
 - Contact the administrator of the machine and make sure the user has access to the machine.
 - Make sure the user has access to the resources accessed by the Run command. Examples: directories, files, network, and so on.
 - On a Windows machine, make sure 'Secondary Logon' is running.
@@ -122,21 +96,6 @@ Before you can use these parameters, you'll need to:
 ```powershell-interactive
 New-AzMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "EastUS" -SourceScript "id; echo HelloWorld" -RunAsUser myusername -RunAsPassword mypassword
 ```
-
-### DELETE Create or update Run Command on a machine resource using SourceScriptUri (storage blob SAS URL)
-
-**THIS IS ANOTHER DUPLICATE. MY WORD. DUPLICATES EXAMPLES 2 AND 5**
-
-Create or update Run Command on a Windows machine resource using a SAS URL of a storage blob that contains a PowerShell script.
-
-
-```powershell-interactive
-New-AzMachineRunCommand -ResourceGroupName MyRG0 -MachineName MyMachine -RunCommandName MyRunCommand -Location EastUS -SourceScriptUri <SourceScriptUri>
-```
-
-> [!NOTE]
-> SAS URL must provide read access to the blob. An expiry time of 24 hours is suggested for SAS URL. SAS URLs can be generated on Azure portal using blob options or SAS token using `New-AzStorageBlobSASToken`. If generating SAS token using `New-AzStorageBlobSASToken`, the SAS URL format is: base blob URL + `"?"` + the SAS token from `New-AzStorageBlobSASToken`.
-
 
 ### Create or update Run command on a machine with a local script file
 Create or update Run Command on a machine using a local script file on the client machine where `cmdlet` is executed.
