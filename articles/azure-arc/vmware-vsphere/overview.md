@@ -2,7 +2,7 @@
 title: What is Azure Arc-enabled VMware vSphere?
 description: Azure Arc-enabled VMware vSphere extends Azure governance and management capabilities to VMware vSphere infrastructure and delivers a consistent management experience across both platforms. 
 ms.topic: overview
-ms.date: 02/12/2025
+ms.date: 03/12/2025
 ms.custom: references_regions
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
@@ -79,7 +79,7 @@ If you're trying to enable Arc for Azure VMware Solution (AVS) private cloud, se
 
 ## Supported regions
 
-For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-arc&regions=all) page.
+For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 ## Data Residency
 

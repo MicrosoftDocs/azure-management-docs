@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 02/12/2025
+ms.date: 03/10/2025
 ms.custom: references_regions
 ---
 
@@ -24,9 +24,27 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
 
-## Version 1.49 - February 2025
+## Version 1.50 - March 2025
 
 Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+
+### Fixed
+
+- If an extension package fails to download **10 times**, the request is now marked as **Failed** instead of continuing until timeout.
+- Fixed a deadlock issue in the Policy agent that occurred in certain edge cases.
+- **Proxy Configuration:** Now correctly applied when sending logs to HIS in autoupgrade scripts.
+- Updated **OpenSSL** from version **3.4.0 to 3.4.1** for security and stability improvements. 
+
+### New features and enhancements
+
+- Added logic to proxy settings from the config file to extensions.
+- **Tags Input:** Now supports escaped characters using backslashes when running `azcmagent connect`.
+- **Location Flag:** Automatically removes spaces from user-provided values for `--location`.
+- **Request Logging:** The optional `Client-Id` header is now logged for requests made to HIMDS.
+
+## Version 1.49 - February 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.49/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
 
 ### Fixed
 
