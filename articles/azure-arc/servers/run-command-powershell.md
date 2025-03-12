@@ -24,7 +24,7 @@ The following examples use various PowerShell commands to work with Run commands
 This command delivers the script to the machine, executes it, and returns the captured output.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -Location "EastUS" -RunCommandName "RunCommandName" –SourceScript "echo Hello World!"
+New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachine" -Location "eastus" -RunCommandName "RunCommandName" –SourceScript "echo Hello World!"
 ```
 
 > [NOTE!]
@@ -36,7 +36,7 @@ New-AzConnectedMachineRunCommand -ResourceGroupName "myRG" -MachineName "myMachi
 This command directs the Connected Machine agent to a shared access signature (SAS) URI for a storage blob where a script was uploaded, then directs the agent to execute the script and return the captured output.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "EastUs" -SourceScriptUri “< SAS URI of a storage blob with read access or public URI>”
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -SourceScriptUri “< SAS URI of a storage blob with read access or public URI>”
 ```
 
 > [!NOTE]
@@ -77,7 +77,7 @@ In addition to other information, the response returns these fields:
 Create or update Run command on a machine and stream standard output and standard error messages to output and error Append blobs.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" - MachineName "MyMachine" -RunCommandName "MyRunCommand3" -Location "EastUS" -SourceScript "id; echo HelloWorld" -OutputBlobUri <OutPutBlobUrI> -ErrorBlobUri <ErrorBlobUri>
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" - MachineName "MyMachine" -RunCommandName "MyRunCommand3" -Location "eastus" -SourceScript "id; echo HelloWorld" -OutputBlobUri <OutPutBlobUrI> -ErrorBlobUri <ErrorBlobUri>
 ```
 
 > [!NOTE]
@@ -94,28 +94,38 @@ Before you can use these parameters, you need to:
 - On a Windows machine, make sure 'Secondary Logon' is running.
 
 ```powershell-interactive
-New-AzMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "EastUS" -SourceScript "id; echo HelloWorld" -RunAsUser myusername -RunAsPassword mypassword
+New-AzMachineRunCommand -ResourceGroupName "MyRG0" -MachineName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -SourceScript "id; echo HelloWorld" -RunAsUser myusername -RunAsPassword mypassword
 ```
 
 ### Create or update Run command on a machine with a local script file
 Create or update Run Command on a machine using a local script file on the client machine where `cmdlet` is executed.
 
 ```powershell-interactive
-New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -VMName "MyMachine" -RunCommandName "MyRunCommand" -Location "EastUS" -ScriptLocalPath "C:\MyScriptsDir\MyScript.ps1"
+New-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -VMName "MyMachine" -RunCommandName "MyRunCommand" -Location "eastus" -ScriptLocalPath "C:\MyScriptsDir\MyScript.ps1"
 ```
 
 ### Create or update Run command on a machine while passing sensitive inputs to the script
 
-Use the ProtectedParameter to pass any sensitive inputs to a script such as passwords or keys.
+Use `ProtectedParameter` to pass any sensitive inputs to a script such as passwords or keys.
 
 ```azurepowershell-interactive
+$privateParametersArray = @{name='inputText';value='privateParam1value'}
 
-Set-AzConnectedMachineRunCommand -ResourceGroupName "MyRG0" -VMName "MyVMEE" -RunCommandName "MyRunCommand" -Location "EastUS" -SourceScriptUri <SourceScriptUri> -Parameter $PublicParametersArray -ProtectedParameter $ProtectedParametersArray
+New-AzConnectedMachineRunCommand -MachineName "MyMachine" -ResourceGroupName "MyRG0" -RunCommandName "MyRunCommand" -Location "eastus" -SourceScriptUri <SourceScriptUri> -ProtectedParameter $privateParametersArray 
 ```
 
-- Windows - Parameters and ProtectedParameters are passed to script similar to the following example: `myscript.ps1 -publicParam1 publicParam1value -publicParam2 publicParam2value -secret1 secret1value -secret2 secret2value`
+Sample script for capturing inputText:
 
-- Linux - Named Parameters and its values are set to environment config, which should be accessible within the PowerShell script. For Nameless arguments, pass an empty string to name input. Nameless arguments are passed to script similar to the following example: `myscript.sh publicParam1value publicParam2value secret1value secret2value`
+```azurepowershell-interactive
+param ([string]$inputText)
+Write-Output $inputText
+```
+
+You can also pass public parameters in a similar way using `Parameter`.
+
+- Windows - Parameter and ProtectedParameter are passed to a script similar to the following example: `myscript.ps1 -publicParam1 publicParam1value -publicParam2 publicParam2value -secret1 secret1value -secret2 secret2value`
+
+- Linux - A named `Parameter` and its values are set to environment config, which should be accessible within the PowerShell script. For Nameless arguments, pass an empty string to name input. Nameless arguments are passed to script similar to the following example: `myscript.sh publicParam1value publicParam2value secret1value secret2value`
 
 ### Delete RunCommand resource from the machine
 
