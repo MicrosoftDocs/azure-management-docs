@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 10/29/2024
+ms.date: 03/12/2025
 author: asergaz
 ms.author: sergaz
 ---
@@ -91,16 +91,4 @@ This section describes how to prepare Linux with AKS Edge Essentials if you run 
 
    ```bash
    Invoke-AksEdgeNodeCommand -NodeType "Linux" -Command "echo 'fs.inotify.max_user_instances = 1024' | sudo tee -a /etc/sysctl.conf && sudo sysctl -p"
-   ```
-
-1. Install Open Service Mesh (OSM) using the following command:
-
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
-   --config "osm.osm.featureFlags.enableWASMStats=false" \
-   --config "osm.osm.enablePermissiveTrafficPolicy=false" \
-   --config "osm.osm.configResyncInterval=10s" \
-   --config "osm.osm.osmController.resource.requests.cpu=100m" \
-   --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m"
    ```

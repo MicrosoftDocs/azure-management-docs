@@ -1,12 +1,10 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 08/30/2024
+ms.date: 03/12/2025
 author: asergaz
 ms.author: sergaz
 ---
-
-Then, perform the following steps in your Kubernetes cluster:
 
 > [!IMPORTANT]
 > You must complete the following steps for each node in your Kubernetes cluster.
