@@ -54,7 +54,7 @@ While most "how-to" questions will be resolved within Microsoft Q&A, we recogniz
 - For such cases, our engineers will create a support ticket on your behalf, ensuring smooth escalation without requiring you to initiate it manually. 
 - Existing support tickets will continue as usual, but all new technical inquiries must be posted on Microsoft Q&A.
 
-## Can i still create a support ticket for non-technical issues? 
+## Can I still create a support ticket for non-technical issues? 
 
 Customers with an **Azure Developer Support Plan** can still create tickets for **non-technical issues, including: 
 
