@@ -5,7 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content, references_regions
-ms.date: 08/26/2024
+ms.date: 03/12/2025
 
 ---
 
@@ -21,9 +21,9 @@ The article describes how to prepare Linux using AKS enabled by Azure Arc, Edge 
 > [!NOTE]
 > Azure Container Storage enabled by Azure Arc is only available in the following regions: East US, East US 2, West US, West US 2, West US 3, North Europe, West Europe.
 
-### Arc-connected Kubernetes cluster
+### Arc-enabled Kubernetes cluster
 
-These instructions assume that you already have an Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
+These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
 
 If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
 
@@ -41,7 +41,7 @@ In summary, a [single-node Kubernetes cluster](single-node-cluster.md) might be 
 
 ## Minimum hardware requirements
 
-### Single-node or 2-node cluster
+### Single-node or two-node cluster
 
 - Standard_D8ds_v5 VM recommended
 - Equivalent specifications per node:

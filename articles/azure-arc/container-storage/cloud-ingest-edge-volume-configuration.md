@@ -5,7 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 10/17/2024
+ms.date: 03/12/2025
 ---
 
 # Cloud Ingest Edge Volumes configuration
@@ -41,7 +41,7 @@ While it's not recommended, if you prefer to use key-based authentication, follo
 
 #### Azure portal
 
-1. Navigate to your Arc-connected cluster.
+1. Navigate to your Arc-enabled cluster.
 1. Select **Extensions**.
 1. Select your Azure Container Storage enabled by Azure Arc extension.
 1. Note the Principal ID under **Cluster Extension Details**.
