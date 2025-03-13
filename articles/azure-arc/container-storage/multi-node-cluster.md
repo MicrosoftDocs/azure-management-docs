@@ -23,7 +23,7 @@ If you run a multi-node cluster on Linux with AKS enabled by Azure Arc, you don'
 ::: zone pivot="aks-ee"
 [!INCLUDE [multi-node](includes/multi-node-edge-essentials.md)]
 
-5. Create a file named **config.json** with the following contents:
+4. Create a file named **config.json** with the following contents:
 
    ```json
    {

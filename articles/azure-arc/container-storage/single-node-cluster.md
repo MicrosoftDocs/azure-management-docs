@@ -18,7 +18,7 @@ This article describes how to prepare Linux using a single-node or two-node clus
 
 This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or two-node cluster.
 
-1. Disable **ACStor** by creating a file named **config.json** with the following contents:
+- Disable **ACStor** by creating a file named **config.json** with the following contents:
 
    ```json
    {
@@ -32,7 +32,7 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 ::: zone pivot="aks-ee"
 [!INCLUDE [single-node-ee](includes/single-node-edge-essentials.md)]
 
-5. Disable **ACStor** by creating a file named **config.json** with the following contents:
+4. Disable **ACStor** by creating a file named **config.json** with the following contents:
 
    ```json
    {
@@ -46,7 +46,7 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 ::: zone pivot="ubuntu"
 [!INCLUDE [single-node-ubuntu](includes/single-node-ubuntu.md)]
 
-3. Disable **ACStor** by creating a file named **config.json** with the following contents:
+2. Disable **ACStor** by creating a file named **config.json** with the following contents:
 
    ```json
    {

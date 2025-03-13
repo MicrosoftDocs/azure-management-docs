@@ -5,7 +5,7 @@ summary: A first-party storage system designed for Arc-connected Kubernetes clus
 
 metadata:
   title: Azure Container Storage enabled by Azure Arc
-  description: A first-party storage system designed for Arc-connected Kubernetes clusters
+  description: A first-party storage system designed for Arc-connected Kubernetes clusters.
   ms.topic: landing-page
   author: asergaz
   ms.service: azure-arc
