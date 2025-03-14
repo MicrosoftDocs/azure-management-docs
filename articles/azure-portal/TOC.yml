@@ -58,7 +58,7 @@
   - name: Capture a browser trace for troubleshooting
     href: capture-browser-trace.md
   - name: Get help through Priority Community Support
-    href: priority-community-support.md
+    href: supportability/priority-community-support.md
 - name: Azure mobile app
   items:
   - name: Overview
