@@ -1,0 +1,41 @@
+{ 
+ "version": "v1", 
+ "tag-convention": "incremental", 
+ "repositories" : [ 
+ { 
+
+    "repository": "alpine", 
+
+     "tags": ["3.21.1"], 
+
+"enabled": true 
+}, 
+{ 
+
+"repository": "debian", 
+ "tags" : ["oldstable-slim"], 
+ "enabled": true 
+},
+{ 
+
+"repository": "debian12", 
+ "tags" : ["latest"], 
+ "enabled": true 
+} ,
+{ 
+"repository": "oraclelinux", 
+ "tags" : ["8.10"], 
+ "enabled": true 
+},
+{ 
+"repository": "oraclelinux", 
+ "tags" : ["8.10"], 
+ "enabled": true 
+},
+{ 
+"repository": "python", 
+ "tags" : ["2.7"], 
+ "enabled": true 
+}  
+] 
+} 
