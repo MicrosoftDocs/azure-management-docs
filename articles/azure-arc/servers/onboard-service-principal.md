@@ -1,7 +1,7 @@
 ---
 title: Connect hybrid machines to Azure at scale
 description: In this article, you learn how to connect machines to Azure using Azure Arc-enabled servers using a service principal.
-ms.date: 11/03/2023
+ms.date: 03/17/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
@@ -47,11 +47,13 @@ You can create a service principal in the Azure portal or by using Azure PowerSh
 
 The Azure Arc service in the Azure portal provides a streamlined way to create a service principal that can be used to connect your hybrid machines to Azure.
 
-1. In the Azure portal, navigate to Azure Arc, then select **Service principals** in the left menu.
+1. At the top of the Azure portal, search for and select **Azure Arc**.
+1. In the service menu, under Management, select **Service principals**.
 1. Select **Add**.
 1. Enter a name for your service principal.
 1. Choose whether the service principal will have access to an entire subscription, or only to a specific resource group.
 1. Select the subscription (and resource group, if applicable) to which the service principal will have access.
+1. Enter a **Service Tree ID** for the service principal.
 1. In the **Client secret** section, select the duration for which your generated client secret will be in use. You can optionally enter a friendly name of your choice in the **Description** field.
 1. In the **Role assignment** section, select **Azure Connected Machine Onboarding**.
 1. Select **Create**.
@@ -104,8 +106,8 @@ Use the Azure portal to create a script that automates the agent download and in
         * **Public endpoint** 
         * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
         * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
-    1. Select **Next**.
     1. In the **Authentication** section, under the **Service principal** drop-down list, select **Arc-for-servers**.  Then select, **Next**.
+    1. Select **Next**.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards.
 
