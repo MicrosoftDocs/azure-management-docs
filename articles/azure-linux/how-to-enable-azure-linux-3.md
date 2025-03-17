@@ -15,7 +15,7 @@ Starting with AKS version 1.32, Azure Linux 3.0 is the default Azure Linux node 
 
 ## Limitations
 
-* Not supported on Kubernetes version 1.31 and below.
+* Azure Linux 3.0 is not supported on Kubernetes version 1.30 and below. Azure Linux 3.0 Preview is supported on Kubernetes version 1.31.
 
 ## Create new Azure Linux 3.0 clusters and node pools
 
