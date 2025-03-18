@@ -78,7 +78,7 @@ Now, create the task by executing the following [az acr task create][az-acr-task
 az acr task create \
     --registry $ACR_NAME \
     --name example1 \
-    --context https://github.com/$GIT_USER/acr-build-helloworld-node.git#main \
+    --context https://github.com/$GIT_USER/acr-build-helloworld-node.git#master \
     --file taskmulti.yaml \
     --git-access-token $GIT_PAT
 ```
