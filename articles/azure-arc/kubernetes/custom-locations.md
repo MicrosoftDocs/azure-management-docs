@@ -190,7 +190,7 @@ az customlocation delete -n <customLocationName> -g <resourceGroupName>
 
 ### Get login credentials error on Azure CLI v2.70.0
 
-You may encounter an error that contains: `TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`. Azure CLI v2.70.0 released a breaking change which triggers this error. A fix is in development but in the meantime, you need to downgrade Azure CLI to v2.69.0. If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+You may encounter an error that contains: `TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`. Azure CLI v2.70.0 released a breaking change which triggers this error. A fix is available in customlocation Az CLI extension v0.1.4 for compatibility with Azure CLI v2.70.0 and higher. If you are using a customlocation Az CLI extension below v0.1.4, you need to downgrade Azure CLI to version 2.69.0. If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
 
 ### Unknown proxy error
 If custom location creation fails with the error `Unknown proxy error occurred`, modify your network policy to allow pod-to-pod internal communication within the `azure-arc` namespace. Be sure to also add the `azure-arc` namespace as part of the no-proxy exclusion list for your configured policy.
