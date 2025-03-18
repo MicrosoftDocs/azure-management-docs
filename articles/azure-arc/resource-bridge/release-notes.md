@@ -7,10 +7,23 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 # What's new with Azure Arc resource bridge
 
-Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases.
+Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, az arcappliance, that is used to deploy Arc resource bridge.  
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3). When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
+We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
+## Version 1.4.1 (February 2025)
+
+- Support version: n
+- Appliance: 1.4.0
+- CLI extension: 1.4.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250102
+
+### Bug fixes
+
+- fix for compatibility with Azure CLI v2.70.0. From this version forward, Azure CLI version needs to be 2.70.0 or higher.
+
+Note: This patch version of the Azure CLI extension, az arcappliance, does not change the appliance version. Therefore, the appliance version for az arcappliance CLI extension 1.4.1 and 1.4.0 have the same appliance version, 1.4.0.
 
 ## Version 1.4.0 (February 2025)
 
@@ -30,6 +43,8 @@ We generally recommend using the most recent versions. The [version support poli
 - Support for US Gov Virginia/Fairfax region
 
 ## Version 1.3.1 (December 2024)
+
+Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below. It is not compatible with Azure CLI v2.70.0 or higher.
 
 - Support version: n-1
 - Appliance: 1.3.1
