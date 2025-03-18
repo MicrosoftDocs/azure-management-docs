@@ -46,14 +46,22 @@ az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified
 You may encounter an error when running az arcappliance commands that looks like this:
 
 `File "C:\Program Files\Common Files\AzureCliExtensionDirectory\arcappliance\azext_arcappliance\helpers.py", line 103, in get_tenant_id_and_cloud
-    _, _, tenant = profile.get_login_credentials(resource=cmd.cli_ctx.cloud.endpoints.active_directory_graph_resource_id)
-TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`
+```
+_, _, tenant = profile.get_login_credentials(resource=cmd.cli_ctx.cloud.endpoints.active_directory_graph_resource_id)
+```TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`
 
-Azure CLI v2.70.0 released a breaking change which triggers this error in arcappliance CLI extension v1.4.0 and below. A fix is in development but in the meantime, you need to downgrade Azure CLI to v2.69.0. 
+Azure CLI v2.70.0 released a breaking change which triggers this error in arcappliance CLI extension v1.4.0 and below. A fix is available in arcappliance CLI extension 1.4.1 for compatibility with Azure CLI v2.70.0. You can get the latest arcappliance CLI extension by running the following command:
+
+
+```azurecli
+az extension add --upgrade --name arcappliance
+```
+
+If you are on az arcappliance extension is 1.4.0 or lower, you need to downgrade Azure CLI to v2.69.0. 
 
 If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
 
-Also, for the Arc-enabled VMware onboarding script, you need to comment out the below code in the script to not update the AZ CLI to latest again:
+Also, for the Arc-enabled VMware onboarding script, you may need to comment out the below code in the script to not update the AZ CLI to latest again:
 
 ```
 if (shouldInstallAzCli) {
