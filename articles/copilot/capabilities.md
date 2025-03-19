@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 03/05/2025
+ms.date: 03/19/2025
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.custom:
@@ -48,7 +48,6 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Generate Azure CLI scripts](generate-cli-scripts.md)
   - [Generate PowerShell scripts](generate-powershell-scripts.md)
   - [Generate Terraform and Bicep configurations](generate-terraform-configurations.md)
-  - [Discover performance recommendations with Code Optimizations](optimize-code-application-insights.md)
   - [Author API Management policies](author-api-management-policies.md)
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)
   - [Troubleshoot apps faster with App Service](troubleshoot-app-service.md)
