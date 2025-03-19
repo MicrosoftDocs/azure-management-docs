@@ -11,7 +11,7 @@ Connecting machines in your hybrid environment directly with Azure can be accomp
 
 ## Onboarding methods
 
-The following table highlights each method so that you can determine which works best for your deployment. For detailed information, follow the links to view the steps for each topic.
+The following table highlights each method so you can determine which works best for your deployment. For detailed information, follow the links to view the steps for each topic.
 
 | Method | Description |
 |--------|-------------|
