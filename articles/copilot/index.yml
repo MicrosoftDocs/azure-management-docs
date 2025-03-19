@@ -113,9 +113,6 @@ conceptualContent:
             - url: ./troubleshoot-app-service.md
               itemType: get-started
               text: Troubleshoot deployed web apps
-            - url: ./optimize-code-application-insights.md
-              itemType: get-started
-              text: Discover recommendations with Code Optimizations
 
 # additionalContent section (Optional; Remove if not applicable.)
 # Card with summary style

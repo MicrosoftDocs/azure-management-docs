@@ -64,8 +64,6 @@
       href: generate-powershell-scripts.md
     - name: Generate Terraform and Bicep configurations
       href: generate-terraform-bicep.md
-    - name: Optimize your code
-      href: optimize-code-application-insights.md
     - name: Author API Management policies
       href: author-api-management-policies.md
     - name: Generate Kubernetes YAML files
