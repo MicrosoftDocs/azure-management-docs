@@ -21,6 +21,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/copilot/optimize-code-application-insights.md",
+      "redirect_url": "/azure/azure-monitor/insights/code-optimizations-extensions",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/copilot/use-guided-deployments.md",
       "redirect_url": "/azure/copilot/deploy-workload-templates",
       "redirect_document_id": false
