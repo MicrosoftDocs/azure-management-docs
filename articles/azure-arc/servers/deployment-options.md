@@ -1,7 +1,7 @@
 ---
 title:  Azure Connected Machine agent deployment options
 description: Learn about the different options to onboard machines to Azure Arc-enabled servers.
-ms.date: 01/03/2024
+ms.date: 03/19/2025
 ms.topic: how-to 
 ---
 
@@ -11,12 +11,13 @@ Connecting machines in your hybrid environment directly with Azure can be accomp
 
 ## Onboarding methods
 
-The following table highlights each method so that you can determine which works best for your deployment. For detailed information, follow the links to view the steps for each topic.
+The following table highlights each method so you can determine which works best for your deployment. For detailed information, follow the links to view the steps for each topic.
 
 | Method | Description |
 |--------|-------------|
 | Interactively | Manually install the agent on a single or small number of machines by [connecting machines using a deployment script](onboard-portal.md).<br> From the Azure portal, you can generate a script and execute it on the machine to automate the install and configuration steps of the agent.|
 | Interactively | [Connect machines from Windows Admin Center](onboard-windows-admin-center.md) |
+| Interactively | [Connect Windows Servers machines to Azure through Azure Arc Setup](onboard-windows-server.md) |
 | Interactively or at scale | [Connect machines using PowerShell](onboard-powershell.md) |
 | At scale | [Connect machines using a service principal](onboard-service-principal.md) to install the agent at scale non-interactively.|
 | At scale | [Connect machines by running PowerShell scripts with Configuration Manager](onboard-configuration-manager-powershell.md)

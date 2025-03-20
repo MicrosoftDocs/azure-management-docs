@@ -4,7 +4,7 @@ description: Learn how to install the Edge Volumes offering from Azure Container
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.date: 10/28/2024
+ms.date: 03/12/2025
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes
@@ -28,7 +28,7 @@ az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name
 ```
 
 > [!NOTE]
-> By default, the `--release-namespace` parameter is set to `azure-arc-containerstorage`. If you want to override this setting, add the `--release-namespace` flag to the following command and populate it with your details. Any values set at installation time persist throughout the installation lifetime (including manual and auto-upgrades).
+> By default, the `--release-namespace` parameter is set to `azure-arc-containerstorage`. If you want to override this setting, add the `--release-namespace` flag to the following command and populate it with your details. Any values set at installation time persist throughout the installation lifetime (including manual and autoupgrades).
 
 > [!IMPORTANT]
 > If you use OneLake, you must use a unique extension name for the `--name` variable in the `az k8s-extension create` command.
@@ -37,13 +37,13 @@ az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name
 
 ### Configuration CRD
 
-The Azure Container Storage enabled by Azure Arc extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage enabled by Azure Arc extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage enabled by Azure Arc to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure non-standard configurations for Kubernetes clusters with differing storage capabilities.
+The Azure Container Storage enabled by Azure Arc extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage enabled by Azure Arc extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage enabled by Azure Arc to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure nonstandard configurations for Kubernetes clusters with differing storage capabilities.
 
-#### [Single node or 2-node cluster](#tab/single)
+#### [Single-node or two-node cluster](#tab/single)
 
-#### Single node or 2-node cluster with Ubuntu or Edge Essentials
+#### Single-node or two-node cluster with Ubuntu or Edge Essentials
 
-If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+If you run a single-node or two-node cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
@@ -56,7 +56,6 @@ If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials*
      defaultDiskStorageClasses:
        - "default"
        - "local-path"
-     serviceMesh: "osm" 
    ```
 
 1. To apply this .yaml file, run:
@@ -69,34 +68,44 @@ If you run a single node or 2-node cluster with **Ubuntu** or **Edge Essentials*
 
 #### Multi-node cluster with Ubuntu or Edge Essentials
 
-If you run a 3 or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions. This configuration installs the ACStor storage subsystem to provide fault-tolerant, replicated storage for Kubernetes clusters with 3 or more nodes:
+Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage enabled by Azure Arc. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+
+1. Azure Container Storage enabled by Azure Arc isn't set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
+  
+    ```bash
+    fdisk /dev/sd3 
+    mkfs.ext4 /dev/sd3a 
+    mkdir /acsa 
+    mount /dev/sd3a /acsa
+    ```
+    This sets up spare system disk `sd3` with a configured disk partition `sd3a` to be available on `/acsa` for ACStor to use.
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
-   > [!NOTE]
-   > To relocate storage to a different location on disk, update `diskMountPoint` with your desired path.
+    > [!NOTE]
+    > To relocate storage to a different location on disk, update `diskMountPoint` with your desired path. Avoid **/mnt** as your desired path, unless you're deploying on a *DNds VM*.
 
-   ```yaml
-   apiVersion: arccontainerstorage.azure.net/v1
-   kind: EdgeStorageConfiguration
-   metadata:
-     name: edge-storage-configuration
-   spec:
-     defaultDiskStorageClasses:
-       - acstor-arccontainerstorage-storage-pool
-     serviceMesh: "osm"
-   ---
-   apiVersion: arccontainerstorage.azure.net/v1
-   kind: ACStorConfiguration
-   metadata:
-     name: acstor-configuration
-   spec:
-       diskMountPoint: /mnt
-       diskCapacity: 10Gi
-       createStoragePool:
-           enabled: true
-           replicas: 3
-   ```
+    ```yaml
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: EdgeStorageConfiguration
+    metadata:
+      name: edge-storage-configuration
+    spec:
+      defaultDiskStorageClasses:
+        - acstor-arccontainerstorage-storage-pool
+    ---
+    apiVersion: arccontainerstorage.azure.net/v1
+    kind: ACStorConfiguration
+    metadata:
+      name: acstor-configuration
+    spec:
+      diskMountPoint: /acsa
+      diskCapacity: 10Gi
+      createStoragePool:
+        enabled: true
+        replicas: 3
+    ```
+    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it takes up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it's critical to ensure that you have sized this pool appropriately, since it can't be grown at this time.
 
 1. To apply this .yaml file, run:
 
@@ -104,11 +113,11 @@ If you run a 3 or more node Kubernetes cluster with **Ubuntu** or **Edge Essenti
    kubectl apply -f "edgeConfig.yaml"
    ```
 
-#### [Arc-connected AKS/AKS Arc](#tab/arc)
+#### [Arc-enabled AKS/AKS Arc](#tab/arc)
 
-#### Arc-connected AKS or AKS Arc
+#### Arc-enabled AKS or AKS Arc
 
-If you run a single-node or multi-node cluster with **Arc-connected AKS** or **AKS enabled by Arc**, follow these instructions:
+If you run a single-node or multi-node cluster with **Arc-enabled AKS** or **AKS enabled by Arc**, follow these instructions:
 
 1. Create a file named **edgeConfig.yaml** with the following contents:
 
@@ -121,7 +130,6 @@ If you run a single-node or multi-node cluster with **Arc-connected AKS** or **A
      defaultDiskStorageClasses:
        - "default"
        - "local-path"
-     serviceMesh: "osm" 
    ```
 
 1. To apply this .yaml file, run:

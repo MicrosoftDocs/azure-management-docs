@@ -1,7 +1,7 @@
 ---
 title: Connect machines at scale with a Configuration Manager custom task sequence
 description: You can use a custom task sequence that can deploy the Connected Machine Agent to onboard a collection of devices to Azure Arc-enabled servers.
-ms.date: 05/25/2023
+ms.date: 03/12/2025
 ms.topic: how-to
 ---
 
@@ -9,7 +9,7 @@ ms.topic: how-to
 
 Microsoft Configuration Manager facilitates comprehensive management of servers supporting the secure and scalable deployment of applications, software updates, and operating systems. Configuration Manager offers the custom task sequence as a flexible paradigm for application deployment.
 
-You can use a custom task sequence, that can deploy the Connected Machine Agent to onboard a collection of devices to Azure Arc-enabled servers.
+You can use a custom task sequence that can deploy the Connected Machine Agent to onboard a collection of devices to Azure Arc-enabled servers.
 
 Before you get started, be sure to review the [prerequisites](prerequisites.md) and verify that your subscription and resources meet the requirements. For information about supported regions and other related considerations, see [supported Azure regions](overview.md#supported-regions). Also review our [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as our management and monitoring recommendations.
 
@@ -85,7 +85,8 @@ Follow the steps outlined in Deploy a task sequence to deploy the task sequence 
 
 To verify that the machines have been successfully connected to Azure Arc, verify that they are visible in the [Azure portal](https://aka.ms/hybridmachineportal).
 
-:::image type="content" source="media/onboard-configuration-manager-custom-task/verify-onboarding-configuration-manager-custom-task-sequence.png" alt-text="Screenshot of the Azure portal showing successful onboarding of Azure Arc-enabled servers.":::
+:::image type="content" source="media/onboard-portal/arc-for-servers-successful-onboard.png" alt-text="Screenshot of the Azure portal showing successful onboarding of Azure Arc-enabled servers.":::
+
 
 ## Next steps
 

@@ -6,20 +6,20 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 02/26/2024
+ms.date: 02/28/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
 
 # Enable artifact cache in your Azure Container Registry with Azure CLI
 
-In this article, you learn how to use Azure CLI to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) with or without authentication using Azure CLI.
+In this article, you learn how to use Azure CLI to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) with or without authentication.
 
 In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 ## Prerequisites
 
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. If you'd like to use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. If you want to use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
 * An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
 * An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
 * Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
@@ -28,9 +28,9 @@ In this article, we use an example ACR instance named `MyRegistry`.
 
 ## Create the credentials
 
-Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault.][set-and-retrieve-a-secret].
+Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
 
-1. To create the credentials, run [`az acr credential set create`][az-acr-credential-set-create]:
+1. Run [`az acr credential set create`][az-acr-credential-set-create]:
 
    ```azurecli-interactive
    az acr credential-set create 
@@ -41,13 +41,13 @@ Before configuring the credentials, make sure you're able to [create and store s
    -p https://MyKeyvault.vault.azure.net/secrets/passwordsecret
    ```
 
-1. To update the username or password Key Vault secret ID on the credential set, run [`az acr credential set update`][az-acr-credential-set-update] :
+1. Run [`az acr credential set update`][az-acr-credential-set-update] to update the username or password Key Vault secret ID on the credential set:
 
    ```azurecli-interactive
    az acr credential-set update -r MyRegistry -n MyDockerHubCredSet -p https://MyKeyvault.vault.azure.net/secrets/newsecretname
    ```
 
-1. To show credentials, run [az acr credential-set show][az-acr-credential-set-show]:
+1. Run [az acr credential-set show][az-acr-credential-set-show] to show credentials:
 
    ```azurecli-interactive
    az acr credential-set show -r MyRegistry -n MyDockerHubCredSet
@@ -55,7 +55,7 @@ Before configuring the credentials, make sure you're able to [create and store s
 
 ## Create a cache rule
 
-Next, create and configure the cache rule that will be used to pull artifacts from the repository into your cache.
+Next, create and configure the cache rule that pulls artifacts from the repository into your cache.
 
 1. To create a new cache rule, run [`az acr cache create`][az-acr-cache-create]:
 
@@ -78,7 +78,7 @@ Next, create and configure the cache rule that will be used to pull artifacts fr
     ```
 
 > [!TIP]
-> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required in order to create a cache rule.
+> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
 ## Assign permissions to Key Vault using access policies
 
@@ -104,7 +104,7 @@ You can use access policies to assign the appropriate permissions to users so th
 
 ## Pull your image
 
-Pull the image from your cache using the Docker command by the registry login server name, repository name, and its desired tag. For example, to pull the image from the repository `hello-world` with desired tag `latest` for the registry login server `myregistry.azurecr.io`, run:
+To pull an image from your cache, use the Docker command and provide the registry sign-in server name, repository name, and its desired tag. For example, to pull an image from the repository `hello-world` with desired tag `latest` for the registry sign-in server `myregistry.azurecr.io`, run:
 
 ```azurecli-interactive
  docker pull myregistry.azurecr.io/hello-world:latest

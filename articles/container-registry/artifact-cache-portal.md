@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
-ms.date: 02/26/2025
+ms.date: 02/28/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -18,14 +18,14 @@ In addition to the prerequisites listed here, you need an Azure account with an 
 
 ## Prerequisites
 
-* An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
+* An existing ACR instance. If you don't have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
 * An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
 * Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of the Azure CLI to run the commands in this article. If you'd like to use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of the Azure CLI to run the commands in this article. Use Azure CLI version 2.46.0 or later to run it locally. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
 
 ## Configure Artifact cache
 
-Follow these steps to create and configure the cache rule that will be used to pull artifacts from the repository into your cache.
+To create and configure the cache rule that pulls artifacts from the repository into your cache, follow these steps.
 
 Follow the steps to create a cache rule in the [Azure portal](https://portal.azure.com).
 
@@ -49,7 +49,7 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
 1. Enter the **Repository Path** to the artifacts you want to cache.
 
-1. Depending on your source, **Authentication** may be required. If the **Authentication** box isn't already checked, and you don't want to use authentication, you can skip this section. Otherwise, ensure the box is checked and add your credentials:
+1. Depending on your source, **Authentication** might be required. If the **Authentication** box isn't already checked, and you don't want to use authentication, you can skip this section. Otherwise, ensure the box is checked and add your credentials:
 
    * Select **Create new credentials** to create a new set of credentials to store the username and password for your source registry. For more information, see [create new credentials](tutorial-enable-artifact-cache-auth.md#create-new-credentials).
    * To use existing credentials, choose **Select credentials** from the drop-down menu.
@@ -62,11 +62,11 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
 ## Create new credentials
 
-Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault.][set-and-retrieve-a-secret].
+Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
 
 1. In the **Cache** pane, select **Credentials**, then select **Create credentials**.
 
-   :::image type="content" source="./media/container-registry-artifact-cache/add-credential-set-05.png" alt-text="Screenshot for adding credentials in Azure portal.":::code language="{language}" source="{source}" range="{range}":::
+   :::image type="content" source="./media/container-registry-artifact-cache/add-credential-set-05.png" alt-text="Screenshot for adding credentials in Azure portal.":::
 
    :::image type="content" source="./media/container-registry-artifact-cache/create-credential-set-06.png" alt-text="Screenshot for create new credentials in Azure portal.":::
 
@@ -77,7 +77,7 @@ Before configuring the credentials, make sure you're able to [create and store s
 
 ## Next steps
 
-* Learn about troubleshooting issues with artifact caching (troubleshoot-artifact-cache.md).
+* Learn about [troubleshooting issues with artifact caching](troubleshoot-artifact-cache.md).
 * Learn how to [enable artifact cache using the Azure CLI](artifact-cache-cli.md).
 
 <!-- LINKS - External -->

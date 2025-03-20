@@ -17,6 +17,14 @@ ms.custom: references_regions
 
 The following are frequently asked questions and answers for Azure Arc site manager.
 
+__Question__: What is changing with site address?
+
+__Answer__: Site address is currently stored as a separate resource via [Azure Edge Hardware Center](/azure/azure-edge-hardware-center/azure-edge-hardware-center-overview). In April, site address will be merged into the site resource, and a separate resource via Azure Edge Hardware Center will no longer be used. Additionally, only the physical address fields will move to site properties, and personal contact information will no longer be stored.
+
+__Question__: How will the address migration occur?
+
+__Answer:__ Migration will be automatically performed based on the currently associated address. The fields that will be moved are as follows: Address line 1, Address line 2, City, Zip code, State/Province/Region, and Country/Region. Prior to April, please ensure that no personal, sensitive, or confidential information is stored within your address.
+
 **Question:** I have resources in the resource group, which aren't yet supported by site manager. Do I need to move them?
 
 **Answer:** Site manager provides status aggregation for only the supported resource types. Resources of other types won't be managed via site manager. They continue to function normally as they would without otherwise.

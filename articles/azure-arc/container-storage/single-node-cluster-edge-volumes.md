@@ -1,11 +1,11 @@
 ---
-title: Prepare Linux for Edge Volumes using a single-node or 2-node cluster
-description: Learn how to prepare Linux for Edge Volumes with a single-node or 2-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
+title: Prepare Linux for Edge Volumes using a single-node or two-node cluster
+description: Learn how to prepare Linux for Edge Volumes with a single-node or two-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 11/01/2024
+ms.date: 03/12/2025
 zone_pivot_groups: platform-select-with-other
 ---
 
@@ -16,19 +16,7 @@ This article describes how to prepare Linux using a single-node or two-node clus
 ::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
 
-This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or two-node cluster.
-
-1. Install Open Service Mesh (OSM) using the following command:
-
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
-   --config "osm.osm.featureFlags.enableWASMStats=false" \
-   --config "osm.osm.enablePermissiveTrafficPolicy=false" \
-   --config "osm.osm.configResyncInterval=10s" \
-   --config "osm.osm.osmController.resource.requests.cpu=100m" \
-   --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m"
-   ```
+If you run a single-node or two-node cluster on Linux with AKS enabled by Azure Arc, you don't need to perform any additional steps.
 
 ::: zone-end
 
@@ -69,4 +57,4 @@ The available platform options are production-like environments that Microsoft v
 
 ## Next steps
 
-[Install Azure Container Storage enabled by Azure Arc](install-edge-volumes.md)
+[Install Azure Container Storage enabled by Azure Arc Edge Volumes](install-edge-volumes.md)
