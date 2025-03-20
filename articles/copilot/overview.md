@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure overview
 description: Microsoft Copilot in Azure is an AI-powered tool to help you do more with Azure.
-ms.date: 11/18/2024
+ms.date: 03/20/2025
 ms.topic: overview
 ms.service: copilot-for-azure
 ms.custom:
@@ -23,7 +23,35 @@ Microsoft Copilot in Azure can help you navigate the hundreds of services and th
 
 You can access Copilot in Azure in the Azure portal, [through the Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md), or through [AI Shell](ai-shell-overview.md). Throughout a conversation, Copilot in Azure answers questions, generates queries, performs tasks, and safely acts on your behalf. It makes high-quality recommendations and takes actions while respecting your organization's policy and privacy. Copilot in Azure can access all of the resources that you have permission to access, and can take actions that you have permission to perform, with your confirmation required for any actions. For more information about what Copilot in Azure can do, see [Capabilities of Microsoft Copilot in Azure](capabilities.md).
 
+## Pricing and availability
+
+There are no costs associated with using Microsoft Copilot in Azure.
+
 Microsoft Copilot in Azure (preview) is made available to customers under the terms governing their subscription to Microsoft Azure Services, including the Microsoft Copilot in Azure section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Please review these terms carefully as they contain important conditions and obligations governing your use of Microsoft Copilot in Azure.
+
+Microsoft Copilot in Azure is available in 19 languages:
+
+- Chinese (Simplified)
+- Chinese (Traditional)
+- Czech
+- Dutch
+- English
+- French
+- German
+- Hungarian
+- Indonesian
+- Italian
+- Japanese
+- Korean
+- Polish
+- Portuguese (Brazil)
+- Portuguese (Portugal)
+- Russian
+- Spanish
+- Swedish
+- Turkish
+
+Microsoft Copilot for Azure isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet)
 
 ## Manage access
 
