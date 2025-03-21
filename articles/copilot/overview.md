@@ -25,7 +25,7 @@ You can access Copilot in Azure in the Azure portal, [through the Azure mobile a
 
 ## Pricing and availability
 
-There are no costs associated with using Microsoft Copilot in Azure.
+The capabilities of Copilot in Azure available today are included at no additional cost. Future capabilities may be subject to pricing.
 
 Microsoft Copilot in Azure (preview) is made available to customers under the terms governing their subscription to Microsoft Azure Services, including the Microsoft Copilot in Azure section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Please review these terms carefully as they contain important conditions and obligations governing your use of Microsoft Copilot in Azure.
 
