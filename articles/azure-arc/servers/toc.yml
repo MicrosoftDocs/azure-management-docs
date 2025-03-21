@@ -28,6 +28,8 @@
   items:
     - name: Connected Machine agent overview
       href: agent-overview.md
+    - name: Prerequisites
+      href: prerequisites.md
     - name: Deployment options for Azure Monitor agent
       href: concept-log-analytics-extension-deployment.md
 - name: How-to guides
@@ -36,8 +38,6 @@
     items:
     - name: Plan for deployment
       href: plan-at-scale-deployment.md
-    - name: Prerequisites
-      href: prerequisites.md
     - name: Network requirements
       href: network-requirements.md
     - name: Simplify network configuration requirements
