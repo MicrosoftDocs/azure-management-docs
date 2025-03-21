@@ -1,14 +1,14 @@
 ---
 title: Connected Machine agent prerequisites
 description: Learn about the prerequisites for installing the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 01/24/2025
+ms.date: 03/21/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurepowershell
 ---
 
 # Connected Machine agent prerequisites
 
-This article describes the basic requirements for installing the Connected Machine agent to onboard a physical server or virtual machine to Azure Arc-enabled servers. Some [onboarding methods](deployment-options.md) may have more requirements.
+This article outlines the technical prerequisites, supported environments, and specifications required for successfully onboarding physical and virtual servers to Azure Arc-enabled servers. It serves as a reference for administrators and engineers planning to implement Azure Arc in their environments. Some [onboarding methods](deployment-options.md) may have more requirements.
 
 ## Supported environments
 
@@ -18,7 +18,11 @@ Azure Arc-enabled servers support the installation of the Connected Machine agen
 * Azure Local
 * Other cloud environments
 
-You shouldn't install Azure Arc on virtual machines hosted in Azure, Azure Stack Hub, or Azure Stack Edge, as they already have similar capabilities. You can, however, [use an Azure VM to simulate an on-premises environment](plan-evaluate-on-azure-virtual-machine.md) for testing purposes, only.
+> [!NOTE]
+> You shouldn't install Azure Arc on virtual machines hosted in Azure, Azure Stack Hub, or Azure Stack Edge, as they already have similar capabilities. You can, however, [use an Azure VM to simulate an on-premises environment](plan-evaluate-on-azure-virtual-machine.md) for testing purposes, only.
+> 
+
+### Cloned and golden image considerations
 
 Take extra care when using Azure Arc on systems that are:
 
@@ -132,7 +136,6 @@ Use
 
 For Linux, the relevant package repository will only contain releases that are applicable, so no special considerations are required. 
 
-
 ## Client operating system guidance
 
 The Azure Arc service and Azure Connected Machine Agent are supported on Windows 10 and 11 client operating systems only when using those computers in a server-like environment. That is, the computer should always be:
@@ -149,13 +152,15 @@ Microsoft doesn't recommend running Azure Arc on short-lived (ephemeral) servers
 
 [Azure Virtual Desktop on Azure Local](/azure/virtual-desktop/azure-local-overview) doesn't use short-lived VMs and supports running Azure Arc in the desktop VMs.
 
-## Software requirements
+## Software and system requirements
 
-Windows operating systems:
+This section details the software requirements for the Azure Connected Machine agent.
 
-* Windows Server 2008 R2 SP1 requires PowerShell 4.0 or later. Microsoft recommends running the latest version, [Windows Management Framework 5.1](https://www.microsoft.com/download/details.aspx?id=54616).
+### Windows operating system requirements
 
-Linux operating systems:
+Windows Server 2008 R2 SP1 requires PowerShell 4.0 or later. Microsoft recommends running the latest version, [Windows Management Framework 5.1](https://www.microsoft.com/download/details.aspx?id=54616).
+
+### Linux operating system requirements
 
 * systemd
 * wget (to download the installation script)
@@ -185,7 +190,8 @@ You'll need the following Azure built-in roles for different aspects of managing
 
 ## Azure resource providers
 
-To use Azure Arc-enabled servers, the following [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) must be registered in your subscription:
+The following [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) must be registered in your subscription to use Azure Arc-enabled servers.
+:
 
 * **Microsoft.HybridCompute**
 * **Microsoft.GuestConfiguration**
