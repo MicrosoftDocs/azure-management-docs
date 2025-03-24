@@ -11,7 +11,7 @@ author: jm-247-ms
 
 # Find your recommendations using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) directs you to your Azure Advisor recommendations across the Well Architected Framework pillars. The Well Architected Framework pillars include Reliability, Cost Optimization, Operational Excellence, Performance Efficiency, and Security. To learn more about the Well Architected Framework, see [Azure Well-Architected Framework](/azure/well-architected "Azure Well-Architected Framework | Microsoft Learn").
+Microsoft Copilot in Azure directs you to your Azure Advisor recommendations across the Well Architected Framework pillars. The Well Architected Framework pillars include Reliability, Cost Optimization, Operational Excellence, Performance Efficiency, and Security. To learn more about the Well Architected Framework, see [Azure Well-Architected Framework](/azure/well-architected "Azure Well-Architected Framework | Microsoft Learn").
 
 When you ask Microsoft Copilot in Azure questions about your recommendations, refine the scope of your request about recommendations by including the following information:
 
@@ -22,7 +22,7 @@ When you ask Microsoft Copilot in Azure questions about your recommendations, re
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Sample prompts
 

@@ -13,7 +13,7 @@ author: JnHs
 
 # Work with AKS clusters efficiently using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you work more efficiently with [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters.
+Microsoft Copilot in Azure can help you work more efficiently with [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters.
 
 When you ask Microsoft Copilot in Azure for help with AKS, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you're prompted to specify a cluster.
 
@@ -23,7 +23,7 @@ This video shows how Copilot in Azure can assist with AKS cluster management and
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Run cluster commands
 

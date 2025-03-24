@@ -10,7 +10,7 @@ author: JnHs
 
 # Troubleshoot disk performance using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you troubleshoot issues with your disk performance when your application requires higher performance than what you have configured for your VM and disks. For more details about these issues, see [Virtual machine and disk performance](/azure/virtual-machines/disks-performance#how-does-disk-performance-work).
+Microsoft Copilot in Azure can help you troubleshoot issues with your disk performance when your application requires higher performance than what you have configured for your VM and disks. For more details about these issues, see [Virtual machine and disk performance](/azure/virtual-machines/disks-performance#how-does-disk-performance-work).
 
 When you ask Microsoft Copilot in Azure questions about disk performance, it prompts you to select the VM and disks that are struggling with performance, along with the time period when the problems started. For best results, when specifying a time frame for the analysis, ensure that the disk and VM have been active during that entire period.
 
@@ -27,7 +27,7 @@ To diagnose performance issues when your application requires higher performance
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Sample prompts
 

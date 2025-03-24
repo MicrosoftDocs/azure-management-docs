@@ -10,13 +10,13 @@ author: JnHs
 
 # Example prompts for Microsoft Copilot in Azure
 
-Prompts are how you can interact with Microsoft Copilot in Azure (preview) to get help working with your Azure environment. This article shows a list of skills and example prompts that you can try out to see how Copilot in Azure can help with different scenarios and Azure services.
+Prompts are how you can interact with Microsoft Copilot in Azure to get help working with your Azure environment. This article shows a list of skills and example prompts that you can try out to see how Copilot in Azure can help with different scenarios and Azure services.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 To learn more about the ways that you can use Copilot for Azure, see [Capabilities of Microsoft Copilot for Azure](capabilities.md). For tips on creating your own prompts, see [Write effective prompts for Microsoft Copilot in Azure](write-effective-prompts.md).
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+[!INCLUDE [preview-note](includes/)]
 
 ## Prompt library
 

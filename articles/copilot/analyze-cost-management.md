@@ -15,15 +15,13 @@ author: JnHs
 
 # Analyze, estimate and optimize cloud costs using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you analyze, estimate and optimize cloud costs. Ask questions using natural language to get information and recommendations based on [Microsoft Cost Management](/azure/cost-management-billing/costs/overview-cost-management).
+Microsoft Copilot in Azure can help you analyze, estimate and optimize cloud costs. Ask questions using natural language to get information and recommendations based on [Microsoft Cost Management](/azure/cost-management-billing/costs/overview-cost-management).
 
 When you ask Microsoft Copilot in Azure  questions about your costs, it automatically pulls context based on the last scope that you accessed using Cost Management. If the context isn't clear, you'll be prompted to select a scope or provide more context.
 
 For OpenAI token-based models, Microsoft Copilot in Azure can provide simulations that estimate your costs for increasing or decreasing usage. You can also get estimates for changes to your OpenAI-token based models, such as moving from GPT-35-Turbo to GPT-4.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Sample prompts
 

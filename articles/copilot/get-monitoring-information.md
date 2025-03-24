@@ -13,15 +13,15 @@ author: JnHs
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Get information about Azure Monitor metrics, logs, and alerts using Microsoft Copilot in Azure (preview)
+# Get information about Azure Monitor metrics, logs, and alerts using Microsoft Copilot in Azure
 
-You can ask Microsoft Copilot in Azure (preview) questions about metrics and logs collected by [Azure Monitor](/azure/azure-monitor/), and about Azure Monitor alerts.
+You can ask Microsoft Copilot in Azure questions about metrics and logs collected by [Azure Monitor](/azure/azure-monitor/), and about Azure Monitor alerts.
 
 When you ask Microsoft Copilot in Azure for this information, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context of a query isn't clear, you'll be prompted to specify the resource for which you want information.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Answer questions about Azure Monitor platform metrics
 
@@ -54,7 +54,7 @@ Here are a few examples of the kinds of prompts you can use to get information a
 
 ## Answer questions about Azure Monitor alerts
 
-Use Microsoft Copilot in Azure (preview) to ask questions about your Azure Monitor alerts. When asked about alerts, Microsoft Copilot in Azure (preview) summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page. 
+Use Microsoft Copilot in Azure to ask questions about your Azure Monitor alerts. When asked about alerts, Microsoft Copilot in Azure summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page. 
 
 ### Sample prompts
 
