@@ -16,8 +16,6 @@ Prompts are how you can interact with Microsoft Copilot in Azure to get help wor
 
 To learn more about the ways that you can use Copilot for Azure, see [Capabilities of Microsoft Copilot for Azure](capabilities.md). For tips on creating your own prompts, see [Write effective prompts for Microsoft Copilot in Azure](write-effective-prompts.md).
 
-[!INCLUDE [preview-note](includes/)]
-
 ## Prompt library
 
 To get started with Copilot for Azure, try a few prompts from this list. Feel free to experiment and make changes, or create your own prompts based on your current tasks and interests.
