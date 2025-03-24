@@ -343,7 +343,7 @@ az acr update --name $REGISTRY_NAME --public-network-enabled false
 Consider the following options to execute the `az acr build` successfully.
 
 * Assign a [dedicated agent pool.](./tasks-agent-pools.md) 
-* If agent pool is not available in the region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules.](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (a.k.a. AzureContainerRegistry Service Tag) for outbound requests. You can choose to add the IPs in the firewall allowed list.
+* If agent pool is not available in the region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (a.k.a. AzureContainerRegistry Service Tag) for outbound requests. You can choose to add the IPs in the firewall allowed list.
 
 ## Disable access to a container registry using a service endpoint 
 
