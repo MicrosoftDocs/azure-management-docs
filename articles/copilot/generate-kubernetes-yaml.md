@@ -78,7 +78,7 @@ The following commands are currently available:
 - **/explain**: Get more information about a section or element of your YAML file.
 - **/format**: Apply standard indentation or fix other formatting issues.
 - **/fix**: Resolve problems with invalid YAML.
-- **/discard**: Discard previously-made changes.
+- **/discard**: Discard previously made changes.
 - **/chat**: Open a full Microsoft Copilot in Azure pane.
 - **/close**: Closes the inline Copilot control.
 - **/retry**: Tries the previous prompt again.
