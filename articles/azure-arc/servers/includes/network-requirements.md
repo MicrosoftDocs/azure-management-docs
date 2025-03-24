@@ -118,7 +118,9 @@ For extension versions up to and including [February 13, 2024](../../data/releas
 
 ### Transport Layer Security 1.2 protocol
 
-To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**. The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2.
+To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**. 
+
+The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint is not supported for Windows Server 2012 or Windows Server 2012 R2.
 
 |Platform/Language | Support | More Information |
 | --- | --- | --- |
