@@ -6,8 +6,8 @@ ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
   - ignite-2024
-ms.author: sukishen
-author: skishen505
+ms.author: jenhayes
+author: JnHs
 ---
 
 # Azure networking capabilities using Microsoft Copilot in Azure

@@ -18,8 +18,6 @@ Copilot in Azure can execute many common commands on your behalf, as long as you
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/)]
-
 ## Sample prompts
 
 Here are a few examples of the kinds of prompts you can use to execute commands. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
