@@ -10,7 +10,7 @@ author: JnHs
 
 # Generate Terraform and Bicep configurations using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can generate Terraform and Bicep configurations that you can use to create and manage your Azure infrastructure.
+Microsoft Copilot in Azure can generate Terraform and Bicep configurations that you can use to create and manage your Azure infrastructure.
 
 When you tell Microsoft Copilot in Azure about some Azure infrastructure that you want to manage through Terraform, it provides a configuration using resources from the [AzureRM provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs). In addition to the primary resources, any dependent resources required to accomplish a successful deployment are included in the configuration.
 
@@ -22,7 +22,7 @@ The requested Azure infrastructure should be limited to fewer than eight primary
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Terraform sample prompts
 

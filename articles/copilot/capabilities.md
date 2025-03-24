@@ -15,11 +15,9 @@ author: JnHs
 
 # Microsoft Copilot in Azure capabilities
 
-Microsoft Copilot in Azure (preview) amplifies your impact with AI-enhanced operations. You can ask Copilot to Azure for help with designing, operating, optimizing, and troubleshooting your Azure apps and infrastructure. Copilot for Azure can help you gain new insights, discover more benefits of the cloud, and orchestrate data across both the cloud and the edge.
+Microsoft Copilot in Azure amplifies your impact with AI-enhanced operations. You can ask Copilot to Azure for help with designing, operating, optimizing, and troubleshooting your Azure apps and infrastructure. Copilot for Azure can help you gain new insights, discover more benefits of the cloud, and orchestrate data across both the cloud and the edge.
 
 This article describes some of the ways that you can use Copilot for Azure.
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Perform tasks
 
@@ -52,9 +50,6 @@ Use Microsoft Copilot in Azure to perform many basic tasks in the Azure portal o
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)
   - [Troubleshoot apps faster with App Service](troubleshoot-app-service.md)
 
-> [!NOTE]
-> Microsoft Copilot in Azure (preview) includes access to Copilot in Azure SQL Database (preview). This offering can help you streamline the design, operation, optimization, and health of Azure SQL Database-driven applications. It improves productivity in the Azure portal by offering natural language to SQL conversion and self-help for database administration. For more information, see [Copilot in Azure SQL Database (preview)](https://aka.ms/sqlcopilot).
-
 ## Get information
 
 From anywhere in the Azure portal, you can ask Microsoft Copilot in Azure to explain more about Azure concepts, services, or offerings. You can ask questions to learn how a feature works, or which configurations best meet your budgets, security, and scale requirements. Copilot can guide you to the right user experience or even author scripts and other artifacts that you can use to deploy your solutions. Answers are grounded in the latest Azure documentation, so you can get up-to-date guidance just by asking a question.
@@ -82,7 +77,6 @@ While Microsoft Copilot in Azure can perform many types of tasks, it's important
 Keep in mind these current limitations:
 
 - Any action taken on more than 10 resources must be performed outside of Microsoft Copilot in Azure.
-- You can only make 15 requests during any given chat, and you only have 10 chats in a 24 hour period.
 - Some responses that display lists will be limited to the top five items.
 - For some tasks and queries, using a resource's name will not work, and the Azure resource ID must be provided.
 

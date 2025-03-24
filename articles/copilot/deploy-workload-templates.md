@@ -1,6 +1,6 @@
 ---
 title: Discover and deploy workload templates from Microsoft Copilot in Azure
-description: Learn how Microsoft Copilot in Azure (preview) can provide workload templates for your scenario.
+description: Learn how Microsoft Copilot in Azure can provide workload templates for your scenario.
 ms.date: 11/11/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
@@ -11,13 +11,11 @@ author: JnHs
 
 # Discover and deploy workload templates from Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
+Microsoft Copilot in Azure can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
 
 For a subset of these workload templates, Copilot in Azure provides an enhanced deployment experience directly within the portal to help you quickly set up your workload in Azure.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Sample prompts
 
@@ -40,7 +38,7 @@ To create an ecommerce website using Django framework, you can say **"I want to 
 > [!TIP]
 > For information on using `azd` templates, see [What is the Azure Developer CLI?](/azure/developer/azure-developer-cli/overview?tabs=windows)
 
-:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Screenshot of example of a template recommendation from Microsoft Copilot in Azure (preview).":::
+:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Screenshot of example of a template recommendation from Microsoft Copilot in Azure.":::
 
 :::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Screenshot of example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
 

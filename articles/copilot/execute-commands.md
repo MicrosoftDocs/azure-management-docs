@@ -1,6 +1,6 @@
 ---
-title: Execute commands using Microsoft Copilot in Azure (preview)
-description: Learn about scenarios where Microsoft Copilot in Azure (preview) can help you perform tasks.
+title: Execute commands using Microsoft Copilot in Azure
+description: Learn about scenarios where Microsoft Copilot in Azure can help you perform tasks.
 ms.date: 02/10/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
@@ -8,17 +8,15 @@ ms.author: jenhayes
 author: JnHs
 ---
 
-# Execute commands using Microsoft Copilot in Azure (preview)
+# Execute commands using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you execute individual or bulk commands on your resources. With Copilot in Azure, you can save time by prompting Copilot in Azure with natural language, rather than manually navigating to a resource and selecting a button in a resource's command bar.
+Microsoft Copilot in Azure can help you execute individual or bulk commands on your resources. With Copilot in Azure, you can save time by prompting Copilot in Azure with natural language, rather than manually navigating to a resource and selecting a button in a resource's command bar.
 
 For example, you can restart your virtual machines by using prompts like **"Restart my VM named ContosoDemo"** or **"Stop my VMs in West US 2."** Copilot in Azure infers relevant resources inferred through an Azure Resource Graph query and determines the relevant command. Next, it asks you to confirm the action. Commands are never executed without your explicit confirmation. After the command is executed, you can track progress in the notification pane, just as if you manually ran the command from within the Azure portal. For faster responses, specify the resource ID of the resources that you want to run the command on.
 
 Copilot in Azure can execute many common commands on your behalf, as long as you have the permissions to perform them yourself. If Copilot in Azure is unable to run a command for you, it generally provides instructions to help you perform the task yourself. To learn more about the commands you can execute with natural language for a resource or service, you can ask Copilot in Azure directly. For instance, you can say **"Which commands can you help me perform on virtual machines?"**
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Sample prompts
 

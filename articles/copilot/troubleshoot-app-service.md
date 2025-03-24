@@ -12,7 +12,7 @@ author: JnHs
 
 # Troubleshoot your apps faster with App Service using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can act as your expert companion for [Azure App Service](/azure/app-service/overview) and [Azure Functions](/azure/azure-functions/functions-overview) diagnostics and solutions.
+Microsoft Copilot in Azure can act as your expert companion for [Azure App Service](/azure/app-service/overview) and [Azure Functions](/azure/azure-functions/functions-overview) diagnostics and solutions.
 
 Azure offers many troubleshooting tools for different types of issues with web apps and function apps. Rather than figure out which tool to use, you can ask Microsoft Copilot in Azure about the problem you're experiencing. Microsoft Copilot in Azure determines which tool is best suited to your question, whether it's related to high CPU usage, networking issues, getting a memory dump, or other issues. These tools provide diagnostics and suggestions to help you resolve problems you're experiencing.
 
@@ -22,7 +22,7 @@ When you ask Microsoft Copilot in Azure for troubleshooting help, it automatical
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 >[!Note]
 >If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to troubleshoot your application in Azure](/azure/developer/github-copilot-azure/troubleshoot-examples) and more.

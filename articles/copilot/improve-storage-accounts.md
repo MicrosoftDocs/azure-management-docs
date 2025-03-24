@@ -14,7 +14,7 @@ author: JnHs
 
 # Manage and improve storage accounts using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). It can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
+Microsoft Copilot in Azure can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). It can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
 
 Responses are dynamic and based on your specific storage account and settings. Based on your prompts, Microsoft Copilot in Azure provides specific recommendations to improve your storage account or resolve issues.
 
@@ -22,7 +22,7 @@ When you ask Microsoft Copilot in Azure about storage accounts, it automatically
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Improve security
 

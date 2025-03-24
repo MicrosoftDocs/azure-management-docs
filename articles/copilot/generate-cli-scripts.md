@@ -11,7 +11,7 @@ author: JnHs
 
 # Generate Azure CLI scripts using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can generate [Azure CLI](/cli/azure/) scripts that you can use to create or manage resources.
+Microsoft Copilot in Azure can generate [Azure CLI](/cli/azure/) scripts that you can use to create or manage resources.
 
 When you tell Microsoft Copilot in Azure about a task you want to perform by using Azure CLI, it provides a script with the necessary commands. You'll see which placeholder values that you need to update with the actual values based on your environment.
 
@@ -20,7 +20,7 @@ When you tell Microsoft Copilot in Azure about a task you want to perform by usi
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+
 
 ## Sample prompts
 

@@ -22,8 +22,6 @@ If Copilot in Azure is not available for a user, they'll see an unauthorized mes
 
 As always, Microsoft Copilot in Azure only has access to resources that the user has access to. It can only take actions that the user has permission to perform, and requires confirmation before making changes. Copilot in Azure complies with all existing access management rules and protections such as Azure role-based access control (Azure RBAC), Privileged Identity Management, Azure Policy, and resource locks.
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
-
 ## Manage user access to Microsoft Copilot in Azure
 
 To manage access to Microsoft Copilot in Azure for users in your tenant, any Global Administrator in that tenant can follow these steps.

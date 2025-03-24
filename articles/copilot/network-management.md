@@ -1,26 +1,24 @@
 ---
-title: Azure networking capabilities using Microsoft Copilot in Azure (preview)
+title: Azure networking capabilities using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
 ms.date: 11/08/2024
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
   - ignite-2024
-ms.author: sukishen
-author: skishen505
+ms.author: jenhayes
+author: JnHs
 ---
 
-# Azure networking capabilities using Microsoft Copilot in Azure (preview)
+# Azure networking capabilities using Microsoft Copilot in Azure
 
 Copilot in Azure for networking can help you answer questions about Azure networking services and troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
- 
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Scenarios
 
-The following Azure networking and network management skills are currently released in public preview.
+The following Azure networking and network management skills are currently available.
 
 [**Network product information queries**](#information) - This skill enables Copilot in Azure for Networking to answer questions about Azure Networking products and services using information from published documentation.
 
