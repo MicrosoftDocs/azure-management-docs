@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 11/14/2024
+ms.date: 03/24/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -85,14 +85,14 @@ After that, Copilot in Azure presents some options and lets you choose which of 
 
 ## Copy VMs into any region
 
-Microsoft Copilot in Azure can help you replicate existing VMs in the region of your choice. If the selected region has a low probability of deployment success, Copilot in Azure suggests alternate recommendations for the region, VM size, or availability zone. Additionally, Copilot showcases existing properties that are copied to the new VM from the existing VM, lets you know if any properties aren't supported and can't be copied over, and guides you to a prefilled create experience where you can deploy VMs quickly and enable microproductivity gains.
+Microsoft Copilot in Azure can help you replicate existing VMs in the region of your choice. If the selected region has a low probability of deployment success, Copilot in Azure suggests alternate recommendations for the region, VM size, or availability zone. Additionally, Copilot showcases existing properties that are copied to the new VM from the existing VM, lets you know if any properties aren't supported and can't be copied over, and guides you to a prefilled creation experience where you can deploy VMs quickly and enable microproductivity gains.
 
 Copilot can also advise you of scenarios where existing related services may not be easily attached to the new VM copy. For instance, if address space gets exhausted by reusing the existing VM's virtual network or subnet for new Virtual Machine copy, you'll be prompted to adjust network settings appropriately. Similarly, if the backend pool of an existing load balancer linked with the existing VM is exhausted, you're notified and will be able to update your load balancer/application gateway configuration settings.
 
 When using Copilot in Azure to help you copy VMs, keep in mind the following:
 
 - The cost of the new VM may differ from the existing VM, depending on licensing and usage implications.
-- Licensing and password credentials aren't copied automatically. You can configure these during the create experience.
+- Licensing and password credentials aren't copied automatically. You can configure these during the creation experience.
 - You can't use Copilot to copy an existing VM if it has errors or is in a failed state.
 - Data disks and OS disks can't be reused or copied, but the configuration of the OS disks and data disks will be copied over (if present in the existing VM).
 
@@ -126,6 +126,19 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggest changes (such as selecting a new size, zone, or region) that have available capacity based on the prior deployment.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+
+## Choose the right compute offering
+
+When you're not sure exactly which compute offering to choose, Copilot in Azure can guide you to successfully identify and deploy the right Compute resource (such as [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) or [Azure Compute Fleet](/azure/azure-compute-fleet/overview)) for your workload needs. Copilot in Azure can also help direct you to the right service if you want to assess how to integrate your on-premises Compute solutions into Azure or find the right services for your multicloud solutions.
+
+If you're migrating compute instances from other cloud platforms, Copilot in Azure can help determine the equivalent Azure size family for those resources.
+
+While familiarity with the product options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it's important to exercise due diligence before deploying the suggested options.
+
+### Compute offering sample prompts
+
+- "Help me choose the right Compute infrastructure service"
+- "I'd like to use a compute resource for a batch processing job, which one should I pick?"
 
 ## Next steps
 
