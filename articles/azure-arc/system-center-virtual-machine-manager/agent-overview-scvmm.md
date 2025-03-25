@@ -226,10 +226,3 @@ The agent requests the following metadata information from Azure:
 - [Install Arc agent at scale for your SCVMM VMs](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale).
 - [Install Arc agent using a script for SCVMM VMs](/azure/azure-arc/system-center-virtual-machine-manager/install-arc-agents-using-script).
 
-### CAF
-
-- [Hybrid and multicloud migration](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/scenarios/hybrid/migrate)
-
-### WAF
-
-- [Operational Excellence design principles](https://learn.microsoft.com/en-us/azure/well-architected/operational-excellence/principles)
