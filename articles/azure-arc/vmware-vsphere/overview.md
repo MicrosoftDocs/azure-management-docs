@@ -101,12 +101,6 @@ The following capabilities are available in the AKS Arc on VMware preview:
 - Plan your resource bridge deployment by reviewing the [support matrix for Arc-enabled VMware vSphere](support-matrix-for-arc-enabled-vmware-vsphere.md).
 - Once ready, [connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
 - Try out Arc-enabled VMware vSphere by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_vsphere).
-
-### CAF
-
-- [Hybrid and multicloud migration](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
-- [Migrate to Azure with Azure VMware Solution](/azure/cloud-adoption-framework/scenarios/azure-vmware).
-
-### AAC
-
-- [Azure hybrid options](/azure/architecture/guide/technology-choices/hybrid-considerations).
+- CAF: [Hybrid and multicloud migration](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
+- CAF: [Migrate to Azure with Azure VMware Solution](/azure/cloud-adoption-framework/scenarios/azure-vmware).
+- AAC: [Azure hybrid options](/azure/architecture/guide/technology-choices/hybrid-considerations).
