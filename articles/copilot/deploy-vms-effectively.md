@@ -66,7 +66,7 @@ Azure offers several size options based on your workload needs. Microsoft Copilo
 
 When you share your intent and scenario, Copilot helps you narrow down the right VM size from the vast size selection offered by Azure today. Copilot helps you identify requirements without requiring you to know the exact amount of RAM or CPU that you need. Size recommendations also take any quota and offer restrictions into account and surface the most intelligent recommendations pertinently. Copilot can also help you create a support request to increase a quota if desired.
 
-While familiarity with the size options can be beneficial, Copilot in Azure is designed to assist users ranging across different expertise levels in achieving their deployment goals. However, it is crucial that you exercise due diligence with the suggested options.
+While familiarity with the size options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it's crucial that you exercise due diligence with the suggested options.
 
 ### VM size sample prompts
 
