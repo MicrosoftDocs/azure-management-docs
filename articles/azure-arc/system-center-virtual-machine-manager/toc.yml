@@ -14,7 +14,7 @@
     href: quickstart-connect-system-center-virtual-machine-manager-to-arc.md
 - name: Tutorials
   items:
-  - name: Terraform based SCVMM VM management
+  - name: Terraform based SCVMM VM management (AzAPI provider)
     href: terraform-vm-management.md
 - name: Concepts
   items:
@@ -84,7 +84,7 @@
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
   - name: ARM Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
-  - name: Terraform Templates
+  - name: Terraform Templates (AzAPI provider)
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
   - name: Python SDK
     href: /python/api/overview/azure/mgmt-scvmm-readme
