@@ -1,6 +1,6 @@
 ---
-title: Install Arc agent using a script for SCVMM VMs
-description: Learn how to enable guest management using a script for Arc enabled SCVMM VMs. 
+title: Create custom roles with Azure Arc-enabled SCVMM
+description: This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM. 
 ms.topic: how-to
 ms.date: 03/25/2025
 ms.service: azure-arc
@@ -24,7 +24,7 @@ To understand more about Azure custom roles in Azure, refer to the following res
 
 To create custom roles, ensure to have:
 
-- Permissions to create custom roles, such as [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles#user-access-administrator).
+- Permissions to create custom roles, such as [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator).
 
 ## Create custom role
 
