@@ -41,9 +41,10 @@ You might want to [collect logs](/cli/azure/arcappliance/logs#az-arcappliance-lo
 
 ## Delete Arc resource bridge
 
-You might need to delete Arc resource bridge due to deployment failures, or when the resource bridge is no longer needed. To do so, you need the appliance configuration files.
+> [!IMPORTANT]
+> For Azure Local, do not delete the Arc resource bridge unless you are given guidance by Microsoft. Arc resource bridge is a critical component to Azure Local and deleting it without guidance may cause irrecoverable damage to your Azure Local environment.
 
-Use the [`az arcappliance delete` command](deploy-cli.md#az-arcappliance-delete) to delete the Arc resource bridge. This command deletes the on-premises appliance VM, along with the Azure resource and underlying components across the two environments.
+You might need to delete Arc resource bridge due to deployment failures, or when the resource bridge is no longer needed. Use the [`az arcappliance delete` command](deploy-cli.md#az-arcappliance-delete) to delete the Arc resource bridge. This command deletes the on-premises appliance VM, along with the Azure resource and underlying components across the two environments. Manually deleting the appliance VM or Azure resource may cause errors in future deployments as the connections between the two resources still exist on the backend.
 
 ## Create resource health alerts
 
