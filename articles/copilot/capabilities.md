@@ -76,9 +76,11 @@ While Microsoft Copilot in Azure can perform many types of tasks, it's important
 
 Keep in mind these current limitations:
 
+- You cannot continue the same conversation beyond 24 hours.
 - Any action taken on more than 10 resources must be performed outside of Microsoft Copilot in Azure.
 - Some responses that display lists will be limited to the top five items.
 - For some tasks and queries, using a resource's name will not work, and the Azure resource ID must be provided.
+- Excessive use of Copilot in Azure may result in temporary throttling of access to Copilot in Azure.
 
 ## Next steps
 
