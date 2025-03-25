@@ -12,9 +12,11 @@ ms.subservice: azure-arc-scvmm
 
 # Create custom roles with Azure Arc-enabled SCVMM
 
-If the [built-in roles of Azure Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/support-matrix-for-system-center-virtual-machine-manager#azure-rolepermission-requirements), doesn't meet the specific needs of your organization, you can create your own custom roles to provide permissions at a granular level to your end users. Just like built-in roles, you can assign custom roles to users at subscription and resource group scopes to control access. Custom roles are stored in a Microsoft Entra directory and can be shared across subscriptions. Each directory can have up to 5,000 custom roles. Custom roles can be created using the Azure portal, Azure PowerShell, Azure CLI, or the REST API. This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM.
+If the [built-in roles of Azure Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/support-matrix-for-system-center-virtual-machine-manager#azure-rolepermission-requirements), doesn't meet the specific needs of your organization, you can create your own custom roles to provide permissions at a granular level to your end users. 
 
-To understand more about Azure custom roles in Azure, refer to the following resources:
+Just like built-in roles, you can assign custom roles to users at subscription and resource group scopes to control access. Custom roles are stored in a Microsoft Entra directory and can be shared across subscriptions. Each directory can have up to 5,000 custom roles. Custom roles can be created using the Azure portal, Azure PowerShell, Azure CLI, or the REST API. This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM.
+
+To understand more about Azure custom roles in Azure, refer to the following:
 
 - [Understand Azure role definitions](/azure/role-based-access-control/role-definitions)
 - [Create or update Azure custom roles using the Azure portal](/azure/role-based-access-control/custom-roles-portal)
@@ -22,9 +24,7 @@ To understand more about Azure custom roles in Azure, refer to the following res
 
 ## Prerequisites
 
-To create custom roles, ensure to have:
-
-- Permissions to create custom roles, such as [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator).
+Ensure you have permissions to create custom roles, such as [Owner](/azure/role-based-access-control/built-in-roles#owner) or [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator).
 
 ## Create custom role
 
@@ -40,7 +40,7 @@ To create a custom role with Azure Arc-enabled SCVMM, follow these steps:
 8. On the **Assignable scopes** tab, you can optionally choose additional subscription(s) and/or the resource group(s) in which this custom role is available for assignment and then select **Next**.
 9. On the **JSON** tab, you can optionally download the JSON format of the custom role and then select **Next**.
 10. On the **Review + create** tab, select **Create** to create your custom role for Azure Arc-enabled SCVMM.
-11. Once created, you can view, update, and delete the custom roles by following the steps enlisted here:
+11. Once created, you can view, update, and delete the custom roles by following these steps:
      - [List custom roles](/azure/role-based-access-control/custom-roles-portal#list-custom-roles)
      - [Update a custom role](/azure/role-based-access-control/custom-roles-portal#update-a-custom-role)
      - [Delete a custom role](/azure/role-based-access-control/custom-roles-portal#delete-a-custom-role)

@@ -58,7 +58,7 @@
       href: remove-scvmm-from-azure-arc.md
     - name: Perform recovery operations for Arc resource bridge
       href: disaster-recovery.md
-  - name: Manage role-based access contro
+  - name: Manage role-based access control
     items:
     - name: Create custom roles
       href: create-custom-roles.md
