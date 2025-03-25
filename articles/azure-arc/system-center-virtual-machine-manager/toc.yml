@@ -14,7 +14,7 @@
     href: quickstart-connect-system-center-virtual-machine-manager-to-arc.md
 - name: Tutorials
   items:
-  - name: Terraform based SCVMM VM management
+  - name: Terraform based SCVMM VM management (AzAPI provider)
     href: terraform-vm-management.md
 - name: Concepts
   items:
@@ -22,16 +22,20 @@
     href: agent-overview-scvmm.md
 - name: How-to guides
   items:
+  - name: Manage role-based access control
+    items:
+    - name: Create custom roles
+      href: create-custom-roles.md
+    - name: Set up and manage self-service access to SCVMM resources
+      href: set-up-and-manage-self-service-access-scvmm.md
   - name: Enable resources for Azure management
     items:
     - name: Enable SCVMM inventory resources in Azure
       href: enable-scvmm-inventory-resources.md
     - name: Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
       href: enable-virtual-hardware-scvmm.md
-  - name: Use VM lifecycle and self-serve capabilities
+  - name: Perform VM lifecycle and powercycle operations
     items:
-    - name: Set up and manage self-service access to SCVMM resources
-      href: set-up-and-manage-self-service-access-scvmm.md
     - name: Create a virtual machine on SCVMM Management server
       href: create-virtual-machine.md
     - name: Perform VM operations on SCVMM VMs through Azure
@@ -80,7 +84,7 @@
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
   - name: ARM Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
-  - name: Terraform Templates
+  - name: Terraform Templates (AzAPI provider)
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
   - name: Python SDK
     href: /python/api/overview/azure/mgmt-scvmm-readme
