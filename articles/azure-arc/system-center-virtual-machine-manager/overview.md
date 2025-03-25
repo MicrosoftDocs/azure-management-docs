@@ -90,11 +90,5 @@ Azure Arc-enabled SCVMM doesn't store/process customer data outside the region t
 
 - Plan your Azure Arc-enabled SCVMM deployment by reviewing the [support matrix](support-matrix-for-system-center-virtual-machine-manager.md).
 - Once ready, [connect your SCVMM management server to Azure Arc using the onboarding script](quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
-
-### CAF
-
-- [Hybrid and multicloud migration](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
-
-### WAF
-
-- [Operational Excellence design principles](/azure/well-architected/operational-excellence/principles).
+- CAF: [Hybrid and multicloud migration](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
+- WAF: [Operational Excellence design principles](/azure/well-architected/operational-excellence/principles).
