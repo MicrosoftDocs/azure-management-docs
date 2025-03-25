@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 11/14/2024
+ms.date: 03/24/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -126,6 +126,19 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggest changes (such as selecting a new size, zone, or region) that have available capacity based on the prior deployment.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+
+## Choose the right compute offering
+
+When you're not sure exactly which compute offering to choose, Copilot in Azure can guide you to successfully identify and deploy the right Compute resource (such as [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) or [Azure Compute Fleet](/azure/azure-compute-fleet/overview)) for your workload needs. Copilot in Azure can also help direct you to the right service if you want to assess how to integrate your on-premise Compute solutions into Azure or find the right services for your multi-cloud solutions.
+
+If you're migrating compute instances from other cloud platforms, Copilot in Azure can help determine the equivalent Azure size family for those resources. 
+
+While familiarity with the product options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it is crucial to exercise due diligence before deploying the suggested options.
+
+### Compute offering sample prompts
+
+- "Help me choose the right Compute infrastructure service"
+- "I'd like to use a compute resource for a batch processing job, which one should I pick?"
 
 ## Next steps
 
