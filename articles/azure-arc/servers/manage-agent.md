@@ -275,6 +275,8 @@ For guidance on how to identify and remove any extensions on your Azure Arc-enab
 
 Disconnecting the agent deletes the corresponding Azure resource for the server and clears the local state of the agent. To disconnect the agent, run the `azcmagent disconnect` command as an administrator on the server. You'll be prompted to sign in with an Azure account that has permission to delete the resource in your subscription. If the resource has already been deleted in Azure, pass an additional flag to clean up the local state: `azcmagent disconnect --force-local-only`.
 
+If your Administrator and Azure accounts are different, you may encounter issues with the sign-in prompt defaulting to the Admininstrator account. To resolve this, execute the `azcmagent disconnect --use-device-code` command. You'll be prompted to sign in with an Azure account that has permission to delete the resource in your subscription.
+
 > [!CAUTION]
 > When disconnecting the agent from Arc-enabled VMs running on Azure Local, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `–force-local-only` flag can cause your Arc VM on Azure Local to be deleted both from Azure and on-premises.
 
