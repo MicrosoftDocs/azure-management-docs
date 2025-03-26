@@ -174,7 +174,7 @@ After your clusters have been updated to use the Arc gateway, some of the Arc en
 ## Remove the Arc gateway
 
 > [!IMPORTANT]
-> The step described here only applies to Arc gateway on Arc-enabled Kubernetes. For details on detaching Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local (preview))](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview?view=azloc-24113&tabs=portal#detach-or-change-the-arc-gateway-association-from-the-machine).
+> The step described here only applies to Arc gateway on Arc-enabled Kubernetes. For details on detaching Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local (preview))](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview#detach-or-change-the-arc-gateway-association-from-the-machine).
 
 To disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster, run the following command:
 
