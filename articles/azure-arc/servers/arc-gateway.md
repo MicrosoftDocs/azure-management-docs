@@ -275,7 +275,7 @@ To associate a machine with a new Arc gateway:
 ## Remove Arc gateway association (to use the direct route instead)
 
 > [!NOTE]
-> This operation only applies to Arc gateway on Arc-enabled servers, not Azure Local. If you're using Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview?view=azloc-24113&tabs=portal) for removal information.
+> This operation only applies to Arc gateway on Arc-enabled servers, not Azure Local. If you're using Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview) for removal information.
 > 
 
 1. Set the connection type of the Arc-enabled Server to "direct” instead of “gateway" by running the following command:
