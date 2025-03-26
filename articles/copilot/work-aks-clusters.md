@@ -206,6 +206,49 @@ After the deployment completes, you're prompted to navigate to the **Run Command
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-run-command-logs.png" alt-text="Screenshot showing log information in the Run Command pane.":::
 
+## Troubleshoot cluster issues
+
+Copilot in Azure can help troubleshoot issues with your AKS clusters. When you ask for troubleshooting help, Copilot in Azure executes relevant detectors on the target cluster to identify issues, provides remediation solutions, and suggest helpful documentation links to help you understand more about the problem. For example, you can ask for help resolving problems related to CPU/memory usage, OOMKilled errors, cluster upgrade failures, or networking issues.
+
+### Troubleshooting sample prompts
+
+- "Why is my AKS cluster's CPU usage high?"
+- "How do I fix OOMKilled errors?"
+- "Steps to troubleshoot AKS networking issues?"
+- "Why did my AKS upgrade fail?"
+- "How to resolve memory pressure in AKS?"
+- "Causes of pod evictions in AKS?"
+- "How to check AKS node health?"
+- "Why isn't my AKS cluster scaling?"
+- "Troubleshoot DNS issues in AKS?"
+- "Best practices for monitoring AKS?"
+
+### Troubleshooting example
+
+If you say "**diagnose my aks cluster node health**, Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links for more details.
+
+You can select a link to view details about the issue, along with suggested solutions.
+
+## Get VM size recommendations
+
+When you create an AKS cluster, you can ask Copilot in Azure for help determining which Azure virtual machine (VM) size to use. Based on the CPU and memory requirements of your application, Copilot in Azure recommends appropriate sizes to help you narrow down your choices. Copilot in Azure also provides options to deploy the AKS cluster by taking you directly to the cluster creation experience in the Azure portal.
+
+While familiarity with VM size options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise levels in achieving their deployment goals. However, it's crucial that you exercise due diligence with the suggested options.
+
+### VM size sample prompts
+
+- "Recommend VM sizes for AKS clusters"
+- "Recommend VM sizes for Kubernetes Service for my AI workload"
+- "Suggest VM sizes for AKS deployments"
+- "Recommend Azure Sizes for Kubernetes Service"
+- "I am creating Kubernetes Service Resource for my workload, which Azure size should I use?"
+
+### VM size example
+
+You can say "**Recommend VM size for creating AKS cluster for my workload**. Copilot in Azure prompts you for more information about your environment and workload requirements.
+
+After that, Copilot in Azure presents some options and lets you choose which of the recommended sizes to use for your VM.
+
 ## Update AKS pricing tier
 
 Use Microsoft Copilot in Azure to make changes to your [AKS pricing tier](/azure/aks/free-standard-pricing-tiers). When you request an update to your pricing tier, you're prompted to confirm, and then Microsoft Copilot in Azure makes the change for you.
