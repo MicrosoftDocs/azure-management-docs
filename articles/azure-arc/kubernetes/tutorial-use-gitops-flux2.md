@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 02/14/2025
+ms.date: 03/26/2025
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
 ---
@@ -671,7 +671,7 @@ To create Flux configurations in clusters with workload identity enabled, modify
 1. Create the flux extension on the cluster, using the following command:
 
    ```azurecli
-   az k8s-extension create --resource-group <resource_group_name> --cluster-name <aks_cluster_name> --cluster-type managedClusters --name flux --extension-type microsoft.flux --config workloadIdentity.enable=true workloadIdentity.azureClientId=<user_assigned_client_id>
+   az k8s-extension create --resource-group <resource_group_name> --cluster-name <aks_cluster_name> --cluster-type managedClusters --name flux --extension-type microsoft.flux --config workloadIdentity.enable=true workloadIdentity.azureClientId=<user_assigned_client_id> workloadIdentity.azureTenantId=<tenant_id>
    ```
 
 1. Establish a federated identity credential for your [AKS cluster](/azure/aks/workload-identity-deploy-cluster#establish-federated-identity-credential) or [Arc-enabled Kubernetes cluster](workload-identity.md#create-the-federated-identity-credential). For example:
@@ -682,6 +682,9 @@ To create Flux configurations in clusters with workload identity enabled, modify
    
    # For image-reflector controller if you plan to enable it during extension creation, it is not deployed by default
    az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"flux-system":"image-reflector-controller" --audience api://AzureADTokenExchange
+
+   # For image-automation controller if you plan to enable it during extension creation, it is not deployed by default
+   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"flux-system":"image-automation-controller" --audience api://AzureADTokenExchange
 
    # For kustomize-controller
    az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name "${USER_ASSIGNED_IDENTITY_NAME}" --resource-group "${RESOURCE_GROUP}" --issuer "${OIDC_ISSUER}" --subject system:serviceaccount:"flux-system":"kustomize-controller" --audience api://AzureADTokenExchange

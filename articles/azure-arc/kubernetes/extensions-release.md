@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 02/18/2025
+ms.date: 03/26/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -159,6 +159,23 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
+### 1.16.1 (March 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.1
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+- Can now specify tenant ID when enabling [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+- Support for image-automation controller in [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+
 ### 1.15.1 (February 2025)
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
@@ -177,9 +194,6 @@ Changes in this version include:
 
 ### 1.14.1 (January 2025)
 
-> [!NOTE]
-> The API version `2024-11-01` for `fluxconfiguration` isn't yet released. Once this version is available, we'll add instructions on how to use AKS Workload Identity for Azure DevOps repositories.
-
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
 
 - source-controller: v1.4.1
@@ -192,23 +206,7 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 Changes in this version include:
 
 - Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-- Added support for authentication against Azure DevOps repositories using AKS Workload Identity for AKS clusters. Although these changes have been implemented in the agents, this feature won't be available for use until the API version `2024-11-01` is fully released.
-
-### 1.13.1 (October 2024)
-
-Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
-
-- source-controller: v1.4.1
-- kustomize-controller: v1.4.0
-- helm-controller: v1.1.0
-- notification-controller: v1.4.0
-- image-automation-controller: v0.39.0
-- image-reflector-controller: v0.33.0
-
-Changes in this version include:
-
-- Added support for the `--feature-gates=StrictPostBuildSubstitutions=true controller` flag to enable [strict post-build variable substitution](tutorial-use-gitops-flux2.md#strict-post-build-variable-substitution).
-- Addressed security vulnerabilities in the `fluxconfig-agent` by updating the Go packages.
+- Added support for authentication against Azure DevOps repositories using workload identity for AKS clusters. **Link TK**
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
