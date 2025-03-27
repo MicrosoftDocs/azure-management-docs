@@ -1,4 +1,14 @@
+---
+title: "Troubleshoot Continuous Patching in Azure Container Registry"
+description: "Learn how to troubleshoot continuous patching in Azure Container Registry."
+ms.author: wleo
+ms.service: azure-container-registry
+ms.topic: troubleshooting-general #Don't change.
+ms.date: 03/27/2025
 
+---
+## Troubleshooting Continuous Patching
+The troubleshooting steps in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
 
 ## Listing Running Tasks
 
@@ -43,25 +53,29 @@ Certain scenarios may require you to cancel tasks which are currently running or
 az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --type <continuouspatchv1>
 ```
 
-This command will cancel all Continuous Patching tasks within the registry with a status of "Running”, "Queued” and "Started”. The command will output a success or failure. Failure results will follow the failure pattern of the other workflow commands if the input is incorrect.
-Running the cancel command will only affect tasks in the current schedule. 
+This command cancels all continuous patching tasks with a status of “Running,” “Queued,” or “Started” for the current schedule. For example, if you cancel tasks on a daily schedule (--schedule 1d), tasks in those states are canceled for that day but are requeued the next day. If your schedule is weekly, canceled tasks appear again the following week.
 
-For example, if a user has their schedule for 1d, and runs the cancel command, tasks in those 3 states will be canceled for that day, but will be requeued for the next day. If the schedule was a week, then that week's tasks would be canceled, but the following week would have the tasks requeued. The main scenario for this command is when a user misconfigures their continuous patching workflow and doesn't want to wait for all tasks to finish running.
+A common reason to cancel is when a workflow is misconfigured and you don’t want to wait for the entire patch run to finish. The command outputs success or failure
 
 ## Troubleshooting Tips
-
-Use the task list command to output all failed tasks. Specifying the "cssc-patch” command is best for failure. The documentation on the task-list [command](https://learn.microsoft.com/en-us/cli/azure/acr/task?view=azure-cli-latest#az-acr-task-list-runs) is here. 
+### Finding Failed Tasks
+Use the task list command to output all failed tasks. Specifying the "cssc-patch” command is best for failure. 
 
 Task-list command for top 10 failed patch tasks
 ```sh
-az acr task list-runs -r registryname -n cssc-patch-image --run-status Failed --top 10
+az acr task list-runs -r <registryname> -n cssc-patch-image --run-status Failed --top 10
 ```
 
 This command will output all failed tasks. To investigate a specific failure, grab the runID that's outputted from this command and run
 ```sh
-az acr task logs -r registryname --run-id <run-id>
+az acr task logs -r <registryname> --run-id <run-id>
 ```
-If the logs aren't sufficient, or an issue is persistent, or for any feedback, please email the ACR team at acr-patching-preview@microsoft.com 
+### Misconfigured Workflow
+Cancel queued tasks with the cancel command.
+```sh
+az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --type <continuouspatchv1>
+```
+Reconfigure your continuous patching workflow after.
 
 ## Appendix
 

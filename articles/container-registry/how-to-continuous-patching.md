@@ -1,3 +1,19 @@
+---
+title: "Configure Continuous Patching in Azure Container Registry"
+description: "Learn how to configure continuous patching in Azure Container Registry."
+ms.author: wleo
+ms.service: azure-container-registry
+ms.topic: how-to-general 
+ms.date: 03/27/2025
+
+---
+
+## Prerequisites        
+
+- You can use the Azure Cloud Shell or a local installation of the Azure CLI with a minimum version of 2.15.0 or later. 
+- You have an existing Resource Group with an Azure Container Registry.
+- You have an Azure Container Registry with Tasks enabled. (Tasks is not supported in the free tier of ACR) 
+
 ## Installing the Continuous Patching Workflow
 
 Run the following command to install the CLI extension:
@@ -118,11 +134,11 @@ az acr supply-chain workflow create --help
 
 Once the workflow succeeds, go to the Azure Portal to view your running tasks. Click into Services -> Repositories, and you should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that will be continuously referenced for continuous patching.  
 
-![PortalRepos](./media/portal_repos1.png)
+![PortalRepos](./media/continuous-patching-media/portal_repos1.png)
 
 Next, click on "Tasks” under "Services”. You should see 3 new tasks, named the following:
 
-![PortalTasks](./media/portal_tasks1.png)
+![PortalTasks](./media/continuous-patching-media/portal_tasks1.png)
 
 - cssc-trigger-workflow – this task scans the configuration file and calls the scan task on each respective image.    
 - cssc-scan-image – this task scans the image for operating system vulnerabilities. This task will only trigger the patching task only if (1) operating system vulnerabilities were found, and (2) the image is not considered End of Service Life (EOSL). For more information on EOSL, please consult [Preview Limitations](#preview-limitations).
@@ -131,7 +147,7 @@ These tasks work in conjunction to execute your continuous patching workflow.
 
 You can also click on "Runs” within the "Tasks” view to see specific task runs. Here you can view status information on whether the task succeeded or failed, along with viewing a debug log. 
 
-![PortalRun](./media/portal_runs1.png)
+![PortalRun](./media/continuous-patching-media/portal_runs1.png)
 
 ## Use CLI to view workflow tasks
 

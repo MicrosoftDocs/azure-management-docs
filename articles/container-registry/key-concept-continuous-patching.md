@@ -1,5 +1,12 @@
-continuous patching concepts in Azure Container Registry
-========================================================
+---
+title: "Continuous Patching in Azure Container Registry Key Concepts"
+description: "Learn about Key Concepts for continuous patching in Azure Container Registry."
+ms.author: wleo
+ms.service: azure-container-registry
+ms.topic: concepts-general
+ms.date: 03/27/2025
+
+---
 
 ## Introduction
 
@@ -45,7 +52,7 @@ How it works
 
 A single mutable tag, ```-patched```, will always reference the latest patched version of your image. For instance, if your base image tag is ```python:3.11```, the first patch creates ```python:3.11-patched```. With each subsequent patche, the ```-patched``` tag will automatically update to point to the most recent patched version.
   
-![PatchingTimelineExample](./media/patching_timeline_example1.png)
+![PatchingTimelineExample](./media/continuous-patching-media/patching_timeline_example1.png)
 
 ### Which Should I Use?
 
@@ -56,4 +63,4 @@ Floating: Ideal if you prefer a single pointer to the latest patch for your CI/C
 ### Next Steps
 
 > [!div class="nextstepaction"]
-> [Troubleshoot Artifact streaming](how-to-continuous-patching.md)
+> [Set up Continuous Patching](how-to-continuous-patching.md)
