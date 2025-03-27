@@ -225,7 +225,9 @@ Copilot in Azure can help troubleshoot issues with your AKS clusters. When you a
 
 ### Troubleshooting example
 
-If you say "**diagnose my aks cluster node health**, Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links for more details.
+If you say "**diagnose my AKS cluster node health**, Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links to get more details about an issue. If no problems are found, Copilot in Azure shows details about cluster health and links to helpful information.
+
+:::image type="content" source="media/work-aks-clusters/aks-troubleshoot.png" alt-text="Screenshot of Copilot in Azure checking the health of an AKS cluster.":::
 
 You can select a link to view details about the issue, along with suggested solutions.
 
