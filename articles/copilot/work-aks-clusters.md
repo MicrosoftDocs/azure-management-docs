@@ -245,9 +245,17 @@ While familiarity with VM size options can be beneficial, Copilot in Azure is de
 
 ### VM size example
 
-You can say "**Recommend VM size for creating AKS cluster for my workload**. Copilot in Azure prompts you for more information about your environment and workload requirements.
+You can say "**Recommend VM size for creating AKS cluster for my workload**. Copilot in Azure prompts you for more information about your environment and workload requirements. In some cases, Copilot may ask follow-up questions to better understand your scenario.
 
-After that, Copilot in Azure presents some options and lets you choose which of the recommended sizes to use for your VM.
+:::image type="content" source="media/work-aks-clusters/aks-size-recommend.png" alt-text="Screenshot of Copilot in Azure asking for information in order to recommend a VM size for an AKS cluster.":::
+
+Based on the details you provide, Copilot in Azure presents some recommended  lets you choose which of the recommended sizes to use for your VM.
+
+:::image type="content" source="media/work-aks-clusters/aks-size-recommendations.png" alt-text="Screenshot of Copilot in Azure providing recommendations for appropriate VM sizes for a new AKS cluster.":::
+
+After you choose one of the recommended sizes, select **Create AKS cluster with selection** to proceed to the cluster creation experience.
+
+:::image type="content" source="media/work-aks-clusters/aks-size-create.png" alt-text="Screenshot of Copilot in Azure providing a link to create a cluster with the selected VM size.":::
 
 ## Update AKS pricing tier
 
