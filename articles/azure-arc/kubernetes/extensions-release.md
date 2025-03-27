@@ -206,7 +206,7 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 Changes in this version include:
 
 - Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-- Added support for [authentication against Azure DevOps repositories using workload identity for AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters#use-workload-identity-with-azure-devops).
+- Added support for [authentication against Azure DevOps repositories using workload identity for AKS clusters](tutorial-use-gitops-flux2.md#use-workload-identity-with-azure-devops).
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
