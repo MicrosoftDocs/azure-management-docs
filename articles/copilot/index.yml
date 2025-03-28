@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 01/08/2025
+  ms.date: 03/28/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -56,6 +56,9 @@ conceptualContent:
             - url: ./analyze-cost-management.md
               itemType: get-started
               text: Analyze and estimate costs
+            - url: ./visualize-network-topology.md
+              itemType: get-started
+              text: Visualize network topology
             - url: ./query-attack-surface.md
               itemType: get-started
               text: Query your attack surface
