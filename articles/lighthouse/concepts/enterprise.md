@@ -1,13 +1,13 @@
 ---
 title: Azure Lighthouse in enterprise scenarios
 description: The capabilities of Azure Lighthouse can be used to simplify cross-tenant management within an enterprise which uses multiple Microsoft Entra tenants.
-ms.date: 07/10/2024
+ms.date: 03/28/2025
 ms.topic: conceptual
 ---
 
 # Azure Lighthouse in enterprise scenarios
 
-A common scenario for [Azure Lighthouse](../overview.md) involves a service provider that manages resources in its customers' Microsoft Entra tenants. The capabilities of Azure Lighthouse can also be used to simplify cross-tenant management within an enterprise that uses multiple Microsoft Entra tenants.
+A common scenario for [Azure Lighthouse](../overview.md) involves a service provider that manages resources in its customers' Microsoft Entra tenants. The capabilities of Azure Lighthouse can also be used to simplify cross-tenant management within an enterprise that uses multiple Microsoft Entra tenants. In this scenario, users in one of the enterprise's tenants can use Azure Lighthouse so that it perform management tasks on the other tenants, without requiring any other service provider to be involved.
 
 ## Single vs. multiple tenants
 
@@ -19,17 +19,17 @@ In cases where a [multitenant architecture](/azure/architecture/guide/multitenan
 
 ## Tenant management architecture
 
-To use Azure Lighthouse in an enterprise, you'll need to determine which tenant will include the users who perform management operations on the other tenants. In other words, you will need to designate one tenant as the managing tenant for the other tenants.
+To use Azure Lighthouse in an enterprise, you need to determine which tenant will include the users who perform management operations on the other tenants. In other words, you designate one tenant as the managing tenant for the other tenants.
 
 For example, say your organization has a single tenant that we’ll call *Tenant A*. Your organization then acquires *Tenant B* and *Tenant C*, and you have business reasons that require you to maintain them as separate tenants. However, you'd like to use the same policy definitions, backup practices, and security processes for all of them, with management tasks performed by the same set of users.
 
-Since Tenant A already includes users in your organization who have been performing those tasks for Tenant A, you can onboard subscriptions within Tenant B and Tenant C, which allows the same users in Tenant A to perform those tasks across all tenants.
+Since Tenant A already includes users in your organization who have been performing those tasks for Tenant A, you can designate Tenant A as the management tenant. Then you can [onboard subscriptions](../how-to/onboard-customer.md) within Tenant B and Tenant C so that they're delegated to Tenant A. During the onboarding process, you create authorizations that grant permissions to users in Tenant A, allowing them to perform management tasks across Tenant B and Tenant C.
 
-![Diagram showing users in Tenant A managing resources in Tenant B and Tenant C.](../media/enterprise-azure-lighthouse.jpg)
+:::image type="content" source="../media/enterprise-azure-lighthouse.jpg" alt-text="Diagram showing users in Tenant A managing resources in Tenant B and Tenant C.":::
 
 ## Security and access considerations
 
-In most enterprise scenarios, you’ll want to delegate a full subscription to Azure Lighthouse. You can also choose to delegate only specific resource groups within a subscription.
+In most enterprise scenarios, you'll want to delegate a full subscription to Azure Lighthouse. You can also choose to delegate only specific resource groups within a subscription.
 
 Either way, be sure to [follow the principle of least privilege when defining which users will have access to delegated resources](recommended-security-practices.md#assign-permissions-to-groups-using-the-principle-of-least-privilege). Doing so helps to ensure that users only have the permissions needed to perform the required tasks and reduces the chance of inadvertent errors.
 
@@ -37,13 +37,15 @@ Azure Lighthouse only provides logical links between a managing tenant and manag
 
 Enterprises with internal or external governance and compliance guardrails can use [Azure Activity logs](/azure/azure-monitor/essentials/activity-log) to meet their transparency requirements. When enterprise tenants have established managing and managed tenant relationships, users in each tenant can view logged activity to see actions taken by users in the managing tenant.
 
+For more information, see [Recommended security pratices](recommended-security-practices.md).
+
 ## Onboarding considerations
 
 Subscriptions (or resource groups within a subscription) can be onboarded to Azure Lighthouse either by deploying Azure Resource Manager templates or through Managed Services offers published to Azure Marketplace.
 
 Since enterprise users will typically have direct access to the enterprise’s tenants, and there's no need to market or promote a management offering, it's usually faster and more straightforward to deploy Azure Resource Manager templates. While the [onboarding guidance](../how-to/onboard-customer.md) refers to service providers and customers, enterprises can use the same processes to onboard their tenants.
 
-If you prefer, tenants within an enterprise can be onboarded by [publishing a Managed Services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md). To ensure that the offer is only available to the appropriate tenants, be sure that your plans are marked as private. With a private plan, you provide the subscription IDs for each tenant that you plan to onboard, and no one else will be able to get your offer.
+If you prefer, tenants within an enterprise can be onboarded by [publishing a Managed Services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md). To ensure that the offer is only available to the appropriate tenants, be sure that your [plans are set to private](/partner-center/marketplace-offers/create-managed-service-offer-plans#make-your-plan-private). With a private plan, you provide the subscription IDs for each tenant that you plan to onboard, and no one else will be able to get your offer.
 
 ## Azure AD B2C
 
