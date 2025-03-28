@@ -1,7 +1,7 @@
 ---
 title: Execute commands using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can help you perform tasks.
-ms.date: 02/10/2025
+ms.date: 03/28/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -31,7 +31,7 @@ Here are a few examples of the kinds of prompts you can use to execute commands.
 
 ## Examples
 
-When you say **"Restore my deleted storage account**, Copilot in Azure launches the **Restored deleted account** experience. From here, you can select the subscription and the storage account that you want to recover.
+When you say **"Restore my deleted storage account**", Copilot in Azure launches the **Restored deleted account** experience. From here, you can select the subscription and the storage account that you want to recover.
 
 :::image type="content" source="media/execute-commands/restore-deleted-account.png" alt-text="Screenshot of Microsoft Copilot in Azure responding to a request to restore a deleted storage account." lightbox="media/execute-commands/restore-deleted-account.png":::
 
