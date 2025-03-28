@@ -1,7 +1,7 @@
 ---
 title: Get resource information using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can help with Azure Resource Graph.
-ms.date: 10/14/2024
+ms.date: 03/28/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -51,7 +51,7 @@ If the generated query isn't exactly what you want, you can ask Microsoft Copilo
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-query-refine.png" alt-text="Screenshot of Microsoft Copilot in Azure generating and then revising a query to list VMs by OS.":::
 
-You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer. 
+You can view the generated query in Azure Resource Graph Explorer by selecting **Run**. For example, you can ask "**What resources were created in the last 24 hours?**" After Microsoft Copilot in Azure generates the query, select **Run** to see the query and results in Azure Resource Graph Explorer.
 
 :::image type="content" source="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" lightbox="media/get-information-resource-graph/azure-resource-graph-last-24-hours.png" alt-text="Screenshot showing Microsoft Copilot in Azure generating a query and showing results in Azure Resource Graph Explorer.":::
 
