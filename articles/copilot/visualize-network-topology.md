@@ -35,7 +35,7 @@ Here are a few examples of the kinds of prompts you can use to visualize topolog
 
 ## Visualize your entire network topology
 
-Copilot in Azure can show you a visualization of your entire network topology. This view shows a unified and interconnected representation of network deployment across subscriptions, regions, and resource groups, including most networking resources, Virtual Machines (VMs), and Virtual Machine Scale Sets (VMSS). Insights related to it metrics, resource health, connectivity and traffic are also included.
+Copilot in Azure can show you a visualization of your entire network topology. This view shows a unified and interconnected representation of network deployment across subscriptions, regions, and resource groups, including most networking resources, Virtual Machines (VMs), and Virtual Machine Scale Sets. Insights related to it metrics, resource health, connectivity and traffic are also included.
 
 ## Visualize entire network sample prompts
 
