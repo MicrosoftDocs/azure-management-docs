@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 03/25/2025
+ms.date: 03/28/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -90,7 +90,7 @@ Azure Arc-enabled SCVMM doesn't store/process customer data outside the region t
 
 - Plan your Azure Arc-enabled SCVMM deployment by reviewing the [support matrix](support-matrix-for-system-center-virtual-machine-manager.md).
 - Once ready, [connect your SCVMM management server to Azure Arc using the onboarding script](quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
-- [Cloud Adoption Framework to help you assess workloads for Hybrid and multicloud migration](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
-- [Cloud Adoption Framework to manage your portfolio across Hybrid and multicloud operations](/azure/cloud-adoption-framework/scenarios/hybrid/manage).
+- [Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
+- [Deliver operations Management disciplines using Hybrid and multicloud tools in Cloud adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/manage).
 - [Cloud Adoption Framework introduces Azure hybrid and multicloud products on Azure](/azure/cloud-adoption-framework/scenarios/hybrid/toolchain).
 - [Administer SQL Server with Azure Arc using Azure Architecture Center components and capabilities](/azure/architecture/hybrid/azure-arc-sql-server).
