@@ -29,7 +29,9 @@
     - name: Analyze costs
       href: analyze-cost-management.md
     - name: Find your recommendations
-      href: ./copilot-advisor.md
+      href: find-recommendations-advisor.md
+    - name: Visualize network topology
+      href: visualize-network-topology.md
     - name: Query attack surface
       href: query-attack-surface.md
     - name: Investigate Azure Firewall IDPS attacks
