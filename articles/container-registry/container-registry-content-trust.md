@@ -13,6 +13,9 @@ ms.devlang: azurecli
 
 Azure Container Registry implements Docker's [content trust][docker-content-trust] model, enabling pushing and pulling of signed images. This article gets you started enabling content trust in your container registries.
 
+> [!IMPORTANT]
+> Docker Content Trust will be deprecated and completely removed on March 31, 2028. Refer to [Transition from Docker Content Trust to the Notary Project](./container-registry-content-trust-deprecation.md) for details and transition guidance.
+
 > [!NOTE]
 > Content trust is a feature of the [Premium service tier](container-registry-skus.md) of Azure Container Registry.
 
