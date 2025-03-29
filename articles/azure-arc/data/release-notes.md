@@ -335,7 +335,7 @@ New for this release:
 - Arc data controller
   - New extensions to monitoring stack to enable Kafka as a data cache and expose an OpenTelemetry endpoint for integration.  See documentation for more details.
   - Deleting an AD connector that is in use is now blocked.  First remove all database instances that are using it and then remove the AD connector.
-  - New OpenTelemetry Router preview to make collected logs available for export to other SEIM systems.  See documentation for details.
+  - New OpenTelemetry Router preview to make collected logs available for export to other monitoring systems.  See documentation for details.
   - AD connectors can now be created in Kubernetes via the Kubernetes API and synchronized to Azure via Resource Sync.
   - Added short name `arcdc` to the data controllers custom resource definition. You can now use `kubectl get arcdc` as short form for `kubectl get datacontrollers`.
   - The controller-external-svc is now only created when deploying using the indirect connectivity mode since it's only used for exporting logs/metrics/usage data in the indirect mode.
