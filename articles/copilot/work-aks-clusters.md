@@ -48,7 +48,7 @@ Here are a few examples of the kinds of prompts you can use to run kubectl comma
 
 You can say **"List all namespaces in my cluster."** Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. If you're not already working in the context of a cluster, you're prompted to select one.  When you confirm, the **Run command** pane opens with the generated command included.
 
-:::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
+:::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" lightbox="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
 
 ## Start and stop node pools
 
@@ -219,7 +219,7 @@ Copilot in Azure can help troubleshoot issues with your AKS clusters. When you a
 
 ### Troubleshooting example
 
-If you say "**diagnose my AKS cluster node health**, Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links to get more details about an issue. If no problems are found, Copilot in Azure shows details about cluster health and links to helpful information.
+If you say "**diagnose my AKS cluster node health**", Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links to get more details about an issue. If no problems are found, Copilot in Azure shows details about cluster health and links to helpful information.
 
 :::image type="content" source="media/work-aks-clusters/aks-diagnose-cluster-health.png" alt-text="Screenshot of Copilot in Azure checking the health of an AKS cluster.":::
 
