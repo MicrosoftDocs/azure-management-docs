@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 03/24/2025
+ms.date: 03/31/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -41,7 +41,7 @@ During the VM creation process, you can ask "**How do I reduce the cost of my vi
 
 :::image type="content" source="media/deploy-vms-effectively/vm-reduce-costs.png" lightbox="media/deploy-vms-effectively/vm-reduce-costs.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing ways to lower VM costs.":::
 
-Once you complete the options that Microsoft Copilot in Azure suggests, you can review and create the VM with the provided recommendations, or continue to make other changes.
+Once you complete the options that Microsoft Copilot in Azure suggests, you can review and create the VM with the provided recommendations, or continue to make other changes. The **Estimated monthly cost** pane shows updates based on your configuration.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-reduce-costs-complete.png" lightbox="media/deploy-vms-effectively/vm-reduce-costs-complete.png" alt-text="Screenshot showing Microsoft Copilot in Azure completing its recommendations to reduce VM costs.":::
 
@@ -75,7 +75,7 @@ While familiarity with the size options can be beneficial, Copilot in Azure is d
 
 ### VM size examples
 
-Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Microsoft Copilot in Azure asks for some more information to help it determine the best options.
+Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Copilot in Azure asks for some more information to help it determine the best options.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Microsoft Copilot in Azure asking for details to help determine the appropriate VM size.":::
 
@@ -123,9 +123,9 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 
 ### Troubleshooting example
 
-If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggest changes (such as selecting a new size, zone, or region) that have available capacity based on the prior deployment.
+If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggests items to review or new selections you can make to better support your deployment.
 
-:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
 
 ## Choose the right compute offering
 
