@@ -23,8 +23,6 @@ This video shows how Copilot in Azure can assist with AKS cluster management and
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-
-
 ## Run cluster commands
 
 You can use Microsoft Copilot in Azure to run kubectl commands based on your prompts. When you make a request that can be achieved by a kubectl command, you see the command along with the option to execute it directly in the **Run command** pane. This pane lets you [run commands on your cluster through the Azure API](/azure/aks/access-private-cluster?tabs=azure-portal), without directly connecting to the cluster. You can also copy the generated command and run it directly.
@@ -48,7 +46,7 @@ Here are a few examples of the kinds of prompts you can use to run kubectl comma
 
 ### Cluster command example
 
-You can say **"List all namespaces in my cluster."** If you're not already working with a cluster, you're prompted to select one. Microsoft Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. When you confirm, the **Run command** pane opens with the generated command included.
+You can say **"List all namespaces in my cluster."** Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. If you're not already working in the context of a cluster, you're prompted to select one.  When you confirm, the **Run command** pane opens with the generated command included.
 
 :::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
 
@@ -69,7 +67,7 @@ When you ask for help with node pools, you're prompted to select which node pool
 
 ### Node pool example
 
-When you say **"stop my nodepool"**, Copilot in Azure prompts you to confirm which node pool to stop. After you make a selection, you're prompted to confirm the action.
+When you say **"stop my node pool"**, Copilot in Azure prompts you to confirm which node pool to stop. After you make a selection, you're prompted to confirm the action.
 
 :::image type="content" source="media/work-aks-clusters/aks-node-pool.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a request to stop an AKS node pool.":::
 
@@ -106,7 +104,7 @@ Here are a few examples of the kinds of prompts you can use to manage AKS cluste
 
 You can say **"Install AKS backup"** to start the process of installing the AKS backup extension. After you select a cluster, you're prompted to open its **Backup** pane. From there, select **Launch install backup** to open the experience. After reviewing the prerequisites for the extension, you can step through the installation process.
 
-:::image type="content" source="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
+:::image type="content" source="media/work-aks-clusters/aks-backup.png" lightbox="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
 
 ## Configure monitoring on clusters
 
@@ -168,11 +166,7 @@ The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagn
 
 #### Periscope example
 
-You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one.
-
-:::image type="content" source="media/work-aks-clusters/aks-periscope-select.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a prompt about deploying Periscope on AKS.":::
-
-Once you make the selection, Copilot in Azure asks you to confirm, then deploys Periscope to your cluster.
+You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
 
 :::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
 
@@ -192,7 +186,7 @@ The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic u
 
 #### CanIPull example
 
-When you say **"Help me deploy Can I pull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+When you say **"Help me deploy CanIPull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
 
