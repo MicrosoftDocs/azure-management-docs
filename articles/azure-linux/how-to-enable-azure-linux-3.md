@@ -16,6 +16,7 @@ Starting with AKS version 1.32, Azure Linux 3.0 is the default Azure Linux node 
 ## Limitations
 
 * Azure Linux 3.0 is not supported on Kubernetes version 1.30 and below. Azure Linux 3.0 Preview is supported on Kubernetes version 1.31.
+* Please use the az-aks-get-versions command to accurately capture if Kubernetes version 1.32 is available in your region.
 
 ## Create new Azure Linux 3.0 clusters and node pools
 
@@ -29,5 +30,6 @@ Any new AKS clusters or node pools created using the `--os-sku=AzureLinux` flag 
 ## Upgrade existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0
 
 To upgrade existing Azure Linux 2.0 clusters and node pools to Azure Linux 3.0, you can upgrade them to AKS version 1.32. For more information about AKS cluster upgrades, see [Upgrade an AKS cluster](/azure/aks/upgrade-aks-cluster). 
+
 ## Next steps
 For more information about Azure Linux 3.0, see [What's new with Azure Linux 3.0?](./intro-azure-linux.md).
