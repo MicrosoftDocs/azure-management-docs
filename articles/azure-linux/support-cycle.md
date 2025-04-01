@@ -38,7 +38,7 @@ The following table outlines the first and last AKS release supported by each ve
 | Azure Linux version | First supported AKS Version in Preview  |  First supported AKS version in GA   | Last supported AKS version  |
 |---|---|---|---|
 | Azure Linux 2.0   | 1.24  | 1.26  | 1.31 |
-| Azure Linux 3.0   | 1.31  | 1.32 (tentative)  | TBD (roughly three years after 1.32 release) |
+| Azure Linux 3.0   | 1.31  | 1.32  | Roughly three years after 1.32 release |
 
 ### AKS LTS Releases
 
@@ -48,7 +48,7 @@ The following table outlines the first and last AKS release supported by each ve
 | AKS version |  Azure Linux version during AKS Standard Support | Azure Linux version during AKS Long-Term Support  |
 |---|---|---|
 |1.27 | Azure Linux 2.0   | Azure Linux 2.0 |
-| 1.30 | Azure Linux 2.0   | Not supported |
+| 1.30 | Azure Linux 2.0   | Azure Linux 3.0 |
 
 ## Next steps
 
