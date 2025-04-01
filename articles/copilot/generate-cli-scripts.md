@@ -46,7 +46,7 @@ When you follow that request with "**Provide full script**", the commands are sh
 
 :::image type="content" source="media/generate-cli-scripts/cli-web-app-full.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a full Azure CLI script to create a web app.":::
 
-You can also start off by letting Microsoft Copilot in Azure know that you want the commands all together. For example, you could say "**I want a script to create a low cost VM (all in one codeblock for me to copy and paste)**".
+You can also start off by letting Microsoft Copilot in Azure know that you want the commands all together. For example, you could say "**I want a script to create a low cost VM (all in one code block for me to copy and paste)**".
 
 :::image type="content" source="media/generate-cli-scripts/cli-vm.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an Azure CLI script to create a VM.":::
 
