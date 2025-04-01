@@ -14,7 +14,7 @@
     href: quickstart-connect-system-center-virtual-machine-manager-to-arc.md
 - name: Tutorials
   items:
-  - name: Terraform based SCVMM VM management (AzAPI provider)
+  - name: Terraform based VM management (AzAPI provider)
     href: terraform-vm-management.md
 - name: Concepts
   items:
@@ -22,37 +22,37 @@
     href: agent-overview-scvmm.md
 - name: How-to guides
   items:
-  - name: Manage role-based access control
-    items:
-    - name: Create custom roles
-      href: create-custom-roles.md
-    - name: Set up and manage self-service access to SCVMM resources
-      href: set-up-and-manage-self-service-access-scvmm.md
   - name: Enable resources for Azure management
     items:
-    - name: Enable SCVMM inventory resources in Azure
+    - name: Enable inventory resources
       href: enable-scvmm-inventory-resources.md
-    - name: Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
+    - name: Enable VM CRUD and powercycle capabilities in an SCVMM machine with Arc agent installed
       href: enable-virtual-hardware-scvmm.md
-  - name: Perform VM lifecycle and powercycle operations
+  - name: Manage role-based access control
     items:
-    - name: Create a virtual machine on SCVMM Management server
+    - name: Set up and manage self-service access
+      href: set-up-and-manage-self-service-access-scvmm.md
+    - name: Create custom roles
+      href: create-custom-roles.md
+  - name: Perform VM operations
+    items:
+    - name: Create a virtual machine
       href: create-virtual-machine.md
-    - name: Perform VM operations on SCVMM VMs through Azure
+    - name: Perform VM CRUD and powercycle operations
       href: perform-vm-ops-on-scvmm-through-azure.md
-  - name: Use Azure Management services for SCVMM VMs
+  - name: Use Azure services for SCVMM VMs
     items:
-    - name: Install Arc agent at scale for SCVMM VMs
+    - name: Install Arc agents at scale
       href: enable-guest-management-at-scale.md
     - name: Install Arc agents using a script
       href: install-arc-agents-using-script.md
-    - name: Arc-enabled SCVMM VM extensions management
+    - name: VM extensions management
       href: ../servers/manage-vm-extensions.md
   - name: Azure Arc benefits for SCVMM VMs
     items:
-    - name: Windows Server Management enabled by Azure Arc
+    - name: Windows Server Management
       href: ../servers/windows-server-management-overview.md 
-    - name: Deliver ESUs for SCVMM VMs through Arc
+    - name: Procure and deliver Extended Security Updates
       href: deliver-esus-for-system-center-virtual-machine-manager-vms.md
   - name: Administer
     items:
@@ -66,9 +66,9 @@
       href: disaster-recovery.md
 - name: Troubleshoot
   items:
-  - name: Troubleshoot SCVMM-specific deployment errors
+  - name: SCVMM-specific deployment errors
     href: troubleshoot-scvmm.md
-  - name: Troubleshoot common deployment errors
+  - name: Common deployment errors
     href: /azure/azure-arc/resource-bridge/troubleshoot-resource-bridge
 - name: Reference
   items:
