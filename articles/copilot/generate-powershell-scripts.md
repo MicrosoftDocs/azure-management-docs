@@ -32,7 +32,7 @@ Here are a few examples of the kinds of prompts you can use to generate PowerShe
 
 ## Examples
 
-In this example, the prompt "**How do I list all my resource groups using PowerShell?**" provides the cmdlet along with information on other ways to use it.
+In this example, the prompt "**How do I list all my resource groups using PowerShell?**" provides the cmdlet. You can ask follow-up questions to get more information.
 
 :::image type="content" source="media/generate-powershell-scripts/powershell-list-resource-groups.png" alt-text="Screenshot of Microsoft Copilot in Azure providing the PowerShell cmdlet to list resource groups.":::
 
