@@ -1,7 +1,7 @@
 ---
 title: Generate Terraform and Bicep configurations using Microsoft Copilot in Azure
 description: Learn about how Microsoft Copilot in Azure can generate Terraform and Bicep configurations for you to use.
-ms.date: 11/07/2024
+ms.date: 04/01/2025
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -21,8 +21,6 @@ With either Terraform or Bicep, you can ask follow-up questions to further custo
 The requested Azure infrastructure should be limited to fewer than eight primary resource types. For example, you should see good results when asking for a configuration to manage a resource group that contains Azure Container App, Azure Functions, and Azure Cosmos DB resources. However, requesting configurations to fully address complex architectures may result in inaccurate results and truncated configurations.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-
 
 ## Terraform sample prompts
 
@@ -44,9 +42,8 @@ Here are a few examples of the kinds of prompts you can use to generate Bicep te
 - "Give me a Bicep template for creating a key vault, a managed identity, and a role assignment for the managed identity to access the key vault."
 - "How to use Bicep to create Azure OpenAI service?"
 
-:::image type="content" source="media/generate-terraform-bicep/bicep-example.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a Bicep template for creating a storage account.":::
-
 ## Next steps
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
+- Learn more about [Bicep](/azure/azure-resource-manager/bicep/overview?tabs=bicep).
 - Learn more about [Terraform on Azure](/azure/developer/terraform/overview).

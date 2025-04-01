@@ -1,7 +1,7 @@
 ---
 title: Generate Azure CLI scripts using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can generate Azure CLI scripts for you to customize and use.
-ms.date: 11/19/2024
+ms.date: 04/01/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: ignite-2023, ignite-2023-copilotinAzure, devx-track-azurecli, build-2024
@@ -19,8 +19,6 @@ When you tell Microsoft Copilot in Azure about a task you want to perform by usi
 > You can also get help from Copilot in Azure [directly from your command-line interface](ai-shell-overview.md).
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-
 
 ## Sample prompts
 
@@ -48,7 +46,7 @@ When you follow that request with "**Provide full script**", the commands are sh
 
 :::image type="content" source="media/generate-cli-scripts/cli-web-app-full.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a full Azure CLI script to create a web app.":::
 
-You can also start off by letting Microsoft Copilot in Azure know that you want the commands all together. For example, you could say "**I want a script to create a low cost VM (all in one codeblock for me to copy and paste)**".
+You can also start off by letting Microsoft Copilot in Azure know that you want the commands all together. For example, you could say "**I want a script to create a low cost VM (all in one code block for me to copy and paste)**".
 
 :::image type="content" source="media/generate-cli-scripts/cli-vm.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an Azure CLI script to create a VM.":::
 

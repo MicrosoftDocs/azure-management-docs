@@ -1,7 +1,7 @@
 ---
 title: Generate PowerShell scripts using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can generate PowerShell scripts for you to customize and use.
-ms.date: 11/19/2024
+ms.date: 04/01/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -21,8 +21,6 @@ When you tell Microsoft Copilot in Azure about a task you want to perform by usi
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-
-
 ## Sample prompts
 
 Here are a few examples of the kinds of prompts you can use to generate PowerShell scripts. Some prompts return a single cmdlet, while others provide multiple steps walking through the full scenario. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
@@ -34,7 +32,7 @@ Here are a few examples of the kinds of prompts you can use to generate PowerShe
 
 ## Examples
 
-In this example, the prompt "**How do I list all my resource groups using PowerShell?**" provides the cmdlet along with information on other ways to use it.
+In this example, the prompt "**How do I list all my resource groups using PowerShell?**" provides the cmdlet. You can ask follow-up questions to get more information.
 
 :::image type="content" source="media/generate-powershell-scripts/powershell-list-resource-groups.png" alt-text="Screenshot of Microsoft Copilot in Azure providing the PowerShell cmdlet to list resource groups.":::
 
