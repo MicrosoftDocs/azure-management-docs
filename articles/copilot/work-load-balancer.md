@@ -16,7 +16,7 @@ Microsoft Copilot in Azure can help you work more effectively with [Azure Load B
 
 ## Choose the right load balancer
 
-Copilot in Azure can recommend the best type of load balancer to fit your scenario. When you ask for help choosing a load balancer, Copilot in Azure asks questions to help understand your needs, then provides recommendations.  
+Copilot in Azure can recommend the best type of load balancer to fit your scenario. When you ask for help choosing a load balancer, Copilot in Azure asks questions to help understand your needs, then provides recommendations. Copilot in Azure also gives you the option to go directly to the **Create load balancer** experience to set up the load balancer.
 
 ### Load balancer recommendation sample prompts
 
@@ -28,9 +28,15 @@ Here are a few examples of the kinds of prompts you can use to get load balancer
 - "I want to know which type of load balancer should I use"
 - "Help me choose a load balancer by providing me a questionnaire"
 
+### Load balancer recommendation example
+
+When you say "**Which type of load balancer should I use**", Copilot in Azure asks questions to better understand your scenario. After that, it provides a recommendation, along with a link to create your load balancer.
+
+:::image type="content" source="media/work-load-balancer/load-balancer-recommendation.png" alt-text="Screenshot of Copilot in Azure asking questions about a scenario and providing load balancer recommendations.":::
+
 ## Upgrade to Standard Load Balancer
 
-On September 30, 2025, Basic Load Balancer will be retired. For more information, see the [official announcement](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). If you're using Basic Load Balancer, Copilot in Azure can help you understand the advantages of Standard Load Balancer, and how to migrate from Basic to Standard.
+On September 30, 2025, Basic Load Balancer [will be retired](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). If you currently use Basic Load Balancer, Copilot in Azure can help you understand the advantages of Standard Load Balancer and how to migrate from Basic to Standard.
 
 ### Load balancer migration sample prompts
 
@@ -40,14 +46,11 @@ Here are a few examples of the kinds of prompts you can use to get help with loa
 - "Upgrade a Basic SKU load balancer to Standard SKU"
 - "Migrate from load balancer Basic SKU"
 - "Steps for upgrade load balancer"
-- "Steps to upgrade to Standard SKU Load Balancer"
 - "How does upgrade to Standard SKU load balancer help"
 - "Why should I migrate from Basic SKU load balancer to Standard SKU?"
-- "Why should I upgrade to Standard SKU Load Balancer?"
 - "What are the benefits of Standard SKU Load Balancer?"
 
 ## Next steps
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Microsoft Copilot in Azure.
-- Learn how to use Copilot in Azure with [AI Shell](ai-shell-overview.md). 
