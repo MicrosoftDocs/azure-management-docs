@@ -19,7 +19,7 @@ Microsoft Copilot in Azure can help you deploy [virtual machines in Azure](/azur
 
 When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. For example, if you start from the **Create a virtual machine** page, Copilot in Azure will provide suggestions for the new VM you're creating. If you're starting from another page, and the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
 
-You can also ask Copilot in Azure for help troubleshooting VM deployment failures related to virtual machine capacity, allocation, or other issues.
+You can ask Copilot in Azure for help troubleshooting VM deployment failures related to virtual machine capacity, allocation, or other issues. You can also get help troubleshooting network issues with your VMs.
 
 Microsoft Copilot in Azure is designed to help you regardless of your level of expertise on VM configuration options such as pricing, scalability, availability, and size. In all cases, we recommend that you closely review the suggestions to confirm that they meet your needs.
 
@@ -126,6 +126,23 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggests items to review or new selections you can make to better support your deployment.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+
+## Troubleshoot VM network issues
+
+If your VM has connectivity problems, Copilot in Azure can help you understand the issue. When applicable, Copilot in Azure can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
+
+### Troubleshoot network sample prompts
+
+- "Why is my VM having connectivity issues?"
+- "I need help with my VM connectivity due to my NSG blocking my traffic"
+- "Test network security groups has shown that there are security rules blocking my connection to my VM"
+- "I need help creating a security rule in my NSG in order to be able to connect to my virtual machine"
+- "My NSG is preventing me from connecting to my virtual machine. I need help in creating a security rule to unblock me"
+- "Default security rules are preventing me from connecting to my virtual machine and I don't know how to override them"
+
+### Troubleshoot network example
+
+:::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="s":::
 
 ## Choose the right compute offering
 
