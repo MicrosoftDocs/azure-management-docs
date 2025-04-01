@@ -1,7 +1,7 @@
 ---
 title: Manage and troubleshoot storage accounts using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can improve the security posture and data resiliency of storage accounts.
-ms.date: 01/08/2025
+ms.date: 04/01/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -21,8 +21,6 @@ Responses are dynamic and based on your specific storage account and settings. B
 When you ask Microsoft Copilot in Azure about storage accounts, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you'll be prompted to specify the storage resource for which you want information.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-
 
 ## Improve security
 
@@ -129,11 +127,7 @@ If you say "**Help me lower my storage costs**", Copilot in Azure will begin the
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-lower.png" alt-text="Screenshot of Microsoft Copilot in Azure responding to a request to lower storage costs.":::
 
-First, Copilot in Azure prompts you to select the storage account that you want to work with.
-
-:::image type="content" source="media/improve-storage-accounts/storage-costs-select.png" alt-text="Screenshot of Microsoft Copilot in Azure prompting to select a storage account." lightbox="media/improve-storage-accounts/storage-costs-select.png" :::
-
-After you select a storage account, Copilot in Azure asks which action you want to create a rule for: tiering down, or deleting stale data. Next, you define a condition on which to trigger the rule.
+If the context isn't clear, Copilot in Azure prompts you to select the storage account that you want to work with.  Next, you define a condition on which to trigger the rule.
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-action-condition.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming the action and condition for a storage account lifecycle management rule.":::
 
@@ -141,13 +135,9 @@ Finally, Copilot in Azure asks you whether you want the rule to run on the entir
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-account.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming where to run a new lifecycle management rule.":::
 
-Now that Copilot in Azure has all of the necessary information, it creates the lifecycle management rule.
+Now that Copilot in Azure has all of the necessary information, it creates the lifecycle management rule. You can copy and paste the rule yourself, or have Copilot in Azure create and apply the rule for you.
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a customized lifecycle management rule for a storage account." lightbox="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png":::
-
-You can copy and paste the rule yourself, or have Copilot in Azure apply the rule for you. After the rule has been applied successfully, you'll see a confirmation.
-
-:::image type="content" source="media/improve-storage-accounts/storage-costs-rule-success.jpg" alt-text="Screenshot of Microsoft Copilot in Azure successfully deploying a lifecycle management rule to a storage account.":::
 
 ## Next steps
 
