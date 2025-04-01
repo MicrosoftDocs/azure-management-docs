@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot disk performance using Microsoft Copilot in Azure
 description: Learn how to use Microsoft Copilot in Azure to help troubleshoot issues with disk performance.
-ms.date: 01/08/2025
+ms.date: 04/01/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -49,9 +49,7 @@ After you select a VM, you're prompted to select one or more disks for Copilot i
 
 :::image type="content" source="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.jpg" lightbox="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.jpg"alt-text="Screenshot of Microsoft Copilot in Azure prompting to select disks to analyze.":::
 
-Copilot in Azure also asks you when the issues began. You can enter an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
-
-:::image type="content" source="media/troubleshoot-disk-performance/troubleshoot-vm-disk-slow-time.jpg" alt-text="Screenshot of Microsoft Copilot in Azure asking to confirm the timeframe when disk performance issues began.":::
+Next, tell Copilot in Azure when the issues began. enter an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
 
 Copilot in Azure then shows you the VM and disks you selected and the metrics to be analyzed. After you confirm, Copilot in Azure runs the analysis to determine if your application performance is being capped due to requesting more IOPS or throughput than what is allotted for the virtual machines or attached disks.
 
