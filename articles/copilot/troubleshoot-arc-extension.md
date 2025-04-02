@@ -15,8 +15,6 @@ When you ask Microsoft Copilot in Azure questions about troubleshooting extensio
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-
-
 ## Sample prompts
 
 - "Help me troubleshoot my failed extension on my arc-server"
@@ -33,8 +31,6 @@ If there are multiple extensions in a failed state, you'll be prompted to select
 :::image type="content" source="media/troubleshoot-arc-extension/troubleshoot-arc-extension-error.png" alt-text="Screenshot of Microsoft Copilot in Azure providing details about an Arc extension error." lightbox="media/troubleshoot-arc-extension/troubleshoot-arc-extension-error.png":::
 
 In some cases, reinstalling the extension may be needed to fix the issue. When possible, Copilot in Azure will offer to help you reinstall it.
-
-:::image type="content" source="media/troubleshoot-arc-extension/troubleshoot-arc-extension-reinstall.png" alt-text="Screenshot of Microsoft Copilot in Azure prompting to reinstall":::
 
 ## Next steps
 
