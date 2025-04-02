@@ -13,6 +13,11 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.24.4 (March 2025)
+
+- Security vulnerability fixes
+- Various bug fixes
+
 ## Version 1.23.3 (February 2025)
 
 - Updates to improve MSI adapter support
