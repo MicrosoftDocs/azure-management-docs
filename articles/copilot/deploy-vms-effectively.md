@@ -131,19 +131,9 @@ If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**
 
 If your VM has connectivity problems due to network security roups blocking traffic, Copilot in Azure can help you understand the issue. When applicable, Copilot in Azure can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
 
-To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, you can ask Copilot in Azure for help resolving the issues.
+To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, open Copilot in Azure and use one of the provided prompts to get assistance.
 
-### Troubleshoot network security sample prompts
-
-- "I need help with my VM connectivity due to my NSG blocking my traffic"
-- "Test network security groups has shown that there are security rules blocking my connection to my VM"
-- "I need help creating a security rule in my NSG in order to be able to connect to my virtual machine"
-- "My NSG is preventing me from connecting to my virtual machine. I need help in creating a security rule to unblock me"
-- "Default security rules are preventing me from connecting to my virtual machine and I don't know how to override them"
-
-### Troubleshoot network security example
-
-:::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="s":::
+:::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="Screenshot of Copilot in Azure providing assistance with network security issues.":::
 
 ## Choose the right compute offering
 
