@@ -38,17 +38,13 @@ Here are a few examples of the kinds of prompts you can use to generate Azure CL
 
 ## Examples
 
-In this example, the prompt "**I want to use Azure CLI to create a web application**" provides a list of steps, along with the necessary Azure CLI commands.
+In this example, the prompt "**I want to use Azure CLI to create a new storage account**" provides an example command.
 
-:::image type="content" source="media/generate-cli-scripts/cli-web-app.png" alt-text="Screenshot of Microsoft Copilot in Azure providing Azure CLI commands to create a web app.":::
+:::image type="content" source="media/generate-cli-scripts/cli-create-storage-account.png" alt-text="Screenshot of Microsoft Copilot in Azure providing Azure CLI commands to create a storage account.":::
 
-When you follow that request with "**Provide full script**", the commands are shown together in one script.
+For tasks that require multiple commands, Copilot in Azure can provide a script that you can copy and paste. For example, when you say "**I want to create a function app with a named storage account connection using Azure CLI**", Copilot in Azure provides a full script with comments for each section, along with a brief explanation of what the script does.
 
-:::image type="content" source="media/generate-cli-scripts/cli-web-app-full.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a full Azure CLI script to create a web app.":::
-
-You can also start off by letting Microsoft Copilot in Azure know that you want the commands all together. For example, you could say "**I want a script to create a low cost VM (all in one code block for me to copy and paste)**".
-
-:::image type="content" source="media/generate-cli-scripts/cli-vm.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an Azure CLI script to create a VM.":::
+:::image type="content" source="media/generate-cli-scripts/cli-create-function-app.png" alt-text="Screenshot of Microsoft Copilot in Azure providing an Azure CLI script to create a function app with a connected storage account.":::
 
 ## Next steps
 
