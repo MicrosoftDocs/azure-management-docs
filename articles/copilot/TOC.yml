@@ -56,7 +56,7 @@
       href: troubleshoot-disk-performance.md
     - name: Plan, design, and troubleshoot networks
       href: network-management.md
-    - name: Work with Azure Load Balancer
+    - name: Work with Load Balancer
       href: work-load-balancer.md
     - name: Troubleshoot Azure Arc extensions
       href: troubleshoot-arc-extension.md
