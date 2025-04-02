@@ -59,9 +59,9 @@ Based on your request, Microsoft Copilot in Azure makes changes to your YAML, wi
 
 :::image type="content" source="media/generate-kubernetes-yaml/aks-yaml-update-result.png" alt-text="Screenshot showing the changes Microsoft Copilot in Azure made to the YAML file.":::
 
-Select **Accept** to save these changes, or select the **X** to reject them. To make further changes before accepting, you can enter a different query and then select the **Refresh** button to see the new changes.
+Select **Accept all** to save these changes, or select **Discard all** to reject them. To make further changes before accepting, you can enter a different query and then select the **Refresh** button to see the new changes.
 
-You can also select the **Diff** button to toggle the diff view between inline and side-by-side.
+To toggle the diff view between inline and side-by-side, select the **Diff** icon.
 
 :::image type="content" source="media/generate-kubernetes-yaml/aks-yaml-diff.png" alt-text="Screenshot showing the side-by-side diff view in the AKS YAML editor, with the toggle button highlighted.":::
 
@@ -76,8 +76,8 @@ The following commands are currently available:
 - **/explain**: Get more information about the YAML file or a highlighted section.
 - **/format**: Apply standard indentation or fix other formatting issues.
 - **/fix**: Resolve problems with invalid YAML.
-- **/discard**: Discard previously made changes.
 - **/chat**: Open the full Copilot in Azure chat window.
+- **/discard**: Discard previously made changes.
 - **/close**: Closes the inline Copilot control.
 - **/retry**: Tries the previous prompt again.
 
