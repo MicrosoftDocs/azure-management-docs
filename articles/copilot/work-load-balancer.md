@@ -32,7 +32,7 @@ Here are a few examples of the kinds of prompts you can use to get load balancer
 
 When you say "**Which type of load balancer should I use**", Copilot in Azure asks questions to better understand your scenario. After that, it provides a recommendation, along with a link to create your load balancer.
 
-:::image type="content" source="media/work-load-balancer/load-balancer-recommendation.png" alt-text="Screenshot of Copilot in Azure asking questions about a scenario and providing load balancer recommendations.":::
+:::image type="content" source="media/work-load-balancer/load-balancer-recommendation.png" lightbox="media/work-load-balancer/load-balancer-recommendation.png" alt-text="Screenshot of Copilot in Azure asking questions about a scenario and providing load balancer recommendations.":::
 
 ## Upgrade to Standard Load Balancer
 
@@ -40,7 +40,7 @@ On September 30, 2025, Basic Load Balancer [will be retired](https://azure.micro
 
 To get help upgrading to Standard Load Balancer, navigate to your Basic Load Balancer, then select the banner that appears near the top of the pane. Select one of the provided prompts to get assistance from Copilot in Azure.
 
-:::image type="content" source="media/work-load-balancer/load-balancer-upgrade.png" alt-text="Screenshot of Copilot in Azure providing assistance to upgrade to Standard Load Balancer.":::
+:::image type="content" source="media/work-load-balancer/load-balancer-upgrade.png" lightbox="media/work-load-balancer/load-balancer-upgrade.png"  alt-text="Screenshot of Copilot in Azure providing assistance to upgrade to Standard Load Balancer.":::
 
 ## Next steps
 
