@@ -1,7 +1,7 @@
 ---
 title: Responsible AI FAQ for Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure uses data and what to expect.
-ms.date: 05/28/2024
+ms.date: 04/02/2025
 ms.topic: faq
 ms.service: copilot-for-azure
 ms.custom:
@@ -18,6 +18,10 @@ hideEdit: true
 ## What is Microsoft Copilot in Azure?
 
 Microsoft Copilot in Azure is an AI companion that enables IT teams to operate, optimize, and troubleshoot applications and infrastructure more efficiently. With Microsoft Copilot in Azure, users can gain new insights into their workloads, unlock untapped Azure functionality, and orchestrate tasks across both cloud and edge. Copilot leverages Large Language Models (LLMs), the Azure control plane, and insights about a user’s Azure and Arc-enabled assets. All of this is carried out within the framework of Azure’s steadfast commitment to safeguarding the customer's data security and privacy. For an overview of how Microsoft Copilot in Azure works and a summary of Copilot capabilities, see [Microsoft Copilot in Azure overview](overview.md).
+
+## What is the current status of Copilot in Azure?
+
+Copilot for Azure is generally available.
 
 ## Are Microsoft Copilot in Azure's results reliable?
 
