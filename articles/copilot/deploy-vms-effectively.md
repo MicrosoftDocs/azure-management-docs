@@ -19,7 +19,7 @@ Microsoft Copilot in Azure can help you deploy [virtual machines in Azure](/azur
 
 When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. For example, if you start from the **Create a virtual machine** page, Copilot in Azure will provide suggestions for the new VM you're creating. If you're starting from another page, and the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
 
-You can also ask Copilot in Azure for help troubleshooting VM deployment failures related to virtual machine capacity, allocation, or other issues.
+You can ask Copilot in Azure for help troubleshooting VM deployment failures related to virtual machine capacity, allocation, or other issues. You can also get help troubleshooting network security issues with your VMs.
 
 Microsoft Copilot in Azure is designed to help you regardless of your level of expertise on VM configuration options such as pricing, scalability, availability, and size. In all cases, we recommend that you closely review the suggestions to confirm that they meet your needs.
 
@@ -126,6 +126,14 @@ If you experience failures when trying to deploy a VM, Microsoft Copilot in Azur
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggests items to review or new selections you can make to better support your deployment.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+
+## Troubleshoot VM network security issues
+
+If your VM has connectivity problems due to network security groups blocking traffic, Copilot in Azure can help you understand the issue. When applicable, Copilot in Azure can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
+
+To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, open Copilot in Azure and use one of the provided prompts to get assistance.
+
+:::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="Screenshot of Copilot in Azure providing assistance with network security issues.":::
 
 ## Choose the right compute offering
 
