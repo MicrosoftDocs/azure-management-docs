@@ -24,9 +24,35 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
 
+## Version 1.51 - April 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.51/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Extension Delete improvements to ensure removal requests are always attempted irrespective of Version mismatches and other out of sync cases
+
+- Redacted upstream proxy data before sending configuration details to HIS to enhance security.
+
+### New Features & Enhancements
+
+- Updated Dependencies
+    - Upgraded to __PowerShell 7.4.7__
+    - Upgraded to __.NET 8.0__
+
+- IP address caching to reduce excessive DNS resolver calls.
+
+- [Windows only] __Optimized PayGo processing__ for improved efficiency.
+
+- Enabled Arc proxy to run by default
+
+- Added detection for SCCM and SCOM
+
+- Enhanced logging with security annotations in `azcmagent` and `himds` logs.
+
 ## Version 1.50 - March 2025
 
-Download for [Windows](https://aka.ms/AzureConnectedMachineAgent) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.50/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#installing-a-specific-version-of-the-agent)
 
 ### Fixed
 
