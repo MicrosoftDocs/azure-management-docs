@@ -129,7 +129,7 @@ If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**
 
 ## Troubleshoot VM network security issues
 
-If your VM has connectivity problems due to network security roups blocking traffic, Copilot in Azure can help you understand the issue. When applicable, Copilot in Azure can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
+If your VM has connectivity problems due to network security groups blocking traffic, Copilot in Azure can help you understand the issue. When applicable, Copilot in Azure can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
 
 To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, open Copilot in Azure and use one of the provided prompts to get assistance.
 
