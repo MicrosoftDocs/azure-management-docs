@@ -33,7 +33,7 @@ Continuous Patching is currently in public preview. The following limitations ap
 - Continuous Patching is incompatible with ABAC (Attribute Based Access Control) enabled registries and with repositories with PTC (Pull Through Cache) rules enabled.
 
 ## Key Concepts
-Because Continuous Patching in ACR creates a new image per patch, ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
+Because continuous patching in ACR creates a new image per patch, ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
 
 ### Incremental Tagging
 How It Works
@@ -50,7 +50,7 @@ This means if you push a new tag ending in ```-1``` to ```-999``` by accident, C
 
 How it works
 
-A single mutable tag, ```-patched```, will always reference the latest patched version of your image. For instance, if your base image tag is ```python:3.11```, the first patch creates ```python:3.11-patched```. With each subsequent patche, the ```-patched``` tag will automatically update to point to the most recent patched version.
+A single mutable tag, ```-patched```, will always reference the latest patched version of your image. For instance, if your base image tag is ```python:3.11```, the first patch creates ```python:3.11-patched```. With each subsequent patch, the ```-patched``` tag will automatically update to point to the most recent patched version.
   
 ![PatchingTimelineExample](./media/continuous-patching-media/patching_timeline_example1.png)
 

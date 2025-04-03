@@ -18,11 +18,11 @@ ms.date: 03/27/2025
 
 Run the following command to install the CLI extension:
 ```sh
-az extension add --source https://acrcssc.z5.web.core.windows.net/acrcssc-1.1.1rc7-py3-none-any.whl
+az extension add --source https://acrcssc.z5.web.core.windows.net/acrcssc-1.1.1rc11-py3-none-any.whl
 ```
 
 ## Enable the Continuous Patching Workflow
-To enable Continuous Patching, follow the series of steps below that outline the CLI process. These guidelines detail the lifecycle of a continuous patching workflow, from its creation to subsequent updates to eventual deletion. 
+
 1. Login to Azure CLI with az login
 ```sh
 az login
@@ -31,7 +31,7 @@ az login
 ```sh
 az acr login -n <myRegistry>
 ```
-3. Run the following command to create a file named ```continuouspatching.json```, which contains the Continuous Patching JSON.
+3. Run the following command to create a file named ```continuouspatching.json```, which contains the Continuous Patching JSON. The JSON file name is flexible. 
 
 ```sh
 cat <<EOF > continuouspatching.json
@@ -49,12 +49,12 @@ EOF
 The schema ingests specific repositories and tags in an array format. Each variable is defined below:
 
 - ```version``` allows the ACR team to track what schema version you're on. Do not change this variable unless instructed to.
-- ```tag-convention``` this is an optional field. Allowed values are "incremental" or "floating" - refer to [Key Concepts](#key-concepts) for more information.
+- ```tag-convention```  is an optional field. Allowed values are "incremental" or "floating" - refer to [Key Concepts of Continuous Patching](key-concept-continuous-patching.md) for more information. 
 
-- ```repositories``` is an array that consists of all objects that detail repository and tag information
+- ```repositories``` is an array that consists detailed repository and tag information
     - ```repository``` refers to repository name
-    - ```tags``` is an array of tags separated by commas. The wildcard ```*``` can be used to signify all tags within that repository
-    - ```enabled``` is a Boolean value of true or false determining if the specified repo is on or off
+    - ```tags``` is an array of tags separated by commas. The wildcard ```*``` can be used to signify all tags within that repository.
+    - ```enabled``` is a Boolean value of true or false determining if the specified repo is enabled or not.
 
 The following details an example configuration for a customer who wants to patch all tags (use the * symbol) within the repository ```python```, and to patch specifically the ```jammy-20240111``` and ```jammy-20240125``` tags in the repository ```ubuntu```. 
 
@@ -141,7 +141,7 @@ Next, click on "Tasks” under "Services”. You should see 3 new tasks, named t
 ![PortalTasks](./media/continuous-patching-media/portal_tasks1.png)
 
 - cssc-trigger-workflow – this task scans the configuration file and calls the scan task on each respective image.    
-- cssc-scan-image – this task scans the image for operating system vulnerabilities. This task will only trigger the patching task only if (1) operating system vulnerabilities were found, and (2) the image is not considered End of Service Life (EOSL). For more information on EOSL, please consult [Preview Limitations](#preview-limitations).
+- cssc-scan-image – this task scans the image for operating system vulnerabilities. This task will only trigger the patching task if operating system vulnerabilities were found.
 - cssc-patch-image – this task patches the image.
 These tasks work in conjunction to execute your continuous patching workflow.
 
@@ -186,12 +186,8 @@ Help command to see all required/optional flags
 az acr supply-chain workflow update --help
 ```
 
-To update your schedule, run the previous command with a new input for schedule. To update your JSON configuration, we recommend making changes to the file, running a dry-run, and running the update command. 
+To update your schedule, run the previous command with a new input for schedule. To update your JSON configuration, we recommend making changes to the file, running a dry-run, and then running the update command. 
 
-You can verify the updated workflow configuration by running the following show command or by clicking into your registry portal view. 
-```sh
-az acr supply-chain workflow show -r myregistry -g myresourcegroup -t continuouspatchv1
-```
 
 ## Deleting the Continuous Patching Workflow
 

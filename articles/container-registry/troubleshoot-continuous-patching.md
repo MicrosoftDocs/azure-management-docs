@@ -8,7 +8,7 @@ ms.date: 03/27/2025
 
 ---
 ## Troubleshooting Continuous Patching
-The troubleshooting steps in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
+The troubleshooting tips in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
 
 ## Listing Running Tasks
 
@@ -55,7 +55,7 @@ az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --t
 
 This command cancels all continuous patching tasks with a status of “Running,” “Queued,” or “Started” for the current schedule. For example, if you cancel tasks on a daily schedule (--schedule 1d), tasks in those states are canceled for that day but are requeued the next day. If your schedule is weekly, canceled tasks appear again the following week.
 
-A common reason to cancel is when a workflow is misconfigured and you don’t want to wait for the entire patch run to finish. The command outputs success or failure
+A typical reason to cancel is a misconfiguration you’d prefer to fix right away, rather than waiting for the patch tasks to complete. The command then returns a success or failure status.
 
 ## Troubleshooting Tips
 ### Finding Failed Tasks
