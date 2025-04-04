@@ -41,7 +41,7 @@ When you prompt Microsoft Copilot in Azure, "**Summarize my costs for the last 6
 
 :::image type="content" source="media/analyze-cost-management/cost-management-summarize-costs.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a summary of costs.":::
 
-You can follow up with questions to get more granular details, such as "What was our virtual machine spending last month?"
+You can follow up with questions to get more granular details, such as "**What was our virtual machine spending last month?**"
 
 :::image type="content" source="media/analyze-cost-management/cost-management-vm-costs.png" alt-text="Screenshot of Microsoft Copilot in Azure providing details about VM costs.":::
 
