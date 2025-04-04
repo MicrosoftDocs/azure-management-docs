@@ -61,9 +61,9 @@ Summarization and explanation:
 
 You can tell Microsoft Copilot in Azure "**my web app is down**." After you select the resource that you want to troubleshoot, Copilot in Azure runs diagnostic checks to identify the cause of the problem.
 
-:::image type="content" source="media/troubleshoot-app-service/app-service-down.png" alt-text="Screenshot of Copilot in Azure responding to a prompt that a web app is down." lightbox="media/troubleshoot-app-service/app-service-down.png":::
+:::image type="content" source="media/troubleshoot-app-service/app-service-down.png" alt-text="Screenshot of Copilot in Azure responding to a prompt that a web app is down.":::
 
-After the diagnostic checks are finished, Copilot in Azure shares potential causes and solutions to the problem.
+After the diagnostic checks are finished, Copilot in Azure shares potential causes and solutions for the problem. In some cases, Copilot will suggest a specific diagnostic tool that can help fix the issue.
 
 :::image type="content" source="media/troubleshoot-app-service/app-service-down-results.png" lightbox="media/troubleshoot-app-service/app-service-down-results.png" alt-text="Screenshot of Copilot in Azure sharing a potential solution to a web app problem.":::
 
