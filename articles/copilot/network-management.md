@@ -1,5 +1,5 @@
 ---
-title: Azure networking capabilities using Microsoft Copilot in Azure
+title: Design,, troubleshoot, and secure networks using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
 ms.date: 11/08/2024
 ms.topic: how-to
@@ -10,21 +10,21 @@ ms.author: jenhayes
 author: JnHs
 ---
 
-# Azure networking capabilities using Microsoft Copilot in Azure
+# Design,, troubleshoot, and secure networks using Microsoft Copilot in Azure
 
-Copilot in Azure for networking can help you answer questions about Azure networking services and troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
+Copilot in Azure for networking can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-## Scenarios
+The following Azure capabilities are currently available:
 
-The following Azure networking and network management skills are currently available.
+## Design, plan and migrate
 
 [**Network product information queries**](#information) - This skill enables Copilot in Azure for Networking to answer questions about Azure Networking products and services using information from published documentation.
 
 [**Network product selection and architecture guidance queries**](#selection) - This skill allows Copilot in Azure for Networking to assist with questions about product usage, product selection for your networking needs, and guidance on network planning, resilience, and migration from on-premises environments.
 
-In the current release, product selection guidance responses are limited to:
+Currently, product selection guidance responses are limited to:
 
 - Azure Load Balancer
 - Azure Firewall
@@ -40,6 +40,8 @@ And resiliency related queries are limited to the following networking services:
 - Azure Public IP
 - Azure Traffic Manager
 - Azure Virtual Network Gateways (ExpressRoute and VPN)
+
+## Monitor, secure, and troubleshoot
 
 [**Network resource inventory, topology, traffic path queries**](#inventory) - Copilot in Azure can discover customer network resources, network topology, and traffic paths from source to destination. Currently, Copilot in Azure can respond to questions about network topology and traffic paths with topology maps and network connectivity graphs.
 
@@ -79,7 +81,6 @@ In this example, the prompt **"Is my application gateway resilient?"** analyzes 
 
 :::image type="content" source="./media/network-management/application-gateway-resiliency.png" alt-text="Screenshot of Copilot analyzing the resiliency of an Azure Application Gateway." lightbox="./media/network-management/application-gateway-resiliency.png":::
 
-
 ### <a name = "inventory"></a>Understand network resource inventory, topology, and traffic path information
 
 Here are a few examples of the kinds of prompts you can use to understand  network resource inventory, topology, and traffic paths. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
@@ -115,16 +116,16 @@ Here are a few examples of the kinds of prompts you can use to troubleshoot netw
 - "Is some NSG blocking my traffic to the internet from my VM in Azure?"
 - "Why am I unable to send mail and SMTP is failing?"
 - "Troubleshoot the virtual network to find any gateways and their associated public IPs that are missing a service tag."
-- "Who are the top 10 DDOS attackers from my VM"
-- "How many times has my public IP been DDOS attacked in the past 14 days"
-- "List the top DDOS attack vectors on my public IP"
+- "Who are the top 10 DDoS attackers from my VM"
+- "How many times has my public IP been DDoS attacked in the past 14 days"
+- "List the top DDoS attack vectors on my public IP"
 - "[Has there been any malicious traffic intercepted by my Azure Firewall](/azure/firewall/firewall-copilot)"
  
-When you ask **"Why can't my VM connect to the internet?"**, Copilot in Azure asks you to select the source VM in Azure from where you're trying to connect to the internet. It then analyzes the path your traffic takes to the internet and identifies any configuration or data path issues that are blocking the traffic from reaching the internet.
+When you ask **"Why can't my VM connect to the internet?"**, Copilot in Azure asks you to confirm the source VM in Azure from where you're trying to connect to the internet. It then analyzes the path your traffic takes to the internet and identifies any configuration or data path issues that are blocking the traffic from reaching the internet.
 
 Next, you're prompted to enter the internet destination IP address:
 
-:::image type="content" source="./media/network-management/destination-ip-address-internet.png" alt-text="Screenshot of Copilot in Azure prompting for the internet destination IP address for troubleshooting." lightbox="./media/network-management/destination-ip-address-internet.png":::
+:::image type="content" source="./media/network-management/destination-ip-address-internet.png" alt-text="Screenshot of Copilot in Azure prompting for the internet destination IP address for troubleshooting.":::
 
 Finally, Copilot in Azure analyzes the path and identifies issues impacting the connectivity:
 
@@ -134,18 +135,23 @@ In this example, the prompt **"Why can’t I connect from my on-premise VM to my
 
 :::image type="content" source="./media/network-management/select-expressroute-circuit.png" alt-text="Screenshot of Copilot in Azure prompting to select the ExpressRoute circuit to a VM." lightbox="./media/network-management/select-expressroute-circuit.png":::
 
-Next, Copilot in Azure asks you to select the destination VM, then analyzes the data path to the VM and displays the possible reasons for the connectivity issue:
+Next, Copilot in Azure asks you to confirm the destination VM, then analyzes the data path to the VM and displays the possible reasons for the connectivity issue:
 
 :::image type="content" source="./media/network-management/expressroute-connectivity-result.png" alt-text="Screenshot of Copilot in Azure analyzing the data path to the VM and showing the possible reasons for the connectivity issue.":::
 
 In this example, the prompt **"Why is my storage account not reachable from my VM?"** results in a request for you to select the source VM from where you're trying to connect to the storage account, and confirm which storage account is unreachable. Copilot in Azure then analyzes the path your traffic takes to the storage account and identifies any configuration or data path issues that are blocking the traffic from reaching the storage account.
-
 
 :::image type="content" source="./media/network-management/select-storage-account.png" alt-text="Screenshot showing Copilot in Azure prompting to select the storage account for connectivity troubleshooting." lightbox="./media/network-management/select-storage-account.png":::
 
 Finally, Copilot in Azure analyzes the path and identifies issues impacting the connectivity to the storage account:
 
 :::image type="content" source="./media/network-management/storage-account-analysis-result.png" alt-text="Screenshot showing Copilot in Azure analyzing the path and identifying issues impacting the connectivity to the storage account." lightbox="./media/network-management/storage-account-analysis-result.png":::
+
+## Current limitations
+
+For organizations with large or complex networks, queries may take longer than usual.
+
+For information about general limitations of Copilot in Azure, see [Current limitations](capabilities.md#current-limitations).
 
 ## Next steps
 
