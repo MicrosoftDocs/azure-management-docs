@@ -1,5 +1,5 @@
 ---
-title: Design,, troubleshoot, and secure networks using Microsoft Copilot in Azure
+title: Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
 ms.date: 11/08/2024
 ms.topic: how-to
@@ -10,15 +10,15 @@ ms.author: jenhayes
 author: JnHs
 ---
 
-# Design,, troubleshoot, and secure networks using Microsoft Copilot in Azure
+# Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 
 Copilot in Azure for networking can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-The following Azure capabilities are currently available:
+Copilot in Azure currently provides capabilities to work with network resources in multiple scenarios, described in the following sections.
 
-## Design, plan and migrate
+## Design, plan, and migrate
 
 [**Network product information queries**](#information) - This skill enables Copilot in Azure for Networking to answer questions about Azure Networking products and services using information from published documentation.
 
@@ -100,7 +100,7 @@ In this example, the prompt **"What is the data path between my source VM and de
 
 If you say **"Troubleshoot my virtual network peerings"**, Copilot in Azure asks you to select the Virtual Network. Then, it analyzes the state, status, and configuration information of all the peered connections to see if there are any configuration or data path issues impacting the configured virtual network peerings, and displays the findings.
 
-:::image type="content" source="./media/network-management/troubleshooting-analysis.png" alt-text="Screenshot of Copilot  in Azure analyzing the Virtual Network peering and displaying the findings." lightbox="./media/network-management/troubleshooting-analysis.png":::
+:::image type="content" source="./media/network-management/troubleshooting-analysis.png" alt-text="Screenshot of Copilot  in Azure analyzing the Virtual Network peering and displaying the findings.":::
 
 ### <a name = "troubleshoot"></a>Respond to network connectivity troubleshooting and service diagnostics queries
 
