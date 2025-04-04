@@ -80,16 +80,16 @@
       href: /cli/azure/arcappliance
   - name: Azure PowerShell
     items:
-    - name: Azure Arc-enabled System Center Virtual Machine Manager
+    - name: Azure Arc-enabled System Center VMM
       href: /powershell/module/az.scvmm
     - name: Azure Arc Resource Bridge
       href: /powershell/module/az.arcresourcebridge
   - name: Azure REST API
     href: /rest/api/azure-arc-scvmm/operation-groups
-  - name: Bicep Templates
-    href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
   - name: ARM Templates
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
+  - name: Bicep Templates
+    href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
   - name: Terraform Templates (AzAPI provider)
     href: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
   - name: Python SDK
