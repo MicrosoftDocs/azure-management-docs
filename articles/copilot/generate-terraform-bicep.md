@@ -32,6 +32,8 @@ Here are a few examples of the kinds of prompts you can use to generate Terrafor
 - "What is the Terraform code for a Databricks workspace in Azure with name 'myworkspace' and a premium SKU. The workspace should be created in the West US region."
 - "Create an OpenAI deployment with gpt-3.5-turbo model using Terraform template. Set the version of the model to 0613."
 
+:::image type="content" source="media/generate-terraform-bicep/generate-terraform.png" alt-text="Screenshot of Copilot in Azure generating a Terraform configuration to create a web app.":::
+
 ## Bicep sample prompts
 
 Here are a few examples of the kinds of prompts you can use to generate Bicep templates. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
@@ -41,6 +43,8 @@ Here are a few examples of the kinds of prompts you can use to generate Bicep te
 - "Give me a Bicep template that deploys a Container App Environment with a basic Container App. In addition, it should deploy a Log Analytics Workspace to store logs."
 - "Give me a Bicep template for creating a key vault, a managed identity, and a role assignment for the managed identity to access the key vault."
 - "How to use Bicep to create Azure OpenAI service?"
+
+ :::image type="content" source="media/generate-terraform-bicep/generate-bicep.png" alt-text="Screenshot of Copilot in Azure generating a Bicep template to create a storage account.":::
 
 ## Next steps
 
