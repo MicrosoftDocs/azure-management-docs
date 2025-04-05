@@ -1,16 +1,16 @@
 ---
-title:  Microsoft Copilot in Azure overview
+title: Microsoft Copilot in Azure Overview
 description: Microsoft Copilot in Azure is an AI-powered tool to help you do more with Azure.
-ms.date: 04/03/2025
-ms.topic: overview
+author: JnHs
+ms.author: jenhayes
+ms.reviewer: maghan
+ms.date: 04/08/2025
 ms.service: copilot-for-azure
+ms.topic: overview
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
-hideEdit: true
 ---
 
 # What is Microsoft Copilot in Azure?
@@ -54,9 +54,10 @@ By default, Copilot in Azure is available to all users in a tenant. However, Glo
 > [!IMPORTANT]
 > In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Please ask your network administrator to enable this connection.
 
-## Next steps
+## Related content
 
-- Learn about [some of the things you can do with Microsoft Copilot in Azure](capabilities.md).
-- Review our [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md).
-- Learn how to [write effective prompts](write-effective-prompts.md) and [explore some examples](example-prompts.md).
-- Explore the [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/).
+- [Some of the things you can do with Microsoft Copilot in Azure](capabilities.md)
+- [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md)
+- [Write effective prompts](write-effective-prompts.md)
+- [Explore some examples](example-prompts.md)
+- [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/)
