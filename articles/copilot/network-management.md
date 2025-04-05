@@ -1,7 +1,7 @@
 ---
 title: Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
-ms.date: 11/08/2024
+ms.date: 04/05/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -12,7 +12,7 @@ author: JnHs
 
 # Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 
-Copilot in Azure for networking can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
+Microsoft Copilot in Azure is an intelligent assistant desigend to help you design, migrate, monitor, and optimize your Azure environment. Copilot in Azure can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
