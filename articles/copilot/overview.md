@@ -41,11 +41,11 @@ For more information, see [Responsible AI FAQ for Microsoft Copilot in Azure](re
 
 ## Pricing and availability
 
-The capabilities of Copilot in Azure available today are included at no additional cost. Future capabilities might be subject to pricing.
+The capabilities of Copilot in Azure available today are included at no additional cost. Future capabilities may be subject to pricing.
 
 Microsoft Copilot in Azure is made available to customers under the terms governing their subscription to Microsoft Azure Services, including the Microsoft Copilot in Azure section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Please review these terms carefully as they contain important conditions and obligations governing your use of Microsoft Copilot in Azure.
 
-Microsoft Copilot in Azure is available in multiple languages: Chinese (Simplified), Chinese (Traditional), Czech, Dutch, English, French, German, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Portuguese (Portugal), Russian, Spanish, Swedish, and Turkish.
+Microsoft Copilot in Azure is available in 19 languages: Chinese (Simplified), Chinese (Traditional), Czech, Dutch, English, French, German, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Portuguese (Portugal), Russian, Spanish, Swedish, and Turkish.
 
 Microsoft Copilot for Azure isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet).
 
