@@ -12,7 +12,7 @@ author: JnHs
 
 # Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure is an intelligent assistant desigend to help you design, migrate, monitor, and optimize your Azure environment. Copilot in Azure can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
+Microsoft Copilot in Azure is an intelligent assistant designed to help you design, migrate, monitor, and optimize your Azure environment. Copilot in Azure can answer questions about Azure networking services and troubleshoot network connectivity issues. It can also help you plan and design your network using Azure networking products and services and help troubleshoot network connectivity issues. It offers contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
@@ -75,11 +75,11 @@ Here are a few examples of the kinds of prompts you can use to get help with net
 
 In this example, the prompt **"Suggest an Azure Firewall SKU for my topology"** results in a request to provide more information about your use case, so that Copilot in Azure can suggest the right Azure Firewall SKU.
 
-:::image type="content" source="./media/network-management/firewall-sku-suggestion.png" alt-text="Screenshot of Copilot suggesting an Azure Firewall SKU for my topology.":::
+:::image type="content" source="./media/network-management/firewall-sku-suggestion.png" alt-text="Screenshot of Copilot in Azure suggesting an Azure Firewall SKU for my topology.":::
 
 In this example, the prompt **"Is my application gateway resilient?"** analyzes the selected Azure Application Gateway and suggests ways to make it more resilient.
 
-:::image type="content" source="./media/network-management/application-gateway-resiliency.png" alt-text="Screenshot of Copilot analyzing the resiliency of an Azure Application Gateway." lightbox="./media/network-management/application-gateway-resiliency.png":::
+:::image type="content" source="./media/network-management/application-gateway-resiliency.png" alt-text="Screenshot of Copilot in Azure analyzing the resiliency of an Azure Application Gateway." lightbox="./media/network-management/application-gateway-resiliency.png":::
 
 ### <a name = "inventory"></a>Understand network resource inventory, topology, and traffic path information
 
