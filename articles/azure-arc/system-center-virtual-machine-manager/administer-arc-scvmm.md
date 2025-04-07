@@ -2,7 +2,7 @@
 title:  Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
 description: Learn how to perform administrator operations related to Azure Arc-enabled System Center Virtual Machine Manager.
 ms.topic: how-to 
-ms.date: 03/11/2025
+ms.date: 04/07/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
@@ -30,7 +30,7 @@ The following are a few best practices that you can follow as it deems fit for y
 - **Resource bridge lock**: Considering the critical nature of the resource bridge, you, as an administrator, can lock the Azure resource of the resource bridge to protect it from accidental deletion and hence preventing loss of connectivity to SCVMM server from Azure. To place a resource lock on your resource bridge, navigate to its Azure resource and select **Locks** under the **Settings** blade. You can add a **Delete** lock from here which prevents self-service users from accidentally deleting the resource bridge. 
 
      >[!IMPORTANT]
-     >Both Read-only and Delete type resource locks disables the upgrade of the resource bridge and it is necessary to remove the locks before triggering an upgrade. 
+     >Both Read-only and Delete type resource locks disable the upgrade of the resource bridge and it is necessary to remove the locks before triggering an upgrade. 
 
 - **Resource bridge health alert**: The Azure Arc resource bridge needs to be maintained online and healthy with a *Running* status to ensure the continuous functioning of the Azure Arc enabled SCVMM offering. The resource bridge can periodically get into an *offline* status due to rotation of credentials as part of your regular security practices or any change in the network.
 
