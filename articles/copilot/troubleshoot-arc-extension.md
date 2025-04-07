@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Arc machine extensions using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can help troubleshoot extension issues on Arc machines
-ms.date: 04/01/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.author: jenhayes
 author: JnHs

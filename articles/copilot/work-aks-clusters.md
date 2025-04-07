@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 03/04/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:

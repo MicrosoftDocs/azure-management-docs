@@ -1,7 +1,7 @@
 ---
 title: Visualize network topology using Microsoft Copilot in Azure
 description: Use Microsoft Copilot in Azure to visualize specific networking resources or your entire network topology.
-ms.date: 03/28/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes

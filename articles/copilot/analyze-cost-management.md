@@ -1,7 +1,7 @@
 ---
 title: Analyze, estimate and optimize cloud costs using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can use Microsoft Cost Management to help you manage your costs.
-ms.date: 04/04/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:

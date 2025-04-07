@@ -1,7 +1,7 @@
 ---
 title: Write effective prompts for Microsoft Copilot in Azure
 description: Maximize productivity and intent understanding with prompt engineering in Microsoft Copilot in Azure.
-ms.date: 11/19/2024
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -15,8 +15,6 @@ author: JnHs
 Prompt engineering is the process of designing prompts that elicit the best and most accurate responses from large language models (LLMs) like Microsoft Copilot in Azure. As these models become more sophisticated, understanding how to create effective prompts becomes even more essential.
 
 This article explains how to use prompt engineering to create effective prompts for Microsoft Copilot in Azure.
-
-
 
 ## What is prompt engineering?
 

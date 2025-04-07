@@ -1,7 +1,7 @@
 ---
 title: Work with Azure Load Balancer
 description: Learn how Microsoft Copilot in Azure can help you understand and use Azure Load Balancer.
-ms.date: 04/01/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes

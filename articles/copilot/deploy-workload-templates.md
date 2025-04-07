@@ -1,7 +1,7 @@
 ---
 title: Discover and deploy workload templates from Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can provide workload templates for your scenario.
-ms.date: 03/31/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: build-2024, linux-related-content, ignite-2024

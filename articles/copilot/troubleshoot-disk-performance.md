@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot disk performance using Microsoft Copilot in Azure
 description: Learn how to use Microsoft Copilot in Azure to help troubleshoot issues with disk performance.
-ms.date: 04/01/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes

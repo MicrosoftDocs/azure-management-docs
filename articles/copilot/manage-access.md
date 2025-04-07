@@ -1,7 +1,7 @@
 ---
 title:  Manage access to Microsoft Copilot in Azure
 description: Learn how administrators can manage user access to Microsoft Copilot in Azure.
-ms.date: 10/08/2024
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -44,8 +44,6 @@ Global Administrators for a tenant can change the **Access management** selectio
 
 > [!IMPORTANT]
 > In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Please ask your network administrator to enable this connection.
-
-
 
 ## Next steps
 

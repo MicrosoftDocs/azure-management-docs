@@ -1,7 +1,7 @@
 ---
 title: Example prompts for Microsoft Copilot in Azure
 description: View example prompts that you can try out with Microsoft Copilot in Azure.
-ms.date: 11/22/2024
+ms.date: 04/08/2025
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.author: jenhayes
