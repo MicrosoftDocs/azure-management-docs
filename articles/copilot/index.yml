@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 03/28/2025
+  ms.date: 04/08/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -91,7 +91,7 @@ conceptualContent:
               text: Get monitoring information
             - url: ./network-management.md
               itemType: get-started
-              text: Troubleshoot network connectivity
+              text: Design, troubleshoot, and secure networks
             - url: ./work-load-balancer.md
               itemType: get-started
               text: Work with Azure Load Balancer

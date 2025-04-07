@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 03/31/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
