@@ -84,24 +84,6 @@ General troubleshooting:
 - "How do I fix a server that has a state of 'appears offline'?"
 - "Help me diagnose issues with my Azure File Sync environment."
 
-### Azure File Sync example
-
-If you see an error code, you can ask Copilot in Azure to help you understand the problem and how to fix it. When you say "**Help me troubleshoot this error**", Copilot in Azure provides information about the error and the things that Copilot in Azure can check to help resolve the issue.  In this example, Copilot in Azure first checks to see if trusted access is enabled on the storage account.
-
-:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png" alt-text="Screenshot showing Microsoft Copilot in Azure troubleshooting an Azure File Sync error." lightbox="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png":::
-
-After confirming that trusted access is enabled, Copilot in Azure prompts you to enter the server IP address that should be able to access the storage account.
-
- :::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-trusted-access.png" alt-text="Screenshot showing Microsoft Copilot in Azure asking for the server IP address that should have access to a storage account.":::
-
-Copilot in Azure then checks to see if that IP address is currently able to access the storage account. If it isn't, Copilot in Azure asks if you want it to update your settings to allow access. If you prefer, you can update the firewall yourself, or ask Copilot to share more details.
-
-:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-ip-address-check.png" alt-text="Screenshot showing Microsoft Copilot in Azure checking to see if an IP address has access to a storage account.":::
-
-When you ask Copilot in Azure to update the firewall for you, it proceeds to add the IP address you entered to the allowlist in the storage account's firewall settings.
-
-:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-ip-address-add.png" alt-text="Screenshot showing Microsoft Copilot in Azure confirming that an IP address has been added to the allowlist for access to a storage account.":::
-
 ## Reduce storage costs
 
 You can ask Copilot in Azure to help you manage the costs for your storage accounts. One way to save on storage costs is by tiering blobs that haven't been accessed or modified for some time. In some instances, you may even wish to delete those blobs.
