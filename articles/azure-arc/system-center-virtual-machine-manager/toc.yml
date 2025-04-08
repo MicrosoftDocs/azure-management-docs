@@ -51,33 +51,33 @@
     - name: VM extensions management
       items:
       - name: Overview
-        href: ../servers/manage-vm-extensions.md
+        href: ../servers/manage-vm-extensions.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Manage extensions by using the Azure portal
-        href: ../servers/manage-vm-extensions-portal.md
+        href: ../servers/manage-vm-extensions-portal.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Manage extensions by using the Azure CLI
-        href: ../servers/manage-vm-extensions-cli.md
+        href: ../servers/manage-vm-extensions-cli.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Manage extensions by using Azure PowerShell
-        href: ../servers/manage-vm-extensions-powershell.md
+        href: ../servers/manage-vm-extensions-powershell.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Deploy extensions by using an ARM template
-        href: ../servers/manage-vm-extensions-template.md
+        href: ../servers/manage-vm-extensions-template.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Deploy extensions by using Ansible
-        href: ../servers/manage-vm-extensions-ansible.md
+        href: ../servers/manage-vm-extensions-ansible.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
       - name: Automatic extension upgrade
-        href: ../servers/manage-automatic-vm-extension-upgrade.md  
+        href: ../servers/manage-automatic-vm-extension-upgrade.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Modernize VM management
-      href: ../servers/modernize-server-management.md 
+      href: ../servers/modernize-server-management.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Monitor VMs
-      href: ../servers/learn/tutorial-enable-vm-insights.md 
+      href: ../servers/learn/tutorial-enable-vm-insights.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Onboard to Microsoft Defender for Cloud
-      href: ../defender-for-cloud/quickstart-onboard-machines.md  
+      href: /azure/defender-for-cloud/quickstart-onboard-machines?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json  
     - name: Onboard to Microsoft Sentinel
-      href: ../servers/scenario-onboard-azure-sentinel.md 
+      href: ../servers/scenario-onboard-azure-sentinel.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json 
     - name: Assign policy to assess compliance
-      href: ../servers/learn/tutorial-assign-policy-portal.md 
+      href: ../servers/learn/tutorial-assign-policy-portal.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Deploy Azure services at scale
-      href: ../servers/deploy-management-services.md 
+      href: ../servers/deploy-management-services.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Manage with Windows Admin Center
-      href: ./windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines.md
+      href: /windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
   - name: Azure Arc benefits for SCVMM VMs
     items:
     - name: Windows Server Management
