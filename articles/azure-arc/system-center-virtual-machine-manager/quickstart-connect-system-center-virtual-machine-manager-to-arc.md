@@ -7,7 +7,7 @@ manager: jsuri
 ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.date: 02/12/2025
+ms.date: 04/08/2025
 ms.custom: references_regions
 
 # Customer intent: As a VI admin, I want to connect my VMM management server to Azure Arc.
@@ -118,8 +118,7 @@ The script execution will take up to half an hour and you'll be prompted for var
 Once the command execution is completed, your setup is complete, and you can try out the capabilities of Azure Arc-enabled SCVMM.
 
 >[!IMPORTANT]
->After the successful installation of Azure Arc Resource Bridge, it's recommended to retain a copy of the resource bridge config (.yaml) files in a secure place that facilitates easy retrieval. These files are needed later to run commands to perform management operations (e.g. [az arcappliance upgrade](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware)) on the resource bridge. You can find the three config files (.yaml files) in the same folder where you ran the onboarding script. 
-
+>The resource bridge must continue to be in online status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a healthy state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
 
 ### Retry command - Windows
 
@@ -139,13 +138,6 @@ If for any reason, the appliance creation fails, you need to retry it. Run the c
   ```sh
     bash resource-bridge-onboarding-script.sh --force
   ```
->[!IMPORTANT]
-> After the successful installation of Azure Arc Resource Bridge, it's recommended to retain a copy of the resource bridge config.yaml files in a place that facilitates easy retrieval. These files could be needed later to run commands to perform management operations (e.g. [az arcappliance upgrade](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware)) on the resource bridge. You can find the three .yaml files (config files) in the same folder where you ran the script.
-
->[!NOTE]
-> - After successful deployment, we recommend maintaining the state of **Arc Resource Bridge VM** as *online*.
-> - Intermittently appliance might become unreachable when you shut down and restart the VM. 
-> - After the execution of command, your setup is complete, and you can try out the capabilities of Azure Arc-enabled SCVMM. 
 
 ## Next steps
 
