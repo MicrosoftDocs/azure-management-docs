@@ -1,7 +1,7 @@
 ---
 title: Deploy virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 04/08/2025
+ms.date: 04/09/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -15,7 +15,7 @@ author: JnHs
 
 # Deploy virtual machines effectively using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure can help you deploy [virtual machines in Azure](/azure/virtual-machines/overview) that are efficient and effective. You can get suggestions for different options to save costs and choose the right type and size for your VMs.
+Microsoft Copilot in Azure can help you deploy [virtual machines in Azure](/azure/virtual-machines/overview) that are efficient and effective. You can get suggestions for different options to save costs and choose the right size for your VMs.
 
 When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. For example, if you start from the **Create a virtual machine** page, Copilot in Azure will provide suggestions for the new VM you're creating. If you're starting from another page, and the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
 
@@ -134,19 +134,6 @@ If your VM has connectivity problems due to network security groups blocking tra
 To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, open Copilot in Azure and use one of the provided prompts to get assistance.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="Screenshot of Copilot in Azure providing assistance with network security issues.":::
-
-## Choose the right compute offering
-
-When you're not sure exactly which compute offering to choose, Copilot in Azure can guide you to successfully identify and deploy the right Compute resource (such as [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) or [Azure Compute Fleet](/azure/azure-compute-fleet/overview)) for your workload needs. Copilot in Azure can also help direct you to the right service if you want to assess how to integrate your on-premises Compute solutions into Azure or find the right services for your multicloud solutions.
-
-If you're migrating compute instances from other cloud platforms, Copilot in Azure can help determine the equivalent Azure size family for those resources.
-
-While familiarity with the product options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it's important to exercise due diligence before deploying the suggested options.
-
-### Compute offering sample prompts
-
-- "Help me choose the right Compute infrastructure service"
-- "I'd like to use a compute resource for a batch processing job, which one should I pick?"
 
 ## Next steps
 
