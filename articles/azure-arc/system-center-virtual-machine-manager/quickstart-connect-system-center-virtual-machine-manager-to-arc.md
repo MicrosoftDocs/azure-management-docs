@@ -65,7 +65,7 @@ This Quickstart shows you how to connect your SCVMM management server to Azure A
 1. Based on the operating system of your workstation, download the PowerShell or Bash script and copy it to the workstation.
 1. To see the status of your onboarding after you run the script on your workstation, select **Next:Verification**. The onboarding isn't affected when you close this page.
 
-### Windows
+# [Windows](#tab/window)
 
 Follow these instructions to run the script on a Windows machine.
 
@@ -84,7 +84,8 @@ Follow these instructions to run the script on a Windows machine.
     ```azurepowershell-interactive
     ./resource-bridge-onboarding-script.ps1
     ```
-### Linux
+
+# [Linux](#tab/linux)
 
 Follow these instructions to run the script on a Linux machine:
 
@@ -94,6 +95,7 @@ Follow these instructions to run the script on a Linux machine:
     ```sh
     bash resource-bridge-onboarding-script.sh
     ```
+---
 
 ## Script runtime
 The script execution will take up to half an hour and you'll be prompted for various details. See the following table for related information:
@@ -120,7 +122,7 @@ Once the command execution is completed, your setup is complete, and you can try
 >[!IMPORTANT]
 >The resource bridge must continue to be in *online* status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a *healthy* state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
 
-### Retry command - Windows
+# [Retry command - Windows](#tab/win)
 
 If for any reason, the appliance creation fails, you need to retry it. Run the command with ```-Force``` to clean up and onboard again.
 
@@ -132,13 +134,15 @@ If for any reason, the appliance creation fails, you need to retry it. Run the c
 >You can find the values for *Subscription*, *ResourceGroup*, *Azlocation*, *ApplianceName*, *CustomLocationName*, and *VMMservername* parameters from the onboarding script.
 
  ### Retry command - Linux
+ 
+# [Retry command - Linux](#tab/lin)
 
 If for any reason, the appliance creation fails, you need to retry it. Run the command with ```--force``` to clean up and onboard again.
 
   ```sh
     bash resource-bridge-onboarding-script.sh --force
   ```
-
+---
 ## Next steps
 
 - [Browse and enable SCVMM resources through Azure RBAC](enable-scvmm-inventory-resources.md).
