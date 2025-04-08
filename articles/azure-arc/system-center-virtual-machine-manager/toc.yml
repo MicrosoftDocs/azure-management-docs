@@ -46,8 +46,24 @@
       href: enable-guest-management-at-scale.md
     - name: Install Arc agents using a script
       href: install-arc-agents-using-script.md
+    - name: Manage and maintain the Connected Machine agent
+      href: ../servers/manage-agent.md
     - name: VM extensions management
-      href: ../servers/manage-vm-extensions.md
+      items:
+      - name: Overview
+        href: ../servers/manage-vm-extensions.md
+      - name: Manage extensions by using the Azure portal
+        href: ../servers/manage-vm-extensions-portal.md
+      - name: Manage extensions by using the Azure CLI
+        href: ../servers/manage-vm-extensions-cli.md
+      - name: Manage extensions by using Azure PowerShell
+        href: ../servers/manage-vm-extensions-powershell.md
+      - name: Deploy extensions by using an ARM template
+        href: ../servers/manage-vm-extensions-template.md
+      - name: Deploy extensions by using Ansible
+        href: ../servers/manage-vm-extensions-ansible.md
+      - name: Automatic extension upgrade
+        href: ../servers/manage-automatic-vm-extension-upgrade.md   
   - name: Azure Arc benefits for SCVMM VMs
     items:
     - name: Windows Server Management
