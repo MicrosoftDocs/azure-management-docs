@@ -72,6 +72,8 @@
       href: /azure/defender-for-cloud/quickstart-onboard-machines?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json  
     - name: Onboard to Microsoft Sentinel
       href: ../servers/scenario-onboard-azure-sentinel.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json 
+    - name: Enable Azure Automation
+      href: /azure/automation/quickstarts/install-hybrid-worker-extension?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Assign policy to assess compliance
       href: ../servers/learn/tutorial-assign-policy-portal.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: Deploy Azure services at scale
