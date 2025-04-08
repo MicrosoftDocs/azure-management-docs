@@ -118,7 +118,7 @@ The script execution will take up to half an hour and you'll be prompted for var
 Once the command execution is completed, your setup is complete, and you can try out the capabilities of Azure Arc-enabled SCVMM.
 
 >[!IMPORTANT]
->The resource bridge must continue to be in online status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a healthy state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
+>The resource bridge must continue to be in *online* status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a *healthy* state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
 
 ### Retry command - Windows
 
