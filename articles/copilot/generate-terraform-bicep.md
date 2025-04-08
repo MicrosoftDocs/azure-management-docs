@@ -1,7 +1,7 @@
 ---
 title: Generate Terraform and Bicep configurations using Microsoft Copilot in Azure
 description: Learn about how Microsoft Copilot in Azure can generate Terraform and Bicep configurations for you to use.
-ms.date: 11/07/2024
+ms.date: 04/08/2025
 ms.topic: conceptual
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -10,7 +10,7 @@ author: JnHs
 
 # Generate Terraform and Bicep configurations using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can generate Terraform and Bicep configurations that you can use to create and manage your Azure infrastructure.
+Microsoft Copilot in Azure can generate Terraform and Bicep configurations that you can use to create and manage your Azure infrastructure.
 
 When you tell Microsoft Copilot in Azure about some Azure infrastructure that you want to manage through Terraform, it provides a configuration using resources from the [AzureRM provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs). In addition to the primary resources, any dependent resources required to accomplish a successful deployment are included in the configuration.
 
@@ -22,8 +22,6 @@ The requested Azure infrastructure should be limited to fewer than eight primary
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
-
 ## Terraform sample prompts
 
 Here are a few examples of the kinds of prompts you can use to generate Terraform configurations. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
@@ -33,6 +31,8 @@ Here are a few examples of the kinds of prompts you can use to generate Terrafor
 - "Create Terraform configuration for a container app resource with name 'myApp' with quick start image. Add a log analytic space with PerGB2018 sku and set the retention days to 31. Enable single revision mode in the container app and set the CPU and memory limits to 2 and 4GB respectively. Also, set the name of the container app environment to 'awesomeAzureEnv' and set the name of the container to 'myQuickStartContainer'."
 - "What is the Terraform code for a Databricks workspace in Azure with name 'myworkspace' and a premium SKU. The workspace should be created in the West US region."
 - "Create an OpenAI deployment with gpt-3.5-turbo model using Terraform template. Set the version of the model to 0613."
+
+:::image type="content" source="media/generate-terraform-bicep/generate-terraform.png" alt-text="Screenshot of Copilot in Azure generating a Terraform configuration to create a web app.":::
 
 ## Bicep sample prompts
 
@@ -44,9 +44,10 @@ Here are a few examples of the kinds of prompts you can use to generate Bicep te
 - "Give me a Bicep template for creating a key vault, a managed identity, and a role assignment for the managed identity to access the key vault."
 - "How to use Bicep to create Azure OpenAI service?"
 
-:::image type="content" source="media/generate-terraform-bicep/bicep-example.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a Bicep template for creating a storage account.":::
+ :::image type="content" source="media/generate-terraform-bicep/generate-bicep.png" alt-text="Screenshot of Copilot in Azure generating a Bicep template to create a storage account.":::
 
 ## Next steps
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
+- Learn more about [Bicep](/azure/azure-resource-manager/bicep/overview?tabs=bicep).
 - Learn more about [Terraform on Azure](/azure/developer/terraform/overview).

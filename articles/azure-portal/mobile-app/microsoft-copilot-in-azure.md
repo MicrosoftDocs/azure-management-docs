@@ -1,7 +1,7 @@
 ---
 title: Use Microsoft Copilot in Azure with the Azure mobile app
-description: You can use the Azure mobile app to access Microsoft Copilot in Azure (preview) and benefit from its features.
-ms.date: 05/21/2024
+description: You can use the Azure mobile app to access Microsoft Copilot in Azure and benefit from its features.
+ms.date: 04/03/2025
 ms.topic: how-to
 ms.custom:
   - build-2024
@@ -9,15 +9,11 @@ ms.custom:
 
 # Use Microsoft Copilot in Azure with the Azure mobile app
 
-[Microsoft Copilot in Azure](/azure/copilot/overview) is an AI-powered tool that lets you do more with Azure. Copilot uses Large Language Models (LLMs) and insights about your Azure environment to help you work more efficiently. You can use the Azure mobile app to access Copilot in Azure (preview) and benefit from its features.
+[Microsoft Copilot in Azure](/azure/copilot/overview) is an AI-powered tool that lets you do more with Azure. Copilot uses Large Language Models (LLMs) and insights about your Azure environment to help you work more efficiently. You can use the Azure mobile app to access Copilot in Azure and benefit from its features.
 
 With Copilot in Azure, you can explore the range of services and resources that Azure offers and find the best ones for your needs. You can ask questions in natural language and get personalized information based on your own Azure resources and environment. Copilot in Azure can also help you achieve your goals by generating code snippets and suggestions.
 
-To learn more about Copilot in Azure, see [What is Microsoft Copilot in Azure?](/azure/copilot/overview) and [Responsible AI FAQ for Microsoft Copilot in Azure (preview)](/azure/copilot/responsible-ai-faq).
-
-> [!IMPORTANT]
-> Microsoft Copilot in Azure is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+To learn more about Copilot in Azure, see [What is Microsoft Copilot in Azure?](/azure/copilot/overview) and [Responsible AI FAQ for Microsoft Copilot in Azure](/azure/copilot/responsible-ai-faq).
 
 ## Access Copilot in Azure on the Azure mobile app
 
