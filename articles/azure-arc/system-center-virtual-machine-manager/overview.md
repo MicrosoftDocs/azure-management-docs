@@ -50,7 +50,7 @@ You have the flexibility to start with either option, and incorporate the other 
 
 
 > [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
+> For more information regarding the different services Azure Arc offers, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
 ### Supported scenarios
 
@@ -59,7 +59,7 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
 - SCVMM administrators can connect a VMM instance to Azure and browse the SCVMM virtual machine inventory in Azure.
 - Administrators can use the Azure portal to browse SCVMM inventory and register SCVMM cloud, virtual machines, VM networks, and VM templates into Azure.
 - Administrators can provide app teams/developers fine-grained permissions on those SCVMM resources through Azure RBAC.
-- App teams can use Azure interfaces (portal, CLI, PowerShell, SDKs, Terraform, Bicep, ARM templates or REST API) to manage the lifecycle of on-premises VMs they use for deploying their applications (CRUD, Start/Stop/Restart).
+- App teams can use Azure interfaces (portal, CLI, PowerShell, SDKs, Terraform, Bicep, ARM templates, or REST API) to manage the lifecycle of on-premises VMs they use for deploying their applications (CRUD, Start/Stop/Restart).
 - Administrators can install Azure Connected Machine agent on SCVMM-managed VMs at-scale and can perform the following actions:
      - **Govern**:
          * Assign [Azure machine configurations](/azure/governance/machine-configuration/overview) to audit settings inside the machine. To understand the cost of using Azure Machine Configuration policies with Arc-enabled servers, see Azure Policy [pricing guide](https://azure.microsoft.com/pricing/details/azure-policy/).
