@@ -132,8 +132,6 @@ If for any reason, the appliance creation fails, you need to retry it. Run the c
 
 >[!Note]
 >You can find the values for *Subscription*, *ResourceGroup*, *Azlocation*, *ApplianceName*, *CustomLocationName*, and *VMMservername* parameters from the onboarding script.
-
- ### Retry command - Linux
  
 # [Retry command - Linux](#tab/lin)
 
