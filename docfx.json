@@ -144,7 +144,7 @@
     "fileMetadata": {
       "author": {
         "articles/azure-arc/**/*.md": "JnHs",
-        "articles/azure-arc/servers/**/*.md": "johnmarco",
+        "articles/azure-arc/servers/**/*.md": "JnHs",
         "articles/azure-portal/**/*.md": "JnHs",
         "articles/azure-portal/**/*.yml": "JnHs",
         "articles/container-registry/**/*.md": "rayoef",
@@ -219,7 +219,7 @@
       },
       "ms.author": {
         "articles/azure-arc/**/*.md": "jenhayes",
-        "articles/azure-arc/servers/**/*.md": "johnmarc",
+        "articles/azure-arc/servers/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "rayoflores",
