@@ -159,7 +159,7 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-### 1.16.1 (March 2025)
+### 1.16.2 (March 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
 
