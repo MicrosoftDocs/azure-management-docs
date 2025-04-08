@@ -58,7 +58,7 @@ An admin can install agents for multiple machines from the Azure portal if the m
 
 6. Select **Enable** to start the installation of the Arc agent in the specified machines. Once installation is complete, the Guest management column will switch to Enabled for the machines with Arc agent running. You can start using Azure services for these machines. 
 
-Apart from the Portal experience, Azure Arc-enabled SCVMM supports at-scale Arc agent installation through Azure CLI, PowerShell, REST APIs, SDKs and Infrastructure-as-Code mechanisms. Refer to the Reference section in our documentation to know more.
+Apart from the portal experience, Azure Arc-enabled SCVMM supports at-scale Arc agent installation through Azure CLI, PowerShell, REST APIs, SDKs, and Infrastructure-as-Code mechanisms. Refer to the Reference section in our documentation to know more.
 
 ## Next steps
 
