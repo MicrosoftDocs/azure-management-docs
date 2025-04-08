@@ -100,6 +100,10 @@
     href: troubleshoot-scvmm.md
   - name: Common deployment errors
     href: /azure/azure-arc/resource-bridge/troubleshoot-resource-bridge
+  - name: Troubleshoot SSH access to Azure Arc-enabled servers
+    href: ../servers/ssh-arc-troubleshoot.md
+  - name: Troubleshoot Extended Security Updates
+    href: ../servers/troubleshoot-extended-security-updates.md
 - name: Reference
   items:
   - name: Azure CLI
