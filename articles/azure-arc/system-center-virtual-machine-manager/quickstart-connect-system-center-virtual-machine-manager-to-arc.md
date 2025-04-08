@@ -34,8 +34,8 @@ This Quickstart shows you how to connect your SCVMM management server to Azure A
 
 ## Prepare SCVMM management server
 
--	Create an SCVMM private cloud if you don't have one. The private cloud should have a reservation of at least 32 GB of RAM and 4 vCPUs. It should also have at least 100 GB of disk space.
--	Ensure that SCVMM administrator account has the appropriate permissions.
+- Ensure you have a host group or a SCVMM private cloud with a reservation of at least 32 GB of RAM, 4 vCPUs and at least 100 GB of disk space.
+- Ensure that SCVMM administrator account has the appropriate permissions.
 
 ## Download the onboarding script
 
