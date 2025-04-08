@@ -103,9 +103,9 @@
   - name: Common deployment errors
     href: /azure/azure-arc/resource-bridge/troubleshoot-resource-bridge
   - name: Troubleshoot SSH access to Azure Arc-enabled servers
-    href: ../servers/ssh-arc-troubleshoot.md
+    href: ../servers/ssh-arc-troubleshoot.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
   - name: Troubleshoot Extended Security Updates
-    href: ../servers/troubleshoot-extended-security-updates.md
+    href: ../servers/troubleshoot-extended-security-updates.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
 - name: Reference
   items:
   - name: Azure CLI
