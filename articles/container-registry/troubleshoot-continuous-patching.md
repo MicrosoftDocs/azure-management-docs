@@ -13,7 +13,7 @@ The troubleshooting tips in this article can help you resolve common issues that
 ## Listing Running Tasks
 
 To list the most recently executed Continuous Patching tasks, the following List command is available:
-```sh
+```azurecli
 az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [–-run-status <failed || successful || running>] -t continuouspatchv1
 ```
 
@@ -29,7 +29,7 @@ A successful result will return the following information:
 -	Patch task ID (for further debugging)
 
 Example
-```sh
+```azurecli
 ubuntu:jammy-20240111
 scan status: successful
 scan date: 2024-07-02T14:02:00
@@ -49,7 +49,7 @@ See Appendix for a full list of possible outputs.
 ## Canceling Running Tasks
 
 Certain scenarios may require you to cancel tasks which are currently running or waiting to run. For this purpose, please run the following CLI command:
-```sh
+```azurecli
 az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --type <continuouspatchv1>
 ```
 
@@ -62,17 +62,17 @@ A typical reason to cancel is a misconfiguration you’d prefer to fix right awa
 Use the task list command to output all failed tasks. Specifying the "cssc-patch” command is best for failure. 
 
 Task-list command for top 10 failed patch tasks
-```sh
+```azurecli
 az acr task list-runs -r <registryname> -n cssc-patch-image --run-status Failed --top 10
 ```
 
 This command will output all failed tasks. To investigate a specific failure, grab the runID that's outputted from this command and run
-```sh
+```azurecli
 az acr task logs -r <registryname> --run-id <run-id>
 ```
 ### Misconfigured Workflow
 Cancel queued tasks with the cancel command.
-```sh
+```azurecli
 az acr supply-chain workflow cancel-run -r <registryname> -g <resourcegroup> --type <continuouspatchv1>
 ```
 Reconfigure your continuous patching workflow after.
@@ -81,13 +81,13 @@ Reconfigure your continuous patching workflow after.
 
 **Possible CLI Outputs for 'List' Command**
 
-```sh
+```azurecli
 az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [–-run-status <Failed || Queued || Running || Skipped || Succeeded || Unknown>]
 ```
 
 If scan and patch are successful
 
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -100,7 +100,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is successful but patch isn't (with a previous patched image available)
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -113,7 +113,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is successful but patch isn't (with NO previous patched image available)
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -126,7 +126,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is successful and no patch is needed (no OS vulnerabilities found)
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -140,7 +140,7 @@ image: import:dotnetapp-manual
 ```
 
 if scan is successful and no patch is needed and NO patched image exists yet
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -154,7 +154,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is a failure and a patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Failed
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -167,7 +167,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is a failure and NO previous patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Failed
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -180,7 +180,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is currently running and a patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Running
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -193,7 +193,7 @@ image: import:dotnetapp-manual
 ```
 
 If scan is currently running and NO patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Running
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -206,7 +206,7 @@ image: import:dotnetapp-manual
 ```
 
 If patch is currently running and a patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
@@ -219,7 +219,7 @@ image: import:dotnetapp-manual
 ```
 
 If patch is currently running and NO patched image exists
-```sh
+```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
         scan date: 2024-09-13 21:05:58.841962+00:00
