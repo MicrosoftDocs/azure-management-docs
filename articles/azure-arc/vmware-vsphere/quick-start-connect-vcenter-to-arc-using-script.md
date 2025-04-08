@@ -3,7 +3,7 @@ title: Connect VMware vCenter Server to Azure Arc by using the helper script
 description: In this quickstart, you learn how to use the helper script to connect your VMware vCenter Server instance to Azure Arc.
 ms.topic: quickstart 
 ms.custom: references_regions
-ms.date: 11/05/2024
+ms.date: 04/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 author: PriskeyJeronika-MS
@@ -84,7 +84,7 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 5. Select **Create a new resource bridge** and select **Next : Basics >**.
 6. Provide a name for **Azure Arc resource bridge**. For example: *contoso-nyc-resourcebridge*.
 7. Select a subscription and resource group where you want to create the resource bridge.
-8. Under **Region**, select an Azure location where you want to store the resource metadata. Currently, the supported regions are **East US**, **West Europe**, **Australia East**, and **Canada Central**.
+8. Under **Region**, select an Azure location where you want to store the resource metadata.
 9. Provide a name for **Custom location**. This is the name that you'll see when you deploy virtual machines. Name it for the datacenter or the physical location of your datacenter. For example: *contoso-nyc-dc.*
 10. Leave the option **Use the same subscription and resource group as your resource bridge** selected.
 11. Provide a name for your vCenter Server instance in Azure. For example: **contoso-nyc-vcenter**.
