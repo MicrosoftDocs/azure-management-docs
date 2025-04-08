@@ -63,7 +63,21 @@
       - name: Deploy extensions by using Ansible
         href: ../servers/manage-vm-extensions-ansible.md
       - name: Automatic extension upgrade
-        href: ../servers/manage-automatic-vm-extension-upgrade.md   
+        href: ../servers/manage-automatic-vm-extension-upgrade.md  
+    - name: Modernize VM management
+      href: ../servers/modernize-server-management.md 
+    - name: Monitor VMs
+      href: ../servers/learn/tutorial-enable-vm-insights.md 
+    - name: Onboard to Microsoft Defender for Cloud
+      href: ../defender-for-cloud/quickstart-onboard-machines.md  
+    - name: Onboard to Microsoft Sentinel
+      href: ../servers/scenario-onboard-azure-sentinel.md 
+    - name: Assign policy to assess compliance
+      href: ../servers/learn/tutorial-assign-policy-portal.md 
+    - name: Deploy Azure services at scale
+      href: ../servers/deploy-management-services.md 
+    - name: Manage with Windows Admin Center
+      href: ./windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines.md
   - name: Azure Arc benefits for SCVMM VMs
     items:
     - name: Windows Server Management
