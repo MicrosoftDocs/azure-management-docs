@@ -63,7 +63,7 @@ You can also ask about a specific service event to see whether it's resolved. If
 
 You can also ask about current and past planned maintenance events, with prompts such as "**Any planned maintenance events?**" or "**How many planned maintenance events in the last 20 days?**"
 
-:::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events.":::
+:::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenances.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events.":::
 
 :::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance-in-last-days.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events in the last 20 days.":::
 
