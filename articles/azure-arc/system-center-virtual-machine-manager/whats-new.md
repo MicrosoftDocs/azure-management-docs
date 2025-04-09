@@ -5,7 +5,7 @@ description: This article describes the new features and enhancements supported 
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
-ms.date: 02/14/2025
+ms.date: 04/09/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -15,13 +15,17 @@ ms.subservice: azure-arc-scvmm
 
 Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments.
 
+## April 2025 
+ 
+- [Azure PowerShell](/powershell/module/az.scvmm/?view=azps-13.4.0&preserve-view=true) based VM management
+
 ## January 2025
 
 - [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for SCVMM VMs with active Windows Server Software Assurance licenses, giving you cost-benefits on Azure Update Manager, Azure Change Tracking and Inventory billing and exclusive capabilities.
 
 ## December 2024
 
-- [Terraform templates](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform) based VM management 
+- [Terraform templates](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform) based VM management (AzAPI provider) 
 - [Bicep templates](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep) based VM management 
 - [ARM templates](/azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template) based VM management 
 

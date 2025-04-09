@@ -1,7 +1,7 @@
 ---
 title: Work smarter with your Azure Local instances using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can help you work with your Azure Local instances.
-ms.date: 11/19/2024
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -14,13 +14,11 @@ author: JnHs
 
 # Work smarter with your Azure Local instances using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you identify problems and get information about your [Azure Local](/azure/azure-local/overview) instances.
+Microsoft Copilot in Azure can help you identify problems and get information about your [Azure Local](/azure/azure-local/overview) instances.
 
 When you ask Microsoft Copilot in Azure for information about the state of your hybrid infrastructure, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context of a query isn't clear, you'll be prompted to clarify what you're looking for.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Sample prompts
 

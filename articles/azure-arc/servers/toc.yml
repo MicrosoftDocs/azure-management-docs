@@ -102,6 +102,18 @@
       href: manage-agent.md
     - name: Migrate machine across regions
       href: manage-howto-migrate.md
+    - name: Run command
+      items:
+      - name: Overview
+        href: run-command.md
+      - name: REST API
+        href: run-command-rest.md
+      - name: Azure CLI
+        href: run-command-cli.md
+      - name: PowerShell
+        href: run-command-powershell.md
+      - name: Limit access to Run command
+        href: run-command-security.md
   - name: Scenarios
     items:
     - name: Test Arc-enabled servers using an Azure VM
@@ -114,8 +126,6 @@
       href: migrate-legacy-agents.md
     - name: Deploy and configure Azure Monitor Agent using Azure Policy
       href: deploy-ama-policy.md
-    - name: Remotely configure servers using Run command
-      href: run-command.md
     - name: Organize and inventory servers
       href: organize-inventory-servers.md
     - name: Azure Management Services
