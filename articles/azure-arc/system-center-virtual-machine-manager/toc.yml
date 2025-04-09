@@ -101,11 +101,11 @@
   - name: SCVMM-specific deployment errors
     href: troubleshoot-scvmm.md
   - name: Common deployment errors
-    href: ../resource-bridge/troubleshoot-resource-bridge?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
+    href: ../resource-bridge/troubleshoot-resource-bridge.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
   - name: Agent connection issues
-    href: ../server/troubleshoot-agent-onboard.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
+    href: ../servers/troubleshoot-agent-onboard.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
   - name: VM Extension issues
-    href: ../server/troubleshoot-vm-extensions.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
+    href: ../servers/troubleshoot-vm-extensions.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
 - name: Reference
   items:
   - name: Azure CLI
