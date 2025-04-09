@@ -23,8 +23,6 @@ Any Microsoft customers who use Service and Resource health to assess their syst
 
 > [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-> [!INCLUDE [preview-note](includes/preview-note.md)]
-
 
 ## Service Health sample prompts
 
