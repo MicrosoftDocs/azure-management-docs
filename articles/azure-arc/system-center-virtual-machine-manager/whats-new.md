@@ -17,7 +17,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## April 2025 
  
-[Azure PowerShell](/powershell/module/az.scvmm/?view=azps-13.4.0&preserve-view=true) based VM management
+- [Azure PowerShell](/powershell/module/az.scvmm/?view=azps-13.4.0&preserve-view=true) based VM management
 
 ## January 2025
 
