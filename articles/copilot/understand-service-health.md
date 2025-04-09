@@ -21,9 +21,9 @@ You can ask Copilot in Azure questions to get information from [Azure Service He
 
 Any Microsoft customers who use Service and Resource health to assess their system health can use Copilot in Azure to get information.
 
-[!INCLUDE [scenario-note](includes/scenario-note.md)]
+> [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-[!INCLUDE [preview-note](includes/preview-note.md)]
+> [!INCLUDE [preview-note](includes/preview-note.md)]
 
 
 ## Service Health sample prompts
