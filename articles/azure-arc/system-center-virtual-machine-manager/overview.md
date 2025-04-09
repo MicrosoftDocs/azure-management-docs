@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 02/12/2025
+ms.date: 04/08/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -28,15 +28,6 @@ Azure Arc-enabled SCVMM allows you to:
 - Build automation and self-service pipelines using Python, Java, JavaScript, Go, and .NET SDKs; Terraform, ARM, and Bicep templates; Azure REST APIs, CLI, and PowerShell.
 - Leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server 2012/R2 VMs. 
 
-> [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
-
-## Onboard resources to Azure management at scale
-
-Azure services such as Microsoft Defender for Cloud, Azure Monitor, Azure Update Manager, and Azure Policy provide a rich set of capabilities to secure, monitor, patch, and govern off-Azure resources via Arc.
-
-By using Azure Arc-enabled SCVMM's capabilities to discover your SCVMM managed estate and install the Azure Connected Machine agent at scale, you can simplify onboarding your entire System Center estate to these services.
-
 ## How does it work?
 
 To Arc-enable an SCVMM management server, deploy [Azure Arc resource bridge](../resource-bridge/overview.md) in the VMM environment. Azure Arc resource bridge is a virtual appliance that connects VMM management server to Azure. Azure Arc resource bridge enables you to represent the SCVMM resources (clouds, VMs, templates etc.) in Azure and do various operations on them.
@@ -57,6 +48,10 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 
 You have the flexibility to start with either option, and incorporate the other one later without any disruption. With both options, you'll enjoy the same consistent experience.
 
+
+> [!NOTE]
+> For more information regarding the different services Azure Arc offers, see [Choose the right Azure Arc service for machines](../choose-service.md).
+
 ### Supported scenarios
 
 The following scenarios are supported in Azure Arc-enabled SCVMM:
@@ -64,8 +59,28 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
 - SCVMM administrators can connect a VMM instance to Azure and browse the SCVMM virtual machine inventory in Azure.
 - Administrators can use the Azure portal to browse SCVMM inventory and register SCVMM cloud, virtual machines, VM networks, and VM templates into Azure.
 - Administrators can provide app teams/developers fine-grained permissions on those SCVMM resources through Azure RBAC.
-- App teams can use Azure interfaces (portal, CLI, or REST API) to manage the lifecycle of on-premises VMs they use for deploying their applications (CRUD, Start/Stop/Restart).
-- Administrators can install Azure Connected Machine agents on SCVMM VMs at-scale and install corresponding extensions to use Azure management services like Microsoft Defender for Cloud, Azure Update Manager, Azure Monitor, etc.
+- App teams can use Azure interfaces (portal, CLI, PowerShell, SDKs, Terraform, Bicep, ARM templates, or REST API) to manage the lifecycle of on-premises VMs they use for deploying their applications (CRUD, Start/Stop/Restart).
+- Administrators can install Azure Connected Machine agent on SCVMM-managed VMs at-scale and can perform the following actions:
+     - **Govern**:
+         * Assign [Azure machine configurations](/azure/governance/machine-configuration/overview) to audit settings inside the machine.
+     - **Protect**:
+         * Protect non-Azure servers with [Microsoft Defender for Endpoint](/microsoft-365/security/defender-endpoint), included through [Microsoft Defender for Cloud](/azure/security-center/defender-for-servers-introduction), for threat detection, for vulnerability management, and to proactively monitor for potential security threats. Microsoft Defender for Cloud presents the alerts and remediation suggestions from the threats detected.
+         * Use [Microsoft Sentinel](/azure/azure-arc/servers/scenario-onboard-azure-sentinel) to collect security-related events and correlate them with other data sources.
+     - **Configure**:
+         * Use [Azure Automation](/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows) for frequent and time-consuming management tasks using PowerShell and Python [runbooks](/azure/automation/automation-runbook-execution). Assess configuration changes for installed software, Microsoft services, Windows registry and files, and Linux daemons using the Azure Monitor agent for [change tracking and inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm).
+         * Use [Azure Update Manager](/azure/update-manager/overview) to manage operating system updates for Windows and Linux servers. Automate onboarding and configuration of a set of Azure services when you use [Azure Automanage](/azure/automanage/automanage-arc).
+         * Perform post-deployment configuration and automation tasks using supported [Arc-enabled servers VM extensions](/azure/azure-arc/servers/manage-vm-extensions) for non-Azure Windows or Linux machine.
+     - **Monitor**:
+         * Monitor operating system performance and discover application components to monitor processes and dependencies with other resources using [VM insights](/azure/azure-monitor/vm/vminsights-overview).
+         * Collect other log data, such as performance data and events, from the operating system or workloads running on the machine with the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview). This data is stored in a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview).
+
+
+     Log data collected and stored in a Log Analytics workspace from the hybrid machine contains properties specific to the machine, such as a Resource ID, to support [resource-context](/azure/azure-monitor/logs/manage-access#access-mode) log access.
+
+     Watch this video to learn more about Azure monitoring, security, and update services across hybrid and multicloud environments.
+
+     > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
+- Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server 2012/R2 VMs.
 
 ### Unsupported scenarios
 
@@ -84,7 +99,7 @@ For the most up-to-date information about regional availability of Azure Arc-ena
 
 ## Data Residency
 
-Azure Arc-enabled SCVMM doesn't store/process customer data outside the region the customer deploys the service instance in.
+Azure Arc-enabled SCVMM stores customer data. By default, customer data stays within the region the customer deploys the service instance in. For region with data residency requirements, customer data is always kept within the same region.
 
 ## Next steps
 
