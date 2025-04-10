@@ -39,11 +39,11 @@ Here are a few examples of the kinds of prompts you can use to get service healt
 - "Do I have any impacted resources from event {0}?"
 ### Resource Health handler prompts
 •	"Can you share health information of resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?``
+  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?``<br>
 •	"What is the health of resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.DocumentDB/databaseAccounts/testResource?"``
+  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.DocumentDB/databaseAccounts/testResource?"``<br>
 •	"Is the resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/loadBalancers/testResource healthy?"``
+  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/loadBalancers/testResource healthy?"``<br>
 
 ## Examples
 
