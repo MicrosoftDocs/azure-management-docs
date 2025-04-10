@@ -43,15 +43,17 @@ landingContent:
           - text: Module - Intro to Azure Arc-enabled Kubernetes
             url: /training/modules/intro-to-arc-enabled-kubernetes
 
-  - title: Deploy configurations using GitOps
+  - title: Deploy applications using GitOps
     linkLists:
       - linkListType: tutorial
         links:
-          - text: Deploy configurations using GitOps (Flux v2)
+          - text: Deploy using GitOps (Flux v2)
             url: tutorial-use-gitops-flux2.md
+          - text: Deploy using GitOps (ArgoCD)
+            url: tutorial-gitops-argocd.md
           - text: Implement CI/CD with GitOps (Flux v2)
             url: tutorial-gitops-flux2-ci-cd.md
- 
+
   - title: Proof of concept
     linkLists:
      - linkListType: sample

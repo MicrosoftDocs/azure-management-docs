@@ -19,6 +19,8 @@ Before you dive in, take a moment to [learn how GitOps with Flux works conceptua
 >
 > You can also create Flux configurations by using Bicep, ARM templates, or Terraform AzAPI provider. For more information, see [Microsoft.KubernetesConfiguration fluxConfigurations](/azure/templates/microsoft.kubernetesconfiguration/fluxconfigurations).
 
+Consider alternatively trying out using the new [Microsoft GitOps ArgoCD extension](tutorial-use-gitops-argocd.md). Argo CD is a popular open-source GitOps tool that provides a different set of features and capabilities compared to Flux v2.
+
 ## Prerequisites
 
 To deploy applications using GitOps with Flux v2, you need:
