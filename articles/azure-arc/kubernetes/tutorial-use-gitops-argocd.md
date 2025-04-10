@@ -148,7 +148,7 @@ An alternative installation method recommended for production usage is [workload
 > [!IMPORTANT]
 > The HA mode requires three nodes in the cluster to be able to install. There's a [feature backlog item to enable the extension to be deployed in non-HA mode](https://github.com/Azure/AKS/issues/4942), and comment or thumbs up if it is of interest to you.
 
-Replace the following variables with your own values in this bicep template to create the extension with workload identity:
+To create the extension with workload identity, first replace the following variables with your own values in this bicep template:
 
 ```bicep
 var clusterName = '<aks-or-arc-cluster-name>'
