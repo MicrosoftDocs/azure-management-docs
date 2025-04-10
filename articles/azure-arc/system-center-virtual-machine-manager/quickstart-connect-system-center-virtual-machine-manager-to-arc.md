@@ -7,7 +7,7 @@ manager: jsuri
 ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.date: 04/08/2025
+ms.date: 04/10/2025
 ms.custom: references_regions
 
 # Customer intent: As a VI admin, I want to connect my VMM management server to Azure Arc.
@@ -122,9 +122,15 @@ Once the command execution is completed, your setup is complete, and you can try
 >[!IMPORTANT]
 >The resource bridge must continue to be in *online* status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a *healthy* state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
 
+## Recover from failed deployments
+
+If the Azure Arc resource bridge deployment fails, see the Troubleshooting section for debugging steps.
+
+To clean up the installation and retry the deployment, use the following commands.
+
 # [Retry command - Windows](#tab/win)
 
-If for any reason, the appliance creation fails, you need to retry it. Run the command with ```-Force``` to clean up and onboard again.
+Run the command with ```-Force``` to clean up and onboard again.
 
 ```powershell-interactive
  ./resource-bridge-onboarding-script.ps1 -Force -Subscription <Subscription> -ResourceGroup <ResourceGroup> -AzLocation <AzLocation> -ApplianceName <ApplianceName> -CustomLocationName <CustomLocationName> -VMMservername <VMMservername>
@@ -135,7 +141,7 @@ If for any reason, the appliance creation fails, you need to retry it. Run the c
  
 # [Retry command - Linux](#tab/lin)
 
-If for any reason, the appliance creation fails, you need to retry it. Run the command with ```--force``` to clean up and onboard again.
+Run the command with ```--force``` to clean up and onboard again.
 
   ```sh
     bash resource-bridge-onboarding-script.sh --force
