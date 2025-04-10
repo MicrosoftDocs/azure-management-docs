@@ -11,7 +11,7 @@ ms.custom: template-tutorial, devx-track-azurecli, references_regions
 This tutorial describes how to use Microsoft GitOps in a Kubernetes cluster. Microsoft GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment.
 
 > [!TIP]
-> While the source in this tutorial is a Git repository, Microsoft GitOps also provides support for other common file sources such as Helm and OCI repositories.
+> While the source in this tutorial is a Git repository, Microsoft GitOps also provides support for other common file sources such as Helm and Open Container Initiative (OCI) repositories.
 >
 
 ## Prerequisites
@@ -31,7 +31,7 @@ To deploy applications using Microsoft GitOps, you need either an Azure Arc-enab
 * An MSI-based AKS cluster that's up and running.
 
   > [!IMPORTANT]
-  > Ensure that the AKS cluster is created with MSI (not SPN), because the extension doesn't work with SPN-based AKS clusters.
+  > The AKS cluster needs to be created with Managed Service Identity (MSI), not Service Principal Name (SPN) for the extension to work.
   > For new AKS clusters created with `az aks create`, the cluster is MSI-based by default. To convert SPN-based clusters to MSI, run `az aks update -g $RESOURCE_GROUP -n $CLUSTER_NAME --enable-managed-identity`. For more information, see [Use a managed identity in AKS](/azure/aks/use-managed-identity).
 
 * Read and write permissions on the `Microsoft.ContainerService/managedClusters` resource type.
@@ -123,9 +123,9 @@ False          whl             k8s-extension          C:\Users\somename\.azure\c
 The Microsoft GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/operator-manual/installation/) supports multi-tenancy in high availability (HA) mode and supports workload identity.
 
 > [!IMPORTANT]
-> The HA mode requires three nodes in the cluster to be able to install. There is a [feature backlog item to enable the extension to be deployed in non-HA mode](https://github.com/Azure/AKS/issues/4942), comment or thumbs up if it is of interest to you.
+> The HA mode requires three nodes in the cluster to be able to install. There's a [feature backlog item to enable the extension to be deployed in non-HA mode](https://github.com/Azure/AKS/issues/4942), and comment or thumbs up if it is of interest to you.
 
- This command creates the most simple configuration installing the ArgoCD components to a new `argocd` namespace with cluster wide access. Cluster wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. e.g., `namespace1,namespace2`
+ This command creates the most simple configuration installing the ArgoCD components to a new `argocd` namespace with cluster wide access. Cluster wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. For example, `namespace1,namespace2`
 
 ```azurecli
 az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> \
@@ -143,10 +143,10 @@ If you want to limit ArgoCD access to a specific namespace, use the `--config na
 
 ## Create Microsoft GitOps (ArgoCD) extension with workload identity
 
-An alternative installation method recommended for production usage is to use [workload identity](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
+An alternative installation method recommended for production usage is [workload identity](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
 
 > [!IMPORTANT]
-> The HA mode requires three nodes in the cluster to be able to install. There is a [feature backlog item to enable the extension to be deployed in non-HA mode](https://github.com/Azure/AKS/issues/4942), or thumbs up if it is of interest to you.
+> The HA mode requires three nodes in the cluster to be able to install. There's a [feature backlog item to enable the extension to be deployed in non-HA mode](https://github.com/Azure/AKS/issues/4942), and comment or thumbs up if it is of interest to you.
 
 Replace the following variables with your own values in this bicep template to create the extension with workload identity:
 
@@ -180,7 +180,7 @@ p, role:org-admin, repositories, get, *, allow
 p, role:org-admin, repositories, create, *, allow
 p, role:org-admin, repositories, update, *, allow
 p, role:org-admin, repositories, delete, *, allow
-g, replace-me##-argocd-ui-entra-group-admin-id, role:org-admin
+g, replace-me##-argocd-ui-Microsoft Entra-group-admin-id, role:org-admin
 '''
 
 resource cluster 'Microsoft.ContainerService/managedClusters@2024-10-01' existing = {
@@ -198,7 +198,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
     configurationSettings: {
       'workloadIdentity.enable': 'true'
       'workloadIdentity.clientId': workloadIdentityClientId
-      'workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
+      'workloadIdentity.Microsoft EntraSSOClientId': ssoWorkloadIdentityClientId
       'config-maps.argocd-cm.data.oidc\\.config': oidcConfig
       'config-maps.argocd-cm.data.url': url
       'config-maps.argocd-rbac-cm.data.policy\\.default': defaultPolicy
@@ -217,13 +217,13 @@ The bicep template can be created using this command:
 
 `clusterName` is the name of the AKS or Arc-enabled Kubernetes cluster.
 
-`workloadIdentityClientId` and `ssoWorkloadIdentityClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoWorkloadIdentityClientId` is used for the authentication for the ArgoCD UI and the `workloadIdentityClientId` is used for the workload identity for the ArgoCD components. Visit [Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoWorkloadIdentityClientId ArgoCD official documentation.
+`workloadIdentityClientId` and `ssoWorkloadIdentityClientId` are the client IDs of the managed identity desired to be used for workload identity. The `ssoWorkloadIdentityClientId` is used for the authentication for the ArgoCD UI and the `workloadIdentityClientId` is used for the workload identity for the ArgoCD components. Visit [Microsoft Entra ID App Registration Auth using OIDC](https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/user-management/microsoft.md) for additional information on general setup and configuration of the ssoWorkloadIdentityClientId ArgoCD official documentation.
 
-`url` is the public IP of the ArgoCD UI. There is no public IP or domain name unless the cluster already has a customer provided ingress controller. The ingress rule would need to be added to the ArgoCD UI after deployment.
+`url` is the public IP of the ArgoCD UI. There's no public IP or domain name unless the cluster already has a customer provided ingress controller. The ingress rule would need to be added to the ArgoCD UI after deployment.
 
-`oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Azure Active Directory. Replace `<same-value-as-ssoWorkloadIdentityClientId-above>` with the same value as `ssoWorkloadIdentityClientId` above.
+`oidcConfig` - replace `<your-tenant-id>` with the tenant ID of your Microsoft Entra ID. Replace `<same-value-as-ssoWorkloadIdentityClientId-above>` with the same value as `ssoWorkloadIdentityClientId`.
 
-`policy` variable is the argocd-rbac-cm configmap settings of ArgoCD. `g, replace-me##-argocd-ui-entra-group-admin-id` is the Entra group ID that will be used to give admin access to the ArgoCD UI. The Entra group ID can be found in the Azure portal under Microsoft Entra ID > Groups > _your-group-name_ > Properties. You can use the Entra user ID alternatively to an Entra group ID. The Entra User ID can be found in the Azure portal under Microsoft Entra ID > Users > _your-user-name_ > Properties.
+`policy` variable is the argocd-rbac-cm configmap settings of ArgoCD. `g, replace-me##-argocd-ui-entra-group-admin-id` is the Microsoft Entra group ID that is used to give admin access to the ArgoCD UI. The Microsoft Entra group ID can be found in the Azure portal under Microsoft Entra ID > Groups > _your-group-name_ > Properties. You can use the Microsoft Entra user ID alternatively to a Microsoft Entra group ID. The Microsoft Entra User ID can be found in the Azure portal under Microsoft Entra ID > Users > _your-user-name_ > Properties.
 
 ### Create workload identity credentials
 
@@ -242,7 +242,7 @@ To set up new workload identity credentials, follow these steps:
 
 ## Connect to private ACR registries or ACR repositories using workload identity
 
-To utilize the private ACR registry or ACR repositories, follow the instructions in the official ArgoCD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity).  The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in this guide were completed by the extension with the bicep deployment and can be skipped.
+To utilize the private ACR registry or ACR repositories, follow the instructions in the official ArgoCD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity). The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in this guide were completed by the extension with the bicep deployment and can be skipped.
 
 ## Deploy ArgoCD application
 
@@ -269,7 +269,7 @@ spec:
 EOF
 ```
 
-The AKS store demo application was installed into the pets namespace. [Visit the following instructions](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application) to see the webpage. Be sure to visit the IP address using http and not https.
+The AKS store demo application was installed into the pets namespace. See the application webpage by [following these instructions](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application). Be sure to visit the IP address using http and not https.
 
 ## Update extension configuration
 
@@ -293,5 +293,5 @@ az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t conne
 
 ## Next steps
 
-* File issues and feature requests on the Azure/AKS Github page and be sure to include the word "ArgoCD" and [`extension/argocd` label](https://github.com/Azure/AKS/labels/extension%2Fargocd).
+* File issues and feature requests on the [Azure/AKS repository](https://github.com/Azure/AKS/labels/extension%2Fargocd) and be sure to include the word "ArgoCD" in the description or title.
 * Explore [AKS-Platform engineering code sample](https://github.com/Azure-Samples/aks-platform-engineering) which deploys OSS ArgoCD with Backstage and Cluster API Provider for Azure (CAPZ) or Crossplane.
