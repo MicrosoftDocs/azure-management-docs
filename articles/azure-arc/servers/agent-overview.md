@@ -98,8 +98,6 @@ Installing the Connected Machine agent for Window applies the following system-w
     | %ProgramData%\GuestConfig\ext_mgr_logs\gc_ext.log | Records details about extension manager activity (extension install, uninstall, and upgrade events). |
     | %ProgramData%\GuestConfig\extension_logs | Directory containing logs for individual extensions. |
 
-* The process creates the local security group **Hybrid agent extension applications**.
-
 * After uninstalling the agent, the following artifacts remain.
 
   * %ProgramData%\AzureConnectedMachineAgent\Log
