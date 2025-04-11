@@ -200,6 +200,7 @@ ux.console.azure.com (Azure Cloud Shell)
 *.applicationinsights.us
 *.azure.us
 *.azureedge.net
+*.azureedge.us
 *.loganalytics.us
 *.microsoft.us
 *.microsoftonline.us
