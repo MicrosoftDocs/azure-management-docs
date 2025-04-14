@@ -1,7 +1,7 @@
 ---
 title: Work smarter with your Azure Local instances using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can help you work with your Azure Local instances.
-ms.date: 04/08/2025
+ms.date: 04/09/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -36,7 +36,7 @@ In this example, Microsoft Copilot in Azure responds to the prompt "**summarize 
 
 If you follow up by asking "**tell me more about the alerts**", Microsoft Copilot in Azure provides more details about the current alerts.
 
-:::image type="content" source="media/work-smarter-edge/tell-me-more-about-alerts.png" alt-text="Screenshot showing Microsoft Copilot in Azure summarizing the active alerts." lightbox="media/work-smarter-edge/tell-me-more-about-alerts.png":::
+:::image type="content" source="media/work-smarter-edge/azure-local-alerts.png" alt-text="Screenshot showing Microsoft Copilot in Azure summarizing the active alerts." lightbox="media/work-smarter-edge/azure-local-alerts.png":::
 
 ## Next steps
 
