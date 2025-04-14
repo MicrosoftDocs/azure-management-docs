@@ -137,7 +137,8 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-> [!IMPORTANT]
+<a name="breaking-change"></a>
+
 > **Breaking change: Semantic versioning changes in source controller**
 >
 > The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
@@ -147,6 +148,8 @@ The most recent version of the Flux v2 extension and the two previous versions (
 >
 > - GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
 > - Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+>
+> :::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
 >
 > **Impact on users:**
 >
