@@ -137,28 +137,26 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-<a name="breaking-change"></a>
+**Breaking change: Semantic versioning changes in source controller**
 
-> **Breaking change: Semantic versioning changes in source controller**
->
-> The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
->
-> **What changed?**
-> In the latest version (v3.3.1) of the semver package, certain version formats that were previously considered valid are now being rejected. Specifically, version strings with leading zeroes in numeric segments (e.g., 1.0.029903) are no longer accepted as valid semver.
->
-> - GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
-> - Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
->
-> :::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
->
-> **Impact on users:**
->
-> - **Existing deployments are unaffected**. Anything currently deployed will continue to function as expected.
-> - **Future deployments or reconciliations may fail** if they rely on chart versions that don’t follow the stricter semver rules.
-> - A common error you might see: `invalid chart reference: validation: chart.metadata.version "1.0.029903" is invalid`
->
-> **What you should do:**
-> Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
+The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
+
+**What changed?**
+In the latest version (v3.3.1) of the semver package, certain version formats that were previously considered valid are now being rejected. Specifically, version strings with leading zeroes in numeric segments (e.g., 1.0.029903) are no longer accepted as valid semver.
+
+- GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+- Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+
+:::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
+
+**Impact on users:**
+
+- **Existing deployments are unaffected**. Anything currently deployed will continue to function as expected.
+- **Future deployments or reconciliations may fail** if they rely on chart versions that don’t follow the stricter semver rules.
+- A common error you might see: `invalid chart reference: validation: chart.metadata.version "1.0.029903" is invalid`
+
+**What you should do:**
+Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
 ### 1.16.2 (March 2025)
 
