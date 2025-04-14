@@ -1,51 +1,32 @@
 ---
 title: What is Azure Container Storage enabled by Azure Arc?
-description: Learn about Azure Container Storage enabled by Azure Arc.
+description: Learn about Azure Container Storage enabled by Azure Arc, a first-party storage system designed for Arc-connected Kubernetes clusters.
 author: asergaz
 ms.author: sergaz
 ms.topic: overview
-ms.date: 03/12/2025
-ms.custom: references_regions
+ms.date: 04/14/2025
 
+#customer intent: As a user, I want to understand the Azure Container Storage enabled by Azure Arc offering and its features.
 ---
 
 # What is Azure Container Storage enabled by Azure Arc?
 
-Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-enabled Kubernetes clusters. Azure Container Storage enabled by Azure Arc can be deployed to write files to a "ReadWriteMany" persistent volume claim (PVC) where they are then transferred to Azure Blob Storage. Azure Container Storage enabled by Azure Arc offers a range of features to support Azure IoT Operations and other Arc services. Azure Container Storage enabled by Azure Arc with high availability and fault-tolerance will be fully supported and generally available (GA) in the second half of 2024.
+Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters. This Arc extension can be deployed to write files to a *ReadWriteMany* persistent volume claim (PVC) where they can be stored locally, or  transferred to Azure Blob Storage destinations in the cloud. Azure Container Storage offers a range of features to support various workloads, such as Azure IoT Operations, and other Arc services. With high availability and fault-tolerance options available, this Arc extension is ready for production workloads.
 
-## What does Azure Container Storage enabled by Azure Arc do?
+## What does Azure Container Storage do?
 
-Azure Container Storage enabled by Azure Arc serves as a native persistent storage system for Arc-enabled Kubernetes clusters. Its primary role is to provide a reliable, fault-tolerant file system that allows data to be tiered to Azure. For Azure IoT Operations and other Arc Services, Azure Container Storage enabled by Azure Arc is crucial in making Kubernetes clusters stateful. Key features of Azure Container Storage enabled by Azure Arc for Arc-enabled K8s clusters include:
+Azure Container Storage serves as a native persistent storage system for Arc-connected Kubernetes clusters. Its primary role is to provide a flexible, reliable, fault-tolerant file system that allows data to be kept safely at the edge and/or to be tiered to Azure. For Azure IoT Operations and other Arc Services, Azure Container Storage is crucial in making Kubernetes clusters stateful. Key features of Arc-connected clusters running this extension include:
 
-- **Tolerance to node failures:** When configured as a 3 node cluster, Azure Container Storage enabled by Azure Arc replicates data between nodes (triplication) to ensure high availability and tolerance to single-node failures.
-- **Data synchronization to Azure:** Azure Container Storage enabled by Azure Arc is configured with a storage target, so data written to volumes is automatically tiered to Azure Blob (block blob, ADLSgen-2 or OneLake) in the cloud.
-- **Low latency operations:** Arc services, such as Azure IoT Operations, can expect low latency for read and write operations.
-- **Simple connection:** Customers can easily connect to an Azure Container Storage enabled by Azure Arc volume using a CSI driver to start making Persistent Volume Claims against their storage.
-- **Flexibility in deployment:** Azure Container Storage enabled by Azure Arc can be deployed as part of Azure IoT Operations or as a standalone solution.
-- **Observable:** Azure Container Storage enabled by Azure Arc supports industry standard Kubernetes monitoring logs and metrics facilities, and supports Azure Monitor Agent observability.
-- **Platform neutrality:** Azure Container Storage enabled by Azure Arc is a Kubernetes storage system that can run on any Arc Kubernetes supported platform. Validation was done for specific platforms, including Ubuntu + CNCF K3s/K8s, Windows IoT + AKS-EE, and Azure Stack HCI + AKS-HCI.
+- **Tolerance to node failures:** When configured as a three node cluster, Azure Container Storage replicates data between nodes to ensure high availability and tolerance to single node failures.
+- **Storage Local to your cluster**: With a Local Shared Edge Volume, the user can store data local to their edge deployment with a *ReadWriteMany* access model.
+- **Data synchronization to Azure:** Azure Container Storage is configured with a storage target, so data written to volumes is automatically tiered to Azure Blob (block blob, Azure Data Lake Storage Gen2, or OneLake) in the cloud.
+- **Simple connection:** Customers can easily connect to a configured volume using a CSI driver to start making persistent volume claims against their storage.
+- **Observable:** Supports industry standard Kubernetes monitoring logs and metrics facilities, and supports Azure Monitor Agent observability.
+- **Platform neutrality:** Azure Container Storage is a Kubernetes storage system that can run on any Arc Kubernetes supported platform. Validation was done for specific platforms, including Ubuntu + CNCF K3s/K8s, Windows IoT + AKS Edge Essentials, and Azure Local.
 
-## What are the different Azure Container Storage enabled by Azure Arc offerings?
+## Supported Azure regions
 
-The original Azure Container Storage enabled by Azure Arc offering is [*Cache Volumes (preview)*](cache-volumes-overview.md). The newest offering is [*Edge Volumes*](install-edge-volumes.md).
-
-## What are Azure Container Storage enabled by Azure Arc Edge Volumes?
-
-The first addition to the Edge Volumes offering is *Local Shared Edge Volumes*, providing highly available, failover-capable storage, local to your Kubernetes cluster. This shared storage type remains independent of cloud infrastructure, making it ideal for scratch space, temporary storage, and locally persistent data unsuitable for cloud destinations.
-
-The second new offering is *Cloud Ingest Edge Volumes*, which facilitates limitless data ingestion from edge to Blob, including ADLSgen2 and OneLake. Files written to this storage type are seamlessly transferred to Blob storage and subsequently purged from the local cache once confirmed uploaded, ensuring space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, enabling local storage and synchronization upon reconnection to the network.
-
-Tailored for IoT applications, Edge Volumes not only eliminates local storage concerns and ingest limitations, but also optimizes local resource utilization and reduces storage requirements.
-
-### How does Edge Volumes work?
-
-You write to Edge Volumes as if it was your local file system. For a Local Shared Edge Volume, your data is stored and left untouched. For a Cloud Ingest Edge Volume, the volume checks for new data to mark for upload every minute, and then uploads that new data to your specified cloud destination. Five minutes after the confirmed upload to the cloud, the local copy is purged, allowing you to keep your local volume clear of old data and continue to receive new data.
-
-Get started with [Edge Volumes](prepare-linux-edge-volumes.md).
-
-### Supported Azure regions for Azure Container Storage enabled by Azure Arc
-
-Azure Container Storage enabled by Azure Arc is only available in the following Azure regions:
+Azure Container Storage enabled by Azure Arc is available in the following Azure regions:
 
 - East US
 - East US 2
@@ -55,11 +36,7 @@ Azure Container Storage enabled by Azure Arc is only available in the following 
 - North Europe
 - West Europe
 
-## Azure IoT Operations
+## Related content
 
-If you are using Azure IoT Operations, proceed to [Configure your volumes](local-shared-edge-volumes.md).
-
-## Next steps
-
-- [Prepare Linux](prepare-linux-edge-volumes.md)
-- [How to install Azure Container Storage enabled by Azure Arc](install-edge-volumes.md)
+- [Prepare Linux for Edge Volumes](prepare-linux-edge-volumes.md)
+- [Install Azure Container Storage enabled by Azure Arc Edge Volumes](install-edge-volumes.md)
