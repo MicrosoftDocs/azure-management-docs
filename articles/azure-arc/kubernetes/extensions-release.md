@@ -137,7 +137,7 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-**Breaking change: Semantic versioning changes in source controller**
+### Breaking change: Semantic versioning changes in source controller**
 
 The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
 
