@@ -242,7 +242,8 @@
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
         "articles/azure-arc/servers/**/*.md": "azure-arc-servers",
-        "articles/azure-portal/supportability/**/*.md": "azure-supportability"
+        "articles/azure-portal/supportability/**/*.md": "azure-supportability",
+        "articles/azure-arc/container-storage/**/*.md": "azure-arc-container-storage"
       },
       "searchScope": {
         "articles/azure-arc/**/*.md": [
