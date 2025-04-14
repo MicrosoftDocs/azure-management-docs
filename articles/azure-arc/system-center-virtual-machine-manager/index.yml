@@ -8,7 +8,7 @@ metadata:
   author: PriskeyJeronika-MS
   ms.service: azure-arc
   ms.topic: landing-page
-  ms.date: 12/16/2024
+  ms.date: 04/14/2025
   ms.author: v-gjeronika
 
 landingContent:
@@ -76,4 +76,11 @@ landingContent:
           - text: Go SDK
             url: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
 
-  
+  - title: Cloud Adoption
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Introduction to hybrid and multicloud products on Azure
+            url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
+          - text: Hybrid and multicloud migration
+            url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
