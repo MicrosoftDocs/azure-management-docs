@@ -260,10 +260,6 @@ yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
 
 ```
 
-COME BACK TO THIS Get list of subs and their quotas?
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
-
-
 ### Allocate/Deallocate quota from sub to group OR group to sub  
 •	PATCH subscription quotaAllocations quota/ transfer quota from sub to group and group to sub, set subscription limit as absolute value  
 To Deallocate/transfer quota from subscription to group:  
@@ -272,15 +268,9 @@ o	Set the limit property to your new desired subscription limit. If you want to 
 To allocate quota from group to subscription:  
 o	Set the limit property to your new desired subscription limit. If your current subscription quota is 110 and you want to add 10 more cores from group, set the new limit to 120.  
 
-GET Allocation quota request status 
-o	Succeeded 
-o	In progress
-o	Escalated
-•	If allocation request request status = succeeded then GET subscription quotaAllocations to view current subscription limit for region x SKU 
-o	Limit = current subscription limit
-o	Shareable quota = how many cores have been deallocated/transferred from sub to group
-	‘-5’ = 5 cores were given from sub to group 
-PATCH Subscription quotaAllocation
+
+### PATCH Subscription quotaAllocation
+```
 PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/ {managementgroup}/ subscriptions/ {subscriptionId}/ providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
 {
   “properties”: {
@@ -294,8 +284,10 @@ PATCH https://management.azure.com/”providers/Microsoft.Management/managementG
     ]
   }
 }
+```
 
-azrest
+azrest example
+```
 az rest –method patch –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01” –body ‘{
   “properties”: {
     “value”: [
@@ -308,15 +300,25 @@ az rest –method patch –url “https://management.azure.com/providers/Microso
     ]
   }
 }’ –debug
+```
+### GET Allocation quota request status 
+o	Succeeded   
+o	In progress  
+o	Escalated  
+•	If allocation request request status = succeeded then GET subscription quotaAllocations to view current subscription limit for region x SKU 
+o	Limit = current subscription limit  
+o	Shareable quota = how many cores have been deallocated/transferred from sub to group
+	‘-5’ = 5 cores were given from sub to group  
 
+```
 Status code: 202
 Response header:
 Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/quotaAllocationOperationsStatus/3b80d125-ada8-41c8-b6c4-12fae6a7f55b?api-version=2025-03-01
 Retry-After: 30 
 Response Content
-
-Get Subscription quotaAllocation  request status
-
+```
+### Get Subscription quotaAllocation  request status
+```
 GET
 /providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
 The sample response would be: 
@@ -337,23 +339,25 @@ The sample response would be:
 "faultCode": "string"
 }
 }
+```
 
+### Get Subscription quotaAllocation 
 
-Get Subscription quotaAllocation 
-•	view current subscription limit for region x SKU 
-o	Limit = current subscription limit
-o	Shareable quota = how many cores have been deallocated/transferred from sub to group
+•	view current subscription limit for region x SKU  
+o	Limit = current subscription limit  
+o	Shareable quota = how many cores have been deallocated/transferred from sub to group  
 	‘-5’ = 5 cores were given from sub to group
 Status code: 200
 Response Header: 
 
-
+```
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
+```
 
 
 
-
-azrest
+azrest example
+```
 az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
 Response content
 
@@ -376,9 +380,10 @@ Response content
     }
   ]
 }
+```
 
-
-Submit Quota increase request
+### Submit Quota increase request
+```
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementgroup} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 {
   "properties": {
@@ -393,8 +398,11 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
     ]
   }
 }
+```
 
-Get group limit request status
+### Get group limit request status
+
+```
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 
 Sample response
@@ -416,17 +424,19 @@ Sample response
 "faultCode": "string"
 }
 }
+```
 
+### Get Group limit 
+•	available limit = how many  cores do I have at group level to distribute  
+•	limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
+•	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
 
-Get Group limit 
-•	available limit = how many  cores do I have at group level to distribute
-•	limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests 
-•	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group
-
+```
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementgroup} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
+```
 
-
-azrest
+azrest example  
+```
 az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
 
 sample reponse
@@ -462,17 +472,11 @@ yaya [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
   },
   "type": "Microsoft.Quota/groupQuotas/groupQuotaLimits"
 }
+```
 
-
-Quota Group Increase Escalations
+### Quota Group Increase Escalations
 When doing certain quota group transactions, such as quota transfers or submitting Quota Group increase request, operation is specific to a given region and VM family. 
 Customer will submit Quota Group increase request for QuotaGroupID x region x VM family, the quota group simply replaces the subscriptionID. 
 Quota Group increase requests undergo the same checks as subscription level requests. 
 Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link where you can open a support request so that a support engineer can assist you with the increase.
-
-
-
-How to request for zonal and or regional access on subscription(s) in group
-
-•	Keep process as is
 
