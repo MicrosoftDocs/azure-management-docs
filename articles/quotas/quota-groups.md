@@ -1,7 +1,7 @@
 # Azure Quota Group Public Preview
 
 ## What is Azure Quota Groups? 
-Quota Groups is a new Azure offering that will empower customers to share quota amongst a group of subscriptions and reduce the number of quota transactions. Quota Group levels the quota construct from a subscription to a Quota Group (ARM object), enabling customers to self-manage their procured quota in a group without any approvals.
+Quota Groups is a new Azure offering in Public Preview that will empower customers to share quota amongst a group of subscriptions and reduce the number of quota transactions. Quota Group levels the quota construct from a subscription to a Quota Group (ARM object), enabling customers to self-manage their procured quota in a group without any approvals.
 
 ## Quota Group Allocation/Self-distribution option
 The Quota Group Allocation/Self-Distribution feature of the Quota Group product allows customers to self-distribute or transfer unused quota between subscriptions within the group without needing to file a support ticket.  
@@ -153,6 +153,7 @@ az role assignment create --assignee "{assignee}"
 Advanced users can create custom roles if they want to give granular permissions to specific applications or users. 
 More details at - Azure custom roles - Azure RBAC | Microsoft Learn  
 
+#Azure Quota Group APIs Public Preview
 ## [Using Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json)  
 With Quota Group APIs you can:  
 1.	Create/delete Quota Group  
