@@ -1,6 +1,6 @@
 ---
 title: "Managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 04/08/2025
+ms.date: 04/18/2025
 ms.topic: overview
 description: "Managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping ensure your extensions work well together."
 ---
@@ -15,7 +15,7 @@ Managed extensions (preview) makes it easier to build, deploy, and manage applic
 
 Managed extensions (preview) currently offers the following benefits:
 
-- **Simplified development and deployment**: Developers can leverage cloud-native services across hybrid, edge, and multi-cloud environments. This helps applications can run consistently and securely, regardless of where they are deployed. The bundled package simplifies the setup process, providing a consistent and validated environment that reduces the risk of errors and makes it easier to get started and maintain their projects.
+- **Simplified development and deployment**: Developers can use cloud-native services across hybrid, edge, and multicloud environments. This helps applications can run consistently and securely, regardless of where they're deployed. The bundled package simplifies the setup process, providing a consistent and validated environment that reduces the risk of errors and makes it easier to get started and maintain their projects.
 - **Consistent releases and updates**: The bundled package approach ensures that all services are continuously updated together, rather than individually. This means that developers benefit from regular updates and servicing, including monthly updates, major version updates, and critical security fixes. These updates are applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the platform remains secure, reliable, and up to date.
 
 During the preview period, enabling managed extensions on your cluster requires you to use version 1.24.4 of the [Arc-enabled Kubernetes agents](release-notes.md) and enable the `BundleFull` feature flag.
@@ -31,7 +31,7 @@ Managed extensions (preview) for Arc-enabled Kubernetes is currently available i
 
 ## Enable managed extensions
 
-For Kubernetes clusters that have been [connected to Azure Arc](quickstart-connect-cluster.md), enable managed extensions (preview) by running the following commands.
+For Kubernetes clusters that are already [connected to Azure Arc](quickstart-connect-cluster.md), enable managed extensions (preview) by running the following commands.
 
 1. Verify that your agent version is 1.24.4:
 
@@ -53,7 +53,7 @@ Next, configure the extensions that you want to use.
 
 ### Azure Container Storage enabled by Azure Arc
 
-After you've enabled managed extensions (preview), follow these steps to configure Azure Container Storage enabled by Azure Arc.
+After you enable managed extensions (preview), follow these steps to configure Azure Container Storage enabled by Azure Arc.
 
 1. Install the Azure IoT Operations dependencies (`cert-manager` and `trust-manager`):
 

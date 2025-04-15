@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 04/08/2025
+ms.date: 04/18/2025
 ms.topic: conceptual
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 ---
