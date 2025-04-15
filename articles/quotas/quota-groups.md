@@ -9,7 +9,7 @@ This feature eliminates the necessity for customers to involve Microsoft and pro
 With this option, customers can add new subscriptions to a group and transfer unused quota from existing subscriptions within the group without filing a support ticket. 
 Additionally, customers can request quota at the group level instead of per subscription. Once the quota is approved, customers can transfer it to the subscriptions within the group as needed.  
 
-Supported Scenarios  
+### Supported Scenarios  
 1.	Deallocation – transfer unused quota from subscription(s) to Group Quota  
 2.	Allocation – transfer quota from group to target subscription(s)  
 3.	Submit Quota Group increase request for given region and VM family, once request is approved transfer quota from group to target subscription(s)  
