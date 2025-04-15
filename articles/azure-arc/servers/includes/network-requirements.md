@@ -61,7 +61,7 @@ The table below lists the URLs that must be available in order to install and us
 |`dc.services.visualstudio.com`|Agent telemetry|Optional, not used in agent versions 1.24+| Public |
 | `*.<region>.arcdataservices.com` <sup>2</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | Always | Public |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
-|`dls.microsoft.com`| Used by Arc machines enrolled in Hotpatch | Required when enabling Hotpatching on Arc enabled machines. | Public |
+|`dls.microsoft.com`| Used by Arc machines to perform license validation | Required when using Hotpatching, Windows Server Azure Benefits or Windows Server PayGo on Arc enabled machines | Public |
 
 
 <sup>1</sup> Access to this URL also needed when performing updates automatically.
