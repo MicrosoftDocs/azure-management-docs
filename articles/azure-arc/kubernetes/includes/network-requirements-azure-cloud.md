@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 02/18/2025
+ms.date: 04/15/2025
 ---
 
 > [!IMPORTANT]
@@ -11,6 +11,7 @@ ms.date: 02/18/2025
 | Endpoint (DNS) | Description |
 | ----------------- | ------------- |
 | `https://management.azure.com` | Required for the agent to connect to Azure and register the cluster. |
+| `dl.k8s.io` | Required to download kubectl binaries during Azure Arc onboarding. |
 | `https://<region>.dp.kubernetesconfiguration.azure.com` | Data plane endpoint for the agent to push status and fetch configuration information. |
 | `https://login.microsoftonline.com`<br/>`https://<region>.login.microsoft.com`<br/>`login.windows.net`| Required to fetch and update Azure Resource Manager tokens. |
 | `https://mcr.microsoft.com`<br/>`https://*.data.mcr.microsoft.com` | Required to pull container images for Azure Arc agents.        |
