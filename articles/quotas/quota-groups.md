@@ -45,7 +45,12 @@ The following diagram illustrates this concept. The existing Management Group hi
 Figure 1: Sample MG and Quota Group Hierarchy  
 
 ### Recommended group setup
-A single Quota Group object can be used to manage quotas for multiple regions and or VM families since it is a global object, the group setup may depend on whether subscription(s) are region specific or span multiple regions. Quota groups inherit permissions from the Management Group, it is therefore important to think through how to design your Quota Group structure in context of who will have access to a specific Quota Group. We recommend creating at least one level of Management Groups in your tenant to manage access to individual quota groups, like in the diagram below. In this example, the Management Group A owner (see individual operations for specific permissions requirements) will have access to Quota Group 1 and Quota group 2. The owner of Management Group B will have access to Quota Group 3. When doing certain quota group transactions, such as quota transfers or submitting Quota Group increase request, operation is specific to a given region and VM family.
+A single Quota Group object can manage quotas across multiple regions and VM families. Design your quota group structure with access control in mind—since access is inherited from the Management Group, consider creating a tiered Management Group structure to ensure proper role assignments.  
+Example Hierarchy:
+•	Management Group A owns Quota Groups 1 & 2
+•	Management Group B owns Quota Group 3
+•	Each quota group manages different regions or VM families as needed
+•	When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families.
  
 Figure 2: Sample Quota Group hierarchy
 
