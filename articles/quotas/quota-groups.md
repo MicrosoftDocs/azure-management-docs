@@ -23,13 +23,13 @@ Before you can use Quota Group feature, you must:
 •	Assign the GroupQuota Request Operator role for the Management Group that will be used to create Quota Group  
 •	Assign the Quota Request Operator role on the subscription(s) to all user accounts and applications that will perform quota operations  
 
-## Quota Group Limitations`
+## Quota Group Limitations
 •Quota Group offering is only supported for Enterprise Agreement and Internal subscriptions  
 •	Quota Group is only supported for IaaS compute resources  
 •	Public cloud support only  
 •	Management group deletion will result in customer’s loss of access to Quota Group limit, please ensure to zero out group limit by allocating cores to subscription(s), deleting subscriptions, then Quota Group object before deletion of Management Group. In the even that MG is deleted, customer can access Quota Group limit by recreating MG with same ID  
 
-## Quota Group ARM object overview
+## Quota Group as an ARM object overview
 Quota Group is a new ARM Global object created by customers to group their subscriptions for the purpose of quota management. 
 Quota Group objects are created at the Management Group scope and inherit their permissions from their parent Management Group. 
 To create a Quota Group object, customers must use a Management Group at least one level below Root Management Group. 
