@@ -62,6 +62,8 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 > 
 > The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. 
 
+The custom locations feature must be enabled before creating the custom locations because the enablement provides the required permissiosn to create the custom locations namespace on the Kubernetes cluster. 
+
 ### To enable the custom locations feature as a Microsoft Entra user, follow the steps below:
 
 1. Sign into Azure CLI as a Microsoft Entra user and run the following command:
