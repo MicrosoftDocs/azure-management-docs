@@ -1,32 +1,42 @@
-Azure Quota Group Public Preview 
+# Azure Quota Group Public Preview
 
-What is Azure Quota Groups?
+## What is Azure Quota Groups? 
 Quota Groups is a new Azure offering that will empower customers to share quota amongst a group of subscriptions and reduce the number of quota transactions. Quota Group levels the quota construct from a subscription to a Quota Group (ARM object), enabling customers to self-manage their procured quota in a group without any approvals.
 
-Quota Group Allocation/Self-distribution option
-The Quota Group Allocation/Self-Distribution feature of the Quota Group product allows customers to self-distribute or transfer unused quota between subscriptions within the group without needing to file a support ticket. This feature eliminates the necessity for customers to involve Microsoft and procure additional quota whenever a subscription is nearing its limit. With this option, customers can add new subscriptions to a group and transfer unused quota from existing subscriptions within the group without filing a support ticket. Additionally, customers can request quota at the group level instead of per subscription. Once the quota is approved, customers can transfer it to the subscriptions within the group as needed.
-Supported Scenarios
-1.	Deallocation – transfer unused quota from subscription(s) to Group Quota 
-2.	Allocation – transfer quota from group to target subscription(s)
-3.	Submit Quota Group increase request for given region and VM family, once request is approved transfer quota from group to target subscription(s)
+## Quota Group Allocation/Self-distribution option
+The Quota Group Allocation/Self-Distribution feature of the Quota Group product allows customers to self-distribute or transfer unused quota between subscriptions within the group without needing to file a support ticket.  
+This feature eliminates the necessity for customers to involve Microsoft and procure additional quota whenever a subscription is nearing its limit.
+With this option, customers can add new subscriptions to a group and transfer unused quota from existing subscriptions within the group without filing a support ticket. 
+Additionally, customers can request quota at the group level instead of per subscription. Once the quota is approved, customers can transfer it to the subscriptions within the group as needed.  
+
+Supported Scenarios  
+1.	Deallocation – transfer unused quota from subscription(s) to Group Quota  
+2.	Allocation – transfer quota from group to target subscription(s)  
+3.	Submit Quota Group increase request for given region and VM family, once request is approved transfer quota from group to target subscription(s)  
 a.	Quota Group increase requests are subject to the same checks as subscription quota increase requests. If capacity is low, then requests will be rejected and require customers to contact their customer owner. 
-Prerequisites
- Important
-Before you can use Quota Group feature, you must:
-•	Register the Microsoft.Quota resource provider for all your subscriptions using PowerShell.
-•	Management Group is needed to create Quota Group, group will inherit quota write and or read permissions from the Management Group; subscriptions belonging to other MGs can be added to Quota Group
-•	Assign the GroupQuota Request Operator role for the Management Group that will be used to create Quota Group
-•	Assign the Quota Request Operator role on the subscription(s) to all user accounts and applications that will perform quota operations.
 
-Quota Group Limitations
-••	Quota Group offering is only supported for Enterprise Agreement and Internal subscriptions
-	Quota Group is only supported for IaaS compute resources 
-•	Public cloud support only 
-•	Management group deletion will result in customer’s loss of access to Quota Group limit, please ensure to zero out group limit by allocating cores to subscription(s), deleting subscriptions, then Quota Group object before deletion of Management Group. In the even that MG is deleted, customer can access Quota Group limit by recreating MG with same ID
+## Prerequisites
+`Important`
+Before you can use Quota Group feature, you must:  
+•	Register the Microsoft.Quota resource provider for all your subscriptions using PowerShell  
+•	Management Group is needed to create Quota Group, group will inherit quota write and or read permissions from the Management Group; subscriptions belonging to other MGs can be added to Quota Group  
+•	Assign the GroupQuota Request Operator role for the Management Group that will be used to create Quota Group  
+•	Assign the Quota Request Operator role on the subscription(s) to all user accounts and applications that will perform quota operations  
 
-Quota Group ARM object overview
-Quota Group is a new ARM Global object created by customers to group their subscriptions for the purpose of quota management. Quota Group objects are created at the Management Group scope and inherit their permissions from their parent Management Group. To create a Quota Group object, customers must use a Management Group at least one level below Root Management Group. Quota Group cannot be created using Root Management Group. It’s important to note, while the Quota Groups are created as part of the Management Group hierarchy, they are an orthogonal grouping mechanism, and they don’t synchronize the list of subscriptions with any of the management groups. This allows for more flexibility in grouping subscriptions, keeping quota management separate from how the policy and permissions are managed by Management Groups.
-The following diagram illustrates this concept. Please note that the existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
+## Quota Group Limitations`
+•Quota Group offering is only supported for Enterprise Agreement and Internal subscriptions  
+•	Quota Group is only supported for IaaS compute resources  
+•	Public cloud support only  
+•	Management group deletion will result in customer’s loss of access to Quota Group limit, please ensure to zero out group limit by allocating cores to subscription(s), deleting subscriptions, then Quota Group object before deletion of Management Group. In the even that MG is deleted, customer can access Quota Group limit by recreating MG with same ID  
+
+## Quota Group ARM object overview
+Quota Group is a new ARM Global object created by customers to group their subscriptions for the purpose of quota management. 
+Quota Group objects are created at the Management Group scope and inherit their permissions from their parent Management Group. 
+To create a Quota Group object, customers must use a Management Group at least one level below Root Management Group. 
+Quota Group cannot be created using Root Management Group. It’s important to note, while the Quota Groups are created as part of the Management Group hierarchy, they are an orthogonal grouping mechanism, and they don’t synchronize the list of subscriptions with any of the management groups. 
+This allows for more flexibility in grouping subscriptions, keeping quota management separate from how the policy and permissions are managed by Management Groups.
+The following diagram illustrates this concept. 
+Please note that the existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
 
  
 Figure 1: Sample MG and Quota Group Hierarchy
@@ -35,9 +45,10 @@ A single Quota Group object can be used to manage quotas for multiple regions an
  
 Figure 2: Sample Quota Group hierarchy
 
-Assign Management group Level Permissions to user and or app serviceID, assign the Quota Group request Operator role for the Management Group resource
-•	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group
-•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn
+## Permissions required to create Quota Group and add subscription(s)
+### Assign Management group Level Permissions to user and or app serviceID, assign the Quota Group request Operator role for the Management Group resource  
+•	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
+•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
 az role assignment create --assignee "{assignee}" 
 --role "{roleNameOrId}" 
 --scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
