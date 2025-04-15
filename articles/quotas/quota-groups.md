@@ -49,14 +49,17 @@ Figure 2: Sample Quota Group hierarchy
 ### Assign Management group Level Permissions to user and or app serviceID, assign the Quota Group request Operator role for the Management Group resource  
 •	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
 •	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
+
+```
 az role assignment create --assignee "{assignee}" 
 --role "{roleNameOrId}" 
 --scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
+```
 
 
 
 •	How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn
-
+```
 "Name": "GroupQuota Request Operator"
 "Id": "e2217c0e04bb4724958091cf9871bc01",
 "IsServiceRole": false,
@@ -77,7 +80,10 @@ az role assignment create --assignee "{assignee}"
       "Microsoft.Quota/GroupQuotas/*/read",
       "Microsoft.Quota/groupQuotas/*/write",
      ]    ]
-A GroupQuota Reader role is defined to give readonly access.
+```
+
+
+```
 "Name": "Quota Group Request Operator",
 "IsServiceRole": false,
 "Permissions": [
@@ -95,16 +101,20 @@ A GroupQuota Reader role is defined to give readonly access.
 //GroupQuota Operations
       "Microsoft.Quota/GroupQuotas/*/read",
       ]
-Assign Subscription Level Permissions to user and or app serviceID; assign Quota Request Operator role at the subscription level
-•	Please assign user and or app service the "Quota Request Operator" for the subscription(s) that will be added to the group
-•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn
+```
+### Assign Subscription Level Permissions to user and or app serviceID; assign Quota Request Operator role at the subscription level  
+•	Please assign user and or app service the "Quota Request Operator" for the subscription(s) that will be added to the group  
+•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
+
+```
 az role assignment create --assignee "{assignee}" 
 --role "{roleNameOrId}" 
 --scope "/subscriptions/{subscriptionId}"
+```
 
 •	How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn
 
-
+```
 {
   "assignableScopes": [
     "/"
@@ -139,21 +149,23 @@ az role assignment create --assignee "{assignee}"
   "roleType": "BuiltInRole",
   "type": "Microsoft.Authorization/roleDefinitions"
 }
-Advanced users can create custom roles if they want to give granular permissions to specific applications or users. More details at - Azure custom roles - Azure RBAC | Microsoft Learn
-Using Quota Group APIs
-Reference: azure-rest-api-specs/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json at main · Azure/azure-rest-api-specs · GitHub
-With Quota API you can:
-1.	Create/delete Quota Group
-2.	Add/remove subscription(s) from Quota Group
-3.	Transfer/deallocate unused quota from subscription(s) to Quota Group
-4.	Transfer/allocation unused quota from Quota Group to subscription(s)
-5.	Create Quota Group increase request 
-6.	Get the properties of Quota Group object and list of subscriptions
-7.	Get status request of allocation request
-8.	Get status request of Quota Group increase
+```  
+Advanced users can create custom roles if they want to give granular permissions to specific applications or users. 
+More details at - Azure custom roles - Azure RBAC | Microsoft Learn  
+
+## [Using Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json)  
+With Quota Group APIs you can:  
+1.	Create/delete Quota Group  
+2.	Add/remove subscription(s) from Quota Group  
+3.	Transfer/deallocate unused quota from subscription(s) to Quota Group  
+4.	Transfer/allocation unused quota from Quota Group to subscription(s)  
+5.	Create Quota Group increase request  
+6.	Get the properties of Quota Group object and list of subscriptions  
+7.	Get status request of allocation request  
+8.	Get status request of Quota Group increase  
 
 
-**SDK Sample links**
+## SDK Sample links
 Go: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/quota/armquota@v1.1.0 
  
 Python: https://pypi.org/project/azure-mgmt-quota/2.0.0/ 
@@ -164,8 +176,9 @@ Java: https://central.sonatype.com/artifact/com.azure.resourcemanager/azure-reso
  
 JS: https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0  
 
-**Examples**
-Create a Quota Group
+## Examples
+### Create a Quota Group
+```
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/testMgIdRoot/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota?api-version=2025-03-01 
 Request Body:
 {
@@ -173,8 +186,9 @@ Request Body:
     "displayName": "allocationGroupTest"
   }
 }
-
+```
 Sample Response: 
+```
 yaya [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota?api-version=2025-03-01 --body '{
   "properties": {
     "displayName": "allocationGroupTest"
@@ -188,9 +202,11 @@ yaya [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Mi
   },
   "type": "Microsoft.Quota/groupQuotas"
 }
+```
 
-Add / remove subscriptions from Group
-PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
+### Add / remove subscriptions from Group
+```
+PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01```
 
 202 – status code
 Response header
@@ -202,12 +218,19 @@ DELETE https://management.azure.com/providers/Microsoft.Management/managementGro
 
 Status 204
 Response header
+
+
+```
 Get List of subscriptions in group
+
+```
 GET
 https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroup}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
 
-
+```
 Azrest sample
+
+```
 az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroup}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01” –debug
 
 yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptions?api-version=2025-03-01” –debug
@@ -234,20 +257,22 @@ yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
     }
   ]
 }
-Get list of subs and their quotas?
+
+```
+
+COME BACK TO THIS Get list of subs and their quotas?
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
 
 
-Allocate/Deallocate quota from sub to group OR group to sub 
-•	PATCH subscription quotaAllocations quota/ transfer quota from sub to group and group to sub, set subscription limit as absolute value
-o	To Deallocate/transfer quota from subscription to group: 
-o	Set the limit property to your new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.
-o	To allocate quota from group to subscription:
-o	Set the limit property to your new desired subscription limit. If your current subscription quota is 110 and you want to add 10 more cores from group, set the new limit to 120.
-o	
-o	If you have 120 cores assigned to subscription for standardddv4family before sub joins group and would like to transfer 10 cores to group, set limit to 110 cores, 10 cores should be assigned to group limit 
-o	If you want to return the 10 cores to sub from group set sub limit to 110 cores
-•	GET Allocation quota request status 
+### Allocate/Deallocate quota from sub to group OR group to sub  
+•	PATCH subscription quotaAllocations quota/ transfer quota from sub to group and group to sub, set subscription limit as absolute value  
+To Deallocate/transfer quota from subscription to group:  
+o	Set the limit property to your new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.  
+
+To allocate quota from group to subscription:  
+o	Set the limit property to your new desired subscription limit. If your current subscription quota is 110 and you want to add 10 more cores from group, set the new limit to 120.  
+
+GET Allocation quota request status 
 o	Succeeded 
 o	In progress
 o	Escalated
