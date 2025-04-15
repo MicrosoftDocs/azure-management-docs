@@ -204,6 +204,17 @@ Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the f
 This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. Follow the instructions provided above to enable the custom location feature using a service principal. 
 
 
+### Resource Provider does not have required permissions
+
+If you try to create the custom location before the custom location feature has been enabled on the Kubernetes cluster, you may receive the following error message:
+
+
+```console
+Deployment failed. Correlation ID: ... "Microsoft.ExtendedLocation" resource provider does not have the required permissions to create a namespace on the cluster. Refer to https://aka.ms/ArcK8sCustomLocationsDocsEnableFeature to provide the required permissions to the resource provider.
+```
+
+First, follow the instructions above to enable the custom location feature on the Kubernetes cluster. After the feature is enabled, you can follow the steps to create the custom location.
+
 ## Next steps
 
 - Securely connect to the cluster using [Cluster Connect](cluster-connect.md).
