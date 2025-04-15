@@ -1,4 +1,4 @@
-# Azure Quota Group Public Preview
+# Azure Quota Group (Preview)
 
 ## What is Azure Quota Groups? 
 Quota Groups is a new Azure offering in Public Preview that will empower customers to share quota amongst a group of subscriptions and reduce the number of quota transactions. Quota Group levels the quota construct from a subscription to a Quota Group (ARM object), enabling customers to self-manage their procured quota in a group without any approvals.
