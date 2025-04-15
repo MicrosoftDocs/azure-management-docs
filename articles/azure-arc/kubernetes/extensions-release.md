@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 03/26/2025
+ms.date: 04/14/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -134,30 +134,27 @@ For more information, see [Tutorial: Deploy applications using GitOps with Flux 
 
 The most recent version of the Flux v2 extension and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
-> [!IMPORTANT]
-> The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream open-source software (OSS) Flux project.
->
-> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API will be promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
->
-> - **`.spec.chart.spec.valuesFile`**: Replaced by `.spec.chart.spec.valuesFiles` in `v2`.
-> - **`.spec.postRenderers.kustomize.patchesJson6902`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
-> - **`.spec.postRenderers.kustomize.patchesStrategicMerge`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
-> - **`.status.lastAppliedRevision`**: Replaced by `.status.history.chartVersion` in `v2`.
->
-> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) API will be promoted from `v1beta2` to `v1` (GA). The `v1` API is backward compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which is replaced by `.spec.valuesFiles`.
->
-> The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that will be removed in the upcoming release.
->
-> The Kustomize package will be updated to v5.4.0. The version contains the following breaking changes:
->
-> - [Kustomization build fails when the resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
-> - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
-> - [Null YAML values are replaced by "null"](https://github.com/kubernetes-sigs/kustomize/pull/5519) in [v5.4.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.4.0)
->
-> To avoid issues caused by breaking changes, we recommend that you update your manifest to ensure that your Flux configurations remain compliant with this release.
-
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
+
+### Breaking change: Semantic versioning changes in source controller
+
+The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
+
+**What changed?** In the latest version (v3.3.1) of the semver package, certain version formats that were previously considered valid are now being rejected. Specifically, version strings with leading zeroes in numeric segments (e.g., 1.0.029903) are no longer accepted as valid semver.
+
+- GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+- Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+
+:::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
+
+**Impact on users:**
+
+- **Existing deployments are unaffected**. Anything currently deployed will continue to function as expected.
+- **Future deployments or reconciliations may fail** if they rely on chart versions that don’t follow the stricter semver rules.
+- A common error you might see: `invalid chart reference: validation: chart.metadata.version "1.0.029903" is invalid`
+
+**What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
 ### 1.16.2 (March 2025)
 
@@ -175,6 +172,10 @@ Changes in this version include:
 - Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 - Can now specify tenant ID when enabling [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
 - Support for image-automation controller in [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+
+Breaking changes:
+
+- Semantic versioning changes in source controller (see note above)
 
 ### 1.15.1 (February 2025)
 
