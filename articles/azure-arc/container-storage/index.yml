@@ -9,6 +9,7 @@ metadata:
   ms.topic: landing-page
   author: asergaz
   ms.service: azure-arc
+  ms.subservice: azure-arc-container-storage
   ms.author: sergaz 
   ms.date: 03/12/2025
 

@@ -1,7 +1,7 @@
 ---
 title: Query your attack surface with Defender EASM using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help query Attack Surface Insights from Defender EASM.
-ms.date: 11/22/2024
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -21,13 +21,11 @@ author: JnHs
 >
 > To use Copilot in Azure to query Defender EASM, you or your admin team must be a member of the appropriate role in Copilot for Security and must have access to a Defender EASM resource. For information on supported roles, see [Understand authentication in Microsoft Copilot for Security](/copilot/security/authentication).
 
-With Microsoft Copilot in Azure (preview), you can use natural language to ask questions and better understand your organization's attack surface. Through Defender EASM's extensive querying capabilities, you can extract asset metadata and key asset information, even if you don't have an advanced Defender EASM querying skillset.
+With Microsoft Copilot in Azure, you can use natural language to ask questions and better understand your organization's attack surface. Through Defender EASM's extensive querying capabilities, you can extract asset metadata and key asset information, even if you don't have an advanced Defender EASM querying skillset.
 
 When you ask Microsoft Copilot in Azure about your attack surface, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you'll be prompted to specify which Defender EASM resource to use.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Sample prompts
 

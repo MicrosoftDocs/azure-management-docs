@@ -1,4 +1,4 @@
-- name: Microsoft Copilot in Azure (preview) documentation
+- name: Microsoft Copilot in Azure documentation
   href: index.yml
 - name: Overview
   href: overview.md
@@ -29,7 +29,9 @@
     - name: Analyze costs
       href: analyze-cost-management.md
     - name: Find your recommendations
-      href: ./copilot-advisor.md
+      href: find-recommendations-advisor.md
+    - name: Visualize network topology
+      href: visualize-network-topology.md
     - name: Query attack surface
       href: query-attack-surface.md
     - name: Investigate Azure Firewall IDPS attacks
@@ -52,8 +54,10 @@
       href: improve-storage-accounts.md
     - name: Troubleshoot disk performance
       href: troubleshoot-disk-performance.md
-    - name: Plan, design, and troubleshoot networks
+    - name: Design, troubleshoot, and secure networks
       href: network-management.md
+    - name: Work with Azure Load Balancer
+      href: work-load-balancer.md
     - name: Troubleshoot Azure Arc extensions
       href: troubleshoot-arc-extension.md
   - name: Write and optimize code
