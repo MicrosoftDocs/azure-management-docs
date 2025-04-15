@@ -189,6 +189,7 @@ Request Body:
 ```
 Sample Response: 
 ```
+<!-- Lets remove the real names -->
 yaya [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota?api-version=2025-03-01 --body '{
   "properties": {
     "displayName": "allocationGroupTest"
