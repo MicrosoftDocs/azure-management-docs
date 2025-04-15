@@ -221,7 +221,7 @@ Response header
 
 
 ```
-Get List of subscriptions in group
+### Get List of subscriptions in group
 
 ```
 GET
@@ -260,7 +260,7 @@ yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
 
 ```
 
-### Allocate/Deallocate quota from sub to group OR group to sub  
+### Transfer unused quota from subscription to group OR group to subscription 
 •	PATCH subscription quotaAllocations quota/ transfer quota from sub to group and group to sub, set subscription limit as absolute value  
 To Deallocate/transfer quota from subscription to group:  
 o	Set the limit property to your new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.  
