@@ -37,9 +37,11 @@ Quota Group cannot be created using Root Management Group. It’s important to n
 This allows for more flexibility in grouping subscriptions, keeping quota management separate from how the policy and permissions are managed by Management Groups.
 The following diagram illustrates this concept. 
 Please note that the existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
-
  
-Figure 1: Sample MG and Quota Group Hierarchy
+ :::image type="content" source="/media/quota-groups/sample-management-group-quota-group-hierarchy.png" alt-text="Diagram of Management Group hierarchy with sample Quota Groups created under Management Group.":::
+ 
+Figure 1: Sample MG and Quota Group Hierarchy  
+
 Recommended group setup
 A single Quota Group object can be used to manage quotas for multiple regions and or VM families since it is a global object, the group setup may depend on whether subscription(s) are region specific or span multiple regions. Quota groups inherit permissions from the Management Group, it is therefore important to think through how to design your Quota Group structure in context of who will have access to a specific Quota Group. We recommend creating at least one level of Management Groups in your tenant to manage access to individual quota groups, like in the diagram below. In this example, the Management Group A owner (see individual operations for specific permissions requirements) will have access to Quota Group 1 and Quota group 2. The owner of Management Group B will have access to Quota Group 3. When doing certain quota group transactions, such as quota transfers or submitting Quota Group increase request, operation is specific to a given region and VM family.
  
