@@ -76,11 +76,14 @@ landingContent:
           - text: Go SDK
             url: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/scvmm/armscvmm#section-documentation
 
-  - title: Cloud Adoption
+  - title: Architecture
     linkLists:
       - linkListType: overview
         links:
-          - text: Introduction to hybrid and multicloud products on Azure
+          - text: Cloud Adoption Framework introduces Azure hybrid and multicloud products on Azure
             url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
-          - text: Hybrid and multicloud migration
+          - text: Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
+          - text: Administer SQL Server with Azure Arc using Azure Architecture Center components and capabilities
+            url: /azure/architecture/hybrid/azure-arc-sql-server
+            
