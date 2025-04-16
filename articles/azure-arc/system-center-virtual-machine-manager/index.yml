@@ -78,16 +78,10 @@ landingContent:
 
   - title: Architecture
     linkLists:
-      - linkListType: concept
+      - linkListType: architecture
         links:
-          - text: About Azure Arc-enabled SCVMM
-            url: /azure/azure-arc/system-center-virtual-machine-manager/overview
-      - linkListType: reference
-        links:
-          - text: Migrate to hybrid and multicloud with Cloud Adoption Framework
+          - text: Hybrid and multicloud migration with Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
-          - text: Adopt Cloud Framework for Azure hybrid and multicloud
+          - text: Hybrid and multicloud products on Azure in Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
-          - text: Apply Azure Architecture Center capabilities to administer SQL Server instances
-            url: /azure/architecture/hybrid/azure-arc-sql-server
             
