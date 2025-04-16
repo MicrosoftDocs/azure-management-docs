@@ -107,6 +107,6 @@ Azure Arc-enabled SCVMM stores customer data. By default, customer data stays wi
 - Once ready, [connect your SCVMM management server to Azure Arc using the onboarding script](quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
 - [Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
 - [Deliver operations Management disciplines using Hybrid and multicloud tools in Cloud adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/manage).
-- [Cloud Adoption Framework introduces Azure hybrid and multicloud products on Azure](/azure/cloud-adoption-framework/scenarios/hybrid/toolchain).
-- [Administer SQL Server with Azure Arc using Azure Architecture Center components and capabilities](/azure/architecture/hybrid/azure-arc-sql-server).
+- [Adopt Cloud Framework for Azure Hybrid and Multicloud](/azure/cloud-adoption-framework/scenarios/hybrid/toolchain).
+- [Apply Azure Architecture Center capabilities to administer SQL Server instances](/azure/architecture/hybrid/azure-arc-sql-server).
 
