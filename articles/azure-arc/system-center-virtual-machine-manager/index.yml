@@ -86,7 +86,7 @@ landingContent:
         links:
           - text: Migrate to hybrid and multicloud with Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
-          - text: Adopt Cloud Framework for Azure Hybrid and Multicloud
+          - text: Adopt Cloud Framework for Azure hybrid and multicloud
             url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
           - text: Apply Azure Architecture Center capabilities to administer SQL Server instances
             url: /azure/architecture/hybrid/azure-arc-sql-server
