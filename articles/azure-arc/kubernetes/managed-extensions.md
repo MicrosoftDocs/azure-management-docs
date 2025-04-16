@@ -3,6 +3,7 @@ title: "Managed extensions (preview) for Arc-enabled Kubernetes"
 ms.date: 04/18/2025
 ms.topic: overview
 description: "Managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping ensure your extensions work well together."
+ms.custom: references_regions
 ---
 
 # Managed extensions (preview) for Arc-enabled Kubernetes
