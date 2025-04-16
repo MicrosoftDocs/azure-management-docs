@@ -18,7 +18,7 @@ ms.date: 03/27/2025
 
 Run the following command to install the CLI extension:
 ```azurecli
-    az extension add --source https://acrcssc.z5.web.core.windows.net/acrcssc-1.1.1rc11-py3-none-any.whl
+    az extension add --source aka.ms/acr/patching/wheel
 ```
 
 ## Enable the Continuous Patching Workflow
