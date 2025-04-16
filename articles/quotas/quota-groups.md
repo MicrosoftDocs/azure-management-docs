@@ -25,9 +25,9 @@ Before you can use Quota Group feature, you must:
 •	Assign the Quota Request Operator role on all participating subscriptions to the relevant users or applications managing quota operations  
 
 ## Preview Limitations
-•	Available only for Enterprise Agreement and Internal subscriptions
-•	Supports IaaS compute resources only 
-•	Available in public cloud regions only
+•	Available only for Enterprise Agreement and Internal subscriptions  
+•	Supports IaaS compute resources only  
+•	Available in public cloud regions only  
 •	Management group deletion will result in customer’s loss of access to Quota Group limit, please ensure to zero out group limit by allocating cores to subscription(s), deleting subscriptions, then Quota Group object before deletion of Management Group. In the even that MG is deleted, customer can access Quota Group limit by recreating MG with same ID  
 
 ## Quota Group as an ARM object overview
@@ -47,14 +47,16 @@ Figure 1: Sample MG and Quota Group Hierarchy
 ### Recommended group setup
 A single Quota Group object can manage quotas across multiple regions and VM families. Design your quota group structure with access control in mind—since access is inherited from the Management Group, consider creating a tiered Management Group structure to ensure proper role assignments.  
 Example Hierarchy:
-•	Management Group A owns Quota Groups 1 & 2
-•	Management Group B owns Quota Group 3
-•	Each quota group manages different regions or VM families as needed
-•	When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families.
+•	Management Group A owns Quota Groups 1 & 2  
+•	Management Group B owns Quota Group 3  
+•	Each quota group manages different regions or VM families as needed  
+•	When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families  
  
 Figure 2: Sample Quota Group hierarchy
 
 ## Permissions required to create Quota Group and add subscription(s)
+Quota write perissions are required at the Management Group level to create/delete Quota Group  
+Quota write permissions are required at the subscription(s) level to add/remove subscriptions to Quota Group  
 ### Assign Management group Level Permissions to user and or app serviceID, assign the Quota Group request Operator role for the Management Group resource  
 •	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
 •	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
