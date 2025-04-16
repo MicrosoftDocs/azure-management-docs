@@ -88,7 +88,7 @@ landingContent:
           url: recover-from-resource-bridge-deletion.md  
   - title: Architecture
     linkLists:
-      - linkListType:
+      - linkListType: architecture
         links:  
         - text: Hybrid considerations
           url: /azure/architecture/guide/technology-choices/hybrid-considerations
