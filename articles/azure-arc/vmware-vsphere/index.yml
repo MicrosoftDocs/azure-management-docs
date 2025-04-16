@@ -88,16 +88,10 @@ landingContent:
           url: recover-from-resource-bridge-deletion.md  
   - title: Architecture
     linkLists:
-      - linkListType: concept
+      - linkListType:
         links:  
-        - text: Azure Arc agent
-          url: /azure/azure-arc/vmware-vsphere/azure-arc-agent
-      - linkListType: reference
-        links:  
-        - text: Adopt Cloud Framework to plan unified operations for hybrid and multicloud environments
-          url: /azure/cloud-adoption-framework/scenarios/hybrid/plan
-        - text: Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework
-          url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
-        - text: Meet business requirements with Azure Architecture Center's guidance to choose Azure hybrid solutions
-          url: /azure/architecture/guide/technology-choices/hybrid-considerations 
+        - text: Hybrid considerations
+          url: /azure/architecture/guide/technology-choices/hybrid-considerations
+        - text: Hybrid and multicloud migration with Cloud Adoption Framework
+          url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate 
 
