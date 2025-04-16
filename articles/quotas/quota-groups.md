@@ -51,7 +51,8 @@ Example Hierarchy:
 •	Management Group B owns Quota Group 3  
 •	Each quota group manages different regions or VM families as needed  
 •	When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families  
- 
+
+ :::image type="content" source="/media/quota-groups/sample-recommended-quota-group-setup.png" alt-text="Diagram of Management Group hierarchy with multiple Quota Groups created under Management Group.":::
 Figure 2: Sample Quota Group hierarchy
 
 ## Permissions required to create Quota Group and add subscription(s)
