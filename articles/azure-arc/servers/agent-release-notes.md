@@ -23,6 +23,8 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions within the last 1 year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 > 
+> [!WARNING]
+> For Windows Server 2012 Machines, Agents 1.50 and 1.51 fail to install or upgrade.  Microsoft is working to resolve this in May 2025 Agent release or sooner.
 
 ## Version 1.51 - April 2025
 
