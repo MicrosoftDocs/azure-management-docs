@@ -78,12 +78,18 @@ landingContent:
 
   - title: Architecture
     linkLists:
-      - linkListType: overview
+      - linkListType: concept
         links:
-          - text: Cloud Adoption Framework introduces Azure hybrid and multicloud products on Azure
-            url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
+          - text: Overview of Azure Arc-enabled System Center Virtual Machine Manager
+            url: /azure/azure-arc/system-center-virtual-machine-manager/overview
           - text: Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework
+        linkLists:
+      - linkListType: reference
+        links:
+          - text: Migrate to hybrid and multicloud with Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
-          - text: Administer SQL Server with Azure Arc using Azure Architecture Center components and capabilities
+          - text: Adopt Cloud Framework for Azure Hybrid and Multicloud
+            url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
+          - text: Apply Azure Architecture Center capabilities to administer SQL Server instances
             url: /azure/architecture/hybrid/azure-arc-sql-server
             
