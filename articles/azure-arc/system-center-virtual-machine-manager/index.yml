@@ -82,7 +82,6 @@ landingContent:
         links:
           - text: About Azure Arc-enabled SCVMM
             url: /azure/azure-arc/system-center-virtual-machine-manager/overview
-    linkLists:
       - linkListType: reference
         links:
           - text: Migrate to hybrid and multicloud with Cloud Adoption Framework
