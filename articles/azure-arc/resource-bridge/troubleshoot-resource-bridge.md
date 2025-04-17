@@ -427,8 +427,6 @@ To fix these errors, use one of these options:
 - Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring the original location path is recreated.
 
 - For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
-- Delete and [redeploy the Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md).
-
 ### Insufficient privileges
 
 When you deploy or upgrade the resource bridge on VMware vCenter, you might see an error similar to:

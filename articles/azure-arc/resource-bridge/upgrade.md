@@ -90,20 +90,11 @@ To upgrade a resource bridge on Azure Local, transition to 23H2 and use the buil
 
 ## Version releases
 
-The Arc resource bridge version is tied to the versions of underlying components used in the appliance image, such as the Kubernetes version. When there's a change in the appliance image, the Arc resource bridge version gets incremented. This generally happens when a new `az arcappliance` CLI extension version is released. A new extension is typically released on a monthly cadence at the end of the month or early in the month. For detailed release info, see the [Arc resource bridge release notes](release-notes.md).
+The Arc resource bridge version is tied to the versions of underlying components used in the appliance image, such as the Kubernetes version. When there's a change in the appliance image, the Arc resource bridge version gets incremented. This generally happens when a new `az arcappliance` CLI extension version is released. For detailed release info, see the [Arc resource bridge release notes](release-notes.md).
 
 ## Supported versions
 
-Generally, the latest released version and the previous three versions (n-3) of Arc resource bridge are supported. An Arc resource bridge on an unsupported version must be upgraded or redeployed to be in a production support window.
-
-For example, if the current version is 1.0.18, then the typical n-3 supported versions are:
-
-- Current version: 1.0.18
-- n-1 version: 1.0.17
-- n-2 version: 1.0.16
-- n-3 version: 1.0.15
-
-There might be instances where supported versions aren't sequential. For example, if there is a patch version for a minor version, the upgrade path may skip the minor version and directly upgrade to the patch version. In this case, n-3 versions would exclude the minor version and include the patch version. Another example is if version 1.0.18 is released and later found to contain a bug. A hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
+We generally recommend using the most recent versions. The version support policy for the appliance generally covers the most recent version and the three previous versions (n-3). When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
 To see exactly what versions are in support, please refer to [Arc resource bridge release notes](release-notes.md).
 

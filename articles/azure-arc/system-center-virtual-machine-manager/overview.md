@@ -1,6 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
+
 ms.date: 04/15/2025
 ms.topic: overview
 ms.services: azure-arc
@@ -48,9 +49,8 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 
 You have the flexibility to start with either option, and incorporate the other one later without any disruption. With both options, you'll enjoy the same consistent experience.
 
-
 > [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choose the right Azure Arc service for machines](../choose-service.md).
+>For guidance on choosing the right Azure Arc service for your virtual machines, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
 ### Supported scenarios
 

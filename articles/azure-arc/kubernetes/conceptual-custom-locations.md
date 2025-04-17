@@ -1,6 +1,6 @@
 ---
 title: "Custom locations with Azure Arc-enabled Kubernetes"
-ms.date: 03/26/2024
+ms.date: 04/15/2025
 ms.topic: conceptual
 description: "This article provides a conceptual overview of the custom locations capability of Azure Arc-enabled Kubernetes."
 ---
@@ -20,6 +20,8 @@ You can visualize custom locations as an abstraction layer on top of Azure Arc-e
 When the admin [enables the custom locations feature on the cluster](custom-locations.md), a `ClusterRoleBinding` is created on the cluster, authorizing the Microsoft Entra application used by the custom locations resource provider. Once authorized, the custom locations resource provider can create `ClusterRoleBinding` or `RoleBinding` objects that are needed by other Azure resource providers to create custom resources on this cluster. The cluster extensions installed on the cluster determine the list of resource providers to authorize.
 
 :::image type="content" source="media/conceptual-custom-locations-usage.png" alt-text="Diagram of custom locations architecture, using Arc-enabled data services as an example." lightbox="media/conceptual-custom-locations-usage.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 When the user creates a data service instance on the cluster:
 
