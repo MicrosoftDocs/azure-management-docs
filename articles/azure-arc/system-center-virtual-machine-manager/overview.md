@@ -40,7 +40,7 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 :::image type="content" source="media/architecture/azure-arc-scvmm-architecture.png" alt-text="Screenshot of Arc enabled SCVMM - architecture." lightbox="media/architecture/azure-arc-scvmm-architecture.png":::
 
 >[!NOTE]
-> The above architecture diagram was created as part of Arc Jumpstart. To download it's source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
 
 ## How is Azure Arc-enabled SCVMM different from Azure Arc-enabled servers
 
