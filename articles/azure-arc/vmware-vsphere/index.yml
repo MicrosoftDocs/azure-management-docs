@@ -92,6 +92,4 @@ landingContent:
         links:  
         - text: Hybrid considerations
           url: /azure/architecture/guide/technology-choices/hybrid-considerations
-        - text: Hybrid and multicloud migration with Cloud Adoption Framework
-          url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate 
 
