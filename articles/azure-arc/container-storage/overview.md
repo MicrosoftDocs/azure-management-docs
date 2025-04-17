@@ -15,8 +15,7 @@ Azure Container Storage enabled by Azure Arc is a first-party storage system des
 
 :::image type="content" source="media/container-storage-solution-architecture.png" alt-text="Azure Container Storage enabled by Azure Arc solution architecture" lightbox="media/container-storage-solution-architecture.png" :::
 
-> [!NOTE]
-> [Download](https://jumpstart.azure.com/azure_jumpstart_gems) a high resolution version of architecture diagrams.
+*[Download](https://jumpstart.azure.com/azure_jumpstart_gems) a high resolution version of architecture diagrams.*
 
 
 ## What does Azure Container Storage do?
