@@ -4,23 +4,23 @@
 Azure Quota Groups is a new capability that simplifies how customers manage and share quotas across multiple subscriptions. Instead of managing quotas on a per-subscription basis, customers can now group subscriptions together and manage quotas at the Quota Group level—an Azure Resource Manager (ARM) object. This streamlines quota management, reduces overhead, and eliminates the need for frequent support engagements.
 
 ## Key Benefits
-• Quota Sharing Across Subscriptions: Share procured quotas within a group of subscriptions.
-• Self-Service Management: Distribute or reallocate unused quota without Microsoft intervention.
-• Fewer Support Requests: Avoid filing support tickets when reallocating quota or managing new subscriptions.
-• Flexible Quota Requests: Request quota at the group level and allocate it across subscriptions as needed.
+• 	Quota Sharing Across Subscriptions: Share procured quotas within a group of subscriptions.
+• 	Self-Service Management: Distribute or reallocate unused quota without Microsoft intervention.
+• 	Fewer Support Requests: Avoid filing support tickets when reallocating quota or managing new subscriptions.
+• 	Flexible Quota Requests: Request quota at the group level and allocate it across subscriptions as needed.
 
 
 ### Supported Scenarios  
-1.	Deallocation – transfer unused quota from subscription(s) to Group Quota  
-2.	Allocation – transfer quota from group to target subscription(s)  
-3.	Submit Quota Group increase request for given region and VM family, once request is approved transfer quota from group to target subscription(s)  
-a.	Quota Group increase requests are subject to the same checks as subscription quota increase requests. If capacity is low, then requests will be rejected and require customers to contact their customer owner. 
+• 	Deallocation – transfer unused quota from subscription(s) to Group Quota  
+• 	Allocation – transfer quota from group to target subscription(s)  
+• 	Submit Quota Group increase request for given region and VM family, once request is approved transfer quota from group to target subscription(s)  
+• 	Quota Group increase requests are subject to the same checks as subscription quota increase requests. If capacity is low, then requests will be rejected and require customers to contact their customer owner. 
 
 ## Prerequisites
 `Important`
 Before you can use Quota Group feature, you must:  
 •	Register the Microsoft.Quota resource provider on all relevant subscriptions using PowerShell  
-•	Management Group is needed to create Quota Group, group will inherit quota write and or read permissions from the Management Group; subscriptions belonging to other MGs can be added to Quota Group  
+•	Management Group is needed to create Quota Group, group will inherit quota write and or read permissions from the Management Group; subscriptions belonging to other MGs can 	be added to Quota Group  
 •	Assign the GroupQuota Request Operator role on the Management Group where the Quota Group will be created  
 •	Assign the Quota Request Operator role on all participating subscriptions to the relevant users or applications managing quota operations  
 
@@ -58,19 +58,17 @@ Figure 2: Sample Quota Group hierarchy
 ## Permissions required to create Quota Group and add subscription(s)
 Quota write perissions are required at the Management Group level to create/delete Quota Group  
 Quota write permissions are required at the subscription(s) level to add/remove subscriptions to Quota Group  
-### Assign Management group Level Permissions to user and or app serviceID, assign the Quota Group request Operator role for the Management Group resource  
+### Assign Management group Level Permissions to user and or app serviceID  
 •	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
-•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
+•	[How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli)  
+•	[How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
 
 ```
 az role assignment create --assignee "{assignee}" 
 --role "{roleNameOrId}" 
 --scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
 ```
-
-
-
-•	How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn
+	
 ```
 "Name": "GroupQuota Request Operator"
 "Id": "e2217c0e04bb4724958091cf9871bc01",
@@ -92,10 +90,7 @@ az role assignment create --assignee "{assignee}"
       "Microsoft.Quota/GroupQuotas/*/read",
       "Microsoft.Quota/groupQuotas/*/write",
      ]    ]
-```
-
-
-```
+A GroupQuota Reader role is defined to give readonly access.
 "Name": "Quota Group Request Operator",
 "IsServiceRole": false,
 "Permissions": [
@@ -113,18 +108,18 @@ az role assignment create --assignee "{assignee}"
 //GroupQuota Operations
       "Microsoft.Quota/GroupQuotas/*/read",
       ]
-```
-### Assign Subscription Level Permissions to user and or app serviceID; assign Quota Request Operator role at the subscription level  
-•	Please assign user and or app service the "Quota Request Operator" for the subscription(s) that will be added to the group  
-•	How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn  
 
+```
+ 
+
+### Assign Subscription Level Permissions to user and or app serviceID  
+•	Please assign user and or app service the "Quota Request Operator" for the subscription(s) that will be added to the group  
 ```
 az role assignment create --assignee "{assignee}" 
 --role "{roleNameOrId}" 
 --scope "/subscriptions/{subscriptionId}"
 ```
 
-•	How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn
 
 ```
 {
@@ -162,10 +157,7 @@ az role assignment create --assignee "{assignee}"
   "type": "Microsoft.Authorization/roleDefinitions"
 }
 ```  
-Advanced users can create custom roles if they want to give granular permissions to specific applications or users. 
-More details at - Azure custom roles - Azure RBAC | Microsoft Learn  
-
-#Azure Quota Group APIs Public Preview
+# Azure Quota Group APIs Public Preview
 ## [Using Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json)  
 With Quota Group APIs you can:  
 1.	Create/delete Quota Group  
@@ -274,15 +266,14 @@ user [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
 ```
 
 ### Transfer unused quota from subscription to group OR group to subscription 
-•	PATCH subscription quotaAllocations quota/ transfer quota from sub to group and group to sub, set subscription limit as absolute value  
-To Deallocate/transfer quota from subscription to group:  
-o	Set the limit property to your new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.  
+To deallocate/transfer quota from subscription to group:  
+o	Set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.  
 
-To allocate quota from group to subscription:  
-o	Set the limit property to your new desired subscription limit. If your current subscription quota is 110 and you want to add 10 more cores from group, set the new limit to 120.  
+To allocate/transfer quota from group to subscription:  
+o	Set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
 
 
-### PATCH Subscription quotaAllocation
+### PATCH Subscription Quota Allocation
 ```
 PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/ {managementGroupId}/ subscriptions/ {subscriptionId}/ providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
 {
@@ -314,7 +305,7 @@ az rest –method patch –url “https://management.azure.com/providers/Microso
   }
 }’ –debug
 ```
-### GET Allocation quota request status 
+### GET Subscription Allocation Quota request status 
 o	Succeeded   
 o	In progress  
 o	Escalated  
@@ -330,7 +321,7 @@ Location: https://management.azure.com/providers/Microsoft.Management/management
 Retry-After: 30 
 Response Content
 ```
-### Get Subscription quotaAllocation  request status
+
 ```
 GET
 /providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
@@ -354,12 +345,11 @@ The sample response would be:
 }
 ```
 
-### Get Subscription quotaAllocation 
+### Get Subscription Quota Allocation 
 
 •	view current subscription limit for region x SKU  
-o	Limit = current subscription limit  
-o	Shareable quota = how many cores have been deallocated/transferred from sub to group  
-	‘-5’ = 5 cores were given from sub to group
+•	Limit = current subscription limit  
+•	Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group
 Status code: 200
 Response Header: 
 
@@ -395,7 +385,7 @@ Response content
 }
 ```
 
-### Submit Quota increase request
+### Submit Quota Group increase request
 ```
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementGroupId} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 {
@@ -413,7 +403,7 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
 }
 ```
 
-### Get group limit request status
+### Get Quota Group increase request status
 
 ```
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}?api-version=2025-03-01
@@ -439,7 +429,7 @@ Sample response
 }
 ```
 
-### Get Group limit 
+### Get Quota Group limit 
 •	available limit = how many  cores do I have at group level to distribute  
 •	limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
 •	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
