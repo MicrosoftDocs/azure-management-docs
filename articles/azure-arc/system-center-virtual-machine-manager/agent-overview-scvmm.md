@@ -20,7 +20,7 @@ When you [enable guest management](enable-guest-management-at-scale.md) on SCVMM
 :::image type="content" source="media/agent-overview-scvmm/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." border="false":::
 
 >[!NOTE]
-> The above architecture diagram was created as part of Arc Jumpstart. To download it's source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 
