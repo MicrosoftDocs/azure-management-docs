@@ -8,7 +8,7 @@ metadata:
   author: PriskeyJeronika-MS
   ms.service: azure-arc
   ms.topic: landing-page
-  ms.date: 12/16/2024
+  ms.date: 03/28/2025
   ms.author: v-gjeronika
 
 landingContent:
@@ -46,7 +46,7 @@ landingContent:
             url: perform-vm-ops-on-scvmm-through-azure.md
           - text: Install Arc agent at scale for your SCVMM VMs
             url: enable-guest-management-at-scale.md
-          - text: Install Arc agent at scale for your SCVMM VMs
+          - text: Install Arc agents using a script
             url: install-arc-agents-using-script.md
           - text: Deliver ESUs for SCVMM VMs through Arc
             url: deliver-esus-for-system-center-virtual-machine-manager-vms.md

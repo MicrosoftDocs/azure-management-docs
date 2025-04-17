@@ -144,7 +144,7 @@
     "fileMetadata": {
       "author": {
         "articles/azure-arc/**/*.md": "JnHs",
-        "articles/azure-arc/servers/**/*.md": "johnmarco",
+        "articles/azure-arc/servers/**/*.md": "JnHs",
         "articles/azure-portal/**/*.md": "JnHs",
         "articles/azure-portal/**/*.yml": "JnHs",
         "articles/container-registry/**/*.md": "rayoef",
@@ -182,13 +182,44 @@
         ]
       },
       "manager": {
-        "articles/azure-arc/servers/**/*.md": "rayoflores",
+        "articles/azure-arc/**/*.md": "rayoflores",
+        "articles/azure-arc/**/*.yml": "rayoflores",
+        "articles/azure-linux/**/*.md": "rayoflores",
+        "articles/azure-linux/**/*.yml": "rayoflores",
+        "articles/copilot/**/*.md": "rayoflores",
+        "articles/copilot/**/*.yml": "rayoflores",      
         "articles/azure-portal/**/*.md": "rayoflores",
-        "articles/quotas/**/*.md": "rayoflores"
+        "articles/azure-portal/**/*.yml": "rayoflores",
+        "articles/azure-portal/supportability/**/*.md": "rayoflores",
+        "articles/azure-portal/supportability/**/*.yml": "rayoflores",
+        "articles/container-registry/**/*.md": "rayoflores",
+        "articles/container-registry/**/*.yml": "rayoflores",
+        "articles/lighthouse/**/*.md": "rayoflores",
+        "articles/lighthouse/**/*.yml": "rayoflores",
+        "articles/quotas/**/*.md": "rayoflores",
+        "articles/quotas/**/*.yml": "rayoflores"
+      },
+      "ms.reviewer": {
+        "articles/azure-arc/**/*.md": "doveychase",
+        "articles/azure-arc/**/*.yml": "doveychase",
+        "articles/azure-linux/**/*.md": "doveychase",
+        "articles/azure-linux/**/*.yml": "doveychase",
+        "articles/copilot/**/*.md": "doveychase",
+        "articles/copilot/**/*.yml": "doveychase",      
+        "articles/azure-portal/**/*.md": "doveychase",
+        "articles/azure-portal/**/*.yml": "doveychase",
+        "articles/azure-portal/supportability/**/*.md": "doveychase",
+        "articles/azure-portal/supportability/**/*.yml": "doveychase",
+        "articles/container-registry/**/*.md": "doveychase",
+        "articles/container-registry/**/*.yml": "doveychase",
+        "articles/lighthouse/**/*.md": "doveychase",
+        "articles/lighthouse/**/*.yml": "doveychase",
+        "articles/quotas/**/*.md": "doveychase",
+        "articles/quotas/**/*.yml": "doveychase"
       },
       "ms.author": {
         "articles/azure-arc/**/*.md": "jenhayes",
-        "articles/azure-arc/servers/**/*.md": "johnmarc",
+        "articles/azure-arc/servers/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "rayoflores",
@@ -211,7 +242,8 @@
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
         "articles/azure-arc/servers/**/*.md": "azure-arc-servers",
-        "articles/azure-portal/supportability/**/*.md": "azure-supportability"
+        "articles/azure-portal/supportability/**/*.md": "azure-supportability",
+        "articles/azure-arc/container-storage/**/*.md": "azure-arc-container-storage"
       },
       "searchScope": {
         "articles/azure-arc/**/*.md": [

@@ -28,7 +28,7 @@ For more information, see the [Azure Linux Container Host key benefits](./intro-
 
 ### What's the difference between Azure Linux and Mariner?
 
-Azure Linux and Mariner are the same image with different branding. Please use the Azure Linux OS SKU when referring to the image on AKS.
+Azure Linux and Mariner are the same image with different branding. Use the Azure Linux OS SKU when referring to the image on AKS. To migrate from OS SKU Mariner to OS SKU AzureLinux you can utilize the [In-Place OS SKU Migration feature](/azure/azure-linux/tutorial-azure-linux-migration). 
 
 ### Are Azure Linux container images supported on AKS?
 

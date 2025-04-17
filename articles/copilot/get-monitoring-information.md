@@ -1,7 +1,7 @@
 ---
 title: Get information about Azure Monitor metrics and logs using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can provide information about Azure Monitor metrics and logs.
-ms.date: 02/07/2025
+ms.date: 04/14/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -13,15 +13,13 @@ author: JnHs
 ms.collection: ce-skilling-ai-copilot
 ---
 
-# Get information about Azure Monitor metrics, logs, and alerts using Microsoft Copilot in Azure (preview)
+# Get information about Azure Monitor metrics, logs, and alerts using Microsoft Copilot in Azure
 
-You can ask Microsoft Copilot in Azure (preview) questions about metrics and logs collected by [Azure Monitor](/azure/azure-monitor/), and about Azure Monitor alerts.
+You can ask Microsoft Copilot in Azure questions about metrics and logs collected by [Azure Monitor](/azure/azure-monitor/), and about Azure Monitor alerts.
 
 When you ask Microsoft Copilot in Azure for this information, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context of a query isn't clear, you'll be prompted to specify the resource for which you want information.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Answer questions about Azure Monitor platform metrics
 
@@ -35,6 +33,16 @@ Here are a few examples of the kinds of prompts you can use to get information a
 - "Show me the memory usage trend for my VM over the last 4 hours"
 - "Show trends for network bytes in over the last day"
 - "Give me a chart of os disk latency statistics for the last week"
+
+### Platform metrics examples
+
+When you're working with a resource, you can say "**Show me available metrics for this resource**." Copilot in Azure lets you know which metrics are available.
+
+:::image type="content" source="media/get-monitoring-information/monitor-available-metrics.png" alt-text="Screenshot of Copilot in Azure listing which metrics are available for a resource.":::
+
+You can then follow up by asking to see a particular metric for a set period of time.
+
+:::image type="content" source="media/get-monitoring-information/monitor-show-metric.png" alt-text="Screenshot of Copilot in Azure showing request metrics for a resource.":::
 
 ## Answer questions about Azure Monitor logs
 
@@ -54,9 +62,9 @@ Here are a few examples of the kinds of prompts you can use to get information a
 
 ## Answer questions about Azure Monitor alerts
 
-Use Microsoft Copilot in Azure (preview) to ask questions about your Azure Monitor alerts. When asked about alerts, Microsoft Copilot in Azure (preview) summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page. 
+Use Microsoft Copilot in Azure to ask questions about your Azure Monitor alerts. When asked about alerts, Microsoft Copilot in Azure summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page. 
 
-### Sample prompts
+### Alerts sample prompts
 
 Here are a few examples of the kinds of prompts you can use to get information about Azure Monitor alerts. Modify these prompts based on your real-life scenarios, or try additional prompts to get different kinds of information.
 
@@ -65,6 +73,16 @@ Here are a few examples of the kinds of prompts you can use to get information a
 - "Show me all the alerts in my resource group"
 - "List all the alerts for the subscription"
 - "Show me all alerts triggered during the last 24 hours"
+
+### Alerts examples
+
+You can say "**Catch me up on alerts** to get an overview of active alerts across your resources. Copilot in Azure shares the types of alerts, along with details about the top alerts that are currently active.
+
+:::image type="content" source="media/get-monitoring-information/monitor-active-alerts.png" alt-text="Screenshot of Copilot in Azure summarizing all active alerts.":::
+
+To narrow it down, you can say "**Show me all alerts triggered during the last 24 hours**."
+
+:::image type="content" source="media/get-monitoring-information/monitor-recent-alerts.png" alt-text="Screenshot of Copilot in Azure summarizing active alerts in the past 24 hours.":::
 
 ## Next steps
 

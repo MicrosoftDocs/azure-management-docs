@@ -415,7 +415,7 @@ When you deploy Arc resource bridge on VMware, you specify the folder in which t
 
 ### Cannot retrieve resource - resource not found or does not exist
 
-When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. moves location and you try to upgrade, you might see errors similar the following:
+When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. If the Arc resource bridge location is changed and you try to upgrade, you might see errors similar to the following:
 
 `{\n  \"code\": \"PreflightcheckError\",\n  \"message\": \"{\\n  \\\"code\\\": \\\"InvalidEntityError\\\",\\n  \\\"message\\\": \\\"Cannot retrieve <resource> 'resource-name': <resource> 'resource-name' not found\\\"\\n }\"\n }"`
 
@@ -424,10 +424,9 @@ When you deploy Arc resource bridge, you specify where the appliance VM is deplo
 To fix these errors, use one of these options:
 
 - Move the appliance VM back to its original location and ensure RBAC credentials are updated for the location change.
-- Create a resource with the same name, then move Arc resource bridge to that new resource.
-- For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
-- Delete and [redeploy the Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md).
+- Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring the original location path is recreated.
 
+- For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
 ### Insufficient privileges
 
 When you deploy or upgrade the resource bridge on VMware vCenter, you might see an error similar to:

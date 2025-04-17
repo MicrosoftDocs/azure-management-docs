@@ -7,7 +7,7 @@ manager: jsuri
 ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.date: 02/12/2025
+ms.date: 04/10/2025
 ms.custom: references_regions
 
 # Customer intent: As a VI admin, I want to connect my VMM management server to Azure Arc.
@@ -34,8 +34,8 @@ This Quickstart shows you how to connect your SCVMM management server to Azure A
 
 ## Prepare SCVMM management server
 
--	Create an SCVMM private cloud if you don't have one. The private cloud should have a reservation of at least 32 GB of RAM and 4 vCPUs. It should also have at least 100 GB of disk space.
--	Ensure that SCVMM administrator account has the appropriate permissions.
+- Ensure you have a host group or a SCVMM private cloud with a reservation of at least 32 GB of RAM, 4 vCPUs and at least 100 GB of disk space.
+- Ensure that SCVMM administrator account has the appropriate permissions.
 
 ## Download the onboarding script
 
@@ -65,7 +65,7 @@ This Quickstart shows you how to connect your SCVMM management server to Azure A
 1. Based on the operating system of your workstation, download the PowerShell or Bash script and copy it to the workstation.
 1. To see the status of your onboarding after you run the script on your workstation, select **Next:Verification**. The onboarding isn't affected when you close this page.
 
-### Windows
+# [Windows](#tab/window)
 
 Follow these instructions to run the script on a Windows machine.
 
@@ -84,7 +84,8 @@ Follow these instructions to run the script on a Windows machine.
     ```azurepowershell-interactive
     ./resource-bridge-onboarding-script.ps1
     ```
-### Linux
+
+# [Linux](#tab/linux)
 
 Follow these instructions to run the script on a Linux machine:
 
@@ -94,6 +95,7 @@ Follow these instructions to run the script on a Linux machine:
     ```sh
     bash resource-bridge-onboarding-script.sh
     ```
+---
 
 ## Script runtime
 The script execution will take up to half an hour and you'll be prompted for various details. See the following table for related information:
@@ -118,12 +120,17 @@ The script execution will take up to half an hour and you'll be prompted for var
 Once the command execution is completed, your setup is complete, and you can try out the capabilities of Azure Arc-enabled SCVMM.
 
 >[!IMPORTANT]
->After the successful installation of Azure Arc Resource Bridge, it's recommended to retain a copy of the resource bridge config (.yaml) files in a secure place that facilitates easy retrieval. These files are needed later to run commands to perform management operations (e.g. [az arcappliance upgrade](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware)) on the resource bridge. You can find the three config files (.yaml files) in the same folder where you ran the onboarding script. 
+>The resource bridge must continue to be in *online* status for Azure Arc-enabled SCVMM to perform virtual machine CRUD and powercycle operations. To maintain your resource bridge in a *healthy* state, we recommend you to follow the best practices listed [here](https://aka.ms/scvmmarbbestpractices). 
 
+## Recover from failed deployments
 
-### Retry command - Windows
+If the Azure Arc resource bridge deployment fails, see the Troubleshooting section for debugging steps.
 
-If for any reason, the appliance creation fails, you need to retry it. Run the command with ```-Force``` to clean up and onboard again.
+To clean up the installation and retry the deployment, use the following commands.
+
+# [Retry command - Windows](#tab/win)
+
+Run the command with ```-Force``` to clean up and onboard again.
 
 ```powershell-interactive
  ./resource-bridge-onboarding-script.ps1 -Force -Subscription <Subscription> -ResourceGroup <ResourceGroup> -AzLocation <AzLocation> -ApplianceName <ApplianceName> -CustomLocationName <CustomLocationName> -VMMservername <VMMservername>
@@ -131,22 +138,15 @@ If for any reason, the appliance creation fails, you need to retry it. Run the c
 
 >[!Note]
 >You can find the values for *Subscription*, *ResourceGroup*, *Azlocation*, *ApplianceName*, *CustomLocationName*, and *VMMservername* parameters from the onboarding script.
+ 
+# [Retry command - Linux](#tab/lin)
 
- ### Retry command - Linux
-
-If for any reason, the appliance creation fails, you need to retry it. Run the command with ```--force``` to clean up and onboard again.
+Run the command with ```--force``` to clean up and onboard again.
 
   ```sh
     bash resource-bridge-onboarding-script.sh --force
   ```
->[!IMPORTANT]
-> After the successful installation of Azure Arc Resource Bridge, it's recommended to retain a copy of the resource bridge config.yaml files in a place that facilitates easy retrieval. These files could be needed later to run commands to perform management operations (e.g. [az arcappliance upgrade](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware)) on the resource bridge. You can find the three .yaml files (config files) in the same folder where you ran the script.
-
->[!NOTE]
-> - After successful deployment, we recommend maintaining the state of **Arc Resource Bridge VM** as *online*.
-> - Intermittently appliance might become unreachable when you shut down and restart the VM. 
-> - After the execution of command, your setup is complete, and you can try out the capabilities of Azure Arc-enabled SCVMM. 
-
+---
 ## Next steps
 
 - [Browse and enable SCVMM resources through Azure RBAC](enable-scvmm-inventory-resources.md).
