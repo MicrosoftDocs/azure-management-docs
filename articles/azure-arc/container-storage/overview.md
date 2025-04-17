@@ -43,5 +43,6 @@ Azure Container Storage enabled by Azure Arc is available in the following Azure
 
 ## Related content
 
+- [Overview of Edge Volumes](edge-volumes-overview.md)
 - [Prepare Linux for Edge Volumes](prepare-linux-edge-volumes.md)
-- [Install Azure Container Storage enabled by Azure Arc Edge Volumes](install-edge-volumes.md)
+- [Install Edge Volumes](install-edge-volumes.md)
