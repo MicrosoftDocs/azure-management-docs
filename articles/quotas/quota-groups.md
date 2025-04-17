@@ -211,21 +211,21 @@ user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Mi
 
 ### Add / remove subscriptions from Group
 ```
-PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01```
-
+PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
+```
+```
 202 – status code
 Response header
 'Location': 'https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptionRequestsOperationsStatus/9ff167a4-7ab8-4036-9eca-b500206d0d04?api-version=2025-03-01
 Retry-After: 30 
 Response content
 {"properties":{"provisioningState":"ACCEPTED"},"id":"/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a","type":"Microsoft.Quota/groupQuotas/subscriptions","name":"075216c4-f88b-4a82-b9f8-cdebf9cc097a"}
+```
+```
 DELETE https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 
-Status 204
-Response header
-
-
 ```
+
 ### Get List of subscriptions in group
 
 ```
@@ -313,6 +313,10 @@ o	Escalated
 o	Limit = current subscription limit  
 o	Shareable quota = how many cores have been deallocated/transferred from sub to group
 	‘-5’ = 5 cores were given from sub to group  
+```
+GET
+/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
+```
 
 ```
 Status code: 202
@@ -321,11 +325,8 @@ Location: https://management.azure.com/providers/Microsoft.Management/management
 Retry-After: 30 
 Response Content
 ```
-
-```
-GET
-/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
 The sample response would be: 
+```
 {
 "properties": {
 "requestedResource": {
