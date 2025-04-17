@@ -102,5 +102,4 @@ The following capabilities are available in the AKS Arc on VMware preview:
 - Once ready, [connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
 - Try out Arc-enabled VMware vSphere by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_vsphere).
 - [Consider unified operations and plan for hybrid and multicloud environments with the Cloud Adoption Framework.](/azure/cloud-adoption-framework/scenarios/hybrid/plan).
-- [Assess workloads for hybrid and multicloud migration with Cloud Adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/migrate).
 - [Choose the Azure Hybrid solution that meets your business requirements with guidance from the Azure Architecture Center.](/azure/architecture/guide/technology-choices/hybrid-considerations).
