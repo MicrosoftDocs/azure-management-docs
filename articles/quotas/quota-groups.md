@@ -192,7 +192,7 @@ JS: https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0
 ## Examples
 ### Create a Quota Group
 ```
-PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/testMgIdRoot/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota?api-version=2025-03-01 
+PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 
 Request Body:
 {
   "properties": {
@@ -202,15 +202,14 @@ Request Body:
 ```
 Sample Response: 
 ```
-<!-- Lets remove the real names -->
-yaya [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota?api-version=2025-03-01 --body '{
+user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
   "properties": {
     "displayName": "allocationGroupTest"
   }
 }'
 {
-  "id": "/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota",
-  "name": "sdk-test-group-quota",
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}",
+  "name": "{groupquota}",
   "properties": {
     "provisioningState": "ACCEPTED"
   },
@@ -220,15 +219,15 @@ yaya [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Mi
 
 ### Add / remove subscriptions from Group
 ```
-PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01```
+PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01```
 
 202 – status code
 Response header
-'Location': 'https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptionRequestsOperationsStatus/9ff167a4-7ab8-4036-9eca-b500206d0d04?api-version=2025-03-01
+'Location': 'https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptionRequestsOperationsStatus/9ff167a4-7ab8-4036-9eca-b500206d0d04?api-version=2025-03-01
 Retry-After: 30 
 Response content
-{"properties":{"provisioningState":"ACCEPTED"},"id":"/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a","type":"Microsoft.Quota/groupQuotas/subscriptions","name":"075216c4-f88b-4a82-b9f8-cdebf9cc097a"}
-DELETE https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
+{"properties":{"provisioningState":"ACCEPTED"},"id":"/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a","type":"Microsoft.Quota/groupQuotas/subscriptions","name":"075216c4-f88b-4a82-b9f8-cdebf9cc097a"}
+DELETE https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 
 Status 204
 Response header
@@ -239,15 +238,15 @@ Response header
 
 ```
 GET
-https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroup}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
+https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
 
 ```
 Azrest sample
 
 ```
-az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroup}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01” –debug
+az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01” –debug
 
-yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptions?api-version=2025-03-01” –debug
+user [ ~ ]$ az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions?api-version=2025-03-01” –debug
 
 {
   “values”: [
@@ -256,7 +255,7 @@ yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
         “provisioningState”: “SUCCEEDED”,
         “subscriptionId”: “075216c4-f88b-4a82-b9f8-cdebf9cc097a”
       },
-      “id”: “/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a”,
+      “id”: “/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a”,
       “name”: “075216c4-f88b-4a82-b9f8-cdebf9cc097a”,
       “type”: “Microsoft.Quota/groupQuotas/subscriptions”
     },
@@ -265,7 +264,7 @@ yaya [ ~ ]$ az rest –method get –debug –url “https://management.azure.co
         “provisioningState”: “SUCCEEDED”,
         “subscriptionId”: “aa3b53ad-601b-473e-b727-f933435c8263”
       },
-      “id”: “/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263”,
+      “id”: “/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263”,
       “name”: “aa3b53ad-601b-473e-b727-f933435c8263”,
       “type”: “Microsoft.Quota/groupQuotas/subscriptions”
     }
@@ -285,7 +284,7 @@ o	Set the limit property to your new desired subscription limit. If your current
 
 ### PATCH Subscription quotaAllocation
 ```
-PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/ {managementgroup}/ subscriptions/ {subscriptionId}/ providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
+PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/ {managementGroupId}/ subscriptions/ {subscriptionId}/ providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
 {
   “properties”: {
     “value”: [
@@ -302,7 +301,7 @@ PATCH https://management.azure.com/”providers/Microsoft.Management/managementG
 
 azrest example
 ```
-az rest –method patch –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01” –body ‘{
+az rest –method patch –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01” –body ‘{
   “properties”: {
     “value”: [
       {
@@ -327,7 +326,7 @@ o	Shareable quota = how many cores have been deallocated/transferred from sub to
 ```
 Status code: 202
 Response header:
-Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/quotaAllocationOperationsStatus/3b80d125-ada8-41c8-b6c4-12fae6a7f55b?api-version=2025-03-01
+Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationOperationsStatus/3b80d125-ada8-41c8-b6c4-12fae6a7f55b?api-version=2025-03-01
 Retry-After: 30 
 Response Content
 ```
@@ -365,18 +364,18 @@ Status code: 200
 Response Header: 
 
 ```
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
 ```
 
 
 
 azrest example
 ```
-az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
 Response content
 
 {
-  "id": "/providers/Microsoft.Management/managementGroups/YayaMGtest/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/quotaAllocations/eastus",
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus",
   "name": "eastus",
   "provisioningState": "Succeeded",
   "type": "Microsoft.Quota/groupQuotas/quotaAllocations",
@@ -398,7 +397,7 @@ Response content
 
 ### Submit Quota increase request
 ```
-PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementgroup} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
+PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementGroupId} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 {
   "properties": {
     "value": [
@@ -446,17 +445,17 @@ Sample response
 •	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
 
 ```
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementgroup} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
 ```
 
 azrest example  
 ```
-az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
+az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
 
 sample reponse
-yaya [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
+user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
 {
-  "id": "/providers/Microsoft.Management/managementGroups/YayaMGtest/providers/Microsoft.Quota/groupQuotas/sdk-test-group-quota/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus",
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus",
   "name": "eastus",
   "properties": {
     "nextLink": "",
@@ -487,6 +486,7 @@ yaya [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
   "type": "Microsoft.Quota/groupQuotas/groupQuotaLimits"
 }
 ```
+
 
 ### Quota Group Increase Escalations
 When doing certain quota group transactions, such as quota transfers or submitting Quota Group increase request, operation is specific to a given region and VM family. 
