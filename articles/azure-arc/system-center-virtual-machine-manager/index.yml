@@ -80,8 +80,6 @@ landingContent:
     linkLists:
       - linkListType: architecture
         links:
-          - text: Hybrid and multicloud migration with Cloud Adoption Framework
-            url: /azure/cloud-adoption-framework/scenarios/hybrid/migrate
           - text: Hybrid and multicloud products on Azure in Cloud Adoption Framework
             url: /azure/cloud-adoption-framework/scenarios/hybrid/toolchain
             
