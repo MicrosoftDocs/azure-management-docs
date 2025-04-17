@@ -98,10 +98,10 @@ In this quickstart, you learned how to deploy a connected registry to an IoT Edg
 > [Tutorial: Deploy connected registry on nested IoT Edge devices][tutorial-connected-registry-nested]
 
 <!-- LINKS - internal -->
-[az-acr-connected-registry-get-settings]: /cli/azure/acr/connected-registry#az_acr_connected_registry_get_settings
-[az-acr-connected-registry-show]: /cli/azure/acr/connected-registry#az_acr_connected_registry_show
-[az-acr-import]:/cli/azure/acr#az_acr_import
-[az-acr-token-credential-generate]: /cli/azure/acr/token/credential?#az_acr_token_credential_generate
+[az-acr-connected-registry-get-settings]: /cli/azure/acr/connected-registry#az-acr-connected-registry-get-settings
+[az-acr-connected-registry-show]: /cli/azure/acr/connected-registry#az-acr-connected-registry-show
+[az-acr-import]:/cli/azure/acr#az-acr-import
+[az-acr-token-credential-generate]: /cli/azure/acr/token/credential?#az-acr-token-credential-generate
 [container-registry-intro]: container-registry-intro.md
 [pull-images-from-connected-registry]: pull-images-from-connected-registry.md
 [quickstart-connected-registry-cli]: quickstart-connected-registry-cli.md
