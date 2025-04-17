@@ -349,7 +349,7 @@ The sample response would be:
 
 •	view current subscription limit for region x SKU  
 •	Limit = current subscription limit  
-•	Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group
+•	Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
 Status code: 200
 Response Header: 
 
