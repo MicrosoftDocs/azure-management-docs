@@ -64,6 +64,8 @@
       - name: Available extensions
         displayName: gitops, flux, version
         href: extensions-release.md
+      - name: Managed extensions
+        href: managed-extensions.md
       - name: Custom locations
         displayName: target
         href: conceptual-custom-locations.md
