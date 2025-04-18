@@ -10,7 +10,7 @@ ms.date: 08/26/2024
 
 # Monitor your Edge Volumes deployment
 
-This article describes how to monitor your Azure Container Storage enabled by Azure Arc Edge Volumes deployment.
+This article describes how to monitor your Edge Volumes offering from Azure Container Storage enabled by Azure Arc.
 
 ## Deployment monitoring overviews
 
@@ -21,4 +21,6 @@ For information about how to monitor your Edge Volumes deployment using Azure Mo
 
 ## Next steps
 
-[Azure Container Storage enabled by Azure Arc overview](overview.md)
+- [Overview of volumes and subvolumes](volumes-subvolumes.md)
+- [Map file to object path names](map-names.md)
+- [Edge Volumes storage options](storage-options.md)

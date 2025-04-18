@@ -24,6 +24,6 @@ Cache Volumes (preview) works by performing the following operations:
 ## Next steps
 
 - [Prepare Linux](prepare-linux.md)
-- [How to install Azure Container Storage enabled by Azure Arc](install-edge-volumes.md)
+- [Install Cache Volumes](install-cache-volumes.md)
 - [Create a persistent volume](create-persistent-volume.md)
 - [Monitor your deployment](azure-monitor-kubernetes.md)
