@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 04/18/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -33,21 +33,15 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
 1. In the service menu, under **Services**, select **Cache**.
 
-    :::image type="content" source="./media/container-registry-artifact-cache/cache-preview-01.png" alt-text="Screenshot showing the Cache option in the service menu of a container registry in the Azure portal.":::
-
 1. Select **Create rule**.
 
-    :::image type="content" source="./media/container-registry-artifact-cache/cache-blade-02.png" alt-text="Screenshot showing the Create rule command for a container registry in the Azure portal.":::
+    :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-create-rule.png" alt-text="Screenshot showing the Create rule command for a container registry in the Azure portal.":::
 
-1. A window for **New cache rule** appears.
+1. In the **New cache rule** pane, enter a **Rule name**.
 
-    :::image type="content" source="./media/container-registry-artifact-cache/new-cache-rule-03.png" alt-text="Screenshot for new Cache Rule in Azure portal.":::
+1. For **Source**, select a login server.
 
-1. Enter the **Rule name**.
-
-1. Select **Source** Registry from the dropdown menu.
-
-1. Enter the **Repository Path** to the artifacts you want to cache.
+1. For **Repository Path**, enter the full repository path to the artifacts you want to cache.
 
 1. Depending on your source, **Authentication** might be required. If the **Authentication** box isn't already checked, and you don't want to use authentication, you can skip this section. Otherwise, ensure the box is checked and add your credentials:
 
@@ -56,24 +50,24 @@ Follow the steps to create a cache rule in the [Azure portal](https://portal.azu
 
 1. For **Destination**, enter the name of the **New ACR repository namespace** to store cached artifacts.
 
-    :::image type="content" source="./media/container-registry-artifact-cache/save-cache-rule-04.png" alt-text="Screenshot showing cache rule creation for a container registry in Azure portal.":::
+1. Select **Create** to create your cache rule.
 
-1. Select **Save**.
+   :::image type="content" source="media/container-registry-artifact-cache/artifact-cache-enter-rule-details.png" alt-text="Screenshot showing details entered to create a new cache rule for a container registry in the Azure portal.":::
 
 ## Create new credentials
 
 Before configuring the credentials, make sure you're able to [create and store secrets in the Azure Key Vault][create-and-store-keyvault-credentials] and [retrieve secrets from the Key Vault][set-and-retrieve-a-secret].
 
-1. In the **Cache** pane, select **Credentials**, then select **Create credentials**.
+1. In your container registry's **Cache** pane, select **Credentials**, then select **Create credentials**.
 
-   :::image type="content" source="./media/container-registry-artifact-cache/add-credential-set-05.png" alt-text="Screenshot for adding credentials in Azure portal.":::
-
-   :::image type="content" source="./media/container-registry-artifact-cache/create-credential-set-06.png" alt-text="Screenshot for create new credentials in Azure portal.":::
+   :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-create-credentials.png" alt-text="Screenshot of the steps to start adding credentials for a container registry in Azure portal.":::
 
 1. Enter a **Name** for the new credentials for your source registry.
 1. Select a **Source Authentication**. Artifact cache currently supports **Select from Key Vault** and **Enter secret URIs**.
 1. For the  **Select from Key Vault** option, [create your credentials using Key Vault][create-and-store-keyvault-credentials].
 1. Select **Create**.
+
+      :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-enter-credential-details.png" alt-text="Screenshot showing details entered to create credentials for a container registry in Azure portal.":::
 
 ## Next steps
 
