@@ -33,7 +33,7 @@ To use the examples in this article, you need an automation execution environmen
 
 If you don't have an automation execution environment that meets these requirements, you can use [this example](https://github.com/scottharwell/cloud-ee).
 
-For more information about building and configuring automation execution environments, see the [Red Hat Ansible documentation](https://docs.ansible.com/automation-controller/latest/html/userguide/execution_environments.html).
+For more information about building and configuring automation execution environments, see the [Red Hat Ansible documentation](https://docs.ansible.com/ansible/latest/getting_started_ee/index.html).
 
 ### Azure Resource Manager credential
 
