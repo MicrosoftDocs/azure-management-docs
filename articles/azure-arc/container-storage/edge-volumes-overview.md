@@ -12,7 +12,7 @@ ms.date: 04/17/2024
 
 This article describes the Edge Volumes offering from Azure Container Storage enabled by Azure Arc. 
 
-## What are the Edge Volume offerings?
+## What are the Edge Volumes offerings?
 
 The first Edge Volumes offering is *Local Shared Edge Volumes*, providing highly available, failover-capable storage, local to your Kubernetes cluster. This shared storage type remains independent of cloud infrastructure, making it ideal for scratch space, temporary storage, and locally persistent data unsuitable for cloud destinations. 
 
@@ -22,7 +22,7 @@ Tailored for IoT applications, Edge Volumes not only eliminates local storage co
 
 ## How do Edge Volumes work? 
 
-:::image type="content" source="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" alt-text="Azure Container Storage enabled by Azure Arc edge volumes overview" lightbox="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" :::
+:::image type="content" source="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" alt-text="Diagram of Azure Container Storage enabled by Azure Arc edge volumes overview." lightbox="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" border="false":::
 
 **[Download](https://jumpstart.azure.com/azure_jumpstart_gems) a high resolution version of architecture diagrams.*
 

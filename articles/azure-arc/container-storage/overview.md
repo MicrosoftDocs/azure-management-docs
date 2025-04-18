@@ -13,7 +13,7 @@ ms.date: 04/14/2025
 
 Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters. This Arc extension can be deployed to write files to a *ReadWriteMany* persistent volume claim (PVC) where they can be stored locally, or  transferred to Azure Blob Storage destinations in the cloud. Azure Container Storage offers a range of features to support various workloads, such as Azure IoT Operations, and other Arc services. With high availability and fault-tolerance options available, this Arc extension is ready for production workloads.
 
-:::image type="content" source="media/overview/container-storage-solution-architecture.png" alt-text="Azure Container Storage enabled by Azure Arc solution architecture" lightbox="media/overview/container-storage-solution-architecture.png" :::
+:::image type="content" source="media/overview/container-storage-solution-architecture.png" alt-text="Diagram of Azure Container Storage enabled by Azure Arc solution architecture." lightbox="media/overview/container-storage-solution-architecture.png" border="false":::
 
 **[Download](https://jumpstart.azure.com/azure_jumpstart_gems) a high resolution version of architecture diagrams.*
 
