@@ -1,13 +1,13 @@
 # Azure Quota Group (Preview)
 
 ## Overview
-Azure Quota Groups is a new capability that simplifies how customers manage and share quotas across multiple subscriptions. Instead of managing quotas on a per-subscription basis, customers can now group subscriptions together and manage quotas at the Quota Group level—an Azure Resource Manager (ARM) object. This streamlines quota management, reduces overhead, and eliminates the need for frequent support engagements.
+Azure Quota Groups is a new offering from Azure that allows customers to share quota among a group of subscriptions, reducing the number of quota transactions. This feature elevates the quota construct from a subscription level to a Quota Group (ARM object), enabling customers to self-manage their procured quota within a group without needing approvals.
 
 ## Key Benefits
 • 	Quota Sharing Across Subscriptions: Share procured quotas within a group of subscriptions.
 • 	Self-Service Management: Distribute or reallocate unused quota without Microsoft intervention.
 • 	Fewer Support Requests: Avoid filing support tickets when reallocating quota or managing new subscriptions.
-• 	Flexible Quota Requests: Request quota at the group level and allocate it across subscriptions as needed.
+• 	Group Quota Requests: Request quota at the group level and allocate it across subscriptions as needed.
 
 
 ### Supported Scenarios  
