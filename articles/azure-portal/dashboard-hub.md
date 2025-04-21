@@ -2,7 +2,7 @@
 title: Create and manage dashboards in Dashboard hub
 description: This article describes how to create and customize a shared dashboard in Dashboard hub in the Azure portal.
 ms.topic: how-to
-ms.date: 08/28/2024
+ms.date: 04/21/2025
 ---
 
 # Create and manage dashboards in Dashboard hub (preview)
@@ -26,13 +26,13 @@ Some tiles aren't yet available in the Dashboard hub experience. Currently, the 
 - **Azure Resource Graph query**
 - **Metrics**
 - **Resource**
-- **Resource Group**
-- **Recent Resources**
-- **All Resources**
+- **Resource groups**
+- **Recent resources**
+- **All resources**
 - **Markdown**
 - **Policy**
 
-If your dashboard relies on one of these tiles, we recommend that you don't use the new experience for that dashboard at this time. We'll update this page as we add more tile types to the new experience.
+If your dashboard relies on a tile type that isn't listed here, we recommend that you don't use the new experience for that dashboard at this time. We'll update this page as we add more tile types to the new experience.
 
 ## Create a new dashboard
 
