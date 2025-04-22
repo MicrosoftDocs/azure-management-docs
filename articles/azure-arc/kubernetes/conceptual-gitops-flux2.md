@@ -1,7 +1,7 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 01/16/2025
+ms.date: 04/22/2025
 ms.topic: conceptual
 ms.custom: devx-track-azurecli, references-regions
 ---
