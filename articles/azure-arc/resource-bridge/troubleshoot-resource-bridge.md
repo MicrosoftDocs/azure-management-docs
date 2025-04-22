@@ -9,9 +9,9 @@ ms.topic: troubleshooting
 
 This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
 
-> [!NOTE] 
-> - For *Arc-enabled System Center Virtual Machine Manager*, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
-> - For *Azure Local*, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
+> [!NOTE]
+> - For ***Arc-enabled System Center Virtual Machine Manager***, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For ***Azure Local***, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
