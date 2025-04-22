@@ -38,7 +38,8 @@ Quota Group is a global ARM object created under a Management Group to logically
 •	Designed as an orthogonal grouping mechanism—independent of subscription placement in the Management Group hierarchy  
 •	Subscription lists are not auto-synced from Management Groups, giving you flexibility to organize quotas separately from policy or role management  
 
-The following diagram illustrates this concept. The existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
+The following diagram illustrates this concept.  
+The existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A, and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
  
  :::image type="content" source="/media/quota-groups/sample-management-group-quota-group-hierarchy.png" alt-text="Diagram of Management Group hierarchy with sample Quota Groups created under Management Group.":::
  
@@ -49,7 +50,7 @@ A single Quota Group object can manage quotas across multiple regions and VM fam
 Example Hierarchy:  
 •	Management Group A owns Quota Groups 1 & 2  
 •	Management Group B owns Quota Group 3  
-•	Each quota group manages different regions or VM families as needed  
+•	Each quota group may used to manage different applications, departments, and or regions
 •	When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families  
 
  :::image type="content" source="/media/quota-groups/sample-recommended-quota-group-setup.png" alt-text="Diagram of Management Group hierarchy with multiple Quota Groups created under Management Group.":::
