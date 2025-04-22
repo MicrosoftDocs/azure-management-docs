@@ -1,17 +1,16 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 01/21/2025
+ms.date: 04/22/2025
 ms.topic: overview
 ---
 
 # Overview of Azure Connected Machine agent
 
-The Azure Connected Machine agent enables you to manage your Windows and Linux machines hosted outside of Azure on your corporate network or other cloud providers.
+The Azure Connected Machine agent lets you manage Windows and Linux machines hosted outside of Azure, on your corporate network or other cloud providers.
 
 > [!WARNING]
-> Only Connected Machine agent versions within the last one year are officially supported by the product group. Customers should update to an agent version within this window.
-> 
+> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. Customers should update to an agent version within this window.
 
 ## Agent components
 
@@ -40,7 +39,7 @@ The Azure Arc Proxy service is responsible for aggregating network traffic from 
 
 ## Agent resources
 
-The following information describes the directories and user accounts used by the Azure Connected Machine agent.
+This section describes the directories and user accounts used by the Azure Connected Machine agent.
 
 ### Windows agent installation details
 
@@ -262,7 +261,9 @@ The agent requests the following metadata information from Azure:
 * Extension requests - install, update, and delete.
 
 > [!NOTE]
-> Azure Arc-enabled servers do not store/process customer data outside the region the customer deploys the service instance in.
+> Azure Arc-enabled servers does not collect any personally identifiable information (PII) or end-user identifiable information or store any customer data.
+>
+> Customer metadata isn't stored or processed outside the region the customer deploys the service instance in.
 
 ## Deployment options and requirements
 
@@ -272,12 +273,11 @@ We provide several options for deploying the agent. For more information, see [P
 
 ## Cloning guidelines
 
-You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine. 
+You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine.
 
 If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure and then used that server as the golden image for cloning. Since the resource information was recorded into the image, cloned machines created from that image try to send heartbeat messages to the same resource.
 
 To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machines to the cloud using a unique resource name.
-
 
 ## Disaster Recovery
 
