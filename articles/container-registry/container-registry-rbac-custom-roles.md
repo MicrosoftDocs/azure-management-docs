@@ -78,3 +78,8 @@ To create or update a custom role using the JSON description, use the [Azure CLI
 
 Add or remove role assignments for a custom role in the same way that you manage role assignments for built-in Azure roles.
 Learn more about assigning Azure roles to an Azure identity by using the [Azure portal](/azure/role-based-access-control/role-assignments-portal), the [Azure CLI](/azure/role-based-access-control/role-assignments-cli), [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell), or other Azure tools.
+
+## Next steps
+
+* For an overview of ACR built-in roles, see [Azure Container Registry built-in roles](container-registry-rbac-built-in-roles.md).
+* For a detailed reference of every ACR built-in role, including the permissions granted by each role, see the [Azure Container Registry roles directory reference](container-registry-rbac-built-in-roles-directory-reference.md).
