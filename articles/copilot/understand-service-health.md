@@ -66,7 +66,7 @@ And you can ask about current and past security advisories. For example, "**How 
 
 :::image type="content" source="media/understand-service-health/azure-service-health-how-many-security-advisories-in-last-days.png" alt-text="Screenshot of Microsoft Copilot in Azure checking to see if there have been any security advisories in the last 50 days.":::
 
-Another question you can ask is about any PIRS "**Are there any PIRs?**"
+Another question you can ask is whether any Post Incident Reviews (PIRs) are available. "**Are there any PIRs?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-any-pir.png" alt-text="Screenshot of Microsoft Copilot responding with data and link to click.":::
 
