@@ -54,7 +54,7 @@ You can also ask about a specific service event to see whether it's resolved. If
 
 :::image type="content" source="media/understand-service-health/azure-service-health-still-active.png" alt-text="Screenshot of Microsoft Copilot in Azure checking whether a service health issue is still active.":::
 
-Or you can ask about current and past planned maintenance events "**Any planned maintenance events?**" or "**How many planned maintenance events in the last '20' days?**"
+Or you can ask about current and past planned maintenance events "**Any planned maintenance events?**" or "**How many planned maintenance events in the last 20 days?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events.":::
 
