@@ -206,7 +206,7 @@ sections:
       - question:  |
           How do I grant access to pull or push images without permission to manage the registry resource?
         answer: |
-          ACR supports [custom roles](container-registry-roles.md) that provide different levels of permissions. Specifically, `AcrPull` and `AcrPush` roles allow users to pull and/or push images without the permission to manage the registry resource in Azure.
+          ACR supports [custom roles](container-registry-rbac-built-in-roles.md) that provide different levels of permissions. Specifically, `AcrPull` and `AcrPush` roles allow users to pull and/or push images without the permission to manage the registry resource in Azure.
           
           * Azure portal: Your registry -> Access Control (IAM) -> Add (Select `AcrPull` or `AcrPush` for the Role).
           * Azure CLI: Find the resource ID of the registry by running the following command:

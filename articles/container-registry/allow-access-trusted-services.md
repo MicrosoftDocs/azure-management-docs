@@ -36,7 +36,7 @@ Several multitenant Azure services operate from networks that you can't include 
 
 Instances of the following services can access a network-restricted container registry if the registry's **allow trusted services** setting is enabled (the default). More services will be added over time.
 
-Where indicated, access by the trusted service requires additional configuration of a managed identity in a service instance, assignment of an [RBAC role](container-registry-roles.md), and authentication with the registry. For example steps, see [Trusted services workflow](#trusted-services-workflow), later in this article.
+Where indicated, access by the trusted service requires additional configuration of a managed identity in a service instance, assignment of an [RBAC role](container-registry-rbac-built-in-roles.md), and authentication with the registry. For example steps, see [Trusted services workflow](#trusted-services-workflow), later in this article.
 
 |Trusted service  |Supported usage scenarios  | Configure managed identity with RBAC role |
 |---------|---------|------|
@@ -83,7 +83,7 @@ To disable or re-enable the setting in the portal:
 Here's a typical workflow to enable an instance of a trusted service to access a network-restricted container registry. This workflow is needed when you use a service instance's managed identity to bypass the registry's network rules.
 
 1. Enable a managed identity in an instance of one of the [trusted services](#trusted-services) for Azure Container Registry.
-1. Assign the identity an [Azure role](container-registry-roles.md) to your registry. For example, assign the ACRPull role to pull container images.
+1. Assign the identity an [Azure role](container-registry-rbac-built-in-roles.md) to your registry. For example, assign the ACRPull role to pull container images.
 1. Configure the setting in the network-restricted registry to allow access by trusted services.
 1. Use the identity's credentials to authenticate with the network-restricted registry.
 1. Pull images from the registry, or perform other operations allowed by the role.

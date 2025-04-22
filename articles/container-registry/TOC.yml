@@ -176,7 +176,7 @@
         - name: Enable unauthenticated pull access
           href: anonymous-pull-access.md
       - name: Azure role-based access control
-        href: container-registry-roles.md
+        href: container-registry-rbac-built-in-roles.md
         displayName: permissions, authorization
       - name: Content trust
         href: container-registry-content-trust.md
