@@ -1,7 +1,7 @@
 ---
 title: Understand service health events and status using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can provide information about service health events.
-ms.date: 04/08/2025
+ms.date: 04/22/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -36,13 +36,14 @@ Here are a few examples of the kinds of prompts you can use to get service healt
 - "What is the status of the event with tracking ID {0}?"
 - "What are the impacted resources from event {0}?"
 - "Do I have any impacted resources from event {0}?"
-### Resource Health handler prompts
-•	"Can you share health information of resource 
+
+-	"Can you share health information of resource 
   ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?``<br>
-•	"What is the health of resource 
+  <!--
+•	"What is the health of resource" 
   ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.DocumentDB/databaseAccounts/testResource?"``<br>
 •	"Is the resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/loadBalancers/testResource healthy?"``<br>
+  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/loadBalancers/testResource healthy?"``<br>-->
 
 ## Examples
 
