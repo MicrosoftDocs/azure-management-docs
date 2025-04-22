@@ -19,7 +19,7 @@ Azure Arc provides a centralized, unified way to:
 * Continue using traditional ITOps while introducing DevOps practices to support new cloud native patterns in your environment.
 * Configure custom locations as an abstraction layer on top of Azure Arc-enabled Kubernetes clusters and cluster extensions.  
 
-:::image type="content" source="/media/overview/azure-arc-control-plane.png" alt-text="Azure Arc management control plane diagram" border="false" lightbox="./media/overview/azure-arc-control-plane.png" :::
+:::image type="content" source="media/overview/azure-arc-control-plane.png" alt-text="Diagram showing the Azure Arc management control plane." lightbox="media/overview/azure-arc-control-plane.png" :::
 
 [!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
