@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc resource bridge"
-ms.date: 08/26/2024
+ms.date: 03/19/2025
 ms.topic: conceptual
 description: "Learn about the latest releases of Azure Arc resource bridge."
 ---
