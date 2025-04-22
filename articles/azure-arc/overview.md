@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 03/03/2025
+ms.date: 04/22/2025
 ms.topic: overview
 ---
 
@@ -19,7 +19,9 @@ Azure Arc provides a centralized, unified way to:
 * Continue using traditional ITOps while introducing DevOps practices to support new cloud native patterns in your environment.
 * Configure custom locations as an abstraction layer on top of Azure Arc-enabled Kubernetes clusters and cluster extensions.  
 
-:::image type="content" source="./media/overview/azure-arc-control-plane.png" alt-text="Azure Arc management control plane diagram" border="false" lightbox="./media/overview/azure-arc-control-plane.png" :::
+:::image type="content" source="/media/overview/azure-arc-control-plane.png" alt-text="Azure Arc management control plane diagram" border="false" lightbox="./media/overview/azure-arc-control-plane.png" :::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 Currently, Azure Arc allows you to manage the following resource types hosted outside of Azure:
 
