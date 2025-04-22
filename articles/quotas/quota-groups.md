@@ -275,7 +275,7 @@ o	Set the limit property to the new desired subscription limit. If your current 
 
 ### PATCH Subscription Quota Allocation
 ```
-PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/ {managementGroupId}/ subscriptions/ {subscriptionId}/ providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
+PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
 {
   “properties”: {
     “value”: [
@@ -315,7 +315,7 @@ o	Shareable quota = how many cores have been deallocated/transferred from sub to
 	‘-5’ = 5 cores were given from sub to group  
 ```
 GET
-/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
+/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
 ```
 
 ```
@@ -388,7 +388,7 @@ Response content
 
 ### Submit Quota Group increase request
 ```
-PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/ {managementGroupId} /providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
+PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 {
   "properties": {
     "value": [
@@ -407,7 +407,7 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
 ### Get Quota Group increase request status
 
 ```
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}?api-version=2025-03-01
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 
 Sample response
 {
@@ -436,7 +436,7 @@ Sample response
 •	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
 
 ```
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/ {groupquota} /resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
 ```
 
 azrest example  
@@ -480,8 +480,8 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 
 
 ### Quota Group Increase Escalations
-When doing certain quota group transactions, such as quota transfers or submitting Quota Group increase request, operation is specific to a given region and VM family. 
-Customer will submit Quota Group increase request for QuotaGroupID x region x VM family, the quota group simply replaces the subscriptionID. 
-Quota Group increase requests undergo the same checks as subscription level requests. 
-Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link where you can open a support request so that a support engineer can assist you with the increase.
+• 	Customers can submit Quota Group increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
+• 	Quota Group increase requests undergo the same checks as subscription level requests.  
+• 	Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link 	where you can open a support request so that a support engineer can assist you with the increase.  
+• 	Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
 
