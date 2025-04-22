@@ -18,6 +18,8 @@ This diagram shows the CI/CD workflow for an application deployed to one or more
 
 :::image type="content" source="media/gitops/gitops-flux2-ci-cd-arch.png" alt-text="Diagram showing GitOps CI/CD architecture." lightbox="media/gitops/gitops-flux2-ci-cd-arch.png":::
 
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
+
 ### Application code repository
 
 The application repository contains the application code that developers work on during their inner loop. The application's deployment templates live in this repository in a generic form, such as Helm or Kustomize. Environment-specific values aren't stored in the repository.
