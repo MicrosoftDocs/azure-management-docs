@@ -60,7 +60,7 @@ Or you can ask about current and past planned maintenance events "**Any planned 
 
 :::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance-in-last-days.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events in the last 20 days.":::
 
-And you can ask about current and past security advisories "**How many active security advisories?**" or "**How many security advisories in the last '50' days?**"
+And you can ask about current and past security advisories. For example, "**How many active security advisories?**" or "**How many security advisories in the last 50 days?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-how-many-security-advisories.png" alt-text="Screenshot of Microsoft Copilot in Azure checking about any security advisories.":::
 
