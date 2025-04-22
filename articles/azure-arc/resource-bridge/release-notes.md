@@ -7,9 +7,9 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 # What's new with Azure Arc resource bridge
 
-Azure Arc resource bridge should be updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, az arcappliance, that is used to deploy Arc resource bridge.  
+Azure Arc resource bridge should be updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, `az arcappliance`, that is used to deploy Arc resource bridge.  
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every 6 months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade has been done at least once every 6 months. When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
+We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade happens at least once every six months. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
 
 ## Version 1.4.1 (February 2025)
 
@@ -23,7 +23,8 @@ We generally recommend using the most recent versions. The [version support poli
 
 - fix for compatibility with Azure CLI v2.70.0. From this version forward, Azure CLI version needs to be 2.70.0 or higher.
 
-Note: This patch version of the Azure CLI extension, az arcappliance, does not change the appliance version. Therefore, the appliance version for az arcappliance CLI extension 1.4.1 and 1.4.0 have the same appliance version, 1.4.0.
+> [NOTE]
+> This patch version of the Azure CLI extension `az arcappliance` doesn't change the appliance version. Therefore, `az arcappliance` CLI extension 1.4.1 and 1.4.0 both have the same appliance version, 1.4.0.
 
 ## Version 1.4.0 (February 2025)
 
@@ -35,7 +36,7 @@ Note: This patch version of the Azure CLI extension, az arcappliance, does not c
 
 ### Arc-enabled SCVMM
 
-- Validate command - Add custom timeouts
+- Validate command - Add custom time-outs
 
 ### Arc resource bridge platform
 
@@ -44,7 +45,8 @@ Note: This patch version of the Azure CLI extension, az arcappliance, does not c
 
 ## Version 1.3.1 (December 2024)
 
-Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below. It is not compatible with Azure CLI v2.70.0 or higher.
+> [!NOTE]
+> This `az arcappliance` Azure CLI extension requires Azure CLI v2.69.0 or below. It isn't compatible with Azure CLI v2.70.0 or higher.
 
 - Support version: n-1
 - Appliance: 1.3.1
@@ -54,7 +56,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 
 ### Arc-enabled SCVMM
 
-- CreateConfig CLI command - Improve prompt messages, re-order Library Share input prompt
+- CreateConfig CLI command - Improve prompt messages, reorder Library Share input prompt
 - CreateConfig CLI command - Display Library Share, Cloud Names, and IP Pools inputs in alphabetical order
 - Image Provisioning from remote machine - Decompress Vhdx disk space error message improvement
 - Add retry and error message improvement for SCVMM createClient
@@ -80,9 +82,9 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 
 ### Arc-enabled SCVMM
 
-- Validation - fail if user is not part of an Admin User Group like DomainAdmins
+- Validation - fail if user isn't part of an Admin User Group like DomainAdmins
 - Conditional Validation on Gateway IP for SCVMM IP Pool Scenario and sshkeygen removal
-- Silently Clean Appliance VM Resources like HW Profiles, ISO Files and VM Templates in Delete command
+- Silently clean appliance VM resources like HW profiles, ISO Files, and VM templates in delete command
 - CAPVMM update to 1.1.19
 - SCVMM Image Provisioning Decompress Mariner Vhdx disk space error message improvement
 - SCVMM appliance deployment failing in Deploy due to IPPool missing access to HG
@@ -96,7 +98,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 
 - New error additional info field to add more context to errors
 - Add ACR image pull test suite
-- Add timeout for API Server Endpoint
+- Add time-out for API Server Endpoint
 - Added DNSError category
 
 ### Bug fixes
@@ -156,7 +158,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 - Updated log collection with describe nodes
 - Error message enhancement for failure to reach Arc resource bridge VM
 - Improve troubleshoot command error handling with scoped access key
-- Longer timeout for individual pod pulls
+- Longer time-out for individual pod pulls
 - Updated `execute` command to allow passing in a kubeconfig
 - Catch `<>` in no_proxy string
 - Add validation to see if connections from the client machine are proxied
@@ -181,7 +183,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 - SCVMM - Add fallback for VMM IP pool with support for IP range in appliance network, add `--vlanid` parameter to accept `vlanid`
 - Non-interactive mode for SCVMM `troubleshoot` and `logs` commands
 - `Createconfig` command uses styled text to warn about saving config files instead of standard logger
-- Improved handling and error reporting for timeouts while provisioning/deprovisioning images from the cloud fabric
+- Improved handling and error reporting for time-outs while provisioning/deprovisioning images from the cloud fabric
 - Verify template and snapshot health after provisioning an image, and clean up files associated to the template on image deprovision failures
 - Missing VHD state handing in SCVMM
 - SCVMM `validate` and `createconfig` fixes
@@ -189,9 +191,9 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 ### Arc-enabled VMware vSphere
 
 - SSD storage validations added to VMware vSphere in telemetry mode to check if the ESXi host backing the resource pool has any SSD-backed storage
-- Improve missing privilege error message, show some privileges in error message
+- Improve missing privilege error message, and show some privileges in error message
 - Validate host ESXi version and provide a concrete error message for placement profile
-- Improve message for no datacenters found, display default folder
+- Improve message for no datacenters found, and display default folder
 - Surface VMware error when finder fails during validate
 - Verify template health and fix it during image provision
 
@@ -199,7 +201,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 
 - `deploy` command - diagnostic checker enhancements that add retries with exponential backoff to proxy client calls
 - `deploy` command - diagnostic checker enhancement: adds storage performance checker in telemetry mode to evaluate the storage performance of the VM used to deploy the appliance
-- `deploy` command - Add Timeout for SSH connection: New error message: "Error: Timeout occurred due to management machine being unable to reach the appliance VM IP, 192.168.0.11. Ensure that the requirements are met: `https://aka.ms/arb-machine-reqs: dial tcp 192.168.0.11:22: connect: connection timed out`
+- `deploy` command - Add time-out for SSH connection: New error message: "Error: Timeout occurred due to management machine being unable to reach the appliance VM IP, 192.168.0.11. Ensure that the requirements are met: `https://aka.ms/arb-machine-reqs: dial tcp 192.168.0.11:22: connect: connection timed out`"
 - `validate` command - The appliance deployment now fails if Proxy Connectivity and No Proxy checks report any errors
 
 ### Bug fixes
@@ -218,7 +220,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 
 - SCVMM `createconfig` command improvements - retry until valid Port and FQDN provided
 - SCVMM and VMware - Validate control plane IP address; add reprompts
-- SCVMM and VMware - extend `deploy` command timeout from 30 to 120 minutes
+- SCVMM and VMware - extend `deploy` command time-out from 30 to 120 minutes
 
 ### Features
 
@@ -245,7 +247,7 @@ Note: This arcappliance Azure CLI extension requires Azure CLI v2.69.0 or below.
 ### Fabric/Private cloud provider
 
 - SCVMM `createconfig` command improvements
-- Azure Local - extend `deploy` command timeout from 30 to 120 minutes
+- Azure Local - extend `deploy` command time-out from 30 to 120 minutes
 - All private clouds - enable provider credential parameters to be passed in each command
 - All private clouds - basic validations for select `createconfig` command inputs
 - VMware - basic reprompts for select `createconfig` command inputs
