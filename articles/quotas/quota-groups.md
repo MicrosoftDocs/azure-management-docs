@@ -41,7 +41,7 @@ Quota Group is a global ARM object created under a Management Group to logically
 The following diagram illustrates this concept.  
 The existing Management Group hierarchy was set up with sub 1 and sub 2 being part of Management Group A, and sub 3 being a part of Management Group B, customer chose to create all quota groups under a single management group (A). 
  
- :::image type="content" source="/media/quota-groups/sample-management-group-quota-group-hierarchy.png" alt-text="Diagram of Management Group hierarchy with sample Quota Groups created under Management Group.":::
+ :::image type="content" source="./media/quota-groups/sample-management-group-quota-group-hierarchy.png" alt-text="Diagram of Management Group hierarchy with sample Quota Groups created under Management Group.":::
  
 Figure 1: Sample MG and Quota Group Hierarchy  
 
