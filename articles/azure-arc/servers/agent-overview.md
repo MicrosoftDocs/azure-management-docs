@@ -84,8 +84,8 @@ Installing the Connected Machine agent for Window applies the following system-w
 
 * Agent installation creates the following environmental variables
 
-    | Name | Default value | Description |
-    |------|---------------|------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
@@ -149,8 +149,8 @@ Installing the Connected Machine agent for Linux applies the following system-wi
 
 * Agent installation creates the following environment variables, set in `/lib/systemd/system.conf.d/azcmagent.conf`.
 
-    | Name | Default value | Description |
-    |------|---------------|-------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
