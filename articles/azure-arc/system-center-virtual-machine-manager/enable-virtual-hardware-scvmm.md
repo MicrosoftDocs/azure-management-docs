@@ -2,7 +2,7 @@
 title:  Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
 description: Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
 ms.topic: how-to 
-ms.date: 02/25/2025
+ms.date: 04/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 author: PriskeyJeronika-MS
@@ -30,15 +30,20 @@ To enable the virtual hardware management and self-service access, follow these 
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to the Virtual machines inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM management server** status under virtual hardware management.
+1. Navigate to the Virtual machines inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM** status under virtual hardware management.
 
-1. Select **Link to SCVMM management server** to view the pane with the list of all the machines under SCVMM management server with Arc agent installed but not linked to the SCVMM management server in Azure Arc.
+
+     :::image type="content" source="media/enable-virtual-hardware-scvmm/virtual-machines.png" alt-text="Screenshot of Virtual machines screen." lightbox="media/enable-virtual-hardware-scvmm/virtual-machines.png":::
+
+1. Select **Link to SCVMM** to view the pane with the list of all the machines under SCVMM management server with Arc agent installed but not linked to the SCVMM management server in Azure Arc.
+
+
+     :::image type="content" source="media/enable-virtual-hardware-scvmm/link-to-scvmm.png" alt-text="Screenshot of Link to SCVMM screen." lightbox="media/enable-virtual-hardware-scvmm/link-to-scvmm.png":::
 
 1. Choose all the machines that need to be enabled in Azure, and select **Link** to link the machines to SCVMM management server.
 
-1. After you link to SCVMM management server, the virtual hardware status will reflect as **Enabled** for all the VMs, and you can perform virtual hardware operations. 
+1. After you Link to SCVMM, the virtual hardware status will reflect as **Enabled** for all the VMs, and you can perform virtual hardware operations. 
 
 ## Next step
 
 [Set up and manage self-service access to SCVMM resources](set-up-and-manage-self-service-access-scvmm.md).
-
