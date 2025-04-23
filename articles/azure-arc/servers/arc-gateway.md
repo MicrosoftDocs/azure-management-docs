@@ -1,7 +1,7 @@
 ---
 title: How to simplify network configuration requirements with Azure Arc gateway (Public Preview)
 description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
-ms.date: 03/26/2025
+ms.date: 04/23/2025
 ms.topic: how-to
 ---
 
@@ -29,9 +29,7 @@ When the gateway is in place, traffic flows via the following hops: **Arc agentr
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
 
-> [!NOTE]
-> The above architecture diagram was created as part of Azure Arc Jumpstart. To download its source file in a high-resolution format, please visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
->
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## Current limitations
 
