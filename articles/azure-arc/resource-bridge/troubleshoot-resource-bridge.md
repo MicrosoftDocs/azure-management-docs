@@ -9,9 +9,9 @@ ms.topic: troubleshooting
 
 This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
 
-> [!NOTE] 
-> - For *Arc-enabled System Center Virtual Machine Manager*, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
-> - For *Azure Local*, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
+> [!NOTE]
+> - For ***Arc-enabled System Center Virtual Machine Manager***, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For ***Azure Local***, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
@@ -427,6 +427,24 @@ To fix these errors, use one of these options:
 - Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring the original location path is recreated.
 
 - For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
+
+### vCenter account is locked out - Update credentials
+
+Arc resource bridge uses the vCenter account provided to it during initial deployment to connect to vCenter. If the vCenter account is updated and the corresponding account info is not updated in Arc resource bridge, this may cause the account to lockout. To immediately update the credentials without waiting for the lockout period to expire, run the following command with the `--skipWait` flag:
+
+```az cli
+az arcappliance update-infracredentials vmware --kubeconfig [REQUIRED] --address [REQUIRED] --username [REQUIRED] --password [REQUIRED] --skipWait
+```
+
+If you need to retrieve the kubeconfig, you can run the following command:
+
+```az cli
+az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --credentials-dir [OPTIONAL]
+```
+
+> [!NOTE] 
+> The Arc-enabled VMware cluster extension installed on the Arc resource bridge may also need the vCenter credentials to be updated. Refer to: [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding)
+
 ### Insufficient privileges
 
 When you deploy or upgrade the resource bridge on VMware vCenter, you might see an error similar to:
