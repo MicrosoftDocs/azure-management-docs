@@ -24,7 +24,7 @@ Tailored for IoT applications, Edge Volumes not only eliminates local storage co
 
 :::image type="content" source="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" alt-text="Diagram of Azure Container Storage enabled by Azure Arc edge volumes overview." lightbox="media/edge-volumes-overview/container-storage-edge-volumes-overview.png" border="false":::
 
-**[Download](https://jumpstart.azure.com/azure_jumpstart_gems) a high resolution version of architecture diagrams.*
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 You write to Edge Volumes as if they were your local file system. For a **Local Shared Edge Volume**, your data is stored and left untouched. For a **Cloud Ingest Edge Volume**, the volume follows your specified ingest policy for delays and ingestion times, and uploads your data. It will then purge the local copy, also in accord with your specified ingest policy parameter, allowing you to keep your local volume clear of old data and continue to receive new data.
 
