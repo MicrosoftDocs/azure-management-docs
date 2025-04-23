@@ -1,7 +1,7 @@
 ---
 title: Access Azure Arc resources over Azure Firewall Explicit Proxy (public preview)
 description: Learn about using Azure Arc without exposing your on-premises environment to the public internet.
-ms.date: 03/19/2025
+ms.date: 04/22/2025
 ms.topic: how-to
 ---
 
@@ -24,6 +24,8 @@ As the Azure Firewall Explicit proxy operates within your private VNet, and you 
 :::image type="content" source="media/azure-firewall-explicit-proxy/arc-explicit-proxy-servers.png" alt-text="Diagram showing how Azure Firewall Explicit proxy works with Arc-enabled servers." lightbox="media/azure-firewall-explicit-proxy/arc-explicit-proxy-servers.png":::
 
 :::image type="content" source="media/azure-firewall-explicit-proxy/arc-explicit-proxy-kubernetes.png" alt-text="Diagram showing how Azure Firewall Explicit proxy works with Arc-enabled Kubernetes." lightbox="media/azure-firewall-explicit-proxy/arc-explicit-proxy-kubernetes.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ### Restrictions and current limitations
 

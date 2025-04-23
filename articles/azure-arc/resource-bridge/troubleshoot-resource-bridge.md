@@ -9,9 +9,9 @@ ms.topic: troubleshooting
 
 This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
 
-> [!NOTE] 
-> - For *Arc-enabled System Center Virtual Machine Manager*, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
-> - For *Azure Local*, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
+> [!NOTE]
+> - For ***Arc-enabled System Center Virtual Machine Manager***, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For ***Azure Local***, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
@@ -415,7 +415,7 @@ When you deploy Arc resource bridge on VMware, you specify the folder in which t
 
 ### Cannot retrieve resource - resource not found or does not exist
 
-When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. moves location and you try to upgrade, you might see errors similar the following:
+When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. If the Arc resource bridge location is changed and you try to upgrade, you might see errors similar to the following:
 
 `{\n  \"code\": \"PreflightcheckError\",\n  \"message\": \"{\\n  \\\"code\\\": \\\"InvalidEntityError\\\",\\n  \\\"message\\\": \\\"Cannot retrieve <resource> 'resource-name': <resource> 'resource-name' not found\\\"\\n }\"\n }"`
 
@@ -424,9 +424,26 @@ When you deploy Arc resource bridge, you specify where the appliance VM is deplo
 To fix these errors, use one of these options:
 
 - Move the appliance VM back to its original location and ensure RBAC credentials are updated for the location change.
-- Create a resource with the same name, then move Arc resource bridge to that new resource.
+- Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring the original location path is recreated.
+
 - For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
-- Delete and [redeploy the Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md).
+
+### vCenter account is locked out - Update credentials
+
+Arc resource bridge uses the vCenter account provided to it during initial deployment to connect to vCenter. If the vCenter account is updated and the corresponding account info is not updated in Arc resource bridge, this may cause the account to lockout. To immediately update the credentials without waiting for the lockout period to expire, run the following command with the `--skipWait` flag:
+
+```az cli
+az arcappliance update-infracredentials vmware --kubeconfig [REQUIRED] --address [REQUIRED] --username [REQUIRED] --password [REQUIRED] --skipWait
+```
+
+If you need to retrieve the kubeconfig, you can run the following command:
+
+```az cli
+az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --credentials-dir [OPTIONAL]
+```
+
+> [!NOTE] 
+> The Arc-enabled VMware cluster extension installed on the Arc resource bridge may also need the vCenter credentials to be updated. Refer to: [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding)
 
 ### Insufficient privileges
 

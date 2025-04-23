@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway (preview)"
 ms.custom: devx-track-azurecli
-ms.date: 11/20/2024
+ms.date: 04/22/2025
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
 ---
@@ -31,6 +31,8 @@ The **Arc Proxy** is a new component that runs as its own pod (called "Azure Arc
 When the gateway is in place, traffic flows via the following hops: Arc Agents → Azure Arc Proxy → Enterprise Proxy → Arc gateway → Target Service.
 
 :::image type="content" source="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.png" lightbox="media/arc-gateway-simplify-networking/arc-gateway-kubernetes-architecture.png" alt-text="Diagram showing the architecture for Azure Arc gateway (preview) with Arc-enabled Kubernetes.":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## Current limitations
 
@@ -172,6 +174,9 @@ Get-AzConnectedKubernetes -InputObject $connectedCluster -GatewayResourceId <res
 After your clusters have been updated to use the Arc gateway, some of the Arc endpoints that were previously allowed in your enterprise proxy or firewalls are no longer needed and can be removed. We recommend waiting at least one hour before you remove any endpoints that are no longer needed. Be sure not to remove any of the [endpoints that are required for Arc gateway](#confirm-access-to-required-urls).
 
 ## Remove the Arc gateway
+
+> [!IMPORTANT]
+> The step described here only applies to Arc gateway on Arc-enabled Kubernetes. For details on detaching Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local (preview)](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview#detach-or-change-the-arc-gateway-association-from-the-machine).
 
 To disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster, run the following command:
 

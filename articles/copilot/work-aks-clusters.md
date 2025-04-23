@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 03/04/2025
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -13,7 +13,7 @@ author: JnHs
 
 # Work with AKS clusters efficiently using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure (preview) can help you work more efficiently with [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters.
+Microsoft Copilot in Azure can help you work more efficiently with [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) clusters.
 
 When you ask Microsoft Copilot in Azure for help with AKS, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. If the context isn't clear, you're prompted to specify a cluster.
 
@@ -22,8 +22,6 @@ This video shows how Copilot in Azure can assist with AKS cluster management and
 > [!VIDEO https://learn-video.azurefd.net/vod/player?show=microsoft-copilot-in-azure&ep=microsoft-copilot-in-azure-series-kubectl]
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Run cluster commands
 
@@ -48,9 +46,9 @@ Here are a few examples of the kinds of prompts you can use to run kubectl comma
 
 ### Cluster command example
 
-You can say **"List all namespaces in my cluster."** If you're not already working with a cluster, you're prompted to select one. Microsoft Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. When you confirm, the **Run command** pane opens with the generated command included.
+You can say **"List all namespaces in my cluster."** Copilot in Azure shows you the kubectl command to perform your request, and ask if you'd like to execute the command. If you're not already working in the context of a cluster, you're prompted to select one.  When you confirm, the **Run command** pane opens with the generated command included.
 
-:::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
+:::image type="content" source="media/work-aks-clusters/aks-kubectl-command.png" lightbox="media/work-aks-clusters/aks-kubectl-command.png" alt-text="Screenshot of a prompt for Microsoft Copilot in Azure to run a kubectl command.":::
 
 ## Start and stop node pools
 
@@ -69,7 +67,7 @@ When you ask for help with node pools, you're prompted to select which node pool
 
 ### Node pool example
 
-When you say **"stop my nodepool"**, Copilot in Azure prompts you to confirm which node pool to stop. After you make a selection, you're prompted to confirm the action.
+When you say **"stop my node pool"**, Copilot in Azure prompts you to confirm which node pool to stop. After you make a selection, you're prompted to confirm the action.
 
 :::image type="content" source="media/work-aks-clusters/aks-node-pool.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a request to stop an AKS node pool.":::
 
@@ -106,7 +104,7 @@ Here are a few examples of the kinds of prompts you can use to manage AKS cluste
 
 You can say **"Install AKS backup"** to start the process of installing the AKS backup extension. After you select a cluster, you're prompted to open its **Backup** pane. From there, select **Launch install backup** to open the experience. After reviewing the prerequisites for the extension, you can step through the installation process.
 
-:::image type="content" source="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
+:::image type="content" source="media/work-aks-clusters/aks-backup.png" lightbox="media/work-aks-clusters/aks-backup.png" alt-text="Screenshot showing Microsoft Copilot in Azure starting the backup extension install process for an AKS cluster.":::
 
 ## Configure monitoring on clusters
 
@@ -168,11 +166,7 @@ The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagn
 
 #### Periscope example
 
-You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one.
-
-:::image type="content" source="media/work-aks-clusters/aks-periscope-select.png" alt-text="Screenshot showing Microsoft Copilot in Azure responding to a prompt about deploying Periscope on AKS.":::
-
-Once you make the selection, Copilot in Azure asks you to confirm, then deploys Periscope to your cluster.
+You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
 
 :::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
 
@@ -192,7 +186,7 @@ The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic u
 
 #### CanIPull example
 
-When you say **"Help me deploy Can I pull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+When you say **"Help me deploy CanIPull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
 
@@ -205,6 +199,63 @@ After the deployment completes, you're prompted to navigate to the **Run Command
 :::image type="content" source="media/work-aks-clusters/aks-canipull-run-command.png" alt-text="Screenshot showing Copilot in Azure prompting to open the Run Command pane.":::
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-run-command-logs.png" alt-text="Screenshot showing log information in the Run Command pane.":::
+
+## Troubleshoot cluster issues
+
+Copilot in Azure can help troubleshoot issues with your AKS clusters. When you ask for troubleshooting help, Copilot in Azure executes relevant detectors on the target cluster to identify issues, provides remediation solutions, and suggest helpful documentation links to help you understand more about the problem. For example, you can ask for help resolving problems related to CPU/memory usage, OOMKilled errors, cluster upgrade failures, or networking issues.
+
+### Troubleshooting sample prompts
+
+- "Why is my AKS cluster's CPU usage high?"
+- "How do I fix OOMKilled errors?"
+- "Steps to troubleshoot AKS networking issues?"
+- "Why did my AKS upgrade fail?"
+- "How to resolve memory pressure in AKS?"
+- "Causes of pod evictions in AKS?"
+- "How to check AKS node health?"
+- "Why isn't my AKS cluster scaling?"
+- "Troubleshoot DNS issues in AKS?"
+- "Best practices for monitoring AKS?"
+
+### Troubleshooting example
+
+If you say "**diagnose my AKS cluster node health**", Copilot in Azure asks you to confirm the cluster name and a timeframe to review. After that, any potential issues are shown, along with links to get more details about an issue. If no problems are found, Copilot in Azure shows details about cluster health and links to helpful information.
+
+:::image type="content" source="media/work-aks-clusters/aks-diagnose-cluster-health.png" alt-text="Screenshot of Copilot in Azure checking the health of an AKS cluster.":::
+
+You can select a link to view details about the issue, along with suggested solutions.
+
+:::image type="content" source="media/work-aks-clusters/aks-health-detected-problem.png" alt-text="Screenshot of Copilot in Azure providing more details about a problem with CPU pressure.":::
+
+:::image type="content" source="media/work-aks-clusters/aks-other-problem.png" alt-text="Screenshot of Copilot in Azure providing more details about a problem with the Kubernetes version.":::
+
+## Get VM size recommendations
+
+When you create an AKS cluster, you can ask Copilot in Azure for help determining which Azure virtual machine (VM) size to use. Based on the CPU and memory requirements of your application, Copilot in Azure recommends appropriate sizes to help you narrow down your choices. Copilot in Azure also provides options to deploy the AKS cluster by taking you directly to the cluster creation experience in the Azure portal.
+
+While familiarity with VM size options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise levels in achieving their deployment goals. However, it's crucial that you exercise due diligence with the suggested options.
+
+### VM size sample prompts
+
+- "Recommend VM sizes for AKS clusters"
+- "Recommend VM sizes for Kubernetes Service for my AI workload"
+- "Suggest VM sizes for AKS deployments"
+- "Recommend Azure Sizes for Kubernetes Service"
+- "I am creating Kubernetes Service Resource for my workload, which Azure size should I use?"
+
+### VM size example
+
+You can say "**Recommend VM size for creating AKS cluster for my workload**. Copilot in Azure prompts you for more information about your environment and workload requirements. In some cases, Copilot may ask follow-up questions to better understand your scenario.
+
+:::image type="content" source="media/work-aks-clusters/aks-size-recommend.png" alt-text="Screenshot of Copilot in Azure asking for information in order to recommend a VM size for an AKS cluster.":::
+
+Based on the details you provide, Copilot in Azure presents some recommended  lets you choose which of the recommended sizes to use for your VM.
+
+:::image type="content" source="media/work-aks-clusters/aks-size-recommendations.png" alt-text="Screenshot of Copilot in Azure providing recommendations for appropriate VM sizes for a new AKS cluster.":::
+
+After you choose one of the recommended sizes, select **Create AKS cluster with selection** to proceed to the cluster creation experience.
+
+:::image type="content" source="media/work-aks-clusters/aks-size-create.png" alt-text="Screenshot of Copilot in Azure providing a link to create a cluster with the selected VM size.":::
 
 ## Update AKS pricing tier
 

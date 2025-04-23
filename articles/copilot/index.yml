@@ -1,11 +1,11 @@
 ### YamlMime:Hub
 
-title: Microsoft Copilot in Azure (preview) documentation
+title: Microsoft Copilot in Azure documentation
 summary: Manage operations from cloud to edge with an AI assistant.
 brand: azure
 
 metadata:
-  title: Microsoft Copilot in Azure (preview)
+  title: Microsoft Copilot in Azure
   description: Manage operations from cloud to edge with an AI assistant.
   ms.service: copilot-for-azure
   ms.author: rayoflores
@@ -16,7 +16,7 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 01/08/2025
+  ms.date: 04/08/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
@@ -56,6 +56,9 @@ conceptualContent:
             - url: ./analyze-cost-management.md
               itemType: get-started
               text: Analyze and estimate costs
+            - url: ./visualize-network-topology.md
+              itemType: get-started
+              text: Visualize network topology
             - url: ./query-attack-surface.md
               itemType: get-started
               text: Query your attack surface
@@ -88,7 +91,10 @@ conceptualContent:
               text: Get monitoring information
             - url: ./network-management.md
               itemType: get-started
-              text: Troubleshoot network connectivity
+              text: Design, troubleshoot, and secure networks
+            - url: ./work-load-balancer.md
+              itemType: get-started
+              text: Work with Azure Load Balancer
             - url: ./troubleshoot-arc-extension.md
               itemType: get-started
               text: Troubleshoot Azure Arc extension issues

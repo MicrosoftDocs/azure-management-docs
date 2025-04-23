@@ -276,7 +276,7 @@ Unlike other resources, dashboards don’t have a runtime component. For dashboa
 
 ### Tags
 
-Tags are a common feature of Azure resources that let you organize your resource by arbitrary name value pairs. Dashboards include one special tag called `hidden-title`. If your dashboard has this property populated, then that value is used as the display name for your dashboard in the portal. This tag gives you a way to have a renamable display name for your dashboard
+Tags are a common feature of Azure resources that let you organize your resource by arbitrary name value pairs. Dashboards include one special tag called `hidden-title`. If your dashboard has this property populated, then that value is used as the display name for your dashboard in the portal. This tag gives you a way to have a renamable display name for your dashboard.
 
 ## Properties
 

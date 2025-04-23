@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 02/18/2025
+ms.date: 04/15/2025
 ---
 
 > [!IMPORTANT]
@@ -14,6 +14,7 @@ ms.date: 02/18/2025
 | `https://<region>.dp.kubernetesconfiguration.azure.com` | Data plane endpoint for the agent to push status and fetch configuration information. |
 | `https://login.microsoftonline.com`<br/>`https://<region>.login.microsoft.com`<br/>`login.windows.net`| Required to fetch and update Azure Resource Manager tokens. |
 | `https://mcr.microsoft.com`<br/>`https://*.data.mcr.microsoft.com` | Required to pull container images for Azure Arc agents.        |
+| `dl.k8s.io` | Required to download kubectl binaries during Azure Arc onboarding by Azure CLI [connectedk8s extension](/cli/azure/connectedk8s). |
 | `https://gbl.his.arc.azure.com` |  Required to get the regional endpoint for pulling system-assigned Managed Identity certificates. |
 | `https://*.his.arc.azure.com` |  Required to pull system-assigned Managed Identity certificates. |
 |`guestnotificationservice.azure.com`<br/>`*.guestnotificationservice.azure.com`<br/>`sts.windows.net` | For [Cluster Connect](../cluster-connect.md) and for [Custom Location](../custom-locations.md) based scenarios. |

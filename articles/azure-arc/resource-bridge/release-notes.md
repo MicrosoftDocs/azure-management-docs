@@ -7,9 +7,9 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 # What's new with Azure Arc resource bridge
 
-Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, az arcappliance, that is used to deploy Arc resource bridge.  
+Azure Arc resource bridge should be updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, az arcappliance, that is used to deploy Arc resource bridge.  
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
+We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every 6 months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade has been done at least once every 6 months. When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
 ## Version 1.4.1 (February 2025)
 

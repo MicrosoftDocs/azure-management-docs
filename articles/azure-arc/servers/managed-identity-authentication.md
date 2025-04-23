@@ -98,7 +98,8 @@ The following response is an example that is returned:
 
 :::image type="content" source="media/managed-identity-authentication/bash-token-output-example.png" alt-text="A successful retrieval of the access token using Bash.":::
 
-The response includes the access token you need to access any resource in Azure. To complete the configuration to authenticate to Azure Key Vault, see [Access Key Vault with Windows](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#access-data) or [Access Key Vault with Linux](/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad#access-data).
+> [!NOTE]
+> The above example is for requesting an access token for use with ARM REST APIs when the resource variable is set to `https://management.azure.com`. If you need an access token for a different Azure service, replace the resource variable in the script with the correct resource value. To authenticate with Azure Storage, see [Using OAuth Token with Azure Storage](/azure/storage/blobs/authorize-access-azure-active-directory#microsoft-authentication-library-msal). To complete the configuration to authenticate to Azure Key Vault, see [Access Key Vault with Windows](/azure/active-directory/managed-identities-azure-resources/tutorial-windows-vm-access-nonaad#access-data) or [Access Key Vault with Linux](/azure/active-directory/managed-identities-azure-resources/tutorial-linux-vm-access-nonaad#access-data).
 
 ## Next steps
 
