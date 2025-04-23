@@ -31,6 +31,7 @@ Continuous Patching is currently in public preview. The following limitations ap
 - Multi-arch images won't be supported. 
 - A **100 image limit** is enforced for continuous patching
 - Continuous Patching is incompatible with ABAC (Attribute Based Access Control) enabled registries and with repositories with PTC (Pull Through Cache) rules enabled.
+- Azure Subscriptions on the "Free Trial" using free credits **aren't** supported since free trial accounts lack ACR Task access. 
 
 ## Key Concepts
 Because continuous patching in ACR creates a new image per patch, ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
