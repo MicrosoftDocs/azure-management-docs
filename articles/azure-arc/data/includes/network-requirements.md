@@ -18,7 +18,7 @@ ms.date: 04/18/2022
   - For direct mode, the controller pod on the Kubernetes cluster needs to have outbound connectivity to the endpoints to send the logs, metrics, inventory, and billing information to Azure Monitor/Data Processing Service. 
   - For indirect mode, the machine that runs `az arcdata dc upload` needs to have the outbound connectivity to Azure Monitor and Data Processing Service.
 
-<sup>2</sup> For extension versions up to and including [February 13, 2024](../release-notes.md#february-13-2024), use `san-af-<region>-prod.azurewebsites.net`.
+<sup>2</sup> For extension versions up to and including February 13, 2024, use `san-af-<region>-prod.azurewebsites.net`.
 
 ### Azure Monitor APIs
 

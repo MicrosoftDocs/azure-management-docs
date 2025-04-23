@@ -69,7 +69,7 @@ The table below lists the URLs that must be available in order to install and us
 <sup>2</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
 
 
-For extension versions up to and including [February 13, 2024](../../data/release-notes.md#february-13-2024), use `san-af-<region>-prod.azurewebsites.net`. Beginning with [March 12, 2024](../../data/release-notes.md#march-12-2024) both Azure Arc data processing, and Azure Arc data telemetry use `*.<region>.arcdataservices.com`. 
+For extension versions up to and including February 13, 2024, use `san-af-<region>-prod.azurewebsites.net`. Beginning March 12, 2024 both Azure Arc data processing, and Azure Arc data telemetry use `*.<region>.arcdataservices.com`. 
 
 > [!NOTE]
 > To translate the `*.servicebus.windows.net` wildcard into specific endpoints, use the command `\GET https://guestnotificationservice.azure.com/urls/allowlist?api-version=2020-01-01&location=<region>`. Within this command, the region must be specified for the `<region>` placeholder. These endpoints may change periodically.
