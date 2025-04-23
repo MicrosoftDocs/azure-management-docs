@@ -57,7 +57,7 @@ Example Hierarchy:
 Figure 2: Sample Quota Group hierarchy
 
 ## Permissions required to create Quota Group and add subscription(s)
-Quota write perissions are required at the Management Group level to create/delete Quota Group  
+Quota write permissions are required at the Management Group level to create/delete Quota Group  
 Quota write permissions are required at the subscription(s) level to add/remove subscriptions to Quota Group  
 ### Assign Management group Level Permissions to user and or app serviceID  
 •	Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
