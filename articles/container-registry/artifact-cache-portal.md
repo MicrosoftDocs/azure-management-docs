@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
-ms.date: 04/18/2025
+ms.date: 04/23/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -68,6 +68,8 @@ Before configuring the credentials, make sure you're able to [create and store s
 1. Select **Create**.
 
       :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-enter-credential-details.png" alt-text="Screenshot showing details entered to create credentials for a container registry in Azure portal.":::
+
+## Configure RBAC authentication
 
 ## Next steps
 

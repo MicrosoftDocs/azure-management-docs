@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: conceptual #Don't change
 ms.custom: devx-track-azurecli
-ms.date: 02/28/2025
+ms.date: 04/23/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -63,6 +63,11 @@ Artifact cache currently supports the following upstream registries. Review the 
 | Quay                                         | Supports both authenticated and unauthenticated pulls.   | Azure CLI, Azure portal  |
 | `registry.k8s.io`                              | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
 | Google Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
+
+- The login server for Docker Hub is `docker.io`.
+- The login server for Microsoft Artifact Registry is `mcr.microsoft.com`.
+
+The Azure portal autofills these fields for you, including adding `library/` if required for Docker repositories.
 
 ## Next steps
 
