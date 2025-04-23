@@ -61,8 +61,8 @@ Site manager is free to use, but integrates with other Azure services that have 
 ## Architecture
 
 [![Diagram of Azure Arc site manager solution architecture.](media/overview/jumpstart-gems-diagrams-1-25.png)](media/overview/jumpstart-gems-diagrams-1-25.png#lightbox)
-> [!Note]
-> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, please visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## Next steps
 

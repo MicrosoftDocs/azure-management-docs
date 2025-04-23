@@ -44,6 +44,8 @@ You can use Azure Policy to limit what your organization’s users can do with A
 
 :::image type="content" source="media/security-overview/connected-machine-agent-architecture.png" alt-text="Architecure diagram describing how the Azure Connected Machine agent functions." lightbox="media/security-overview/connected-machine-agent-architecture.png":::
 
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
+
 ## Agent services
 
 The Azure Connected Machine agent is a combination of four services/daemons that run on your server and help connect it with Azure. They're installed together as a single application and are managed centrally using the azcmagent command line interface.
