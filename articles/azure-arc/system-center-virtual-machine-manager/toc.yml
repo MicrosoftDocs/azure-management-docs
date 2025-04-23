@@ -26,7 +26,7 @@
     items:
     - name: Enable inventory resources
       href: enable-scvmm-inventory-resources.md
-    - name: Enable VM CRUD and power cycle capabilities in an SCVMM machine with Arc agent installed
+    - name: Link Arc-enabled server machines to SCVMM
       href: enable-virtual-hardware-scvmm.md
   - name: Manage role-based access control
     items:
