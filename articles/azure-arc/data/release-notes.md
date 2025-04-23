@@ -21,6 +21,8 @@ This article highlights capabilities, features, and enhancements recently releas
 
 **Image tag**: `v1.38.0_2025-04-08`
 
+Grafana and OpenSearch dashboards will not be provided for new deployments.
+
 For complete release version information, review [Version log](version-log.md#april-8-2025).
 
 ## March 11, 2025
