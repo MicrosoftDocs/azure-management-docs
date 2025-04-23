@@ -1,7 +1,7 @@
 ---
 title: Allow the Azure portal URLs on your firewall or proxy server
 description: To optimize connectivity between your network and the Azure portal and its services, we recommend you add these URLs to your allowlist.
-ms.date: 01/27/2025
+ms.date: 04/21/2025
 ms.topic: conceptual
 ---
 
@@ -30,66 +30,6 @@ The URL endpoints to allow for the Azure portal are specific to the Azure cloud 
 > [!TIP]
 > The service tags required to access the Azure portal (including authentication and resource listing) are **AzureActiveDirectory**, **AzureResourceManager**, **AzureFrontDoor.Frontend**, and **AzureFrontDoor.FirstParty**. Access to other services may require additional permissions, as described below.  
 > However, there is a possibility that unnecessary communication other than communication to access the portal may also be allowed. If granular control is required, FQDN-based access control such as Azure Firewall is required.
-
-<!-- #### Azure portal authentication
-
-```
-*.auth.microsoft.com
-*.msftidentity.com
-*.msidentity.com
-account.activedirectory.windowsazure.com
-accounts.accesscontrol.windows.net
-adminwebservice.microsoftonline.com
-api.passwordreset.microsoftonline.com
-autologon.microsoftazuread-sso.combecws
-.microsoftonline.com
-ccs.login.microsoftonline.com
-clientconfig.microsoftonline-p.net
-companymanager.microsoftonline.com
-device.login.microsoftonline.com
-graph.microsoft.com
-graph.windows.net
-login-us.microsoftonline.com
-login.microsoft.com
-login.microsoftonline-p.com
-login.microsoftonline.com
-login.windows.net
-logincert.microsoftonline.com
-loginex.microsoftonline.com
-nexus.microsoftonline-p.com
-passwordreset.microsoftonline.com
-provisioningapi.microsoftonline.com
-*.hip.live.com
-*.microsoftonline-p.com
-*.microsoftonline.com
-*.msauth.net
-*.msauthimages.net
-*.msecnd.net
-*.msftauth.net
-*.msftauthimages.net
-*.phonefactor.net
-enterpriseregistration.windows.net
-policykeyservice.dc.ad.msft.net
-account.live.com
-login.live.com
-20.20.32.0/19
-20.190.128.0/18
-20.231.128.0/19
-40.126.0.0/18
-2603:1006:2000::/48
-2603:1007:200::/48
-2603:1016:1400::/48
-2603:1017::/48
-2603:1026:3000::/48
-2603:1027:1::/48
-2603:1036:3000::/48
-2603:1037:1::/48
-2603:1046:2000::/48
-2603:1047:1::/48
-2603:1056:2000::/48
-2603:1057:2::/48
-```
--->
 
 #### Azure portal authentication
 ```
@@ -173,6 +113,7 @@ kusto.windows.net (Azure Kusto Clusters)
 learn.microsoft.com (Azure documentation)
 logic.azure.com (Logic Apps)
 marketplacedataprovider.azure.com (Azure Marketplace)
+main.prod.marketplacedataprovider.azure.com (Azure Marketplace)
 marketplaceemail.azure.com (Azure Marketplace)
 media.azure.net (Azure Media Services)
 monitor.azure.com (Azure Monitor Service)
@@ -200,6 +141,7 @@ ux.console.azure.com (Azure Cloud Shell)
 *.applicationinsights.us
 *.azure.us
 *.azureedge.net
+*.azureedge.us
 *.loganalytics.us
 *.microsoft.us
 *.microsoftonline.us
@@ -210,6 +152,7 @@ ux.console.azure.com (Azure Cloud Shell)
 *.usgovtrafficmanager.net
 *.windowsazure.us
 graph.microsoftazure.us
+main.ff.marketplacedataprovider.azure.us
 ```
 
 ### [Microsoft Azure operated by 21Vianet Cloud](#tab/azure-china-cloud)

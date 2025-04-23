@@ -1,7 +1,7 @@
 ---
 title: Design, troubleshoot, and secure networks using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
-ms.date: 04/08/2025
+ms.date: 04/21/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -129,7 +129,7 @@ Next, you're prompted to enter the internet destination IP address:
 
 Finally, Copilot in Azure analyzes the path and identifies issues impacting the connectivity:
 
-:::image type="content" source="./media/network-management/troubeshoot-internet-result.png" alt-text="Screenshot of Copilot in Azure analyzing the path and identifying issues impacting the internet connectivity." lightbox="./media/network-management/troubeshoot-internet-result.png":::
+:::image type="content" source="./media/network-management/troubleshoot-internet-result.png" alt-text="Screenshot of Copilot in Azure analyzing the path and identifying issues impacting the internet connectivity." lightbox="./media/network-management/troubleshoot-internet-result.png":::
 
 In this example, the prompt **"Why can’t I connect from my on-premise VM to my Azure VM?"** results in a request for you to select the ExpressRoute circuit that connects your on-premises site to Azure. Copilot in Azure then analyzes the data path to your Azure VM to identify any configuration or data path issues that may be blocking the traffic from reaching your Azure VM.
 

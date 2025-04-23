@@ -13,7 +13,7 @@ This article describes how Arc resource bridge is upgraded, and the two ways upg
 
 Currently, private cloud providers differ in how they perform Arc resource bridge upgrades. Review the following information to see how to upgrade your Arc resource bridge for a specific provider.
 
-For **Arc-enabled VMware vSphere**, manual upgrade and cloud-managed upgrade are available. Appliances on version 1.0.15 and higher are automatically opted-in to cloud-managed upgrade. Cloud-managed upgrade helps ensure the appliance VM is kept within n-3 supported versions but not the latest version. [Upgrade prerequisites](#prerequisites) must be met. Microsoft may attempt to perform a cloud-managed upgrade of your Arc resource bridge at any time if your appliance will soon be out of support. While Microsoft offers cloud-managed upgrade, you’re still responsible for ensuring that your Arc resource bridge is within the supported n-3 versions. Disruptions could cause cloud-managed upgrade to fail and you may need to manual upgrade the Arc resource bridge. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version, rather than waiting for cloud-managed upgrade. If there are continuous problems attempting cloud-managed upgrade, your Arc resource bridge may fall out of support and you are responsible for manually upgrading to reach a supported version.
+For **Arc-enabled VMware vSphere**, manual upgrade and cloud-managed upgrade are available. Appliances on version 1.0.15 and higher are automatically opted-in to cloud-managed upgrade. Cloud-managed upgrade helps ensure the appliance VM is kept within n-3 supported versions but not the latest version. [Upgrade prerequisites](#prerequisites) must be met. Microsoft may attempt to perform a cloud-managed upgrade of your Arc resource bridge at any time if your appliance will soon be out of support. While Microsoft offers cloud-managed upgrade, you’re still responsible for ensuring that your Arc resource bridge is within the supported n-3 versions and upgraded once every 6 months. Disruptions could cause cloud-managed upgrade to fail and you may need to manual upgrade the Arc resource bridge. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version, rather than waiting for cloud-managed upgrade. If there are continuous problems attempting cloud-managed upgrade, your Arc resource bridge may fall out of support and you are responsible for manually upgrading to reach a supported version.
 
 For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is only available on Azure Local build 23H2. In Azure Local 23H2, the LCM tool manages upgrades across all Azure Local, Arc resource bridge, and extension components as a "validated recipe" package. Any preview version of Arc resource bridge must be removed before updating from 22H2 to 23H2. Attempting to upgrade Arc resource bridge independent of other Azure Local environment components may cause problems in your environment that could result in a disaster recovery scenario. For more information, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
 
@@ -90,20 +90,11 @@ To upgrade a resource bridge on Azure Local, transition to 23H2 and use the buil
 
 ## Version releases
 
-The Arc resource bridge version is tied to the versions of underlying components used in the appliance image, such as the Kubernetes version. When there's a change in the appliance image, the Arc resource bridge version gets incremented. This generally happens when a new `az arcappliance` CLI extension version is released. A new extension is typically released on a monthly cadence at the end of the month or early in the month. For detailed release info, see the [Arc resource bridge release notes](release-notes.md).
+The Arc resource bridge version is tied to the versions of underlying components used in the appliance image, such as the Kubernetes version. When there's a change in the appliance image, the Arc resource bridge version gets incremented. This generally happens when a new `az arcappliance` CLI extension version is released. For detailed release info, see the [Arc resource bridge release notes](release-notes.md).
 
 ## Supported versions
 
-Generally, the latest released version and the previous three versions (n-3) of Arc resource bridge are supported. An Arc resource bridge on an unsupported version must be upgraded or redeployed to be in a production support window.
-
-For example, if the current version is 1.0.18, then the typical n-3 supported versions are:
-
-- Current version: 1.0.18
-- n-1 version: 1.0.17
-- n-2 version: 1.0.16
-- n-3 version: 1.0.15
-
-There might be instances where supported versions aren't sequential. For example, if there is a patch version for a minor version, the upgrade path may skip the minor version and directly upgrade to the patch version. In this case, n-3 versions would exclude the minor version and include the patch version. Another example is if version 1.0.18 is released and later found to contain a bug. A hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
+We generally recommend using the most recent versions. The version support policy for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every 6 months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade has been done at least once every 6 months. When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
 To see exactly what versions are in support, please refer to [Arc resource bridge release notes](release-notes.md).
 

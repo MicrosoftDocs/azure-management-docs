@@ -1,7 +1,8 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 04/08/2025
+
+ms.date: 04/15/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -38,8 +39,8 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 
 :::image type="content" source="media/architecture/azure-arc-scvmm-architecture.png" alt-text="Screenshot of Arc enabled SCVMM - architecture." lightbox="media/architecture/azure-arc-scvmm-architecture.png":::
 
->[!Note]
-> The above architecture diagram was created as part of Arc Jumpstart. To download it's source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+>[!NOTE]
+> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
 
 ## How is Azure Arc-enabled SCVMM different from Azure Arc-enabled servers
 
@@ -48,9 +49,8 @@ The following image shows the architecture for the Azure Arc-enabled SCVMM:
 
 You have the flexibility to start with either option, and incorporate the other one later without any disruption. With both options, you'll enjoy the same consistent experience.
 
-
 > [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choose the right Azure Arc service for machines](../choose-service.md).
+>For guidance on choosing the right Azure Arc service for your virtual machines, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
 ### Supported scenarios
 
@@ -105,3 +105,6 @@ Azure Arc-enabled SCVMM stores customer data. By default, customer data stays wi
 
 - Plan your Azure Arc-enabled SCVMM deployment by reviewing the [support matrix](support-matrix-for-system-center-virtual-machine-manager.md).
 - Once ready, [connect your SCVMM management server to Azure Arc using the onboarding script](quickstart-connect-system-center-virtual-machine-manager-to-arc.md).
+- [Deliver operations Management disciplines using hybrid and multicloud tools in Cloud adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/manage).
+- [Cloud Adoption Framework introduces Azure hybrid and multicloud products on Azure](/azure/cloud-adoption-framework/scenarios/hybrid/toolchain).
+

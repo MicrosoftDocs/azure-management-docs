@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 02/27/2025
+ms.date: 04/18/2025
 ms.topic: conceptual
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 ---
@@ -17,6 +17,7 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 - Security vulnerability fixes
 - Various bug fixes
+- Support for [managed extensions](managed-extensions.md)
 
 ## Version 1.23.3 (February 2025)
 
@@ -31,59 +32,61 @@ We generally recommend using the most recent versions of the agents. The [versio
 - Allow special characters in password for proxy server
 - Security vulnerability fixes
 
-## Version 1.21.10 (November 2024)
+## Older agent releases
+
+### Version 1.21.10 (November 2024)
 
 - Container images and charts are now signed
 - Security vulnerability fixes
 
-## Version 1.20.10 (September 2024)
+### Version 1.20.10 (September 2024)
 
 - Functionality enhancements
 - Security vulnerability fixes
 
-## Version 1.19.x (September 2024)
+### Version 1.19.x (September 2024)
 
 - Various enhancements and bug fixes
 
-## Version 1.18.x (July 2024)
+### Version 1.18.x (July 2024)
 
 - Fixed `logCollector` pod restarts
 - Updated to Microsoft Go v1.22.5
 - Other bug fixes
 
-## Version 1.17.x (June 2024)
+### Version 1.17.x (June 2024)
 
 - Upgraded to use [Microsoft Go 1.22 to be FIPS compliant](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/README.md#tls-with-fips-compliant-settings)
 
-## Version 1.16.x (May 2024)
+### Version 1.16.x (May 2024)
 
 - Migrated to use Microsoft Go w/ OpenSSL and fixed some vulnerabilities
 
-## Version 1.15.3 (March 2024)
+### Version 1.15.3 (March 2024)
 
 - Various enhancements and bug fixes
 
-## Version 1.14.5 (December 2023)
+### Version 1.14.5 (December 2023)
 
 - Migrated automatic upgrade to use latest Helm release
 
-## Version 1.13.4 (October 2023)
+### Version 1.13.4 (October 2023)
 
 - Various enhancements and bug fixes
 
-## Version 1.13.1 (September 2023)
+### Version 1.13.1 (September 2023)
 
 - Various enhancements and bug fixes
 
-## Version 1.12.5 (July 2023)
+### Version 1.12.5 (July 2023)
 
 - Alpine base image powering our Arc agent containers has been updated from 3.7.12 to 3.18.0
 
-## Version 1.11.7 (May 2023)
+### Version 1.11.7 (May 2023)
 
 - Updates to enable users that belong to more than 200 groups in cluster connect scenarios
 
-## Version 1.11.3 (April 2023)
+### Version 1.11.3 (April 2023)
 
 - Updates to base image of Arc-enabled Kubernetes agents to address security CVE
 

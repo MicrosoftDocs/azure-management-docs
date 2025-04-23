@@ -2,7 +2,7 @@
 title: What is Azure Arc-enabled VMware vSphere?
 description: Azure Arc-enabled VMware vSphere extends Azure governance and management capabilities to VMware vSphere infrastructure and delivers a consistent management experience across both platforms. 
 ms.topic: overview
-ms.date: 03/12/2025
+ms.date: 04/17/2025
 ms.custom: references_regions
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
@@ -28,7 +28,7 @@ Arc-enabled VMware vSphere allows you to:
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 
 > [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
+>For guidance on choosing the right Azure Arc service for your virtual machines, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
 ## Onboard resources to Azure management at scale
 
@@ -101,3 +101,5 @@ The following capabilities are available in the AKS Arc on VMware preview:
 - Plan your resource bridge deployment by reviewing the [support matrix for Arc-enabled VMware vSphere](support-matrix-for-arc-enabled-vmware-vsphere.md).
 - Once ready, [connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
 - Try out Arc-enabled VMware vSphere by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_vsphere).
+- [Consider unified operations and plan for hybrid and multicloud environments with the Cloud Adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/plan).
+- [Choose the Azure Hybrid solution that meets your business requirements with guidance from the Azure Architecture Center](/azure/architecture/guide/technology-choices/hybrid-considerations).
