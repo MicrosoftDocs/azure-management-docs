@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge deployment command overview
 description: Learn about the Azure CLI commands that can be used to manage your Azure Arc resource bridge deployment.
-ms.date: 01/23/2025
+ms.date: 04/23/2025
 ms.topic: overview
 ms.custom: devx-track-azurecli
 ---
@@ -13,6 +13,8 @@ ms.custom: devx-track-azurecli
 The following diagram illustrates the deployment architecture for Arc resource bridge.
 
 :::image type="content" source="media/deploy-cli/arc-resource-bridge-deploy-overview.png" alt-text="Diagram showing the deployment architecture for Azure Arc resource bridge." lightbox="media/deploy-cli/arc-resource-bridge-deploy-overview.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 To learn about installing Arc resource bridge with a corresponding partner product, see:
 
