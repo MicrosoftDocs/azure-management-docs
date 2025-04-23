@@ -14,7 +14,9 @@ The Azure Connected Machine agent lets you manage Windows and Linux machines hos
 
 ## Agent components
 
-:::image type="content" source="media/agent-overview/connected-machine-agent.png" alt-text="Graphic of Azure Connected Machine agent architectural overview." border="false" lightbox="media/agent-overview/connected-machine-agent.png":::
+:::image type="content" source="media/agent-overview/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." border="false" lightbox="media/agent-overview/connected-machine-agent.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 
@@ -82,8 +84,8 @@ Installing the Connected Machine agent for Window applies the following system-w
 
 * Agent installation creates the following environmental variables
 
-    | Name | Default value | Description |
-    |------|---------------|------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
@@ -147,8 +149,8 @@ Installing the Connected Machine agent for Linux applies the following system-wi
 
 * Agent installation creates the following environment variables, set in `/lib/systemd/system.conf.d/azcmagent.conf`.
 
-    | Name | Default value | Description |
-    |------|---------------|-------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
