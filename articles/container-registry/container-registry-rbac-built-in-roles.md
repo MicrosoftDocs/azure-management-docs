@@ -20,7 +20,7 @@ ACR roles can be assigned to the following identity types to grant permissions t
 - [individual user identity](container-registry-authentication.md#individual-login-with-azure-ad)
 - [managed identity for Azure resources](container-registry-authentication-managed-identity.md)
   - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr.md)
-  - [Azuer Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration.md) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity.md) for AKS nodes to pull images from ACR.
+  - [Azure Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration.md) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity.md) for AKS nodes to pull images from ACR.
   - [Azure Container Apps (ACA) identity](/container-apps/managed-identity-image-pull.md)
   - [Azure Container Instances (ACI) identity](/azure/container-instances/using-azure-container-registry-mi.md)
   - [Azure Machine Learning (AML) workspace identity](/azure/machine-learning/how-to-identity-based-service-authentication.md)

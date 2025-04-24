@@ -108,7 +108,7 @@ You or a registry owner must have sufficient privileges in the subscription to a
 
 Related links:
 
-* [Azure roles and permissions - Azure Container Registry](container-registry-rbac-built-in-roles-overview.md)
+* [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md)
 * [Login with repository-scoped token](container-registry-repository-scoped-permissions.md)
 * [Add or remove Azure role assignments using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
 * [Use the portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal)

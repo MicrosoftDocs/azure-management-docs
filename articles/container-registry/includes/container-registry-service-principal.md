@@ -17,7 +17,7 @@ To create a service principal with access to your container registry, run the fo
 
 Before running the script, update the `ACR_NAME` variable with the name of your container registry. The `SERVICE_PRINCIPAL_NAME` value must be unique within your Microsoft Entra tenant. If you receive an "`'http://acr-service-principal' already exists.`" error, specify a different name for the service principal.
 
-You can optionally modify the `--role` value in the [az ad sp create-for-rbac][az-ad-sp-create-for-rbac] command if you want to grant different permissions. For a complete list of roles, see [ACR roles and permissions](https://github.com/Azure/acr/blob/master/docs/roles-and-permissions.md).
+You can optionally modify the `--role` value in the [az ad sp create-for-rbac][az-ad-sp-create-for-rbac] command if you want to grant different permissions. For a complete list of roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 After you run the script, take note of the service principal's **ID** and **password**. Once you have its credentials, you can configure your applications and services to authenticate to your container registry as the service principal.
 

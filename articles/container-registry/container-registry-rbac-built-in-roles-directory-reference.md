@@ -23,22 +23,23 @@ For a high-level overview of these built-in roles—including supported role ass
 
 ## Built-in roles reference
 
-Each built-in role is defined by a set of permissions (actions and data actions) that control what operations can be performed on the registry and its resources. These permissions fall into two categories:
+Each built-in role is defined by a set of permissions (actions and data actions) that control what operations can be performed on the registry. These permissions fall into two categories:
 - Control plane permissions: Create, manage, delete, and configure ACR registries, registry-wide configurations, and registry-wide policies.
 - Data plane permissions: Perform operations that read, modify, or delete data stored within a registry, such as pushing, pulling, modifying, or deleting images, artifacts, and tags within the registry. Also includes operations that modify repository-specific configurations and repository-specific policies.
 
 ### Control plane roles
 
-The following built-in roles are control plane roles. Assign these roles to identities that need to manage registry resources, but do not require data plane permissions.
+The following built-in roles are control plane roles. Assign these roles to identities that need to manage registries, but do not require data plane permissions.
 
 #### Container Registry Contributor and Data Access Configuration Administrator
 - **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
-- **Permissions**: Grants control plane access to create, configure, and manage registry resources, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
+- **Permissions**: Grants control plane access to create, configure, and manage registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
-    - Create, update, view, list and delete registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - Create, update, view, list and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
-    - Update registry resource configuration
+    - Update registry configuration
       - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity.md). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
@@ -50,12 +51,13 @@ The following built-in roles are control plane roles. Assign these roles to iden
 
 #### Container Registry Configuration Reader and Data Access Configuration Reader
 - **Use case**: Ideal for auditors, monitoring systems, and vulnerability scanners that only need to view registries, audit registry authentication mechanisms, audit registry network access configurations, and view registry policies—without needing permissions to push/pull images or assign roles.
-- **Permissions**: Grants control plane access to view and list registry resources, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
+- **Permissions**: Grants control plane access to view and list registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
   - **Control plane permissions**:
-    - View and list registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
     - View and list [connected registries](intro-connected-registry.md)
-    - View registry resource configuration
+    - View registry configuration
       - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity.md)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
@@ -98,7 +100,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
 
 ### Data plane roles
 
-The following built-in roles are data plane roles. Assign these roles to identities that need to perform data plane operations to interact with images and artifacts stored within a registry, but do not require control plane permissions to manage registry resources.
+The following built-in roles are data plane roles. Assign these roles to identities that need to perform data plane operations to interact with images and artifacts stored within a registry, but do not require control plane permissions to manage registries.
 
 #### AcrPush
 - **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings.
@@ -160,16 +162,16 @@ The following built-in roles are data plane roles. Assign these roles to identit
 ### Privileged roles
 
 The following built-in roles are privileged roles.
-Assign these roles only to trusted identities, as they provide access to a wide range of registry resources and permissions.
+Assign these roles only to trusted identities, as they provide access to a wide range of resources and permissions over other resource types, not just Azure Container Registry.
 
 Azure recommends using less privileged [control plane roles](#control-plane-roles) or [data plane roles](#data-plane-roles) whenever possible instead of these privileged roles.
 
 #### Owner
-- **Use case**: Assign to administrators who need complete control over the registry resource, including the ability to assign roles to other identities and perform role assignments for the registry.
+- **Use case**: Assign to administrators who need complete control over the registry, including the ability to assign roles to other identities and perform role assignments for the registry.
 - **Permissions**: Full access to all registry control plane operations and data plane operations, including role assignment permissions.
   - **Control plane permissions**:
-    - Create, update, view, list and delete registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
-    - Manage [role assignments for registry resources](container-registry-rbac-built-in-roles-overview.md)
+    - Create, update, view, list and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - Manage [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
     - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
@@ -177,7 +179,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
     - Configure [artifact cache rules and credential sets](artifact-cache-overview.md)
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
     - Manage [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
-    - Update registry resource configuration
+    - Update registry configuration
       - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity.md). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
@@ -197,7 +199,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
     - Sign container images with [Docker Content Trust (DCT)](container-registry-content-trust.md)
 
 #### Contributor
-- **Use case**: Assign to identities that need to manage registry resources, but do not require role assignment permissions.
+- **Use case**: Assign to identities that need to manage registries, but do not require role assignment permissions.
 - **Permissions**: Full access to all registry control plane operations and all data plane operations, except role assignment permissions.
   - **Control plane permissions**:
     - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles-overview.md). Only permissions for viewing and listing role assignments for a registry are granted.
@@ -206,17 +208,17 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
     - Same as Owner
 
 #### Reader
-- **Use case**: Assign to identities who only need to view and list registry resources and registry configuration.
-- **Permissions**: Grants the same visibility as Owner and Contributor, but restricted to read-only operations. Does not permit create, update, or delete actions on registry resources.
+- **Use case**: Assign to identities who only need to view and list registries and registry configuration.
+- **Permissions**: Grants the same visibility as Owner and Contributor, but restricted to read-only operations. Does not permit create, update, or delete actions on registries.
   - **Control plane permissions**:
-    - View and list registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
-    - View and list (but not manage) [role assignments for registry resources](container-registry-rbac-built-in-roles-overview.md)
+    - View and list registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
     - View and list [connected registries](intro-connected-registry.md)
     - View and list [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
     - View and list [artifact cache rules and credential sets](artifact-cache-overview.md)
     - View and list [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
-    - View registry resource configuration
+    - View registry configuration
       - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity.md)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)

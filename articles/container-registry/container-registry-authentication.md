@@ -53,7 +53,7 @@ When you log in with `az acr login`, the CLI uses the token created when you exe
 
 For registry access, the token used by `az acr login` is valid for **3 hours**, so we recommend that you always log in to the registry before running a `docker` command. If your token expires, you can refresh it by using the `az acr login` command again to reauthenticate.
 
-Using `az acr login` with Azure identities provides [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with specific [Azure roles and permissions](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios or to handle the needs of a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
+Using `az acr login` with Azure identities provides [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with specific roles. See [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios or to handle the needs of a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
 
 ### az acr login with --expose-token
 
@@ -108,7 +108,7 @@ When you log in with `Connect-AzContainerRegistry`, PowerShell uses the token cr
 
 For registry access, the token used by `Connect-AzContainerRegistry` is valid for **3 hours**, so we recommend that you always log in to the registry before running a `docker` command. If your token expires, you can refresh it by using the `Connect-AzContainerRegistry` command again to reauthenticate.
 
-Using `Connect-AzContainerRegistry` with Azure identities provides [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with specific [Azure roles and permissions](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios or to handle the needs of a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
+Using `Connect-AzContainerRegistry` with Azure identities provides [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/role-assignments-portal). For some scenarios, you may want to log in to a registry with your own individual identity in Microsoft Entra ID, or configure other Azure users with specific roles. See [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md). For cross-service scenarios or to handle the needs of a workgroup or a development workflow where you don't want to manage individual access, you can also log in with a [managed identity for Azure resources](container-registry-authentication-managed-identity.md).
 
 ---
 
@@ -126,7 +126,7 @@ The available roles for a container registry include:
 
 * **Owner**: pull, push, and assign roles to other users
 
-For a complete list of roles, see [Azure Container Registry roles and permissions](container-registry-rbac-built-in-roles-overview.md).
+For a complete list of roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 For CLI scripts to create a service principal for authenticating with an Azure container registry, and more guidance, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
