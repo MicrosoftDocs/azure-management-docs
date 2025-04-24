@@ -98,18 +98,18 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
    az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
    ```
 
-  > [!NOTE]
-  > Using the Key Vault's resource ID grants access to all secrets in the Key Vault. You can grant access only to the username and password secrets by instead running the following commands to retrieve only the username and password secrets, then assigning the role to those secrets:
-  >
-  > ```azurecli
-  > az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
-  > az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
-
 1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
 
    ```azurecli
    az role assignment create --role “Key Vault Secrets User” --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
    ```
+
+> [!TIP]
+> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. You can grant access only to the username and password secrets by instead running the following commands to retrieve only the username and password secrets, then assigning the role to those secrets:
+>
+> ```azurecli
+> az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
+> az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
 
 Alternately, you can use access policies to assign permissions.
 
