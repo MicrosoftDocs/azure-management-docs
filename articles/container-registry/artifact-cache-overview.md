@@ -49,7 +49,7 @@ When using artifact cache, keep in mind the following limitations:
 
 ## Upstream support
 
-Artifact cache currently supports the following upstream registries. Review the following table for details about which types of pulls are supported and how to use them.
+Artifact cache currently supports the following upstream registries.
 
 >[!WARNING]
 > To source content from Docker Hub, you must generate a credential set by using [Azure CLI](artifact-cache-cli.md#create-the-credentials) or the [Azure portal](artifact-cache-portal.md#create-new-credentials).
@@ -64,10 +64,8 @@ Artifact cache currently supports the following upstream registries. Review the 
 | `registry.k8s.io`                              | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
 | Google Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
 
-- The login server for Docker Hub is `docker.io`.
-- The login server for Microsoft Artifact Registry is `mcr.microsoft.com`.
-
-The Azure portal autofills these fields for you, including adding `library/` if required for Docker repositories.
+> [!NOTE]
+> The Azure portal autofills these fields for you, including adding `library/` if required for Docker repositories.
 
 ## Next steps
 

@@ -69,7 +69,7 @@ Before configuring the credentials, make sure you're able to [create and store s
 
       :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-enter-credential-details.png" alt-text="Screenshot showing details entered to create credentials for a container registry in Azure portal.":::
 
-## Configure RBAC authentication
+Alternately, you can use Azure RBAC to assign the **Key Vault Secrets User** role (or a custom role that includes the `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission) to the system identity. For more information, see [Grant a user access](/azure/role-based-access-control/quickstart-assign-role-user-portal).
 
 ## Next steps
 

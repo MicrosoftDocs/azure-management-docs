@@ -80,9 +80,38 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
 > [!TIP]
 > To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
-## Assign permissions to Key Vault using access policies
+## Assign permissions to Key Vault
 
-You can use access policies to assign the appropriate permissions to users so they can access the Azure KeyVault.
+You can use Azure RBAC to assign the apropriate permissions to users so they can access the Azure Key Vault.
+
+The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required to access the Key Vault. The **Key Vault Secrets User** Azure built-in role is typically granted, as it's the least privileged role that includes this action. Alternately, you can create a custom role that includes that permission.
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```azurecli
+   az acr credential-set show --name MyCredentialSet --registry MyRegistry 
+   ```
+
+1. Display properties of the Key Vault to get its resource ID:
+
+   ```azurecli
+   az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
+   ```
+
+  > [!NOTE]
+  > Using the Key Vault's resource ID grants access to all secrets in the Key Vault. You can grant access only to the username and password secrets by instead running the following commands to retrieve only the username and password secrets, then assigning the role to those secrets:
+  >
+  > ```azurecli
+  > az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
+  > az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
+
+1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
+
+   ```azurecli
+   az role assignment create --role “Key Vault Secrets User” --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
+   ```
+
+Alternately, you can use access policies to assign permissions.
 
 1. Get the principal ID of the system identity in use to access Key Vault:
 
