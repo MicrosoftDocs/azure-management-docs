@@ -19,21 +19,21 @@ You can also define and assign [custom roles](container-registry-rbac-custom-rol
 ACR roles can be assigned to the following identity types to grant permissions to a registry:
 - [individual user identity](container-registry-authentication.md#individual-login-with-azure-ad)
 - [managed identity for Azure resources](container-registry-authentication-managed-identity.md)
-  - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr.md)
-  - [Azure Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration.md) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity.md) for AKS nodes to pull images from ACR.
-  - [Azure Container Apps (ACA) identity](/container-apps/managed-identity-image-pull.md)
-  - [Azure Container Instances (ACI) identity](/azure/container-instances/using-azure-container-registry-mi.md)
-  - [Azure Machine Learning (AML) workspace identity](/azure/machine-learning/how-to-identity-based-service-authentication.md)
-  - [AML-attached Kubernetes cluster node kubelet identity](/azure/machine-learning/how-to-attach-kubernetes-to-workspace.md) to allow the Kubernetes cluster's nodes to pull images from ACR.
-  - [AML online endpoint identity](/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities.md)
-  - [Azure App Service identity](/azure/app-service/tutorial-custom-container.md)
-  - [Azure Web Apps identity](/azure/azure-container-registry/pull-image-to-web-app-fail.md)
-  - [Azure Batch identity](/azure/batch/batch-docker-container-workloads.md)
-  - [Azure Functions identity](/azure/azure-functions/functions-app-settings.md#acrusermanagedidentityid)
+  - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr)
+  - [Azure Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity) for AKS nodes to pull images from ACR.
+  - [Azure Container Apps (ACA) identity](/container-apps/managed-identity-image-pull)
+  - [Azure Container Instances (ACI) identity](/azure/container-instances/using-azure-container-registry-mi)
+  - [Azure Machine Learning (AML) workspace identity](/azure/machine-learning/how-to-identity-based-service-authentication)
+  - [AML-attached Kubernetes cluster node kubelet identity](/azure/machine-learning/how-to-attach-kubernetes-to-workspace) to allow the Kubernetes cluster's nodes to pull images from ACR.
+  - [AML online endpoint identity](/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities)
+  - [Azure App Service identity](/azure/app-service/tutorial-custom-container)
+  - [Azure Web Apps identity](/azure/azure-container-registry/pull-image-to-web-app-fail)
+  - [Azure Batch identity](/azure/batch/batch-docker-container-workloads)
+  - [Azure Functions identity](/azure/azure-functions/functions-app-settings#acrusermanagedidentityid)
 - [service principal](container-registry-authentication.md#service-principal)
   - [AKS cluster service principal](authenticate-aks-cross-tenant.md) to enable AKS nodes to pull images from ACR. Take note that ACR also supports cross-tenant AKS node to ACR authentication through [cross-tenant service principal role assignments and authentication](authenticate-aks-cross-tenant.md).
   - [ACI service principal](container-registry-auth-aci.md)
-  - [Hybrid or on-premise AKS clusters on Azure Stack Hub using service principal](/azure-stack/user/container-registry-deploy-image-aks-cluster.md)
+  - [Hybrid or on-premise AKS clusters on Azure Stack Hub using service principal](/azure-stack/user/container-registry-deploy-image-aks-cluster)
 
 Take note that [ACR connected registry](intro-connected-registry.md), ACR's on-premise registry offering that differs from cloud-based ACR, does not support Azure role assignments and Entra-based permissions management.
 
@@ -79,10 +79,10 @@ Below are common usage scenarios and the corresponding recommended built-in role
       - network access ([private link and private endpoint settings](container-registry-private-link.md), [public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), and [VNET service endpoints](container-registry-vnet.md))
       - registry policies ([retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
       - [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
-      - manage a [registry's system-assigned managed identity](/cli/azure/acr/identity.md)
+      - manage a [registry's system-assigned managed identity](/cli/azure/acr/identity)
     - Note: this role grants permissions to delete the registry itself.
     - Note: this does not include data plane operations (e.g., image push/pull), role assignment capabilities, or ACR task.
-    - Note: to manage a [registry's user-assigned managed identity](/cli/azure/acr/identity.md), the assignee must also have [Managed Identity Operator](/azure/role-based-access-control/built-in-roles/identity#managed-identity-operator).
+    - Note: to manage a [registry's user-assigned managed identity](/cli/azure/acr/identity), the assignee must also have [Managed Identity Operator](/azure/role-based-access-control/built-in-roles/identity#managed-identity-operator).
 
 - **Scenario: Pipelines, infrastructure engineers, or control plane observability/monitoring tools that need to list registries and view registry configurations, but not access to registry images**
   - Role: `Container Registry Configuration Reader and Data Access Configuration Reader`
@@ -94,7 +94,7 @@ Below are common usage scenarios and the corresponding recommended built-in role
 
 - **Scenario: Pipelines and identities that orchestrate [ACR tasks](container-registry-tasks-overview.md)**
   - Role: `Container Registry Tasks Contributor`
-  - Permissions: Manage [ACR tasks](container-registry-tasks-overview.md), including task definitions and task runs, [task agent pools](tasks-agent-pools.md), [quick builds with `az acr build`](cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run), and [task logs](container-registry-tasks-logs.md). Does not include data plane permissions or broader registry configuration
+  - Permissions: Manage [ACR tasks](container-registry-tasks-overview.md), including task definitions and task runs, [task agent pools](tasks-agent-pools.md), [quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run), and [task logs](container-registry-tasks-logs.md). Does not include data plane permissions or broader registry configuration
   - Note: to fully manage [task identities](container-registry-tasks-authentication-managed-identity.md), the assignee must have [Managed Identity Operator](/azure/role-based-access-control/built-in-roles/identity#managed-identity-operator).
 
 - **Scenario: Identities such as pipelines and developers that [import images with `az acr import`](container-registry-import-images.md)**

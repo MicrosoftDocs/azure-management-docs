@@ -10,7 +10,7 @@ ms.service: azure-container-registry
 
 # Azure Container Registry custom roles
 
-Azure Container Registry (ACR) supports [Azure role-based access control (RBAC)](/azure/role-based-access-control/) to manage access to your registry. You can assign [Azure Container Registry built-in roles](/articles/container-registry/container-registry-rbac-built-in-roles-overview.md) or create [custom roles](/azure/role-based-access-control/custom-roles) with fine-grained permissions tailored to your specific needs. This article describes the steps to define, create, and assign custom roles for Azure Container Registry.
+Azure Container Registry (ACR) supports [Azure role-based access control (RBAC)](/azure/role-based-access-control/) to manage access to your registry. If none of the [Azure Container Registry built-in roles](container-registry-rbac-built-in-roles-overview.md) suit your needs, you can create custom roles with fine-grained permissions tailored to your scenario. This article describes the steps to define, create, and assign custom roles for Azure Container Registry.
 
 ## Custom role permissions
 

@@ -40,7 +40,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
     - Update registry configuration
-      - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity.md). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [tokens and scope maps](container-registry-repository-scoped-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
@@ -58,7 +58,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
     - View and list [geo-replications](container-registry-geo-replication.md)
     - View and list [connected registries](intro-connected-registry.md)
     - View registry configuration
-      - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity.md)
+      - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [tokens and scope maps](container-registry-repository-scoped-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
@@ -69,10 +69,10 @@ The following built-in roles are control plane roles. Assign these roles to iden
 
 #### Container Registry Tasks Contributor
 - **Use case**: Assign to identities—such as CI/CD pipelines or automation tools—that need to manage ACR tasks and task-related resources without access to other registry operations or image data.
-- **Permissions**: Grants control plane access to manage [ACR tasks](container-registry-tasks-overview.md), including task definitions, runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md). Does not include data plane permissions or access to registry configuration outside of tasks.
+- **Permissions**: Grants control plane access to manage [ACR tasks](container-registry-tasks-overview.md), including task definitions, runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md). Does not include data plane permissions or access to registry configuration outside of tasks.
   <!-- Need to validate if this role has permissions to manage task identities. -->
   - **Control plane permissions**:
-    - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
+    - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
     <!-- Need to validate if this role has permissions to manage task identities. -->
     - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
   - **Data plane permissions**:
@@ -174,13 +174,13 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
     - Manage [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
-    - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
+    - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
     - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
     - Configure [artifact cache rules and credential sets](artifact-cache-overview.md)
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
     - Manage [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
     - Update registry configuration
-      - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity.md). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [tokens and scope maps](container-registry-repository-scoped-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
@@ -219,7 +219,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
     - View and list [artifact cache rules and credential sets](artifact-cache-overview.md)
     - View and list [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
     - View registry configuration
-      - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity.md)
+      - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [VNET service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [tokens and scope maps](container-registry-repository-scoped-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
