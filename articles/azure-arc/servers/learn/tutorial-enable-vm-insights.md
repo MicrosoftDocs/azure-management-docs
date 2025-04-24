@@ -21,6 +21,8 @@ In this tutorial, you'll learn how to:
 
 * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
+* Use our quickstart to [connect a hybrid machine](quick-enable-hybrid-vm.md) to Azure Arc. This tutorial assumes that you have already connected a machine to Azure Arc.
+
 * VM extension functionality is available only in the list of [supported regions](../overview.md#supported-regions).
 
 * See [Supported operating systems](/azure/azure-monitor/vm/vminsights-enable-overview#supported-operating-systems) to ensure that the servers operating system you're enabling is supported by VM insights.
