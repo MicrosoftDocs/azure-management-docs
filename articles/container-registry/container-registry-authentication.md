@@ -118,15 +118,7 @@ If you assign a [service principal](/azure/active-directory/develop/app-objects-
 
 ACR authentication token gets created upon login to the ACR, and is refreshed upon subsequent operations. The time to live for that token is 3 hours.
 
-The available roles for a container registry include:
-
-* **AcrPull**: pull
-
-* **AcrPush**: pull and push
-
-* **Owner**: pull, push, and assign roles to other users
-
-For a complete list of roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
+For a list of available roles, please see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 For CLI scripts to create a service principal for authenticating with an Azure container registry, and more guidance, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 

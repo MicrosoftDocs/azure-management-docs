@@ -21,13 +21,13 @@ ACR roles can be assigned to the following identity types to grant permissions t
 - [managed identity for Azure resources](container-registry-authentication-managed-identity.md)
   - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr)
   - [Azure Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity) for AKS nodes to pull images from ACR.
-  - [Azure Container Apps (ACA) identity](/container-apps/managed-identity-image-pull)
+  - [Azure Container Apps (ACA) identity](/azure/container-apps/managed-identity-image-pull)
   - [Azure Container Instances (ACI) identity](/azure/container-instances/using-azure-container-registry-mi)
   - [Azure Machine Learning (AML) workspace identity](/azure/machine-learning/how-to-identity-based-service-authentication)
   - [AML-attached Kubernetes cluster node kubelet identity](/azure/machine-learning/how-to-attach-kubernetes-to-workspace) to allow the Kubernetes cluster's nodes to pull images from ACR.
   - [AML online endpoint identity](/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities)
   - [Azure App Service identity](/azure/app-service/tutorial-custom-container)
-  - [Azure Web Apps identity](/azure/azure-container-registry/pull-image-to-web-app-fail)
+  - [Azure Web Apps identity](/troubleshoot/azure/azure-container-registry/pull-image-to-web-app-fail)
   - [Azure Batch identity](/azure/batch/batch-docker-container-workloads)
   - [Azure Functions identity](/azure/azure-functions/functions-app-settings#acrusermanagedidentityid)
 - [service principal](container-registry-authentication.md#service-principal)
