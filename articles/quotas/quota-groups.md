@@ -34,8 +34,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 Before you can use the Quota Group feature, you must:  
 - Register the `Microsoft.Quota` resource provider on all relevant subscriptions using PowerShell.  
 - A Management Group (MG) is needed to create a Quota Group. Your group will inherit quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
-- Assign the `GroupQuota` Request Operator role on the Management Group where the Quota Group will be created. 
-- Assign the `Quota` Request Operator role on all participating subscriptions to the relevant users or applications managing quota operations.  
+- Certain permissions are required to create Quota Groups and to add subscriptions. For more information on which roles to assign, see [#permissions].   
 
 ## Limitations
 
@@ -59,155 +58,68 @@ The following diagram shows and existing MG hierarchy set up with *subscription 
 
 ## Recommended group setup
 
-A single Quota Group object can manage quotas across multiple regions and VM families. Design your quota group structure with access control in mind—since access is inherited from the Management Group, consider creating a tiered Management Group structure to ensure proper role assignments.  
-Example Hierarchy:  
-- Management Group A owns Quota Groups 1 & 2  
-- Management Group B owns Quota Group 3  
-- Each quota group may used to manage different applications, departments, and or regions
-- When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families  
+A single Quota Group object manages quotas across multiple regions and VM families. Design your quota group structure with access control in mind. Access is inherited from the Management Group, so consider creating a tiered Management Group structure to ensure proper role assignments.  
+
+Example hierarchy:  
+- Management Group A owns Quota Groups 1 & 2.
+- Management Group B owns Quota Group 3.
+- Each quota group may be used to manage different applications, departments, and or regions.
+- When performing operations such as quota transfers or increase requests, actions are scoped to specific regions and VM families.
 
  :::image type="content" source="./media/quota-groups/sample-recommended-quota-group-setup.png" alt-text="Diagram of Management Group hierarchy with multiple Quota Groups created under Management Group.":::
-Figure 2: Sample Quota Group hierarchy
 
-## Permissions required to create Quota Group and add subscription(s)
-Quota write permissions are required at the Management Group level to create/delete Quota Group  
-Quota write permissions are required at the subscription(s) level to add/remove subscriptions to Quota Group  
-### Assign Management group Level Permissions to user and or app serviceID  
-- Please assign user and or app service the "GroupQuota Request Operator" role for the Management Group that will be used to create Quota Group  
-- [How to assign role via CLI: Assign Azure roles using Azure CLI - Azure RBAC | Microsoft Learn](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-cli)  
-- [How to assign via Portal: Assign Azure roles using the Azure portal - Azure RBAC | Microsoft Learn](https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)
+## Permissions
 
-```
-az role assignment create --assignee "{assignee}" 
---role "{roleNameOrId}" 
---scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
-```
-	
-```
-"Name": "GroupQuota Request Operator"
-"Id": "e2217c0e04bb4724958091cf9871bc01",
-"IsServiceRole": false,
-"Permissions": [
-  {
-    "Actions": [
-      // Permissions required for a customer role
-      "Microsoft.Authorization/*/read",
-      "Microsoft.Insights/alertRules/*",
-      "Microsoft.Resources/deployments/*",
-	
-//Quota operations
-"Microsoft.Quota/quotaLimits/read",
-       "Microsoft.Quota/quotaLimits/write",
-       "Microsoft.Quota/quotaLimitsRequests/read",
-       "Microsoft.Quota/register/action",
-//GroupQuota Operations
-      "Microsoft.Quota/GroupQuotas/*/read",
-      "Microsoft.Quota/groupQuotas/*/write",
-     ]    ]
-A GroupQuota Reader role is defined to give readonly access.
-"Name": "Quota Group Request Operator",
-"IsServiceRole": false,
-"Permissions": [
-  {
-    "Actions": [
-      // Permissions required for a customer role
-      "Microsoft.Authorization/*/read",
-      "Microsoft.Insights/alertRules/*",
-      "Microsoft.Resources/deployments/*",
-
-//Quota operations
-"Microsoft.Quota/quotaLimits/read",
-       "Microsoft.Quota/quotaLimitsRequests/read",
-       "Microsoft.Quota/register/action",
-//GroupQuota Operations
-      "Microsoft.Quota/GroupQuotas/*/read",
-      ]
-
-```
+Certain permissions are required to create Quota Groups and to add subscriptions. For more information, see [Assign Azure roles using Azure CLI](/azure/role-based-access-control/role-assignments-cli) or [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Assign the *GroupQuota Request Operator* role on the Management Group where the Quota Group will be created.
+- Assign the *Quota Request Operator* role on all participating subscriptions to the relevant users or applications managing quota operations.
  
+## Quota Group APIs
 
-### Assign Subscription Level Permissions to user and or app serviceID  
-•	Please assign user and or app service the "Quota Request Operator" for the subscription(s) that will be added to the group  
-```
-az role assignment create --assignee "{assignee}" 
---role "{roleNameOrId}" 
---scope "/subscriptions/{subscriptionId}"
-```
+<!-- What is the purpose here? Please write at least a sentance to introduce this subsection. Elaborate, but keep it to the point. Write in an active voice speaking to the customer. -->
 
+Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json) to:  
+- Create or delete a Quota Group.
+- Add or remove subscriptions from a Quota Group.
+- Transfer or deallocate unused quota from subscriptions to a Quota Group. 
+- Transfer or allocate unused quota from a Quota Group to subscriptions.
+- Create a Quota Group increase request.
+- Get the properties of the Quota Group object and list of subscriptions.
+- Get a status request of your allocation request.
+- Get a status request of your Quota Group increase.
 
-```
-{
-  "assignableScopes": [
-    "/"
-  ],
-  "description": "Read and create quota requests, get quota request status, and create support tickets.",
-  "id": "/providers/Microsoft.Authorization/roleDefinitions/0e5f05e5-9ab9-446b-b98d-1e2157c94125",
-  "name": "0e5f05e5-9ab9-446b-b98d-1e2157c94125",
-  "permissions": [
-    {
-      "actions": [
-        "Microsoft.Capacity/resourceProviders/locations/serviceLimits/read",
-        "Microsoft.Capacity/resourceProviders/locations/serviceLimits/write",
-        "Microsoft.Capacity/resourceProviders/locations/serviceLimitsRequests/read",
-        "Microsoft.Capacity/register/action",
-        "Microsoft.Quota/usages/read",
-        "Microsoft.Quota/quotas/read",
-        "Microsoft.Quota/quotas/write",
-        "Microsoft.Quota/quotaRequests/read",
-        "Microsoft.Quota/register/action",
-        "Microsoft.Authorization/*/read",
-        "Microsoft.Insights/alertRules/*",
-        "Microsoft.Resources/deployments/*",
-        "Microsoft.Resources/subscriptions/resourceGroups/read",
-        "Microsoft.Support/*"
-      ],
-      "notActions": [],
-      "dataActions": [],
-      "notDataActions": []
-    }
-  ],
-  "roleName": "Quota Request Operator",
-  "roleType": "BuiltInRole",
-  "type": "Microsoft.Authorization/roleDefinitions"
-}
-```  
-# Azure Quota Group APIs Public Preview
-## [Using Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json)  
-With Quota Group APIs you can:  
-1.	Create/delete Quota Group  
-2.	Add/remove subscription(s) from Quota Group  
-3.	Transfer/deallocate unused quota from subscription(s) to Quota Group  
-4.	Transfer/allocation unused quota from Quota Group to subscription(s)  
-5.	Create Quota Group increase request  
-6.	Get the properties of Quota Group object and list of subscriptions  
-7.	Get status request of allocation request  
-8.	Get status request of Quota Group increase  
+## SDK sample links
 
+<!-- What is the purpose here? Please write at least a sentance to introduce this subsection. -->
 
-## SDK Sample links
-Go: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/quota/armquota@v1.1.0 
- 
-Python: https://pypi.org/project/azure-mgmt-quota/2.0.0/ 
- 
-Java: https://central.sonatype.com/artifact/com.azure.resourcemanager/azure-resourcemanager-quota/1.1.0 
- 
-.NET: https://www.nuget.org/packages/Azure.ResourceManager.Quota/1.1.0#readme-body-tab 
- 
-JS: https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0  
+- [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/quota/armquota@v1.1.0)
+- [Python](https://pypi.org/project/azure-mgmt-quota/2.0.0/)
+- [Java](https://central.sonatype.com/artifact/com.azure.resourcemanager/azure-resourcemanager-quota/1.1.0)
+- [.NET](https://www.nuget.org/packages/Azure.ResourceManager.Quota/1.1.0#readme-body-tab)
+- [JS](https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0)
 
-## Examples
-### Create a Quota Group
-```
+## Create a Quota Group
+
+<!-- Please write at least a sentance to introduce this subsection. -->
+
+### [REST API](#tab/rest-1)
+To create a Quota Group using the REST API, make a `PUT` request to the following endpoint:
+
+```http
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 
-Request Body:
+```
+
+Request body:
+```json
 {
   "properties": {
     "displayName": "allocationGroupTest"
   }
 }
 ```
-Sample Response: 
-```
+
+Sample response: 
+```json
 user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
   "properties": {
     "displayName": "allocationGroupTest"
@@ -223,11 +135,29 @@ user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Mi
 }
 ```
 
-### Add / remove subscriptions from Group
-```
+### [Azure portal](#tab/portal-1)
+Create a Quota Group through the Azure portal.
+
+1. Step one.
+2. Step two.
+3. Step three.
+
+--- 
+<!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
+
+## Add or remove subscriptions from a Quota Group
+
+<!-- Please write at least a sentance to introduce this subsection. -->
+<!-- Consider breaking add and remove into their own seperate sections. -->
+
+### [REST API](#tab/rest-2)
+To add subscriptions from the Quota Group using the REST API, make a `PUT` request to the following endpoint:
+
+```http
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 ```
-```
+
+```json
 202 – status code
 Response header
 'Location': 'https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptionRequestsOperationsStatus/9ff167a4-7ab8-4036-9eca-b500206d0d04?api-version=2025-03-01
@@ -235,147 +165,189 @@ Retry-After: 30
 Response content
 {"properties":{"provisioningState":"ACCEPTED"},"id":"/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a","type":"Microsoft.Quota/groupQuotas/subscriptions","name":"075216c4-f88b-4a82-b9f8-cdebf9cc097a"}
 ```
-```
+
+To remove subscriptions from the Quota Group using the REST API, make a `DELETE` request to the following endpoint:
+
+```http
 DELETE https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 
 ```
 
-### Get List of subscriptions in group
+### [Azure portal](#tab/portal-2)
+Add or remove subscriptions from the Quota Group through the Azure portal.
+
+1. Step one.
+2. Step two.
+3. Step three.
+
+--- 
+<!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
+
+## Get list of subscriptions in a Quata Group
+
+<!-- Please write at least a sentance to introduce this subsection. -->
+
+### [REST API](#tab/rest-3)
+To get a list of subscriptions in a Quota Group using the REST API, make a `GET` request to the following endpoint:
+
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
 
 ```
-GET
-https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
 
-```
-Azrest sample
+Example using `az rest`: 
 
-```
-az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01” –debug
+```json
+az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01" –debug
 
-user [ ~ ]$ az rest –method get –debug –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions?api-version=2025-03-01” –debug
+user [ ~ ]$ az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions?api-version=2025-03-01" –debug
 
 {
-  “values”: [
+  "values": [
     {
-      “Properties”: {
-        “provisioningState”: “SUCCEEDED”,
-        “subscriptionId”: “075216c4-f88b-4a82-b9f8-cdebf9cc097a”
+      "Properties": {
+        "provisioningState": "SUCCEEDED",
+        "subscriptionId": "075216c4-f88b-4a82-b9f8-cdebf9cc097a"
       },
-      “id”: “/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a”,
-      “name”: “075216c4-f88b-4a82-b9f8-cdebf9cc097a”,
-      “type”: “Microsoft.Quota/groupQuotas/subscriptions”
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a",
+      "name": "075216c4-f88b-4a82-b9f8-cdebf9cc097a",
+      "type": "Microsoft.Quota/groupQuotas/subscriptions"
     },
     {
-      “Properties”: {
-        “provisioningState”: “SUCCEEDED”,
-        “subscriptionId”: “aa3b53ad-601b-473e-b727-f933435c8263”
+      "Properties": {
+        "provisioningState": "SUCCEEDED",
+        "subscriptionId": "aa3b53ad-601b-473e-b727-f933435c8263"
       },
-      “id”: “/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263”,
-      “name”: “aa3b53ad-601b-473e-b727-f933435c8263”,
-      “type”: “Microsoft.Quota/groupQuotas/subscriptions”
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263",
+      "name": "aa3b53ad-601b-473e-b727-f933435c8263",
+      "type": "Microsoft.Quota/groupQuotas/subscriptions"
     }
   ]
 }
-
 ```
 
-### Transfer unused quota from subscription to group OR group to subscription 
-To deallocate/transfer quota from subscription to group:  
-o	Set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of standarddv4family to your group and your current subscription limit is 120, set the new limit to 110.  
+### [Azure portal](#tab/portal-3)
+Get list of subscriptions in a Quata Group through the Azure portal.
 
-To allocate/transfer quota from group to subscription:  
-o	Set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
+1. Step one.
+2. Step two.
+3. Step three. 
 
+--- 
+<!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
-### PATCH Subscription Quota Allocation
+## Transfer unused quota
+
+Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
+
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+To deallocate or transfer quota from subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.  
+
+To allocate or transfer quota from group to subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
+
+## PATCH subscription quota allocation
+
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+```http
+PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
 ```
-PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
+
+```json
 {
-  “properties”: {
-    “value”: [
-      {
-        “properties”: {
-          “limit”: 110,
-          “resourceName”: “standardddv4family”
+  "properties": {
+    "value": [{
+        "properties": {
+          "limit": 110,
+          "resourceName": "standardddv4family"
         }
-      }
-    ]
+      }]
   }
 }
 ```
 
-azrest example
-```
-az rest –method patch –url “https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01” –body ‘{
-  “properties”: {
-    “value”: [
+Example using `az rest`: 
+
+```json
+az rest –method patch –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01" –body ‘{
+  "properties": {
+    "value": [
       {
-        “properties”: {
-          “limit”: 110,
-          “resourceName”: “standardddv4family”
+        "properties": {
+          "limit": 110,
+          "resourceName": "standardddv4family"
         }
       }
     ]
   }
 }’ –debug
 ```
-### GET Subscription Allocation Quota request status 
-o	Succeeded   
-o	In progress  
-o	Escalated  
-•	If allocation request request status = succeeded then GET subscription quotaAllocations to view current subscription limit for region x SKU 
-o	Limit = current subscription limit  
-o	Shareable quota = how many cores have been deallocated/transferred from sub to group
-	‘-5’ = 5 cores were given from sub to group  
-```
-GET
-/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
+
+## GET subscription allocation quota request status 
+
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+- Succeeded
+- In progress
+- Escalated  
+- If allocation request status is *succeeded*, then GET subscription `quotaAllocations` to view current subscription limit for region x SKU.
+- Limit = current subscription limit  
+- Shareable quota = how many cores have been deallocated/transferred from sub to group
+- ‘-5’ = 5 cores were given from sub to group  
+
+```http
+GET /providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
 ```
 
-```
+```json
 Status code: 202
 Response header:
 Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationOperationsStatus/3b80d125-ada8-41c8-b6c4-12fae6a7f55b?api-version=2025-03-01
 Retry-After: 30 
 Response Content
 ```
-The sample response would be: 
-```
+
+Sample response: 
+
+```json
 {
-"properties": {
-"requestedResource": {
-"properties": {
-"limit": 0,
-"name": {
-"value": "string",
-"localizedValue": "string"
-},
-"region": "string"
-}
-},
-"requestSubmitTime": "2025-03-19T14:53:18.065Z",
-"provisioningState": "Accepted",
-"faultCode": "string"
-}
+	"properties": {
+		"requestedResource": {
+			"properties": {
+				"limit": 0,
+				"name": {
+					"value": "string",
+					"localizedValue": "string"
+				},
+				"region": "string"
+			}
+		},
+		"requestSubmitTime": "2025-03-19T14:53:18.065Z",
+		"provisioningState": "Accepted",
+		"faultCode": "string"
+	}
 }
 ```
 
-### Get Subscription Quota Allocation 
+## GET subscription quota allocation 
 
-•	view current subscription limit for region x SKU  
-•	Limit = current subscription limit  
-•	Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
-Status code: 200
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+- View current subscription limit for region x SKU  
+- Limit = current subscription limit  
+- Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
+- Status code: 200
+
 Response Header: 
 
-```
+```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
 ```
 
+Example using `az rest`:
 
-
-azrest example
-```
+```json
 az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
 Response content
 
@@ -400,9 +372,15 @@ Response content
 }
 ```
 
-### Submit Quota Group increase request
-```
+## Submit Quota Group increase request
+
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+```http
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
+```
+
+```json
 {
   "properties": {
     "value": [
@@ -418,46 +396,58 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
 }
 ```
 
-### Get Quota Group increase request status
+## Get Quota Group increase request status
 
-```
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
+```
 
-Sample response
+Sample response:
+
+```json
 {
-"properties": {
-"requestedResource": {
-"properties": {
-"limit": 0,
-"name": {
-"value": "string",
-"localizedValue": "string"
-},
-"region": "string",
-"comments": "string"
-}
-},
-"requestSubmitTime": "2025-03-19T15:03:30.611Z",
-"provisioningState": "Accepted",
-"faultCode": "string"
-}
+	"properties": {
+		"requestedResource": {
+			"properties": {
+				"limit": 0,
+				"name": {
+					"value": "string",
+					"localizedValue": "string"
+				},
+				"region": "string",
+				"comments": "string"
+			}
+		},
+		"requestSubmitTime": "2025-03-19T15:03:30.611Z",
+		"provisioningState": "Accepted",
+		"faultCode": "string"
+	}
 }
 ```
 
-### Get Quota Group limit 
-•	available limit = how many  cores do I have at group level to distribute  
-•	limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
-•	quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
+## Get Quota Group limit 
 
-```
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+- Available limit = how many  cores do I have at group level to distribute  
+- Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
+- Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
+
+```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
 ```
 
-azrest example  
-```
-az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
+Example using `az rest`:
 
-sample reponse
+```http
+az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
+```
+
+Sample reponse:
+
+```json
 user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
 {
   "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus",
@@ -493,9 +483,31 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 ```
 
 
-### Quota Group Increase Escalations
+### Increase escalations
+
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Avoid bulleted lists of information that can be written in paragraph format. If you do write a list, there should be a clear purpose to the grouping, etc. Do not duplicate information you already mentioned before unless absolutely necessary. Find the most appropriate spot to unpack said information and do it in one central place. If you need to mention it elsewhere, do it briefly and link to the central location for more information. If you need REST and portal tabs, copy the format from previous sections. -->
+
 - Customers can submit Quota Group increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
 - Quota Group increase requests undergo the same checks as subscription level requests.  
 - Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link 	where you can open a support request so that a support engineer can assist you with the increase.  
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
 
+## Clean up resources
+
+<!-- Optional: Steps to clean up resources - H2
+
+Provide steps the user can take to clean up resources that
+they might no longer need.
+
+-->
+
+## Next step -or- Related content
+
+> [!div class="nextstepaction"]
+> [Next sequential article title](link.md)
+
+-or-
+
+* [Related article title](link.md)
+* [Related article title](link.md)
+* [Related article title](link.md)
