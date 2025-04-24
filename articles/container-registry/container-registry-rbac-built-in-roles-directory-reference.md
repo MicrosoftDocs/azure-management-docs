@@ -200,8 +200,8 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 - **Use case**: Assign to identities that need to manage registry resources, but do not require role assignment permissions.
 - **Permissions**: Full access to all registry control plane operations and all data plane operations, except role assignment permissions.
   - **Control plane permissions**:
-    - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles.md).
-    - Read and list (but not manage or perform) [role assignments for registries](container-registry-rbac-built-in-roles.md).
+    - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles.md). Only permissions for viewing and listing role assignments for a registry are granted.
+    - Note: to manage or perform role assignments for registries, the `Role Based Access Control Administrator` role is required. This less privileged role is recommended in lieu of the `Owner` role for managing role assignments.
   - **Data plane permissions**:
     - Same as Owner
 
@@ -210,7 +210,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 - **Permissions**: Grants the same visibility as Owner and Contributor, but restricted to read-only operations. Does not permit create, update, or delete actions on registry resources.
   - **Control plane permissions**:
     - View and list registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
-    - Read and list (but not manage) [role assignments for registry resources](container-registry-rbac-built-in-roles.md)
+    - View and list (but not manage) [role assignments for registry resources](container-registry-rbac-built-in-roles.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
     - View and list [connected registries](intro-connected-registry.md)
     - View and list [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
