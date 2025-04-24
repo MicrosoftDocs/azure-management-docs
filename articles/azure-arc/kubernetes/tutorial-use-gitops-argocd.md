@@ -10,6 +10,14 @@ ms.custom: template-tutorial, devx-track-azurecli, references_regions
 
 This tutorial describes how to use Microsoft GitOps in a Kubernetes cluster. Microsoft GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment.
 
+> [!Important]
+> Private Preview and Beta restrictions and limitations
+> * Microsoft GitOps with ArgoCD is in preview phase, is not intended for use in production, and is provided AS-IS consistent with your agreement with Microsoft.
+> * Non-public information about the preview is confidential.
+> * We may change or discontinue the preview at any time without notice. We may also choose not to make the preview generally commercially available.
+> * These preview phases are not included in the SLA and do not have formal support.
+> For production support, try the [Microsoft GitOps extension using Flux](tutorial-use-gitops-flux2.md).
+
 > [!TIP]
 > While the source in this tutorial is a Git repository, Microsoft GitOps also provides support for other common file sources such as Helm and Open Container Initiative (OCI) repositories.
 >
@@ -129,7 +137,7 @@ The Microsoft GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/sta
 
 ```azurecli
 az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> \
---cluster-type connectedClusters \
+--cluster-type managedClusters \
 --name argocd \
 --extension-type Microsoft.ArgoCD \
 --auto-upgrade false \
@@ -269,7 +277,7 @@ spec:
 EOF
 ```
 
-The AKS store demo application was installed into the pets namespace. See the application webpage by [following these instructions](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application). Be sure to visit the IP address using http and not https.
+The AKS store demo application was installed into the pets namespace. See the application webpage by [following these instructions](/azure/aks/learn/quick-kubernetes-deploy-cli#test-the-application). Be sure to visit the IP address using http and not https.
 
 ## Update extension configuration
 
@@ -286,7 +294,7 @@ It important to update the ArgoCD configmap through the extension, so the settin
 Use the following commands to delete the extension itself.
 
 ```azurecli
-az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t connectedClusters --yes
+az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t managedClusters --yes
 ```
 
 ---
