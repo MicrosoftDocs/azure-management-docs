@@ -2,7 +2,7 @@
 title: Quickstart - Connect hybrid machine with Azure Arc-enabled servers
 description: In this quickstart, you connect and register a hybrid machine with Azure Arc-enabled servers.
 ms.topic: quickstart
-ms.date: 11/03/2023
+ms.date: 04/23/2025
 ms.custom: mode-other
 ---
 
@@ -48,9 +48,9 @@ Use the Azure portal to create a script that automates the agent download and in
 1. [Go to the Azure portal page for adding servers with Azure Arc](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/HybridVmAddBlade). Select the **Add a single server** tile, then select **Generate script**.
 
     :::image type="content" source="media/quick-enable-hybrid-vm/add-single-server.png" alt-text="Screenshot of Azure portal's add server page." lightbox="media/quick-enable-hybrid-vm/add-single-server.png":::
-    
+
    > [!TIP]
-   > In the portal, you can also reach this page by searching for and selecting "Servers - Azure Arc" and then selecting **+Add**.     
+   > In the portal, you can also reach this page by searching for and selecting "Servers - Azure Arc" and then selecting **+Add**.
 
 1. On the **Basics** page, complete the following steps:
 
@@ -58,15 +58,16 @@ Use the Azure portal to create a script that automates the agent download and in
     1. For **Region**, choose the Azure region in which the server's metadata will be stored.
     1. For **Operating system**, select the operating system of the server you want to connect.
     1. For **Connectivity method**, choose how the Azure Connected Machine agent should connect to the internet: 
-        * **Public endpoint** 
-        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        * **Public endpoint**
         * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
-    1.  Select **Next**.
+        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+
+    1. Select **Next**.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards. Then select **Next**.
 
-1. In the **Download or copy the following script** section, complete the following steps:
-   1.  Review the script. If you want to make any changes, use the **Previous** button to go back and update your selections. 
+1. In the **Download and run script** section, complete the following steps:
+   1. Review the script. If you want to make any changes, use the **Previous** button to go back and update your selections. 
    1. Select **Download** to save the script file.
 
 ## Install the agent using the script
