@@ -1,114 +1,125 @@
 ---
 title: Azure Container Registry roles and permissions
-description: Use Azure RBAC, ABAC, and IAM to provide fine-grained permissions to resources in an Azure Container Registry.
+description: Use Azure RBAC, ABAC, and IAM to provide Entra-based fine-grained permissions to an Azure Container Registry.
 ms.topic: conceptual
-author: rayoef, johnsonshi
-ms.author: rayoflores, johsh
-ms.date: 04/16/2025
+author: johnsonshi
+ms.author: johsh
+ms.date: 04/24/2025
 ms.service: azure-container-registry
 ---
 
 # Azure Container Registry roles and permissions
 
-Azure Container Registry (ACR) offers a set of [built-in roles](/azure/role-based-access-control/built-in-roles) that provide various permissions to an ACR registry resource. Using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/), you can assign a built-in role to users, managed identities, or service principals to grant permissions defined within the role. You can also define and assign [custom roles](container-registry-rbac-custom-roles.md) with fine-grained permissions tailored to your specific needs.
+Azure Container Registry (ACR) offers a set of [built-in roles](/azure/role-based-access-control/built-in-roles) that provide various Entra-based permissions management to an ACR registry.
+Using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/), you can assign a built-in role to users, managed identities, or service principals to grant Entra-based permissions defined within the role.
+You can also define and assign [custom roles](container-registry-rbac-custom-roles.md) with fine-grained permissions tailored to your specific needs if the built-in roles below do not meet your requirements.
 
-## Assigning a built-in role
+## Supported role assignment identity types
 
-See [Steps to add a role assignment](/azure/role-based-access-control/role-assignments-steps) for high-level steps to assign a role assignment to an existing [individual user identity](container-registry-authentication.md#individual-login-with-azure-ad), group, [managed identity for Azure resources](container-registry-authentication-managed-identity.md) (including [AKS cluster managed identity](/azure/aks/cluster-container-registry-integration?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json)), and [service principal](container-registry-authentication.md#service-principal) (including [AKS cluster service principal](authenticate-aks-cross-tenant.md)).
-
-Role assignments can be made using the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [Azure CLI](/azure/role-based-access-control/role-assignments-cli), or or [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
-
-## Authenticating after role assignment
-
-After assigning a built-in role to an identity, refer to the following resources to authenticate and access the registry based on the identity type:
+ACR roles can be assigned to the following identity types to grant permissions to a registry:
 - [individual user identity](container-registry-authentication.md#individual-login-with-azure-ad)
 - [managed identity for Azure resources](container-registry-authentication-managed-identity.md)
-  - [AKS cluster managed identity](/azure/aks/cluster-container-registry-integration?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json)
+  - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr.md)
+  - [Azuer Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration.md) to enable the AKS node to pull images from ACR. Note that ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-configured kubelet identity](/azure/aks/use-managed-identity.md) for AKS nodes to pull images from ACR.
+  - [Azure Container Apps (ACA) identity](/container-apps/managed-identity-image-pull.md)
+  - [Azure Container Instances (ACI) identity](/azure/container-instances/using-azure-container-registry-mi.md)
+  - [Azure Machine Learning (AML) workspace identity](/azure/machine-learning/how-to-identity-based-service-authentication.md)
+  - [AML-attached Kubernetes cluster node kubelet identity](/azure/machine-learning/how-to-attach-kubernetes-to-workspace.md) to allow the Kubernetes cluster's nodes to pull images from ACR.
+  - [AML online endpoint identity](/azure/machine-learning/how-to-access-resources-from-endpoints-managed-identities.md)
+  - [Azure App Service identity](/azure/app-service/tutorial-custom-container.md)
+  - [Azure Web Apps identity](/azure/azure-container-registry/pull-image-to-web-app-fail.md)
+  - [Azure Batch identity](/azure/batch/batch-docker-container-workloads.md)
+  - [Azure Functions identity](/azure/azure-functions/functions-app-settings.md#acrusermanagedidentityid)
 - [service principal](container-registry-authentication.md#service-principal)
-  - [AKS cluster service principal](authenticate-aks-cross-tenant.md)
+  - [AKS cluster service principal](authenticate-aks-cross-tenant.md) to enable AKS nodes to pull images from ACR. Take note that ACR also supports cross-tenant AKS node to ACR authentication through [cross-tenant service principal role assignments and authentication](authenticate-aks-cross-tenant.md).
+  - [ACI service principal](container-registry-auth-aci.md)
+  - [Hybrid or on-premise AKS clusters on Azure Stack Hub using service principal](/azure-stack/user/container-registry-deploy-image-aks-cluster.md)
 
-## Recommended built-in role by scenario
+Take note that [ACR connected registry](intro-connected-registry.md), ACR's on-premise registry offering that differs from cloud-based ACR, does not support Azure role assignments and Entra-based permissions management.
 
-Apply the principle of least privilege by assigning only the permissions necessary for a user or service to perform its intended function. Below are common usage scenarios and the corresponding recommended built-in role.
+## Performing role assignments to grant permissions
 
-### CI/CD solutions
-- **Recommended role**: `AcrPush`
-- **Reason**: Enables image push (`docker push`) to a specific registry, without granting broader registry or Azure Resource Manager permissions.
+See [Steps to add a role assignment](/azure/role-based-access-control/role-assignments-steps) for information on how to assign a role to an identity.
+Role assignments can be made using:
+- [Azure portal](/azure/role-based-access-control/role-assignments-portal)
+- [Azure CLI](/azure/role-based-access-control/role-assignments-cli)
+- [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 
-### Container host nodes
-- **Recommended role**: `AcrPull`
-- **Reason**: Enables image pull (`docker pull`) from a specific registry, without granting broader registry or Azure Resource Manager permissions.
+## Recommended built-in roles by scenario
 
-### Vulnerability scanners
-- **Recommended role**: `Container Registry Configuration Reader and Data Access Configuration Reader` and `AcrPull`
-- **Reason**: Allows viewing and listing registries (from the `Container Registry Configuration Reader and Data Access Configuration Reader` role) and pulling images (from the `AcrPull` role) to scan and analyze images for vulnerabilities.
+Apply the principle of least privilege by assigning only the permissions necessary for an identity to perform its intended function.
+Below are common usage scenarios and the corresponding recommended built-in role.
 
-### Visual Studio Code Docker extension
-- **Recommended roles**: `Contributor Registry Contributor and Data Access Configuration Administrator`, `Container Registry Tasks Contributor`, and `AcrPush`
-- **Reason**: Grants capabilities to browse registries, pull and push images, and build images using `az acr build`, supporting common developer workflows in Visual Studio Code.
+- **Scenario: Identities that need to pull images and validate supply chain artifacts such as developers, pipelines, and container orchestrators (e.g., Azure Kubernetes Service node kubelet identity, Azure Container Apps, Azure Container Instances, Azure Machine Learning workspaces)**
+  - Role: `AcrPull`
+  - Purpose: Grants data plane read-only access to pull images and artifacts, view tags, repositories, OCI referrers, and artifact streaming configurations. Does not include any control plane or write permissions.
 
-## Overview of built-in roles
+- **Scenario: Identities such as CI/CD build pipelines and developers that build and push images, as well as manage image tags**
+  - Role: `AcrPush`
+  - Permissions: Grants data plane access to push and pull images and artifacts, manage tags, work with OCI referrers, and configure artifact streaming for repositories and images. Does not include any control plane permissions.
 
-This overview walks through the key Azure Container Registry built-in roles and their recommended use across common scenarios.
-For a complete list of ACR built-in roles with detailed permission breakdowns, see the [Azure Container Registry roles directory reference](container-registry-rbac-built-in-roles-directory-reference.md).
-If the built-in roles do not meet your needs, you can create custom roles with the permissions you require. For more information on creating custom roles, see [Azure Container Registry custom roles](container-registry-rbac-custom-roles.md).
+- **Scenario: Pipelines, identities, and developers that sign images**
+  - For signing images with OCI referrers such as [Notary Project](container-registry-tutorial-sign-build-push.md):
+    - Role: `AcrPush`
+    - Permissions: Grants data plane access to push signatures in the form of OCI referrers attached to images and artifacts. Does not include any control plane permissions.
+  - For signing images with [Docker Content Trust (DCT)](container-registry-content-trust.md):
+    - Role: `AcrImageSigner`
+    - Permissions: Sign images in the registry with [Docker Content Trust (DCT)](container-registry-content-trust.md).
+    - Note: Docker Content Trust is being [deprecated](container-registry-content-trust-deprecation.md).
 
-### Owner
-- **Use case**: Assign to administrators who need complete control over the registry resource, including the ability to assign roles to other identities and perform role assignments for the registry.
-- **Permissions**: Full access to all registry control plane operations and data plane operations, including role assignment permissions.
+- **Scenario: Pipelines, identities, and developers that need to create, update, or _delete_ ACR registries**
+  - Role: `Container Registry Contributor and Data Access Configuration Administrator`
+  - Permissions:
+    - Grants control plane access to **create, configure, manage, and _delete_** registries, including:
+      - configure [registry SKUs](container-registry-skus.md)
+      - authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [tokens and scope maps](container-registry-repository-scoped-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md)),
+      - high availability features ([geo-replications](container-registry-geo-replication.md), [availability zones and zone redundancy](zone-redundancy.md)),
+      - on-premises features ([connected registries](intro-connected-registry.md)),
+      - registry endpoints ([dedicated data endpoints](container-registry-dedicated-data-endpoints.md))
+      - network access ([private link and private endpoint settings](container-registry-private-link.md), [public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), and [VNET service endpoints](container-registry-vnet.md))
+      - registry policies ([retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
+      - manage a [registry's system-assigned managed identity](/cli/azure/acr/identity.md)
+    - Note: this role grants permissions to delete the registry itself.
+    - Note: this does not include data plane operations (e.g., image push/pull), role assignment capabilities, or ACR task.
+    - Note: to manage a [registry's user-assigned managed identity](/cli/azure/acr/identity.md), the assignee must also have [Managed Identity Operator](/azure/role-based-access-control/built-in-roles/identity#managed-identity-operator).
 
-### Contributor
-- **Use case**: Assign to identities that need to manage registry resources, but do not require role assignment permissions.
-- **Permissions**: Full access to all registry control plane operations and all data plane operations, except role assignment permissions.
+- **Scenario: Pipelines, infrastructure engineers, or control plane observability/monitoring tools that need to list registries and view registry configurations, but not access to registry images**
+  - Role: `Container Registry Configuration Reader and Data Access Configuration Reader`
+  - Permissions: **Read-only counterpart of the `Container Registry Contributor and Data Access Configuration Administrator` role above**. Grants control plane access to view and list registries and inspect registry configurations, but not modify them. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
 
-### Reader
-- **Use case**: Assign to identities who only need to view and list registry resources and registry configuration.
-- **Permissions**: Grants the same visibility as Owner and Contributor, but restricted to read-only operations. Does not permit create, update, or delete actions on registry resources.
+- **Scenario: Vulnerability scanners and tools that need to audit registries and registry configurations, as well as access to registry images to scan them for vulnerabilities**
+  - Roles: `AcrPull` and `Container Registry Configuration Reader and Data Access Configuration Reader`
+  - Permissions: Grants control plane access to view and list ACR registries, as well as to audit registry configurations for audit and compliance. Also grants permissions to pull images, artifacts, and view tags to scan and analyze images for vulnerabilities.
 
-### Container Registry Contributor and Data Access Configuration Administrator
-- **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
-- **Permissions**: Grants control plane access to create, configure, and manage registry resources, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
+- **Scenario: Pipelines and identities that orchestrate [ACR tasks](container-registry-tasks-overview.md)**
+  - Role: `Container Registry Tasks Contributor`
+  - Permissions: Manage [ACR tasks](container-registry-tasks-overview.md), including task definitions and task runs, [task agent pools](tasks-agent-pools.md), [quick builds with `az acr build`](cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run), and [task logs](container-registry-tasks-logs.md). Does not include data plane permissions or broader registry configuration
+  - Note: to fully manage [task identities](container-registry-tasks-authentication-managed-identity.md), the assignee must have [Managed Identity Operator](/azure/role-based-access-control/built-in-roles/identity#managed-identity-operator).
 
-### Container Registry Configuration Reader and Data Access Configuration Reader
-- **Use case**: Ideal for auditors, monitoring systems, and vulnerability scanners that only need to view registries, audit registry authentication mechanisms, audit registry network access configurations, and view registry policies—without needing permissions to push/pull images or assign roles.
-- **Permissions**: Grants control plane access to view and list registry resources, including authentication settings, tokens, private endpoints, network access, and registry policies. Does not include data plane operations (e.g., image push/pull) or role assignment capabilities.
+- **Scenario: Identities such as pipelines and developers that [import images with `az acr import`](container-registry-import-images.md)**
+  - Role: `Container Registry Data Importer and Data Reader`
+  - Permissions: Grants control plane access to trigger [image imports using `az acr import`](container-registry-import-images.md), and data plane access to validate import success (pull imported images and artifacts, view repository contents, list OCI referrers, and inspect imported tags). Does not allow pushing or modifying any content in the registry.
 
-### Container Registry Tasks Contributor
-- **Use case**: Assign to identities—such as CI/CD pipelines or automation tools—that need to manage ACR tasks and task-related resources without access to other registry operations or image data.
-- **Permissions**: Grants control plane access to manage [ACR tasks](container-registry-tasks-overview.md), including task definitions, runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md). Does not include data plane permissions or access to registry configuration outside of tasks.
+- **Scenario: Identities such as pipelines and developers that manage [ACR transfer pipelines](container-registry-transfer-cli.md) for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries**
+  - Role: `Container Registry Transfer Pipeline Contributor`
+  - Permissions: Grants control plane access to manage [ACR import/export transfer pipelines and pipeline runs](container-registry-transfer-cli.md) using intermediary storage accounts. Does not include data plane permissions, broader registry access, or permissions to manage other Azure resource types such as storage accounts or key vaults.
 
-### Container Registry Transfer Pipeline Contributor
-- **Use case**: Assign to CI/CD pipelines or automation processes that need to manage [ACR transfer pipelines](container-registry-transfer-cli.md) for moving artifacts across network, tenant, or air gap boundaries. This role is ideal when transfers must flow through an intermediary Azure Storage account to bridge isolated environments.
-- **Permissions**: Grants control plane access to configure and operate [ACR import/export transfer pipelines](container-registry-transfer-cli.md) using intermediary storage accounts, enabling secure artifact transfer between disconnected or segmented environments. Does not include data plane permissions, broader registry access, or permissions to manage other Azure resource types such as storage accounts or key vaults.
+- **Scenario: Management of [quarantined images](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)**
+  - Roles: `AcrQuarantineReader` and `AcrQuarantineWriter`
+  - Permissions: Manage quarantined images in the registry, including listing and pulling quarantined images for further inspection, and modifying the quarantine status of images. Quarantined images are pushed images that cannot be pulled or used until they are unquarantined.
 
-### Container Registry Data Importer and Data Reader
-- **Use case**: Assign to identities—such as CI/CD pipelines—that need to [import images from other registries with `az acr import`](container-registry-import-images.md). The role also enables reading images and artifacts in a registry to validate the success of the import operation.
-- **Permissions**: Grants control plane access to trigger [image imports using `az acr import`](container-registry-import-images.md), and data plane access to pull images and artifacts, view repository contents, referrers, tags, and artifact streaming configurations. Does not allow pushing or modifying any content in the registry.
+- **Scenario: Deleting images, artifacts, tags, and OCI referrers**
+  - Role: `AcrDelete`
+  - Permissions: Provides permissions to delete artifacts and tags across all repositories in the registry. This does not grant permissions to delete the registry itself.
 
-### AcrPush
-- **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings.
-- **Permissions**: Grants data plane access to push and pull images and artifacts, manage tags, work with OCI referrers, and configure artifact streaming for repositories and images. Does not include any control plane permissions.
+- **Scenario: Developers or processes that configure registry [auto-purge on ACR Tasks](container-registry-auto-purge.md)**
+  - Role: `Container Registry Tasks Contributor`
+  - Permissions: Grants control plane permissions to manage [auto-purge, which runs on ACR Tasks](container-registry-auto-purge.md).
 
-### AcrPull
-- **Use case**: Assign to container host nodes, orchestrators, vulnerability scanners, or developers that only need to pull images and read repository metadata—without permissions to push or modify content.
-- **Permissions**: Grants data plane read-only access to pull images and artifacts, view tags, repositories, OCI referrers, and artifact streaming configurations. Does not include any control plane or write permissions.
-
-### AcrDelete
-- **Use case**: Assign to identities or services responsible for managing image lifecycle and cleanup.
-- **Permissions**: Delete artifacts and tags in the registry.
-
-### AcrImageSigner
-- **Use case**: Assign to automated processes or services that sign images as part of a trusted supply chain, such as CI/CD pipelines.
-- **Permissions**:
-  - **Description**: Sign images in the registry with [Docker Content Trust (DCT)](container-registry-content-trust.md). Take note that Docker Content Trust is being [deprecated](container-registry-content-trust-deprecation.md).
-
-### AcrQuarantineWriter
-- **Use case**: Assign to automated processes or services that manage quarantined images, such as CI/CD pipelines and vulnerability scanners.
-- **Permissions**: Manage quarantined images in a registry.
-
-### AcrQuarantineReader
-- **Use case**: Assign to automated processes or services that list, read, and pull quarantined images, such as CI/CD pipelines and vulnerability scanners.
-- **Permissions**: List, read, and pull quarantined images in a registry.
+- **Scenario: Visual Studio Code Docker extension users**
+  - Roles: `AcrPush`, `Container Registry Tasks Contributor`, and `Container Registry Contributor and Data Access Configuration Administrator`
+  - Permissions: Grants capabilities to browse registries, pull and push images, and build images using `az acr build`, supporting common developer workflows in Visual Studio Code.
 
 ## Next steps
 

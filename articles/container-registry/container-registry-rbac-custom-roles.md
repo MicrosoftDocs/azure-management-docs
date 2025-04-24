@@ -2,9 +2,9 @@
 title: Azure Container Registry custom roles
 description: Use Azure RBAC custom roles to create your own fine-grained roles for Azure Container Registry.
 ms.topic: conceptual
-author: rayoef, johnsonshi
-ms.author: rayoflores, johsh
-ms.date: 04/21/2025
+author: johnsonshi
+ms.author: johsh
+ms.date: 04/24/2025
 ms.service: azure-container-registry
 ---
 
@@ -17,35 +17,22 @@ Azure Container Registry (ACR) supports [Azure role-based access control (RBAC)]
 Custom roles are defined by a set of permissions (actions and data actions). The permissions defined in the custom role determine what operations users can perform on registry resources.
 
 To determine which permissions (actions and data actions) should be defined in a custom role, you can:
-* review the list of `Microsoft.ContainerRegistry` [actions](/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry),
-* review the actions packaged in [Azure built-in roles for Containers](/azure/role-based-access-control/built-in-roles/containers),
-* or run the following command using either Azure CLI or Azure PowerShell to list all available actions for the `Microsoft.ContainerRegistry` resource provider.
+* review the JSON definition of [Azure built-in roles directory for Containers](/azure/role-based-access-control/built-in-roles/containers) which includes commonly-used permissions (actions and data actions) that are used in ACR built-in roles,
+* review the complete list of `Microsoft.ContainerRegistry` resource provider permissions ([Azure Container Registry reference of actions and data actions](/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry)).
 
-### [Azure CLI](#tab/azure-cli)
+To programmatically list all available permissions (actions and data actions) for the `Microsoft.ContainerRegistry` resource provider, you can use the following Azure CLI or Azure PowerShell commands.
 
 ```azurecli
 az provider operation show --namespace Microsoft.ContainerRegistry
 ```
 
-To define a custom role, see [Steps to create a custom role](/azure/role-based-access-control/custom-roles#steps-to-create-a-custom-role).
-
-> [!NOTE]
-> In tenants configured with [Azure Resource Manager private link](/azure/azure-resource-manager/management/create-private-link-access-portal), Azure Container Registry supports wildcard actions such as `Microsoft.ContainerRegistry/*/read` or `Microsoft.ContainerRegistry/registries/*/write` in custom roles, granting access to all matching actions. In a tenant without an ARM private link, specify all required registry actions individually in a custom role.
-
-### [Azure PowerShell](#tab/azure-powershell)
-
 ```azurepowershell
 Get-AzProviderOperation -OperationSearchString Microsoft.ContainerRegistry/*
 ```
 
-To define a custom role, see [Steps to create a custom role](/azure/role-based-access-control/custom-roles#steps-to-create-a-custom-role).
+## Example: Custom role to manage webhooks
 
-> [!NOTE]
-> In tenants configured with [Azure Resource Manager private link](/azure/azure-resource-manager/management/create-private-link-access-portal), Azure Container Registry supports wildcard actions such as `Microsoft.ContainerRegistry/*/read` or `Microsoft.ContainerRegistry/registries/*/write` in custom roles, granting access to all matching actions. In a tenant without an ARM private link, specify all required registry actions individually in a custom role.
-
-## Example: Custom role to import images
-
-For example, the following JSON defines the minimum actions for a custom role that permits [managing webhooks for registries and geo-replications](container-registry-import-images.md).
+For example, the following JSON defines the minimum permissions (actions and data actions) for a custom role that permits [managing webhooks](container-registry-webhook.md) that will be triggered for images that are pushed to a registry or images that have been replicated to a geo-replica.
 
 ```json
 {
@@ -53,7 +40,7 @@ For example, the following JSON defines the minimum actions for a custom role th
      "/subscriptions/<optional, but you can limit the visibility to one or more subscriptions>"
    ],
    "description": "Manage Azure Container Registry webhooks.",
-   "Name": "Container Registry Webhook Manager",
+   "Name": "Container Registry Webhook Contributor",
    "permissions": [
      {
        "actions": [
@@ -72,14 +59,19 @@ For example, the following JSON defines the minimum actions for a custom role th
 
 ## Creating or updating a custom role
 
-To create or update a custom role using the JSON description, use the [Azure CLI](/azure/role-based-access-control/custom-roles-cli), [Azure Resource Manager template](/azure/role-based-access-control/custom-roles-template), [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell), or other Azure tools.
+To define a custom role with the JSON definition above, see [steps to create a custom role](/azure/role-based-access-control/custom-roles#steps-to-create-a-custom-role).
+You can create the custom role using [Azure CLI](/azure/role-based-access-control/custom-roles-cli), [Azure Resource Manager template](/azure/role-based-access-control/custom-roles-template), or [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell).
+
+> [!NOTE]
+> In tenants configured with [Azure Resource Manager private link](/azure/azure-resource-manager/management/create-private-link-access-portal), Azure Container Registry supports wildcard actions such as `Microsoft.ContainerRegistry/*/read` or `Microsoft.ContainerRegistry/registries/*/write` in custom roles, granting access to all matching actions.
+> In a tenant without an ARM private link, do not use wildcards and specify all required registry actions individually in a custom role.
 
 ## Assigning a custom role
 
-Add or remove role assignments for a custom role in the same way that you manage role assignments for built-in Azure roles.
+Add or remove role assignments for a custom role in the same way that you manage role assignments for built-in roles.
 Learn more about assigning Azure roles to an Azure identity by using the [Azure portal](/azure/role-based-access-control/role-assignments-portal), the [Azure CLI](/azure/role-based-access-control/role-assignments-cli), [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell), or other Azure tools.
 
 ## Next steps
 
-* For an overview of ACR built-in roles, see [Azure Container Registry built-in roles](container-registry-rbac-built-in-roles.md).
+* For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles.md).
 * For a detailed reference of every ACR built-in role, including the permissions granted by each role, see the [Azure Container Registry roles directory reference](container-registry-rbac-built-in-roles-directory-reference.md).
