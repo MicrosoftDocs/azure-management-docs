@@ -101,7 +101,7 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
 1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
 
    ```azurecli
-   az role assignment create --role “Key Vault Secrets User” --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
+   az role assignment create --role "Key Vault Secrets User" --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
    ```
 
 > [!TIP]
