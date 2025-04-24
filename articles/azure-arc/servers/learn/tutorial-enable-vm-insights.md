@@ -51,7 +51,7 @@ In this tutorial, you'll learn how to:
 
 ## View data collected
 
-1. After deployment and configuration is complete, select **Insights**, and then select the **Performance** tab. The Performance tab shows a select group of performance counters collected from the guest operating system of your machine. Scroll down to view more counters, and move the mouse over a graph to view average and percentiles taken starting from the time when the Log Analytics VM extension was installed on the machine.
+1. After deployment and configuration are complete, select **Insights**, and then select the **Performance** tab. The Performance tab shows a select group of performance counters collected from the guest operating system of your machine. Scroll down to view more counters, and move the mouse over a graph to view average and percentiles taken starting from the time when the Log Analytics VM extension was installed on the machine.
 
     :::image type="content" source="./media/tutorial-enable-vm-insights/insights-performance-charts.png" alt-text="Screenshot of Insights Performance tab with charts for selected machine." border="false":::
 
