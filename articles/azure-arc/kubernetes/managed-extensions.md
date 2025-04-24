@@ -1,6 +1,6 @@
 ---
 title: "Managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 04/18/2025
+ms.date: 04/24/2025
 ms.topic: overview
 description: "Managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping ensure your extensions work well together."
 ms.custom: references_regions
@@ -94,10 +94,10 @@ az k8s-extension create --cluster-name $CLUSTER_NAME \
   --cluster-type connectedClusters  \ 
   --extension-type microsoft.azure.secretstore \ 
   --resource-group $RESOURCE_GROUP
-  --name azure_secret_store 
+  --name azure-secret-store 
 ```
 
 > [!IMPORTANT]
-> When installing the SSE extension with managed extensions, you must use the name `azure_secret_store` rather than `ssarcextension`.
+> When installing the SSE extension with managed extensions, you must use the name `azure-secret-store` rather than `ssarcextension`.
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s).
