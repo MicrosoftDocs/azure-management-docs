@@ -19,7 +19,7 @@ The directory reference is structured by role category:
 - [data plane roles](#data-plane-roles)
 - [privileged roles](#privileged-roles).
 
-For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles.md).
+For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles-overview.md).
 
 ## Built-in roles reference
 
@@ -169,7 +169,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 - **Permissions**: Full access to all registry control plane operations and data plane operations, including role assignment permissions.
   - **Control plane permissions**:
     - Create, update, view, list and delete registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
-    - Manage [role assignments for registry resources](container-registry-rbac-built-in-roles.md)
+    - Manage [role assignments for registry resources](container-registry-rbac-built-in-roles-overview.md)
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
     - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr.md#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr.md#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
@@ -200,7 +200,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 - **Use case**: Assign to identities that need to manage registry resources, but do not require role assignment permissions.
 - **Permissions**: Full access to all registry control plane operations and all data plane operations, except role assignment permissions.
   - **Control plane permissions**:
-    - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles.md). Only permissions for viewing and listing role assignments for a registry are granted.
+    - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles-overview.md). Only permissions for viewing and listing role assignments for a registry are granted.
     - Note: to manage or perform role assignments for registries, the `Role Based Access Control Administrator` role is required. This less privileged role is recommended in lieu of the `Owner` role for managing role assignments.
   - **Data plane permissions**:
     - Same as Owner
@@ -210,7 +210,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 - **Permissions**: Grants the same visibility as Owner and Contributor, but restricted to read-only operations. Does not permit create, update, or delete actions on registry resources.
   - **Control plane permissions**:
     - View and list registry resources (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
-    - View and list (but not manage) [role assignments for registry resources](container-registry-rbac-built-in-roles.md)
+    - View and list (but not manage) [role assignments for registry resources](container-registry-rbac-built-in-roles-overview.md)
     - View and list [geo-replications](container-registry-geo-replication.md)
     - View and list [connected registries](intro-connected-registry.md)
     - View and list [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
@@ -236,5 +236,5 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 
 ## Next steps
 
-* For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles.md).
+* For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles-overview.md).
 * For more information on creating custom roles that meet your specific needs and requirements, see [Azure Container Registry custom roles](container-registry-rbac-custom-roles.md).

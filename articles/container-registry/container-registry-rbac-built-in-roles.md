@@ -1,5 +1,5 @@
 ---
-title: Azure Container Registry roles and permissions
+title: Azure Container Registry Entra permissions and roles overview
 description: Use Azure RBAC, ABAC, and IAM to provide Entra-based fine-grained permissions to an Azure Container Registry.
 ms.topic: conceptual
 author: johnsonshi
@@ -8,9 +8,9 @@ ms.date: 04/24/2025
 ms.service: azure-container-registry
 ---
 
-# Azure Container Registry roles and permissions
+# Azure Container Registry Entra permissions and roles overview
 
-Azure Container Registry (ACR) offers a set of [built-in roles](/azure/role-based-access-control/built-in-roles) that provide various Entra-based permissions management to an ACR registry.
+Azure Container Registry (ACR) offers a set of [built-in roles](/azure/role-based-access-control/built-in-roles) that provide Entra-based permissions management to an ACR registry.
 Using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/), you can assign a built-in role to users, managed identities, or service principals to grant Entra-based permissions defined within the role.
 You can also define and assign [custom roles](container-registry-rbac-custom-roles.md) with fine-grained permissions tailored to your specific needs if the built-in roles below do not meet your requirements.
 

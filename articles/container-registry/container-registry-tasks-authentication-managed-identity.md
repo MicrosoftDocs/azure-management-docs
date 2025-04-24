@@ -81,7 +81,7 @@ You can get the resource ID of the identity by running the [az identity show][az
 
 Depending on the requirements of your task, grant the identity permissions to access other Azure resources. Examples include:
 
-* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry roles and permissions](container-registry-rbac-built-in-roles.md). 
+* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry roles and permissions](container-registry-rbac-built-in-roles-overview.md). 
 * Assign the managed identity a role to read secrets in an Azure key vault.
 
 Use the [Azure CLI](/azure/role-based-access-control/role-assignments-cli) or other Azure tools to manage role-based access to resources. For example, run the [az role assignment create][az-role-assignment-create] command to assign the identity a role to the resource. 

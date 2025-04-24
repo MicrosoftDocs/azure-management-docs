@@ -10,7 +10,7 @@ ms.service: azure-container-registry
 
 # Azure Container Registry custom roles
 
-Azure Container Registry (ACR) supports [Azure role-based access control (RBAC)](/azure/role-based-access-control/) to manage access to your registry. You can assign [Azure Container Registry built-in roles](/articles/container-registry/container-registry-rbac-built-in-roles.md) or create [custom roles](/azure/role-based-access-control/custom-roles) with fine-grained permissions tailored to your specific needs. This article describes the steps to define, create, and assign custom roles for Azure Container Registry.
+Azure Container Registry (ACR) supports [Azure role-based access control (RBAC)](/azure/role-based-access-control/) to manage access to your registry. You can assign [Azure Container Registry built-in roles](/articles/container-registry/container-registry-rbac-built-in-roles-overview.md) or create [custom roles](/azure/role-based-access-control/custom-roles) with fine-grained permissions tailored to your specific needs. This article describes the steps to define, create, and assign custom roles for Azure Container Registry.
 
 ## Custom role permissions
 
@@ -73,5 +73,5 @@ Learn more about assigning Azure roles to an Azure identity by using the [Azure 
 
 ## Next steps
 
-* For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles.md).
+* For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles-overview.md).
 * For a detailed reference of every ACR built-in role, including the permissions granted by each role, see the [Azure Container Registry roles directory reference](container-registry-rbac-built-in-roles-directory-reference.md).
