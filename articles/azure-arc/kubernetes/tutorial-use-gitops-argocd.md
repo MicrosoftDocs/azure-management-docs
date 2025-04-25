@@ -292,7 +292,7 @@ ArgoCD configmaps can be updated after installation and other extension configur
 az k8s-extension update --resource-group <resource-group> --cluster-name <cluster-name> --cluster-type <cluster-type> --name Microsoft.ArgoCD –-config "config-maps.argocd-cm.data.url='https://<public-ip-for-argocd-ui>/auth/callback'”
 ```
 
-It's important to update the ArgoCD configmap through the extension, so the settings don't get overwritten.  [Applying the bicep template](#create-microsoft-gitops-argocd-extension-with-workload-identity) is an alternate method to the `az cli` to update the configuration.
+It's important to update the ArgoCD configmap through the extension, so the settings don't get overwritten.  [Applying the bicep template](#create-gitops-argocd-extension-with-workload-identity) is an alternate method to the `az cli` to update the configuration.
 
 ## Delete the extension
 
