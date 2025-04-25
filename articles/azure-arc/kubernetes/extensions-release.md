@@ -124,13 +124,18 @@ Use the Azure Machine Learning extension to deploy and run Azure Machine Learnin
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
-## ArgoCD (GitOps) (preview)
+## ArgoCD (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
 The ArgoCD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
 
 For more information, see [Tutorial: Deploy applications using GitOps with ArgoCD](tutorial-use-gitops-argocd.md).
+
+> [!IMPORTANT]
+> ArgoCD (GitOps) is currently in public preview.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
 
 ## Flux (GitOps)
 
