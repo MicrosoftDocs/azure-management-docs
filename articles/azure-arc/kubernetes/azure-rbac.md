@@ -91,18 +91,18 @@ Next, follow the steps in the appropriate section, depending on whether you're u
     1. Add the following specification under `volumes`:
 
        ```yml
-       - hostPath
+       - hostPath:
            path: /etc/guard
            type: Directory
-       name: azure-rbac
+         name: azure-rbac
        ```
 
     1. Add the following specification under `volumeMounts`:
 
        ```yml
        - mountPath: /etc/guard
-           name: azure-rbac
-           readOnly: true
+         name: azure-rbac
+         readOnly: true
        ```
 
     **If your `kube-apiserver` isn't a static pod:**
@@ -117,7 +117,7 @@ Next, follow the steps in the appropriate section, depending on whether you're u
 
        ```yml
        - name: azure-rbac
-           secret:
+         secret:
            secretName: azure-arc-guard-manifests
        ```
 
@@ -125,8 +125,8 @@ Next, follow the steps in the appropriate section, depending on whether you're u
 
        ```yml
        - mountPath: /etc/guard
-           name: azure-rbac
-           readOnly: true
+         name: azure-rbac
+         readOnly: true
        ```
 
 1. Add the following `apiserver` arguments:
@@ -189,13 +189,13 @@ Next, follow the steps in the appropriate section, depending on whether you're u
 
       ```yml
       - hostPath: /etc/kubernetes/guard-authn-webhook.yaml
-          mountPath: /etc/guard/guard-authn-webhook.yaml
-          name: guard-authn
-          readOnly: true
+        mountPath: /etc/guard/guard-authn-webhook.yaml
+        name: guard-authn
+        readOnly: true
       - hostPath: /etc/kubernetes/guard-authz-webhook.yaml
-          mountPath: /etc/guard/guard-authz-webhook.yaml
-          name: guard-authz
-          readOnly: true
+        mountPath: /etc/guard/guard-authz-webhook.yaml
+        name: guard-authz
+        readOnly: true
       ```
 
    1. Add the following specification under `apiServer` > `extraArgs`:
