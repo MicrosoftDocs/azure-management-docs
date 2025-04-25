@@ -148,7 +148,7 @@ If you want to limit ArgoCD access to a specific namespace, use the `--config na
 
 ## Create Microsoft GitOps (ArgoCD) extension with workload identity
 
-An alternative installation method recommended for production usage is [workload identity](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
+An alternative installation method recommended for production usage is [workload identity](/azure/aks/workload-identity-deploy-cluster). This method allows you to use Microsoft Entra ID identities to authenticate to Azure resources without needing to manage secrets or credentials in your Git repository. This installation utilizes workload identity authentication enabled in the 3.0.0-rc2 or later OSS version of ArgoCD.
 
 > [!IMPORTANT]
 > The HA mode is the default configuration and requires three nodes in the cluster to be able to install. Add `--config deployWithHightAvailability=false` to install the extension on a single node.
