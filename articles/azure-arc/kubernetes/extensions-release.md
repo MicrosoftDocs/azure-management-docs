@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 04/14/2025
+ms.date: 04/25/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -124,11 +124,19 @@ Use the Azure Machine Learning extension to deploy and run Azure Machine Learnin
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
+## ArgoCD (GitOps) (preview)
+
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
+
+The ArgoCD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
+
+For more information, see [Tutorial: Deploy applications using GitOps with ArgoCD](tutorial-use-gitops-argocd.md).
+
 ## Flux (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-[GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) uses [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
+[GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) can be enabled through [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. With the Flux extension, GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
 
 For more information, see [Tutorial: Deploy applications using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 
