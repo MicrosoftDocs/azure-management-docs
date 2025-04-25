@@ -65,7 +65,7 @@ If you don't already have an Azure container registry, create a registry. For st
 
 ---
 
-To import an image to an Azure container registry, your identity must have write permissions to the target registry (at least Contributor role, or a custom role that allows the importImage action). See [Azure Container Registry roles and permissions](container-registry-roles.md#custom-roles).
+To import an image to an Azure Container Registry, your identity must have permissions to trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role). See [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 ## Import from a public registry
 
@@ -160,8 +160,8 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 You can import an image from an Azure container registry in the same AD tenant using integrated Microsoft Entra permissions.
 
-* Your identity must have Microsoft Entra permissions to read from the source registry (Reader role) and to import to the target registry (Contributor role, or a [custom role](container-registry-roles.md#custom-roles) that allows the importImage action).
-
+* Your identity must have Microsoft Entra permissions to view the source registry (`Container Registry Configuration Reader and Data Access Configuration Reader` role) and permissions to view and pull images, tags, and OCI referrers from the source registry (`AcrPull`).
+* Your identity must also have permissions to trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role).
 * The registry can be in the same or a different Azure subscription in the same Active Directory tenant.
 
 * [Public access](container-registry-access-selected-networks.md#disable-public-network-access) to the source registry is disabled. If public access is disabled, specify the source registry by resource ID instead of by registry login server name.

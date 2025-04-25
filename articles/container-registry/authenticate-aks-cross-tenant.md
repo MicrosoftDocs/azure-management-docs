@@ -23,7 +23,7 @@ Assumptions for this example:
 * The AKS cluster is in **Tenant A** and the Azure container registry is in **Tenant B**. 
 * The AKS cluster is configured with service principal authentication in **Tenant A**. For more information, see [Create and use a service principal for your AKS cluster](/azure/aks/kubernetes-service-principal).
 
-You need at least the **Contributor** role in the AKS cluster's subscription and the **Owner** role in the container registry's subscription.
+You need at least the **Contributor** role in the AKS cluster's subscription. You will also need at least the **Role Based Access Control Administrator** and **Container Registry Contributor and Data Access Configuration Administrator** roles in the container registry's subscription.
 
 Use the following steps to:
 

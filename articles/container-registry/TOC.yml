@@ -175,9 +175,17 @@
             href: container-registry-auth-kubernetes.md
         - name: Enable unauthenticated pull access
           href: anonymous-pull-access.md
-      - name: Azure role-based access control
-        href: container-registry-roles.md
-        displayName: permissions, authorization
+      - name: Entra role-based access control
+        items:
+        - name: Entra permissions and roles overview
+          href: container-registry-rbac-built-in-roles-overview.md
+          displayName: permissions, authorization
+        - name: Role directory reference
+          href: container-registry-rbac-built-in-roles-directory-reference.md
+          displayName: permissions, authorization
+        - name: Custom roles
+          href: container-registry-rbac-custom-roles.md
+          displayName: permissions, authorization
       - name: Content trust
         href: container-registry-content-trust.md
       - name: Transition from Docker Content Trust to the Notary Project
