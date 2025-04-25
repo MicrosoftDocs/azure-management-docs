@@ -10,13 +10,10 @@ ms.custom: template-tutorial, devx-track-azurecli, references_regions
 
 This tutorial describes how to use Microsoft GitOps in a Kubernetes cluster. Microsoft GitOps with ArgoCD is enabled as a [cluster extension](conceptual-extensions.md) in Azure Arc-enabled Kubernetes clusters or Azure Kubernetes Service (AKS) clusters. With GitOps, you can use your Git repository as the source of truth for cluster configuration and application deployment.
 
-> [!Important]
-> Private Preview and Beta restrictions and limitations
-> * Microsoft GitOps with ArgoCD is in preview phase, is not intended for use in production, and is provided AS-IS consistent with your agreement with Microsoft.
-> * Non-public information about the preview is confidential.
-> * We may change or discontinue the preview at any time without notice. We may also choose not to make the preview generally commercially available.
-> * These preview phases are not included in the SLA and do not have formal support.
-> For production support, try the [Microsoft GitOps extension using Flux](tutorial-use-gitops-flux2.md).
+> [!IMPORTANT]
+> Microsoft GitOps with ArgoCD is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> For production Microsoft GitOps extension support, try the [Microsoft GitOps extension using Flux](tutorial-use-gitops-flux2.md).
 
 > [!TIP]
 > While the source in this tutorial is a Git repository, Microsoft GitOps also provides support for other common file sources such as Helm and Open Container Initiative (OCI) repositories.
@@ -142,7 +139,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --extension-type Microsoft.ArgoCD \
 --auto-upgrade false \
 --release-train preview \
---version 0.0.6-preview \
+--version 0.0.7-preview \
 --config namespaceInstall=false
 –-config “config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2”
 ```
@@ -202,7 +199,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
     extensionType: 'Microsoft.ArgoCD'
     autoUpgradeMinorVersion: false
     releaseTrain: 'preview'
-    version: '0.0.6-preview'
+    version: '0.0.7-preview'
     configurationSettings: {
       'workloadIdentity.enable': 'true'
       'workloadIdentity.clientId': workloadIdentityClientId
@@ -251,6 +248,14 @@ To set up new workload identity credentials, follow these steps:
 ## Connect to private ACR registries or ACR repositories using workload identity
 
 To utilize the private ACR registry or ACR repositories, follow the instructions in the official ArgoCD documentation for [connecting to private ACR registries](https://github.com/argoproj/argo-cd/blob/master/docs/user-guide/private-repositories.md#azure-container-registryazure-repos-using-azure-workload-identity). The **Label the Pods**, **Create Federated Identity Credential**, and **Add annotation to Service Account** steps in this guide were completed by the extension with the bicep deployment and can be skipped.
+
+## Access the ArgoCD UI
+
+If there is no existing Ingress controller for the AKS cluster, then the ArgoCD UI can be exposed directly using a LoadBalancer service. The following command will expose the ArgoCD UI on port 80 and 443.
+
+```bash
+kubectl -n argocd expose service argocd-server --type LoadBalancer --name argocd-server-lb --port 80 --target-port 8080
+```
 
 ## Deploy ArgoCD application
 
