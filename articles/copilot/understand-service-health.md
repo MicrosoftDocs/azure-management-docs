@@ -1,7 +1,7 @@
 ---
 title: Understand service health events and status using Microsoft Copilot in Azure
 description: Learn about scenarios where Microsoft Copilot in Azure can provide information about service health events.
-ms.date: 04/22/2025
+ms.date: 04/24/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -14,16 +14,11 @@ author: JnHs
 
 # Understand service health events and status using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure in Service Health is an AI tool that simplifies how you can find outage details and ask questions about your subscriptions and resources. 
-It also provides access to more details about outages through links to the service health portal.
+You can ask Microsoft Copilot in Azure questions to get information from [Azure Service Health](/azure/service-health/overview) and [Azure Resource Health](/azure/service-health/resource-health-overview). This tool provides a quick way to find out if there are any service health events impacting your Azure subscriptions. You can also get more information about a known service health event, planned maintenance, and security or health advisories.
 
-You can ask Microsoft Copilot in Azure questions to get information from [Azure Service Health](/azure/service-health/overview). This tool provides a quick way to find out if there are any service health events impacting your Azure subscriptions. You can also get more information about a known service health event, planned maintenance, and security or health advisories.
-
-The tool is aimed at all Microsoft customers who use Service and Resource health to assess their system health.
+Copilot in Azure can be helpful for all Microsoft customers who use Service health and Resource health to assess their system health.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-
 
 ## Sample prompts
 
@@ -36,14 +31,7 @@ Here are a few examples of the kinds of prompts you can use to get service healt
 - "What is the status of the event with tracking ID {0}?"
 - "What are the impacted resources from event {0}?"
 - "Do I have any impacted resources from event {0}?"
-
--	"Can you share health information of resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?``<br>
-  <!--
-•	"What is the health of resource" 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.DocumentDB/databaseAccounts/testResource?"``<br>
-•	"Is the resource 
-  ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Network/loadBalancers/testResource healthy?"``<br>-->
+- "Can you share health information of resource ``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?`
 
 ## Examples
 
@@ -55,22 +43,21 @@ You can also ask about a specific service event to see whether it's resolved. If
 
 :::image type="content" source="media/understand-service-health/azure-service-health-still-active.png" alt-text="Screenshot of Microsoft Copilot in Azure checking whether a service health issue is still active.":::
 
-Or you can ask about current and past planned maintenance events "**Any planned maintenance events?**" or "**How many planned maintenance events in the last 20 days?**"
+To find out about current or past planned maintenance events, use prompts like "**Any planned maintenance events?**" or "**How many planned maintenance events in the last 20 days?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events.":::
 
 :::image type="content" source="media/understand-service-health/azure-service-health-planned-maintenance-in-last-days.png" alt-text="Screenshot of Microsoft Copilot in Azure checking if there are any planned maintenance events in the last 20 days.":::
 
-And you can ask about current and past security advisories. For example, "**How many active security advisories?**" or "**How many security advisories in the last 50 days?**"
+You can also ask about current and past security advisories. For example, "**How many active security advisories?**" or "**How many security advisories in the last 50 days?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-how-many-security-advisories.png" alt-text="Screenshot of Microsoft Copilot in Azure checking about any security advisories.":::
 
 :::image type="content" source="media/understand-service-health/azure-service-health-how-many-security-advisories-in-last-days.png" alt-text="Screenshot of Microsoft Copilot in Azure checking to see if there have been any security advisories in the last 50 days.":::
 
-Another question you can ask is whether any Post Incident Reviews (PIRs) are available. "**Are there any PIRs?**"
+To check whether any Post Incident Reviews (PIRs) are available, ask "**Are there any PIRs?**"
 
 :::image type="content" source="media/understand-service-health/azure-service-health-any-pir.png" alt-text="Screenshot of Microsoft Copilot responding with data and link to click.":::
-
 
 - Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
 - Learn more about [Azure Monitor](/azure/azure-monitor/).
