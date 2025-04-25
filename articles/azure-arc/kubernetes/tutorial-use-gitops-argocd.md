@@ -296,7 +296,7 @@ It's important to update the ArgoCD configmap through the extension, so the sett
 
 ## Delete the extension
 
-Use the following commands to delete the extension itself.
+Use the following commands to delete the extension.
 
 ```azurecli
 az k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t managedClusters --yes
