@@ -15,9 +15,9 @@ This document is designed for expert users who need detailed knowledge of ACR pe
 Each ACR built-in role is documented here with its included control plane and data plane permissions.
 
 The following built-in role types are available:
-- [control plane roles](#control-plane-roles)
-- [data plane roles](#data-plane-roles)
-- [privileged roles](#privileged-roles)
+- [Control plane roles](#control-plane-roles)
+- [Data plane roles](#data-plane-roles)
+- [Privileged roles](#privileged-roles)
 
 For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry built-in roles](container-registry-rbac-built-in-roles-overview.md).
 

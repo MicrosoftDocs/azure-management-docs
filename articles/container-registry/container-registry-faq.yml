@@ -22,7 +22,7 @@ sections:
   - name: Resource management
     questions:
       - question: |
-          Can I create an Azure Container Registry using a Resource Manager template?
+          Can I create an Azure Container Registry (ACR) using an Azure Resource Manager (ARM) template?
         answer: |
           Yes. Here is [a template](https://azure.microsoft.com/resources/templates/container-registry/) that you can use to create a registry.
           
@@ -83,7 +83,7 @@ sections:
       - question: |
           Delete of replication fails with Forbidden status although the replication gets deleted using the Azure CLI or Azure PowerShell
         answer: |
-          The error is seen when the user has `Container Registry Contributor and Data Access Configuration Administrator` permissions on a registry (which grants replica deletion permissions), but doesn't have Reader-level permissions on the subscription which is specifically needed to delete replicas through the Portal. To resolve this issue, assign Reader permissions on the subscription to the user:
+          The error is seen when the user has `Container Registry Contributor and Data Access Configuration Administrator` permissions on a registry (which grants replica deletion permissions), but doesn't have Reader-level permissions on the subscription which is needed to delete replicas through the Portal. To resolve this issue, assign Reader permissions on the subscription to the user:
           
           
           ```azurecli  
@@ -93,7 +93,7 @@ sections:
       - question:  |
           Firewall rules are updated successfully but they don't take effect
         answer: |
-          It takes some time to propagate firewall rule changes. After you change firewall settings, please wait for a few minutes before verifying this change.
+          It takes some time to propagate firewall rule changes. After you change firewall settings, wait for a few minutes before verifying this change.
           
   - name: Registry operations
     questions:
@@ -263,7 +263,7 @@ sections:
         answer: |
           A non-distributable layer in a manifest contains a URL parameter that content may be fetched from. Some possible use cases for enabling non-distributable layer pushes are for network restricted registries, air-gapped registries with restricted access, or for registries with no internet connectivity.
           
-          For example, if you have NSG rules set up so that a VM can pull images only from your Azure container registry, Docker will pull failures for foreign/non-distributable layers. For example, a Windows Server Core image would contain foreign layer references to Azure container registry in its manifest and would fail to pull in this scenario.
+          For example, if you have Network Security Group (NSG) rules set up so that a VM can pull images only from your Azure container registry, Docker will pull failures for foreign/non-distributable layers. For example, a Windows Server Core image would contain foreign layer references to Azure container registry in its manifest and would fail to pull in this scenario.
           
           To enable pushing of non-distributable layers:
           
@@ -309,7 +309,7 @@ sections:
       - question:  |
           Docker pull is slow
         answer: |
-          Use [the speed tool](http://www.azurespeed.com/Azure/Download) to test your machine network download speed. If machine network is slow, consider using Azure VM in the same region as your registry to improve network speed.
+          Use [the speed tool](http://www.azurespeed.com/Azure/Download) to test your machine network download speed. If machine network is slow, consider using a Azure Virtual Machine (VM) in the same region as your registry to improve network speed.
           
       - question:  |
           Docker push is slow
@@ -459,7 +459,7 @@ sections:
           * Firewall
           * Using the portal from a public network for a registry that allows only private access
           * Ad blockers
-          * DNS errors
+          * Domain Name Server (DNS) errors
           
           Please contact your network administrator or check your network configuration and connectivity. Try running `az acr check-health -n yourRegistry` using your Azure CLI to check if your environment is able to connect to the Container Registry. In addition, you could also try an incognito or private session in your browser to avoid any stale browser cache or cookies.
           

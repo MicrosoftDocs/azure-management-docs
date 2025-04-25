@@ -17,8 +17,8 @@ You can also define and assign [custom roles](container-registry-rbac-custom-rol
 ## Supported role assignment identity types
 
 ACR roles can be assigned to the following identity types to grant permissions to a registry:
-- [individual user identity](container-registry-authentication.md#individual-login-with-azure-ad)
-- [managed identity for Azure resources](container-registry-authentication-managed-identity.md)
+- [Individual user identity](container-registry-authentication.md#individual-login-with-azure-ad)
+- [Managed identity for Azure resources](container-registry-authentication-managed-identity.md)
   - [Azure DevOps - Azure Pipelines identity](/azure/devops/pipelines/ecosystems/containers/publish-to-acr)
   - [Azure Kubernetes Service (AKS) node's kubelet identity](/azure/aks/cluster-container-registry-integration) to enable the AKS node to pull images from ACR. ACR supports role assignments for both [AKS-managed kubelet identity and AKS pre-created kubelet identity](/azure/aks/use-managed-identity) for AKS nodes to pull images from ACR.
   - [Azure Container Apps (ACA) identity](/azure/container-apps/managed-identity-image-pull)
@@ -30,7 +30,7 @@ ACR roles can be assigned to the following identity types to grant permissions t
   - [Azure Web Apps identity](/troubleshoot/azure/azure-container-registry/pull-image-to-web-app-fail)
   - [Azure Batch identity](/azure/batch/batch-docker-container-workloads)
   - [Azure Functions identity](/azure/azure-functions/functions-app-settings#acrusermanagedidentityid)
-- [service principal](container-registry-authentication.md#service-principal)
+- [Service principal](container-registry-authentication.md#service-principal)
   - [AKS cluster service principal](authenticate-aks-cross-tenant.md) to enable AKS nodes to pull images from ACR. ACR also supports cross-tenant AKS node to ACR authentication through [cross-tenant service principal role assignments and authentication](authenticate-aks-cross-tenant.md).
   - [ACI service principal](container-registry-auth-aci.md)
   - [Hybrid or on-premises AKS clusters on Azure Stack Hub using service principal](/azure-stack/user/container-registry-deploy-image-aks-cluster)
@@ -43,7 +43,7 @@ See [Steps to add a role assignment](/azure/role-based-access-control/role-assig
 Role assignments can be made using:
 - [Azure portal](/azure/role-based-access-control/role-assignments-portal)
 - [Azure CLI](/azure/role-based-access-control/role-assignments-cli)
-- [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
+- [Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell)
 
 ## Recommended built-in roles by scenario
 
