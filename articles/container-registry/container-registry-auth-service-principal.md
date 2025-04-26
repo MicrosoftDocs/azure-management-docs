@@ -17,7 +17,7 @@ You can use a Microsoft Entra service principal to provide push, pull, or other 
 
 Microsoft Entra ID [*service principals*](/azure/active-directory/develop/app-objects-and-service-principals) provide access to Azure resources within your subscription. You can think of a service principal as a user identity for a service, where "service" is any application, service, or platform that needs to access the resources. You can configure a service principal with access rights scoped only to those resources you specify. Then, configure your application or service to use the service principal's credentials to access those resources.
 
-In the context of Azure Container Registry, you can create a Microsoft Entra service principal with pull, push and pull, or other permissions to your private registry in Azure. For a complete list, see [Azure Container Registry roles and permissions](container-registry-roles.md).
+In the context of Azure Container Registry, you can create a Microsoft Entra service principal with pull, push and pull, or other permissions to your private registry in Azure. For a complete list, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 ## Why use a service principal?
 

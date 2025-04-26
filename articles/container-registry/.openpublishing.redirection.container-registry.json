@@ -184,6 +184,11 @@
       "source_path_from_root": "/articles/container-registry/security-baseline.md",
       "redirect_url": "/security/benchmark/azure/baselines/container-registry-security-baseline",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/container-registry-roles.md",
+      "redirect_url": "/azure/container-registry/container-registry-manage-rbac-built-in-roles-overview",
+      "redirect_document_id": false
     }
   ]
 }
