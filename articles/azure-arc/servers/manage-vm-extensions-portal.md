@@ -28,7 +28,7 @@ You can apply VM extensions to your machine managed through Azure Arc-enabled se
 
     Depending on the extension that you selected and your requirements, you might need to provide specific configuration information. For example, to deploy the Azure Monitor agent for Windows by using a proxy, you need to provide a proxy address and authentication information.
 
-    :::image type="content" source="media/manage-vm-extensions/ama-extension-config.png" alt-text="Screenshot that shows configuration fields for the Azure Monitor agent extension.":::
+    :::image type="content" source="media/manage-vm-extensions-portal/ama-extension-config.png" alt-text="Screenshot that shows configuration fields for the Azure Monitor agent extension.":::
   
 1. After you provide the applicable configuration information, select **Review + create** to view a summary of the deployment. Then select **Create**.
 
