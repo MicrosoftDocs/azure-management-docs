@@ -7,7 +7,7 @@ ms.topic: troubleshooting-general #Don't change.
 ms.date: 03/27/2025
 
 ---
-## Troubleshooting Continuous Patching
+# Troubleshoot Continuous Patching in Azure Container Registry
 The troubleshooting tips in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
 
 ## Listing Running Tasks

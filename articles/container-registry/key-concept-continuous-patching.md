@@ -3,12 +3,12 @@ title: "Continuous Patching in Azure Container Registry Key Concepts"
 description: "Learn about Key Concepts for continuous patching in Azure Container Registry."
 ms.author: wleo
 ms.service: azure-container-registry
-ms.topic: concepts-general
+ms.topic: concepts
 ms.date: 03/27/2025
 
 ---
 
-## Introduction
+# Continuous Patching in Azure Container Registry Key Concepts
 
 Azure Container Registry's Continuous Patching feature automates the detection and remediation of operating system(OS) level vulnerabilities in container images. By scheduling regular scans with [Trivy](https://trivy.dev/) and applying security fixes using [Copa](https://project-copacetic.github.io/copacetic/website/), you can maintain secure, up-to-date images in your registry—without requiring access to source code or build pipelines. Freely customize the schedule and target images to keep your Azure Container Registry(ACR) environment safe and compliant
 
@@ -20,7 +20,7 @@ Here are a few scenarios to use Continuous Patching:
 - **Speed of Use:** Continuous Patching removes the dependency on upstream updates for specific images by updating packages automatically. Vulnerabilities can appear every day, while popular image publishers might only offer a new release once a month. With continuous patching, you can ensure that container images within your registry are patched as soon as the newest set of OS vulnerabilities are detected.
 
 ## Pricing
-Continuous Patching operates under a consumption model. Each patch utilizes compute resources, which is charged per the default ACR Task pricing of $0.0001/second of task running. More information found under the [ACR pricing page](https://azure.microsoft.com/en-gb/pricing/details/container-registry/?msockid=39cc5589db1c66a6375d41dcda9867d2).
+Continuous Patching operates under a consumption model. Each patch utilizes compute resources, which is charged per the default ACR Task pricing of $0.0001/second of task running. More information found under the [ACR pricing page](https://azure.microsoft.com/pricing/details/container-registry/?msockid=39cc5589db1c66a6375d41dcda9867d2).
 
 ## Preview Limitations
 
