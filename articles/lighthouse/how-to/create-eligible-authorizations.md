@@ -24,6 +24,9 @@ Any extra costs associated with an eligible role will apply only during the peri
 
 For information about licenses for users, see [Microsoft Entra ID Governance licensing fundamentals](/entra/id-governance/licensing-fundamentals).
 
+> [!NOTE]
+> Creating eligible authorizations isn't supported in [national clouds](/entra/identity-platform/authentication-national-cloud).
+
 ## How eligible authorizations work
 
 An eligible authorization defines a role assignment that requires the user to activate the role when they need to perform privileged tasks. When they activate the eligible role, they'll have the full access granted by that role for the specified period of time.
