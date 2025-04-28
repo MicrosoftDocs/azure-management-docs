@@ -21,9 +21,9 @@ To access Copilot in Azure, you must be signed in to the Azure portal. Select th
 
 :::image type="content" source="media/capabilities/launch-copilot-azure-portal.png" alt-text="Screenshot showing the Copilot icon and pane in the Azure portal.":::
 
-In some cases, suggested prompts appear near the top of a pane when working with a service or resource. These suggestions are tailored to the context of the service or resource you're working with, and can help you get started with Copilot in Azure.
+In some cases, suggested prompts appear near the top of a pane when working with a service or resource. These suggestions are tailored to the context of the service or resource you're working with to help you get started quickly.
 
-You can also use Copilot in Azure in the [Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md).
+You can also use Copilot in Azure from within the [Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md).
 
 The following sections describe some common ways you can use Copilot in Azure.
 
@@ -83,7 +83,7 @@ Rather than searching for a service to open, simply ask Microsoft Copilot in Azu
 
 ## Manage portal settings
 
-Use Microsoft Copilot in Azure to confirm your settings selection or change options, without having to open the **Settings** pane. For example, you can ask Copilot which Azure themes are available, then have it apply the one you choose.
+Use Microsoft Copilot in Azure to confirm your settings selection or change options, without having to open the **Settings** pane. For example, you can ask Copilot in Azure to change from Light to Dark theme, or vice versa. You can also ask Copilot in Azure to make changes to your language or region settings.
 
 ## Current limitations
 
