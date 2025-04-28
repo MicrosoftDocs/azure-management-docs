@@ -72,7 +72,7 @@ You can upgrade one or multiple extensions that are eligible for an upgrade by p
 
    * Select one or more extensions that are eligible for an upgrade from the list of installed extensions, and then select **Update**.
 
-     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-selected.png" alt-text="Screenshot showing a selected extension that is eligible for an upgrade." lightbox="media/manage-vm-extensions-portal/vm-extensions-update-selected.png:::
+     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-selected.png" alt-text="Screenshot showing a selected extension that is eligible for an upgrade." lightbox="media/manage-vm-extensions-portal/vm-extensions-update-selected.png":::
 
 ## Remove extensions
 
