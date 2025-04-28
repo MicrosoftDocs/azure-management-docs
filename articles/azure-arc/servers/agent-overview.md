@@ -37,7 +37,9 @@ The Azure Connected Machine agent package contains several logical components bu
 
 ### Azure Arc Proxy
 
-The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux. It's disabled by default until you configure the agent to use the Azure Arc gateway (Limited preview).
+The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux. 
+Prior to the Azure Connected Machine agent version 1.51, this service was disabled by default, and should remain disabled unless you configure the agent to use the Azure Arc gateway (Limited preview). 
+With version 1.51 and later, the Arc Proxy service is started by default as it can now determine whether the machine is configured to use an Arc Gateway, or to communicate directly with the Arc endpoints and behave appropriately. If you are not using an Arc Gateway you can still choose to disable the Arc Proxy service with the following command `azcmagent config set connection.type direct`.
 
 ## Agent resources
 
