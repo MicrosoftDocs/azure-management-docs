@@ -65,9 +65,9 @@ From anywhere in the Azure portal, you can ask Microsoft Copilot in Azure to exp
 
 ## Solve problems
 
-Asking questions to understand more can be especially helpful when you're troubleshooting problems. Describe the problem, and Microsoft Copilot in Azure will provide some suggestions on how you might be able to resolve the issue. For example, you can say things like "Cluster stuck in upgrading state while performing update operation" or "Azure database unable to connect from Power BI". You'll see information about the problem and possible resolution options.
+Asking questions to understand more can be especially helpful when you're troubleshooting problems. Describe the problem, and Microsoft Copilot in Azure will provide some suggestions on how you might be able to resolve the issue. For example, you can say things like "Cluster stuck in upgrading state while performing update operation" or "Azure database unable to connect from Power BI". Copilot in Azure will show information about the problem and possible resolution options.
 
-Microsoft Copilot in Azure can also help you understand more about information presented in Azure. This can be especially helpful when looking at diagnostic details. For example, when viewing diagnostics for a resource, you can say "Give me a summary of this page" or "What's the issue with my app?" You can ask what an error means, or ask what the next steps would be to implement a recommended solution.
+Copilot in Azure can also help you understand more about information presented in Azure. This can be especially helpful when looking at diagnostic details. For example, when viewing diagnostics for a resource, you can say "Give me a summary of this page" or "What's the issue with my app?" You can ask what an error means, or ask what the next steps would be to implement a recommended solution.
 
 Copilot in Azure can also help explain errors from the Notifications pane.
 
@@ -75,11 +75,11 @@ Copilot in Azure can also help explain errors from the Notifications pane.
 
 ## Find recommended services
 
-Ask questions to learn which services are best suited for your workloads, or get ideas about additional services that might help support your objectives. For instance, you can ask "What service would you recommend to implement distributed caching?" or "What are popular services used with Azure Container Apps?" Where applicable, Microsoft Copilot in Azure provides links to start working with the service or learn more. In some cases, you'll also see metrics about how often a service is used. You can also ask additional questions to find out more about the service and whether it's right for your needs.
+Ask questions to learn which services are best suited for your workloads, or get ideas about additional services that might help support your objectives. For instance, you can ask "What service would you recommend to implement distributed caching?" or "What are popular services used with Azure Container Apps?" Where applicable, Microsoft Copilot in Azure provides links to start working with the service or learn more. In some cases, you also see metrics about how often a service is used. You can also ask additional questions to find out more about the service and whether it's right for your needs.
 
 ## Navigation
 
-Rather than searching for a service to open, simply ask Microsoft Copilot in Azure to open the service for you. If you can't remember the exact name, you'll see some suggestions and can choose the right one, or ask Microsoft Copilot in Azure to explain more.
+Rather than searching for a service to open, simply ask Microsoft Copilot in Azure to open the service for you. If you can't remember the exact name, choose from the provided suggestions or ask Microsoft Copilot in Azure which service to use for your intended task.
 
 ## Manage portal settings
 
@@ -91,10 +91,10 @@ While Microsoft Copilot in Azure can perform many types of tasks, it's important
 
 Keep in mind these current limitations:
 
-- You cannot continue the same conversation beyond 24 hours.
+- You can't continue the same conversation beyond 24 hours.
 - Any action taken on more than 10 resources must be performed outside of Microsoft Copilot in Azure.
-- Some responses that display lists will be limited to the top five items.
-- For some tasks and queries, using a resource's name will not work, and the Azure resource ID must be provided.
+- Some responses that display lists are limited to the top five items.
+- For some tasks and queries, using a resource's name doesn't work, and the Azure resource ID must be provided.
 - Excessive use of Copilot in Azure may result in temporary throttling of access to Copilot in Azure.
 
 ## Next steps
