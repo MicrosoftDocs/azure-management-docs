@@ -43,7 +43,7 @@ You can get a list of the VM extensions on your Azure Arc-enabled server from th
 
 1. Under **Settings**, select **Extensions**. The list of installed extensions appears.
 
-   :::image type="content" source="media/manage-vm-extensions-portal/list-vm-extensions.png" alt-text="Screenshot showing the extensions deployed to a selected machine.":::
+   :::image type="content" source="media/manage-vm-extensions-portal/list-vm-extensions.png" alt-text="Screenshot showing the extensions deployed to a selected machine." lightbox="media/manage-vm-extensions-portal/list-vm-extensions.png":::
 
 ## Upgrade extensions
 
@@ -66,13 +66,13 @@ You can upgrade one or multiple extensions that are eligible for an upgrade by p
 
    * Select an extension from the list of installed extensions. In the properties of the extension, select **Update**.
 
-     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-from-extension.png" alt-text="Screenshot showing the properties of a selected extension and the Update button." border="true":::
+     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-from-extension.png" alt-text="Screenshot showing the properties of a selected extension and the Update button.":::
 
    * Select the extension from the list of installed extensions. On the top of the page, select **Update**.
 
    * Select one or more extensions that are eligible for an upgrade from the list of installed extensions, and then select **Update**.
 
-     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-selected.png" alt-text="Screenshot showing a selected extension that is eligible for an upgrade." border="true":::
+     :::image type="content" source="media/manage-vm-extensions-portal/vm-extensions-update-selected.png" alt-text="Screenshot showing a selected extension that is eligible for an upgrade." lightbox="media/manage-vm-extensions-portal/vm-extensions-update-selected.png:::
 
 ## Remove extensions
 
