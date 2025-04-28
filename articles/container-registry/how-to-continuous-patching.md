@@ -9,7 +9,7 @@ ms.date: 03/27/2025
 ---
 # Configure Continuous Patching in Azure Container Registry
 
-In this article, you'll learn how to install, enable, and configure continous patching. Continuous patching when enabled for a container registry will automatically detect and remediate OS (operating system) level vulnerabilities for container images.
+In this article, you learn how to install, enable, and configure continuous patching. Continuous patching when enabled for a container registry will automatically detect and remediate OS (operating system) level vulnerabilities for container images.
 ## Prerequisites        
 
 - You can use the Azure Cloud Shell or a local installation of the Azure CLI with a minimum version of 2.15.0 or later. 
