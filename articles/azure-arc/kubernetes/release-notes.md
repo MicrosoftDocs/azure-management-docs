@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 04/28/2025
+ms.date: 04/29/2025
 ms.topic: conceptual
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 ---
@@ -24,7 +24,7 @@ We generally recommend using the most recent versions of the agents. The [versio
 
 - Security vulnerability fixes
 - Various bug fixes
-- Support for [managed extensions](managed-extensions.md)
+- Support for [version-managed extensions](managed-extensions.md)
 
 ## Version 1.23.3 (February 2025)
 
