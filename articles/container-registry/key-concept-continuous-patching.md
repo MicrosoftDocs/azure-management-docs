@@ -52,8 +52,8 @@ This means if you push a new tag ending in ```-1``` to ```-999``` by accident, C
 How it works
 
 A single mutable tag, ```-patched```, will always reference the latest patched version of your image. For instance, if your base image tag is ```python:3.11```, the first patch creates ```python:3.11-patched```. With each subsequent patch, the ```-patched``` tag will automatically update to point to the most recent patched version.
-  
-![PatchingTimelineExample](./media/continuous-patching-media/patching_timeline_example1.png)
+
+:::image type="content" source="media/continuous-patching-media/patching-timeline-example1.png" alt-text="Diagram showing concepts of how continuous patcing works using tags" lightbox="media/continuous-patching-media/patching-timeline-example1.png":::
 
 ### Which Should I Use?
 
