@@ -8,7 +8,7 @@ ms.date: 03/27/2025
 
 ---
 
-# Continuous Patching in Azure Container Registry Key Concepts
+# Concepts: Continuous patching in Azure Container Registry
 
 Azure Container Registry's Continuous Patching feature automates the detection and remediation of operating system(OS) level vulnerabilities in container images. By scheduling regular scans with [Trivy](https://trivy.dev/) and applying security fixes using [Copa](https://project-copacetic.github.io/copacetic/website/), you can maintain secure, up-to-date images in your registry—without requiring access to source code or build pipelines. Freely customize the schedule and target images to keep your Azure Container Registry(ACR) environment safe and compliant
 
