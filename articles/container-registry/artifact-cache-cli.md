@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 04/23/2025
+ms.date: 04/29/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -92,11 +92,15 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
    az acr credential-set show --name MyCredentialSet --registry MyRegistry 
    ```
 
+   Copy this value and paste it into the `CredentialSetPrincipalID` variable.
+
 1. Display properties of the Key Vault to get its resource ID:
 
    ```azurecli
    az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
    ```
+
+   Copy this value and paste it into the `KeyVaultResourceID` variable.
 
 1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
 
@@ -110,6 +114,8 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
 > ```azurecli
 > az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
 > az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
+
+## Use access policies to assign permissions to Key Vault
 
 Alternately, you can use access policies to assign permissions.
 

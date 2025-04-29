@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
-ms.date: 04/23/2025
+ms.date: 04/29/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -69,7 +69,7 @@ Before configuring the credentials, make sure you're able to [create and store s
 
       :::image type="content" source="./media/container-registry-artifact-cache/artifact-cache-enter-credential-details.png" alt-text="Screenshot showing details entered to create credentials for a container registry in Azure portal.":::
 
-Alternately, you can use Azure RBAC to assign the **Key Vault Secrets User** role (or a custom role that includes the `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission) to the system identity. For more information, see [Grant a user access](/azure/role-based-access-control/quickstart-assign-role-user-portal).
+Alternately, you can use Azure RBAC to assign the **Key Vault Secrets User** role (or a custom role that includes the `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission) to the system identity. For more information, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal) and [Grant permission to applications to access an Azure Key Vault using Azure RBAC](/azure/key-vault/general/rbac-guide?tabs=azure-portal).
 
 ## Next steps
 

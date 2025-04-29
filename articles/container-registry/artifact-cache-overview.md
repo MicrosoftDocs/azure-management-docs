@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: conceptual #Don't change
 ms.custom: devx-track-azurecli
-ms.date: 04/23/2025
+ms.date: 04/29/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -53,19 +53,19 @@ Artifact cache currently supports the following upstream registries.
 
 >[!WARNING]
 > To source content from Docker Hub, you must generate a credential set by using [Azure CLI](artifact-cache-cli.md#create-the-credentials) or the [Azure portal](artifact-cache-portal.md#create-new-credentials).
+> 
+> Cache rules created with Docker Hub don't have to specify `library` in the repository path.
 
-| Upstream registry                          | Support                                                  | Availability             |
+| Upstream registry                            | Support                                                  | Availability             |
 |----------------------------------------------|----------------------------------------------------------|--------------------------|
 | Docker Hub                                   | Supports authenticated pulls only.                       | Azure CLI, Azure portal  |
 | Microsoft Artifact Registry                  | Supports unauthenticated pulls only.                     | Azure CLI, Azure portal  |
 | AWS Elastic Container Registry (ECR) Public Gallery | Supports unauthenticated pulls only.              | Azure CLI, Azure portal  |
 | GitHub Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI, Azure portal  |
 | Quay                                         | Supports both authenticated and unauthenticated pulls.   | Azure CLI, Azure portal  |
-| `registry.k8s.io`                              | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
+| `registry.k8s.io`                            | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
 | Google Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
 
-> [!NOTE]
-> The Azure portal autofills these fields for you, including adding `library/` if required for Docker repositories.
 
 ## Next steps
 
