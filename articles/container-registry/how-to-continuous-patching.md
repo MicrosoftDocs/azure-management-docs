@@ -7,9 +7,10 @@ ms.topic: how-to
 ms.date: 03/27/2025
 
 ---
-# Configure Continuous Patching in Azure Container Registry
+# Configure continuous patching in Azure Container Registry
 
 In this article, you learn how to install, enable, and configure continuous patching. Continuous patching when enabled for a container registry will automatically detect and remediate OS (operating system) level vulnerabilities for container images.
+
 ## Prerequisites        
 
 - You can use the Azure Cloud Shell or a local installation of the Azure CLI with a minimum version of 2.15.0 or later. 
@@ -25,11 +26,11 @@ Run the following command to install the CLI extension:
 
 ## Enable the Continuous Patching Workflow
 
-1. Log in to Azure CLI with az login
+1. Log in to Azure CLI with az login.
 ```azurecli
 az login
 ```
-2. Log in to ACR 
+2. Log in to ACR.
 ```azurecli
 az acr login -n <myRegistry>
 ```
@@ -93,24 +94,19 @@ The ```--dry-run``` flag outputs all specified artifacts by the JSON file config
 Ubuntu: jammy-20240111
 Ubuntu: jammy-20240125
 ```
-Help command to see all required/optional flags.
+Help command to see all required/optional flags:
 ```azurecli
 az acr supply-chain workflow create --help
 ```
  
 5. Once satisfied with the dry-run results, run the ```create``` command again without the ```--dry-run``` flag to officially create your continuous patching workflow.  
 
-**Important**
-
-The ```--schedule``` parameter follows a fixed-day multiplier starting from day 1 of the month. This means:
-
-- If you specify ```--schedule 7d``` and run the command on the 3rd, the next scheduled run will be on the 7th—because 7 is the first multiple of 7 (days) after the 3rd, counting from day 1 of the month.
-
-- If ```--schedule``` is 3d and today is the 7th, then the next scheduled run lands on the 9th—since 9 is the next multiple of 3 that follows 7.
-
-- If you add the flag ```--run-immediately```, you trigger an immediate patch run. The subsequent scheduled run will still be aligned to the nearest day multiple from the first of the month, based on your ```--schedule``` value.
-
-- The schedule counter **resets** every month. Regardless of the designated schedule, your workflow will run on the first of every month, then follow the specified schedule value for the remainder of the month. If my patching runs on January 28, and my schedule is 7d, my next patch will run on February first, then eighth, and continue following the 7 days. 
+> [!NOTE]
+> The ```--schedule``` parameter follows a fixed-day multiplier starting from day 1 of the month. This means:
+> - If you specify ```--schedule 7d``` and run the command on the 3rd, the next scheduled run will be on the 7th—because 7 is the first multiple of 7 (days) after the 3rd, counting from day 1 of the month.
+> - If ```--schedule``` is 3d and today is the 7th, then the next scheduled run lands on the 9th—since 9 is the next multiple of 3 that follows 7.
+> - If you add the flag ```--run-immediately```, you trigger an immediate patch run. The subsequent scheduled run will still be aligned to the nearest day multiple from the first of the month, based on your ```--schedule``` value.
+> - The schedule counter **resets** every month. Regardless of the designated schedule, your workflow will run on the first of every month, then follow the specified schedule value for the remainder of the month. If my patching runs on January 28, and my schedule is 7d, my next patch will run on February first, then eighth, and continue following the 7 days. 
 
 Command Schema:
 ```azurecli
@@ -132,41 +128,42 @@ Help command for all required/optional flags.
 ```azurecli
 az acr supply-chain workflow create --help
 ```
-## Use Azure Portal to view workflow tasks
+## Use Azure portal to view workflow tasks
 
-Once the workflow succeeds, go to the Azure Portal to view your running tasks. Select Services -> Repositories, and you should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.  
+1. Once the workflow succeeds, go to the Azure portal to view your running tasks. Select Services -> Repositories, and you should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
 
-![PortalRepos](./media/continuous-patching-media/portal_repos1.png)
+:::image type="content" source="media/continuous-patching-media/portal-repos1.png" alt-text="Screenshot that shows the repository that hosts the configuration artifact for continuous patching." lightbox="media/continuous-patching-media/portal-repos1.png":::
 
-Next, select on "Tasks” under "Services” - you should see three new tasks:
+2. Next, select on "Tasks” under "Services” - you should see three new tasks:
 
-![PortalTasks](./media/continuous-patching-media/portal_tasks1.png)
+:::image type="content" source="media/continuous-patching-media/portal-tasks1.png" alt-text="Screenshot that shows the tasks created for continuous patching." lightbox="media/continuous-patching-media/portal-tasks1.png":::
 
+Tasks:
 - cssc-trigger-workflow – this task scans the configuration file and calls the scan task on each respective image.    
 - cssc-scan-image – this task scans the image for operating system vulnerabilities. This task triggers the patching task only if operating system vulnerabilities were found.
 - cssc-patch-image – this task patches the image.
 These tasks work in conjunction to execute your continuous patching workflow.
 
-You can also select on "Runs” within the "Tasks” view to see specific task runs. Here you can view status information on whether the task succeeded or failed, along with viewing a debug log. 
+3. You can also select on "Runs” within the "Tasks” view to see specific task runs. Here you can view status information on whether the task succeeded or failed, along with viewing a debug log. 
 
-![PortalRun](./media/continuous-patching-media/portal_runs1.png)
+:::image type="content" source="media/continuous-patching-media/portal-runs1.png" alt-text="Screenshot that shows tasks run for continuous patching." lightbox="media/continuous-patching-media/portal-runs1.png":::
 
 ## Use CLI to view workflow tasks
 
-You can also run the following CLI show command to see more details on each task and the general workflow. The command outputs
+You can also run the following CLI show command to see more details on each task and the general workflow. The command outputs:
 - Schedule
 - Creation date
 - System data such as last modified date, by who, etc.
 
-Command Schema
+Command Schema:
 ```azurecli
 az acr supply-chain workflow show -r <registry> -g <resourceGroup> -t continuouspatchv1   
 ```
-Example Command 
+Example Command:
 ```azurecli
 az acr supply-chain workflow show -r myRegistry -g myResourceGroup -t continuouspatchv1 
 ```
-Help command for all required/optional flags
+Help command for all required/optional flags:
 ```azurecli
 az acr supply-chain workflow show --help
 ```
@@ -175,15 +172,15 @@ az acr supply-chain workflow show --help
 
 In scenarios where you want to make edits to your continuous patching workflow, the update command is the easiest way to do so. You can update your schedule or JSON config schema with the update CLI command directly. 
 
-Command Schema
+Command Schema:
 ```azurecli
 az acr supply-chain workflow update -r <registry> -g <resourceGroup> -t continuouspatchv1 --config <JSONfilename> --schedule <number of days>
 ```
-Example Command 
+Example Command:
 ```azurecli
 az acr supply-chain workflow update -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d
 ```
-Help command for all required/optional flags
+Help command for all required/optional flags:
 ```azurecli
 az acr supply-chain workflow update --help
 ```
@@ -195,15 +192,15 @@ To update your schedule, run the previous command with a new input for schedule.
 
 To delete the continuous patching workflow, please run the following CLI command
 
-Command Schema
+Command Schema:
 ```azurecli
 az acr supply-chain workflow delete -r <registry> -g <resourceGroup> -t continuouspatchv1 
 ```
-Example Command 
+Example Command:
 ```azurecli
 az acr supply-chain workflow delete -r myregistry -g myresourcegroup –t continuouspatchv1
 ```
-Help command for all required/optional flags
+Help command for all required/optional flags:
 ```azurecli
 az acr supply-chain workflow delete --help
 ```

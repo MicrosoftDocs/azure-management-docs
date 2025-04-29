@@ -7,7 +7,7 @@ ms.topic: troubleshooting-general #Don't change.
 ms.date: 03/27/2025
 
 ---
-# Troubleshoot Continuous Patching in Azure Container Registry
+# Troubleshoot continuous patching in Azure Container Registry
 The troubleshooting tips in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
 
 ## Listing Running Tasks
@@ -139,7 +139,7 @@ image: import:dotnetapp-manual
         workflow type: continuouspatchv1
 ```
 
-if scan is successful and no patch is needed and NO patched image exists yet
+If scan is successful and no patch is needed and NO patched image exists yet
 ```azurecli
 image: import:dotnetapp-manual
         scan status: Succeeded
