@@ -76,6 +76,7 @@ Certain permissions are required to create Quota Groups and to add subscriptions
  
 ## Quota Group APIs
 
+This section covers the supported Quota Group operations via API and portal.
 <!-- What is the purpose here? Please write at least a sentance to introduce this subsection. Elaborate, but keep it to the point. Write in an active voice speaking to the customer. -->
 
 Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json) to:  
@@ -90,6 +91,7 @@ Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/s
 
 ## SDK sample links
 
+Use the below links to download the latest supported SDKs for Quota Group operations
 <!-- What is the purpose here? Please write at least a sentance to introduce this subsection. -->
 
 - [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/quota/armquota@v1.1.0)
@@ -99,7 +101,7 @@ Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/s
 - [JS](https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0)
 
 ## Create a Quota Group
-
+Create a Quota Group object to be able to do quota transfers between subscriptions (step on how to add subcriptions is below) and submit Quota Group increase requests.
 <!-- Please write at least a sentance to introduce this subsection. -->
 
 ### [REST API](#tab/rest-1)
@@ -141,6 +143,7 @@ Create a Quota Group through the Azure portal.
 1. Step one.
 2. Step two.
 3. Step three.
+
 
 <!-- The following is an example of the format we use to write out portal instructions. Be clear, concise, only bold or italicise actual names of blades and options, etc. Start instructions from the start of openning the portal.
 
