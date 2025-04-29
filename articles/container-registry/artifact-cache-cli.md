@@ -80,7 +80,7 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
 > [!TIP]
 > To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
-## Assign permissions to Key Vault
+## Assign permissions to Key Vault with Azure RBAC
 
 You can use Azure RBAC to assign the apropriate permissions to users so they can access the Azure Key Vault.
 
@@ -109,13 +109,13 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
    ```
 
 > [!TIP]
-> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. You can grant access only to the username and password secrets by instead running the following commands to retrieve only the username and password secrets, then assigning the role to those secrets:
+> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. To instead grant access only to the username and password secrets, run the following commands to retrieve only the username and password secrets, then assign the role to those secrets:
 >
 > ```azurecli
 > az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
 > az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
 
-## Use access policies to assign permissions to Key Vault
+## Assign permissions to Key Vault with access policies
 
 Alternately, you can use access policies to assign permissions.
 
