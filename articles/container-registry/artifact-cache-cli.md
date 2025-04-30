@@ -78,7 +78,7 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
     ```
 
 > [!TIP]
-> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
+> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create --registry Myregistry --name MyRule --source-repo MySourceRepository --target-repo MyTargetRepository`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
 ## Assign permissions to Key Vault with Azure RBAC
 
@@ -86,13 +86,17 @@ You can use Azure RBAC to assign the apropriate permissions to users so they can
 
 The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required to access the Key Vault. The **Key Vault Secrets User** Azure built-in role is typically granted, as it's the least privileged role that includes this action. Alternately, you can create a custom role that includes that permission.
 
+The steps used vary depending on whether you're using Azure CLI or Bash.
+
+#### [Azure CLI](#tab/azure-cli)
+
 1. Get the principal ID of the system identity in use to access Key Vault:
 
    ```azurecli
    az acr credential-set show --name MyCredentialSet --registry MyRegistry 
    ```
 
-   Copy this value and paste it into the `CredentialSetPrincipalID` variable.
+   Take note of the principal ID value, as you'll need it in step 3.
 
 1. Display properties of the Key Vault to get its resource ID:
 
@@ -100,31 +104,77 @@ The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required 
    az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
    ```
 
-   Copy this value and paste it into the `KeyVaultResourceID` variable.
+   You'll need this resource ID value for the next step.
 
 1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
 
    ```azurecli
    az role assignment create --role "Key Vault Secrets User" --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
+
+#### [Bash](#tab/bash)
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```bash
+   CredentialSetPrincipalID=$(az acr credential-set show --name MyCredentialSet --registry MyRegistry  --query 'identity.principalId'  -o tsv
    ```
 
+   Copy this value and paste it into the `CredentialSetPrincipalID` variable.
+
+1. Display properties of the Key Vault to get its resource ID:
+
+   ```bash
+   KeyVaultResourceID=$(az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup --query 'id' -o tsv
+   ```
+
+   Copy this value and paste it into the `KeyVaultResourceID` variable.
+
+1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
+
+   ```bash
+   az role assignment create --role "Key Vault Secrets User" --assignee $CredentialSetPrincipalID --scope $KeyVaultResourceID
+   ```
+
+---
+
 > [!TIP]
-> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. To instead grant access only to the username and password secrets, run the following commands to retrieve only the username and password secrets, then assign the role to those secrets:
+> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. If you prefer, you can grant access only to the username and password secrets. To do so, instead of the command from step 2, run the following commands to retrieve only the username and password secrets:
 >
 > ```azurecli
 > az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
 > az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
+> ```
+>
+> Next, perform step 3 twice, first replacing `KeyVaultResourceID` with the  ID of the username secret, then with the ID of the password secret.
 
 ## Assign permissions to Key Vault with access policies
 
 Alternately, you can use access policies to assign permissions.
 
+#### [Azure CLI](#tab/azure-cli)
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```azurecli
+   az acr credential-set show --name CredentialSet --registry MyRegistry
+   ```
+
+   Take note of the principal ID value, as you'll need it in the next step.
+
+1. Run the `az keyvault set-policy` command to assign access to the Key Vault before pulling the image. For example, to assign permissions for the credentials to access the KeyVault secret:
+
+   ```azurecli
+   az keyvault set-policy --name MyKeyVault --object-id MyCredentialSetPrincipalID --secret-permissions get
+   ```
+
+#### [Bash](#tab/bash)
+
 1. Get the principal ID of the system identity in use to access Key Vault:
 
    ```azurecli
    PRINCIPAL_ID=$(az acr credential-set show 
-                   -n MyDockerHubCredSet \ 
-                   -r MyRegistry  \
+                   -name MyDockerHubCredSet \ 
+                   -registry MyRegistry  \
                    --query 'identity.principalId' \ 
                    -o tsv) 
    ```
@@ -136,6 +186,8 @@ Alternately, you can use access policies to assign permissions.
    --object-id $PRINCIPAL_ID \
    --secret-permissions get
    ```
+
+---
 
 ## Pull your image
 
