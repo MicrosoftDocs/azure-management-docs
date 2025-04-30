@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 04/18/2025
+ms.date: 04/29/2025
 ms.topic: conceptual
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 ---
@@ -13,11 +13,18 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.25.0 (April 2025)
+
+- Fixes to MSI-Adapter response to improve retrieval of JWT tokens by extensions and upstream libraries
+- Make agent update state mutually exclusive to avoid conflicts
+- Upgrade connected proxy agent
+- Security vulnerability fixes
+
 ## Version 1.24.4 (March 2025)
 
 - Security vulnerability fixes
 - Various bug fixes
-- Support for [managed extensions](managed-extensions.md)
+- Support for [version-managed extensions](managed-extensions.md)
 
 ## Version 1.23.3 (February 2025)
 
@@ -26,13 +33,14 @@ We generally recommend using the most recent versions of the agents. The [versio
 - Security vulnerability fixes
 - Various bug fixes
 
+## Older agent releases
+
 ## Version 1.22.4 (January 2025)
 
 - Fixed issue with resource health reporting
 - Allow special characters in password for proxy server
 - Security vulnerability fixes
 
-## Older agent releases
 
 ### Version 1.21.10 (November 2024)
 
