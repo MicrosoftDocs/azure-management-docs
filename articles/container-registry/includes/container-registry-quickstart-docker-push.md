@@ -20,8 +20,8 @@ docker pull mcr.microsoft.com/hello-world
 
 Before you can push an image to your registry, you must tag it using the [docker tag][docker-tag] with the fully qualified name of your registry login server.
 
-* The login server name format for Domain Name Label (DNL) protected registries is `registry-name-hash.azurecr.io`.
-* The login server name format for registries created with the `Unsecure` DNL option is `registryname.azurecr.io`.
+* The login server name format for Domain Name Label (DNL) protected registries with a unique DNS name hash included is `mycontainerregistry-abc123.azurecr.io`.
+* The login server name format for registries created with the `Unsecure` DNL option is `mycontainerregistry.azurecr.io`.
 
 For example, if your registry was created with the `Tenant Reuse` DNL scope, the login server might look like `mycontainerregistry-abc123.azurecr.io` with a hash in the DNS name. If your registry was created with the `Unsecure` DNL option, the login server would look like `mycontainerregistry.azurecr.io` without the hash.
 
