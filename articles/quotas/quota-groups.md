@@ -32,7 +32,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 ## Prerequisites
 
 Before you can use the Quota Group feature, you must:  
-- Register the `Microsoft.Quota` resource provider on all relevant subscriptions using PowerShell.  
+- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions using PowerShell.  
 - A Management Group (MG) is needed to create a Quota Group. Your group will inherit quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
 - Certain permissions are required to create Quota Groups and to add subscriptions. For more information on which roles to assign, see [#permissions].   
 
