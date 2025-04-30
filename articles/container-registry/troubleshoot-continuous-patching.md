@@ -14,7 +14,7 @@ The troubleshooting tips in this article can help you resolve common issues that
 
 To list the most recently executed Continuous Patching tasks, the following List command is available:
 ```azurecli
-az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [–-run-status <failed || successful || running>] -t continuouspatchv1
+az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [--run-status <failed || successful || running>] -t continuouspatchv1
 ```
 
 A successful result will return the following information:
@@ -82,7 +82,7 @@ Reconfigure your continuous patching workflow after.
 **Possible CLI Outputs for 'List' Command**
 
 ```azurecli
-az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [–-run-status <Failed || Queued || Running || Skipped || Succeeded || Unknown>]
+az acr supply-chain workflow list -r <registryname> -g <resourcegroup> [--run-status <Failed || Queued || Running || Skipped || Succeeded || Unknown>]
 ```
 
 If scan and patch are successful
