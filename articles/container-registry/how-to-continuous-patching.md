@@ -132,11 +132,11 @@ az acr supply-chain workflow create --help
 
 1. Once the workflow succeeds, go to the Azure portal to view your running tasks. Select Services -> Repositories, and you should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
 
-:::image type="content" source="media/continuous-patching-media/portal-repos1.png" alt-text="Screenshot that shows the repository that hosts the configuration artifact for continuous patching." lightbox="media/continuous-patching-media/portal-repos1.png":::
+:::image type="content" source="media/continuous-patching-media/portal-repos-1.png" alt-text="Screenshot that shows the repository that hosts the configuration artifact for continuous patching." lightbox="media/continuous-patching-media/portal-repos-1.png":::
 
 2. Next, select on "Tasks” under "Services” - you should see three new tasks:
 
-:::image type="content" source="media/continuous-patching-media/portal-tasks1.png" alt-text="Screenshot that shows the tasks created for continuous patching." lightbox="media/continuous-patching-media/portal-tasks1.png":::
+:::image type="content" source="media/continuous-patching-media/portal-tasks-1.png" alt-text="Screenshot that shows the tasks created for continuous patching." lightbox="media/continuous-patching-media/portal-tasks-1.png":::
 
 Tasks:
 - cssc-trigger-workflow – this task scans the configuration file and calls the scan task on each respective image.    
@@ -146,7 +146,7 @@ These tasks work in conjunction to execute your continuous patching workflow.
 
 3. You can also select on "Runs” within the "Tasks” view to see specific task runs. Here you can view status information on whether the task succeeded or failed, along with viewing a debug log. 
 
-:::image type="content" source="media/continuous-patching-media/portal-runs1.png" alt-text="Screenshot that shows tasks run for continuous patching." lightbox="media/continuous-patching-media/portal-runs1.png":::
+:::image type="content" source="media/continuous-patching-media/portal-runs-1.png" alt-text="Screenshot that shows tasks run for continuous patching." lightbox="media/continuous-patching-media/portal-runs-1.png":::
 
 ## Use CLI to view workflow tasks
 
