@@ -85,7 +85,7 @@ Search-AzGraph -Query "Resources | where type == 'microsoft.hybridcompute/machin
 
 ### List Arc-enabled servers not running latest released agent version
 
-This query returns all Arc-enabled servers running an outdated version of the Connected Machine agent. Agents with a status of **Expired** are excluded from the results. The query uses `leftouter` `join` to bring together the Advisor recommendations raised about any Connected Machine agents identified as out of date, and Hybrid Computer machines to filter out any agent that haven't communicated with Azure over a period of time.
+This query returns all Arc-enabled servers running an outdated version of the Connected Machine agent. Agents with a status of **Expired** are excluded from the results. The query uses `leftouter` `join` to bring together the Advisor recommendations raised about any Connected Machine agents identified as out of date, and Hybrid Computer machines to filter out any agent that hasn't communicated with Azure over a period of time.
 
 ```kusto
 AdvisorResources
@@ -130,9 +130,9 @@ Search-AzGraph -Query "AdvisorResources | where type == 'microsoft.advisor/recom
 
 ---
 
-### List Arc-enabled servers with SQL Server, PostgreSQL or MySQL installed
+### List Arc-enabled servers with SQL Server, PostgreSQL, or MySQL installed
 
-This query returns all Arc-enabled servers that have SQL Server, PostgreSQL or MySQL installed on them. 
+This query returns all Arc-enabled servers that have SQL Server, PostgreSQL, or MySQL installed. 
 
 ```kusto
 resources
