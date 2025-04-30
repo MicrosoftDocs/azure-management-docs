@@ -86,7 +86,7 @@ az acr supply-chain workflow create -r <registryname> -g <resourcegroupname> -t 
 ```
 Example Command: 
 ```azurecli
-az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 -–config ./continuouspatching.json --schedule 1d –-dry-run   
+az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d --dry-run   
 ```
 
 The ```--dry-run``` flag outputs all specified artifacts by the JSON file configuration. Customers can verify that the right artifacts are selected. With the sample ubuntu configuration, the following results should be displayed as output. 
@@ -110,12 +110,12 @@ az acr supply-chain workflow create --help
 
 Command Schema:
 ```azurecli
-az acr supply-chain workflow create -r <registryname> -g <resourcegroupname> -t continuouspatchv1 -–config <JSONfilename> --schedule <number of days> --run-immediately
+az acr supply-chain workflow create -r <registryname> -g <resourcegroupname> -t continuouspatchv1 --config <JSONfilename> --schedule <number of days> --run-immediately
 ```
 
 Example Command: 
 ```azurecli
-az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 -–config ./continuouspatching.json --schedule 1d --run-immediately
+az acr supply-chain workflow create -r myRegistry -g myResourceGroup -t continuouspatchv1 --config ./continuouspatching.json --schedule 1d --run-immediately
 ```
 
 Upon a successful command (whether or not you include ```--run-immediately```), you should see:
@@ -139,9 +139,9 @@ az acr supply-chain workflow create --help
 :::image type="content" source="media/continuous-patching-media/portal-tasks-1.png" alt-text="Screenshot that shows the tasks created for continuous patching." lightbox="media/continuous-patching-media/portal-tasks-1.png":::
 
 Tasks:
-- cssc-trigger-workflow – this task scans the configuration file and calls the scan task on each respective image.    
-- cssc-scan-image – this task scans the image for operating system vulnerabilities. This task triggers the patching task only if operating system vulnerabilities were found.
-- cssc-patch-image – this task patches the image.
+- cssc-trigger-workflow - this task scans the configuration file and calls the scan task on each respective image.    
+- cssc-scan-image - this task scans the image for operating system vulnerabilities. This task triggers the patching task only if operating system vulnerabilities were found.
+- cssc-patch-image - this task patches the image.
 These tasks work in conjunction to execute your continuous patching workflow.
 
 3. You can also select on "Runs” within the "Tasks” view to see specific task runs. Here you can view status information on whether the task succeeded or failed, along with viewing a debug log. 
@@ -198,7 +198,7 @@ az acr supply-chain workflow delete -r <registry> -g <resourceGroup> -t continuo
 ```
 Example Command:
 ```azurecli
-az acr supply-chain workflow delete -r myregistry -g myresourcegroup –t continuouspatchv1
+az acr supply-chain workflow delete -r myregistry -g myresourcegroup -t continuouspatchv1
 ```
 Help command for all required/optional flags:
 ```azurecli
