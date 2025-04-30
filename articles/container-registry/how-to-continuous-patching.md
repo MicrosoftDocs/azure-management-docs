@@ -15,7 +15,7 @@ In this article, you learn how to install, enable, and configure continuous patc
 
 - You can use the Azure Cloud Shell or a local installation of the Azure CLI with a minimum version of 2.15.0 or later. 
 - You have an existing Resource Group with an Azure Container Registry (ACR).
-- You have an Azure Container Registry with ACR Tasks enabled. (ACR Tasks isn't supported in the free tier of ACR) 
+- You have an Azure Container Registry with ACR Tasks enabled (ACR Tasks isn't supported in the free tier of ACR).
 
 ## Installing the Continuous Patching Workflow
 
@@ -190,7 +190,7 @@ To update your schedule, run the previous command with a new input for schedule.
 
 ## Deleting the Continuous Patching Workflow
 
-To delete the continuous patching workflow, please run the following CLI command
+To delete the continuous patching workflow, please run the following CLI command.
 
 Command Schema:
 ```azurecli

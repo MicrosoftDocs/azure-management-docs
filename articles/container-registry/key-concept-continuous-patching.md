@@ -37,23 +37,23 @@ Continuous Patching is currently in public preview. The following limitations ap
 Because continuous patching in ACR creates a new image per patch, ACR relies on a tag convention to version and identify patched images. The two main approaches are incremental and floating.
 
 ### Incremental Tagging
-How It Works
+**How It Works**:
 
 Each new patch increments a numerical suffix (for example, ```-1```, ```-2```, etc.) on the original tag. For instance, if the base image is python:3.11, the first patch creates ```python:3.11-1```, and a second patch on that same base tag creates ```python:3.11-2```.
 
-Special Suffix Rules
+**Special Suffix Rules**:
 
 - ```-1``` to ```-999```: These are considered patch tags.
 - ```-x``` where ```x > 999```: These are not interpreted as patch tags; instead, that entire suffix is treated as part of the original tag. (Example: ```ubuntu:jammy-20240530``` is considered an original tag, not a patched one.)
-This means if you push a new tag ending in ```-1``` to ```-999``` by accident, Continuous Patching will treat it like a patched image. We recommend you to avoid pushing tags that you want patched with the suffix ```-1``` to ```-999```. If ```-999``` versions of a patched image is hit, Continuous Patching will return an error.
+This means if you push a new tag ending in ```-1``` to ```-999``` by accident, Continuous Patching will treat it like a patched image. We recommend you to avoid pushing tags that you want patched with the suffix ```-1``` to ```-999```. If ```-999``` versions of a patched image are hit, Continuous Patching will return an error.
 
 ### Floating Tagging
 
-How it works
+**How it works**:
 
 A single mutable tag, ```-patched```, will always reference the latest patched version of your image. For instance, if your base image tag is ```python:3.11```, the first patch creates ```python:3.11-patched```. With each subsequent patch, the ```-patched``` tag will automatically update to point to the most recent patched version.
 
-:::image type="content" source="media/continuous-patching-media/patching-timeline-example1.png" alt-text="Diagram showing concepts of how continuous patcing works using tags" lightbox="media/continuous-patching-media/patching-timeline-example1.png":::
+:::image type="content" source="media/continuous-patching-media/patching-timeline-example1.png" alt-text="Diagram showing concepts of how continuous patching works using tags." lightbox="media/continuous-patching-media/patching-timeline-example1.png":::
 
 ### Which Should I Use?
 
@@ -61,7 +61,7 @@ Incremental (**default**): Great for environments where auditability and rollbac
 
 Floating: Ideal if you prefer a single pointer to the latest patch for your CI/CD pipelines. Reduces complexity by removing the need to update references in downstream applications per patch, but sacrifices strict versioning, making it difficult to roll back. 
 
-### Next Steps
+## Next Steps
 
 > [!div class="nextstepaction"]
 > [Set up Continuous Patching](how-to-continuous-patching.md)
