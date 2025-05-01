@@ -105,6 +105,237 @@ Results:
 > [!NOTE]
 > If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#rollback).
 
+### [ARM template](#tab/arm-template)
+
+#### Example ARM templates
+
+##### 0base.json
+
+```json
+ {
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2023-07-01",
+      "name": "akstestcluster",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayname": "Demo of AKS Nodepool Migration"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enableRBAC": true,
+        "dnsPrefix": "testcluster",
+        "agentPoolProfiles": [
+          {
+            "name": "testnp",
+            "count": 3,
+            "vmSize": "Standard_D4a_v4",
+            "osType": "Linux",
+            "osSku": "Ubuntu",
+            "mode": "System"
+          }
+        ]
+      }
+    }
+  ]
+}
+```
+
+##### 1mcupdate.json
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2023-07-01",
+      "name": "akstestcluster",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayname": "Demo of AKS Nodepool Migration"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "enableRBAC": true,
+        "dnsPrefix": "testcluster",
+        "agentPoolProfiles": [
+          {
+            "name": "testnp",
+            "osType": "Linux",
+            "osSku": "AzureLinux",
+            "mode": "System"
+          }
+        ]
+      }
+    }
+  ]
+} 
+```
+
+##### 2apupdate.json
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "apiVersion": "2023-07-01",
+      "type": "Microsoft.ContainerService/managedClusters/agentPools",
+      "name": "akstestcluster/testnp",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "osType": "Linux",
+        "osSku": "Ubuntu",
+        "mode": "System"
+      }
+    }
+  ]
+}
+```
+
+#### Deploy a test cluster
+
+1. Create a resource group for the test cluster using the `az group create` command.
+
+    ```azurecli-interactive
+    az group create --name testRG --location eastus
+    ```
+
+2. Deploy a baseline Ubuntu OS SKU cluster with three nodes using the `az deployment group create` command and the [0base.json example ARM template](#0basejson).
+
+    ```azurecli-interactive
+    az deployment group create --resource-group testRG --template-file 0base.json
+    ```
+
+3. Migrate the OS SKU of your system node pool to Azure Linux using the `az deployment group create` command.
+
+    ```azurecli-interactive
+    az deployment group create --resource-group testRG --template-file 1mcupdate.json
+    ```
+
+4. Migrate the OS SKU of your system node pool back to Ubuntu using the `az deployment group create` command.
+
+    ```azurecli-interactive
+    az deployment group create --resource-group testRG --template-file 2apupdate.json
+    ```
+
+### [Terraform](#tab/terraform)
+
+#### Example Terraform template
+
+1. Confirm that your `providers.tf` file is updated to pick up the required version of the Azure provider. 
+
+##### providers.tf
+
+```terraform
+terraform {
+      required_version = ">=1.0"
+
+      required_providers {
+        azurerm = {
+          source  = "hashicorp/azurerm"
+          version = "~>3.111.0"
+        }
+        random = {
+          source  = "hashicorp/random"
+          version = "~>3.0"
+        }
+      }
+    }
+
+    provider "azurerm" {
+      features {}
+    }
+```
+
+2. For brevity, only the snippet of the Terraform template that is of interest is displayed below. In this initial configuration, an AKS cluster with a nodepool of **os_sku** with **Ubuntu** is deployed. 
+
+##### base.tf
+
+```terraform
+resource "azurerm_kubernetes_cluster" "k8s" {
+  location            = azurerm_resource_group.rg.location
+  name                = var.cluster_name
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = var.dns_prefix
+  tags                = {
+    Environment = "Development"
+  }
+
+  default_node_pool {
+    name       = "azurelinuxpool"
+    vm_size    = "Standard_D2_v2"
+    node_count = var.agent_count
+    os_sku = "Ubuntu"
+  }
+  linux_profile {
+    admin_username = "azurelinux"
+
+    ssh_key {
+      key_data = file(var.ssh_public_key)
+    }
+  }
+  network_profile {
+    network_plugin    = "kubenet"
+    load_balancer_sku = "standard"
+  }
+  service_principal {
+    client_id     = var.aks_service_principal_app_id
+    client_secret = var.aks_service_principal_client_secret
+  }
+}
+```
+
+3. To run an in-place OS SKU migration, just replace the **os_sku** to **AzureLinux** and re-apply the Terraform plan. 
+
+##### update.tf
+
+```terraform
+resource "azurerm_kubernetes_cluster" "k8s" {
+  location            = azurerm_resource_group.rg.location
+  name                = var.cluster_name
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = var.dns_prefix
+  tags                = {
+    Environment = "Development"
+  }
+
+  default_node_pool {
+    name       = "azurelinuxpool"
+    vm_size    = "Standard_D2_v2"
+    node_count = var.agent_count
+    os_sku = "AzureLinux"
+  }
+  linux_profile {
+    admin_username = "azurelinux"
+
+    ssh_key {
+      key_data = file(var.ssh_public_key)
+    }
+  }
+  network_profile {
+    network_plugin    = "kubenet"
+    load_balancer_sku = "standard"
+  }
+  service_principal {
+    client_id     = var.aks_service_principal_app_id
+    client_secret = var.aks_service_principal_client_secret
+  }
+}
+```
+
+---
+
 ### Verify the OS SKU migration
 
 Once the migration is complete on your test clusters, you should verify the following to ensure a successful migration:
