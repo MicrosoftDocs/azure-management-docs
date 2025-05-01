@@ -1,7 +1,7 @@
 ---
 title: "Azure Arc-enabled Kubernetes agent overview"
 ms.date: 10/02/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "Learn about the Azure Arc agents deployed on the Kubernetes clusters when connecting them to Azure Arc."
 ---
 

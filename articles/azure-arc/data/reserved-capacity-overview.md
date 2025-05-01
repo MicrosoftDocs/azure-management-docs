@@ -4,7 +4,7 @@ description: Learn how to buy SQL Managed Instance enabled by Azure Arc reserved
 services: sql-database
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
-ms.topic: conceptual
+ms.topic: concept-article
 author: anosov1960
 ms.author: sashan
 ms.reviewer: mikeray

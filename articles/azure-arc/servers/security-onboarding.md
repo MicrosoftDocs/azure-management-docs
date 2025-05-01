@@ -1,7 +1,7 @@
 ---
 title: Security onboarding and updates
 description: Azure Arc-enabled servers planning and deployment guidance.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/29/2025
 ---
 

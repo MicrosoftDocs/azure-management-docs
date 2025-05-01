@@ -1,7 +1,7 @@
 ---
 title: Identity and authorization
 description: Identity and authorization for Azure Arc-enabled servers.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/06/2025
 ---
 

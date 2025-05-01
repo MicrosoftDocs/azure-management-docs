@@ -2,7 +2,7 @@
 title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
 ms.date: 03/13/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Windows Server Management enabled by Azure Arc

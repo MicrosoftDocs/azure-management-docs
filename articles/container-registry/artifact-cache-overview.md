@@ -4,7 +4,7 @@ description: "Artifact cache is a feature that allows you to cache container ima
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-ms.topic: conceptual #Don't change
+ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli
 ms.date: 02/28/2025
 ai-usage: ai-assisted

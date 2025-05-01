@@ -2,7 +2,7 @@
 title: Allow the Azure portal URLs on your firewall or proxy server
 description: To optimize connectivity between your network and the Azure portal and its services, we recommend you add these URLs to your allowlist.
 ms.date: 04/21/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Allow the Azure portal URLs on your firewall or proxy server

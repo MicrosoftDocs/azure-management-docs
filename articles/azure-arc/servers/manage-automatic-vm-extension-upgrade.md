@@ -1,7 +1,7 @@
 ---
 title: Automatic extension upgrade for Azure Arc-enabled servers
 description: Learn how to enable automatic extension upgrades for your Azure Arc-enabled servers.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/03/2024
 ---
 

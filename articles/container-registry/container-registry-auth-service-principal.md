@@ -1,7 +1,7 @@
 ---
 title: Service Principal Authentication for ACR
 description: Provide access to images in your private container registry by using a Microsoft Entra service principal.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 author: rayoef

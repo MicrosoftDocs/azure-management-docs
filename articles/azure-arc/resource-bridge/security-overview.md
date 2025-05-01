@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge security overview 
 description: Understand security configuration and considerations for Azure Arc resource bridge.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/20/2024
 ---
 

@@ -2,7 +2,7 @@
 title: Tenants, users, and roles in Azure Lighthouse scenarios
 description: Understand how Microsoft Entra tenants, users, and roles can be used in Azure Lighthouse scenarios.
 ms.date: 03/27/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Tenants, users, and roles in Azure Lighthouse scenarios

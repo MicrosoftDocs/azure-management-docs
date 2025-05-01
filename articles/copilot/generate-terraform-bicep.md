@@ -2,7 +2,7 @@
 title: Generate Terraform and Bicep configurations using Microsoft Copilot in Azure
 description: Learn about how Microsoft Copilot in Azure can generate Terraform and Bicep configurations for you to use.
 ms.date: 04/08/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
