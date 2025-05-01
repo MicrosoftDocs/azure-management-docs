@@ -100,9 +100,9 @@ To deploy an extension to Azure Arc-enabled servers, a user needs the following 
 
 The role **Azure Connected Machine Resource Administrator** includes the permissions required to deploy extensions. It also includes permission to delete Azure Arc-enabled server resources.
 
-### Azure Monitor agent VM extension
+### Azure Monitor Agent VM extension
 
-Before you install the extension, we suggest that you review the [deployment options for the Azure Monitor agent](concept-log-analytics-extension-deployment.md) to understand the available methods and which one meets your needs.
+Before you install the extension, we suggest that you review the [deployment options for the Azure Monitor Agent](azure-monitor-agent-deployment.md) to understand the available methods and which one meets your needs.
 
 ### Key Vault VM extension
 

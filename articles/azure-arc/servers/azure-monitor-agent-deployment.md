@@ -14,7 +14,7 @@ The Azure Monitor agent is required if you want to:
 
 * Monitor the operating system and any workloads running on the machine or server using [VM insights](/azure/azure-monitor/vm/vminsights-overview)
 * Analyze and alert using [Azure Monitor](/azure/azure-monitor/overview)
-* Perform security monitoring in Azure by using [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) or [Microsoft Sentinel](/scenario-onboard-azure-sentinel.md).
+* Perform security monitoring in Azure by using [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction) or [Microsoft Sentinel](scenario-onboard-azure-sentinel.md).
 * Collect inventory and track changes by using [Azure Monitor agent](/azure/automation/change-tracking/enable-vms-monitoring-agent?tabs=singlevm%2Cmultiplevms%2Carcvm&pivots=single-portal).
 
 > [!NOTE]
