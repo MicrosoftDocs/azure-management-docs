@@ -1,7 +1,7 @@
 ---
 title: Kubernetes Pull Secret for ACR Authentication
 description: Learn how to provide a Kubernetes cluster with access to images in your Azure container registry by creating a pull secret using a service principal
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 author: karolz-ms

@@ -1,7 +1,7 @@
 ---
 title: Permissions to Repositories in Azure Container Registry
 description: Create a token to manage repository scoped permissions within a container registry. Perform pulling, pushing, deleting images, and reading/writing metadata.
-ms.topic: conceptual
+ms.topic: concept-article
 author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023

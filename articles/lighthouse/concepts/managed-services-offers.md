@@ -2,7 +2,7 @@
 title: Managed Service offers in Azure Marketplace
 description: Offer your Azure Lighthouse management services to customers through Managed Services offers in Azure Marketplace.
 ms.date: 03/07/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Managed Service offers in Azure Marketplace
