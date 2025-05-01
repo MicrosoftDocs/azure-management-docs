@@ -2,7 +2,7 @@
 title: Find your recommendations using Microsoft Copilot in Azure
 description: Learn how to find your Azure Advisor recommendations using Microsoft Copilot in Azure.
 ms.date: 04/08/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: v-josmartin
 author: jm-247-ms

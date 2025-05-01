@@ -2,7 +2,7 @@
 title: Cloud Solution Provider program considerations
 description: For CSP partners, Azure delegated resource management helps improve security and control by enabling granular permissions.
 ms.date: 01/09/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Azure Lighthouse and the Cloud Solution Provider program

@@ -1,7 +1,7 @@
 ---
 title: Azure portal keyboard shortcuts
 description: The Azure portal supports global keyboard shortcuts to help you perform actions, navigate, and go to locations in the Azure portal. 
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/13/2024
 ms.custom: accessibility
 ---
