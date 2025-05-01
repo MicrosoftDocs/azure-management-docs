@@ -31,13 +31,13 @@ az group create --name myResourceGroup --location eastus
 
 ## Create a container registry
 
-In this quickstart you create a *Basic* registry, which is a cost-optimized option for developers learning about Azure Container Registry. For details on available service tiers, see [Container registry service tiers][container-registry-skus].
+In this quickstart you create a *Standard* registry, which is sufficient for most Azure Container Registry workflows. For details on available service tiers, see [Container registry service tiers][container-registry-skus].
 
 Create an ACR instance using the [az acr create][az-acr-create] command. The registry name must be unique within Azure, and contain 5-50 lowercase alphanumeric characters. In the following example, *mycontainerregistry* is used. Update this to a unique value.
 
 ```azurecli
 az acr create --resource-group myResourceGroup \
-  --name mycontainerregistry --sku Basic
+  --name mycontainerregistry --sku Standard
 ```
 
 When the registry is created, the output is similar to the following:
@@ -53,8 +53,8 @@ When the registry is created, the output is similar to the following:
   "provisioningState": "Succeeded",
   "resourceGroup": "myResourceGroup",
   "sku": {
-    "name": "Basic",
-    "tier": "Basic"
+    "name": "Standard",
+    "tier": "Standard"
   },
   "status": null,
   "storageAccount": null,
