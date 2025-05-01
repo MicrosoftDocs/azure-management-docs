@@ -23,6 +23,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 
 
 ## Supported scenarios  
+The transfer of unused quota between subscription(s) will be done via Quota Group object created. At the moment of creating a Quota group object the group limit will be set to 0. Group limit must be explicitly updated by customer either through quota transfer from sub in group or by group quota increase request. When deploying resources the quota check at runtime is done against the subscription quota.  
 
 - Deallocation: Transfer unused quota from your subscriptions to Group Quota. 
 - Allocation: Transfer quota from group to target subscriptions. 
@@ -168,6 +169,7 @@ Create a Quota Group through the Azure portal.
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
 ## Add or remove subscriptions from a Quota Group
+This section covers how to add subscription(s) after the Quota group is created. Subscription(s) will carry their existing quota and usage, this will not be manipulated at the moment of adding to group. 
 
 <!-- Please write at least a sentance to introduce this subsection. -->
 <!-- Consider breaking add and remove into their own seperate sections. -->
@@ -187,6 +189,7 @@ Retry-After: 30
 Response content
 {"properties":{"provisioningState":"ACCEPTED"},"id":"/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a","type":"Microsoft.Quota/groupQuotas/subscriptions","name":"075216c4-f88b-4a82-b9f8-cdebf9cc097a"}
 ```
+This section covers how to remove subscriptions from the Quota Group. At the moment of removal, subscription will have carry its existing quota and usage. The group limit will not be manipulated based on subscription removal.  
 
 To remove subscriptions from the Quota Group using the REST API, make a `DELETE` request to the following endpoint:
 
