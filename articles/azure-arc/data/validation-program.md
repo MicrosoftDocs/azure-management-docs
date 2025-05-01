@@ -4,7 +4,7 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.date: 06/14/2022
-ms.topic: conceptual
+ms.topic: concept-article
 author: MikeRayMSFT
 ms.author: mikeray
 description: "Describes validation program for Kubernetes distributions for Azure Arc-enabled data services."

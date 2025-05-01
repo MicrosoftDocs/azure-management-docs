@@ -8,7 +8,7 @@ author: dhanmm
 ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 09/22/2020
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Monitoring, log analytics, billing information, Azure portal (PostgreSQL server)

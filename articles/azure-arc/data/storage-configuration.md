@@ -8,7 +8,7 @@ author: uc-msft
 ms.author: umajay
 ms.reviewer: mikeray
 ms.date: 07/30/2021
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Storage Configuration

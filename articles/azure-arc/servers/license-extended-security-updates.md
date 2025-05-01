@@ -2,7 +2,7 @@
 title: License provisioning guidelines for Extended Security Updates for Windows Server 2012
 description: Learn about license provisioning guidelines for Extended Security Updates for Windows Server 2012 through Azure Arc.
 ms.date: 01/21/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # License provisioning guidelines for Extended Security Updates for Windows Server 2012

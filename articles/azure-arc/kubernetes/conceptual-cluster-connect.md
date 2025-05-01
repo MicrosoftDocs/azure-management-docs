@@ -1,7 +1,7 @@
 ---
 title: "Cluster connect access to Azure Arc-enabled Kubernetes clusters"
 ms.date: 02/28/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "Cluster connect allows developers to access their Azure Arc-enabled Kubernetes clusters from anywhere for interactive development and debugging."
 ---
 
