@@ -28,7 +28,7 @@ In the next and last tutorial, you'll learn how to upgrade your Azure Linux node
 
 ## Enable monitoring
 
-## Connect to your cluster
+### Connect to your cluster
 
 Before enabling monitoring, it's important to ensure you're connected to the correct cluster. The following command retrieves the credentials for your Azure Linux Container Host cluster and configures kubectl to use them:
 
@@ -36,7 +36,7 @@ Before enabling monitoring, it's important to ensure you're connected to the cor
 az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 ```
 
-### Use a default Log Analytics workspace
+#### Use a default Log Analytics workspace
 
 The following step enables monitoring for your Azure Linux Container Host cluster using Azure CLI. In this example, you aren't required to precreate or specify an existing workspace. This command simplifies the process for you by creating a default workspace in the default resource group of the AKS cluster subscription. If one doesn't already exist in the region, the default workspace created will resemble the format *DefaultWorkspace-< GUID >-< Region >*. 
 
@@ -49,7 +49,7 @@ if [ "$MONITORING_ENABLED" != "true" ]; then
 fi
 ```
 
-### Option 2: Specify a Log Analytics workspace
+#### Option 2: Specify a Log Analytics workspace
 
 In this example, you can specify a Log Analytics workspace to enable monitoring of your Azure Linux Container Host cluster. The resource ID of the workspace will be in the form `"/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"`. The command to enable monitoring with a specified workspace is as follows: ```az aks enable-addons -a monitoring -n $CLUSTER_NAME -g $RESOURCE_GROUP --workspace-resource-id <workspace-resource-id>```
 
