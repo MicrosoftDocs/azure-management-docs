@@ -140,9 +140,14 @@ user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Mi
 ### [Azure portal](#tab/portal-1)
 Create a Quota Group through the Azure portal.
 
-1. Step one.
-2. Step two.
-3. Step three.
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side select **Quota groups**.
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+4. Select **Create** button to go to Create Quota Group view
+5. In the **Basics** tab, fill out required fields such name of Quota group. Quota Group name cannot contain any special characters and or spaces.
+6. Select **Management group**, if the default Management group is not the desired one, select **Change management group**, then select **Next** button.
+7. In the **Subscripion selection** tab select subscription(s) to be added to quota group. Subscription will be greyed out and unable to be selected if it already belongs to existing Quota Group, then  select **Next** button.
+8. In **Review + create** tab review details of Quota group before creation. Under **Basics** name of Quota Group will be displayed, under **Group selection** the selected Management group and subscription(s) will be displayed
 
 
 <!-- The following is an example of the format we use to write out portal instructions. Be clear, concise, only bold or italicise actual names of blades and options, etc. Start instructions from the start of openning the portal.
