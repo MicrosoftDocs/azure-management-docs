@@ -6,7 +6,7 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.reviewer: "MikeRayMSFT"
-ms.topic: conceptual
+ms.topic: concept-article
 author: "dnethi"
 ms.author: "dinethi"
 ---

@@ -2,7 +2,7 @@
 title: "GitOps (Flux v2) supported parameters"
 description: "Understand the supported parameters for GitOps (Flux v2) in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
 ms.date: 04/30/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # GitOps (Flux v2) supported parameters

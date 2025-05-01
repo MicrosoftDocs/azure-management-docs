@@ -1,7 +1,7 @@
 ---
 title: Authenticate against Azure resources with Azure Arc-enabled servers
 description: This article describes Azure Instance Metadata Service support for Azure Arc-enabled servers and how you can authenticate against Azure resources and local using a secret.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2024
 ---
 

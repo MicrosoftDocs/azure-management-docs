@@ -2,7 +2,7 @@
 title: Limit access to Run command
 description: Learn how to use RBAC roles and allowlists and blocklists to limit who can use Run commands and where they can execute.
 ms.date: 02/28/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 

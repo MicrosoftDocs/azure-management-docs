@@ -8,7 +8,7 @@ author: twright-msft
 ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/19/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Connectivity modes and requirements

@@ -1,7 +1,7 @@
 ---
 title: "Cluster extensions in Azure Arc-enabled Kubernetes"
 ms.date: 04/22/2025
-ms.topic: conceptual
+ms.topic: concept-article
 description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes cluster extensions capability."
 ---
 

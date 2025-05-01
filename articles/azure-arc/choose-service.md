@@ -2,7 +2,7 @@
 title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
 ms.date: 12/20/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Choosing the right Azure Arc service for machines

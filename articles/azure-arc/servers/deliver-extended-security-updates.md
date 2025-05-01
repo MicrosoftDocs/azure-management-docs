@@ -2,7 +2,7 @@
 title: Deliver Extended Security Updates for Windows Server 2012
 description: Learn how to deliver Extended Security Updates for Windows Server 2012.
 ms.date: 02/20/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Deliver Extended Security Updates for Windows Server 2012

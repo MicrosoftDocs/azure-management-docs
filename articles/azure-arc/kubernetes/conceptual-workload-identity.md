@@ -1,7 +1,7 @@
 ---
 title: "Workload identity federation in Azure Arc-enabled Kubernetes (preview)"
 ms.date: 11/11/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
   - ignite-2024
 description: "Learn how workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
