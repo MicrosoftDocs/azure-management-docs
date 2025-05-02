@@ -445,7 +445,7 @@ sections:
 
           - Enable [decrypting HTTPS in Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)
           - Enable Docker to [use a proxy](https://docs.docker.com/docker-for-windows/#proxies) via the Docker UI.
-          - Be sure to revert when complete. Docker won't work with this enabled and Fiddler not running.
+          - Be sure to revert when complete. Docker doesn't work with this enabled and Fiddler not running.
           
           #### Windows containers
 
@@ -501,7 +501,7 @@ sections:
 
           | Error message | Troubleshooting guide |
           |---|---|
-          |No access was configured for the VM, hence no subscriptions were found|This could happen if you're using `az login --identity` in your ACR Task. This is a transient error and occurs when the role assignment of your Managed Identity hasn't been propagated yet. Waiting a few seconds before retrying works.|
+          |No access was configured for the VM, hence no subscriptions were found|This could happen if you're using `az login --identity` in your ACR Task. This error is transient and occurs when the role assignment of your Managed Identity hasn't been propagated yet. Waiting a few seconds before retrying works.|
           
           ## CI/CD integration
 
