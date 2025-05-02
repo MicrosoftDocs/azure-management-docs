@@ -105,7 +105,7 @@ sections:
 
           
       - question: |
-          How do I delete all manifests that aren't referenced by any tag in a repository?
+          How can all manifests that aren't referenced by any tag in a repository be deleted?
         answer: |
           If you're on bash:
           
@@ -127,7 +127,7 @@ sections:
       - question: |
           Why does the registry quota usage not reduce after deleting images?
         answer: |
-          This situation can happen if the underlying layers are still being referenced by other container images. If you delete an image with no references, the registry usage updates in a few minutes.
+          This situation can occur if the underlying layers are still being referenced by other container images. If you delete an image with no references, the registry usage updates in a few minutes.
 
       - question:  |
           How do I validate storage quota changes?
@@ -213,7 +213,7 @@ sections:
       - question:  |
           How do I enable automatic image quarantine for a registry?
         answer: |
-          Image quarantine is currently a preview feature of ACR. You can enable the quarantine mode of a registry so that only images which have passed security scans are visible to normal users. For details, see the [ACR GitHub repo](https://github.com/Azure/acr/tree/master/docs/preview/quarantine).
+          Image quarantine is currently a preview feature of ACR. The quarantine mode of a registry can be enabled so that only images that pass security scans are visible to normal users. For details, see the [ACR GitHub repo](https://github.com/Azure/acr/tree/master/docs/preview/quarantine).
           
       - question:  |
           How do I enable anonymous pull access?

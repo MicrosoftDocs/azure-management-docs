@@ -1,6 +1,6 @@
 ---
 title: Disable Authentication as ARM
-description: Disabling azureADAuthenticationAsArmPolicy will force the registry to only recognize ACR audience Microsoft Entra tokens, enhancing the security of your container registries.
+description: Disabling azureADAuthenticationAsArmPolicy forces the registry to only recognize ACR audience Microsoft Entra tokens, enhancing the security of your container registries.
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
@@ -15,7 +15,7 @@ Microsoft Entra tokens are used when registry users authenticate with Azure Cont
 
 By configuring your registry to not recognize Microsoft Entra ARM Audience Tokens and only recognize Microsoft Entra ACR Audience tokens, you can enhance the security of your container registries during the authentication process by narrowing the scope of accepted tokens.
 
-With ACR Audience Token enforcement, only Microsoft Entra Tokens with an audience scope specifically set for ACR will be accepted during the registry authentication and sign-in process. This means that the previously accepted ARM Audience Tokens will no longer be valid for registry authentication, thereby enhancing the security of your container registries.
+With ACR Audience Token enforcement, only Microsoft Entra Tokens with an audience scope set for ACR will be accepted during the registry authentication and sign-in process. This means that the previously accepted ARM Audience Tokens will no longer be valid for registry authentication, thereby enhancing the security of your container registries.
 
 In this tutorial, you learn how to:
 
@@ -30,7 +30,7 @@ In this tutorial, you learn how to:
 
 ## Disable authentication-as-arm in ACR - Azure CLI
 
-Disabling `azureADAuthenticationAsArmPolicy` will force the registry to use ACR audience token. You can use Azure CLI version 2.40.0 or later, run `az --version` to find the version. 
+Disabling `azureADAuthenticationAsArmPolicy` forces the registry to use ACR audience token. You can use Azure CLI version 2.40.0 or later, run `az --version` to find the version. 
 
 1. Run the command to show the current configuration of the registry's policy for authentication using ARM tokens with the registry. If the status is `enabled`, then both ACRs and ARM audience tokens can be used for authentication. If the status is `disabled` it means only ACR's audience tokens can be used for authentication.
 
