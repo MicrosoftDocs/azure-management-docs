@@ -111,7 +111,7 @@ The following built-in roles are data plane roles. Assign these roles to identit
 The applicable roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
 
-#### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/data-plane-roles/registries-configured-with-rbac-registry-abac-repository-permissions)
+#### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
 ##### Container Registry Repository Reader
 - **Use case**: Assign to container host nodes, orchestrators, vulnerability scanners, or developers that only need to pull images and read repository metadata—without permissions to push or modify content.
@@ -173,7 +173,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
   - **ABAC support**: Doesn't support Entra ABAC conditions.
 
-#### [Registries configured with "RBAC Registry Permissions"](#tab/data-plane-roles/registries-configured-with-rbac-registry-permissions)
+#### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
 ##### AcrPush
 - **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings.
@@ -241,7 +241,7 @@ Azure recommends using less privileged [control plane roles](#control-plane-role
 
 The applicable roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
-#### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/privileged-roles/registries-configured-with-rbac-registry-abac-repository-permissions)
+#### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
 ##### Owner
 - **Use case**: Assign to administrators who need complete control over the registry, including the ability to assign roles to other identities and perform role assignments for the registry.
@@ -298,7 +298,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
   - **Data plane permissions**:
     - **None - ABAC-enabled registries do not have data plane permissions for the built-in Contributor role.**
 
-#### [Registries configured with "RBAC Registry Permissions"](#tab/privileged-roles/registries-configured-with-rbac-registry-permissions)
+#### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
 ##### Owner
 - **Use case**: Assign to administrators who need complete control over the registry, including the ability to assign roles to other identities and perform role assignments for the registry.

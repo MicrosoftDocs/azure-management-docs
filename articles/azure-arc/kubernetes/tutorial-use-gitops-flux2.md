@@ -692,7 +692,7 @@ To create Flux configurations in clusters with workload identity enabled, modify
      provider: azure
    ```
 
-1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](articles/container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ### Use workload identity with Azure DevOps
 
