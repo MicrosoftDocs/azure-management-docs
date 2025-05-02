@@ -38,7 +38,7 @@ For more information, see [Connected machine agent network requirements](../serv
 
 ## Periodic sync options
 
-The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance that meets the prerequisites is discovered, the Arc agent is automatically installed.
+The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance that meets the prerequisites is discovered, the Arc agent is automatically installed. The periodic sync option will also help clean up your resources in Azure. For instance, if the EC2 instance is removed from AWS, the Arc server in Azure will also be deleted. This is only applicable to Arc servers created in the aws_<accountId> resource group.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
