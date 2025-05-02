@@ -83,7 +83,7 @@ sections:
       - question: |
           Delete of replication fails with Forbidden status although the replication gets deleted using the Azure CLI or Azure PowerShell
         answer: |
-          The error is seen when the user has `Container Registry Contributor and Data Access Configuration Administrator` permissions on a registry (which grants replica deletion permissions), but doesn't have Reader-level permissions on the subscription which is needed to delete replicas through the Portal. To resolve this issue, assign Reader permissions on the subscription to the user:
+          This error occurs when a user has the `Container Registry Contributor and Data Access Configuration Administrator` role on a registry—allowing replica deletion through Azure CLI—but lacks Reader permissions on the subscription. Reader access on the subscription is required to delete replicas through the Portal. To resolve this issue, assign Reader permissions on the subscription to the user:
           
           
           ```azurecli  
@@ -107,7 +107,7 @@ sections:
       - question: |
           How do I delete all manifests that aren't referenced by any tag in a repository?
         answer: |
-          If you are on bash:
+          If you're on bash:
           
           ```azurecli
           az acr manifest list-metadata --name myRepository --registry myRegistry --query "[?tags[0]==null].digest" --output tsv  | xargs -I% az acr repository delete --name myRegistry ---image myRepository@%
@@ -201,12 +201,12 @@ sections:
           * Public keys and certificates of all roles (except delegation roles) are stored in the `root.json`.
           * Public keys and certificates of the delegation role are stored in the JSON file of its parent role (for example `targets.json` for the `targets/releases` role).
           
-          It's suggested to verify those public keys and certificates after the overall TUF verification done by the Docker and Notary client.
+          You should verify those public keys and certificates after the overall TUF verification done by the Docker and Notary client.
           
       - question:  |
           How do I grant access to pull or push images without granting permissions to manage the registry resource?
         answer: |
-          ACR supports [Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Entra-based permissions, such as granting image push or pull permissions without granting permissions to the registry /var/run/docker.sock:/var/run/docker.sock
+          ACR supports [Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Entra-based permissions, such as granting image push or pull permissions without granting permissions to the entire registry.
 
           You can optionally use [Entra attribute-based access control (ABAC)] to manage [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and scope role assignments to specific repositories.
 
@@ -245,7 +245,7 @@ sections:
           When you push images to the registries in the list, their non-distributable layers are pushed to the registry.
           
           > [!WARNING]
-          > Non-distributable artifacts typically have restrictions on how and where they can be distributed and shared. Use this feature only to push artifacts to private registries. Ensure that you are in compliance with any terms that cover redistributing non-distributable artifacts.
+          > Non-distributable artifacts typically have restrictions on how and where they can be distributed and shared. Use this feature only to push artifacts to private registries. Ensure that you're in compliance with any terms that cover redistributing non-distributable artifacts.
           
   - name: Diagnostics and health checks
     questions:
@@ -259,7 +259,7 @@ sections:
         answer: |
            - If this error is a transient issue, then retry will succeed.
            - If `docker pull` fails continuously, then there could be a problem with the Docker daemon. The problem can generally be mitigated by restarting the Docker daemon. 
-           - If you continue to see this issue after restarting Docker daemon, then the problem could be some network connectivity issues with the machine. To check if general network on the machine is healthy, run the following command to test endpoint connectivity. The minimum `az acr` version that contains this connectivity check command is 2.2.9. Upgrade your Azure CLI if you are using an older version.
+           - If you continue to see this issue after restarting Docker daemon, then the problem could be some network connectivity issues with the machine. To check if general network on the machine is healthy, run the following command to test endpoint connectivity. The minimum `az acr` version that contains this connectivity check command is 2.2.9. Upgrade your Azure CLI if you're using an older version.
            
             ```azurecli
             az acr check-health -n myRegistry
@@ -501,7 +501,7 @@ sections:
 
           | Error message | Troubleshooting guide |
           |---|---|
-          |No access was configured for the VM, hence no subscriptions were found|This could happen if you are using `az login --identity` in your ACR Task. This is a transient error and occurs when the role assignment of your Managed Identity hasn't propagated. Waiting a few seconds before retrying works.|
+          |No access was configured for the VM, hence no subscriptions were found|This could happen if you're using `az login --identity` in your ACR Task. This is a transient error and occurs when the role assignment of your Managed Identity hasn't propagated. Waiting a few seconds before retrying works.|
           
           ## CI/CD integration
 
