@@ -18,7 +18,7 @@ After you [connect your AWS public cloud to Azure](connect-to-aws.md), the multi
 `aws_yourAwsAccountId`
 
 > [!NOTE]
-> Tags are not created when the Resource Group is created with the connector. Be sure to disable any policies for Tags being required when creating a Resource Group, otherwise the Resource Group creation process will fail due to the Tags being missing.
+> Tags placed on the connector will be extended and added to the resource group when it is created. Be sure to add any tags on the connector to adhere to any policies requiring tags when creating a resource group, otherwise the resource group creation process will fail due to the tags being missing.
 
 For every AWS resource discovered through the **[Inventory](view-multicloud-inventory.md)** solution, an Azure representation is created in the `aws_yourAwsAccountId` resource group. Each resource has the [`AwsConnector` namespace value associated with its AWS service](view-multicloud-inventory.md#supported-aws-services).
 
@@ -53,3 +53,5 @@ If you remove the connected cloud, or disable a solution, periodic syncs will st
 To remove all of the AWS resource representations from Azure, navigate to the `aws_yourAwsAccountId` resource group, then delete it.
 
 If you delete the connector, you should delete the Cloud Formation template on AWS. If you delete a solution, you'll also need to update your Cloud Formation template to remove the required access for the deleted solution. You can find the updated template for the connector in the Azure portal under **Settings > Authentication template**.
+Moving the connector resource and the AWS resources represented in Azure is not supported. If you want to move the connector to a different subscription or resource group, please delete it and recreate it in the desired location. 
+
