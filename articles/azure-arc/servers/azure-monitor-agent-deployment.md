@@ -10,7 +10,7 @@ ms.custom: linux-related-content
 
 Azure Monitor supports multiple methods to install the [Azure Monitor agent](/azure/azure-monitor/agents/agents-overview) as an extension on Azure Arc-enabled servers. Azure Arc-enabled servers support the Azure VM extension framework, which provides post-deployment configuration and automation tasks, enabling you to simplify management of your hybrid machines like you can with Azure VMs.
 
-The Azure Monitor agent is required if you want to:
+The Azure Monitor Agent is required if you want to:
 
 * Monitor the operating system and any workloads running on the machine or server using [VM insights](/azure/azure-monitor/vm/vminsights-overview)
 * Analyze and alert using [Azure Monitor](/azure/azure-monitor/overview)
@@ -20,9 +20,10 @@ The Azure Monitor agent is required if you want to:
 > [!NOTE]
 > Azure Monitor agent logs are stored locally and are updated after temporary disconnection of an Arc-enabled machine.
 
-This article reviews the deployment methods for the Azure Monitor agent VM extension, across multiple production physical servers or virtual machines in your environment, to help you determine which works best for your organization.
+This article reviews recommended deployment methods for the Azure Monitor agent VM extension, across multiple production physical servers or virtual machines in your environment, to help you determine which works best for your organization.
 
-Review the different methods to install the VM extension using one method or a combination and determine which one works best for your scenario.
+> [!TIP]
+> For more details about the Azure Monitor agent, see [Install and manage the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-manage).
 
 ## Deploy the extension individually on each machine
 
@@ -38,6 +39,7 @@ Disadvantages of deploying the extension individually include:
 
 * Limited automation
 * Not scalable to many servers
+* Doesn't create a Data Collection Rule (DCR); you must create a DCR separately and associate it with the agent before data collection begins.
 
 ## Use Azure Policy
 
