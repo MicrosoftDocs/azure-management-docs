@@ -206,9 +206,9 @@ sections:
       - question:  |
           How do I grant access to pull or push images without granting permissions to manage the registry resource?
         answer: |
-          ACR supports [Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Entra-based permissions, such as granting image push or pull permissions without granting permissions to the entire registry.
+          ACR supports [Microsoft Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Microsoft Entra-based permissions, such as granting image push or pull permissions without granting permissions to the entire registry.
 
-          You can optionally use [Entra attribute-based access control (ABAC)] to manage [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and scope role assignments to specific repositories.
+          You can optionally use [Microsoft Entra attribute-based access control (ABAC)] to manage [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and scope role assignments to specific repositories.
 
       - question:  |
           How do I enable automatic image quarantine for a registry?

@@ -248,7 +248,7 @@ Use the [az role assignment create][az-role-assignment-create] command to assign
 
 To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
 
-For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -267,7 +267,7 @@ Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the correc
 
 To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
 
-For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.
@@ -375,7 +375,7 @@ Use the [az role assignment create][az-role-assignment-create] command to assign
 
 To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
 
-For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli-interactive
 az role assignment create --assignee $spID --scope $resourceID \
@@ -394,7 +394,7 @@ Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the correc
 
 To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
 
-For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurepowershell-interactive
 New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.

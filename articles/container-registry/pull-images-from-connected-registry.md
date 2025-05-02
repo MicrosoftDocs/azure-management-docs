@@ -87,7 +87,7 @@ docker pull <IP_address_or_FQDN_of_connected_registry>:<port>/hello-world
 
 ## Next steps
 
-* Learn more about [non-Entra repository-scoped tokens](container-registry-token-based-repository-permissions.md).
+* Learn more about [non-Microsoft Entra repository-scoped tokens](container-registry-token-based-repository-permissions.md).
 * Learn more about [accessing a connected registry](overview-connected-registry-access.md).
 
 <!-- LINKS - internal -->

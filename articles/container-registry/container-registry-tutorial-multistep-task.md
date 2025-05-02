@@ -321,7 +321,7 @@ az acr task create \
 
 To push images to the registry identified by the value of `regDate`, use the [az acr task credential add][az-acr-task-credential-add] command to add login credentials for that registry to the task.
 
-For this example, we recommend that you create a [service principal](container-registry-auth-service-principal.md) with permissions to push images to the registry. To grant push permissions, assign the `Container Registry Repository Writer` role for registries enabled for Entra attribute-based access control (ABAC) for managing [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md). Otherwise, for non-ABAC registries, assign the `AcrPush` role.
+For this example, we recommend that you create a [service principal](container-registry-auth-service-principal.md) with permissions to push images to the registry. To grant push permissions, assign the `Container Registry Repository Writer` role for registries enabled for Microsoft Entra attribute-based access control (ABAC) for managing [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md). Otherwise, for non-ABAC registries, assign the `AcrPush` role.
 
 To create the service principal, use the following script:
 

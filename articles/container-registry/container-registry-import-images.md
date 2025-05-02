@@ -250,8 +250,8 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ### Import from a registry using service principal credentials
 
-To import from a registry that you can't access using integrated Active Directory permissions, you can use service principal credentials (if available) to the source registry. Supply the appID and password of an Entra [service principal](container-registry-auth-service-principal.md) that has the correct role assignment access to the source registry.
-* For Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+To import from a registry that you can't access using integrated Active Directory permissions, you can use service principal credentials (if available) to the source registry. Supply the appID and password of an Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has the correct role assignment access to the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 Using a service principal is useful for build systems and other unattended systems that need to import images to your registry.
 
@@ -283,8 +283,8 @@ To import from an Azure container registry in a different Microsoft Entra tenant
 
 ### Cross-tenant import with username and password
 
-For example, use a [non-Entra repository-scoped token](container-registry-token-based-repository-permissions.md) and password, or the appID and password of an Entra [service principal](container-registry-auth-service-principal.md) that has correct role assignments to the source registry.
-* For Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been assigned on the source registry.
+For example, use a [non-Microsoft Entra repository-scoped token](container-registry-token-based-repository-permissions.md) and password, or the appID and password of an Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has correct role assignments to the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been assigned on the source registry.
 
 ### [Azure CLI](#tab/azure-cli)
 

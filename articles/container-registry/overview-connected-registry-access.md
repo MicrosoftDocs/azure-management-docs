@@ -11,7 +11,7 @@ ms.date: 10/31/2023
 
 # Understand access to a connected registry
 
-To access and manage a [connected registry](intro-connected-registry.md), currently only ACR [non-Entra tokens](container-registry-token-based-repository-permissions.md) are supported. As shown in the following image, two different types of tokens are used by each connected registry:
+To access and manage a [connected registry](intro-connected-registry.md), currently only ACR [non-Microsoft Entra tokens](container-registry-token-based-repository-permissions.md) are supported. As shown in the following image, two different types of tokens are used by each connected registry:
 
 * [**Client tokens**](#client-tokens) - One or more tokens that on-premises clients use to authenticate with a connected registry and push or pull images and artifacts to or from it.
 * [**Sync token**](#sync-token) - A token used by each connected registry to access its parent and synchronize content.
@@ -71,4 +71,4 @@ Continue to  the following article to learn about specific scenarios where conne
 [az-acr-connected-registry-update]: /cli/azure/acr/connected-registry#az_acr_connected_registry_update
 [az-acr-connected-registry-install-renew-credentials]: /cli/azure/acr/connected-registry/install#az_acr_connected_registry_install_renew_credentials
 [overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
-[non-Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md
+[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

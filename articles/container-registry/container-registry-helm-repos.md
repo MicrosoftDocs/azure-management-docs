@@ -143,7 +143,7 @@ Successfully packaged chart and saved it to: /my/path/hello-world-0.1.0.tgz
 Run  `helm registry login` to authenticate with the registry. You may pass [registry credentials](container-registry-authentication.md) appropriate for your scenario, such as service principal credentials, user identity, or a repository-scoped token.
 
 - Authenticate with a Microsoft Entra [service principal with pull and push permissions](container-registry-auth-service-principal.md#create-a-service-principal) to the registry.
-  - If your registry is enabled for [Entra attribute-based access control (ABAC) to manage Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), you must use the `Container Registry Repository Writer` role. Otherwise if your registry is not enabled for ABAC, use the older `AcrPush` role.
+  - If your registry is enabled for [Microsoft Entra attribute-based access control (ABAC) to manage Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), you must use the `Container Registry Repository Writer` role. Otherwise if your registry is not enabled for ABAC, use the older `AcrPush` role.
   ```azurecli
   SERVICE_PRINCIPAL_NAME=<acr-helm-sp>
   ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
@@ -347,7 +347,7 @@ A local chart archive such as `ingress-nginx-3.20.1.tgz` is created.
 
 ### Push charts as OCI artifacts to registry
 
-Login to the registry:
+Log in to the registry:
 
 ```azurecli
 az acr login --name $ACR_NAME

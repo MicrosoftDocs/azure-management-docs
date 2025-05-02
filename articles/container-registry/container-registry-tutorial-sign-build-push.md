@@ -107,11 +107,11 @@ When working with ACR and AKV, it’s essential to grant the appropriate permiss
 
 ### Authorize access to ACR
 
-For registries enabled for Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
 
 For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
 
-For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the ACR resource
 

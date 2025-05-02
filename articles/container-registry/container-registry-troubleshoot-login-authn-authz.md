@@ -33,7 +33,7 @@ May include one or more of the following:
 * The registry public access is disabled. Public network access rules on the registry prevent access - [solution](container-registry-troubleshoot-access.md#configure-public-access-to-registry)
 * The credentials aren't authorized for push, pull, or Azure Resource Manager operations - [solution](#confirm-credentials-are-authorized-to-access-registry)
 * The credentials are expired - [solution](#check-that-credentials-arent-expired)
-* If you're using Microsoft Entra role-based access control (RBAC) for managing registry permissions for an Entra identity (user, managed identity, or service principal), the identity may have registry permissions but not repository permissions - [solution](#confirm-credentials-are-authorized-to-access-registry)
+* If you're using Microsoft Entra role-based access control (RBAC) for managing registry permissions for a Microsoft Entra identity (user, managed identity, or service principal), the identity may have registry permissions but not repository permissions - [solution](#confirm-credentials-are-authorized-to-access-registry)
 
 ## Further diagnosis 
 
@@ -89,12 +89,12 @@ Check the validity of the credentials you use for your scenario, or were provide
 Related links:
 
 * [Authentication overview](container-registry-authentication.md#authentication-options)
-* [Manage Entra role-based access control (RBAC) for registry permissions](container-registry-rbac-built-in-roles-overview.md).
-* [Manage Entra attribute-based access control (ABAC) for Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+* [Manage Microsoft Entra role-based access control (RBAC) for registry permissions](container-registry-rbac-built-in-roles-overview.md).
+* [Manage Microsoft Entra attribute-based access control (ABAC) for Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 * [Individual login with Microsoft Entra ID](container-registry-authentication.md#individual-login-with-azure-ad)
 * [Login with service principal](container-registry-auth-service-principal.md)
 * [Login with managed identity](container-registry-authentication-managed-identity.md)
-* [Login with non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)
+* [Login with non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)
 * [Login with admin account](container-registry-authentication.md#admin-account)
 * [Microsoft Entra authentication and authorization error codes](/azure/active-directory/develop/reference-aadsts-error-codes)
 * [az acr login](/cli/azure/acr#az-acr-login) reference
@@ -102,7 +102,7 @@ Related links:
 ### Confirm credentials are authorized to access registry
 
 * If your permissions recently changed to allow registry access though the portal, you might need to try an incognito or private session in your browser to avoid any stale browser cache or cookies.
-* You or a registry owner must have sufficient privileges in the subscription to add, modify, or remove Entra role assignments. Permissions to manage Entra role assignments is granted by the `Role Based Access Control Administrator` role.
+* You or a registry owner must have sufficient privileges in the subscription to add, modify, or remove Microsoft Entra role assignments. Permissions to manage Microsoft Entra role assignments is granted by the `Role Based Access Control Administrator` role.
 * Access to a registry in the portal or registry management using the Azure CLI requires at least the `Container Registry Contributor and Data Access Configuration Administrator` role or equivalent permissions to perform Azure Resource Manager operations.
 
 #### Validate identity permissions and role assignments
@@ -113,22 +113,22 @@ Related links:
     * **Registries with "RBAC Registry + ABAC Repository Permissions" mode don't honor the existing `AcrPull`, `AcrPush`, or `AcrDelete` roles.**
     * **Instead, such registries only honor the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to read, write, or delete images within repositories in a registry.** These roles may have optional ABAC conditions that restrict permissions granted to specific repositories.
     * Take note that these roles don't grant permissions to catalog listing to list repositories in the registry. To list repositories (but not read content within repositories), you must separately assign the `Container Registry Repository Catalog Lister` role to the identity. This role doesn't support ABAC conditions so it grants permissions to list all repositories in a registry.
-    * For more information, see [Entra attribute-based access control (ABAC) for Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+    * For more information, see [Microsoft Entra attribute-based access control (ABAC) for Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
   * If your "Registry role assignment permissions mode" is set to the old "RBAC Registry Permissions" option, the identity may not have permissions to access the registry and its repositories.
     * Check existing role assignments to ensure the identity has the correct permissions to access the registry and its repositories.
     * **Registries with "RBAC Registry Permissions" mode only honor the `AcrPull`, `AcrPush`, or `AcrDelete` roles to read, write, or delete images within repositories in a registry.**
-    * For more information, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
+    * For more information, see [Azure Container Registry Microsoft Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 Related links:
 
-* [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md)
-* [Manage Entra role-based access control (RBAC) for registry permissions](container-registry-rbac-built-in-roles-overview.md).
-* [Manage Entra attribute-based access control (ABAC) for Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+* [Azure Container Registry Microsoft Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md)
+* [Manage Microsoft Entra role-based access control (RBAC) for registry permissions](container-registry-rbac-built-in-roles-overview.md).
+* [Manage Microsoft Entra attribute-based access control (ABAC) for Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 * [Add or remove Azure role assignments using the Azure portal](/azure/role-based-access-control/role-assignments-portal)
 * [Use the portal to create a Microsoft Entra application and service principal that can access resources](/azure/active-directory/develop/howto-create-service-principal-portal)
 * [Create a new application secret](/azure/active-directory/develop/howto-create-service-principal-portal#option-3-create-a-new-client-secret)
 * [Microsoft Entra authentication and authorization codes](/azure/active-directory/develop/reference-aadsts-error-codes)
-* [Login with non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)
+* [Login with non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md)
 
 ### Check that credentials aren't expired
 
@@ -136,12 +136,12 @@ Tokens and Active Directory credentials may expire after defined periods, preven
 
 * If using an individual AD identity, a managed identity, or service principal for registry login, the AD token expires after 3 hours. Log in again to the registry.  
 * If using an AD service principal with an expired client secret, a subscription owner or account administrator needs to reset credentials or generate a new service principal.
-* If using a [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), a registry owner might need to reset a password or generate a new token.
+* If using a [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), a registry owner might need to reset a password or generate a new token.
 
 Related links:
 
 * [Reset service principal credentials](/cli/azure/ad/sp/credential#az-ad-sp-credential-reset)
-* [Regenerate non-Entra token passwords](container-registry-token-based-repository-permissions.md#regenerate-token-passwords)
+* [Regenerate non-Microsoft Entra token passwords](container-registry-token-based-repository-permissions.md#regenerate-token-passwords)
 * [Individual login with Microsoft Entra ID](container-registry-authentication.md#individual-login-with-azure-ad)
 
 ## Advanced troubleshooting

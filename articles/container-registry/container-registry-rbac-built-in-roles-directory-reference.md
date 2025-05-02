@@ -23,9 +23,9 @@ For a high-level overview of these built-in roles—including supported role ass
 
 > [!NOTE]
 > The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal:
-> - **RBAC Registry + ABAC Repository Permissions**: Supports standard RBAC role assignments with optional Entra ABAC conditions to scope assignments to specific repositories.
+> - **RBAC Registry + ABAC Repository Permissions**: Supports standard RBAC role assignments with optional Microsoft Entra ABAC conditions to scope assignments to specific repositories.
 > - **RBAC Registry Permissions**: Supports only standard RBAC assignments without ABAC conditions.
-> For details on Entra ABAC and ABAC-enabled roles, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+> For details on Microsoft Entra ABAC and ABAC-enabled roles, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ## Built-in roles reference
 
@@ -49,7 +49,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
       - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
@@ -67,7 +67,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
       - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement status](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
@@ -108,7 +108,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
 
 The following built-in roles are data plane roles. Assign these roles to identities that need to perform data plane operations to interact with images and artifacts stored within a registry, but don't require control plane permissions to manage registries.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
@@ -125,7 +125,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list repositories (image names) in the registry
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
     - **Doesn't grant repository catalog list permissions.**
-  - **ABAC support**: Supports optional Entra ABAC conditions to scope role assignments to specific repositories.
+  - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### Container Registry Repository Writer
 - **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings. Also assign to automated processes or services that sign images as part of a trusted supply chain.
@@ -139,7 +139,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list repositories (image names) in the registry
     - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling (but not disabling) artifact streaming conversion for specific images)
     - **Doesn't grant repository catalog list permissions.**
-  - **ABAC support**: Supports optional Entra ABAC conditions to scope role assignments to specific repositories.
+  - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### Container Registry Repository Contributor
 - **Use case**: Assign to identities or services responsible for managing image lifecycle and cleanup.
@@ -153,7 +153,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list repositories (image names) in the registry
     - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling/**disabling** artifact streaming conversion for specific images)
     - **Doesn't grant repository catalog list permissions.**
-  - **ABAC support**: Supports optional Entra ABAC conditions to scope role assignments to specific repositories.
+  - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### AcrQuarantineWriter
 - **Use case**: Assign to automated processes or services that manage quarantined images, such as CI/CD pipelines and vulnerability scanners.
@@ -162,7 +162,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - Manage [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md) (list and read quarantined artifacts, modify artifact quarantine status)
-  - **ABAC support**: Doesn't support Entra ABAC conditions.
+  - **ABAC support**: Doesn't support Microsoft Entra ABAC conditions.
 
 ##### AcrQuarantineReader
 - **Use case**: Assign to automated processes or services that list, read, and pull quarantined images, such as CI/CD pipelines and vulnerability scanners.
@@ -171,7 +171,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
-  - **ABAC support**: Doesn't support Entra ABAC conditions.
+  - **ABAC support**: Doesn't support Microsoft Entra ABAC conditions.
 
 #### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
 
@@ -241,13 +241,13 @@ Assign these roles only to trusted identities, as they provide access to a wide 
 
 Azure recommends using less privileged [control plane roles](#control-plane-roles) or [data plane roles](#data-plane-roles) whenever possible instead of these privileged roles.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
 ##### Owner
 - **Use case**: Assign to administrators who need complete control over the registry, including the ability to assign roles to other identities and perform role assignments for the registry.
-- **Permissions**: Full access to all registry control plane operations, including [role assignment permissions](container-registry-rbac-built-in-roles-overview.md) and managing [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+- **Permissions**: Full access to all registry control plane operations, including [role assignment permissions](container-registry-rbac-built-in-roles-overview.md) and managing [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
   - **Control plane permissions**:
     - Create, update, view, list, and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
     - Manage [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
@@ -262,7 +262,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
@@ -293,7 +293,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - View and list registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
@@ -304,7 +304,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 
 ##### Owner
 - **Use case**: Assign to administrators who need complete control over the registry, including the ability to assign roles to other identities and perform role assignments for the registry.
-- **Permissions**: Full access to all registry control plane operations and data plane operations, including [role assignment permissions](container-registry-rbac-built-in-roles-overview.md) and managing [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+- **Permissions**: Full access to all registry control plane operations and data plane operations, including [role assignment permissions](container-registry-rbac-built-in-roles-overview.md) and managing [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
   - **Control plane permissions**:
     - Create, update, view, list, and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
     - Manage [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
@@ -319,7 +319,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
@@ -358,7 +358,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
       - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
-      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
     - View and list registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)

@@ -96,7 +96,7 @@ Child registries must be compatible with their parent capabilities. Thus, both R
 
 ## Client access
 
-On-premises clients use standard tools such as the Docker CLI to push or pull content from a Connected registry. To manage client access, you create Azure container registry [non-Entra tokens][non-Entra token-based repository permissions] for access to each connected registry. You can scope the client tokens for pull or push access to one or more repositories in the registry.
+On-premises clients use standard tools such as the Docker CLI to push or pull content from a Connected registry. To manage client access, you create Azure container registry [non-Microsoft Entra tokens][non-Microsoft Entra token-based repository permissions] for access to each connected registry. You can scope the client tokens for pull or push access to one or more repositories in the registry.
 
 Each connected registry also needs to regularly communicate with its parent registry. For this purpose, the registry is issued a synchronization token (*sync token*) by the cloud registry. This token is used to authenticate with its parent registry for synchronization and management operations.
 
@@ -128,4 +128,4 @@ In this overview, you learned about the connected registry and some basic concep
 <!-- LINKS - internal -->
 [overview-connected-registry-access]:overview-connected-registry-access.md
 [overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
-[non-Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md
+[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

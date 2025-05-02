@@ -38,11 +38,11 @@ Create an ACR instance using the [az acr create][az-acr-create] command. The reg
 ### Configure role assignment permissions mode
 
 You can optionally use the `--role-assignment-mode` parameter to specify the role assignment mode of the registry.
-This option determines how Entra role-based access control (RBAC) and role assignments are managed for the registry, including the use of Entra attribute-based access control (ABAC) for Entra repository permissions.
+This option determines how Microsoft Entra role-based access control (RBAC) and role assignments are managed for the registry, including the use of Microsoft Entra attribute-based access control (ABAC) for Microsoft Entra repository permissions.
 
-Specify `rbac-abac` for this parameter to retain standard Entra RBAC role assignments, while optionally applying Entra ABAC conditions for fine‑grained, repository‑level access control.
+Specify `rbac-abac` for this parameter to retain standard Microsoft Entra RBAC role assignments, while optionally applying Microsoft Entra ABAC conditions for fine‑grained, repository‑level access control.
 
-For more information on this option, see [Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
+For more information on this option, see [Microsoft Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ## Create a container registry
 

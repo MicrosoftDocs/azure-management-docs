@@ -118,11 +118,11 @@ landingContent:
             url: container-registry-authentication-managed-identity.md
           - text: Authenticate with service principal
             url: container-registry-auth-service-principal.md
-          - text: Authenticate with non-Entra token-based repository permissions 
+          - text: Authenticate with non-Microsoft Entra token-based repository permissions 
             url: container-registry-token-based-repository-permissions.md
           - text: Authenticate from Kubernetes
             url: authenticate-kubernetes-options.md
-          - text: Disable authentication as ARM (Entra ARM audience tokens)
+          - text: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
             url: container-registry-disable-authentication-as-arm.md
           - text: Configure conditional access for ACR
             url: container-registry-configure-conditional-access.md
@@ -130,7 +130,7 @@ landingContent:
             url: anonymous-pull-access.md
       - linkListType: reference
         links:
-          - text: Entra permissions and role assignments
+          - text: Microsoft Entra permissions and role assignments
             url: container-registry-rbac-built-in-roles-overview.md
           - text: Role directory reference
             url: container-registry-rbac-built-in-roles-directory-reference.md

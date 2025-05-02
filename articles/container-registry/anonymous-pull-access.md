@@ -22,7 +22,7 @@ Anonymous pull access is a preview feature, available in the Standard and Premiu
 - If you previously authenticated to the registry, make sure you clear the credentials before attempting an anonymous pull operation.
 
 > [!WARNING]
-> Anonymous pull access currently applies to all repositories in the registry. If you manage repository access using [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md) or [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), all users can still pull from those repositories in a registry enabled for unauthenticated anonymous pull. Please be aware of this when enabling unauthenticated anonymous pull access.
+> Anonymous pull access currently applies to all repositories in the registry. If you manage repository access using [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md) or [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), all users can still pull from those repositories in a registry enabled for unauthenticated anonymous pull. Please be aware of this when enabling unauthenticated anonymous pull access.
 
 ## Configure anonymous pull access 
 
@@ -69,8 +69,8 @@ The command returns a boolean value indicating whether "Anonymous Pull" is enabl
 
 ## Next steps
 
-* Learn about using [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
-* Learn about using [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md).
+* Learn about using [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+* Learn about using [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md).
 * Learn about options to [authenticate](container-registry-authentication.md) to an Azure container registry.
 
 
