@@ -27,16 +27,17 @@ This role assignment can be done either through the Azure portal or Azure CLI.
 You can enable ABAC for any registry, regardless of its SKU.
 
 > [!NOTE]
-> If you have previously participated in the private preview of this feature, you may have installed a custom private preview extension to manage ACR ABAC.
-> This custom extension is no longer needed and should be uninstalled with the Azure CLI command `az extension remove --name acrabac`.
+> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`.
+> Additionally, if you have previously participated in the private preview of this feature, you may have installed a custom private preview extension to manage ACR ABAC.
+> This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
 
 ### Effect on existing role assignments
 
 > [!IMPORTANT]
 > If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments aren't honored, because a different set of ACR built-in roles apply to ABAC-enabled registries.
 
-For example, the `AcrPull` and `AcrPush` roles aren't honored in an ABAC-enabled registry.
-Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles to grant both registry-wide or repository-specific push and pull permissions.
+For example, the `AcrPull`, `AcrPush`, and `AcrDelete` roles aren't honored in an ABAC-enabled registry.
+Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
 
 For more information on the role based on your scenario and registry role assignment permissions mode, see [scenarios for ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
 Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
@@ -103,15 +104,16 @@ You can use either the Azure portal or Azure CLI to assign Entra ABAC conditions
 
 ### ABAC-enabled built-in roles
 
-The following ACR built-in roles **support optional ABAC conditions** to scope role assignments to specific repositories:
+The following ACR built-in roles are ABAC-enabled roles.
+You can specify optional ABAC conditions to the following roles to optionally scope role assignments to specific repositories.
 
-* `Container Registry Repository Reader` - grants permissions to **read** images, tags, and metadata within repositories in a registry.
-* `Container Registry Repository Writer` - grants permissions to **read, write, and update** images, tags, and metadata within repositories in a registry.
-* `Container Registry Repository Contributor` - grants permissions to **read, write, update, and delete** images, tags, and metadata within repositories in a registry.
+* `Container Registry Repository Reader` - ABAC-enabled role that grants permissions to **read** images, tags, and metadata within repositories in a registry.
+* `Container Registry Repository Writer` - ABAC-enabled role that grants permissions to **read, write, and update** images, tags, and metadata within repositories in a registry.
+* `Container Registry Repository Contributor` - ABAC-enabled role that grants permissions to **read, write, update, and delete** images, tags, and metadata within repositories in a registry.
 
 Take note that these roles **don't support catalog listing permissions to list repositories** in a registry.
 To list all repositories in a registry (without granting permissions to read repository content), you must additionally assign the `Container Registry Repository Catalog Lister` role.
-This role **does not support ABAC conditions** and will always have permissions to **list all repositories** in a registry.
+This separate role **does not support ABAC conditions** and will always have permissions to **list all repositories** in a registry.
 
 > [!IMPORTANT]
 > **If you assign an ABAC-enabled role without ABAC conditions, the role assignment won't be scoped to repositories**.
