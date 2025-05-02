@@ -1,7 +1,7 @@
 ---
 title: "Azure Arc-enabled Kubernetes connectivity modes"
 ms.date: 03/26/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "This article provides an overview of the connectivity modes supported by Azure Arc-enabled Kubernetes"
 ---
 

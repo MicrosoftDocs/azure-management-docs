@@ -1,7 +1,7 @@
 ---
 title: Extensions security
 description: Extensions security for Azure Arc-enabled servers.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 03/05/2025
 ---
 

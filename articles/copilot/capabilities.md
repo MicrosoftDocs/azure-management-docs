@@ -2,7 +2,7 @@
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
 ms.date: 04/28/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.custom:
   - ignite-2023

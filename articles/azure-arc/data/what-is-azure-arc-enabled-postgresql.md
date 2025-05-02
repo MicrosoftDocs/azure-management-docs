@@ -8,7 +8,7 @@ author: dhanmm
 ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/19/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # What is Azure Arc-enabled PostgreSQL server

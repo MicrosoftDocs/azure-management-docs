@@ -4,7 +4,7 @@ description: "Use wildcards to match multiple paths within the container image r
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-ms.topic: conceptual #Don't change
+ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli
 ms.date: 02/26/2025
 ai-usage: ai-assisted

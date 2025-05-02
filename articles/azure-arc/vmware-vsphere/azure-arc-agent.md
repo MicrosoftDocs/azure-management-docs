@@ -1,7 +1,7 @@
 ---
 title:  Azure Arc agent
 description: Learn about Azure Arc agent
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
