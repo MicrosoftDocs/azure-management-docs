@@ -119,15 +119,11 @@ The steps used vary depending on whether you're using Azure CLI or Bash.
    CredentialSetPrincipalID=$(az acr credential-set show --name MyCredentialSet --registry MyRegistry  --query 'identity.principalId'  -o tsv
    ```
 
-   Copy this value and paste it into the `CredentialSetPrincipalID` variable.
-
 1. Display properties of the Key Vault to get its resource ID:
 
    ```bash
    KeyVaultResourceID=$(az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup --query 'id' -o tsv
    ```
-
-   Copy this value and paste it into the `KeyVaultResourceID` variable.
 
 1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
 
