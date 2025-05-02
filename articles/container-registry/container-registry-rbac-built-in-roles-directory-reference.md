@@ -267,7 +267,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
-    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Contributor role.**
+    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Owner role.**
 
 ##### Contributor
 - **Use case**: Assign to identities that need to manage registries, but don't require role assignment permissions.
@@ -298,7 +298,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
-    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Contributor role.**
+    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Reader role.**
 
 #### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
 

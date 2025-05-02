@@ -16,9 +16,9 @@ This article helps you troubleshoot problems you might encounter when logging in
 
 May include one or more of the following:
 
-* Unable to login to registry using `docker login`, `az acr login`, or both
-* Unable to login to registry and you receive error `unauthorized: authentication required` or `unauthorized: Application not registered with AAD`
-* Unable to login to registry and you receive Azure CLI error `Could not connect to the registry login server`
+* Unable to log in to registry using `docker login`, `az acr login`, or both
+* Unable to log in to registry and you receive error `unauthorized: authentication required` or `unauthorized: Application not registered with AAD`
+* Unable to log in to registry and you receive Azure CLI error `Could not connect to the registry login server`
 * Unable to push or pull images and you receive Docker error `unauthorized: authentication required`
 * Unable to access a registry using `az acr login` and you receive error `CONNECTIVITY_REFRESH_TOKEN_ERROR. Access to registry was denied. Response code: 403. Unable to get admin user credentials with message: Admin user is disabled. Unable to authenticate using AAD or admin login credentials.`
 * Unable to access registry from Azure Kubernetes Service, Azure DevOps, or another Azure service
@@ -33,7 +33,7 @@ May include one or more of the following:
 * The registry public access is disabled. Public network access rules on the registry prevent access - [solution](container-registry-troubleshoot-access.md#configure-public-access-to-registry)
 * The credentials aren't authorized for push, pull, or Azure Resource Manager operations - [solution](#confirm-credentials-are-authorized-to-access-registry)
 * The credentials are expired - [solution](#check-that-credentials-arent-expired)
-* If you are using Azure Entra role-based access control (RBAC) for managing registry permissions for an Entra identity (user, managed identity, or service principal), the identity may have registry permissions but not repository permissions - [solution](#confirm-credentials-are-authorized-to-access-registry)
+* If you're using Microsoft Entra role-based access control (RBAC) for managing registry permissions for an Entra identity (user, managed identity, or service principal), the identity may have registry permissions but not repository permissions - [solution](#confirm-credentials-are-authorized-to-access-registry)
 
 ## Further diagnosis 
 
@@ -107,12 +107,12 @@ Related links:
 
 #### Validate identity permissions and role assignments
 
-* If you are using Azure Entra role-based access control (RBAC) for managing registry permissions, confirm that the identity (user, managed identity, or service principal) has the correct role assignment and permissions.
-  * If your "Registry role assignment permissions mode" (in the Azure Portal "Properties" blade) is set to the new "RBAC Registry + ABAC Repository Permissions" option, and the identity cannot push, pull, or delete images, the identity may not have permissions to access the specific repository the image is in.
+* If you're using Microsoft Entra role-based access control (RBAC) for managing registry permissions, confirm that the identity (user, managed identity, or service principal) has the correct role assignment and permissions.
+  * If your "Registry role assignment permissions mode" (in the Azure portal "Properties" blade) is set to the new "RBAC Registry + ABAC Repository Permissions" option, and the identity can't push, pull, or delete images, the identity may not have permissions to access the specific repository the image is in.
     * Check existing role assignments and role assignment ABAC conditions to ensure the identity has the correct permissions to access the repository.
-    * **Registries with "RBAC Registry + ABAC Repository Permissions" mode do not honor the existing `AcrPull`, `AcrPush`, or `AcrDelete` roles.**
+    * **Registries with "RBAC Registry + ABAC Repository Permissions" mode don't honor the existing `AcrPull`, `AcrPush`, or `AcrDelete` roles.**
     * **Instead, such registries only honor the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to read, write, or delete images within repositories in a registry.** These roles may have optional ABAC conditions that restrict permissions granted to specific repositories.
-    * Take note that these roles do not grant permissions to catalog listing to list repositories in the registry. To list repositories (but not read content within repositories), you must separately assign the `Container Registry Repository Catalog Lister` role to the identity. This role does not support ABAC conditions so it will grant permissions to list all repositories in a registry.
+    * Take note that these roles don't grant permissions to catalog listing to list repositories in the registry. To list repositories (but not read content within repositories), you must separately assign the `Container Registry Repository Catalog Lister` role to the identity. This role doesn't support ABAC conditions so it grants permissions to list all repositories in a registry.
     * For more information, see [Entra attribute-based access control (ABAC) for Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
   * If your "Registry role assignment permissions mode" is set to the old "RBAC Registry Permissions" option, the identity may not have permissions to access the registry and its repositories.
     * Check existing role assignments to ensure the identity has the correct permissions to access the registry and its repositories.
