@@ -132,6 +132,8 @@ landingContent:
         links:
           - text: Microsoft Entra permissions and role assignments
             url: container-registry-rbac-built-in-roles-overview.md
+          - text: Microsoft Entra repository permissions
+            url: container-registry-rbac-abac-repository-permissions.md
           - text: Role directory reference
             url: container-registry-rbac-built-in-roles-directory-reference.md
           - text: Custom roles

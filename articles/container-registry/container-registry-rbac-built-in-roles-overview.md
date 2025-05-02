@@ -85,8 +85,8 @@ These common scenarios each have a recommended built-in role.
 
 - **Scenario: Identities that need to list all repositories in the registry**
   - Role: `Container Registry Repository Catalog Lister`
-  - Permissions: Grants data plane access to list all repositories in the registry. Doesn't include any control plane permissions or permissions to push/pull images.
-  - ABAC support: This role **doesn't support Microsoft Entra ABAC conditions**. As such, this role assignment will **grant permissions to list all repositories** in the registry, regardless of any Microsoft Entra ABAC conditions specified in the role assignment.
+  - Permissions: Grants data plane access to list all repositories in the registry, including through the `{loginServerURL}/acr/v1/_catalog` or `{loginServerURL}/v2/_catalog` registry API endpoints. Doesn't include any control plane permissions or permissions to push/pull images.
+  - ABAC support: This role **doesn't support Microsoft Entra ABAC conditions**. As such, this role assignment will **grant permissions to list all repositories** in the registry.
 
 - **Scenario: Pipelines, identities, and developers that sign images**
   - For signing images with OCI referrers such as [Notary Project](container-registry-tutorial-sign-build-push.md):

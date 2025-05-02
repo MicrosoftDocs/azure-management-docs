@@ -25,7 +25,7 @@ For additional registry troubleshooting guidance, see:
 The following examples show different ways to run the `az acr check-health` command.
 
 > [!NOTE]
-> If you run the command in Azure Cloud Shell, the local environment is not checked. However, you can check the access to a target registry.
+> If you run the command in Azure Cloud Shell, the local environment isn't checked. However, you can check the access to a target registry.
 
 ### Check the environment only
 

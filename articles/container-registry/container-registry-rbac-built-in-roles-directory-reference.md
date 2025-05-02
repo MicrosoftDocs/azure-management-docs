@@ -37,6 +37,10 @@ Each built-in role includes a set of permissions (actions and data actions) that
 
 The following built-in roles are control plane roles. Assign these roles to identities that need to manage registries, but don't require data plane permissions.
 
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+
+#### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
+
 ##### Container Registry Contributor and Data Access Configuration Administrator
 - **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
 - **Permissions**: Grants control plane access to create, configure, and manage registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
@@ -76,11 +80,13 @@ The following built-in roles are control plane roles. Assign these roles to iden
 ##### Container Registry Tasks Contributor
 - **Use case**: Assign to identities—such as CI/CD pipelines or automation tools—that need to manage ACR tasks and task-related resources without access to other registry operations or image data.
 - **Permissions**: Grants control plane access to manage [ACR tasks](container-registry-tasks-overview.md), including task definitions, runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md). Doesn't include data plane permissions or access to registry configuration outside of tasks.
-  <!-- Need to validate if this role has permissions to manage task identities. -->
   - **Control plane permissions**:
     - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
-    <!-- Need to validate if this role has permissions to manage task identities. -->
-    - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
+      - Grants permissions to configure an [ACR task's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage an ACR task's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Grants permissions to manage [auto-purge on ACR tasks](container-registry-auto-purge.md)
+      - **For ABAC-enabled registries, ACR tasks, quick builds, and quick runs don't have default data plane permissions to push, pull, or delete images and tags within repositories.**
+        - ACR tasks belonging to ABAC-enabled registries must have the `Container Registry Repository Reader/Writer/Contributor` and `Container Registry Repository Catalog Lister` roles assigned to the task identity in order to perform data plane operations.
+        - For quick builds and quick runs, the identity (caller) invoking the quick task must have the `Container Registry Repository Reader/Writer/Contributor` and `Container Registry Repository Catalog Lister` roles assigned to it in order to perform data plane operations.
   - **Data plane permissions**:
     - None
 
@@ -104,12 +110,81 @@ The following built-in roles are control plane roles. Assign these roles to iden
     - View and list repositories (image names) in the registry
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
 
+#### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
+
+##### Container Registry Contributor and Data Access Configuration Administrator
+- **Use case**: Ideal for registry administrators, CI/CD pipelines, or automated processes that need to create and configure registries, set up registry authentication mechanisms, manage registry network access, and manage registry policies—without needing permissions to push/pull images or assign roles.
+- **Permissions**: Grants control plane access to create, configure, and manage registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
+  - **Control plane permissions**:
+    - Create, update, view, list, and delete registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
+    - Manage [geo-replications](container-registry-geo-replication.md)
+    - Manage [connected registries](intro-connected-registry.md)
+    - Update registry configuration
+      - Configure the [registry's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage a registry's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
+      - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
+      - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+    - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
+  - **Data plane permissions**:
+    - None
+
+##### Container Registry Configuration Reader and Data Access Configuration Reader
+- **Use case**: Ideal for auditors, monitoring systems, and vulnerability scanners that only need to view registries, audit registry authentication mechanisms, audit registry network access configurations, and view registry policies—without needing permissions to push/pull images or assign roles.
+- **Permissions**: Grants control plane access to view and list registries and registry configurations, including authentication settings, tokens, private endpoints, network access, and registry policies. Doesn't include data plane operations (for example, image push/pull) or role assignment capabilities.
+  - **Control plane permissions**:
+    - View and list registries (including [registry SKUs](container-registry-skus.md) and [availability zones and zone redundancy](zone-redundancy.md))
+    - View and list (but not manage) [role assignments for registries](container-registry-rbac-built-in-roles-overview.md)
+    - View and list [geo-replications](container-registry-geo-replication.md)
+    - View and list [connected registries](intro-connected-registry.md)
+    - View registry configuration
+      - View and list both the [registry's system-assigned managed identity and user-assigned managed identity](/cli/azure/acr/identity)
+      - View and list network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
+      - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
+      - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
+      - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement status](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+    - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
+  - **Data plane permissions**:
+    - None
+
+##### Container Registry Tasks Contributor
+- **Use case**: Assign to identities—such as CI/CD pipelines or automation tools—that need to manage ACR tasks and task-related resources without access to other registry operations or image data.
+- **Permissions**: Grants control plane access to manage [ACR tasks](container-registry-tasks-overview.md), including task definitions, runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md). Doesn't include data plane permissions or access to registry configuration outside of tasks.
+  - **Control plane permissions**:
+    - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
+      - Configure an [ACR task's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage an ACR task's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
+  - **Data plane permissions**:
+    - None
+
+##### Container Registry Transfer Pipeline Contributor
+- **Use case**: Assign to CI/CD pipelines or automation processes that need to manage [ACR transfer pipelines](container-registry-transfer-cli.md) for moving artifacts across network, tenant, or air gap boundaries. This role is ideal when transfers must flow through an intermediary Azure Storage account to bridge isolated environments.
+- **Permissions**: Grants control plane access to configure and operate [ACR import/export transfer pipelines](container-registry-transfer-cli.md) using intermediary storage accounts, enabling secure artifact transfer between disconnected or segmented environments. Doesn't include data plane permissions, broader registry access, or permissions to manage other Azure resource types such as storage accounts or key vaults.
+  - **Control plane permissions**:
+    - Manage [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
+  - **Data plane permissions**:
+    - None
+
+##### Container Registry Data Importer and Data Reader
+- **Use case**: Assign to identities—such as CI/CD pipelines—that need to [import images from other registries with `az acr import`](container-registry-import-images.md). The role also enables reading images and artifacts in a registry to validate the success of the import operation.
+- **Permissions**: Grants control plane access to trigger [image imports using `az acr import`](container-registry-import-images.md), and data plane access to pull images and artifacts, view repository contents, Open Container Initiative (OCI) referrers, tags, and artifact streaming configurations. Doesn't allow pushing or modifying any content in the registry.
+  - **Control plane permissions**:
+    - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
+  - **Data plane permissions**:
+    - Pull images and artifacts within repositories in the registry
+    - View and list OCI referrer artifacts
+    - View and list image and artifact metadata such as tags
+    - View and list repositories (image names) in the registry
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
+
+---
+
 ### Data plane roles
 
 The following built-in roles are data plane roles. Assign these roles to identities that need to perform data plane operations to interact with images and artifacts stored within a registry, but don't require control plane permissions to manage registries.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
-
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
@@ -154,6 +229,17 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling/**disabling** artifact streaming conversion for specific images)
     - **Doesn't grant repository catalog list permissions.**
   - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
+
+##### Container Registry Repository Catalog Lister
+  - **Use case**: Assign to identities or services that need to **list all repositories** in a registry, such as CI/CD pipelines, developers, vulnerability scanners, or registry monitoring and auditing tools.
+  - **Permissions**: Grants data plane access to **list all repositories** in the registry. Doesn't include any control plane permissions or permissions to push/pull images.
+    - **Control plane permissions**:
+      - None
+    - **Data plane permissions**:
+      - List all repositories (image names) in the registry
+      - Grants permissions to invoke the `{loginServerURL}/acr/v1/_catalog` or `{loginServerURL}/v2/_catalog` registry API endpoints to list all repositories in the registry.
+      - **Doesn't grant permissions to view or list images, artifacts, tags, or OCI referrers within repositories.**
+    - **ABAC support**: This role **doesn't support Entra ABAC conditions**. As such, this role assignment will **grant permissions to list all repositories** in the registry.
 
 ##### AcrQuarantineWriter
 - **Use case**: Assign to automated processes or services that manage quarantined images, such as CI/CD pipelines and vulnerability scanners.
@@ -241,7 +327,7 @@ Assign these roles only to trusted identities, as they provide access to a wide 
 
 Azure recommends using less privileged [control plane roles](#control-plane-roles) or [data plane roles](#data-plane-roles) whenever possible instead of these privileged roles.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 
@@ -254,7 +340,11 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
     - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
-    - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
+      - Grants permissions to configure an [ACR task's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage an ACR task's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Grants permissions to manage [auto-purge on ACR tasks](container-registry-auto-purge.md)
+      - **For ABAC-enabled registries, ACR tasks, quick builds, and quick runs don't have default data plane permissions to push, pull, or delete images and tags within repositories.**
+        - ACR tasks belonging to ABAC-enabled registries must have the `Container Registry Repository Reader/Writer/Contributor` and `Container Registry Repository Catalog Lister` roles assigned to the task identity in order to perform data plane operations.
+        - For quick builds and quick runs, the identity (caller) invoking the quick task must have the `Container Registry Repository Reader/Writer/Contributor` and `Container Registry Repository Catalog Lister` roles assigned to it in order to perform data plane operations.
     - Configure [artifact cache rules and credential sets](artifact-cache-overview.md)
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
     - Manage [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)
@@ -267,7 +357,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
-    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Owner role.**
+    - **None - ABAC-enabled registries don't have data plane permissions for the built-in Owner role.**
 
 ##### Contributor
 - **Use case**: Assign to identities that need to manage registries, but don't require role assignment permissions.
@@ -276,7 +366,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Same as Owner, except for managing or performing [role assignments for registries](container-registry-rbac-built-in-roles-overview.md). Only permissions for viewing and listing role assignments for a registry are granted.
     - Note: to manage or perform role assignments for registries, the `Role Based Access Control Administrator` role is required. This less privileged role is recommended in lieu of the `Owner` role for managing role assignments.
   - **Data plane permissions**:
-    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Contributor role.**
+    - **None - ABAC-enabled registries don't have data plane permissions for the built-in Contributor role.**
 
 ##### Reader
 - **Use case**: Assign to identities who only need to view and list registries and registry configuration.
@@ -298,7 +388,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
-    - **None - ABAC-enabled registries do not have data plane permissions for the built-in Reader role.**
+    - **None - ABAC-enabled registries don't have data plane permissions for the built-in Reader role.**
 
 #### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
 
@@ -311,7 +401,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Manage [geo-replications](container-registry-geo-replication.md)
     - Manage [connected registries](intro-connected-registry.md)
     - Manage [ACR tasks](container-registry-tasks-overview.md), task runs, [task agent pools](tasks-agent-pools.md), quick tasks ([quick builds with `az acr build`](/cli/azure/acr#az-acr-build) and [quick runs with `az acr run`](/cli/azure/acr#az-acr-run)), [task logs](container-registry-tasks-logs.md), and [task identities](container-registry-tasks-authentication-managed-identity.md)
-    - Manage [auto-purge on ACR Tasks](container-registry-auto-purge.md)
+      - Grants permissions to configure an [ACR task's system-assigned managed identity](/cli/azure/acr/identity). Note: to manage an ACR task's user-assigned managed identity, the separate `Managed Identity Operator` role is required.
+      - Grants permissions to manage [auto-purge on ACR tasks](container-registry-auto-purge.md)
     - Configure [artifact cache rules and credential sets](artifact-cache-overview.md)
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
     - Manage [ACR transfer pipelines for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries](container-registry-transfer-cli.md) (import pipelines, export pipelines, and import/export pipeline runs)

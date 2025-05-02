@@ -203,7 +203,7 @@ az keyvault secret set \
                 --output tsv)
 ```
 
-The `--role` argument in the preceding command configures the service principal with the built-in role to grant it pull-only access to the registry. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md), with ABAC-enabled registries needing the `Container Registry Repository Reader` role and non-ABAC registries needing the `AcrPull` role.
+The `--role` argument in the preceding command configures the service principal with a built-in role to grant it pull-only access to the registry. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md), with ABAC-enabled registries needing the `Container Registry Repository Reader` role and non-ABAC registries needing the `AcrPull` role.
 
 To grant both push and pull access, change the `--role` argument to either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
 

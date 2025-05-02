@@ -143,7 +143,7 @@
           href: container-registry-authentication-managed-identity.md
         - name: Authenticate with service principal
           href: container-registry-auth-service-principal.md
-        - name: Authenticate with non-Entra token-based repository permissions 
+        - name: Authenticate with non-Microsoft Entra token-based repository permissions 
           href: container-registry-token-based-repository-permissions.md
         - name: Authenticate from Azure Container Instances
           href: container-registry-auth-aci.md
@@ -161,13 +161,15 @@
           href: anonymous-pull-access.md
         - name: Configure conditional access to your Azure Container Registry.
           href: container-registry-configure-conditional-access.md
-        - name: Disable authentication as ARM (Entra ARM audience tokens)
+        - name: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
           href: container-registry-disable-authentication-as-arm.md
-      - name: Entra role-based access control and authorization
+      - name: Microsoft Entra role-based access control and authorization
         items:
-        - name: Entra permissions and roles overview
+        - name: Microsoft Entra permissions and role assignments
           href: container-registry-rbac-built-in-roles-overview.md
           displayName: permissions, authorization
+        - name: Microsoft Entra repository permissions
+          href: container-registry-rbac-abac-repository-permissions.md
         - name: Role directory reference
           href: container-registry-rbac-built-in-roles-directory-reference.md
           displayName: permissions, authorization
