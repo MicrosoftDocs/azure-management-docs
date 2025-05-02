@@ -228,6 +228,8 @@ These common scenarios each have a recommended built-in role.
   - Roles: `AcrPush`, `Container Registry Tasks Contributor`, and `Container Registry Contributor and Data Access Configuration Administrator`
   - Permissions: Grants capabilities to browse registries, pull and push images, and build images using `az acr build`, supporting common developer workflows in Visual Studio Code.
 
+---
+
 ## Next steps
 
 * To perform role assignments with optional Entra ABAC conditions to scope role assignments to specific repositories, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).

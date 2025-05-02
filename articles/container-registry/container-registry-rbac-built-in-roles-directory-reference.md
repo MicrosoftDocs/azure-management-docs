@@ -232,6 +232,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
   - **Data plane permissions**:
     - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
 
+---
+
 ### Privileged roles
 
 The following built-in roles are privileged roles.
@@ -369,6 +371,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
     - View and list (but not manage) [soft deleted artifacts](container-registry-soft-delete-policy.md)
     - View policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+
+---
 
 ## Next steps
 

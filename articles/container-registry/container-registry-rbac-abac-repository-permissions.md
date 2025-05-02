@@ -65,6 +65,8 @@ To create an ABAC-enabled registry with "RBAC Registry + ABAC Repository Permiss
 az acr create --name <registry-name> --resource-group <resource-group> --sku <sku> --role-assignment-mode 'rbac-abac' --location <location>
 ```
 
+---
+
 ### Update an existing registry to enable ABAC
 
 #### [Azure Portal](#tab/azure-portal)
@@ -93,6 +95,8 @@ To update an existing registry to "RBAC Registry + ABAC Repository Permissions",
 ```azurecli
 az acr update --name <registry-name> --resource-group <resource-group> --role-assignment-mode 'rbac-abac'
 ```
+
+---
 
 ## Assigning Entra ABAC repository permissions
 
@@ -274,6 +278,8 @@ The following shows an example of the output:
 
 To update or delete the role assignment, you can use [`az role assignment update`](/cli/azure/role/assignment#az-role-assignment-update) or [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete).
 
+---
+
 ### Scope role assignment to multiple repositories using repository prefix (wildcard)
 
 In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to multiple repositories with a common prefix (wildcard scenario).
@@ -403,6 +409,8 @@ The following shows an example of the output:
 ```
 
 To update or delete the role assignment, you can use [`az role assignment update`](/cli/azure/role/assignment#az-role-assignment-update) or [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete).
+
+---
 
 ### Scope role assignment to multiple repositories using multiple repository prefixes (multiple wildcards)
 
@@ -551,6 +559,8 @@ The following shows an example of the output:
 ```
 
 To update or delete the role assignment, you can use [`az role assignment update`](/cli/azure/role/assignment#az-role-assignment-update) or [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete).
+
+---
 
 ### Maximum number of ABAC conditions
 
