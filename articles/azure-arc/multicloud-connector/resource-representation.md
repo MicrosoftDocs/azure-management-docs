@@ -48,7 +48,7 @@ Resources that are discovered in AWS and projected in Azure are placed in Azure 
 
 ## Removing resources
 
-If you remove the connected cloud, or disable a solution, periodic syncs will stop for that solution, and resources will no longer be updated in Azure. However, the resources will remain in your Azure account unless you delete them. To avoid confusion, we recommend removing these AWS resource representations from Azure when you remove an AWS public cloud.
+If you remove the connector, or disable a solution, periodic syncs will stop for that solution, and resources will no longer be updated in Azure. However, the resources will remain in your Azure account unless you delete them. To avoid confusion, we recommend removing these AWS resource representations from Azure when you remove an AWS public cloud.
 
 To remove all of the AWS resource representations from Azure, navigate to the `aws_yourAwsAccountId` resource group, then delete it.
 
