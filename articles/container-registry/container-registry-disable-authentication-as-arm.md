@@ -1,6 +1,6 @@
 ---
-title: Disable Authentication as ARM Template
-description: "Disabling azureADAuthenticationAsArmPolicy will force the registry to use ACR audience token, enhancing the security of your container registries."
+title: Disable Authentication as ARM
+description: Disabling azureADAuthenticationAsArmPolicy will force the registry to only recognize ACR audience Entra tokens, enhancing the security of your container registries.
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
@@ -9,13 +9,13 @@ ms.date: 10/31/2023
 #customer intent: As a DevOps engineer, I want to disable ARM audience tokens so that I can enhance the security of my container registries.
 ---
 
-# Disable authentication as ARM template
+# Disable authentication as ARM for Entra tokens
 
-Azure AD Tokens are used when registry users authenticate with ACR. By default, Azure Container Registry (ACR) accepts Azure AD Tokens with an audience scope set for Azure Resource Manager (ARM), a control plane management layer for managing Azure resources.
+Entra tokens are used when registry users authenticate with Azure Container Registry (ACR). By default, Azure Container Registry (ACR) accepts Entra tokens with an audience scope set for Azure Resource Manager (ARM), a control plane management layer for managing Azure resources.
 
-By disabling ARM Audience Tokens and enforcing ACR Audience Tokens, you can enhance the security of your container registries during the authentication process by narrowing the scope of accepted tokens.
+By configuring your registry to not recognize Entra ARM Audience Tokens and only recognize Entra ACR Audience tokens, you can enhance the security of your container registries during the authentication process by narrowing the scope of accepted tokens.
 
-With ACR Audience Token enforcement, only Azure AD Tokens with an audience scope specifically set for ACR will be accepted during the registry authentication and sign-in process. This means that the previously accepted ARM Audience Tokens will no longer be valid for registry authentication, thereby enhancing the security of your container registries.
+With ACR Audience Token enforcement, only Entra Tokens with an audience scope specifically set for ACR will be accepted during the registry authentication and sign-in process. This means that the previously accepted ARM Audience Tokens will no longer be valid for registry authentication, thereby enhancing the security of your container registries.
 
 In this tutorial, you learn how to:
 
@@ -43,6 +43,26 @@ Disabling `azureADAuthenticationAsArmPolicy` will force the registry to use ACR 
    ```azurecli-interactive
    az acr config authentication-as-arm update -r <registry> --status [enabled/disabled]
    ```
+
+## Authenticating with ACR using Entra ACR Audience Token
+
+You can authenticate with ACR using Entra ACR Audience Token.
+To obtain an Entra ACR Audience Token, specify `--scope https://containerregistry.azure.net/.default` when you run the `az login` command.
+
+> [!NOTE]
+> You must specify `https://containerregistry.azure.net/.default` to obtain an Entra ACR Audience token scoped for the ACR service.
+> You cannot specify `https://registryname.azurecr.io/` as the scope, as neither Entra nor ACR supports registry-specific token audiences.
+
+```azurecli
+az login --scope https://containerregistry.azure.net/.default
+```
+
+After logging in, an Entra ACR Audience token (scoped for the ACR service) will be stored in the local cache.
+You can use this token to authenticate with all ACR registries that you have permissions to.
+
+```azurecli
+az acr login -n <registry>
+``` 
 
 ## Disable authentication-as-arm in the ACR - Azure portal
 

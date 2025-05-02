@@ -189,6 +189,16 @@
       "source_path_from_root": "/articles/container-registry/container-registry-roles.md",
       "redirect_url": "/azure/container-registry/container-registry-rbac-built-in-roles-overview",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "articles/container-registry/container-registry-repository-scoped-permissions.md",
+      "redirect_url": "/azure/container-registry/container-registry-token-based-repository-permissions",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "articles/container-registry/container-registry-troubleshoot-login.md",
+      "redirect_url": "/azure/container-registry/container-registry-troubleshoot-login-authn-authz",
+      "redirect_document_id": false
     }
   ]
 }

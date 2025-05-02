@@ -13,7 +13,7 @@ summary: |
   This article addresses frequently asked questions and known issues about Azure Container Registry.
   
   For registry troubleshooting guidance, see:
-  * [Troubleshoot registry login](container-registry-troubleshoot-login.md)
+  * [Troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md)
   * [Troubleshoot network issues with registry](container-registry-troubleshoot-access.md)
   * [Troubleshoot registry performance](container-registry-troubleshoot-performance.md)
   
@@ -204,51 +204,12 @@ sections:
           It's suggested to verify those public keys and certificates after the overall TUF verification done by the Docker and Notary client.
           
       - question:  |
-          How do I grant access to pull or push images without permission to manage the registry resource?
+          How do I grant access to pull or push images without granting permissions to manage the registry resource?
         answer: |
-          ACR supports [built-=in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of permissions. Specifically, `AcrPull` and `AcrPush` roles allow users to pull and/or push images without the permission to manage the registry resource in Azure.
-          
-          * Azure portal: Your registry -> Access Control (IAM) -> Add (Select `AcrPull` or `AcrPush` for the Role).
-          * Azure CLI: Find the resource ID of the registry by running the following command:
-          
-            ```azurecli
-            az acr show -n myRegistry
-            ```
-            
-            Then you can assign the `AcrPull` or `AcrPush` role to a user (the following example uses `AcrPull`):
-          
-            ```azurecli
-            az role assignment create --scope resource_id --role AcrPull --assignee user@example.com
-            ```
-          
-            Or, assign the role to a service principal identified by its application ID:
-          
-            ```azurecli
-            az role assignment create --scope resource_id --role AcrPull --assignee 00000000-0000-0000-0000-000000000000
-            ```
-          
-          The assignee is then able to authenticate and access images in the registry.
-          
-          * To authenticate to a registry:
-              
-            ```azurecli
-            az acr login -n myRegistry 
-            ```
-          
-          * To list repositories:
-          
-            ```azurecli
-            az acr repository list -n myRegistry
-            ```
-          
-          * To pull an image:
-          
-            ```bash
-            docker pull myregistry.azurecr.io/hello-world
-            ```
-          
-          With the use of only the `AcrPull` or `AcrPush` role, the assignee doesn't have the permission to manage the registry resource in Azure. For example, `az acr list` or `az acr show -n myRegistry` won't show the registry.
-          
+          ACR supports [Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Entra-based permissions, such as granting image push or pull permissions without granting permissions to the registry /var/run/docker.sock:/var/run/docker.sock
+
+          You can optionally use [Entra attribute-based access control (ABAC)] to manage [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and scope role assignments to specific repositories.
+
       - question:  |
           How do I enable automatic image quarantine for a registry?
         answer: |

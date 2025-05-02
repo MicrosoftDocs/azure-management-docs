@@ -35,7 +35,7 @@ This error means that CLI wasn't able to run the command `docker --version`.
 
 This error means that the CLI wasn't able to pull a sample image to your environment.
 
-*Potential solutions*: Validate that all components necessary to pull an image are running properly.
+*Potential solutions*: Validate that all components necessary to pull an image are running properly. Additionally, validate permissions and [troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md). If you are using [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and authenticating with an Entra identity (user, managed identity, or service principal), make sure the identity has permissions to the specific repository being accessed.
 
 ## HELM_COMMAND_ERROR
 
@@ -83,13 +83,13 @@ This error means that the challenge endpoint of the target registry issued a cha
 
 This error means that the registry login server did not respond with a refresh token, so access to the target registry was denied. This error can occur if the user does not have the right permissions on the registry or if the user credentials for the  Azure CLI are stale.
 
-*Potential solutions*: Verify if the user has the right permissions on the registry; run `az login` to refresh permissions, tokens, and credentials.
+*Potential solutions*: Verify if the user has the right permissions on the registry; run `az login` to refresh permissions, tokens, and credentials. Additionally, validate permissions and [troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md). If you are using [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and authenticating with an Entra identity (user, managed identity, or service principal), make sure the identity has permissions to the specific repository being accessed.
 
 ## CONNECTIVITY_ACCESS_TOKEN_ERROR
 
 This error means that the registry login server did not respond with an access token, so that the access to the target registry was denied. This error can occur if the user does not have the right permissions on the registry or if the user credentials for the Azure CLI are stale.
 
-*Potential solutions*: Verify if the user has the right permissions on the registry; run `az login` to refresh permissions, tokens, and credentials.
+*Potential solutions*: Verify if the user has the right permissions on the registry; run `az login` to refresh permissions, tokens, and credentials. Additionally, validate permissions and [troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md). If you are using [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and authenticating with an Entra identity (user, managed identity, or service principal), make sure the identity has permissions to the specific repository being accessed.
 
 ## CONNECTIVITY_SSL_ERROR
 

@@ -117,12 +117,13 @@ principalID=$(az acr task show --name baseexample2 --registry $ACR_NAME --query 
 baseregID=$(az acr show --name $BASE_ACR --query id --output tsv) 
 ```
  
-Assign the managed identity pull permissions to the registry by running [az role assignment create][az-role-assignment-create]:
+Assign the managed identity pull permissions to the registry by running [az role assignment create][az-role-assignment-create]. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
-  --scope $baseregID --role acrpull 
+  --scope $baseregID --role "$ROLE" 
 ```
 
 ## Add target registry credentials to the task

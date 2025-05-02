@@ -29,15 +29,27 @@ The following example creates a resource group named *myResourceGroup* in the *e
 az group create --name myResourceGroup --location eastus
 ```
 
-## Create a container registry
+## Configure parameters for a container registry
 
 In this quickstart you create a *Standard* registry, which is sufficient for most Azure Container Registry workflows. For details on available service tiers, see [Container registry service tiers][container-registry-skus].
 
 Create an ACR instance using the [az acr create][az-acr-create] command. The registry name must be unique within Azure, and contain 5-50 lowercase alphanumeric characters. In the following example, *mycontainerregistry* is used. Update this to a unique value.
 
+### Configure role assignment permissions mode
+
+You can optionally use the `--role-assignment-mode` parameter to specify the role assignment mode of the registry.
+This option determines how Entra role-based access control (RBAC) and role assignments are managed for the registry, including the use of Entra attribute-based access control (ABAC) for Entra repository permissions.
+
+Specify `rbac-abac` for this parameter to retain standard Entra RBAC role assignments, while optionally applying Entra ABAC conditions for fine‑grained, repository‑level access control.
+
+For more information on this option, see [Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
+
+## Create a container registry
+
 ```azurecli
 az acr create --resource-group myResourceGroup \
-  --name mycontainerregistry --sku Standard
+  --name mycontainerregistry --sku Standard \
+  --role-assignment-mode 'rbac-abac'
 ```
 
 When the registry is created, the output is similar to the following:

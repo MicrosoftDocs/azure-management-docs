@@ -68,7 +68,18 @@ When creating a registry from the Portal, select the **Domain Name Label Scope**
 
 **Downstream References**: The DNS name may differ from the registry name, necessitating updates in downstream files such as Dockerfiles, Kubernetes YAML, and Helm charts to reflect the full DNS name with the DNL hash. For example, if you want your downstream Dockerfile to reference a registry named `contosoacrregistry` with the `Tenant Reuse` DNL scope, you would need to update the reference to `contosoacrregistry-e7ggejfuhzhgedc8.azurecr.io` in your downstream Dockerfile.
 
-:::image type="content" source="media/container-registry-get-started-portal/qs-portal-04.png" alt-text="Review Domain Name Label option and DNS name":::
+:::image type="content" source="media/container-registry-get-started-portal/qs-portal-04a.png" alt-text="Review Domain Name Label option and DNS name":::
+
+### Configure role assignment permissions mode
+
+Configure the "Role assignment permissions mode" of the new registry.
+This option determines how Entra role-based access control (RBAC) and role assignments are managed for the registry, including the use of Entra attribute-based access control (ABAC) for Entra repository permissions.
+
+Choose "RBAC Registry + ABAC Repository Permissions" to retain standard Entra RBAC role assignments, while optionally applying Entra ABAC conditions for fine‑grained, repository‑level access control.
+
+:::image type="content" source="media/container-registry-get-started-portal/qs-portal-04b.png" alt-text="Configure role assignment permissions mode":::
+
+For more information on this option, see [Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ### Deploying the container registry
 

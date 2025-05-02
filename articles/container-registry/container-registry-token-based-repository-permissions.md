@@ -1,10 +1,10 @@
 ---
-title: Permissions to Repositories in Azure Container Registry
-description: Create a token to manage repository scoped permissions within a container registry. Perform pulling, pushing, deleting images, and reading/writing metadata.
+title: Token-based repository permissions in Azure Container Registry
+description: Use non-Entra tokens and scope maps to manage repository permissions for an Azure Container Registry without using Entra.
 ms.topic: conceptual
-author: rayoef
-ms.author: rayoflores
-ms.date: 10/31/2023
+author: johnsonshi
+ms.author: johsh
+ms.date: 05/01/2025
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
@@ -13,6 +13,10 @@ ms.service: azure-container-registry
 # Create a token with repository-scoped permissions
 
 This article describes how to create tokens and scope maps to manage access to repositories in your container registry. By creating tokens, a registry owner can provide users or services with scoped, time-limited access to repositories to pull or push images or perform other actions. A token provides more fine-grained permissions than other registry [authentication options](container-registry-authentication.md), which scope permissions to an entire registry.
+
+> [!NOTE]
+> Non-Entra tokens and scope maps can be used to manage repository permissions without the use of Entra.
+> To manage repository permissions with Microsoft Entra role assignments for Entra identities, see [Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 Common scenarios for creating a token include:
 
@@ -54,7 +58,7 @@ To configure repository-scoped permissions, you create a *token* with an associa
 
 The following image shows the relationship between tokens and scope maps.
 
-![Registry tokens and scope maps](media/container-registry-repository-scoped-permissions/token-scope-map-concepts.png)
+![Registry tokens and scope maps](media/container-registry-token-based-repository-permissions/token-scope-map-concepts.png)
 
 ## Prerequisites
 
@@ -215,14 +219,14 @@ The following example creates a token, and creates a scope map with the followin
 1. In the portal, navigate to your container registry.
 1. Under **Repository permissions**, select **Tokens > +Add**.
 
-      :::image type="content" source="media/container-registry-repository-scoped-permissions/portal-token-add.png" alt-text="Create token in portal":::
+      :::image type="content" source="media/container-registry-token-based-repository-permissions/portal-token-add.png" alt-text="Create token in portal":::
 1. Enter a token name.
 1. Under **Scope map**, select **Create new**.
 1. Configure the scope map:
     1. Enter a name and description for the scope map. 
     1. Under **Repositories**, enter `samples/hello-world`, and under **Permissions**, select  `content/read` and `content/write`. Then select **+Add**.  
 
-        :::image type="content" source="media/container-registry-repository-scoped-permissions/portal-scope-map-add.png" alt-text="Create scope map in portal":::
+        :::image type="content" source="media/container-registry-token-based-repository-permissions/portal-scope-map-add.png" alt-text="Create scope map in portal":::
 
     1. After adding repositories and permissions, select **Add** to add the scope map.
 1. Accept the default token **Status** of **Enabled** and then select **Create**.
@@ -239,7 +243,7 @@ To use a token created in the portal, you must generate a password. You can gene
 1. In the password screen, optionally set an expiration date for the password, and select **Generate**. It's recommended to set an expiration date.
 1. After generating a password, copy and save it to a safe location. You can't retrieve a generated password after closing the screen, but you can generate a new one.
 
-    :::image type="content" source="media/container-registry-repository-scoped-permissions/portal-token-password.png" alt-text="Create token password in portal":::
+    :::image type="content" source="media/container-registry-token-based-repository-permissions/portal-token-password.png" alt-text="Create token password in portal":::
 
 ## Authenticate with token
 
