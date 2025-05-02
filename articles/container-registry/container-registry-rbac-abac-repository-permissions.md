@@ -1,7 +1,7 @@
 ---
 title: Entra repository permissions in Azure Container Registry
 description: Use Entra attribute-based access control (ABAC) to manage repository permissions for an Azure Container Registry.
-ms.topic: conceptual
+ms.topic: concept-article
 author: johnsonshi
 ms.author: johsh
 ms.date: 05/01/2025
