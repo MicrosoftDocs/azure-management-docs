@@ -692,7 +692,7 @@ To create Flux configurations in clusters with workload identity enabled, modify
      provider: azure
    ```
 
-1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](/articles/container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](articles/container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ### Use workload identity with Azure DevOps
 
@@ -701,7 +701,7 @@ To use workload identity with Azure DevOps, enable the following prerequisites:
 * Ensure that your Azure DevOps Organization is [connected to Microsoft Entra](/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops&preserve-view=true).
 * Confirm that workload identity is properly set up on your cluster, following the steps for [AKS clusters](/azure/aks/workload-identity-deploy-cluster#create-an-aks-cluster) or [Arc-enabled Kubernetes clusters](workload-identity.md#enable-workload-identity-on-your-cluster).
 * Create a managed identity and federated credentials, and enable workload identity on the Flux extension's flux controller pods, as described earlier in this section.
-* Add the managed identity to the Azure DevOps organization as a user, ensuring that it has permissions to access the Azure DevOps repository. For detailed steps, see [Use service principals & managed identities in Azure DevOps](/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops#2-add-and-manage-service-principals-in-an-azure-devops-organization).
+* Add the managed identity to the Azure DevOps organization as a user, ensuring that it has permissions to access the Azure DevOps repository. For detailed steps, see [Use service principals & managed identities in Azure DevOps](/azure/devops/integrate/get-started/authentication/service-principal-managed-identity#2-add-and-manage-service-principals-in-an-azure-devops-organization).
 
 Next, set the flux configuration's `gitRepository` provider to "azure" to enable credential-free authentication. This can be configured by using Bicep, ARM templates, or Azure CLI. For example, to set the provider using Azure CLI, run the following command:
  

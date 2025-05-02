@@ -150,7 +150,7 @@ For most use cases, select all actions (permissions) belonging to the role you s
 
 Add an expression for the ABAC condition to restrict the role assignment to a specific repository.
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-08-add-condition-expression.png" alt-text="Add expression for the ABAC condition":::
+:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-08-build-expression.png" alt-text="Add expression for the ABAC condition":::
 
 Configure the following options for the expression to scope the ABAC condition to a specific repository:
   * Attribute source: `Request`
