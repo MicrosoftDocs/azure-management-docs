@@ -22,7 +22,7 @@ The following built-in role types are available:
 For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry built-in roles](container-registry-rbac-built-in-roles-overview.md).
 
 > [!NOTE]
-> The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal:
+> The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal:
 > - **RBAC Registry + ABAC Repository Permissions**: Supports standard RBAC role assignments with optional Entra ABAC conditions to scope assignments to specific repositories.
 > - **RBAC Registry Permissions**: Supports only standard RBAC assignments without ABAC conditions.
 > For details on Entra ABAC and ABAC-enabled roles, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
@@ -108,7 +108,7 @@ The following built-in roles are control plane roles. Assign these roles to iden
 
 The following built-in roles are data plane roles. Assign these roles to identities that need to perform data plane operations to interact with images and artifacts stored within a registry, but don't require control plane permissions to manage registries.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
@@ -241,7 +241,7 @@ Assign these roles only to trusted identities, as they provide access to a wide 
 
 Azure recommends using less privileged [control plane roles](#control-plane-roles) or [data plane roles](#data-plane-roles) whenever possible instead of these privileged roles.
 
-The applicable roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
+The applicable roles and role behavior depends on the registry's "Role assignment permissions mode." This is visible in the "Properties" blade in the Azure portal. For more information on Entra ABAC, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md)
 
 #### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
 

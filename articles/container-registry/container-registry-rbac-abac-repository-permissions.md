@@ -19,7 +19,7 @@ For managing repository permissions without Entra, use [non-Entra token-based re
 
 ## Configure role assignment permissions mode
 
-To use Entra ABAC to manage repository permissions, ensure the registry role assignment permissions mode is set to "RBAC Registry + ABAC Repository Permissions".
+To use Entra ABAC to manage repository permissions, ensure the registry role assignment permissions mode is set to "RBAC Registry + ABAC Repository Permissions."
 This mode allows you to use RBAC role assignments (using [ACR built-in roles](container-registry-rbac-built-in-roles-overview.md)) with optional ABAC conditions to scope role assignments to specific repositories.
 
 You can configure a registry's role assignment permissions mode either during registry creation or by updating an existing registry.
@@ -33,9 +33,9 @@ You can enable ABAC for any registry, regardless of its SKU.
 ### Effect on existing role assignments
 
 > [!IMPORTANT]
-> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments are not honored, because a different set of ACR built-in roles apply to ABAC-enabled registries.
+> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments aren't honored, because a different set of ACR built-in roles apply to ABAC-enabled registries.
 
-For example, the `AcrPull` and `AcrPush` roles are not honored in an ABAC-enabled registry.
+For example, the `AcrPull` and `AcrPush` roles aren't honored in an ABAC-enabled registry.
 Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles to grant both registry-wide or repository-specific push and pull permissions.
 
 For more information on the role based on your scenario and registry role assignment permissions mode, see [scenarios for ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
@@ -109,12 +109,12 @@ The following ACR built-in roles **support optional ABAC conditions** to scope r
 * `Container Registry Repository Writer` - grants permissions to **read, write, and update** images, tags, and metadata within repositories in a registry.
 * `Container Registry Repository Contributor` - grants permissions to **read, write, update, and delete** images, tags, and metadata within repositories in a registry.
 
-Take note that these roles **do not support catalog listing permissions to list repositories** in a registry.
+Take note that these roles **don't support catalog listing permissions to list repositories** in a registry.
 To list all repositories in a registry (without granting permissions to read repository content), you must additionally assign the `Container Registry Repository Catalog Lister` role.
 This role **does not support ABAC conditions** and will always have permissions to **list all repositories** in a registry.
 
 > [!IMPORTANT]
-> **If you assign an ABAC-enabled role without ABAC conditions, the role assignment will not be scoped to repositories**.
+> **If you assign an ABAC-enabled role without ABAC conditions, the role assignment won't be scoped to repositories**.
 > This means that a role assignment without ABAC conditions will be treated as a registry-wide role assignment, granting permissions to all repositories in the registry.
 > **To scope a role assignment to specific repositories, you must include ABAC conditions when assigning an ABAC-enabled role**.
 
@@ -128,7 +128,7 @@ By adding ABAC conditions, this role assignment lets the identity pull images, v
 
 #### [Azure portal](#tab/azure-portal)
 
-Navigate to the registry's "Access control (IAM)" blade. Click "Add" and select "Add role assignment".
+Navigate to the registry's "Access control (IAM)" blade. Click "Add" and select "Add role assignment."
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-03-add-role-assignment.png" alt-text="Add role assignment":::
 
@@ -172,7 +172,7 @@ The review page includes a code expression of the ABAC condition, which can be u
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-10-finished-condition-specific-repository.png" alt-text="Review ABAC condition to scope to a specific repository":::
 
-Perform the role assignment by clicking "Review + assign".
+Perform the role assignment by clicking "Review + assign."
 
 Once the role assignment is created, you can view, edit, or delete the role assignment.
 Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
@@ -187,7 +187,7 @@ The [az role assignment create](/cli/azure/role/assignment#az-role-assignment-cr
 | `role` | String | The name of ID of the role to assign, for example `Container Registry Repository Reader`. |
 | `scope` | String | The full resource ID of the registry. This parameter should be the registry resource ID (without the repository name), even for role assignments scoped to a specific repository, with the format `/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.ContainerRegistry/registries/{registry-name}`. You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription. |
 | `assignee` | String | The email address or object ID of the Entra identity to assign the role to. For example, you can specify `user@contoso.com` for a user assignee. You can also specify the object ID of the identity. |
-| `assignee-object-id` | String | Use this parameter instead of '--assignee' to bypass Graph API invocation if there is insufficient privileges. This parameter only works with object IDs for users, groups, service principals, and managed identities. For managed identities, use the principal ID. For service principals, use the object ID and not the application ID. |
+| `assignee-object-id` | String | Use this parameter instead of '--assignee' to bypass Graph API invocation if there's insufficient privileges. This parameter only works with object IDs for users, groups, service principals, and managed identities. For managed identities, use the principal ID. For service principals, use the object ID and not the application ID. |
 | `description` | String | A description for the role assignment to help identify the purpose of the role assignment. This parameter is optional. |
 | `condition` | String | A code expression which defines the ABAC condition for the role assignment. |
 | `condition-version` | String | Version of the condition syntax. If `--condition` is specified without `--condition-version`, the version is set to the default value of `2.0`. |
@@ -229,7 +229,7 @@ EOF
 )
 ```
 
-You can inspect the `condition` variable to verify that it is correct.
+You can inspect the `condition` variable to verify that it's correct.
 Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
 
 ```azurecli
@@ -301,7 +301,7 @@ Configure the following options:
 
 > [!IMPORTANT]
 > The trailing slash `/` is required in the `Value` field for the expression of the ABAC condition.
-> If you do not include the trailing slash `/`, you may unintentionally grant permissions to other repositories that do not match the prefix.
+> If you don't include the trailing slash `/`, you may unintentionally grant permissions to other repositories that don't match the prefix.
 > For example, if you enter `backend` without the trailing slash `/`, the role assignment grants permissions to all repositories with the prefix `backend`, such as `backend/nginx`, `backend/redis`, `backend-infra/k8s`, `backend-backup/store`, `backend`, and `backendsvc/containers`.
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-11-expression-repository-prefix.png" alt-text="Configure expression to scope the ABAC condition to a repository prefix":::
@@ -309,11 +309,11 @@ Configure the following options:
 Click "Save" to save the ABAC condition.
 
 Review the role assignment ABAC condition.
-The review page includes an code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
+The review page includes a code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-12-finished-condition-repository-prefix.png" alt-text="Review ABAC condition to scope to a repository prefix":::
 
-Perform the role assignment by clicking "Review + assign".
+Perform the role assignment by clicking "Review + assign."
 
 Once the role assignment is created, you can view, edit, or delete the role assignment.
 Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
@@ -361,7 +361,7 @@ EOF
 )
 ```
 
-You can inspect the `condition` variable to verify that it is correct.
+You can inspect the `condition` variable to verify that it's correct.
 Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
 
 ```azurecli
@@ -432,9 +432,9 @@ For the first expression, configure the following options:
     * For example, to grant permissions to all repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`, enter `backend/`.
     * To grant permissions to all repositories with the prefix `frontend/js/`, such as `frontend/js/react` and `frontend/js/vue`, enter `frontend/js/`.
 
-Click "Add expression".
+Click "Add expression."
 **Ensure that the boolean operator is set to "Or"**.
-You can optional perform select "Group" to group expressions together and control the order of evaluation.
+You can optionally select "Group" to group expressions together and control the order of evaluation.
 The visual editor also supports multiple boolean operators including "And," "Or," hierarchical grouping, and negation.
 
 For the second expression, configure the following options:
@@ -447,7 +447,7 @@ For the second expression, configure the following options:
 
 > [!IMPORTANT]
 > The trailing slash `/` is required in the `Value` field for the expression of the ABAC condition.
-> If you do not include the trailing slash `/`, you may unintentionally grant permissions to other repositories that do not match the prefix.
+> If you don't include the trailing slash `/`, you may unintentionally grant permissions to other repositories that don't match the prefix.
 > For example, if you enter `backend` without the trailing slash `/`, the role assignment grants permissions to all repositories with the prefix `backend`, such as `backend/nginx`, `backend/redis`, `backend-infra/k8s`, `backend-backup/store`, `backend`, and `backendsvc/containers`.
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-13-expression-multiple-repository-prefixes.png" alt-text="Configure expression to scope the ABAC condition to multiple repository prefixes":::
@@ -455,11 +455,11 @@ For the second expression, configure the following options:
 Click "Save" to save the ABAC condition.
 
 Review the role assignment ABAC condition.
-The review page includes an code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
+The review page includes a code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
 
 :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-14-finished-condition-multiple-repository-prefixes.png" alt-text="Review ABAC condition to scope to multiple repository prefixes":::
 
-Perform the role assignment by clicking "Review + assign".
+Perform the role assignment by clicking "Review + assign."
 
 Once the role assignment is created, you can view, edit, or delete the role assignment.
 Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
@@ -511,7 +511,7 @@ EOF
 )
 ```
 
-You can inspect the `condition` variable to verify that it is correct.
+You can inspect the `condition` variable to verify that it's correct.
 Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
 
 ```azurecli

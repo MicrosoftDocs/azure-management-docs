@@ -11,8 +11,8 @@ ms.service: azure-container-registry
 # Azure Container Registry Entra permissions and role assignments overview
 
 Azure Container Registry (ACR) offers a set of [built-in roles](/azure/role-based-access-control/built-in-roles) that provide Entra-based permissions management to an ACR registry.
-Using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/), you can assign a built-in role to users, managed identities, or service principals to grant Entra-based permissions defined within the role.
-You can also define and assign [custom roles](container-registry-rbac-custom-roles.md) with fine-grained permissions tailored to your specific needs if the built-in roles below don't meet your requirements.
+Using [Azure role-based access control (RBAC)](/azure/role-based-access-control/), you can assign a built-in role to users, managed identities, or service principals to grant Entra-based permissions defined within the role.
+You can also define and assign [custom roles](container-registry-rbac-custom-roles.md) with fine-grained permissions tailored to your specific needs if the built-in roles don't meet your requirements.
 
 ## Supported role assignment identity types
 
@@ -61,7 +61,7 @@ Apply the principle of least privilege by assigning only the permissions necessa
 These common scenarios each have a recommended built-in role.
 
 > [!NOTE]
-> The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure Portal:
+> The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure portal:
 > - **RBAC Registry + ABAC Repository Permissions**: Supports standard RBAC role assignments with optional Entra ABAC conditions to scope assignments to specific repositories.
 > - **RBAC Registry Permissions**: Supports only standard RBAC assignments without ABAC conditions.
 > For details on Entra ABAC and ABAC-enabled roles, see [Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
@@ -133,7 +133,7 @@ These common scenarios each have a recommended built-in role.
 - **Scenario: Identities such as pipelines and developers that [import images with `az acr import`](container-registry-import-images.md)**
   - Role: `Container Registry Data Importer and Data Reader`
   - Permissions: Grants control plane access to trigger [image imports using `az acr import`](container-registry-import-images.md), and data plane access to validate import success (pull imported images and artifacts, view repository contents, list OCI referrers, and inspect imported tags). Doesn't allow pushing or modifying any content in the registry.
-  - ABAC support: This role doesn't support Entra ABAC conditions as the role is scoped to the registry level, granting permissions to import images into any repository in the registry, as well as reading images from all repositories in the registry.
+  - ABAC support: This role doesn't support Entra ABAC conditions as the role is scoped to the registry level, granting permissions to import images into any repository in the registry. It also grants permissions to read images in all repositories in the registry.
 
 - **Scenario: Identities such as pipelines and developers that manage [ACR transfer pipelines](container-registry-transfer-cli.md) for transferring artifacts between registries using intermediary storage accounts across network, tenant, or air gap boundaries**
   - Role: `Container Registry Transfer Pipeline Contributor`
