@@ -16,16 +16,16 @@ When using an Azure container registry, you might occasionally encounter problem
 As a first diagnostic step, run the [az acr check-health][az-acr-check-health] command to get information about the health of the environment and optionally access to a target registry. This command is available in Azure CLI version 2.0.67 or later. If you need to install or upgrade, see [Install Azure CLI][azure-cli].
 
 For additional registry troubleshooting guidance, see:
-* [Troubleshoot registry login](container-registry-troubleshoot-login.md)
+* [Troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md)
 * [Troubleshoot network issues with registry](container-registry-troubleshoot-access.md)
 * [Troubleshoot registry performance](container-registry-troubleshoot-performance.md)
 
 ## Run az acr check-health
 
-The follow examples show different ways to run the `az acr check-health` command.
+The following examples show different ways to run the `az acr check-health` command.
 
 > [!NOTE]
-> If you run the command in Azure Cloud Shell, the local environment is not checked. However, you can check the access to a target registry.
+> If you run the command in Azure Cloud Shell, the local environment isn't checked. However, you can check the access to a target registry.
 
 ### Check the environment only
 

@@ -91,13 +91,16 @@ Use the [az acr show][az-acr-show] command to get the resource ID of the base re
 baseregID=$(az acr show --name mybaseregistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the identity the `acrpull` role to the base registry. This role has permissions only to pull images from the registry.
+Use the [az role assignment create][az-role-assignment-create] command to assign the identity the correct role to the base registry. This role assignment grants permissions to only pull images from the registry.
+
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
   --scope $baseregID \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 Proceed to [Add target registry credentials to task](#add-target-registry-credentials-to-task).
@@ -130,13 +133,16 @@ Use the [az acr show][az-acr-show] command to get the resource ID of the base re
 baseregID=$(az acr show --name mybaseregistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the identity the `acrpull` role to the base registry. This role has permissions only to pull images from the registry.
+Use the [az role assignment create][az-role-assignment-create] command to assign the identity the correct role to the base registry. This role assignment grants permissions to only pull images from the registry.
+
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
   --scope $baseregID \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ## Add target registry credentials to task

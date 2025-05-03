@@ -158,11 +158,15 @@ To import the certificate:
 
 ## Sign a container image with Notation CLI and AKV plugin
 
-When working with ACR and AKV, it’s essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this tutorial, the access are authorized to a signed-in Azure user.
+When working with ACR and AKV, it’s essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this tutorial, the access is authorized to a signed-in Azure user.
 
 ### Authoring access to ACR
 
-The `AcrPull` and `AcrPush` roles are required for building and signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+
+For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the ACR resource
 
@@ -174,7 +178,9 @@ The `AcrPull` and `AcrPush` roles are required for building and signing containe
 
     ```bash
     USER_ID=$(az ad signed-in-user show --query id -o tsv)
-    az role assignment create --role "AcrPull" --role "AcrPush" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
+    ROLE1="Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use "AcrPull" for non-ABAC-enabled registries.
+    ROLE2="Container Registry Repository Writer" # For ABAC-enabled registries. Otherwise, use "AcrPush" for non-ABAC-enabled registries.
+    az role assignment create --role "$ROLE1" --role "$ROLE2" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
     ```
 
 ### Build and push container images to ACR
@@ -185,8 +191,8 @@ The `AcrPull` and `AcrPush` roles are required for building and signing containe
     az acr login --name $ACR_NAME
     ```
 
-> [!IMPORTANT]
-> If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your ACR, your credentials are already stored and available to notation. In this case, you don’t need to run `notation login` again to authenticate to your ACR. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
+    > [!IMPORTANT]
+    > If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your ACR, your credentials are already stored and available to notation. In this case, you don’t need to run `notation login` again to authenticate to your ACR. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
 
 1. Build and push a new image with ACR Tasks. Always use `digest` to identify the image for signing, since tags are mutable and can be overwritten.
 

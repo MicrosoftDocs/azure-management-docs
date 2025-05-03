@@ -83,7 +83,7 @@ To disable or re-enable the setting in the portal:
 Here's a typical workflow to enable an instance of a trusted service to access a network-restricted container registry. This workflow is needed when you use a service instance's managed identity to bypass the registry's network rules.
 
 1. Enable a managed identity in an instance of one of the [trusted services](#trusted-services) for Azure Container Registry.
-1. Assign the identity an [Azure role](container-registry-rbac-built-in-roles-overview.md) to your registry. For example, assign the ACRPull role to pull container images.
+1. Assign the identity an [Azure role](container-registry-rbac-built-in-roles-overview.md) to your registry. For example, assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries).
 1. Configure the setting in the network-restricted registry to allow access by trusted services.
 1. Use the identity's credentials to authenticate with the network-restricted registry.
 1. Pull images from the registry, or perform other operations allowed by the role.

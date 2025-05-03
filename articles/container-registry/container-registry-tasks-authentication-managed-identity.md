@@ -88,12 +88,14 @@ Use the [Azure CLI](/azure/role-based-access-control/role-assignments-cli) or ot
 
 The following example assigns a managed identity the permissions to pull from a container registry. The command specifies the *principal ID* of the task identity and the *resource ID* of the target registry.
 
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee <principalID> \
   --scope <registryID> \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ### 4. (Optional) Add credentials to the task
