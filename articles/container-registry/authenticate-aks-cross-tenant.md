@@ -71,7 +71,7 @@ In **Tenant B**, assign the correct role to the service principal, scoped to the
 
 You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
 
-:::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Assign role to multitenant app":::
+:::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Screenshot of assigning role to multitenant app.":::
 
 <a name='step-4-update-aks-with-the-azure-ad-application-secret'></a>
 

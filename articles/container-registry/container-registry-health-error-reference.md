@@ -35,7 +35,7 @@ This error means that CLI wasn't able to run the command `docker --version`.
 
 This error means that the CLI wasn't able to pull a sample image to your environment.
 
-*Potential solutions*: Validate that all components necessary to pull an image are running properly. Additionally, validate permissions and [troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md). If you're using [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and authenticating with an Microsoft Entra identity (user, managed identity, or service principal), make sure the identity has permissions to the specific repository being accessed.
+*Potential solutions*: Validate that all components necessary to pull an image are running properly. Additionally, validate permissions and [troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md). If you're using [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and authenticating with a Microsoft Entra identity (user, managed identity, or service principal), make sure the identity has permissions to the specific repository being accessed.
 
 ## HELM_COMMAND_ERROR
 

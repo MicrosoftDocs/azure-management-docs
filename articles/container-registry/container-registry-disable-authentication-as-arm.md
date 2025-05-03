@@ -47,7 +47,7 @@ Disabling `azureADAuthenticationAsArmPolicy` forces the registry to use ACR audi
 ## Authenticating with ACR using Microsoft Entra ACR Audience Token
 
 You can authenticate with ACR using Microsoft Entra ACR Audience Token.
-To obtain an Microsoft Entra ACR Audience Token, specify `--scope https://containerregistry.azure.net/.default` when you run the `az login` command.
+To obtain a Microsoft Entra ACR Audience Token, specify `--scope https://containerregistry.azure.net/.default` when you run the `az login` command.
 
 > [!NOTE]
 > You must specify `https://containerregistry.azure.net/.default` to obtain a Microsoft Entra ACR Audience token scoped for the ACR service.
@@ -57,7 +57,7 @@ To obtain an Microsoft Entra ACR Audience Token, specify `--scope https://contai
 az login --scope https://containerregistry.azure.net/.default
 ```
 
-After logging in, an Microsoft Entra ACR Audience token (scoped for the ACR service) will be stored in the local cache.
+After logging in, a Microsoft Entra ACR Audience token (scoped for the ACR service) will be stored in the local cache.
 You can use this token to authenticate with all ACR registries that you have permissions to.
 
 ```azurecli

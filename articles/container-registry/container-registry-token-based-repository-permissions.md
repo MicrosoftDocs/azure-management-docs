@@ -16,7 +16,7 @@ This article describes how to create tokens and scope maps to manage access to r
 
 > [!NOTE]
 > Non-Microsoft Entra tokens and scope maps can be used to manage repository permissions without the use of Microsoft Entra.
-> To manage repository permissions with Microsoft Microsoft Entra role assignments for Microsoft Entra identities, see [Microsoft Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
+> To manage repository permissions with Microsoft Entra role assignments for Microsoft Entra identities, see [Microsoft Entra attribute-based access control (ABAC) for repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 Common scenarios for creating a token include:
 
