@@ -66,8 +66,6 @@
         href: ./security-controls-policy.md
       - name: Security baseline
         href: /security/benchmark/azure/baselines/container-registry-security-baseline?toc=/azure/container-registry/TOC.json
-      - name: Continuous Patching Concepts
-        href: key-concept-continuous-patching.md
     - name: Container registry tiers and limits
       href: container-registry-skus.md
     - name: Registries, repositories, and images
@@ -135,10 +133,51 @@
           href: container-registry-auto-purge.md
       - name: Use ACR webhooks
         href: container-registry-webhook.md
-    - name: Security and authentication
+    - name: Authentication and authorization
       items:
-      - name: Set up Continuous Patching
-        href: how-to-continuous-patching.md
+      - name: Authentication
+        items:
+        - name: Authentication overview
+          href: container-registry-authentication.md
+        - name: Authenticate with managed identity
+          href: container-registry-authentication-managed-identity.md
+        - name: Authenticate with service principal
+          href: container-registry-auth-service-principal.md
+        - name: Authenticate with non-Microsoft Entra token-based repository permissions 
+          href: container-registry-token-based-repository-permissions.md
+        - name: Authenticate from Azure Container Instances
+          href: container-registry-auth-aci.md
+        - name: Authenticate from Kubernetes
+          items:
+          - name: Kubernetes authentication scenarios
+            href: authenticate-kubernetes-options.md
+          - name: Attach registry to Azure Kubernetes Service (AKS)
+            href: /azure/aks/cluster-container-registry-integration?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json
+          - name: Cross-tenant authentication from AKS
+            href: authenticate-aks-cross-tenant.md
+          - name: Authenticate using Kubernetes pull secret
+            href: container-registry-auth-kubernetes.md
+        - name: Enable unauthenticated anonymous pull access
+          href: anonymous-pull-access.md
+        - name: Configure conditional access to your Azure Container Registry.
+          href: container-registry-configure-conditional-access.md
+        - name: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
+          href: container-registry-disable-authentication-as-arm.md
+      - name: Microsoft Entra role-based access control and authorization
+        items:
+        - name: Microsoft Entra permissions and role assignments
+          href: container-registry-rbac-built-in-roles-overview.md
+          displayName: permissions, authorization
+        - name: Microsoft Entra repository permissions
+          href: container-registry-rbac-abac-repository-permissions.md
+        - name: Role directory reference
+          href: container-registry-rbac-built-in-roles-directory-reference.md
+          displayName: permissions, authorization
+        - name: Custom roles
+          href: container-registry-rbac-custom-roles.md
+          displayName: permissions, authorization
+    - name: Networking
+      items:
       - name: Restrict access using private endpoint
         href: container-registry-private-link.md
       - name: Configure public registry access
@@ -151,53 +190,6 @@
         href: allow-access-trusted-services.md
       - name: Access behind a firewall
         href: container-registry-firewall-access-rules.md
-      - name: Configure conditional access to your Azure Container Registry.
-        href: container-registry-configure-conditional-access.md
-      - name: Disable authentication as ARM template
-        href: container-registry-disable-authentication-as-arm.md
-      - name: Authentication
-        items:
-        - name: Authentication overview
-          href: container-registry-authentication.md
-        - name: Authenticate with service principal
-          href: container-registry-auth-service-principal.md
-        - name: Authenticate with managed identity
-          href: container-registry-authentication-managed-identity.md
-        - name: Authenticate with token 
-          href: container-registry-repository-scoped-permissions.md
-        - name: Authenticate from Azure Container Instances
-          href: container-registry-auth-aci.md
-        - name: Authenticate from Kubernetes
-          items:
-          - name: Kubernetes scenarios
-            href: authenticate-kubernetes-options.md
-          - name: Attach registry to Azure Kubernetes Service (AKS)
-            href: /azure/aks/cluster-container-registry-integration?toc=/azure/container-registry/toc.json&bc=/azure/container-registry/breadcrumb/toc.json
-          - name: Cross-tenant authentication from AKS
-            href: authenticate-aks-cross-tenant.md
-          - name: Authenticate using Kubernetes pull secret
-            href: container-registry-auth-kubernetes.md
-        - name: Enable unauthenticated pull access
-          href: anonymous-pull-access.md
-      - name: Entra role-based access control
-        items:
-        - name: Entra permissions and roles overview
-          href: container-registry-rbac-built-in-roles-overview.md
-          displayName: permissions, authorization
-        - name: Role directory reference
-          href: container-registry-rbac-built-in-roles-directory-reference.md
-          displayName: permissions, authorization
-        - name: Custom roles
-          href: container-registry-rbac-custom-roles.md
-          displayName: permissions, authorization
-      - name: Content trust
-        href: container-registry-content-trust.md
-      - name: Transition from Docker Content Trust to the Notary Project
-        href: container-registry-content-trust-deprecation.md
-      - name: Sign container images with Notation and AKV using a self-signed certificate
-        href: container-registry-tutorial-sign-build-push.md
-      - name: Sign container images with Notation and AKV using a CA issued certificate
-        href: container-registry-tutorial-sign-trusted-ca.md
     - name: Registries and other Azure services
       expanded: false
       items:
@@ -207,6 +199,22 @@
           href: /azure/aks/tutorial-kubernetes-prepare-app
         - name: Service Fabric
           href: /azure/service-fabric/service-fabric-tutorial-create-container-images
+    - name: Signing and verification
+      items:
+      - name: Content trust
+        href: container-registry-content-trust.md
+      - name: Transition from Docker Content Trust to the Notary Project
+        href: container-registry-content-trust-deprecation.md
+      - name: Sign container images with Notation and AKV using a self-signed certificate
+        href: container-registry-tutorial-sign-build-push.md
+      - name: Sign container images with Notation and AKV using a CA issued certificate
+        href: container-registry-tutorial-sign-trusted-ca.md
+    - name: Vulnerability management and patching
+      items:
+      - name: Continuous patching concepts
+        href: key-concept-continuous-patching.md
+      - name: Set up continuous patching
+        href: how-to-continuous-patching.md
     - name: Monitor
       expanded: false
       items:
@@ -375,8 +383,8 @@
 - name: Troubleshoot
   expanded: false
   items:
-  - name: Troubleshoot login issues
-    href: container-registry-troubleshoot-login.md
+  - name: Troubleshoot login, authentication, and authorization issues
+    href: container-registry-troubleshoot-login-authn-authz.md
   - name: Troubleshoot network issues
     href: container-registry-troubleshoot-access.md
   - name: Troubleshoot performance issues

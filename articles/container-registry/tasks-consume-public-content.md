@@ -239,7 +239,7 @@ Based on the simulated public `node` image, build a `hello-world` image.
 
 ### Create token for pull access to simulated public registry
 
-Create an [access token][acr-tokens] to the simulated public registry, scoped to `pull`. Then, set it in the key vault:
+Create an [access token][acr-non-entra-tokens] to the simulated public registry, scoped to `pull`. Then, set it in the key vault:
 
 ```azurecli-interactive
 az keyvault secret set \
@@ -260,7 +260,7 @@ az keyvault secret set \
 
 ### Create token for pull access by Azure Container Instances
 
-Create an [access token][acr-tokens] to the registry hosting the `hello-world` image, scoped to pull. Then, set it in the key vault:
+Create an [access token][acr-non-entra-tokens] to the registry hosting the `hello-world` image, scoped to pull. Then, set it in the key vault:
 
 ```azurecli-interactive
 az keyvault secret set \
@@ -560,7 +560,7 @@ az acr task run -n base-import-node -r $REGISTRY_BASE_ARTIFACTS
 
 ## Update `hello-world` image to build from gated `node` image
 
-Create an [access token][acr-tokens] to access the base-artifacts registry, scoped to `read` from the `node` repository. Then, set in the key vault:
+Create an [access token][acr-non-entra-tokens] to access the base-artifacts registry, scoped to `read` from the `node` repository. Then, set in the key vault:
 
 ```azurecli-interactive
 az keyvault secret set \
@@ -748,11 +748,12 @@ In this article, you used ACR tasks to create an automated gating workflow to in
 
 [install-cli]:                  /cli/azure/install-azure-cli
 [acr]:                          https://aka.ms/acr
-[acr-repo-permissions]:         ./container-registry-repository-scoped-permissions.md
+[acr-entra-repo-permissions]:     ./container-registry-rbac-abac-repository-permissions.md
+[acr-non-entra-repo-permissions]:         ./container-registry-token-based-repository-permissions.md
 [acr-task]:                     ./container-registry-tasks-overview.md
 [acr-task-triggers]:            container-registry-tasks-overview.md#task-scenarios
 [acr-task-credentials]:       container-registry-tasks-authentication-managed-identity.md#4-optional-add-credentials-to-the-task
-[acr-tokens]:                   ./container-registry-repository-scoped-permissions.md
+[acr-non-entra-tokens]:                   ./container-registry-token-based-repository-permissions.md
 [aci]:                          https://aka.ms/aci
 [alpine-public-image]:          https://hub.docker.com/_/alpine
 [docker-hub]:                   https://hub.docker.com

@@ -111,7 +111,7 @@ Related links:
 If you don't resolve your problem here, see the following options.
 
 * Other registry troubleshooting topics include:
-  * [Troubleshoot registry login](container-registry-troubleshoot-login.md)
+  * [Troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md)
   * [Troubleshoot network issues with registry](container-registry-troubleshoot-access.md)
 * [Community support](https://azure.microsoft.com/support/community/) options
 * [Microsoft Q&A](/answers/products/)
