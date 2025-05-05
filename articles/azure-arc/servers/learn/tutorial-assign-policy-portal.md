@@ -2,14 +2,14 @@
 title: Tutorial - New policy assignment with Azure portal
 description: In this tutorial, you use Azure portal to create an Azure Policy assignment to identify non-compliant resources.
 ms.topic: tutorial
-ms.date: 03/06/2025
+ms.date: 05/05/2025
 ---
 
 # Tutorial: Create a policy assignment to identify non-compliant resources
 
-The first step in understanding compliance in Azure is to identify the status of your resources. [Azure Policy](/azure/governance/policy/overview) supports auditing the state of your Azure Arc-enabled server with machine configuration policies. Azure Policy's machine configuration definitions can audit or apply settings inside the machine.
+You can use [Azure Policy](/azure/governance/policy/overview) to autit the state of your Azure Arc-enabled servers to ensure they comply with machine configuration policies.
 
-This tutorial steps you through the process of creating and assigning a policy in order to identify which of your Azure Arc-enabled servers don't have [Microsoft Defender for Servers](/azure/defender-for-cloud/defender-for-servers-overview) enabled.
+This tutorial steps you through the process of creating and assigning a policy that identifies which of your Azure Arc-enabled servers don't have [Microsoft Defender for Servers](/azure/defender-for-cloud/defender-for-servers-overview) enabled.
 
 In this tutorial, you'll learn how to:
 
@@ -17,7 +17,6 @@ In this tutorial, you'll learn how to:
 > * Create policy assignment and assign a definition to it
 > * Identify resources that aren't compliant with the new policy
 > * Remove the policy from non-compliant resources
-
 
 ## Prerequisites
 
@@ -42,9 +41,9 @@ Use the following procedure to create a policy assignment and assign the policy 
 
 1. Select the **Policy definition** ellipsis to open the list of available definitions. Azure Policy comes with many built-in policy definitions you can use, such as:
 
-   - Enforce tag and its value
-   - Apply tag and its value
-   - Inherit a tag from the resource group if missing
+   * Enforce tag and its value
+   * Apply tag and its value
+   * Inherit a tag from the resource group if missing
 
    For a partial list of available built-in policies, see [Azure Policy samples](/azure/governance/policy/samples/).
 
@@ -58,18 +57,13 @@ You're now ready to identify non-compliant resources to understand the complianc
 
 ## Identify non-compliant resources
 
-In the service menu, select **Compliance**. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
+In the service menu for Azure Policy, select **Compliance**. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
 
 :::image type="content" source="./media/tutorial-assign-policy-portal/compliance-policy.png" alt-text="Screenshot of Policy Compliance page showing policy compliance for the selected scope." border="true":::
 
-If there are any existing resources that aren't compliant with this new assignment, they appear
-under **Non-compliant resources**.
+Any existing resources that aren't compliant with the new assignment will show **Non-compliant** under **Compliance state**.
 
-When a condition is evaluated against your existing resources and found true, those resources
-are marked as non-compliant with the policy. The following table shows how different policy effects
-work with the condition evaluation for the resulting compliance state. Although you don't see the
-evaluation logic in the Azure portal, the compliance state results are shown. The compliance state
-result is either compliant or non-compliant.
+When a condition is evaluated against your existing resources and found true, those resources are marked as non-compliant with the policy. The following table shows how different policy effects work with the condition evaluation for the resulting compliance state. Although you don't see the evaluation logic in the Azure portal, the compliance state results are shown. The compliance state result is either **Compliant** or **Non-compliant**.
 
 | **Resource state** | **Effect** | **Policy evaluation** | **Compliance state** |
 | --- | --- | --- | --- |
@@ -82,9 +76,11 @@ result is either compliant or non-compliant.
 The effects also require the existence condition to be FALSE to be non-compliant. When TRUE, the IF
 condition triggers evaluation of the existence condition for the related resources.
 
+To learn more, see [Azure Policy compliance states](/azure/governance/policy/concepts/compliance-states).
+
 ## Clean up resources
 
-To remove the assignment created, follow these steps:
+To remove the assignment that you created, follow these steps:
 
 1. In the service menu, select **Compliance** (or select  **Assignments** under **Authoring**).
 1. Locate the **Azure Defender for servers should be enabled** policy assignment you created.
