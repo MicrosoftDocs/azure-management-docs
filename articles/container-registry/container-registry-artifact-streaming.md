@@ -5,7 +5,7 @@ author: rayoef
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 zone_pivot_groups: container-registry-zones
-ms.topic: conceptual #Don't change
+ms.topic: concept-article #Don't change
 ms.date: 02/26/2024
 ai-usage: ai-assisted
 #customer intent: As a developer, I want artifact streaming capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.

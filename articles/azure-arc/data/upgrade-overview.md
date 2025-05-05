@@ -8,7 +8,7 @@ author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 08/15/2022
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Upgrade Azure Arc-enabled data services

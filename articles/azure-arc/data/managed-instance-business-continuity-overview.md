@@ -8,7 +8,7 @@ author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 01/27/2022
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Overview: SQL Managed Instance enabled by Azure Arc business continuity

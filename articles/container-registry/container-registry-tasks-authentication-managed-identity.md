@@ -81,19 +81,21 @@ You can get the resource ID of the identity by running the [az identity show][az
 
 Depending on the requirements of your task, grant the identity permissions to access other Azure resources. Examples include:
 
-* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry roles and permissions](container-registry-roles.md). 
+* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md). 
 * Assign the managed identity a role to read secrets in an Azure key vault.
 
 Use the [Azure CLI](/azure/role-based-access-control/role-assignments-cli) or other Azure tools to manage role-based access to resources. For example, run the [az role assignment create][az-role-assignment-create] command to assign the identity a role to the resource. 
 
 The following example assigns a managed identity the permissions to pull from a container registry. The command specifies the *principal ID* of the task identity and the *resource ID* of the target registry.
 
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee <principalID> \
   --scope <registryID> \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ### 4. (Optional) Add credentials to the task

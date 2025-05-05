@@ -17,10 +17,13 @@
     href: quickstart-connect-cluster.md
 - name: Tutorials
   items:
-  - name: Deploy applications using GitOps
-    displayName: flux, tutorial, controller
+  - name: Deploy applications using GitOps (ArgoCD)
+    displayName: argocd, tutorial
+    href: tutorial-use-gitops-argocd.md
+  - name: Deploy applications using GitOps (Flux v2)
+    displayName: flux, tutorial, configuration
     href: tutorial-use-gitops-flux2.md
-  - name: Implement CI/CD with GitOps
+  - name: Implement CI/CD with GitOps (Flux v2)
     displayName: flux, pipeline
     href: tutorial-gitops-flux2-ci-cd.md
 - name: Samples
@@ -64,6 +67,8 @@
       - name: Available extensions
         displayName: gitops, flux, version
         href: extensions-release.md
+      - name: Version-managed extensions
+        href: managed-extensions.md
       - name: Custom locations
         displayName: target
         href: conceptual-custom-locations.md

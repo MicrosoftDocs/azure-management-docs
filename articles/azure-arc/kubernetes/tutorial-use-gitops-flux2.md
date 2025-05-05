@@ -19,6 +19,8 @@ Before you dive in, take a moment to [learn how GitOps with Flux works conceptua
 >
 > You can also create Flux configurations by using Bicep, ARM templates, or Terraform AzAPI provider. For more information, see [Microsoft.KubernetesConfiguration fluxConfigurations](/azure/templates/microsoft.kubernetesconfiguration/fluxconfigurations).
 
+Consider alternatively trying out using the new [Microsoft GitOps ArgoCD extension](tutorial-use-gitops-argocd.md). Argo CD is a popular open-source GitOps tool that provides a different set of features and capabilities compared to Flux v2.
+
 ## Prerequisites
 
 To deploy applications using GitOps with Flux v2, you need:
@@ -412,7 +414,7 @@ For more information on OpenShift guidance for onboarding Flux, see the [Flux do
 The Azure portal is useful for managing GitOps configurations and the Flux extension in Azure Arc-enabled Kubernetes or AKS clusters. In the Azure portal, you can see all of the Flux configurations associated with each cluster and get detailed information, including the overall compliance state of each cluster.
 
 > [!NOTE]
-> Some options aren't currently supported in the Azure portal, such as suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters. To use these options, see the Azure CLI stepss.
+> Some options aren't currently supported in the Azure portal, such as suspending continuous reconciliation, controlling which controllers are deployed with the Flux cluster extension, and using Kubelet identity as authentication method for AKS clusters. To use these options, see the Azure CLI steps.
 
 Follow these steps to apply a sample Flux configuration to a cluster. As part of this process, Azure installs the `microsoft.flux` extension on the cluster, if it wasn't already installed in a previous deployment.
 
@@ -648,7 +650,7 @@ az k8s-extension update --resource-group <resource-group> --cluster-name <cluste
 
 ## Workload identity in Arc-enabled Kubernetes clusters and AKS clusters
 
-You can create Flux configurations in clusters with workload identity enabled. Flux configurations in [AKS clusters with workload identity enabled](/azure/aks/workload-identity-deploy-cluster) is supported starting with `microsoft.flux` v1.8.0, and in [Azure Arc-enabled clusters with workload identity enabled](workload-identity.md) starting with `microsoft.flux` v.1.15.1.
+You can create Flux configurations in clusters with workload identity enabled. Flux configurations in [AKS clusters with workload identity enabled](/azure/aks/workload-identity-deploy-cluster) are supported starting with `microsoft.flux` v1.8.0, and in [Azure Arc-enabled clusters with workload identity enabled](workload-identity.md) starting with `microsoft.flux` v.1.15.1.
 
 To create Flux configurations in clusters with workload identity enabled, modify the extension as shown in the following steps.
 
@@ -690,7 +692,7 @@ To create Flux configurations in clusters with workload identity enabled, modify
      provider: azure
    ```
 
-1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, `AcrPull` permissions are required.
+1. Be sure to provide proper permissions for workload identity for the resource that you want source-controller or image-reflector controller to pull. For example, if using Azure Container Registry, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](../../container-registry/container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
 
 ### Use workload identity with Azure DevOps
 
@@ -699,7 +701,7 @@ To use workload identity with Azure DevOps, enable the following prerequisites:
 * Ensure that your Azure DevOps Organization is [connected to Microsoft Entra](/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops&preserve-view=true).
 * Confirm that workload identity is properly set up on your cluster, following the steps for [AKS clusters](/azure/aks/workload-identity-deploy-cluster#create-an-aks-cluster) or [Arc-enabled Kubernetes clusters](workload-identity.md#enable-workload-identity-on-your-cluster).
 * Create a managed identity and federated credentials, and enable workload identity on the Flux extension's flux controller pods, as described earlier in this section.
-* Add the managed identity to the Azure DevOps organization as a user, ensuring that it has permissions to access the Azure DevOps repository. For detailed steps, see [Use service principals & managed identities in Azure DevOps](/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops#2-add-and-manage-service-principals-in-an-azure-devops-organization).
+* Add the managed identity to the Azure DevOps organization as a user, ensuring that it has permissions to access the Azure DevOps repository. For detailed steps, see [Use service principals & managed identities in Azure DevOps](/azure/devops/integrate/get-started/authentication/service-principal-managed-identity#2-add-and-manage-service-principals-in-an-azure-devops-organization).
 
 Next, set the flux configuration's `gitRepository` provider to "azure" to enable credential-free authentication. This can be configured by using Bicep, ARM templates, or Azure CLI. For example, to set the provider using Azure CLI, run the following command:
  

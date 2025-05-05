@@ -1,7 +1,7 @@
 ---
 title: Manage and troubleshoot storage accounts using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can improve the security posture and data resiliency of storage accounts.
-ms.date: 04/08/2025
+ms.date: 04/21/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -83,6 +83,12 @@ General troubleshooting:
 - "Help me fix sync errors in my AFS environment."
 - "How do I fix a server that has a state of 'appears offline'?"
 - "Help me diagnose issues with my Azure File Sync environment."
+
+### Azure File Sync example
+
+If you see an error code, you can ask Copilot in Azure to help you understand the problem and how to fix it. When you say "**Help me troubleshoot this error**", Copilot in Azure provides information about the error and the things that Copilot in Azure can check to help resolve the issue. In some cases, Copilot in Azure can even help fix the issue.
+
+:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png" alt-text="Screenshot showing Microsoft Copilot in Azure troubleshooting an Azure File Sync error." lightbox="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png":::
 
 ## Reduce storage costs
 

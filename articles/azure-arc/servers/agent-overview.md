@@ -1,21 +1,22 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 01/21/2025
+ms.date: 04/22/2025
 ms.topic: overview
 ---
 
 # Overview of Azure Connected Machine agent
 
-The Azure Connected Machine agent enables you to manage your Windows and Linux machines hosted outside of Azure on your corporate network or other cloud providers.
+The Azure Connected Machine agent lets you manage Windows and Linux machines hosted outside of Azure, on your corporate network or other cloud providers.
 
 > [!WARNING]
-> Only Connected Machine agent versions within the last one year are officially supported by the product group. Customers should update to an agent version within this window.
-> 
+> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. Customers should update to an agent version within this window.
 
 ## Agent components
 
-:::image type="content" source="media/agent-overview/connected-machine-agent.png" alt-text="Graphic of Azure Connected Machine agent architectural overview." border="false" lightbox="media/agent-overview/connected-machine-agent.png":::
+:::image type="content" source="media/agent-overview/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." border="false" lightbox="media/agent-overview/connected-machine-agent.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 
@@ -36,11 +37,13 @@ The Azure Connected Machine agent package contains several logical components bu
 
 ### Azure Arc Proxy
 
-The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux. It's disabled by default until you configure the agent to use the Azure Arc gateway (Limited preview).
+The Azure Arc Proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions and deciding where to route that data. If you’re using the [Azure Arc gateway (Limited preview)](arc-gateway.md) to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc gateway instead of the default route. The Azure Arc Proxy runs as a Network Service on Windows and a standard user account (arcproxy) on Linux. 
+Prior to the Azure Connected Machine agent version 1.51, this service was disabled by default, and should remain disabled unless you configure the agent to use the Azure Arc gateway (Limited preview). 
+With version 1.51 and later, the Arc Proxy service is started by default as it can now determine whether the machine is configured to use an Arc Gateway, or to communicate directly with the Arc endpoints and behave appropriately. If you are not using an Arc Gateway you can still choose to disable the Arc Proxy service with the following command `azcmagent config set connection.type direct`.
 
 ## Agent resources
 
-The following information describes the directories and user accounts used by the Azure Connected Machine agent.
+This section describes the directories and user accounts used by the Azure Connected Machine agent.
 
 ### Windows agent installation details
 
@@ -83,8 +86,8 @@ Installing the Connected Machine agent for Window applies the following system-w
 
 * Agent installation creates the following environmental variables
 
-    | Name | Default value | Description |
-    |------|---------------|------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
@@ -97,8 +100,6 @@ Installing the Connected Machine agent for Window applies the following system-w
     | %ProgramData%\GuestConfig\arc_policy_logs\gc_agent.log | Records details about the machine configuration (policy) agent component. |
     | %ProgramData%\GuestConfig\ext_mgr_logs\gc_ext.log | Records details about extension manager activity (extension install, uninstall, and upgrade events). |
     | %ProgramData%\GuestConfig\extension_logs | Directory containing logs for individual extensions. |
-
-* The process creates the local security group **Hybrid agent extension applications**.
 
 * After uninstalling the agent, the following artifacts remain.
 
@@ -148,8 +149,8 @@ Installing the Connected Machine agent for Linux applies the following system-wi
 
 * Agent installation creates the following environment variables, set in `/lib/systemd/system.conf.d/azcmagent.conf`.
 
-    | Name | Default value | Description |
-    |------|---------------|-------------|
+    | Name | Default value |
+    |------|---------------|
     | IDENTITY_ENDPOINT | `http://localhost:40342/metadata/identity/oauth2/token` |
     | IMDS_ENDPOINT | `http://localhost:40342` |
 
@@ -262,7 +263,9 @@ The agent requests the following metadata information from Azure:
 * Extension requests - install, update, and delete.
 
 > [!NOTE]
-> Azure Arc-enabled servers do not store/process customer data outside the region the customer deploys the service instance in.
+> Azure Arc-enabled servers does not collect any personally identifiable information (PII) or end-user identifiable information or store any customer data.
+>
+> Customer metadata isn't stored or processed outside the region the customer deploys the service instance in.
 
 ## Deployment options and requirements
 
@@ -272,12 +275,11 @@ We provide several options for deploying the agent. For more information, see [P
 
 ## Cloning guidelines
 
-You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine. 
+You can safely install the azcmagent package into a golden image, but once you connect a machine using the `azcmagent connect` command, that machine receives specific resource information. If you're building machines by cloning them from a golden image, you must first specialize each machine before connecting it to Azure with the `azcmagent connect` command. Don't connect the original golden image machine to Azure until you've created and specialized each machine.
 
 If your connected server is receiving 429 error messages, it's likely that you connected the server to Azure and then used that server as the golden image for cloning. Since the resource information was recorded into the image, cloned machines created from that image try to send heartbeat messages to the same resource.
 
 To resolve 429 error messages for existing machines, run `azcmagent disconnect --force-local-only` on each cloned machine, then rerun `azcmagent connect` using an appropriate credential to connect the machines to the cloud using a unique resource name.
-
 
 ## Disaster Recovery
 

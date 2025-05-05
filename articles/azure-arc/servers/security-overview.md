@@ -2,12 +2,12 @@
 title: Security overview
 description: Basic security information about Azure Arc-enabled servers.
 ms.topic: overview
-ms.date: 06/06/2024
+ms.date: 04/21/2025
 ---
 
 # Security overview for Azure Arc-enabled servers
 
-This article describes the security considerations and controls available when using Azure Arc-enabled servers. Whether you’re a security practitioner or IT operator, the information in this article let's you confidently configure Azure Arc in a way that meets your organization’s security requirements.
+This article describes the security considerations and controls available when using Azure Arc-enabled servers. Whether you’re a security practitioner or IT operator, the information in this article lets you confidently configure Azure Arc in a way that meets your organization’s security requirements.
 
 ## Responsibilities
 
@@ -33,16 +33,18 @@ Azure Arc-enabled servers is an agent-based service. Your interaction with Azure
 
 The Azure Connected Machine agent is primarily an enablement platform for other Azure and third-party services. Its core functionalities include:
 
--	Establishing a relationship between your machine and your Azure subscription
--	Providing a managed identity for the agent and other apps to use when authenticating with Azure
--	Enabling other capabilities (agents, scripts) with extensions
--	Evaluating and enforcing settings on your server
+- Establishing a relationship between your machine and your Azure subscription
+- Providing a managed identity for the agent and other apps to use when authenticating with Azure
+- Enabling other capabilities (agents, scripts) with extensions
+- Evaluating and enforcing settings on your server
 
 Once the Azure Connected Machine agent is installed, you can enable other Azure services on your server to meet your monitoring, patch management, remote access, or other needs. Azure Arc’s role is to help enable those services to work outside of Azure’s own datacenters.
 
 You can use Azure Policy to limit what your organization’s users can do with Azure Arc. Cloud-based restrictions like Azure Policy are a great way to apply security controls at-scale while retaining flexibility to adjust the restrictions at any time. However, sometimes you need even stronger controls to protect against a legitimately privileged account being used to circumvent security measures (for example, disabling policies). To account for this, the Azure Connected Machine agent also has security controls of its own that take precedence over any restrictions set in the cloud.
 
-:::image type="content" source="media/security-basics/connected-machine-agent-architecuture.png" alt-text="Architecure diagram describing how the Azure Connected Machine agent functions." lightbox="media/security-basics/connected-machine-agent-architecuture.png":::
+:::image type="content" source="media/security-overview/connected-machine-agent-architecture.png" alt-text="Architecure diagram describing how the Azure Connected Machine agent functions." lightbox="media/security-overview/connected-machine-agent-architecture.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## Agent services
 
@@ -62,7 +64,7 @@ The guest configuration service evaluates and enforces Azure machine (guest) con
 
 ### Azure Arc proxy
 
-The Azure Arc proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions you’ve installed and deciding where to route that data. If you’re using the Azure Arc Gateway to simplify your network endpoints, the Azure Arc Proxy service is the local component that forwards network requests via the Azure Arc Gateway instead of the default route. The Azure Arc proxy runs as Network Service on Windows and a standard user account (arcproxy) on Linux. It's disabled by default until you configure the agent to use the Azure Arc Gateway.
+The Azure Arc proxy service is responsible for aggregating network traffic from the Azure Connected Machine agent services and any extensions you’ve installed and deciding where to route that data. If you’re using the Azure Arc Gateway to simplify your network endpoints, the Azure Arc proxy service is the local component that forwards network requests via the Azure Arc Gateway instead of the default route. The Azure Arc proxy runs as Network Service on Windows and a standard user account (`arcproxy`) on Linux. It's disabled by default until you configure the agent to use the Azure Arc Gateway.
 
 ## Security considerations for Tier 0 assets
 
@@ -76,15 +78,17 @@ To minimize the number of accounts and policies with access to your Tier 0 asset
 
 ### Disable unnecessary management features
 
-For a Tier 0 asset, you should use the local agent security controls to disable any unused functionality in the agent to prevent any intentional—or accidental—use of those features to make changes to the server. This includes:
+For a Tier 0 asset, you should use the local agent security controls to restrict or disable any unused functionality in the agent to prevent any intentional—or accidental—use of those features to make changes to the server. This includes:
 
 - Disabling remote access capabilities
 - Setting an extension allowlist for the extensions you intend to use, or disabling the extension manager if you are not using extensions
 - Disabling the machine configuration agent if you don’t intend to use machine configuration policies
 
+For instance, unless you intend to use a custom script extension for remote code execution, it is best to disable its use, as it could be used by attackers to remotely execute commands to place malware or other malicious code into your virtual machine. You can use the allowlist mechanism to disable use of the custom script extension if its use doesn't meet your security requirements.
+
 The following example shows how to lock down the Azure Connected Machine agent for a domain controller that needs to use the Azure Monitor Agent to collect security logs for Microsoft Sentinel and Microsoft Defender for Servers to protect against malware threats:
 
-```
+```azurecli
 azcmagent config set incomingconnections.enabled false
 
 azcmagent config set guestconfiguration.enabled false

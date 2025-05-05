@@ -2,7 +2,7 @@
 title: Migrate Azure Arc-enabled server to Azure
 description: Learn how to migrate your Azure Arc-enabled servers running on-premises or other cloud environment to Azure.
 ms.date: 12/04/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Migrate your on-premises or other cloud Azure Arc-enabled server to Azure

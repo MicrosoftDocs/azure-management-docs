@@ -1,7 +1,7 @@
 ---
 title: Create eligible authorizations
 description: When onboarding customers to Azure Lighthouse, you can let users in your managing tenant elevate their role on a just-in-time basis. 
-ms.date: 06/03/2024
+ms.date: 04/28/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ---
@@ -23,6 +23,9 @@ The EMS E5 or Microsoft Entra ID P2 license must be held by the managing tenant,
 Any extra costs associated with an eligible role will apply only during the period of time in which the user elevates their access to that role.
 
 For information about licenses for users, see [Microsoft Entra ID Governance licensing fundamentals](/entra/id-governance/licensing-fundamentals).
+
+> [!NOTE]
+> Creating eligible authorizations isn't supported in [national clouds](/entra/identity-platform/authentication-national-cloud).
 
 ## How eligible authorizations work
 

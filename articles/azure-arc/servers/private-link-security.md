@@ -1,9 +1,9 @@
 ---
 title: Use Azure Private Link to connect servers to Azure Arc using a private endpoint
 description: Learn how to use Azure Private Link to securely connect networks to Azure Arc.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom:
-ms.date: 11/14/2024
+ms.date: 04/23/2025
 ---
 
 # Use Azure Private Link to securely connect servers to Azure Arc
@@ -36,6 +36,8 @@ Azure Arc Private Link Scope connects private endpoints (and the virtual network
 - Azure Blob storage, required for Custom Script Extension.
 
 :::image type="content" source="./media/private-link-security/private-link-topology.png" alt-text="Diagram of basic resource topology." border="true" lightbox="./media/private-link-security/private-link-topology.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 Connectivity to any other Azure resource from an Azure Arc-enabled server requires configuring Private Link for each service, which is optional, but recommended. Azure Private Link requires separate configuration per service.
 

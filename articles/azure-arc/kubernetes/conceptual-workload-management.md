@@ -2,7 +2,7 @@
 title: "Workload management in a multi-cluster environment with GitOps"
 description: "This article provides a conceptual overview of the workload management in a multi-cluster environment with GitOps."
 ms.date: 03/29/2023
-ms.topic: conceptual
+ms.topic: concept-article
 author: eedorenko
 ms.author: iefedore
 ---

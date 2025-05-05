@@ -1,8 +1,8 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 01/16/2025
-ms.topic: conceptual
+ms.date: 04/22/2025
+ms.topic: concept-article
 ms.custom: devx-track-azurecli, references-regions
 ---
 
@@ -65,6 +65,8 @@ By default, the `microsoft.flux` extension installs the [Flux controllers](https
 ## Flux configurations
 
 :::image type="content" source="media/gitops/flux2-config-install.png" alt-text="Diagram showing the installation of a Flux configuration in an Azure Arc-enabled Kubernetes or AKS cluster." lightbox="media/gitops/flux2-config-install.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 You create Flux configuration resources (`Microsoft.KubernetesConfiguration/fluxConfigurations`) to enable GitOps management of the cluster from your Git repos, Bucket sources or Azure Blob storage. When you create a `fluxConfigurations` resource, the values you supply for the [parameters](gitops-flux2-parameters.md), such as the target Git repo, are used to create and configure the Kubernetes objects that enable the GitOps process in that cluster. To ensure data security, the `fluxConfigurations` resource data is stored encrypted at rest in an Azure Cosmos DB database by the Cluster Configuration service.
 

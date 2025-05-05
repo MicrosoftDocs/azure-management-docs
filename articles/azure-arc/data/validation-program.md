@@ -4,7 +4,7 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.date: 06/14/2022
-ms.topic: conceptual
+ms.topic: concept-article
 author: MikeRayMSFT
 ms.author: mikeray
 description: "Describes validation program for Kubernetes distributions for Azure Arc-enabled data services."
@@ -108,7 +108,7 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 
 |Solution and version | Kubernetes version | Azure Arc-enabled data services version | SQL engine version | PostgreSQL server version|
 |-----|-----|-----|-----|-----|
-|[Wind River Cloud Platform 24.09](https://www.windriver.com/studio/operator/cloud-platform)|1.28.4|1.33.0_2024-09-10|16.0.5409|Not validated|
+|[Wind River Cloud Platform 24.09](https://www.windriver.com/studio/operator/cloud-platform)|1.30.6|1.37.0_2025-03-11|16.0.5564|Not validated|
 |[Wind River Cloud Platform 22.12](https://www.windriver.com/studio/operator/cloud-platform)|1.24.4|1.26.0_2023-12-12|16.0.5100.7246|Not validated|
 |Wind River Cloud Platform 22.06 | 1.23.1|1.9.0_2022-07-12 |16.0.312.4243| 12.3 (Ubuntu 12.3-1) |
 

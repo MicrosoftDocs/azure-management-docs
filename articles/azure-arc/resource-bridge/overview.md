@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge overview
 description: Learn how to use Azure Arc resource bridge to support VM self-servicing on Azure Local, VMware, and System Center Virtual Machine Manager.
-ms.date: 04/08/2025
+ms.date: 04/22/2025
 ms.topic: overview
 ms.custom: references_regions
 ---
@@ -27,6 +27,8 @@ Azure Arc resource bridge hosts other components such as [custom locations](..\p
 * The solution layer for each service supported by Arc resource bridge (that is, the different type of VMs).
 
 :::image type="content" source="media/overview/architecture-overview.png" alt-text="Azure Arc resource bridge architecture diagram." border="false" lightbox="media/overview/architecture-overview.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 Azure Arc resource bridge can host other Azure services or solutions running on-premises. There are two objects hosted on the Arc resource bridge:
 

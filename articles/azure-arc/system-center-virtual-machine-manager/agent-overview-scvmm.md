@@ -2,7 +2,7 @@
 title: Overview of Azure Connected Machine agent to manage Windows and Linux machines
 description: This article provides an overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
 ms.date: 03/25/2025
-ms.topic: conceptual
+ms.topic: concept-article
 author: PriskeyJeronika-MS
 ms.author: v-gjeronika
 manager: jsuri
@@ -19,8 +19,7 @@ When you [enable guest management](enable-guest-management-at-scale.md) on SCVMM
 
 :::image type="content" source="media/agent-overview-scvmm/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." border="false":::
 
->[!NOTE]
-> The above architecture diagram was created as part of Arc Jumpstart. To download its source file in a high-resolution format, visit [Jumpstart Gems](https://aka.ms/jumpstartgems).
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 

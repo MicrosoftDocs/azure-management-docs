@@ -38,7 +38,7 @@ To set up a container registry and push a container image to it, you must also h
 
 If you're not familiar with the managed identities for Azure resources feature, see this [overview](/azure/active-directory/managed-identities-azure-resources/overview).
 
-After you set up selected Azure resources with a managed identity, give the identity the access you want to another resource, just like any security principal. For example, assign a managed identity a role with pull, push and pull, or other permissions to a private registry in Azure. (For a complete list of registry roles, see [Azure Container Registry roles and permissions](container-registry-roles.md).) You can give an identity access to one or more resources.
+After you set up selected Azure resources with a managed identity, give the identity the access you want to another resource, just like any security principal. For example, assign a managed identity a role with pull, push and pull, or other permissions to a private registry in Azure. (For a complete list of registry roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).) You can give an identity access to one or more resources.
 
 Then, use the identity to authenticate to any [service that supports Microsoft Entra authentication](/azure/active-directory/managed-identities-azure-resources/services-support-managed-identities#azure-services-that-support-azure-ad-authentication), without any credentials in your code. Choose how to authenticate using the managed identity, depending on your scenario. To use the identity to access an Azure container registry from a virtual machine, you authenticate with Azure Resource Manager.
 
@@ -244,10 +244,15 @@ Now configure the identity to access your container registry. First use the [az 
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the AcrPull role to the identity. This role provides [pull permissions](container-registry-roles.md) to the registry. To provide both pull and push permissions, assign the AcrPush role.
+Use the [az role assignment create][az-role-assignment-create] command to assign the correct role to the identity. You must assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries). This role assignment provides [pull permissions](container-registry-rbac-built-in-roles-overview.md) to the registry.
+
+To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli-interactive
-az role assignment create --assignee $spID --scope $resourceID --role acrpull
+az role assignment create --assignee $spID --scope $resourceID \
+    --role "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -258,10 +263,14 @@ Now configure the identity to access your container registry. First use the [Get
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the AcrPull role to the identity. This role provides [pull permissions](container-registry-roles.md) to the registry. To provide both pull and push permissions, assign the AcrPush role.
+Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the correct role to the identity. You must assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries). This role assignment provides [pull permissions](container-registry-rbac-built-in-roles-overview.md) to the registry.
+
+To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurepowershell-interactive
-New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName AcrPull
+New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.
 ```
 
 ---
@@ -362,10 +371,15 @@ Now configure the identity to access your container registry. First use the [az 
 resourceID=$(az acr show --resource-group myResourceGroup --name myContainerRegistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the AcrPull role to the identity. This role provides [pull permissions](container-registry-roles.md) to the registry. To provide both pull and push permissions, assign the AcrPush role.
+Use the [az role assignment create][az-role-assignment-create] command to assign the correct role to the identity. You must assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries). This role assignment provides [pull permissions](container-registry-rbac-built-in-roles-overview.md) to the registry.
+
+To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli-interactive
-az role assignment create --assignee $spID --scope $resourceID --role acrpull
+az role assignment create --assignee $spID --scope $resourceID \
+    --role "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.
 ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -376,10 +390,14 @@ Now configure the identity to access your container registry. First use the [[Ge
 $resourceID = (Get-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry).Id
 ```
 
-Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the AcrPull role to the identity. This role provides [pull permissions](container-registry-roles.md) to the registry. To provide both pull and push permissions, assign the AcrPush role.
+Use the [New-AzRoleAssignment][new-azroleassignment] cmdlet to assign the correct role to the identity. You must assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries). This role assignment provides [pull permissions](container-registry-rbac-built-in-roles-overview.md) to the registry.
+
+To provide both pull and push permissions, assign either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurepowershell-interactive
-New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName AcrPull
+New-AzRoleAssignment -ObjectId $spID -Scope $resourceID -RoleDefinitionName "Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use AcrPull for non-ABAC registries.
 ```
 
 ---

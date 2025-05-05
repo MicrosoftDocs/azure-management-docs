@@ -8,7 +8,7 @@ author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 09/07/2021
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Limitations of SQL Managed Instance enabled by Azure Arc

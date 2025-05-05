@@ -105,13 +105,46 @@ landingContent:
         links:
           - text: Automate image builds     
             url: container-registry-tutorial-quick-task.md
+  # Card
+  - title: Authentication and authorization
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: Authentication overview
+            url: container-registry-authentication.md
+      - linkListType: how-to-guide
+        links:
+          - text: Authenticate with managed identity
+            url: container-registry-authentication-managed-identity.md
+          - text: Authenticate with service principal
+            url: container-registry-auth-service-principal.md
+          - text: Authenticate with non-Microsoft Entra token-based repository permissions 
+            url: container-registry-token-based-repository-permissions.md
+          - text: Authenticate from Kubernetes
+            url: authenticate-kubernetes-options.md
+          - text: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
+            url: container-registry-disable-authentication-as-arm.md
+          - text: Configure conditional access for ACR
+            url: container-registry-configure-conditional-access.md
+          - text: Enable unauthenticated anonymous pull access
+            url: anonymous-pull-access.md
+      - linkListType: reference
+        links:
+          - text: Microsoft Entra permissions and role assignments
+            url: container-registry-rbac-built-in-roles-overview.md
+          - text: Microsoft Entra repository permissions
+            url: container-registry-rbac-abac-repository-permissions.md
+          - text: Role directory reference
+            url: container-registry-rbac-built-in-roles-directory-reference.md
+          - text: Custom roles
+            url: container-registry-rbac-custom-roles.md
   # Card   
   - title: Troubleshoot guides
     linkLists:
       - linkListType: how-to-guide
         links:
-          - text: Troubleshoot authentication issues
-            url: container-registry-troubleshoot-login.md
+          - text: Troubleshoot login, authentication, and authorization issues
+            url: container-registry-troubleshoot-login-authn-authz.md
           - text: Troubleshoot network issues
             url: container-registry-troubleshoot-access.md
           - text: Troubleshoot performance issues
@@ -142,7 +175,14 @@ landingContent:
             url: container-registry-manage-artifact.md
           - text: Build, sign, and verify container images using Notary and Azure Key Vault (Preview)
             url: container-registry-tutorial-sign-build-push.md
+          - text: Continuous patching concepts
+            url: key-concept-continuous-patching.md
+          - text: Set up continuous patching
+            url: how-to-continuous-patching.md
+  # Card
+  - title: Networking
+    linkLists:
+      - linkListType: how-to-guide
+        links:
           - text: Connect to ACR with Azure Private Link
             url: container-registry-private-link.md
-          - text: Configure conditional access for ACR
-            url: container-registry-configure-conditional-access.md

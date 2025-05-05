@@ -1,7 +1,7 @@
 ---
 title: "Azure RBAC on Azure Arc-enabled Kubernetes"
-ms.date: 02/25/2025
-ms.topic: conceptual
+ms.date: 04/22/2025
+ms.topic: concept-article
 description: "This article provides a conceptual overview of the Azure RBAC capability on Azure Arc-enabled Kubernetes."
 ---
 
@@ -12,6 +12,8 @@ description: "This article provides a conceptual overview of the Azure RBAC capa
 ## Architecture
 
 :::image type="content" source="media/conceptual-azure-rbac.png" alt-text="Diagram showing Azure RBAC architecture.":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 In order to route all authorization access checks to the authorization service in Azure, a webhook server ([guard](https://github.com/appscode/guard)) is deployed on the cluster.
 
