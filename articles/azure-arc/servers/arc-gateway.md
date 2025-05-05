@@ -375,12 +375,12 @@ You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 To view Arc proxy logs on **Windows**:
 
 1. Run `azcmagent logs` in PowerShell.
-1. In the resulting .zip file, the logs are located in the `C:\ProgramData\Microsoft\ArcProxy` folder.
+1. In the resulting .zip file, the `arcproxy.log` file is located in the `ProgramData\AzureConnectedMachineAgent\Log` folder.
 
 To view Arc proxy logs on **Linux**:
 
-1. Run `sudo azcmagent logs`and share the resulting file.
-1. In the resulting log file, the logs are located in the `/usr/local/arcproxy/logs/` folder.
+1. Run `sudo azcmagent logs`.
+1. In the resulting .zip file, the `arcproxy.log` file is located in the `/var/opt/azcmagent/log/` folder.
 
 ## Additional scenarios
 
