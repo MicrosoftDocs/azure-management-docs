@@ -147,7 +147,7 @@ Create a Quota Group through the Azure portal.
 4. Select **Create** button to go to Create Quota Group view
 5. In the **Basics** tab, fill out required fields such name of Quota group. Quota Group name cannot contain any special characters and or spaces.
 6. Select **Management group**, if the default Management group is not the desired one, select **Change management group**, then select **Next** button.
-7. In the **Subscripion selection** tab select subscription(s) to be added to quota group. Subscription will be greyed out and unable to be selected if it already belongs to existing Quota Group, then  select **Next** button.
+7. In the **Subscription selection** tab select subscription(s) to be added to quota group. Subscription will be greyed out and unable to be selected if it already belongs to existing Quota Group, then  select **Next** button.
 8. In **Review + create** tab review details of Quota group before creation. Under **Basics** name of Quota Group will be displayed, under **Group selection** the selected Management group and subscription(s) will be displayed
 
 
