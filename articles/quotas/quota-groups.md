@@ -222,75 +222,34 @@ To remove subscription from Quota Group through portal.
 --- 
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
-## Get list of subscriptions in a Quata Group
-
-<!-- Please write at least a sentance to introduce this subsection. -->
-
-### [REST API](#tab/rest-3)
-To get a list of subscriptions in a Quota Group using the REST API, make a `GET` request to the following endpoint:
-
-```http
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
-
-```
-
-Example using `az rest`: 
-
-```json
-az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01" –debug
-
-user [ ~ ]$ az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions?api-version=2025-03-01" –debug
-
-{
-  "values": [
-    {
-      "Properties": {
-        "provisioningState": "SUCCEEDED",
-        "subscriptionId": "075216c4-f88b-4a82-b9f8-cdebf9cc097a"
-      },
-      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a",
-      "name": "075216c4-f88b-4a82-b9f8-cdebf9cc097a",
-      "type": "Microsoft.Quota/groupQuotas/subscriptions"
-    },
-    {
-      "Properties": {
-        "provisioningState": "SUCCEEDED",
-        "subscriptionId": "aa3b53ad-601b-473e-b727-f933435c8263"
-      },
-      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263",
-      "name": "aa3b53ad-601b-473e-b727-f933435c8263",
-      "type": "Microsoft.Quota/groupQuotas/subscriptions"
-    }
-  ]
-}
-```
-
-### [Azure portal](#tab/portal-3)
-Get list of subscriptions in a Quata Group through the Azure portal.
-
-1. Step one.
-2. Step two.
-3. Step three. 
-
---- 
-<!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
 ## Transfer unused quota
 
-Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
+Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription. Once your gquota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family. 
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-To deallocate or transfer quota from subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.  
+To transfer quota from source subscriptions to group
+1. Add subscription to Group
+2. Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API); user can also do  GET quotaAllocations to view current subscription quota but usage wont be provided
+3. Submit PATCH quotaAllocations request for a given region and VM family. When submitting quota allocation request the **Limit** should be set as absolute value of the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.
+4. GET quotaAllocationRequests status to view status of request once provising state = Accepted"
+5. GET quotaAllocations to view current subscription quota and how many cores have been transferred to group
+   	- Limit = current subscription limit  
+	- Shareable quota = how many cores have been deallocated/transferred from sub to group
+	- ‘-5’ = 5 cores were given from sub to group
+6. GET GroupLimit to view current group limit
 
-To allocate or transfer quota from group to subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
-
+## GET subscription quota and usage
+```http
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
+```
 ## PATCH subscription quota allocation
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
 ```http
-PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
+PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
 ```
 
 ```json
@@ -307,6 +266,10 @@ PATCH https://management.azure.com/"providers/Microsoft.Management/managementGro
 ```
 
 Example using `az rest`: 
+
+To deallocate or transfer quota from subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.  
+
+To allocate or transfer quota from group to subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
 
 ```json
 az rest –method patch –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01" –body ‘{
@@ -531,6 +494,58 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 - Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link 	where you can open a support request so that a support engineer can assist you with the increase.  
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
 
+## Get list of subscriptions in a Quota Group
+
+<!-- Please write at least a sentance to introduce this subsection. -->
+
+### [REST API](#tab/rest-3)
+To get a list of subscriptions in a Quota Group using the REST API, make a `GET` request to the following endpoint:
+
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01
+
+```
+
+Example using `az rest`: 
+
+```json
+az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuota}/subscriptions?api-version=2025-03-01" –debug
+
+user [ ~ ]$ az rest –method get –debug –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions?api-version=2025-03-01" –debug
+
+{
+  "values": [
+    {
+      "Properties": {
+        "provisioningState": "SUCCEEDED",
+        "subscriptionId": "075216c4-f88b-4a82-b9f8-cdebf9cc097a"
+      },
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a",
+      "name": "075216c4-f88b-4a82-b9f8-cdebf9cc097a",
+      "type": "Microsoft.Quota/groupQuotas/subscriptions"
+    },
+    {
+      "Properties": {
+        "provisioningState": "SUCCEEDED",
+        "subscriptionId": "aa3b53ad-601b-473e-b727-f933435c8263"
+      },
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/aa3b53ad-601b-473e-b727-f933435c8263",
+      "name": "aa3b53ad-601b-473e-b727-f933435c8263",
+      "type": "Microsoft.Quota/groupQuotas/subscriptions"
+    }
+  ]
+}
+```
+
+### [Azure portal](#tab/portal-3)
+Get list of subscriptions in a Quata Group through the Azure portal.
+
+1. Step one.
+2. Step two.
+3. Step three. 
+
+--- 
+<!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 ## Clean up resources
 
 <!-- Optional: Steps to clean up resources - H2
