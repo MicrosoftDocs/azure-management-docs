@@ -169,7 +169,7 @@ Create a Quota Group through the Azure portal.
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
 ## Add or remove subscriptions from a Quota Group
-This section covers how to add subscription(s) after the Quota group is created. Subscription(s) will carry their existing quota and usage, this will not be manipulated at the moment of adding to group. 
+This section covers how to add subscription(s) after the Quota group is created. Subscription(s) will carry their existing quota and usage, this will not be manipulated at the moment of adding to group. Subscription quota remains separate from the group limit. 
 
 <!-- Please write at least a sentance to introduce this subsection. -->
 <!-- Consider breaking add and remove into their own seperate sections. -->
@@ -199,11 +199,25 @@ DELETE https://management.azure.com/providers/Microsoft.Management/managementGro
 ```
 
 ### [Azure portal](#tab/portal-2)
-Add or remove subscriptions from the Quota Group through the Azure portal.
+Add or remove subscriptions from the Quota Group through the Azure portal. Subscriptions can only belong to one quota group at a time.
 
-1. Step one.
-2. Step two.
-3. Step three.
+To add subscriptions from Quota Group through portal.
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side select **Quota groups**.
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+4. Select **Edit** or **Add** button under **Subscriptions added** column
+5. In the Edit subscriptions view the exisiting subscription(s) will be listed, select **Add subscription** button
+6. In the Add Subscriptions view select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. Subscription(s) will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
+7. Notification should indicate that subscription(s) was successfully added and the Edit Subscriptions view will be updated with the added subscription(s)
+
+To remove subscription from Quota Group through portal. 
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side select **Quota groups**.
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+4. Select **Edit** or **Add** button under **Subscriptions added** column
+5. In the Edit subscriptions view the exisiting subscription(s) will be listed, select trashcan icon for the subscription you'd like to remove
+6. There will be prompt confirming whether you're sure about removing the selected subscription, select **remove**
+7. Notification should indicate that subscription(s) was successfully removed and the Edit Subscriptions view will be updated with the latest list of subscription(s)
 
 --- 
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
