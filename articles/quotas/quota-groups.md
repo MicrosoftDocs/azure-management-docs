@@ -231,33 +231,51 @@ Transfer unused quota from your subscription to a Quota Group or from a Quota Gr
 
 To transfer quota from source subscriptions to group
 1. Add subscription to Group
-2. Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API); user can also do  GET quotaAllocations to view current subscription quota but usage wont be provided
+2. Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API); user can also do GET quotaAllocations to view current subscription quota but usage wont be provided
 3. Submit PATCH quotaAllocations request for a given region and VM family. When submitting quota allocation request the **Limit** should be set as absolute value of the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.
-4. GET quotaAllocationRequests status to view status of request once provising state = Accepted"
+4. GET quotaAllocationRequests status to view status of request once provising state = Succeeded" then move to below step
 5. GET quotaAllocations to view current subscription quota and how many cores have been transferred to group
    	- Limit = current subscription limit  
 	- Shareable quota = how many cores have been deallocated/transferred from sub to group
 	- ‘-5’ = 5 cores were given from sub to group
 6. GET GroupLimit to view current group limit
 
-## GET subscription quota and usage
+## Step 1 - Add subscription to group (link to previous section)
+## Step 2 - Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API)
+### GET subscription quota and usage
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
 ```
-## PATCH subscription quota allocation
+Example:  I have 60 cores for *standarddv4family* on subscription that's been added to Quota Group 
+Sample response
+```json
+    {
+      "limit": 60,
+      "unit": "Count",
+      "currentValue": 0,
+      "name": {
+        "value": "standardDDv4Family",
+        "localizedValue": "Standard DDv4 Family vCPUs"
+      }
+    }
+```
+## Step 3 - Submit PATCH quotaAllocations request for a given region and VM family
+### PATCH subscription quota allocation
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+To deallocate or transfer quota from source subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 60 cores, set the new limit to 50.  
+
+To allocate or transfer quota from group to target subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.  
 
 ```http
 PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
 ```
-
 ```json
 {
   "properties": {
     "value": [{
         "properties": {
-          "limit": 110,
+          "limit": 50,
           "resourceName": "standardddv4family"
         }
       }]
@@ -266,10 +284,8 @@ PATCH https://management.azure.com/"providers/Microsoft.Management/managementGro
 ```
 
 Example using `az rest`: 
+ I transfer 10 cores  of *standarddv4family* in centralus from subscription in previous step to group by setting limit to 50
 
-To deallocate or transfer quota from subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.  
-
-To allocate or transfer quota from group to subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 110 and you want to transfer 10 cores from group to target subscription, set the new limit to 120.  
 
 ```json
 az rest –method patch –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01" –body ‘{
@@ -277,7 +293,7 @@ az rest –method patch –url "https://management.azure.com/providers/Microsoft
     "value": [
       {
         "properties": {
-          "limit": 110,
+          "limit": 50,
           "resourceName": "standardddv4family"
         }
       }
@@ -285,18 +301,19 @@ az rest –method patch –url "https://management.azure.com/providers/Microsoft
   }
 }’ –debug
 ```
-
-## GET subscription allocation quota request status 
-
+## Step 4- GET quotaAllocationRequests status to view status of request once provising state = Succeeded" then move to below step
+### GET subscription allocation quota request status 
+The quotaAllocations request is an async operation that may take up to 3 minutes to complete, to view the status of the request you can do below GET call using the allocationID in response header from previous step.
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-- Succeeded
-- In progress
-- Escalated  
 - If allocation request status is *succeeded*, then GET subscription `quotaAllocations` to view current subscription limit for region x SKU.
-- Limit = current subscription limit  
-- Shareable quota = how many cores have been deallocated/transferred from sub to group
-- ‘-5’ = 5 cores were given from sub to group  
+	- Accepted
+	- In progress
+	- Succeeded
+	- In progress
+	- Escalated
+	- Failed
+
 
 ```http
 GET /providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/quotaAllocationRequests/{allocationId}?api-version=2025-03-01
@@ -314,41 +331,43 @@ Sample response:
 
 ```json
 {
-	"properties": {
-		"requestedResource": {
-			"properties": {
-				"limit": 0,
-				"name": {
-					"value": "string",
-					"localizedValue": "string"
-				},
-				"region": "string"
-			}
-		},
-		"requestSubmitTime": "2025-03-19T14:53:18.065Z",
-		"provisioningState": "Accepted",
-		"faultCode": "string"
-	}
-}
+  "id": "/providers/Microsoft.Management/managementGroups/yayatest092724/subscriptions/226818a0-4fa2-4c2d-be7f-03b9b92ab3a2/providers/Microsoft.Quota/groupQuotas/yayatestingmgissue/quotaAllocationRequests/b5d6f0aa-70e3-4178-8281-8e5e3f06e924",
+  "name": "b5d6f0aa-70e3-4178-8281-8e5e3f06e924",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "requestProperties": {
+      "requestSubmitTime": "2025-05-05T21:45:07.4047197+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 50,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Succeeded",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/quotaAllocationRequests"
+
 ```
-
-## GET subscription quota allocation 
-
+## Step 5 - GET quotaAllocations to view current subscription quota and how many cores have been transferred to group
+### GET quotaAllocations
+Once the quotaAllocations request has succeeded you can do a GET quotaAllocations request to view the updated subscription quota and how many cores (shareable quota) have been deallocated from the source subscription to the group. 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
 - View current subscription limit for region x SKU  
 - Limit = current subscription limit  
 - Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
-- Status code: 200
-
-Response Header: 
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
 ```
 
 Example using `az rest`:
-
+My new subscription limit is 50 cores for *standarddv4family* in centralus and my shareable quota is -10 because I gave 10 cores to my Quota group. 
 ```json
 az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
 Response content
@@ -361,13 +380,13 @@ Response content
   "value": [
     {
       "properties": {
-        "limit": 5,
+        "limit": 50,
         "name": {
           "localizedValue": "standardddv4family",
           "value": "standardddv4family"
         },
         "resourceName": "standardddv4family",
-        "shareableQuota": -5
+        "shareableQuota": -10
       }
     }
   ]
