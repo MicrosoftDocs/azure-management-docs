@@ -19,7 +19,7 @@ In addition to the prerequisites listed here, you need an Azure account with an 
 
 ## Prerequisites
 
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. If you want to use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. Too use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
 * An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
 * An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
 * Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
@@ -82,7 +82,7 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
 
 ## Assign permissions to Key Vault with Azure RBAC
 
-You can use Azure RBAC to assign the apropriate permissions to users so they can access the Azure Key Vault.
+You can use Azure RBAC to assign the appropriate permissions to users so they can access the Azure Key Vault.
 
 The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required to access the Key Vault. The **Key Vault Secrets User** Azure built-in role is typically granted, as it's the least privileged role that includes this action. Alternately, you can create a custom role that includes that permission.
 
