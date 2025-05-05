@@ -4,7 +4,7 @@ description: Learn about Azure Container Storage enabled by Azure Arc, a first-p
 author: asergaz
 ms.author: sergaz
 ms.topic: overview
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 
 #customer intent: As a user, I want to understand the Azure Container Storage enabled by Azure Arc offering and its features.
 ---
@@ -15,7 +15,7 @@ Azure Container Storage enabled by Azure Arc is a first-party storage system des
 
 :::image type="content" source="media/overview/container-storage-solution-architecture.png" alt-text="Diagram of Azure Container Storage enabled by Azure Arc solution architecture." lightbox="media/overview/container-storage-solution-architecture.png":::
 
-**Download a high resolution version of this diagram from [Jumpstart Gems](https://aka.ms/JumpstartGems_Docs).*
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ## What does Azure Container Storage do?
 

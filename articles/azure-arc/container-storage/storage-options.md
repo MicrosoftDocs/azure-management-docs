@@ -4,7 +4,7 @@ description: Learn about different data storage options in Azure Container Stora
 author: asergaz
 ms.author: sergaz
 ms.topic: conceptual
-ms.date: 04/30/2025
+ms.date: 05/05/2025
 ---
 
 # Storage options using Azure Container Storage enabled by Azure Arc
@@ -25,7 +25,7 @@ You can also use these two storage options in tandem. For example, see the follo
 
 :::image type="content" source="media/storage-options/data-storage-options.png" alt-text="Diagram showing storage options architecture." lightbox="media/storage-options/data-storage-options.png":::
 
-**Download a high resolution version of this diagram from [Jumpstart Gems](https://aka.ms/JumpstartGems_Docs).*
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 In this case, we have an application that generates data. We want to send some of that data directly to the cloud, so we put it in an Ingest subvolume configured for our cloud storage destination; in this case, OneLake. But we aren't ready to send some of our other data to the cloud yet, so instead we send that data to the Local Shared volume. Here, our app can go back and forth, interacting with and changing or processing that data as needed. Once we are satisfied with the processed data and are ready to find its home in our cloud destination, we can copy the data from the Local Shared volume to our Ingest subvolume, and the destination file is automatically uploaded to the Azure cloud.
 
