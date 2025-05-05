@@ -160,8 +160,10 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 You can import an image from an Azure container registry in the same AD tenant using integrated Microsoft Entra permissions.
 
-* Your identity must have Microsoft Entra permissions to view the source registry (`Container Registry Configuration Reader and Data Access Configuration Reader` role) and permissions to view and pull images, tags, and OCI referrers from the source registry (`AcrPull`).
-* Your identity must also have permissions to trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role).
+* Your identity must have permissions to view and pull images, tags, and OCI referrers from the source registry.
+  * For [ABAC-enabled source registries](container-registry-rbac-abac-repository-permissions.md), you must have both the `Container Registry Repository Reader` and the `Container Registry Repository Catalog Lister` roles on the source registry.
+  * For [non-ABAC source registries](container-registry-rbac-built-in-roles-overview.md), you must have the `AcrPull` role on the source registry.
+* Your identity must also have permissions to both read images and trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role).
 * The registry can be in the same or a different Azure subscription in the same Active Directory tenant.
 
 * [Public access](container-registry-access-selected-networks.md#disable-public-network-access) to the source registry is disabled. If public access is disabled, specify the source registry by resource ID instead of by registry login server name.
@@ -248,7 +250,10 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 ### Import from a registry using service principal credentials
 
-To import from a registry that you can't access using integrated Active Directory permissions, you can use service principal credentials (if available) to the source registry. Supply the appID and password of an Active Directory [service principal](container-registry-auth-service-principal.md) that has ACRPull access to the source registry. Using a service principal is useful for build systems and other unattended systems that need to import images to your registry.
+To import from a registry that you can't access using integrated Active Directory permissions, you can use service principal credentials (if available) to the source registry. Supply the appID and password of a Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has the correct role assignment access to the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been applied.
+
+Using a service principal is useful for build systems and other unattended systems that need to import images to your registry.
 
 
 ### [Azure CLI](#tab/azure-cli)
@@ -278,7 +283,8 @@ To import from an Azure container registry in a different Microsoft Entra tenant
 
 ### Cross-tenant import with username and password
 
-For example, use a [repository-scoped token](container-registry-repository-scoped-permissions.md) and password, or the appID and password of an Active Directory [service principal](container-registry-auth-service-principal.md) that has ACRPull access to the source registry.
+For example, use a [non-Microsoft Entra repository-scoped token](container-registry-token-based-repository-permissions.md) and password, or the appID and password of a Microsoft Entra [service principal](container-registry-auth-service-principal.md) that has correct role assignments to the source registry.
+* For Microsoft Entra service principals, ensure either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries) has been assigned on the source registry.
 
 ### [Azure CLI](#tab/azure-cli)
 

@@ -44,7 +44,7 @@ See [Check the health of an Azure container registry](container-registry-check-h
 If you're experiencing problems using an Azure Kubernetes Service with an integrated registry, run the [az aks check-acr](/cli/azure/aks#az-aks-check-acr) command to validate that the AKS cluster can reach the registry.
 
 > [!NOTE]
-> Some network connectivity symptoms can also occur when there are issues with registry authentication or authorization. See [Troubleshoot registry login](container-registry-troubleshoot-login.md).
+> Some network connectivity symptoms can also occur when there are issues with registry authentication or authorization. See [Troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md).
 
 ## Potential solutions
 
@@ -142,7 +142,7 @@ Related links:
 If you don't resolve your problem here, see the following options.
 
 * Other registry troubleshooting topics include:
-  * [Troubleshoot registry login](container-registry-troubleshoot-login.md) 
+  * [Troubleshoot registry login, authentication, and authorization](container-registry-troubleshoot-login-authn-authz.md) 
   * [Troubleshoot registry performance](container-registry-troubleshoot-performance.md)
 * [Community support](https://azure.microsoft.com/support/community/) options
 * [Microsoft Q&A](/answers/products/)

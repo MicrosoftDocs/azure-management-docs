@@ -1,7 +1,7 @@
 ---
 title: "Azure Arc-enabled Kubernetes and GitOps frequently asked questions"
 ms.date: 11/25/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "This article contains a list of frequently asked questions related to Azure Arc-enabled Kubernetes and Azure GitOps."
 ms.custom: references_regions
 ---

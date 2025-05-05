@@ -1,7 +1,7 @@
 ---
 title: Azure Container Registry custom roles
 description: Use Azure RBAC custom roles to create your own fine-grained roles for Azure Container Registry.
-ms.topic: conceptual
+ms.topic: concept-article
 author: johnsonshi
 ms.author: johsh
 ms.date: 04/24/2025
@@ -74,4 +74,5 @@ Learn more about assigning Azure roles to an Azure identity by using the [Azure 
 ## Next steps
 
 * For a high-level overview of these built-in roles—including supported role assignment identity types, steps to perform a role assignment, and recommended roles for common scenarios—see [Azure Container Registry RBAC built-in roles](container-registry-rbac-built-in-roles-overview.md).
+* To perform role assignments with optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 * For a detailed reference of every ACR built-in role, including the permissions granted by each role, see the [Azure Container Registry roles directory reference](container-registry-rbac-built-in-roles-directory-reference.md).

@@ -1,7 +1,7 @@
 ---
 title: The structure of Azure dashboards
 description: Walk through the JSON structure of an Azure dashboard using an example dashboard. Includes reference to resource properties.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/25/2024
 ---
 

@@ -2,7 +2,7 @@
 title: PowerShell Requests for the Run Command on Azure Arc-enabled Servers (Preview)
 description: Learn how to use PowerShell to remotely execute scripts and commands on Arc-enabled servers.
 ms.date: 02/28/2025
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
 ---
 # PowerShell requests for Run command on Azure Arc-enabled servers (Preview)

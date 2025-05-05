@@ -2,7 +2,7 @@
 title: How to migrate from legacy Log Analytics agents in non-Azure environments with Azure Arc
 description: Learn how to migrate from legacy Log Analytics agents in non-Azure environments with Azure Arc.
 ms.date: 07/01/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Migrate from legacy Log Analytics agents in non-Azure environments with Azure Arc

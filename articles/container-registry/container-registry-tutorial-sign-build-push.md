@@ -107,7 +107,11 @@ When working with ACR and AKV, it’s essential to grant the appropriate permiss
 
 ### Authorize access to ACR
 
-The `AcrPull` and `AcrPush` roles are required for signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+
+For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the ACR resource
 
@@ -115,11 +119,13 @@ The `AcrPull` and `AcrPush` roles are required for signing container images in A
     az account set --subscription $ACR_SUB_ID
     ```
 
-2. Assign the roles
+2. Assign the roles. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
     ```bash
     USER_ID=$(az ad signed-in-user show --query id -o tsv)
-    az role assignment create --role "AcrPull" --role "AcrPush" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
+    ROLE1="Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use "AcrPull" for non-ABAC-enabled registries.
+    ROLE2="Container Registry Repository Writer" # For ABAC-enabled registries. Otherwise, use "AcrPush" for non-ABAC-enabled registries.
+    az role assignment create --role "$ROLE1" --role "$ROLE2" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
     ```
 
 ### Authorize access to AKV

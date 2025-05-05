@@ -67,9 +67,11 @@ Use the following steps to:
 
 ### Step 3: Grant service principal permission to pull from registry
 
-In **Tenant B**, assign the AcrPull role to the service principal, scoped to the target container registry. You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
+In **Tenant B**, assign the correct role to the service principal, scoped to the target container registry. You must assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries).
 
-:::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Assign acrpull role to multitenant app":::
+You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
+
+:::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Screenshot of assigning role to multitenant app.":::
 
 <a name='step-4-update-aks-with-the-azure-ad-application-secret'></a>
 

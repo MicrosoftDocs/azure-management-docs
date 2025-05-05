@@ -1,7 +1,7 @@
 ---
 title: "Inner loop developer experience for teams adopting GitOps"
 ms.date: 01/23/2025
-ms.topic: conceptual
+ms.topic: concept-article
 description: "Learn how an established inner loop can enhance developer productivity and help in a seamless transition for teams adopting GitOps."
 ---
 # Inner loop developer experience for teams adopting GitOps

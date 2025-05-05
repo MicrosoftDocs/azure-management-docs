@@ -4,9 +4,9 @@ description: In this Azure Linux Container Host for AKS tutorial, you learn how 
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: linux-related-content
+ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
-ms.date: 08/18/2024
+ms.date: 04/06/2025
 ---
 
 # Tutorial: Upgrade Azure Linux Container Host nodes
@@ -33,15 +33,7 @@ In this tutorial, part five of five, you learn how to:
 
 ## Manually upgrade your cluster
 
-To manually upgrade the node-image on a cluster, you can run `az aks nodepool upgrade`:
-
-```azurecli
-az aks nodepool upgrade \
-    --resource-group testAzureLinuxResourceGroup \
-    --cluster-name testAzureLinuxCluster \
-    --name myAzureLinuxNodepool \
-    --node-image-only
-```
+In order to manually upgrade the node-image on a cluster, you can run the `az aks nodepool upgrade.
 
 ## Automatically upgrade your cluster
 
@@ -49,22 +41,48 @@ Auto-upgrade provides a set once and forget mechanism that yields tangible time 
 
 Automatically completed upgrades are functionally the same as manual upgrades. The selected channel determines the timing of upgrades. When making changes to auto-upgrade, allow 24 hours for the changes to take effect.
 
-To set the auto-upgrade channel on existing cluster, update the `--auto-upgrade-channel` parameter, similar to the following example, which automatically upgrades the cluster to the latest supported patch release of a previous minor version.
+To set the auto-upgrade channel on an existing cluster, update the --auto-upgrade-channel parameter:
 
-```azurecli-interactive
-az aks update --resource-group testAzureLinuxResourceGroup --name testAzureLinuxCluster --auto-upgrade-channel stable
+```bash
+az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --auto-upgrade-channel stable
+```
+
+<!-- expected_similarity=0.3 -->
+```json
+{
+  "id": "/subscriptions/xxxxx/resourceGroups/testAzureLinuxResourceGroup",
+  "location": "WestUS2",
+  "name": "testAzureLinuxCluster",
+  "properties": {
+    "autoUpgradeChannel": "stable",
+    "provisioningState": "Succeeded"
+  }
+}
 ```
 
 For more information on upgrade channels, see [Using cluster auto-upgrade](/azure/aks/auto-upgrade-cluster).
 
 ## Enable automatic package upgrades
 
-Similar to setting your clusters to auto-upgrade, you can use the same set once and forget mechanism for package upgrades by enabling the node-os upgrade channel. If automatic package upgrades are enabled, the `dnf-automatic` systemd service runs daily and installs any updated packages that have been published.
+Similar to setting your clusters to auto-upgrade, you can use the same set once and forget mechanism for package upgrades by enabling the node-os upgrade channel. If automatic package upgrades are enabled, the dnf-automatic systemd service runs daily and installs any updated packages that have been published.
 
-To set the node-os upgrade channel on existing cluster, update the `--node-os-upgrade-channel` parameter, similar to the following example, which automatically enables package upgrades.
+To set the node-os upgrade channel on an existing cluster, update the --node-os-upgrade-channel parameter:
 
-```azurecli-interactive
-az aks update --resource-group testAzureLinuxResourceGroup --name testAzureLinuxCluster --node-os-upgrade-channel Unmanaged
+```bash
+az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --node-os-upgrade-channel Unmanaged
+```
+
+<!-- expected_similarity=0.3 -->
+```json
+{
+  "id": "/subscriptions/xxxxx/resourceGroups/testAzureLinuxResourceGroup",
+  "location": "WestUS2",
+  "name": "testAzureLinuxCluster",
+  "properties": {
+    "nodeOsUpgradeChannel": "Unmanaged",
+    "provisioningState": "Succeeded"
+  }
+}
 ```
 
 ## Enable an automatic reboot daemon
@@ -75,11 +93,7 @@ We recommend enabling an automatic reboot daemon, such as [Kured](https://kured.
 
 ## Clean up resources
 
-As this tutorial is the last part of the series, you may want to delete your Azure Linux Container Host cluster. The Kubernetes nodes run on Azure virtual machines and continue incurring charges even if you don't use the cluster. Use the `az group delete` command to remove the resource group and all related resources. 
-
-```azurecli-interactive
-az group delete --name testAzureLinuxCluster --yes --no-wait
-```
+As this tutorial is the last part of the series, you may want to delete your Azure Linux Container Host cluster. The Kubernetes nodes run on Azure virtual machines and continue incurring charges even if you don't use the cluster. 
 
 ## Next steps
 

@@ -5,9 +5,9 @@ author: suhuruli
 ms.author: suhuruli
 ms.reviewer: schaffererin
 ms.service: microsoft-linux
-ms.custom: devx-track-azurecli, linux-related-content
+ms.custom: devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: tutorial
-ms.date: 01/19/2024
+ms.date: 04/06/2025
 ---
 
 # Tutorial: Migrate nodes to Azure Linux
@@ -32,15 +32,26 @@ If you don't have any existing nodes to migrate to Azure Linux, skip to the [nex
 
 1. Add a new Azure Linux node pool using the `az aks nodepool add` command. This command adds a new node pool to your cluster with the `--mode System` flag, which makes it a system node pool. System node pools are required for Azure Linux clusters.
 
-    ```azurecli-interactive
-    az aks nodepool add --resource-group <resource-group-name> --cluster-name <cluster-name> --name <node-pool-name> --mode System --os-sku AzureLinux
-    ```
+```azurecli-interactive
+# Declare environment variables with a random suffix for uniqueness
+export RANDOM_SUFFIX=$(openssl rand -hex 3)
+export NODE_POOL_NAME="np$RANDOM_SUFFIX"
+az aks nodepool add --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --mode System --os-sku AzureLinux
+```
+
+Results:
+
+<!-- expected_similarity=0.3 -->
+
+```JSON
+{
+  "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/systempool",
+  "name": "systempool",
+  "provisioningState": "Succeeded"
+}
+```
 
 2. Remove your existing nodes using the `az aks nodepool delete` command.
-
-    ```azurecli-interactive
-    az aks nodepool delete --resource-group <resource-group-name> --cluster-name <cluster-name> --name <node-pool-name>
-    ```
 
 ## In-place OS SKU migration
 
@@ -66,7 +77,7 @@ There are several settings that can block the OS SKU migration request. To ensur
 * Ensure the migration feature is working for you in test/dev before using the process on a production cluster.
 * Ensure that your pods have enough [Pod Disruption Budget](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
 * You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
-* If you are using Terraform, you must have [v3.111.0](https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v3.111.0) or greater of the AzureRM Terraform module. 
+* If you are using Terraform, you must have [v3.111.0](https://github.com/hashicorp/terraform-provider-azurerm/releases/tag/v3.111.0) or greater of the AzureRM Terraform module.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -74,12 +85,25 @@ There are several settings that can block the OS SKU migration request. To ensur
 
 * Migrate the OS SKU of your node pool to Azure Linux using the `az aks nodepool update` command. This command updates the OS SKU for your node pool from Ubuntu to Azure Linux. The OS SKU change triggers an immediate upgrade operation, which takes several minutes to complete.
 
-    ```azurecli-interactive
-    az aks nodepool update --resource-group <resource-group-name> --cluster-name <cluster-name> --name <node-pool-name> --os-sku AzureLinux
-    ```
+```azurecli-interactive
+az aks nodepool update --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --os-sku AzureLinux
+```
 
-    > [!NOTE]
-    > If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#rollback).
+Results:
+
+<!-- expected_similarity=0.3 -->
+
+```JSON
+{
+  "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/nodepool1",
+  "name": "nodepool1",
+  "osSku": "AzureLinux",
+  "provisioningState": "Succeeded"
+}
+```
+
+> [!NOTE]
+> If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#rollback).
 
 ### [ARM template](#tab/arm-template)
 
@@ -325,7 +349,7 @@ Once the migration is complete on your test clusters, you should verify the foll
 
 ### Run the OS SKU migration on your production clusters
 
-1. Update your existing templates to set `OSSKU=AzureLinux`. In ARM templates, you use `"OSSKU: "AzureLinux"` in the `agentPoolProfile` section. In Bicep, you use `osSku: "AzureLinux"` in the `agentPoolProfile` section. Lastly, for Terraform, you use `"os_sku = "AzureLinux"` in the `default_node_pool` section. Make sure that your `apiVersion` is set to `2023-07-01` or later.
+1. Update your existing templates to set `OSSKU=AzureLinux`. In ARM templates, you use `"OSSKU": "AzureLinux"` in the `agentPoolProfile` section. In Bicep, you use `osSku: "AzureLinux"` in the `agentPoolProfile` section. Lastly, for Terraform, you use `os_sku = "AzureLinux"` in the `default_node_pool` section. Make sure that your `apiVersion` is set to `2023-07-01` or later.
 2. Redeploy your ARM, Bicep, or Terraform template for the cluster to apply the new `OSSKU` setting. During this deploy, your cluster behaves as if it's taking a node image upgrade. Your cluster surges capacity, and then reboots your existing nodes one by one into the latest AKS image from your new OS SKU.
 
 ### Rollback
@@ -337,10 +361,6 @@ If you experience issues during the OS SKU migration, you can roll back to your 
  > OS SKU migration does not support rolling back to OS SKU Mariner.
 
 * Roll back to your previous OS SKU using the `az aks nodepool update` command. This command updates the OS SKU for your node pool from Azure Linux back to Ubuntu.
-
-    ```azurecli-interactive
-    az aks nodepool update --resource-group myResourceGroup --cluster-name myAKSCluster --name mynodepool --os-sku Ubuntu
-    ```
 
 ## Next steps
 

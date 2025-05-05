@@ -2,7 +2,7 @@
 title: SSH access to Azure Arc-enabled servers with PowerShell remoting
 description: Use PowerShell remoting over SSH to access and manage Azure Arc-enabled servers.
 ms.date: 04/08/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: references_regions
 ---
 

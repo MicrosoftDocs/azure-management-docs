@@ -8,7 +8,7 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.date: 12/06/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: references_regions
 #Customer intent: As a data professional, I want to validate upcoming releases.
 ---

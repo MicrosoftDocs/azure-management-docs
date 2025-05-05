@@ -1,7 +1,7 @@
 ---
 title: Registry Service Tiers and Features
 description: Learn about the features and limits in the Basic, Standard, and Premium service tiers of Azure Container Registry.
-ms.topic: conceptual
+ms.topic: concept-article
 author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023

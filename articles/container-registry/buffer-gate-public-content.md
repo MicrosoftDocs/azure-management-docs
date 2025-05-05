@@ -113,7 +113,7 @@ Credentials are required if the source registry isn't publicly available or the 
 
 Developers of application images should ensure that their code references local content under their control.
 
-* Update image references to use the private registry. For example, update a `FROM baseimage:v1` statement in a Dockerfile to `FROM myregistry.azurecr.io/mybaseimage:v1`.
+* Update image references to use the private registry. For example, update a `FROM baseimage:v1` statement in a Dockerfile to `FROM myregistry.azurecr.io/mybaseimage:v1` for a non-DNL registry or `FROM myregistry-abc123.azurecr.io/mybaseimage:v1` for a DNL-enabled registry. For more details on DNL options during registry creation and DNS name implications, see [Quickstart - Create Registry in Portal](container-registry-get-started-portal.md#configure-domain-name-label-dnl-option).
 * Configure credentials or an authentication mechanism to use the private registry. The exact mechanism depends on the tools you use to access the registry and how you manage user access.
     * If you use a Kubernetes cluster or Azure Kubernetes Service to access the registry, see the [authentication scenarios](authenticate-kubernetes-options.md).
     * Learn more about [options to authenticate](container-registry-authentication.md) with an Azure container registry.

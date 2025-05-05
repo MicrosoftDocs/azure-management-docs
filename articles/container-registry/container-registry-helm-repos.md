@@ -142,13 +142,15 @@ Successfully packaged chart and saved it to: /my/path/hello-world-0.1.0.tgz
 
 Run  `helm registry login` to authenticate with the registry. You may pass [registry credentials](container-registry-authentication.md) appropriate for your scenario, such as service principal credentials, user identity, or a repository-scoped token.
 
-- Authenticate with a Microsoft Entra [service principal with pull and push permissions](container-registry-auth-service-principal.md#create-a-service-principal) (AcrPush role) to the registry.
+- Authenticate with a Microsoft Entra [service principal with pull and push permissions](container-registry-auth-service-principal.md#create-a-service-principal) to the registry.
+  - If your registry is enabled for [Microsoft Entra attribute-based access control (ABAC) to manage Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), you must use the `Container Registry Repository Writer` role. Otherwise if your registry is not enabled for ABAC, use the older `AcrPush` role.
   ```azurecli
   SERVICE_PRINCIPAL_NAME=<acr-helm-sp>
   ACR_REGISTRY_ID=$(az acr show --name $ACR_NAME --query id --output tsv)
+  ROLE="Container Registry Repository Writer" # for ABAC-enabled registries. Otherwise use AcrPush for non-ABAC registries.
   PASSWORD=$(az ad sp create-for-rbac --name $SERVICE_PRINCIPAL_NAME \
             --scopes $(az acr show --name $ACR_NAME --query id --output tsv) \
-             --role acrpush \
+             --role "$ROLE" \
             --query "password" --output tsv)
   USER_NAME=$(az identity show -n $SERVICE_PRINCIPAL_NAME -g $RESOURCE_GROUP_NAME --subscription $SUBSCRIPTION_ID --query "clientId" -o tsv)
   ```
@@ -157,7 +159,7 @@ Run  `helm registry login` to authenticate with the registry. You may pass [regi
   USER_NAME="00000000-0000-0000-0000-000000000000"
   PASSWORD=$(az acr login --name $ACR_NAME --expose-token --output tsv --query accessToken)
   ```
-- Authenticate with a [repository scoped token](container-registry-repository-scoped-permissions.md) (Preview).
+- Authenticate with a [repository scoped token using non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md).
   ```azurecli
   USER_NAME="helmtoken"
   PASSWORD=$(az acr token create -n $USER_NAME \
@@ -345,7 +347,7 @@ A local chart archive such as `ingress-nginx-3.20.1.tgz` is created.
 
 ### Push charts as OCI artifacts to registry
 
-Login to the registry:
+Log in to the registry:
 
 ```azurecli
 az acr login --name $ACR_NAME
