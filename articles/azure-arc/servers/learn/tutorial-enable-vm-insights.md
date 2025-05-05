@@ -20,7 +20,7 @@ In this tutorial, you'll learn how to:
 * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 * Use our quickstart to [connect a hybrid machine](quick-enable-hybrid-vm.md) to Azure Arc. This tutorial assumes that you have already connected a machine to Azure Arc.
 * Be sure that your hybrid machine uses an [operating system supported by the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems) to ensure that the servers operating system you're enabling is supported by VM insights.
-* Review network configuration requirements for the Azure Monitor Agent provided in the [Log Analytics agent overview](/agents/azure-monitor-agent-network-configuration). The VM insights Map Dependency agent doesn't transmit any data itself, and it doesn't require any changes to firewalls or ports.
+* Review the requirements specified in [Azure Monitor Agent network configuration](/agents/azure-monitor-agent-network-configuration). The VM insights Map Dependency agent doesn't transmit any data itself, and it doesn't require any changes to firewalls or ports.
 
 ## Enable VM insights
 

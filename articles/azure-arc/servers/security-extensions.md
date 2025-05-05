@@ -173,7 +173,7 @@ If you don’t need to use extensions with Azure Arc, you can also disable the e
 
 `azcmagent config set extensions.enabled false`
 
-Disabling the extension manager won't remove any extensions already installed on your server. Extensions that are hosted in their own Windows or Linux services, such as the Log Analytics Agent, might continue to run even if the extension manager is disabled. Other extensions that are hosted by the extension manager itself, like the Azure Monitor Agent, don't run if the extension manger is disabled. You should [remove any extensions](manage-vm-extensions-portal.md#remove-extensions) before disabling the extension manager to ensure no extensions continue to run on the server.
+Disabling the extension manager won't remove any extensions already installed on your server. Extensions that are hosted in their own Windows or Linux services, such as the legacy Log Analytics Agent, might continue to run even if the extension manager is disabled. Other extensions that are hosted by the extension manager itself, like the Azure Monitor Agent, don't run if the extension manger is disabled. You should [remove any extensions](manage-vm-extensions-portal.md#remove-extensions) before disabling the extension manager to ensure no extensions continue to run on the server.
 
 
 
