@@ -64,6 +64,7 @@ These common scenarios each have a recommended built-in role.
 > The applicable built-in roles and role behavior depends on the registry's "Role assignment permissions mode". This is visible in the "Properties" blade in the Azure portal:
 > - **RBAC Registry + ABAC Repository Permissions**: Supports standard RBAC role assignments with optional Microsoft Entra ABAC conditions to scope assignments to specific repositories.
 > - **RBAC Registry Permissions**: Supports only standard RBAC assignments without ABAC conditions.
+>
 > For details on Microsoft Entra ABAC and ABAC-enabled roles, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 ### [Registries configured with "RBAC Registry + ABAC Repository Permissions"](#tab/registries-configured-with-rbac-registry-abac-repository-permissions)
