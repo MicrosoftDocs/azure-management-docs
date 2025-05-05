@@ -132,7 +132,7 @@ The GitOps [ArgoCD installation](https://argo-cd.readthedocs.io/en/stable/operat
  This command creates the simplest configuration installing the ArgoCD components to a new `argocd` namespace with cluster-wide access. Cluster-wide access enables ArgoCD app definitions to be detected in any namespace listed in the ArgoCD configmap configuration in the cluster. For example: `namespace1,namespace2`
 
 ```azurecli
-az k8s-extension create --resource-group <resource-group> --cluster-names <cluster-name> \
+az k8s-extension create --resource-group <resource-group> --cluster-name <cluster-name> \
 --cluster-type managedClusters \
 --name argocd \
 --extension-type Microsoft.ArgoCD \
@@ -141,7 +141,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-names <clust
 --version 0.0.7-preview \
 --config deployWithHightAvailability=false \
 --config namespaceInstall=false \
-–-config “config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2”
+–-config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
 
 If you want to limit ArgoCD access to a specific namespace, use the `--config namespaceInstall=true` along with `--target-namespace <namespace>` parameters. This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`. The installation command also enables the ability to install multiple instances of ArgoCD in the same cluster. ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.
