@@ -40,7 +40,7 @@
     items:
     - name: Execute commands
       href: execute-commands.md
-    - name: Deploy VMs effectively
+    - name: Deploy and manage VMs
       href: deploy-vms-effectively.md
     - name: Discover workloads
       href: deploy-workload-templates.md

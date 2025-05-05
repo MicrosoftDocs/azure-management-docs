@@ -70,7 +70,7 @@ conceptualContent:
               text: Execute commands
             - url: ./deploy-vms-effectively.md
               itemType: get-started
-              text: Deploy VMs effectively
+              text: Deploy and manage VMs
             - url: ./deploy-workload-templates.md
               itemType: get-started
               text: Discover and deploy workload templates
