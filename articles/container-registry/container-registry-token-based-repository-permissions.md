@@ -10,7 +10,7 @@ ms.devlang: azurecli
 ms.service: azure-container-registry
 ---
 
-# Create a token with repository-scoped permissions
+# Non-Microsoft Entra token-based repository permissions in Azure Container Registry
 
 This article describes how to create tokens and scope maps to manage access to repositories in your container registry. By creating tokens, a registry owner can provide users or services with scoped, time-limited access to repositories to pull or push images or perform other actions. A token provides more fine-grained permissions than other registry [authentication options](container-registry-authentication.md), which scope permissions to an entire registry.
 
