@@ -405,13 +405,13 @@ GET https://management.azure.com/providers/Microsoft.Management/managementGroups
 
 Example using `az rest`:
 I do a GET group limit for my quota group in centralus.  
-For the resource standardddv4family my **availableLimit** = 10 cores which matches the amount of cores I transferred in step 3 from source sub.  
-The **Limit** = 0 because I havent gotten any cores approved/stamped at the group level. Steps on how to submit Quota group increase request is in next section.    
-The **quotaAllocated** = -10 because I de-allocated /transfered 10 cores from source sub to group.    
+- For the resource standardddv4family my **availableLimit** = 10 cores which matches the amount of cores I transferred in step 3 from source sub.  
+- The **Limit** = 0 because I havent gotten any cores approved/stamped at the group level. Steps on how to submit Quota group increase request is in next section.  
+- The **quotaAllocated** = -10 because I de-allocated /transfered 10 cores from source sub to group.    
 
-For the resource standarddsv3family my **availableLimit** = 5  
-The **Limit** = 10 because I submitted Quota Group increase request and was approved.  
-The **quotaAllocated** = 5 because I allocated / transferred 5 cores from group to target sub.  
+- For the resource standarddsv3family my **availableLimit** = 5  
+- The **Limit** = 10 because I submitted Quota Group increase request and was approved.  
+- The **quotaAllocated** = 5 because I allocated / transferred 5 cores from group to target sub.  
 
 
 
@@ -424,7 +424,7 @@ az rest --method get --url https://management.azure.com/providers/Microsoft.Mana
 Sample reponse:
 
 ```json
-user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
 {
   "id": "/providers/Microsoft.Management/managementGroups/yayatest092724/providers/Microsoft.Quota/groupQuotas/yayatestingmgissue/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus",
   "name": "centralus",
@@ -478,13 +478,29 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 }
 
 ```
-## Submit Quota Group increase request
-Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request. 
+## Submit Quota Group Limit increase request
+One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can then follow steps to allocate/transfer quota from group to target subscription(s) for a given region x VM family.  
+- Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
+- Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
+- Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
+- If Quota Group  Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+
+### PATCH Quota Group Limit increase request
 
 ```http
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 ```
+Example using `az rest`
+- I submit PATCH Quota Group limit increase request of 50 cores for ***standardddv4family*** in centralus
+- Use the groupQuotaOperationsStatus ID in reponse header to validate the status of request in next section
+
+```http
+az rest --method patch --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"resourceName":"standardddv4family","limit":20,"comment":"comments"}}]}}' --verbose
+```
+
 
 ```json
 {
@@ -493,7 +509,7 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
       {
         "properties": {
           "resourceName": "standardddv4family",
-          "limit": 100,
+          "limit": 50,
           "comment": "comments"
         }
       }
@@ -501,35 +517,60 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
   }
 }
 ```
+Example response
+```json
+Status code: 202
+Response header:
+Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaOperationsStatus/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2?api-version=2025-03-01
+Retry-After: 30 
+Response Content
+```
 
-## Get Quota Group increase request status
+## GET Quota Group Limit increase request status
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+- A Quota Group Limit increase will take up to 3 minutes to be processed by Azure, check the status of your request with the below.
+- If GET Quota Group Limit increase request status is *succeeded*, then do GET Group Limit to validate cores assigned at the group level
+	- Accepted
+	- In progress
+	- Succeeded
+	- In progress
+	- Escalated
+	- Failed
 
+### GET Quota Group Limit increase request status
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 ```
-
+Example using `az rest`
+I used the groupQuotaOperationsStatus ID from my PATCH Quota Group Limit increase request of 50 cores for ***standardddv4family*** in centralus succeeded
+```http
+az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2?api-version=2025-03-01"
 Sample response:
-
+```
+Sample response
 ```json
 {
-	"properties": {
-		"requestedResource": {
-			"properties": {
-				"limit": 0,
-				"name": {
-					"value": "string",
-					"localizedValue": "string"
-				},
-				"region": "string",
-				"comments": "string"
-			}
-		},
-		"requestSubmitTime": "2025-03-19T15:03:30.611Z",
-		"provisioningState": "Accepted",
-		"faultCode": "string"
-	}
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2",
+  "name": "6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "requestProperties": {
+      "requestSubmitTime": "2025-05-06T17:57:00.0001431+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 20,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Succeeded",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
 }
 ```
 
@@ -537,43 +578,49 @@ Sample response:
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
+The below is the final step to validate that the correct amount of cores were stamped on the group once I validate that my Quota Group Limit increase request was succesfully approved. Consider the below when interpreting the API response. 
 - Available limit = how many  cores do I have at group level to distribute  
 - Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
-- Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been allocated from sub to group  
+- Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group 
+
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
 ```
 
 Example using `az rest`:
-
+I do a GET group limit for my quota group in centralus.  
+- For the resource standardddv4family my **availableLimit** = 50 cores which matches the amount of cores I requested and got approved at the group level
+- The **Limit** = 40 because even though I submitted an increase for 50 I already had 10 cores at the group level from quota transfer example, and Azure only stamped an additional 40 ores 
+- The **quotaAllocated** = -10 because I de-allocated /transfered 10 cores from source sub to group from previous section
 ```http
-az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
+az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq standardddv4family
+
 ```
 
 Sample reponse:
 
 ```json
-user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
+user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
 {
   "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus",
   "name": "eastus",
   "properties": {
     "nextLink": "",
     "provisioningState": "Succeeded",
-    "value": [
+        "value": [
       {
         "properties": {
           "allocatedToSubscriptions": {
             "value": [
               {
-                "quotaAllocated": -5,
-                "subscriptionId": "075216c4-f88b-4a82-b9f8-cdebf9cc097a"
+                "quotaAllocated": -10,
+                "subscriptionId": "226818a0-4fa2-4c2d-be7f-03b9b92ab3a2"
               }
             ]
           },
-          "availableLimit": 100,
-          "limit": 95,
+          "availableLimit": 50,
+          "limit": 40,
           "name": {
             "localizedValue": "standardddv4family",
             "value": "standardddv4family"
@@ -586,6 +633,7 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
   },
   "type": "Microsoft.Quota/groupQuotas/groupQuotaLimits"
 }
+
 ```
 
 
@@ -593,10 +641,7 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Avoid bulleted lists of information that can be written in paragraph format. If you do write a list, there should be a clear purpose to the grouping, etc. Do not duplicate information you already mentioned before unless absolutely necessary. Find the most appropriate spot to unpack said information and do it in one central place. If you need to mention it elsewhere, do it briefly and link to the central location for more information. If you need REST and portal tabs, copy the format from previous sections. -->
 
-- Customers can submit Quota Group increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
-- Quota Group increase requests undergo the same checks as subscription level requests.  
-- Whether you submit a request via portal or API, your request will be reviewed, and you'll be notified if the request can be fulfilled. This usually happens within a few minutes. If your request isn't fulfilled, you'll see a link 	where you can open a support request so that a support engineer can assist you with the increase.  
-- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
+
 
 ## Get list of subscriptions in a Quota Group
 
