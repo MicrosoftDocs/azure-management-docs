@@ -392,9 +392,94 @@ Response content
   ]
 }
 ```
+## Step 6 - GET GroupLimit to view current group limit  
+### GET groupQuotaLimits  
+The below is the final step to validate that the correct amount of cores were transferred from source subcription to group. Consider the below when interpreting the API response. 
+- Available limit = how many  cores do I have at group level to distribute  
+- Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
+- Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group 
 
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
+```
+
+Example using `az rest`:
+I do a GET group limit for my quota group in centralus.  
+For the resource standardddv4family my **availableLimit** = 10 cores which matches the amount of cores I transferred in step 3 from source sub.  
+The **Limit** = 0 because I havent gotten any cores approved/stamped at the group level. Steps on how to submit Quota group increase request is in next section.    
+The **quotaAllocated** = -10 because I de-allocated /transfered 10 cores from source sub to group.    
+
+For the resource standarddsv3family my **availableLimit** = 5  
+The **Limit** = 10 because I submitted Quota Group increase request and was approved.  
+The **quotaAllocated** = 5 because I allocated / transferred 5 cores from group to target sub.  
+
+
+
+```http
+az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq standardDSv3Family
+
+
+```
+
+Sample reponse:
+
+```json
+user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/eastus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
+{
+  "id": "/providers/Microsoft.Management/managementGroups/yayatest092724/providers/Microsoft.Quota/groupQuotas/yayatestingmgissue/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus",
+  "name": "centralus",
+  "properties": {
+    "nextLink": "",
+    "provisioningState": "Succeeded",
+    "value": [
+      {
+        "properties": {
+          "allocatedToSubscriptions": {
+            "value": [
+              {
+                "quotaAllocated": 5,
+                "subscriptionId": "226818a0-4fa2-4c2d-be7f-03b9b92ab3a2"
+              }
+            ]
+          },
+          "availableLimit": 5,
+          "limit": 10,
+          "name": {
+            "localizedValue": "standarddsv3family",
+            "value": "standarddsv3family"
+          },
+          "resourceName": "standarddsv3family",
+          "unit": "Count"
+        }
+      },
+      {
+        "properties": {
+          "allocatedToSubscriptions": {
+            "value": [
+              {
+                "quotaAllocated": -10,
+                "subscriptionId": "226818a0-4fa2-4c2d-be7f-03b9b92ab3a2"
+              }
+            ]
+          },
+          "availableLimit": 10,
+          "limit": 0,
+          "name": {
+            "localizedValue": "standardddv4family",
+            "value": "standardddv4family"
+          },
+          "resourceName": "standardddv4family",
+          "unit": "Count"
+        }
+      }
+    ]
+  },
+  "type": "Microsoft.Quota/groupQuotas/groupQuotaLimits"
+}
+
+```
 ## Submit Quota Group increase request
-
+Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request. 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
 ```http
