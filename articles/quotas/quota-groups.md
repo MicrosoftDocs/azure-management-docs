@@ -229,7 +229,7 @@ Transfer unused quota from your subscription to a Quota Group or from a Quota Gr
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-To transfer quota from source subscriptions to group
+To transfer quota from source subscriptions to group follow the below steps.  
 1. Add subscription to Group
 2. Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API); user can also do GET quotaAllocations to view current subscription quota but usage wont be provided
 3. Submit PATCH quotaAllocations request for a given region and VM family. When submitting quota allocation request the **Limit** should be set as absolute value of the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.
@@ -240,8 +240,8 @@ To transfer quota from source subscriptions to group
 	- ‘-5’ = 5 cores were given from sub to group
 6. GET GroupLimit to view current group limit
 
-## Step 1 - Add subscription to group (link to previous section)
-## Step 2 - Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API)
+## Step 1 - Add subscription to group (link to previous section)  
+## Step 2 - Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API)  
 ### GET subscription quota and usage
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
