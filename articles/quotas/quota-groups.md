@@ -120,10 +120,10 @@ Request body:
   }
 }
 ```
-
+Example using `az rest`:
 Sample response: 
 ```json
-user [ ~ ]$ az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
+az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
   "properties": {
     "displayName": "allocationGroupTest"
   }
