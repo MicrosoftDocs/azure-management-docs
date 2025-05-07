@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 04/25/2025
+ms.date: 05/07/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ---
@@ -189,6 +189,17 @@ Changes in this version include:
 Breaking changes:
 
 - Semantic versioning changes in source controller (see note above)
+
+### 1.15.2 (May 2025)
+
+Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
+
+- source-controller: v1.4.1
+- kustomize-controller: v1.4.0
+- helm-controller: v1.1.0
+- notification-controller: v1.4.0
+- image-automation-controller: v0.39.0
+- image-reflector-controller: v0.33.0
 
 ### 1.15.1 (February 2025)
 
