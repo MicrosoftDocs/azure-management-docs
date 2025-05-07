@@ -236,22 +236,6 @@ Changes in this version include:
 - Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 - Support of workload identity in Arc-enabled clusters. For more information, see [Workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
 
-### 1.14.1 (January 2025)
-
-Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
-
-- source-controller: v1.4.1
-- kustomize-controller: v1.4.0
-- helm-controller: v1.1.0
-- notification-controller: v1.4.0
-- image-automation-controller: v0.39.0
-- image-reflector-controller: v0.33.0
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-- Added support for [authentication against Azure DevOps repositories using workload identity for AKS clusters](tutorial-use-gitops-flux2.md#use-workload-identity-with-azure-devops).
-
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
 [Dapr](https://dapr.io/) is a portable, event-driven runtime that simplifies building resilient, stateless, and stateful applications that run in the cloud and edge and embrace the diversity of languages and developer frameworks. The Dapr extension eliminates the overhead of downloading Dapr tooling and manually installing and managing the runtime on your clusters.
