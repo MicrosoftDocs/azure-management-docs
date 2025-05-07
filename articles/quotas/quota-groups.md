@@ -208,8 +208,7 @@ To add subscriptions from Quota Group through portal.
 4. Select **Edit** or **Add** button under **Subscriptions added** column
 5. In the Edit subscriptions view the exisiting subscription(s) will be listed, select **Add subscription** button
 6. In the Add Subscriptions view select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. Subscription(s) will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
-7. Notification should indicate that subscription(s) was successfully added and the Edit Subscriptions view will be updated with the added subscription(s)
-
+7. Notification should indicate that subscription(s) was successfully added and the Edit Subscriptions view will be updated with the added subscription(s)  
 To remove subscription from Quota Group through portal. 
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
 2. Under settings in left hand side select **Quota groups**.
@@ -223,7 +222,7 @@ To remove subscription from Quota Group through portal.
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 
 
-## Transfer unused quota
+## Transfer quota within Quota Group
 
 Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription. Once your gquota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family. 
 
@@ -484,21 +483,21 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 Transfer unused quota between subscriptions via the Quota Group object. Below steps are how to do quota transfer from ssource subscription to group and from group to target subscription.
 
 Transfer from source subscription to group. 
-1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
-2. Under settings in left hand side select **Quota groups**.
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
-4. Select **Quota group** from list of Quota Group(s)
-5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)
-6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
-7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource
-8. Select from the list of subscription(s) and select **Manage subscription quota** button
-9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected resource = 0
-10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** 	is selected if you want to transfer unused quota from source subscription to group.
-11. View the list of subscription(s) by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **YOur new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)
-12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.
-13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.
-14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.
-15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
+2. Under settings in left hand side select **Quota groups**.  
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
+4. Select **Quota group** from list of Quota Group(s)  
+5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
+7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource  
+8. Select from the list of subscription(s) and select **Manage subscription quota** button  
+9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected   resource = 0  
+10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
+11. View the list of subscription(s) by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)  
+12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.  
+13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
+14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.  
+15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
 
 Transfer from group to target subscripion
 
