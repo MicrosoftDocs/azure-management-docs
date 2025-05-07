@@ -1,6 +1,6 @@
 ---
 title: "Version-managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 04/29/2025
+ms.date: 05/05/2025
 ms.topic: overview
 description: "Version-managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping your extensions work better together."
 ms.custom: references_regions
@@ -8,7 +8,7 @@ ms.custom: references_regions
 
 # Version-managed extensions (preview) for Arc-enabled Kubernetes
 
-Version-managed extensions (preview) makes it easier to build, deploy, and manage applications on Arc-enabled Kubernetes clusters. The extension setup process is simplified, with a consistent and validated environment that reduces the risk of errors. Using version-managed extensions simplifies the process of deploying extensions by automatically installing supporting files to your cluster, so that the extensions are ready to be enabled. It also ensures that supported services are updated in sync to avoid version conflicts.
+Version-managed extensions (preview) makes it easier to build, deploy, and manage applications on Arc-enabled Kubernetes clusters. The version-managed extensions are validated to reduce version incompatibility errors across the extensions installed in the cluster. Supported extensions are updated in sync to avoid version conflicts.
 
 > [!IMPORTANT]
 > Version-managed extensions for Arc-enabled Kubernetes is currently in PREVIEW.
@@ -16,8 +16,8 @@ Version-managed extensions (preview) makes it easier to build, deploy, and manag
 
 Version-managed extensions (preview) currently offers the following benefits:
 
-- **Simplified development and deployment**: Developers can use cloud-native services across hybrid, edge, and multicloud environments. This helps applications can run consistently and securely, regardless of where they're deployed. The bundled package simplifies the setup process, providing a consistent and validated environment that reduces the risk of errors and makes it easier to get started and maintain their projects.
-- **Consistent releases and updates**: The bundled package approach ensures that all services are continuously updated together, rather than individually. This means that developers benefit from regular updates and servicing, including monthly updates, major version updates, and critical security fixes. These updates are applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the platform remains secure, reliable, and up to date.
+- **Consistent releases and updates**: Using version-managed extensions ensures that supported services are continuously updated together, rather than individually. This means that developers benefit from regular updates and servicing, including monthly updates, major version updates, and critical security fixes. These updates are applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the platform remains secure, reliable, and up to date.
+- **Improved extension compatibility**: Because supported extensions are updated together, there's less risk of version incompatibility issues between extensions. This lets you focus on building and deploying applications without worrying about whether your extensions will work together seamlessly or whether particular versions are compatible with each other.
 
 During the preview period, enabling version-managed extensions on your cluster requires you to use version 1.24.4 or later of the [Arc-enabled Kubernetes agents](release-notes.md) and enable the `BundleFull` feature flag.
 
@@ -34,11 +34,11 @@ Version-managed extensions (preview) for Arc-enabled Kubernetes is currently ava
 
 For Kubernetes clusters that are already [connected to Azure Arc](quickstart-connect-cluster.md), enable version-managed extensions (preview) by running the following commands.
 
-1. Verify that your agent version is 1.24.4:
+1. Verify that your agent version is 1.24.4 or later:
 
    `az connectedk8s show  -g $RESOURCE_GROUP  -n $CLUSTER_NAME --query '{version:agentVersion}'`
 
-   If the version isn't 1.24.4, upgrade your agents:
+   If the agent version is lower, upgrade your agents:
 
    `az connectedk8s upgrade -g $RESOURCE_GROUP  -n $CLUSTER_NAME --agent-version 1.24.4`
 
@@ -87,7 +87,7 @@ For more information, see [What is Azure Container Storage enabled by Azure Arc?
 
 ### Azure Key Vault Secret Store extension for Kubernetes
 
-After you've enabled version-managed extensions (preview), deploy Azure Key Vault Secret Store extension for Kubernetes (SSE):
+After you enable version-managed extensions (preview), deploy Azure Key Vault Secret Store extension for Kubernetes (SSE):
 
 ```azurecli
 az k8s-extension create --cluster-name $CLUSTER_NAME \ 
