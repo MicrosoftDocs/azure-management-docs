@@ -490,15 +490,17 @@ Transfer from source subscription to group.
 4. Select **Quota group** from list of Quota Group(s)
 5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
-7. Select the **Quota group resource** to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource
+7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource
 8. Select from the list of subscription(s) and select **Manage subscription quota** button
 9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected resource = 0
 10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** 	is selected if you want to transfer unused quota from source subscription to group.
-11. View the list of subscription(s) by **Current usage / limit ** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **YOur new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)
+11. View the list of subscription(s) by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **YOur new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)
 12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.
 13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.
 14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.
 15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota
+
+Transfer from group to target subscripion
 
 
 ## Submit Quota Group Limit increase request
@@ -540,7 +542,7 @@ az rest --method patch --uri "https://management.azure.com/providers/Microsoft.M
   }
 }
 ```
-Example response
+Example response for approved Quota Group Increase request
 ```json
 Status code: 202
 Response header:
@@ -548,6 +550,37 @@ Location: https://management.azure.com/providers/Microsoft.Management/management
 Retry-After: 30 
 Response Content
 ```
+Example resource for rejected Quota Group Increase request
+If request is rejected then submit support ticket via API. link to below section
+
+INPPUT RESPONSE FOR REJECTED RESPONSE VIA API
+
+<!-- Portal steps on how to do Quota Group Limit increase  -->
+## Submit Quota Group Limit increase and file support ticket if request fails. 
+### [Azure portal](#tab/portal-4)
+
+The below covers how to submit Quota Group Limit increase and file support ticket if request fails. 
+- If Quota Group  Limit request is rejected via API or porta; then customer must submit support ticket via the self-serve Quota group request portal blade.  
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level. 
+  
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side select **Quota groups**.
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+4. Select **Quota group** from list of Quota Group(s)
+5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
+7. Select the checkbox to the desired **Quota group resource**, then select the **Increase group quota** button at the top of page
+8. On right side view the **New quota request** blade with selected region(s) at the top with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit.I.e., If I want 20 cores assigned at group for DSv3 in Australia Central I will enter 20 under **New group quota**
+9. Select **Submit** button, notification **We are reviewing your request to adjust the quota** this may take up to ~3 minutes to complete
+10. If succesful the **New quota request** view will show the selected **Quota Group resource** by location status of request, the **Increase** value and **New limit**
+11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
+12. If Quota Group limit increase was rejected notification **We were unable to adjust your quota** will surface
+13. Select the **Generate a support ticket** button to start process of creating support ticket
+14. In the **Request details** view select **Deployment model** as **Resource Manager** from drop drown, Under **Choose request types** select **Increase quota / expand access region**
+15. Request details view will surface the Management GroupID and Group Quota ID, select desired regions(s) from **Locations** drop down adnd select desired VM family from **Quotas** drop down, review the selected VM family **Usage** and new **Limit**, ensure desired value is under **New Limit**, then select **Save and Continue** button
+16. In **Additional details** view select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
+17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner will ticketID and link
+18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
 
 ## GET Quota Group Limit increase request status
 
@@ -659,10 +692,6 @@ user [ ~ ]$ az rest --method get --url "https://management.azure.com/providers/M
 
 ```
 
-
-### Increase escalations
-
-<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Avoid bulleted lists of information that can be written in paragraph format. If you do write a list, there should be a clear purpose to the grouping, etc. Do not duplicate information you already mentioned before unless absolutely necessary. Find the most appropriate spot to unpack said information and do it in one central place. If you need to mention it elsewhere, do it briefly and link to the central location for more information. If you need REST and portal tabs, copy the format from previous sections. -->
 
 
 
