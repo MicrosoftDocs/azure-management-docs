@@ -1,7 +1,7 @@
 ---
 title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
-ms.date: 12/20/2024
+ms.date: 05/07/2025
 ms.topic: concept-article
 ---
 
@@ -26,13 +26,15 @@ The following table provides a quick way to see the major capabilities of the Az
 |Microsoft Sentinel     | ✓        |✓         |✓         |✓         |
 |Azure Automation     |✓         |✓         |✓         |✓         |
 |Azure Update Manager     |✓         |✓         |✓         |✓         |
-|VM extensions     |✓         |✓         |✓         |✓         |
+|Change Tracking and Inventory      |✓         |✓         |✓         |✓         |
 |Azure Monitor     |✓         |✓         |✓         |✓         |
-|Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓         |✓         |✓         |
-|Discover & onboard VMs to Azure     |         |✓         |✓         |         |
+|VM extensions     |✓         |✓         |✓         |✓         |
+|Extended Security Updates for Windows Server 2012/2012R2 and SQL Server 2012 (11.x)     |✓         |✓ (free for AVS)        |✓         |✓         |
+|Agentless discovery and inventory     |         |✓         |✓         |         |
 |Lifecycle and powercycle operations (create/delete/start/stop VMs, etc.)     |         |✓         |✓         |✓         |
 |Self-serve VM provisioning     |         |✓         |✓         |✓         |
 |SQL Server enabled by Azure Arc     |✓         |✓         |✓         |✓         |
+|Windows Server management and pay-as-you-go      |✓         |✓         |✓         |✓         |
 
 ### General recommendations
 
@@ -94,6 +96,8 @@ Additionally, when a VM in Azure VMware Solution private cloud is Azure Arc-enab
 - Install the Azure Arc-connected machine agent at scale and leverage all the capabilities offered by Azure Arc-enabled servers on VMware VMs.
 
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
+
+- Build automation and self-service pipelines using Python, Java, JavaScript, and .NET SDKs; Terraform, ARM, Bicep templates; REST APIs, CLI, and PowerShell. 
 
 ## Azure Arc-enabled System Center Virtual Machine Manager (SCVMM)
 
