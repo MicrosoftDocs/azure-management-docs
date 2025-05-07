@@ -134,16 +134,9 @@ The following private cloud environments and their versions are officially suppo
 
 ### Supported versions
 
-Generally, the latest released version and the previous three versions (n-3) of Arc resource bridge are supported. For example, if the current version is 1.0.18, then the typical n-3 supported versions are:
+We generally recommend using the most recent versions. The version support policy for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every 6 months to ensure the internal components and certificates are refreshed. 
 
-* Current version: 1.0.18
-* n-1 version: 1.0.17
-* n-2 version: 1.0.16
-* n-3 version: 1.0.15
-
-There could be instances where supported versions aren't sequential. For example, version 1.0.18 is released and later found to contain a bug; a hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
-
-Arc resource bridge typically releases a new version on a monthly cadence, at the end of the month. Delays might occur that could push the release date further out. Regardless of when a new release comes out, if you are within n-3 supported versions, then your Arc resource bridge version is supported. To stay updated on releases, visit the [Arc resource bridge release notes](release-notes.md). To learn more about upgrade options, visit [Upgrade Arc resource bridge](upgrade.md).
+You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade has been done at least once every 6 months. When a patch version is released, the upgrade path may skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) excludes the skipped minor version and includes the patch version instead.
 
 ### Private link support
 

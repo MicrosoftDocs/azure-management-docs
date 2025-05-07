@@ -31,7 +31,6 @@ As the Azure Firewall Explicit proxy operates within your private VNet, and you 
 
 - This solution uses Azure Firewall Explicit proxy as a forward proxy. The Explicit proxy feature doesn't support TLS Inspection.
 - TLS certificates can't be applied to the Azure Firewall Explicit proxy.
-- This solution can't currently be used with [Arc gateway for Azure Arc-enabled servers](servers/arc-gateway.md) or [Arc gateway for Arc-enabled Kubernetes](kubernetes/arc-gateway-simplify-networking.md).
 - This solution isn't currently supported by Azure Local or Azure Arc VMs running in Azure Local.
 
 ### Azure Firewall costs
