@@ -169,6 +169,21 @@ The `source-controller` recently updated its dependency on the "`github.com/Mast
 
 **What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
+### 1.16.3 (May 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.1
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
+
 ### 1.16.2 (March 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
@@ -200,6 +215,10 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 - notification-controller: v1.4.0
 - image-automation-controller: v0.39.0
 - image-reflector-controller: v0.33.0
+
+Changes in this version include:
+
+- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
 
 ### 1.15.1 (February 2025)
 
