@@ -19,8 +19,6 @@ Version-managed extensions (preview) currently offers the following benefits:
 - **Consistent releases and updates**: Using version-managed extensions ensures that supported services are continuously updated together, rather than individually. This means that developers benefit from regular updates and servicing, including monthly updates, major version updates, and critical security fixes. These updates are applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the platform remains secure, reliable, and up to date.
 - **Improved extension compatibility**: Because supported extensions are updated together, there's less risk of version incompatibility issues between extensions. This lets you focus on building and deploying applications without worrying about whether your extensions will work together seamlessly or whether particular versions are compatible with each other.
 
-During the preview period, enabling version-managed extensions on your cluster requires you to use version 1.24.4 or later of the [Arc-enabled Kubernetes agents](release-notes.md) and enable the `BundleFull` feature flag.
-
 ## Extension support
 
 Currently, version-managed extensions (preview) provides support for the following extensions:
@@ -31,6 +29,8 @@ Currently, version-managed extensions (preview) provides support for the followi
 Version-managed extensions (preview) for Arc-enabled Kubernetes is currently available in the following regions: East US, East US 2, West US, West US 2, West US 3, West Europe, North Europe.
 
 ## Enable version-managed extensions
+
+During the preview period, enabling version-managed extensions on your cluster requires you to use version 1.24.4 or later of the [Arc-enabled Kubernetes agents](release-notes.md) and enable the `BundleFull` feature flag.
 
 For Kubernetes clusters that are already [connected to Azure Arc](quickstart-connect-cluster.md), enable version-managed extensions (preview) by running the following commands.
 
