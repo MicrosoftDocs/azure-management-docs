@@ -12,7 +12,7 @@ ms.subservice: azure-arc-scvmm
 
 # Create custom roles with Azure Arc-enabled SCVMM
 
-If the [built-in roles of Azure Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/support-matrix-for-system-center-virtual-machine-manager#azure-rolepermission-requirements) don't meet the specific needs of your organization, you can create your own custom roles to provide permissions at a granular level to your end users. 
+If the [built-in roles of Azure Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/built-in-roles) don't meet the specific needs of your organization, you can create your own custom roles to provide permissions at a granular level to your end users. 
 
 Just like built-in roles, you can assign custom roles to users at subscription and resource group scopes to control access. Custom roles are stored in a Microsoft Entra directory and can be shared across subscriptions. Each directory can have up to 5,000 custom roles. Custom roles can be created using the Azure portal, Azure PowerShell, Azure CLI, or the REST API. This article describes how to create custom roles using the Azure portal for Azure Arc-enabled SCVMM.
 

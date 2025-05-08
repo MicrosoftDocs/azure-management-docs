@@ -695,3 +695,4 @@ Arc SCVMM VM Contributor has permissions to perform all VM actions.
 
 - [Create Custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles).
 - [Enable inventory resources](/azure/azure-arc/system-center-virtual-machine-manager/enable-scvmm-inventory-resources).
+- [Set up and manage self-service access](/azure/azure-arc/system-center-virtual-machine-manager/set-up-and-manage-self-service-access-scvmm).
