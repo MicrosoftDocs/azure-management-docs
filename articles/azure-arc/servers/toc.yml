@@ -30,8 +30,8 @@
       href: agent-overview.md
     - name: Prerequisites
       href: prerequisites.md
-    - name: Deployment options for Azure Monitor agent
-      href: concept-log-analytics-extension-deployment.md
+    - name: Deployment options for Azure Monitor Agent
+      href: azure-monitor-agent-deployment.md
 - name: How-to guides
   items:
   - name: Deploy
