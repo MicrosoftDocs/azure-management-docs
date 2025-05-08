@@ -39,7 +39,7 @@ The Azure Connected Machine agent supports an allowlist and blocklist to restric
 
 Allowlists and blocklists are configured locally on a per-server basis. This ensures that nobody, not even a user with Owner or Global Administrator permissions in Azure, can override your security rules by trying to install an unauthorized extension. If someone tries to install an unauthorized extension, the extension manager refuses to install it and marks the extension installation report as a failure to Azure.
 
-Allowlists and blocklists can be configured any time after the agent is installed, including before the agent is connected to Azure.
+Allowlists and blocklists can be configured anytime after the agent is installed, including before the agent is connected to Azure.
 
 If no allowlist or blocklist is configured on the agent, all extensions are allowed.
 
@@ -129,8 +129,8 @@ A simpler way to configure local security controls for monitoring and security s
 
 There are two modes to choose from:
 
-1. **full** - the default mode. This mode allows all agent functionality.
-1. **monitor** - a restricted mode that disables the guest configuration policy agent and only allows the use of extensions related to monitoring and security.
+- **full** - the default mode. This mode allows all agent functionality.
+- **monitor** - a restricted mode that disables the guest configuration policy agent and only allows the use of extensions related to monitoring and security.
 
 To enable monitor mode, run the following command:
 
