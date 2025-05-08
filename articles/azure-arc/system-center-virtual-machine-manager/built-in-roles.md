@@ -13,11 +13,19 @@ ms.custom: generated
 
 # Azure built-in roles for Azure Arc-enabled SCVMM
 
-This article lists the Azure built-in roles for Azure Arc-enabled SCVMM.
+This article lists the Azure built-in roles and their permissions for Azure Arc-enabled SCVMM. 
+Azure Arc-enabled SCVMM has four built-in roles:
 
-## Azure Arc ScVmm Administrator role
+- [Azure Arc SCVMM Administrator role](#azure-arc-scvmm-administrator-role) 
+- [Azure Arc SCVMM Private Cloud User](#azure-arc-scvmm-private-cloud-user)
+- [Azure Arc SCVMM Private Clouds Onboarding](#azure-arc-scvmm-private-clouds-onboarding)
+- [Azure Arc SCVMM VM Contributor](#azure-arc-scvmm-vm-contributor)
 
-Arc ScVmm VM Administrator has permission to perform all ScVmm actions.
+If the built-in Azure roles doesn’t match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
+
+## Azure Arc SCVMM Administrator role
+
+Arc SCVMM VM Administrator has permission to perform all SCVMM actions.
 
 | Actions | Description |
 | --- | --- |
@@ -234,9 +242,9 @@ Arc ScVmm VM Administrator has permission to perform all ScVmm actions.
 }
 ```
 
-## Azure Arc ScVmm Private Cloud User
+## Azure Arc SCVMM Private Cloud User
 
-Azure Arc ScVmm Private Cloud User has permissions to use the ScVmm resources to deploy VMs.
+Azure Arc SCVMM Private Cloud User has permissions to use the SCVMM resources to deploy VMs.
 
 | Actions | Description |
 | --- | --- |
@@ -367,9 +375,9 @@ Azure Arc ScVmm Private Cloud User has permissions to use the ScVmm resources to
 }
 ```
 
-## Azure Arc ScVmm Private Clouds Onboarding
+## Azure Arc SCVMM Private Clouds Onboarding
 
-Azure Arc ScVmm Private Clouds Onboarding role has permissions to provision all the required resources for onboard and 
+Azure Arc SCVMM Private Clouds Onboarding role has permissions to provision all the required resources for onboard and  deboard VMM server instances to Azure.
 
 | Actions | Description |
 | --- | --- |
@@ -491,9 +499,9 @@ Azure Arc ScVmm Private Clouds Onboarding role has permissions to provision all 
 }
 ```
 
-## Azure Arc ScVmm VM Contributor
+## Azure Arc SCVMM VM Contributor
 
-Arc ScVmm VM Contributor has permissions to perform all VM actions.
+Arc SCVMM VM Contributor has permissions to perform all VM actions.
 
 | Actions | Description |
 | --- | --- |
@@ -682,3 +690,8 @@ Arc ScVmm VM Contributor has permissions to perform all VM actions.
     }
 }
 ```
+
+## Next steps
+
+- [Create Custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles).
+- [Enable inventory resources](/azure/azure-arc/system-center-virtual-machine-manager/enable-scvmm-inventory-resources).
