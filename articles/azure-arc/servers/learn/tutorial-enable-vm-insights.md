@@ -2,7 +2,7 @@
 title: Tutorial - Monitor a hybrid machine with Azure Monitor VM insights
 description: Learn how to collect and analyze data from a hybrid machine in Azure Monitor.
 ms.topic: tutorial
-ms.date: 05/05/2025
+ms.date: 05/08/2025
 ---
 
 # Tutorial: Monitor a hybrid machine with VM insights

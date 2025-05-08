@@ -8,7 +8,7 @@ ms.custom: linux-related-content
 
 # Deployment options for Azure Monitor agent on Azure Arc-enabled servers
 
-Azure Monitor supports multiple methods to install the [Azure Monitor agent](/azure/azure-monitor/agents/agents-overview) as an extension on Azure Arc-enabled servers. Azure Arc-enabled servers support the Azure VM extension framework, which provides post-deployment configuration and automation tasks, enabling you to simplify management of your hybrid machines like you can with Azure VMs.
+Azure Monitor supports multiple methods to install the [Azure Monitor agent](/azure/azure-monitor/agents/agents-overview) as an extension on Azure Arc-enabled servers. Azure Arc-enabled servers support the [Azure VM extension framework](manage-vm-extensions.md), which provides post-deployment configuration and automation tasks, enabling you to simplify management of your hybrid machines just as you can with Azure VMs.
 
 The Azure Monitor Agent is required if you want to:
 
@@ -23,7 +23,7 @@ The Azure Monitor Agent is required if you want to:
 This article reviews recommended deployment methods for the Azure Monitor agent VM extension, across multiple production physical servers or virtual machines in your environment, to help you determine which works best for your organization.
 
 > [!TIP]
-> For more details about the Azure Monitor agent, see [Install and manage the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-manage).
+> For more information about the Azure Monitor agent, see [Install and manage the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-manage).
 
 ## Deploy the extension individually on each machine
 

@@ -7,7 +7,7 @@ ms.date: 05/05/2025
 
 # Tutorial: Create a policy assignment to identify non-compliant resources
 
-You can use [Azure Policy](/azure/governance/policy/overview) to autit the state of your Azure Arc-enabled servers to ensure they comply with machine configuration policies.
+You can use [Azure Policy](/azure/governance/policy/overview) to audit the state of your Azure Arc-enabled servers to ensure they comply with machine configuration policies.
 
 This tutorial steps you through the process of creating and assigning a policy that identifies which of your Azure Arc-enabled servers don't have [Microsoft Defender for Servers](/azure/defender-for-cloud/defender-for-servers-overview) enabled.
 
@@ -53,9 +53,9 @@ Use the following procedure to create a policy assignment and assign the policy 
 
 1. For this example, we don't need to change any settings on the other tabs. Select **Review + Create** to review your new policy assignment, then select **Create**.
 
-You're now ready to identify non-compliant resources to understand the compliance state of your environment.
+You're now ready to identify noncompliant resources to understand the compliance state of your environment.
 
-## Identify non-compliant resources
+## Identify noncompliant resources
 
 In the service menu for Azure Policy, select **Compliance**. Then locate the **Azure Defender for servers should be enabled** policy assignment you created.
 
@@ -63,7 +63,7 @@ In the service menu for Azure Policy, select **Compliance**. Then locate the **A
 
 Any existing resources that aren't compliant with the new assignment will show **Non-compliant** under **Compliance state**.
 
-When a condition is evaluated against your existing resources and found true, those resources are marked as non-compliant with the policy. The following table shows how different policy effects work with the condition evaluation for the resulting compliance state. Although you don't see the evaluation logic in the Azure portal, the compliance state results are shown. The compliance state result is either **Compliant** or **Non-compliant**.
+When a condition is evaluated against your existing resources and found true, those resources are marked as noncompliant with the policy. The following table shows how different policy effects work with the condition evaluation for the resulting compliance state. Although you don't see the evaluation logic in the Azure portal, the compliance state results are shown. The compliance state result is either **Compliant** or **Non-compliant**.
 
 | **Resource state** | **Effect** | **Policy evaluation** | **Compliance state** |
 | --- | --- | --- | --- |
@@ -73,7 +73,7 @@ When a condition is evaluated against your existing resources and found true, th
 | New | Audit, AuditIfNotExist\* | False | Compliant |
 
 \* The Append, DeployIfNotExist, and AuditIfNotExist effects require the IF statement to be TRUE.
-The effects also require the existence condition to be FALSE to be non-compliant. When TRUE, the IF
+The effects also require the existence condition to be FALSE to be noncompliant. When TRUE, the IF
 condition triggers evaluation of the existence condition for the related resources.
 
 To learn more, see [Azure Policy compliance states](/azure/governance/policy/concepts/compliance-states).
