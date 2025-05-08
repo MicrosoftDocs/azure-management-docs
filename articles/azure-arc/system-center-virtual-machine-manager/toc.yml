@@ -30,6 +30,8 @@
       href: enable-virtual-hardware-scvmm.md
   - name: Manage role-based access control
     items:
+    - name: Built-in roles
+      href: built-in-roles.md
     - name: Set up and manage self-service access
       href: set-up-and-manage-self-service-access-scvmm.md
     - name: Create custom roles
