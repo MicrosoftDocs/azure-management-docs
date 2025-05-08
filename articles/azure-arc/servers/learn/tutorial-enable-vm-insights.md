@@ -2,32 +2,25 @@
 title: Tutorial - Monitor a hybrid machine with Azure Monitor VM insights
 description: Learn how to collect and analyze data from a hybrid machine in Azure Monitor.
 ms.topic: tutorial
-ms.date: 04/24/2025
+ms.date: 05/08/2025
 ---
 
 # Tutorial: Monitor a hybrid machine with VM insights
 
-[Azure Monitor](/azure/azure-monitor/overview) can collect data directly from your hybrid machines into a Log Analytics workspace for detailed analysis and correlation. Typically, this would require installing the [Log Analytics agent](/azure/azure-monitor/agents/log-analytics-agent) on the machine using a script, manually, or an automated method following your configuration management standards. Now, Azure Arc-enabled servers can install the Log Analytics and Dependency agent [VM extension](../manage-vm-extensions.md) for Windows and Linux, enabling [VM insights](/azure/azure-monitor/vm/vminsights-overview) to collect data from your non-Azure VMs.
-
-<!---This tutorial shows you how to configure and collect data from your Linux or Windows machines by enabling VM insights following a simplified set of steps, which streamlines the experience and takes a shorter amount of time.--->
+[Azure Monitor](/azure/azure-monitor/overview) can collect data directly from your hybrid machines into a Log Analytics workspace for detailed analysis and correlation. You can enable [VM insights](/azure/azure-monitor/vm/vminsights-overview) to collect data from your non-Azure virtual machines (VM). While there are [different options for deploying the Azure Monitor Agent](../azure-monitor-agent-deployment.md) to your Arc-enabled servers, this tutorial shows how to do so by using the Azure portal to enable VM insights on a connected machine.
 
 In this tutorial, you'll learn how to:
 
 > [!div class="checklist"]
-> * Enable and configure VM insights for your Linux or Windows non-azure VMs
+> * Enable and configure VM insights for your Linux or Windows VMs hosted outside of Azure
 > * Collect and view data from these VMs
 
 ## Prerequisites
 
 * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-
 * Use our quickstart to [connect a hybrid machine](quick-enable-hybrid-vm.md) to Azure Arc. This tutorial assumes that you have already connected a machine to Azure Arc.
-
-* VM extension functionality is available only in the list of [supported regions](../overview.md#supported-regions).
-
-* See [Supported operating systems](/azure/azure-monitor/vm/vminsights-enable-overview#supported-operating-systems) to ensure that the servers operating system you're enabling is supported by VM insights.
-
-* Review firewall requirements for the Log Analytics agent provided in the [Log Analytics agent overview](/azure/azure-monitor/agents/log-analytics-agent#network-requirements). The VM insights Map Dependency agent doesn't transmit any data itself, and it doesn't require any changes to firewalls or ports.
+* Be sure that your hybrid machine uses an [operating system supported by the Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems) to ensure that the servers operating system you're enabling is supported by VM insights.
+* Review the requirements specified in [Azure Monitor Agent network configuration](/azure/azure-monitor/agents/azure-monitor-agent-network-configuration). The VM insights Map Dependency agent doesn't transmit any data itself, and it doesn't require any changes to firewalls or ports.
 
 ## Enable VM insights
 
@@ -49,11 +42,11 @@ In this tutorial, you'll learn how to:
 
 ## View data collected
 
-1. After deployment and configuration are complete, select **Insights**, and then select the **Performance** tab. The Performance tab shows a select group of performance counters collected from the guest operating system of your machine. Scroll down to view more counters, and move the mouse over a graph to view average and percentiles taken starting from the time when the Log Analytics VM extension was installed on the machine.
+1. After deployment and configuration are complete, select **Insights**, and then select the **Performance** tab. The Performance tab shows a select group of performance counters collected from the guest operating system of your machine. Scroll down to view more counters, and move the mouse over a graph to view average and percentiles taken starting from the time when the Azure Monitor Agent VM extension was installed on the machine.
 
     :::image type="content" source="./media/tutorial-enable-vm-insights/insights-performance-charts.png" lightbox="./media/tutorial-enable-vm-insights/insights-performance-charts.png"alt-text="Screenshot of Insights Performance tab with charts for selected machine." border="false":::
 
-1. Select **Map**. The maps feature shows the processes running on the machine and their dependencies. Select **Properties** to open the property pane (if it isn't already open).
+1. Select the **Map** tab. The maps feature shows the processes running on the machine and their dependencies. Select **Properties** to open the property pane (if it isn't already open).
 
     :::image type="content" source="./media/tutorial-enable-vm-insights/insights-map.png" lightbox="./media/tutorial-enable-vm-insights/insights-map.png" alt-text="Screenshot of Insights Map tab with map for selected machine." border="false":::
 

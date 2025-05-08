@@ -1,7 +1,7 @@
 ---
 title: VM Extension Management with Azure Arc-Enabled Servers
 description: Azure Arc-enabled servers can manage deployment of virtual machine extensions that provide post-deployment configuration and automation tasks with non-Azure VMs.
-ms.date: 01/02/2025
+ms.date: 05/08/2025
 ms.topic: concept-article
 ---
 
@@ -19,7 +19,7 @@ With Azure Arc-enabled servers, you can deploy, remove, and update Azure VM exte
 > [!NOTE]
 > Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 >
-> Currently, you can update extensions only from the Azure portal or the Azure CLI. Updating extensions from Azure PowerShell or an Azure Resource Manager template is not supported at this time.
+> Currently, you can update extensions only from the Azure portal or the Azure CLI. Updating extensions from Azure PowerShell or an Azure Resource Manager template isn't currently supported.
 
 ## Key benefits
 
@@ -100,9 +100,9 @@ To deploy an extension to Azure Arc-enabled servers, a user needs the following 
 
 The role **Azure Connected Machine Resource Administrator** includes the permissions required to deploy extensions. It also includes permission to delete Azure Arc-enabled server resources.
 
-### Azure Monitor agent VM extension
+### Azure Monitor Agent VM extension
 
-Before you install the extension, we suggest that you review the [deployment options for the Azure Monitor agent](concept-log-analytics-extension-deployment.md) to understand the available methods and which one meets your needs.
+Before you install the extension, we suggest that you review the [deployment options for the Azure Monitor Agent](azure-monitor-agent-deployment.md) to understand the available methods and which one meets your needs.
 
 ### Key Vault VM extension
 
