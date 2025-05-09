@@ -1,7 +1,7 @@
 ---
-title: Deploy virtual machines effectively using Microsoft Copilot in Azure
+title: Deploy and manage virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 04/09/2025
+ms.date: 05/05/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -13,13 +13,13 @@ ms.author: jenhayes
 author: JnHs
 ---
 
-# Deploy virtual machines effectively using Microsoft Copilot in Azure
+# Deploy and manage virtual machines effectively using Microsoft Copilot in Azure
 
 Microsoft Copilot in Azure can help you deploy [virtual machines in Azure](/azure/virtual-machines/overview) that are efficient and effective. You can get suggestions for different options to save costs and choose the right size for your VMs.
 
 When you ask Microsoft Copilot in Azure for help with a VM, it automatically pulls context when possible, based on the current conversation or on the page you're viewing in the Azure portal. For example, if you start from the **Create a virtual machine** page, Copilot in Azure will provide suggestions for the new VM you're creating. If you're starting from another page, and the context isn't clear, you'll be prompted to specify the VM for which you want assistance.
 
-You can ask Copilot in Azure for help troubleshooting VM deployment failures related to virtual machine capacity, allocation, or other issues. You can also get help troubleshooting network security issues with your VMs.
+You can ask Copilot in Azure for help with troubleshooting VM deployment failures, network security issues, or other errors.
 
 Microsoft Copilot in Azure is designed to help you regardless of your level of expertise on VM configuration options such as pricing, scalability, availability, and size. In all cases, we recommend that you closely review the suggestions to confirm that they meet your needs.
 
@@ -115,17 +115,33 @@ You can say **"Help me copy VMs in any region."** Microsoft Copilot in Azure pro
 
 If you experience failures when trying to deploy a VM, Microsoft Copilot in Azure can help diagnose and resolve issues related to virtual machine capacity, allocation, or other deployment failures that may arise due to configuration issues or limited availability. Copilot in Azure provides real-time health diagnostics on resources and determines potential successful paths for capacity availability and overall deployment success.
 
-### Troubleshooting sample prompts
+### Troubleshoot deployment sample prompts
 
 - "Help me troubleshoot my VM deployment failure"
 - "Troubleshoot my VM allocation failure issue for this deployment"
 - "My VM failed to provision with an error, can you help troubleshoot?"
 
-### Troubleshooting example
+### Troubleshoot deployment example
 
 If a VM deployment fails, you can say "**troubleshoot my VM deployment failure**". After confirming the correct resource, Microsoft Copilot in Azure analyzes recent operations and suggests items to review or new selections you can make to better support your deployment.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-deployment.png" alt-text="Screenshot of Microsoft Copilot for Azure responding to a request to troubleshoot VM deployment failure.":::
+
+## Troubleshoot VM errors
+
+Copilot in Azure offers analysis and guidance for troubleshooting VM errors caused by issues with configuration, capacity, quota, or other constraints. When you ask for help troubleshooting errors, Copilot in Azure collects details about recent operations, status, and configuration, and determines the appropriate troubleshooting steps.
+
+### Troubleshoot VM error sample prompts
+
+- "Explain the most recent operation failure on my VM."
+- "Can you explain the OSProvisioningTimedOut error on my VM?"
+- "Why did my virtual machine fail with VMExtensionProvisioningError?"
+
+### Troubleshoot VM error example
+
+If you see an error message in the Azure portal, you can ask "**Can you explain the OSProvisioningTimedOut error on my VM?**" Copilot in Azure analyzes the error and explains the problem, along with suggesting possible resolutions.
+
+:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-error.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-error.png" alt-text="Screenshot of Copilot in Azure explaining a VM error and how to resolve it.":::
 
 ## Troubleshoot VM network security issues
 

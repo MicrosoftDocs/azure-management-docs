@@ -41,7 +41,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
 - Work smarter with Azure services:
   - [Execute commands](execute-commands.md)
-  - [Deploy virtual machines effectively](deploy-vms-effectively.md)
+  - [Deploy and manage virtual machines](deploy-vms-effectively.md)
   - [Discover and deploy workload templates](deploy-workload-templates.md)
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
