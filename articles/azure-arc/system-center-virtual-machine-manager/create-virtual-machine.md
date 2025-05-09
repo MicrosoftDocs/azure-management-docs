@@ -31,12 +31,12 @@ In this article, you'll learn how to create a new SCVMM managed virtual machine 
 2. You can initiate the creation of a new VM in either of the following two ways:
    - Select **Azure Arc** as the service and then select **SCVMM management servers** under **Host environments** from the left blade. Search and select your SCVMM management server. Select **Virtual machines** under **SCVMM inventory** from the left blade and select **Add**. 
 
-    :::image type="content" source="media/create-virtual-machine/add.png" alt-text="Screenshot of Add screen.":::
+       :::image type="content" source="media/create-virtual-machine/add.png" alt-text="Screenshot of Add screen.":::
 
    Or
    - Select **Azure Arc** as the service and then select **Machine** under **Azure Arc resources** from the left blade. Select **Add/Create** and select **Create a machine in a connected host environment** from the dropdown.
 
-    :::image type="content" source="media/create-virtual-machine/create-machine.png" alt-text="Screenshot of create a machine screen.":::
+       :::image type="content" source="media/create-virtual-machine/create-machine.png" alt-text="Screenshot of create a machine screen.":::
 
 1. Once the **Create an Azure Arc virtual machine** page opens, under **Basics** > **Project details**, select the **Subscription** and **Resource group** where you want to deploy the VM.
 1. Under **Instance details**, provide the following details:
@@ -46,14 +46,14 @@ In this article, you'll learn how to create a new SCVMM managed virtual machine 
    - **Cloud** - Select the target VMM private cloud.
    - **Availability set** - (Optional) Use availability sets to identify virtual machines that you want VMM to keep on separate hosts for improved continuity of service.
 
-    :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen.":::
+       :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen.":::
 
 1. Under **Template details**, provide the following details:
    - **Template** - Choose the VM template for deployment.
    - **Override template defaults** - Select the checkbox to override the default CPU cores and memory on the VM templates.
    - Specify computer name for the VM if the VM template has computer name associated with it.
 
-    :::image type="content" source="media/create-virtual-machine/template-details.png" alt-text="Screenshot of template details screen.":::
+       :::image type="content" source="media/create-virtual-machine/template-details.png" alt-text="Screenshot of template details screen.":::
 
 1. Keep the **Enable Guest Management** checkbox selected to automatically install Azure connected machine agent immediately after the creation of the VM. [Azure connected machine agent (Arc agent)](../servers/agent-overview.md) is required if you're planning to use Azure management services to govern, patch, monitor, and secure your VM through Azure.
 
