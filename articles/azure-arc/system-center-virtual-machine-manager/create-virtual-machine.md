@@ -81,3 +81,7 @@ In this article, you'll learn how to create a new SCVMM managed virtual machine 
     :::image type="content" source="media/create-virtual-machine/tags.png" alt-text="Screenshot of Tags tab screen.":::
 
 1. Under **Review + create**, review all the properties and select **Create**. The VM will be created in a few minutes.
+
+## Next steps
+
+- [Perform VM CRUD and power cycle operations](/azure/azure-arc/system-center-virtual-machine-manager/perform-vm-ops-on-scvmm-through-azure).
