@@ -9,26 +9,11 @@ ms.date: 05/09/2025
 
 You can enable automatic extension upgrade for Azure Arc-enabled servers that have supported [VM extensions](manage-vm-extensions.md) installed. Automatic extension upgrades reduce the amount of operational overhead by scheduling the installation of new extension versions when they become available. The Azure Connected Machine agent takes care of upgrading the extension, preserving its settings along the way.
 
-## How does automatic extension upgrade work?
+## How automatic extension upgrade works
 
 With automatic extension upgrade, existing extension versions deployed on your Arc-enabled servers are replaced with the newer one after the extension publisher provides a new version.
 
 By default, all extensions are opted into the automatic upgrade feature. However, only those [extensions currently supported for this feature](#supported-extensions) will receive automatic upgrades. You can choose to opt out of automatic upgrades for each extension at any time.
-
-### Availability-first updates
-
-The availability-first model for platform-orchestrated updates ensures that availability configurations in Azure are respected across multiple availability levels.
-
-For a group of Arc-enabled servers undergoing an update, the Azure platform orchestrates updates following the model described in the [Automation Extension Upgrade](/azure/virtual-machines/automatic-extension-upgrade#availability-first-updates). However, there are some notable differences between Arc-enabled servers and Azure VMs:
-
-**Across regions:**
-
-- Geo-paired regions aren't applicable.
-
-**Within a region:**
-
-- Availability zones aren't applicable.
-- Machines are batched on a best effort basis to avoid concurrent updates for all machines registered with Arc-enabled servers in a subscription.
 
 ### Automatic rollback and retries
 
@@ -53,6 +38,21 @@ When a new version of a VM extension is published, it becomes available for inst
 Extension versions fixing critical security vulnerabilities are rolled out much faster. These automatic upgrades happen using a specialized rollout process, where each server with that extension will be upgraded within three weeks. Azure determines which extension versions should be rolled out the fastest to help ensure servers are protected.
 
 You can always upgrade any extension immediately by following the guidance to manually upgrade extensions using the [Azure portal](manage-vm-extensions-portal.md#upgrade-extensions), [Azure PowerShell](manage-vm-extensions-powershell.md#upgrade-extensions) or [Azure CLI](manage-vm-extensions-cli.md#upgrade-extensions).
+
+### Availability-first updates
+
+The availability-first model for platform-orchestrated updates ensures that availability configurations in Azure are respected across multiple availability levels.
+
+For a group of Arc-enabled servers undergoing an update, the Azure platform orchestrates updates following the model described in the [Automation Extension Upgrade](/azure/virtual-machines/automatic-extension-upgrade#availability-first-updates). However, there are some notable differences between Arc-enabled servers and Azure VMs:
+
+**Across regions:**
+
+- Geo-paired regions aren't applicable.
+
+**Within a region:**
+
+- Availability zones aren't applicable.
+- Machines are batched on a best effort basis to avoid concurrent updates for all machines registered with Arc-enabled servers in a subscription.
 
 ## Supported extensions
 
@@ -141,12 +141,11 @@ Update-AzConnectedMachineExtension -ResourceGroup resourceGroupName -MachineName
 
 You can use the Azure Activity Log to identify extensions that were automatically upgraded. You can find the Activity Log tab on individual Azure Arc-enabled server resources, resource groups, and subscriptions. Extension upgrades are identified by the `Upgrade Extensions on Azure Arc machines (Microsoft.HybridCompute/machines/upgradeExtensions/action)` operation.
 
-To view automatic extension upgrade history, search for the **Azure Activity Log** in the Azure portal. Select **Add filter** and choose the Operation filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. You can optionally add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria to only see automatic upgrade attempts and exclude upgrades manually initiated by users.
+To view automatic extension upgrade history, search for the **Activity Log** in the Azure portal. Select **Add filter** and choose the **Operation** filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. You can optionally add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria to only see automatic upgrade attempts and exclude upgrades manually initiated by users.
 
-:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Azure Activity Log showing attempts to automatically upgrade extensions on Azure Arc-enabled servers." border="true":::
+:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
 
 ## Next steps
 
-- You can deploy, manage, and remove VM extensions using the [Azure CLI](manage-vm-extensions-cli.md), [PowerShell](manage-vm-extensions-powershell.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
-
-- Troubleshooting information can be found in the [Troubleshoot VM extensions guide](troubleshoot-vm-extensions.md).
+- Learn how to deploy, manage, and remove VM extensions using the [Azure CLI](manage-vm-extensions-cli.md), [PowerShell](manage-vm-extensions-powershell.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
+- Review the [Troubleshoot VM extensions guide](troubleshoot-vm-extensions.md).
