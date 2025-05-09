@@ -20,10 +20,10 @@ In this article, you'll learn how to create a new SCVMM managed virtual machine 
 
 ## Prerequisites
 
-- An Azure subscription and resource group where you have *Arc SCVMM VM Contributor* role.
-- A cloud resource on which you have *Arc SCVMM Private Cloud Resource User* role.
-- A virtual machine template resource on which you have *Arc SCVMM Private Cloud Resource User* role.
-- A virtual network resource on which you have *Arc SCVMM Private Cloud Resource User* role.
+- An Azure subscription and resource group where you have *Azure Arc SCVMM VM Contributor* role.
+- A cloud resource on which you have *Azure Arc SCVMM Private Cloud Resource User* role.
+- A virtual machine template resource on which you have *Azure Arc SCVMM Private Cloud Resource User* role.
+- A virtual network resource on which you have *Azure Arc SCVMM Private Cloud Resource User* role.
 
 ## How to create a VM in Azure portal
 
