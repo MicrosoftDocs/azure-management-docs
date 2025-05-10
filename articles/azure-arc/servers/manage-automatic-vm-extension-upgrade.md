@@ -143,7 +143,7 @@ You can use the Azure Activity Log to identify extensions that were automaticall
 
 To view automatic extension upgrade history, search for the **Activity Log** in the Azure portal. Select **Add filter** and choose the **Operation** filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. You can optionally add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria to only see automatic upgrade attempts and exclude upgrades manually initiated by users.
 
-:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" lightbox="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
+:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" lightbox="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Screenshot of the Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
 
 ## Next steps
 
