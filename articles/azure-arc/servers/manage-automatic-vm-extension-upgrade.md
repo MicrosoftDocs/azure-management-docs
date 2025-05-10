@@ -80,7 +80,7 @@ Use the following steps to configure automatic extension upgrades in using the A
 1. Select the applicable server.
 1. In the service menu, under **Settings**, select **Extensions**
 
-   :::image type="content" source="media/manage-automatic-vm-extension-upgrade/portal-navigation-extensions.png" alt-text="Screenshot of an Azure Arc-enabled server in the Azure portal showing where to navigate to extensions." border="true":::
+   :::image type="content" source="media/manage-automatic-vm-extension-upgrade/portal-navigation-extensions.png" lightbox="media/manage-automatic-vm-extension-upgrade/portal-navigation-extensions.png" alt-text="Screenshot of an Azure Arc-enabled server in the Azure portal showing where to navigate to extensions." border="true":::
 
 1. The **Automatic upgrade** column in the table shows whether upgrades are enabled, disabled, or not supported for each extension. To turn on automatic upgrade for supported extensions,  select the checkbox next to the extensions and then select **Enable automatic upgrade** to turn on the feature. Likewise, to turn off automatic upgrade for certain extensions, select their checkboxes and then select **Disable automatic upgrade**.
 
@@ -143,7 +143,7 @@ You can use the Azure Activity Log to identify extensions that were automaticall
 
 To view automatic extension upgrade history, search for the **Activity Log** in the Azure portal. Select **Add filter** and choose the **Operation** filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. You can optionally add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria to only see automatic upgrade attempts and exclude upgrades manually initiated by users.
 
-:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
+:::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" lightbox="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
 
 ## Next steps
 
