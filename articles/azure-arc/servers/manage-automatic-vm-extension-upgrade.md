@@ -13,15 +13,15 @@ You can enable automatic extension upgrade for Azure Arc-enabled servers that ha
 
 With automatic extension upgrade, existing extension versions deployed on your Arc-enabled servers are replaced with the newer one after the extension publisher provides a new version.
 
-By default, all extensions are opted into the automatic upgrade feature. However, only those [extensions currently supported for this feature](#supported-extensions) will receive automatic upgrades. You can choose to opt out of automatic upgrades for each extension at any time.
+By default, all extensions are opted into the automatic upgrade feature. However, only those [extensions currently supported for this feature](#supported-extensions) receive automatic upgrades. You can choose to opt out of automatic upgrades for each extension at any time.
 
 ### Automatic rollback and retries
 
 If an extension upgrade fails, Azure tries to repair the extension by performing the following actions:
 
-1. The Azure Connected Machine agent will automatically reinstall the last known good version of the extension to attempt to restore functionality.
-1. If the rollback is successful, the extension status shows **Succeeded**, and the extension will be added to the automatic upgrade queue again. The next upgrade attempt can be as soon as the next hour, and attempts will continue until the upgrade is successful.
-1. If the rollback fails, the extension status shows **Failed**, and the extension will no longer function. In this case, you must [remove](manage-vm-extensions-cli.md#remove-extensions) and [reinstall](manage-vm-extensions-cli.md#enable-an-extension) the extension to restore functionality.
+1. The Azure Connected Machine agent automatically reinstalls the last known good version of the extension to attempt to restore functionality.
+1. If the installation is successful, the extension status shows **Succeeded**, and the extension is added to the automatic upgrade queue again. The next upgrade attempt can be as soon as the next hour, and attempts continue until the upgrade is successful.
+1. If the installation fails, the extension status shows **Failed**, and the extension will no longer function. In this case, you must [remove](manage-vm-extensions-cli.md#remove-extensions) and [reinstall](manage-vm-extensions-cli.md#enable-an-extension) the extension to restore functionality.
 
 If you experience ongoing issues with an automatic extension upgrade, you can [disable automatic extension upgrade](#manage-automatic-extension-upgrade) to prevent the system from trying again while you troubleshoot the issue. You can then [enable automatic extension upgrade](#manage-automatic-extension-upgrade) again when you're ready.
 
@@ -35,9 +35,9 @@ If multiple extension upgrades are available for a machine, the upgrades might b
 
 When a new version of a VM extension is published, it becomes available for installation and manual upgrade on Arc-enabled servers. For servers that have that extension installed with automatic extension upgrade enabled, it could take up to eight weeks for every server with that extension to get the automatic upgrade. Upgrades are issued in batches across Azure regions and subscriptions, so you might see the extension get upgraded on some of your servers before others.
 
-Extension versions fixing critical security vulnerabilities are rolled out much faster. These automatic upgrades happen using a specialized rollout process, where each server with that extension will be upgraded within three weeks. Azure determines which extension versions should be rolled out the fastest to help ensure servers are protected.
+Extension versions fixing critical security vulnerabilities are rolled out faster. These automatic upgrades happen using a specialized rollout process, where each server with that extension will be upgraded within three weeks. Azure determines which extension versions should be rolled out the fastest to help ensure servers are protected.
 
-You can always upgrade any extension immediately by following the guidance to manually upgrade extensions using the [Azure portal](manage-vm-extensions-portal.md#upgrade-extensions), [Azure PowerShell](manage-vm-extensions-powershell.md#upgrade-extensions) or [Azure CLI](manage-vm-extensions-cli.md#upgrade-extensions).
+You can always upgrade any extension immediately by following the guidance to manually upgrade extensions using the [Azure portal](manage-vm-extensions-portal.md#upgrade-extensions), [Azure PowerShell](manage-vm-extensions-powershell.md#upgrade-extensions), or [Azure CLI](manage-vm-extensions-cli.md#upgrade-extensions).
 
 ### Availability-first updates
 
@@ -70,7 +70,7 @@ Extensions that don't currently support automatic extension upgrade are still co
 
 ## Manage automatic extension upgrade
 
-Automatic extension upgrade is enabled by default when you install extensions on Azure Arc-enabled servers. To enable automatic upgrades for an existing extension, you can use Azure CLI or Azure PowerShell to set the `enableAutomaticUpgrade` property on the extension to `true`. You'll need to repeat this process for every extension where you'd like to enable or disable automatic upgrades.
+Automatic extension upgrade is enabled by default when you install extensions on Azure Arc-enabled servers. You can enable or disable automatic upgrades for an existing extension on an Arc-enabled server at any time by using the Azure portal, Azure CLI, or Azure PowerShell.
 
 ### [Azure portal](#tab/azure-portal)
 
@@ -92,7 +92,7 @@ To check the status of automatic extension upgrade for all extensions on an Arc-
 az connectedmachine extension list --resource-group resourceGroupName --machine-name machineName --query "[].{Name:name, AutoUpgrade:properties.enableAutoUpgrade}" --output table
 ```
 
-Use the [az connectedmachine extension update](/cli/azure/connectedmachine/extension) command to enable automatic upgrades on an extension:
+Use the [`az connectedmachine extension update`](/cli/azure/connectedmachine/extension) command to enable automatic upgrades on an extension:
 
 ```azurecli
 az connectedmachine extension update \
@@ -102,7 +102,7 @@ az connectedmachine extension update \
     --enable-auto-upgrade true
 ```
 
-To disable automatic upgrades, set the `--enable-auto-upgrade` parameter to `false`, as shown below:
+To disable automatic upgrades, set the `--enable-auto-upgrade` parameter to `false`:
 
 ```azurecli
 az connectedmachine extension update \
@@ -126,14 +126,14 @@ To enable automatic upgrades for an extension using Azure PowerShell, use the [U
 Update-AzConnectedMachineExtension -ResourceGroup resourceGroupName -MachineName machineName -Name extensionName -EnableAutomaticUpgrade
 ```
 
-To disable automatic upgrades, set `-EnableAutomaticUpgrade:$false` as shown in the example below:
+To disable automatic upgrades, set `-EnableAutomaticUpgrade:$false`:
 
 ```azurepowershell
 Update-AzConnectedMachineExtension -ResourceGroup resourceGroupName -MachineName machineName -Name extensionName -EnableAutomaticUpgrade:$false
 ```
 
 > [!TIP]
-> The cmdlets above come from the [Az.ConnectedMachine](/powershell/module/az.connectedmachine) PowerShell module. You can install this PowerShell module with `Install-Module Az.ConnectedMachine` on your computer or in Azure Cloud Shell.
+> These cmdlets come from the [Az.ConnectedMachine](/powershell/module/az.connectedmachine) PowerShell module. You can install this PowerShell module with `Install-Module Az.ConnectedMachine` on your computer or in Azure Cloud Shell.
 
 ---
 
