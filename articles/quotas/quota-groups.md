@@ -264,8 +264,8 @@ The below covers end-to-end flow of how to do quota transfer from source subscri
 	- ‘-5’ = 5 cores were given from sub to group
 6. GET GroupLimit to view current group limit
 
-## Step 1 - Add subscription to group (link to previous section)  
-## Step 2 - Verify current subscription quota and usage via Usages API (LINK TO Usages REST API)  
+### Step 1 - Add subscription to group (link to previous section)  
+### Step 2 - Verify current subscription quota and usage via Usages API (LINK TO Usages REST API)  
 ### GET subscription quota and usage
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
@@ -284,7 +284,7 @@ Sample response
     }
 ```
 
-## Step 3 - Submit quotaAllocation request for a given region and VM family
+### Step 3 - Submit quotaAllocation request for a given region and VM family
 ### PATCH subscription quota allocation
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
@@ -326,7 +326,7 @@ az rest –method patch –url "https://management.azure.com/providers/Microsoft
   }
 }’ –debug
 ```
-## Step 4- GET quotaAllocationRequests status to view status of request once provising state = Succeeded" then move to below step
+### Step 4- GET quotaAllocationRequests status to view status of request once provising state = Succeeded" then move to below step
 ### GET subscription allocation quota request status 
 The quotaAllocations request is an async operation that may take up to 3 minutes to complete, to view the status of the request you can do below GET call using the allocationID in response header from previous step.
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
@@ -378,7 +378,7 @@ Sample response:
   "type": "Microsoft.Quota/groupQuotas/quotaAllocationRequests"
 
 ```
-## Step 5 - GET quotaAllocations to view current subscription quota and how many cores have been transferred to group
+### Step 5 - GET quotaAllocations to view current subscription quota and how many cores have been transferred to group
 ### GET quotaAllocations
 Once the quotaAllocations request has succeeded you can do a GET quotaAllocations request to view the updated subscription quota and how many cores (shareable quota) have been deallocated from the source subscription to the group. 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
@@ -417,7 +417,7 @@ Response content
   ]
 }
 ```
-## Step 6 - GET GroupLimit to view current group limit  
+### Step 6 - GET GroupLimit to view current group limit  
 ### GET groupQuotaLimits  
 The below is the final step to validate that the correct amount of cores were transferred from source subcription to group. Consider the below when interpreting the API response. 
 - Available limit = how many  cores do I have at group level to distribute  
