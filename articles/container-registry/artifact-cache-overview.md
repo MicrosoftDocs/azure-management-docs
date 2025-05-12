@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: conceptual #Don't change
 ms.custom: devx-track-azurecli
-ms.date: 04/29/2025
+ms.date: 05/12/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -54,7 +54,7 @@ Artifact cache currently supports the following upstream registries.
 >[!WARNING]
 > To source content from Docker Hub, you must generate a credential set by using [Azure CLI](artifact-cache-cli.md#create-the-credentials) or the [Azure portal](artifact-cache-portal.md#create-new-credentials).
 > 
-> Cache rules created with Docker Hub don't have to specify `library` in the repository path.
+> Some public Docker Hub images are mapped to the publicly accessed namespace `library`.  In this case, if you don't include the `library` path, Artifact Cache will automatically include it for you
 
 | Upstream registry                            | Support                                                  | Availability             |
 |----------------------------------------------|----------------------------------------------------------|--------------------------|
