@@ -11,7 +11,7 @@ ms.date: 05/01/2025
 
 The Deploy tab in the workload orchestration portal displays the targets and the solutions applicable to the targets. It shows targets created at multiple hierarchical levels such as factory and line. 
 
-This article describes how to use the workload orchestration portal to deploy, delete, stop, rollback, and retry solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](ot-monitor.md) and [Configure your solutions](ot-configure.md).
+This article describes how to use the workload orchestration portal to deploy, delete, stop, rollback, and retry solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](monitor.md) and [Configure your solutions](configure.md).
 
 [!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
@@ -31,7 +31,7 @@ This article describes how to use the workload orchestration portal to deploy, d
 
 1. You can also apply filters to the list of solutions. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by. Then select an **Operator** and enter the **Value** you want to filter by. The list of solutions will be filtered to show only those that match the selected column and value.
 
-    :::image type="content" source="./media/ot-deploy-filterby.png" alt-text="Screenshot of the Deploy tab showing how to apply filters." lightbox="./media/ot-deploy-filterby.png":::
+    :::image type="content" source="./media/deploy-filter-by.png" alt-text="Screenshot of the Deploy tab showing how to apply filters." lightbox="./media/deploy-filter-by.png":::
 
 ## Deploy a solution
 
@@ -39,23 +39,23 @@ You can deploy a solution to a target by following these steps:
 
 1. Click on the **target name** to open the details page which lists the applicable solutions and their statuses.
 
-    :::image type="content" source="./media/ot-deploy1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/ot-deploy1.png":::
+    :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
 1. In the details page of the target, choose the solution in **Ready to deploy** state and click on **Deploy Solution**.
 
-    :::image type="content" source="./media/ot-deploy2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/ot-deploy2.png":::
+    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
 
-    :::image type="content" source="./media/ot-deploy3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/ot-deploy3.png":::
+    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/deploy-3.png":::
 
 1. You can see a notification of deployment in progress at the top right corner of the page. 
 
-    :::image type="content" source="./media/ot-deploy4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/ot-deploy4.png":::
+    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
 
 1. Once the deployment finishes, the status of the solution is updated to **Deployed** and the notification panel opens to show the details of the deployment.
 
-    :::image type="content" source="./media/ot-deploy5.png" alt-text="Screenshot of the Deploy tab showing a successful deployment." lightbox="./media/ot-deploy5.png":::
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing a successful deployment." lightbox="./media/deploy-5.png":::
 
     > [!NOTE]
     > All actions and statuses are shown under notifications.
@@ -66,11 +66,11 @@ If a deployment fails, you can rollback to a previous version of the solution. T
 
 1. Choose the solution in **Deployment failure** state and click on **Rollback**.
 
-    :::image type="content" source="./media/ot-deploy-rollback1.png" alt-text="Screenshot of the Deploy tab showing how to rollback a solution." lightbox="./media/ot-deploy-rollback1.png":::
+    :::image type="content" source="./media/deploy-rollback-1.png" alt-text="Screenshot of the Deploy tab showing how to rollback a solution." lightbox="./media/deploy-rollback-1.png":::
 
 1. This opens the confirmation window displaying the details of the failed version and the list of old versions. Choose the version to rollback and click **Apply**.
 
-    :::image type="content" source="./media/ot-deploy-rollback2.png" alt-text="Screenshot of the Deploy tab showing how to rollback to a specific version." lightbox="./media/ot-deploy-rollback2.png":::
+    :::image type="content" source="./media/deploy-rollback-2.png" alt-text="Screenshot of the Deploy tab showing how to rollback to a specific version." lightbox="./media/deploy-rollback-2.png":::
 
 1. Once the deployment finishes, the status of the solution is updated to **Deployed**.
 
@@ -81,7 +81,7 @@ If a deployment fails, you can retry the deployment by following these steps:
 
 1. Choose the solution version with status **Deployment failure** and click on **Retry deployment**.
 
-    :::image type="content" source="./media/ot-deploy-retry.png" alt-text="Screenshot of the Deploy tab showing how to retry a failed deployment." lightbox="./media/ot-deploy-retry.png":::
+    :::image type="content" source="./media/deploy-retry.png" alt-text="Screenshot of the Deploy tab showing how to retry a failed deployment." lightbox="./media/deploy-retry.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
 
@@ -92,7 +92,7 @@ You can stop a deployed solution. This action is useful if you want to stop the 
 
 1. Choose the solution version to be un-deployed and click **Stop**.
 
-    :::image type="content" source="./media/ot-deploy-stop.png" alt-text="Screenshot of the Deploy tab showing how to stop a deployed solution." lightbox="./media/ot-deploy-stop.png":::
+    :::image type="content" source="./media/deploy-stop.png" alt-text="Screenshot of the Deploy tab showing how to stop a deployed solution." lightbox="./media/deploy-stop.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
 
@@ -102,6 +102,6 @@ You can delete a solution before it's deployed, that is, if its status is *Stopp
 
 1. Choose the solution version with status **Stopped/Ready to deploy/Deployment failure** and click on **Delete**.
 
-    :::image type="content" source="./media/ot-deploy-delete.png" alt-text="Screenshot of the Deploy tab showing how to delete a solution before it's deployed." lightbox="./media/ot-deploy-delete.png":::
+    :::image type="content" source="./media/deploy-delete.png" alt-text="Screenshot of the Deploy tab showing how to delete a solution before it's deployed." lightbox="./media/deploy-delete.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.

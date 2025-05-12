@@ -75,9 +75,9 @@ After logging in to the [workload orchestration portal](https://portal.digitalop
 
 |Tab|Actions| Access required|
 |----|-------|----------------|
-|[Monitor](ot-monitor.md)|View the solutions, lines, status, and other details.|Read-only access to the solution and line levels.|
-|[Configure](ot-configure.md)|Configure parameters at factory, line and solution levels. View revision details and publish to lines.|Read-write access to factory, line, and solution levels.|
-|[Deploy](ot-deploy.md)|Deploy solutions and roll back to earlier versions if needed.|Deploy access on lines.|
+|[Monitor](monitor.md)|View the solutions, lines, status, and other details.|Read-only access to the solution and line levels.|
+|[Configure](configure.md)|Configure parameters at factory, line and solution levels. View revision details and publish to lines.|Read-write access to factory, line, and solution levels.|
+|[Deploy](deploy.md)|Deploy solutions and roll back to earlier versions if needed.|Deploy access on lines.|
 
 > [!NOTE]
 > Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 
