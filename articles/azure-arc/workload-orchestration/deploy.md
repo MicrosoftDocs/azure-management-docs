@@ -70,7 +70,7 @@ If a deployment fails, you can roll back to a previous version of the solution. 
 
 1. This opens the confirmation window displaying the details of the failed version and the list of old versions. Choose the version to roll back and click **Apply**.
 
-    :::image type="content" source="./media/deploy-rollback-2.png" alt-text="Screenshot of the Deploy tab showing how to rollback to a specific version." lightbox="./media/deploy-rollback-2.png":::
+    :::image type="content" source="./media/deploy-rollback-2.png" alt-text="Screenshot of the Deploy tab showing how to roll back to a specific version." lightbox="./media/deploy-rollback-2.png":::
 
 1. Once the deployment finishes, the status of the solution is updated to **Deployed**.
 
