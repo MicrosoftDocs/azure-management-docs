@@ -10,10 +10,37 @@ ms.custom: devx-track-arm-template
 
 This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
 
-To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
+To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
 
-> [!NOTE]
-> Although multiple extensions can be batched and processed together, they're installed serially. After installation of the first extension is complete, the next extension is installed.
+This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, and in most cases, an additional parameter file. Replace the sample values in the samples with your own values before deploying.
+
+## Deployment commands
+
+These sample PowerShell commands install an extension on all the connected machines within a resource group, based on the information in your ARM template. The command uses the `TemplateFile` parameter to specify the template. If a parameters file is required, the `TemplateParameterFile` parameter is included to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
+
+To deploy an ARM template and parameter file, use the following command, replacing the example values with your own:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>" -TemplateParameterFile "<parameter-filename.json>"
+```
+
+For example:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\LogAnalyticsAgent.json" -TemplateParameterFile "D:\Azure\Templates\LogAnalyticsAgentParms.json"
+```
+
+To deploy an ARM template without a parameter file, use the following command, replacing the example values with your own:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>>"
+```
+
+For example:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<ContosoEngineering>" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
+```
 
 ## Deploy the Azure Monitor Agent VM extension
 
@@ -129,11 +156,7 @@ This parameter file can be used for both Linux and Windows.
 }
 ```
 
-Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group by using the following command. The command uses the `TemplateFile` parameter to specify the template and the `TemplateParameterFile` parameter to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
-
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>" -TemplateParameterFile "<parameter-filename.json>"
-```
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the extension to your connected machines by running the PowerShell command found earlier in this article.
 
 ## Deploy the Custom Script Extension
 
@@ -363,14 +386,6 @@ To use the Azure Monitor Dependency agent extension, run one of the following sa
 }
 ```
 
-### Template deployment
-
-Save the template file to disk. You can then deploy the extension to the connected machine by using the following command:
-
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
-```
-
 ## Deploy the Azure Key Vault VM extension (preview)
 
 The following JSON shows the schema for the Key Vault VM extension (preview). The extension does not require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
@@ -510,16 +525,8 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 > [!NOTE]
 > Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. You can find more information about certificates in [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
 
-### Template deployment
-
-Save the template file to disk. You can then deploy the extension to the connected machine by using the following command.
-
-> [!NOTE]
-> The VM extension would require a system-assigned identity to be assigned to authenticate to Key Vault. See [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md) for Linux and Windows Azure Arc-enabled servers.
-
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\KeyVaultExtension.json"
-```
+> [!TIP]
+> The VM extension requires a system-assigned identity to be assigned to authenticate to Key Vault. For more information, see [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md).
 
 ## Related content
 
