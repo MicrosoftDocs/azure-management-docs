@@ -150,7 +150,7 @@ Create a Quota Group through the Azure portal.
 6. Select **Management group**, if the default Management group is not the desired one, select **Change management group**, then select **Next** button.
 7. In the **Subscription selection** tab select subscription(s) to be added to quota group. Subscription will be greyed out and unable to be selected if it already belongs to existing Quota Group, then  select **Next** button.
 8. In **Review + create** tab review details of Quota group before creation. Under **Basics** name of Quota Group will be displayed, under **Group selection** the selected Management group and subscription(s) will be displayed
-
+--- 
 
 ## Delete a Quota Group
 To delete a Quota Group
@@ -164,6 +164,7 @@ DELETE https://management.azure.com/providers/Microsoft.Management/managementGro
 ```
 
 ### [Azure portal](#tab/portal-2)
+
 To delete a Quota Group through the Azure portal 
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
 2. Under settings in left hand side select **Quota groups**.
@@ -173,9 +174,8 @@ To delete a Quota Group through the Azure portal
 6. In the **Delete a quota group** view the Quota Group to be deleted will be shown, along with the list of **Dependent subscription to be removed from quota group**
 7. Select the **Delete** button on the bottom, **Delete confirmation** notification will pop up notifying **Deleting this quota group is a permanent actino and cannot be undone**, by selecting delete you are giving permission for Azure to remove your subscription(s) if there are any from group and then group will be deleted
 8. Notification on right hand side wil surface with **Your quota group has been deleted** once group has been deleted
-```
+--- 
 <!-- The following is an example of the format we use to write out portal instructions. Be clear, concise, only bold or italicise actual names of blades and options, etc. Start instructions from the start of openning the portal.
-
 1. Go to **Virtual machine scale sets**.
 2. Select the **Create** button to go to the **Create a virtual machine scale set** view.
 3. In the **Basics** tab, fill out the required fields. If the field isn't called out in the next sections, you can set the fields to what works best for your scale set.
@@ -188,9 +188,8 @@ To delete a Quota Group through the Azure portal
 10. You can specify other properties in subsequent tabs, or you can go to **Review + create** and select the **Create** button at the bottom of the page to start your instance mix scale set deployment.
 -->
 
---- 
+
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
-```
 
 
 ## Add or remove subscriptions from a Quota Group
