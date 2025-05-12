@@ -540,7 +540,7 @@ Transfer from group to target subscripion
 13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
 14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.
 15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
-
+--- 
 
 ## Submit Quota Group Limit increase request
 ### [REST API](#tab/rest-5)
@@ -719,7 +719,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 }
 
 ```
-
+--- 
 
 
 
