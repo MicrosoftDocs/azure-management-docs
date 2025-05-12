@@ -93,7 +93,7 @@ To configure a line, follow these steps:
 
 The **Solutions** sub-tab shows the list of solutions, including their version, status, capabilities, and other details.
 
-:::image type="content" source="./media/configure-solution-utions.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing the default view." lightbox="./media/configure-solution-utions.png":::
+:::image type="content" source="./media/configure-solution.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing the default view." lightbox="./media/configure-solution.png":::
 
 To configure a solution, follow these steps:
 
@@ -128,7 +128,7 @@ To configure a solution, follow these steps:
 
 1. You can click on the **download symbol** next to the publish status to download the final configurations.
 
-    :::image type="content" source="./media/configure-solution--download.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to download the final configurations." lightbox="./media/configure-solution--download.png":::
+    :::image type="content" source="./media/configure-solution-download.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to download the final configurations." lightbox="./media/configure-solution-download.png":::
 
 1. Finally, click on **Publish** to create a new revision of configuration values for the selected targets.
 
