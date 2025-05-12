@@ -190,7 +190,7 @@ During the configuration process, if a solution fails, you can resolve the failu
 
 1. The **Review** step shows if a configuration fails. Click on the status **Resolve failed** to see the details of the failure.
 
-    :::image type="content" source="./media/configure-failed-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to resolved a failure." lightbox="./media/configure-failed-1.png":::
+    :::image type="content" source="./media/configure-failed-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to resolve a failure." lightbox="./media/configure-failed-1.png":::
 
 1. The side pane displays the details. Click on **Retry**.
 

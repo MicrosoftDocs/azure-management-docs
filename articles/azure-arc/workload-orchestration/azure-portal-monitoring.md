@@ -7,7 +7,7 @@ ms.topic: how-to
 ms.date: 05/01/2025
 ---
 
-# Use Azure portal to monitor your solutions as an IT Developer
+# Use Azure portal to monitor your solutions as an IT developer
 
 IT developers can use the Azure portal to monitor their solutions. In the Azure portal, you can:
 

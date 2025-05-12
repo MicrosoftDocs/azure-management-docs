@@ -34,7 +34,7 @@ The Monitor tab provides two sub-tabs: **Solutions** and **Targets**. The Soluti
 
     :::image type="content" source="./media/monitor-group-by.png" alt-text="Screenshot of the Monitor tab showing how to group the solutions." lightbox="./media/monitor-group-by.png":::
 
-1. The Solutions tab includes **status tiles** on the top of the page that show the total number of solutions and the number of solutions in each state, which are *Configuration pending*,*Ready to deploy*, *Deployed (Update available)*, *Deployed (Updating)* *Deploying*, *Deployed*, *Deployment failure*, and *Previously deployed*. You can select any of the status tiles to filter the list of solutions by that status.
+1. The Solutions tab includes **status tiles** on the top of the page that show the total number of solutions and the number of solutions in each state, which are *Configuration pending*, *Ready to deploy*, *Deployed (Update available)*, *Deployed (Updating)* *Deploying*, *Deployed*, *Deployment failure*, and *Previously deployed*. You can select any of the status tiles to filter the list of solutions by that status.
 
      :::image type="content" source="./media/monitor-filter-by-status.png" alt-text="Screenshot of the Monitor tab showing how to filter the solutions by status." lightbox="./media/monitor-filter-by-status.png":::
 

@@ -60,15 +60,15 @@ You can deploy a solution to a target by following these steps:
     > [!NOTE]
     > All actions and statuses are shown under notifications.
 
-## Rollback a solution
+## Roll back a solution
 
-If a deployment fails, you can rollback to a previous version of the solution. To do this, follow these steps:
+If a deployment fails, you can roll back to a previous version of the solution. To do this, follow these steps:
 
 1. Choose the solution in **Deployment failure** state and click on **Rollback**.
 
     :::image type="content" source="./media/deploy-rollback-1.png" alt-text="Screenshot of the Deploy tab showing how to rollback a solution." lightbox="./media/deploy-rollback-1.png":::
 
-1. This opens the confirmation window displaying the details of the failed version and the list of old versions. Choose the version to rollback and click **Apply**.
+1. This opens the confirmation window displaying the details of the failed version and the list of old versions. Choose the version to roll back and click **Apply**.
 
     :::image type="content" source="./media/deploy-rollback-2.png" alt-text="Screenshot of the Deploy tab showing how to rollback to a specific version." lightbox="./media/deploy-rollback-2.png":::
 

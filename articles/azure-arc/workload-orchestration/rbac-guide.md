@@ -146,7 +146,7 @@ A service group creator is the admin user who creates the service group and is r
 |Create and manage relationships on top of `DeploymentTargets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/write` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/delete` on `DeploymentTarget` + Target service group​|
 |View the resources under the service group|Ensure that the user has READ access to the `DeploymentTarget` resources that are part of the service group. For this, the user can either have access at the resource group/subscription level or directly for the particular `DeploymentTarget` resource.​|
 
-\* User needs to be a registered user on the Tenant. Once a user creates an service group, they automatically the following permissions on the service group. 
+\* User needs to be a registered user on the Tenant. Once a user creates a service group, they automatically create the following permissions on the service group. 
 
 #### Service group reader
 

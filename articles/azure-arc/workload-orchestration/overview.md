@@ -48,8 +48,8 @@ IT personas usually have admin privileges that span across certain subcomponents
 
 If you're an IT user and want to set up workload orchestration, follow the steps below:
 
-- To manually setup workload orchestration, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md). 
-- To run the setup automatically, you can use the scripts in [Onboarding scripts](onboarding-scripts.md).
+- To manually set up workload orchestration, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md). 
+- To run the set up automatically, you can use the scripts in [Onboarding scripts](onboarding-scripts.md).
 
 #### Organization with central IT team
 
@@ -68,7 +68,7 @@ OT personas, also known as no-code personas, are users with limited privileges e
 
 #### Workload orchestration portal for OT personas
 
-Workload orchestration portal provides a user-friendly interface to allow no-code personas to easily manage various tasks such as fill in required configuration parameters, ensuring all values meet validation criteria before deployment an deploy applications with configurations on production, including real-time status updates, error logs, and rollback options. 
+Workload orchestration portal provides a user-friendly interface to allow no-code personas to easily manage various tasks such as fill in required configuration parameters, ensuring all values meet validation criteria before deployment and deploy applications with configurations on production, including real-time status updates, error logs, and rollback options. 
 
 After logging in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), you can view three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md).
 
