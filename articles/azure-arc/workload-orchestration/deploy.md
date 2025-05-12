@@ -27,7 +27,7 @@ This article describes how to use the workload orchestration portal to deploy, d
 1. Select the **Deploy** tab, which lists all targets created in your environment. The Deploy tab shows the target name, type, and other details.
 1. You can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of solutions will be filtered to show only those that match the keyword.
 
-    :::image type="content" source="./media/ot-deploy-keyword.png" alt-text="Screenshot of the Deploy tab showing how to search by keyword." lightbox="./media/ot-deploy-keyword.png":::
+    :::image type="content" source="./media/deploy-keyword.png" alt-text="Screenshot of the Deploy tab showing how to search by keyword." lightbox="./media/deploy-keyword.png":::
 
 1. You can also apply filters to the list of solutions. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by. Then select an **Operator** and enter the **Value** you want to filter by. The list of solutions will be filtered to show only those that match the selected column and value.
 
