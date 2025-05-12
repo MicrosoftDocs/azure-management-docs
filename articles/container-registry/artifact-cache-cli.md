@@ -19,7 +19,7 @@ In addition to the prerequisites listed here, you need an Azure account with an 
 
 ## Prerequisites
 
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. Too use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. To use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
 * An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
 * An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
 * Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
