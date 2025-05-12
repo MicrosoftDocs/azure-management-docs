@@ -30,13 +30,13 @@ items:
     - name: Workload orchestration portal
       items:
       - name: Monitor your solutions in the portal
-        href: ot-monitor.md
+        href: monitor.md
       - name: Configure your solutions in the portal
-        href: ot-configure.md
+        href: configure.md
       - name: Deploy your solutions in the portal
-        href: ot-deploy.md
+        href: deploy.md
     - name: Monitor your solutions in Azure portal 
-      href: it-azure-portal-monitoring.md
+      href: azure-portal-monitoring.md
     - name: Configuration templates
       items: 
       - name: Configuration template
@@ -44,7 +44,7 @@ items:
       - name: Configuration schema
         href: configuring-schema.md
     - name: Use service groups
-      href: service-group-wo.md
+      href: service-group.md
     - name: External validation for workload orchestration
       items:
       - name: External validation with Event Grid

@@ -43,9 +43,9 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Monitor your solutions with Azure portal
-            url: it-azure-portal-monitoring.md
+            url: azure-portal-monitoring.md
           - text: Use service groups 
-            url: service-group-wo.md
+            url: service-group.md
           - text: Enable external validation 
             url: external-validation.md
       - linkListType: quickstart
@@ -58,10 +58,10 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Monitor your solutions 
-            url: ot-monitor.md
+            url: monitor.md
           - text: Configure your solutions 
-            url: ot-monitor.md
+            url: configure.md
           - text: Deploy your solutions
-            url: ot-deploy.md
+            url: deploy.md
 
 
