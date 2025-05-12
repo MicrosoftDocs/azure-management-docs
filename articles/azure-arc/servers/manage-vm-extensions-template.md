@@ -1,25 +1,23 @@
 ---
 title: Enable VM Extensions Using Azure Resource Manager Template
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using an Azure Resource Manager template.
-ms.date: 06/02/2022
+ms.date: 05/12/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ---
 
 # Enable Azure VM extensions by using an ARM template
 
-This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure virtual machine (VM) extensions that are supported by Azure Arc-enabled servers.
+This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
 
-You can add VM extensions to an ARM template and execute them with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the extensions on Linux or Windows machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
+To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
 
 > [!NOTE]
-> Although you can batch multiple extensions and process them together, they're installed serially. After installation of the first extension installation is complete, the next extension is installed.
->
-> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+> Although multiple extensions can be batched and processed together, they're installed serially. After installation of the first extension is complete, the next extension is installed.
 
-## Deploy the Log Analytics VM extension
+## Deploy the Azure Monitor Agent VM extension
 
-To easily deploy the Log Analytics agent, use one of the following samples to install the agent on either Linux or Windows.
+To deploy the Azure Monitor Agent, use one of the following samples to install the agent on either Linux or Windows.
 
 ### Template file for Linux
 
@@ -43,13 +41,13 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
     },
     "resources": [
         {
-            "name": "[concat(parameters('vmName'),'/OMSAgentForLinux')]",
-            "type": "Microsoft.HybridCompute/machines/extensions",
+            "name": "[concat(parameters('vmName'),'/AzureMonitorLinuxAgent')]",
+            "type": "Microsoft.Compute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2022-03-10",
+            "apiVersion": "2021-11-01",
             "properties": {
-                "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                "type": "OmsAgentForLinux",
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorLinuxAgent",
                 "enableAutomaticUpgrade": true,
                 "settings": {
                     "workspaceId": "[parameters('workspaceId')]"
@@ -67,7 +65,7 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 
 ```json
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vmName": {
@@ -85,13 +83,13 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
     },
     "resources": [
         {
-            "name": "[concat(parameters('vmName'),'/MicrosoftMonitoringAgent')]",
-            "type": "Microsoft.HybridCompute/machines/extensions",
+            "name": "[concat(parameters('vmName'),'/AzureMonitorWindowsAgent')]",
+            "type": "Microsoft.Compute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2022-03-10",
+            "apiVersion": "2021-11-01",
             "properties": {
-                "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                "type": "MicrosoftMonitoringAgent",
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorWindowsAgent",
                 "autoUpgradeMinorVersion": true,
                 "enableAutomaticUpgrade": true,
                 "settings": {
@@ -108,9 +106,11 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 
 ### Parameter file
 
+This parameter file can be used for both Linux and Windows.
+
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vmName": {
@@ -129,10 +129,10 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 }
 ```
 
-Save the template and parameter file to disk, and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group by using the following command. The command uses the `TemplateFile` parameter to specify the template and the `TemplateParameterFile` parameter to specify a file that contains parameters and parameter values.
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group by using the following command. The command uses the `TemplateFile` parameter to specify the template and the `TemplateParameterFile` parameter to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\LogAnalyticsAgent.json" -TemplateParameterFile "D:\Azure\Templates\LogAnalyticsAgentParms.json"
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>" -TemplateParameterFile "<parameter-filename.json>"
 ```
 
 ## Deploy the Custom Script Extension
