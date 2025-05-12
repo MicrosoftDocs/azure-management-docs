@@ -208,8 +208,8 @@ When user provides values for solution configurations and publishes them for cer
 
 There are different variants of schemas that can be used to author solutions. See the following quickstarts for examples of different solution authoring scenarios:
 
-- **Shared schema:** This schema comprises configurable attributes/properties that can be used across hierarchies and solutions. For more information, see [Create a basic solution without common configurations](quickstart-solution-without-common-config.md).
-- **Common schema:** This schema defines configurable attributes/properties at each hierarchical level that can be used for a particular solution. For more information, see [Create a basic solution with common configurations](quickstart-solution-with-common-config.md).
+- **Shared schema:** This schema comprises configurable attributes/properties that can be used across hierarchies and solutions. For more information, see [Create a basic solution without common configurations](quickstart-solution-without-common-configuration.md).
+- **Common schema:** This schema defines configurable attributes/properties at each hierarchical level that can be used for a particular solution. For more information, see [Create a basic solution with common configurations](quickstart-solution-with-common-configuration.md).
 - **Schema with dependencies:** This schema defines configurable attributes/properties of an application dependent on another application. For more information, see [Create a solution with shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md).
 - **Multiple shared adapter dependencies:** This schema defines configurable attributes/properties of an application dependent on more than one other application. For more information, see [Create a solution with multiple shared adapter dependencies](quickstart-solution-multiple-shared-adapter-dependency.md).
 - **Deploy multiple instances of the same application:** This schema defines configurable attributes/properties of an application that can be deployed multiple times in the same namespace. For more information, see [Create a solution with multiple instances](quickstart-solution-multiple-instances-k8s.md).
@@ -219,5 +219,5 @@ There are different variants of schemas that can be used to author solutions. Se
 
 - [Onboarding scripts](onboarding-scripts.md)
 - [Prepare the environment for workload orchestration](initial-setup-environment.md)
-- [Service groups for workload orchestration](service-group-wo.md)
+- [Service groups for workload orchestration](service-group.md)
 - [Monitor your solutions in Azure portal](azure-portal-monitoring.md)
