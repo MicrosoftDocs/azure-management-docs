@@ -64,7 +64,7 @@ If the deployment of a solution fails, the status column shows **Deployment fail
 
 1. Click on the **solution name** to see which targets failed.
 
-    :::image type="content" source="./media/monitor-failure-targets2.png" alt-text="Screenshot of the Monitor tab showing to click on the solution name to view the details of the failure." lightbox="./media/monitor-failure-targets2.png":::
+    :::image type="content" source="./media/monitor-failure-targets-2.png" alt-text="Screenshot of the Monitor tab showing to click on the solution name to view the details of the failure." lightbox="./media/monitor-failure-targets-2.png":::
 
 ### View the capabilities of a solution
 
@@ -96,7 +96,7 @@ You can view the detailed revision of a solution  if the solution state is eithe
 
 1. On the **Monitor** tab, select the **Targets** sub-tab, which lists all solutions including their name, version, status, and other details.
 
-    :::image type="content" source="./media/monitor-targets.png" alt-text="Screenshot of the Targets tab in the Monitor tab portal." lightbox="./media/ot-monitor-targets.png":::
+    :::image type="content" source="./media/monitor-targets.png" alt-text="Screenshot of the Targets tab in the Monitor tab portal." lightbox="./media/monitor-targets.png":::
 
 1. The Targets tab includes **status tiles** on the top of the page that show the total number of targets and the number of targets in each state, which are *Ready to deploy*, *Deployed (Update available)*, *Deployed (Updating)* *Deploying*, *Deployed*, *Deployment failure*, *Previously deployed*, and *No solution available*. You can select any of the status tiles to filter the list of targets by that status.
 1. All capabilities are selected by default. You can select or deselect the capabilities to filter the list of targets by that capability.
