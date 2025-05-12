@@ -1,7 +1,7 @@
 ---
 title: Use Microsoft Copilot in Azure with the Azure mobile app
 description: You can use the Azure mobile app to access Microsoft Copilot in Azure and benefit from its features.
-ms.date: 04/03/2025
+ms.date: 05/12/2025
 ms.topic: how-to
 ms.custom:
   - build-2024
@@ -29,10 +29,12 @@ To provide feedback on any response, select the thumbs up/down icon. This feedba
 
 To learn more about ways to use Copilot in Azure, see [Microsoft Copilot in Azure capabilities](/azure/copilot/capabilities). Keep in mind that there are some differences in functionality when using Copilot in Azure from within the Azure mobile app. Some key scenarios in the Azure mobile app include:
 
-- Troubleshooting resources
-- Generating CLI and PowerShell scripts
-- Generating and running Azure Resource Graph queries
-- Get information about Azure concepts, services, and offerings
+- Get answers to general Azure knowledge questions
+- Troubleshoot resources
+- Generate CLI and PowerShell scripts
+- Generate and running Azure Resource Graph queries
+- Get cost managment information
+- Get information about Azure resources, concepts, services, and offerings
 
 In some cases, Microsoft Copilot in Azure may not be able to complete your request, or may have a limited ability to respond. For more information, see [Current limitations](/azure/copilot/capabilities#current-limitations).
 
