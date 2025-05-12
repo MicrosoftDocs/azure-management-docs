@@ -1,5 +1,5 @@
 ---
-title: Service Group for Workload Orchestration
+title: Service Groups for Workload Orchestration
 description: Learn about service groups and how to configure them in workload orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
@@ -23,7 +23,7 @@ Every service group has a display name and one parent service group. Relationshi
 
 The following diagram shows how service groups structure groups related components and deployment targets into logical units, making the architecture more modular and easier to manage.
 
-:::image type="content" source="./media/service-group-diagram.png" alt-text="Diagram showing how a service group works in" lightbox="./media/service-group-diagram.png":::
+:::image type="content" source="./media/service-group-diagram.png" alt-text="Diagram showing how a service group works in workload orchestration." lightbox="./media/service-group-diagram.png":::
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ The following diagram shows how service groups structure groups related componen
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reused the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 ## Create a service group
 
@@ -52,7 +52,7 @@ az rest \
   --resource https://management.azure.com
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 $sg = "<service-group-name>"
@@ -70,7 +70,7 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant,factory, and store. Sites can be created on top of subscriptions and resource groups.
+Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups.
 
 To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
 
@@ -101,7 +101,7 @@ az rest \
   --resource https://management.azure.com
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 To tag the Site correctly, you can use the following commands, ensuring that the Site is tagged according to its respective hierarchy level:
 
@@ -127,7 +127,7 @@ az rest `
 
 ***
 
-## Setup a service group hierarchy for workload orchestration
+## Set up a service group hierarchy for workload orchestration
 
 #### [Bash](#tab/bash)
 
@@ -226,7 +226,7 @@ az rest `
     az workload-orchestration target update --resource-group "$rg" --name "$childName"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Contributor` role. 
 
@@ -273,9 +273,6 @@ az rest `
       --capabilities "@context-capabilities.json" `
       --hierarchies [0].name=factory [0].description=Factory [1].name=line [1].description=Line
     ```
-
-    > [!NOTE]
-    > It can only exist one context per tenant. 
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
