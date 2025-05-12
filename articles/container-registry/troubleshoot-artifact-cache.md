@@ -2,7 +2,7 @@
 title: Troubleshoot artifact cache issues in Azure Container Registry
 description: Learn how to troubleshoot the most common problems for a registry that uses the Artifact cache feature.
 ms.topic: troubleshooting
-ms.date: 02/26/2025
+ms.date: 04/23/2025
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
@@ -12,15 +12,6 @@ ms.service: azure-container-registry
 # Troubleshoot artifact cache issues in Azure Container Registry
 
 Learn how to solve the most common problems for a registry enabled with the artifact cache feature by identifying symptoms, causes, and potential solutions.
-
-## Cached images don't appear in a live repository
-
-If cached images don't show up in your repository in Azure Container Registry (ACR), first verify that the repository path is correct:
-
-- The login server for Docker Hub is `docker.io`.
-- The login server for Microsoft Artifact Registry is `mcr.microsoft.com`.
-
-The Azure portal autofills these fields for you. However, many Docker repositories begin with `library/` in their path. For example, in-order to cache the `hello-world` repository, the correct Repository Path is `docker.io/library/hello-world`.
 
 ## Unhealthy credentials
 

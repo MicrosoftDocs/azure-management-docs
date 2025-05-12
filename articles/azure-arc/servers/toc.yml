@@ -7,6 +7,7 @@
   - name: VMware FAQ
     href: vmware-faq.md
   - name: What's new with Connected Machine agent?
+    displayName: version
     href: agent-release-notes.md
   - name: Archive for Connected Machine agent release notes
     href: agent-release-notes-archive.md
@@ -19,10 +20,12 @@
   - name: Assign policy to assess compliance
     href: ./learn/tutorial-assign-policy-portal.md
   - name: Monitor machine
+    displayName: insights, analytics
     href: ./learn/tutorial-enable-vm-insights.md
 - name: Samples
   items:
   - name: Azure Resource Graph queries
+    displayName: arg, kusto
     href: ./resource-graph-samples.md
 - name: Concepts
   items:
@@ -39,8 +42,10 @@
     - name: Plan for deployment
       href: plan-at-scale-deployment.md
     - name: Network requirements
+      displayName: endpoint, url, proxy
       href: network-requirements.md
     - name: Simplify network configuration requirements
+      displayName: gateway, endpoint, url, proxy
       href: arc-gateway.md
     - name: Private Link networking
       href: private-link-security.md
@@ -51,8 +56,10 @@
       - name: Connect machines using a deployment script
         href: onboard-portal.md
       - name: Connect machines from Windows Admin Center
+        dispayName: WAC
         href: onboard-windows-admin-center.md
       - name: Connect machines to Azure Arc with PowerShell
+        displayName: PS
         href: onboard-powershell.md
       - name: Connect Windows Server machines through Azure Arc Setup
         href: onboard-windows-server.md
@@ -73,6 +80,7 @@
        - name: Connect VMware vCenter managed machines
          href: ../vmware-vsphere/enable-guest-management-at-scale.md?toc=/azure/azure-arc/servers/toc.json
        - name: Connect SCVMM managed machines
+         displayName: system
          href: ../system-center-virtual-machine-manager/enable-guest-management-at-scale.md?toc=/azure/azure-arc/servers/toc.json
   - name: Migrate
     items:
@@ -83,6 +91,7 @@
     - name: VM extensions
       items:
       - name: Overview
+        displayName: extensions
         href: manage-vm-extensions.md
       - name: Manage extensions by using the Azure portal
         href: manage-vm-extensions-portal.md
@@ -105,12 +114,16 @@
     - name: Run command
       items:
       - name: Overview
+        displayName: run, command
         href: run-command.md
       - name: REST API
+        displayName: run, command
         href: run-command-rest.md
       - name: Azure CLI
+        displayName: run, command
         href: run-command-cli.md
       - name: PowerShell
+        displayName: run, command
         href: run-command-powershell.md
       - name: Limit access to Run command
         href: run-command-security.md
@@ -155,16 +168,22 @@
   - name: Extended Security Updates
     items:
     - name: Prepare to deliver Extended Security Updates
+      displayName: ESU
       href: prepare-extended-security-updates.md
     - name: License provisioning for Extended Security Updates
+      displayName: ESU
       href: license-extended-security-updates.md
     - name: Billing service for Extended Security Updates
+      displayName: ESU
       href: billing-extended-security-updates.md
     - name: Deliver Extended Security Updates
+      displayName: ESU
       href: deliver-extended-security-updates.md
     - name: Programmatically manage Extended Security Updates licenses
+      displayName: ESU
       href: api-extended-security-updates.md
     - name: Troubleshoot Extended Security Updates
+      displayName: ESU
       href: troubleshoot-extended-security-updates.md
   - name: Troubleshooting
     items:

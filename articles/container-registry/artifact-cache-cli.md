@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-ms.date: 02/28/2025
+ms.date: 04/29/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
 ---
@@ -19,7 +19,7 @@ In addition to the prerequisites listed here, you need an Azure account with an 
 
 ## Prerequisites
 
-* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. If you want to use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
+* Azure CLI. You can use the [Azure Cloud Shell][Azure Cloud Shell] or a local installation of Azure CLI to run the commands in this article. To use it locally, Azure CLI version 2.46.0 or later is required. To confirm your Azure CLI version, run `az --version`. To install or upgrade, see [Install Azure CLI][Install Azure CLI].
 * An existing ACR instance. If you don't already have one, [use our quickstart to create a new container registry](/azure/container-registry/container-registry-get-started-azure-cli).
 * An existing Key Vault to [create and store credentials][create-and-store-keyvault-credentials].
 * Permissions to [set and retrieve secrets from your Key Vault][set-and-retrieve-a-secret].
@@ -78,18 +78,99 @@ Next, create and configure the cache rule that pulls artifacts from the reposito
     ```
 
 > [!TIP]
-> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create -r MyRegistry -n MyRule -s docker.io/library/ubuntu -t ubuntu`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
+> To create a cache rule without using credentials, use the same command without credentials specified. For example, `az acr cache create --registry Myregistry --name MyRule --source-repo MySourceRepository --target-repo MyTargetRepository`. For some sources, such as Docker Hub, credentials are required to create a cache rule.
 
-## Assign permissions to Key Vault using access policies
+## Assign permissions to Key Vault with Azure RBAC
 
-You can use access policies to assign the appropriate permissions to users so they can access the Azure KeyVault.
+You can use Azure RBAC to assign the appropriate permissions to users so they can access the Azure Key Vault.
+
+The `Microsoft.KeyVault/vaults/secrets/getSecret/action` permission is required to access the Key Vault. The **Key Vault Secrets User** Azure built-in role is typically granted, as it's the least privileged role that includes this action. Alternately, you can create a custom role that includes that permission.
+
+The steps used vary depending on whether you're using Azure CLI or Bash.
+
+#### [Azure CLI](#tab/azure-cli)
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```azurecli
+   az acr credential-set show --name MyCredentialSet --registry MyRegistry 
+   ```
+
+   Take note of the principal ID value, as you'll need it in step 3.
+
+1. Display properties of the Key Vault to get its resource ID:
+
+   ```azurecli
+   az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup
+   ```
+
+   You'll need this resource ID value for the next step.
+
+1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
+
+   ```azurecli
+   az role assignment create --role "Key Vault Secrets User" --assignee CredentialSetPrincipalID --scope KeyVaultResourceID 
+
+#### [Bash](#tab/bash)
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```bash
+   CredentialSetPrincipalID=$(az acr credential-set show --name MyCredentialSet --registry MyRegistry  --query 'identity.principalId'  -o tsv
+   ```
+
+1. Display properties of the Key Vault to get its resource ID:
+
+   ```bash
+   KeyVaultResourceID=$(az keyvault show --name MyKeyVaultName --resource-group MyResouceGroup --query 'id' -o tsv
+   ```
+
+1. Assign the **Key Vault Secrets User** role to the system identity of the credential set:
+
+   ```bash
+   az role assignment create --role "Key Vault Secrets User" --assignee $CredentialSetPrincipalID --scope $KeyVaultResourceID
+   ```
+
+---
+
+> [!TIP]
+> Using the Key Vault's resource ID grants access to all secrets in the Key Vault. If you prefer, you can grant access only to the username and password secrets. To do so, instead of the command from step 2, run the following commands to retrieve only the username and password secrets:
+>
+> ```azurecli
+> az keyvault secret show --vault-name MyKeyVaultName --name MyUsernameSecretName
+> az keyvault secret show --vault-name MyKeyVaultName --name MyPasswordSecretName
+> ```
+>
+> Next, perform step 3 twice, first replacing `KeyVaultResourceID` with the  ID of the username secret, then with the ID of the password secret.
+
+## Assign permissions to Key Vault with access policies
+
+Alternately, you can use access policies to assign permissions.
+
+#### [Azure CLI](#tab/azure-cli)
+
+1. Get the principal ID of the system identity in use to access Key Vault:
+
+   ```azurecli
+   az acr credential-set show --name CredentialSet --registry MyRegistry
+   ```
+
+   Take note of the principal ID value, as you'll need it in the next step.
+
+1. Run the `az keyvault set-policy` command to assign access to the Key Vault before pulling the image. For example, to assign permissions for the credentials to access the KeyVault secret:
+
+   ```azurecli
+   az keyvault set-policy --name MyKeyVault --object-id MyCredentialSetPrincipalID --secret-permissions get
+   ```
+
+#### [Bash](#tab/bash)
 
 1. Get the principal ID of the system identity in use to access Key Vault:
 
    ```azurecli
    PRINCIPAL_ID=$(az acr credential-set show 
-                   -n MyDockerHubCredSet \ 
-                   -r MyRegistry  \
+                   -name MyDockerHubCredSet \ 
+                   -registry MyRegistry  \
                    --query 'identity.principalId' \ 
                    -o tsv) 
    ```
@@ -101,6 +182,8 @@ You can use access policies to assign the appropriate permissions to users so th
    --object-id $PRINCIPAL_ID \
    --secret-permissions get
    ```
+
+---
 
 ## Pull your image
 
