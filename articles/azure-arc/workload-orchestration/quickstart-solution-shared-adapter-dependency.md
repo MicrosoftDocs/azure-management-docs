@@ -19,7 +19,7 @@ The FSAD application is deployed on a child target, while the SSA application is
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reused the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 
 ## Description of the user scenario
@@ -115,7 +115,7 @@ appVersion="1.0.0"
 app2Version="1.0.1"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 The following variables are used in the commands. You can change the values of these variables as per your requirements.
 
@@ -189,7 +189,7 @@ $app2Version = "1.0.1"
         --extended-location "@custom-location.json"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. Look up the custom location details.
@@ -231,7 +231,7 @@ Create the shared solution schema. The following command takes version input fro
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration schema create --resource-group $rg --location $l --schema-name $schemaName --version $schemaVersion --schema-file $schemaFile
@@ -252,7 +252,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
@@ -283,7 +283,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 > solutionTemplateId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
@@ -309,7 +309,7 @@ Create the shared solution schema. The following command takes version input fro
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$app2SchemaName" --version "$app2SchemaVersion" --schema-file "$app2SchemaFile"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration schema create --resource-group $rg --location $l --schema-name $app2SchemaName --version $app2SchemaVersion --schema-file $app2SchemaFile
@@ -331,7 +331,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --configuration-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$app2Version"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
@@ -361,7 +361,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName2"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. View parameters of FSAD at child level.
 
@@ -405,7 +405,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 1. In the CLI response, check `reviewId` and `name` values. The name displays the new solution template version.
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Run `target review` command for SSA with dependencies.
 
@@ -450,7 +450,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Run `target publish` to publish FSAD solution with dependencies. The command publishes the FSAD solution with dependencies to SSA. Enter the `reviewId` from the previous command response.
 

@@ -19,7 +19,7 @@ Check out [Configuration template](configuring-template.md) and [Configuration s
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reused the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 ## Define the variables for solution templating
 
@@ -61,7 +61,7 @@ appCapList1="[soap,conditioner]"
 appConfig="app-config-template.yaml"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 # Create variables for schema
@@ -141,7 +141,7 @@ In this quickstart you use a common schema. Common schemas defines configurable 
 
 The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--schema-name` argument.
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Create the common solution schema. The following command takes version input from CLI argument:
 
@@ -182,7 +182,7 @@ Create the configuration template. The following command takes version input fro
 az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile"
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile
@@ -217,7 +217,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
@@ -273,7 +273,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. View parameters at the parent level, for example, Contoso factory:
 
@@ -331,7 +331,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration target install --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Resolve the configurations for a particular target.
 

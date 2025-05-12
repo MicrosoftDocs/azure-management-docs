@@ -19,7 +19,7 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reused the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 
 ## Prepare the setup
@@ -80,7 +80,7 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
         --target-name "$t2"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Before proceeding, ensure that the targets for the shared application (FSAD) and the dependent solution (SSA) are created. Additionally, create solution templates for both FSAD and SSA, ensuring all dependencies are properly configured.
 
@@ -168,7 +168,7 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
             --target-name "$t1"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create a new version of the FSAD solution template. For example, the new version can have new configurations or new helm chart version.
 1. Run the review command for FSAD instance with new solution template version.
@@ -196,4 +196,4 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
 
 ***
 
-Once installation succeeds, FSAD is upgraded with latest changes along with the SSA configurations.
+Once installation succeeds, the FSAD solution is upgraded with latest changes along with the SSA configurations.

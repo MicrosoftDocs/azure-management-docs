@@ -11,14 +11,13 @@ ms.date: 05/07/2025
 
 In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) application. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA application to synchronize data between devices and servers.
 
-
 ## Prerequisites
 
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reused the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 ## Description of the user scenario
 
@@ -163,7 +162,7 @@ $app2Version = "1.0.1"
     az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. Look up the custom location details.
@@ -203,7 +202,7 @@ Create the shared solution schema. The following command takes version input fro
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$schemaName" --version "$schemaVersion" --schema-file "$schemaFile"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration schema create --resource-group $rg --location $l --schema-name $schemaName --version $schemaVersion --schema-file $schemaFile
@@ -233,7 +232,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 > solutionTemplateId="/subscriptions/$subscriptionId/resourceGroups/$rg/ providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
@@ -265,7 +264,7 @@ Create the shared solution schema. The following command takes version input fro
 az workload-orchestration schema create --resource-group "$rg" --location "$l" --schema-name "$app2SchemaName" --version "$app2SchemaVersion" --schema-file "$app2SchemaFile"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration schema create --resource-group $rg --location $l --schema-name $app2SchemaName --version $app2SchemaVersion --schema-file $app2SchemaFile
@@ -286,7 +285,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --configuration-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$appVersion"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
@@ -320,7 +319,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration configuration set --resource-group "$rg" --target-name "$line03" --solution-template-name "$appName2"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Set the configuration values for SSA at factory and line levels.
 
@@ -365,7 +364,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     version="<name>"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Verify that FSAD *Line01* and FSAD *Line02* depend on *ssa-instance-a* at factory level.
 
@@ -457,7 +456,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     version="<name>"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Verify that FSAD is targeted to *Line02*. Replace the `solutionVersionId` in *dependencies.json* file with ID from the command response in the [Review the configurations of FSAD at *Line01*](#review-the-configurations-of-fsad-at-line01) section.
 
@@ -499,7 +498,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     kubectl describe configmap FSAD-config-"$DeploymentName" # DeploymentName set for FSAD config for Line02
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Run `target publish` to publish FSAD solution at *Line02*.
 
@@ -551,7 +550,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     version="<name>"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Verify that FSAD at line level *Line03* depends on *ssa-instance-b*. The *ssa-instance-b* instance should have unique `DeploymentName`.
 
@@ -601,7 +600,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     kubectl describe configmap FSAD-config-"$DeploymentName" # DeploymentName set for FSAD config for Line03
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Run `target publish` to publish FSAD solution at *Line03*.
 
@@ -655,7 +654,7 @@ If any dependent app, for example, FSAD is uninstalled from any target line, the
 
     Verify whether *ssa-instance-a* instance has been uninstalled.
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Uninstall FSAD from *Line01*.
 
