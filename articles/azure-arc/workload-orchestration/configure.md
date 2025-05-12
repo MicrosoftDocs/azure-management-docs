@@ -93,7 +93,7 @@ To configure a line, follow these steps:
 
 The **Solutions** sub-tab shows the list of solutions, including their version, status, capabilities, and other details.
 
-:::image type="content" source="./media/configure-solution.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing the default view." lightbox="./media/configure-solution.png":::
+:::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing the default view." lightbox="./media/configure-solutions.png":::
 
 To configure a solution, follow these steps:
 
