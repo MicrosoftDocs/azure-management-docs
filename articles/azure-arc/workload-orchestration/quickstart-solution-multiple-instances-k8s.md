@@ -126,4 +126,4 @@ In the *fsad-specs.json* file, refer the component name to `DeploymentName`:
 }
 ```
 
-Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Quickstart: Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](ot-configure.md).
+Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Quickstart: Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](configure.md).
