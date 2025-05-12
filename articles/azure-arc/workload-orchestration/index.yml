@@ -51,7 +51,7 @@ landingContent:
       - linkListType: quickstart
         links:
           - text: Create a solution without common configurations
-            url: quickstart-solution-without-common-config.md
+            url: quickstart-solution-without-common-configuration.md
 
   - title: Workload orchestration for OT users
     linkLists:
