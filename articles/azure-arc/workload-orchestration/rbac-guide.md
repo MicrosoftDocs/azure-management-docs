@@ -15,7 +15,7 @@ For more information, see [Azure Role-Based Access Control (RBAC)](/azure/role-b
 
 ## Use standard built-in roles
 
-workload orchestration supports the following standard built-in roles. These roles are defined at the Resource Group level, and you can assign them to users, groups, or service principals. The following table describes the roles and their scopes:
+Workload orchestration supports the following standard built-in roles. These roles are defined at the Resource Group level, and you can assign them to users, groups, or service principals. The following table describes the roles and their scopes:
 
 |Role	|Scope	|Comments|
 |---	|---	|---	|
