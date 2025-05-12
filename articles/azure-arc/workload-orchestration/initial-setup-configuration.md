@@ -1,6 +1,7 @@
 ---
 title: Setup Workload Orchestration
 description: Learn how to configure resources, author solutions, and manage deployments for Azure Arc workload orchestration.
+ms.custom: references_regions
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
@@ -86,7 +87,7 @@ The following steps show how to configure the resources of workload orchestratio
     CustomLocationName=$(az resource list --resource-type Microsoft.ExtendedLocation/customLocations --resource-group "$rg" --name "$clusterName-Location" --query [].id --output tsv)
     ```
 
-1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
+1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the an AKS cluster.
 
     ```bash
     az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
@@ -148,7 +149,7 @@ The following steps show how to configure the resources of workload orchestratio
     $CustomLocationName = (az resource list --resource-type Microsoft.ExtendedLocation/customLocations --resource-group $rg --name "$clusterName-Location" --query [].id --output tsv)
     ```
 
-1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
+1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the an AKS cluster.
 
     ```powershell
     az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
@@ -168,12 +169,12 @@ The diagram below represents an example hierarchical configuration of objects:
 
 :::image type="content" source="./media/hierarchy-configuration-objects.png" alt-text="Diagram illustrating the hierarchical configuration of objects in the Solution Authoring and Deployments process.":::
 
-A typical solution consist of:
+A typical solution consists of:
 
-1. **Schema:** A schema is a JSON file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
-1. **Configuration template:** A configuration template is a JSON file that  represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
-1. **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided application artifacts. Applications must be packaged as containers before uploading them to workload orchestration.
-1. **Published solution configuration:** A published solution configuration is a JSON file that represents the final configuration of the solution after it's validated and approved. The published solution configuration is created by combining the schema, configuration template, and solution Helm chart. The published solution represents a fully rendered, a pre-deployment ready, targeted solution. At this point, the solution is ready to be deployed.
+- **Schema:** A schema is a JSON file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
+- **Configuration template:** A configuration template is a JSON file that  represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
+- **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided application artifacts. Applications must be packaged as containers before uploading them to workload orchestration.
+- **Published solution configuration:** A published solution configuration is a JSON file that represents the final configuration of the solution after it's validated and approved. The published solution configuration is created by combining the schema, configuration template, and solution Helm chart. The published solution represents a fully rendered, a pre-deployment ready, targeted solution. At this point, the solution is ready to be deployed.
 
 
 ## Application and solution versioning
@@ -207,12 +208,12 @@ When user provides values for solution configurations and publishes them for cer
 
 There are different variants of schemas that can be used to author solutions. See the following quickstarts for examples of different solution authoring scenarios:
 
-1. **Shared schema:** This schema comprises of configurable attributes/properties that can be used across hierarchies and solutions. For more information, see [Create a basic solution without common configurations](quickstart-solution-without-common-config.md).
-1. **Common schema:** This schema defines configurable attributes/properties at each hierarchical level that can be used for a particular solution. For more information, see [Create a basic solution with common configurations](quickstart-solution-with-common-config.md).
-1. **Schema with dependencies:** This schema defines configurable attributes/properties of an applications dependent on another application. For more information, see [Create a solution with shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md).
-1. **Multiple shared adapter dependencies:** This schema defines configurable attributes/properties of an application dependent on more than one other application. For more information, see [Create a solution with multiple shared adapter dependencies](quickstart-solution-multiple-shared-adapter-dependency.md).
-1. **Deploy multiple instances of the same application:** This schema defines configurable attributes/properties of an application that can be deployed multiple times in the same namespace. For more information, see [Create a solution with multiple instances](quickstart-solution-multiple-instances-k8s.md).
-1. **Upgrade a shared solution:** This schema shows how to upgrade shared solution along with dependent solutions. For more information, see [Upgrade a shared solution](quickstart-upgrade-shared-application.md).
+- **Shared schema:** This schema comprises configurable attributes/properties that can be used across hierarchies and solutions. For more information, see [Create a basic solution without common configurations](quickstart-solution-without-common-config.md).
+- **Common schema:** This schema defines configurable attributes/properties at each hierarchical level that can be used for a particular solution. For more information, see [Create a basic solution with common configurations](quickstart-solution-with-common-config.md).
+- **Schema with dependencies:** This schema defines configurable attributes/properties of an application dependent on another application. For more information, see [Create a solution with shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md).
+- **Multiple shared adapter dependencies:** This schema defines configurable attributes/properties of an application dependent on more than one other application. For more information, see [Create a solution with multiple shared adapter dependencies](quickstart-solution-multiple-shared-adapter-dependency.md).
+- **Deploy multiple instances of the same application:** This schema defines configurable attributes/properties of an application that can be deployed multiple times in the same namespace. For more information, see [Create a solution with multiple instances](quickstart-solution-multiple-instances-k8s.md).
+- **Upgrade a shared solution:** This schema shows how to upgrade shared solution along with dependent solutions. For more information, see [Upgrade a shared solution](quickstart-upgrade-shared-application.md).
 
 ## Related content
 

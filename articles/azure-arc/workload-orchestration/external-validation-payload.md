@@ -9,7 +9,7 @@ ms.date: 05/10/2025
 
 # Event Grid external validation payload
 
-This document provides details on the Event Grid payload for external validation of solution versions in workload orchestration. It includes information on the event grid message format, field descriptions, and API endpoints for getting solution version resources and updating external validation status.
+This document provides details on the Event Grid payload for external validation of solution versions in workload orchestration. It includes information on the Event Grid message format, field descriptions, and API endpoints for getting solution version resources and updating external validation status.
 
 For more information, see [External validation for workload orchestration](external-validation.md).
 
@@ -17,7 +17,7 @@ For more information, see [External validation for workload orchestration](exter
 
 When a solution version is published, an event is sent to the Event Grid topic associated with the context resource. This event contains information about the solution version and a callback URL for updating the external validation status.
 
-The JSON payload of the event grid message contains the following fields. The `data` section includes the `externalValidationId`, which is a unique identifier for the external validation request, and the `callbackUrl`, which is the endpoint to be invoked after the validation result is received.
+The JSON payload of the Event Grid message contains the following fields. The `data` section includes the `externalValidationId`, which is a unique identifier for the external validation request, and the `callbackUrl`, which is the endpoint to be invoked after the validation result is received.
 
 ```json
 [
@@ -65,7 +65,7 @@ The following table describes the fields in the Event Grid payload:
 
 The `GET API` command can be executed on the solution version resource to fetch the resolved configurations. Here solution version ARM ID can be accessed from the `data.solutionVersionId` attribute and API version from `data.apiVersion` in the Event Grid payload.
 
-Other Resource IDs in the event grid payload can also be queried using a similar `GET API`.
+Other Resource IDs in the Event Grid payload can also be queried using a similar `GET API`.
 
 **Endpoint:**
 
@@ -162,8 +162,8 @@ Authorization: Bearer <access-token>
 
 The request body contains the following fields:
 
-- `externalValidationId`: A unique GUID for tracking the validation operation. The same GUID needs to be passed which is received from the event grid message payload (data.externalValidationId), helps ensure no stale updates.
-- `solutionVersionId`: The full ARM ID of the solution version being validated. Present in the event grid message payload (data.solutionVersionId).
+- `externalValidationId`: A unique GUID for tracking the validation operation. The same GUID needs to be passed which is received from the Event Grid message payload (data.externalValidationId), helps ensure no stale updates.
+- `solutionVersionId`: The full ARM ID of the solution version being validated. Present in the Event Grid message payload (data.solutionVersionId).
 
 ### Error details object
 
@@ -286,7 +286,7 @@ az workload-orchestration target update-external-validation-status \
  --validation-status "Valid"
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration target update-external-validation-status `
@@ -312,7 +312,7 @@ az workload-orchestration target update-external-validation-status \
  --error-details "@error.json"
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration target update-external-validation-status `

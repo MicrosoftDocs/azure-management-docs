@@ -1,6 +1,7 @@
 ---
 title: Prepare the Environment for Workload Orchestration 
 description: Learn how to set up the environment for workload orchestration. This procedure is done by IT admins.
+ms.custom: references_regions
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
@@ -9,7 +10,7 @@ ms.date: 04/17/2025
 
 # Prepare the environment for workload orchestration
 
-IT admins are responsible for the initial set up of workload orchestration, which includes creating a custom location, downloading the workload orchestration extension, and installing the required components. The IT admin also needs to set up the Azure resources for workload orchestration, including the Azure Kubernetes Service (AKS) cluster, site, and site address.
+IT admins are responsible for the initial setup of workload orchestration, which includes creating a custom location, downloading the workload orchestration extension, and installing the required components. The IT admin also needs to set up the Azure resources for workload orchestration, including the Azure Kubernetes Service (AKS) cluster, site, and site address.
 
 This article describes how to prepare the environment for workload orchestration. The following steps are shared across all Azure resources. 
 
@@ -40,7 +41,7 @@ This article describes how to prepare the environment for workload orchestration
   ```  
  
 > [!NOTE]
-> If you already have resources from workload orchestration in *Private Preview*, you can clean them up using this [cleanup script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/PrivatePreviewCleanup.zip).
+> If you already have resources from workload orchestration in *preview*, you can clean them up using this [cleanup script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/PrivatePreviewCleanup.zip).
 
 ## System requirements
 
@@ -61,7 +62,7 @@ Workload orchestration is available for Arc-enabled clusters in the following Az
 
 ## Prepare the basics to run workload orchestration
 
-The following steps shows how to prepare your environment to configure workload orchestration. 
+The following steps show how to prepare your environment to configure workload orchestration. 
 
 Global variables, JSON files, and other configuration resources can be downloaded from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
 
@@ -316,7 +317,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```
 
     > [!NOTE]
-    > To connect to a AKS cluster through the Azure portal, follow these steps:
+    > To connect to an AKS cluster through the Azure portal, follow these steps:
     > 
     > 1. Open the [Azure portal](https://ms.portal.azure.com) and log in with your Azure account.
     > 1. In the search bar at the top of the portal, type **Kubernetes services** and select it from the search results to access the Kubernetes services page.
@@ -361,7 +362,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```
 
     > [!NOTE]
-    > To connect to a AKS cluster through the Azure portal, follow these steps:
+    > To connect to an AKS cluster through the Azure portal, follow these steps:
     > 
     > 1. Open the [Azure portal](https://ms.portal.azure.com) and log in with your Azure account.
     > 1. In the search bar at the top of the portal, type **Kubernetes services** and select it from the search results to access the Kubernetes services page.
@@ -438,7 +439,7 @@ The following steps are required to install workload orchestration service compo
     > 1. Enter your custom location name and select your Arc cluster.
     > 1. Select the `microsoft.workloadorchestration` Arc extension and enter your namespace.
 
-1. Set up Azure Container Registry (ACR) Image Pull for the cluster. If you're using a AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
+1. Set up Azure Container Registry (ACR) Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
 1. Set up ACR Helm Chart Pull (any Arc connected cluster). Verify that the extension has a system managed identity. Run the following command:
 
     ```bash
@@ -455,7 +456,7 @@ The following steps are required to install workload orchestration service compo
     > [!NOTE]
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
-1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the AAD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
+1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
 1. Install workload orchestration.
 
     ```bash
@@ -523,7 +524,7 @@ The following steps are required to install workload orchestration service compo
     > 1. Enter your custom location name and select your Arc cluster.
     > 1. Select the `microsoft.workloadorchestration` Arc extension and enter your namespace.
 
-1. Set up Azure Container Registry (ACR) Image Pull for the cluster. If you're using a AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
+1. Set up Azure Container Registry (ACR) Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
 1. Set up ACR Helm Chart Pull (any Arc connected cluster). Verify that the extension has a system managed identity.
 
     ```powershell
@@ -540,7 +541,7 @@ The following steps are required to install workload orchestration service compo
     > [!NOTE]
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
-1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the AAD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
+1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
 1. Install workload orchestration.
 
     ```powershell
@@ -553,9 +554,9 @@ At this point, the environment and infrastructure for workload orchestration sho
 
 ## Create Site address and Site
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant,factory, and store. You can create Sites using a resource group or a service group. 
+Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. You can create Sites using a resource group or a service group. 
 
-To use a service group, follow the steps in [Create a service group](service-group-wo.md#create-a-service-group). 
+To use a service group, follow the steps in [Create a service group](service-group.md#create-a-service-group). 
 
 To use a resource group, run the following commands:
 
@@ -586,11 +587,3 @@ az rest --method PUT --uri $siteUri --body "@$siteJson"
 - [Setup workload orchestration](initial-setup-configuration.md)
 - [Onboarding scripts](onboarding-scripts.md)
 - [Service groups for workload orchestration](service-group.md)
-
-
-
-
-
-
-
-

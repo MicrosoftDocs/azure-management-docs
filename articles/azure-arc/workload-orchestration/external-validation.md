@@ -346,7 +346,7 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
         ```
 
     1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
-    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](omonitor.md).
+    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](monitor.md).
     1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
 
 ***

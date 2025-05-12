@@ -56,7 +56,7 @@ az workload-orchestration target remove-revision --subscription $subscriptionId 
 
 ## Delete a target
 
-Delete a target and all it's child resources using the following command:
+Delete a target and all its child resources using the following command:
 
 ### [Bash](#tab/bash)
 
@@ -110,7 +110,7 @@ az workload-orchestration solution-template delete --subscription $subscriptionI
 
 ***
 
-### Delete a schema
+## Delete a schema
 
 Delete a schema and all its versions using the following command:
 
@@ -151,7 +151,7 @@ az workload-orchestration config-template delete --subscription $subscriptionId 
 You can download this [PowerShell script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Clean%20Up%20Script/CleanupScript.zip) to clean up resources in a specified Azure Resource Group. The script provides options to skip the deletion of certain resources, such as sites, targets, configurations, schemas, and solutions.
 
 > [!NOTE]
-> You need to have the necessary permissions to delete resources in the specified resource group. For most of cases, by default your alias will have permission.
+> You need to have the necessary permissions to delete resources in the specified resource group. For most cases, by default your alias will have permission.
 
 You execute the script with the following command:
 

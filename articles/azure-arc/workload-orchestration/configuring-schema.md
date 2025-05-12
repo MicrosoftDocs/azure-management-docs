@@ -187,7 +187,7 @@ rules:
 Custom validation is supported using user defined expressions at two levels:
 
 1. **Per Rule Validation:** Using expression (optional property) inside each rule.
-   - Suitable for validation that are constrained to a single configuration key.
+   - Suitable for validations that are constrained to a single configuration key.
 1. **Per Schema Validation:** Using "validations" property that accepts a list of expressions.
    - Suitable for validations that span across multiple configuration keys.
    - Suitable for validating the generated config as a single unit.

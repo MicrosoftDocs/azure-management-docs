@@ -61,7 +61,7 @@ Then, expression needs to be defined in the configuration template:
 Temperature: ${{$val(Temperature)}}
 ```
 
-The *$val* expression looks for value for `Temperature` set at line level. If ``editableAt` has multiple levels, then top down search based on order defined in hierarchy list is done. The child level always overrides parent level value.
+The *$val* expression looks for value for `Temperature` set at line level. If `editableAt` has multiple levels, then top down search based on order defined in hierarchy list is done. The child level always overrides parent level value.
 
 ## String Operations
 
@@ -80,7 +80,7 @@ If key is having the null value, parser checks whether schema rule has `defaultV
 
 Any ARM properties of target resource can be used in the configuration template.
 
-For example, if user prefers to insert the name or id of the target in the template, it can be done using the following syntax:
+For example, if you prefer to insert the name or ID of the target in the template, it can be done using the following syntax:
 
 ```yaml
 TargetName= ${{$target(name)}}
