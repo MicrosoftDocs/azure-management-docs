@@ -16,9 +16,9 @@ items:
     - name: Quickstarts with Azure CLI 
       items:
       - name: Create a solution without common configurations
-        href: quickstart-solution-without-common-config.md
+        href: quickstart-solution-without-common-configuration.md
       - name: Create a solution with common configurations
-        href: quickstart-solution-with-common-config.md
+        href: quickstart-solution-with-common-configuration.md
       - name: Create a solution with shared adapter dependency
         href: quickstart-solution-shared-adapter-dependency.md
       - name: Create a solution with multiple shared adapter dependencies
