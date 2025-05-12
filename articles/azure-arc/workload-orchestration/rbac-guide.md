@@ -25,7 +25,7 @@ Workload orchestration supports the following standard built-in roles. These rol
 
 ## Create custom roles 
 
-You can define custom roles based on Azure RBAC guidelines to meet your organization's specific needs. workload orchestration allows you to create custom roles by enabling the following actions on the associated resources for different objects. 
+You can define custom roles based on Azure RBAC guidelines to meet your organization's specific needs. Workload orchestration allows you to create custom roles by enabling the following actions on the associated resources for different objects. 
 
 The following table provides a summary of the roles you can create and the actions you can assign to them:
 
