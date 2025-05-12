@@ -49,7 +49,7 @@ IT personas usually have admin privileges that span across certain subcomponents
 If you're an IT user and want to set up workload orchestration, follow the steps below:
 
 - To manually set up workload orchestration, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md). 
-- To run the set up automatically, you can use the scripts in [Onboarding scripts](onboarding-scripts.md).
+- To run the setup automatically, you can use the scripts in [Onboarding scripts](onboarding-scripts.md).
 
 #### Organization with central IT team
 
