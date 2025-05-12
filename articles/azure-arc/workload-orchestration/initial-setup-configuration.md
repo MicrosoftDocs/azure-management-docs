@@ -92,7 +92,7 @@ The following steps show how to configure the resources of workload orchestratio
     az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Define workload orchestration variables. The following variables are used in the example. You can change the values as per your requirements.
 
@@ -197,7 +197,7 @@ metadata:
 Once solution is uploaded to workload orchestration, IT DevOps author the configuration template and schema for validation rules. IT DevOps can provide technical configurations and set the default values and ranges for all configurations in the template and schema.
 
 - Azure CLI: IT DevOps can provide values for these configurations via CLI. The CLI will validate the configurations and publish them to the target. For more information, see [Different solution authoring scenarios](#different-solution-authoring-scenarios).
-- Workload orchestration portal: The published solutions and configurations are reflected on the portal. Any no-code persona is able to view the configurations and provide values via workload orchestration portal based on RBAC. For more information, see [Configure your solutions](ot-configure.md).
+- Workload orchestration portal: The published solutions and configurations are reflected on the portal. Any no-code persona is able to view the configurations and provide values via workload orchestration portal based on RBAC. For more information, see [Configure your solutions](configure.md).
 
 ## Revisions of configurations
 
@@ -219,4 +219,4 @@ There are different variants of schemas that can be used to author solutions. Se
 - [Onboarding scripts](onboarding-scripts.md)
 - [Prepare the environment for workload orchestration](initial-setup-environment.md)
 - [Service groups for workload orchestration](service-group-wo.md)
-- [Monitor your solutions in Azure portal](it-azure-portal-monitoring.md)
+- [Monitor your solutions in Azure portal](azure-portal-monitoring.md)

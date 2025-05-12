@@ -167,7 +167,7 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
 
 ## Related content
 
-- [Service groups with workload orchestration](service-group-wo.md)
+- [Service groups with workload orchestration](service-group.md)
 - [RBAC guide](rbac-guide.md)
 - [Configuration template](configuring-template.md)
 - [Configuration schema](configuring-schema.md)

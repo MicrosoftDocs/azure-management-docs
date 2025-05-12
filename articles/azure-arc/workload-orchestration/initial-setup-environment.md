@@ -75,7 +75,7 @@ Expand-Archive -Force <enter zip file path e.g. "C:\path\to\archive.zip"> <enter
 cd <enter folder path e.g. "C:\path\to\cm\workspace">
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 Expand-Archive -Path "<enter zip file path e.g. 'C:\path\to\archive.zip'>" -DestinationPath "<enter folder path e.g. 'C:\path\to\cm\workspace'>" -Force
@@ -323,7 +323,7 @@ The following steps are required to set up the Azure resources for workload orch
     > 1. From the list of Kubernetes services, select the **AKS cluster** you want to connect to.
     > 1. On the **Overview page** of your AKS cluster, click on the **Connect** button from the top menu.
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Run the following command to check the installed extensions and update them if necessary:
 
@@ -462,7 +462,7 @@ The following steps are required to install workload orchestration service compo
     az extension add --source "$extensionPath"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. Enable Azure Arc on the Kubernetes cluster.
 
@@ -569,7 +569,7 @@ az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-grou
 az rest --method PUT --uri "$siteUri" --body "@$siteJson"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 # Create site address
@@ -585,7 +585,7 @@ az rest --method PUT --uri $siteUri --body "@$siteJson"
 
 - [Setup workload orchestration](initial-setup-configuration.md)
 - [Onboarding scripts](onboarding-scripts.md)
-- [Service groups for workload orchestration](service-group-wo.md)
+- [Service groups for workload orchestration](service-group.md)
 
 
 

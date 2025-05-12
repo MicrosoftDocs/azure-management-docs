@@ -17,7 +17,7 @@ This article describes how to set up an Event Grid subscription for workload orc
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-    - Ensure that you have the latest version of the workload orchestration CLI *workload_orchestration-1.1.1* installed. 
+    - Ensure that you have the latest version of the workload orchestration CLI installed. 
 
 ## Event Grid subscription for workload orchestration
 
@@ -47,7 +47,7 @@ az eventgrid event-subscription create --name <subscription-name> \
     --endpoint-type azurefunction 
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 Create an Event Grid subscription for your Azure subscription and resource group. 
 
@@ -70,7 +70,7 @@ To create an Event Grid subscription using the Azure portal, follow these steps:
 1. On the **Create Event Subscription** page, follow these steps:
     1. In the **Basics** tab, in the **Topic Types** field, select the type of event source on which you want to subscribe. For workload orchestration, select **Workload Orchestration (Preview)**.
     
-        :::image type="content" source="./media/event-grid1.png" alt-text="Screenshot of the Azure portal showing how to create an Event Grid subscription for workload orchestration." lightbox="./media/event-grid1.png":::
+        :::image type="content" source="./media/event-grid-1.png" alt-text="Screenshot of the Azure portal showing how to create an Event Grid subscription for workload orchestration." lightbox="./media/event-grid-1.png":::
 
     1. Select the **Azure subscription** and **resource group** that contains the workload orchestration context.
     1. Select the context resource in the **Resource** field.
@@ -108,7 +108,7 @@ Once the Event Grid subscription is created, you need to provide access to workl
         --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
     ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. Assign the **Workload Orchestration Solution External Validator** role to the function app managed identity. For more information, see [Assign Azure roles using the Azure CLI](/azure/role-based-access-control/role-assignments-cli).
 
@@ -154,7 +154,7 @@ az workload-orchestration solution-template create \
     --enable-external-validation "true"
 ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 For example, the following command creates a solution template with external validation enabled.
 
@@ -199,7 +199,7 @@ For more information about solution templates and publishing a solution, see [Qu
     externalValidationId="<externalValidationId>"
     ```
 
-### [Powershell](#tab/powershell)
+### [PowerShell](#tab/powershell)
 
 1. When you publish the solution version, he publish command triggers the external validation process. The workload orchestration service sends an event to the Event Grid subscription, which invokes the external validation service. The external validation service can then perform custom validation logic and send a response back to the workload orchestration service.
 
@@ -223,11 +223,11 @@ Event Grid uses the event subscription to determine the final delivery endpoint 
 
 ## Monitor the validation status with workload orchestration portal
 
-After publishing, the solution should instantly move to *Publish In Progress* state in the [workload orchestration portal](ot-monitor.md#monitor-solutions-with-external-validation-enabled), meaning that the data has been successfully pushed to Event Grid for external validation.
+After publishing, the solution should instantly move to *Publish In Progress* state in the [workload orchestration portal](monitor.md#monitor-solutions-with-external-validation-enabled), meaning that the data has been successfully pushed to Event Grid for external validation.
 
 - If the solution is in **Ready to deploy** state, the validation completed successfully.
 
-- If the solution is in **Publish failed** state, the validation failed due to some errors. In the [Configure tab](ot-configure.md#configure-a-solution-with-external-validation-enabled) of the workload orchestration portal, go to the *Published Solutions* tab and click on the alert for the solution to view the error details.
+- If the solution is in **Publish failed** state, the validation failed due to some errors. In the [Configure tab](configure.md#configure-a-solution-with-external-validation-enabled) of the workload orchestration portal, go to the *Published Solutions* tab and click on the alert for the solution to view the error details.
 
 
 ## Check the status of solution version via CLI
@@ -246,7 +246,7 @@ Change `--solution-version` to the new version you created in the previous step.
 az workload-orchestration target install --solution-name <solution-template-name> --solution-version <solution-version> --resource-group $rg --target-name $childName
 ```
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 Change `--solution-version` to the new version you created in the previous step.
 
@@ -303,11 +303,11 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
         ```
 
     1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
-    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](ot-monitor.md).
+    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](monitor.md).
     1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
 
 
-#### [Powershell](#tab/powershell)
+#### [PowerShell](#tab/powershell)
 
 1. In GET response, check the state in properties.state
 
@@ -346,7 +346,7 @@ If the state remains in `PendingExternalValidation` state, it's possible that th
         ```
 
     1. In the command response, solution version object is displayed where the state is changed to `ExternalValidationFailed`.
-    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](ot-monitor.md).
+    1. Errors mentioned in *error.json* file are stored in the `properties.errorDetails` field in the response solution version object. The errors are visible on [workload orchestration portal](omonitor.md).
     1. As this is the terminal state, you can't proceed with installation as there are some invalid configurations in solution version. You need to create new version/revision with valid configurations to proceed for install.
 
 ***

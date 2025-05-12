@@ -255,4 +255,4 @@ validations:
 
 - [Configuration template](configuring-template.md)
 - [RBAC guide](rbac-guide.md)
-- [Service groups with workload orchestration](service-group-wo.md)
+- [Service groups with workload orchestration](service-group.md)
