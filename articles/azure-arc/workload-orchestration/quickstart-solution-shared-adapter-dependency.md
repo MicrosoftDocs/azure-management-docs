@@ -9,7 +9,7 @@ ms.date: 05/07/2025
 
 # Quickstart: Create a solution with shared adapter dependency
 
-In this quickstart, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which is dependant on Shared Sync Adapter (SSA). A shared sync adapter is a component used in various applications to manage data synchronization between devices and servers.
+In this quickstart, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which isdependent on Shared Sync Adapter (SSA). A shared sync adapter is a component used in various applications to manage data synchronization between devices and servers.
 
 The FSAD application is deployed on a child target, while the SSA application is deployed on a parent target. The FSAD application uses the SSA application to synchronize data between devices and servers.
 
@@ -38,7 +38,7 @@ The following example illustrates the user scenario of creating a solution with 
 
 
 > [!NOTE]
-> Service only updates the configmap of solution in K8s edge. It isn't restarting the FSAD if deployment is via Helm. If you want the solution to restart on every configuration change, you have to to author the Helm chart in such a way to ensure application would restart on configuration update. For more information, see [Kubernetes K8 guide](https://www.baeldung.com/ops/kubernetes-restart-configmap-updates)
+> Service only updates the configmap of solution in K8s edge. It isn't restarting the FSAD if deployment is via Helm. If you want the solution to restart on every configuration change, you have to author the Helm chart in such a way to ensure application would restart on configuration update. For more information, see [Kubernetes K8 guide](https://www.baeldung.com/ops/kubernetes-restart-configmap-updates)
 
 
 ## Configuration templating for FSAD and SSA
@@ -55,7 +55,7 @@ dependencies:
     - solutionTemplateId: <solution template id of SSA>
       configsToBeInjected:
           - from: AppConfig
-            to: DependantAppConfigs                 
+            to:dependentAppConfigs                 
 configs:
   AppConfig:
      TargetName: ${{$val(LineName)}}
@@ -64,7 +64,7 @@ configs:
 
 ```
 
-Sample of a SSA configuration template:
+Sample of an SSA configuration template:
 
 ```yaml            
 configs:
@@ -388,7 +388,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$parentName"
     ```
 
-1. Update the solution version id, `Id`, from the output of previous command in the *dependencies.json* file. 
+1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
 1. Run `target review` command for FSAD with dependencies. Ensure that the FSAD solution version has dependencies listed in the CLI output. 
 
     ```bash
@@ -414,7 +414,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $parentName
     ```
 
-1. Update the solution version id, `Id`, from the output of previous command in the *dependencies.json* file. 
+1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
 1. Run `target review` command for FSAD with dependencies. Ensure that the FSAD solution version has dependencies listed in the CLI output. 
 
     ```powershell

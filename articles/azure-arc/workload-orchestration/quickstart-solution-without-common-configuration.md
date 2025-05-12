@@ -96,7 +96,7 @@ For more information, see [Introduction to Helm](https://helm.sh/docs/intro/inst
 
 ### Create a shared schema
 
-In this quickstart you use a shared schema. Shared schemas comprise of configurable attributes that can be used across hierarchies and solutions.
+In this quickstart you use a shared schema. Shared schemas comprise configurable attributes that can be used across hierarchies and solutions.
 
 ### [Bash](#tab/bash)
 

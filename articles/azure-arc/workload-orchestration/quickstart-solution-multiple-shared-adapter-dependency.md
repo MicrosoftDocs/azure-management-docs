@@ -132,7 +132,7 @@ $app2Version = "1.0.1"
 
 ***
 
-## Create a targets at factory and line levels
+## Create a target at factory and line levels
 
 ### [Bash](#tab/bash)
 

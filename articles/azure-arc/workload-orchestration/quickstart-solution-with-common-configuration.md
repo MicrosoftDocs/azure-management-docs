@@ -110,7 +110,7 @@ For more information, see [Introduction to Helm](https://helm.sh/docs/intro/inst
 
 ### Create a common schema
 
-In this quickstart you use a common schema. Common schemas defines configurable attributes at each hierarchical level that can be used for a particular solution.
+In this quickstart you use a common schema. Common schemas define configurable attributes at each hierarchical level that can be used for a particular solution.
 
 #### [Bash](#tab/bash)
 
