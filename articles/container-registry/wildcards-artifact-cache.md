@@ -6,7 +6,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli
-ms.date: 02/26/2025
+ms.date: 04/18/2025
 ai-usage: ai-assisted
 #customer intent: As a developer, I want use wildcards with Artifact cache so that I can efficiently cache container images in Azure Container Registry.
 ---
@@ -37,34 +37,48 @@ The repository level wildcard lets you cache all repositories from an upstream r
 
 ## Limitations for wildcard-based cache rules
 
-Wildcard cache rules use asterisks (*) to match multiple paths within the container image registry. These rules can't overlap with other wildcard cache rules. In other words, if you have a wildcard cache rule for a certain registry path, you can't add another wildcard rule that overlaps with it.
+Wildcard cache rules use asterisks (*) to match multiple paths within the container image registry. These rules can't overlap with other wildcard cache rules by targeting the same repository path, or by targeting multiple paths where one path includes the other. In other words, if you have a wildcard cache rule for a certain registry path, you can't add another wildcard rule that overlaps with it.
 
 Here are some examples of overlapping rules:
 
 **Example 1**:
 
 Existing cache rule: `contoso.azurecr.io/* => mcr.microsoft.com/*`<br>
-New cache being added: `contoso.azurecr.io/library/* => docker.io/library/*`<br>
+New cache rule: `contoso.azurecr.io/library/* => docker.io/library/*`<br>
 
 The addition of the new cache rule is blocked because the target repository path `contoso.azurecr.io/library/*` overlaps with the existing wildcard rule `contoso.azurecr.io/*`.
 
 **Example 2:**
 
 Existing cache rule: `contoso.azurecr.io/library/*` => `mcr.microsoft.com/library/*`<br>
-New cache being added: `contoso.azurecr.io/library/dotnet/*` => `docker.io/library/dotnet/*`<br>
+New cache rule: `contoso.azurecr.io/library/dotnet/*` => `docker.io/library/dotnet/*`<br>
+
+**Example 3:**
+
+Existing cache rule: `contoso.azurecr.io/* => mcr.microsoft.com/*`<br>
+New cache rule: `contoso.azurecr.io/* => docker.io/library/*`<br>
+
+The addition of the new cache rule is blocked because two rules use the same target repository path `contoso.azurecr.io/*`.
 
 The addition of the new cache rule is blocked because the target repository path `contoso.azurecr.io/library/dotnet/*` overlaps with the existing wildcard rule  `contoso.azurecr.io/library/*`.
 
 ## Limitations for static/fixed cache rules
 
-Static or fixed cache rules are more specific and don't use wildcards. They can potentially overlap with wildcard-based cache rules. If a cache rule specifies a fixed repository path, then it allows overlapping with a wildcard-based cache rule.
+Static or fixed cache rules are more specific and don't use wildcards. They can potentially overlap with wildcard-based cache rules. If a cache rule specifies a fixed repository path, then it allows overlapping with a wildcard-based cache rule. However, you can't create multiple static rules that point to the same exact repository path.
 
 **Example 1**:
 
 Existing cache rule: `contoso.azurecr.io/*` => `mcr.microsoft.com/*`<br>
-New cache being added: `contoso.azurecr.io/library/dotnet` => `docker.io/library/dotnet`<br>
+New cache rule: `contoso.azurecr.io/library/dotnet` => `docker.io/library/dotnet`<br>
 
 The addition of the new cache rule is allowed because `contoso.azurecr.io/library/dotnet` is a static path and can overlap with the wildcard cache rule `contoso.azurecr.io/*`.
+
+**Example 2:**
+
+Existing cache rule: `contoso.azurecr.io => mcr.microsoft.com/*`<br>
+New cache rule: `contoso.azurecr.io => docker.io/library/*`<br>
+
+The addition of the new cache rule is blocked because two rules use the same target repository path `contoso.azurecr.io`.
 
 ## Next steps
 
