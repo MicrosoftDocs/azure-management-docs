@@ -175,7 +175,7 @@ az workload-orchestration solution-template create `
 > [!NOTE]
 > When a solution template version is created with the external validation flag set (true or false), the flag is stored at the solution template level. As a result, all solution versions—both new and existing—inherit the same external validation setting. Thus, it isn't possible to have multiple versions under the same solution template with different external validation configurations.
 
-For more information about solution templates and publishing a solution, see [Quickstart: Create a basic solution without common configurations](quickstart-solution-without-common-config.md#define-the-variables-for-solution-templating).
+For more information about solution templates and publishing a solution, see [Quickstart: Create a basic solution without common configurations](quickstart-solution-without-common-configuration.md#define-the-variables-for-solution-templating).
 
 ## Publish and validate the solution 
 
