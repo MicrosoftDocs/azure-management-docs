@@ -43,17 +43,17 @@ You can [create a resource health alert rule](/azure/service-health/resource-hea
 1. Select the resource bridge(s) from the list for which you want to configure alerts. If you want to set up alerts for all the resource bridges in your subscription, you can select **Add resource health alert** without selecting any resource bridges. This will also add health alerts for resource bridges you may deploy in the future.
 1. To receive notifications only when the resource bridge becomes unhealthy, set the following conditions in the **Condition** tab:
 
-  - **Event status**: **Active**
+   - **Event status**: **Active**
     
-  - **Current resource status**: **Unavailable**
+   - **Current resource status**: **Unavailable**
     
-  - **Previous resource status**: **Available**
+   - **Previous resource status**: **Available**
     
 1. Select one or more **Reason type** values for your alert:
 
-  - **Platform Initiated** : Alerts you when a resource becomes unavailable due to platform issues.
-  - **Unknown**: Alerts you when a resource becomes unavailable, but the reason isn't known.
-  - **User Initiated**: Alerts you when a resource becomes unavailable due to an action taken by a user.
+   - **Platform Initiated** : Alerts you when a resource becomes unavailable due to platform issues.
+   - **Unknown**: Alerts you when a resource becomes unavailable, but the reason isn't known.
+   - **User Initiated**: Alerts you when a resource becomes unavailable due to an action taken by a user.
     
 1. Select **Next: Actions** to continue. In the **Actions** tab, if you want to receive an email when the alert is triggered, select **Use quick actions (preview)** and complete the following:
 
