@@ -12,7 +12,7 @@ This article shows you how to use an Azure Resource Manager template (ARM templa
 
 To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
 
-This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, along with an additional parameter file for some extensions. Replace the example values in the samples with your own values before deploying.
+This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, along with a separate parameter file for some extensions. Replace the example values in the samples with your own values before deploying.
 
 ## Deployment commands
 
@@ -390,7 +390,7 @@ Save the template, then install the Dependency Agent extension to your connected
 
 ## Deploy the Azure Key Vault extension
 
-The following JSON shows the schema for the Azure Key Vault extension. The extension does not require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
+The following JSON shows the schema for the Azure Key Vault extension. This extension doesn't require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
 
 ### Azure Key Vault template file for Linux
 
@@ -525,7 +525,7 @@ The following JSON shows the schema for the Azure Key Vault extension. The exten
 ```
 
 > [!NOTE]
-> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. For more information about certificatesm see [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
+> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. For more information about certificates, see [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
 
 Save the template and edit as needed for your environment. Then install the Azure Key Vault extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
