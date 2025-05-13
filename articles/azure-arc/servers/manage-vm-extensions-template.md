@@ -12,7 +12,7 @@ This article shows you how to use an Azure Resource Manager template (ARM templa
 
 To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
 
-This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, and in most cases, an additional parameter file. Replace the sample values in the samples with your own values before deploying.
+This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, along with an additional parameter file for some extensions. Replace the example values in the samples with your own values before deploying.
 
 ## Deployment commands
 
