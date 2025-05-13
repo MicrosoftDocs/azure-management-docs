@@ -12,7 +12,7 @@ ms.date: 05/13/2025
 
 # What's new in Azure Container Storage enabled by Azure Arc?
 
-This article is updated regularly with blog posts, videos and case studies featuring Azure Container Storage enabled by Azure Arc.
+This article is updated regularly with blog posts, videos and case studies featuring Azure Container Storage enabled by Azure Arc. If you are looking for the release notes, see [Release notes for Azure Container Storage enabled by Azure Arc](release-notes.md).
 
 ## 2025
 
