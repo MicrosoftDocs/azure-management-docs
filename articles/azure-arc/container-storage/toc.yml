@@ -61,32 +61,6 @@ items:
       href: ingest-data-flow.md
     - name: Blob index and metadata tags
       href: blob-index-metadata-tags.md
-- name: Cache Volumes
-  items:
-  - name: Cache Volumes overview
-    href: cache-volumes-overview.md 
-  - name: How-to
-    items:
-    - name: Prepare Linux
-      items:
-      - name: Prepare Linux prerequisites
-        href: prepare-linux.md
-      - name: Prepare Linux using a single-node cluster
-        href: single-node-cluster.md
-      - name: Prepare Linux using a multi-node cluster
-        href: multi-node-cluster.md
-    - name: Install extension
-      href: install-cache-volumes.md
-    - name: Attach applications
-      items:
-      - name: Create a persistent volume
-        href: create-persistent-volume.md
-      - name: Create persistent volume claim
-        href: create-persistent-volume-claim.md
-      - name: Attach your app
-        href: attach-app.md
-    - name: Monitor Cache Volumes deployment
-      href: monitor-deployment-cache-volumes.md
 - name: Resources
   items:
   - name: FAQ and release notes
