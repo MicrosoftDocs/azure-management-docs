@@ -251,9 +251,181 @@ To remove subscription from Quota Group through portal.
 
 Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription. Once your gquota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family. 
 
+To allocate or transfer quota from group to target subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.  
+
+```http
+PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
+```
+```json
+{
+  "properties": {
+    "value": [{
+        "properties": {
+          "limit": 50,
+          "resourceName": "standardddv4family"
+        }
+      }]
+  }
+}
+```
+
+Example using `az rest`: 
+ I transfer 10 cores  of *standarddv4family* in centralus from subscription by setting limit to 50
+
+
+```json
+az rest –method patch –url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01" –body ‘{
+  "properties": {
+    "value": [
+      {
+        "properties": {
+          "limit": 50,
+          "resourceName": "standardddv4family"
+        }
+      }
+    ]
+  }
+}’ –debug
+```
+View current subscription limit for region x SKU  
+- Limit = current subscription limit  
+- Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
+
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
+```
+
+Example using `az rest`:
+My new subscription limit is 50 cores for *standarddv4family* in centralus and my shareable quota is -10 because I gave 10 cores to my Quota group. 
+```json
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus?api-version=2025-03-01&\$filter=resourceName eq 'standardddv4family'" --debug
+Response content
+
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/075216c4-f88b-4a82-b9f8-cdebf9cc097a/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/eastus",
+  "name": "eastus",
+  "provisioningState": "Succeeded",
+  "type": "Microsoft.Quota/groupQuotas/quotaAllocations",
+  "value": [
+    {
+      "properties": {
+        "limit": 50,
+        "name": {
+          "localizedValue": "standardddv4family",
+          "value": "standardddv4family"
+        },
+        "resourceName": "standardddv4family",
+        "shareableQuota": -10
+      }
+    }
+  ]
+}
+
+```
+
+<!-- Portal steps on how to do quota transfer -->
+### [Azure portal](#tab/portal-4)
+Transfer unused quota between subscriptions via the Quota Group object. Below steps are how to do quota transfer from ssource subscription to group and from group to target subscription.
+
+Transfer from source subscription to group. 
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
+2. Under settings in left hand side select **Quota groups**.  
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
+4. Select **Quota group** from list of Quota Group(s)  
+5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
+7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource  
+8. Select from the list of subscription(s) and select **Manage subscription quota** button  
+9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected   resource = 0  
+10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
+11. View the list of subscription(s) by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)  
+12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.  
+13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
+14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.  
+15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
+
+Transfer from group to target subscripion
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
+2. Under settings in left hand side select **Quota groups**.  
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
+4. Select **Quota group** from list of Quota Group(s)  
+5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
+7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource
+8. Select from the list of subscription(s) and select **Manage subscription quota** button
+9. Select **Increase subscription quota** option, this will be geyed out if Group quota for selected resource = 0
+10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Increase subscription quota** is selected if you want to transfer unused quota from group to target subscription
+11. View the list of subscription(s) by **Current usage / limit** and **Distribute to subscription quota**, input value of quota you'd like to transfer from group to target subscription. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the group quota limit or 0.
+12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Distribute to subscription quota** column indicates the quota being moved from group to subscription. 
+13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
+14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.
+15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
+--- 
+
+## Submit Quota Group Limit increase request
+One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can then follow steps to allocate/transfer quota from group to target subscription(s) for a given region x VM family.  
+- Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
+- Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
+- Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
+- If Quota Group  Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details.
+
+### [REST API](#tab/rest-5)
+```http
+PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
+```
+```json
+{
+  "properties": {
+    "value": [
+      {
+        "properties": {
+          "resourceName": "standardddv4family",
+          "limit": 50,
+          "comment": "comments"
+        }
+      }
+    ]
+  }
+}
+```
+
+## Submit Quota Group Limit increase and file support ticket if request fails. 
+### [Azure portal](#tab/portal-5)
+
+The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
+- If Quota Group  Limit request is rejected via API or porta; then customer must submit support ticket via the self-serve Quota group request portal blade.  
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level. 
+  
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side select **Quota groups**.
+3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+4. Select **Quota group** from list of Quota Group(s)
+5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
+7. Select the checkbox to the desired **Quota group resource**, then select the **Increase group quota** button at the top of page
+8. On right side view the **New quota request** blade with selected region(s) at the top with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit.I.e., If I want 20 cores assigned at group for DSv3 in Australia Central I will enter 20 under **New group quota**
+9. Select **Submit** button, notification **We are reviewing your request to adjust the quota** this may take up to ~3 minutes to complete
+10. If succesful the **New quota request** view will show the selected **Quota Group resource** by location status of request, the **Increase** value and **New limit**
+11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
+12. If Quota Group limit increase was rejected notification **We were unable to adjust your quota** will surface
+13. Select the **Generate a support ticket** button to start process of creating support ticket
+14. In the **Request details** view select **Deployment model** as **Resource Manager** from drop drown, Under **Choose request types** select **Increase quota / expand access region**
+15. Request details view will surface the Management GroupID and Group Quota ID, select desired regions(s) from **Locations** drop down adnd select desired VM family from **Quotas** drop down, review the selected VM family **Usage** and new **Limit**, ensure desired value is under **New Limit**, then select **Save and Continue** button
+16. In **Additional details** view select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
+17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner will ticketID and link
+18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
+    
+<!-- OLD
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-The below covers end-to-end flow of how to do quota transfer from source subscription to group via API. 
+
+<!-- OLD
+<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
+
+
+
+<!--The below covers end-to-end flow of how to do quota transfer from source subscription to group via API. 
 1. Add subscription to Group
 2. Verify current subscription quota and usage by doing GET via Usages API (LINK TO Usages REST API); user can also do GET quotaAllocations to view current subscription quota but usage wont be provided
 3. Submit quotaAllocation request for a given region and VM family. When submitting quota allocation request the **Limit** should be set as absolute value of the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 120, set the new limit to 110.
@@ -288,7 +460,7 @@ Sample response
 ### PATCH subscription quota allocation
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
-To deallocate or transfer quota from source subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 60 cores, set the new limit to 50.  
+<!--To deallocate or transfer quota from source subscription to group, set the limit property as absolute value to the new desired subscription limit. If you want to transfer 10 cores of *standarddv4family* to your group and your current subscription limit is 60 cores, set the new limit to 50.  
 
 To allocate or transfer quota from group to target subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.  
 
@@ -331,7 +503,7 @@ az rest –method patch –url "https://management.azure.com/providers/Microsoft
 The quotaAllocations request is an async operation that may take up to 3 minutes to complete, to view the status of the request you can do below GET call using the allocationID in response header from previous step.
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-- If allocation request status is *succeeded*, then GET subscription `quotaAllocations` to view current subscription limit for region x SKU.
+<!--- If allocation request status is *succeeded*, then GET subscription `quotaAllocations` to view current subscription limit for region x SKU.
 	- Accepted
 	- In progress
 	- Succeeded
@@ -383,7 +555,7 @@ Sample response:
 Once the quotaAllocations request has succeeded you can do a GET quotaAllocations request to view the updated subscription quota and how many cores (shareable quota) have been deallocated from the source subscription to the group. 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-- View current subscription limit for region x SKU  
+<!--- View current subscription limit for region x SKU  
 - Limit = current subscription limit  
 - Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
 
@@ -503,55 +675,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 }
 
 ```
-<!-- Portal steps on how to do quota transfer -->
-### [Azure portal](#tab/portal-4)
-Transfer unused quota between subscriptions via the Quota Group object. Below steps are how to do quota transfer from ssource subscription to group and from group to target subscription.
 
-Transfer from source subscription to group. 
-1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
-2. Under settings in left hand side select **Quota groups**.  
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
-4. Select **Quota group** from list of Quota Group(s)  
-5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
-6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
-7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource  
-8. Select from the list of subscription(s) and select **Manage subscription quota** button  
-9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected   resource = 0  
-10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
-11. View the list of subscription(s) by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)  
-12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.  
-13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
-14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.  
-15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
-
-Transfer from group to target subscripion
-1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
-2. Under settings in left hand side select **Quota groups**.  
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
-4. Select **Quota group** from list of Quota Group(s)  
-5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
-6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
-7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscription(s) usage over sum of subscription quota. Lastly view list of subscription(s) in selected group -> Quota Group resource
-8. Select from the list of subscription(s) and select **Manage subscription quota** button
-9. Select **Increase subscription quota** option, this will be geyed out if Group quota for selected resource = 0
-10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Increase subscription quota** is selected if you want to transfer unused quota from group to target subscription
-11. View the list of subscription(s) by **Current usage / limit** and **Distribute to subscription quota**, input value of quota you'd like to transfer from group to target subscription. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the group quota limit or 0.
-12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Distribute to subscription quota** column indicates the quota being moved from group to subscription. 
-13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
-14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.
-15. Select the Quota group resource / VM family in breadcrumb **Home -> Quota |Quota group -> QuotaGroupName -> Quota group resource / VM family** to view updated Group quota  
---- 
-
-## Submit Quota Group Limit increase request
-### [REST API](#tab/rest-5)
-
-One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can then follow steps to allocate/transfer quota from group to target subscription(s) for a given region x VM family.  
-- Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
-- Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
-- Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
-- If Quota Group  Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
-- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. 
-<!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
 
 ### PATCH Quota Group Limit increase request
@@ -597,7 +721,7 @@ Response Content
 ## GET Quota Group Limit increase request status
 This covers how to view the status of your Quota Group Limit inrease request, if request shows as "Escalated" you must submit support ticket via portal
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
-- A Quota Group Limit increase will take up to 3 minutes to be processed by Azure, check the status of your request with the below.
+<!-- OLD- A Quota Group Limit increase will take up to 3 minutes to be processed by Azure, check the status of your request with the below.
 
 ### GET Quota Group Limit increase request status
 ```http
@@ -662,7 +786,7 @@ Sample response of rejected Quota Group increase request, "Escalated" means that
 
 <!-- Please write clearer instructional content, preferably step-by-step, as with previous sections. Write full sentences, even on bulleted lists. Or mention specific properties that need to be adjusted, and be very explicit about those details. If you need REST and portal tabs, copy the format from previous sections. -->
 
-The below is the final step to validate that the correct amount of cores were stamped on the group once I validate that my Quota Group Limit increase request was succesfully approved. Consider the below when interpreting the API response. 
+<!-- OLDThe below is the final step to validate that the correct amount of cores were stamped on the group once I validate that my Quota Group Limit increase request was succesfully approved. Consider the below when interpreting the API response. 
 - Available limit = how many  cores do I have at group level to distribute  
 - Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
 - Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group 
@@ -724,7 +848,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 
 
 <!-- Portal steps on how to do Quota Group Limit increase  -->
-## Submit Quota Group Limit increase and file support ticket if request fails. 
+<!-- OLD## Submit Quota Group Limit increase and file support ticket if request fails. 
 ### [Azure portal](#tab/portal-5)
 
 The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
