@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Enable Azure VM extensions to Arc-enabled servers from the Azure portal
 
-You can deploy, update, and uninstall Azure virtual machine (VM) extensions supported by Azure Arc-enabled servers. This article shows you how to perform these tasks on a Linux or Windows hybrid machine by using the Azure portal.
+You can deploy, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) supported by Azure Arc-enabled servers. This article shows you how to perform these tasks on a Linux or Windows hybrid machine by using the Azure portal.
 
 > [!NOTE]
 > The Azure Key Vault VM extension doesn't support deployment from the Azure portal. Use the Azure CLI, Azure PowerShell, or an Azure Resource Manager template to deploy this extension.

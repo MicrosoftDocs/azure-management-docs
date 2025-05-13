@@ -8,7 +8,7 @@ ms.custom: devx-track-arm-template
 
 # Enable Azure VM extensions by using an ARM template
 
-This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
+This article shows you how to use an Azure Resource Manager template (ARM template) to deploy [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
 
 To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
 
