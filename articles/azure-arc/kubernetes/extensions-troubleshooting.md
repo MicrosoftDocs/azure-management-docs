@@ -15,7 +15,7 @@ For help with troubleshooting Azure Arc-enabled Kubernetes problems in general, 
 ## GitOps (Flux v2)
 
 > [!NOTE]
-> You can use the Flux v2 extension in either an Azure Arc-enabled Kubernetes cluster or in an Azure Kubernetes Service (AKS) cluster. These troubleshooting tips generally apply to all cluster types.
+> You can use the Flux v2 extension in either an Azure Arc-enabled Kubernetes cluster or in an Azure Kubernetes Service (AKS) cluster. These tips generally apply to all cluster types.
 
 For general help with troubleshooting problems when you use `fluxConfigurations` resources, run these Azure CLI commands with the `--debug` parameter:
 
@@ -141,7 +141,7 @@ Perhaps iptables or your kernel needs to be upgraded.
 
 This error occurs because installing the extension requires the `iptable_nat` module, but this module isn't automatically loaded in Oracle Linux (RHEL) 9.x distributions.
 
-To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you have signed into each node and manually added the `iptable_nat` module, retry the AMA installation.
+To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you sign into each node and manually add the `iptable_nat` module, retry the AMA installation.
 
 > [!NOTE]
 > Performing this step does not make the `iptables_nat` module persistent.  
@@ -261,7 +261,7 @@ NAME           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
 osm-injector   ClusterIP   10.0.39.54   <none>        9090/TCP   75m
 ```
 
-Ensure that the IP address that's listed for `osm-injector` service is `9090`. There should be no value listed for `EXTERNAL-IP`.
+Ensure that the IP address listed for `osm-injector` service is `9090`. There should be no value listed for `EXTERNAL-IP`.
 
 ### Check OSM injector endpoints
 
