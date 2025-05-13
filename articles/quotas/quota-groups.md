@@ -9,9 +9,6 @@ ms.date: 04/23/2025
 
 # Azure Quota Groups
 
-> [!IMPORTANT]
-> Azure Quota Groups are currently in preview. Previews are made available to you on the condition that you agree to the [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). Some aspects of this feature may change prior to general availability (GA).
-
 Azure Quota Groups allow you to share quota among a group of subscriptions, reducing the number of quota transactions. This feature elevates the quota construct from a subscription level to a Quota Group Azure Resource Management (ARM) object, enabling customers to self-manage their procured quota within a group without needing approvals.
 
 ## Key benefits
@@ -33,7 +30,7 @@ The transfer of unused quota between subscription(s) will be done via Quota Grou
 ## Prerequisites
 
 Before you can use the Quota Group feature, you must:  
-- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions using PowerShell.  
+- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions that will be added to Quota Group(s). For more information, see [Registering the Microsoft Quota resource provider](https://learn.microsoft.com/en-us/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
 - A Management Group (MG) is needed to create a Quota Group. Your group will inherit quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
 - Certain permissions are required to create Quota Groups and to add subscriptions. For more information on which roles to assign, see [#permissions].   
 
@@ -237,11 +234,11 @@ To remove subscription from Quota Group through portal.
 <!-- Keep the 3 dashes above this line. That indicates the end of a tabbed section. Remove this note after portal steps are added. -->
 ## Transfer quota within Quota Group
 ### [REST API](#tab/rest-4)
-
-
-Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription. Once your quota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family. 
-
-To allocate or transfer quota from group to target subscription, set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.  
+- Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
+- Once your quota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family.
+- To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.
+- You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level
+- To view your existing subscription usage for a given region, please use the [Compute Usages API](https://learn.microsoft.com/en-us/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).
 
 ```http
 PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
@@ -260,7 +257,7 @@ PATCH https://management.azure.com/"providers/Microsoft.Management/managementGro
 ```
 
 Example using `az rest`: 
- I transfer 10 cores  of *standarddv4family* in centralus from subscription by setting limit to 50
+ I transfer 10 cores  of *standarddv4family* in centralus from subscription to group by setting limit to 50
 
 
 ```json
@@ -277,7 +274,7 @@ az rest –method patch –url "https://management.azure.com/providers/Microsoft
   }
 }’ –debug
 ```
-### View current subscription limit for region x SKU  
+### View quota allocation snapshot for subscription in Quota Group
 - Limit = current subscription limit  
 - Shareable quota = how many cores have been deallocated/transferred from sub to group  ‘-5’ = 5 cores were given from sub to group  
 
