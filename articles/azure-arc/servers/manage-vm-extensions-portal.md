@@ -11,8 +11,6 @@ You can deploy, update, and uninstall [virtual machine (VM) extensions](manage-v
 
 > [!NOTE]
 > The Azure Key Vault VM extension doesn't support deployment from the Azure portal. Use the Azure CLI, Azure PowerShell, or an Azure Resource Manager template to deploy this extension.
->
-> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
 
 ## Enable extensions
 
