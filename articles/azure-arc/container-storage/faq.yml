@@ -5,6 +5,8 @@ metadata:
   author: asergaz
   ms.author: sergaz
   ms.topic: faq
+  ms.service: azure-arc
+  ms.subservice: azure-container-storage
   ms.date: 05/13/2025
 
 title: Azure Container Storage enabled by Azure Arc FAQ
