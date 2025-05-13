@@ -44,9 +44,9 @@ New-AzResourceGroupDeployment -ResourceGroupName "<ContosoEngineering>" -Templat
 
 ## Deploy the Azure Monitor Agent VM extension
 
-To deploy the Azure Monitor Agent, use one of the following samples to install the agent on either Linux or Windows.
+To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview), use one of the following sample templates to install the agent on either Linux or Windows.
 
-### Template file for Linux
+### Azure Monitor Agent template file for Linux
 
 ```json
 {
@@ -88,7 +88,7 @@ To deploy the Azure Monitor Agent, use one of the following samples to install t
 }
 ```
 
-### Template file for Windows
+### Azure Monitor Agent template file for Windows
 
 ```json
 {
@@ -131,7 +131,7 @@ To deploy the Azure Monitor Agent, use one of the following samples to install t
 }
 ```
 
-### Parameter file
+### Azure Monitor Agent parameter file
 
 This parameter file can be used for both Linux and Windows.
 
@@ -156,21 +156,19 @@ This parameter file can be used for both Linux and Windows.
 }
 ```
 
-Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the extension to your connected machines by running the PowerShell command found earlier in this article.
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Azure Monitor Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
 ## Deploy the Custom Script Extension
 
-To use the Custom Script Extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are few differing characteristics that you should understand when you're using this extension with hybrid machines:
+To use the Custom Script Extension, deploy one of the following sample templates for Linux and Windows. For information about the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are a few differing characteristics that you should understand when you're using this extension with hybrid machines:
 
-* The list of supported operating systems with the Azure VM Custom Script Extension is not applicable to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
-
-* Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model are not applicable.
-
+* The list of supported operating systems with the Azure VM Custom Script Extension doesn't apply to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
+* Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model aren't applicable.
 * If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
 
 The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following templates.
 
-### Template file for Linux
+### Custom script extension template file for Linux
 
 ```json
 {
@@ -211,7 +209,7 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Template file for Windows
+### Custom script template file for Windows
 
 ```json
 {
@@ -260,7 +258,7 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Parameter file
+### Custom script parameter file
 
 ```json
 {
@@ -314,11 +312,13 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-## Deploy the Dependency agent extension
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Custom Script extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
-To use the Azure Monitor Dependency agent extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Dependency agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+## Deploy the Dependency Agent extension
 
-### Template file for Linux
+To use the Azure Monitor Dependency Agent extension, run one of the following samples for Linux and Windows. For more information about the Dependency Agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+
+### Dependency Agent template file for Linux
 
 ```json
 {
@@ -352,7 +352,7 @@ To use the Azure Monitor Dependency agent extension, run one of the following sa
 }
 ```
 
-### Template file for Windows
+### Dependency Agent template file for Windows
 
 ```json
 {
@@ -386,11 +386,13 @@ To use the Azure Monitor Dependency agent extension, run one of the following sa
 }
 ```
 
-## Deploy the Azure Key Vault VM extension (preview)
+Save the template, then install the Dependency Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
-The following JSON shows the schema for the Key Vault VM extension (preview). The extension does not require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
+## Deploy the Azure Key Vault extension
 
-### Template file for Linux
+The following JSON shows the schema for the Azure Key Vault extension. The extension does not require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
+
+### Azure Key Vault template file for Linux
 
 ```json
 {
@@ -452,7 +454,7 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 }
 ```
 
-### Template file for Windows
+### Azure Key Vault template file for Windows
 
 ```json
 {
@@ -523,12 +525,14 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 ```
 
 > [!NOTE]
-> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. You can find more information about certificates in [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
+> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. For more information about certificatesm see [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
+
+Save the template and edit as needed for your environment. Then install the Azure Key Vault extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
 > [!TIP]
-> The VM extension requires a system-assigned identity to be assigned to authenticate to Key Vault. For more information, see [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md).
+> The Azure Key Vault extension requires a system-assigned identity to be assigned to authenticate to Key Vault. For more information, see [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md).
 
 ## Related content
 
-* You can deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
-* You can find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
+* Learn how to deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
+* Explore troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
