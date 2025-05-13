@@ -31,13 +31,13 @@ sections:
             kubectl delete -f "YOUR_PV_FILE_NAME_HERE.yaml"
             ```
 
-          1. After you delete your configPods, PVCs, and PVs in the previous step, you can uninstall the extension using the following command. Replace `YOUR_RESOURCE_GROUP_NAME_HERE`, `YOUR_CLUSTER_NAME_HERE`, and `YOUR_EXTENSION_NAME_HERE` with your respective information:
+          2. After you delete your configPods, PVCs, and PVs in the previous step, you can uninstall the extension using the following command. Replace `YOUR_RESOURCE_GROUP_NAME_HERE`, `YOUR_CLUSTER_NAME_HERE`, and `YOUR_EXTENSION_NAME_HERE` with your respective information:
 
             ```azurecli
             az k8s-extension delete --resource-group YOUR_RESOURCE_GROUP_NAME_HERE --cluster-name YOUR_CLUSTER_NAME_HERE --cluster-type connectedClusters --name YOUR_EXTENSION_NAME_HERE
             ```
 
-          1. If you installed the extension before the **1.1.0-preview** release (released on 4/19/24) and have a pre-existing `config.json` file, the `config.json` schema changed. Remove the old `config.json` file using `rm config.json`.
+          3. If you installed the extension before the **1.1.0-preview** release (released on 4/19/24) and have a preexisting `config.json` file, the `config.json` schema changed. Remove the old `config.json` file using `rm config.json`.
 
   - name: Encryption
     questions:
