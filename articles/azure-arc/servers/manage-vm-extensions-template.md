@@ -27,7 +27,7 @@ New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -Templa
 For example:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\LogAnalyticsAgent.json" -TemplateParameterFile "D:\Azure\Templates\LogAnalyticsAgentParms.json"
+New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\AzureMonitorAgent.json" -TemplateParameterFile "D:\Azure\Templates\AzureMonitorAgentParms.json"
 ```
 
 To deploy an ARM template without a parameter file, use the following command, replacing the example values with your own:
