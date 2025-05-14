@@ -1,0 +1,181 @@
+---
+title: Delete Resources in Workload Orchestration
+description: Learn how to delete the resources created with workload orchestration
+author: SoniaLopezBravo
+ms.author: sonialopez
+ms.topic: how-to
+ms.date: 05/07/2025
+---
+
+
+# Delete resources in workload orchestration
+
+This article details how to delete or uninstall any workload orchestration resources in Azure. You can delete resources such as targets, solution templates, schema, and configuration templates.
+
+IT users can delete resources using the Azure CLI. For more information about workload orchestration, see [Prepare your environment for workload orchestration](initial-setup-environment.md).
+
+## Prerequisites
+
+- Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
+
+## Uninstall a solution
+
+Any installed solution can be uninstalled from a target using the following command:
+
+#### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration target uninstall --subscription "$subscriptionId" --resource-group "$rg" --solution-template "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration target uninstall --subscription $subscriptionId --resource-group $rg --solution-template $appName1 --solution-template-version $appVersion --target-name $childName
+```
+
+***
+
+## Delete a solution revision
+
+Delete a solution revision for a target if it's not installed using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration target remove-revision --subscription "$subscriptionId" --resource-group "$rg" --solution-template "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration target remove-revision --subscription $subscriptionId --resource-group $rg --solution-template $appName1 --solution-template-version $appVersion --target-name $childName
+```
+
+***
+
+## Delete a target
+
+Delete a target and all its child resources using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+# Set force-delete argument to true if you want to delete target with installed apps
+az workload-orchestration target delete --subscription "$subscriptionId" --resource-group "$rg" --target-name "$childName" --force-delete false
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+# Set force-delete argument to true if you want to delete target with installed apps
+az workload-orchestration target delete --subscription $subscriptionId --resource-group $rg --target-name $childName --force-delete false
+```
+
+***
+
+## Delete a solution template version
+
+Delete solution template version across all targets if it's not deployed using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration solution-template remove-version --subscription "$subscriptionId" --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration solution-template remove-version --subscription $subscriptionId --resource-group $rg --solution-template-name $appName1 --version $appVersion
+```
+
+***
+
+## Delete a solution template
+
+Delete a solution template across all targets if it has no versions using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration solution-template delete --subscription "$subscriptionId" --resource-group "$rg" --solution-template-name "$appName1"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration solution-template delete --subscription $subscriptionId --resource-group $rg --solution-template-name $appName1
+```
+
+***
+
+## Delete a schema
+
+Delete a schema and all its versions using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration schema delete --subscription "$subscriptionId" --resource-group "$rg" --schema-name "$schemaName"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration schema delete --subscription $subscriptionId --resource-group $rg --schema-name $schemaName
+```
+
+***
+
+### Delete a configuration template
+
+Delete a configuration template and all its versions using the following command:
+
+### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration config-template delete --subscription "$subscriptionId" --resource-group "$rg" --config-template-name "$appConfig"
+```
+
+### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration config-template delete --subscription $subscriptionId --resource-group $rg --config-template-name $appConfig
+```
+
+***
+
+## Delete existing resources in a resource group 
+
+You can download this [PowerShell script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Clean%20Up%20Script/CleanupScript.zip) to clean up resources in a specified Azure Resource Group. The script provides options to skip the deletion of certain resources, such as sites, targets, configurations, schemas, and solutions.
+
+> [!NOTE]
+> You need to have the necessary permissions to delete resources in the specified resource group. For most cases, by default your alias will have permission.
+
+You execute the script with the following command:
+
+```powershell
+.\RGCleanScript.ps1 -resourceGroupName <YourResourceGroupName> [-skipSiteAndAddressDeletion $false] [-skipTargetDeletion $false] 
+```
+
+The script contains the following parameters, which you can set to customize the cleanup process:
+
+| Parameter         | Required/Optional | Type | Description                                                                 |
+|-------------------------------|-----------------------|------------|---------------------------------------------------------------------------------|
+| `resourceGroupName`           | Required             | string     | The name of the resource group to clean.                                       |
+| `subscriptionId`              | Optional             | string     | Subscription ID for resources (For Microsoft.Edge). Default is the subscription shown by az CLI. |
+| `contextSubscriptionId`       | Optional             | string     | Subscription ID where context is present (For Microsoft.Edge). Default is the subscription shown by az CLI. |
+| `contextResourceGroupName`    | Optional             | string     | RG of the Context (For Microsoft.Edge). Default is `Mehoopany`.                |
+| `contextName`                 | Optional             | string     | Name of the Context (For Microsoft.Edge). Default is `Mehoopany-Context`.      |
+| `skipSiteDeletion`            | Optional             | bool       | Skip deletion of site resources. Default is `false`.                           |
+| `skipTargetDeletion`          | Optional             | bool       | Skip deletion of target resources. Default is `false`.                         |
+| `skipConfigurationDeletion`   | Optional             | bool       | Skip deletion of CM created configuration resources. Default is `false`.       |
+| `skipSchemaDeletion`          | Optional             | bool       | Skip deletion of schema/dynamic schema resources. Default is `false`.          |
+| `skipConfigTemplateDeletion`  | Optional             | bool       | Skip deletion of user created config template resources. Default is `false`.   |
+| `skipSolutionDeletion`        | Optional             | bool       | Skip deletion of solution template resources. Default is `false`.              |
+| `skipAksDeletion`             | Optional             | bool       | Skip deletion of AKS cluster resources. Default is `false`.                    |
+| `skipAksAzureDeletion`        | Optional             | bool       | Skip deletion of AKS cluster resources. Default is `false`.                    |
+| `skipManagedIdentityDeletion` | Optional             | bool       | Skip deletion of AKS cluster resources. Default is `false`.                    |
+
+
