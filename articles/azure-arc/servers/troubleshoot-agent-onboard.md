@@ -1,13 +1,15 @@
 ---
 title: Troubleshoot Azure Connected Machine agent connection issues
 description: This article tells how to troubleshoot and resolve issues with the Connected Machine agent that arise with Azure Arc-enabled servers when trying to connect to the service.
-ms.date: 10/13/2022
+ms.date: 05/14/2025
 ms.topic: troubleshooting
 ---
 
 # Troubleshoot Azure Connected Machine agent connection issues
 
-This article provides information for troubleshooting issues that might occur while configuring the Azure Connected Machine agent for Windows or Linux. Both the interactive and at-scale installation methods when configuring connection to the service are included. For general information, see [Azure Arc-enabled servers overview](./overview.md).
+This article provides information for troubleshooting issues that might occur while configuring the Azure Connected Machine agent for Windows or Linux. Tips for both [the interactive and at-scale installation methods when configuring connection](deployment-options.md) to the service are included.
+
+For general information, see [Azure Arc-enabled servers overview](./overview.md), [Azure Connected Machine agent overview](./agent-overview.md), and [Manage and maintain the Connected Machine agent](./manage-agent.md).
 
 ## Agent error codes
 
@@ -25,8 +27,8 @@ Use the following table to identify and resolve issues when configuring the Azur
 | AZCM0023 | The value provided for a parameter (argument) is invalid | Review the error message for more specific information. Refer to the syntax of the command (`azcmagent <command> --help`) for valid values or expected format for the arguments. |
 | AZCM0026 | There's an error in network configuration or some critical services are temporarily unavailable | Check if the required endpoints are reachable (for example, hostnames are resolvable, endpoints aren't blocked). If the network is configured for Private Link Scope, a Private Link Scope resource ID must be provided for onboarding using the `--private-link-scope` parameter. |
 | AZCM0041 | The credentials supplied are invalid | For device logins, verify that the user account specified has access to the tenant and subscription where the server resource will be created. For service principal logins, check the client ID and secret for correctness, the expiration date of the secret, and that the service principal is from the same tenant where the server resource will be created. |
-| AZCM0042 | Creation of the Azure Arc-enabled server resource failed | Review the error message in the output to identify the cause of the failure to create resource and the suggested remediation. For more information, see [Connected Machine agent prerequisites-required permissions](prerequisites.md#required-permissions) for more information. |
-| AZCM0043 | Deletion of the Azure Arc-enabled server resource failed | Verify that the user/service principal specified has permissions to delete Azure Arc-enabled server/resources in the specified group. For more information, see [Connected Machine agent prerequisites-required permissions](prerequisites.md#required-permissions). If the resource no longer exists in Azure, use the `--force-local-only` flag to proceed. |
+| AZCM0042 | Creation of the Azure Arc-enabled server resource failed | Review the error message in the output to identify the cause of the failure to create resource and the suggested remediation. For more information, see [Required permissions](prerequisites.md#required-permissions). |
+| AZCM0043 | Deletion of the Azure Arc-enabled server resource failed | Verify that the user/service principal specified has permissions to delete Azure Arc-enabled server/resources in the specified group. For more information, see [Required permissions](prerequisites.md#required-permissions). If the resource no longer exists in Azure, use the `--force-local-only` flag to proceed. |
 | AZCM0044 | A resource with the same name already exists | Specify a different name for the `--resource-name` parameter or delete the existing Azure Arc-enabled server in Azure and try again. |
 | AZCM0062 | An error occurred while connecting the server | Review the error message in the output for more specific information. If the error occurred after the Azure resource was created, delete this resource before retrying. |
 | AZCM0063 | An error occurred while disconnecting the server | Review the error message in the output for more specific information. If this error persists, delete the resource in Azure, and then run `azcmagent disconnect --force-local-only` on the server. |
@@ -49,17 +51,17 @@ Use the following table to identify and resolve issues when configuring the Azur
 
 ## Agent verbose log
 
-Before following the troubleshooting steps described later in this article, the minimum information you need is the verbose log. It contains the output of the **azcmagent** tool commands, when the verbose (-v) argument is used. The log files are written to `%ProgramData%\AzureConnectedMachineAgent\Log\azcmagent.log` for Windows, and Linux to `/var/opt/azcmagent/log/azcmagent.log`.
+To follow the troubleshooting steps described later in this article, the minimum information you need is the verbose log. This log contains the output of the **azcmagent** tool commands, when the verbose (`-v`) argument is used. The log files are written to `%ProgramData%\AzureConnectedMachineAgent\Log\azcmagent.log` for Windows, and Linux to `/var/opt/azcmagent/log/azcmagent.log`.
 
 ### Windows
 
-Following is an example of the command to enable verbose logging with the Connected Machine agent for Windows when performing an interactive installation.
+The following command is an example that enables verbose logging with the Connected Machine agent for Windows when performing an interactive installation.
 
 ```console
 & "$env:ProgramFiles\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID" --verbose
 ```
 
-Following is an example of the command to enable verbose logging with the Connected Machine agent for Windows when performing an at-scale installation using a service principal.
+The following command is an example that enables verbose logging with the Connected Machine agent for Windows when performing an at-scale installation using a service principal.
 
 ```console
 & "$env:ProgramFiles\AzureConnectedMachineAgent\azcmagent.exe" connect `
@@ -74,7 +76,7 @@ Following is an example of the command to enable verbose logging with the Connec
 
 ### Linux
 
-Following is an example of the command to enable verbose logging with the Connected Machine agent for Linux when performing an interactive installation.
+The following command is an example that enables verbose logging with the Connected Machine agent for Linux when performing an interactive installation.
 
 >[!NOTE]
 >You must have *root* access permissions on Linux machines to run **azcmagent**.
@@ -83,7 +85,7 @@ Following is an example of the command to enable verbose logging with the Connec
 azcmagent connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID" --verbose
 ```
 
-Following is an example of the command to enable verbose logging with the Connected Machine agent for Linux when performing an at-scale installation using a service principal.
+The following command is an example that enables verbose logging with the Connected Machine agent for Linux when performing an at-scale installation using a service principal.
 
 ```bash
 azcmagent connect \
@@ -98,7 +100,7 @@ azcmagent connect \
 
 ## Agent connection issues to service
 
-The following table lists some of the known errors and suggestions on how to troubleshoot and resolve them.
+The following table lists various errors and suggestions on how to troubleshoot and resolve them.
 
 |Message |Error |Probable cause |Solution |
 |--------|------|---------------|---------|
@@ -113,10 +115,7 @@ The following table lists some of the known errors and suggestions on how to tro
 
 ## Next steps
 
-If you don't see your problem here or you can't resolve your issue, try one of the following channels for more support:
+If you don't see your problem here or you can't resolve your issue, try one of the following channels for support:
 
-* Get answers from Azure experts through [Microsoft Q&A](/answers/topics/azure-arc.html).
-
-* Connect with [@AzureSupport](https://x.com/azuresupport), the official Microsoft Azure account for improving customer experience. Azure Support connects the Azure community to answers, support, and experts.
-
-* File an Azure support incident. Go to the [Azure support site](https://azure.microsoft.com/support/options/), and select **Get Support**.
+- Get answers from Azure experts through [Microsoft Q&A](/answers/topics/azure-arc.html).
+- Open a support request to get assistance. For more information, see [Create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
