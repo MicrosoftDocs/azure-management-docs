@@ -1,0 +1,112 @@
+---
+title: Building Chat Solution Overview for Edge RAG
+description: "Learn about building a chat solution with Edge RAG, including data ingestion, prompt engineering, and endpoint integration."
+author: cwatson-cat
+ms.author: cwatson
+ms.topic: concept-article #Don't change
+ms.date: 05/13/2025
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer or IT professional, I want to learn how to build a chat solution using Edge RAG so that I can effectively configure data ingestion, perform prompt engineering, and integrate the chat endpoint into business applications.
+
+---
+
+# Building chat solution for Edge RAG Preview, enabled by Azure Arc
+
+After you deploy Edge RAG, plan your chat solution by reviewing the steps and configuration information you need for data ingestion and prompt engineering.
+
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## Building in the developer portal
+
+As part of the Edge RAG solution, a local developer portal is deployed on the Azure Kubernetes Service (AKS) cluster. Developers can access this portal to do the following tasks:
+
+- **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
+- **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
+
+Access the portal via the redirect URI (for example,  [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
+
+To authenticate and authorize your access to the portal, ensure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
+
+## Data ingestion
+
+Data ingestion refers to a set of user activities around providing on-premises data and configuring the related settings to make the data searchable. So, when a query comes in, the right context can be retrieved and provided as context to the language model.
+
+### Planning data ingestion
+
+Before you start building your chat solution, do the following steps:
+
+- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources). Make sure all your private data is in a network file system (NFS) share that's' accessible from Edge RAG. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
+
+  Make sure that the files aren't password protected or otherwise encrypted for the Edge RAG application to be able to access the data.
+
+- **Choose the right settings for data ingestion**. Before you add a data source in Edge RAG, we recommend you choose the appropriate chunk settings and sync frequency.
+
+### Chunk settings
+
+Before you add a data source in Edge RAG, choose the appropriate chunk settings (chunk size and chunk overlap) and sync frequency. Here's some high-level guidance to select the right chunk settings for your data, as provided by Azure:
+
+- **Chunk size**: Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words) and allows for some overlap (for example, 10-15% of the content) can produce good chunks as input for embedding vector generators.
+
+  | **Processor** | **Recommended Chunk Size** | **Max Supported Size** |
+  |---|---|---|
+  | **GPU** | 2000 | 4000 |
+  | **CPU-only** | 2000 | 2000 |
+
+- **Chunk overlap**: When you chunk data, overlapping a small amount of text between chunks can help preserve context. We recommend starting with an overlap of approximately 10%. For example, given a fixed chunk size of 256 tokens, you would begin testing with an overlap of 25 tokens. The actual amount of overlap varies depending on the type of data and the specific use case, but we find that 10-15% works for many scenarios.
+
+  |**Processor** | **Recommended Chunk Overlap** | **Max Supported Overlap** |
+  | ---|---|---|
+  | **GPU** | 200 | 1000 |
+  | **CPU-only** | 200 | 200 |
+
+When it comes to chunking data, think about these factors:
+
+- **Shape and density of your documents**: If you need intact text or passages, larger chunks and variable chunking that preserves sentence structure can produce better results.
+
+- **User queries**: Larger chunks and overlapping strategies help preserve context and semantic richness for queries that target specific information.
+
+- **Large Language Models (LLM) have performance guidelines for chunk size**. you need to set a chunk size that works best for all of the models you're using. For instance, if you use models for summarization and embeddings, choose an optimal chunk size that works for both.
+
+### Data ingestion by using REST APIs
+
+- Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
+- Create as many data ingestions as you'd like. However, all the data is vectorized and stored in a single index.
+
+## Data query
+
+In the context of Edge RAG, setting up the data query refers to a set of user activities that include:
+- Providing a system prompt. 
+- Configuring the model settings to customize the solution to specific user requirements.
+- Evaluating the solution to ensure requirements are being met.
+
+### Choosing the right prompt and model parameters
+
+A critical part of prompt engineering is providing the right system prompt and model parameters according to your data and use case. To choose the right system prompt, see [AI Services - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
+
+To choose the model parameters, here's directional guidance:
+
+| **Name** | **Description** |
+|---|---|
+| **Temperature** | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both. |
+| **Top k** | Refers to number of most relevant chunks given to the language model. Choosing *k* depends on the application's needs:<br> <br>- For broad coverage, use a larger *k*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *k*. For example, 3-5.<br><br> Experiment with *k* values to balance retrieval accuracy and downstream model performance. Bigger the *value of k*, the longer the inference time. |
+| **Top p** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
+| **Past Messages Included** | Determines how many messages from the conversation history (previous user and assistant messages) are included in the current inference request. |
+| **Text strictness** | Controls how strictly the RAG system filters and ranks retrieved text documents before passing them to the generation model.<br><br>- **Low strictness**: More documents are considered relevant, even if they're only loosely related to the query.<br>- **High strictness**: Only documents that closely match the query are used. |
+| **Image strictness** | Similar to text strictness but applies to retrieved image data if the RAG system supports multimodal retrieval.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are very closely aligned with the query are retrieved. |
+
+### Data querying by using REST APIs
+
+In addition to the developer portal, you can use the REST APIs to do prompt engineering activities such as providing the system message and model parameters.
+
+### Consuming the chat endpoint
+
+After you set up data ingestion and you, as the prompt engineer, are satisfied with the chat solution, you can integrate the chat endpoint in downstream line-of-business applications. Alternately, end users can use the chat application provided out-of-the-box to get started quickly. For more information, see [Test the chat solution for Edge RAG](test-end-user-app.md).
+
+If you want to integrate the chat endpoint in one of your line-of-business applications, use the  REST APIs.
+
+## Related content
+
+- [Supported data sources](requirements.md#supported-data-sources)
+- [Add data source for the chat solution in Edge RAG](add-data-source.md)
+- [Set up the data query for Edge RAG chat solution](set-up-data-query.md)
