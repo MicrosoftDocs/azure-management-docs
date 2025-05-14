@@ -376,11 +376,45 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
   }
 }
 ```
+Example using `az rest`
+- I submit PATCH Quota Group limit increase request of 50 cores for ***standardddv4family*** in centralus
+- Use the groupQuotaOperationsStatus ID in my reponse header to validate the status of request in next section
+
+```http
+az rest --method patch --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"resourceName":"standardddv4family","limit":20,"comment":"comments"}}]}}' --verbose
+```
+
+
+```json
+{
+  "properties": {
+    "value": [
+      {
+        "properties": {
+          "resourceName": "standardddv4family",
+          "limit": 50,
+          "comment": "comments"
+        }
+      }
+    ]
+  }
+}
+```
+Example response Quota Group increase request
+```json
+Status code: 202
+Response header:
+Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaOperationsStatus/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2?api-version=2025-03-01
+Retry-After: 30 
+Response Content
+
 ## GET groupQuotaLimit request status
-Since groupQuotaLimit request is async operation, capture status of request using requestID from response header when submitting limit increase request
+Since groupQuotaLimit request is async operation, capture status of request using groupQuotaOperationsStatus ID from response header when submitting limit increase request
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 ```
+
+
 Example using `az rest`
 I used the groupQuotaOperationsStatus ID from my PATCH Quota Group Limit increase request of 50 cores for ***standardddv4family*** in centralus succeeded
 ```http
