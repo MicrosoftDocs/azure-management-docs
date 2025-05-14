@@ -376,6 +376,41 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
   }
 }
 ```
+## GET groupQuotaLimit request status
+Since groupQuotaLimit request is async operation, capture status of request using requestID from response header when submitting limit increase request
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
+```
+Example using `az rest`
+I used the groupQuotaOperationsStatus ID from my PATCH Quota Group Limit increase request of 50 cores for ***standardddv4family*** in centralus succeeded
+```http
+az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2?api-version=2025-03-01"
+```
+Sample response of approved Quota Group increase request
+```json
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2",
+  "name": "6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "requestProperties": {
+      "requestSubmitTime": "2025-05-06T17:57:00.0001431+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 20,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Succeeded",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
+}
+```
 ### GET groupQuotaLimits  
 
 Validate that the correct amount of cores were transferred from source subcription to group or that your group limit increase request was approved. Consider the below when interpreting the API response. 
