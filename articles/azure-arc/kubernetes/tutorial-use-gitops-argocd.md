@@ -203,7 +203,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
     configurationSettings: {
       'workloadIdentity.enable': 'true'
       'workloadIdentity.clientId': workloadIdentityClientId
-      'workloadIdentity.Microsoft EntraSSOClientId': ssoWorkloadIdentityClientId
+      'workloadIdentity.entraSSOClientId': ssoWorkloadIdentityClientId
       'config-maps.argocd-cm.data.oidc\\.config': oidcConfig
       'config-maps.argocd-cm.data.url': url
       'config-maps.argocd-rbac-cm.data.policy\\.default': defaultPolicy
