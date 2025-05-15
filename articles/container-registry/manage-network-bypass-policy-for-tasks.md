@@ -1,31 +1,15 @@
 ---
-# Required metadata
-# For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
-# For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
-
-title:       # Add a title for the browser tab
-description: # Add a meaningful description for search results
-author:      getk12 # GitHub alias
-ms.author:   gaking # Microsoft alias
-ms.service:  # Add the ms.service or ms.prod value
-# ms.prod:   # To use ms.prod, uncomment it and delete ms.service
-ms.topic:    # Add the ms.topic value
-ms.date:     05/15/2025
+title: Manage network bypass policy for tasks
+description: This article provides guidance on managing network bypass policy for ACR tasks.
+author: getk12
+ms.author: getk12
+ms.service: Azure Container Registry
+ms.topic: how-to 
+ms.date: 05/15/2025
+#customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
 ---
 
 # Manage network bypass policy for tasks
-
----
-title: [Manage network bypass policy for tasks]
-description: [This article provides guidance on managing network bypass policy for ACR tasks.]
-author: [getk12]
-ms.author: [getk12]
-ms.service: [Azure Container Registry]
-ms.topic: how-to #Don't change
-ms.date: [05/15/2025]
-
-#customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
----
 
 The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting being introduced allowing customers to opt-in to network bypass for tasks. As discussed in [ACR trusted services](articles/container-registry/allow-access-trusted-services.md), some users require network restricted access to a container registry. This network restriction allows for certain services or identities to bypass network controls based on defined rule access.  
 
