@@ -16,13 +16,13 @@ ms.date:     05/15/2025
 # Manage network bypass policy for tasks
 
 ---
-title: Manage network bypass policy for tasks
-description: "This article provides guidance on managing network bypass policy for ACR tasks."
-author: getk12
-ms.author: getk12
-ms.service: Azure Container Registry
+title: [Manage network bypass policy for tasks]
+description: "[This article provides guidance on managing network bypass policy for ACR tasks.]"
+author: [getk12]
+ms.author: [getk12]
+ms.service: [Azure Container Registry]
 ms.topic: how-to #Don't change
-ms.date: 05/15/2025
+ms.date: [05/15/2025]
 
 #customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
 
