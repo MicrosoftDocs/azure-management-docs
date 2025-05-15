@@ -2,7 +2,7 @@
 title: View and filter Azure resource information
 description: Filter information and use different views to better understand your Azure resources.
 ms.topic: how-to
-ms.date: 04/12/2024
+ms.date: 05/15/2025
 ---
 
 # View and filter Azure resource information
@@ -13,15 +13,17 @@ This article focuses on filtering information the **All resources** screen. Scre
 
 ## Filter resources
 
-Start exploring **All resources** by using filters to focus on a subset of your resources. The following screenshot shows filtering on resource groups, selecting two of the four resource groups in a subscription.
+Start exploring **All resources** by using filters to focus on a subset of your resources. The following screenshot shows filtering on resource groups, selecting two of the three resource groups in a subscription.
 
-:::image type="content" source="media/manage-filter-resource-views/filter-resource-group.png" alt-text="Filter view based on resource groups":::
+:::image type="content" source="media/manage-filter-resource-views/filter-resource-group.png" alt-text="Screenshot showing resources filtered to show only resources from two resource groups in the Azure portal.":::
 
 You can combine filters, including those based on text searches. For example, after selecting specific resource groups, you can enter text in the filter box, or select a different filter option.
 
 To change which columns are included in a view, select **Manage view**, then select **Edit columns**.
 
 :::image type="content" source="media/manage-filter-resource-views/edit-columns.png" alt-text="Edit columns shown in view":::
+
+You can then add, remove, and rearrange columns. When you're finished, select **Save**.
 
 ## Save, use, and delete views
 
