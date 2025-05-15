@@ -5,9 +5,8 @@ ms.topic: how-to
 ms.date: 04/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
