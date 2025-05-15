@@ -17,7 +17,7 @@ ms.date:     05/15/2025
 
 ---
 title: [Manage network bypass policy for tasks]
-description: "[This article provides guidance on managing network bypass policy for ACR tasks.]"
+description: [This article provides guidance on managing network bypass policy for ACR tasks.]
 author: [getk12]
 ms.author: [getk12]
 ms.service: [Azure Container Registry]
@@ -25,14 +25,13 @@ ms.topic: how-to #Don't change
 ms.date: [05/15/2025]
 
 #customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
-
 ---
 
-The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting being introduced allowing customers to opt-in to network bypass for tasks. As discussed in [ACR trusted services](https://learn.microsoft.com/en-us/azure/container-registry/allow-access-trusted-services), some users require network restricted access to a container registry. This network restriction allows for certain services or identities to bypass network controls based on defined rule access.  
+The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting being introduced allowing customers to opt-in to network bypass for tasks. As discussed in [ACR trusted services](articles/container-registry/allow-access-trusted-services.md), some users require network restricted access to a container registry. This network restriction allows for certain services or identities to bypass network controls based on defined rule access.  
 
 ## Why is the change happening? 
 
-ACR users can configure tasks to use System Assigned Managed Identity (SAMI) to authenticate with a container registry. However, when the registry is network isolated, the registry owner can specify Allow trusted Microsoft services to access this container registry. ACR tasks have transitioned from listing as a [trusted service](https://learn.microsoft.com/en-us/azure/container-registry/allow-access-trusted-services). Because registry owners can enable the trusted service setting to continue to allow tasks as a trusted service, the new policy setting disables this by default ensuring customers workflows remain secured.  
+ACR users can configure tasks to use System Assigned Managed Identity (SAMI) to authenticate with a container registry. However, when the registry is network isolated, the registry owner can specify Allow trusted Microsoft services to access this container registry. ACR tasks have transitioned from listing as a [trusted service](articles/container-registry/allow-access-trusted-services.md). Because registry owners can enable the trusted service setting to continue to allow tasks as a trusted service, the new policy setting disables this by default ensuring customers workflows remain secured.  
 
 ## When will the change take effect? 
 
@@ -42,9 +41,9 @@ There are two phases: 
 
 *   Starting on **1 June 2025**, the default network bypass policy behavior will change. If the new setting is unset, network bypass for tasks using System-Assigned Managed Identity (SAMI) tokens will be denied by default and will require explicit configuration to restore functionality. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`.     
 
-**Important**: _There is no impact to customers using [User-Assigned Identity](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-authentication-managed-identity)_
+**Important**: _There is no impact to customers using [User-Assigned Identity](articles/container-registry/container-registry-tasks-authentication-managed-identity.md)_
 
-**Required action**: Beginning **1 June 2025**, newly configured tasks workflows will be required to use the new network bypass policy. To avoid any potential issues, ensure your configurations are updated to use this new feature or alternatively use Agent Pool. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`. Alternatively, you may use the container registry Agent Pool feature to also restrict access. Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/tasks-agent-pools) to configure firewall rules and/or advanced network configuration per your desired requirements. 
+**Required action**: Beginning **1 June 2025**, newly configured tasks workflows will be required to use the new network bypass policy. To avoid any potential issues, ensure your configurations are updated to use this new feature or alternatively use Agent Pool. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`. Alternatively, you may use the container registry Agent Pool feature to also restrict access. Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired requirements. 
 
 ### Enabling and disabling the network rule bypass policy setting 
 
@@ -56,7 +55,7 @@ To enable or disable the new policy setting, please run the relevant command and
 registry="myregistry" 
 resourceGroup="myresourcegroup"  
 
-# enable networkRuleBypassAllowedForTasks az resource update \ 
+enable networkRuleBypassAllowedForTasks az resource update \ 
 --namespace Microsoft.ContainerRegistry \ 
 --resource-type registries \ 
 --name $registry \ 
@@ -71,7 +70,7 @@ resourceGroup="myresourcegroup"  
 registry="myregistry" 
 resourceGroup="myresourcegroup"   
 
-# disable networkRuleBypassAllowedForTasks az resource update \ 
+disable networkRuleBypassAllowedForTasks az resource update \ 
 --namespace Microsoft.ContainerRegistry \ 
 --resource-type registries \ --name $registry \ 
 --resource-group $resourceGroup \ 
@@ -85,7 +84,7 @@ resourceGroup="myresourcegroup"   
 registry="myregistry" 
 resourceGroup="myresourcegroup"  
 
-# show networkRuleBypassAllowedForTasks  
+show networkRuleBypassAllowedForTasks \ 
 az resource show \  
 --namespace Microsoft.ContainerRegistry \  
 --resource-type registries \  
@@ -104,7 +103,7 @@ Here are some scenarios which may be most appropriate for your use case. The ste
 Steps to enable: 
 
 1.  
-Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](https://learn.microsoft.com/en-us/azure/container-registry/tasks-agent-pools) to configure firewall rules and/or advanced network configuration per your desired method.  
+Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired method.  
     
 
 2.  
@@ -142,24 +141,23 @@ az acr task create --name <task-name> --agent-pool \ 
 
 **Scenario 2: Opt in to enable the new network bypass policy setting.** 
 
-1.  
-
-```
-registry="myregistry" 
+1. 
+ 
+`registry="myregistry" 
 resourceGroup="myresourcegroup"  
 
-# enable networkRuleBypassAllowedForTasks az resource update \ 
+enable networkRuleBypassAllowedForTasks az resource update \ 
 --namespace Microsoft.ContainerRegistry \ 
 --resource-type registries \ --name $registry \ 
 --resource-group $resourceGroup \ 
 --api-version 2025-05-01-preview \ 
---set properties.networkRuleBypassAllowedForTasks=true
-```
+--set properties.networkRuleBypassAllowedForTasks=true`
+
   
     
 
-2.  
-Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-tasks-logs). 
+2. 
+Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md). 
     
 
 **Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting.** 
@@ -168,7 +166,7 @@ Verify that tasks can continue bypassing network restrictions successfully by ru
 
 **Phase 2**: _After **June 1, 2025**, if the `networkRuleBypassAllowedForTasks` setting is not explicitly set, network bypass for tasks is denied by default, resulting in `403 errors` for tasks requiring network bypass._ 
 
-**Scenario 4**: **Use** [az acr purge](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge) **locally for image cleanup** 
+**Scenario 4**: **Use** [az acr purge](articles/container-registry/container-registry-auto-purge.md) **locally for image cleanup** 
 
 Users who prefer not to opt into the new policy setting and are not using network bypass can manage their ACR cleanup tasks locally using the `az acr purge` command. To do this, they can download the ACR CLI binary from [Azure ACR CLI GitHub](https://github.com/azure/acr-cli) and execute commands on their own machine. This enables them to remove unneeded or stale images from their registry without relying on ACR tasks or altering their current configuration. Running the purge locally ensures all operations occur within their trusted environment (customer managed trust boundary), avoiding any dependency on network bypass. 
 
@@ -183,6 +181,6 @@ If you have a support plan and need technical help, open the ⁠[Azure portal](h
 ## Related content
 
 > [!div class="nextstepaction"]
-> [Next sequential article title](link.md)
+> [Next sequential article title](articles/container-registry/tasks-agent-pools.md)
 
 
