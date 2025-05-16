@@ -161,4 +161,4 @@ If you have a support plan and need technical help, open the ⁠[Azure portal](h
 ## Related content
 
 > [!div class="nextstepaction"]
-> [Next sequential article title](articles/container-registry/tasks-agent-pools.md)
+> [Next sequential article title](~/articles/container-registry/tasks-agent-pools.md)
