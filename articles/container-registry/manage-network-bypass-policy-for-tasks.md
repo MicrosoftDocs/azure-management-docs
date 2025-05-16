@@ -96,7 +96,7 @@ Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](~/articles/
 
 Provision a dedicated agent pool:
 
-```md
+```azurecli
 az acr agentpool create --name <agent-pool-name> --registry \
 
 <registry-name> --vnet <vnet-name>
