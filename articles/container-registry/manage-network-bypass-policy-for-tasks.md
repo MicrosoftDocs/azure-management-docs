@@ -143,7 +143,7 @@ Verify that tasks can continue bypassing network restrictions successfully by ru
 **Phase 2**: _After **June 1, 2025**, if the `networkRuleBypassAllowedForTasks` setting is not explicitly set, network bypass for tasks is denied by default, resulting in `403 errors` for tasks requiring network bypass._
 
 
-### Scenario 4: Use [az acr purge](articles/container-registry/container-registry-auto-purge.md) locally for image cleanup
+### Scenario 4: Use [az acr purge](~/articles/container-registry/container-registry-auto-purge.md) locally for image cleanup
 
 Users who prefer not to opt into the new policy setting and are not using network bypass can manage their ACR cleanup tasks locally using the `az acr purge` command. To do this, they can download the ACR CLI binary from [Azure ACR CLI GitHub](https://github.com/azure/acr-cli) and execute commands on their own machine. This enables them to remove unneeded or stale images from their registry without relying on ACR tasks or altering their current configuration. Running the purge locally ensures all operations occur within their trusted environment (customer managed trust boundary), avoiding any dependency on network bypass.
 
