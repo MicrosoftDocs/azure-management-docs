@@ -113,7 +113,7 @@ az acr build --registry <registry-name> --agent-pool \
 
 
 
-```md
+```azurecli
 az acr task create --name <task-name> --agent-pool \
 
 <agent-pool-name> --registry <registry-name> --schedule <cron_format>
