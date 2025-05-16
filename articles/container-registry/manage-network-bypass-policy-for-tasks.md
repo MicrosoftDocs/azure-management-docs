@@ -133,7 +133,7 @@ az resource update \
 --set properties.networkRuleBypassAllowedForTasks=true
 ```
  
-Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md).
+Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](~/articles/container-registry/container-registry-tasks-logs.md).
 
 
 ### Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting
