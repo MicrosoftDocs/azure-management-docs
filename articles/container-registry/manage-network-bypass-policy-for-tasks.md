@@ -38,7 +38,7 @@ To enable or disable the new policy setting, please run the relevant command and
 
 **Enable**
 
-```azurecli
+```md
 registry="myregistry"
 resourceGroup="myresourcegroup"  
  
@@ -54,7 +54,7 @@ az resource update \
 **Disable**
 
 
-```azurecli
+```md
 registry="myregistry"
 resourceGroup="myresourcegroup"
  
@@ -66,10 +66,11 @@ az resource update \
 --set properties.networkRuleBypassAllowedForTasks=false
 ```
 
+
 **Check Status**
 
 
-```azurecli
+```md
 registry="myregistry"
 resourceGroup="myresourcegroup"  
 
@@ -82,11 +83,12 @@ az resource show \
 --query properties.networkRuleBypassAllowedForTasks`
 ```
 
+
 ## Customer Scenarios
 
 Here are some scenarios which may be most appropriate for your use case. The steps can be accomplished using either the Azure CLI or ARM Template. The following examples focus on the Azure CLI.  
 
-**Scenario 1: Use Agent Pool.**
+### Scenario 1: Use Agent Pool
 
 Steps to enable:
 
@@ -94,7 +96,7 @@ Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/co
 
 Provision a dedicated agent pool:
 
-```azurecli
+```md
 az acr agentpool create --name <agent-pool-name> --registry \
 
 <registry-name> --vnet <vnet-name>
@@ -103,21 +105,23 @@ az acr agentpool create --name <agent-pool-name> --registry \
 Configure a quick task to run in the agent pool using acr build or automatically triggered task using acr task commands.
 
 
-```azurecli
+```md
 az acr build --registry <registry-name> --agent-pool \
 
 <agent-pool-name> --image <image:tag> --file Dockerfile <path>
 ```
 
-```azurecli
+
+
+```md
 az acr task create --name <task-name> --agent-pool \
 
 <agent-pool-name> --registry <registry-name> --schedule <cron_format>
 ```
 
-**Scenario 2: Opt in to enable the new network bypass policy setting.**
+### Scenario 2: Opt in to enable the new network bypass policy setting
 
-```azurecli
+```md
 registry="myregistry"
 resourceGroup="myresourcegroup"  
 
@@ -128,27 +132,28 @@ az resource update \
 --api-version 2025-05-01-preview \
 --set properties.networkRuleBypassAllowedForTasks=true
 ```
+ 
+Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md).
 
- Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md).
 
-**Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting.**
+### Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting
 
 **Phase 1**: _ACR continues to honor the existing `networkRuleBypassAllowed` setting until **May 16, 2025**._
 
 **Phase 2**: _After **June 1, 2025**, if the `networkRuleBypassAllowedForTasks` setting is not explicitly set, network bypass for tasks is denied by default, resulting in `403 errors` for tasks requiring network bypass._
 
 
-**Scenario 4**: **Use** [az acr purge](articles/container-registry/container-registry-auto-purge.md) **locally for image cleanup**
+### Scenario 4: Use [az acr purge](articles/container-registry/container-registry-auto-purge.md) locally for image cleanup
 
 Users who prefer not to opt into the new policy setting and are not using network bypass can manage their ACR cleanup tasks locally using the `az acr purge` command. To do this, they can download the ACR CLI binary from [Azure ACR CLI GitHub](https://github.com/azure/acr-cli) and execute commands on their own machine. This enables them to remove unneeded or stale images from their registry without relying on ACR tasks or altering their current configuration. Running the purge locally ensures all operations occur within their trusted environment (customer managed trust boundary), avoiding any dependency on network bypass.
 
 
-**Scenario 5: Build and manage images on self-hosted environments**
+### Scenario 5: Build and manage images on self-hosted environments
 
 Users who wish to build container images or manage registries without opting in can use self-hosted environments. By running Docker or container runtime commands (e.g., `docker build` and `docker push`) on their own agents or machines that have direct access to the ACR registry, they can perform these tasks securely. This approach eliminates the need for ACR Tasks and/or network bypass, as operations are conducted entirely within their infrastructure, maintaining full control over their workflows (customer manages trust boundary).
 
 
-**Help and support**
+## Help and support
 
 If you have a support plan and need technical help, open the ⁠[Azure portal](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview) and select the question mark icon at the top of the page.
 
