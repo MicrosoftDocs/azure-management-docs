@@ -92,7 +92,7 @@ Here are some scenarios which may be most appropriate for your use case. The ste
 
 Steps to enable:
 
-Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired method.  
+Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](~/articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired method.  
 
 Provision a dedicated agent pool:
 
