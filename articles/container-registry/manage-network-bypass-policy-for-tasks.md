@@ -54,7 +54,7 @@ az resource update \
 **Disable**
 
 
-```md
+```azurecli
 registry="myregistry"
 resourceGroup="myresourcegroup"
  
