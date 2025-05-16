@@ -28,7 +28,7 @@ There are two phases:
 * Starting on **1 June 2025**, the default network bypass policy behavior will change. If the new setting is unset, network bypass for tasks using System-Assigned Managed Identity (SAMI) tokens will be denied by default and will require explicit configuration to restore functionality. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`.
 
 > [!IMPORTANT]
-> There is no impact to customers using [User-Assigned Identity](articles/container-registry/container-registry-tasks-authentication-managed-identity.md)
+> There is no impact to customers using [User-Assigned Identity](~/articles/container-registry/container-registry-tasks-authentication-managed-identity.md)
 
 **Required action**: Beginning **1 June 2025**, newly configured tasks workflows will be required to use the new network bypass policy. To avoid any potential issues, ensure your configurations are updated to use this new feature or alternatively use Agent Pool. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`. Alternatively, you may use the container registry Agent Pool feature to also restrict access. Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired requirements.
 
