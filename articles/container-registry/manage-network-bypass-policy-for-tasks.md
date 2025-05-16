@@ -13,7 +13,7 @@ ms.date: 05/15/2025
 
 # Manage network bypass policy for tasks
 
-The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting being introduced allowing customers to opt-in to network bypass for tasks. As discussed in [ACR trusted services](/container-registry/allow-access-trusted-services.md), some users require network restricted access to a container registry. This network restriction allows for certain services or identities to bypass network controls based on defined rule access.
+The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting being introduced allowing customers to opt-in to network bypass for tasks. As discussed in [ACR trusted services](~/articles/container-registry/allow-access-trusted-services.md), some users require network restricted access to a container registry. This network restriction allows for certain services or identities to bypass network controls based on defined rule access.
 
 ## Why is the change happening?
 
