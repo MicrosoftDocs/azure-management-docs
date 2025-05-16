@@ -121,7 +121,7 @@ az acr task create --name <task-name> --agent-pool \
 
 ### Scenario 2: Opt in to enable the new network bypass policy setting
 
-```md
+```azurecli
 registry="myregistry"
 resourceGroup="myresourcegroup"  
 
