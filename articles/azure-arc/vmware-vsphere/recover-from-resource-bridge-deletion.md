@@ -17,22 +17,29 @@ In this article, you learn how to restore the Azure Arc resource bridge connecti
 
 ## Recover the Arc resource bridge
 
-The connection between on-premises infrastructure and Azure can be lost and any operations performed through Arc can fail in case of the following disaster scenarios:
+The connection between on-premises infrastructure and Azure can be lost and any operations performed through Azure Arc can fail in case of the following disaster scenarios:
+
 - Accidental deletion of the VM
 - VM connection failure (for example, due to changes in the network configuration of the infrastructure)
 - VM upgrade failures which can’t be fixed and need redeployment
 
-In such disaster scenarios, you need to deploy a new resource bridge with the same resource ID as the current resource bridge using the following steps.
+- Expiration of the VM certs due to lack of upgrades
 
-1. Copy the Azure region and resource IDs of the Arc resource bridge, custom location, and vCenter Azure resources.
+In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same resource ID as the current resource bridge following the steps below:
 
-2. The onboarding script (or `az arcappliance run` command) creates a few `YAML` files to store some metadata about the appliance.
-    - If the `YAML` files are not accessible, manually delete the resource bridge from Azure and also the resource bridge VM from the vCenter (if the VM exists).
-    - If the `YAML` files are accessible, run the script from the same folder where these files are present, and the script will handle the deletion of the resource bridge.
+1. To prepare for deploying a new resource bridge to replace the current resource bridge, find and keep a copy of the following properties from the current resource bridge that will be re-used for the new resource bridge: 
 
-3. Download the [onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) from the Azure portal and update the following section in the script, using the same information as the original resources in Azure.
+1. Azure region, Arc resource bridge ARM resource ID, custom location resource ID, resource ID of the vCenter Azure resource. 
 
-    ```powershell
+1. Go to Azure Portal, search for your resource bridge VM and delete the resource bridge ARM resource from Azure Portal. This is a necessary step as part of the disaster recovery process because we will deploy a new resource bridge with the same properties to replace this one. All the other related components, like custom location, vCenter resource, in Azure Portal and any other Azure resources should remain in Azure Portal. 
+
+1. Go to your vCenter console and delete the Azure Arc resource bridge VM from the vCenter if it exists. The VM will be re-created in a later step as part of the disaster recovery.
+
+1. Download the [onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) from the Azure portal. You will need to make changes to this script as this is the day 0 deployment script and changes must be made to support the disaster recovery scenario.
+
+1. Open the onboarding script in an editor and update the following section in the script with the properties from the current Arc resource bridge that you copied in Step 1: Azure region, Arc resource bridge ARM resource ID, custom location resource ID, and resource ID of the vCenter Azure resource.
+
+       ```powershell
     $location = <Azure region of the resources>
     $applianceSubscriptionId = <subscription-id>
     $applianceResourceGroupName = <resource-group-name>
