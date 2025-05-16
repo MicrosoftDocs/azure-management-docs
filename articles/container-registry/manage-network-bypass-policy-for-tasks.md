@@ -105,7 +105,7 @@ az acr agentpool create --name <agent-pool-name> --registry \
 Configure a quick task to run in the agent pool using acr build or automatically triggered task using acr task commands.
 
 
-```md
+```azurecli
 az acr build --registry <registry-name> --agent-pool \
 
 <agent-pool-name> --image <image:tag> --file Dockerfile <path>
