@@ -70,7 +70,7 @@ az resource update \
 **Check Status**
 
 
-```md
+```azurecli
 registry="myregistry"
 resourceGroup="myresourcegroup"  
 
