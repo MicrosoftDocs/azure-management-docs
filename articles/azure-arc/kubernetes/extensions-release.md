@@ -272,7 +272,7 @@ For more information, see [Connected registry for Azure Arc-enabled Kubernetes c
 
 Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG). RAG is an industry-standard architecture that augments the capabilities of a language model with private data. With Edge RAG, build custom chat assistants and derive insights from your private data.
 
-For more information, see [What is Edge RAG?](../edge-rag/overview).
+For more information, see [What is Edge RAG?](../edge-rag/overview)
 
 ## Related content
 
