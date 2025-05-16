@@ -17,7 +17,7 @@ The ACR tasks `networkRuleBypassAllowedForTasks` setting is a new policy setting
 
 ## Why is the change happening?
 
-ACR users can configure tasks to use System Assigned Managed Identity (SAMI) to authenticate with a container registry. However, when the registry is network isolated, the registry owner can specify Allow trusted Microsoft services to access this container registry. ACR tasks have transitioned from listing as a [trusted service](articles/container-registry/allow-access-trusted-services.md). Because registry owners can enable the trusted service setting to continue to allow tasks as a trusted service, the new policy setting disables this by default ensuring customers workflows remain secured.  
+ACR users can configure tasks to use System Assigned Managed Identity (SAMI) to authenticate with a container registry. However, when the registry is network isolated, the registry owner can specify Allow trusted Microsoft services to access this container registry. ACR tasks have transitioned from listing as a [trusted service](~/articles/container-registry/allow-access-trusted-services.md). Because registry owners can enable the trusted service setting to continue to allow tasks as a trusted service, the new policy setting disables this by default ensuring customers workflows remain secured.  
 
 ## When will the change take effect?
 
