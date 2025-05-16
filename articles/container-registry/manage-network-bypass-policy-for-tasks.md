@@ -32,62 +32,59 @@ There are two phases:
 
 **Required action**: Beginning **1 June 2025**, newly configured tasks workflows will be required to use the new network bypass policy. To avoid any potential issues, ensure your configurations are updated to use this new feature or alternatively use Agent Pool. Customers who rely on network bypass for their container registry tasks but have not explicitly set the new policy setting will encounter `403 forbidden errors`. Alternatively, you may use the container registry Agent Pool feature to also restrict access. Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/container-registry/tasks-agent-pools.md) to configure firewall rules and/or advanced network configuration per your desired requirements.
 
-### Enabling and disabling the network rule bypass policy setting
+## Enabling and disabling the network rule bypass policy setting
 
 To enable or disable the new policy setting, please run the relevant command and required variables as it pertains to your scenario.
 
 **Enable**
 
-`registry="myregistry"`
-
-`resourceGroup="myresourcegroup"  `
-
-`enable networkRuleBypassAllowedForTasks az resource update `  
-`--namespace Microsoft.ContainerRegistry `  
-`--resource-type registries `  
-`--name $registry `  
-`--resource-group $resourceGroup `  
-`--api-version 2025-05-01-preview `  
-`--set properties.networkRuleBypassAllowedForTasks=true`
+```azurecli
+registry="myregistry"
+resourceGroup="myresourcegroup"  
+ 
+az resource update \
+--namespace Microsoft.ContainerRegistry \
+--resource-type registries \
+--name $registry \
+--resource-group $resourceGroup \
+--api-version 2025-05-01-preview \
+--set properties.networkRuleBypassAllowedForTasks=true
+```
 
 **Disable**
 
-`registry="myregistry"`
 
-`resourceGroup="myresourcegroup"`
-
-`disable networkRuleBypassAllowedForTasks az resource update `  
-`--namespace Microsoft.ContainerRegistry `  
-`--resource-type registries \ --name $registry `  
-`--resource-group $resourceGroup `  
-`--api-version 2025-05-01-preview `  
-`--set properties.networkRuleBypassAllowedForTasks=false`
+```azurecli
+registry="myregistry"
+resourceGroup="myresourcegroup"
+ 
+az resource update \
+--namespace Microsoft.ContainerRegistry \
+--resource-type registries \ --name $registry \
+--resource-group $resourceGroup \
+--api-version 2025-05-01-preview \
+--set properties.networkRuleBypassAllowedForTasks=false
+```
 
 **Check Status**
 
-`registry="myregistry"`
 
-`resourceGroup="myresourcegroup"  `
+```azurecli
+registry="myregistry"
+resourceGroup="myresourcegroup"  
 
-`show networkRuleBypassAllowedForTasks `  
-`az resource show \ `
-
-`--namespace Microsoft.ContainerRegistry \ `
-
-`--resource-type registries \ `
-
-`--name $registry \ `
-
-`--resource-group $resourceGroup \ `
-
-`--api-version 2025-05-01-preview \ `
-
-`--query properties.networkRuleBypassAllowedForTasks`
+az resource show \  
+--namespace Microsoft.ContainerRegistry \  
+--resource-type registries \  
+--name $registry \  
+--resource-group $resourceGroup \  
+--api-version 2025-05-01-preview \  
+--query properties.networkRuleBypassAllowedForTasks`
+```
 
 ## Customer Scenarios
 
 Here are some scenarios which may be most appropriate for your use case. The steps can be accomplished using either the Azure CLI or ARM Template. The following examples focus on the Azure CLI.  
-
 
 **Scenario 1: Use Agent Pool.**
 
@@ -97,36 +94,42 @@ Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](articles/co
 
 Provision a dedicated agent pool:
 
-`az acr agentpool create --name <agent-pool-name> --registry \`
+```azurecli
+az acr agentpool create --name <agent-pool-name> --registry \
 
-`<registry-name> --vnet <vnet-name>`
+<registry-name> --vnet <vnet-name>
+```
 
 Configure a quick task to run in the agent pool using acr build or automatically triggered task using acr task commands.
 
-`az acr build --registry <registry-name> --agent-pool \`
 
-`<agent-pool-name> --image <image:tag> --file Dockerfile \ <path>`
+```azurecli
+az acr build --registry <registry-name> --agent-pool \
 
-`az acr task create --name <task-name> --agent-pool \`
+<agent-pool-name> --image <image:tag> --file Dockerfile <path>
+```
 
-`<agent-pool-name> --registry <registry-name> --schedule \ <cron_format>` 
+```azurecli
+az acr task create --name <task-name> --agent-pool \
 
+<agent-pool-name> --registry <registry-name> --schedule <cron_format>
+```
 
 **Scenario 2: Opt in to enable the new network bypass policy setting.**
 
-`registry="myregistry"`
+```azurecli
+registry="myregistry"
+resourceGroup="myresourcegroup"  
 
-`resourceGroup="myresourcegroup"  `
+az resource update \
+--namespace Microsoft.ContainerRegistry \
+--resource-type registries \ --name $registry \
+--resource-group $resourceGroup \
+--api-version 2025-05-01-preview \
+--set properties.networkRuleBypassAllowedForTasks=true
+```
 
-`enable networkRuleBypassAllowedForTasks az resource update `  
-`--namespace Microsoft.ContainerRegistry `  
-`--resource-type registries \ --name $registry `  
-`--resource-group $resourceGroup `  
-`--api-version 2025-05-01-preview `  
-`--set properties.networkRuleBypassAllowedForTasks=true`
-
-Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md).
-
+ Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](articles/container-registry/container-registry-tasks-logs.md).
 
 **Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting.**
 
