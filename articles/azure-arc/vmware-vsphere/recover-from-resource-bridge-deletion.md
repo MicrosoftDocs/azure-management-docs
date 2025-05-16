@@ -67,7 +67,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
    ./resource-bridge-onboarding-script.ps1 --force
     ```
     
-1. Once the script successfully finishes, the resource bridge should be recovered, and the previously disconnected Arc-enabled resources are manageable in Azure again.
+1. Once the script successfully finishes, the new resource bridge should be deployed and re-connected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources should be manageable in Azure again.
 
 ## Next steps
 
