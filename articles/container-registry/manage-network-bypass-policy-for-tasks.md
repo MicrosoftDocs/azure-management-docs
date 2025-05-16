@@ -38,7 +38,7 @@ To enable or disable the new policy setting, please run the relevant command and
 
 **Enable**
 
-```md
+```azurecli
 registry="myregistry"
 resourceGroup="myresourcegroup"  
  
