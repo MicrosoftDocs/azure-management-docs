@@ -5,9 +5,8 @@ ms.topic: concept-article
 ms.date: 01/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # Azure Arc agent

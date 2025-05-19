@@ -21,9 +21,9 @@ To launch Cloud Shell from within the Azure mobile app, select the **Cloud Shell
 
 ## Set up storage account
 
-Cloud Shell requires a storage account to be associated with your sessions (or an [ephemeral session](/azure/cloud-shell/get-started/ephemeral)). If you already set up a storage account for Cloud shell, or you opted to use ephemeral sessions, that selection is remembered when you launch Cloud Shell in the Azure mobile app.
+Cloud Shell requires a storage account to be associated with your sessions, unless you set up [ephemeral sessions](/azure/cloud-shell/get-started/ephemeral)). If you already set up a storage account for Cloud shell, or you opted to use ephemeral sessions, that selection is remembered when you launch Cloud Shell in the Azure mobile app.
 
-If you haven't used Cloud Shell before, you need to create a new storage account for Cloud Shell. When you first launch Cloud Shell, you'll be prompted to select a subscription in which a new storage account will be created.
+If you haven't used Cloud Shell before, you're prompted to select a subscription in which a new storage account will be created for you.
 
 :::image type="content" source="media/cloud-shell/cloud-shell-storage.png" alt-text="Screenshot of Cloud Shell in the Azure mobile app for a new user. ":::
 
@@ -34,7 +34,7 @@ The Cloud Shell toolbar in the Azure mobile app offers several helpful commands:
 :::image type="content" source="media/cloud-shell/cloud-shell-toolbar.png" alt-text="Screenshot showing the Cloud Shell toolbar in the Azure mobile app.":::
 
 - Select **X** to close Cloud Shell and return to **Home**.
-- Select the dropdown to switch between Bash and PowerShell.
+- Select **Bash** or **PowerShell** dropdown to change your selection.
 - Select the **Power** button to restart Cloud Shell with a new session.
 - Select the **Clipboard** icon to paste content from your device's clipboard.
 

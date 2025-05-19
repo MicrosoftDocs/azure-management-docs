@@ -8,7 +8,7 @@ ms.custom: devx-track-ansible
 
 # Enable Azure VM extensions by using Red Hat Ansible automation
 
-This article shows you how to deploy virtual machine (VM) extensions to Azure Arc-enabled servers at scale by using Red Hat Ansible Automation Platform. The examples in this article rely on content developed and incubated by Red Hat through the [Ansible Content Lab for Cloud Content](https://cloud.lab.ansible.io/).
+This article shows you how to deploy [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers at scale by using Red Hat Ansible Automation Platform. The examples in this article rely on content developed and incubated by Red Hat through the [Ansible Content Lab for Cloud Content](https://cloud.lab.ansible.io/).
 
 This article also uses the [Azure Infrastructure Configuration Demo](https://github.com/ansible-content-lab/azure.infrastructure_config_demos) collection. This collection contains many roles and playbooks that are pertinent to this article, including the following:
 

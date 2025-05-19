@@ -131,6 +131,7 @@ To create a subvolume using extension identity to connect to your storage accoun
     spec:
       edgevolume: <your-edge-volume-name-here>
       path: exampleSubDir # If you change this path, line 33 in deploymentExample.yaml must be updated. Don't use a preceding slash.
+      subvolumeType: INGEST 
       auth:
         authType: MANAGED_IDENTITY
       storageaccountendpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
