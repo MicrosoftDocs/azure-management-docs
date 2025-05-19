@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 01/08/2025
+ms.date: 05/13/2025
 keywords: "VMM, Arc, Azure"
 ---
 
@@ -24,7 +24,7 @@ The resource bridge associated with your SCVMM environment must be upgraded manu
 
 ## Versions and upgrade availability
 
-Periodically, new versions of the Azure Arc resource bridge are released to include security and feature updates. Generally, the latest released version and the previous three versions (n-3) of resource bridge are supported. A resource bridge on an unsupported version must be upgraded or redeployed to be in a production support window. To stay informed on releases, visit the [Azure Arc resource bridge release notes](/azure/azure-arc/resource-bridge/release-notes).
+Periodically, new versions of the Azure Arc resource bridge are released to include security and feature updates. Generally, the latest released version and the previous three versions (up to n-3) of resource bridge are supported. A resource bridge on an unsupported version must be upgraded or redeployed to be in a production support window to ensure the certificates in the resource bridge are still valid. Hence, it is highly recommended to maintain the resource bridge in the latest version and to perform upgrades every six months. To stay informed on releases, visit the [Azure Arc resource bridge release notes](/azure/azure-arc/resource-bridge/release-notes).
 
 If your resource bridge is at version n-3, you might receive an email notification letting you know that your resource bridge will be out of support once the next version is released. If you receive this notification, upgrade the resource bridge as soon as possible to be in the latest version. If there are any issues with manual upgrade, submit a support ticket to receive assistance from Microsoft while you're still in a supported version.
 
