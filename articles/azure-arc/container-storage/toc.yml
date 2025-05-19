@@ -3,8 +3,8 @@ items:
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Azure Arc Jumpstart
-  href: jumpstart.md
+- name: What's new?
+  href: whats-new.md
 - name: Quickstarts
   items:
   - name: Install Container Storage on a single-node Ubuntu cluster
@@ -89,7 +89,11 @@ items:
       href: monitor-deployment-cache-volumes.md
 - name: Resources
   items:
-  - name: FAQ and release notes
+  - name: Azure Arc Jumpstart scenarios
+    href: jumpstart.md
+  - name: Release notes
     href: release-notes.md
+  - name: FAQ
+    href: faq.yml
   - name: Support and feedback
     href: support-feedback.md
