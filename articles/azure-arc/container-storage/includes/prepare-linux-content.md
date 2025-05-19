@@ -52,7 +52,3 @@ The storage pool is configured to use 3-way replication to ensure fault toleranc
 For example, in a 3-node cluster with 20 GB of disk space per node, the cluster has a storage pool of 60 GB. However, due to replication, it has an effective storage size of 20 GB.
 
 When an Edge Volume is provisioned with a requested size of 10 GB, it allocates a reserved system volume (statically sized to 1 GB) and a data volume (sized to the requested volume size, for example 10 GB). The reserved system volume consumes 3 GB (3 x 1 GB) of disk space in the storage pool, and the data volume consumes 30 GB (3 x 10 GB) of disk space in the storage pool, for a total of 33 GB.
-
-### Cache Volumes (preview) requirements
-
-Cache Volumes (preview) requires at least 4 GB per node of storage. For example, if you have a 3-node cluster, you need at least 12 GB of storage.
