@@ -11,7 +11,7 @@ zone_pivot_groups: platform-select-with-other
 
 # Prepare Linux for Edge Volumes using a multi-node cluster
 
-This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
+This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux-edge-volumes.md#prerequisites).
 
 ::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc

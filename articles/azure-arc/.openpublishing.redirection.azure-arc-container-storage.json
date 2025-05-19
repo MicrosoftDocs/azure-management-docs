@@ -79,6 +79,51 @@
             "source_path_from_root": "/articles/azure-arc/container-storage/alternate-key-based.md",
             "redirect_url": "/azure/azure-arc/container-storage/overview",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/attach-app.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/cache-volumes-overview.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume-claim.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/install-cache-volumes.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/monitor-deployment-cache-volumes.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/multi-node-cluster.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/prepare-linux.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/container-storage/single-node-cluster.md",
+            "redirect_url": "/azure/azure-arc/container-storage/overview",
+            "redirect_document_id": false
         }
     ]
 }
