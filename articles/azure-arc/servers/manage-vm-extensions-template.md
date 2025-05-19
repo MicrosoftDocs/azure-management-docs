@@ -1,27 +1,52 @@
 ---
 title: Enable VM Extensions Using Azure Resource Manager Template
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using an Azure Resource Manager template.
-ms.date: 06/02/2022
+ms.date: 05/12/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ---
 
 # Enable Azure VM extensions by using an ARM template
 
-This article shows you how to use an Azure Resource Manager template (ARM template) to deploy Azure virtual machine (VM) extensions that are supported by Azure Arc-enabled servers.
+This article shows you how to use an Azure Resource Manager template (ARM template) to deploy [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
 
-You can add VM extensions to an ARM template and execute them with the deployment of the template. With the VM extensions supported by Azure Arc-enabled servers, you can deploy the extensions on Linux or Windows machines by using Azure PowerShell. Each sample that follows includes a template file and a parameter file with sample values to provide to the template.
+To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
 
-> [!NOTE]
-> Although you can batch multiple extensions and process them together, they're installed serially. After installation of the first extension installation is complete, the next extension is installed.
->
-> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, along with a separate parameter file for some extensions. Replace the example values in the samples with your own values before deploying.
 
-## Deploy the Log Analytics VM extension
+## Deployment commands
 
-To easily deploy the Log Analytics agent, use one of the following samples to install the agent on either Linux or Windows.
+These sample PowerShell commands install an extension on all the connected machines within a resource group, based on the information in your ARM template. The command uses the `TemplateFile` parameter to specify the template. If a parameters file is required, the `TemplateParameterFile` parameter is included to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
 
-### Template file for Linux
+To deploy an ARM template and parameter file, use the following command, replacing the example values with your own:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>" -TemplateParameterFile "<parameter-filename.json>"
+```
+
+For example:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\AzureMonitorAgent.json" -TemplateParameterFile "D:\Azure\Templates\AzureMonitorAgentParms.json"
+```
+
+To deploy an ARM template without a parameter file, use the following command, replacing the example values with your own:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>>"
+```
+
+For example:
+
+```powershell
+New-AzResourceGroupDeployment -ResourceGroupName "<ContosoEngineering>" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
+```
+
+## Deploy the Azure Monitor Agent VM extension
+
+To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview), use one of the following sample templates to install the agent on either Linux or Windows.
+
+### Azure Monitor Agent template file for Linux
 
 ```json
 {
@@ -43,13 +68,13 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
     },
     "resources": [
         {
-            "name": "[concat(parameters('vmName'),'/OMSAgentForLinux')]",
-            "type": "Microsoft.HybridCompute/machines/extensions",
+            "name": "[concat(parameters('vmName'),'/AzureMonitorLinuxAgent')]",
+            "type": "Microsoft.Compute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2022-03-10",
+            "apiVersion": "2021-11-01",
             "properties": {
-                "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                "type": "OmsAgentForLinux",
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorLinuxAgent",
                 "enableAutomaticUpgrade": true,
                 "settings": {
                     "workspaceId": "[parameters('workspaceId')]"
@@ -63,11 +88,11 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 }
 ```
 
-### Template file for Windows
+### Azure Monitor Agent template file for Windows
 
 ```json
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vmName": {
@@ -85,13 +110,13 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
     },
     "resources": [
         {
-            "name": "[concat(parameters('vmName'),'/MicrosoftMonitoringAgent')]",
-            "type": "Microsoft.HybridCompute/machines/extensions",
+            "name": "[concat(parameters('vmName'),'/AzureMonitorWindowsAgent')]",
+            "type": "Microsoft.Compute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2022-03-10",
+            "apiVersion": "2021-11-01",
             "properties": {
-                "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-                "type": "MicrosoftMonitoringAgent",
+                "publisher": "Microsoft.Azure.Monitor",
+                "type": "AzureMonitorWindowsAgent",
                 "autoUpgradeMinorVersion": true,
                 "enableAutomaticUpgrade": true,
                 "settings": {
@@ -106,11 +131,13 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 }
 ```
 
-### Parameter file
+### Azure Monitor Agent parameter file
+
+This parameter file can be used for both Linux and Windows.
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "vmName": {
@@ -129,25 +156,19 @@ To easily deploy the Log Analytics agent, use one of the following samples to in
 }
 ```
 
-Save the template and parameter file to disk, and edit the parameter file with the appropriate values for your deployment. You can then install the extension on all the connected machines within a resource group by using the following command. The command uses the `TemplateFile` parameter to specify the template and the `TemplateParameterFile` parameter to specify a file that contains parameters and parameter values.
-
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\LogAnalyticsAgent.json" -TemplateParameterFile "D:\Azure\Templates\LogAnalyticsAgentParms.json"
-```
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Azure Monitor Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
 ## Deploy the Custom Script Extension
 
-To use the Custom Script Extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are few differing characteristics that you should understand when you're using this extension with hybrid machines:
+To use the Custom Script Extension, deploy one of the following sample templates for Linux and Windows. For information about the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are a few differing characteristics that you should understand when you're using this extension with hybrid machines:
 
-* The list of supported operating systems with the Azure VM Custom Script Extension is not applicable to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
-
-* Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model are not applicable.
-
+* The list of supported operating systems with the Azure VM Custom Script Extension doesn't apply to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
+* Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model aren't applicable.
 * If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
 
 The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following templates.
 
-### Template file for Linux
+### Custom script extension template file for Linux
 
 ```json
 {
@@ -188,7 +209,7 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Template file for Windows
+### Custom script template file for Windows
 
 ```json
 {
@@ -237,7 +258,7 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Parameter file
+### Custom script parameter file
 
 ```json
 {
@@ -291,11 +312,13 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-## Deploy the Dependency agent extension
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Custom Script extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
-To use the Azure Monitor Dependency agent extension, run one of the following samples for Linux and Windows. If you're unfamiliar with the Dependency agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+## Deploy the Dependency Agent extension
 
-### Template file for Linux
+To use the Azure Monitor Dependency Agent extension, run one of the following samples for Linux and Windows. For more information about the Dependency Agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+
+### Dependency Agent template file for Linux
 
 ```json
 {
@@ -329,7 +352,7 @@ To use the Azure Monitor Dependency agent extension, run one of the following sa
 }
 ```
 
-### Template file for Windows
+### Dependency Agent template file for Windows
 
 ```json
 {
@@ -363,19 +386,13 @@ To use the Azure Monitor Dependency agent extension, run one of the following sa
 }
 ```
 
-### Template deployment
+Save the template, then install the Dependency Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
-Save the template file to disk. You can then deploy the extension to the connected machine by using the following command:
+## Deploy the Azure Key Vault extension
 
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
-```
+The following JSON shows the schema for the Azure Key Vault extension. This extension doesn't require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
 
-## Deploy the Azure Key Vault VM extension (preview)
-
-The following JSON shows the schema for the Key Vault VM extension (preview). The extension does not require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
-
-### Template file for Linux
+### Azure Key Vault template file for Linux
 
 ```json
 {
@@ -437,7 +454,7 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 }
 ```
 
-### Template file for Windows
+### Azure Key Vault template file for Windows
 
 ```json
 {
@@ -508,20 +525,14 @@ The following JSON shows the schema for the Key Vault VM extension (preview). Th
 ```
 
 > [!NOTE]
-> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. You can find more information about certificates in [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
+> Your observed certificate URLs should be of the form `https://myVaultName.vault.azure.net/secrets/myCertName`. The reason is that the `/secrets` path returns the full certificate, including the private key, whereas the `/certificates` path doesn't. For more information about certificates, see [Azure Key Vault keys, secrets, and certificates overview](/azure/key-vault/general/about-keys-secrets-certificates).
 
-### Template deployment
+Save the template and edit as needed for your environment. Then install the Azure Key Vault extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
 
-Save the template file to disk. You can then deploy the extension to the connected machine by using the following command.
-
-> [!NOTE]
-> The VM extension would require a system-assigned identity to be assigned to authenticate to Key Vault. See [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md) for Linux and Windows Azure Arc-enabled servers.
-
-```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\KeyVaultExtension.json"
-```
+> [!TIP]
+> The Azure Key Vault extension requires a system-assigned identity to be assigned to authenticate to Key Vault. For more information, see [Authenticate against Azure resources with Azure Arc-enabled servers](managed-identity-authentication.md).
 
 ## Related content
 
-* You can deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
-* You can find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
+* Learn how to deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
+* Explore troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
