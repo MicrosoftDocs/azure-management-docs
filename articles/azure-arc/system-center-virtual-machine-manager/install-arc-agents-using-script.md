@@ -4,9 +4,8 @@ description: Learn how to enable guest management using a script for Arc enabled
 ms.topic: how-to
 ms.date: 10/21/2024
 ms.service: azure-arc
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ms.subservice: azure-arc-scvmm
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.

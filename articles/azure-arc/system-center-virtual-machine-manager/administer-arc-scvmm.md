@@ -6,9 +6,8 @@ ms.date: 04/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom: devx-track-azurecli
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager

@@ -3,9 +3,8 @@ title: Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
 description: Learn how to troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors. 
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ms.topic: how-to 
 ms.date: 02/21/2025
 keywords: "VMM, Arc, Azure, System Center"
