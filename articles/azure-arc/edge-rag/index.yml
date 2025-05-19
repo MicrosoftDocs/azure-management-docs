@@ -1,0 +1,58 @@
+### YamlMime:Landing
+
+title: Edge RAG Preview, enabled by Azure Arc documentation # < 60 chars
+summary: Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).  # < 160 chars
+
+metadata:
+  title: Edge RAG Preview, enabled by Azure Arc Documentation
+  description: Edge RAG is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG).
+  ms.topic: landing-page
+  author: cwatson-cat
+  ms.author: cwatson
+  ms.date: 05/13/2025
+  ms.service: azure-arc
+
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+  # Card (optional)
+  - title: About Edge RAG Preview
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Edge RAG Preview?
+            url: overview.md
+          - text: Requirements
+            url: Requirements.md
+      - linkListType: whats-new
+        links:
+          - text: What's new in Edge RAG Preview?
+            url: whats-new.md
+
+  # Card (optional)
+  - title: Get started
+    linkLists:
+      - linkListType: deploy
+        links:
+          - text: Complete prerequisites
+            url: complete-prerequisites.md
+          - text: Deploy Edge RAG
+            url: deploy.md
+
+  # Card (optional)
+  - title: Build chat solution
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Overview
+            url: build-chat-solution-overview.md
+      - linkListType: how-to-guide
+        links:
+          - text: Add data source
+            url: add-data-source.md
+          - text: Set up the data query
+            url: set-up-data-query.md
+          - text: Test solution for end users
+            url: test-end-user-app.md

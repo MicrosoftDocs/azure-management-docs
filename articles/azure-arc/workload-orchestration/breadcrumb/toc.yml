@@ -1,0 +1,11 @@
+- name: Azure
+  tocHref: /azure
+  topicHref: /azure/index
+  items:
+  - name: Azure Arc
+    tocHref: /azure/azure-arc
+    topicHref: /azure/azure-arc
+    items:
+    - name: Workload Orchestration
+      tocHref: /azure/azure-arc/workload-orchestration
+      topicHref: /azure/azure-arc/workload-orchestration/index

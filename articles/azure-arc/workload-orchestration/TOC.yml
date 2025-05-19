@@ -1,0 +1,57 @@
+items: 
+  - name: Workload orchestration (preview)
+    href: index.yml
+    items:
+    - name: Get started
+      items:
+      - name: What is workload orchestration?
+        href: overview.md
+      - name: Prepare the environment for workload orchestration
+        href: initial-setup-environment.md
+      - name: Setup workload orchestration
+        href: initial-setup-configuration.md
+      - name: Onboarding scripts
+        href: onboarding-scripts.md
+      expanded: true
+    - name: Quickstarts with Azure CLI 
+      items:
+      - name: Create a solution without common configurations
+        href: quickstart-solution-without-common-configuration.md
+      - name: Create a solution with common configurations
+        href: quickstart-solution-with-common-configuration.md
+      - name: Create a solution with shared adapter dependency
+        href: quickstart-solution-shared-adapter-dependency.md
+      - name: Create a solution with multiple shared adapter dependencies
+        href: quickstart-solution-multiple-shared-adapter-dependency.md
+      - name: Create multiple instances of solution in the same K8s
+        href: quickstart-solution-multiple-instances-k8s.md
+      - name: Upgrade a shared application
+        href: quickstart-upgrade-shared-application.md
+    - name: Workload orchestration portal
+      items:
+      - name: Monitor your solutions in the portal
+        href: monitor.md
+      - name: Configure your solutions in the portal
+        href: configure.md
+      - name: Deploy your solutions in the portal
+        href: deploy.md
+    - name: Monitor your solutions in Azure portal 
+      href: azure-portal-monitoring.md
+    - name: Configuration templates
+      items: 
+      - name: Configuration template
+        href: configuring-template.md
+      - name: Configuration schema
+        href: configuring-schema.md
+    - name: Use service groups
+      href: service-group.md
+    - name: External validation for workload orchestration
+      items:
+      - name: External validation with Event Grid
+        href: external-validation.md
+      - name: External validation payloads
+        href: external-validation-payload.md
+    - name: RBAC guide 
+      href: rbac-guide.md
+    - name: Delete resources
+      href: delete-resources.md
