@@ -1,8 +1,8 @@
 ---
 title: "Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 01/07/2025
+ms.date: 05/13/2025
 ms.topic: how-to
-ms.custom: devx-track-azurecli
+ms.custom: devx-track-azurecli, references_regions
 description: "Learn how to resolve common problems with Azure Arc-enabled Kubernetes cluster extensions."
 ---
 
@@ -15,7 +15,7 @@ For help with troubleshooting Azure Arc-enabled Kubernetes problems in general, 
 ## GitOps (Flux v2)
 
 > [!NOTE]
-> You can use the Flux v2 extension in either an Azure Arc-enabled Kubernetes cluster or in an Azure Kubernetes Service (AKS) cluster. These troubleshooting tips generally apply to all cluster types.
+> You can use the Flux v2 extension in either an Azure Arc-enabled Kubernetes cluster or in an Azure Kubernetes Service (AKS) cluster. These tips generally apply to all cluster types.
 
 For general help with troubleshooting problems when you use `fluxConfigurations` resources, run these Azure CLI commands with the `--debug` parameter:
 
@@ -23,6 +23,15 @@ For general help with troubleshooting problems when you use `fluxConfigurations`
 az provider show -n Microsoft.KubernetesConfiguration --debug
 az k8s-configuration flux create <parameters> --debug
 ```
+
+### Helm chart config setting error
+
+You may see an error message reading "`Unable to render the Helm chart with the provided config settings and config protected settings : Recommendation Please check if the values provided to the config settings and the config protected settings are valid for this extension type : InnerError [template: azure-k8s-flux/templates/source-controller.yaml:100:24: executing "azure-k8s-flux/templates/source-controller.yaml" at <index (lookup "v1" "ConfigMap" "kube-system" "extension-manager-config").data "AZURE_TENANT_ID">: error calling index: index of untyped nil]`".
+
+To resolve this issue:
+
+- If you're running `microsoft.flux` version 1.15.1 or earlier, upgrade to version 1.15.2 or later.
+- If you're running `microsoft.flux` version 1.16.2 in the regions West Central US, France Central, UK South, or West Europe, upgrade to version 1.16.3 or later.
 
 ### Webhook dry run errors
 
@@ -32,7 +41,7 @@ For more information, see [How do I resolve "webhook does not support dry run" e
 
 ### Errors installing the microsoft.flux extension
 
-The `microsoft.flux` extension installs Flux controllers and Azure GitOps agents in an Azure Arc-enabled Kubernetes cluster or Azure Kubernetes Service (AKS) cluster. If the extension isn't already installed in a cluster and you [create a GitOps configuration resource](tutorial-use-gitops-flux2.md) for the cluster, the extension is installed automatically.
+The `microsoft.flux` extension installs Flux controllers and Azure GitOps agents in an Azure Arc-enabled Kubernetes cluster or AKS cluster. If the extension isn't already installed in a cluster and you [create a GitOps configuration resource](tutorial-use-gitops-flux2.md) for the cluster, the extension is installed automatically.
 
 If you experience an error during installation or if the extension shows a `Failed` state, make sure that the cluster doesn't have any policies that restrict creating the `flux-system` namespace or any of the resources in that namespace.
 
@@ -42,7 +51,7 @@ For an AKS cluster, ensure that the `Microsoft.ContainerService/AKS-ExtensionMan
 az feature register --namespace Microsoft.ContainerService --name AKS-ExtensionManager
 ```
 
-Next, run the following command to determine if there are other problems. Set the cluster type parameter (`-t`) to `connectedClusters` for For an Azure Arc-enabled cluster, or to `managedClusters` for an AKS cluster. If the extension was installed automatically when you created your GitOps configuration, the name of the `microsoft.flux` extension is `flux`.
+Next, run the following command to determine if there are other problems. Set the cluster type parameter (`-t`) to `connectedClusters` for an Azure Arc-enabled cluster, or to `managedClusters` for an AKS cluster. If the extension was installed automatically when you created your GitOps configuration, the name of the `microsoft.flux` extension is `flux`.
 
 ```azurecli
 az k8s-extension show -g <RESOURCE_GROUP> -c <CLUSTER_NAME> -n flux -t <connectedClusters or managedClusters>
@@ -132,7 +141,7 @@ Perhaps iptables or your kernel needs to be upgraded.
 
 This error occurs because installing the extension requires the `iptable_nat` module, but this module isn't automatically loaded in Oracle Linux (RHEL) 9.x distributions.
 
-To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you have signed into each node and manually added the `iptable_nat` module, retry the AMA installation.
+To fix this problem, you must explicitly load the `iptables_nat` module on each node in the cluster. Use the `modprobe` command `sudo modprobe iptables_nat`. After you sign into each node and manually add the `iptable_nat` module, retry the AMA installation.
 
 > [!NOTE]
 > Performing this step does not make the `iptables_nat` module persistent.  
@@ -252,7 +261,7 @@ NAME           TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)    AGE
 osm-injector   ClusterIP   10.0.39.54   <none>        9090/TCP   75m
 ```
 
-Ensure that the IP address that's listed for `osm-injector` service is `9090`. There should be no value listed for `EXTERNAL-IP`.
+Ensure that the IP address listed for `osm-injector` service is `9090`. There should be no value listed for `EXTERNAL-IP`.
 
 ### Check OSM injector endpoints
 
