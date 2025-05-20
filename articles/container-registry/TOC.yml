@@ -313,8 +313,6 @@
     items:
     - name: About connected registry
       href: intro-connected-registry.md
-    - name: Use with IoT Edge
-      href: overview-connected-registry-and-iot-edge.md
   - name: Quickstarts
     expanded: true
     items:
@@ -322,24 +320,18 @@
       href: quickstart-connected-registry-cli.md
     - name: Create connected registry - Portal
       href: quickstart-connected-registry-portal.md
-    - name: Deploy connected registry to IoT Edge
-      href: quickstart-deploy-connected-registry-iot-edge-cli.md
     - name: Deploy connected registry to Azure Arc
       href: quickstart-connected-registry-arc-cli.md
   - name: Tutorials
     items:
-    - name: Deploy connected registry to nested IoT Edge
-      href: tutorial-deploy-connected-registry-nested-iot-edge-cli.md
-    - name: Deploy Connected registry Azure arc extension
-      items:
-      - name: Secure and deploy Connected registry Arc extension
-        href: tutorial-connected-registry-arc.md
-      - name: Sync Connected registry with Azure arc
-        href: tutorial-connected-registry-sync.md
-      - name: Upgrade Connected registry with Azure arc
-        href: tutorial-connected-registry-upgrade.md
-      - name: Troubleshoot Connected registry with Azure arc
-        href: troubleshoot-connected-registry-arc.md
+    - name: Secure and deploy Connected registry Arc extension
+      href: tutorial-connected-registry-arc.md
+    - name: Sync Connected registry with Azure arc
+      href: tutorial-connected-registry-sync.md
+    - name: Upgrade Connected registry with Azure arc
+      href: tutorial-connected-registry-upgrade.md
+    - name: Troubleshoot Connected registry with Azure arc
+      href: troubleshoot-connected-registry-arc.md
   - name: Concepts
     items:
     - name: Access to connected registry
