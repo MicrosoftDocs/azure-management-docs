@@ -316,10 +316,8 @@
   - name: Quickstarts
     expanded: true
     items:
-    - name: Create connected registry - CLI
-      href: quickstart-connected-registry-cli.md
-    - name: Create connected registry - Portal
-      href: quickstart-connected-registry-portal.md
+    - name: Create connected registry
+      href: quickstart-create-connected-registry.md
     - name: Deploy connected registry to Azure Arc
       href: quickstart-connected-registry-arc-cli.md
   - name: Tutorials
