@@ -217,12 +217,12 @@
     },
     {
       "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-cli.md",
-      "redirect_url": "/azure/container-registry/create/quickstart-create-connected-registry",
+      "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-portal.md",
-      "redirect_url": "/azure/container-registry/create/quickstart-create-connected-registry",
+      "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
       "redirect_document_id": false
     }
   ]
