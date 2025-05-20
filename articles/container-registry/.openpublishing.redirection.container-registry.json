@@ -222,7 +222,7 @@
     },
     {
       "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-portal.md",
-      "redirect_url": "/azure/container-registry/create/quickstart-create-connected-registry.md",
+      "redirect_url": "/azure/container-registry/create/quickstart-create-connected-registry",
       "redirect_document_id": false
     }
   ]
