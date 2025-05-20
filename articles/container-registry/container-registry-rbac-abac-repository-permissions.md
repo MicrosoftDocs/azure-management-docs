@@ -34,13 +34,24 @@ You can enable ABAC for any registry, regardless of its SKU.
 ### Effect on existing role assignments
 
 > [!IMPORTANT]
-> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments aren't honored, because a different set of ACR built-in roles apply to ABAC-enabled registries.
+> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments aren't honored or will have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
 
 For example, the `AcrPull`, `AcrPush`, and `AcrDelete` roles aren't honored in an ABAC-enabled registry.
 Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
 
+Additionally, privileged roles such as `Owner`, `Contributor`, and `Reader` will have different effects on an ABAC-enabled registry.
+They will only grant control plane permissions to create, update, and delete the registry itself.
+These privileged roles won't grant any data plane permissions to the repositories and images in the registry.
+
 For more information on the role based on your scenario and registry role assignment permissions mode, see [scenarios for ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
 Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
+
+### Effect on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs
+
+> [!IMPORTANT]
+> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," new and existing ACR Tasks, as well as Quick Tasks, Quick Builds, and Quick Runs, will be affected. They will no longer have default data plane access to an ABAC-enabled source registry and its content.
+>
+> To understand the effects of this change—and how to grant data plane access for ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs in ABAC-enabled source registries—see [Appendix: Effects of Enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 ### Create a registry with ABAC enabled
 
@@ -569,6 +580,46 @@ To update or delete the role assignment, you can use [`az role assignment update
 The Azure portal supports a limited number of ABAC conditions per role assignment.
 
 To add more than the Azure portal limit of ABAC conditions, you can use the Azure CLI to create the role assignment with more ABAC conditions.
+
+## Appendix: Effects of Enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs
+
+### Effect on ACR Tasks
+
+> [!IMPORTANT]
+> When a registry is configured with **"RBAC Registry + ABAC Repository Permissions"**, new and existing ACR Tasks no longer have default data plane access to the source registry, including its images and artifacts within repositories. You must explicitly attach and set an identity that will be used by new and existing ACR Tasks to authenticate to an ABAC-enabled source registry. Afterwards, grant the attached identity the appropriate ACR built-in role to enable authentication and access to registry repositories.
+
+#### Attaching an Identity to a New ACR Task for Source Registry Access
+
+For ABAC-enabled source registries, use `az acr task create` with the `--source-acr-auth-id` flag to specify the identity the Task will use to authenticate to the source registry:
+
+- `--source-acr-auth-id [system]` – Attaches a system-assigned managed identity.
+- `--source-acr-auth-id $resourceId` – Attaches a user-assigned managed identity using its resource ID.
+
+Once the identity is attached, assign it an ACR built-in role (optionally with ABAC conditions) to grant appropriate permissions.
+
+#### Updating an Existing ACR Task to use an Identity for Source Registry Access
+
+For ABAC-enabled source registries, use `az acr task update` with the same `--source-acr-auth-id` options to assign or change the identity used by the Task to authenticate to the source registry. As with new Tasks, follow up with the appropriate role assignment.
+
+#### Removing Source Registry Access from an ACR Task
+
+To explicitly prevent an ACR Task from authenticating with an ABAC-enabled source registry and block the Task's permissions to the source registry, set `--source-acr-auth-id none`. This disables the task's ability to perform any operations on the source registry and content within it.
+
+> [!NOTE]
+> Note: The `--auth-mode` flag is deprecated for ABAC-enabled registries and no longer supported for controlling ACR Task access.
+
+### Effect on Quick Tasks, Quick Builds, and Quick Runs
+
+> [!IMPORTANT]
+> When a registry is configured with **"RBAC Registry + ABAC Repository Permissions"**, new Quick Tasks such as [Quick Builds](/cli/azure/acr#az_acr_build) and [Quick Runs](/cli/azure/acr#az_acr_run) will no longer have default data plane access to the source registry, including its images and artifacts within repositories. For Quick Tasks, you must use the caller's identity to authenticate the Quick Task to the source registry. The caller's identity must have the appropriate ACR built-in role to enable authentication and access to registry repositories.
+
+#### Running a Quick Task with the Caller Identity for Source Registry Access
+
+For ABAC-enabled source registries, use `az acr build` or `az acr run` with the `--source-acr-auth-id [caller]` option to specify the caller's identity as the identity the Quick Task will use to authenticate to the source registry. Before running the Quick Task, ensure that the caller's identity has the appropriate ACR built-in role to enable authentication and access to the source registry and its repositories.
+
+#### Running a Quick Task without Source Registry Access
+
+To run a Quick Task without any source registry access, use `az acr build` or `az acr run` with the `--source-acr-auth-id none` option. This disables the Quick Task's ability to perform any operations on the source registry and content within it.
 
 ## Next steps
 
