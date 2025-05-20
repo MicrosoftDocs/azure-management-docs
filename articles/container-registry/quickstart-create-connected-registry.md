@@ -1,6 +1,6 @@
 ---
 title: Quickstart - Create Connected Registry Using the CLI and Portal
-description: Use Azure CLI commands or Azure Portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
+description: Use Azure CLI commands or Azure portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
 ms.topic: quickstart
 ms.date: 10/31/2023
 ms.author: gaking
@@ -11,9 +11,9 @@ ms.service: azure-container-registry
 # customer intent: To create a connected registry resource in Azure using the Azure CLI or Azure Portal.
 ---
 
-# Quickstart: Create a connected registry using the Azure CLI or Azure Portal
+# Quickstart: Create a connected registry using the Azure CLI or Azure portal
 
-In this quickstart, you use the Azure CLI and Azure Portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The connected registry feature of Azure Container Registry allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with the cloud registry. 
+In this quickstart, you use the Azure CLI and Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The connected registry feature of Azure Container Registry allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with the cloud registry. 
 
 Here you create two connected registry resources for a cloud registry: one connected registry allows read and write (artifact pull and push) functionality and one allows read-only functionality. 
 
@@ -82,8 +82,8 @@ The following steps create a connected registry in [ReadWrite mode](intro-connec
 |Mode     | Select **ReadWrite**.         |
 |Name     | The connected registry name must start with a letter and contain only alphanumeric characters. It must be 5 to 40 characters long and unique in the hierarchy for this Azure container registry.       |
 |Logging properties     | Accept the default settings.       |
-|Sync properties    | Accept the default settings. Because there is no synchronization schedule defined by default, the repositories will be synchronized between the cloud registry and the connected registry without interruptions.      |
-|Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories will be synchronized between the cloud registry and the connected registry once it is deployed.     |
+|Sync properties    | Accept the default settings. Because there's no synchronization schedule defined by default, the repositories are synchronized between the cloud registry and the connected registry without interruptions.      |
+|Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories are synchronized between the cloud registry and the connected registry once deployed.     |
 
 :::image type="content" source="media/quickstart-connected-registry-portal/create-readwrite-connected-registry.png" alt-text="Create a connected registry in ReadWrite mode":::
 
@@ -102,9 +102,9 @@ az acr connected-registry create --registry $REGISTRY_NAME \
 ```
 
 This command creates a connected registry resource whose name is the value of *$CONNECTED_REGISTRY_RO* and links it to the cloud registry named with the value of *$REGISTRY_NAME*. 
-* The specified repositories will be synchronized between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
-* This resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality once deployed. 
-* Because there is no synchronization schedule defined for this connected registry, the repositories will be synchronized between the parent registry and the connected registry without interruptions.
+* The specified repositories are synchronized between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
+* The resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality once deployed. 
+* The repositories are synchronized between the parent registry and the connected registry without interruptions because there's no synchronization schedule defined for this connected registry.
 
 ---
 
@@ -125,8 +125,8 @@ The following steps create a connected registry in [ReadOnly mode](intro-connect
 |Mode     | Select **ReadOnly**.         |
 |Name     | The connected registry name must start with a letter and contain only alphanumeric characters. It must be 5 to 40 characters long and unique in the hierarchy for this Azure container registry.      |
 |Logging properties     | Accept the default settings.       |
-|Sync properties    | Accept the default settings. Because there is no synchronization schedule defined by default, the repositories will be synchronized between the cloud registry and the connected registry without interruptions.      |
-|Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories will be synchronized between the parent registry and the connected registry once it is deployed.     |
+|Sync properties    | Accept the default settings. Because there's no synchronization schedule defined by default, the repositories are synchronized between the cloud registry and the connected registry without interruptions.      |
+|Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories are synchronized between the parent registry and the connected registry once deployed.     |
 
 :::image type="content" source="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png" alt-text="Create a connected registry in ReadOnly mode":::
 
@@ -145,9 +145,9 @@ az acr connected-registry create --registry $REGISTRY_NAME \
 ```
 
 This command creates a connected registry resource whose name is the value of *$CONNECTED_REGISTRY_RO* and links it to the cloud registry named with the value of *$REGISTRY_NAME*. 
-* The specified repositories will be synchronized between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
-* This resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality once deployed. 
-* Because there is no synchronization schedule defined for this connected registry, the repositories will be synchronized between the parent registry and the connected registry without interruptions.
+* The specified repositories are synchronized between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
+* The resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality once deployed. 
+* The repositories are synchronized between the parent registry and the connected registry without interruptions because there's no synchronization schedule defined for this connected registry.
 
 ---
 
@@ -155,7 +155,7 @@ This command creates a connected registry resource whose name is the value of *$
 
 #### [Azure portal](#tab/azure-portal)
 
-Select a connected registry in the portal to view its properties, such as its connection status (Offline, Online, or Unhealthy) and whether it has been activated (deployed on-premises). In the following example, the connected registry is not deployed. Its connection state of "Offline" indicates that it is currently disconnected from the cloud.
+Select a connected registry in the portal to view its properties, such as its connection status (Offline, Online, or Unhealthy) and whether it activated (deployed on-premises). In the following example, the connected registry isn't deployed. The connection state of "Offline" indicates that it disconnected from the cloud.
 
 :::image type="content" source="media/quickstart-connected-registry-portal/connected-registry-properties.png" alt-text="View connected registry properties":::
 
@@ -171,7 +171,7 @@ az acr connected-registry list \
   --output table
 ```
 
-You should see a response as follows. Because the connected registries are not yet deployed, the connection state of "Offline" indicates that they are currently disconnected from the cloud.
+You should see a response as follows. Because the connected registries aren't yet deployed, the connection state of "Offline" indicates that they're currently disconnected from the cloud.
 
 ```
 NAME                 MODE        CONNECTION STATE    PARENT               LOGIN SERVER    LAST SYNC (UTC)
@@ -184,7 +184,7 @@ myconnectedregro    ReadOnly     Offline             myconnectedregrw
 
 ## Next steps
 
-In this quickstart, you used the Azure CLI and Azure Portal to create two connected registry resources in Azure. Those new connected registry resources are tied to your cloud registry and allow synchronization of artifacts with the cloud registry.
+In this quickstart, you used the Azure CLI and Azure portal to create two connected registry resources in Azure. Those new connected registry resources are tied to your cloud registry and allow synchronization of artifacts with the cloud registry.
 
 Continue to the connected registry deployment guides to learn how to deploy and use a connected registry in your infrastructure.
 
