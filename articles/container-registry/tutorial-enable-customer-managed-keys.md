@@ -73,7 +73,7 @@ Configure a user-assigned [managed identity](/azure/active-directory/managed-ide
    ```azurecli
    az keyvault create --name <key-vault-name> \
      --resource-group <resource-group-name> \
-     --enable-purge-protection
+     --enable-purge-protection --location <location>
    ```
 
 3. For convenience, take a note of the key vault's resource ID and store the value in environment variables:
