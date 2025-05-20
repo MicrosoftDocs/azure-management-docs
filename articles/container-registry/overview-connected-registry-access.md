@@ -65,10 +65,10 @@ Token credentials for connected registries are scoped to access specific registr
 Continue to  the following article to learn about specific scenarios where connected registry can be utilized.
 
 > [!div class="nextstepaction"]
-> [Overview: Connected registry and IoT Edge][overview-connected-registry-and-iot-edge]
+> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-update]: /cli/azure/acr/connected-registry#az_acr_connected_registry_update
 [az-acr-connected-registry-install-renew-credentials]: /cli/azure/acr/connected-registry/install#az_acr_connected_registry_install_renew_credentials
-[overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
+[quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
 [non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

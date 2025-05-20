@@ -189,7 +189,7 @@ In this quickstart, you used the Azure CLI and Azure portal to create two connec
 Continue to the connected registry deployment guides to learn how to deploy and use a connected registry in your infrastructure.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Deploy connected registry to Azure Arc]: (quickstart-connected-registry-arc-cli.md)
+> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-create]: /cli/azure/acr/connected-registry#az_acr_connected_registry_create
@@ -200,3 +200,4 @@ Continue to the connected registry deployment guides to learn how to deploy and 
 [az-group-create]: /cli/azure/group#az_group_create
 [container-registry-intro]: container-registry-intro.md
 [container-registry-skus]: container-registry-skus.md
+[quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
