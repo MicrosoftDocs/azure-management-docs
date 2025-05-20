@@ -189,7 +189,7 @@ In this quickstart, you used the Azure CLI and Azure portal to create two connec
 Continue to the connected registry deployment guides to learn how to deploy and use a connected registry in your infrastructure.
 
 > [!div class="nextstepaction"]
-> [Quickstart: Deploy connected registry to Azure Arc]: quickstart-connected-registry-arc-cli.md
+> [Quickstart: Deploy connected registry to Azure Arc]: (quickstart-connected-registry-arc-cli.md)
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-create]: /cli/azure/acr/connected-registry#az_acr_connected_registry_create
