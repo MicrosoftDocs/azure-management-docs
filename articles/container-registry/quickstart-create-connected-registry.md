@@ -97,7 +97,7 @@ CONNECTED_REGISTRY_RO=<connnected-registry-name>
 az acr connected-registry create --registry $REGISTRY_NAME \
   --parent $CONNECTED_REGISTRY_RW \
   --name $CONNECTED_REGISTRY_RO \
-  --repository "hello-world" "acr/connected-registry" "azureiotedge-agent" "azureiotedge-hub" "azureiotedge-api-proxy" \
+  --repository "hello-world" "acr/connected-registry" \
   --mode ReadOnly
 ```
 
@@ -140,7 +140,7 @@ CONNECTED_REGISTRY_RO=<connnected-registry-name>
 az acr connected-registry create --registry $REGISTRY_NAME \
   --parent $CONNECTED_REGISTRY_RW \
   --name $CONNECTED_REGISTRY_RO \
-  --repository "hello-world" "acr/connected-registry" "azureiotedge-agent" "azureiotedge-hub" "azureiotedge-api-proxy" \
+  --repository "hello-world" "acr/connected-registry" \
   --mode ReadOnly
 ```
 
