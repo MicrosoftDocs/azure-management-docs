@@ -47,8 +47,6 @@ Enable the [dedicated data endpoint](container-registry-firewall-access-rules.md
 Select the **Enable dedicated data endpoint** checkbox.
 1. Select **Save**.
 
-[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
-
 #### [Azure CLI](#tab/azure-cli)
 
 Enable the dedicated data endpoint for the Azure container registry in the cloud by using the [az acr update][az-acr-update] command. This step is needed for a connected registry to communicate with the cloud registry.
@@ -61,9 +59,9 @@ az acr update --name $REGISTRY_NAME \
   --data-endpoint-enabled
 ```
 
-[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
-
 ---
+
+[!INCLUDE [container-registry-connected-import-images](./includes/container-registry-connected-import-images.md)]
 
 ## Create a connected registry resource for read and write functionality
 
