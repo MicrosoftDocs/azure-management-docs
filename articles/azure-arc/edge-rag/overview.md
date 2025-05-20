@@ -4,7 +4,7 @@ description: "Learn about the Azure Arc-enabled Kubernetes extension Edge RAG us
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 05/13/2025
+ms.date: 05/20/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a business decision maker, I want to understand what Edge RAG offers so that I can determine whether the service meets my organization's requirements.
@@ -68,9 +68,9 @@ Review the following key concepts for Edge RAG:
 
 - **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Examples include GPT, Phi, and Mistral.
 
-- **Model parameters** in language models define how the model behaves during text generation. Top-p, top-k, and temperature are key inference parameters that influence the randomness, diversity, and coherence of generated text.
+- **Model parameters** in language models define how the model behaves during text generation. Top-p, top-N, and temperature are key inference parameters that influence the randomness, diversity, and coherence of generated text.
   - Top-p: Top-p controls the diversity of generated text by considering the cumulative probability of token choices. A smaller "p" restricts the output to high-probability tokens, leading to safer but less diverse results. Increasing the top-p value allows for more creativity and randomness.
-  - Top-k: Top-k, in the context of Edge RAG, is used during retrieval. When a vector search is performed with a user's query, we use "k" document chunks that are provided as the context to the language model.
+  - Top-N: Top-N, in the context of Edge RAG, is used during retrieval. When a vector search is performed with a user's query, we use "N" document chunks that are provided as the context to the language model.
   - Temperature: Temperature adjusts the randomness in token selection by scaling token probabilities. Higher temperatures increase randomness, making the output more diverse but potentially incoherent.
   
   There are some additional model parameters like past messages included, text strictness, and image strictness described in [Choosing the right prompt and model parameters](build-chat-solution-overview.md#choosing-the-right-prompt-and-model-parameters).

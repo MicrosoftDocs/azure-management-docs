@@ -4,7 +4,7 @@ description: "Learn how to set up your data query with Edge RAG to configure mod
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
+ms.date: 05/20/2025
 
 #CustomerIntent: As a developer or data scientist, I want to learn how to use prompt engineering with Azure AI Search so that I can create more effective and accurate AI-driven search experiences for my applications.
 
@@ -41,12 +41,12 @@ To get started, configure the model settings.
    | Vector search            | Search that queries contextual similarity rather than exact keyword matching. |
    | Hybrid multimodal search | Search that combines multiple modalities, like text and image, simultaneously.   |
 
-1. Change the model parameters for **Temperature**, **Top-K**, **Top-P**, and others as needed.
+1. Change the model parameters for **Temperature**, **Top-N**, **Top-P**, and others as needed.
 
    :::image type="content" source="media/set-up-data-query/data-inferencing.png" alt-text="Screenshot of the data inferencing section of the chat window that allows you to change the model parameters.":::
 
 1. Review and update the system prompt as appropriate for your solution.
-1. Select **Apply Changes**. If you don't make any changes, the default values are used.
+1. Any changes that you make are applied when you submit a new question in the chat.
 
 ## Test chat results
 
