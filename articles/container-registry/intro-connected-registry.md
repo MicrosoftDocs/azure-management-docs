@@ -4,7 +4,7 @@ description: Discover the connected registry feature in Azure Container Registry
 ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: overview
-ms.date: 10/31/2023
+ms.date: 05/20/2025
 ms.custom: references_regions
 #customer intent: As a reader, I want to understand the overview and scenarios of the connected registry feature of Azure Container Registry so that I can utilize it effectively.
 ---

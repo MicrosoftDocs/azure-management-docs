@@ -5,7 +5,7 @@ author: rayoef
 ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: quickstart  #Don't change
-ms.date: 05/09/2024
+ms.date: 05/20/2025
 ai-usage: ai-assisted
 
 #customer intent: As a user, I want to learn how to deploy the connected registry Arc extension using the CLI UX with secure-by-default settings, such as using HTTPS, Read Only, Trust Distribution, and Cert Manager service, so that I can ensure the secure and efficient operation of my container workloads."

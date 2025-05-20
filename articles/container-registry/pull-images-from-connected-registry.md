@@ -4,7 +4,7 @@ description: Learn how to use Azure Container Registry CLI commands to configure
 ms.topic: quickstart
 author: rayoef
 ms.author: gaking
-ms.date: 10/31/2023
+ms.date: 05/20/2025
 ms.custom: mode-other, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry

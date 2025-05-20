@@ -5,7 +5,7 @@ author: toddysm
 ms.author: memladen
 ms.service: azure-container-registry
 ms.topic: overview
-ms.date: 10/31/2023
+ms.date: 05/20/2025
 #customer intent: As a user, I want to understand access control for connected registries so that I can manage them effectively.
 ---
 
