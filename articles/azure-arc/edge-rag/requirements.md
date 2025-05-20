@@ -54,6 +54,13 @@ The following table lists the minimum hardware requirements for the virtual mach
 
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 
+The following table lists the hardware recommendations for each language model available with Edge RAG.
+
+|Model name  |Compatible hardware  |
+|---------|---------|
+|Microsoft Phi 3.5 Mini |A2 or A16 <br>- Standard_NC4<br>- Standard_NC8<br>- Standard_NC32<br>- Standard_NC16 |
+|Mistral 7B     |A2 or A16 <br>- Standard_NC32<br>- Standard_NC16          |
+
 If you plan to use a CPU-only setup, review the files size and chunking limitations. See:
 - [Supported document formats and size](#supported-document-formats-and-size)
 - [Chunk settings](build-chat-solution-overview.md#chunk-settings)
