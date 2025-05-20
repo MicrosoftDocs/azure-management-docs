@@ -4,7 +4,7 @@ description: "Learn how to evaluate the functionality of the RAG system after yo
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
+ms.date: 05/20/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
@@ -21,15 +21,15 @@ Evaluate the system, models, and datasets within Edge RAG Preview, enabled by Az
 Review [Metrics for evaluating the Edge RAG system](evaluation-metrics.md).
 
 
-## Run baseline evaluation
+## Run baseline check
 
-The baseline evaluates the functionality of the RAG system to make sure it's working as expected. It runs the following tasks:
+The baseline check evaluates the functionality of the RAG system to make sure it's working as expected. It runs the following tasks:
 
 - Creates an ingestion build in the documents dataset.
 - Inferences by using the build of a test dataset that includes set of queries and expected answers.
 - Evaluates system based on model metrics.
 
-To run a baseline evaluation:
+To run a baseline check:
 
 1. Go to the developer portal using the domain name provided at deployment and app registration. For example: `https://arcrag.contoso.com`.
 1. Sign in with developer credentials (with both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned").
@@ -37,7 +37,7 @@ To run a baseline evaluation:
 
    :::image type="content" source="media/evaluate-solution/evaluation-tab.png" alt-text="A screenshot showing the Evaluation tab in the developer portal, highlighting options for running checks and managing evaluations." lightbox="media/evaluate-solution/evaluation-tab.png":::
 
-1. On the **Baseline evaluation** tab, select **Run a check**.
+1. On the **Baseline check** tab, select **Run a check**.
 1. Enter a name for your evaluation.
 
    :::image type="content" source="media/evaluate-solution/baseline-evaluation-check.png" alt-text="A screenshot showing the Evaluation tab in the developer portal, with options for running checks and managing evaluations.":::
@@ -46,7 +46,7 @@ To run a baseline evaluation:
 
 1. Review the evaluation status.
 
-   :::image type="content" source="media/evaluate-solution/evaluation-status.png" alt-text="A screenshot showing the evaluation status page in the developer portal, displaying the progress and details of the baseline evaluation.":::
+   :::image type="content" source="media/evaluate-solution/evaluation-status.png" alt-text="A screenshot showing the evaluation status page in the developer portal, displaying the progress and details of the baseline check.":::
 
 1. When the evaluation is completed, select the name to see the results.
 
@@ -65,9 +65,9 @@ The automatic evaluation evaluates the quality of the RAG system by using your o
 
    :::image type="content" source="media/evaluate-solution/automated-evaluation-basic-info.png" alt-text="A screenshot of the basic information tab, with fields for entering the evaluation name and configuration options." lightbox="media/evaluate-solution/automated-evaluation-basic-info.png" :::
 
-1. Review the parameters like **Temperature**, **Top-K**, **Top-P**, and **System prompt**. These parameters are derived from the **Chat playground**. To change the parameters, go to the **Chat** tab and change them as needed.
+1. Review the parameters like **Temperature**, **Top-N**, **Top-P**, and **System prompt**. These parameters are derived from the **Chat playground**. To change the parameters, go to the **Chat** tab and change them as needed.
 1. Select **Next**.
-1. Under **Test dataset**, select **Download dataset template** to get familiar with the required structure of the test dataset JSONL format.
+1. Under **Test dataset**, select **Download dataset sample** to get familiar with the required structure of the test dataset JSONL format.
 
    :::image type="content" source="media/evaluate-solution/test-dataset.png" alt-text="Screenshot of the test dataset tab  where you can download a template and update the dataset.":::
 
