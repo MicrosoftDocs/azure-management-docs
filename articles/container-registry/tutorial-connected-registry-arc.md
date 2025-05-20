@@ -5,7 +5,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: tutorial  #Don't change.
-ms.date: 06/17/2024
+ms.date: 05/20/2025
 
 #customer intent: Learn how to secure and deploy the connected registry extension with HTTPS, TLS encryption, and upgrades/rollbacks. 
 
