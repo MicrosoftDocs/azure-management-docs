@@ -50,8 +50,8 @@ Alternatively, consult the [ACR built-in roles reference](container-registry-rba
 
 > [!IMPORTANT]
 > If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," new and existing ACR Tasks, as well as Quick Tasks, Quick Builds, and Quick Runs, will be affected. They will no longer have default data plane access to an ABAC-enabled source registry and its content.
->
-> To understand the effects of this change—and how to grant data plane access for ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs in ABAC-enabled source registries—see [Appendix: Effects of Enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+
+To understand the effects of this change—and how to grant data plane access for ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs in ABAC-enabled source registries—see [Appendix: Effects of Enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 ### Create a registry with ABAC enabled
 
