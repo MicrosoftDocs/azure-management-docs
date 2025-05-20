@@ -47,7 +47,7 @@ Enable the [dedicated data endpoint](container-registry-firewall-access-rules.md
 Select the **Enable dedicated data endpoint** checkbox.
 1. Select **Save**.
 
-:::image type="content" source="media/dedicated-data-endpoints/data-endpoint-connected-registry.png" alt-text="Screenshot of enabling dedicated data endpoint.":::
+:::image type="content" source="media/dedicated-data-endpoints/data-endpoint-connected-registry.png" alt-text="Screenshot of enabling dedicated data endpoint." lightbox="media/dedicated-data-endpoints/data-endpoint-connected-registry.png":::
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -85,7 +85,7 @@ The following steps create a connected registry in [ReadWrite mode](intro-connec
 |Sync properties    | Accept the default settings. Because there's no synchronization schedule defined by default, the repositories are synchronized between the cloud registry and the connected registry without interruptions.      |
 |Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories are synchronized between the cloud registry and the connected registry once deployed.     |
 
-:::image type="content" source="media/quickstart-connected-registry-portal/create-readwrite-connected-registry.png" alt-text="Create a connected registry in ReadWrite mode":::
+:::image type="content" source="media/quickstart-connected-registry-portal/create-readwrite-connected-registry.png" alt-text="Create a connected registry in ReadWrite mode" lightbox="media/quickstart-connected-registry-portal/create-readwrite-connected-registry.png":::
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -128,7 +128,7 @@ The following steps create a connected registry in [ReadOnly mode](intro-connect
 |Sync properties    | Accept the default settings. Because there's no synchronization schedule defined by default, the repositories are synchronized between the cloud registry and the connected registry without interruptions.      |
 |Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories are synchronized between the parent registry and the connected registry once deployed.     |
 
-:::image type="content" source="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png" alt-text="Create a connected registry in ReadOnly mode":::
+:::image type="content" source="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png" alt-text="Create a connected registry in ReadOnly mode" lightbox="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png:::
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -157,7 +157,7 @@ This command creates a connected registry resource whose name is the value of *$
 
 Select a connected registry in the portal to view its properties, such as its connection status (Offline, Online, or Unhealthy) and whether it activated (deployed on-premises). In the following example, the connected registry isn't deployed. The connection state of "Offline" indicates that it disconnected from the cloud.
 
-:::image type="content" source="media/quickstart-connected-registry-portal/connected-registry-properties.png" alt-text="View connected registry properties":::
+:::image type="content" source="media/quickstart-connected-registry-portal/connected-registry-properties.png" alt-text="View connected registry properties" lightbox="media/quickstart-connected-registry-portal/connected-registry-properties.png":::
 
 From this view, you can also generate a connection string and optionally generate passwords for the [sync token](overview-connected-registry-access.md#sync-token). A connection string contains configuration settings used for deploying a connected registry and synchronizing content with a parent registry.
 
