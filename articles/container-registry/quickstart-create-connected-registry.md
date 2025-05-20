@@ -128,7 +128,7 @@ The following steps create a connected registry in [ReadOnly mode](intro-connect
 |Sync properties    | Accept the default settings. Because there's no synchronization schedule defined by default, the repositories are synchronized between the cloud registry and the connected registry without interruptions.      |
 |Repositories     | Select or enter the names of the repositories you imported in the previous step. The specified repositories are synchronized between the parent registry and the connected registry once deployed.     |
 
-:::image type="content" source="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png" alt-text="Create a connected registry in ReadOnly mode" lightbox="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png:::
+:::image type="content" source="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png" alt-text="Create a connected registry in ReadOnly mode" lightbox="media/quickstart-connected-registry-portal/create-readonly-connected-registry.png":::
 
 #### [Azure CLI](#tab/azure-cli)
 
