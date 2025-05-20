@@ -89,6 +89,7 @@ By deploying the connected Registry Arc extension, you can synchronize container
 
    For secure deployment of the connected registry extension, generate the connection string, including a new password, transport protocol, and create the `protected-settings-extension.json` file required for the extension deployment with [az acr connected-registry get-settings][az-acr-connected-registry-get-settings] command:
 
+#### [Bash](#tab/bash)
 ```bash
     cat << EOF > protected-settings-extension.json
     {
@@ -102,6 +103,7 @@ By deploying the connected Registry Arc extension, you can synchronize container
     EOF
 ```
 
+#### [PowerShell](#tab/powershell)
 ```azurepowershell
     echo "{\"connectionString\":\"$(az acr connected-registry get-settings \
     --name myconnectedregistry \
@@ -112,6 +114,8 @@ By deploying the connected Registry Arc extension, you can synchronize container
     --output tsv \
     --yes | tr -d '\r')\" }" > settings.json
 ```
+
+---
 
 >[!NOTE] 
 > The cat and echo commands create the `protected-settings-extension.json` file with the connection string details, injecting the contents of the connection string into the `protected-settings-extension.json` file, a necessary step for the extension deployment. The [az acr connected-registry get-settings][az-acr-connected-registry-get-settings] command generates the connection string, including the creation of a new password and the specification of the transport protocol. 
