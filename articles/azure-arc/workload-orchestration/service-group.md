@@ -180,7 +180,7 @@ az rest `
       --subscription "$subscriptionId" \
       --resource-group "$rg" \
       --location "$l" \
-      --name "Mehoopany-Context" \
+      --name "Contoso-Context" \
       --capabilities "@context-capabilities.json" \
       --hierarchies "[0].name=factory" "[0].description=Factory" "[1].name=line" "[1].description=Line"
     ```
@@ -256,7 +256,7 @@ az rest `
 
     ```powershell
     # Create a new context
-    $context = $(az workload-orchestration context show --subscription $contextSubscriptionId --resource-group Mehoopany --name Mehoopany-Context) | ConvertFrom-JSON
+    $context = $(az workload-orchestration context show --subscription $contextSubscriptionId --resource-group Contoso --name Contoso-Context) | ConvertFrom-JSON
     
     $context.properties.capabilities = $context.properties.capabilities + @(
        [PSCustomObject]@{description="shampoo"; name="shampoo"},
@@ -269,7 +269,7 @@ az rest `
       --subscription $subscriptionId `
       --resource-group $rg `
       --location $l `
-      --name Mehoopany-Context `
+      --name Contoso-Context `
       --capabilities "@context-capabilities.json" `
       --hierarchies [0].name=factory [0].description=Factory [1].name=line [1].description=Line
     ```

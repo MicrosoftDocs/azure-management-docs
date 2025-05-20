@@ -60,7 +60,7 @@ The following steps show how to configure the resources of workload orchestratio
     parentName="$siteName"
     # Enter child name
     childName="Line01"
-    # Enter capabilities of Mehoopany
+    # Enter capabilities of Contoso
     capParentList="[soap,conditioner,shampoo]"
     # Enter capabilities of Line01
     capChildList="[soap,conditioner]"
@@ -122,7 +122,7 @@ The following steps show how to configure the resources of workload orchestratio
     $parentName = $siteName
     # Enter child name
     $childName = "Line01"
-    # Enter capabilities of Mehoopany
+    # Enter capabilities of Contoso
     $capParentList = "[soap,conditioner,shampoo]"
     # Enter capabilities of Line01
     $capChildList = "[soap,conditioner]"
