@@ -2,7 +2,7 @@
 title: "Quickstart: Deploying the Connected Registry Arc Extension"
 description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
 author: rayoef
-ms.author: rayoflores
+ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: quickstart  #Don't change
 ms.date: 05/09/2024
@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 #customer intent: As a user, I want to learn how to deploy the connected registry Arc extension using the CLI UX with secure-by-default settings, such as using HTTPS, Read Only, Trust Distribution, and Cert Manager service, so that I can ensure the secure and efficient operation of my container workloads."
 ---
 
-# Quickstart: Deploy the connected registry Arc extension (preview)
+# Quickstart: Deploy the connected registry Arc extension 
 
 In this quickstart, you learn how to deploy the Connected registry Arc extension using the CLI UX with secure-by-default settings to ensure robust security and operational integrity. 
  
@@ -88,19 +88,6 @@ By deploying the connected Registry Arc extension, you can synchronize container
 1. Generate the Connection String and Protected Settings JSON File
 
    For secure deployment of the connected registry extension, generate the connection string, including a new password, transport protocol, and create the `protected-settings-extension.json` file required for the extension deployment with [az acr connected-registry get-settings][az-acr-connected-registry-get-settings] command:
-
-```bash
-    cat << EOF > protected-settings-extension.json
-    {
-      "connectionString": "$(az acr connected-registry get-settings \
-      --name myconnectedregistry \
-      --registry myacrregistry \
-      --parent-protocol https \
-      --generate-password 1 \
-      --query ACR_REGISTRY_CONNECTION_STRING --output tsv --yes)"
-    }
-    EOF
-```
 
 ```bash
     cat << EOF > protected-settings-extension.json

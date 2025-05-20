@@ -1,7 +1,7 @@
 ---
 title: Connected Registry in Azure Container Registry
 description: Discover the connected registry feature in Azure Container Registry. Learn about its benefits and practical use cases for container management.
-ms.author: jeburke
+ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 10/31/2023
@@ -18,20 +18,13 @@ In this article, you learn about the *connected registry* feature of [Azure Cont
 The connected registry is a preview feature of the **Premium** container registry service tier, and subject to [limitations](#limitations). For information about registry service tiers and limits, see [Azure Container Registry service tiers](container-registry-skus.md).
 
 >[!IMPORTANT]
-> Please note that there are **Important upcoming changes** to the connected registry Deployment Model Support and Billing starting from January 1st, 2025. For any inquiries or assistance with the transition, please reach out to the customer support team.
+> Please note that there are **Important upcoming changes** to the connected registry billing starting from July 1st, 2025. For any inquiries or assistance with the transition, please reach out to the customer support team.
 
 ### Billing
 
-- The connected registry incurs no charges until it reaches general availability (GA).
-- Post-GA, a monthly price of $10 will apply for each connected registry deployed.
+- Begining July 1st, 2025, a monthly price of $10 will apply for each connected registry deployed.
 - This price represents Microsoft's commitment to deliver high-quality services and product support.
-- The price is applied to the Azure subscription associated with the parent registry.
-
-### Support
-
-- Microsoft will end support for the connected registry deployment on IoT Edge devices on January 1st, 2025.
-- After January 1st, 2025 connected registry will solely support Arc-enabled Kubernetes clusters as the deployment model.
-- Microsoft advises users to begin planning their transition to Arc-enabled Kubernetes clusters as the deployment model.
+- The price will be applied to the Azure subscription associated with the parent registry.
 
 ## Available regions
 
@@ -51,11 +44,7 @@ Scenarios for a connected registry include:
 
 ## How does the connected registry work?
 
-The connected registry is deployed on a server or device on-premises, or an environment that supports container workloads on-premises such as Azure IoT Edge and Azure Arc-enabled Kubernetes. The connected registry synchronizes container images and other OCI artifacts with a cloud-based Azure container registry.
-
-The following image shows a typical deployment model for the connected registry using IoT Edge. 
-
-:::image type="content" source="media/intro-connected-registry/connected-registry-edge.png" alt-text="Diagram of connected registry overview using IoT Edge.":::
+The connected registry can be deployed on a server or device on-premises, or an environment that supports container workloads on-premises such as Azure Arc-enabled Kubernetes clusters. The connected registry synchronizes container images and other OCI artifacts with a cloud-based Azure container registry.
 
 The following image shows a typical deployment model for the connected registry using Azure Arc-enabled Kubernetes. 
 
@@ -63,9 +52,7 @@ The following image shows a typical deployment model for the connected registry 
 
 ### Deployment
 
-Each connected registry is a resource you manage within a cloud-based Azure container registry. The top parent in the connected registry hierarchy is an Azure container registry in the Azure cloud. The connected registry can be deployed either on Azure IoT Edge or Arc-enabled Kubernetes clusters.
-
-To install the connected registry, use Azure tools on a server or device on your premises, or in an environment that supports on-premises container workloads, such as [Azure IoT Edge](/azure/iot-edge/tutorial-nested-iot-edge). 
+Each connected registry is a resource you manage within a cloud-based Azure container registry. The top parent in the connected registry hierarchy is an Azure container registry in the Azure cloud. The connected registry can be deployed either on Azure IoT Edge or Arc-enabled Kubernetes clusters. To install the connected registry, use Azure tools such as CLI or portal. 
 
 Deploy the connected registry Arc extension to the Arc-enabled Kubernetes cluster. Secure the connection with TLS using default configurations for read-only access and a continuous sync window. This setup allows the connected registry to synchronize images from the Azure container registry (ACR) to the connected registry on-premises, enabling image pulls from the connected registry.
 
@@ -90,7 +77,7 @@ A connected registry can work in one of two modes: *ReadWrite* or *ReadOnly*
 
 ### Registry hierarchy
 
-Each connected registry must be connected to a parent. The top parent is the cloud registry. For hierarchical scenarios such as [nested IoT Edge][overview-connected-registry-and-iot-edge], you can nest connected registries in either mode. The parent connected to the cloud registry can operate in either mode. 
+Each connected registry must be connected to a parent. The top parent is the cloud registry.  
 
 Child registries must be compatible with their parent capabilities. Thus, both ReadOnly and ReadWrite modes of the connected registries can be children of a connected registry operating in ReadWrite mode, but only a ReadOnly mode registry can be a child of a connected registry operating in ReadOnly mode.  
 
@@ -106,7 +93,7 @@ For more information, see [Manage access to a connected registry][overview-conne
 
 - Number of tokens and scope maps is [limited](container-registry-skus.md) to 20,000 each for a single container registry. This indirectly limits the number of connected registries for a cloud registry, because every Connected registry needs a sync and client token.
 - Number of repository permissions in a scope map is limited to 500.
-- Number of clients for the connected registry is currently limited to 20.
+- Number of clients for the connected registry is currently limited to 50.
 - [Image locking](container-registry-image-lock.md) through repository/manifest/tag metadata isn't currently supported for connected registries.
 - [Repository delete](container-registry-delete.md) isn't supported on the connected registry using ReadOnly mode.
 - [Resource logs](monitor-service-reference.md#resource-logs) for connected registries are currently not supported.
@@ -127,5 +114,4 @@ In this overview, you learned about the connected registry and some basic concep
 > [!div class="nextstepaction"]
 <!-- LINKS - internal -->
 [overview-connected-registry-access]:overview-connected-registry-access.md
-[overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
 [non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md
