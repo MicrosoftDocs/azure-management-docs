@@ -58,6 +58,11 @@ az acr build --image sample/hello-world:v1 \
   --file Dockerfile . 
 ```
 
+> [!NOTE]
+> If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `build` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr build`.
+>
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+
 Output from a successful build and push is similar to the following:
 
 ```console
@@ -120,6 +125,11 @@ The following example uses $Registry to specify the endpoint of the registry whe
 az acr run --registry mycontainerregistry008 \
   --cmd '$Registry/sample/hello-world:v1' /dev/null
 ```
+
+> [!NOTE]
+> If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `run` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr run`.
+>
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 The `cmd` parameter in this example runs the container in its default configuration, but `cmd` supports additional `docker run` parameters or even other `docker` commands.
 
