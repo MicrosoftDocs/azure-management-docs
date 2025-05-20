@@ -31,12 +31,6 @@ In AzureCloud, you can install the extension with the following command:
 az extension add --name acrtransfer
 ```
 
-In AzureCloud and other clouds, you can install the blob directly from a public storage account container. The blob is hosted in the `acrtransferext` storage account, `dist` container, `acrtransfer-1.0.0-py2.py3-none-any.wh` blob. You may need to change the storage URI suffix depending on which cloud you are in. The following will install in AzureCloud:
-
-```azurecli
-az extension add --source https://acrtransferext.blob.core.windows.net/dist/acrtransfer-1.0.0-py2.py3-none-any.whl
-```
-
 ## Create ExportPipeline with the acrtransfer Az CLI extension
 
 Create an ExportPipeline resource for your AzureCloud container registry using the acrtransfer Az CLI extension.
