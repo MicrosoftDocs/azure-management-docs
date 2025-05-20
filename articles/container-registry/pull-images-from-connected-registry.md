@@ -64,7 +64,7 @@ az acr connected-registry update \
 From a machine with access to connected registry on-premises device, use the following example command to sign into the connected registry, using the client token credentials. For best practices to manage login credentials, see the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command reference.
 
 > [!CAUTION]
-> If you set up your connected registry as an insecure registry, update the insecure registries list in the Docker daemon configuration to include the IP address or FQDN (Fully Qualified Domain Name) and port of your connected registry on the IoT Edge device. This configuration should only be used for testing purposes. For more information, see [Test an insecure registry](https://docs.docker.com/registry/insecure/).
+> If you set up your connected registry as an insecure registry, update the insecure registries list in the Docker daemon configuration to include the IP address or FQDN (Fully Qualified Domain Name) and port of your connected registry on your device. This configuration should only be used for testing purposes. For more information, see [Test an insecure registry](https://docs.docker.com/registry/insecure/).
 
 ```
 docker login --username myconnectedregistry-client-token \
