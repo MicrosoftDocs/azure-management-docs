@@ -31,6 +31,7 @@ For more information, see the following articles:
 
 Azure Container Storage enabled by Azure Arc created Jumpstart Drops as part of another collaboration with [Azure Arc Jumpstart](https://azurearcjumpstart.com/):
 
+- [Cloud Ingest Edge Volume on a Single Node Ubuntu K3s Cluster with an SFTP Front End](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20SFTP&fs=true) : This example can be used to install Azure Container Storage enabled by Azure Arc to provide a ReadWriteMany Cloud Ingest Edge Volume on an Ubuntu system with K3s and an SFTP front end.
 - [Create an Azure Container Storage enabled by Azure Arc Edge Volumes with CloudSync](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Create%20an%20Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20Edge%20Volumes%20with%20CloudSync&fs=true) : This example can be used to install Azure Container Storage enabled by Azure Arc to provide a Cloud Backed ReadWriteMany Edge Volume on an Ubuntu system with K3s.
 - [Create an Azure Container Storage enabled by Azure Arc Edge Volumes Local FS instance](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Create%20an%20Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20Edge%20Volumes%20Local%20FS%20instance&fs=true): This example can be used to install Azure Container Storage to provide a local unbacked ReadWriteMany Edge Volume on an Ubuntu system with K3s.
 
