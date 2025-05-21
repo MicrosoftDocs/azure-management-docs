@@ -5,7 +5,7 @@ author: toddysm
 ms.author: memladen
 ms.service: azure-container-registry
 ms.topic: overview
-ms.date: 10/31/2023
+ms.date: 05/20/2025
 #customer intent: As a user, I want to understand access control for connected registries so that I can manage them effectively.
 ---
 
@@ -65,10 +65,10 @@ Token credentials for connected registries are scoped to access specific registr
 Continue to  the following article to learn about specific scenarios where connected registry can be utilized.
 
 > [!div class="nextstepaction"]
-> [Overview: Connected registry and IoT Edge][overview-connected-registry-and-iot-edge]
+> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-update]: /cli/azure/acr/connected-registry#az_acr_connected_registry_update
 [az-acr-connected-registry-install-renew-credentials]: /cli/azure/acr/connected-registry/install#az_acr_connected_registry_install_renew_credentials
-[overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
+[quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
 [non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

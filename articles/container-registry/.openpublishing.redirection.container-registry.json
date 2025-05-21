@@ -199,6 +199,31 @@
       "source_path_from_root": "/articles/container-registry/container-registry-troubleshoot-login.md",
       "redirect_url": "/azure/container-registry/container-registry-troubleshoot-login-authn-authz",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/overview-connected-registry-and-iot-edge.md",
+      "redirect_url": "/azure/container-registry/intro-connected-registry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/quickstart-deploy-connected-registry-iot-edge-cli.md",
+      "redirect_url": "/azure/container-registry/quickstart-connected-registry-arc-cli",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/tutorial-deploy-connected-registry-nested-iot-edge-cli.md",
+      "redirect_url": "/azure/container-registry/tutorial-connected-registry-arc",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-cli.md",
+      "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-portal.md",
+      "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
+      "redirect_document_id": false
     }
   ]
 }
