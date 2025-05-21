@@ -60,7 +60,7 @@ The following steps show how to configure the resources of workload orchestratio
     parentName="$siteName"
     # Enter child name
     childName="Line01"
-    # Enter capabilities of Mehoopany
+    # Enter capabilities of Contoso
     capParentList="[soap,conditioner,shampoo]"
     # Enter capabilities of Line01
     capChildList="[soap,conditioner]"
@@ -87,7 +87,7 @@ The following steps show how to configure the resources of workload orchestratio
     CustomLocationName=$(az resource list --resource-type Microsoft.ExtendedLocation/customLocations --resource-group "$rg" --name "$clusterName-Location" --query [].id --output tsv)
     ```
 
-1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the an AKS cluster.
+1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
 
     ```bash
     az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
@@ -122,7 +122,7 @@ The following steps show how to configure the resources of workload orchestratio
     $parentName = $siteName
     # Enter child name
     $childName = "Line01"
-    # Enter capabilities of Mehoopany
+    # Enter capabilities of Contoso
     $capParentList = "[soap,conditioner,shampoo]"
     # Enter capabilities of Line01
     $capChildList = "[soap,conditioner]"
@@ -149,7 +149,7 @@ The following steps show how to configure the resources of workload orchestratio
     $CustomLocationName = (az resource list --resource-type Microsoft.ExtendedLocation/customLocations --resource-group $rg --name "$clusterName-Location" --query [].id --output tsv)
     ```
 
-1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the an AKS cluster.
+1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
 
     ```powershell
     az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"

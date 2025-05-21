@@ -70,7 +70,7 @@ Concatenation: string + `<expression>`
 ### Example
 
 - ApplicationName: Health Check Monitor For + ${{$val(FactoryName)}} + Factory
-- Output: Health Check Monitor For Mehoopany Factory
+- Output: Health Check Monitor For Contoso Factory
 
 ## Handling Null Values
 

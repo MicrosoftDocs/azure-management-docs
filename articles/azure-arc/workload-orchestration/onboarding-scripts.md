@@ -9,7 +9,7 @@ ms.date: 05/07/2025
 
 # Onboarding scripts for workload orchestration
 
-The onboarding Powershell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
+The onboarding PowerShell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
 
 If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
 
@@ -85,10 +85,10 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `aksClusterIdentity`: (Optional, default: `$resourceGroup-Cluster-Identity`) Name of the managed identity used by the AKS cluster.
 - `aksClusterName`: (Optional, default: `$resourceGroup-Cluster`) Name of the AKS cluster to be created or used.
 - `customLocationName`: (Optional, default: `$resourceGroup-Location`) Name for the Custom Location resource created on top of the Arc-enabled AKS cluster.
-- `customLocationNamespace`: (Optional, default: `mehoopany`) Kubernetes namespace associated with the Custom Location. Should be lowercase.
+- `customLocationNamespace`: (Optional, default: `contoso`) Kubernetes namespace associated with the Custom Location. Should be lowercase.
 - `workloadOrchestrationWHL`: (Required) File path to the downloaded Workload Orchestration CLI extension `.whl` file.
-- `contextResourceGroup`: (Required) Resource group where the Workload Orchestration Context exists (for example, "Mehoopany"). This is used for setting up capabilities and site references.
-- `contextName`: (Required) Name of the Workload Orchestration Context (for example, "Mehoopany-Context").
+- `contextResourceGroup`: (Required) Resource group where the Workload Orchestration Context exists (for example, "Contoso"). This is used for setting up capabilities and site references.
+- `contextName`: (Required) Name of the Workload Orchestration Context (for example, "Contoso-Context").
 - `contextSubscriptionId`: (Required) Subscription ID where the Workload Orchestration Context exists.
 - `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2euap").
 - `siteHierarchy`: (Optional) An array defining the site structure and associated deployment targets.
@@ -142,8 +142,8 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
 - `resourceGroup`: (Optional) Defines the resource group for creating CM resources. Overrides the common one.
 - `subscriptionId`: (Optional) Defines the subscription for creating CM resources. Overrides the common one.
 - `location`: (Optional, default: `eastus`) Defines the location for creating CM resources. Overrides the common one.
-- `contextResourceGroup`: (Required) Specifies the resource group where the workload orchestration context is stored. In Microsoft tenant, this is typically "Mehoopany".
-- `contextName`: (Required) Name of the workload orchestration context. In Microsoft tenant, this is typically "Mehoopany-Context".
+- `contextResourceGroup`: (Required) Specifies the resource group where the workload orchestration context is stored. In Microsoft tenant, this is typically "Contoso".
+- `contextName`: (Required) Name of the workload orchestration context. In Microsoft tenant, this is typically "Contoso-Context".
 - `contextSubscriptionId`: (Required) Subscription ID where the context resource exists. This may differ from your main deployment subscription.
 - `contextLocation`: (Required) Azure region where the context resource is deployed. Must be a region that supports workload orchestration.
 
