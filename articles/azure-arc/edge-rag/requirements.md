@@ -54,6 +54,14 @@ The following table lists the minimum hardware requirements for the virtual mach
 
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 
+The following table lists the hardware recommendations for each language model available with Edge RAG.
+
+| **Model Name**                        | **GPU Support** | **Minimum VM SKUs**      |
+|----------------------------------------|-----------------|--------------------------|
+| [Microsoft/Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)| Nvidia A2<br>Nvidia A16       | Standard_NC8_A2 <br>Standard_NC8_A16         |
+| [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)     | Nvidia A2<br>Nvidia A16      | Standard_NC8_A2 <br>Standard_NC8_A16         |
+
+
 If you plan to use a CPU-only setup, review the files size and chunking limitations. See:
 - [Supported document formats and size](#supported-document-formats-and-size)
 - [Chunk settings](build-chat-solution-overview.md#chunk-settings)
