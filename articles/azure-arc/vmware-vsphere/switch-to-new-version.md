@@ -5,10 +5,8 @@ ms.topic: how-to
 ms.date: 03/13/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-
+ms.author: jsuri
+author: jyothisuri
 # Customer intent: As a VI admin, I want to switch to the new version of Arc-enabled VMware vSphere and leverage the associated capabilities.
 ---
 

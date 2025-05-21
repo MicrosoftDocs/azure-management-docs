@@ -5,8 +5,8 @@ summary: Learn how to manage VMware vCenter resources with Azure Arc
 metadata:
   title: Azure Arc–enabled VMware vSphere
   description: Learn about how to manage on-premises machines in Azure
-  author: PriskeyJeronika-MS
-  ms.author: v-gjeronika
+  ms.author: jsuri
+  author: jyothisuri
   ms.service: azure-arc
   ms.topic: landing-page
   ms.date: 04/15/2025

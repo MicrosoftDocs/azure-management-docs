@@ -1,22 +1,21 @@
 ---
-title: Pull Images from a Connected Registry with Azure IoT Edge
-description: Learn how to use Azure Container Registry CLI commands to configure a client token and pull images from a connected registry on an IoT Edge device.
+title: Pull Images from a Connected Registry 
+description: Learn how to use Azure Container Registry CLI commands to configure a client token and pull images from a connected registry.
 ms.topic: quickstart
 author: rayoef
-ms.author: rayoflores
-ms.date: 10/31/2023
+ms.author: gaking
+ms.date: 05/20/2025
 ms.custom: mode-other, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
 ---
 
-# Pull images from a connected registry on IoT Edge device (To be deprecated)
+# Pull images from a connected registry 
 
 To pull images from a [connected registry](intro-connected-registry.md), configure a [client token](overview-connected-registry-access.md#client-tokens) and pass the token credentials to access registry content.
 
 [!INCLUDE [azure-cli-prepare-your-environment.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
-* Connected registry resource in Azure. For deployment steps, see [Quickstart: Create a connected registry using the Azure CLI][quickstart-connected-registry-cli].
-* Connected registry instance deployed on an IoT Edge device. For deployment steps, see [Quickstart: Deploy a connected registry to an IoT Edge device](quickstart-deploy-connected-registry-iot-edge-cli.md) or [Tutorial: Deploy a connected registry to nested IoT Edge devices](tutorial-deploy-connected-registry-nested-iot-edge-cli.md). In the commands in this article, the connected registry name is stored in the environment variable *$CONNECTED_REGISTRY_RW*.
+* Connected registry resource in Azure. For deployment steps, see [Quickstart: Create a connected registry using the Azure CLI][quickstart-connected-registry-cli]. In the commands in this article, the connected registry name is stored in the environment variable *$CONNECTED_REGISTRY_RW*.
 
 ## Create a scope map
 
@@ -44,10 +43,10 @@ az acr token create \
   --scope-map hello-world-scopemap
 ```
 
-The command will return details about the newly generated token including passwords.
+This command returns details about the newly generated token, including passwords.
 
   > [!IMPORTANT]
-  > Make sure that you save the generated passwords. Those are one-time passwords and cannot be retrieved. You can generate new passwords using the [az acr token credential generate][az-acr-token-credential-generate] command.
+  > Make sure that you save the generated passwords. These passwords are one-time passwords and can't be retrieved. You can generate new passwords using the [az acr token credential generate][az-acr-token-credential-generate] command.
 
 ## Update the connected registry with the client token
 
@@ -62,21 +61,14 @@ az acr connected-registry update \
 
 ## Pull an image from the connected registry
 
-From a machine with access to the IoT Edge device, use the following example command to sign into the connected registry, using the client token credentials. For best practices to manage login credentials, see the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command reference.
+From a machine with access to connected registry on-premises device, use the following example command to sign into the connected registry, using the client token credentials. For best practices to manage login credentials, see the [docker login](https://docs.docker.com/engine/reference/commandline/login/) command reference.
 
 > [!CAUTION]
-> If you set up your connected registry as an insecure registry, update the insecure registries list in the Docker daemon configuration to include the IP address (or FQDN) and port of your connected registry on the IoT Edge device. This configuration should only be used for testing purposes. For more information, see [Test an insecure registry](https://docs.docker.com/registry/insecure/).
+> If you set up your connected registry as an insecure registry, update the insecure registries list in the Docker daemon configuration to include the IP address or FQDN (Fully Qualified Domain Name) and port of your connected registry on your device. This configuration should only be used for testing purposes. For more information, see [Test an insecure registry](https://docs.docker.com/registry/insecure/).
 
 ```
 docker login --username myconnectedregistry-client-token \
   --password <token_password> <IP_address_or_FQDN_of_connected_registry>:<port>
-```
-
-For IoT Edge scenarios, be sure to include the port used to reach the connected registry on the device. Example:
-
-```
-docker login --username myconnectedregistry-client-token \
-  --password xxxxxxxxxxx 192.0.2.13:8000
 ```
 
 Then, use the following command to pull the `hello-world` image:

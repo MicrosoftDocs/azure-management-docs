@@ -178,3 +178,7 @@ additionalContent:
         - title: Azure Arc site manager (preview)
           summary: Use Arc sites to represent your on-premises environments and see centralized monitoring information across your edge infrastructure.
           url: /azure/azure-arc/site-manager/
+        # Card
+        - title: Edge RAG Preview enabled by Azure Arc
+          summary: Search on-premises data with generative AI, using Retrieval Augmented Generation.
+          url: /azure/azure-arc/edge-rag/

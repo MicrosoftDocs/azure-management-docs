@@ -6,9 +6,8 @@ ms.date: 07/18/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.custom: devx-track-azurecli
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # Enable additional capabilities on Arc-enabled Server machines by linking to vCenter

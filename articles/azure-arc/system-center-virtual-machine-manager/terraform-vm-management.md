@@ -5,9 +5,8 @@ ms.topic: how-to
 ms.date: 03/05/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # Terraform based SCVMM VM management

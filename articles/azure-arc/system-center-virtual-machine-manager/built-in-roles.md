@@ -4,7 +4,7 @@ description: This article lists the Azure built-in roles for Azure Arc-enabled S
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.topic: generated-reference
-author: jsuri
+author: jyothisuri
 manager: akashdubey
 ms.author: jsuri
 ms.date: 05/08/2025

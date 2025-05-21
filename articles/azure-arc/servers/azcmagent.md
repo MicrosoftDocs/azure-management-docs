@@ -25,6 +25,7 @@ Unless otherwise specified, the command syntax and flags represent available opt
 | [azcmagent logs](azcmagent-logs.md) | Collect logs to troubleshoot agent issues |
 | [azcmagent show](azcmagent-show.md) | Display the agent status |
 | [azcmagent version](azcmagent-version.md) | Display the agent version |
+| azcmagent partnerconfig | Reserved for internal use. |
 
 ## Frequently asked questions
 

@@ -2,9 +2,8 @@
 ms.assetid:
 title: What's new in Azure Arc-enabled SCVMM
 description: This article describes the new features and enhancements supported in Azure Arc-enabled System Center Virtual Machine Manager.
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ms.date: 04/09/2025
 ms.topic: article
 ms.service: azure-arc

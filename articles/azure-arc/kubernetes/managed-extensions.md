@@ -98,6 +98,6 @@ az k8s-extension create --cluster-name $CLUSTER_NAME \
 ```
 
 > [!IMPORTANT]
-> When installing the SSE extension with version-managed extensions, you must use the name `azure-secret-store` rather than `ssarcextension`.
+> Currently, during the preview period, you must specify the exact value `azure-secret-store` to install the SSE extension with version-managed extensions.
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s).

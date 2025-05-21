@@ -2,16 +2,16 @@
 title: "Quickstart: Deploying the Connected Registry Arc Extension"
 description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
 author: rayoef
-ms.author: rayoflores
+ms.author: gaking
 ms.service: azure-container-registry
 ms.topic: quickstart  #Don't change
-ms.date: 05/09/2024
+ms.date: 05/20/2025
 ai-usage: ai-assisted
 
 #customer intent: As a user, I want to learn how to deploy the connected registry Arc extension using the CLI UX with secure-by-default settings, such as using HTTPS, Read Only, Trust Distribution, and Cert Manager service, so that I can ensure the secure and efficient operation of my container workloads."
 ---
 
-# Quickstart: Deploy the connected registry Arc extension (preview)
+# Quickstart: Deploy the connected registry Arc extension 
 
 In this quickstart, you learn how to deploy the Connected registry Arc extension using the CLI UX with secure-by-default settings to ensure robust security and operational integrity. 
  
@@ -89,6 +89,7 @@ By deploying the connected Registry Arc extension, you can synchronize container
 
    For secure deployment of the connected registry extension, generate the connection string, including a new password, transport protocol, and create the `protected-settings-extension.json` file required for the extension deployment with [az acr connected-registry get-settings][az-acr-connected-registry-get-settings] command:
 
+#### [Bash](#tab/bash)
 ```bash
     cat << EOF > protected-settings-extension.json
     {
@@ -102,19 +103,7 @@ By deploying the connected Registry Arc extension, you can synchronize container
     EOF
 ```
 
-```bash
-    cat << EOF > protected-settings-extension.json
-    {
-      "connectionString": "$(az acr connected-registry get-settings \
-      --name myconnectedregistry \
-      --registry myacrregistry \
-      --parent-protocol https \
-      --generate-password 1 \
-      --query ACR_REGISTRY_CONNECTION_STRING --output tsv --yes)"
-    }
-    EOF
-```
-
+#### [PowerShell](#tab/powershell)
 ```azurepowershell
     echo "{\"connectionString\":\"$(az acr connected-registry get-settings \
     --name myconnectedregistry \
@@ -125,6 +114,8 @@ By deploying the connected Registry Arc extension, you can synchronize container
     --output tsv \
     --yes | tr -d '\r')\" }" > settings.json
 ```
+
+---
 
 >[!NOTE] 
 > The cat and echo commands create the `protected-settings-extension.json` file with the connection string details, injecting the contents of the connection string into the `protected-settings-extension.json` file, a necessary step for the extension deployment. The [az acr connected-registry get-settings][az-acr-connected-registry-get-settings] command generates the connection string, including the creation of a new password and the specification of the transport protocol. 
@@ -145,7 +136,7 @@ By deploying the connected Registry Arc extension, you can synchronize container
 
 - The [az k8s-extension create][az-k8s-extension-create] command deploys the connected registry extension on the Kubernetescluster with the provided configuration parameters and protected settings file. 
 - It ensures secure trust distribution between the connected registry and all client nodes within the cluster, and installs the cert-manager service for Transport Layer Security (TLS) encryption.
-- The clusterIP must be from the AKS cluster subnet IP range. The `service.clusterIP` parameter specifies the IP address of the connected registry service within the cluster. It is essential to set the `service.clusterIP` within the range of valid service IPs for the Kubernetescluster. Ensure that the IP address specified for `service.clusterIP` falls within the designated service IP range defined during the cluster's initial configuration, typically found in the cluster's networking settings. If the `service.clusterIP` is not within this range, it must be updated to an IP address that is both within the valid range and not currently in use by another service.
+- The clusterIP must be from the AKS cluster subnet IP range. The `service.clusterIP` parameter specifies the IP address of the connected registry service within the cluster. It's essential to set the `service.clusterIP` within the range of valid service IPs for the Kubernetescluster. Ensure that the IP address specified for `service.clusterIP` falls within the designated service IP range defined during the cluster's initial configuration, typically found in the cluster's networking settings. If the `service.clusterIP` isn't within this range, it must be updated to an IP address that is both within the valid range and not currently in use by another service.
 
 
 ### Verify the connected registry extension deployment
