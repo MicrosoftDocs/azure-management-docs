@@ -9,7 +9,7 @@ ms.date: 05/07/2025
 
 # Onboarding scripts for workload orchestration
 
-The onboarding Powershell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
+The onboarding PowerShell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
 
 If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
 
