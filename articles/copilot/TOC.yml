@@ -35,7 +35,7 @@
     - name: Query attack surface
       href: query-attack-surface.md
     - name: Investigate Azure Firewall IDPS attacks
-      href: /azure/firewall/firewall-copilot
+      href: /azure/firewall/firewall-copilot  
   - name: Work smarter with Azure services
     items:
     - name: Execute commands
@@ -60,6 +60,10 @@
       href: work-load-balancer.md
     - name: Troubleshoot Azure Arc extensions
       href: troubleshoot-arc-extension.md
+  - name: Discover and implement solutions
+    items:
+    - name: Discover solutions in Marketplace
+      href: Discovery-plugin-marketplace.md
   - name: Write and optimize code
     items:
     - name: Generate Azure CLI scripts
