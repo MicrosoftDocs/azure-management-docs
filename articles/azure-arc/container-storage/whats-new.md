@@ -12,13 +12,13 @@ ms.date: 05/13/2025
 
 # What's new in Azure Container Storage enabled by Azure Arc?
 
-This article is updated regularly with blog posts, videos and case studies featuring Azure Container Storage enabled by Azure Arc. If you are looking for the release notes, see [Release notes for Azure Container Storage enabled by Azure Arc](release-notes.md).
+This article is updated regularly with blog posts, videos, and case studies featuring Azure Container Storage enabled by Azure Arc. If you're looking for the release notes, see [Release notes for Azure Container Storage enabled by Azure Arc](release-notes.md).
 
 ## 2025
 
 |Month  | News  |
 |---------|---------|
-|May     | Sample: [**Jumpstart Drop** | Azure Container Storage enabled by Azure Arc: Cloud Ingest Edge Volume on a Single Node Ubuntu K3s Cluster with an SFTP Front End](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20SFTP&fs=true)       |
+|May     | Sample: [Jumpstart Drop | Azure Container Storage enabled by Azure Arc: Cloud Ingest Edge Volume on a Single Node Ubuntu K3s Cluster with an SFTP Front End](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20SFTP&fs=true)       |
 |February     |  Video: [Azure Device Registry and Storage | But can it HA?](https://www.youtube.com/watch?app=desktop&v=NceN83tjaL4&ab_channel=ArcJumpstart)       |
 
 
