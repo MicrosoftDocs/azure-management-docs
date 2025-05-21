@@ -166,8 +166,8 @@ The script contains the following parameters, which you can set to customize the
 | `resourceGroupName`           | Required             | string     | The name of the resource group to clean.                                       |
 | `subscriptionId`              | Optional             | string     | Subscription ID for resources (For Microsoft.Edge). Default is the subscription shown by az CLI. |
 | `contextSubscriptionId`       | Optional             | string     | Subscription ID where context is present (For Microsoft.Edge). Default is the subscription shown by az CLI. |
-| `contextResourceGroupName`    | Optional             | string     | RG of the Context (For Microsoft.Edge). Default is `Mehoopany`.                |
-| `contextName`                 | Optional             | string     | Name of the Context (For Microsoft.Edge). Default is `Mehoopany-Context`.      |
+| `contextResourceGroupName`    | Optional             | string     | RG of the Context (For Microsoft.Edge). Default is `Contoso`.                |
+| `contextName`                 | Optional             | string     | Name of the Context (For Microsoft.Edge). Default is `Contoso-Context`.      |
 | `skipSiteDeletion`            | Optional             | bool       | Skip deletion of site resources. Default is `false`.                           |
 | `skipTargetDeletion`          | Optional             | bool       | Skip deletion of target resources. Default is `false`.                         |
 | `skipConfigurationDeletion`   | Optional             | bool       | Skip deletion of CM created configuration resources. Default is `false`.       |

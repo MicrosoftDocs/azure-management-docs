@@ -21,7 +21,7 @@ sections:
           If you previously installed a version of Azure Container Storage enabled by Azure Arc earlier than **2.1.0-preview**, you must uninstall that previous instance in order to install the newer version.
 
           > [!NOTE]
-          > The extension name for Azure Container Storage enabled by Azure Arc was previously **Edge Storage Accelerator**. If you still have this instance installed, the extension is referred to as **microsoft.edgestorageaccelerator** in the Azure portal.
+          > The extension name for Azure Container Storage was previously **Edge Storage Accelerator**. If you still have this instance installed, the extension is referred to as **microsoft.edgestorageaccelerator** in the Azure portal.
 
           1. Before you can delete the extension, you must delete your configPods, Persistent Volume Claims, and Persistent Volumes using the following commands in this order. Replace `YOUR_POD_FILE_NAME_HERE`, `YOUR_PVC_FILE_NAME_HERE`, and `YOUR_PV_FILE_NAME_HERE` with your respective file names. If you have more than one of each type, add one line per instance:
 
@@ -43,11 +43,11 @@ sections:
     questions:
       - question: What types of encryption are used by Azure Container Storage enabled by Azure Arc?
         answer: |
-          There are three types of encryption that might be interesting for an Azure Container Storage enabled by Azure Arc customer:
+          There are three types of encryption that might be interesting for an Azure Container Storage customer:
 
           - **Cluster to Blob Encryption**: Data in transit from the cluster to blob is encrypted using standard HTTPS protocols. Data is decrypted once it reaches the cloud.
-          - **Encryption Between Nodes**: This encryption is covered by Open Service Mesh (OSM) that is installed as part of setting up your Azure Container Storage enabled by Azure Arc cluster. It uses standard TLS encryption protocols.
-          - **On Disk Encryption**: Encryption at rest. Not currently supported by Azure Container Storage enabled by Azure Arc.
+          - **Encryption Between Nodes**: This encryption is covered by Open Service Mesh (OSM) that is installed as part of setting up your Azure Container Storage cluster. It uses standard TLS encryption protocols.
+          - **On Disk Encryption**: Encryption at rest. Not currently supported by Azure Container Storage.
 
       - question: Is data encrypted in transit?
         answer: Yes, data in transit is encrypted using standard HTTPS protocols. Data is decrypted once it reaches the cloud.

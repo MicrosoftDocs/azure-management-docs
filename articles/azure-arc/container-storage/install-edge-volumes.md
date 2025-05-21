@@ -9,7 +9,7 @@ ms.date: 03/12/2025
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes
 
-This article describes the steps to install the Azure Container Storage enabled by Azure Arc extension.
+This article describes the steps to install the Azure Container Storage extension.
 
 ## Install Azure IoT Operations dependencies
 
@@ -21,7 +21,7 @@ az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "${NAME}-ce
 
 ## Install the Azure Container Storage enabled by Azure Arc extension
 
-Install the Azure Container Storage enabled by Azure Arc extension using the following command:
+Install the Azure Container Storage extension using the following command:
 
 ```azurecli
 az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name azure-arc-containerstorage --extension-type microsoft.arc.containerstorage
@@ -37,7 +37,7 @@ az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name
 
 ### Configuration CRD
 
-The Azure Container Storage enabled by Azure Arc extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage enabled by Azure Arc extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage enabled by Azure Arc to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure nonstandard configurations for Kubernetes clusters with differing storage capabilities.
+The Azure Container Storage extension uses a Custom Resource Definition (CRD) in Kubernetes to configure the storage service. Before you publish this CRD on your Kubernetes cluster, the Azure Container Storage extension is dormant and uses minimal resources. Once your CRD is applied with the configuration options, the appropriate storage classes, CSI driver, and service PODs are deployed to provide services. In this way, you can customize Azure Container Storage to meet your needs, and it can be reconfigured without reinstalling the Arc Kubernetes Extension. Common configurations are contained here, however this CRD offers the capability to configure nonstandard configurations for Kubernetes clusters with differing storage capabilities.
 
 #### [Single-node or two-node cluster](#tab/single)
 
@@ -68,9 +68,9 @@ If you run a single-node or two-node cluster with **Ubuntu** or **Edge Essential
 
 #### Multi-node cluster with Ubuntu or Edge Essentials
 
-Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage enabled by Azure Arc. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
+Azure Container Storage contains a component, *ACStor*, which provides a resilient Read-Write-Once interface for Azure Container Storage. On clusters with three or more nodes, this component provides data replication across the nodes. For this feature to be utilized, one or more spare disks must be configured on a separate mount point for ACStor to consume. If you run a three or more node Kubernetes cluster with **Ubuntu** or **Edge Essentials**, follow these instructions:
 
-1. Azure Container Storage enabled by Azure Arc isn't set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
+1. Azure Container Storage isn't set up to consume disks directly, but rather requires them to be configured as a mount point. To set up a raw disk as a mount point, configure your disk as follows:
   
     ```bash
     fdisk /dev/sd3 
@@ -105,7 +105,7 @@ Azure Container Storage enabled by Azure Arc contains a component, *ACStor*, whi
         enabled: true
         replicas: 3
     ```
-    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage enabled by Azure Arc to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it takes up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it's critical to ensure that you have sized this pool appropriately, since it can't be grown at this time.
+    The `spec.diskCapacity` parameter determines the amount of disk space allocated for Azure Container Storage to utilize. It's **10 GB** in this example, but can be modified to fit your needs. In this example, setting it to 10GB means it takes up 10GB on each of the replicated disks (controlled by the `spec.createStoragePool.replicas` parameter), in this case **3**, or 30GB total. This is the pool from which Local Shared Volumes and Cloud Ingest Volumes will operate, so it's critical to ensure that you have sized this pool appropriately, since it can't be grown at this time.
 
 1. To apply this .yaml file, run:
 
