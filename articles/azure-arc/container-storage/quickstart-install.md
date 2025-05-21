@@ -9,9 +9,9 @@ ms.date: 03/12/2025
 
 ---
   
-# Quickstart: Install Azure Container Storage on a single-node Ubuntu cluster
+# Quickstart: Install Azure Container Storage enabled by Azure Arc on a single-node Ubuntu cluster
 
-This quickstart shows you how to install Azure Container Storage enabled by Azure Arc on a fresh single-node Ubuntu cluster.
+This quickstart shows you how to install Azure Container Storage on a fresh single-node Ubuntu cluster.
 
 ## Prerequisites
 
@@ -54,7 +54,7 @@ az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmg
 
 ## Step 3: Install the Azure Container Storage enabled by Azure Arc extension
 
-Install the Azure Container Storage enabled by Azure Arc extension using the following command:
+Install the Azure Container Storage extension using the following command:
 
 ```azurecli
 az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name azure-arc-containerstorage --extension-type microsoft.arc.containerstorage
