@@ -9,7 +9,7 @@ ms.date: 05/05/2025
 
 # Storage options using Azure Container Storage enabled by Azure Arc
 
-Azure Container Storage enabled by Azure Arc offers many different storage options for customer data. This article describes the available options.
+Azure Container Storage offers many different storage options for customer data. This article describes the available options.
 
 ## Local Shared Edge Volume
 

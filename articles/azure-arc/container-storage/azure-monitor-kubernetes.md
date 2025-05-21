@@ -26,7 +26,7 @@ Prometheus metrics can be stored in an [Azure Monitor workspace](/azure/azure-mo
 
 ### Metrics configuration
 
-To configure the scraping of Prometheus metrics data into Azure Monitor, see the [Azure Monitor managed service for Prometheus scrape configuration](/azure/azure-monitor/containers/prometheus-metrics-scrape-configuration#enable-pod-annotation-based-scraping) article, which builds upon [this configmap](https://aka.ms/azureprometheus-addon-settings-configmap). Azure Container Storage enabled by Azure Arc specifies the `prometheus.io/scrape:true` and `prometheus.io/port` values, and relies on the default of `prometheus.io/path: '/metrics'`. You must specify the Azure Container Storage enabled by Azure Arc installation namespace under `pod-annotation-based-scraping` to properly scope your metrics' ingestion.
+To configure the scraping of Prometheus metrics data into Azure Monitor, see the [Azure Monitor managed service for Prometheus scrape configuration](/azure/azure-monitor/containers/prometheus-metrics-scrape-configuration#enable-pod-annotation-based-scraping) article, which builds upon [this configmap](https://aka.ms/azureprometheus-addon-settings-configmap). Azure Container Storage enabled by Azure Arc specifies the `prometheus.io/scrape:true` and `prometheus.io/port` values, and relies on the default of `prometheus.io/path: '/metrics'`. You must specify the Azure Container Storage installation namespace under `pod-annotation-based-scraping` to properly scope your metrics' ingestion.
 
 Once the Prometheus configuration has been completed, follow the [Azure Managed Grafana instructions](/azure/managed-grafana/overview) to create an [Azure Managed Grafana instance](/azure/managed-grafana/quickstart-managed-grafana-portal).
 
