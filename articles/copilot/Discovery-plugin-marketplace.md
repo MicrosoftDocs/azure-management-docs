@@ -20,7 +20,7 @@ When you ask a question in Copilot, the Discovery Plugin:
 - Searches the Azure Marketplace using intelligent APIs.
 - Returns relevant offers, services, or follow-ups.
 
-All this happens in real time, within your Azure Copilot chat.
+These actions happen in real time, within your Azure Copilot chat.
 
 ## Sample prompts
 
