@@ -4,7 +4,7 @@ description: "Learn how to deploy the Edge RAG extension by using either Azure C
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
+ms.date: 05/22/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster for building intelligent chat solutions.
@@ -15,6 +15,10 @@ ai-usage: ai-assisted
 After you complete the prerequisites steps, deploy Edge RAG by using either Azure CLI or the Azure portal.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## Prerequisites
+
+Before you begin, [complete the deployment prerequisites for Edge RAG Preview](complete-prerequisites.md).
 
 ## Deploy via Azure CLI
 
