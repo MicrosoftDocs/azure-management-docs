@@ -52,7 +52,7 @@ When you use Microsoft Copilot in Azure to search for solutions, the response ty
    - **Description**: A brief overview of the product's features and use cases.
    - **Link**: A direct link to the product's page in the Azure Marketplace for more details.   
    
-   For example, the prompt "**I am looking for speech to text recognition tool.**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
+   For example, the prompt "**I'm looking for speech to text recognition tool.**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
 
 :::image type="content" source="media/discover-marketplace/speech-to-text-tools.png" alt-text="Screenshot of Microsoft Copilot in Azure providing speech-to-text recognition tools.":::
 
