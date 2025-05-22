@@ -40,7 +40,7 @@ Here are a few examples of the kinds of prompts you can use to discover Azure Ma
 - "I need a tool for real-time voice-to-text transcription for meetings."
 - "Can you recommend blockchain services for tokenizing digital assets?"
 - "Show me virtual machine offers with pre-installed development tools."
-- "I am looking for a speech-to-text API for integrating into my application."
+- "I'm looking for a speech-to-text API for integrating into my application."
 
 ## Response Structure
 
