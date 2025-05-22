@@ -40,6 +40,9 @@ The Run command is available across many configurations:
 
 - **Environments:** Non-Azure environments including on-premises, VMware, SCVMM, AWS, GCP, and OCI  
 
+> [!Important] 
+> Run command on Azure Arc-enabled servers does not support authenticating blobs using Managed Identities yet. 
+
 ## Next steps
 Learn how to use Run command:
 - [Azure CLI requests for Run command on Azure Arc-enabled servers](run-command-cli.md)
