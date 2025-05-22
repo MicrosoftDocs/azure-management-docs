@@ -44,7 +44,7 @@ Here are a few examples of the kinds of prompts you can use to discover Azure Ma
 
 ## Response Structure
 
-When you use Microsoft Copilot in Azure to search for solutions, the response typically includes the following:
+When you use Microsoft Copilot in Azure to search for solutions, the response typically includes the following items:
 
 1. **Top 3 Relevant Products**:  
    Copilot provides a list of the most relevant products based on your query. Each product includes:
