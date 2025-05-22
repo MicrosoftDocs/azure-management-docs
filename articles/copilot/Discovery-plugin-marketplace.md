@@ -77,7 +77,7 @@ By using these features, you can quickly find and act on the solutions that best
 
 ## Examples
 
-In this example, the prompt "**I am looking for a blockchain solution for managing digital assets. Can you help me find one?**" provides curated blockchain solutions for managing digital assets.
+In this example, the prompt "**I'm looking for a blockchain solution for managing digital assets. Can you help me find one?**" provides curated blockchain solutions for managing digital assets.
 
 :::image type="content" source="media/discover-marketplace/blockchain-solutions.png" alt-text="Screenshot of Microsoft Copilot in Azure providing blockchain solutions.":::
 
