@@ -11,7 +11,7 @@ author: aherskovitz
 
 # Discover Azure Marketplace solutions using Microsoft Copilot
 
-Microsoft Copilot in Azure enables you to find the right Azure Marketplace solutions using natural language queries. Instead of relying on filters or knowing specific product names, you can describe your needs in your own words, and Copilot will provide tailored suggestions.
+Microsoft Copilot in Azure enables you to find the right Azure Marketplace solutions using natural language queries. Instead of relying on filters or knowing specific product names, you can describe your needs in your own words, and Copilot provides tailored suggestions.
 
 When you ask a question in Copilot, the Discovery Plugin:
 
