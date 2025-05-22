@@ -28,7 +28,7 @@ Here are a few examples of the kinds of prompts you can use to discover Azure Ma
 
 - "Show me database offers for scalable cloud storage."
 - "List AI-powered virtual machine configurations for data analysis."
-- "I am looking for a service to analyze customer sentiment from voice recordings."
+- "I'm looking for a service to analyze customer sentiment from voice recordings."
 - "Show me virtual machine options optimized for machine learning workloads."
 - "Can you recommend a solution for managing digital identities using blockchain?"
 - "I am looking for a tool to transcribe audio files into text."
