@@ -52,7 +52,7 @@ The following table outlines information about the upgrades made to major compon
 |Component| Version|
 |--|--|
 |Kernel| 6.6 |
-|ContainerD| 1.7 and 2.0 support |
+|ContainerD| 2.0 |
 |SystemD | v255 | 
 |Crypto Library| [SymCrypt](https://github.com/microsoft/SymCrypt)
 
