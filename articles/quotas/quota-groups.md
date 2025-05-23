@@ -20,7 +20,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 
 
 ## Supported scenarios  
-The transfer of unused quota between subscription(s) will be done via Quota Group object created. At the moment of creating a Quota group object the group limit will be set to 0. Group limit must be explicitly updated by customer either through quota transfer from sub in group or by group quota increase request. When deploying resources the quota check at runtime is done against the subscription quota.  
+The transfer of unused quota between subscriptions is done via Quota Group object created. At the moment of creating a Quota group object, the group limit will be set to 0. Group limit must be explicitly updated by customer either through quota transfer from sub in group or by group quota increase request. When deploying resources the quota check at runtime is done against the subscription quota.  
 
 - Deallocation: Transfer unused quota from your subscriptions to Group Quota. 
 - Allocation: Transfer quota from group to target subscriptions. 
