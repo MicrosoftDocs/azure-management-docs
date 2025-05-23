@@ -20,7 +20,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 
 
 ## Supported scenarios  
-The transfer of unused quota between subscriptions is done via Quota Group object created. At the moment of creating a Quota group object, the group limit will be set to 0. Group limit must be explicitly updated by customer either through quota transfer from sub in group or by group quota increase request. When deploying resources the quota check at runtime is done against the subscription quota.  
+The transfer of unused quota between subscriptions is done via Quota Group object created. At the moment of creating a Quota group object, the group limit is set to 0. Customers must update the group limit themselves, either by transferring quota from a subscription in the group or by requesting a group quota increase. When deploying resources the quota check at runtime is done against the subscription quota.  
 
 - Deallocation: Transfer unused quota from your subscriptions to Group Quota. 
 - Allocation: Transfer quota from group to target subscriptions. 
@@ -30,7 +30,7 @@ The transfer of unused quota between subscriptions is done via Quota Group objec
 ## Prerequisites
 
 Before you can use the Quota Group feature, you must:  
-- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions that will be added to Quota Groups. For more information, see [Registering the Microsoft Quota resource provider](https://learn.microsoft.com/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
+- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](https://learn.microsoft.com/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
 - A Management Group (MG) is needed to create a Quota Group. Your group inherits quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
 - Certain permissions are required to create Quota Groups and to add subscriptions. For more information on which roles to assign, see [#permissions].   
 
@@ -40,6 +40,7 @@ Before you can use the Quota Group feature, you must:
 - Supports IaaS compute resources only.  
 - Available in public cloud regions only.  
 - Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
+- A subscription can belong to a single Quota group at a time
 
 ## Quota Group is an ARM object
 
@@ -69,7 +70,7 @@ Example hierarchy:
 ## Permissions
 
 Certain permissions are required to create Quota Groups and to add subscriptions. For more information, see [Assign Azure roles using Azure CLI](/azure/role-based-access-control/role-assignments-cli) or [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
-- Assign the *GroupQuota Request Operator* role on the Management Group where the Quota Group will be created.
+- Assign the *GroupQuota Request Operator* role on the Management Group where the Quota Group is created.
 - Assign the *Quota Request Operator* role on all participating subscriptions to the relevant users or applications managing quota operations.
  
 ## Quota Group APIs
@@ -97,7 +98,7 @@ Use the below links to download the latest supported SDKs for Quota Group operat
 - [JS](https://www.npmjs.com/package/@azure/arm-quota/v/1.1.0)
 
 ## Create a Quota Group
-- Create a Quota Group object to be able to do quota transfers between subscriptions (step on how to add subcriptions is below) and submit Quota Group increase requests.
+- Create a Quota Group object to be able to do quota transfers between subscriptions and submit Quota Group increase requests.
 - Requires the *GroupQuota Request Operator* role on the Management Group used to create Quota group
 <!-- Please write at least a sentance to introduce this subsection. -->
 
@@ -144,12 +145,11 @@ Create a Quota Group through the Azure portal.
 5. In the **Basics** tab, fill out required fields such name of Quota group. Quota Group name cannot contain any special characters and or spaces.
 6. Select **Management group**, if the default Management group is not the desired one, select **Change management group**, then select **Next** button.
 7. In the **Subscription selection** tab, select subscriptions to be added to quota group. Subscription is greyed out and unable to be selected if it already belongs to existing Quota Group, then  select **Next** button.
-8. In **Review + create** tab review details of Quota group before creation. Under **Basics** name of Quota Group will be displayed, under **Group selection** the selected Management group and subscriptions  will be displayed
+8. In **Review + create** tab review details of Quota group before creation. Under **Basics** name of Quota Group is displayed, under **Group selection** the selected Management group and subscriptions are displayed
 --- 
 
 ## Delete a Quota Group
 To delete a Quota Group
-- Create a Quota Group object to be able to do quota transfers between subscriptions (step on how to add subcriptions is below) and submit Quota Group increase requests.
 - Requires the *GroupQuota Request Operator* role on the Management Group used to DELETE a Quota group
 - All subscriptions  must be removed from Quota Group before deletion  
 ### [REST API](#tab/rest-2)
@@ -163,12 +163,12 @@ DELETE https://management.azure.com/providers/Microsoft.Management/managementGro
 To delete a Quota Group through the Azure portal 
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
 2. Under settings in left hand side select **Quota groups**.
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select the box next tto the quota group to be deleted
 5. Select the **Delete**  button on the top
-6. In the **Delete a quota group** view the Quota Group to be deleted will be shown, along with the list of **Dependent subscription to be removed from quota group**
-7. Select the **Delete** button on the bottom, **Delete confirmation** notification pops up, notifying **Deleting this quota group is a permanent actino and cannot be undone**, by selecting delete you are giving permission for Azure to remove your subscriptions  if there are any from group and then group will be deleted
-8. Notification on right hand side wil surface with **Your quota group has been deleted** once group has been deleted
+6. In the **Delete a quota group** view the Quota Group to be deleted is shown, along with the list of **Dependent subscription to be removed from quota group**
+7. Select the **Delete** button on the bottom, **Delete confirmation** notification pops up, notifying **Deleting this quota group is a permanent action and cannot be undone**, by selecting delete you are giving permission for Azure to remove your subscriptions if there are any from group and then group will be deleted
+8. Notification on right hand side will surface with **Your quota group has been deleted** once group is deleted
 --- 
 <!-- The following is an example of the format we use to write out portal instructions. Be clear, concise, only bold or italicise actual names of blades and options, etc. Start instructions from the start of openning the portal.
 1. Go to **Virtual machine scale sets**.
@@ -188,7 +188,7 @@ To delete a Quota Group through the Azure portal
 
 
 ## Add or remove subscriptions from a Quota Group
-This section covers how to add subscriptions  after the Quota group is created. subscriptions  will carry their existing quota and usage, this will not be manipulated at the moment of adding to group. Subscription quota remains separate from the group limit. 
+This section covers how to add subscriptions  after the Quota group is created. When added to the group, subscriptions carry their existing quota and usage. The subscriptions' quota will not be manipulated when added to a group. Subscription quota remains separate from the group limit. 
 
 <!-- Please write at least a sentance to introduce this subsection. -->
 <!-- Consider breaking add and remove into their own seperate sections. -->
@@ -200,7 +200,7 @@ To add subscriptions from the Quota Group using the REST API, make a `PUT` reque
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 ```
 
-This section covers how to remove subscriptions from the Quota Group. At the moment of removal, subscription will have carry its existing quota and usage. The group limit will not be manipulated based on subscription removal.  
+This section covers how to remove subscriptions from the Quota Group. At the moment of removal, subscription carry its existing quota and usage. The group limit will not be manipulated based on subscription removal.  
 
 To remove subscriptions from the Quota Group using the REST API, make a `DELETE` request to the following endpoint:
 
@@ -217,7 +217,7 @@ To add subscriptions from Quota Group through portal.
 2. Under settings in left hand side select **Quota groups**.
 3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions view the exisiting subscriptions  will be listed, select **Add subscription** button
+5. In the Edit subscriptions, view the exisiting subscriptions  will be listed, select **Add subscription** button
 6. In the Add Subscriptions view, select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. subscriptions  will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
 7. Notification should indicate that subscriptions  was successfully added and the Edit Subscriptions view is updated with the added subscriptions 
    
@@ -226,7 +226,7 @@ To remove subscription from Quota Group through portal.
 2. Under settings in left hand side select **Quota groups**.
 3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions view the exisiting subscriptions  will be listed, select trashcan icon for the subscription you'd like to remove
+5. In the Edit subscriptions, view the exisiting subscriptions  will be listed, select trashcan icon for the subscription you'd like to remove
 6. There will be prompt confirming whether you're sure about removing the selected subscription, select **remove**
 7. Notification should indicate that subscriptions  was successfully removed and the Edit Subscriptions view is updated with the latest list of subscriptions 
 
