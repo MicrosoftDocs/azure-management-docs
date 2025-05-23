@@ -273,7 +273,7 @@ spec:
     objects: |
       array:
         - |
-          objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to sychronize.
+          objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to synchronize.
           objectType: secret
           objectVersionHistory: 2                       # [optional] The number of versions to synchronize, starting from latest.
     tenantID: "${AZURE_TENANT_ID}"                       # The tenant ID of the Key Vault 
