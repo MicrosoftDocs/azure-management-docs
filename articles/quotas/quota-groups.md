@@ -188,7 +188,7 @@ To delete a Quota Group through the Azure portal
 
 
 ## Add or remove subscriptions from a Quota Group
-This section covers how to add subscriptions  after the Quota group is created. When added to the group, subscriptions carry their existing quota and usage. The subscriptions' quota will not be manipulated when added to a group. Subscription quota remains separate from the group limit. 
+This section covers how to add subscriptions  after the Quota group is created. When added to the group, subscriptions carry their existing quota and usage. The subscriptions' quota is not manipulated when added to a group. Subscription quota remains separate from the group limit. 
 
 <!-- Please write at least a sentance to introduce this subsection. -->
 <!-- Consider breaking add and remove into their own seperate sections. -->
@@ -200,7 +200,7 @@ To add subscriptions from the Quota Group using the REST API, make a `PUT` reque
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 ```
 
-This section covers how to remove subscriptions from the Quota Group. At the moment of removal, subscription carry its existing quota and usage. The group limit will not be manipulated based on subscription removal.  
+This section covers how to remove subscriptions from the Quota Group. At the moment of removal, subscription carry its existing quota and usage. The group limit is not manipulated based on subscription removal.  
 
 To remove subscriptions from the Quota Group using the REST API, make a `DELETE` request to the following endpoint:
 
@@ -214,20 +214,20 @@ Add or remove subscriptions from the Quota Group through the Azure portal. Subsc
 
 To add subscriptions from Quota Group through portal.
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
-2. Under settings in left hand side select **Quota groups**.
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions, view the exisiting subscriptions  will be listed, select **Add subscription** button
+5. In the Edit subscriptions, view the exisiting subscriptions are listed, select **Add subscription** button
 6. In the Add Subscriptions view, select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. subscriptions  will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
 7. Notification should indicate that subscriptions  was successfully added and the Edit Subscriptions view is updated with the added subscriptions 
    
 To remove subscription from Quota Group through portal. 
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
-2. Under settings in left hand side select **Quota groups**.
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions, view the exisiting subscriptions  will be listed, select trashcan icon for the subscription you'd like to remove
-6. There will be prompt confirming whether you're sure about removing the selected subscription, select **remove**
+5. In the Edit subscriptions, view the exisiting subscriptions are listed, select trashcan icon for the subscription you'd like to remove
+6. Notification pops up, it asks whether you're sure about removing the selected subscription, select **remove**
 7. Notification should indicate that subscriptions  was successfully removed and the Edit Subscriptions view is updated with the latest list of subscriptions 
 
 --- 
@@ -235,8 +235,8 @@ To remove subscription from Quota Group through portal.
 ## Transfer quota within Quota Group
 ### [REST API](#tab/rest-4)
 - Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
-- Once your quota group is created and subscriptions  have been added, you can transfer quota between subscriptions  by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family.
-- To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.
+- Once your quota group is created and subscriptions are added, you can transfer quota between subscriptions by transfering quota from source subscription to group. First, deallocate quota from the source subscription and return it to the group. Then, allocate that quota from the group to the target subscription.
+- To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20. This applies to a specific region and VM family.  
 - You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level
 - To view your existing subscription usage for a given region, please use the [Compute Usages API](https://learn.microsoft.com/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).
 
@@ -316,8 +316,8 @@ Transfer unused quota between subscriptions via the Quota Group object. Below st
 
 Transfer from source subscription to group. 
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
-2. Under settings in left hand side select **Quota groups**.  
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
+2. Under settings in left hand side, select **Quota groups**.  
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group  
 4. Select **Quota group** from list of Quota Group(s)  
 5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
@@ -333,8 +333,8 @@ Transfer from source subscription to group.
 
 Transfer from group to target subscripion
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.  
-2. Under settings in left hand side select **Quota groups**.  
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group  
+2. Under settings in left hand side, select **Quota groups**.  
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group  
 4. Select **Quota group** from list of Quota Group(s)  
 5. In the Quota Group resoruces view there will be the list of Quota group resources by region by Group quota (limit)  
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
@@ -516,8 +516,8 @@ The below covers how to submit Quota Group Limit increase via portal and file su
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level. 
 ### [Azure portal](#tab/portal-5)  
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
-2. Under settings in left hand side select **Quota groups**.
-3. To view existing Quota group select **Management Group** filter and select management group used to create Quota Group
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select **Quota group** from list of Quota Group(s)
 5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
