@@ -306,6 +306,9 @@ spec:
 EOF
 ```
 
+> [!TIP]
+> If you have specified `objectVersionHistory` greater than 1 for a secret in the `SecretProviderClass`, then you must specify which version to use in your `SecretProviderClass`. If you do not specify an `objectVersionHistory` for a secret, then you must not reference a version; the latet will always be used.
+
 ### Apply the configuration CRs
 
 Apply the configuration custom resources (CRs) using the `kubectl apply` command:
