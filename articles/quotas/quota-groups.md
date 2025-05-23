@@ -238,7 +238,7 @@ To remove subscription from Quota Group through portal.
 - Once your quota group is created and subscription(s) have been added, you can transfer quota between subscription(s) by deallocating/transfering quota from source subscription to group, then allocating/transferring quota from group to target subscription for a given region and VM family.
 - To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20.
 - You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level
-- To view your existing subscription usage for a given region, please use the [Compute Usages API](https://learn.microsoft.com/en-us/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).
+- To view your existing subscription usage for a given region, please use the [Compute Usages API](https://learn.microsoft.com/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).
 
 ```http
 PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
