@@ -218,8 +218,6 @@
       "ms.author": {
         "articles/azure-arc/**/*.md": "jenhayes",
         "articles/azure-arc/servers/**/*.md": "jenhayes",
-        "articles/copilot/**/*.md": "jenhayes",
-        "articles/copilot/**/*.yml": "jenhayes",      
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "doveychase",
