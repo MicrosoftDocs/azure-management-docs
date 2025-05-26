@@ -32,6 +32,37 @@ Event Grid supports event-driven models by routing events from various sourcesâ€
 > [!IMPORTANT]
 > Event Grid subscriptions are associated to one topic type (product) at a time. If you already have an Event Grid subscription for another topic type, you need to create a new subscription for workload orchestration.
 
+### Register Event Grid 
+
+Since currently Event Grid first party can't acquire S2S permissions due to SFI, you need to execute the following steps once per context.
+
+#### [Bash](#tab/bash)
+
+```bash
+az provider register --namespace Microsoft.EventGrid
+    
+providerAppId="4962773b-9cdb-44cf-a8bf-237846a00ab7" # App Id for Event Grid
+providerOid=$(az ad sp show --id $providerAppId --query id -o tsv)
+    
+az role assignment create --assignee "$providerOid" \
+    --role "Workload Orchestration IT Admin" \
+    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+az provider register --namespace Microsoft.EventGrid
+    
+$providerAppId = "4962773b-9cdb-44cf-a8bf-237846a00ab7" # App Id for Event Grid
+$providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
+    
+az role assignment create --assignee "$providerOid" `
+    --role "Workload Orchestration IT Admin" `
+    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+```
+***
+
 ### Create an Event Grid subscription using Azure CLI
 
 To create an Event Grid subscription using the Azure CLI, follow these steps:
@@ -82,54 +113,56 @@ For more information, see [Event Grid subscription through portal](/azure/event-
 
 ### Provide access to workload orchestration
 
-Once the Event Grid subscription is created, you need to provide access to workload orchestration to the Event Grid subscription. This step is required once per context.
+If you use a function app as the endpoint for the Event Grid subscription, you need to assign the **Workload Orchestration Solution External Validator** role to the function app managed identity. This role allows the function app to validate the solution template and send events back to the workload orchestration service.
 
 #### [Bash](#tab/bash)
+
+1. Run the following command to get the managed identity object ID of the function app. Replace `<functionAppName>` with the name of your function app.
+
+    ```bash
+    az functionapp identity show \
+        --name "<functionAppName>" \
+        --resource-group "$rg"
+    ```
+
+1. Copy the `principalId` from the output, which is the managed identity object ID of the function app.
+
+    ```bash
+    functionAppMSIObjectId="<principalId>"
+    ```
 
 1. Assign the "Workload Orchestration Solution External Validator" role to the function app managed identity. For more information, see [Assign Azure roles using the Azure CLI](/azure/role-based-access-control/role-assignments-cli).
 
     ```bash
     az role assignment create \
-      --assignee <function-app-msi-object-id> \
-      --role "Workload Orchestration Solution External Validator" \
-      --scope "/subscriptions/$subscriptionId/resourceGroups/$rg" 
-    ```
-
-1. Provide access to workload orchestration to the Event Grid subscription. You need to execute this step once per context. 
-
-    ```bash
-    az provider register --namespace Microsoft.EventGrid
-     
-    providerAppId="4962773b-9cdb-44cf-a8bf-237846a00ab7" # App Id for Event Grid
-    providerOid=$(az ad sp show --id $providerAppId --query id -o tsv)
-     
-    az role assignment create --assignee "$providerOid" \
-        --role "Contributor" \
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+        --assignee $functionAppMSIObjectId \
+        --role "Workload Orchestration Solution External Validator" \
+        --scope "/subscriptions/$subscriptionId/resourceGroups/$rg"
     ```
 
 #### [PowerShell](#tab/powershell)
 
-1. Assign the **Workload Orchestration Solution External Validator** role to the function app managed identity. For more information, see [Assign Azure roles using the Azure CLI](/azure/role-based-access-control/role-assignments-cli).
+1. Run the following command to get the managed identity object ID of the function app. Replace `<functionAppName>` with the name of your function app.
+
+    ```powershell
+    az functionapp identity show `
+      --name "<functionAppName>" `
+      --resource-group "$rg"
+    ```
+
+1. Copy the `principalId` from the output, which is the managed identity object ID of the function app.
+
+    ```powershell
+    $functionAppMSIObjectId = "<principalId>"
+    ```
+
+1. Assign the "Workload Orchestration Solution External Validator" role to the function app managed identity. For more information, see [Assign Azure roles using the Azure CLI](/azure/role-based-access-control/role-assignments-cli).
 
     ```powershell
     az role assignment create `
-      --assignee <function-app-msi-object-id> `
+      --assignee $functionAppMSIObjectId `
       --role "Workload Orchestration Solution External Validator" `
       --scope "/subscriptions/$subscriptionId/resourceGroups/$rg" 
-    ```
-
-1. Provide access to workload orchestration to the Event Grid subscription. You need to execute this step once per context. 
-
-    ```powershell
-    az provider register --namespace Microsoft.EventGrid
-     
-    $providerAppId = "4962773b-9cdb-44cf-a8bf-237846a00ab7" # App Id for Event Grid
-    $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
-     
-    az role assignment create --assignee "$providerOid" `
-        --role "Contributor" `
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
     ```
 ***
 
