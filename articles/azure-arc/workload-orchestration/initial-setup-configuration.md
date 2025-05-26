@@ -42,16 +42,8 @@ The following steps show how to configure the resources of workload orchestratio
     instanceName="redmondInstance"
     # Enter name of hierarchy list
     hierarchyName="hierarchyList1"
-    # Enter comma-separated values with no space
-    levelList="[factory,line]"
-    # If you would prefer adding description to each of the hierarchy levels mentioned in the level list, then use the below format
-    levelList='[{"name":"factory","description":"belongs to Factory and hence lines within the factory"},{"name":"line","description":"belongs to specific line"}]'
     # Enter name of capability list
     capListName="tagList1"
-    # Enter comma-separated values with no space
-    capFullList="[soap,shampoo,conditioner]"
-    # If you would prefer adding description to each of the capabilities mentioned in the capability list, then use the below format
-    capFullList='[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     # Enter parent level name
     level1="factory"
     # Enter child level name
@@ -60,19 +52,19 @@ The following steps show how to configure the resources of workload orchestratio
     parentName="$siteName"
     # Enter child name
     childName="Line01"
-    # Enter capabilities of Contoso
-    capParentList="[soap,conditioner,shampoo]"
-    # Enter capabilities of Line01
-    capChildList="[soap,conditioner]"
     # Enter description of Line01
     childDesc="This line is used for soap and conditioner production"
     ```
 
-1. Create workload orchestration context with hierarchies. 
+1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```bash
-    az workload-orchestration context create --subscription "$subscriptionId" --resource-group "$rg" --location "$l" --name "$instanceName" --hierarchies "$levelList" --capabilities "$capFullList"
+    az workload-orchestration context create --subscription "$subscriptionId" --resource-group "$rg" --location "$l" --name "$instanceName" \
+      --hierarchies '[{"name":"factory","description":"belongs to Factory and hence lines within the factory"},{"name":"line","description":"belongs to specific line"}]' \
+      --capabilities '[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     ```
+
+    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
@@ -104,16 +96,8 @@ The following steps show how to configure the resources of workload orchestratio
     $instanceName = "redmondInstance"
     # Enter name of hierarchy list
     $hierarchyName = "hierarchyList1"
-    # Enter comma-separated values with no space
-    $levelList = "[factory,line]"
-    # If you would prefer adding description to each of the hierarchy levels mentioned in the level list, then use the below format
-    $levelList = '[{"name":"factory","description":"belongs to Factory and hence lines within the factory"},{"name":"line","description":"belongs to specific line"}]'
     # Enter name of capability list
     $capListName = "tagList1"
-    # Enter comma-separated values with no space
-    $capFullList = "[soap,shampoo,conditioner]"
-    # If you would prefer adding description to each of the capabilities mentioned in the capability list, then use the below format
-    $capFullList = '[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     # Enter parent level name
     $level1 = "factory"
     # Enter child level name
@@ -122,19 +106,18 @@ The following steps show how to configure the resources of workload orchestratio
     $parentName = $siteName
     # Enter child name
     $childName = "Line01"
-    # Enter capabilities of Contoso
-    $capParentList = "[soap,conditioner,shampoo]"
-    # Enter capabilities of Line01
-    $capChildList = "[soap,conditioner]"
     # Enter description of Line01
     $childDesc = "This line is used for soap and conditioner production"
     ```
 
-1. Create workload orchestration context with hierarchies. 
+1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```powershell
-    az workload-orchestration context create --subscription $subscriptionId --resource-group $rg --location $l --name $instanceName --hierarchies $levelList --capabilities $capFullList
+    az workload-orchestration context create --subscription $subscriptionId --resource-group $rg --location $l --name $instanceName --hierarchies "[0].name=factory" "[0].description=belongs to Factory and hence lines within the factory" "[1].name=line" "[1].description=belongs to specific line" --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" "[2].name=conditioner" "[2].description=For conditioner production"
     ```
+
+    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
+
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
