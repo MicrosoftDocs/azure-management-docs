@@ -34,7 +34,7 @@ Event Grid supports event-driven models by routing events from various sourcesâ€
 
 ### Register Event Grid 
 
-Since currently Event Grid first party can't acquire Service-to-Service (S2S)permissions due to service federation isolation (SFI), you need to execute the following steps once per context.
+Since currently Event Grid first party can't acquire Service-to-Service (S2S) permissions due to service federation isolation (SFI), you need to execute the following steps once per context.
 
 #### [Bash](#tab/bash)
 

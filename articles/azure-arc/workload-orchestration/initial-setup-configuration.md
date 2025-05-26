@@ -64,7 +64,7 @@ The following steps show how to configure the resources of workload orchestratio
       --capabilities '[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     ```
 
-    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn`t supported currently.
+    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
@@ -116,7 +116,7 @@ The following steps show how to configure the resources of workload orchestratio
     az workload-orchestration context create --subscription $subscriptionId --resource-group $rg --location $l --name $instanceName --hierarchies "[0].name=factory" "[0].description=belongs to Factory and hence lines within the factory" "[1].name=line" "[1].description=belongs to specific line" --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" "[2].name=conditioner" "[2].description=For conditioner production"
     ```
 
-    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn`t supported currently.
+    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
 
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
