@@ -4,6 +4,7 @@ description: "This tutorial shows how to use GitOps with ArgoCD in Azure Arc and
 ms.date: 04/06/2025
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
+# Customer intent: As a DevOps engineer, I want to deploy applications using GitOps with ArgoCD on Azure Arc or AKS clusters, so that I can manage configurations and automate application deployments efficiently.
 ---
 
 # Tutorial: Deploy applications using GitOps with ArgoCD

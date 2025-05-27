@@ -4,6 +4,7 @@ description: "This article provides a conceptual overview of GitOps in Azure for
 ms.date: 04/22/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, references-regions
+# Customer intent: "As a DevOps engineer, I want to implement GitOps with Flux for managing application deployments on Azure Kubernetes clusters, so that I can ensure consistent configurations, streamline operations, and enhance visibility into the status of applications across multiple environments."
 ---
 
 # Application deployments with GitOps (Flux v2) for AKS and Azure Arc-enabled Kubernetes

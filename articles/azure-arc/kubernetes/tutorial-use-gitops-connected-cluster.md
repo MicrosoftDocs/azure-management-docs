@@ -4,6 +4,7 @@ description: This tutorial demonstrates applying configurations on an Azure Arc-
 ms.topic: tutorial 
 ms.date: 11/21/2024
 ms.custom: template-tutorial, devx-track-azurecli
+# Customer intent: As a Kubernetes operator, I want to deploy configurations using GitOps with Flux on an Azure Arc-enabled cluster, so that I can manage my cluster's resources efficiently and keep them synchronized with a version-controlled Git repository.
 ---
 
 # Tutorial: Deploy configurations using GitOps on an Azure Arc-enabled Kubernetes cluster 

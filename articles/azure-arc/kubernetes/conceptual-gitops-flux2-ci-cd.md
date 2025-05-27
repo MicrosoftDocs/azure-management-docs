@@ -5,6 +5,7 @@ ms.date: 04/22/2025
 ms.topic: concept-article
 author: eedorenko
 ms.author: iefedore
+# Customer intent: As a DevOps engineer, I want to implement a CI/CD workflow using GitOps with Flux, so that I can automate application deployments across multiple Kubernetes environments while ensuring version control and maintaining the desired state of the clusters.
 ---
 # CI/CD workflow using GitOps (Flux v2)
 

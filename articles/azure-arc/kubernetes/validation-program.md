@@ -3,6 +3,7 @@ title: "Azure Arc-enabled Kubernetes validation"
 ms.date: 01/07/2025
 ms.topic: how-to
 description: "Describes Arc validation program for Kubernetes distributions"
+# Customer intent: As a DevOps engineer, I want to validate my Kubernetes distribution with Azure Arc, so that I can ensure compatibility and successful integration for managing my clusters across cloud environments.
 ---
 
 # Azure Arc-enabled Kubernetes validation

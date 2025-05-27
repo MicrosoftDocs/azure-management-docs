@@ -3,6 +3,7 @@ title: "GitOps Flux v1 configurations with Azure Arc-enabled Kubernetes"
 ms.date: 05/08/2023
 ms.topic: concept-article
 description: "This article provides a conceptual overview of GitOps and configurations capability of Azure Arc-enabled Kubernetes."
+# Customer intent: As a Kubernetes administrator, I want to manage GitOps configurations with Flux v1 on Azure Arc-enabled Kubernetes, so that I can streamline deployment and maintain desired states across multiple cluster environments before migrating to Flux v2.
 ---
 
 # GitOps Flux v1 configurations with Azure Arc-enabled Kubernetes

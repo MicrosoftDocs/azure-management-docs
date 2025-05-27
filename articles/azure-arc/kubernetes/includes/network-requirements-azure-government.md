@@ -2,6 +2,7 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 02/18/2025
+# Customer intent: "As an IT admin responsible for configuring Azure Arc agents, I want to understand the necessary outbound URLs for functionality, so that I can ensure proper firewall and proxy settings are in place for seamless operation."
 ---
 
 > [!IMPORTANT]

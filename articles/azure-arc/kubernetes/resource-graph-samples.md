@@ -4,6 +4,7 @@ description: Sample Azure Resource Graph queries for Azure Arc-enabled Kubernete
 ms.date: 05/14/2025
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As a cloud administrator, I want to execute sample queries for Azure Arc-enabled Kubernetes using Resource Graph, so that I can effectively govern and manage my Kubernetes resources at scale.
 ---
 
 # Azure Resource Graph sample queries for Azure Arc-enabled Kubernetes
