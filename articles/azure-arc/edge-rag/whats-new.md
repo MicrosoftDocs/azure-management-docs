@@ -8,6 +8,7 @@ ms.date: 05/20/2025
 
 #Customer intent: As a ..., I want to stay updated on the latest features and enhancements so that I can...
 
+# Customer intent: As a cloud engineer, I want to stay updated on the latest features and enhancements in Edge RAG, so that I can effectively implement and utilize the new capabilities in my projects.
 ---
 
 # What's new in Edge RAG Preview enabled by Azure Arc

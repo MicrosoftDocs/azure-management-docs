@@ -8,6 +8,7 @@ ms.date: 05/13/2025
 
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 
+# Customer intent: As a developer, I want to add a data source for my Edge RAG chat solution, so that I can effectively set up and manage data ingestion for intelligent search across hybrid and multicloud environments.
 ---
 # Add data source for Edge RAG Preview, enabled by Azure Arc
 

@@ -8,6 +8,7 @@ ms.date: 05/13/2025
 
 #CustomerIntent: As a developer or IT administrator, I want to test the Edge RAG chat solution by using the out-of-the-box application  so that I can evaluate and demonstrate the capabilities of AI-powered search in a hybrid or multicloud environment.
 
+# Customer intent: As a developer or IT administrator, I want to test the Edge RAG chat solution using the provided application, so that I can assess the performance and user experience of AI-powered search in hybrid or multicloud environments.
 ---
 
 # Test the chat solution for Edge RAG Preview, enabled by Azure Arc

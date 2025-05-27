@@ -9,6 +9,7 @@ ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or AI application developer, I want to complete the deployment prerequisites for Edge RAG so that I can ensure a successful setup and configuration of the environment for AI-powered applications.
 
+# Customer intent: "As a cloud administrator or AI application developer, I want to complete the deployment prerequisites for Edge RAG so that I can ensure a successful setup and configuration of the environment for running AI-powered applications."
 ---
 
 # Complete deployment prerequisites for Edge RAG Preview, enabled by Azure Arc

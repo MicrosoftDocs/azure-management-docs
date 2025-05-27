@@ -8,6 +8,7 @@ ms.date: 05/13/2025
 
 #CustomerIntent: As a developer, I want to configure endpoint authentication for Edge RAG so that I can securely manage and access resources across hybrid and multi-cloud environments.
 
+# Customer intent: As a developer, I want to configure API-key based authentication for Edge RAG, so that I can securely manage and access resources across local and cloud environments.
 ---
 
 # Configure "BYOM" endpoint authentication for Edge RAG Preview, enabled by Azure Arc

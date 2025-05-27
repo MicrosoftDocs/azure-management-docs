@@ -8,6 +8,7 @@ ms.date: 05/13/2025
 
 #CustomerIntent: As a Kubernetes cluster administrator, I want to uninstall the Edge RAG extension so that I can remove the extension and clean up the associated namespace from my cluster.
 
+# Customer intent: As a Kubernetes cluster administrator, I want to uninstall the Edge RAG extension and remove its associated namespace so that I can maintain a clean and efficient cluster environment.
 ---
 
 # Uninstall extension for Edge RAG Preview, enabled by Azure Arc

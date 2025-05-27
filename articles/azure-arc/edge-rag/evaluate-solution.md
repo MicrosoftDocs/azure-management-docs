@@ -9,6 +9,7 @@ ai-usage: ai-assisted
 
 #CustomerIntent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
 
+# Customer intent: As a developer implementing a chat solution with Edge RAG, I want to evaluate the RAG system's functionality and performance using baseline and automatic assessments, so that I can ensure the solution meets my quality standards and operational requirements.
 ---
 # Evaluate the Edge RAG Preview system
 

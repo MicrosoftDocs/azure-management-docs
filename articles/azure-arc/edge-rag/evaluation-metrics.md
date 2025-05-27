@@ -9,6 +9,7 @@ ms.date: 05/13/2025
 ai-usage: ai-assisted
 
 #CustomerIntent:  As a developer or data scientist, I want to understand the metrics for evaluating the Edge RAG system so that I can assess the quality and performance of generated responses and retrieval processes effectively.
+# Customer intent: "As a developer or data scientist, I want to learn about the metrics for evaluating the Edge RAG system, so that I can effectively assess the quality of generated responses and optimize the overall performance of the system."
 ---
 
 # Metrics for evaluating the Edge RAG Preview system

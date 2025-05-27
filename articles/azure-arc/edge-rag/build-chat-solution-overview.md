@@ -9,6 +9,7 @@ ai-usage: ai-assisted
 
 #CustomerIntent: As a developer or IT professional, I want to learn how to build a chat solution using Edge RAG so that I can effectively configure data ingestion, perform prompt engineering, and integrate the chat endpoint into business applications.
 
+# Customer intent: As a developer or IT professional, I want to learn how to build and configure a chat solution using Edge RAG so that I can effectively ingest data, optimize prompt engineering, and integrate the chat functionality into my applications.
 ---
 
 # Building chat solution for Edge RAG Preview, enabled by Azure Arc

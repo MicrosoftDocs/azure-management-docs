@@ -3,6 +3,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: include
 ms.date: 05/13/2025
+# Customer intent: "As a cloud architect, I want to understand the capabilities of Edge RAG Preview with Azure Arc, so that I can evaluate its potential for managing edge computing resources in my infrastructure."
 ---
 > [!IMPORTANT]
 > Edge RAG Preview, enabled by Azure Arc is currently in PREVIEW.
