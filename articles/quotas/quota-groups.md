@@ -41,7 +41,7 @@ Before you can use the Quota Group feature, you must:
 - Available in public cloud regions only.  
 - Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
 - A subscription can belong to a single Quota group at a time
-- Quota Groups addresses the quota management pain point, it doesnt address the regional and or zonal access pain point. To get region and or zonal access on subscriptions, [see region access request process](/troubleshoot/azure/general/region-access-request-process). Quota transfers between subscriptions and deployments will fail unless regional and or zonal access is provided on the subscription.  
+- Quota Groups addresses the quota management pain point, it does not address the regional and or zonal access pain point. To get region and or zonal access on subscriptions, [see region access request process](/troubleshoot/azure/general/region-access-request-process). Quota transfers between subscriptions and deployments will fail unless regional and or zonal access is provided on the subscription.  
 
 ## Quota Group is an ARM object
 
@@ -218,7 +218,7 @@ To add subscriptions from Quota Group through portal.
 2. Under settings in left hand side, select **Quota groups**.
 3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions, view the existingsubscriptions are listed, select **Add subscription** button
+5. In the Edit subscriptions, view the existing subscriptions are listed, select **Add subscription** button
 6. In the Add Subscriptions view, select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. subscriptions  will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
 7. Notification should indicate that subscriptions  was successfully added and the Edit Subscriptions view is updated with the added subscriptions 
    
@@ -227,7 +227,7 @@ To remove subscription from Quota Group through portal.
 2. Under settings in left hand side, select **Quota groups**.
 3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
 4. Select **Edit** or **Add** button under **Subscriptions added** column
-5. In the Edit subscriptions, view the existingsubscriptions are listed, select trashcan icon for the subscription you'd like to remove
+5. In the Edit subscriptions, view the existing subscriptions are listed, select trashcan icon for the subscription you'd like to remove
 6. Notification pops up, it asks whether you're sure about removing the selected subscription, select **remove**
 7. Notification should indicate that subscriptions  was successfully removed and the Edit Subscriptions view is updated with the latest list of subscriptions 
 
@@ -326,7 +326,7 @@ Transfer from source subscription to group.
 8. Select from the list of subscriptions  and select **Manage subscription quota** button  
 9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected   resource = 0  
 10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
-11. View the list of subscriptions  by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subsription quota - usage)  
+11. View the list of subscriptions  by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subscription quota - usage)  
 12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.  
 13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
 14. Once completed notification **Your quota has been adjusted** with subscription name and new subscription limit value will surface on right hand side.  
@@ -337,7 +337,7 @@ Transfer from group to target subscription
 2. Under settings in left hand side, select **Quota groups**.  
 3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group  
 4. Select **Quota group** from list of Quota Group(s)  
-5. In the Quota Group resourcesview there will be the list of Quota group resources by region by Group quota (limit)  
+5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)  
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar  
 7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscriptions  usage over sum of subscription quota. Lastly view list of subscriptions  in selected group -> Quota Group resource
 8. Select from the list of subscriptions  and select **Manage subscription quota** button
@@ -472,7 +472,7 @@ az rest --method get --url https://management.azure.com/providers/Microsoft.Mana
 
 ```
 
-Az rest sample reponse:
+Az rest sample response:
 
 ```json
 az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq 'standardddv4family'"
@@ -515,8 +515,8 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
 - If Quota Group  Limit request is rejected via API or portal; then customer must submit support ticket via the self-serve Quota group request portal blade.  
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level.  
-- User requires at a mininum the **Support request contributor role** to create support ticket on subscription in the group.  
-- For zonal and or regional access on subscriptions please follow today's process to gain access to a given region and or zones.  
+- User requires at a minimum the **Support request contributor role** to create support ticket on subscription in the group.  
+- Quota Groups addresses the quota management pain point, it does not address the regional and or zonal access pain point. To get region and or zonal access on subscriptions, [see region access request process].  
 ### [Azure portal](#tab/portal-5)  
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
 2. Under settings in left hand side, select **Quota groups**.
@@ -525,7 +525,7 @@ The below covers how to submit Quota Group Limit increase via portal and file su
 5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)
 6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
 7. Select the checkbox to the desired **Quota group resource**, then select the **Increase group quota** button at the top of page
-8. On right side view the **New quota request** blade with selected region(s) at the top with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit.I.e., If I want 20 cores assigned at group for DSv3 in Australia Central I will enter 20 under **New group quota**
+8. On right side view the **New quota request** blade with selected region(s) at the top with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit. I.e., I want 20 cores assigned at group for DSv3 in Australia Central, I will enter 20 under **New group quota**
 9. Select **Submit** button, notification **We are reviewing your request to adjust the quota** this may take up to ~3 minutes to complete
 10. If successful the **New quota request** view will show the selected **Quota Group resource** by location status of request, the **Increase** value and **New limit**
 11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
