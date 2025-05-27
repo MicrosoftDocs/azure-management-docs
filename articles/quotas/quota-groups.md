@@ -531,8 +531,7 @@ The below covers how to submit Quota Group Limit increase via portal and file su
 11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
 12. If Quota Group limit increase was rejected notification **We were unable to adjust your quota** will surface
 13. Select the **Generate a support ticket** button to start process of creating support ticket
-14. In the **Request details** view select **Deployment model** as **Resource Manager** from drop drown, Under **Choose request types** select **Increase quota / expand access region**
-15. Request details view will surface the Management GroupID and Group Quota ID, select desired regions(s) from **Locations** drop down and select desired VM family from **Quotas** drop down, review the selected VM family **Usage** and new **Limit**, ensure desired value is under **New Limit**, then select **Save and Continue** button
+14. In the **Request details** view  **Deployment model** as **Resource Manager**, request details view will surface the Quota Group name, Management GroupID, Quota Group resource, Location selected, and the Desired increase value, select **Save and Continue** button
 16. In **Additional details** view select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
 17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner will ticketID and link
 18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
