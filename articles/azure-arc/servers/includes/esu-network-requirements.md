@@ -2,6 +2,7 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 01/13/2025
+# Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to understand the required endpoints for Extended Security Updates, so that I can ensure proper connectivity and compliance during installation and updates."
 ---
 
 If you're using Azure Arc-enabled servers only for Extended Security Updates for either or both of the following products:

@@ -4,6 +4,7 @@ description: This article has release notes for Azure Connected Machine agent. F
 ms.topic: overview
 ms.date: 03/10/2025
 ms.custom: references_regions
+# Customer intent: As a system administrator, I want to access the release notes for the Azure Connected Machine agent, so that I can stay informed about updates, fixes, and new features to ensure optimal performance and compliance of my cloud-based infrastructure.
 ---
 
 # What's new with Azure Connected Machine agent

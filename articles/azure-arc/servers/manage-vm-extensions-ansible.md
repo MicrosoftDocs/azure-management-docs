@@ -4,6 +4,7 @@ description: This article describes how to deploy virtual machine extensions to 
 ms.date: 09/03/2024
 ms.topic: how-to
 ms.custom: devx-track-ansible
+# Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to deploy and automate VM extensions using Red Hat Ansible, so that I can efficiently manage and scale my hybrid cloud environment."
 ---
 
 # Enable Azure VM extensions by using Red Hat Ansible automation

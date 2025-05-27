@@ -4,6 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Azure Arc-enable
 ms.date: 02/06/2024
 ms.topic: reference
 ms.custom: subject-policy-reference
+# Customer intent: As an IT administrator managing hybrid environments, I want to access built-in policy definitions for Azure Arc-enabled servers, so that I can ensure compliance and effective governance of my Azure resources.
 ---
 # Azure Policy built-in definitions for Azure Arc-enabled servers
 

@@ -4,6 +4,7 @@ description: In this quickstart, you connect and register a hybrid machine with 
 ms.topic: quickstart
 ms.date: 04/23/2025
 ms.custom: mode-other
+# Customer intent: "As an IT administrator, I want to connect and register hybrid machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
 # Quickstart: Connect hybrid machines with Azure Arc-enabled servers

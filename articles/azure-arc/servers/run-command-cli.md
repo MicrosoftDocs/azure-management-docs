@@ -4,6 +4,7 @@ description: Learn how to use the Azure CLI to remotely execute scripts and comm
 ms.date: 02/28/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: "As a system administrator managing Arc-enabled servers, I want to execute scripts remotely using the Azure CLI, so that I can perform configurations and automate tasks without needing direct access to each machine."
 ---
 # Azure CLI requests for Run command on Azure Arc-enabled servers (Preview)
 

@@ -3,6 +3,7 @@ title: Connect machines at scale by running PowerShell scripts with Configuratio
 description: You can use Configuration Manager to run a PowerShell script that automates at-scale onboarding to Azure Arc-enabled servers.
 ms.date: 03/12/2025
 ms.topic: how-to
+# Customer intent: As an IT administrator, I want to automate the onboarding of Azure Arc-enabled servers using PowerShell scripts in Configuration Manager, so that I can efficiently manage servers at scale and ensure secure, centralized deployment of applications and updates.
 ---
 
 # Connect machines at scale by running PowerShell scripts with Configuration Manager

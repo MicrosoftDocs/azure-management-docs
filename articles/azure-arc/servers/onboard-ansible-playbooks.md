@@ -4,6 +4,7 @@ description: In this article, you learn how to connect machines to Azure using A
 ms.date: 12/30/2024
 ms.topic: how-to
 ms.custom: template-how-to, devx-track-ansible
+# Customer intent: "As a cloud administrator, I want to onboard multiple machines to Azure Arc using Ansible playbooks, so that I can efficiently manage and monitor my hybrid infrastructure at scale."
 ---
 
 # Connect machines at scale using Ansible playbooks

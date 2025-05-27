@@ -3,6 +3,7 @@ title:  How to migrate Azure Arc-enabled servers across regions
 description: Learn how to migrate an Azure Arc-enabled server from one region to another.
 ms.date: 12/05/2024
 ms.topic: how-to
+# Customer intent: As a system administrator, I want to migrate an Azure Arc-enabled server to another region, so that I can enhance manageability and compliance with governance requirements.
 ---
 
 # How to migrate Azure Arc-enabled servers across regions

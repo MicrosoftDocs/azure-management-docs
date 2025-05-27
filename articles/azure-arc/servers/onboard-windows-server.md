@@ -3,6 +3,7 @@ title: Connect Windows Server machines to Azure through Azure Arc Setup
 description: In this article, you learn how to connect Windows Server machines to Azure Arc using the built-in Windows Server Azure Arc Setup wizard.
 ms.date: 10/31/2024
 ms.topic: concept-article
+# Customer intent: As a system administrator, I want to onboard my Windows Server machines to Azure Arc using the built-in setup wizard, so that I can manage them as Azure resources and leverage Azure's capabilities for centralized management.
 ---
 
 # Connect Windows Server machines to Azure through Azure Arc Setup
