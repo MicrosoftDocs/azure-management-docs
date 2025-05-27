@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: "As a database administrator managing Azure SQL Managed Instances via Azure Arc, I want to upgrade the managed instance using the portal, so that I can ensure my database is running on the latest version and takes advantage of new features and improvements."
 ---
 
 # Upgrade Azure SQL Managed Instance directly connected Azure Arc using the portal

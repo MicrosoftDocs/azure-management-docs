@@ -9,6 +9,7 @@ ms.author: umajay
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: concept-article
+# Customer intent: As a cloud administrator, I want to configure Kubernetes storage classes for my data services, so that I can ensure data durability and optimize performance based on my specific workload requirements.
 ---
 
 # Storage Configuration

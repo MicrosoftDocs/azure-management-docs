@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to upgrade my directly connected Azure Arc data controller using the portal, so that I can ensure my data services operate on the latest version without downtime."
 ---
 
 # Upgrade a directly connected Azure Arc data controller using the portal

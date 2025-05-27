@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As an IT administrator managing Azure Arc-enabled data services, I want to retrieve and download log files using the CLI, so that I can troubleshoot issues effectively and ensure system stability.
 ---
 
 # Get logs to troubleshoot Azure Arc-enabled data services

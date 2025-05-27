@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to display the configuration of my Azure Arc-enabled PostgreSQL server, so that I can understand its resource usage and operational status within my Kubernetes environment.
 ---
 
 # Show the configuration of an Azure Arc-enabled PostgreSQL server

@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to upgrade an Azure SQL Managed Instance connected to Azure Arc using the CLI, so that I can ensure it is running the latest version and maintain optimal performance and security."
 ---
 
 # Upgrade an Azure SQL Managed Instance directly connected to Azure Arc using the CLI

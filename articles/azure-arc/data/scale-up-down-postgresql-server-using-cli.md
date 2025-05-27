@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to scale the PostgreSQL server's vCore and memory settings using CLI commands, so that I can manage resource allocation efficiently and ensure optimal performance based on workload demands."
 ---
 # Scale up and down an Azure Database for PostgreSQL server using CLI (az or kubectl)
 

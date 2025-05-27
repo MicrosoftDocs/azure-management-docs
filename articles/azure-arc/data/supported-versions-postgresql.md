@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to understand the supported PostgreSQL versions in Azure Arc-enabled PostgreSQL server, so that I can ensure compatibility with my applications and manage resources effectively.
 ---
 
 # Supported versions of PostgreSQL with Azure Arc-enabled PostgreSQL server

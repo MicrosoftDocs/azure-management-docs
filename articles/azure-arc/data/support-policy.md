@@ -9,6 +9,7 @@ ms.reviewer: "MikeRayMSFT"
 ms.topic: concept-article
 author: "dnethi"
 ms.author: "dinethi"
+# Customer intent: As a data administrator, I want to understand the support policy for Azure Arc-enabled data services, so that I can ensure compliance and effective troubleshooting within my environment.
 ---
 # Azure Arc-enabled data services support policy. 
 

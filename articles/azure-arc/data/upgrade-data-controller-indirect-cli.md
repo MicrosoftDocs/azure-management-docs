@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to upgrade an indirectly connected Azure Arc data controller using the CLI, so that I can ensure my data services are up-to-date without experiencing downtime.
 ---
 
 # Upgrade an indirectly connected Azure Arc data controller using the CLI

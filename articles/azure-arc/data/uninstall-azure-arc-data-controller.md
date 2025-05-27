@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/28/2022
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to uninstall Azure Arc-enabled data services and all associated resources, so that I can cleanly remove all artifacts and ensure proper resource management in my environment."
 ---
 
 # Uninstall Azure Arc-enabled data services

@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to use Jupyter Notebooks in Azure Data Studio to troubleshoot PostgreSQL servers, so that I can efficiently identify and resolve issues within my server groups."
 ---
 
 # Troubleshooting PostgreSQL servers

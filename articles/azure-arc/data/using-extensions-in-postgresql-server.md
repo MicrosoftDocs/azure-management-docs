@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to enable and manage PostgreSQL extensions on my Azure Arc-enabled PostgreSQL server so that I can enhance database functionality and optimize performance for my applications."
 ---
 
 # Use PostgreSQL extensions in your Azure Arc-enabled PostgreSQL server

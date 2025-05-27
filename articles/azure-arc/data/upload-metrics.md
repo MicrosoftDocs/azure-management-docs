@@ -10,6 +10,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to automate the upload of Azure Arc-enabled data services metrics to Azure Monitor so that I can efficiently aggregate, analyze, and act upon metrics across multiple sites in a centralized manner."
 ---
 
 # Upload metrics to Azure Monitor

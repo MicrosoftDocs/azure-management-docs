@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 08/15/2022
 ms.topic: concept-article
+# Customer intent: As a database administrator, I want to understand the upgrade paths and procedures for Azure Arc-enabled data services, so that I can ensure the system is up-to-date while minimizing service interruptions during maintenance.
 ---
 
 # Upgrade Azure Arc-enabled data services
