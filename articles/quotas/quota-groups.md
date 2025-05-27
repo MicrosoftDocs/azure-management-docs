@@ -20,7 +20,7 @@ Azure Quota Groups allow you to share quota among a group of subscriptions, redu
 
 
 ## Supported scenarios  
-The transfer of unused quota between subscriptions is done via Quota Group object created. At the moment of creating a Quota group object, the group limit is set to 0. Customers must update the group limit themselves, either by transferring quota from a subscription in the group or by requesting a group quota increase. When deploying resources the quota check at runtime is done against the subscription quota.  
+The transfer of unused quota between subscriptions is done via Quota Group object created. At the moment of creating a Quota group object, the group limit is set to 0. Customers must update the group limit themselves, either by transferring quota from a subscription in the group or by submitting a Quota group limit increase request and getting approved. When deploying resources the quota check at runtime is done against the subscription quota.  
 
 - Deallocation: Transfer unused quota from your subscriptions to Group Quota. 
 - Allocation: Transfer quota from group to target subscriptions. 
@@ -32,7 +32,7 @@ The transfer of unused quota between subscriptions is done via Quota Group objec
 Before you can use the Quota Group feature, you must:  
 - Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](https://learn.microsoft.com/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
 - A Management Group (MG) is needed to create a Quota Group. Your group inherits quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
-- Certain permissions are required to create Quota Groups and to add subscriptions. For more information on which roles to assign, see [#permissions].   
+- Certain permissions are required to create Quota Groups and to add subscriptions.    
 
 ## Limitations
 
@@ -41,6 +41,7 @@ Before you can use the Quota Group feature, you must:
 - Available in public cloud regions only.  
 - Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
 - A subscription can belong to a single Quota group at a time
+- Quota Groups addresses the quota management pain point, it doesnt address the regional and or zonal access pain point. For zonal and or regional access on subscriptions please follow today's process to gain access to a given region and or zones. Quota transfers between subscriptions and deployments will still fail unless regional and or zonal access is provided on the subscription.  
 
 ## Quota Group is an ARM object
 
@@ -510,10 +511,11 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 ```
 --- 
 
-## Submit Quota Group Limit increase and file support ticket if request fails. 
+## Submit Quota Group Limit increase and file support ticket if request fails 
 The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
 - If Quota Group  Limit request is rejected via API or porta; then customer must submit support ticket via the self-serve Quota group request portal blade.  
-- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level. 
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level.
+- For zonal and or regional access on subscriptions please follow today's process to gain access to a given region and or zones
 ### [Azure portal](#tab/portal-5)  
 1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
 2. Under settings in left hand side, select **Quota groups**.
