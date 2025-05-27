@@ -30,7 +30,7 @@ The transfer of unused quota between subscriptions is done via Quota Group objec
 ## Prerequisites
 
 Before you can use the Quota Group feature, you must:  
-- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](https://learn.microsoft.com/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
+- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
 - A Management Group (MG) is needed to create a Quota Group. Your group inherits quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
 - Certain permissions are required to create Quota Groups and to add subscriptions.    
 
