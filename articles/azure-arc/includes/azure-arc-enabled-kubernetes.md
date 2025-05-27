@@ -5,6 +5,7 @@ ms.topic: include
 ms.date: 12/19/2024
 author: JnHS
 ms.author: jenhayes
+# Customer intent: As a cloud administrator, I want to list all Azure Arc-enabled Kubernetes resources, so that I can monitor and manage the connected clusters and their configurations effectively.
 ---
 
 ### List all Azure Arc-enabled Kubernetes resources

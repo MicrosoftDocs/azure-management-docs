@@ -9,6 +9,7 @@ ms.topic: overview #Don't change
 ms.date: 04/18/2024
 ms.custom: references_regions
 
+# Customer intent: As an IT administrator managing on-premises infrastructure, I want to use Azure Arc site manager to monitor and manage physical and logical resources, so that I can improve visibility and control over my edge environments.
 ---
 
 # What is Azure Arc site manager (preview)?

@@ -8,6 +8,7 @@ ms.subservice: azure-arc-site-manager
 ms.topic: how-to #Don't change
 ms.date: 04/18/2024
 
+# Customer intent: As a site manager, I want to view the alert status for my Azure Arc site, so that I can monitor the health of the underlying resources and take appropriate actions as needed.
 ---
 
 # How to view alert status for an Azure Arc site

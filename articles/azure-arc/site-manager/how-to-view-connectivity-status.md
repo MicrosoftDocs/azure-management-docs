@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 # As a site admin, I want to know how to view update status so that I can use my site.
 
+# Customer intent: "As a site admin, I want to view the connectivity status of my Arc site and its resources, so that I can ensure everything is functioning properly and address any connectivity issues promptly."
 ---
 # How to view connectivity status for an Arc site
 

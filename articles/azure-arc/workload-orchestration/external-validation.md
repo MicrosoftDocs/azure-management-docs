@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/10/2025
+# Customer intent: "As a cloud architect, I want to enable external validation for workload orchestration using Event Grid, so that I can ensure solution templates are correctly validated before deployment."
 ---
 
 # Enable external validation for workload orchestration

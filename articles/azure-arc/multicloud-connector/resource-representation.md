@@ -3,6 +3,7 @@ title: Multicloud connector resource representation in Azure
 description: Understand how AWS resources are represented in Azure after they're added through the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
 ms.date: 06/11/2024
+# Customer intent: As a cloud administrator, I want to connect AWS resources to Azure through a multicloud connector, so that I can manage and govern all my cloud resources from a centralized platform.
 ---
 
 # Multicloud connector resource representation in Azure

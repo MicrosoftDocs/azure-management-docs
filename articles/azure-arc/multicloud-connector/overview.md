@@ -4,6 +4,7 @@ description: "The multicloud connector lets you connect non-Azure public cloud r
 ms.topic: overview
 ms.date: 06/11/2024
 ms.custom: references_regions
+# Customer intent: As a cloud administrator, I want to connect AWS resources to Azure using a centralized management tool, so that I can efficiently manage and govern my multicloud environment.
 ---
 
 # What is Multicloud connector enabled by Azure Arc?

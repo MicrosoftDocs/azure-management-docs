@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: reference
 ms.date: 04/17/2025
+# Customer intent: As a configuration manager, I want to create dynamic configuration templates for workload orchestration, so that I can efficiently manage and reuse configurations across various solutions and ensure they adapt to different runtime scenarios.
 ---
 
 # Create a configuration template for workload orchestration

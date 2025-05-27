@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: reference
 ms.date: 05/10/2025
+# Customer intent: "As a cloud solution architect, I want to understand the Event Grid payload for external validation so that I can effectively manage solution version validations in workload orchestration."
 ---
 
 # Event Grid external validation payload

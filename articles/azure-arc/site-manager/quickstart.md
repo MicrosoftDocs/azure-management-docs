@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 #customer intent: As a admin who manages my sites as resource groups in Azure, I want to represent them as Arc sites and so that I can benefit from logical representation and extended functionality in Arc for my resources under my resource groups.
 
+# Customer intent: As an administrator managing resources in Azure, I want to create an Arc site for my resource groups, so that I can effectively organize, view, and manage geographically related resources within Azure Arc site manager.
 ---
   
 # Quickstart: Create a site in Azure Arc site manager (preview)

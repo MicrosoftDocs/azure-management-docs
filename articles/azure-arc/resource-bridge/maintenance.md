@@ -3,6 +3,7 @@ title: Azure Arc resource bridge maintenance operations
 description: Learn how to manage Azure Arc resource bridge so that it remains online and operational.
 ms.topic: concept-article
 ms.date: 1/21/2025
+# Customer intent: As an IT administrator responsible for managing an on-premises appliance VM, I want to perform maintenance operations on the Azure Arc resource bridge, so that I can ensure it remains online, secure, and operational for managing my on-premises resources effectively.
 ---
 
 # Azure Arc resource bridge maintenance operations

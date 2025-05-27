@@ -4,6 +4,7 @@ description: Learn how to use Azure Arc resource bridge to support VM self-servi
 ms.date: 04/22/2025
 ms.topic: overview
 ms.custom: references_regions
+# Customer intent: "As a system administrator managing hybrid cloud environments, I want to utilize the Azure Arc resource bridge to enable self-service VM management, so that I can centrally control and operate my on-premises virtual machines from the Azure portal."
 ---
 
 # What is Azure Arc resource bridge?

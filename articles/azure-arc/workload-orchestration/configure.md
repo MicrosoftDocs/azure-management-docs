@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+# Customer intent: "As a solution administrator, I want to configure and publish solution parameters via the workload orchestration portal, so that I can effectively manage deployment settings across multiple targets."
 ---
 
 # Configure your solutions with the workload orchestration portal

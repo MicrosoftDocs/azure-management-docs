@@ -4,6 +4,7 @@ ms.topic: include
 ms.date: 12/19/2024
 author: johnmarco
 ms.author: johnmarc
+# Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to query and analyze the installation status of databases such as SQL Server, PostgreSQL, or MySQL, so that I can ensure compliance and optimize resource allocation."
 ---
 
 ### Get count and percentage of Arc-enabled servers by domain

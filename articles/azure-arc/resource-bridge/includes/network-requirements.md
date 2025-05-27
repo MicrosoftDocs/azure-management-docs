@@ -1,6 +1,7 @@
 ---
 ms.topic: include
 ms.date: 05/22/2024
+# Customer intent: "As a network administrator, I want to configure outbound and inbound connectivity settings for the appliance VM and management machine, so that I can ensure smooth communication and functionality for the Arc resource bridge."
 ---
 
 ### Outbound connectivity requirements

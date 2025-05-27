@@ -3,6 +3,7 @@ title: Troubleshoot Azure Arc resource bridge issues
 description: This article tells how to troubleshoot and resolve issues with the Azure Arc resource bridge when trying to deploy or connect to the service.
 ms.date: 10/03/2024
 ms.topic: troubleshooting
+# Customer intent: As a cloud administrator, I want to troubleshoot Azure Arc resource bridge deployment issues, so that I can ensure stable and reliable connectivity to my on-premises infrastructure.
 ---
 
 # Troubleshoot Azure Arc resource bridge issues

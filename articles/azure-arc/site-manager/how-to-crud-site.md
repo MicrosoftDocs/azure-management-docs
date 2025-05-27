@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 #customer intent: As a site admin, I want to know how to create, delete, and modify sites so that I can manage my site.
 
+# Customer intent: "As a site admin, I want to create, modify, and delete sites using a site manager, so that I can efficiently manage and organize geographically related resources within my Azure environment."
 ---
 
 # Create and manage sites

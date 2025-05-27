@@ -4,6 +4,7 @@ description: Sample Azure Resource Graph queries for Azure Arc showing use of re
 ms.date: 05/14/2025
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample
+# Customer intent: As a cloud administrator, I want to leverage sample queries for Azure Resource Graph related to Azure Arc, so that I can efficiently govern and manage my resources across diverse environments.
 ---
 
 # Azure Resource Graph sample queries for Azure Arc

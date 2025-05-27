@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/07/2025
+# Customer intent: "As a cloud architect, I want to create a solution that utilizes shared adapter dependencies through CLI, so that I can effectively manage data synchronization across different application targets."
 ---
 
 # Quickstart: Create a solution with shared adapter dependency

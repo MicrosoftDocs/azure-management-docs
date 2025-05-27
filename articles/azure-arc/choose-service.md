@@ -3,6 +3,7 @@ title: Choosing the right Azure Arc service for machines
 description: Learn about the different services offered by Azure Arc and how to choose the right one for your machines.
 ms.date: 05/07/2025
 ms.topic: concept-article
+# Customer intent: As an IT administrator managing a diverse infrastructure, I want to evaluate the different Azure Arc services for connecting my Windows and Linux machines, so that I can choose the best solution for efficient inventory and management of my resources.
 ---
 
 # Choosing the right Azure Arc service for machines

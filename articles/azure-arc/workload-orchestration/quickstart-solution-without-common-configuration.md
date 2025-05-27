@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/03/2025
+# Customer intent: As a developer, I want to create a basic solution using workload orchestration via CLI without common configurations, so that I can deploy applications efficiently with minimal setup.
 ---
 
 # Quickstart: Create a basic solution without common configurations

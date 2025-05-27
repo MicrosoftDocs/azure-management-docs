@@ -5,6 +5,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/03/2025
+# Customer intent: As a DevOps engineer, I want to create a solution with multiple instances in a Kubernetes namespace using workload orchestration via CLI, so that I can efficiently manage and deploy applications with dynamic configurations.
 ---
 
 # Quickstart: Create a solution with multiple instances in the same Kubernetes namespace
