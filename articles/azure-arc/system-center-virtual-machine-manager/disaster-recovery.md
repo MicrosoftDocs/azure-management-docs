@@ -8,6 +8,7 @@ ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: As a system administrator, I want to recover the Azure Arc resource bridge VM after accidental deletion, so that I can restore connectivity between on-premises infrastructure and Azure for seamless operations.
 ---
 
 # Recover from accidental deletion of resource bridge virtual machine

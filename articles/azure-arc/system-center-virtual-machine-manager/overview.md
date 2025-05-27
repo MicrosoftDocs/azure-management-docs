@@ -9,6 +9,7 @@ ms.author: jsuri
 author: jyothisuri
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom: references_regions
+# Customer intent: As a system administrator, I want to connect my System Center Virtual Machine Manager to Azure, so that I can manage VMs consistently across hybrid environments using Azure's security and governance capabilities.
 ---
 
 # Overview of Azure Arc-enabled System Center Virtual Machine Manager

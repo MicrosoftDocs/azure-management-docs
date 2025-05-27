@@ -9,6 +9,7 @@ ms.topic: how-to
 ms.date: 02/21/2025
 keywords: "VMM, Arc, Azure, System Center"
 
+# Customer intent: As an IT administrator, I want to resolve Azure Arc resource bridge deployment errors in SCVMM, so that I can successfully onboard resources to Azure and ensure seamless operations.
 ---
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors

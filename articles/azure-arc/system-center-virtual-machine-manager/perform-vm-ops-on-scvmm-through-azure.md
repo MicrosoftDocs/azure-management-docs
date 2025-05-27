@@ -7,6 +7,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: "As a cloud administrator managing SCVMM VMs, I want to perform operations such as starting, stopping, and modifying VMs in Azure, so that I can efficiently control and manage my virtual machine environment."
 ---
 
 # Manage SCVMM VMs in Azure through Arc-enabled SCVMM

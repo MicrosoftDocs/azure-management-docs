@@ -8,6 +8,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMM, Arc, Azure"
+# Customer intent: "As a cloud administrator, I want to create a new virtual machine in Azure using System Center Virtual Machine Manager, so that I can efficiently manage and deploy resources across my hybrid cloud environment."
 ---
 
 

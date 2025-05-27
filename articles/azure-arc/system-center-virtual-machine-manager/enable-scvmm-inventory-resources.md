@@ -8,6 +8,7 @@ author: jyothisuri
 ms.date: 04/23/2025
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
+# Customer intent: As an IT administrator using SCVMM, I want to enable SCVMM inventory resources in Azure so that I can manage and control access to my virtual machines and related resources through a centralized cloud platform.
 ---
 
 # Enable SCVMM inventory resources from Azure portal

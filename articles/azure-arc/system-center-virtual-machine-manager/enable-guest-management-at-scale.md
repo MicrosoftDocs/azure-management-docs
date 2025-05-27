@@ -10,6 +10,7 @@ ms.date: 05/13/2025
 keywords: "VMM, Arc, Azure"
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
+# Customer intent: As an IT infrastructure admin, I want to install Arc agents at scale for my SCVMM VMs so that I can leverage Azure management services for securing, patching, and monitoring those virtual machines effectively.
 ---
 
 # Install Arc agents at scale for Arc-enabled SCVMM VMs

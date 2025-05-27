@@ -8,6 +8,7 @@ author: jyothisuri
 ms.topic: how-to 
 ms.date: 05/13/2025
 keywords: "VMM, Arc, Azure"
+# Customer intent: "As an IT administrator managing the SCVMM environment, I want to upgrade the Azure Arc resource bridge, so that I can ensure it remains supported and secure with the latest updates and features."
 ---
 
 # Upgrade the Azure Arc resource bridge
