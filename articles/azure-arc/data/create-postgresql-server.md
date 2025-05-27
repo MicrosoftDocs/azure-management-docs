@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to deploy an Azure Arc-enabled PostgreSQL server using CLI commands, so that I can manage and utilize PostgreSQL services across multiple environments efficiently.
 ---
 
 # Create an Azure Arc-enabled PostgreSQL server from CLI

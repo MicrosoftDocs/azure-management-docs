@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a Kubernetes administrator, I want to create a PostgreSQL server using custom resource definitions, so that I can efficiently manage database deployments within my Kubernetes environment.
 ---
 
 # Create a PostgreSQL server using Kubernetes tools

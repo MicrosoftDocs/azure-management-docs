@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to retrieve connection endpoints and create connection strings for my Azure Arc-enabled PostgreSQL server, so that I can connect my applications to the database and access management dashboards."
 ---
 
 # Get connection endpoints & create the connection strings for your Azure Arc-enabled PostgreSQL server

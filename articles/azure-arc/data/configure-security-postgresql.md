@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to configure security settings for my Azure Arc-enabled PostgreSQL server, so that I can ensure data is encrypted and user roles are managed effectively for compliance and data protection.
 ---
 
 # Configure security for your Azure Arc-enabled PostgreSQL server

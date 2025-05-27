@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As an IT administrator managing SQL Managed Instances via Azure Arc, I want to delete instances and reclaim associated Kubernetes persistent volume claims, so that I can maintain an organized and efficient Kubernetes environment without leftover resources after instance removal.
 ---
 
 # Delete a SQL Managed Instance enabled by Azure Arc

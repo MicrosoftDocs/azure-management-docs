@@ -9,6 +9,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.date: 11/03/2021
 ms.topic: overview
+# Customer intent: As a cloud administrator, I want to deploy an Azure Arc data controller in direct connect mode from the Azure portal, so that I can manage on-premises data services efficiently within my Azure environment.
 ---
 
 #  Create Azure Arc data controller from Azure portal - Direct connectivity mode

@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 06/16/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to deploy a SQL Managed Instance enabled by Azure Arc using Azure Data Studio, so that I can manage instances efficiently within my cloud environment.
 ---
 
 # Create SQL Managed Instance enabled by Azure Arc using Azure Data Studio

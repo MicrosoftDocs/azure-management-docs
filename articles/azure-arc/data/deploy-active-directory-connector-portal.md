@@ -9,6 +9,7 @@ ms.author: mikeray
 ms.reviewer: dinethi
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to deploy and manage an Active Directory connector via the Azure portal, so that I can enable Active Directory authentication for SQL Managed Instances running on Azure Arc.
 ---
 
 # Tutorial – Deploy Active Directory connector using Azure portal

@@ -10,6 +10,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to delete Azure Arc-enabled data services resources, so that I can manage resource usage and billing effectively while ensuring that obsolete or unnecessary resources are removed.
 ---
 
 # Delete resources from Azure Arc-enabled data services

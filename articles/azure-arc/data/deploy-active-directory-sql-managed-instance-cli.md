@@ -10,6 +10,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to deploy an Active Directory integrated SQL Managed Instance using Azure CLI, so that I can manage database authentication and connectivity seamlessly in a cloud environment.
 ---
 
 # Deploy Active Directory integrated SQL Managed Instance enabled by Azure Arc using Azure CLI

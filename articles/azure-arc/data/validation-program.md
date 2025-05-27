@@ -9,6 +9,7 @@ author: MikeRayMSFT
 ms.author: mikeray
 description: "Describes validation program for Kubernetes distributions for Azure Arc-enabled data services."
 keywords: "Kubernetes, Arc, Azure, K8s, validation, data services, SQL Managed Instance"
+# Customer intent: As a data services administrator, I want to validate Kubernetes distributions for Azure Arc-enabled data services, so that I can ensure compatibility and compliance for my data applications in a hybrid cloud environment.
 ---
 
 # Azure Arc-enabled data services Kubernetes validation

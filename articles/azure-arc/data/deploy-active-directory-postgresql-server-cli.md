@@ -10,6 +10,7 @@ ms.author: hasaniholder
 ms.reviewer: mikeray
 ms.date: 02/10/2023
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to deploy an Active Directory integrated Azure Arc-enabled PostgreSQL server using Azure CLI, so that I can manage database authentication and access controls effectively in a hybrid cloud environment."
 ---
 
 # Deploy Active Directory integrated Azure Arc-enabled PostgreSQL using Azure CLI

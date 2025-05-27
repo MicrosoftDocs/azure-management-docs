@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: "As a cloud operations engineer, I want to delete an Azure Arc-enabled PostgreSQL server and its associated PVCs, so that I can effectively manage resources and avoid potential storage errors in my Kubernetes cluster."
 ---
 
 # Delete an Azure Arc-enabled PostgreSQL server

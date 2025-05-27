@@ -10,6 +10,7 @@ ms.subservice: azure-arc-data
 ms.date: 09/07/2022
 ms.topic: tutorial
 ms.custom: template-tutorial 
+# Customer intent: As a Kubernetes administrator, I want to run automated validation tests for Arc-enabled data services in my cluster, so that I can ensure compatibility and performance before deploying in a production environment.
 ---
 
 

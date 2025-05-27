@@ -9,6 +9,7 @@ ms.date: 06/17/2022
 ms.topic: reference
 ms.service: azure-arc
 ms.subservice: azure-arc-data
+# Customer intent: "As a data administrator, I want to utilize the `az arcdata` extension for Azure CLI, so that I can effectively manage Azure Arc-enabled data services and streamline my data operations."
 ---
 
 # Azure (`az`) CLI `arcdata` extension

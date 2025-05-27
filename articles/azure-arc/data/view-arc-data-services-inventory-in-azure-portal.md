@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As an IT administrator managing data services, I want to view the inventory of my Azure Arc-enabled instances, so that I can effectively monitor and manage my deployments within the Azure portal and my Kubernetes cluster.
 ---
 
 # Inventory of Arc enabled data services

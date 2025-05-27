@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 03/12/2023
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to configure automated backups for Azure Arc-enabled PostgreSQL servers, so that I can ensure data protection and manage retention periods effectively."
 ---
 
 # Automated backup Azure Arc-enabled PostgreSQL servers

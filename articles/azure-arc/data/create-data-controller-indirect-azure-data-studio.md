@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to create an Azure Arc data controller using Azure Data Studio, so that I can manage data instances seamlessly within my Kubernetes environment.
 ---
 
 # Create data controller in Azure Data Studio

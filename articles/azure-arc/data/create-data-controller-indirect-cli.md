@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a Kubernetes operator, I want to create an Azure Arc data controller using the CLI, so that I can enable data services across my multi-node Kubernetes cluster."
 ---
 
 # Create Azure Arc data controller using the CLI

@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to create an Azure Arc-enabled PostgreSQL server using Azure Data Studio, so that I can manage a cloud-native PostgreSQL instance within an on-premises or multi-cloud environment.
 ---
 
 # Create Azure Arc-enabled PostgreSQL server using Azure Data Studio
