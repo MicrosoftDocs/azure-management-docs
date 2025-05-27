@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 03/12/2025
 zone_pivot_groups: platform-select-with-other
+# Customer intent: As a DevOps engineer, I want to configure Linux for Edge Volumes on single-node or two-node clusters, so that I can ensure optimal performance and compatibility with Azure Container Storage enabled by Azure Arc.
 ---
 
 # Prepare Linux for Edge Volumes using a single-node or two-node cluster

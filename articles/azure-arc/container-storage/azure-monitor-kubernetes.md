@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 
+# Customer intent: As a Kubernetes administrator, I want to configure Azure Monitor to collect metrics and logs from my deployment, so that I can ensure the availability and performance of my applications in Azure Container Storage.
 ---
 
 # Azure Monitor and Kubernetes monitoring
