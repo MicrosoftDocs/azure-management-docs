@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to understand the limitations of Azure Arc-enabled PostgreSQL, so that I can effectively manage my hybrid database environment and set appropriate expectations with my team regarding high availability, monitoring, and configuration backups."
 ---
 
 # Limitations of Azure Arc-enabled PostgreSQL

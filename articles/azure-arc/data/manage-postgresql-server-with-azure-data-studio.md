@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As a PostgreSQL administrator, I want to manage my Azure Arc-enabled PostgreSQL instances using Azure Data Studio, so that I can easily access dashboards and perform data operations efficiently.
 ---
 
 # Use Azure Data Studio to manage your Azure Arc-enabled PostgreSQL server

@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to list Azure Arc-enabled PostgreSQL servers in my Arc Data Controller, so that I can manage and monitor the servers effectively."
 ---
 
 # List the Azure Arc-enabled PostgreSQL servers created in an Azure Arc Data Controller

@@ -4,6 +4,7 @@ ms.service: azure-arc
 ms.topic: include
 ms.date: 05/27/2022
 ms.author: jeschult
+# Customer intent: As a database administrator, I want to implement connection retry logic during SQL Managed Instance upgrades, so that I can minimize downtime and ensure my application remains resilient through the upgrade process.
 ---
 
 ### General Purpose

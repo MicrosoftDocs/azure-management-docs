@@ -11,6 +11,7 @@ services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
+# Customer intent: As a database administrator, I want to deploy a SQL Managed Instance enabled by Azure Arc with high availability, so that I can ensure uninterrupted service and failover capabilities in my Kubernetes environment.
 ---
 
 # High Availability with SQL Managed Instance enabled by Azure Arc

@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to migrate data from my on-premises PostgreSQL database to an Azure Arc-enabled PostgreSQL server, so that I can leverage Azure's features while maintaining my existing database structure and data integrity.
 ---
 
 # Migrate PostgreSQL database to Azure Arc-enabled PostgreSQL server

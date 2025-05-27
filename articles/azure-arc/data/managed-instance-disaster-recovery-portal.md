@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 08/02/2023
 ms.topic: concept-article
+# Customer intent: "As a database administrator managing SQL Managed Instances, I want to configure disaster recovery failover groups in the portal, so that I can ensure high availability and resilience for my databases."
 ---
 
 # Configure failover group - portal

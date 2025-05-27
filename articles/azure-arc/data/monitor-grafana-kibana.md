@@ -10,6 +10,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a data engineer, I want to monitor logs and metrics for Azure Arc-enabled data services using Kibana and Grafana, so that I can gain insights into the performance and health of my database instances.
 ---
 
 # View logs and metrics using Kibana and Grafana

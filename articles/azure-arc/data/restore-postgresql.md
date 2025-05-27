@@ -10,6 +10,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 03/13/2023
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to restore an Azure Arc-enabled PostgreSQL server, so that I can create a new server based on a previous configuration or a specific point in time."
 ---
 
 # Restore Azure Arc-enabled PostgreSQL servers

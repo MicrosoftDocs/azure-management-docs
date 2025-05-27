@@ -9,6 +9,7 @@ ms.author: lancewright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: concept-article
+# Customer intent: "As a database administrator, I want to monitor Azure Arc-enabled SQL Managed Instances, so that I can ensure optimal performance and compliance across my data services."
 ---
 
 # Monitoring, log analytics, billing information, Azure portal (SQL Managed Instance)

@@ -9,6 +9,7 @@ ms.author: ravpate
 ms.reviewer: mikeray
 ms.date: 05/05/2023
 ms.topic: how-to
+# Customer intent: "As a database administrator managing a SQL Managed Instance with Azure Arc, I want to rotate customer-managed keytabs, so that I can ensure secure Active Directory authentication for my instance."
 ---
 # Rotate SQL Managed Instance enabled by Azure Arc customer-managed keytab
 

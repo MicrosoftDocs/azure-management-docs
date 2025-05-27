@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/14/2022
 ms.topic: concept-article
+# Customer intent: "As a cloud administrator, I want to establish resource synchronization between Kubernetes and Azure for Arc-enabled data services, so that I can manage resources efficiently and ensure accurate mapping between the two environments."
 ---
 
 # Resource sync

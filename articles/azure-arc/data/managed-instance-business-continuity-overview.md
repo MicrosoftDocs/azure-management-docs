@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 01/27/2022
 ms.topic: concept-article
+# Customer intent: "As a database administrator, I want to implement business continuity strategies using SQL Managed Instance enabled by Azure Arc, so that I can ensure recovery and minimize downtime during disruptions."
 ---
 
 # Overview: SQL Managed Instance enabled by Azure Arc business continuity

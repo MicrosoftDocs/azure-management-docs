@@ -10,6 +10,7 @@ ms.subservice: azure-arc-sql-mi
 ms.custom: devx-track-azurecli
 ms.date: 06/17/2022
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to perform a point-in-time restore of a database in SQL Managed Instance enabled by Azure Arc, so that I can recover data from a specific moment within the retention period.
 ---
 
 #  Perform a point-in-time Restore

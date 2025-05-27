@@ -8,6 +8,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 06/02/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to import the AdventureWorks sample database into my Azure Arc-enabled PostgreSQL server, so that I can utilize it for testing and development purposes."
 ---
 
 # Import the AdventureWorks sample database to Azure Arc-enabled PostgreSQL server
