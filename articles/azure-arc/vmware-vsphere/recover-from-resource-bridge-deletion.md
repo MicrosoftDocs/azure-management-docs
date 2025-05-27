@@ -8,6 +8,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: As an IT administrator managing Azure Arc-enabled VMware environments, I want to perform disaster recovery operations for the resource bridge VM, so that I can restore connectivity and functionality after accidental deletion or other failures.
 ---
 
 # Recover Arc resource bridge connection

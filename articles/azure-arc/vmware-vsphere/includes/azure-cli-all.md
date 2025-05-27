@@ -1,6 +1,7 @@
 ---
 ms.topic: include
 ms.date: 07/18/2024
+# Customer intent: "As a cloud administrator, I want to create a virtual machine from existing machines in my VMware environment, so that I can efficiently manage resources and streamline deployment processes in my cloud infrastructure."
 ---
 
 ```azurecli-interactive

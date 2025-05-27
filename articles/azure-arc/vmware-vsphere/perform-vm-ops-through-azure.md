@@ -7,6 +7,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: As a cloud administrator managing VMware virtual machines, I want to perform various operations on Arc-enabled VMs in Azure, so that I can efficiently control and optimize my virtual infrastructure from a centralized platform.
 ---
 
 # Manage VMware VMs in Azure through Arc-enabled VMware vSphere

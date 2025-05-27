@@ -1,6 +1,7 @@
 ---
 ms.topic: include
 ms.date: 07/18/2024
+# Customer intent: "As a cloud administrator, I want to create virtual machines from existing resources in my vSphere environment, so that I can automate and streamline my virtual infrastructure management."
 ---
 
 ```azurecli-interactive

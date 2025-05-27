@@ -1,6 +1,7 @@
 ---
 ms.topic: include
 ms.date: 06/04/2024
+# Customer intent: As a cloud administrator, I want to understand the required network connections for managing Azure services, so that I can ensure proper configuration and communication between my management machine and the necessary endpoints.
 ---
 
 | **Service** | **Port** | **URL** | **Direction** | **Notes**|
