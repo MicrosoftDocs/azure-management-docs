@@ -73,6 +73,7 @@ Example hierarchy:
 Certain permissions are required to create Quota Groups and to add subscriptions. For more information, see [Assign Azure roles using Azure CLI](/azure/role-based-access-control/role-assignments-cli) or [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 - Assign the *GroupQuota Request Operator* role on the Management Group where the Quota Group is created.
 - Assign the *Quota Request Operator* role on all participating subscriptions to the relevant users or applications managing quota operations.
+- Assign the *Reader* role on all participating subscriptions to the relevant users or applications managing quota operations to view quota group resources in portal.
  
 ## Quota Group APIs
 
