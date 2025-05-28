@@ -3,6 +3,7 @@ title: Manage Microsoft Sentinel workspaces at scale
 description: Azure Lighthouse helps you effectively manage Microsoft Sentinel across delegated customer resources.
 ms.date: 07/16/2024
 ms.topic: how-to
+# Customer intent: As a managed security service provider, I want to manage multiple Microsoft Sentinel workspaces across different customer tenants, so that I can efficiently monitor and respond to security threats at scale while ensuring data governance and privacy compliance.
 ---
 
 # Manage Microsoft Sentinel workspaces at scale

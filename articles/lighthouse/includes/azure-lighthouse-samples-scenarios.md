@@ -7,6 +7,7 @@ ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 07/10/2024
 ms.author: jenhayes
+# Customer intent: As a cloud administrator managing multiple Azure tenants, I want to implement cross-tenant management solutions using various deployment templates, so that I can efficiently create and configure resources across different environments.
 ---
 
 These samples illustrate various tasks that can be performed in cross-tenant management scenarios.

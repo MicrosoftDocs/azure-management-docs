@@ -7,6 +7,7 @@ ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 07/10/2024
 ms.author: jenhayes
+# Customer intent: "As a cloud administrator, I want to set up alerts for my Azure resources with Azure Monitor, so that I can stay informed about changes and activities across subscriptions managed by Azure Lighthouse."
 ---
 
 These samples show how to use Azure Monitor to create alerts for subscriptions that are onboarded to Azure Lighthouse.

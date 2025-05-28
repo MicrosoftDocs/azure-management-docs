@@ -7,6 +7,7 @@ ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 07/10/2024
 ms.author: jenhayes
+# Customer intent: As a cloud administrator, I want to utilize Azure Policy samples for managing delegated subscriptions, so that I can ensure compliance and effective governance within my organization's resources.
 ---
 
 These samples show how to use Azure Policy with subscriptions that are onboarded to Azure Lighthouse.

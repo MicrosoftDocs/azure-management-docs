@@ -5,6 +5,7 @@ ms.date: 06/03/2024
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
+# Customer intent: As a service provider, I want to onboard a customer to a resource management solution, so that I can manage their Azure resources efficiently from my tenant without requiring them to share credentials.
 ---
 
 # Onboard a customer to Azure Lighthouse
