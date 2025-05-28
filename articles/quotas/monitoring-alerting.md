@@ -3,6 +3,7 @@ title:  Quota monitoring & alerting
 description: Learn about monitoring and alerting for quota usage.
 ms.date: 11/29/2023
 ms.topic: how-to
+# Customer intent: "As a cloud resource manager, I want to monitor and set up alerts for quota usage, so that I can proactively manage resources and prevent service disruptions."
 ---
 
 # Quota monitoring and alerting

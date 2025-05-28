@@ -4,6 +4,7 @@ description: Learn how to request an increase in the vCPU quota limit for a regi
 ms.date: 03/13/2024
 ms.topic: how-to
 ms.custom: references-regions
+# Customer intent: "As a cloud resource manager, I want to request an increase in regional vCPU quotas, so that I can ensure sufficient capacity for deploying virtual machines across different regions in my subscription."
 ---
 
 # Increase regional vCPU quotas
