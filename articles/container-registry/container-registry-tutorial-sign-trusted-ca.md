@@ -8,6 +8,7 @@ ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/5/2024
 #customer intent: As a developer, I want to sign and verify container images using a CA-issued certificate in Azure Key Vault so that I can ensure the integrity and authenticity of my images.
+# Customer intent: "As a developer, I want to sign and verify container images using a CA-issued certificate stored in a secure vault, so that I can ensure their integrity and authenticity throughout the deployment process."
 ---
 
 # Sign container images with Notation and Azure Key Vault using a CA-issued certificate

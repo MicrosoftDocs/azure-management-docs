@@ -7,6 +7,7 @@ ms.service: azure-container-registry
 ms.topic: best-practice #Don't change
 ms.date: 04/30/2024
 
+# Customer intent: As a network administrator, I want to configure firewall rules to allow traffic from Azure Container Registry service tags, so that I can securely manage access for image imports, webhooks, and automated tasks while minimizing the risk of unauthorized traffic.
 ---
 
 # Service tags for Azure Container Registry

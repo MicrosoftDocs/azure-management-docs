@@ -7,6 +7,7 @@ ms.date: 02/07/2025
 ms.topic: quickstart
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, mvc, mode-api
+# Customer intent: As a developer, I want to create a private Docker registry using PowerShell, so that I can efficiently manage and deploy my container images in Azure.
 ---
 
 # Quickstart: Create a private container registry using Azure PowerShell

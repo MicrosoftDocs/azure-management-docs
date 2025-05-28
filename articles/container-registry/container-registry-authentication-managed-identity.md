@@ -9,6 +9,7 @@ ms.author: rayoflores
 ms.date: 10/31/2023
 #customer intent: As a developer, I want to use managed identities to authenticate to Azure Container Registry so that I can securely access container images without managing credentials.
 
+# Customer intent: As a developer, I want to configure managed identities for authenticating to Azure Container Registry, so that I can securely access images without having to manage sensitive credentials.
 ---
 
 # Use an Azure managed identity to authenticate to an Azure container registry

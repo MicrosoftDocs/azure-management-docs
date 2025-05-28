@@ -6,6 +6,7 @@ ms.topic: best-practice
 ms.date: 10/31/2023
 ms.author: rayoflores
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to establish a tagging and versioning strategy for container images, so that I can ensure consistent and reliable deployments while managing updates and maintaining registry efficiency.
 ---
 
 # Recommendations for tagging and versioning container images

@@ -8,6 +8,7 @@ ms.service: azure-container-registry
 author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
+# Customer intent: As a developer, I want to quickly diagnose Azure Container Registry issues using a command-line interface, so that I can ensure efficient container management and resolve connectivity or configuration problems promptly.
 ---
 # Check the health of an Azure container registry
 

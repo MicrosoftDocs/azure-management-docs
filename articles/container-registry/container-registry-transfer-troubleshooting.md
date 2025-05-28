@@ -6,6 +6,7 @@ ms.author: rayoflores
 ms.date: 10/31/2023
 ms.topic: troubleshooting
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to troubleshoot deployment failures and access issues with container registries, so that I can ensure smooth and efficient transfer of container images and artifacts.
 ---
 
 # ACR Transfer troubleshooting

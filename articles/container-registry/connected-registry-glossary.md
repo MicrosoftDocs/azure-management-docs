@@ -8,6 +8,7 @@ ms.topic: glossary #Don't change
 ms.date: 02/28/2025
 #customer intent: As a customer, I want to understand the terms and definitions for the connected registry extension with Azure Arc for a successful deployment.
 
+# Customer intent: As an IT professional deploying the connected registry extension with Azure Arc, I want to understand key terms and definitions, so that I can ensure a smooth and successful deployment process.
 ---
 
 # Glossary for Connected registry with Azure Arc

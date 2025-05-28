@@ -7,6 +7,7 @@ ms.custom: devx-track-arm-template, devx-track-azurecli
 ms.topic: tutorial  #Don't change.
 ms.date: 10/31/2023
 #customer intent: As a DevOps engineer, I want to disable ARM audience tokens so that I can enhance the security of my container registries.
+# Customer intent: As a DevOps engineer, I want to disable ARM audience token authentication in Azure Container Registry, so that I can restrict access to only Microsoft Entra ACR audience tokens and enhance the security of my container registries.
 ---
 
 # Disable authentication as ARM for Microsoft Entra tokens

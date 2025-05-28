@@ -8,6 +8,7 @@ ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/3/2024
 #customer intent: As a developer, I want to sign and verify container images so that I can ensure their authenticity and integrity.
+# Customer intent: As a developer, I want to sign and verify container images using a self-signed certificate and secure storage solutions, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
 # Sign container images with Notation and Azure Key Vault using a self-signed certificate

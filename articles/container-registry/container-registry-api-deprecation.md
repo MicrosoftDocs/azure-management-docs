@@ -5,6 +5,7 @@ ms.topic: concept-article
 ms.date: 10/31/2023
 ms.author: rayoflores
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to stay informed about deprecated and removed API features in Azure Container Registry, so that I can update my applications and avoid service disruptions due to unsupported APIs."
 ---
 
 # API Deprecations in Azure Container Registry

@@ -7,6 +7,7 @@ ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+# Customer intent: As a developer, I want to import container images into an Azure container registry using APIs, so that I can manage my images without needing to use Docker commands or install Docker locally.
 ---
 
 # Import container images to a container registry

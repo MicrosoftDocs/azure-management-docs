@@ -8,6 +8,7 @@ ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: subject-rbac-steps, devx-track-azurecli 
 ms.devlang: azurecli
+# Customer intent: As a DevOps engineer, I want to enable content trust for my container registry, so that I can ensure the security and integrity of the images I publish and consume by verifying their authenticity.
 ---
 # Content trust in Azure Container Registry
 

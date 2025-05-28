@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
+# Customer intent: As a network administrator, I want to configure firewall rules for Azure Container Registry access, so that I can ensure secure and reliable communication for pulling and pushing container images from devices behind a firewall.
 ---
 
 # Configure rules to access an Azure container registry behind a firewall

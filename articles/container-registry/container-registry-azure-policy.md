@@ -6,6 +6,7 @@ ms.service: azure-container-registry
 author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
+# Customer intent: As a compliance officer, I want to assign built-in policy definitions for Azure Container Registry, so that I can audit and ensure that our container registries remain compliant with corporate standards and service level agreements.
 ---
 
 # Audit compliance of Azure container registries using Azure Policy

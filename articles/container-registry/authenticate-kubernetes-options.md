@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 02/28/2025
+# Customer intent: As a Kubernetes administrator, I want to configure authentication methods for Azure Container Registry, so that I can securely pull container images into my Kubernetes clusters.
 ---
 
 # Scenarios to authenticate with Azure Container Registry from Kubernetes

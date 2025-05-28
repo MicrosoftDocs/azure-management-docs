@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to automate the building, testing, and patching of container images using multi-step tasks, so that I can streamline my development workflow and efficiently manage resources in the cloud.
 ---
 
 # Run multi-step build, test, and patch tasks in ACR Tasks

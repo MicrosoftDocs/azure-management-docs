@@ -7,6 +7,7 @@ ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 #customer intent: As a security-conscious user, I want to mitigate data exfiltration risks so that my container registry remains secure.
+# Customer intent: As a security specialist, I want to implement dedicated data endpoints in Azure Container Registry, so that I can minimize data exfiltration risks and ensure secure access to storage resources.
 ---
 # Azure Container Registry mitigating data exfiltration with dedicated data endpoints
 

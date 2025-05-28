@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
+# Customer intent: As a DevOps engineer, I want to understand the concepts of container registries, repositories, and artifacts so that I can effectively manage and utilize container images in my deployment workflows.
 ---
 
 # About registries, repositories, and artifacts

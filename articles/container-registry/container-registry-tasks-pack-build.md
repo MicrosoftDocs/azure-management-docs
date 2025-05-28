@@ -7,6 +7,7 @@ ms.author: rayoflores
 ms.date: 10/31/2023
 ms.custom: devx-track-js, devx-track-extended-java
 ms.service: azure-container-registry
+# Customer intent: As a software developer, I want to build and push container images directly from my application source code using Cloud Native Buildpacks, so that I can simplify the containerization process without needing a Dockerfile.
 ---
 
 # Build and push an image from an app using a Cloud Native Buildpack

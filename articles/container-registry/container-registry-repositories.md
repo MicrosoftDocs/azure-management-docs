@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a developer managing container images, I want to view repositories in the Azure portal, so that I can organize and track the versions of my Docker container images effectively.
 ---
 
 # View container registry repositories in the Azure portal

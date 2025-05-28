@@ -6,6 +6,7 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
+# Customer intent: As a system administrator, I want to understand error codes from the container registry health checks, so that I can quickly diagnose and resolve issues affecting Docker and Helm operations.
 ---
 # Health check error reference
 

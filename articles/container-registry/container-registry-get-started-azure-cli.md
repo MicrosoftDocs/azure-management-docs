@@ -8,6 +8,7 @@ ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: H1Hack27Feb2017, mvc, devx-track-azurecli, mode-api
 #customer intent: As a developer, I want to create a private Docker container registry using the Azure CLI so that I can manage container images efficiently.
+# Customer intent: "As a developer, I want to set up a private container registry using the Azure CLI so that I can efficiently manage, store, and deploy my container images."
 ---
 # Quickstart: Create a private container registry using the Azure CLI
 

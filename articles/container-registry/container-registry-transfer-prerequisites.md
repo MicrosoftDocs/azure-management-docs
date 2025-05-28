@@ -8,6 +8,7 @@ ms.date: 10/31/2023
 ms.service: azure-container-registry
 #customer intent: As a DevOps engineer, I want to understand the prerequisites and steps for transferring artifacts between Azure container registries so that I can manage and migrate container images efficiently.
 
+# Customer intent: As a DevOps engineer, I want to learn how to configure the transfer of container images between Azure container registries so that I can efficiently manage and migrate artifacts across different environments and clouds.
 ---
 
 # Transfer artifacts to another registry

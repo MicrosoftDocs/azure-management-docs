@@ -8,6 +8,7 @@ ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 #customer intent: As a developer, I want to automate image builds so that my applications are always up-to-date with the latest base images.
+# Customer intent: As a developer, I want to set up automated container image builds that trigger on updates to base images in a private registry so that my application images remain current without manual intervention.
 ---
 
 # Tutorial: Automate container image builds when a base image is updated in another private container registry 

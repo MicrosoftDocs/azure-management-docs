@@ -7,6 +7,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a developer managing container images, I want to configure webhooks for my container registry so that I can automate events triggered by actions like image pushes and deletions, enhancing my deployment workflow.
 ---
 
 # Using Azure Container Registry webhooks

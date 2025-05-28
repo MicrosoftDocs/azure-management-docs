@@ -7,6 +7,7 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to set up a private endpoint for an Azure container registry, so that I can secure access over a private link within my virtual network and eliminate exposure to the public internet.
 ---
 
 # Connect privately to an Azure container registry using Azure Private Link
