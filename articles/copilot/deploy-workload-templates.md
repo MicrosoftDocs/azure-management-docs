@@ -7,6 +7,7 @@ ms.service: copilot-for-azure
 ms.custom: build-2024, linux-related-content, ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a cloud developer, I want to discover and deploy workload templates using an AI assistant, so that I can quickly implement solutions following industry best practices without extensive manual setup."
 ---
 
 # Discover and deploy workload templates from Microsoft Copilot in Azure

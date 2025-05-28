@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a cloud administrator, I want to utilize AI-driven assistance in Azure operations, so that I can optimize my app management, enhance troubleshooting, and efficiently navigate Azure services for improved performance and insights.
 ---
 
 # Microsoft Copilot in Azure capabilities

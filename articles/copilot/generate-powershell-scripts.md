@@ -8,6 +8,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As an IT professional, I want to generate PowerShell scripts using an AI assistant, so that I can automate resource management tasks in Azure more efficiently."
 ---
 
 # Generate PowerShell scripts using Microsoft Copilot in Azure

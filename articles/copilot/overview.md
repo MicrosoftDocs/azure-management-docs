@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
+# Customer intent: "As a cloud administrator, I want to utilize an AI-powered tool to simplify my Azure management tasks, so that I can increase productivity, reduce costs, and better leverage the capabilities of my cloud environment."
 ---
 
 # What is Microsoft Copilot in Azure?

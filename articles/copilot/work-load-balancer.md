@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a cloud architect, I want to get recommendations for the appropriate load balancer type, so that I can configure the best solution for my networking requirements and ensure future compliance with upcoming changes."
 ---
 
 # Work with Azure Load Balancer

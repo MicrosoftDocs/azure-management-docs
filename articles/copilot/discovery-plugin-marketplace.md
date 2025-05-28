@@ -7,6 +7,7 @@ ms.service: copilot-for-azure
 ms.custom: ignite-2025, ignite-2025-copilotinAzure, devx-track-marketplace, build-2025
 ms.author: aherskovitz
 author: aherskovitz
+# Customer intent: "As a cloud user, I want to use natural language queries to find relevant Azure Marketplace solutions, so that I can quickly identify and implement the tools that meet my needs without manually filtering through extensive options."
 ---
 
 # Discover Azure Marketplace solutions using Microsoft Copilot in Azure
