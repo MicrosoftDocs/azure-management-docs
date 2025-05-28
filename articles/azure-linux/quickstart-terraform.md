@@ -8,6 +8,7 @@ ms.custom: devx-track-terraform, linux-related-content
 ms.editor: schaffererin
 ms.topic: quickstart
 ms.date: 06/27/2023
+# Customer intent: "As a cloud engineer, I want to deploy an Azure Linux Container Host for an AKS cluster using Terraform, so that I can automate the infrastructure provisioning and management for my containerized applications."
 ---
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster using Terraform

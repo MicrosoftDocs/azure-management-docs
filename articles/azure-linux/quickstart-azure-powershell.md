@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: devx-track-azurepowershell, linux-related-content
 ms.topic: quickstart
 ms.date: 11/20/2023
+# Customer intent: As a cloud developer, I want to quickly deploy an Azure Linux Container Host for an AKS cluster using PowerShell, so that I can manage and run multi-container applications efficiently.
 ---
 
 # Quickstart: Deploy an Azure Linux Container Host for an AKS cluster using Azure PowerShell

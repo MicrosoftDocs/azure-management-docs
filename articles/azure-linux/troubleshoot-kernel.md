@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: troubleshooting
 ms.date: 04/18/2023
+# Customer intent: "As a DevOps engineer managing Azure Kubernetes Service, I want to troubleshoot and update outdated kernel versions on Azure Linux Container Host nodes, so that my clusters can benefit from the latest features and security improvements."
 ---
 
 # Troubleshoot outdated kernel versions in Azure Linux Container Host node images

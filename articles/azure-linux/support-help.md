@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: troubleshooting
 ms.date: 03/28/2024
+# Customer intent: As a developer using the Azure Linux Container Host, I want to access troubleshooting resources and support options, so that I can efficiently resolve issues and enhance my cloud-based solutions.
 ---
 
 # Support and help for the Azure Linux Container Host for AKS

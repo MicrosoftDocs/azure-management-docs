@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
 ms.date: 12/12/2023
+# Customer intent: As a cloud architect, I want to understand the Azure Linux Container Host for AKS, so that I can determine its benefits and compatibility for optimizing and securing my container workloads in the Azure environment.
 ---
 
 # What is the Azure Linux Container Host for AKS?

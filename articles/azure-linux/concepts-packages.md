@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.topic: concept-article
 ms.date: 08/18/2024
 ms.custom: template-concept, linux-related-content
+# Customer intent: "As a DevOps engineer, I want to access and manage the package list for the Azure Linux Container Host in AKS, so that I can ensure my Kubernetes workloads are using the latest and most secure versions of required packages."
 ---
 
 # Packages
