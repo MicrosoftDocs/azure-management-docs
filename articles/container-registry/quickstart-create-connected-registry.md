@@ -9,6 +9,7 @@ ms.custom: mode-api, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
 # customer intent: To create a connected registry resource in Azure using the Azure CLI or Azure Portal.
+# Customer intent: "As a cloud infrastructure engineer, I want to create a connected registry in Azure using the CLI or portal, so that I can synchronize images and artifacts between my local environment and the cloud registry."
 ---
 
 # Quickstart: Create a connected registry using the Azure CLI or Azure portal

@@ -7,6 +7,7 @@ ms.author: rayoflores
 ms.date: 02/06/2024
 ms.service: azure-container-registry
 ms.custom: subject-policy-compliancecontrols
+# Customer intent: "As a compliance officer, I want to understand regulatory compliance controls for Azure Container Registry, so that I can ensure our container resources meet the necessary security standards and regulations."
 ---
 # Azure Policy Regulatory Compliance controls for Azure Container Registry
 

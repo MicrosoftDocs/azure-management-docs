@@ -8,6 +8,7 @@ ms.date: 10/31/2023
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry
 #customer intent: As a user, I want to set up a dedicated compute pool in my registry to run an Azure Container Registry task so that I can have a dedicated compute environment.
+# Customer intent: As a developer, I want to set up a dedicated compute pool in my Azure Container Registry so that I can run tasks in a scalable and managed environment tailored to my workload needs.
 ---
 
 # Run an ACR task on a dedicated agent pool

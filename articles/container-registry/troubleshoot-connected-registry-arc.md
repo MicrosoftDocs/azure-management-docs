@@ -7,6 +7,7 @@ ms.service: azure-container-registry
 ms.topic: troubleshooting-known-issue #Don't change.
 ms.date: 05/09/2024
 #customer intent: As a customer, I want to understand the common issues with the connected registry Arc extension and how to troubleshoot them.
+# Customer intent: "As an IT operator managing Arc-enabled Kubernetes clusters, I want to troubleshoot common issues with the connected registry extension, so that I can ensure successful installations and maintain proper functionality."
 ---
 
 # Troubleshoot connected registry extension 

@@ -9,6 +9,7 @@ ms.date: 05/20/2025
 
 #customer intent: Learn how to secure and deploy the connected registry extension with HTTPS, TLS encryption, and upgrades/rollbacks. 
 
+# Customer intent: "As a DevOps engineer, I want to securely deploy the connected registry Arc extension with TLS encryption and trust distribution management, so that I can ensure safe and trusted communication between containers and the registry in my Kubernetes cluster."
 ---
 
 # Tutorial: Secure deployment methods for the connected registry extension

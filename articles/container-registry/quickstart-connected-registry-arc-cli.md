@@ -9,6 +9,7 @@ ms.date: 05/20/2025
 ai-usage: ai-assisted
 
 #customer intent: As a user, I want to learn how to deploy the connected registry Arc extension using the CLI UX with secure-by-default settings, such as using HTTPS, Read Only, Trust Distribution, and Cert Manager service, so that I can ensure the secure and efficient operation of my container workloads."
+# Customer intent: As a DevOps engineer, I want to deploy the Connected Registry Arc extension using CLI with secure settings, so that I can manage container workloads efficiently and securely in my Kubernetes cluster.
 ---
 
 # Quickstart: Deploy the connected registry Arc extension 

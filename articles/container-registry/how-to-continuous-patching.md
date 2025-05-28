@@ -6,6 +6,7 @@ ms.service: azure-container-registry
 ms.topic: how-to
 ms.date: 03/27/2025
 
+# Customer intent: As a DevOps engineer, I want to configure continuous patching in my container registry, so that I can automatically detect and remediate OS vulnerabilities in container images to maintain security and compliance.
 ---
 # Configure continuous patching in Azure Container Registry
 
