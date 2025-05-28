@@ -64,5 +64,5 @@ Shell [documentation][01].
 
 <!-- link references -->
 [01]: /powershell/utility-modules/aishell/overview
-[02]: https://github.com/PowerShell/ProjectMercury
+[02]: https://github.com/PowerShell/AIShell
 [03]: media/ai-shell-overview/ai-shell-azure-agent.gif
