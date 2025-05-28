@@ -4,6 +4,7 @@ description: Learn how to create an Azure portal dashboard by using an Azure Res
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ms.date: 12/11/2023
+# Customer intent: "As an Azure developer, I want to create a dashboard using an Azure Resource Manager template, so that I can visualize the performance of my virtual machine and better manage my cloud resources."
 ---
 
 # Quickstart: Create a dashboard in the Azure portal by using an ARM template

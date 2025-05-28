@@ -3,6 +3,7 @@ title: The structure of Azure dashboards
 description: Walk through the JSON structure of an Azure dashboard using an example dashboard. Includes reference to resource properties.
 ms.topic: concept-article
 ms.date: 09/25/2024
+# Customer intent: As a cloud engineer, I want to understand the JSON structure of Azure dashboards, so that I can effectively create, customize, and manage dashboards tailored to my team's needs.
 ---
 
 # The structure of Azure dashboards

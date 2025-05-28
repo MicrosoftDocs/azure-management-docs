@@ -5,6 +5,7 @@ ms.date: 06/17/2024
 ms.topic: how-to
 ms.custom:
   - build-2024
+# Customer intent: "As an IT administrator, I want to enforce app protection policies on devices using the mobile app, so that I can ensure corporate data security and compliance across both company and personal devices."
 ---
 
 # Use Microsoft Intune mobile application management (MAM) on devices that run the Azure mobile app

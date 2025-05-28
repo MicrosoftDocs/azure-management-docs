@@ -6,6 +6,7 @@ ms.service: azure-portal
 ms.topic: "include"
 ms.date: 09/05/2023
 ms.author: jenhayes
+# Customer intent: "As a cloud administrator, I want to access the Simple VM Dashboard in the Azure portal, so that I can monitor the performance and data of my virtual machine effectively."
 ---
 
 Verify that you can see data about your virtual machine in the Azure portal dashboard.

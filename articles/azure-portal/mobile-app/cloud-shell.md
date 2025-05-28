@@ -3,6 +3,7 @@ title: Use Cloud Shell in the Azure mobile app
 description: Use the Azure mobile app to execute commands in Cloud Shell.
 ms.date: 05/21/2024
 ms.topic: how-to
+# Customer intent: "As a cloud resource manager, I want to use Cloud Shell in the Azure mobile app, so that I can execute commands and manage my Azure resources conveniently while on the go."
 ---
 
 # Use Cloud Shell in the Azure mobile app

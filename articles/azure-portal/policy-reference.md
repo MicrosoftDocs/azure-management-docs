@@ -4,6 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Azure portal. Th
 ms.date: 02/06/2024
 ms.topic: reference
 ms.custom: subject-policy-reference
+# Customer intent: "As a cloud administrator, I want to access the list of built-in policy definitions for Azure Portal, so that I can manage my Azure resources efficiently and ensure compliance with organizational standards."
 ---
 
 # Azure Policy built-in definitions for Azure portal

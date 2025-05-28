@@ -3,6 +3,7 @@ title: Get subscription and tenant IDs in the Azure portal
 description: Learn how to locate and copy the IDs of Azure tenants and subscriptions.
 ms.date: 12/19/2024
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to locate and copy my subscription and tenant IDs in the Azure portal, so that I can manage access and resources effectively across my organization."
 ---
 
 # Get subscription and tenant IDs in the Azure portal

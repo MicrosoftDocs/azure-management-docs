@@ -4,6 +4,7 @@ description: You can use the Azure portal on all modern devices and with the lat
 ms.topic: concept-article
 ms.date: 04/10/2024
 ms.custom: accessibility
+# Customer intent: As a cloud user, I want to access the Azure portal on my device using a supported browser, so that I can efficiently manage my resources without compatibility issues.
 ---
 
 # Supported devices

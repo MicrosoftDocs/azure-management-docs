@@ -5,6 +5,7 @@ ms.date: 05/12/2025
 ms.topic: how-to
 ms.custom:
   - build-2024
+# Customer intent: As a mobile user managing Azure resources, I want to access AI-powered assistance through the mobile app, so that I can efficiently generate code snippets and receive personalized insights to optimize my Azure environment.
 ---
 
 # Use Microsoft Copilot in Azure with the Azure mobile app
