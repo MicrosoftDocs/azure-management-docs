@@ -28,11 +28,11 @@ To perform power cycle operations, follow these steps:
 1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **SCVMM management server** and then select the SCVMM server which manages the VM and which you are planning to operate from Azure. 
 
 
-       :::image type="content" source="media/perform-powercycle-operations/management-servers.png" alt-text="Screenshot showing Management servers screen.":::
+   :::image type="content" source="media/perform-powercycle-operations/management-servers.png" alt-text="Screenshot showing Management servers screen.":::
 
    Navigate to the dedicated **Virtual machines** inventory view under the SCVMM inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
    
-       :::image type="content" source="media/perform-powercycle-operations/overview.png" alt-text="Screenshot showing overview screen.":::
+   :::image type="content" source="media/perform-powercycle-operations/overview.png" alt-text="Screenshot showing overview screen.":::
 
 2. Select the machine on which you want to perform power cycle operations. 
 
