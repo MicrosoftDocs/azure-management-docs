@@ -4,7 +4,7 @@ description: Best practices for tagging and versioning Docker container images w
 author: rayoef
 ms.topic: best-practice
 ms.date: 10/31/2023
-ms.author: rayoflores
+ms.author: doveychase
 ms.service: azure-container-registry
 ---
 

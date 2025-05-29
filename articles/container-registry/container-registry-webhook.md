@@ -4,7 +4,7 @@ description: Learn how to use webhooks to trigger events when push or pull actio
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

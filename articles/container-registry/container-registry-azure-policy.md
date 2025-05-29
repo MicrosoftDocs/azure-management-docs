@@ -4,7 +4,7 @@ description: Assign built-in policy definitions in Azure Policy to audit complia
 ms.topic: concept-article
 ms.service: azure-container-registry
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ---
 

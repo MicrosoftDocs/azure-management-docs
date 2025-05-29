@@ -7,7 +7,7 @@ author: dlepow
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/06/2020
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file
 ---
 In the command output, the `identity` section shows an identity of type `SystemAssigned` is set in the task. The `principalId` is the principal ID of the task identity:

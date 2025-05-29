@@ -4,7 +4,7 @@ description: Learn how to use your Azure container registry effectively by follo
 ms.topic: best-practice
 ms.service: azure-container-registry
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ---
 

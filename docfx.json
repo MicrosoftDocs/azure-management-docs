@@ -221,6 +221,7 @@
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "doveychase",
+        "articles/container-registry/**/*.yml": "doveychase",
         "articles/lighthouse/**/*.md": "jenhayes",
         "articles/quotas/**/*.md": "jenhayes",
         "articles/quotas/**/*.yml": "jenhayes"

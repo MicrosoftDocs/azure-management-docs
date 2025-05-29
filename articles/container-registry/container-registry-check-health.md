@@ -6,7 +6,7 @@ ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ---
 # Check the health of an Azure container registry

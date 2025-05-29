@@ -3,7 +3,7 @@ author: dlepow
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 05/07/2020
-ms.author: danlep
+ms.author: doveychase
 ---
 ## Create a Docker-enabled virtual machine
 

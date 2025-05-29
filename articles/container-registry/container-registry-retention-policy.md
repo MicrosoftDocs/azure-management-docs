@@ -4,7 +4,7 @@ description: Learn how to enable a retention policy in your Premium Azure contai
 ms.topic: concept-article
 ms.custom: devx-track-azurecli
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---

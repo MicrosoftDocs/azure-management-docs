@@ -4,7 +4,7 @@ description: Set attributes for a container image or repository so it can't be d
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 #customer intent: As a developer, I want to lock container images so that they cannot be accidentally deleted or overwritten.

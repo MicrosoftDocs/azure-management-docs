@@ -7,7 +7,7 @@ author: dlepow
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 12/14/2018
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file, devx-track-azurecli
 ---
 

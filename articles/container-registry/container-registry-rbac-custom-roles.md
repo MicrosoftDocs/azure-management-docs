@@ -3,7 +3,7 @@ title: Azure Container Registry custom roles
 description: Use Azure RBAC custom roles to create your own fine-grained roles for Azure Container Registry.
 ms.topic: concept-article
 author: johnsonshi
-ms.author: johsh
+ms.author: doveychase
 ms.date: 04/24/2025
 ms.service: azure-container-registry
 ---

@@ -4,7 +4,7 @@ description: Learn how to set a registry property to prevent data exfiltration f
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 author: rayoef
-ms.author: rayoflores
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 #customer intent: As a security administrator, I want to disable artifact export in Azure Container Registry to prevent data exfiltration.

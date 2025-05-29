@@ -7,7 +7,7 @@ author: dlepow
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/12/2019
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file, devx-track-azurecli
 ---
 ### Create a user-assigned identity

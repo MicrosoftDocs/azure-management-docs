@@ -3,7 +3,7 @@ title: Token-based repository permissions in Azure Container Registry
 description: Use non-Microsoft Entra tokens and scope maps to manage repository permissions for an Azure Container Registry without using Microsoft Entra.
 ms.topic: concept-article
 author: johnsonshi
-ms.author: johsh
+ms.author: doveychase
 ms.date: 05/01/2025
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli

@@ -3,7 +3,7 @@ author: dlepow
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 05/02/2019
-ms.author: danlep
+ms.author: doveychase
 ---
 ## Prerequisites
 

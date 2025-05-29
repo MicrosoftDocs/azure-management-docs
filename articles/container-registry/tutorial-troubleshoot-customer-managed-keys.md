@@ -4,7 +4,7 @@ description: Learn how to troubleshoot the most common problems for a registry t
 author: rayoef
 ms.topic: tutorial
 ms.date: 10/31/2023
-ms.author: rayoflores
+ms.author: doveychase
 ms.service: azure-container-registry
 #customer intent: As a user, I want to troubleshoot customer-managed keys so that I can resolve common issues.
 ---

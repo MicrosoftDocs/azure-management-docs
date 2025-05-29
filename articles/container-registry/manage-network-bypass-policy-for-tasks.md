@@ -3,7 +3,7 @@
 title: Manage network bypass policy for tasks
 description: This article provides guidance on managing network bypass policy for ACR tasks.
 author: getk12
-ms.author: gaking
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to 
 ms.date: 05/15/2025
