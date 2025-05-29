@@ -27,7 +27,8 @@ This article guides you through how to create, modify, and delete a site using A
 
 In the [Azure portal](https://portal.azure.com), search for and select **Azure Arc**. Select **Site manager (preview)** from the Azure Arc navigation menu.
 
-:::image type="content" source="./media/how-to-crud-site/arc-portal-main.png" alt-text="Screenshot that shows selecting Site manager from the Azure Arc overview.":::
+![create_site_1](media/how-to-crud-site/create-site-1.jpg)
+
 
 Alternatively, you can also search for Azure Arc site manager directly in the Azure portal using terms such as **site**, **Arc Site**, **site manager** and so on.
 
@@ -37,8 +38,10 @@ Create a site to manage geographically related resources.
 
 1. From the main **Site manager** page in **Azure Arc**, select the blue **Create a site** button.
 
-   :::image type="content" source="./media/how-to-crud-site/create-a-site-button.png" alt-text="Screenshot that shows creating a site from the site manager overview.":::
-
+   ![create_site_2](media/how-to-crud-site/create-site-2.jpg)
+   
+   
+   
 1. Provide the following information about your site:
 
    | Parameter | Description |
@@ -50,14 +53,20 @@ Create a site to manage geographically related resources.
    | **Resource group** | The resource group for the site, if the scope was set to resource group. |
    | **Address** | Physical address for a site. |
 
-1. Once these details are provided, select **Review + create**.
+1. Once all these details are provided, select **Review + create**.
 
-   :::image type="content" source="./media/how-to-crud-site/create-a-site-page-los-angeles.png" alt-text="Screenshot that shows all the site details filled in to create a site and then select review + create.":::
-
+   ![create_site_3](media/how-to-crud-site/create-site-3.jpg)
+   
+   ![create_site_4](media/how-to-crud-site/create-site-4.jpg)
+   
+   
+   
 1. On the summary page, review and confirm the site details then select **Create** to create your site.
 
-   :::image type="content" source="./media/how-to-crud-site/final-create-screen-arc-site.png" alt-text="Screenshot that shows the validation and review page for a new site and then select create.":::
-
+   ![create_site_5](media/how-to-crud-site/create-site-5.jpg)
+   
+   
+   
 If a site is created from a resource group or subscription that contains resources that are supported by site, these resources will automatically be visible within the created site. 
 
 ## View and modify a site
@@ -66,12 +75,15 @@ Once you create a site, you can access it and its managed resources through site
 
 1. From the main **Site manager** page in **Azure Arc**, select **Sites** to view all existing sites.
 
-   :::image type="content" source="./media/how-to-crud-site/sites-button-from-site-manager.png" alt-text="Screenshot that shows selecting Sites to view all sites.":::
-
+   ![create_site_6](media/how-to-crud-site/create-site-6.jpg)
+   
+   
+   
 1. On the **Sites** page, you can view all existing sites. Select the name of the site that you want to delete.
 
-   :::image type="content" source="./media/how-to-crud-site/los-angeles-site-select.png" alt-text="Screenshot that shows selecting a site to manage from the list of sites.":::
-
+   ![create_site_7](media/how-to-crud-site/create-site-7.jpg)
+   
+   
 1. On a specific site's resource page, you can:
 
    * View resources
@@ -86,7 +98,7 @@ Currently, only some aspects of a site can be modified. These are as follows:
 | Site Attribute | Modification that can be done |
 |--|--|
 | Display name | Update the display name of a site to a new unique name. |
-| Address | Update the address of a site to an existing or new address. |
+| Site address | Update the address of a site. |
 
 ## Delete a site
 
@@ -98,4 +110,6 @@ Deleting a site doesn't affect the resources, resource group, or subscription in
 
 1. On the site's resource page, select **Delete**.
 
-   :::image type="content" source="./media/how-to-crud-site/los-angeles-site-main-page-delete.png" alt-text="Screenshot that shows selecting Delete on the details page of a site.":::
+   ![create_site_8](media/how-to-crud-site/create-site-9.jpg)
+   
+   
