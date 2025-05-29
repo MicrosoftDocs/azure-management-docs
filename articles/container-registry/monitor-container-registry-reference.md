@@ -4,8 +4,8 @@ description: Access essential reference material for monitoring Azure Container 
 ms.date: 06/17/2024
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ---
 
