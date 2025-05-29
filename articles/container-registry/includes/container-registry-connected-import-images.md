@@ -1,10 +1,10 @@
 ---
-author: rayoef
+author: chasedmicrosoft
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 05/20/2025
-ms.author: rayoflores
+ms.author: doveychase
 ---
 ## Import images to your cloud registry
 

@@ -2,8 +2,8 @@
 title: Base Image Updates - Azure Container Registry Tasks
 description: Learn about base images for application container images, and about how a base image update can trigger an Azure Container Registry task.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ---
