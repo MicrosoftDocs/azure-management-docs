@@ -5,7 +5,7 @@ description: Learn how to run a quick diagnostic command to identify common prob
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ---

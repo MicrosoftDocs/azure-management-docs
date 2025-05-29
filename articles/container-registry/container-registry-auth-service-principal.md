@@ -4,7 +4,7 @@ description: Provide access to images in your private container registry by usin
 ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ---

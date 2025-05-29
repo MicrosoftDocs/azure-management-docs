@@ -2,7 +2,7 @@
 title: Azure Container Registry roles directory reference
 description: Directory reference of Azure Container Registry built-in roles and their permissions.
 ms.topic: concept-article
-author: johnsonshi
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 04/24/2025
 ms.service: azure-container-registry

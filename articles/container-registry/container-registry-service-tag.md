@@ -1,7 +1,7 @@
 ---
 title: Service Tags for Azure Container Registry
 description: Learn about service tags for Azure Container Registry to define network access controls for Azure resources.
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: best-practice #Don't change

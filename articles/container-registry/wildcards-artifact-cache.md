@@ -1,7 +1,7 @@
 ---
 title: "Wildcard support for artifact cache in Azure Container Registry"
 description: "Use wildcards to match multiple paths within the container image registry. Artifact cache currently supports registry and repository level wildcards."
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: concept-article #Don't change

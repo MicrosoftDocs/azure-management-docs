@@ -3,7 +3,7 @@ title: Disable Artifact Export in Azure Container Registry
 description: Learn how to set a registry property to prevent data exfiltration from a Premium Azure container registry by disabling artifact export.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry

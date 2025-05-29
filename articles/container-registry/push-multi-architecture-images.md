@@ -2,7 +2,7 @@
 title: Multi-Architecture Images in Azure Container Registry
 description: Use your Azure container registry to build, import, store, and deploy multi-architecture (multi-arch) images
 ms.topic: how-to
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry

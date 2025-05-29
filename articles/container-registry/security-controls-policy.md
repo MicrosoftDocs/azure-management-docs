@@ -2,7 +2,7 @@
 title: Azure Policy Compliance for Azure Container Registry
 description: Lists Azure Policy Regulatory Compliance controls for Azure Container Registry and provides common approaches to managing compliance.
 ms.topic: sample
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 02/06/2024
 ms.service: azure-container-registry

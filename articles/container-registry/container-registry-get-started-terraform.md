@@ -5,7 +5,7 @@ ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: devx-track-terraform
 ms.service: azure-container-registry
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 #customer intent: As a Terraform user, I want to see how to create a unique Azure resource group and container registry.
 content_well_notification: 

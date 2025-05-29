@@ -2,7 +2,7 @@
 title: Tutorial - Configure Multi-Step ACR Tasks
 description: Learn how to configure an Azure Container Registry Task to trigger a multi-step workflow to build, run, and push container images on code commit.
 ms.topic: tutorial
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry

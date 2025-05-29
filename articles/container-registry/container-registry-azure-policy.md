@@ -3,7 +3,7 @@ title: Compliance with Azure Policy for Azure Container Registry
 description: Assign built-in policy definitions in Azure Policy to audit compliance of your Azure container registries
 ms.topic: concept-article
 ms.service: azure-container-registry
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ---

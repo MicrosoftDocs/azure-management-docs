@@ -2,7 +2,7 @@
 title: View Repositories in Azure Portal
 description: Use the Azure portal to view Azure Container Registry repositories, which host Docker container images and other supported artifacts.
 ms.topic: how-to
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry

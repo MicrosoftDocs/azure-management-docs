@@ -4,7 +4,7 @@ description: Use Azure CLI commands or Azure portal to create a connected Azure 
 ms.topic: quickstart
 ms.date: 05/20/2025
 ms.author: doveychase
-author: toddysm
+author: chasedmicrosoft
 ms.custom: mode-api, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry

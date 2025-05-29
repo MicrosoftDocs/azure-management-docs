@@ -1,5 +1,5 @@
 ---
-author: dlepow
+author: chasedmicrosoft
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 05/02/2019

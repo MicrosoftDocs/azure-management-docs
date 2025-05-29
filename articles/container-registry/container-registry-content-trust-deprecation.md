@@ -4,7 +4,7 @@ description: Learn how to transition from Docker Content Trust to the Notary Pro
 ms.topic: how-to 
 ms.date: 02/07/2024 
 ms.author: doveychase
-author: yizha1
+author: chasedmicrosoft
 ms.service: azure-container-registry
 --- 
 

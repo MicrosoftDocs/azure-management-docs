@@ -3,7 +3,7 @@ title: Restrict Access to Azure Container Registry Using Service Endpoints
 description: Restrict access to an Azure container registry using a service endpoint in an Azure virtual network.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry

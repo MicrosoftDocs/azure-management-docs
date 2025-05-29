@@ -1,5 +1,5 @@
 ---
-author: rayoef
+author: chasedmicrosoft
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: include

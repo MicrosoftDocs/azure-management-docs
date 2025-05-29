@@ -2,7 +2,7 @@
 title: Kubernetes Authentication Scenarios for ACR
 description: Overview of options and scenarios to authenticate to an Azure container registry from a Kubernetes cluster to pull container images
 ms.topic: concept-article
-author: rayoef
+author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 02/28/2025
