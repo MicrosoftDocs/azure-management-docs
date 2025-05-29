@@ -27,9 +27,9 @@ This article details how to view the security baseline status for an Azure Arc s
 - A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](/azure/azure-arc/site-manager/overview).
 - A site created for the associated resource group or subscription. If you don't have one, see [Create and manage sites](/azure/azure-arc/site-manager/how-to-crud-site). 
 
-### Security status & meanings 
+### Security status and meanings 
 
-In the Azure Portal, status is indicated using color.  
+In the Azure portal, status is indicated using color.  
 
 - Green: **Compliant**
 - Red: **Non-compliant**
