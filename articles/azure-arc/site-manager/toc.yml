@@ -1,5 +1,3 @@
-- name: View security compliance status
-  href: view-security-compliance-status.md
 - name: Azure Arc site manager
   href: index.yml
 - name: Get started
@@ -16,6 +14,8 @@
     href: how-to-view-connectivity-status.md
   - name: View update status
     href: how-to-view-update-status.md
+  - name: View security compliance status
+    href: view-security-compliance-status.md
   - name: Configure Azure Monitor alerts
     href: how-to-configure-monitor-site.md
   - name: View alerts
