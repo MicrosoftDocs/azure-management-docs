@@ -27,7 +27,9 @@ This article guides you through how to create, modify, and delete a site using A
 
 In the [Azure portal](https://portal.azure.com), search for and select **Azure Arc**. Select **Site manager (preview)** from the Azure Arc navigation menu.
 
-![create_site_1](media/how-to-crud-site/create-site-1.jpg)
+![Screenshot of Azure Arc portal view.](media/how-to-crud-site/screenshot-azure-arc-portal-view.jpg)
+
+
 
 
 Alternatively, you can also search for Azure Arc site manager directly in the Azure portal using terms such as **site**, **Arc Site**, **site manager** and so on.
@@ -38,7 +40,9 @@ Create a site to manage geographically related resources.
 
 1. From the main **Site manager** page in **Azure Arc**, select the blue **Create a site** button.
 
-   ![create_site_2](media/how-to-crud-site/create-site-2.jpg)
+   ![Screenshot of Site manager get started tab.](media/how-to-crud-site/screenshot-site-manager-get-started-tab.jpg)
+   
+   
    
    
    
@@ -55,15 +59,16 @@ Create a site to manage geographically related resources.
    
 1. Once all these details are provided, select **Review + create**.
 
-   ![create_site_3](media/how-to-crud-site/create-site-3.jpg)
+   ![Screenshot of create site basics page.](media/how-to-crud-site/screenshot-create-site-basics-page.jpg)
    
-   ![create_site_4](media/how-to-crud-site/create-site-4.jpg)
+   ![Screenshot of create site scope page.](media/how-to-crud-site/screenshot-create-site-scope-page.jpg)
    
    
    
 1. On the summary page, review and confirm the site details then select **Create** to create your site.
 
-   ![create_site_5](media/how-to-crud-site/create-site-5.jpg)
+   ![Screenshot of create site review page.](media/how-to-crud-site/screenshot-create-site-review-page.jpg)
+   
    
    
    
@@ -75,13 +80,15 @@ Once you create a site, you can access it and its managed resources through site
 
 1. From the main **Site manager** page in **Azure Arc**, select **Sites** to view all existing sites.
 
-   ![create_site_6](media/how-to-crud-site/create-site-6.jpg)
+   ![Screenshot of Site manager sites tab.](media/how-to-crud-site/screenshot-site-manager-sites-tab.jpg)
+   
    
    
    
 1. On the **Sites** page, you can view all existing sites. Select the name of the site that you want to delete.
 
-   ![create_site_7](media/how-to-crud-site/create-site-7.jpg)
+   ![Screenshot of Site manager sites view.](media/how-to-crud-site/screenshot-site-manager-sites-view.jpg)
+   
    
    
 1. On a specific site's resource page, you can:
@@ -110,6 +117,7 @@ Deleting a site doesn't affect the resources, resource group, or subscription in
 
 1. On the site's resource page, select **Delete**.
 
-   ![create_site_8](media/how-to-crud-site/create-site-9.jpg)
+   ![Screenshot of Site manager site details view.](media/how-to-crud-site/screenshot-site-manager-site-details.jpg)
+   
    
    
