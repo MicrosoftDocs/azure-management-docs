@@ -11,7 +11,7 @@ author: jyothisuri
 
 # Apply Azure tags to SCVMM resources through Azure Arc-enabled SCVMM
 
-Tags are metadata elements that you can apply to your Azure resources. They are key-value pairs that help you identify resources based on settings that are relevant to your organization. You can use Azure tags to organize and manage your resources effectively, to setup automation and to govern your resources with tag-based policies. For recommendations on how to implement a tagging strategy, see [Resource naming and tagging decision guide](/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming-and-tagging-decision-guide?toc=%2Fazure%2Fazure-resource-manager%2Fmanagement%2Ftoc.json).
+Tags are metadata elements that you can apply to your Azure resources. They are key-value pairs that help you identify resources based on settings that are relevant to your organization. You can use Azure tags to organize and manage your resources effectively, to set up automation and to govern your resources with tag-based policies. For recommendations on how to implement a tagging strategy, see [Resource naming and tagging decision guide](/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming-and-tagging-decision-guide?toc=%2Fazure%2Fazure-resource-manager%2Fmanagement%2Ftoc.json).
 
 In this article, you learn how to apply Azure tags to Azure Arc-enabled SCVMM resources. You can apply Azure tags to all Azure Arc-enabled SCVMM resources such as Virtual machines, VMM Clouds, VM templates, VM networks, SCVMM management server and its associated Azure Arc resource bridge.
 

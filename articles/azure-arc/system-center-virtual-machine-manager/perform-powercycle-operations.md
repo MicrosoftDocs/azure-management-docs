@@ -19,7 +19,7 @@ Before you perform power cycle operations on a VM, ensure that you meet the foll
 
 - The SCVMM management server is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state. 
 - The VM which will be operated from Azure is [enabled for management in Azure](enable-scvmm-inventory-resources.md). 
-- *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to make any changes to the SCVMM VMs on which you want to perform the power the power operations. 
+- *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to make any changes to the SCVMM VMs on which you want to perform the power operations. 
 
 ## Perform power cycle operations 
 
