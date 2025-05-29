@@ -48,11 +48,11 @@ Create a site to manage geographically related resources.
    |--|--|
    | **Site name** | Custom name for site. |
    | **Display name** | Custom display name for site. |
-   | **Site scope** | Either **Subscription** or **Resource group**. The scope can only be defined at the time of creating a site and can't be modified later. All the resources in the scope can be viewed and managed from site manager. |
-   | **Subscription** | Subscription for the site to be created under. |
-   | **Resource group** | The resource group for the site, if the scope was set to resource group. |
-   | **Address** | Physical address for a site. |
-
+   | **Site address**| Physical address for a site. Providing Country is mandatory, while Street address, City, State / Province and Zip code are optional.|
+   | **Site scope** | Either **Subscription** or **Resource group**. The scope can only be defined at the time of creating a site and can't be modified later. All the resources in the scope can be viewed and managed from site manager.  |
+   | **Subscription / Resource group** | Select the Subscription / Resource group as per the site scope. |
+   | **Parent Site**| Subscription scope sites do not have a parent site. Resource Group scope sites can only be a child of the parent Subscription scope site.|
+   
 1. Once all these details are provided, select **Review + create**.
 
    ![create_site_3](media/how-to-crud-site/create-site-3.jpg)
