@@ -4,7 +4,7 @@ description: Learn how to share quota across Azure subscriptions with Azure Quot
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 04/23/2025
+ms.date: 05/29/2025
 ---
 
 # Azure Quota Groups
