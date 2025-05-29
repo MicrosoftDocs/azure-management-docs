@@ -41,13 +41,11 @@ We generally recommend using the most recent versions of the agents. The [versio
 - Security vulnerability fixes
 - Various bug fixes
 
-
 ### Version 1.22.4 (January 2025)
 
 - Fixed issue with resource health reporting
 - Allow special characters in password for proxy server
 - Security vulnerability fixes
-
 
 ### Version 1.21.10 (November 2024)
 
