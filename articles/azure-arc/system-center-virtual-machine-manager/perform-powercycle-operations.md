@@ -39,15 +39,9 @@ To perform power cycle operations, follow these steps:
    You can now perform the following power cycle operations: 
 
     - **Start**: Select start to start the resource. 
-    
-       :::image type="content" source="media/perform-powercycle-operations/start.png" alt-text="Screenshot showing start screen.":::
-
     - **Restart**: Select **Restart** > **Yes** to restart the resource. 
-    
-       :::image type="content" source="media/perform-powercycle-operations/restart.png" alt-text="Screenshot showing restart screen.":::
-
     - **Stop**: Select **Stop** > **Yes** to stop the resource. 
     
-       :::image type="content" source="media/perform-powercycle-operations/stop.png" alt-text="Screenshot showing stop screen.":::
+       :::image type="content" source="media/perform-powercycle-operations/power-cycle-operations.png" alt-text="Screenshot showing power cycle operations screen.":::
 
 You can track the progress of the Azure operations from the Azure [activity log](https://ms.portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade). 
