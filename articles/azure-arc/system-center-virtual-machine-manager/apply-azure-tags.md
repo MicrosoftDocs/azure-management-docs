@@ -18,23 +18,22 @@ In this article, you learn how to apply Azure tags to Azure Arc-enabled SCVMM re
 ## Prerequisites
 
 Before you apply Azure tags to an Azure Arc-enabled SCVMM resource, ensure you meet the following prerequisites:
-- The SCVMM management server is in a Connected state and its associated Azure Arc resource bridge is in a *Running* state.
+- The SCVMM management server is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
 - If you plan to apply Azure tags to a Virtual machine or a VMM Cloud or a VM template or a VM network, ensure the resource is [enabled for management in Azure](enable-scvmm-inventory-resources.md).
 - *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to apply tags on the resources on which you plan to apply Azure tags.
 
 ## Apply Azure tags to SCVMM resources
 
 >[!Note]
->You can also apply Azure tags while you [create a new SCVMM managed Virtual machines from Azure](create-virtual-machine.md).
+>You can also apply Azure tags while you [create a new SCVMM managed Virtual Machine from Azure](create-virtual-machine.md).
 
 To apply Azure tags to the SCVMM resources, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **SCVMM management server** and then select the SCVMM server for the resource you plan to apply Azure tags.
-       To apply Azure tags to the SCVMM server, navigate to the Azure tags blade in the SCVMM server Azure resource. 
-       To apply Azure tags to the associated Azure Arc resource bridge, navigate to its Azure resource from the overview blade.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **SCVMM management server** and then select the SCVMM server which manages the resource you plan to apply Azure tags.
+       To apply Azure tags to the SCVMM server, navigate to the **Azure tags** blade in the SCVMM server Azure resource. 
+       To apply Azure tags to the associated Azure Arc resource bridge, navigate to its Azure resource from the **Overview** blade.
  
 2. To apply tags to Virtual machines or VMM Clouds or VM templates or VM networks, navigate to the specific resource through the dedicated inventory views under the **SCVMM inventory**.
-
 
     :::image type="content" source="media/apply-azure-tags/management-server.png" alt-text="Screenshot showing SCVMM Management server.":::
  
@@ -43,9 +42,9 @@ To apply Azure tags to the SCVMM resources, follow these steps:
  
    :::image type="content" source="media/apply-azure-tags/tags.png" alt-text="Screenshot showing Tags screen.":::
         
-For an Azure resource, you can view the applied tags under the **Tags** blade and also under the **Overview** blade. Use the **Box** icon to list all the resources with the same tag. 
+For an Azure resource, you can view the applied tags under the **Tags** blade and also under the **Overview** blade. Use the **Box** icon next to a tag to list all the resources with the same tag. 
 
-To deleted the tags, use the **Bin** icon next to the Tag key-value pair.
+To delete the tags, use the **Bin** icon next to the tag key-value pair.
 
 >[!Important]
 >Azure tags applied on a SCVMM resource are accessible only from Azure and will not propagate to the SCVMM console resource tags or custom properties and vice versa.
