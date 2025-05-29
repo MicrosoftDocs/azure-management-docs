@@ -41,22 +41,32 @@ In the Azure Portal, status is indicated using color.  
 You can view the security baseline status for an Arc site as a whole from the main page of Azure Arc site manager (preview). 
 
 1. From the [Azure portal](https://portal.azure.com/), navigate to **Azure Arc** and select **Site manager (preview)** to open site manager.
-2. From Azure Arc site manager, navigate to the **Overview** page.  
+1. From Azure Arc site manager, navigate to the **Overview** page.  
 
 
-3. On the **Overview** page, you can view the summarized security statuses of your sites. This site-level status is aggregated from the statuses of its managed resources. The security status can be seen with respect to the security baselines and Microsoft Defender for Cloud recommendations. In the following example, sites are shown with different statuses.   
+![View_security_baseline_status_2](media/view-security-compliance-status/view-security-baseline-status-2.png)
+
+1. On the **Overview** page, you can view the summarized security statuses of your sites. This site-level status is aggregated from the statuses of its managed resources. The security status can be seen with respect to the security baselines and Microsoft Defender for Cloud recommendations. In the following example, sites are shown with different statuses.   
 
 
-4. To understand which site has which status, select either the **Sites** tab or the blue colored status text to be directed to the **Sites** page.  
+![View_security_baseline_status_3](media/view-security-compliance-status/view-security-baseline-status-3.png)
+
+1. To understand which site has which status, select either the **Sites** tab or the blue colored status text to be directed to the **Sites** page.  
 
 
-5. On the **Sites** page, you can view the top-level status for each site. This site-level status reflects the most significant resource-level status for the site. 
+![View_security_baseline_status_4](media/view-security-compliance-status/view-security-baseline-status-4.png)
+
+1. On the **Sites** page, you can view the top-level status for each site. This site-level status reflects the most significant resource-level status for the site. 
 
 1. Select the **non-compliant** link to view the resource details.  
 
 
-7. On the site's resource page, you can view the security status for each resource within the site. This list also highlights the specific resources that are non-compliant which contribute to the parent resource being marked as non-compliant. 
-  
+![View_security_baseline_status_6](media/view-security-compliance-status/view-security-baseline-status-6.png)
+
+1. On the site's resource page, you can view the security status for each resource within the site. This list also highlights the specific resources that are non-compliant which contribute to the parent resource being marked as non-compliant. 
+
+![View_security_baseline_status_7](media/view-security-compliance-status/view-security-baseline-status-7.png)
+
  
 
 ## How to enable security baseline status 
@@ -80,14 +90,24 @@ This section provides basic steps for configuring the security baselines from Az
 1. Navigate to the individual site page. 
 
 
+![How_to_enable_security_baseline_status_1](media/view-security-compliance-status/how-to-enable-security-baseline-status-1.png)
+
 1. Navigate to the 'All Resources' blade.
 
-3. Click into “Enable” for the relevant policy. 
+![How_to_enable_security_baseline_status_2](media/view-security-compliance-status/view-security-baseline-status-7.png)
+
+1. Click into “Enable” for the relevant policy. 
 
 
-4. Click Apply or, if desired, click Advanced Settings. The policy will be applied to all resources within the scope of the site.
+![How_to_enable_security_baseline_status_3](media/view-security-compliance-status/how-to-enable-security-baseline-status-3.png)
 
+1. Click Apply or, if desired, click Advanced Settings. The policy will be applied to all resources within the scope of the site.
+
+
+![How_to_enable_security_baseline_status_4](media/view-security-compliance-status/how-to-enable-security-baseline-status-4.png)
 
 1. The compliance status of each resource to the policy will appear within site manager in 5-10 minutes.  
 
+
+![How_to_enable_security_baseline_status_5](media/view-security-compliance-status/how-to-enable-security-baseline-status-5.png)
 
