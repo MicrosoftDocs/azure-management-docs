@@ -1,3 +1,5 @@
+- name: View security compliance status
+  href: view-security-compliance-status.md
 - name: Azure Arc site manager
   href: index.yml
 - name: Get started
