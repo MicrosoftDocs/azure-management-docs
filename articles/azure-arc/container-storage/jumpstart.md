@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: overview
 ms.date: 03/12/2025
 
+# Customer intent: As an IT professional, I want to deploy Azure Container Storage on an AKS Edge Essentials instance, so that I can efficiently manage and store data from real-time AI analysis of video feeds in an edge computing environment.
 ---
 
 # Azure Arc Jumpstart and Azure Container Storage enabled by Azure Arc

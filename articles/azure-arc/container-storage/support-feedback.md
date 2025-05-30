@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 
+# Customer intent: As a cloud administrator, I want to efficiently request support for Azure Container Storage enabled by Azure Arc, so that I can address issues promptly and maintain the functionality of my Kubernetes cluster.
 ---
 
 # Support and feedback for Azure Container Storage enabled by Azure Arc

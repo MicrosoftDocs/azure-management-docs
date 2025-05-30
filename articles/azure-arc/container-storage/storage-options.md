@@ -5,6 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: conceptual
 ms.date: 05/05/2025
+# Customer intent: As a cloud architect, I want to understand the different storage options available in Azure Container Storage enabled by Azure Arc, so that I can design flexible data flow architectures for my applications at the edge and in the cloud.
 ---
 
 # Storage options using Azure Container Storage enabled by Azure Arc

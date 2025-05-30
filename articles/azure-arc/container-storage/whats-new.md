@@ -8,6 +8,7 @@ ms.date: 05/13/2025
 
 #customer intent: As a user, I want to know about the new features and updates in Azure Container Storage enabled by Azure Arc.
 
+# Customer intent: As a systems administrator, I want to stay updated on the latest features and enhancements of Azure Container Storage enabled by Azure Arc, so that I can optimize my container management and ensure I’m leveraging the best available capabilities for my cloud infrastructure.
 ---
 
 # What's new in Azure Container Storage enabled by Azure Arc?
