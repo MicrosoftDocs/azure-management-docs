@@ -85,11 +85,12 @@ In Azure CLI, enter your values for the variables (`STORAGE_ACCOUNT_NAME`, `RESO
    STORAGE_ACCOUNT_NAME=<your-storage-account-name>
    RESOURCE_GROUP=<your-resource-group>
    PRINCIPAL_ID=<your-extension-identity-principal-ID-from-the-previous-section>
+   SUBSCRIPTION_ID=<your-subscription-id>
    ```
 
 2. **Assign the `Storage Blob Data Owner` role to your Extension Identity:**  
    ```sh
-   az role assignment create --assignee $PRINCIPAL_ID --role "Storage Blob Data Owner" --scope /subscriptions/<your-subscription-id>/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME
+   az role assignment create --assignee $PRINCIPAL_ID --role "Storage Blob Data Owner" --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME
    ```
 
    This command assigns the `Storage Blob Data Owner` role to the specified identity at the scope of your storage account.
