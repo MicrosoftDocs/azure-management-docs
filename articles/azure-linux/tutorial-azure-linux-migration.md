@@ -12,6 +12,9 @@ ms.date: 04/06/2025
 
 # Tutorial: Migrate nodes to Azure Linux
 
+> [!div class=""nextstepaction""]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321934)
+
 In this tutorial, part three of five, you migrate your existing nodes to Azure Linux. You can migrate your existing nodes to Azure Linux using one of the following methods:
 
 * Remove existing node pools and add new Azure Linux node pools.
