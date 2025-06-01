@@ -191,7 +191,7 @@ Sites and site addresses are used to identify the physical hierarchy such as pla
     ```bash
     siteJson="<SITE_NAME>.json"
     siteAddressJson="<SITE_NAME_ADDRESS>.json"
-    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
     siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
     siteReference="<SITE_NAME>"
     extensionVersion="2.0.10" # or latest Arc version
@@ -242,7 +242,7 @@ Sites and site addresses are used to identify the physical hierarchy such as pla
     ```powershell
     $siteJson = "<SITE_NAME>.json"
     $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
-    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
     $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
     $siteReference = "<SITE_NAME>"
     $extensionVersion = "2.0.10" # or latest Arc version

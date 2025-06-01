@@ -74,7 +74,7 @@ Sites and Site addresses are used to identify the physical hierarchy such as pla
 
 To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
 
-For example, if the hierarchy is *[Factory, Line]*, when a Site is created at the Factory level, it should be tagged as 
+For example, if the hierarchy is *[Factory, Line]*, when a Site is created at the factory level, it should be tagged as 
 \{`level`: `Factory`\}, where `level` is the label key and `Factory` is the label value.
 
 #### [Bash](#tab/bash)
@@ -317,6 +317,231 @@ az rest `
 ***
 
 Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](initial-setup-configuration.md#solution-authoring-and-deployment).
+
+
+## Service groups at different hierarchy levels
+
+Service groups can be created for a **two-level** hierarchy organization, such as a factory and line, a **three-level** hierarchy organization, such as a region, factory, and line, and a maximum of **four-level** hierarchy organization, such as a country, region, factory, and line. The hierarchy names can be customized to match your organizational structure.
+
+The previous sections show how to create a service group for a two-level hierarchy organization, which you can use as a reference to create service groups for a three-level or four-level hierarchy organization.
+
+To ease the process, the following steps show how to create a four-level service group hierarchy organization. 
+
+### [Bash](#tab/bash)
+
+1. Define the resource prefix. The resource prefix is typically based on the user name and a unique identifier, such as "4lvlsg" for a four-level service group hierarchy.
+
+    ```powershell
+    $resourcePrefix = [Environment]::UserName + "-4lvlsg"
+    $rg = $resourcePrefix
+    $tenantId = "<tenant-id>"
+    ```
+
+1. Define the service group names and hierarchy levels. 
+
+    ```bash
+    ## Level 1 / Country
+    # Create Top / Level 1 Service Group $resourcePrefix-SGCountry to link resources to:
+    az rest \
+      --method put \
+      --headers "Content-Type=application/json" \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry?api-version=2024-02-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGCountry','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" \
+      --resource https://management.azure.com
+
+    # Create Top / Level 1 Site $resourcePrefix-SGCountry to visualize & store configuration onto:
+    az rest \
+      --method put \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry/providers/Microsoft.Edge/sites/${resourcePrefix}-SGCountry?api-version=2025-03-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGCountry','description': '${resourcePrefix}-SGCountry','labels': {'level': 'Country'}}}" \
+      --resource https://management.azure.com
+
+    ## Level 2 / Region
+    # Create Level 2 Service Group $resourcePrefix-SGRegion to link resources to:
+    az rest \
+      --method put \
+      --headers "Content-Type=application/json" \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion?api-version=2024-02-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry'}}}" \
+      --resource https://management.azure.com
+
+    # Create Level 2 Site $resourcePrefix-SGRegion to visualize & store configuration onto:
+    az rest \
+      --method put \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion/providers/Microsoft.Edge/sites/${resourcePrefix}-SGRegion?api-version=2025-03-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGRegion','description': '${resourcePrefix}-SGRegion','labels': {'level': 'Region'}}}" \
+      --resource https://management.azure.com
+
+    ## Level 3 / Factory
+    # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
+    az rest \
+      --method put \
+      --headers "Content-Type=application/json" \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory?api-version=2024-02-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion'}}}" \
+      --resource https://management.azure.com
+
+    # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store configuration onto:
+    az rest \
+      --method put \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory/providers/Microsoft.Edge/sites/${resourcePrefix}-SGFactory?api-version=2025-03-01-preview" \
+      --body "{'properties':{'displayName':'${resourcePrefix}-SGFactory','description': '${resourcePrefix}-SGFactory','labels': {'level': 'Factory'}}}" \
+      --resource https://management.azure.com
+    ```
+
+1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Contributor` role to the workload orchestration provider app ID.
+
+    ```bash
+    providerAppId="cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
+    providerOid=$(az ad sp show --id "$providerAppId" --query "id" --output "tsv")
+
+    az role assignment create --assignee "$providerOid" \
+      --role "Service Group Contributor" \
+      --scope "/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry"
+    ```
+
+1. To connect a service group site to a context, you need to create a site reference. Make sure to replace the placeholders with your actual values.
+
+    ```bash
+    az workload-orchestration context site-reference create \
+      --subscription "$contextSubscriptionId" \
+      --resource-group "$contextRG" \
+      --context-name "Contoso-Context" \
+      --name "${resourcePrefix}-default" \
+      --site-id "/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry/providers/Microsoft.Edge/sites/${resourcePrefix}-SGCountry"
+    ```
+
+1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
+1. Create a new context. Make sure to replace the placeholders with your actual values.
+
+    ```bash
+    # Only one context can exist per tenant. If a context already exists, update its capabilities.
+    context=$(az workload-orchestration context show --subscription "$contextSubscriptionId" --resource-group "$contextRG" --name "Contoso-Context")
+    capabilities=$(echo "$context" | jq '.properties.capabilities + [{"description":"'"$resourcePrefix-Shampoo"'","name":"'"$resourcePrefix-Shampoo"'"},{"description":"'"$resourcePrefix-Soap"'","name":"'"$resourcePrefix-Soap"'"}] | unique_by(.name,.description)')
+    echo "{\"capabilities\": $capabilities}" > context-capabilities.json
+
+    az workload-orchestration context create \
+      --subscription "$contextSubscriptionId" \
+      --resource-group "$contextRG" \
+      --location eastus2euap \
+      --name "Contoso-Context" \
+      --capabilities "@context-capabilities.json" \
+      --hierarchies "[0].name=country" "[0].description=Country" "[1].name=region" "[1].description=Region" "[2].name=factory" "[2].description=Factory" "[3].name=line" "[3].description=Line"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Define the resource prefix. The resource prefix is typically based on the user name and a unique identifier, such as "4lvlsg" for a four-level service group hierarchy.
+
+    ```powershell
+    $resourcePrefix = [Environment]::UserName + "-4lvlsg"
+    $rg = $resourcePrefix
+    $tenantId = "<tenant-id>"
+    ```
+
+1. Define the service group names and hierarchy levels. 
+
+    ```powershell
+    ## Level 1 / Country
+    # Create Top / Level 1 Service Group $resourcePrefix-SGCountry to link resources to:
+    az rest `
+        --method put `
+        --header Content-Type=application/json `
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry?api-version=2024-02-01-preview `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" `
+        --resource https://management.azure.com
+    
+    # Create Top / Level 1 Site $resourcePrefix-SGCountry to visualize & store congiguration onto:
+    az rest `
+      --method put `
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/Microsoft.Edge/sites/$resourcePrefix-SGCountry?api-version=2025-03-01-preview `
+      --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','description': '$resourcePrefix-SGCountry','labels': {'level': 'Country'}}}" `
+      --resource https://management.azure.com
+    
+    ## Level 2 / Region
+    # Create Level 2 Service Group $resourcePrefix-SGRegion to link resources to:
+    az rest `
+        --method put `
+        --header Content-Type=application/json `
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}}" `
+        --resource https://management.azure.com
+    
+    # Create Level 2 Site $resourcePrefix-SGRegion to visualize & store congiguration onto:
+    az rest `
+      --method put `
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview `
+      --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','description': '$resourcePrefix-SGRegion','labels': {'level': 'Region'}}}" `
+      --resource https://management.azure.com
+     
+    ## Level 3 / Factory
+    # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
+    az rest `
+        --method put `
+        --header Content-Type=application/json `
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory?api-version=2024-02-01-preview `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" `
+        --resource https://management.azure.com
+    
+    # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store congiguration onto:
+    az rest `
+      --method put `
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/Microsoft.Edge/sites/$resourcePrefix-SGFactory?api-version=2025-03-01-preview `
+      --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','description': '$resourcePrefix-SGFactory','labels': {'level': 'Factory'}}}" `
+      --resource https://management.azure.com        
+    ```
+
+1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Contributor` role to the workload orchestration provider app ID.
+
+    ```powershell
+    $providerAppId = "cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
+    $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
+    
+    az role assignment create --assignee "$providerOid" `
+        --role "Service Group Contributor" `
+        --scope "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry"
+    ```
+
+1. To connect a service group site to a context, you need to create a site reference. Make sure to replace the placeholders with your actual values.
+
+    ```powershell
+    az workload-orchestration context site-reference create `
+       --subscription $contextSubscriptionId `
+       --resource-group $contextRG `
+       --context-name Contoso-Context `
+       --name $resourcePrefix-default `
+       --site-id "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/Microsoft.Edge/sites/$resourcePrefix-SGCountry"
+    ```
+
+1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
+1. Create a new context. Make sure to replace the placeholders with your actual values.
+
+    ```powershell
+    # Context can only exist one per tenant. MSFT Tenant has a prexisting context with capabilities.
+    $context = $(az workload-orchestration context show --subscription $contextSubscriptionId --resource-group $contextRG --name Contoso-Context) | ConvertFrom-JSON
+    
+    $context.properties.capabilities = $context.properties.capabilities + @(
+       [PSCustomObject]@{description="$resourcePrefix-Shampoo"; name="$resourcePrefix-Shampoo"},
+       [PSCustomObject]@{description="$resourcePrefix-Soap"; name="$resourcePrefix-Soap"}
+    )
+    $context.properties.capabilities = $context.properties.capabilities | Select-Object -Property name, description -Unique
+    $context.properties.capabilities | ConvertTo-JSON -Compress | Set-Content context-capabilities.json
+    
+    az workload-orchestration context create `
+      --subscription $contextSubscriptionId `
+      --resource-group $contextRG `
+      --location eastus2euap `
+      --name Contoso-Context `
+      --capabilities "@context-capabilities.json" `
+      --hierarchies [0].name=country [0].description=Country [1].name=region [1].description=Region [2].name=factory [2].description=Factory [3].name=line [3].description=Line
+    ```
+***
+
+For more information, see the following tutorials on how to create solutions with different targets in a four-level hierarchy organization:
+- [Create a solution with a leaf target](tutorial-service-group-scenario-1.md): This tutorial shows how to create a solution with a target at line level in a four-level hierarchy organization.
+- [Create a solution with a non-leaf target](tutorial-service-group-scenario-2.md): This tutorial shows how to create a solution with a target at factory level in a four-level hierarchy organization.
+- [Create a solution with multiple dependencies at different levels](tutorial-service-group-scenario-3.md): This tutorial shows how to create a solution with multiple shared adapter dependencies at different levels in a four-level hierarchy organization.
+- [Create multiple solutions with a single dependency at different levels](tutorial-service-group-scenario-4.md): This tutorial shows how to create multiple solutions with a single shared adapter dependency at different levels in a four-level hierarchy organization.
 
 ## Related content
 

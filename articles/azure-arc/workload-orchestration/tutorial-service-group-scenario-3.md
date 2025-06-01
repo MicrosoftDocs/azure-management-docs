@@ -7,17 +7,26 @@ ms.topic: tutorial
 ms.date: 06/01/2025
 ---
 
-# Tutorial: Create a solution with multiple shared dependencies at different levels
+# Tutorial: Create a solution with multiple shared dependencies at different levels using service groups
 
 In this tutorial, you will create a solution with multiple shared dependencies at different levels in a four-level hierarchy organization. You will use service groups to orchestrate workloads across different levels of the hierarchy.
 
-For more information, see [Service groups for workload orchestration](service-group.md).
+For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
 ## Prerequisites
+
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
+- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+
+> [!NOTE]
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
 
 ## Define the scenario
 
 The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+
+:::image type="content" source="./media/scenario-single-solution-dependencies.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-single-solution-dependencies.png":::
 
 The sites references are created at each level of the hierarchy, being SGCountry at the country level, SGRegion at the region level, SGFactory at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
 
@@ -29,8 +38,6 @@ A solution is deployed at each target as follows:
 - Factory Sensor Anomaly Detector (FSAD) is a solution at line level. FSAD is dependent on SSA, RA, and CA, which means that during the deployment, FSAD configuration will be updated with the information from the other solutions.
 
 All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-enabled Kubernetes cluster.
-
-:::image type="content" source="./media/scenario-single-solution-dependencies.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-single-solution-dependencies.png":::
 
 ## Create targets
 
