@@ -43,11 +43,23 @@ items:
         href: configuring-template.md
       - name: Configuration schema
         href: configuring-schema.md
-    - name: Use service groups
-      href: service-group.md
-    - name: External validation for workload orchestration
+    - name: Service groups
       items:
-      - name: External validation with Event Grid
+      - name: Use service groups
+        href: service-group.md
+      - name: Tutorials
+        items:
+        - name: 
+          href: tutorial-service-group-scenario-1.md
+        - name: 
+          href: tutorial-service-group-scenario-2.md
+        - name: 
+          href: tutorial-service-group-scenario-3.md
+        - name: 
+          href: tutorial-service-group-scenario-4.md
+    - name: External validation 
+      items:
+      - name: Enable external validation with Event Grid
         href: external-validation.md
       - name: External validation payloads
         href: external-validation-payload.md
@@ -55,3 +67,10 @@ items:
       href: rbac-guide.md
     - name: Delete resources
       href: delete-resources.md
+    - name: Resources
+      items:
+      - name: Troubleshooting
+        href: troubleshooting.md
+      - name: Release notes
+        href: release-notes.md
+

@@ -1,0 +1,835 @@
+---
+title: Multiple Solutions with a Single Shared Dependency at Different Levels
+description: Learn how to create multiple solutions that share a single dependency at different levels of the hierarchy in Azure Arc-enabled Kubernetes.
+author: SoniaLopezBravo
+ms.author: sonialopez
+ms.topic: tutorial
+ms.date: 06/01/2025
+---
+
+# Tutorial: Create multiple solutions with a single shared dependency at different levels
+
+In this tutorial, you'll create a scenario with multiple solutions that share a single dependency at different levels of the hierarchy. You will use service groups to orchestrate workloads across different levels of the hierarchy.
+
+For more information, see [Service groups for workload orchestration](service-group.md).
+
+## Prerequisites
+
+## Define the scenario
+
+The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+
+The sites references are created at each level of the hierarchy, being SGCountry at the country level, SGRegion at the region level, SGFactory at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
+
+A solution is deployed at each target as follows:
+
+- Line App (LApp) is a solution at line level.
+- Factory App (FApp) is a solution at factory level.
+- Region App (RApp) is a solution at region level.
+- Global Adapter (GA) is a solution at country level. LApp, FApp, and RApp are dependent on GA, which means that during deployment, the RApp, FApp, and LApp configurations are inherited from the GApp configuration.
+
+
+All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-enabled Kubernetes cluster.
+
+:::image type="content" source="./media/scenario-multiple-solutions-dependency.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-multiple-solutions-dependency.png":::
+
+## Create targets
+
+### [Bash](#tab/bash)
+
+1. Create a target for each hierarchy level. Update *custom-location.json* file with the custom location of your cluster.
+
+    ```bash
+    solution_scope="n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
+    countryTarget="${resourcePrefix}-country"
+    regionTarget="${resourcePrefix}-region"
+    factoryTarget="${resourcePrefix}-factory"
+    mk80Target="${resourcePrefix}-mk80"
+
+    # Create target at country level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$countryTarget" \
+      --display-name "$countryTarget" \
+      --hierarchy-level country \
+      --capabilities "${resourcePrefix}-soap" \
+      --description "This is Country Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json"
+
+    # Create target at region level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$regionTarget" \
+      --display-name "$regionTarget" \
+      --hierarchy-level region \
+      --capabilities "${resourcePrefix}-soap" \
+      --description "This is Region Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json"
+
+    # Create target at factory level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$factoryTarget" \
+      --display-name "$factoryTarget" \
+      --hierarchy-level factory \
+      --capabilities "${resourcePrefix}-soap" \
+      --description "This is Factory Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json"
+
+    # Create target at line level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$mk80Target" \
+      --display-name "$mk80Target" \
+      --hierarchy-level line \
+      --capabilities "${resourcePrefix}-soap" \
+      --description "This is MK-80 Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json"
+    ```
+
+1. Get the target IDs of the created targets.
+
+    ```bash
+    mk80TargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$mk80Target" --query id --output tsv)
+    factoryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$factoryTarget" --query id --output tsv)
+    regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
+    countryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$countryTarget" --query id --output tsv)
+    ```
+
+1. Link the target IDs to their respective service groups.
+
+    ```bash
+    # Link to country service group
+    az rest \
+      --method put \
+      --uri "${countryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry'}}"
+
+    # Link to region service group
+    az rest \
+      --method put \
+      --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion'}}"
+
+    # Link to factory service group
+    az rest \
+      --method put \
+      --uri "${factoryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+
+    # Link to line service group
+    az rest \
+      --method put \
+      --uri "${mk80TargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+    ```
+
+1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
+
+    ```bash
+    # Update country target
+    az workload-orchestration target update \
+      --resource-group "$rg" \
+      --name "$countryTarget"
+
+    # Update region target
+    az workload-orchestration target update \
+      --resource-group "$rg" \
+      --name "$regionTarget"
+
+    # Update factory target
+    az workload-orchestration target update \
+      --resource-group "$rg" \
+      --name "$factoryTarget"
+
+    # Update line target
+    az workload-orchestration target update \
+      --resource-group "$rg" \
+      --name "$mk80Target"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Create a target for each hierarchy level. Update *custom-location.json* file with the custom location of your cluster.
+
+    ```powershell
+    $solution_scope = "n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
+    $countryTarget = "$resourcePrefix-country"
+    $regionTarget = "$resourcePrefix-region"
+    $factoryTarget = "$resourcePrefix-factory"
+    $mk80Target = "$resourcePrefix-mk80"
+    
+    # Create target at country level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name "$countryTarget" `
+      --display-name "$countryTarget" `
+      --hierarchy-level country `
+      --capabilities "$resourcePrefix-soap" `
+      --description "This is Country Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json'
+    
+    # Create target at region level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name "$regionTarget" `
+      --display-name "$regionTarget" `
+      --hierarchy-level region `
+      --capabilities "$resourcePrefix-soap" `
+      --description "This is Region Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json'
+    
+    # Create target at factory level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name "$factoryTarget" `
+      --display-name "$factoryTarget" `
+      --hierarchy-level factory `
+      --capabilities "$resourcePrefix-soap" `
+      --description "This is Factory Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json'
+    
+    # Create target at line level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name "$mk80Target" `
+      --display-name "$mk80Target" `
+      --hierarchy-level line `
+      --capabilities "$resourcePrefix-soap" `
+      --description "This is MK-80 Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json'
+    ```
+
+1. Get the target IDs of the created targets.
+
+    ```powershell
+    $mk80TargetId = $(az workload-orchestration target show --resource-group $rg --name "$mk80Target" --query id --output tsv)
+    $factoryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$factoryTarget" --query id --output tsv)
+    $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
+    $countryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$countryTarget" --query id --output tsv)
+    ```
+
+1. Link the target IDs to their respective service groups. 
+
+    ```powershell
+    #Link to country service group
+    az rest `
+      --method put `
+      --uri $countryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}"
+    
+    #Link to region service group
+    az rest `
+      --method put `
+      --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}"
+    
+    #Link to factory service group
+    az rest `
+      --method put `
+      --uri $factoryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+    
+    #Link to line service group
+    az rest `
+      --method put `
+      --uri $mk80TargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+    ```
+
+1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
+
+    ```powershell
+    #Update country target
+    az workload-orchestration target update `
+      --resource-group $rg `
+      --name $countryTarget 
+    
+    #Update region target
+    az workload-orchestration target update `
+      --resource-group $rg `
+      --name $regionTarget 
+    
+    #Update factory target
+    az workload-orchestration target update `
+      --resource-group $rg `
+      --name $factoryTarget 
+    
+    #Update line target
+    az workload-orchestration target update `
+      --resource-group $rg `
+      --name $mk80Target
+    ```
+***
+
+## Prepare the solution templates
+
+### Solution template for GA
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "ga-schema" --schema-file ./ga-schema.yaml -l "$l"
+    ```
+
+1. Create the solution template file
+
+    ```bash
+    gaversion="1.0.0"
+    ganame="${resourcePrefix}-ga"
+    az workload-orchestration solution-template create \
+        --solution-template-name "$ganame" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "${resourcePrefix}-soap" \
+        --description "This is GA Solution" \
+        --configuration-template-file ./ga-config-template.yaml \
+        --specification "@ga-specs.json" \
+        --version "$gaversion"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "ga-schema" --schema-file .\ga-schema.yaml -l $l
+    ```
+
+1. Create the solution template file
+
+    ````powershell
+    $gaversion = "1.0.0"
+    $ganame = "$resourcePrefix-ga" 
+    az workload-orchestration solution-template create `
+        --solution-template-name "$ganame" `
+        -g $rg `
+        -l $l `
+        --capabilities "$resourcePrefix-soap" `
+        --description "This is GA Solution" `
+        --configuration-template-file .\ga-config-template.yaml `
+        --specification "@ga-specs.json" `
+        --version $gaversion
+    ```
+***
+
+### Solution template for RApp
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "rapp-schema" --schema-file ./rapp-schema.yaml -l "$l"
+    ```
+
+1. Create the solution template file
+
+    ```bash
+    rappversion="1.0.0"
+    rappname="${resourcePrefix}-rapp"
+    az workload-orchestration solution-template create \
+        --solution-template-name "$rappname" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "${resourcePrefix}-soap" \
+        --description "This is RApp Solution" \
+        --configuration-template-file ./rapp-config-template.yaml \
+        --specification "@rapp-specs.json" \
+        --version "$rappversion"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "rapp-schema" --schema-file .\rapp-schema.yaml -l $l
+    ```
+
+1. Create the solution template file
+
+    ````powershell
+    $rappversion = "1.0.0"
+    $rappname = "$resourcePrefix-rapp" 
+    az workload-orchestration solution-template create `
+        --solution-template-name "$rappname" `
+        -g $rg `
+        -l $l `
+        --capabilities "$resourcePrefix-soap" `
+        --description "This is RApp Solution" `
+        --configuration-template-file .\rapp-config-template.yaml `
+        --specification "@rapp-specs.json" `
+        --version $rappversion
+    ```
+***
+
+### Solution template for FApp
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "fapp-schema" --schema-file ./fapp-schema.yaml -l "$l"
+    ```
+
+1. Create the solution template file
+
+    ```bash
+    fappversion="1.0.0"
+    fappname="${resourcePrefix}-fapp"
+    az workload-orchestration solution-template create \
+        --solution-template-name "$fappname" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "${resourcePrefix}-soap" \
+        --description "This is FApp Solution" \
+        --configuration-template-file ./fapp-config-template.yaml \
+        --specification "@fapp-specs.json" \
+        --version "$fappversion"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "fapp-schema" --schema-file .\fapp-schema.yaml -l $l
+    ```
+
+1. Create the solution template file
+
+    ````powershell
+    $fappversion = "1.0.0"
+    $fappname = "$resourcePrefix-fapp" 
+    az workload-orchestration solution-template create `
+        --solution-template-name "$fappname" `
+        -g $rg `
+        -l $l `
+        --capabilities "$resourcePrefix-soap" `
+        --description "This is FApp Solution" `
+        --configuration-template-file .\fapp-config-template.yaml `
+        --specification "@fapp-specs.json" `
+        --version $fappversion
+    ```
+***
+
+### Solution template for LApp
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "lapp-schema" --schema-file ./lapp-schema.yaml -l "$l"
+    ```
+
+1. Create the solution template file
+
+    ```bash
+    lappversion="1.0.0"
+    lappname="${resourcePrefix}-lapp"
+    az workload-orchestration solution-template create \
+        --solution-template-name "$lappname" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "${resourcePrefix}-soap" \
+        --description "This is LApp Solution" \
+        --configuration-template-file ./lapp-config-template.yaml \
+        --specification "@lapp-specs.json" \
+        --version "$lappversion"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "lapp-schema" --schema-file .\lapp-schema.yaml -l $l
+    ```
+
+1. Create the solution template file
+
+    ````powershell
+    $lappversion = "1.0.0"
+    $lappname = "$resourcePrefix-lapp" 
+    az workload-orchestration solution-template create `
+        --solution-template-name "$lappname" `
+        -g $rg `
+        -l $l `
+        --capabilities "$resourcePrefix-soap" `
+        --description "This is LApp Solution" `
+        --configuration-template-file .\lapp-config-template.yaml `
+        --specification "@lapp-specs.json" `
+        --version $lappversion
+    ```
+***
+
+## Set the configuration for the solution templates
+
+### [Bash](#tab/bash)
+
+1. Set the configuration for GA solution.
+
+    ```bash
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "${resourcePrefix}-SGCountry"
+    ```
+
+1. Set the configuration for RApp solution.
+
+    ```bash
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "${resourcePrefix}-SGCountry"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "${resourcePrefix}-SGRegion"
+    ```
+
+1. Set the configuration for FApp solution.
+
+    ```bash
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGCountry"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGRegion"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGFactory"
+    ```
+
+1. Set the configuration for LApp solution.
+
+    ```bash
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGCountry"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGRegion"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGFactory"
+
+    az workload-orchestration configuration set -g "$rg" --solution-template-name "$lappname" --target-name "$mk80Target"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Set the configuration for GA solution.
+
+    ```powershell
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $resourcePrefix-SGCountry
+    ```
+1. Set the configuration for RApp solution.
+
+    ```powershell
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $resourcePrefix-SGCountry
+    
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $resourcePrefix-SGRegion
+    ```    
+1. Set the configuration for FApp solution.
+
+    ```powershell
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGCountry
+
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGRegion
+    
+    
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGFactory
+    ```
+
+1. Set the configuration for LApp solution.
+
+    ```powershell
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGCountry
+    
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGRegion
+    
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGFactory
+    
+    az workload-orchestration configuration set -g $rg --solution-template-name $lappname --target-name $mk80Target
+    ```
+
+***
+
+## Review the GA configuration
+
+### [Bash](#tab/bash)
+
+Review the configuration for GA solution with "ga-instance-a" instance.
+
+```bash
+az workload-orchestration target review --solution-template-name "$ganame" --solution-template-version "$gaversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
+```
+
+In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+
+### [PowerShell](#tab/powershell)
+
+Review the configuration for GA solution with "ga-instance-a" instance.
+
+```powershell
+az workload-orchestration target review --solution-template-name $ganame --solution-template-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
+```
+
+In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+
+***
+
+## Review, publish, and deploy RApp solution
+
+### [Bash](#tab/bash)
+
+1. Review the configuration for RApp solution with dependency on GA solution.
+
+    ```bash
+    az workload-orchestration target review --solution-template-name "$rappname" --solution-template-version "$rappversion" --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```bash
+    rappReviewId="<reviewId>"
+    rappSolutionVersion="<name>"
+    ```
+
+1. Publish the RApp solution.
+
+    ```bash
+    az workload-orchestration target publish --solution-name "$rappname" --solution-version "$rappSolutionVersion" --review-id "$rappReviewId" --resource-group "$rg" --target-name "$regionTarget"
+    ```
+
+1. Deploy the RApp solution.
+
+    ```bash
+    az workload-orchestration target install --solution-name "$rappname" --solution-version "$rappSolutionVersion" --resource-group "$rg" --target-name "$regionTarget"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Review the configuration for RApp solution with dependency on GA solution.
+
+    ```powershell
+    az workload-orchestration target review --solution-template-name $rappname --solution-template-version $rappversion --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```powershell
+    $rappReviewId = "<reviewId>"
+    $rappSolutionVersion = "<name>"
+    ```
+
+1. Publish the RApp solution.
+
+    ```powershell
+    az workload-orchestration target publish --solution-name $rappname --solution-version $rappSolutionVersion --review-id $rappReviewId --resource-group $rg --target-name $regionTarget
+    ```
+
+1. Deploy the RApp solution.
+
+    ```powershell
+    az workload-orchestration target install --solution-name $rappname --solution-version $rappSolutionVersion  --resource-group $rg --target-name $regionTarget 
+    ```
+***
+
+## Review, publish, and deploy FApp solution
+
+### [Bash](#tab/bash)
+
+1. Review the configuration for FApp solution with dependency on GA solution.
+
+    ```bash
+    az workload-orchestration target review --solution-template-name "$fappname" --solution-template-version "$fappversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```bash
+    fappReviewId="<reviewId>"
+    fappSolutionVersion="<name>"
+    ```
+
+1. Publish the FApp solution.
+
+    ```bash
+    az workload-orchestration target publish --solution-name "$fappname" --solution-version "$fappSolutionVersion" --review-id "$fappReviewId" --resource-group "$rg" --target-name "$factoryTarget"
+    ```
+
+1. Deploy the FApp solution.
+
+    ```bash
+    az workload-orchestration target install --solution-name "$fappname" --solution-version "$fappSolutionVersion" --resource-group "$rg" --target-name "$factoryTarget"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Review the configuration for FApp solution with dependency on GA solution.
+
+    ```powershell
+    az workload-orchestration target review --solution-template-name $fappname --solution-template-version $fappversion --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```powershell
+    $fappReviewId = "<reviewId>"
+    $fappSolutionVersion = "<name>"
+    ```
+
+1. Publish the FApp solution.
+
+    ```powershell
+    az workload-orchestration target publish --solution-name $fappname --solution-version $fappSolutionVersion --review-id $fappReviewId --resource-group $rg --target-name $factoryTarget
+    ```
+
+1. Deploy the FApp solution.
+
+    ```powershell
+    az workload-orchestration target install --solution-name $fappname --solution-version $fappSolutionVersion  --resource-group $rg --target-name $factoryTarget 
+    ```
+***
+
+## Review, publish, and deploy LApp solution
+
+### [Bash](#tab/bash)
+
+1. Review the configuration for LApp solution with dependency on GA solution.
+
+    ```bash
+    az workload-orchestration target review --solution-template-name "$lappname" --solution-template-version "$lappversion" --resource-group "$rg" --target-name "$mk80Target" --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```bash
+    lappReviewId="<reviewId>"
+    lappSolutionVersion="<name>"
+    ```
+
+1. Publish the LApp solution.
+
+    ```bash
+    az workload-orchestration target publish --solution-name "$lappname" --solution-version "$lappSolutionVersion" --review-id "$lappReviewId" --resource-group "$rg" --target-name "$mk80Target"
+    ```
+
+1. Deploy the LApp solution.
+
+    ```bash
+    az workload-orchestration target install --solution-name "$lappname" --solution-version "$lappSolutionVersion" --resource-group "$rg" --target-name "$mk80Target"
+    ```
+
+### [PowerShell](#tab/powershell)
+
+1. Review the configuration for LApp solution with dependency on GA solution.
+
+    ```powershell
+    az workload-orchestration target review --solution-template-name $lappname --solution-template-version $lappversion --resource-group $rg --target-name $mk80Target --solution-dependencies "@dependencies.json"
+    ```
+
+1. Copy the `reviewId` from the output of the previous command.
+
+    ```powershell
+    $lappReviewId = "<reviewId>"
+    $lappSolutionVersion = "<name>"
+    ```
+
+1. Publish the LApp solution.
+
+    ```powershell
+    az workload-orchestration target publish --solution-name $lappname --solution-version $lappSolutionVersion --review-id $lappReviewId --resource-group $rg --target-name $mk80Target
+    ```
+
+1. Deploy the LApp solution.
+
+    ```powershell
+    az workload-orchestration target install --solution-name $lappname --solution-version $lappSolutionVersion  --resource-group $rg --target-name $mk80Target 
+    ```
+***
+
+## Validate the deployment
+
+### [Bash](#tab/bash)
+
+1. Get the cluster credentials for the target. The cluster should be linked to the custom location which used in target creation.
+
+    ```bash
+    az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing
+    ```
+
+1. Validate the configuration of the targets by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create targets](#create-targets) step.
+
+    ```bash
+    # There may be more releases in the same namespace if you have used the same custom location and namespace name before.
+    # Look for your respective solution/instance.
+    namespace="<Namespace>"
+    for release in $(helm list -n "$namespace" -q); do
+        echo "=================="
+        echo "For release/instance: $release"
+        helm get values "$release" -n "$namespace"
+        echo "=================="
+    done
+    ```
+
+1. If you want to check the configurations individually, run:
+
+    ```bash
+    # If you don't want to print all configs in the namespace, run
+    helm list -A
+    # Supply name and namespace in the command below to see configs for a specific release
+    helm get values <name> -n <namespace>
+    ```
+
+
+### [PowerShell](#tab/powershell)
+
+1. Get the cluster credentials for the target. The cluster should be linked to the custom location which used in target creation.
+
+    ```powershell
+    az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing
+    ```
+
+1. Validate the configuration of the targets by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create targets](#create-targets) step.
+
+    ```powershell
+    # There may be more releases in same namespace if you have used same custom location and namespace name before
+    # look for your respective solution/instance
+    $namespace = "<Namespace>"
+    helm list -n $namespace -q | ForEach-Object {
+        Write-Host "=================="
+        Write-Host "For release/instance: $_ "
+        helm get values $_ -n $namespace
+        Write-Host "=================="
+    }
+    ```
+1. If you want to check the configurations individually, run:
+
+    ```powershell
+    # If you dont want to print all configs in namespace then run
+    helm list -A
+    # Supply name and namespace in below command to see configs for respective case
+    helm get values <name> -n <namespace>
+    ```
+
+***
+
+You can also go to the [Azure portal](https://portal.azure.com) and check pods in the namespace of your AKS cluster to validate the deployment.

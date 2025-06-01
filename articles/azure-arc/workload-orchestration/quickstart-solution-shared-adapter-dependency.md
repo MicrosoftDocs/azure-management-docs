@@ -9,9 +9,9 @@ ms.date: 05/07/2025
 
 # Quickstart: Create a solution with shared adapter dependency
 
-In this quickstart, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which is dependent on Shared Sync Adapter (SSA). A shared sync adapter is a component used in various applications to manage data synchronization between devices and servers.
+In this quickstart, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which is dependent on Shared Sync Adapter (SSA). A shared sync adapter is a component used in various solutions to manage data synchronization between devices and servers.
 
-The FSAD application is deployed on a child target, while the SSA application is deployed on a parent target. The FSAD application uses the SSA application to synchronize data between devices and servers.
+The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
 ## Prerequisites
 
