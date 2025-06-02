@@ -18,6 +18,8 @@ For more information, see [Service groups at different hierarchy levels in workl
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Create the service groups and hierarchy levels. If you haven't, follow the steps in [Service groups at different hierarchy levels](service-group.md#service-groups-at-different-hierarchy-levels).
+
 
 > [!NOTE]
 > You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
@@ -34,10 +36,10 @@ A solution is deployed at each target as follows:
 
 - Country Adapter (CA) is a solution at country level.
 - Region Adapter (RA) is a solution at region level.
-- Shared Sync Adapter (SSA) is a solution at factory level.
-- Factory Sensor Anomaly Detector (FSAD) is a solution at line level. FSAD is dependent on SSA, RA, and CA, which means that during the deployment, FSAD configuration will be updated with the information from the other solutions.
+- Factory Adapter (FA) is a solution at factory level.
+- Line Event Tracker (LET) is a solution at line level. LET is dependent on FA, RA, and CA, which means that during the deployment, LET configuration will be updated with the information from the other solutions.
 
-All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-enabled Kubernetes cluster.
+All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enabled Kubernetes cluster.
 
 ## Create targets
 
@@ -47,10 +49,10 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```bash
     solution_scope="one-to-n-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    countryTarget="${resourcePrefix}-country"
-    regionTarget="${resourcePrefix}-region"
-    factoryTarget="${resourcePrefix}-factory"
-    mk80Target="${resourcePrefix}-mk80"
+    countryTarget="Italy"
+    regionTarget="Naples"
+    factoryTarget="Contoso"
+    mk80Target="MK-80"
 
     # Create target at country level
     az workload-orchestration target create \
@@ -58,8 +60,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$countryTarget" \
       --display-name "$countryTarget" \
-      --hierarchy-level country \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "country" \
+      --capabilities "Use for soap production" \
       --description "This is Country Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -71,8 +73,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$regionTarget" \
       --display-name "$regionTarget" \
-      --hierarchy-level region \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "region" \
+      --capabilities "Use for soap production" \
       --description "This is Region Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -84,8 +86,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$factoryTarget" \
       --display-name "$factoryTarget" \
-      --hierarchy-level factory \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "factory" \
+      --capabilities "Use for soap production" \
       --description "This is Factory Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -97,8 +99,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$mk80Target" \
       --display-name "$mk80Target" \
-      --hierarchy-level line \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "line" \
+      --capabilities "Use for soap production" \
       --description "This is MK-80 Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -114,32 +116,32 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     countryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$countryTarget" --query id --output tsv)
     ```
 
-1. Link the target IDs to their respective service groups.
+1. Link the target IDs to their respective service groups. Make sure to replace the service group names with the ones you created.
 
     ```bash
     # Link to country service group
     az rest \
       --method put \
       --uri "${countryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
 
     # Link to region service group
     az rest \
       --method put \
       --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
 
     # Link to factory service group
     az rest \
       --method put \
       --uri "${factoryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
 
     # Link to line service group
     az rest \
       --method put \
       --uri "${mk80TargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
@@ -172,10 +174,10 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```powershell
     $solution_scope = "one-to-n-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    $countryTarget = "$resourcePrefix-country"
-    $regionTarget = "$resourcePrefix-region"
-    $factoryTarget = "$resourcePrefix-factory"
-    $mk80Target = "$resourcePrefix-mk80"
+    $countryTarget = "Italy"
+    $regionTarget = "Naples"
+    $factoryTarget = "ContosoLtd"
+    $mk80Target = "MK-80"
     
     # Create target at country level
     az workload-orchestration target create `
@@ -183,8 +185,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$countryTarget" `
       --display-name "$countryTarget" `
-      --hierarchy-level country `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "country" `
+      --capabilities "Use for soap production" `
       --description "This is Country Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -196,8 +198,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$regionTarget" `
       --display-name "$regionTarget" `
-      --hierarchy-level region `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "region" `
+      --capabilities "Use for soap production" `
       --description "This is Region Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -209,8 +211,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$factoryTarget" `
       --display-name "$factoryTarget" `
-      --hierarchy-level factory `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "factory" `
+      --capabilities "Use for soap production" `
       --description "This is Factory Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -222,8 +224,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$mk80Target" `
       --display-name "$mk80Target" `
-      --hierarchy-level line `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "line" `
+      --capabilities "Use for soap production" `
       --description "This is MK-80 Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -239,32 +241,32 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     $countryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$countryTarget" --query id --output tsv)
     ```
 
-1. Link the target IDs to their respective service groups. 
+1. Link the target IDs to their respective service groups. Make sure to replace the service group names with the ones you created.
 
     ```powershell
     #Link to country service group
     az rest `
       --method put `
       --uri $countryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
     
     #Link to region service group
     az rest `
       --method put `
       --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
     
     #Link to factory service group
     az rest `
       --method put `
       --uri $factoryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     
     #Link to line service group
     az rest `
       --method put `
       --uri $mk80TargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
@@ -294,6 +296,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
 ## Prepare the solution templates
 
+To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+
 ### Solution template for CA
 
 #### [Bash](#tab/bash)
@@ -308,12 +312,13 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```bash
     caversion="1.0.0"
-    caname="${resourcePrefix}-ca"
+    caname="ca-template"
+
     az workload-orchestration solution-template create \
         --solution-template-name "$caname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is CA Solution" \
         --configuration-template-file ./ca-config-template.yaml \
         --specification "@ca-specs.json" \
@@ -332,12 +337,12 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ````powershell
     $caversion = "1.0.0"
-    $caname = "$resourcePrefix-ca" 
+    $caname = "ca-template" 
     az workload-orchestration solution-template create `
         --solution-template-name "$caname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is CA Solution" `
         --configuration-template-file .\ca-config-template.yaml `
         --specification "@ca-specs.json" `
@@ -359,12 +364,12 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```bash
     raversion="1.0.0"
-    raname="${resourcePrefix}-ra"
+    raname="ra-template"
     az workload-orchestration solution-template create \
         --solution-template-name "$raname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is RA Solution" \
         --configuration-template-file ./ra-config-template.yaml \
         --specification "@ra-specs.json" \
@@ -383,12 +388,12 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ````powershell
     $raversion = "1.0.0"
-    $raname = "$resourcePrefix-ra" 
+    $raname = "ra-template" 
     az workload-orchestration solution-template create `
         --solution-template-name "$raname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is RA Solution" `
         --configuration-template-file .\ra-config-template.yaml `
         --specification "@ra-specs.json" `
@@ -396,30 +401,30 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     ```
 ***
 
-### Solution template for SSA
+### Solution template for FA
 
 #### [Bash](#tab/bash)
 
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "ssa-schema" --schema-file ./ssa-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "fa-schema" --schema-file ./fa-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file
 
     ```bash
-    ssaversion="1.0.0"
-    ssaname="${resourcePrefix}-ssa"
+    faversion="1.0.0"
+    faname="fa-template"
     az workload-orchestration solution-template create \
-        --solution-template-name "$ssaname" \
+        --solution-template-name "$faname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
-        --description "This is SSA Solution" \
-        --configuration-template-file ./ssa-config-template.yaml \
-        --specification "@ssa-specs.json" \
-        --version "$ssaversion"
+        --capabilities "Use for soap production" \
+        --description "This is fa Solution" \
+        --configuration-template-file ./fa-config-template.yaml \
+        --specification "@fa-specs.json" \
+        --version "$faversion"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -427,50 +432,50 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Create the solution schema file.
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "ssa-schema" --schema-file .\ssa-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "fa-schema" --schema-file .\fa-schema.yaml -l $l
     ```
 
 1. Create the solution template file
 
     ````powershell
-    $ssaversion = "1.0.0"
-    $ssaname = "$resourcePrefix-ssa" 
+    $faversion = "1.0.0"
+    $faname = "fa-template" 
     az workload-orchestration solution-template create `
-        --solution-template-name "$ssaname" `
+        --solution-template-name "$faname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
-        --description "This is SSA Solution" `
-        --configuration-template-file .\ssa-config-template.yaml `
-        --specification "@ssa-specs.json" `
-        --version $ssaversion
+        --capabilities "Use for soap production" `
+        --description "This is FA Solution" `
+        --configuration-template-file .\fa-config-template.yaml `
+        --specification "@fa-specs.json" `
+        --version $faversion
     ```
 ***
 
-### Solution template for FSAD
+### Solution template for LET
 
 #### [Bash](#tab/bash)
 
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "fsad-schema" --schema-file ./fsad-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "let-schema" --schema-file ./let-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file
 
     ```bash
-    fsadversion="1.0.0"
-    fsadname="${resourcePrefix}-fsad"
+    letversion="1.0.0"
+    letname="let-template"
     az workload-orchestration solution-template create \
-        --solution-template-name "$fsadname" \
+        --solution-template-name "$letname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
-        --description "This is FSAD Solution" \
-        --configuration-template-file ./fsad-config-template.yaml \
-        --specification "@fsad-specs.json" \
-        --version "$fsadversion"
+        --capabilities "Use for soap production" \
+        --description "This is LET Solution" \
+        --configuration-template-file ./let-config-template.yaml \
+        --specification "@let-specs.json" \
+        --version "$letversion"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -478,23 +483,23 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Create the solution schema file.
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "fsad-schema" --schema-file .\fsad-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "let-schema" --schema-file .\let-schema.yaml -l $l
     ```
 
 1. Create the solution template file
 
     ````powershell
-    $fsadversion = "1.0.0"
-    $fsadname = "$resourcePrefix-fsad" 
+    $letversion = "1.0.0"
+    $letname = "let-template" 
     az workload-orchestration solution-template create `
-        --solution-template-name "$fsadname" `
+        --solution-template-name "$letname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
-        --description "This is FSAD Solution" `
-        --configuration-template-file .\fsad-config-template.yaml `
-        --specification "@fsad-specs.json" `
-        --version $fsadversion
+        --capabilities "Use for soap production" `
+        --description "This is LET Solution" `
+        --configuration-template-file .\let-config-template.yaml `
+        --specification "@let-specs.json" `
+        --version $letversion
     ```
 ***
 
@@ -505,37 +510,37 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Set the configuration for CA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level1Name"
     ```
 
 1. Set the configuration for RA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "$level2Name"
     ```
 
-1. Set the configuration for SSA solution.
+1. Set the configuration for FA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ssaname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ssaname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level2Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ssaname" --target-name "${resourcePrefix}-SGFactory"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level3Name"
     ```
 
-1. Set the configuration for FSAD solution.
+1. Set the configuration for LET solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fsadname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fsadname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level2Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fsadname" --target-name "${resourcePrefix}-SGFactory"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level3Name"
 
-    az workload-orchestration configuration set -g "$rg" --solution-template-name "$fsadname" --target-name "$mk80Target"
+    az workload-orchestration configuration set -g "$rg" --solution-template-name "$letname" --target-name "$mk80Target"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -543,36 +548,36 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Set the configuration for CA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level1Name
     ```
 1. Set the configuration for RA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $level1Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $level2Name
     ```    
-1. Set the configuration for SSA solution.
+1. Set the configuration for FA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ssaname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level1Name
 
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ssaname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level2Name
     
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ssaname --target-name $resourcePrefix-SGFactory
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level3Name
     ```
 
-1. Set the configuration for FSAD solution.
+1. Set the configuration for LET solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fsadname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level1Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fsadname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level2Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fsadname --target-name $resourcePrefix-SGFactory
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level3Name
     
-    az workload-orchestration configuration set -g $rg --solution-template-name $fsadname --target-name $mk80Target
+    az workload-orchestration configuration set -g $rg --solution-template-name $letname --target-name $mk80Target
     ```
 
 ***
@@ -593,16 +598,16 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     az workload-orchestration target review --solution-template-name "$raname" --solution-template-version "$raversion" --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
     ```
 
-1. Review the configuration for SSA solution with "ssa-instance-a" instance.
+1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$ssaname" --solution-template-version "$ssaversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "ssa-instance-a"
+    az workload-orchestration target review --solution-template-name "$faname" --solution-template-version "$faversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
     ```
 
-1. Review the configuration for FSAD solution with dependencies on CA, RA, and SSA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$fsadname" --solution-template-version "$fsadversion" --resource-group "$rg" --target-name "$mk80Target" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-name "$letname" --solution-template-version "$letversion" --resource-group "$rg" --target-name "$mk80Target" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.
@@ -626,16 +631,16 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     az workload-orchestration target review --solution-template-name $raname --solution-template-version $raversion --resource-group $rg --target-name $regionTarget --solution-instance-name "ra-instance-a"
     ```
 
-1. Review the configuration for SSA solution with "ssa-instance-a" instance.
+1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $ssaname --solution-template-version $ssaversion --resource-group $rg --target-name $factoryTarget --solution-instance-name "ssa-instance-a"
+    az workload-orchestration target review --solution-template-name $faname --solution-template-version $faversion --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
     ```
 
-1. Review the configuration for FSAD solution with dependencies on CA, RA, and SSA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $fsadname --solution-template-version $fsadversion --resource-group $rg --target-name $mk80Target --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-name $letname --solution-template-version $letversion --resource-group $rg --target-name $mk80Target --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.
@@ -653,13 +658,13 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$fsadname" --solution-version "$version" --review-id "$reviewId" --resource-group "$rg" --target-name "$mk80Target"
+    az workload-orchestration target publish --solution-name "$letname" --solution-version "$version" --review-id "$reviewId" --resource-group "$rg" --target-name "$mk80Target"
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --solution-name "$fsadname" --solution-version "$version" --resource-group "$rg" --target-name "$mk80Target"
+    az workload-orchestration target install --solution-name "$letname" --solution-version "$version" --resource-group "$rg" --target-name "$mk80Target"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -667,13 +672,13 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --solution-name $fsadname --solution-version $version --review-id $reviewId --resource-group $rg --target-name $mk80Target 
+    az workload-orchestration target publish --solution-name $letname --solution-version $version --review-id $reviewId --resource-group $rg --target-name $mk80Target 
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --solution-name $fsadname --solution-version $version --resource-group $rg --target-name $mk80Target 
+    az workload-orchestration target install --solution-name $letname --solution-version $version --resource-group $rg --target-name $mk80Target 
     ```
 ***
 

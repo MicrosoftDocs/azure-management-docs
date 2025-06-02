@@ -48,6 +48,8 @@ landingContent:
             url: service-group.md
           - text: Enable external validation 
             url: external-validation.md
+          - text: Stage your solutions before deploying
+            url: how-to-stage.md
       - linkListType: quickstart
         links:
           - text: Create a solution without common configurations

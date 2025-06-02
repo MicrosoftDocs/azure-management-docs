@@ -18,6 +18,8 @@ For more information, see [Service groups at different hierarchy levels in workl
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Create the service groups and hierarchy levels. If you haven't, follow the steps in [Service groups at different hierarchy levels](service-group.md#service-groups-at-different-hierarchy-levels).
+
 
 > [!NOTE]
 > You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
@@ -37,7 +39,7 @@ A solution is deployed at each target as follows:
 - Region App (RApp) is a solution at region level.
 - Global Adapter (GA) is a solution at country level. LApp, FApp, and RApp are dependent on GA, which means that during deployment, the RApp, FApp, and LApp configurations are inherited from the GApp configuration.
 
-All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-enabled Kubernetes cluster.
+All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc-enabled Kubernetes cluster. 
 
 ## Create targets
 
@@ -47,10 +49,10 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```bash
     solution_scope="n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    countryTarget="${resourcePrefix}-country"
-    regionTarget="${resourcePrefix}-region"
-    factoryTarget="${resourcePrefix}-factory"
-    mk80Target="${resourcePrefix}-mk80"
+    countryTarget="Italy"
+    regionTarget="Naples"
+    factoryTarget="Contoso"
+    mk80Target="MK-80"
 
     # Create target at country level
     az workload-orchestration target create \
@@ -58,8 +60,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$countryTarget" \
       --display-name "$countryTarget" \
-      --hierarchy-level country \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "country" \
+      --capabilities "Use for soap production" \
       --description "This is Country Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -71,8 +73,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$regionTarget" \
       --display-name "$regionTarget" \
-      --hierarchy-level region \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "region" \
+      --capabilities "Use for soap production" \
       --description "This is Region Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -84,8 +86,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$factoryTarget" \
       --display-name "$factoryTarget" \
-      --hierarchy-level factory \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "factory" \
+      --capabilities "Use for soap production" \
       --description "This is Factory Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -97,8 +99,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location "$l" \
       --name "$mk80Target" \
       --display-name "$mk80Target" \
-      --hierarchy-level line \
-      --capabilities "${resourcePrefix}-soap" \
+      --hierarchy-level "line" \
+      --capabilities "Use for soap production" \
       --description "This is MK-80 Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
@@ -121,25 +123,25 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     az rest \
       --method put \
       --uri "${countryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGCountry'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
 
     # Link to region service group
     az rest \
       --method put \
       --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
 
     # Link to factory service group
     az rest \
       --method put \
       --uri "${factoryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
 
     # Link to line service group
     az rest \
       --method put \
       --uri "${mk80TargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
@@ -172,10 +174,10 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
     ```powershell
     $solution_scope = "n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    $countryTarget = "$resourcePrefix-country"
-    $regionTarget = "$resourcePrefix-region"
-    $factoryTarget = "$resourcePrefix-factory"
-    $mk80Target = "$resourcePrefix-mk80"
+    $countryTarget = "Italy"
+    $regionTarget = "Naples"
+    $factoryTarget = "Contoso"
+    $mk80Target = "MK-80"
     
     # Create target at country level
     az workload-orchestration target create `
@@ -183,8 +185,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$countryTarget" `
       --display-name "$countryTarget" `
-      --hierarchy-level country `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "country" `
+      --capabilities "Use for soap production" `
       --description "This is Country Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -196,8 +198,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$regionTarget" `
       --display-name "$regionTarget" `
-      --hierarchy-level region `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "region" `
+      --capabilities "Use for soap production" `
       --description "This is Region Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -209,8 +211,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$factoryTarget" `
       --display-name "$factoryTarget" `
-      --hierarchy-level factory `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "factory" `
+      --capabilities "Use for soap production" `
       --description "This is Factory Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -222,8 +224,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
       --location $l `
       --name "$mk80Target" `
       --display-name "$mk80Target" `
-      --hierarchy-level line `
-      --capabilities "$resourcePrefix-soap" `
+      --hierarchy-level "line" `
+      --capabilities "Use for soap production" `
       --description "This is MK-80 Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
@@ -246,25 +248,25 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
     az rest `
       --method put `
       --uri $countryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
     
     #Link to region service group
     az rest `
       --method put `
       --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
     
     #Link to factory service group
     az rest `
       --method put `
       --uri $factoryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     
     #Link to line service group
     az rest `
       --method put `
       --uri $mk80TargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
@@ -294,6 +296,8 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 
 ## Prepare the solution templates
 
+To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+
 ### Solution template for GA
 
 #### [Bash](#tab/bash)
@@ -313,7 +317,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$ganame" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is GA Solution" \
         --configuration-template-file ./ga-config-template.yaml \
         --specification "@ga-specs.json" \
@@ -337,7 +341,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$ganame" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is GA Solution" `
         --configuration-template-file .\ga-config-template.yaml `
         --specification "@ga-specs.json" `
@@ -364,7 +368,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$rappname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is RApp Solution" \
         --configuration-template-file ./rapp-config-template.yaml \
         --specification "@rapp-specs.json" \
@@ -388,7 +392,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$rappname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is RApp Solution" `
         --configuration-template-file .\rapp-config-template.yaml `
         --specification "@rapp-specs.json" `
@@ -415,7 +419,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$fappname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is FApp Solution" \
         --configuration-template-file ./fapp-config-template.yaml \
         --specification "@fapp-specs.json" \
@@ -439,7 +443,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$fappname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is FApp Solution" `
         --configuration-template-file .\fapp-config-template.yaml `
         --specification "@fapp-specs.json" `
@@ -466,7 +470,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$lappname" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "${resourcePrefix}-soap" \
+        --capabilities "Use for soap production" \
         --description "This is LApp Solution" \
         --configuration-template-file ./lapp-config-template.yaml \
         --specification "@lapp-specs.json" \
@@ -490,7 +494,7 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
         --solution-template-name "$lappname" `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is LApp Solution" `
         --configuration-template-file .\lapp-config-template.yaml `
         --specification "@lapp-specs.json" `
@@ -505,35 +509,35 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Set the configuration for GA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "$level1Name"
     ```
 
 1. Set the configuration for RApp solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level2Name"
     ```
 
 1. Set the configuration for FApp solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level2Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "${resourcePrefix}-SGFactory"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level3Name"
     ```
 
 1. Set the configuration for LApp solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level2Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "${resourcePrefix}-SGFactory"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level3Name"
 
     az workload-orchestration configuration set -g "$rg" --solution-template-name "$lappname" --target-name "$mk80Target"
     ```
@@ -543,34 +547,34 @@ All the instances of CA, RA, SSA, and FSAD are deployed in the same Azure Arc-en
 1. Set the configuration for GA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $level1Name
     ```
 1. Set the configuration for RApp solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level1Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level2Name
     ```    
 1. Set the configuration for FApp solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level1Name
 
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level2Name
     
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $resourcePrefix-SGFactory
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level3Name
     ```
 
 1. Set the configuration for LApp solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level1Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level2Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $resourcePrefix-SGFactory
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level3Name
     
     az workload-orchestration configuration set -g $rg --solution-template-name $lappname --target-name $mk80Target
     ```

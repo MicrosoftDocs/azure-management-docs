@@ -19,6 +19,8 @@ For more information, see [Service groups at different hierarchy levels in workl
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 - Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Create the service groups and hierarchy levels. If you haven't, follow the steps in [Service groups at different hierarchy levels](service-group.md#service-groups-at-different-hierarchy-levels).
+
 
 > [!NOTE]
 > You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
@@ -37,18 +39,20 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 
 ### [Bash](#tab/bash)
 
-1. Create a target and set `--hierarchy-level` to `region` level. The target is named EL-71, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `region` level. The target is named RH-71, which represents a specific region in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```bash
+    Regionname="RH-71"
+
     az workload-orchestration target create \
       --resource-group "$rg" \
       --location "$l" \
-      --name "${resourcePrefix}-rh71" \
-      --display-name "${resourcePrefix}-rh71" \
-      --hierarchy-level region \
-      --capabilities "${resourcePrefix}-soap" \
+      --name "$Regionname" \
+      --display-name "$Regionname" \
+      --hierarchy-level "region" \
+      --capabilities "Use for soap soap" \
       --description "This is RH-71 Target" \
-      --solution-scope "rhapp" \
+      --solution-scope "new" \
       --target-specification @targetspecs.json \
       --extended-location @custom-location.json
     ```
@@ -56,24 +60,22 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```bash
-    targetId=$(az workload-orchestration target show --resource-group $rg --name "${resourcePrefix}-rh71" --query id --output tsv)
+    targetId=$(az workload-orchestration target show --resource-group $rg --name "$Regionname" --query id --output tsv)
     ```
 
-1. Link the target ID to the region service group.
+1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
 
     ```bash
     az rest \
       --method put \
       --uri "$targetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{ \"properties\": { \"targetId\": \"/providers/Microsoft.Management/serviceGroups/${resourcePrefix}-SGRegion\" } }"
+      --body "{ \"properties\": { \"targetId\": \"/providers/Microsoft.Management/serviceGroups/$level2Name\" } }"
     ```
 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```bash
-    az workload-orchestration target update \
-      --resource-group "$resourcePrefix" \
-      --name "${resourcePrefix}-rh71"
+    az workload-orchestration target update --resource-group "$rg" --name "$Regionname"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -81,15 +83,17 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Create a target and set `--hierarchy-level` to `region` level. The target is named EL-71, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```powershell
+    $Regionname = "RH-71"
+
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$resourcePrefix-rh71" `
-      --display-name "$resourcePrefix-rh71" `
-      --hierarchy-level region `
-      --capabilities "$resourcePrefix-soap" `
+      --name "$Regionname" `
+      --display-name "$Regionname" `
+      --hierarchy-level "region" `
+      --capabilities "Use for soap production" `
       --description "This is RH-71 Target" `
-      --solution-scope "rhapp" `
+      --solution-scope "new" `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json'
     ```
@@ -97,24 +101,22 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```powershell
-    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$resourcePrefix-rh71" --query id --output tsv)
+    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$Regionname" --query id --output tsv)
     ```
 
-1. Link the target ID to the region service group.
+1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
 
     ```powershell
     az rest `
       --method put `
       --uri $targetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}"
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name' }}"
     ```
 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```powershell
-    az workload-orchestration target update `
-      --resource-group $resourcePrefix `
-      --name $resourcePrefix-rh71
+    az workload-orchestration target update --resource-group $rg --name $Regionname
     ```
 ***
 
@@ -122,45 +124,49 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 
 ### [Bash](#tab/bash)
 
-1. Create the solution schema file named regionHub-schema.yaml.
+1. Create the solution schema file. Use the *common-schema.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$resourcePrefix-RHS" --schema-file ./regionHub-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./common-schema.yaml -l "$l"
     ```
 
-1. Create the solution template file named regionHub-config-template.yaml.
+1. Create the solution template file. Use the *app-config-template.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference.
 
     ```bash
+    solutionName="RegionHub Solution"    
+
     az workload-orchestration solution-template create \
-        --solution-template-name "$resourcePrefix-rh" \
+        --solution-template-name "$solutionName" \
         -g "$rg" \
         -l "$l" \
-        --capabilities "$resourcePrefix-soap" \
+        --capabilities "Use for soap production" \
         --description "This is RegionHub Solution" \
-        --config-template-file ./regionHub-config-template.yaml \
-        --specification "@edgeLink-specs.json" \
+        --config-template-file ./app-config-template.yaml \
+        --specification "@specs.json" \
         --version "1.0.0"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create the solution schema file named regionHub-schema.yaml.
+1. Create the solution schema file. Use the *common-schema.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$resourcePrefix-RHS" --schema-file .\regionHub-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./common-schema.yaml -l $l
     ```
 
-1. Create the solution template file named regionHub-config-template.yaml.
+1. Create the solution template file. Use the *app-config-template.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference.
 
-    ````powershell
+    ```powershell
+    $solutionName = "RegionHub Solution"    
+
     az workload-orchestration solution-template create `
-        --solution-template-name "$resourcePrefix-rh" `
+        --solution-template-name $solutionName `
         -g $rg `
         -l $l `
-        --capabilities "$resourcePrefix-soap" `
+        --capabilities "Use for soap production" `
         --description "This is RegionHub Solution" `
-        --config-template-file .\regionHub-config-template.yaml `
-        --specification "@regionHub-specs.json" `
+        --config-template-file ./app-config-template.yaml `
+        --specification '@specs.json' `
         --version "1.0.0"
     ```
 ***
@@ -172,13 +178,13 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Set the configuration for country service group.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$resourcePrefix-rh" --target-name "$resourcePrefix-SGCountry"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level1Name"
     ```
 
 1. Set the configuration for region service group.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$resourcePrefix-rh" --target-name "$resourcePrefix-SGRegion"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level2Name"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -186,13 +192,13 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Set the configuration for country service group.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $resourcePrefix-rh --target-name $resourcePrefix-SGCountry
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level1Name
     ```
 
 1. Set the configuration for region service group.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $resourcePrefix-rh --target-name $resourcePrefix-SGRegion
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level2Name
     ```
 ***
 
@@ -203,19 +209,19 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```bash
-    az workload-orchestration target review --solution-name "$resourcePrefix-rh" --solution-version "1.0.0" --resource-group "$rg" --target-name "$resourcePrefix-rh71"
+    az workload-orchestration target review --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$Regionname"
     ```
 
 1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` with the value of `properties.properties.reviewId` returned from the previous command.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$resourcePrefix-rh" --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group "$rg" --target-name "$resourcePrefix-rh71"
+    az workload-orchestration target publish --solution-name "$solutionName" --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group "$rg" --target-name "$Regionname"
     ```
 
 1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
 
     ```bash
-    az workload-orchestration target install --solution-name "$resourcePrefix-rh" --solution-version <SolutionVersion> --resource-group "$rg" --target-name "$resourcePrefix-rh71"
+    az workload-orchestration target install --solution-name "$solutionName" --solution-version <SolutionVersion> --resource-group "$rg" --target-name "$Regionname"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -223,19 +229,19 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```powershell
-    az workload-orchestration target review --solution-name $resourcePrefix-rh --solution-version "1.0.0" --resource-group $rg --target-name $resourcePrefix-rh71
+    az workload-orchestration target review --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $Regionname
     ```
 
 1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` the value of `properties.properties.reviewId` returned from the previous command.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $resourcePrefix-rh --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group $rg --target-name $resourcePrefix-rh71
+    az workload-orchestration target publish --solution-name $solutionName --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group $rg --target-name $Regionname
     ```
 
 1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
 
     ```powershell
-   az workload-orchestration target install --solution-name $resourcePrefix-rh --solution-version <SolutionVersion> --resource-group $rg --target-name $resourcePrefix-rh71
+   az workload-orchestration target install --solution-name $solutionName --solution-version <SolutionVersion> --resource-group $rg --target-name $Regionname
     ```
 ***
 
@@ -249,7 +255,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
     az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing
     ```
 
-1. Validate the configuration of the target by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create a non-leaf target](#create-a-non-leaf-target) step, which is `rhapp` in this case.
+1. Validate the configuration of the target by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create a non-leaf target](#create-a-non-leaf-target) step, which is `new` in this case.
 
     ```bash
     # There may be more releases in the same namespace if you have used the same custom location and namespace name before.
@@ -271,7 +277,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
     az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing
     ```
 
-1. Validate the configuration of the target by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create a non-leaf target](#create-a-non-leaf-target) step, which is `rhapp` in this case.
+1. Validate the configuration of the target by checking the Helm release values. Replace `<Namespace>` with the `-solution-scope` you defined in the [Create a non-leaf target](#create-a-non-leaf-target) step, which is `new` in this case.
 
     ```powershell
     # There may be more releases in same namespace if you have used same custom location and namespace name before

@@ -87,12 +87,9 @@ $chartVersion = "enter in this format x.x.x e.g. 0.8.0"
 
 ## Create the solution template 
 
-The solution template is a Helm chart that contains the application and its dependencies. The solution template is defined in the *specs.json* file. The *specs.json* file contains the following sections:
-- **specification**: The specification section contains the Helm chart URL and version. The Helm chart URL is the location of the Helm chart in the container registry. The version is the version of the Helm chart.
-- **configuration**: The configuration section contains the configuration template file name. The configuration template file is the file that contains the configuration schema and template for the solution.
-- **schema**: The schema section contains the schema name and version. The schema name is the name of the schema that is used to validate the configuration template file. The version is the version of the schema.
-
-For more information, see [Introduction to Helm](https://helm.sh/docs/intro/install/).
+The solution template consists of a schema and a configuration template. Both are defined in YAML format. 
+- **Schema template**: The schema represents the declaration of configurable attributes/properties of the solution and the associated permissions as it applies to hierarchies and personas. For more information, see [Configuring schema](configuring-schema.md).
+- **Configuration template**: The application configuration template represents associated configurations of the previously declared schema. These values can be modified as necessary. For more information, see [Configuring template](configuring-template.md).
 
 ### Create a shared schema
 

@@ -43,6 +43,8 @@ items:
         href: configuring-template.md
       - name: Configuration schema
         href: configuring-schema.md
+    - name: Stage a solution before deploying
+      href: how-to-stage.md
     - name: Service groups
       items:
       - name: Use service groups
@@ -65,6 +67,8 @@ items:
         href: external-validation-payload.md
     - name: RBAC guide 
       href: rbac-guide.md
+    - name: Diagnose of errors
+      href: diagnose-errors.md
     - name: Delete resources
       href: delete-resources.md
     - name: Resources
