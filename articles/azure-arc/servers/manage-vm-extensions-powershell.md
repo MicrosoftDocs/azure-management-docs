@@ -3,7 +3,9 @@ title: Enable VM Extensions Using Azure PowerShell
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using Azure PowerShell.
 ms.date: 01/22/2025
 ms.topic: how-to 
-ms.custom: devx-track-azurepowershell
+ms.custom:
+  - devx-track-azurepowershell
+  - build-2025
 ---
 
 # Enable Azure VM extensions by using Azure PowerShell

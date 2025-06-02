@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+ms.custom:
+  - build-2025
 ---
 
 # Configure your solutions with the workload orchestration portal

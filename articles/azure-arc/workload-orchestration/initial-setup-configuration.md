@@ -1,7 +1,9 @@
 ---
 title: Setup Workload Orchestration
 description: Learn how to configure resources, author solutions, and manage deployments for Azure Arc workload orchestration.
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy

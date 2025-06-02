@@ -8,6 +8,8 @@ author: jyothisuri
 ms.topic: how-to 
 ms.date: 10/21/2024
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Set up and manage self-service access to SCVMM resources

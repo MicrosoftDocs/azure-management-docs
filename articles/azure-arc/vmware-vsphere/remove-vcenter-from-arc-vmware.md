@@ -9,7 +9,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.custom:
 # Customer intent: As an infrastructure admin, I want to cleanly remove my VMware vCenter environment from Azure Arc-enabled VMware vSphere.
-
+ms.custom:
+  - build-2025
 ---
 
 # Remove your VMware vCenter  environment from Azure Arc

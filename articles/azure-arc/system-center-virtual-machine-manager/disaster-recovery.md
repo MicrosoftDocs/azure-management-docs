@@ -8,6 +8,8 @@ ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Recover from accidental deletion of resource bridge virtual machine

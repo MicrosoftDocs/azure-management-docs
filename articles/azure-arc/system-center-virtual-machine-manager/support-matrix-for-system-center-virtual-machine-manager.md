@@ -10,6 +10,8 @@ ms.date: 04/10/2025
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
+ms.custom:
+  - build-2025
 ---
 
 # Support matrix for Azure Arc-enabled System Center Virtual Machine Manager

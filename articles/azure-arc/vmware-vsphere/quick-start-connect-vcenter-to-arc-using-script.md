@@ -2,7 +2,9 @@
 title: Connect VMware vCenter Server to Azure Arc by using the helper script
 description: In this quickstart, you learn how to use the helper script to connect your VMware vCenter Server instance to Azure Arc.
 ms.topic: quickstart 
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 ms.date: 04/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere

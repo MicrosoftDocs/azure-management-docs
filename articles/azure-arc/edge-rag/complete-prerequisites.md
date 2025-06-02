@@ -8,7 +8,8 @@ ms.date: 05/07/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or AI application developer, I want to complete the deployment prerequisites for Edge RAG so that I can ensure a successful setup and configuration of the environment for AI-powered applications.
-
+ms.custom:
+  - build-2025
 ---
 
 # Complete deployment prerequisites for Edge RAG Preview, enabled by Azure Arc

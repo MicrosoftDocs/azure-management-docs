@@ -8,6 +8,8 @@ author: jyothisuri
 ms.date: 04/23/2025
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Enable SCVMM inventory resources from Azure portal

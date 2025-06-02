@@ -8,6 +8,8 @@ ms.date: 05/13/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or DevOps engineer, I want to monitor Edge RAG metrics using Azure Monitor, Azure Managed Grafana, and Azure Arc so that I can gain detailed insights into the performance and health of my deployed extensions and infrastructure.
+ms.custom:
+  - build-2025
 ---
 
 # Monitor Edge RAG Preview, enabled by Azure Arc

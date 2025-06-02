@@ -7,7 +7,8 @@ ms.topic: how-to #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent: As a developer or IT administrator, I want to test the Edge RAG chat solution by using the out-of-the-box application  so that I can evaluate and demonstrate the capabilities of AI-powered search in a hybrid or multicloud environment.
-
+ms.custom:
+  - build-2025
 ---
 
 # Test the chat solution for Edge RAG Preview, enabled by Azure Arc

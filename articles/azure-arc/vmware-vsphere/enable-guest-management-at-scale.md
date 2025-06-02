@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 #Customer intent: As an IT infra admin, I want to install arc agents to use Azure management services for VMware VMs.
+ms.custom:
+  - build-2025
 ---
 
 # Install Arc agents at scale for your VMware VMs
