@@ -3,7 +3,7 @@ title: View and manage service providers
 description: Customers can view info about Azure Lighthouse service providers, service provider offers, and delegated resources in the Azure portal.
 ms.date: 01/17/2025
 ms.topic: how-to
-# Customer intent: As a cloud administrator, I want to view and manage service provider offers through Azure Lighthouse, so that I can control access and delegate resources effectively while ensuring compliance with my organization's resource management policies.
+# Customer intent: As a cloud administrator, I want to view and manage Azure Lighthouse service providers and their offers in the Azure portal, so that I can control access and delegate resources effectively while ensuring compliance with my organization's resource management policies.
 ---
 
 # View and manage service providers
