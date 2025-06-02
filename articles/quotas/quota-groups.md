@@ -36,7 +36,7 @@ Before you can use the Quota Group feature, you must:
 
 ## Limitations
 
-- Available only for Enterprise Agreement and Internal subscriptions. 
+- Available only for Microsoft Customer Agreement and Internal subscriptions. 
 - Supports IaaS compute resources only.  
 - Available in public cloud regions only.  
 - Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.
