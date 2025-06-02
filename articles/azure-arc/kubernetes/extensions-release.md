@@ -3,6 +3,8 @@ title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
 ms.date: 05/14/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
+ms.custom:
+  - build-2025
 ---
 
 # Available extensions for Azure Arc-enabled Kubernetes clusters

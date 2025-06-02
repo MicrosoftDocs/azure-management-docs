@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+ms.custom:
+  - build-2025
 ---
 
 # Use Azure portal to monitor your solutions as an IT developer

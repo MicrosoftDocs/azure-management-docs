@@ -8,6 +8,8 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 

@@ -10,6 +10,8 @@ ms.date: 05/13/2025
 keywords: "VMM, Arc, Azure"
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
+ms.custom:
+  - build-2025
 ---
 
 # Install Arc agents at scale for Arc-enabled SCVMM VMs

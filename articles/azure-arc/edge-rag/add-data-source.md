@@ -7,7 +7,8 @@ ms.topic: how-to #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
-
+ms.custom:
+  - build-2025
 ---
 # Add data source for Edge RAG Preview, enabled by Azure Arc
 

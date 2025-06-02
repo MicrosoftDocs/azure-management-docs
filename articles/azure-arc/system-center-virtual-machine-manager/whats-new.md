@@ -8,6 +8,8 @@ ms.date: 04/09/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
+ms.custom:
+  - build-2025
 ---
 
 # What's new in Azure Arc-enabled SCVMM

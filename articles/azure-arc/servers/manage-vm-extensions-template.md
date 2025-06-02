@@ -3,7 +3,9 @@ title: Enable VM Extensions Using Azure Resource Manager Template
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using an Azure Resource Manager template.
 ms.date: 05/12/2025
 ms.topic: how-to
-ms.custom: devx-track-arm-template
+ms.custom:
+  - devx-track-arm-template
+  - build-2025
 ---
 
 # Enable Azure VM extensions by using an ARM template

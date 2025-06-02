@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/07/2025
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Create a solution with multiple shared adapter dependencies

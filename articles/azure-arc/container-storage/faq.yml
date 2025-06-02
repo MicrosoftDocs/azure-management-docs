@@ -8,6 +8,7 @@ metadata:
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
   ms.date: 05/13/2025
+  ms.custom: build-2025
 
 title: Azure Container Storage enabled by Azure Arc FAQ
 summary: |

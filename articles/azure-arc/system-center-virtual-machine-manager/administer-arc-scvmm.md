@@ -5,7 +5,9 @@ ms.topic: how-to
 ms.date: 04/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.custom: devx-track-azurecli
+ms.custom:
+  - devx-track-azurecli
+  - build-2025
 ms.author: jsuri
 author: jyothisuri
 ---
