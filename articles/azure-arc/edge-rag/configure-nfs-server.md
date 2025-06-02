@@ -30,12 +30,6 @@ Complete the following steps to set up your NFS server to use with Edge RAG.
 1. Create the shared directory.
 
     ```bash
-     # Create the directory you want to share over NFS. For example:**
-     
-     sudo mkdir -p /srv/edgerag/share 
-     
-     # Set the appropriate permissions for the directory:
-     
      # Create the directory.
      
      sudo mkdir -p /srv/edgerag/share 
