@@ -118,7 +118,7 @@ More information on service endpoints is documented [here][az-vnet-svc-ep].
 At minimum, the following service endpoints will be required
  
 - Microsoft.AzureActiveDirectory
-- Microsoft.ContainerRegistry (only if the registry is not using a [private link](https://learn.microsoft.com/en-us/azure/container-registry/container-registry-vnet))
+- Microsoft.ContainerRegistry (only if the registry is not using a [private link](/azure/container-registry/container-registry-vnet))
 - Microsoft.EventHub
 - Microsoft.KeyVault
 - Microsoft.Storage (or the corresponding storage regions taking geo-replication into account)
