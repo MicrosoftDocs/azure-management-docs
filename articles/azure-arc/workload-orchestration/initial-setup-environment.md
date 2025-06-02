@@ -1,7 +1,9 @@
 ---
 title: Prepare the Environment for Workload Orchestration 
 description: Learn how to set up the environment for workload orchestration. This procedure is done by IT admins.
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy

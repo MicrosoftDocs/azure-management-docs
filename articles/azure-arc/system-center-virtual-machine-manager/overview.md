@@ -8,7 +8,9 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMM, Arc, Azure, System Center"
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # Overview of Azure Arc-enabled System Center Virtual Machine Manager

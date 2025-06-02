@@ -7,6 +7,8 @@ ms.service: azure-arc
 ms.author: jsuri
 author: jyothisuri
 ms.subservice: azure-arc-scvmm
+ms.custom:
+  - build-2025
 ---
 
 # Create custom roles with Azure Arc-enabled SCVMM

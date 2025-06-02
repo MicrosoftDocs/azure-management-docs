@@ -7,6 +7,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Terraform based SCVMM VM management

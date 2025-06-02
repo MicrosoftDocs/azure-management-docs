@@ -8,7 +8,8 @@ author: jyothisuri
 ms.topic: how-to 
 ms.date: 02/21/2025
 keywords: "VMM, Arc, Azure, System Center"
-
+ms.custom:
+  - build-2025
 ---
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors

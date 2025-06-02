@@ -7,7 +7,8 @@ ms.topic: how-to #Don't change
 ms.date: 05/20/2025
 
 #CustomerIntent: As a developer or data scientist, I want to learn how to use prompt engineering with Azure AI Search so that I can create more effective and accurate AI-driven search experiences for my applications.
-
+ms.custom:
+  - build-2025
 ---
 
 # Set up the data query for chat solution in Edge RAG Preview, enabled by Azure Arc

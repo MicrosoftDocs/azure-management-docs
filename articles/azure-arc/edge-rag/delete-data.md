@@ -8,6 +8,8 @@ ms.topic: how-to #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent:  As a developer using Edge RAG, I want to delete all data from the vector database so that I can remove all data ingestions and evaluation data for a clean reset of the index.
+ms.custom:
+  - build-2025
 ---
 # Delete data in Edge RAG Preview, enabled by Azure Arc
 
