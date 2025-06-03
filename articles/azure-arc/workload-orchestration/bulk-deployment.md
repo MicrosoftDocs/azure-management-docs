@@ -1,6 +1,6 @@
 ---
 title: Bulk Deployment with Workload Orchestration
-description: 
+description: Learn how to perform bulk deployment of workloads using workload orchestration in Azure Arc.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to

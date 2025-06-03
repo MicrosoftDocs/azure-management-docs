@@ -18,7 +18,7 @@ This article provides the latest and past release notes for workload orchestrati
 - [Four-level hierarchy support:](service-group.md#service-groups-at-different-hierarchy-levels) You can now create a hierarchy of up to four levels, which allows you to organize your resources such as country, region, factory, and line. 
 - [Pre-deployment staging:](how-to-stage.md) Staging is introduced as a pre-deployment step to allow container images to be downloaded and synced to edge devices in advance, ensuring reliable deployments within limited maintenance windows.
 - [Bulk deployment:](bulk-deployment.md) You can now deploy multiple workloads in a single operation, which simplifies the deployment process and reduces the time required to deploy multiple workloads.
-- [Diagnostic logs (K8 errors):](diagnose-errors.md) Diagnostic logs are now available for workload orchestration, which allows you to monitor and troubleshoot issues with your workloads more effectively.
+- [Diagnostic logs (K8 errors):](diagnose-problems.md) Diagnostic logs are now available for workload orchestration, which allows you to monitor and troubleshoot issues with your workloads more effectively.
 
 ### Improvements
 
