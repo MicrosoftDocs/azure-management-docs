@@ -282,7 +282,7 @@ EOF
 
 ### Create a `SecretSync` object
 
-Each synchronized secret also requires a `SecretSync` object, to define cluster-specific information. Here you specify information such as the name of the secret in your cluster and names for each version of the secret stored in your cluster.
+A `SecretSync` object is needed to define how objects fetched by the `SecretsProviderClass` are stored in Kubernetes. Kubernetes secrets are key-value maps, just like `ConfigMaps`, and the `SecretSync` object tells SSE how to map items defined in the linked `SecretsProviderClass` into keys in the Kubernetes secret. SSE will create a Kubernetes secret with the same name as the `SecretSync` that describes it.
 
 Create one `SecretSync` object YAML file for each secret, following this template. The Kubernetes namespace should match the namespace of the matching `SecretProviderClass`.
 
@@ -307,7 +307,7 @@ EOF
 ```
 
 > [!TIP]
-> If you have specified `objectVersionHistory` greater than 1 for a secret in the `SecretProviderClass`, then you must specify which version to use in your `SecretSync`. If you do not specify an `objectVersionHistory` for a secret, then you must not reference a version; the latest will be used.
+> Do not include "/0" when referencing a secret from the `SecretProviderClass` where `objectVersionHistory` < 2. The latest version is used implicitly.
 
 ### Apply the configuration CRs
 
