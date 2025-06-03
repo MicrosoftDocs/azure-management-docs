@@ -82,7 +82,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry update --name $CONNECTED_REGISTRY_NAME --registry $ACR_NAME --add-client-token "all-repos-pull-token"
     ```
 
-1. Save the client token in a k8s secret to use it later by referring to it using `$SECRET`
+1. Save the client token in a k8s secret to use it later by referring to it using `$SECRET`.
 
     ```bash
     kubectl create secret generic $SECRET --from-literal=acr-username=admin --from-literal=acr-password="<token password>"
@@ -145,7 +145,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry update --name $connectedRegistryName --registry $acrName --add-client-token "all-repos-pull-token" 
     ```
 
-1. Save the client token in a k8s secret to use it later by refering to it using `$secret`
+1. Save the client token in a k8s secret to use it later by referring to it using `$secret`.
 
     ```powershell
     kubectl create secret generic $secret --from-literal=acr-username=admin --from-literal=acr-password="<token password>"
@@ -180,6 +180,11 @@ You can view staging details in the **Published solutions** tab of the [workload
 
     :::image type="content" source="./media/staging-published-solutions.png" alt-text="Screenshot of the Published solutions tab in the workload orchestration portal." lightbox="./media/staging-published-solutions.png":::
 
+1. The status of the staging process is displayed. If the staging is successful, you see a message indicating that images are downloaded to the edge cluster. 
 
-The status of the staging process is displayed, along with any errors encountered during the staging phase.
+    :::image type="content" source="./media/staging-downloading.png" alt-text="Screenshot of the successful staging status in the workload orchestration portal." lightbox="./media/staging-downloading.png":::
+
+1. If the staging fails, you see an error message indicating the failure. For more information, contact your IT administrator.
+
+    :::image type="content" source="./media/staging-failure.png" alt-text="Screenshot of the failed staging status in the workload orchestration portal." lightbox="./media/staging-failure.png":::
 
