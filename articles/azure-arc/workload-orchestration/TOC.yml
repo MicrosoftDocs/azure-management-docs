@@ -45,6 +45,8 @@ items:
         href: configuring-schema.md
     - name: Stage a solution before deploying
       href: how-to-stage.md
+    - name: Perform a bulk deployment
+      href: bulk-deployment.md
     - name: Service groups
       items:
       - name: Use service groups
