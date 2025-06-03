@@ -226,6 +226,9 @@ The **Published Solutions** sub-tab shows the list of solutions which were autho
 
     :::image type="content" source="./media/configure-delete.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to delete a solution before deploy it." lightbox="./media/configure-delete.png":::
 
+1. If staging is enabled for a solution, you can see the **Staging status**. For more information, see [View staged resources](how-to-stage.md#view-staged-resources).
+
+
 ### Compare revisions of a solution
 
 You can compare the current configuration with previous revisions of a solution. This feature allows you to see the differences between the current and previous configurations.

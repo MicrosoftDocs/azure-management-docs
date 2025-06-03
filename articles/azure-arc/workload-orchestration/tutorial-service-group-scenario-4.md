@@ -52,7 +52,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     countryTarget="Italy"
     regionTarget="Naples"
     factoryTarget="Contoso"
-    mk80Target="MK-80"
+    lineTarget="Line01"
 
     # Create target at country level
     az workload-orchestration target create \
@@ -97,11 +97,11 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     az workload-orchestration target create \
       --resource-group "$rg" \
       --location "$l" \
-      --name "$mk80Target" \
-      --display-name "$mk80Target" \
+      --name "$lineTarget" \
+      --display-name "$lineTarget" \
       --hierarchy-level "line" \
       --capabilities "Use for soap production" \
-      --description "This is MK-80 Target" \
+      --description "This is Line01 Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json"
@@ -110,7 +110,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
 1. Get the target IDs of the created targets.
 
     ```bash
-    mk80TargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$mk80Target" --query id --output tsv)
+    lineTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$lineTarget" --query id --output tsv)
     factoryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$factoryTarget" --query id --output tsv)
     regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
     countryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$countryTarget" --query id --output tsv)
@@ -140,7 +140,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     # Link to line service group
     az rest \
       --method put \
-      --uri "${mk80TargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --uri "${lineTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
@@ -165,7 +165,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     # Update line target
     az workload-orchestration target update \
       --resource-group "$rg" \
-      --name "$mk80Target"
+      --name "$lineTarget"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -177,7 +177,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     $countryTarget = "Italy"
     $regionTarget = "Naples"
     $factoryTarget = "Contoso"
-    $mk80Target = "MK-80"
+    $lineTarget = "Line01"
     
     # Create target at country level
     az workload-orchestration target create `
@@ -222,11 +222,11 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$mk80Target" `
-      --display-name "$mk80Target" `
+      --name "$lineTarget" `
+      --display-name "$lineTarget" `
       --hierarchy-level "line" `
       --capabilities "Use for soap production" `
-      --description "This is MK-80 Target" `
+      --description "This is Line01 Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json'
@@ -235,7 +235,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
 1. Get the target IDs of the created targets.
 
     ```powershell
-    $mk80TargetId = $(az workload-orchestration target show --resource-group $rg --name "$mk80Target" --query id --output tsv)
+    $lineTargetId = $(az workload-orchestration target show --resource-group $rg --name "$lineTarget" --query id --output tsv)
     $factoryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$factoryTarget" --query id --output tsv)
     $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
     $countryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$countryTarget" --query id --output tsv)
@@ -265,7 +265,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     #Link to line service group
     az rest `
       --method put `
-      --uri $mk80TargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --uri $lineTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
@@ -290,7 +290,7 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     #Update line target
     az workload-orchestration target update `
       --resource-group $rg `
-      --name $mk80Target
+      --name $lineTarget
     ```
 ***
 
@@ -539,7 +539,7 @@ To create the solution schema and solution template files, you can use *common-s
 
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level3Name"
 
-    az workload-orchestration configuration set -g "$rg" --solution-template-name "$lappname" --target-name "$mk80Target"
+    az workload-orchestration configuration set -g "$rg" --solution-template-name "$lappname" --target-name "$lineTarget"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -576,7 +576,7 @@ To create the solution schema and solution template files, you can use *common-s
     
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level3Name
     
-    az workload-orchestration configuration set -g $rg --solution-template-name $lappname --target-name $mk80Target
+    az workload-orchestration configuration set -g $rg --solution-template-name $lappname --target-name $lineTarget
     ```
 
 ***
@@ -726,7 +726,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for LApp solution with dependency on GA solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$lappname" --solution-template-version "$lappversion" --resource-group "$rg" --target-name "$mk80Target" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-name "$lappname" --solution-template-version "$lappversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -739,13 +739,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the LApp solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$lappname" --solution-version "$lappSolutionVersion" --review-id "$lappReviewId" --resource-group "$rg" --target-name "$mk80Target"
+    az workload-orchestration target publish --solution-name "$lappname" --solution-version "$lappSolutionVersion" --review-id "$lappReviewId" --resource-group "$rg" --target-name "$lineTarget"
     ```
 
 1. Deploy the LApp solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$lappname" --solution-version "$lappSolutionVersion" --resource-group "$rg" --target-name "$mk80Target"
+    az workload-orchestration target install --solution-name "$lappname" --solution-version "$lappSolutionVersion" --resource-group "$rg" --target-name "$lineTarget"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -753,7 +753,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for LApp solution with dependency on GA solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $lappname --solution-template-version $lappversion --resource-group $rg --target-name $mk80Target --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-name $lappname --solution-template-version $lappversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -766,13 +766,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the LApp solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $lappname --solution-version $lappSolutionVersion --review-id $lappReviewId --resource-group $rg --target-name $mk80Target
+    az workload-orchestration target publish --solution-name $lappname --solution-version $lappSolutionVersion --review-id $lappReviewId --resource-group $rg --target-name $lineTarget
     ```
 
 1. Deploy the LApp solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $lappname --solution-version $lappSolutionVersion  --resource-group $rg --target-name $mk80Target 
+    az workload-orchestration target install --solution-name $lappname --solution-version $lappSolutionVersion  --resource-group $rg --target-name $lineTarget 
     ```
 ***
 

@@ -37,10 +37,10 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
 
 ### [Bash](#tab/bash)
 
-1. Create a target and set `--hierarchy-level` to `line` level. The target is named EL-71, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `line` level. The target is named Line01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```bash
-    Linename="EL-71"
+    Linename="Line01"
 
     az workload-orchestration target create \
       --resource-group "$rg" \
@@ -78,10 +78,10 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a target and set `--hierarchy-level` to `line` level. The target is named EL-71, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `line` level. The target is named Line01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```powershell
-    $Linename = "EL-71"
+    $Linename = "Line01"
 
     az workload-orchestration target create `
       --resource-group $rg `

@@ -39,10 +39,10 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 
 ### [Bash](#tab/bash)
 
-1. Create a target and set `--hierarchy-level` to `region` level. The target is named RH-71, which represents a specific region in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific region in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```bash
-    Regionname="RH-71"
+    Regionname="Region01"
 
     az workload-orchestration target create \
       --resource-group "$rg" \
@@ -51,7 +51,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
       --display-name "$Regionname" \
       --hierarchy-level "region" \
       --capabilities "Use for soap soap" \
-      --description "This is RH-71 Target" \
+      --description "This is Region01 Target" \
       --solution-scope "new" \
       --target-specification @targetspecs.json \
       --extended-location @custom-location.json
@@ -80,10 +80,10 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a target and set `--hierarchy-level` to `region` level. The target is named EL-71, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```powershell
-    $Regionname = "RH-71"
+    $Regionname = "Region01"
 
     az workload-orchestration target create `
       --resource-group $rg `
@@ -92,7 +92,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
       --display-name "$Regionname" `
       --hierarchy-level "region" `
       --capabilities "Use for soap production" `
-      --description "This is RH-71 Target" `
+      --description "This is Region01 Target" `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json'
