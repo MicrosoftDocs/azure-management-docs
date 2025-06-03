@@ -327,7 +327,11 @@ Service groups can be created for a **two-level** hierarchy organization, such a
 
 The previous sections show how to create a service group for a two-level hierarchy organization, which you can use as a reference to create service groups for a three-level or four-level hierarchy organization.
 
-To ease the process, the following steps show how to create a four-level service group hierarchy organization.
+To ease the process, the following steps show how to create a four-level service group hierarchy organization. You need to consider the following points:
+
+- Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
+- If the solution is to be deployed at factory level, then the `editbale_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editbale_at` field in the schema accepts only country and region levels.
+
 
 ### [Bash](#tab/bash)
 

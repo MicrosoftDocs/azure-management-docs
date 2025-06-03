@@ -120,15 +120,18 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
 
 ## Prepare the solution template
 
+To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+
+
 ### [Bash](#tab/bash)
 
-1. Create the solution schema file. Use the *common-schema.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+1. Create the solution schema file. 
 
     ```bash
     az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Linename-schema" --schema-file ./common-schema.yaml -l "$l"
     ```
 
-1. Create the solution template file. Use the *app-config-template.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+1. Create the solution template file. 
 
     ```bash
     solutionName="Edge-Link App"
@@ -146,13 +149,13 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
 
 ### [PowerShell](#tab/powershell)
 
-1. Create the solution schema file. Use the *common-schema.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+1. Create the solution schema file. 
 
     ```powershell
     az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Linename-schema" --schema-file .\common-schema.yaml -l $l
     ```
 
-1. Create the solution template file. Use the *app-config-template.yaml* file in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+1. Create the solution template file. 
 
     ````powershell
     $solutionName = "Edge-Link App"

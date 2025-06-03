@@ -107,7 +107,7 @@ To configure a solution, follow these steps:
     :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable auto-publish." lightbox="./media/configure-solution-2.png":::
 
 
-1. In the **Configure target** step, enter the parameters to publish the solution and click on **Next**.
+1. In the **Configure target** step, enter the instance name and the parameters to publish the solution and click on **Next**.
 
     :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
 
@@ -148,7 +148,7 @@ To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to confi
 
     :::image type="content" source="./media/configure-fsad-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure the targets for a solution FSAD." lightbox="./media/configure-fsad-1.png":::
 
-1. In the **Configure target** step, enter the values for FSAD configurations.
+1. In the **Configure target** step, enter the instance name for the solution and the values for FSAD configurations.
 
     :::image type="content" source="./media/configure-fsad-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the values to configure the targets for a solution FSAD." lightbox="./media/configure-fsad-2.png":::
 
