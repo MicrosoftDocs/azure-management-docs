@@ -307,7 +307,7 @@ EOF
 ```
 
 > [!TIP]
-> If you have specified `objectVersionHistory` greater than 1 for a secret in the `SecretProviderClass`, then you must specify which version to use in your `SecretProviderClass`. If you do not specify an `objectVersionHistory` for a secret, then you must not reference a version; the latest will always be used.
+> If you have specified `objectVersionHistory` greater than 1 for a secret in the `SecretProviderClass`, then you must specify which version to use in your `SecretSync`. If you do not specify an `objectVersionHistory` for a secret, then you must not reference a version; the latest will be used.
 
 ### Apply the configuration CRs
 
