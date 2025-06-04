@@ -13,11 +13,11 @@ This article provides troubleshooting guidance for common issues encountered whe
 
 ## Troubleshoot staging
 
-The section troubleshoot issues related to [staging resources before deployment](how-to-stage.md) in workload orchestration.
+The section troubleshoots issues related to [staging resources before deployment](how-to-stage.md) in workload orchestration.
 
 ### Issue: Insufficient disk space on Edge device
 
-Description: The local edge storage is nearing capacity or has run out of available space.
+Description: The local edge storage is nearing capacity or run out of available space.
 
 Solution: To resolve this issue, you can free up space on the local edge storage by removing unnecessary files. Run the following command:
 
@@ -29,7 +29,7 @@ az acr scope-map update -n $$connectedRegistryName -r $ acrName --remove-repo $u
 
 Description: The authentication token required to synchronize Azure Container Registry (ACR) with the connected registry is missing or expired.
 
-Solution: To resolve this issue, try to uninstall and reinstall the connected registry. This will generate a new authentication token. 
+Solution: To resolve this issue, try to uninstall and reinstall the connected registry. This generates a new authentication token. 
 
 1. Run the following command to uninstall the connected registry:
 
@@ -77,7 +77,7 @@ Solution: To resolve this issue, try to uninstall and reinstall the connected re
      #--config pvc.storageClassName=$<storage class name> 
     ```
 
-1. Confirm the installation. Run this command and you should see 3 pods running, one for connected-registry and others for container on each node. 
+1. Confirm the installation. Run this command and you should see three pods running, one for connected-registry and others for container on each node. 
 
     ```powershell
     kubectl get pods -n connected-registry 
@@ -125,7 +125,7 @@ Description: The connected registry isn't accessible due to network latency.
 Solution: To resolve this issue, retry publishing the solution.
 
 ```powershell
-$reviewId="<input the id acquired from previous step>" 
+$reviewId = "<input the id acquired from previous step>" 
 
 az workload-orchestration target publish  --solution-name $solutionName --solution-version $solutionVersion --review-id $reviewId --resource-group $rg --target-name $targetName
 ```
@@ -152,7 +152,7 @@ Solution: To resolve this issue, check the ImageUri/repository uri in your solut
 
 Description: The connected registry IP address isn't resolvable, which can happen if the connected registry service is not running or the IP address is incorrect.
 
-Solution: To resolve this issue, check if you have installed connected registry correctly. Run the following command to check the status of the connected registry service.
+Solution: To resolve this issue, check if you installed connected registry correctly. Run the following command to check the status of the connected registry service.
 
 ```powershell
 Kubectl get service –n connected-registry 
@@ -164,10 +164,9 @@ Description: The ACR resource ID isn't configured correctly, which can happen if
 
 Solution: To resolve this issue, fix your solution template input. 
 
-
 ## Troubleshoot service groups 
 
-For [service group](service-group.md) related resources, only the user who created the resource can fetch/GET that resources due to RBAC limitations.
+For [service group](service-group.md) related resources, only the user who created the resource can fetch/GET that resources due to [RBAC limitations](rbac-guide.md).
 
 To fetch service groups, run the following command.
 

@@ -30,63 +30,103 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
 
     ```bash
-    $ACR_NAME = "<acr_name>"
+    acrName="<acr_name>"
+    rg="<resource_group>"
 
-    az acr create --resource-group $RG --name $ACR_NAME --sku Premium
-    az acr update --name $ACR_NAME --data-endpoint-enabled
+    az acr create --resource-group "$rg" --name "$acrName" --sku Premium
+    az acr update --name "$acrName" --data-endpoint-enabled
+    ```
+
+1. Place any repository in the ACR. The connected registry requires at least one repository to be present in the ACR.
+
+    ```bash
+    # Login to the ACR for pulling operations
+    az acr login --name "$acrName"
+    docker pull hello-world
+    docker tag hello-world:latest "$acrName.azurecr.io/hello-world:latest"
+    docker push "$acrName.azurecr.io/hello-world:latest"
     ```
 
 1. Create connected registry for the ACR.
 
     ```bash
-    az acr connected-registry create --registry $ACR_NAME --name $CONNECTED_REGISTRY_NAME --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
-
-    az acr connected-registry list --registry $ACR_NAME --output table # shows offline
+    connectedRegistryName="<any connected registry name>"
+    # leave "staging-temp" as default value, connected registry doesn't need this repo to be existing but it needs at least one repo.
+    az acr connected-registry create --registry "$acrName" --name "$connectedRegistryName" --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
+    az acr connected-registry list --registry "$acrName" --output table # shows offline
     ```
 
-1. Go to [Azure portal](https://portal.azure.com/), navigate to the **Azure Container Registry** resource, select **Connected Registries**, and Click on the **Connected register** you just created.
-1. In the new pane, under **Sync properties**, click on the connected registry name.
+1. Check available IP range on cluster to use for connected registry service.
 
-    :::image type="content" source="./media/staging-token.png" alt-text="Screenshot of the Azure portal showing how to open the token pane." lightbox="./media/staging-token.png":::
+    ```bash
+    resourceGroup="<resource_group>"
+    arcCluster="<arc_cluster>"
 
-1. Click on **Password1** or **Password2** to generate a token. Save the password and the name of the token, which will be used in connection string.
+    az aks show --resource-group "$resourceGroup" --name "$arcCluster" --query "networkProfile.serviceCidr"
+    # check IPs which are in use
+    kubectl get services -A
 
-    :::image type="content" source="./media/staging-password.png" alt-text="Screenshot of the Azure portal showing how to generate and copy a new token." lightbox="./media/staging-password.png":::
-
-1. Create a **protected-settings-extension.json** file which contains the `connectionString` to authenticate the local connected registry to the cloud. Replace the placeholders with your values:
-
-    ```json
-    {
-      "connectionString": "ConnectedRegistryName=<cr_name>;SyncTokenName=<token_name>;SyncTokenPassword=<password>;ParentGatewayEndpoint=<acr_name>.eastus.data.azurecr.io;ParentEndpointProtocol=https"
-    }
+    # Pick an IP which is within the available IP range and is not in use to host the connected registry service
+    available_ip="<valid_IP>"
     ```
+
+1. Configure a connection string for the connected registry and store it in a JSON file. This connection string is used to authenticate the local connected registry to the cloud.
+
+    ```bash
+    subId="<subscription_id>"
+
+    connectionString=$(az acr connected-registry get-settings \
+      --name "$connectedRegistryName" \
+      --registry "$acrName" \
+      --parent-protocol https \
+      --generate-password 1 \
+      --query ACR_REGISTRY_CONNECTION_STRING \
+      --subscription "$subId" \
+      --output tsv \
+      --yes)
+    # Remove carriage return characters (Linux/Mac)
+    connectionString=$(echo "$connectionString" | tr -d '\r')
+    # Create valid JSON and write it to the file
+    echo "{\"connectionString\": \"$connectionString\"}" > protected-settings-extension.json
+    ```
+
+1. Open **protected-settings-extension.json** file in editor. If the file is encoded with "UTF-8 with BOM", change it to "UTF-8" and save the file.
 
 1. Install connected registry CLI extension on your ARC cluster to enable staging.
 
     ```bash
-    az k8s-extension create --resource-group $RG --cluster-name $ARC_CLUSTER --name "<name>" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+    resourceGroup="<resource_group>"
+    arcCluster="<arc_cluster>"
 
-    az k8s-extension create --cluster-name $ARC_CLUSTER --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $CONNECTED_CR_NAME --resource-group $RG --config service-clusterIP=$VALID_IP --config pvc-storageClassName=$STORAGE_CLASS --config pvc.storageRequest=$STORAGE_CAPACITY --config cert-manager.install=false --config-protected-file protected-settings-extension.json
+    az k8s-extension create --cluster-name "$arcCluster" --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name "$connectedRegistryName" --resource-group "$resourceGroup" --config service.clusterIP="$available_ip" --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
+    # if you want to use a storage class other than the default one, add below flag: #--config pvc.storageClassName=<storage class name>
 
-    az acr connected-registry list --registry $ACR_NAME --output table # shows online
+    # confirm installation successful: (you should see 3 pods running, one for connected-registry and others for containerd on each node)
+    kubectl get pods -n connected-registry
+
+    # check connected-registry state on ACR:
+    az acr connected-registry list --registry "$acrName" --output table # shows online
     ```
 
-1. (Optional) You can verify the installation status of the connected registry on Azure portal. To do this, navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
+1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). To do this, navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
 
 1. Create a new client token or add an existing one to the connected registry.
 
     ```bash
-    az acr scope-map create --name "all-repos-read" --registry $ACR_NAME --repository "staging-temp" content/read metadata/read --description "Scope map for pulling from ACR"
+    az acr scope-map create --name "all-repos-read" --registry "$acrName" --repository "staging-temp" content/read metadata/read --description "Scope map for pulling from ACR"
 
-    az acr token create --name "all-repos-pull-token" --registry $ACR_NAME --scope-map "all-repos-read"
+    az acr token create --name "all-repos-pull-token" --registry "$acrName" --scope-map "all-repos-read"
 
-    az acr connected-registry update --name $CONNECTED_REGISTRY_NAME --registry $ACR_NAME --add-client-token "all-repos-pull-token"
+    az acr connected-registry update --name "$connectedRegistryName" --registry "$acrName" --add-client-token "all-repos-pull-token"
     ```
 
-1. Save the client token in a k8s secret to use it later by referring to it using `$SECRET`.
+1. Save the client token in a k8s secret to use it later by referring to it using `$secret`. You can choose any of the two passwords generated by the previous command.
 
     ```bash
-    kubectl create secret generic $SECRET --from-literal=acr-username=admin --from-literal=acr-password="<token password>"
+    secret="<secret_name>"
+    token_password="<token password>"
+
+    kubectl create secret generic "$secret" --from-literal=acr-username=admin --from-literal=acr-password="$token_password"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -94,7 +134,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
 
     ```powershell
-    $acrName="<acr_name>"
+    $acrName = "<acr_name>"
 
     az acr create --resource-group $rg --name $acrName --sku Premium
     az acr update --name $acrName --data-endpoint-enabled
@@ -119,31 +159,48 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry list --registry $acrName --output table # shows offline
     ```
 
-1. Go to [Azure portal](https://portal.azure.com/), navigate to the **Azure Container Registry** resource, select **Connected Registries**, and Click on the **Connected register** you just created.
-1. In the new pane, under **Sync properties**, click on the connected registry name.
+1. Check available IP range on cluster to use for connected registry service.
 
-    :::image type="content" source="./media/staging-token.png" alt-text="Screenshot of the Azure portal showing how to open the token pane." lightbox="./media/staging-token.png":::
-
-1. Click on **Password1** or **Password2** to generate a token. Save the password and the name of the token, which will be used in connection string.
-
-    :::image type="content" source="./media/staging-password.png" alt-text="Screenshot of the Azure portal showing how to generate and copy a new token." lightbox="./media/staging-password.png":::
-
-1. Create a **protected-settings-extension.json** file which contains the `connectionString` to authenticate the local connected registry to the cloud. Replace the placeholders with your values:
-
-    ```json
-    {
-      "connectionString": "ConnectedRegistryName=<cr_name>;SyncTokenName=<token_name>;SyncTokenPassword=<password>;ParentGatewayEndpoint=<acr_name>.eastus.data.azurecr.io;ParentEndpointProtocol=https"
-    }
+    ```powershell
+    az aks show --resource-group $resourceGroup --name  $arcCluster --query "networkProfile.serviceCidr"
+    # check IPs which are in use
+    kubectl get services -A
+    
+    #Pick an IP which is within the available IP range and is not in use to host the connected registry service
+    $available_ip = "<valid_IP>"
     ```
+
+1. Configure a connection string for the connected registry and store it in a JSON file. This connection string is used to authenticate the local connected registry to the cloud.
+
+    ```powershell
+    $connectionString = az acr connected-registry get-settings `
+    --name $connectedRegistryName `
+    --registry $acrName `
+    --parent-protocol https `
+    --generate-password 1 `
+    --query ACR_REGISTRY_CONNECTION_STRING `
+    --subscription $subId `
+    --output tsv `
+    --yes
+    # Remove carriage return characters (Windows)
+    $connectionString = $connectionString -replace "`r", ""
+    # Create valid JSON and write it to the file
+    @{ connectionString = $connectionString } | ConvertTo-Json | Out-File protected-settings-extension.json -Encoding utf8
+    ```
+
+1. Open **protected-settings-extension.json** file in editor. If the file is encoded with "UTF-8 with BOM", change it to "UTF-8" and save the file. 
 
 1. Install connected registry CLI extension on your ARC cluster to enable staging.
 
     ```powershell
-    az k8s-extension create --resource-group $rg --cluster-name $arcCluster --name "<name>" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
-
-    az k8s-extension create --cluster-name $arcCluster --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $connectedCrName --resource-group $rg --config service-clusterIP=$valid_IP --config pvc-storageClassName=$storageClass --config pvc.storageRequest=$storage_capacity --config cert-manager.install=false --config-protected-file protected-settings-extension.json 
-
-    az acr connected-registry-list --registry $acrName --output table # shows online
+    az k8s-extension create --cluster-name $arcCluster --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $connectedRegistryName --resource-group $resourceGroup --config service.clusterIP=$available_ip --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
+    # if you want to use a storage class other than the default one, add below flag: #--config pvc.storageClassName=$<storage class name>
+    
+    # confirm installation successful: (you should see 3 pods running, one for connected-registry and others for containerd on each node)
+    kubectl get pods -n connected-registry
+    
+    # check connected-registry state on ACR:
+    az acr connected-registry list --registry $acrName --output table # shows online
     ```
 
 1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). To do this, navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
@@ -158,7 +215,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry update --name $connectedRegistryName --registry $acrName --add-client-token "all-repos-pull-token" 
     ```
 
-1. Save the client token in a k8s secret to use it later by referring to it using `$secret`.
+1. Save the client token in a k8s secret to use it later by referring to it using `$secret`. You can choose any of the two passwords generated by the previous command.
 
     ```powershell
     kubectl create secret generic $secret --from-literal=acr-username=admin --from-literal=acr-password="<token password>"
@@ -457,7 +514,6 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
     kubectl describe pod -n "$scopename"
     ```
 
-
 #### [PowerShell](#tab/powershell)
 1. Publish the template version.
 
@@ -494,24 +550,6 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
     kubectl describe pod -n $scopename
     ```
 ***
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## View staged resources
 

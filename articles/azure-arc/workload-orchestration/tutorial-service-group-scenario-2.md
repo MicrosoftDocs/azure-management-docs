@@ -9,7 +9,7 @@ ms.date: 06/01/2025
 
 # Tutorial: Create a solution with a non-leaf target using service groups
 
-In this tutorial, you will create and configure a target at the region level, which is the third level in a four-level service group hierarchy. You will use service groups to orchestrate workloads across different levels of the hierarchy.
+In this tutorial, you create and configure a target at the region level, which is the third level in a four-level service group hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
@@ -31,7 +31,7 @@ The organization has a four-level hierarchy, which is represented in the followi
 
 :::image type="content" source="./media/scenario-non-leaf-target.png" alt-text="Diagram of the four-level hierarchy and target at region level." lightbox="./media/scenario-non-leaf-target.png":::
 
-The sites references are created at only at country and region level, being SGCountry at the country level, SGRegion at the region level. The target is created at the region level, which is not the lowest level in the hierarchy, so it's referred to as a non-leaf target.
+The sites references are created at only at country and region level, being SGCountry at the country level, SGRegion at the region level. The target is created at the region level, which isn't the lowest level in the hierarchy, so it's referred to as a non-leaf target.
 
 The solution is named RegionHub (RH) and is deployed at the target, which means that the solution is specific to the regional level. 
 

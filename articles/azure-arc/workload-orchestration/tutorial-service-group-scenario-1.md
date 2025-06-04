@@ -9,7 +9,7 @@ ms.date: 06/02/2025
 
 # Tutorial: Create a solution with a leaf target using service groups
 
-In this tutorial, you will create and configure a target at the line level, which is the leaf level in a four-level service group hierarchy. You will use service groups to orchestrate workloads across different levels of the hierarchy.
+In this tutorial, you create and configure a target at the line level, which is the leaf level in a four-level service group hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 

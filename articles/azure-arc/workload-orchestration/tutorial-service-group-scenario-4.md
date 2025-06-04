@@ -9,7 +9,7 @@ ms.date: 06/01/2025
 
 # Tutorial: Create multiple solutions with a single shared dependency at different levels using service groups
 
-In this tutorial, you'll create a scenario with multiple solutions that share a single dependency at different levels of the hierarchy. You will use service groups to orchestrate workloads across different levels of the hierarchy.
+In this tutorial, you create a scenario with multiple solutions that share a single dependency at different levels of the hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
