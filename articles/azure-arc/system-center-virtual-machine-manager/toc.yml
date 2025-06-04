@@ -44,8 +44,8 @@
       href: perform-powercycle-operations.md
     - name: Apply Azure tags on resources
       href: apply-azure-tags.md
-    - name: Perform VM CRUD and power cycle operations
-      href: perform-vm-ops-on-scvmm-through-azure.md
+    - name: Update configuration and resize a VM
+      href: update-configuration-and-resize-vm.md
   - name: Use Azure services for SCVMM VMs
     items:
     - name: Install Arc agents at scale
