@@ -2,7 +2,6 @@
 ## Configure Kubernetes network policy to control access to/from your workloads
 You can help protect your cluster’s workload data traffic (workload) via TLS as described in sections and 2.6 above.
 You can add also help further protect your workload data traffic by creating network policies that control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent.  These policies are enforced by a Network Policy Engine.  If you are using AKS enabled by Azure Arc on Azure Local, then you can deploy the Calico network plugin to enable this (support for this is currently ‘as is’).  If you’ve connected your own cluster via Arc-enabled Kubernetes, then evaluate what networking (CNI) security capabilities they offer, and follow their guidance accordingly.
-[Note for future version of this book: Update with any Cilium Arc-K8s extension we offer.]
 
 ### References
 Reference: Sections 5.3 of the CIS Kubernetes Benchmark.  
@@ -18,5 +17,4 @@ Reference: Section 4.3.3, 4.3.4, and 4.4.2 of the NIST Application Container Sec
 Reference: NSA Kubernetes Hardening Guidance – “Control plane hardening”
 
 ## Use Azure Private Link (preview) to access Azure resources
-In addition to protecting your traffic to Azure resources by using TLS and Workload Identity Federation, as described in section 2.5  above, considering adding further defense in depth by using Azure Private Link for Arc-enabled clusters (preview).  This connects your cluster to Azure Arc, and other services such as Azure Key Vault, using private endpoints inside your cloud virtual network, which itself can be connected to your premises using  site-to-site VPN or ExpressRoute circuit.  Evaluate the advantages and current limitations to decide if this solution works for you.  
-OTHER INTERNAL NOTES
+In addition to protecting your traffic to Azure resources by using TLS and Workload Identity Federation, as described in section 2.5  above, considering adding further defense in depth by using Azure Private Link for Arc-enabled clusters (preview).  This connects your cluster to Azure Arc, and other services such as Azure Key Vault, using private endpoints inside your cloud virtual network, which itself can be connected to your premises using  site-to-site VPN or ExpressRoute circuit.  Evaluate the advantages and current limitations to decide if this solution works for you.
