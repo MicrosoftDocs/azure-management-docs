@@ -11,7 +11,7 @@ ms.date: 04/06/2025
 
 # Tutorial: Create a cluster with the Azure Linux Container Host for AKS
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321737)
 
 To create a cluster with the Azure Linux Container Host, you use:
