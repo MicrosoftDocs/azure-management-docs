@@ -9,7 +9,7 @@ ms.date: 06/02/2025
 
 # Stage resources before deployment
 
-Staging is a pre-deployment step that allows you to validate and download resources before they are deployed to the edge cluster. This process helps ensure that all configurations, images, and dependencies are correctly set up, ensuring reliable deployments within limited maintenance windows. 
+Staging is a predeployment step that allows you to validate and download resources before they are deployed to the edge cluster. This process helps ensure that all configurations, images, and dependencies are correctly set up, ensuring reliable deployments within limited maintenance windows. 
 
 Some common scenarios where staging is beneficial are:
 
@@ -27,7 +27,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 
 ### [Bash](#tab/bash)
 
-1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
+1. Create an ACR in the Azure portal with premium SKU.
 
     ```bash
     acrName="<acr_name>"
@@ -108,7 +108,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry list --registry "$acrName" --output table # shows online
     ```
 
-1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). To do this, navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
+1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). Navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
 
 1. Create a new client token or add an existing one to the connected registry.
 
@@ -131,7 +131,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 
 ### [PowerShell](#tab/powershell)
 
-1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
+1. Create an ACR in the Azure portal with premium SKU.
 
     ```powershell
     $acrName = "<acr_name>"
@@ -203,7 +203,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     az acr connected-registry list --registry $acrName --output table # shows online
     ```
 
-1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). To do this, navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
+1. (Optional) You can verify the installation status of the connected registry on [Azure portal](https://portal.azure.com/). Navigate to the **Azure Container Registry** resource, select **Connected Registries**, and check the status of your connected registry. It should show as **Online**.
 
 1. Create a new client token or add an existing one to the connected registry.
 
@@ -250,7 +250,7 @@ Staging is triggered automatically once the solution is configured.
 
 #### [Bash](#tab/bash)
 
-1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step. This image will be used during the staging process.
+1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step. 
 
     ```bash
     image="<image_name>"
@@ -273,7 +273,7 @@ Staging is triggered automatically once the solution is configured.
 
 #### [PowerShell](#tab/powershell)
 
-1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step. This image will be used during the staging process.
+1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step.
 
     ```powershell
     export image = "<image_name>"
@@ -556,7 +556,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 You can view staging details in the **Published solutions** tab of the [workload orchestration portal](configure.md#view-the-published-solutions). 
 
 1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) and go to the **Configure** tab on the left side of the page.
-1. Select the **Published solutions** tab, which lists all the solutions that have been published in your environment.
+1. Select the **Published solutions** tab.
 1. Choose a solution with status **Publishing in progress** and click on the alert icon to view the details of the staging process.
 
     :::image type="content" source="./media/staging-published-solutions.png" alt-text="Screenshot of the Published solutions tab in the workload orchestration portal." lightbox="./media/staging-published-solutions.png":::

@@ -17,7 +17,7 @@ The section troubleshoots issues related to [staging resources before deployment
 
 ### Issue: Insufficient disk space on Edge device
 
-Description: The local edge storage is nearing capacity or run out of available space.
+Description: The local edge storage is nearing capacity or runs out of available space.
 
 Solution: To resolve this issue, you can free up space on the local edge storage by removing unnecessary files. Run the following command:
 
@@ -29,7 +29,7 @@ az acr scope-map update -n $$connectedRegistryName -r $ acrName --remove-repo $u
 
 Description: The authentication token required to synchronize Azure Container Registry (ACR) with the connected registry is missing or expired.
 
-Solution: To resolve this issue, try to uninstall and reinstall the connected registry. This generates a new authentication token. 
+Solution: To resolve this issue, try to uninstall and reinstall the connected registry. This action generates a new authentication token. 
 
 1. Run the following command to uninstall the connected registry:
 
@@ -37,16 +37,16 @@ Solution: To resolve this issue, try to uninstall and reinstall the connected re
     az aks show --resource-group $resourceGroup --name $arcCluster --query "networkProfile.serviceCidr" 
     ```
 
-1. Check which IP range are in used by the connected registry service.
+1. Check which IP ranges are in used by the connected registry service.
 
     ```powershell
     kubectl get services -A 
     ```
 
-1. Pick an IP within the available IP range and not in use to host the connected registry service.
+1. To host the connected registry service, pick an IP within the available IP range and not in use.
  
     ```powershell
-    $available_ip="<input the available IP address>" 
+    $available_ip = "<input the available IP address>" 
     ```
 
 1. Configure the connection string for the connected registry to sync with ACR.  
@@ -134,7 +134,7 @@ az workload-orchestration target publish  --solution-name $solutionName --soluti
 
 Description: Deployment error says it can't find the correct images or image file is corrupted. 
 
-Solution: To resolve this issue, check the ImageUri/repository uri in your solution template helm values and make sure it's set correctly. If you are sure your template is set correctly, then go to the edge cluster and follow these steps to check if the image staged in local is correct.
+Solution: To resolve this issue, check the ImageUri/repository uri in your solution template helm values and make sure it's the correct value. If you are sure your template is correct, go to the edge cluster and follow these steps to check if the image staged in local is correct.
 
 1. Inspect the image in local storage.
 
@@ -146,7 +146,7 @@ Solution: To resolve this issue, check the ImageUri/repository uri in your solut
     docker inspect --format='{{index .RepoDigests 0}}' $local_image_path 
     ```
 
-1. Compare the `sha256` digest of the local image with the one in the cloud registry. If they don't match, delete the local image and rerun the publish job to restage the image.
+1. Compare the `sha256` digest of the local image with the one in the cloud registry. If they don't match, delete the local image and rerun the publishing of the job to restage the image.
 
 ### Issue: Could not resolve connected registry IP
 
