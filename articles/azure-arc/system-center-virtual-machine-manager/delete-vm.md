@@ -26,9 +26,7 @@ Before you delete a virtual machine or remove its Azure resource, ensure that yo
 
 >[!Important] 
 >- This operation also deletes the VM on your SCVMM managed on-premises host. To remove the machine from Azure only and keep the on-premises resources intact, perform the [Remove from Azure](#remove-a-virtual-machine-from-azure-only) instead.
->- Before you delete a VM, 
-     > - Ensure all the critical data is backed up and the VM owner is aware.
-     > - Check for any dependencies and services regarding the VM. 
+>- Before you delete a VM, ensure all the critical data is backed up and the VM owner is aware and check for any dependencies and services regarding the VM. 
 
 To delete a VM, follow these steps:
 
