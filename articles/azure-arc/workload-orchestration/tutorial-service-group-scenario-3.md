@@ -488,7 +488,7 @@ To create the solution schema and solution template files, you can use *common-s
 
 1. Create the solution template file
 
-    ````powershell
+    ```powershell
     $letversion = "1.0.0"
     $letname = "let-template" 
     az workload-orchestration solution-template create `
@@ -726,6 +726,15 @@ To create the solution schema and solution template files, you can use *common-s
         helm get values $_ -n $namespace
         Write-Host "=================="
     }
+    ```
+
+1. If you want to check the configurations individually, run:
+
+    ```powershell
+    # If you dont want to print all configs in namespace then run
+    helm list -A
+    # Supply name and namespace in below command to see configs for respective case
+    helm get values <name> -n <namespace>
     ```
 ***
 

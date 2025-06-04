@@ -319,7 +319,7 @@ az rest `
 Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](initial-setup-configuration.md#solution-authoring-and-deployment).
 
 > [!NOTE]
-> If you run into any issues while creating service groups or configuring them, you can refer to the [Troubleshooting guide](troubleshooting.md#troubleshoot-service-groups).
+> If you run into any issues while creating service groups or configuring them, see the [Troubleshooting guide](troubleshooting.md#troubleshoot-service-groups).
 
 ## Service groups at different hierarchy levels
 
@@ -330,7 +330,7 @@ The previous sections show how to create a service group for a two-level hierarc
 To ease the process, the following steps show how to create a four-level service group hierarchy organization. You need to consider the following points:
 
 - Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
-- If the solution is to be deployed at factory level, then the `editbale_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editbale_at` field in the schema accepts only country and region levels.
+- If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 
 
 ### [Bash](#tab/bash)
@@ -529,7 +529,11 @@ To ease the process, the following steps show how to create a four-level service
     ```
 ***
 
-For more information, see the following tutorials on how to create solutions with different targets in a four-level hierarchy organization:
+> [!NOTE]
+> Once the setup is completed, the hierarchy level is displayed in workload orchestration in Azure portal. for more information, see [Monitor your solutions with Azure portal](azure-portal-monitoring.md).
+
+For more details, see the following tutorials on how to create solutions with different targets in a four-level hierarchy organization:
+
 - [Create a solution with a leaf target](tutorial-service-group-scenario-1.md): This tutorial shows how to create a solution with a target at line level in a four-level hierarchy organization.
 - [Create a solution with a non-leaf target](tutorial-service-group-scenario-2.md): This tutorial shows how to create a solution with a target at factory level in a four-level hierarchy organization.
 - [Create a solution with multiple dependencies at different levels](tutorial-service-group-scenario-3.md): This tutorial shows how to create a solution with multiple shared adapter dependencies at different levels in a four-level hierarchy organization.

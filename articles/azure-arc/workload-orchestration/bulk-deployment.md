@@ -4,7 +4,7 @@ description: Learn how to perform bulk deployment of workloads using workload or
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/02/2025
+ms.date: 06/04/2025
 ---
 
 # Bulk deployment with workload orchestration
@@ -22,10 +22,10 @@ Currently bulk deployment is only supported via CLI.
 To perform a bulk deployment, run `bulk-deploy-solution` command in the Azure CLI.
 
 ```powershell
-az workload-orchestration solution-template bulk-deploy-solution --targets "@target-file.json"  --solution-instance-name "<solution instance name>" --solution-version "<solution template version>" --solution-name "<solution-name>" --dependencies "@dependencies-file.json" -g "<resource group>"
+az workload-orchestration solution-template bulk-deploy-solution --targets "@target-file.json"  --solution-instance-name "<solution instance name>" --solution-version "<solution template version>" --solution-name "<solution-name>" --solution-dependencies "@dependencies-file.json" -g "<resource group>"
 ```
 
-You need to provide a *target-file.json* file that contains the list of targets where you want to deploy the solution. An instance name for the solution is optional. The file should be in the following format:
+You need to provide a *target-file.json* file that contains the list of targets where you want to deploy the solution. The file should be in the following format:
 
 ```json
 [
@@ -38,6 +38,8 @@ You need to provide a *target-file.json* file that contains the list of targets 
     }
 ]
 ```
+
+Solution instance name can be given for each target as part of target-file.json file or as part of CLI input. If you provide the solution instance name in both the target file and the CLI input, the solution instance name from the target file takes precedence. 
 
 > [!IMPORTANT]
 > You need to have access to the target clusters on which the solution is deployed. 
@@ -56,7 +58,9 @@ You also need to provide a *dependencies-file.json* file that contains the list 
 
 There are two types of failures that can occur during bulk deployment: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed while others fail.
 
-When a bulk deployment fails, the CLI will return an error message indicating the failed and deployed targets in case of a partial failure. In case of a complete failure, the CLI will return an error message indicating that all targets failed to deploy.
+In the case of a partial failure, the CLI returns an error message indicating that the bulk deployment failed, and the a list of targets that succeeded and those that failed and their error messages. You can then review the error messages for the failed targets and retry the deployment for those specific targets.
+
+In case of a complete failure, the CLI will return an error message indicating that all targets failed to deploy and their error messages. You can review the error messages and troubleshoot the issues before retrying the deployment.
 
 ## Related content
 

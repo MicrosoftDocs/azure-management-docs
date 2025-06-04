@@ -30,14 +30,15 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
 
     ```bash
+    $ACR_NAME = "<acr_name>"
+
     az acr create --resource-group $RG --name $ACR_NAME --sku Premium
+    az acr update --name $ACR_NAME --data-endpoint-enabled
     ```
 
 1. Create connected registry for the ACR.
 
     ```bash
-    az acr update --name $ACR_NAME --data-endpoint-enabled
-
     az acr connected-registry create --registry $ACR_NAME --name $CONNECTED_REGISTRY_NAME --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
 
     az acr connected-registry list --registry $ACR_NAME --output table # shows offline
@@ -93,16 +94,28 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 1. Create an ACR in the Azure portal with premium SKU to ensure high availability and performance.
 
     ```powershell
+    $acrName="<acr_name>"
+
     az acr create --resource-group $rg --name $acrName --sku Premium
+    az acr update --name $acrName --data-endpoint-enabled
+    ```
+
+1. Place any repository in the ACR. The connected registry requires at least one repository to be present in the ACR.
+
+    ```powershell
+    # login to the ACR for pulling operations
+    az acr login --name $acrName 
+    docker pull hello-world
+    docker tag hello-world:latest $acrName.azurecr.io/hello-world:latest
+    docker push acrbb.azurecr.io/hello-world:latest
     ```
 
 1. Create connected registry for the ACR.
 
-    ```powershell
-    az acr update --name $acrName --data-endpoint-enabled
-    
+    ```powershell 
+    $connectedRegistryName = "<any connected registry name>"
+    # leave "staging-temp" as default value, connected registry doesn't need this repo to be existing but it needs at least one repo.
     az acr connected-registry create --registry $acrName --name $connectedRegistryName --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
-    
     az acr connected-registry list --registry $acrName --output table # shows offline
     ```
 
@@ -169,6 +182,336 @@ To enable staging for a solution, you need to add the `staged` field to the `pro
 ```
 
 Staging is triggered automatically once the solution is configured.
+
+> [!NOTE]
+> If you run into any issues while staging a solution, see the [Troubleshooting guide](troubleshooting.md#troubleshoot-staging).
+
+
+## Prepare the solution template version for staging
+
+### Upload an image
+
+#### [Bash](#tab/bash)
+
+1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step. This image will be used during the staging process.
+
+    ```bash
+    image="<image_name>"
+
+    # Copy your existing file into the build context (optional, if not already there)
+    cp /path/to/your/file ./bigfile
+    # Build the Docker image
+    docker build -t "$image" .
+    # Tag the image for Azure Container Registry
+    docker tag "$image" "$acrName.azurecr.io/$image:latest"
+    # Push the image to ACR
+    docker push "$acrName.azurecr.io/$image:latest"
+    ```
+
+1. You can confirm that the image is successfully uploaded.
+
+    ```bash
+    az acr repository list --name "$acrName" --output table
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Upload a container image to the Azure Container Registry (ACR) that you created in the previous step. This image will be used during the staging process.
+
+    ```powershell
+    export image = "<image_name>"
+    
+    # Copy your existing file into the build context (optional, if not already there)
+    cp /path/to/your/file ./bigfile
+    # Build the Docker image
+    docker build -t $image .
+    # Tag the image for Azure Container Registry
+    docker tag $image $acrName.azurecr.io/$image:latest
+    # Push the image to ACR
+    docker push $acrName.azurecr.io/$image:latest
+    ```
+
+1. You can confirm that image is successfully uploaded.
+
+    ```powershell
+    az acr repository list --name $acrName --output table
+    ```
+***
+
+### Create a target
+
+#### [Bash](#tab/bash)
+
+```bash
+scopename="staging"
+targetName="Line01"
+
+az workload-orchestration target create \
+    --resource-group "$rg" \
+    --location "$l" \
+    --name "$targetName" \
+    --display-name "$targetName" \
+    --hierarchy-level line \
+    --capabilities "This is the capability" \
+    --description "This is Line01 Site" \
+    --solution-scope "$scopename" \
+    --target-specification "@targetspecs.json" \
+    --extended-location "@custom-location.json"
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+$scopename = "staging"
+$targetName = "Line01"
+
+az workload-orchestration target create `
+  --resource-group $rg `
+  --location $l `
+  --name $targetName `
+  --display-name $targetName `
+  --hierarchy-level line `
+  --capabilities "This is the capability" `
+  --description "This is Line01 Site" `
+  --solution-scope $scopename `
+  --target-specification '@targetspecs.json' `
+  --extended-location '@custom-location.json'
+```
+***
+
+### Create solution template
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "${resourcePrefix}-SS" --schema-file ./demo-app-schema.yaml -l "$l"
+    ```
+
+1. Make sure to set the correct schema name and input the image that you build in demo-app-config-template.yaml repository:
+
+    ```yaml
+    configs:
+      image:
+        repository: ${{$val(LocalConnectedRegistryIP)}}+/<image_name>
+    ```
+
+1. In spec.json, change the stage image to your own image:
+
+    ```json
+    "staged": {
+        "acrResourceId": "<your_acr_resource_ID>",
+        "images": [
+            "<your-image-name>:<tag>"
+        ]
+    }
+    ```
+
+1. Create a solution template file.
+
+    ```bash
+    solutionTemplateName="Line01-Solution"
+
+    az workload-orchestration solution-template create \
+        --solution-template-name "$solutionTemplateName" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "This is the capability" \
+        --description "This is Staging Solution" \
+        --configuration-template-file "./demo-app-config-template.yaml" \
+        --specification "@demo-app-spec.json" \
+        --version "1.0.0"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$resourcePrefix-SS" --schema-file .\demo-app-schema.yaml  -l $l
+    ```
+
+1. Make sure to set the correct schema name and input the image that you build in demo-app-config-template.yaml repository:
+
+    ```yaml
+    configs:
+      image:
+        repository: ${{$val(LocalConnectedRegistryIP)}}+/<image_name>
+    ```
+
+1. In spec.json, change the stage image to your own image:
+
+    ```json
+    "staged": {
+        "acrResourceId": "<your_acr_resource_ID>",
+        "images": [
+            "<your-image-name>:<tag>"
+        ]
+    }
+    ```
+
+1. Create a solution template file.
+
+    ```powershell
+    $solutionTemplateName = "Line01-Solution"
+    
+    az workload-orchestration solution-template create `
+        --solution-template-name $solutionTemplateName `
+        -g $rg `
+        -l $l `
+        --capabilities "This is the capability" `
+        --description "This is Staging Solution" `
+        --configuration-template-file ".\demo-app-config-template.yaml" `  
+        # --config-template ".\demo-app-config-template.yaml" `  # private RP
+        --specification "@demo-app-spec.json" `
+        --version "1.0.0" 
+    ```
+***
+
+### Set configuration at target level
+
+Specify the service IP address that you assigned to the connected registry service. This configuration step is required only once and does not need to be repeated for subsequent deployments.
+
+#### [Bash](#tab/bash)
+
+```bash
+az workload-orchestration configuration set -g "$rg" --solution-template-name "$solutionTemplateName" --target-name "$targetName"
+```
+
+#### [PowerShell](#tab/powershell)
+
+```powershell
+az workload-orchestration configuration set -g $rg --solution-template-name $solutionTemplateName --target-name $targetName
+```
+***
+
+### Resolve and review the template version
+
+#### [Bash](#tab/bash)
+
+1. Resolve the solution template version.
+
+    ```bash
+    az workload-orchestration target resolve --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    ```
+
+1. Review the template version.
+
+    ```bash
+    az workload-orchestration target review --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Resolve the solution template version.
+
+    ```powershell
+    az workload-orchestration target resolve  --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName
+    ```
+
+1. Review the template version.
+
+    ```powershell
+    az workload-orchestration target --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName review
+    ```
+***
+
+### Publish and install the solution
+
+#### [Bash](#tab/bash)
+
+1. Publish the template version.
+
+    ```bash
+    reviewId="<input the ID from previous step>"
+    az workload-orchestration target publish --solution-name "$solutionName" --solution-version "1.0.0" --review-id "$reviewId" --resource-group "$rg" --target-name "$targetName"
+    ```
+
+1. Check the solution status. It should change from "inReview" to "staging".
+
+    ```bash
+    subscriptionId="<your subscription id>"
+    curl -H "Authorization: Bearer <access_token>" \
+      "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+    ```
+
+1. After publish completed, run the following commands to check that the images are staged locally:
+
+    ```bash
+    kubectl exec -it <connected_registry_pod> -n $cr -- bash
+    # (inside the pod)
+    # cd maestro-tmp
+    # ./check-acr-images.sh "demo-image-0x:latest"
+    ```
+
+1. Install the solution.
+
+    ```bash
+    az workload-orchestration target install --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    ```
+
+1. After installation, check that the image is used in deployment.
+
+    ```bash
+    kubectl describe pod -n "$scopename"
+    ```
+
+
+#### [PowerShell](#tab/powershell)
+1. Publish the template version.
+
+    ```powershell
+    $reviewId = "<input the ID from previous step>"
+    az workload-orchestration target publish  --solution-name $solutionName --solution-version "1.0." --review-id $reviewId --resource-group $rg --target-name $targetName
+    ```
+
+1. Check the solution status. It should change from "inReview" to "staging".
+
+    ```powershell
+    $subscriptionId = "<your subscription id>"
+    armclient get "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+    ```
+
+1. After publish completed, run the following commands to check that the images are staged in local:
+
+    ```powershell
+    kubectl exec -it <connected_registry_pod> -n $cr -- bash
+    # (inside the pod)
+    # cd maestro-tmp
+    # ./check-acr-images.sh "demo-image-0x:latest"
+    ```
+
+1. Install the solution.
+
+    ```powershell
+    az workload-orchestration target install  --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $targetName
+    ```
+
+1. After installation, check that the image is used in deployment.
+
+    ```powershell
+    kubectl describe pod -n $scopename
+    ```
+***
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## View staged resources
 

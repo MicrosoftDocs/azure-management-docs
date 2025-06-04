@@ -128,7 +128,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Linename-schema" --schema-file ./common-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Linename-schema" --schema-file ./edgeLink-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file. 
@@ -142,7 +142,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is EdgeLink Solution" \
-        --config-template-file ./app-config-template.yaml \
+        --config-template-file ./edgeLink-config-template.yaml \
         --specification "@specs.json" \
         --version "1.0.0"
     ```
@@ -152,12 +152,12 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Linename-schema" --schema-file .\common-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Linename-schema" --schema-file .\edgeLink-schema.yaml -l $l
     ```
 
 1. Create the solution template file. 
 
-    ````powershell
+    ```powershell
     $solutionName = "Edge-Link App"
 
     az workload-orchestration solution-template create `
@@ -166,7 +166,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is EdgeLink Solution" `
-        --config-template-file .\app-config-template.yaml `
+        --config-template-file .\edgeLink-config-template.yaml `
         --specification "@specs.json" `
         --version "1.0.0"
     ```

@@ -334,7 +334,7 @@ To create the solution schema and solution template files, you can use *common-s
 
 1. Create the solution template file
 
-    ````powershell
+    ```powershell
     $gaversion = "1.0.0"
     $ganame = "$resourcePrefix-ga" 
     az workload-orchestration solution-template create `
@@ -385,7 +385,7 @@ To create the solution schema and solution template files, you can use *common-s
 
 1. Create the solution template file
 
-    ````powershell
+    ```powershell
     $rappversion = "1.0.0"
     $rappname = "$resourcePrefix-rapp" 
     az workload-orchestration solution-template create `
@@ -436,7 +436,7 @@ To create the solution schema and solution template files, you can use *common-s
 
 1. Create the solution template file
 
-    ````powershell
+    ```powershell
     $fappversion = "1.0.0"
     $fappname = "$resourcePrefix-fapp" 
     az workload-orchestration solution-template create `
@@ -487,7 +487,7 @@ To create the solution schema and solution template files, you can use *common-s
 
 1. Create the solution template file
 
-    ````powershell
+    ```powershell
     $lappversion = "1.0.0"
     $lappname = "$resourcePrefix-lapp" 
     az workload-orchestration solution-template create `
@@ -583,27 +583,23 @@ To create the solution schema and solution template files, you can use *common-s
 
 ## Review the GA configuration
 
-### [Bash](#tab/bash)
-
 Review the configuration for GA solution with "ga-instance-a" instance.
+
+### [Bash](#tab/bash)
 
 ```bash
 az workload-orchestration target review --solution-template-name "$ganame" --solution-template-version "$gaversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
 ```
-
-In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
-
 ### [PowerShell](#tab/powershell)
 
-Review the configuration for GA solution with "ga-instance-a" instance.
 
 ```powershell
 az workload-orchestration target review --solution-template-name $ganame --solution-template-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
 ```
 
-In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
-
 ***
+
+In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
 ## Review, publish, and deploy RApp solution
 

@@ -125,14 +125,14 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
 
 > [!IMPORTANT]
-> If the solution is to be deployed at factory level, then the `editbale_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editbale_at` field in the schema accepts only country and region levels.
+> If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 
 ### [Bash](#tab/bash)
 
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./common-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./regionHub-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file. 
@@ -146,7 +146,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is RegionHub Solution" \
-        --config-template-file ./app-config-template.yaml \
+        --config-template-file ./regionHub-config-template.yaml \
         --specification "@specs.json" \
         --version "1.0.0"
     ```
@@ -156,7 +156,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./common-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./regionHub-schema.yaml -l $l
     ```
 
 1. Create the solution template file. 
@@ -170,7 +170,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is RegionHub Solution" `
-        --config-template-file ./app-config-template.yaml `
+        --config-template-file ./regionHub-config-template.yaml `
         --specification '@specs.json' `
         --version "1.0.0"
     ```
