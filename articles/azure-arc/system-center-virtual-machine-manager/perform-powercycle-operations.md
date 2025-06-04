@@ -9,7 +9,7 @@ ms.author: jsuri
 author: jyothisuri
 ---
 
-# Perform powercycle operations on SCVMM VMs in Azure 
+# Perform powercycle operations on SCVMM managed virtual machines in Azure
 
 In this article, you learn how to perform power cycle operations such as start, stop and restart on the Azure Arc-enabled SCVMM Virtual Machines. 
 
