@@ -8,7 +8,7 @@
     href: view-quotas.md
   - name: Monitoring and alerts
     href: monitoring-alerting.md
-  - name: Quota Group
+  - name: Quota Groups
     href: quota-groups.md
 - name: Quickstarts
   items:
