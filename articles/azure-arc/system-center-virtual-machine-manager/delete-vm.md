@@ -17,16 +17,16 @@ In this article, you learn how to delete a SCVMM-managed virtual machine and its
 
 Before you delete a virtual machine or remove its Azure resource, ensure that you meet the following prerequisites: 
 
-- The SCVMM management server, that manages the VM which is to be deleted from the host or which’s Azure resource is to be deleted, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
+- The SCVMM management server, that manages the VM which is to be deleted from the host or which’s Azure resource is to be removed, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
 - Ensure the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is [enabled for management in Azure](enable-scvmm-inventory-resources.md).
-- If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), uninstall the agent and remove any VM extensions to prevent billing beyond the lifetime of the VM.
+- If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), [uninstall the agent and remove any VM extensions](https://learn.microsoft.com/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fsystem-center-virtual-machine-manager%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
 - *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to delete the SCVMM VMs which you want to be deleted.
 	
 ## Delete a Virtual Machine
 
 >[!Important] 
 >- This operation also deletes the VM on your SCVMM managed on-premises host. To remove the machine from Azure only and keep the on-premises resources intact, perform the [Remove from Azure](#remove-a-virtual-machine-from-azure-only) instead.
->- Before you delete a VM, ensure all the critical data is backed up and the VM owner is aware and check for any dependencies and services regarding the VM. 
+>- Before you delete a VM, ensure all the critical data is backed up, the VM owner is informed and all dependencies and services regarding the VM are considered. 
 
 To delete a VM, follow these steps:
 
@@ -51,6 +51,9 @@ To remove a VM from Azure only, follow these steps:
 
    When prompted, confirm that you want to remove the Azure representation of the VM.
 
-You can track the progress of the Azure operations from the Azure activity log.
+You can track the progress of the Azure operations from the Azure [activity log](https://ms.portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade).
 
 ## Next step
+
+- [Create a Virtual machine](create-virtual-machine.md).
+- [Remove SCVMM environment](remove-scvmm-from-azure-arc.md).
