@@ -85,7 +85,7 @@ helm version
 Set the following environment variables for the target registry. The ACR_NAME is the registry resource name. If the ACR registry url is myregistry.azurecr.io, set the ACR_NAME to myregistry
 
 ```console
-ACR_NAME=<container-registry-name>
+set ACR_NAME=<container-registry-name>
 ```
 
 ## Create a sample chart
