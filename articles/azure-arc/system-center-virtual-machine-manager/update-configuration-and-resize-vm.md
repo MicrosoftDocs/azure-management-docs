@@ -78,4 +78,4 @@ To resize a VM, follow these steps:
 
 - [Create a virtual machine](create-virtual-machine.md).
 - [Perform power cycle operations](perform-powercycle-operations.md).
-- [Delete a virtual machine](delete-virtual-machine.md). 
+
