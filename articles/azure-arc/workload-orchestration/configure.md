@@ -114,7 +114,7 @@ To configure a solution, follow these steps:
     > [!TIP]
     > In the authoring process, the default value of a parameter is displayed below the field.
 
-1. The **Review** step list the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not.
+1. The **Review** step lists the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not.
 
     :::image type="content" source="./media/configure-solution-4.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the targets." lightbox="./media/configure-solution-4.png":::
 
@@ -126,7 +126,7 @@ To configure a solution, follow these steps:
 
     :::image type="content" source="./media/configure-solution-6.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the resolved configuration values." lightbox="./media/configure-solution-6.png":::
 
-1. You can click on the **download symbol** next to the publish status to download the final configurations.
+1. You can click on the **download symbol** next to the status to download the final configurations.
 
     :::image type="content" source="./media/configure-solution-download.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to download the final configurations." lightbox="./media/configure-solution-download.png":::
 
@@ -160,7 +160,7 @@ To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to confi
     
         :::image type="content" source="./media/configure-fsad-4.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to create a new SSA instance." lightbox="./media/configure-fsad-4.png":::
     
-    1. Review SSA configuration details and click on **Configure + publish**.
+    1. Review the SSA details and click on **Configure + publish**.
     
         :::image type="content" source="./media/configure-fsad-5.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review a new SSA instance and publish it." lightbox="./media/configure-fsad-5.png":::
 
@@ -228,7 +228,6 @@ The **Published Solutions** sub-tab shows the list of solutions which were autho
 
 1. If staging is enabled for a solution, you can see the **Staging status**. For more information, see [View staged resources](how-to-stage.md#view-staged-resources).
 
-
 ### Compare revisions of a solution
 
 You can compare the current configuration with previous revisions of a solution. This feature allows you to see the differences between the current and previous configurations.
@@ -255,11 +254,11 @@ You can publish a solution to more targets after the solution is published. This
 
 ## Configure a solution with external validation enabled
 
-If you have enabled external validation for workload orchestration, during the configuration of the target you see if external validation is enabled for a particular solution.
+If you enable external validation for workload orchestration, during the configuration of the target you see if external validation is enabled for a particular solution.
 
 :::image type="content" source="./media/external-validation-configure.png" alt-text="Screenshot of configure tab showing that external validation is mandatory when configuring a target." lightbox="./media/external-validation-configure.png":::
 
-Under the Published Solutions tab, the solutions with status *Publish in progress* and *Publish failed* have alerts displayed.
+Under the "Published Solutions" tab, you can see that the solutions with *Publish in progress* and *Publish failed* status have an alert.
 
 :::image type="content" source="./media/external-validation-configure-2.png" alt-text="Screenshot of configure tab showing the alerts when a validation fails." lightbox="./media/external-validation-configure-2.png":::
 

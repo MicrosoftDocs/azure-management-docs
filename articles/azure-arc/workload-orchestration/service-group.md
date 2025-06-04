@@ -530,7 +530,7 @@ To ease the process, the following steps show how to create a four-level service
 ***
 
 > [!NOTE]
-> Once the setup is completed, the hierarchy level is displayed in workload orchestration in Azure portal. for more information, see [Monitor your solutions with Azure portal](azure-portal-monitoring.md).
+> Once the setup is completed, the hierarchy level is displayed in workload orchestration in Azure portal. For more information, see [Monitor your solutions with Azure portal](azure-portal-monitoring.md).
 
 For more details, see the following tutorials on how to create solutions with different targets in a four-level hierarchy organization:
 

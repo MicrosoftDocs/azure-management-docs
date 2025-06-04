@@ -58,7 +58,7 @@ You also need to provide a *dependencies-file.json* file that contains the list 
 
 There are two types of failures that can occur during bulk deployment: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed while others fail.
 
-In the case of a partial failure, the CLI returns an error message indicating that the bulk deployment failed, and the a list of targets that succeeded and those that failed and their error messages. You can then review the error messages for the failed targets and retry the deployment for those specific targets.
+In the case of a partial failure, the CLI returns an error message indicating that the bulk deployment failed, a list of targets that succeeded and those that failed and their error messages. You can then review the error messages for the failed targets and retry the deployment for those specific targets.
 
 In case of a complete failure, the CLI will return an error message indicating that all targets failed to deploy and their error messages. You can review the error messages and troubleshoot the issues before retrying the deployment.
 

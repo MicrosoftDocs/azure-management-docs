@@ -69,7 +69,7 @@ items:
         href: external-validation-payload.md
     - name: RBAC guide 
       href: rbac-guide.md
-    - name: Diagnose of problems
+    - name: Diagnose problems
       href: diagnose-problems.md
     - name: Delete resources
       href: delete-resources.md
