@@ -15,8 +15,8 @@ In this article, you learn how to update the configuration and resize a SCVMM-ma
 
 From Azure, you can modify the following configuration of a VM:
 
--	[Add or remove network interfaces](#add-or-remove-nics-to-a-virtual-machine)
--	[Add or remove disks](#add-or-remove-disks-to-a-virtual-machine)
+-	[Add or remove network interfaces](#add-or-remove-nics-to-a-virtual-machine).
+-	[Add or remove disks](#add-or-remove-disks-to-a-virtual-machine).
 -	[Resize the VM by changing the CPU vCores, memory size and type](#resize-a-virtual-machine). 
 
 ## Prerequisites
@@ -30,7 +30,7 @@ Before you update and resize a virtual machine, ensure that you meet the followi
 
 ## Add or remove NICs to a virtual machine
 
-To add or remove NICs from a VM, follow these steps:
+To add or remove NICs to a VM, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **SCVMM management server** and then select the SCVMM server which manages the VM which you are planning to modify from Azure.
 2. Navigate to the dedicated **Virtual machines** inventory view under the SCVMM inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
