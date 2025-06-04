@@ -36,6 +36,8 @@ To delete a VM, follow these steps:
 2. Navigate to the dedicated **Virtual machines** inventory view under the SCVMM inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
 3. Select the machine which you want to delete and then select **Delete**.
  
+   :::image type="content" source="media/delete-vm/delete-vm.png" alt-text="Screenshot showing delete VM option.":::
+
    When prompted, confirm that you want to delete it.
  
     :::image type="content" source="media/delete-vm/delete.png" alt-text="Screenshot showing Delete screen.":::
