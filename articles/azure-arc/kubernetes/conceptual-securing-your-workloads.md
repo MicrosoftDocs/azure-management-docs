@@ -1,37 +1,37 @@
-2. Securing your workloads
-2.1. Follow a secure container lifecycle as you acquire, catalog, and build your containers 
+# Securing your workloads
+## Follow a secure container lifecycle as you acquire, catalog, and build your containers
 Reference: Section 4.1 and 4.4.1 of the NIST Application Container Security Guide
 Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Implement continuous vulnerability scanning”
 Follow the Microsoft Containers Secure Supply Chain framework as you acquire, catalog, and build your workloads.  This will help you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities.  
 As part of this, look to obtain or generate a Software Bill of Materials (SBOM) to track code provenance.  You can also configure Microsoft Defender for Containers to help perform a vulnerability assessment of images in your container registry – see the support matrix for which registries are supported at what level (preview or general availability).
 More generally, we recommend you follow the Security Development Lifecycle as you develop your workload application software.
 See also section 3.3 below about how to follow the Secure Supply Chain framework as you deploy and run your workloads.
-2.2. Prepare your container images for hardened Kubernetes environments
+## Prepare your container images for hardened Kubernetes environments
 Reference: NSA Kubernetes Hardening Guidance – ‘“Non-root” containers and “rootless” container engine’ and ‘Build secuire container images’
 Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Build Phase”
 To help promote the execution of container images with least privileges at runtime, author your container images following steps to support non-root execution of workloads.  Non-root container images allow for the configuration of hardened pod security standards.  See section 2.3 below.
 Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components.  You can choose base images for your workloads from a reputable vendor such as from the Microsoft Artifact Registry.  Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components as well as the maintenance burden for updates resulting from security and bug fixes.  Leverage multi-stage builds to further reduce the footprint of your runtime images.  
 Use container signing to help ensure your workload images are not accidentally or maliciously tampered with.  Azure Pipelines as well as GitHub Actions provide various tooling in support of container signing.  You can integrate container signing with your chosen Public Key Infrastructure (PKI).
-2.3. Follow pod security standards
+## Follow pod security standards
 Reference: Pod Security Standards | Kubernetes
 Reference: Sections 5.2 of the CIS Kubernetes Benchmark.  
 Reference: NSA Kubernetes Hardening Guidance – “Pod security enforcement” and “Resource Policies”
 Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Apply security context” and “Limiting resource usage in a cluster”
 Follow the Kubernetes Pod Security Standards for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise.  For example, your containers should run as a non-root user and shouldn’t mount host volumes, unless this is strictly necessary for their operation.  See section 3.3 below about how you can help enforce these standards.  Note that not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform, and so they may require additional capabilities to be permitted when deployed.
 In addition, consider setting memory limits and CPU requests for each pod (though not CPU limits which can lead to undesirable throttling) and also consider resource quotas for each namespace.  This can prevent broader Denial of Service (DoS) attacks from a container that is compromised or otherwise misbehaving.
-2.4. Enforce additional Linux security standards
+## Enforce additional Linux security standards
 Reference: Section 4.4.3 of the NIST Application Container Security Guide
 Reference:  NSA Kubernetes Hardening Guidance – “Kubernetes Pod Security”
 Consider using additional Linux security hardening frameworks that offer additional protections.  SELinux or AppArmor require and enforce a more precise declaration of the access that each workload has to the specific resources (files, ports, etc) that it requires, going beyond the standard Linux permissions model.  And seccomp restricts the system calls that each workload can make, note that a default seccomp profile is required at the Restricted level of the Pod Security Standards (which were introduced above). Note that all these security hardening features come with default settings, but you can typically tailor things further to your specific application: for example, you can define a custom seccomp profile that allows only the precise syscalls your pods need.
 [Note for future version of this book: Update with any support for AKS Arc to include these out-of-box, as it seems RedHat OpenShift does?]
-2.5. Use workload identity for accessing Azure resources
+## Use workload identity for accessing Azure resources
 Your workloads should use workload identity federation to help securely access your resources in Azure, such a storage account.  This approach helps avoid the need for you to create and distribute separate secrets to authenticate the Entra ID identities used for authorization with Azure RBAC.  Instead, this federation approach enables to you to obtain a token for an Entra ID identity in the cloud directly from a Kubernetes service account token. (Service accounts are Kubernetes’ built-in identity for workloads.)
 [Note for future version of this book: Update with story about FMI.]
 Service account tokens are created and signed by your cluster’s service account token issuer.  The issuer’s private key is therefore a fundamental secret. It should be only be accessible where it is needed to issue tokens and it should be regularly rotated.
 If you’re running AKS enabled by Azure Arc on Azure Local, then this is automatically taken care of: the keys are indeed restricted to access only by the control planes nodes running the API server (which runs the token issuer), the keys they expire after 90 days, and they are rotated automatically every 45 days.
 If you’ve connected your own cluster via Arc-enabled Kubernetes, then evaluate if your vendor’s product offers similar capabilities to restrict access to the service account token issuer key, and to rotate it.
 [Note for future version of this book: Update with story about offering this rotation on 3P clusters: we should because we encourage WLIF on these platforms.]
-2.6. Configure TLS encryption and authentication within/to/from workloads
+## Configure TLS encryption and authentication within/to/from workloads
 Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Implementing centralized policy management”
 Use TLS for all connections that your workloads make, both inside and outside of the cluster.  This may require you to generate certificates and distribute trust bundles for use in establishing these connections.  
 For TLS connections within a cluster, evaluate using a service mesh such as Istio to maintain the TLS connections for you. A service mesh such as Istio, or an application runtime such as DAPR, can help generate its own self-signed workload certificates.   For additional security, consider configuring a cluster-local intermediate CA for use in signing these workload certificates, and in turn consider issuing the certificate for this intermediate CA using your Public Key Infrastructure (PKI) where the root certificate itself remains secured in an offline HSM-backed vault.
@@ -42,7 +42,7 @@ Once generated, these certificates and accompanying private keys are stored as s
 You may also use service account tokens for TLS (instead of certificates for mTLS) for the client-side authentication of connections within the cluster or of egress connections outside of the cluster.  If so, it’s recommended to avoid the use of the ‘default’ service account for each namespace and to create a dedicated service account identity for each separate workload or component.  This enables a least privilege approach as you configure authorization rules for your services (see section 2.7 below) or for your API server using Kubernetes RBAC (see section 3.2 below).   You can also help protect the service account issuer key itself, as described in section 2.5 above.
 Reference: NSA Kubernetes Hardening Guidance – “Protecting Pod servicer account tokens”
 [Note for future version of this book: Update with any story on further defence in-depth process isolation for workload keys/certs.  KMPP as customer-facing crypto library/vault that performs crypto operations on keys that it manages on behalf of workload, ensuring keys never in workload memory?]
-2.7. Configure authorization rules for accessing workloads/services
+## Configure authorization rules for accessing workloads/services
 Aim to control traffic between your workloads by setting authorization rules about which workloads can send requests to your Kubernetes workloads (services).  As discussed in section 2.6 above, you can configure credentials for these calling workloads as either client certificates or service account tokens.
 If you’re using a service mesh such as Istio, it can issue these identity credentials to each workload automatically, and you can then use these identities in configuring authorization policies that help restrict access to Kubernetes services only to the specified calling workloads. 
 Alternatively, if you’re not using a service mesh, you can consider deploying a dedicated authorization engine such as OPA  with, for examples, its Envoy plug-in.
