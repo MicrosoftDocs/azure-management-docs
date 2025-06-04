@@ -11,8 +11,8 @@ More generally, we recommend you follow the [Security Development Lifecycle](htt
 See also section 3.3 below about how to follow the Secure Supply Chain framework as you deploy and run your workloads.
 
 ### References
-[Reference: Section 4.1 and 4.4.1 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
-[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Implement continuous vulnerability scanning”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [Section 4.1 and 4.4.1 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+* [Kubernetes Security - OWASP Cheat Sheet Series – “Implement continuous vulnerability scanning”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Prepare your container images for hardened Kubernetes environments
 
@@ -23,8 +23,8 @@ Use distroless and purpose-built container images that narrowly satisfy the nece
 Use [container signing](/azure/container-registry/container-registry-tutorial-sign-trusted-ca) to help ensure your workload images are not accidentally or maliciously tampered with.  Azure Pipelines as well as GitHub Actions provide various tooling in support of container signing.  You can integrate container signing with your chosen Public Key Infrastructure (PKI).
 
 ### References
-[Reference: NSA Kubernetes Hardening Guidance – ‘“Non-root” containers and “rootless” container engine’ and ‘Build secuire container images’](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Build Phase”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – ‘“Non-root” containers and “rootless” container engine’ and ‘Build secuire container images’](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – “Build Phase”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Follow pod security standards
 
@@ -33,18 +33,18 @@ Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concep
 In addition, consider [setting memory limits and CPU requests](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for each pod (though not CPU limits which can lead to undesirable throttling) and also consider resource quotas for each namespace.  This can prevent broader Denial of Service (DoS) attacks from a container that is compromised or otherwise misbehaving.
 
 ### References
-[Reference: Pod Security Standards | Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
-[Reference: Sections 5.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
-[Reference: NSA Kubernetes Hardening Guidance – “Pod security enforcement” and “Resource Policies”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Apply security context” and “Limiting resource usage in a cluster”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [Pod Security Standards | Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
+* [Sections 5.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
+* [NSA Kubernetes Hardening Guidance – “Pod security enforcement” and “Resource Policies”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – “Apply security context” and “Limiting resource usage in a cluster”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Enforce additional Linux security standards
 
 Consider using [additional Linux security hardening frameworks](https://kubernetes.io/docs/concepts/security/linux-kernel-security-constraints/) that offer additional protections.  SELinux or AppArmor require and enforce a more precise declaration of the access that each workload has to the specific resources (files, ports, etc) that it requires, going beyond the standard Linux permissions model.  And [seccomp](https://kubernetes.io/docs/reference/node/seccomp/) restricts the system calls that each workload can make, note that a default seccomp profile is required at the Restricted level of the Pod Security Standards (which were introduced above). Note that all these security hardening features come with default settings, but you can typically tailor things further to your specific application: for example, you can define a custom seccomp profile that allows only the precise syscalls your pods need.
 
 ### References
-[Reference: Section 4.4.3 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
-[Reference:  NSA Kubernetes Hardening Guidance – “Kubernetes Pod Security”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Section 4.4.3 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+* [ NSA Kubernetes Hardening Guidance – “Kubernetes Pod Security”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Use workload identity for accessing Azure resources
 
@@ -69,8 +69,8 @@ Once generated, these certificates and accompanying private keys are stored as s
 You may also use service account tokens for TLS (instead of certificates for mTLS) for the client-side authentication of connections within the cluster or of egress connections outside of the cluster.  If so, it’s recommended to avoid the use of the ‘default’ service account for each namespace and to create a dedicated service account identity for each separate workload or component.  This enables a least privilege approach as you configure authorization rules for your services (see section 2.7 below) or for your API server using Kubernetes RBAC (see section 3.2 below).   You can also help protect the service account issuer key itself, as described in section 2.5 above.
 
 ### References
-[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Implementing centralized policy management”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
-[Reference: NSA Kubernetes Hardening Guidance – “Protecting Pod servicer account tokens”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – “Implementing centralized policy management”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – “Protecting Pod servicer account tokens”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Configure authorization rules for accessing workloads/services
 
@@ -93,4 +93,4 @@ Further, the [Azure Monitor pipeline at edge (preview)](/azure/azure-monitor/ess
 Once you have logs flowing into a Log Analytics workspace, you can also enable [Microsoft Sentinel](/azure/sentinel/overview?tabs=defender-portal) for  cyberthreat detection, investigation, response, and proactive hunting.
 
 ### References
-[Reference: NSA Kubernetes Hardening Guidance – “Logging”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [NSA Kubernetes Hardening Guidance – “Logging”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)

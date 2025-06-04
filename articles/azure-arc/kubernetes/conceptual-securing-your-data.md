@@ -7,7 +7,7 @@ Keep secret values (passwords, keys, etc) in a vault, such as [Azure Key Vault](
 If so, consider using the [Azure Key Vault Secret Store extension for Kubernetes (preview)](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE") that can help automatically synchronize selected secrets from an Azure Key Vault and store them in the Kubernetes secrets store of an Azure Arc-enabled Kubernetes cluster for offline use. 
 
 ### References
-[Reference: Sections 5.4 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+* [Sections 5.4 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
 
 ## Protect the Kubernetes secrets store
 
@@ -18,9 +18,9 @@ If you’re running AKS enabled by Azure Arc on Azure Local, then access to the 
 If you’ve connected your own cluster via Arc-enabled Kubernetes, then help ensure etcd is protected, and your secrets are encrypted, by following your vendor’s guidance.
 
 ### References
-[Reference: Section 2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
-[Reference:  NSA Kubernetes Hardening Guidance – “Secrets”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Securing data”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [Section 2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+* [ NSA Kubernetes Hardening Guidance – “Secrets”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – “Securing data”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Protect other workload data
 
