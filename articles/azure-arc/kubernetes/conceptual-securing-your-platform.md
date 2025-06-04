@@ -11,8 +11,8 @@ If you’ve connected your own cluster via Arc-enabled Kubernetes, then it is re
 You may also deploy extensions to your cluster: many of them are recommended below for the security benefits they can help bring.  If so, configure automatic upgrades for these extensions too.
 
 ### References
-Reference: NSA Kubernetes Hardening Guidance – “Upgrading and application security patches”
-Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Securing Kubernetes Hosts”
+[Reference: NSA Kubernetes Hardening Guidance – “Upgrading and application security patches”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Securing Kubernetes Hosts”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Configure security protections on control plane and worker nodes
 
@@ -23,8 +23,8 @@ If you’ve connected your own cluster via Arc-enabled Kubernetes, then confirm 
 In addition, whether your cluster is fully Microsoft managed or you’ve connected your own cluster, you can use Microsoft Defender for Containers to help [assess the health of your Kubernetes nodes](/azure/defender-for-cloud/kubernetes-nodes-va) and notify you of any issues – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=azureva%2Carcrt%2Carcspm%2Carcnet) for which features are supported on which cluster types at which level (preview or general availability).
 
 ### References
-Reference: Sections 1, 2, and 4 of the CIS Kubernetes Benchmark
-Reference: Section 4.5.1-3 of the NIST Application Container Security Guide
+[Reference: Sections 1, 2, and 4 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+[Reference: Section 4.5.1-3 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
 
 ## Protect the communication between Kubernetes control plane components
 
@@ -33,9 +33,9 @@ If you’re running AKS enabled by Azure Arc on Azure Local, then Transport Laye
 If you’ve connected your own cluster via Arc-enabled Kubernetes, then determine if traffic between your nodes is similarly protected, and if there are any steps you need to take to enable this (e.g. creating and updating certificates), by following your vendor’s guidance.
 
 ### References
-Reference: Section 4.3.5 of the NIST Application Container Security Guide
-Reference:  NSA Kubernetes Hardening Guidance – “Encryption”
-Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Restricting access to etcd”
+[Reference: Section 4.3.5 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+[Reference:  NSA Kubernetes Hardening Guidance – “Encryption”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Restricting access to etcd”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Protect direct access to your nodes
 
@@ -46,4 +46,4 @@ Therefore, SSH access to your worker nodes should be disabled by default.  Howev
 Finally, because edge clusters often reside in non-secure locations, consider what physical protections are appropriate (locked access, tamper evident measures, etc).
 
 ### References
-Reference: Section 4.5.4 and 4.5.5 of the NIST Application Container Security Guide
+[Reference: Section 4.5.4 and 4.5.5 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)

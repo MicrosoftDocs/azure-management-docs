@@ -21,10 +21,10 @@ More generally, follow standard best practice in separating development, test, a
 Finally, if you’re running AKS enabled by Azure Arc on Azure Local then you can also [download an admin client certificate for full admin access](/azure/aks/aksarc/retrieve-admin-kubeconfig).  This should not typically be necessary, and it should only be used when required: e.g. to resolve issues that can’t be addressed another way.  This approach should also be used with care because it doesn’t use an Entra ID account and the per-user policies you may have set up above, and it the client certificate itself must be carefully stored and then deleted when no longer required.
 
 ### References
-Reference: Sections 3.1 and 5.1 of the CIS Kubernetes Benchmark.  
-Reference: Section 4.3.1, 4.3.2, and 4.4.5 of the NIST Application Container Security Guide
-Reference: NSA Kubernetes Hardening Guidance – “Authentication and Authorization”
-Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Controlling access to the Kubernetes API”
+[Reference: Sections 3.1 and 5.1 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
+[Reference: Section 4.3.1, 4.3.2, and 4.4.5 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+[Reference: NSA Kubernetes Hardening Guidance – “Authentication and Authorization”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Controlling access to the Kubernetes API”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Follow a secure container lifecycle as you deploy and run containers with Azure Policy for Kubernetes
 
@@ -33,8 +33,8 @@ Continue to follow the [Microsoft Containers Secure Supply Chain framework](/azu
 Additionally, enforce best practice standards for container security hygiene through Azure Policy’s extension for AKS and Arc-enabled clusters.  For example, you can validate that all pods meet the Pod Security Standards in a low-code approach by using [Azure Policy's built-in definitions}(/azure/governance/policy/samples/built-in-policies#kubernetes).  You can also deploy the [Azure Policy extension](/azure/governance/policy/concepts/policy-for-kubernetes?toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json#install-azure-policy-extension-for-azure-arc-enabled-kubernetes), which extends [Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/), to your edge Kubernetes cluster to apply pod-based security enforcement at-scale.  We recommend that you first apply policy assignments in ‘audit’ mode, which will provide an aggregated list of non-compliant results at a per-Kubernetes resource, per-policy granularity, allowing you to spot and remediate any existing issues with your running deployments first. Once you have fixed the non-compliant violations in your environment, you can then update the policy assignment to ‘deny’ mode, using Azure Policy’s rich safe-deployment mechanisms to rollout policy enforcement gradually across resources. By applying policies in enforcement mode, you will actively prevent any further deviations. 
 
 ### References
-Reference: Section 4.2 of the NIST Application Container Security Guide
-Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Continuously assess the privileges used by containers” and “Use Pod Security Admission”
+[Reference: Section 4.2 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Continuously assess the privileges used by containers” and “Use Pod Security Admission”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Detect emerging threats including monitoring control plane changes
 
@@ -47,10 +47,10 @@ If you’re running on AKS enabled by Azure Arc on Azure Local, you can also [co
 Beyond this, look to build an incident response plan and practice using it.  The details of such a plan depend greatly on your overall deployment environment, and the security operations tools you use: see this [guidance](/security/operations/incident-response-overview) for more.  But at minimum, think about how you’d preserve your cluster’s state (retain audit logs, snapshot suspicious states) and how you’d recover it to a known-good state: see section 4.4 for more on that.
 
 ### References
-Reference: Section 3.2 of the CIS Kubernetes Benchmark
-Reference: Section 4.4.4 of the NIST Application Container Security Guide
-Reference: NSA Kubernetes Hardening Guidance – “Threat detection”
-Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Logging”
+[Reference: Section 3.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+[Reference: Section 4.4.4 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+[Reference: NSA Kubernetes Hardening Guidance – “Threat detection”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+[Reference: Kubernetes Security - OWASP Cheat Sheet Series – “Logging”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Leverage deployment strategies to achieve zero-downtime updates
 
