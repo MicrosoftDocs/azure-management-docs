@@ -93,10 +93,21 @@
             href: conceptual-configurations.md
           - name: Deploy configurations using GitOps (Flux v1)
             href: tutorial-use-gitops-connected-cluster.md
-  - name: Security
+  - name: Security book: recommendations and best practices
     items:
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/azure-arc-enabled-kubernetes-security-baseline?toc=/azure/azure-arc/kubernetes/toc.json
+      - name: Introduction and overview
+        href: conceptual-security-book.md
+        displayName: security, best practices, recommendations
+      - name: Securing your platform
+        href: conceptual-securing-your-platform.md
+      - name: Securing your workloads
+        href: conceptual-securing-your-workloads.md
+      - name: Securing your operations
+        href: conceptual-securing-your-operations.md
+      - name: Securing your data
+        href: conceptual-securing-your-data.md
+      - name: Securing your network
+        href: conceptual-securing-your-network.md
   - name: Frequently Asked Questions
     displayName: FAQ
     href: faq.md
