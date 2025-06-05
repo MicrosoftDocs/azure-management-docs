@@ -92,9 +92,9 @@ Deploy the Edge RAG extension from the Azure portal.
    |-----------------|--------------------------------------------------------------|
    | Subscription    | Select the subscription that contains your Azure Kubernetes Service (AKS) cluster on Azure Local. |
    | Resource group  | Select the resource group that contains your AKS Arc cluster. |
-   | Cluster         | Select the cluster that you want to deploy Edge RAG to.      |
    | Deployment name | Provide a name for the deployment.                           |
    | Region          | Select the region to deploy Edge RAG.                        |
+   | Cluster         | Select the cluster that you want to deploy Edge RAG to.      |
 
    :::image type="content" source="media/deploy/install-extension.png" alt-text="Screenshot of the basic tab with fields to enter the project and instance details.":::
 
@@ -122,7 +122,7 @@ Deploy the Edge RAG extension from the Azure portal.
 1. Select **Next: Review + create**.
 1. Review and validate the parameters you provided.
 1. Select **Create** to complete the Edge RAG deployment.
-1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagonistics** are listed.
+1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagnostics** are listed.
 1. If you're using your own data model, see [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
 
 The Edge RAG extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.

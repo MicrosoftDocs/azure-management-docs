@@ -18,7 +18,7 @@ This article provides a high-level overview of the key configuration concepts fo
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Configuring the chat in the developer portal
+## Configuring the solution in the developer portal
 
 As part of the Edge RAG solution, a local developer portal is deployed on the Azure Kubernetes Service (AKS) cluster. Developers can access this portal to do the following tasks:
 
