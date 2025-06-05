@@ -220,8 +220,7 @@
         "articles/quotas/**/*.yml": "wwilliams"
       },
       "ms.author": {
-        "articles/azure-arc/kubernetes/**/*.md": "jenhayes",
-        "articles/azure-arc/servers/**/*.md": "jenhayes",
+        "articles/azure-arc/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "doveychase",
