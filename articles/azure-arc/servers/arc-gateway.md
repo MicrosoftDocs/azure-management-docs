@@ -110,8 +110,7 @@ On a machine with access to Azure, run the following PowerShell command to creat
         -resource-group <resource group> `
         -location <region> `
         -subscription <subscription name or id> `
-        -gateway-type public  `
-        -allowed-features *
+        -gateway-type public
 ```
 
 The gateway creation process takes 9-10 minutes to complete.
