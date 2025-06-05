@@ -34,11 +34,11 @@ To delete a VM, follow these steps:
 2. Navigate to the dedicated **Virtual machines** inventory view under the SCVMM inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
 3. Select the machine which you want to delete and then select **Delete**.
  
-   :::image type="content" source="media/delete-vm/delete-vm.png" alt-text="Screenshot showing delete VM option.":::
+   :::image type="content" source="media/delete-virtual-machine/delete-virtual-machine.png" alt-text="Screenshot showing delete VM option." lightbox="media/delete-virtual-machine/delete-virtual-machine.png":::
 
    When prompted, confirm that you want to delete it.
  
-    :::image type="content" source="media/delete-vm/delete.png" alt-text="Screenshot showing Delete screen.":::
+    :::image type="content" source="media/delete-virtual-machine/delete.png" alt-text="Screenshot showing Delete screen." lightbox="media/delete-virtual-machine/delete.png":::
 
 ## Remove a Virtual Machine from Azure only
 
@@ -47,7 +47,7 @@ To remove a VM from Azure only, follow these steps:
 1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **SCVMM management server** and then select the SCVMM server which manages the VM which you are planning to operate from Azure. 
 2. Navigate to the dedicated **Virtual machines** inventory view under the SCVMM inventory. Select the machine for which you want to remove the Azure representation and then select **Remove from Azure**.
 
-   :::image type="content" source="media/delete-vm/remove-from-azure.png" alt-text="Screenshot showing Virtual machines screen.":::
+   :::image type="content" source="media/delete-virtual-machine/remove-from-azure.png" alt-text="Screenshot showing Virtual machines screen." lightbox="media/delete-virtual-machine/remove-from-azure.png":::
 
    When prompted, confirm that you want to remove the Azure representation of the VM.
 
