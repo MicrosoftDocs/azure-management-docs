@@ -4,7 +4,7 @@ description: "Learn how to set up your data query with Edge RAG to configure mod
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/20/2025
+ms.date: 06/05/2025
 
 #CustomerIntent: As a developer or data scientist, I want to learn how to use prompt engineering with Azure AI Search so that I can create more effective and accurate AI-driven search experiences for my applications.
 ms.custom:
@@ -13,7 +13,7 @@ ms.custom:
 
 # Set up the data query for chat solution in Edge RAG Preview, enabled by Azure Arc
 
-After you add your data source, continue building your chat solution by configuring the model settings and starting your prompt engineering.
+Configure data queries and model settings for your Edge RAG chat solution to optimize your chat results. Adjust search types, tune model parameters, and refine your chat experience in the Edge RAG developer portal.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -21,15 +21,16 @@ After you add your data source, continue building your chat solution by configur
 
 Before you begin:
 
-- Review [Building chat solution overview for Edge RAG](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
+- Review [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters.
 - [Add data source for the chat solution in Edge RAG](add-data-source.md)
+- To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Configure model settings 
 
 To get started, configure the model settings.
 
 1. Go to the local portal using the domain name provided at deployment and app registration. For example, `https://arcrag.contoso.com`.
-1. Sign in with developer credentials (with both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned). If you have the right access configured, you're automatically  redirected to the developer portal.
+1. Sign in with developer credentials that have both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned. If you have the right access configured, you're automatically  redirected to the developer portal.
 1. Select **Get Started**.
 1. Select the **Chat** tab to get to the **Chat playground**.
 1. In the **Data inferencing** section, select the **Type of search**. 
@@ -80,5 +81,5 @@ When you're satisfied with the solution, select on **View the endpoint** to get 
 
 ## Related content
 
-- [Building chat solution overview for Edge RAG](build-chat-solution-overview.md)
+- [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
 - [Add data source for chat solution in Edge RAG](add-data-source.md)

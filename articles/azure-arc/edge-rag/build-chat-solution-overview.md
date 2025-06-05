@@ -1,33 +1,33 @@
 ---
-title: Building Chat Solution Overview for Edge RAG
-description: "Learn about building a chat solution with Edge RAG, including data ingestion, prompt engineering, and endpoint integration."
+title: Configuring the Chat Solution for Edge RAG
+description: "Learn about configuring the chat solution in Edge RAG, including ingesting data, prompt engineering, and integrating an endpoint."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/13/2025
+ms.date: 06/05/2025
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or IT professional, I want to learn how to build a chat solution using Edge RAG so that I can effectively configure data ingestion, perform prompt engineering, and integrate the chat endpoint into business applications.
+#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Edge RAG so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
 ms.custom:
   - build-2025
 ---
 
-# Building chat solution for Edge RAG Preview, enabled by Azure Arc
+# Configuring the chat solution for Edge RAG Preview enabled by Azure Arc
 
-After you deploy Edge RAG, plan your chat solution by reviewing the steps and configuration information you need for data ingestion and prompt engineering.
+This article provides a high-level overview of the key configuration concepts for the Edge RAG chat solution. Use this guidance to help plan your approach before configuring your chat solution.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Building in the developer portal
+## Configuring the chat in the developer portal
 
 As part of the Edge RAG solution, a local developer portal is deployed on the Azure Kubernetes Service (AKS) cluster. Developers can access this portal to do the following tasks:
 
 - **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
 - **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
 
-Access the portal via the redirect URI (for example,  [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
+Access the portal via the redirect URI (for example, [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
 
-To authenticate and authorize your access to the portal, ensure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
+To authenticate and authorize your access to the portal, make sure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Data ingestion
 
@@ -35,7 +35,7 @@ Data ingestion refers to a set of user activities around providing on-premises d
 
 ### Planning data ingestion
 
-Before you start building your chat solution, do the following steps:
+Before you start configuring your chat solution, complete the following steps:
 
 - **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources). Make sure all your private data is in a network file system (NFS) share that's' accessible from Edge RAG. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
@@ -45,7 +45,7 @@ Before you start building your chat solution, do the following steps:
 
 ### Chunk settings
 
-Before you add a data source in Edge RAG, choose the appropriate chunk settings (chunk size and chunk overlap) and sync frequency. Here's some high-level guidance to select the right chunk settings for your data, as provided by Azure:
+Before you add a data source in Edge RAG, choose the appropriate chunk size, chunk overlap, and sync frequency. Here's some high-level guidance to select the right chunk settings for your data, as provided by Azure:
 
 - **Chunk size**: Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words) and allows for some overlap (for example, 10-15% of the content) can produce good chunks as input for embedding vector generators.
 
@@ -70,6 +70,8 @@ When it comes to chunking data, think about these factors:
 - **Large Language Models (LLM) have performance guidelines for chunk size**. you need to set a chunk size that works best for all of the models you're using. For instance, if you use models for summarization and embeddings, choose an optimal chunk size that works for both.
 
 ### Data ingestion by using REST APIs
+
+You can also perform data ingestion programmatically by using the  REST APIs.
 
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
 - Create as many data ingestions as you'd like. However, all the data is vectorized and stored in a single index.
@@ -98,7 +100,7 @@ To choose the model parameters, here's directional guidance:
 
 ### Data querying by using REST APIs
 
-In addition to the developer portal, you can use the REST APIs to do prompt engineering activities such as providing the system message and model parameters.
+In addition to the developer portal, you can use the REST APIs to configure the chat solution such as providing the system message and model parameters.
 
 ### Consuming the chat endpoint
 
