@@ -59,8 +59,6 @@ To add or remove disks to a VM, follow these steps:
      :::image type="content" source="media/update-configuration-and-resize-vm/add-a-disk.png" alt-text="Screenshot showing add a disk screen." lightbox="media/update-configuration-and-resize-vm/add-a-disk.png":::
 
    - **Remove a disk**: Choose the disk to be removed and select **Delete** > **Yes**.
-   
-     :::image type="content" source="media/update-configuration-and-resize-vm/add-disk.png" alt-text="Screenshot showing add disk screen." lightbox="media/update-configuration-and-resize-vm/add-disk.png":::
 
 ## Resize a virtual machine
 
