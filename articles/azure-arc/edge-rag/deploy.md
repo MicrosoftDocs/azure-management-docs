@@ -4,7 +4,7 @@ description: "Learn how to deploy the Edge RAG extension by using either Azure C
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/22/2025
+ms.date: 06/05/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
@@ -82,11 +82,10 @@ To deploy via CLI, complete the following steps. Use the commands to deploy Edge
 
 Deploy the Edge RAG extension from the Azure portal.
 
-1. In the [Azure portal](https://portal.azure.com/), search for "Edge RAG" in the Marketplace to get to the extension deployment page. Or, go to the target **AKS cluster on Azure Local** > **Settings** > **Extensions**.  Select "**+ Add**" and "**Edge RAG**" from the list.
+1. In the [Azure portal](https://portal.azure.com/), deploy Edge RAG from the Marketplace or by adding the extension to the Azure Kubernetes cluster on Azure Local.
 
-   :::image type="content" source="media/deploy/kubernetes-extensions-add.png" alt-text="Screenshot of the extensions page under settings for Kubernetes Azure Arc.":::
-
-1. Select **Create**.
+   - Search for **Edge RAG** in the Marketplace to get to the extension deployment page.
+   - Or, go to the Azure Kubernetes cluster on Azure Local. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
 1. On the **Basics** tab, provide the following information:
 
    | Field      | Value                                                        |
@@ -123,6 +122,7 @@ Deploy the Edge RAG extension from the Azure portal.
 1. Select **Next: Review + create**.
 1. Review and validate the parameters you provided.
 1. Select **Create** to complete the Edge RAG deployment.
+1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagonistics** are listed.
 1. If you're using your own data model, see [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
 
 The Edge RAG extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
