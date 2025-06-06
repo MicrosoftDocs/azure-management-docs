@@ -23,7 +23,7 @@ Secrets stored in the Kubernetes secret store should be encrypted using a KMS p
 
 If you’re running AKS enabled by Azure Arc on Azure Local, then access to the K8s configuration store, etcd, is restricted. Further, secrets stored in etcd are automatically encrypted by a built-in [KMS plugin](/azure/aks/aksarc/encrypt-etcd-secrets).  This plugin generates the [Key Encryption Key](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/#kms-encryption-and-per-object-encryption-keys) (KEK), isolates it away from the cluster in the underlying Windows host, and automatically rotates it every 30 days.
 
-If you’ve connected your own cluster via Arc-enabled Kubernetes, then help ensure etcd is protected, and your secrets are encrypted, by following your vendor’s guidance.
+If you connect your own cluster via Arc-enabled Kubernetes, then help ensure etcd is protected, and your secrets are encrypted, by following your vendor’s guidance.
 
 ### References
 * [Section 2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
@@ -32,7 +32,7 @@ If you’ve connected your own cluster via Arc-enabled Kubernetes, then help ens
 
 ## Protect other workload data
 
-Beyond your secret values, consider the protection at rest of other workload data that may still be sensitive. If you’re running AKS on Azure Local, then all data volumes are [encrypted at rest using BitLocker](/azure/azure-local/concepts/security-features#bitlocker-encryption). If you’ve connected your own cluster via Arc-enabled Kubernetes, or mounting external volumes, then use any similar protection offered by the vendor.
+Beyond your secret values, consider the protection at rest of other workload data that may still be sensitive. If you’re running AKS on Azure Local, then all data volumes are [encrypted at rest using BitLocker](/azure/azure-local/concepts/security-features#bitlocker-encryption). If you connect your own cluster via Arc-enabled Kubernetes, or mounting external volumes, then use any similar protection offered by the vendor.
 
 In addition to helping protect your workload data at rest, it’s also important to help protect your workload data in transit. See sections 2.5-2.7 above about establishing encryption, authentication, and authorization for data traffic between your workloads and to/from Azure. See also section 5 below for additional network layer protections. Such transit protections are established automatically if you use [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) to store data locally and synchronize it with Azure in the cloud.
 

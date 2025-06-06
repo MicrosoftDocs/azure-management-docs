@@ -62,7 +62,7 @@ Service account tokens are created and signed by your cluster’s service accoun
 
 If you’re running AKS enabled by Azure Arc on Azure Local, then this is automatically taken care of: the keys are indeed restricted to access only by the control planes nodes running the API server (which runs the token issuer), the keys they expire after 90 days, and they are rotated automatically every 45 days.
 
-If you’ve connected your own cluster via Arc-enabled Kubernetes, then evaluate if your vendor’s product offers similar capabilities to restrict access to the service account token issuer key, and to rotate it.
+If you connect your own cluster via Arc-enabled Kubernetes, then evaluate if your vendor’s product offers similar capabilities to restrict access to the service account token issuer key, and to rotate it.
 
 ## Configure TLS encryption and authentication within/to/from workloads
 
