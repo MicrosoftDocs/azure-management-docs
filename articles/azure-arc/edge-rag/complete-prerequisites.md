@@ -49,6 +49,8 @@ You can refer to some of these resources from Microsoft to choose the right mode
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
 - [Azure AI Foundry](/azure/ai-studio/concepts/model-benchmarks) also provides tooling such as model benchmarks to choose the right model.
 
+Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI Inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
+
 ## Step 3: Verify NFS server is configured and reachable
 
 Make sure all your documents and images are available on a supported network file system (NFS) server. That NFS server must be configured correctly and reachable from the Edge RAG deployment on Azure Local. For more information, see the following articles:
