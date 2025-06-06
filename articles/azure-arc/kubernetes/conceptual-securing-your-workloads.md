@@ -1,3 +1,10 @@
+---
+title: "Securing your workloads in Azure Arc-enabled Kubernetes"
+ms.date: 06/06/2025
+ms.topic: concept-article
+description: "Guidance for securing workloads running on Azure Arc-enabled Kubernetes clusters, including application and container security."
+---
+
 # Securing your workloads
 
 ## Follow a secure container lifecycle as you acquire, catalog, and build your containers

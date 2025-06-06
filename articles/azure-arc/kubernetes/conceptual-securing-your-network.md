@@ -1,3 +1,10 @@
+---
+title: "Securing your network in Azure Arc-enabled Kubernetes"
+ms.date: 06/06/2025
+ms.topic: concept-article
+description: "Network security best practices for Azure Arc-enabled Kubernetes clusters, including segmentation, encryption, and access controls."
+---
+
 # Securing your network
 
 ## Configure Kubernetes network policy to control access to/from your workloads

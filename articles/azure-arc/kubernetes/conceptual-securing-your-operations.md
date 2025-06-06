@@ -1,3 +1,10 @@
+---
+title: "Securing your operations in Azure Arc-enabled Kubernetes"
+ms.date: 06/06/2025
+ms.topic: concept-article
+description: "Operational security guidance for managing Azure Arc-enabled Kubernetes clusters, including monitoring, logging, and incident response."
+---
+
 # Securing your operations
 
 ## Control who can use the Azure control plane to manage your cluster

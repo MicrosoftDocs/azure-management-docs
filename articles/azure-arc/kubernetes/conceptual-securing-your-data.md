@@ -1,3 +1,10 @@
+---
+title: "Securing your data in Azure Arc-enabled Kubernetes"
+ms.date: 06/06/2025
+ms.topic: concept-article
+description: "Best practices for protecting data at rest and in transit in Azure Arc-enabled Kubernetes clusters."
+---
+
 # Securing your data
 
 ## Use a vault to store your secrets and sync to the cluster as needed

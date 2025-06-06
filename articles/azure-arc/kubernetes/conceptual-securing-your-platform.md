@@ -1,3 +1,10 @@
+---
+title: "Securing your platform in Azure Arc-enabled Kubernetes"
+ms.date: 06/06/2025
+ms.topic: concept-article
+description: "Guidance on securing the platform layer of Azure Arc-enabled Kubernetes clusters, including node, OS, and control plane protections."
+---
+
 # Securing your platform
 
 ## Stay up to date with the latest security patches
