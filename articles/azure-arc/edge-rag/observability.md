@@ -20,6 +20,8 @@ Edge RAG publishes metrics to [Azure Monitor](/azure/azure-monitor/fundamentals/
 
 ## Prerequisites
 
+Before you begin:
+
 - If you want to use [Azure Managed Grafana](/azure/managed-grafana/overview) to visualize your metrics, [configure an Azure Monitor data source plug-in](/azure/azure-monitor/visualize/grafana-plugin#configure-an-azure-monitor-data-source-plug-in).
 - Review [Edge RAG metrics available for monitoring](observability-metrics.md).
 
