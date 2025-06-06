@@ -11,7 +11,8 @@ More generally, we recommend you follow the [Security Development Lifecycle](htt
 See also section 3.3 below about how to follow the Secure Supply Chain framework as you deploy and run your workloads.
 
 ### References
-* [Section 4.1 and 4.4.1 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+* [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
+* [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
 * [Kubernetes Security - OWASP Cheat Sheet Series – “Implement continuous vulnerability scanning”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Prepare your container images for hardened Kubernetes environments

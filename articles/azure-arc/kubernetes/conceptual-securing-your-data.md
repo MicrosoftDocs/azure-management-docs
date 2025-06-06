@@ -7,7 +7,8 @@ Keep secret values (passwords, keys, etc) in a vault, such as [Azure Key Vault](
 If so, consider using the [Azure Key Vault Secret Store extension for Kubernetes (preview)](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE") that can help automatically synchronize selected secrets from an Azure Key Vault and store them in the Kubernetes secrets store of an Azure Arc-enabled Kubernetes cluster for offline use. 
 
 ### References
-* [Sections 5.4 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
+* [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
+* [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
 
 ## Protect the Kubernetes secrets store
 

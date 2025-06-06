@@ -21,8 +21,8 @@ More generally, follow standard best practice in separating development, test, a
 Finally, if you’re running AKS enabled by Azure Arc on Azure Local then you can also [download an admin client certificate for full admin access](/azure/aks/aksarc/retrieve-admin-kubeconfig). This should not typically be necessary, and it should only be used when required: e.g. to diagnose issues that can’t be troubleshooted any another way. This approach should also be used with care because it doesn’t use an Entra ID account and the per-user policies you may have set up above, and it the client certificate itself must be carefully stored and then deleted when no longer required.
 
 ### References
-* [Sections 3.1 and 5.1 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
-* [Section 4.3.1, 4.3.2, and 4.4.5 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+* [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
+* [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
 * [NSA Kubernetes Hardening Guidance – “Authentication and Authorization”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 * [Kubernetes Security - OWASP Cheat Sheet Series – “Controlling access to the Kubernetes API”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
@@ -47,8 +47,8 @@ If you’re running on AKS enabled by Azure Arc on Azure Local, you can also [co
 Beyond this, look to build an incident response plan and practice using it. The details of such a plan depend greatly on your overall deployment environment, and the security operations tools you use: see this [guidance](/security/operations/incident-response-overview) for more. But at minimum, think about how you’d preserve your cluster’s state (retain audit logs, snapshot suspicious states) and how you’d recover it to a known-good state: see section 4.4 for more on that.
 
 ### References
-* [Section 3.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)
-* [Section 4.4.4 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+* [CIS Kubernetes Benchmark - Section 3.2](https://www.cisecurity.org/benchmark/kubernetes)
+* [NIST Application Container Security Guide - Section 4.4.4](https://csrc.nist.gov/pubs/sp/800/190/final)
 * [NSA Kubernetes Hardening Guidance – “Threat detection”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 * [Kubernetes Security - OWASP Cheat Sheet Series – “Logging”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
