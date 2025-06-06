@@ -94,3 +94,8 @@ Once you have logs flowing into a Log Analytics workspace, you can also enable [
 
 ### References
 * [NSA Kubernetes Hardening Guidance – “Logging”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+
+## Next steps
+
+- Learn about [securing your operations](conceptual-securing-your-operations.md)
+- Return to the top of this [security book](conceptual-security-book.md)

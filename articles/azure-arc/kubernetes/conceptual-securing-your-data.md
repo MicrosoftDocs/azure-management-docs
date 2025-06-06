@@ -35,3 +35,8 @@ Plan how you would recover from a loss of your cluster. If you’re using AKS en
 A starting point is to aim for all your configuration and data to be sourced from, and sync’d back to, the cloud. This means that re-instating your cluster is like initial activation. This might mean configuring your cluster using [GitOps wth Flux](/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2?tabs=azure-cli), synchronizing your Azure Key Vault secrets using the [Secret Store extension (preview)](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s), and synchronizing your data using [Azure Container Storage (preview)](/azure/azure-arc/container-storage/overview) – all as discussed in previous sections.
 
 However, if the only copy of some of your data is stored in your cluster, and therefore won’t be recoverable from the cloud, or if you require additional protection, then consider using a dedicated cluster backup solution such as [Velero](https://velero.io/).
+
+## Next steps
+
+- Learn about [securing your network](conceptual-securing-your-network.md)
+- Return to the top of this [security book](conceptual-security-book.md)

@@ -47,3 +47,8 @@ Finally, because edge clusters often reside in non-secure locations, consider wh
 
 ### References
 * [Section 4.5.4 and 4.5.5 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
+
+## Next steps
+
+- Learn about [securing your workloads](conceptual-securing-your-workloads.md)
+- Return to the top of this [security book](conceptual-security-book.md)

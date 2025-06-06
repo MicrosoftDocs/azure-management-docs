@@ -93,7 +93,7 @@
             href: conceptual-configurations.md
           - name: Deploy configurations using GitOps (Flux v1)
             href: tutorial-use-gitops-connected-cluster.md
-  - name: Security book: recommendations and best practices
+  - name: Security book - recommendations and best practices
     items:
       - name: Introduction and overview
         href: conceptual-security-book.md

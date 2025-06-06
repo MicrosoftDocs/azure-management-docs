@@ -20,3 +20,7 @@ The security challenges fall into five categories:
 1. Securing your network. This includes configuring the additional defense in depth that comes from controlling management and data traffic at the network level, including which sources your clusters and workloads can receive from, and which targets they can they send to.
 
 This book provides guidance on these challenges for Arc-enabled Kubernetes clusters in general and for AKS enabled by Azure Arc clusters in particular. There are many [deployment options](/azure/aks/aksarc/aks-overview#aks-enabled-by-azure-arc-deployment-options) for AKS enabled by Azure Arc. This book covers the [Azure Local 23H2](/azure/aks/aksarc/cluster-architecture) deployment option and builds upon the [Azure Local security features](/azure/azure-local/concepts/security-features?view=azloc-24113) and [security book](https://github.com/Azure-Samples/AzureLocal/blob/main/SecurityBook/Azure Local Security Book_01172025.pdf). (Other deployment options offer some but not all of the same benefits.)
+
+## Next steps
+
+- Learn about [securing your platform](conceptual-securing-your-platform.md)
