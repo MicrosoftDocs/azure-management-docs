@@ -4,7 +4,7 @@ description: "Learn how to deploy the Edge RAG extension by using either Azure C
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/05/2025
+ms.date: 06/06/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
@@ -30,6 +30,7 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
 1. In the [Azure portal](https://portal.azure.com/), deploy Edge RAG from the Marketplace or by adding the extension to the Azure Kubernetes cluster on Azure Local.
 
    - Search for **Edge RAG** in the Marketplace to get to the extension deployment page.
+   :::image type="content" source="media/deploy/marketplace-option.png" alt-text="Screenshot of search results in the Azure portal that shows the Edge RAG option in the Marketplace.":::
    - Or, go to the Azure Kubernetes cluster on Azure Local. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
 1. On the **Basics** tab, provide the following information:
 
@@ -58,7 +59,7 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
    |**SSL settings**||
    |SSL CNAME           | Provide the domain name for your system. This domain name is the same as redirect URI provided during app registration.|
-   |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application.                |
+   |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application. By default, Edge RAG uses a self-signed SSL certificate to store under this name in the kubernetes secret store. After installation, you can update the certificate with an official signed certificate.               |
    |**Access**||
    | Entra app ID    | Provide the application ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
    | Entra tenant ID | Provide tenant ID from the app you registered as part of configuring authentication (App Registrations > Your app > Overview). |
