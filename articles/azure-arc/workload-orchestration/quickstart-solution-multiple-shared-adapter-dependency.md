@@ -11,7 +11,7 @@ ms.custom:
 
 # Quickstart: Create a solution with multiple shared adapter dependencies
 
-In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) application. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA application to synchronize data between devices and servers.
+In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
 ## Prerequisites
 

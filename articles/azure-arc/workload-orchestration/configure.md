@@ -29,7 +29,7 @@ This article describes how to use the workload orchestration portal to add confi
 1. The Configure tab provides more sub-tabs: **Factory**, **Line**, **Solutions**, and **Published Solutions**. The Factory tab shows the status of all solutions deployed in your environment at the factory level, while the Line tab shows the status of all solutions deployed in your environment at the line level. The Solutions tab shows the status of all solutions deployed in your environment, while the Published Solutions tab shows the status of all published solutions.
 
     > [!IMPORTANT]
-    > Line and factory levels are custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements. In that case, you see the name of the custom-defined levels in the Configure tab, and the Solutions and Published Solutions tabs.
+    > Hierarchical levels are custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements, for example, country, region, factory, and line levels. In that case, you see the name of the custom-defined levels in the Configure tab, together with the Solutions and Published Solutions tabs.
 
 1. In any of the sub-tabs, you can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of solutions will be filtered to show only those that match the keyword.
 
@@ -109,14 +109,14 @@ To configure a solution, follow these steps:
     :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable auto-publish." lightbox="./media/configure-solution-2.png":::
 
 
-1. In the **Configure target** step, enter the parameters to publish the solution and click on **Next**.
+1. In the **Configure target** step, enter the instance name and the parameters to publish the solution and click on **Next**.
 
     :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
 
     > [!TIP]
     > In the authoring process, the default value of a parameter is displayed below the field.
 
-1. The **Review** step list the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not.
+1. The **Review** step lists the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not.
 
     :::image type="content" source="./media/configure-solution-4.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the targets." lightbox="./media/configure-solution-4.png":::
 
@@ -128,7 +128,7 @@ To configure a solution, follow these steps:
 
     :::image type="content" source="./media/configure-solution-6.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the resolved configuration values." lightbox="./media/configure-solution-6.png":::
 
-1. You can click on the **download symbol** next to the publish status to download the final configurations.
+1. You can click on the **download symbol** next to the status to download the final configurations.
 
     :::image type="content" source="./media/configure-solution-download.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to download the final configurations." lightbox="./media/configure-solution-download.png":::
 
@@ -150,7 +150,7 @@ To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to confi
 
     :::image type="content" source="./media/configure-fsad-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure the targets for a solution FSAD." lightbox="./media/configure-fsad-1.png":::
 
-1. In the **Configure target** step, enter the values for FSAD configurations.
+1. In the **Configure target** step, enter the instance name for the solution and the values for FSAD configurations.
 
     :::image type="content" source="./media/configure-fsad-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the values to configure the targets for a solution FSAD." lightbox="./media/configure-fsad-2.png":::
 
@@ -162,7 +162,7 @@ To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to confi
     
         :::image type="content" source="./media/configure-fsad-4.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to create a new SSA instance." lightbox="./media/configure-fsad-4.png":::
     
-    1. Review SSA configuration details and click on **Configure + publish**.
+    1. Review the SSA details and click on **Configure + publish**.
     
         :::image type="content" source="./media/configure-fsad-5.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review a new SSA instance and publish it." lightbox="./media/configure-fsad-5.png":::
 
@@ -228,6 +228,8 @@ The **Published Solutions** sub-tab shows the list of solutions which were autho
 
     :::image type="content" source="./media/configure-delete.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to delete a solution before deploy it." lightbox="./media/configure-delete.png":::
 
+1. If staging is enabled for a solution, you can see the **Staging status**. For more information, see [View staged resources](how-to-stage.md#view-staged-resources).
+
 ### Compare revisions of a solution
 
 You can compare the current configuration with previous revisions of a solution. This feature allows you to see the differences between the current and previous configurations.
@@ -254,11 +256,11 @@ You can publish a solution to more targets after the solution is published. This
 
 ## Configure a solution with external validation enabled
 
-If you have enabled external validation for workload orchestration, during the configuration of the target you see if external validation is enabled for a particular solution.
+If you enable external validation for workload orchestration, during the configuration of the target you see if external validation is enabled for a particular solution.
 
 :::image type="content" source="./media/external-validation-configure.png" alt-text="Screenshot of configure tab showing that external validation is mandatory when configuring a target." lightbox="./media/external-validation-configure.png":::
 
-Under the Published Solutions tab, the solutions with status *Publish in progress* and *Publish failed* have alerts displayed.
+Under the "Published Solutions" tab, you can see that the solutions with *Publish in progress* and *Publish failed* status have an alert.
 
 :::image type="content" source="./media/external-validation-configure-2.png" alt-text="Screenshot of configure tab showing the alerts when a validation fails." lightbox="./media/external-validation-configure-2.png":::
 

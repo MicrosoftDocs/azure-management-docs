@@ -189,6 +189,12 @@ Once solution is uploaded to workload orchestration, IT DevOps author the config
 
 When user provides values for solution configurations and publishes them for certain targets, revisions of configurations are created for each target. These revisions are incremented with each new change made by user for respective target.
 
+## Staging before deployment
+
+Workload orchestration supports staging of solutions before deployment. Staging allows users to download the artifacts and validate the configurations before deploying them to the edge cluster. Staging is an optional step, but it's beneficial for some user scenarios with large-scale deployments or network latency issues. 
+
+For more information, see [Staging before deployment](how-to-stage.md).
+
 ## Different solution authoring scenarios
 
 There are different variants of schemas that can be used to author solutions. See the following quickstarts for examples of different solution authoring scenarios:

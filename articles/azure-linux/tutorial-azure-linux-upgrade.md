@@ -11,7 +11,7 @@ ms.date: 04/06/2025
 
 # Tutorial: Upgrade Azure Linux Container Host nodes
 
-> [!div class=""nextstepaction""]
+> [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321846)
 
 The Azure Linux Container Host ships updates through two mechanisms: updated Azure Linux node images and automatic package updates.
