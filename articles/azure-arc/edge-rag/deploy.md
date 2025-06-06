@@ -131,7 +131,7 @@ The Edge RAG extension deployment typically takes about 30 minutes but can take 
 
 ## Add your own language model
 
-If you added your own language model when you deploy the Edge RAG extension, complete the steps in [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
+If you added your own language model when you deployed the Edge RAG extension, complete the steps in [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
 
 ## Related content
 
