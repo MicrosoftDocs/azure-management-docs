@@ -46,7 +46,7 @@ If you connect your own cluster via Arc-enabled Kubernetes, then determine if tr
 
 ## Protect direct access to your nodes
 
-In general, it’s not recommended to directly access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See section 3.2 below for more on this topic.
+In general, it’s not recommended to directly access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See our [further guidance](conceptual-securing-your-operations#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac) on this topic.
 
 Therefore, SSH access to your worker nodes should be disabled by default. However, if this access does prove to be required, and you’re running AKS enabled by Azure Arc on Azure Local, then it’s important to manage it carefully. [Safely store the SSH keys when you create the cluster](/azure/aks/aksarc/configure-ssh-keys) and [restrict SSH access to only expected network addresses](/azure/aks/hybrid/restrict-ssh-access). Beyond this limited exception, there should be no other way to reach the control plane nodes and the Kubernetes infrastructure components that run on them such as kube-scheduler, etcd, kubelet.
 

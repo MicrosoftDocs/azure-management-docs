@@ -15,7 +15,7 @@ Look to obtain or generate a Software Bill of Materials (SBOM) to track code pro
 
 More generally, we recommend you follow the [Security Development Lifecycle](https://www.microsoft.com/securityengineering/sdl) as you develop your workload application software.
 
-See also section 3.3 below about how to follow the Secure Supply Chain framework as you deploy and run your workloads.
+See also [our guidance](conceptual-securing-your-operations#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) on how to follow the Secure Supply Chain framework as you deploy and run your workloads.
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -24,7 +24,7 @@ See also section 3.3 below about how to follow the Secure Supply Chain framework
 
 ## Prepare your container images for hardened Kubernetes environments
 
-To help promote the execution of container images with least privileges at runtime, author your container images following steps to support non-root execution of workloads. Non-root container images allow for the configuration of hardened pod security standards. See section 2.3 below.
+To help promote the execution of container images with least privileges at runtime, author your container images following steps to support non-root execution of workloads. Non-root container images allow for the configuration of hardened pod security standards (see the following guidance on this).
 
 Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components. You can choose base images for your workloads from a reputable vendor such as from the [Microsoft Artifact Registry](https://mcr.microsoft.com/). Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components and the maintenance burden resulting from security updates and bug fixes. Use multi-stage builds to further reduce the footprint of your runtime images. 
 
@@ -36,7 +36,7 @@ Use [container signing](/azure/container-registry/container-registry-tutorial-si
 
 ## Follow pod security standards
 
-Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a non-root user and shouldn’t mount host volumes, unless it is strictly necessary for their operation. See section 3.3 below about how you can help enforce these standards. Be aware that not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform, and so they may require extra capabilities to be permitted when deployed.
+Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a non-root user and shouldn’t mount host volumes, unless it is strictly necessary for their operation. See [our suggestions](conceptual-securing-your-operations#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) about how you can help enforce these standards. Be aware that not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform, and so they may require extra capabilities to be permitted when deployed.
 
 In addition, consider [setting memory limits and CPU requests](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for each pod (though not CPU limits which can lead to undesirable throttling). Also consider resource quotas for each namespace. These limits and quotas can prevent broader Denial of Service (DoS) attacks from a container that is compromised or otherwise misbehaving.
 
@@ -60,7 +60,7 @@ Your workloads should use [workload identity federation](/azure/azure-arc/kubern
 
 Service account tokens are created and signed by your cluster’s service account token issuer. The issuer’s private key is therefore a fundamental secret. It should be only be accessible where it is needed to issue tokens and it should be regularly rotated.
 
-If you’re running AKS enabled by Azure Arc on Azure Local, then this is automatically taken care of. Only the control planes nodes that run the API server (which includes the token issuer) can access the keys.  The keys expire after 90 days, and they are rotated automatically every 45 days.
+If you’re running AKS enabled by Azure Arc on Azure Local, then this is automatically taken care of. Only the control planes nodes that run the API server (which includes the token issuer) can access the keys. The keys expire after 90 days, and they are rotated automatically every 45 days.
 
 If you connect your own cluster via Arc-enabled Kubernetes, then evaluate if your vendor’s product offers similar capabilities. Check if they restrict access to the service account token issuer key and if they rotate it regularly.
 
@@ -72,9 +72,9 @@ For TLS connections within a cluster, evaluate using a service mesh such as [Ist
 
 For ingress TLS connections into the cluster, evaluate using one of the many products (load balancers, ingress/gateway controllers, etc) to help you securely manage incoming traffic. You may need to generate your own certificates for these endpoints to use. You may also need to distribute trust bundles for these certificates to external clients that need to authenticate their connection into the cluster. Again, consider issuing these certificates from your PKI. You can use [cert-manager](https://cert-manager.io/) to request these certs (here’s [how this works](https://kubernetes.github.io/ingress-nginx/user-guide/tls/#automated-certificate-management-with-cert-manager) for the NGINX ingress controller). And you can use [trust-manager](https://cert-manager.io/docs/trust/trust-manager/) to help you distribute trust in them. Or, if you only need a few certificates, then you might create and rotate them manually in Azure Key Vault and sync them as Kubernetes secrets using the [Azure Key Vault Secret Store extension for Kubernetes (preview)](/azure/azure-arc/kubernetes/secret-store-extension) ("SSE").
 
-Once generated, these certificates and accompanying private keys are stored as secrets in the Kubernetes secret store. See section 4.2 below on protecting these secrets. 
+Once generated, these certificates and accompanying private keys are stored as secrets in the Kubernetes secret store. See this [guidance on protecting these secrets](conceptual-securing-your-data#protect-the-kubernetes-secrets-store). 
 
-You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the ‘default’ service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules for your services (see section 2.7 below) or for your API server using Kubernetes RBAC (see section 3.2 below).  You can also help protect the service account issuer key itself, as described in section 2.5 above.
+You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the ‘default’ service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules [for your services](conceptual-securing-your-workloads#configure-authorization-rules-for-accessing-workloadsservices) or [for your API server using Kubernetes RBAC](conceptual-securing-your-operations#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac).
 
 ### References
 * [Kubernetes Security - OWASP Cheat Sheet Series – “Implementing centralized policy management”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
@@ -82,13 +82,13 @@ You may also use service account tokens for TLS, instead of certificates for mTL
 
 ## Configure authorization rules for accessing workloads/services
 
-Aim to control traffic between your workloads by setting authorization rules about which workloads can send requests to your Kubernetes workloads (services). As discussed in section 2.6 above, you can configure credentials for these calling workloads as either client certificates or service account tokens.
+Aim to control traffic between your workloads by setting authorization rules about which workloads can send requests to your Kubernetes workloads (services).
 
-If you’re using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/), it can issue these identity credentials to each workload automatically. You can then use these identities in [configuring authorization policies](https://istio.io/latest/docs/reference/config/security/authorization-policy/) that help restrict access to Kubernetes services only to the specified calling workloads. 
+If you’re using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/), it can issue identity credentials to each workload automatically. You can then use these identities in [configuring authorization policies](https://istio.io/latest/docs/reference/config/security/authorization-policy/) that help restrict access to Kubernetes services only to the specified calling workloads. 
 
-Alternatively, if you’re not using a service mesh, you can consider deploying a dedicated authorization engine such as [OPA](https://www.openpolicyagent.org/) with, for examples, its [Envoy plug-in](https://www.openpolicyagent.org/docs/latest/envoy-introduction/).
+Alternatively, if you’re not using a service mesh, you can configure your own credentials (certificates or service account tokens) and deploy a dedicated authorization engine such as [OPA](https://www.openpolicyagent.org/) with, for example, its [Envoy plug-in](https://www.openpolicyagent.org/docs/latest/envoy-introduction/).
 
-Also consider enforcing traffic restrictions can also be created at the network layer: see section 5.1 below.
+Also [consider enforcing traffic restrictions at the network layer](conceptual-securing-your-network#configure-kubernetes-network-policy-to-control-access-tofrom-your-workloads).
 
 ## Maintain and monitor workload telemetry and plug it into a security management (SIEM) solution
 
