@@ -61,7 +61,7 @@ Beyond this, look to build an incident response plan and practice using it. The 
 
 ## Leverage deployment strategies to achieve zero-downtime updates
 
-Critical security updates should not compromise the reliability and availability of your workloads, even when rolled out urgently. Choose a [Kubernetes deployment strategy](https://azure.microsoft.com/en-us/solutions/kubernetes-on-azure/deployment-strategy/) that best helps maintain high availability in your environment, and consider implementing [readiness- and liveness-probes](https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/) allow Kubernetes to better learn about the state of your workloads as it maintains your deployment. Combined with gradual rollouts and traffic management policies at your ingress load-balancer, you can leverage Kubernetes to drive updates without interrupting the availability of your applications.
+Critical security updates should not compromise the reliability and availability of your workloads, even when rolled out urgently. Choose a [Kubernetes deployment strategy](https://azure.microsoft.com/solutions/kubernetes-on-azure/deployment-strategy/) that best helps maintain high availability in your environment, and consider implementing [readiness- and liveness-probes](https://kubernetes.io/docs/concepts/configuration/liveness-readiness-startup-probes/) allow Kubernetes to better learn about the state of your workloads as it maintains your deployment. Combined with gradual rollouts and traffic management policies at your ingress load-balancer, you can leverage Kubernetes to drive updates without interrupting the availability of your applications.
 
 ## Next steps
 

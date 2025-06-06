@@ -32,7 +32,7 @@ If you’ve connected your own cluster via Arc-enabled Kubernetes, then help ens
 
 ## Protect other workload data
 
-Beyond your secret values, consider the protection at rest of other workload data that may still be sensitive. If you’re running AKS on Azure Local, then all data volumes are [encrypted at rest using BitLocker](/azure/azure-local/concepts/security-features?view=azloc-24113#bitlocker-encryption). If you’ve connected your own cluster via Arc-enabled Kubernetes, or mounting external volumes, then use any similar protection offered by the vendor.
+Beyond your secret values, consider the protection at rest of other workload data that may still be sensitive. If you’re running AKS on Azure Local, then all data volumes are [encrypted at rest using BitLocker](/azure/azure-local/concepts/security-features#bitlocker-encryption). If you’ve connected your own cluster via Arc-enabled Kubernetes, or mounting external volumes, then use any similar protection offered by the vendor.
 
 In addition to helping protect your workload data at rest, it’s also important to help protect your workload data in transit. See sections 2.5-2.7 above about establishing encryption, authentication, and authorization for data traffic between your workloads and to/from Azure. See also section 5 below for additional network layer protections. Such transit protections are established automatically if you use [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) to store data locally and synchronize it with Azure in the cloud.
 

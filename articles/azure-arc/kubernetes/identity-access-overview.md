@@ -90,4 +90,4 @@ If you're using [cluster connect with Microsoft Entra authentication](cluster-co
 - Learn about [cluster connect access to Azure Arc-enabled Kubernetes clusters](conceptual-cluster-connect.md).
 - Learn about [Azure RBAC on Azure Arc-enabled Kubernetes](conceptual-azure-rbac.md).
 - Learn about [access and identity options for Azure Kubernetes Service (AKS) clusters](/azure/aks/concepts-identity).
-- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security.book.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
