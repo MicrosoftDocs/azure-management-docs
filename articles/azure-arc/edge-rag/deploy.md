@@ -52,9 +52,10 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
    |**Model**| The information you enter in this section  depend on the language model you select.|
    |Language model          | Select the language model that you want to deploy. Choose either Microsoft provided or your own language model.                                              |
    |Microsoft language model|If you chose Microsoft provided, select one of the Microsoft provided language models.|
-   |Model name|If you chose to provide your own language model, enter the name of your language model.|
-   |LLM endpoint|If you chose to provide your own language model, enter the name of your large language model (LLM) endpoint in the format `http://some-endpoint` or `https://some-endpoint`. For example, `https://<Endpoint_Name>.openai.azure.com/openai/deployments/<model_name> /chat/completions?api-version=<API_VERSION>`. |
-   |Max token (k)|If you chose to provide your own language model, enter a number range between 4K to 2048 K for your language model.|
+   |**Add your own language model**|If you chose to provide your own language model, enter the following information.|
+   |Model name|Enter the name of your language model.|
+   |LLM endpoint|Enter the name of your large language model (LLM) endpoint in the format `http://some-endpoint` or `https://some-endpoint`. For example, `https://<Endpoint_Name>.openai.azure.com/openai/deployments/<model_name> /chat/completions?api-version=<API_VERSION>`. |
+   |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
    |**SSL settings**||
    |SSL CNAME           | Provide the domain name for your system. This domain name is the same as redirect URI provided during app registration.|
    |Kubernetes SSL secret name     | Provide a friendly name for the SSL secret to be used by the application.                |
