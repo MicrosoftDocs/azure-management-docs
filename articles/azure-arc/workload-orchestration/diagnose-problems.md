@@ -157,8 +157,8 @@ If you want to enable workload orchestration level logs and kubernetes events on
         --workspace $diagnosticLAId
     ```
 
- > [!NOTE]
- > If you set up a Log Analytics workspace for the first time, it might take a few minutes to be ready. For more information, see [Diagnostic settings in Azure Monitor](/azure/azure-monitor/platform/diagnostic-settings).
+     > [!NOTE]
+     > If you set up a Log Analytics workspace for the first time, it might take a few minutes to be ready. For more information, see [Diagnostic settings in Azure Monitor](/azure/azure-monitor/platform/diagnostic-settings).
 
 1. Go to [Azure portal](https://portal.azure.com). In the search bar, type "Log Analytics workspaces" and select it. Select your log analytics workspace.
 1. In the log analytics workspace, select **Logs** from the left-hand menu. In the query editor, select the **Tables** tab. You see two new tables: WOUserAudits and WOUserDiagnostics.
