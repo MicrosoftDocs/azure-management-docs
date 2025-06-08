@@ -77,6 +77,8 @@ items:
       items:
       - name: Troubleshooting
         href: troubleshooting.md
+      - name: Known issues
+        href: known-issues.md
       - name: Release notes
         href: release-notes.md
 
