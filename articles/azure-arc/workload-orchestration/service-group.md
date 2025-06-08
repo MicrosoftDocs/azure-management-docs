@@ -38,7 +38,7 @@ The following diagram shows how service groups structure groups related componen
 
 ## Create a service group
 
-The following command creates a service group with the specified name and tenant ID. Make sure to replace `<service-group-name>` and `<tenant-id>` with your actual values.
+The following command creates a service group with the specified name and tenant ID. Make sure to replace `<service-group-name>` and `<tenant-id>` with your actual values. Service group names must be unique within the tenant and can only contain alphanumeric characters, underscores, and hyphens. 
 
 #### [Bash](#tab/bash)
 
@@ -187,6 +187,9 @@ az rest `
       --hierarchies "[0].name=factory" "[0].description=Factory" "[1].name=line" "[1].description=Line"
     ```
 
+    > [!NOTE]
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
+
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
 
@@ -275,6 +278,9 @@ az rest `
       --capabilities "@context-capabilities.json" `
       --hierarchies [0].name=factory [0].description=Factory [1].name=line [1].description=Line
     ```
+
+    > [!NOTE]
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
