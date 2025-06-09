@@ -27,11 +27,10 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
 
 #### [Azure portal](#tab/azure-portal)
 
-1. In the [Azure portal](https://portal.azure.com/), deploy Edge RAG from the Marketplace or by adding the extension to the Azure Kubernetes cluster on Azure Local.
+1. In the [Azure portal](https://portal.azure.com/), go to the Azure Kubernetes cluster on Azure Local. 
+1. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
 
-   - Search for **Edge RAG** in the Marketplace to get to the extension deployment page.
-   :::image type="content" source="media/deploy/marketplace-option.png" alt-text="Screenshot of search results in the Azure portal that shows the Edge RAG option in the Marketplace.":::
-   - Or, go to the Azure Kubernetes cluster on Azure Local. Select **Settings** > **Extensions** > **+ Add**, and **Edge RAG** from the list.
+   :::image type="content" source="media/deploy/add-cluster-extension.png" alt-text="Screenshot of the extensions you can add from the cluster with Edge RAG highlighted." lightbox="media/deploy/add-cluster-extension.png":::
 1. On the **Basics** tab, provide the following information:
 
    | Field      | Value                                                        |
