@@ -33,7 +33,7 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Terraform based VM management (AzAPI provider)
-            url: terraform-vm-management?tabs=scenario1.md
+            url: terraform-vm-management.md
       
   - title: Use Azure to manage SCVMM VMs
     linkLists:
@@ -59,27 +59,7 @@ landingContent:
             url: enable-guest-management-at-scale.md
           - text: Modernize VM management
             url: /azure/azure-arc/servers/modernize-server-management
-          - text: Monitor VMs
-            url: /azure/azure-arc/servers/learn/tutorial-enable-vm-insights
-          - text: Onboard to Microsoft Defender for Cloud
-            url: /azure/defender-for-cloud/quickstart-onboard-machines
-          - text: Onboard to Microsoft Sentinel
-            url: /azure/azure-arc/servers/scenario-onboard-azure-sentinel
-          - text: Enable Azure Automation
-            url: /azure/automation/quickstarts/install-hybrid-worker-extension
-          - text: Assign policy to assess compliance
-            url: /azure/azure-arc/servers/learn/tutorial-assign-policy-portal
-          - text: Deploy Azure services at scale
-            url: /azure/azure-arc/servers/deploy-management-services
-          - text: Enable Software Assurance attestation benefits
-            url: /azure/azure-arc/servers/windows-server-management-overview
-          - text: Deliver ESUs for SCVMM VMs through Arc
-            url: deliver-esus-for-system-center-virtual-machine-manager-vms.md 
-          - text: Perform ongoing maintenance
-            url: administer-arc-scvmm.md
-          - text: Upgrade Azure Arc resource bridge
-            url: upgrade-azure-arc-resource-bridge.md
-
+          
   - title: Troubleshoot
     linkLists:
       - linkListType: Troubleshoot
@@ -95,8 +75,8 @@ landingContent:
   
   - title: Resource 
     linkLists:
-      - linkListType: Resource
-        link:
+      - linkListType: resource
+        links:
           - text: Regional availability
             url: /azure.microsoft.com/explore/global-infrastructure/products-by-region/table
 
