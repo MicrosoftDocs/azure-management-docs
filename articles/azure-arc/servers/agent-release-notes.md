@@ -22,8 +22,17 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
-> [!WARNING]
-> For Windows Server 2012 Machines, Agents 1.50 and 1.51 fail to install or upgrade.  Microsoft is working to resolve this in May 2025 Agent release or sooner.
+## Version 1.53 - June 2025
+
+Download for [Windows ](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi)or [Linux ](/editor/MicrosoftDocs/azure-management-docs-pr/articles%2Fazure-arc%2Fservers%2Fagent-release-notes.md/main/cd12107b-7017-8732-b1c3-2ab63e80212d/manage-agent.md)
+
+### Fixed
+
+- [Linux Only] Resolved "No public key" error by adding GPG package signature validation. 
+
+### New features and enhancements
+
+- [Linux Only] Replaced the use of `daemon-reexec` with `daemon-reload` when setting environment variables.
 
 ## Version 1.52 - May 2025
 
