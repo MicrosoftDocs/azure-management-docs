@@ -47,19 +47,6 @@
   - name: Data exchange between cluster and Azure
     displayName: metadata
     href: conceptual-data-exchange.md
-  - name: Identity and access management
-    items:
-      - name: Identity and access overview
-        displayName: connect, rbac, authentication, authorization
-        href: identity-access-overview.md
-      - name: Cluster connect access
-        displayName: identity
-        href: conceptual-cluster-connect.md
-      - name: Azure RBAC integration
-        displayName: azure ad, azure active directory, identity, access, role
-        href: conceptual-azure-rbac.md
-      - name: Workload identity federation
-        href: conceptual-workload-identity.md
   - name: Extend Azure capabilities to clusters anywhere
     items:
       - name: Cluster extensions
@@ -93,21 +80,6 @@
             href: conceptual-configurations.md
           - name: Deploy configurations using GitOps (Flux v1)
             href: tutorial-use-gitops-connected-cluster.md
-  - name: Security book - recommendations and best practices
-    items:
-      - name: Introduction and overview
-        href: conceptual-security-book.md
-        displayName: security, best practices, recommendations
-      - name: Securing your platform
-        href: conceptual-securing-your-platform.md
-      - name: Securing your workloads
-        href: conceptual-securing-your-workloads.md
-      - name: Securing your operations
-        href: conceptual-securing-your-operations.md
-      - name: Securing your data
-        href: conceptual-securing-your-data.md
-      - name: Securing your network
-        href: conceptual-securing-your-network.md
   - name: Frequently Asked Questions
     displayName: FAQ
     href: faq.md
@@ -184,6 +156,38 @@
     - name: Extension issues
       displayName: gitops, flux, osm, open
       href: extensions-troubleshooting.md
+- name: Security
+  items:  
+    - name: Identity and access management
+      items:
+      - name: Identity and access overview
+        displayName: connect, rbac, authentication, authorization
+        href: identity-access-overview.md
+      - name: Cluster connect access
+        displayName: identity
+        href: conceptual-cluster-connect.md
+      - name: Azure RBAC integration
+        displayName: azure ad, azure active directory, identity, access, role
+        href: conceptual-azure-rbac.md
+      - name: Workload identity federation
+        href: conceptual-workload-identity.md
+    - name: Security book - recommendations and best practices
+      items:
+      - name: Introduction and overview
+        href: conceptual-security-book.md
+        displayName: security, best practices, recommendations
+      - name: Securing your platform
+        href: conceptual-securing-your-platform.md
+      - name: Securing your workloads
+        href: conceptual-securing-your-workloads.md
+      - name: Securing your operations
+        href: conceptual-securing-your-operations.md
+      - name: Securing your data
+        href: conceptual-securing-your-data.md
+      - name: Securing your network
+        href: conceptual-securing-your-network.md
+    - name: Security baseline
+      href: /security/benchmark/azure/baselines/azure-arc-enabled-kubernetes-security-baseline?toc=/azure/azure-arc/kubernetes/toc.json
 - name: Reference
   items:
   - name: Azure Policy built-ins
