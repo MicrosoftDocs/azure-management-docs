@@ -10,10 +10,10 @@ description: "Comprehensive security guidance and best practices for securing Az
 > [!NOTE]
 > This content is one of a series of security books, offering recommendations and best practices to help secure Microsoft platforms. Other security books include [Azure Local security book](https://github.com/Azure-Samples/AzureLocal/blob/main/SecurityBook/Azure%20Local%20Security%20Book_04302025.pdf), [the Windows Server 2025 book](https://techcommunity.microsoft.com/blog/microsoft-security-blog/windows-server-2025-security-book/4283981), and the [Windows Client security book](/windows/security/book/)
 
-Your organization may have Kubernetes deployments that include clusters running at the edge (on-premises in data centers, factories, shops) or in multiple clouds. It is often a challenge to maintain a consistent and scalable security posture in these heterogeneous environments. You can help address this challenge, and simplify your security workflows by running Microsoft-managed clusters using [Azure Kubernetes Service (AKS) enabled by Azure Arc](/azure/aks/hybrid/aks-overview) on your edge infrastructure, such as on [Azure Local](/azure/azure-local/overview). Or you can connect existing non-Microsoft edge clusters using [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/).
+Your organization may have Kubernetes deployments that include clusters running at the edge (on-premises in data centers, factories, shops) or in multiple clouds. It's often a challenge to maintain a consistent and scalable security posture in these heterogeneous environments. You can help address this challenge, and simplify your security workflows by running Microsoft-managed clusters using [Azure Kubernetes Service (AKS) enabled by Azure Arc](/azure/aks/hybrid/aks-overview) on your edge infrastructure, such as on [Azure Local](/azure/azure-local/overview). Or you can connect existing non-Microsoft edge clusters using [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/).
 
 This book explains how these products can help you maintain a consistent and scalable security posture, covering both your cluster infrastructure and your application workloads. It advises how you can help guard against multiple threat vectors across supply chain risks, malicious external actors, or insider attacks. It builds on industry best practices such as those from:
-- the [National Security Agency / Cybersecurity and Infras(tructure Security Agency](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF) (NSA/CISA)
+- the [National Security Agency / Cybersecurity and Infrastructure Security Agency](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF) (NSA/CISA)
 - the [Center for Internet Security (CIS)](https://www.cisecurity.org/benchmark/kubernetes)
 - the [Open Worldwide application Security Project](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html) (OWASP)
 - the [National Institute of Standards and Technology](https://csrc.nist.gov/pubs/sp/800/190/final) (NIST)
@@ -24,7 +24,7 @@ It also aligns with:
 - [Microsoft’s security advice for AKS cloud clusters](/azure/aks/concepts-security), expanding this advice to include extra considerations for edge clusters
 - [Microsoft's security advice for IoT solutions](/azure/iot/iot-overview-security?tabs=edge).
 
-If you are a security professional, this book surveys all these factors and makes multiple recommendations. If you are a leader or engineer with direct responsibility for Kubernetes development, deployment, or operations, it further points you towards detailed practical advice on steps you can take.
+If you're a security professional, this book surveys all these factors and makes multiple recommendations. If you're a leader or engineer with direct responsibility for Kubernetes development, deployment, or operations, it further points you towards detailed practical advice on steps you can take.
 
 :::image type="content" source="media/conceptual-security-book/security-challenges.png" alt-text="Diagram showing the five categories of security challenges for edge Kubernetes.":::
 

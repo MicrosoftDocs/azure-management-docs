@@ -9,9 +9,9 @@ description: "Guidance on securing the platform layer of Azure Arc-enabled Kuber
 
 ## Stay up to date with the latest security patches
 
-It's recommended to upgrade your cluster and node OS with the latest security patches as they are published. In turn, this means it’s important to keep your cluster up to date with a supported version of Kubernetes, for which patches are released. Similarly, it's also important to keep your nodes up to date with a supported version of their OS.
+We recommend upgrading your cluster and node OS with the latest security patches as they are published. In turn, this means it’s important to keep your cluster up to date with a supported version of Kubernetes, for which patches are released. Similarly, it's also important to keep your nodes up to date with a supported version of their OS.
 
-If you’re using AKS enabled by Azure Arc on Azure Local, then it is easy to [apply such upgrades](/azure/aks/aksarc/cluster-upgrade). It’s also easy to [upgrade Azure Local itself](/azure/azure-local/update/about-updates-23h2).
+If you’re using AKS enabled by Azure Arc on Azure Local, then it's easy to [apply such upgrades](/azure/aks/aksarc/cluster-upgrade). It’s also easy to [upgrade Azure Local itself](/azure/azure-local/update/about-updates-23h2).
 
 If you connect your own cluster via Arc-enabled Kubernetes, then keep it up to date following your vendor’s guidance, and to configure automatic upgrades for the Arc-enabled Kubernetes agents that maintain the cluster’s connection to Azure.
 
@@ -27,7 +27,7 @@ AKS enabled by Azure Arc on Azure Local automatically configures its control pla
 
 If you connect your own cluster via Arc-enabled Kubernetes, then confirm that your vendor can similarly help to automatically configure secure defaults across their hardware, OS, and Kubernetes stack. Evaluate if they have appropriate features such as a hardware root-of-trust, secure boot, and drive encryption. Also consider if [Microsoft Defender for Endpoint](/defender-endpoint) can help further protect your cluster nodes.
 
-In addition, whether your cluster is fully Microsoft managed or you connect your own cluster, you can use Microsoft Defender for Containers to help [assess the health of your Kubernetes nodes](/azure/defender-for-cloud/kubernetes-nodes-va) and notify you of any issues. See the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=azureva%2Carcrt%2Carcspm%2Carcnet) for which features are supported on which cluster types at which level (preview or general availability).
+In addition, whether your cluster is fully Microsoft managed or you connect your own cluster, you can use Microsoft Defender for Containers. It helps [assess the health of your Kubernetes nodes](/azure/defender-for-cloud/kubernetes-nodes-va) and notify you of any issues. See the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=azureva%2Carcrt%2Carcspm%2Carcnet) for which features are supported on which cluster types at which level (preview or general availability).
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -46,11 +46,11 @@ If you connect your own cluster via Arc-enabled Kubernetes, then determine if tr
 
 ## Protect direct access to your nodes
 
-In general, it’s not recommended to directly access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See our [further guidance](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac) on this topic.
+In general, we don't recommend direct access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See our [further guidance](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac) on this topic.
 
 Therefore, SSH access to your worker nodes should be disabled by default. However, if this access does prove to be required, and you’re running AKS enabled by Azure Arc on Azure Local, then it’s important to manage it carefully. [Safely store the SSH keys when you create the cluster](/azure/aks/aksarc/configure-ssh-keys) and [restrict SSH access to only expected network addresses](/azure/aks/hybrid/restrict-ssh-access). Beyond this limited exception, there should be no other way to reach the control plane nodes and the Kubernetes infrastructure components that run on them such as kube-scheduler, etcd, kubelet.
 
-Finally, because edge clusters often reside in non-secure locations, consider what physical protections are appropriate (locked access, tamper evident measures, etc).
+Finally, because edge clusters often reside in nonsecure locations, consider what physical protections are appropriate (locked access, tamper evident measures, etc.).
 
 ### References
 * [NIST Application Container Security Guide - Section 4.5.4 and 4.5.5](https://csrc.nist.gov/pubs/sp/800/190/final)

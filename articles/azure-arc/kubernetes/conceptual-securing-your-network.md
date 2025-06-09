@@ -9,9 +9,7 @@ description: "Network security best practices for Azure Arc-enabled Kubernetes c
 
 ## Configure Kubernetes network policy to control access to/from your workloads
 
-You can help protect your cluster’s workload data traffic (workload) via TLS as described in sections and 2.6 above.
-
-You can also help further protect your workload data traffic by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. If you are using AKS enabled by Azure Arc on Azure Local, then you can [deploy the Calico network plugin](/azure/aks/aksarc/concepts-container-networking#kubernetes-networks) to enable this (support for this is currently ‘as is’). If you connect your own cluster via Arc-enabled Kubernetes, then evaluate what networking (CNI) security capabilities they offer, and follow their guidance accordingly.
+As well as [helping to protect your cluster’s workload data traffic via TLS](conceptual-securing-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. If you're using AKS enabled by Azure Arc on Azure Local, then you can [deploy the Calico network plugin](/azure/aks/aksarc/concepts-container-networking#kubernetes-networks) (support for this is currently "as is"). If you connect your own cluster via Arc-enabled Kubernetes, then evaluate what networking (CNI) security capabilities they offer, and follow their guidance accordingly.
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -23,7 +21,7 @@ You can also help further protect your workload data traffic by creating [networ
 
 You can also create further defense in depth, for both your management and data traffic, by appropriately configuring the network of your underlying infrastructure. For example, if you’re using AKS enabled by Azure Arc on Azure Local, you should review the [guidance](/azure/aks/aksarc/aks-hci-network-system-requirements) for cluster IP address planning. Consider fully separating management and data traffic if your workloads don’t need to access the API server. 
 
-Further, we recommend evaluating your organization’s external firewall rules so that they are consistent with the rules you set at the Kubernetes and infrastructure layers. Enable only those outbound and inbound destinations strictly required, and no more. You can also use [Azure Arc Gateway (preview)](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking?tabs=azure-cli) to simplify the firewall rules needed to enable  your cluster’s access to Azure resources.
+Further, we recommend evaluating your organization’s external firewall rules so that they're consistent with the rules you set at the Kubernetes and infrastructure layers. Enable only those outbound and inbound destinations strictly required, and no more. You can also use [Azure Arc Gateway (preview)](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking?tabs=azure-cli) to simplify the firewall rules needed to enable  your cluster’s access to Azure resources.
 
 ### References
 * [NIST Application Container Security Guide - Section 4.3.3, 4.3.4, and 4.4.2](https://csrc.nist.gov/pubs/sp/800/190/final)
@@ -31,7 +29,7 @@ Further, we recommend evaluating your organization’s external firewall rules s
 
 ## Use Azure Private Link (preview) to access Azure resources
 
-In addition to protecting your traffic to Azure resources by [using TLS and Workload Identity Federation](conceptual-securing-your-workloads.md#use-workload-identity-for-accessing-azure-resources), considering adding further defense in depth by using [Azure Private Link for Arc-enabled clusters (preview)](/azure/azure-arc/kubernetes/private-link). This connects your cluster to Azure Arc, and other services such as Azure Key Vault, using private endpoints inside your cloud virtual network, which itself can be connected to your premises using [site-to-site VPN](/azure/vpn-gateway/tutorial-site-to-site-portal) or [ExpressRoute circuit](/azure/expressroute/expressroute-howto-linkvnet-arm). Evaluate the [advantages](/azure/azure-arc/kubernetes/private-link#advantages) and [current limitations](/azure/azure-arc/kubernetes/private-link#current-limitations) to decide if this solution works for you.
+In addition to helping protect your traffic to Azure with [TLS and Workload Identity Federation](conceptual-securing-your-workloads.md#use-workload-identity-for-accessing-azure-resources), also consider using [Azure Private Link for Arc-enabled clusters (preview)](/azure/azure-arc/kubernetes/private-link). This sets up private endpoints inside your cloud virtual network for Azure Arc, and other services such as Azure Key Vault. This network itself can then be connected to your premises using [site-to-site VPN](/azure/vpn-gateway/tutorial-site-to-site-portal) or [ExpressRoute circuit](/azure/expressroute/expressroute-howto-linkvnet-arm). Evaluate the [advantages](/azure/azure-arc/kubernetes/private-link#advantages) and [current limitations](/azure/azure-arc/kubernetes/private-link#current-limitations) to decide if this solution works for you.
 
 ## Next steps
 

@@ -11,7 +11,7 @@ description: "Guidance for securing workloads running on Azure Arc-enabled Kuber
 
 Follow the Microsoft Containers Secure Supply Chain framework as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities. 
 
-Look to obtain or generate a Software Bill of Materials (SBOM) to track code provenance. You can also configure [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction#vulnerability-assessment) to help perform a vulnerability assessment of images in your container registry – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=extva%2Cazurert%2Cazurespm%2Cawsnet#vulnerability-assessment-va-features) for which registries are supported at what level (preview or general availability).
+Look track code provenance by obtaining or generating a Software Bill of Materials (SBOM). You can also configure [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction#vulnerability-assessment) to help perform a vulnerability assessment of images in your container registry – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=extva%2Cazurert%2Cazurespm%2Cawsnet#vulnerability-assessment-va-features) for which registries are supported at what level (preview or general availability).
 
 More generally, we recommend you follow the [Security Development Lifecycle](https://www.microsoft.com/securityengineering/sdl) as you develop your workload application software.
 
@@ -24,7 +24,7 @@ See also [our guidance](conceptual-securing-your-operations.md#follow-a-secure-c
 
 ## Prepare your container images for hardened Kubernetes environments
 
-To help promote the execution of container images with least privileges at runtime, author your container images following steps to support non-root execution of workloads. Non-root container images allow for the configuration of hardened pod security standards (see the following guidance on this).
+To help promote the execution of container images with least privileges at runtime, author your container images to support non-root execution of workloads.
 
 Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components. You can choose base images for your workloads from a reputable vendor such as from the [Microsoft Artifact Registry](https://mcr.microsoft.com/). Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components and the maintenance burden resulting from security updates and bug fixes. Use multi-stage builds to further reduce the footprint of your runtime images. 
 
@@ -58,7 +58,7 @@ Consider using [extra Linux security hardening frameworks](https://kubernetes.io
 
 Your workloads should use [workload identity federation](/azure/azure-arc/kubernetes/workload-identity) to help securely access your resources in Azure, such a storage account. This approach helps avoid the need for you to create and distribute separate secrets to authenticate the Entra ID identities used for authorization with Azure RBAC. Instead, this federation approach enables to you to obtain a token for an Entra ID identity in the cloud directly from a Kubernetes service account token. (Service accounts are Kubernetes’ built-in identity for workloads.)
 
-Your cluster’s service account token issuer creates and signs these service account tokens. The issuer’s private key is therefore a fundamental secret. It should only be accessible where it's needed to issue tokens and it should be regularly rotated.
+Your cluster’s service account token issuer creates and signs these service account tokens. The issuer’s private key is therefore a fundamental secret. Access to it should be restricted and it should be regularly rotated.
 
 If you’re running AKS enabled by Azure Arc on Azure Local, then this access control is automatically taken care of. Only the control planes nodes that run the API server (which includes the token issuer) can access the keys. The keys expire after 90 days, and they're rotated automatically every 45 days.
 
@@ -66,7 +66,7 @@ If you connect your own cluster via Arc-enabled Kubernetes, then evaluate if you
 
 ## Configure TLS encryption and authentication within/to/from workloads
 
-Use TLS for all connections that your workloads make, both inside and outside of the cluster. This may require you to generate certificates and distribute trust bundles for use in establishing these connections. 
+Use TLS for all connections that your workloads make, both inside and outside of the cluster. Using TLS may require you to generate certificates and distribute trust bundles for use in establishing these connections. 
 
 For TLS connections within a cluster, evaluate using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/) to maintain the TLS connections for you. A service mesh such as Istio, or an application runtime such as DAPR, can help generate its own self-signed workload certificates. For extra security, consider [configuring a cluster-local intermediate CA](https://istio.io/latest/docs/tasks/security/cert-management/plugin-ca-cert/) for use in signing these workload certificates. If you do so, then also consider issuing the certificate for this intermediate CA using your Public Key Infrastructure (PKI), where the root certificate itself remains secured in an offline HSM-backed vault.
 
@@ -86,7 +86,7 @@ Aim to control traffic between your workloads by setting authorization rules abo
 
 If you’re using a service mesh such as [Istio](https://istio.io/latest/about/service-mesh/), it can issue identity credentials to each workload automatically. You can then use these identities in [configuring authorization policies](https://istio.io/latest/docs/reference/config/security/authorization-policy/) that help restrict access to Kubernetes services only to the specified calling workloads. 
 
-Alternatively, if you’re not using a service mesh, you can configure your own credentials (certificates or service account tokens) and deploy a dedicated authorization engine such as [OPA](https://www.openpolicyagent.org/) with, for example, its [Envoy plug-in](https://www.openpolicyagent.org/docs/latest/envoy-introduction/).
+Alternatively, if you’re not using a service mesh, you can configure your own credentials (certificates or service account tokens) and deploy a dedicated authorization engine such as [OPA](https://www.openpolicyagent.org/). OPA can be used with its [Envoy plug-in](https://www.openpolicyagent.org/docs/latest/envoy-introduction/) to avoid the need to modify your workloads.
 
 Also [consider enforcing traffic restrictions at the network layer](conceptual-securing-your-network.md#configure-kubernetes-network-policy-to-control-access-tofrom-your-workloads).
 
