@@ -46,6 +46,8 @@
       href: apply-azure-tags.md
     - name: Update configuration and resize a VM
       href: update-configuration-and-resize-vm.md
+    - name: Delete a virtual machine
+      href: delete-virtual-machine.md
   - name: Use Azure services for SCVMM VMs
     items:
     - name: Install Arc agents at scale

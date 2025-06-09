@@ -13,8 +13,6 @@ ms.custom:
 
 # Configure "BYOM" endpoint authentication for Edge RAG Preview, enabled by Azure Arc
 
-Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI Inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
-
 This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
