@@ -9,7 +9,7 @@ description: "Guidance on securing the platform layer of Azure Arc-enabled Kuber
 
 ## Stay up to date with the latest security patches
 
-We recommend upgrading your cluster and node OS with the latest security patches as they are published. In turn, this means it’s important to keep your cluster up to date with a supported version of Kubernetes, for which patches are released. Similarly, it's also important to keep your nodes up to date with a supported version of their OS.
+We recommend upgrading your cluster and node OS with the latest security patches as they're published. In turn, this means it’s important to keep your cluster up to date with a supported version of Kubernetes, for which patches are released. Similarly, it's also important to keep your nodes up to date with a supported version of their OS.
 
 If you’re using AKS enabled by Azure Arc on Azure Local, then it's easy to [apply such upgrades](/azure/aks/aksarc/cluster-upgrade). It’s also easy to [upgrade Azure Local itself](/azure/azure-local/update/about-updates-23h2).
 

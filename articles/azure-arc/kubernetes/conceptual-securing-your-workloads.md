@@ -24,19 +24,19 @@ See also [our guidance](conceptual-securing-your-operations.md#follow-a-secure-c
 
 ## Prepare your container images for hardened Kubernetes environments
 
-To help promote the execution of container images with least privileges at runtime, author your container images to support non-root execution of workloads.
+To help promote the execution of container images with least privileges at runtime, author your container images to support nonroot execution of workloads.
 
 Use distroless and purpose-built container images that narrowly satisfy the necessary runtime components. You can choose base images for your workloads from a reputable vendor such as from the [Microsoft Artifact Registry](https://mcr.microsoft.com/). Narrowing your runtime dependencies helps both reduce the potential attack surface on ancillary components and the maintenance burden resulting from security updates and bug fixes. Use multi-stage builds to further reduce the footprint of your runtime images. 
 
 Use [container signing](/azure/container-registry/container-registry-tutorial-sign-trusted-ca) to help ensure your workload images aren't accidentally or maliciously tampered with. Azure Pipelines and GitHub Actions provide various tooling in support of container signing. You can integrate container signing with your chosen Public Key Infrastructure (PKI).
 
 ### References
-* [NSA Kubernetes Hardening Guidance – ‘"Non-root" containers and "rootless" container engine’ and ‘Build secure container images’](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [NSA Kubernetes Hardening Guidance – "Nonroot containers and rootless container engine" and æBuild secure container images"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 * [Kubernetes Security - OWASP Cheat Sheet Series – "Build Phase"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Follow pod security standards
 
-Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a non-root user and shouldn’t mount host volumes, unless it's strictly necessary for their operation. See [our suggestions](conceptual-securing-your-operations.md#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) about how you can help enforce these standards. Not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform. They may require extra capabilities to be permitted when deployed.
+Follow the Kubernetes [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) for your pods, aiming for the restricted policy level where possible, and the baseline level otherwise. For example, your containers should run as a nonroot user and shouldn’t mount host volumes, unless it's strictly necessary for their operation. See [our suggestions](conceptual-securing-your-operations.md#follow-a-secure-container-lifecycle-as-you-deploy-and-run-containers-with-azure-policy-for-kubernetes) about how you can help enforce these standards. Not all Microsoft-supplied extensions are themselves able to meet the most restricted policy level, due to the privileged operations they perform. They may require extra capabilities to be permitted when deployed.
 
 In addition, consider [setting memory limits and CPU requests](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/) for each pod (though not CPU limits which can lead to undesirable throttling). Also consider resource quotas for each namespace. These limits and quotas can prevent broader Denial of Service (DoS) attacks from a container that is compromised or otherwise misbehaving.
 
@@ -74,7 +74,7 @@ For ingress TLS connections into the cluster, evaluate using one of the many pro
 
 Once generated, these certificates and accompanying private keys are stored as secrets in the Kubernetes secret store. See this [guidance on protecting these secrets](conceptual-securing-your-data.md#protect-the-kubernetes-secrets-store). 
 
-You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the ‘default’ service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules [for your services](conceptual-securing-your-workloads.md#configure-authorization-rules-for-accessing-workloadsservices) or [for your API server using Kubernetes RBAC](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac).
+You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the "default" service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules [for your services](conceptual-securing-your-workloads.md#configure-authorization-rules-for-accessing-workloadsservices) or [for your API server using Kubernetes RBAC](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac).
 
 ### References
 * [Kubernetes Security - OWASP Cheat Sheet Series – "Implementing centralized policy management"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
