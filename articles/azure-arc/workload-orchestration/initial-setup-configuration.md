@@ -40,6 +40,8 @@ The following steps show how to configure the resources of workload orchestratio
     ```bash
     # No space is allowed between comma-separated values for lists
 
+    # Enter resource group 
+    rg="<resource-group-name>"
     # Enter name of Configuration Manager instance
     instanceName="redmondInstance"
     # Enter name of hierarchy list
@@ -56,6 +58,10 @@ The following steps show how to configure the resources of workload orchestratio
     childName="Line01"
     # Enter description of Line01
     childDesc="This line is used for soap and conditioner production"
+    # Enter name of site
+    $siteName="Site01"
+    # Enter id of the site
+    $siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
@@ -94,6 +100,8 @@ The following steps show how to configure the resources of workload orchestratio
     ```powershell
     # No space is allowed between comma-separated values for lists
 
+    # Enter resource group 
+    $rg = "<resource-group-name>"
     # Enter name of Configuration Manager instance
     $instanceName = "redmondInstance"
     # Enter name of hierarchy list
@@ -110,6 +118,10 @@ The following steps show how to configure the resources of workload orchestratio
     $childName = "Line01"
     # Enter description of Line01
     $childDesc = "This line is used for soap and conditioner production"
+    # Enter name of site
+    $siteName = "Site01"
+    # Enter id of the site
+    $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.

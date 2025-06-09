@@ -15,7 +15,7 @@ Currently bulk deployment is only supported via CLI.
 
 ## Prerequisites
 
-- Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
+Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 
 ## Perform a bulk deployment
 
@@ -25,26 +25,29 @@ To perform a bulk deployment, run `bulk-deploy-solution` command in the Azure CL
 az workload-orchestration solution-template bulk-deploy-solution --targets "@target-file.json"  --solution-instance-name "<solution instance name>" --solution-version "<solution template version>" --solution-name "<solution-name>" --solution-dependencies "@dependencies-file.json" -g "<resource group>"
 ```
 
+> [!NOTE]
+> The `--solution-dependencies` parameter is only required if the solution has dependencies. 
+
 You need to provide a *target-file.json* file that contains the list of targets where you want to deploy the solution. The file should be in the following format:
 
 ```json
 [
     {
-        "targetId": "<target resource ID>",
-        "solutionInstanceName": "<instance name>",
+        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName",
+        "solutionInstanceName": "<instance name>", // alphanumeric, small case, no spaces, no special characters
     },
     {
-        "targetId": "<target resource ID>",
+        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName",
     }
 ]
 ```
 
-Solution instance name can be given for each target as part of target-file.json file or as part of CLI input. If you provide the solution instance name in both the target file and the CLI input, the solution instance name from the target file takes precedence. 
+The `solutionInstanceName` parameter can be given for each target as part of target-file.json file or as part of CLI input. If you provide the solution instance name in both the target file and the CLI input, the solution instance name from the target file takes precedence. `solutionInstanceName` should be alphanumeric, in lowercase, and should not contain spaces or special characters.
 
 > [!IMPORTANT]
 > You need to have access to the target clusters on which the solution is deployed. 
 
-You also need to provide a *dependencies-file.json* file that contains the list of dependencies for the solution. The file should be in the following format:
+If your solution has dependencies on other solutions, you also need to provide a *dependencies-file.json* file that contains the list of dependencies for the solution. The file should be in the following format:
 
 ```json
 [

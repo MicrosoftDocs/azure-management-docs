@@ -3,11 +3,11 @@ title: Troubleshooting for Workload Orchestration
 description: Learn how to troubleshoot issues with Workload Orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: troubleshooting
+ms.topic: troubleshooting-general
 ms.date: 06/01/2025
 ---
 
-# Troubleshooting
+# Troubleshooting workload orchestration
 
 This article provides troubleshooting guidance for common issues encountered when using workload orchestration in Azure Arc.
 
