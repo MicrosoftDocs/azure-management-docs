@@ -18,8 +18,8 @@ If you connect your own cluster via Arc-enabled Kubernetes, then keep it up to d
 You may also deploy extensions to your cluster: other sections of this security book recommend many of these extensions for the security benefits they can help bring. If so, configure automatic upgrades for these extensions too.
 
 ### References
-* [NSA Kubernetes Hardening Guidance – “Upgrading and application security patches”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Securing Kubernetes Hosts”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Upgrading and application security patches"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Securing Kubernetes Hosts"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Configure security protections on control plane and worker nodes
 
@@ -41,8 +41,8 @@ If you connect your own cluster via Arc-enabled Kubernetes, then determine if tr
 
 ### References
 * [NIST Application Container Security Guide - Section 4.3.5](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Encryption”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Restricting access to etcd”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Encryption"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Restricting access to etcd"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Protect direct access to your nodes
 

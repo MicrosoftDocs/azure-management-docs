@@ -14,8 +14,8 @@ As well as [helping to protect your cluster’s workload data traffic via TLS](c
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
 * [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Network policies”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Use Kubernetes network policies to control traffic”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Network policies"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Use Kubernetes network policies to control traffic"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Configure your network infrastructure for further defense in depth
 
@@ -25,7 +25,7 @@ Further, we recommend evaluating your organization’s external firewall rules s
 
 ### References
 * [NIST Application Container Security Guide - Section 4.3.3, 4.3.4, and 4.4.2](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Control plane hardening”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [NSA Kubernetes Hardening Guidance – "Control plane hardening"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Use Azure Private Link (preview) to access Azure resources
 

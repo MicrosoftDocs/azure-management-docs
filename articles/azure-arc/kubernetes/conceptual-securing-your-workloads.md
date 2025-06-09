@@ -20,7 +20,7 @@ See also [our guidance](conceptual-securing-your-operations.md#follow-a-secure-c
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
 * [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Implement continuous vulnerability scanning”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Implement continuous vulnerability scanning"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Prepare your container images for hardened Kubernetes environments
 
@@ -31,8 +31,8 @@ Use distroless and purpose-built container images that narrowly satisfy the nece
 Use [container signing](/azure/container-registry/container-registry-tutorial-sign-trusted-ca) to help ensure your workload images aren't accidentally or maliciously tampered with. Azure Pipelines and GitHub Actions provide various tooling in support of container signing. You can integrate container signing with your chosen Public Key Infrastructure (PKI).
 
 ### References
-* [NSA Kubernetes Hardening Guidance – ‘“Non-root” containers and “rootless” container engine’ and ‘Build secure container images’](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Build Phase”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – ‘"Non-root" containers and "rootless" container engine’ and ‘Build secure container images’](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Build Phase"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Follow pod security standards
 
@@ -43,8 +43,8 @@ In addition, consider [setting memory limits and CPU requests](https://kubernete
 ### References
 * [Pod Security Standards | Kubernetes](https://kubernetes.io/docs/concepts/security/pod-security-standards/)
 * [Sections 5.2 of the CIS Kubernetes Benchmark](https://www.cisecurity.org/benchmark/kubernetes)  
-* [NSA Kubernetes Hardening Guidance – “Pod security enforcement” and “Resource Policies”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Apply security context” and “Limiting resource usage in a cluster”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Pod security enforcement" and "Resource Policies"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Apply security context" and "Limiting resource usage in a cluster"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Enforce extra Linux security standards
 
@@ -52,7 +52,7 @@ Consider using [extra Linux security hardening frameworks](https://kubernetes.io
 
 ### References
 * [Section 4.4.3 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Kubernetes Pod Security”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [NSA Kubernetes Hardening Guidance – "Kubernetes Pod Security"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Use workload identity for accessing Azure resources
 
@@ -77,8 +77,8 @@ Once generated, these certificates and accompanying private keys are stored as s
 You may also use service account tokens for TLS, instead of certificates for mTLS, for client-side authentication of connections within the cluster. If so, we recommend avoiding the use of the ‘default’ service account for each namespace. Instead, create a dedicated service account identity for each separate workload or component. Doing so enables a least privilege approach as you configure authorization rules [for your services](conceptual-securing-your-workloads.md#configure-authorization-rules-for-accessing-workloadsservices) or [for your API server using Kubernetes RBAC](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac).
 
 ### References
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Implementing centralized policy management”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
-* [NSA Kubernetes Hardening Guidance – “Protecting Pod servicer account tokens”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Implementing centralized policy management"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Protecting Pod servicer account tokens"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Configure authorization rules for accessing workloads/services
 
@@ -101,7 +101,7 @@ Further, the [Azure Monitor pipeline at edge (preview)](/azure/azure-monitor/ess
 Once you have logs flowing into a Log Analytics workspace, you can also enable [Microsoft Sentinel](/azure/sentinel/overview?tabs=defender-portal) for  cyberthreat detection, investigation, response, and proactive hunting.
 
 ### References
-* [NSA Kubernetes Hardening Guidance – “Logging”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [NSA Kubernetes Hardening Guidance – "Logging"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
 ## Next steps
 

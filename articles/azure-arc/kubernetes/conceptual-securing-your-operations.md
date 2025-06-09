@@ -30,8 +30,8 @@ Finally, if you’re running AKS enabled by Azure Arc on Azure Local then you ca
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
 * [NIST Application Container Security Guide - Section 4.5.1-3](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Authentication and Authorization”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Controlling access to the Kubernetes API”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Authentication and Authorization"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Controlling access to the Kubernetes API"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Follow a secure container lifecycle as you deploy and run containers with Azure Policy for Kubernetes
 
@@ -41,7 +41,7 @@ Additionally, enforce best practice standards for container security hygiene thr
 
 ### References
 * [Section 4.2 of the NIST Application Container Security Guide](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Continuously assess the privileges used by containers” and “Use Pod Security Admission”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Continuously assess the privileges used by containers" and "Use Pod Security Admission"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Detect emerging threats including monitoring control plane changes
 
@@ -56,8 +56,8 @@ In addition to monitoring, look to build an incident response plan and practice 
 ### References
 * [CIS Kubernetes Benchmark - Section 3.2](https://www.cisecurity.org/benchmark/kubernetes)
 * [NIST Application Container Security Guide - Section 4.4.4](https://csrc.nist.gov/pubs/sp/800/190/final)
-* [NSA Kubernetes Hardening Guidance – “Threat detection”](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
-* [Kubernetes Security - OWASP Cheat Sheet Series – “Logging”](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
+* [NSA Kubernetes Hardening Guidance – "Threat detection"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
+* [Kubernetes Security - OWASP Cheat Sheet Series – "Logging"](https://cheatsheetseries.owasp.org/cheatsheets/Kubernetes_Security_Cheat_Sheet.html)
 
 ## Use deployment strategies to achieve zero-downtime updates
 
