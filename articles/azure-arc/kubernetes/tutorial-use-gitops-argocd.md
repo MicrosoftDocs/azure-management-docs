@@ -3,7 +3,11 @@ title: "Tutorial: Deploy applications using GitOps"
 description: "This tutorial shows how to use GitOps with ArgoCD in Azure Arc and AKS clusters."
 ms.date: 04/06/2025
 ms.topic: tutorial
-ms.custom: template-tutorial, devx-track-azurecli, references_regions
+ms.custom:
+  - template-tutorial
+  - devx-track-azurecli
+  - references_regions
+  - build-2025
 ---
 
 # Tutorial: Deploy applications using GitOps with ArgoCD

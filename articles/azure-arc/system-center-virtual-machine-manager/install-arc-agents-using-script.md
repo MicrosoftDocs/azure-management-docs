@@ -9,6 +9,8 @@ author: jyothisuri
 ms.subservice: azure-arc-scvmm
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
+ms.custom:
+  - build-2025
 ---
 
 

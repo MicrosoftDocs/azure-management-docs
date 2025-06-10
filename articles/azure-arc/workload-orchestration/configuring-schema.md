@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: reference
 ms.date: 04/17/2025
+ms.custom:
+  - build-2025
 ---
 
 # Create a configuration schema for workload orchestration

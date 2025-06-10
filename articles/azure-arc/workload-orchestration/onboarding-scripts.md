@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
 ms.date: 05/07/2025
+ms.custom:
+  - build-2025
 ---
 
 # Onboarding scripts for workload orchestration

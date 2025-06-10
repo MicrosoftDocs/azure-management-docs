@@ -1,8 +1,8 @@
 ---
 title: "Optimize image pulls with artifact cache in Azure Container Registry"
 description: "Artifact cache is a feature that allows you to cache container images in Azure Container Registry, improving performance and efficiency."
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli

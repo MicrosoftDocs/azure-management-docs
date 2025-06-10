@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: reference
 ms.date: 05/10/2025
+ms.custom:
+  - build-2025
 ---
 
 # Event Grid external validation payload
