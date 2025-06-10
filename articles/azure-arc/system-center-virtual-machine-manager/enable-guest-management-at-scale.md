@@ -20,10 +20,10 @@ In this article, you learn how to install Azure connected machine agents for SCV
 
 There are multiple avenues available to install Arc agents on SCVMM VMs which you can leverage based on your deployment preferences: 
 
-- [Azure Portal](#azure-portal)
-- [Script-based manual installation](#manual-installation-script)
+- Azure Portal
+- Script-based manual installation
 - Programmatic methods such as Azure CLI, Azure PowerShell, Azure REST APIs, Azure SDKs, Terraform, Bicep and ARM templates. The reference section of this documentation repository has information on the exact syntax. 
-- [Out-of-band methods](#out-of-band-methods) such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy and Ansible playbook.  
+- Out-of-band methods such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy and Ansible playbook.  
 
 ## Prerequisites
 
