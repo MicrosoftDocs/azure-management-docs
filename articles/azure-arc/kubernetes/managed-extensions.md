@@ -45,7 +45,7 @@ Currently, version-managed extensions (preview) provides support for the followi
 - [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview)
 - [Azure Key Vault Secret Store extension for Kubernetes ("SSE")](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s)
 
-To deploy and configure version-managed extensions (preview) for Arc-enabled Kubernetes, use the [az vme](/cli/azure/vme?view=azure-cli-latest) command.
+To deploy and configure version-managed extensions (preview) for Arc-enabled Kubernetes, use the [az vme](/cli/azure/vme) command.
 
 ### Configure Azure Container Storage enabled by Azure Arc
 
