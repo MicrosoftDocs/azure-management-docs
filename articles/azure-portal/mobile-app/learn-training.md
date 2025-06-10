@@ -3,6 +3,8 @@ title: Learn about Azure in the Azure mobile app
 description: The Microsoft Learn features in the Azure mobile app help you learn Azure skills anytime, anywhere.
 ms.date: 05/15/2025
 ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Learn about Azure in the Azure mobile app

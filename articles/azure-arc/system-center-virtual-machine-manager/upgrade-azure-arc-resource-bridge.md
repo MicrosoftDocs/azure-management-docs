@@ -8,6 +8,8 @@ author: jyothisuri
 ms.topic: how-to 
 ms.date: 05/13/2025
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Upgrade the Azure Arc resource bridge

@@ -3,8 +3,8 @@ title: Store Helm Charts in Azure Container Registry
 description: Learn how to store Helm charts for your Kubernetes applications using repositories in Azure Container Registry
 ms.topic: article
 ms.custom: devx-track-azurecli
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 03/31/2025
 ---
@@ -85,7 +85,7 @@ helm version
 Set the following environment variables for the target registry. The ACR_NAME is the registry resource name. If the ACR registry url is myregistry.azurecr.io, set the ACR_NAME to myregistry
 
 ```console
-ACR_NAME=<container-registry-name>
+set ACR_NAME=<container-registry-name>
 ```
 
 ## Create a sample chart

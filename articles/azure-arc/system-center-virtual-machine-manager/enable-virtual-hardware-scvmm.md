@@ -7,6 +7,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed

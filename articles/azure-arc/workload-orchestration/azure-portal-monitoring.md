@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+ms.custom:
+  - build-2025
 ---
 
 # Use Azure portal to monitor your solutions as an IT developer
@@ -46,6 +48,10 @@ IT developers can use the Azure portal to monitor their solutions. In the Azure 
 1. In the **All resources** tab, the default view shows the flattened list of sites and targets.
 
     :::image type="content" source="./media/azure-portal-4.png" alt-text="Screenshot of the Azure portal showing how to change the view to monitor all resources in the Workload Orchestration menu." lightbox="./media/azure-portal-4.png":::
+
+1. In the **Hierarchy level** column, you can see the hierarchy level of the resources. Workload orchestration allows you to have an organization with a minimum of two and a maximum of four levels of hierarchy. For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
+
+    :::image type="content" source="./media/azure-portal-hierarchy.png" alt-text="Screenshot of the Azure portal showing the hierarchy levels of the resources." lightbox="./media/azure-portal-hierarchy.png":::
 
 1. Click on **View solutions**. 
 

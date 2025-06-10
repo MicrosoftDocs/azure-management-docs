@@ -7,6 +7,7 @@ ms.topic: overview
 ms.date: 05/05/2025
 
 #customer intent: As a user, I want to understand the Azure Container Storage enabled by Azure Arc offering and its features.
+# Customer intent: As a cloud architect, I want to understand how Azure Container Storage enabled by Azure Arc functions, so that I can evaluate its suitability for providing persistent storage in Arc-connected Kubernetes clusters.
 ---
 
 # What is Azure Container Storage enabled by Azure Arc?

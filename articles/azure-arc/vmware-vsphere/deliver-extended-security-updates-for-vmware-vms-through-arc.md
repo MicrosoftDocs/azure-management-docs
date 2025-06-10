@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMware, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Deliver ESUs for VMware VMs through Arc
