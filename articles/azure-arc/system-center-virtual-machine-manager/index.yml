@@ -43,22 +43,22 @@ landingContent:
             url: enable-scvmm-inventory-resources.md
           - text: Link Arc-enabled server machines to SCVMM
             url: enable-virtual-hardware-scvmm.md
-          - text: Built-in roles
-            url: built-in-roles.md
-          - text: Create custom roles
-            url: create-custom-roles.md
           - text: Set up and manage self-service access
             url: set-up-and-manage-self-service-access-scvmm.md
           - text: Create a virtual machine
             url: create-virtual-machine.md
-          - text: Update configuration and resize a virtual machine
-            url: update-configuration-and-resize-vm.md
-          - text: Delete a virtual machine
-            url: delete-virtual-machine.md
           - text: Install Arc agents on SCVMM VMs
             url: enable-guest-management-at-scale.md
           - text: Modernize VM management
             url: /azure/azure-arc/servers/modernize-server-management
+          - text: Monitor VMs
+            url: /azure/azure-arc/servers/learn/tutorial-enable-vm-insights
+          - text: Onboard to Microsoft Defender for Cloud
+            url: /azure/defender-for-cloud/quickstart-onboard-machines
+          - text: Onboard to Microsoft Sentinel
+            url: /azure/azure-arc/servers/scenario-onboard-azure-sentinel
+          - text: Assign policy to assess compliance
+            url: /azure/azure-arc/servers/learn/tutorial-assign-policy-portal
           
   - title: Troubleshoot
     linkLists:
@@ -73,7 +73,7 @@ landingContent:
           - text: VM Extension issues
             url: /azure/azure-arc/servers/troubleshoot-vm-extensions
   
-  - title: Resource 
+  - title: Resources
     linkLists:
       - linkListType: concept
         links:
