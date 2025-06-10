@@ -86,5 +86,5 @@ In this article, you'll learn how to create a new SCVMM managed virtual machine 
 ## Next steps
 
 - [Set up and manage self-service access](set-up-and-manage-self-service-access-scvmm.md).
-- [Perform VM powercycle operations](perform-powercycle-operations).
-- [Update configuration and resize a VM](update-configuration-and-resize-vm).
+- [Perform VM powercycle operations](perform-powercycle-operations.md).
+- [Update configuration and resize a VM](update-configuration-and-resize-vm.md).
