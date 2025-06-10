@@ -19,9 +19,9 @@ When running the [infrastructure onboarding script](onboarding-scripts.md), you 
 'CredentialAdaptor' object has no attribute 'signed_session'
 ```
 
-This issue affects Azure CLI version 2.70.0 and occurs when using the `az customlocation create` command. To resolve this issue, create the custom location via Azure Portal
+This issue affects Azure CLI version 2.70.0 and occurs when using the `az customlocation create` command. To resolve this issue, create the custom location via Azure portal
 
-1. Navigate to the [Azure Portal](https://portal.azure.com)
+1. Navigate to the [Azure portal](https://portal.azure.com)
 1. Click on **+ Create a resource** and search for "custom location".
 1. In the **Basics** tab:
    - Select your subscription and resource group

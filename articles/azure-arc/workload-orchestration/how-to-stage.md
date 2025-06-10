@@ -331,9 +331,7 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
     ```
 ***
 
-#### Manual setup in individual debug pods
-
-### Manually configure `config.toml` in individual debug pods
+#### Manually configure `config.toml` in individual debug pods
 
 Follow these steps to manually update the containerd configuration in each debug pod:
 
