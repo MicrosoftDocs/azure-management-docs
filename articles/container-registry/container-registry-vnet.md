@@ -7,7 +7,6 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to restrict access to my container registry so that it is secure.
 # Customer intent: As a cloud developer, I want to restrict access to my Azure container registry using service endpoints, so that I can enhance the security of my container images by limiting access to a specific virtual network.
 ---
 

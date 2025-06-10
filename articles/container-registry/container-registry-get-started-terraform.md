@@ -7,7 +7,6 @@ ms.custom: devx-track-terraform
 ms.service: azure-container-registry
 author: rayoef
 ms.author: rayoflores
-#customer intent: As a Terraform user, I want to see how to create a unique Azure resource group and container registry.
 content_well_notification: 
   - AI-contribution
 # Customer intent: As a Terraform user, I want to create an Azure container registry and resource group, so that I can manage and deploy private Docker container images in my Azure environment.

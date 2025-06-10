@@ -6,7 +6,6 @@ ms.topic: how-to # Don't change
 ms.date: 01/24/2024
 ms.author: rayoflores
 ms.service: azure-container-registry
-#customer intent: As a developer, I want a comprehensive guide on using Azure Container Registry to manage OCI and supply chain artifacts so that I can effectively store and retrieve them.
 # Customer intent: As a developer, I want to learn how to manage OCI and supply chain artifacts with a comprehensive guide on using a container registry, so that I can effectively store, retrieve, and relate these artifacts in my projects.
 ---
 

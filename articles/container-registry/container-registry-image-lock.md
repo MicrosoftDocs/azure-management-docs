@@ -7,7 +7,6 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
-#customer intent: As a developer, I want to lock container images so that they cannot be accidentally deleted or overwritten.
 # Customer intent: As a developer, I want to lock container images in a registry so that they cannot be deleted or overwritten, ensuring the integrity of production deployments.
 ---
 

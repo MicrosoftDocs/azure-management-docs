@@ -7,7 +7,6 @@ ms.author: rayoflores
 ms.date: 10/31/2023
 ms.custom: mvc
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to push updates to a geo-replicated Azure Container Registry so that changes are automatically deployed to web apps in multiple regions.
 # Customer intent: "As a developer, I want to push updated Docker images to a geo-replicated container registry so that changes are automatically deployed to web apps across multiple regions."
 ---
 
