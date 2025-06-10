@@ -7,7 +7,6 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#customer intent: As a security administrator, I want to disable artifact export in Azure Container Registry to prevent data exfiltration.
 # Customer intent: As a security administrator, I want to configure the export policy in Azure Container Registry to disable artifact export, so that I can prevent data exfiltration and protect sensitive information from being leaked outside my organization's virtual network.
 ---
 

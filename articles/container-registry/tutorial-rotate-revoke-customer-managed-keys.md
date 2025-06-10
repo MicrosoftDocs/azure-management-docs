@@ -6,7 +6,6 @@ ms.date: 10/31/2023
 ms.custom: subject-rbac-steps, devx-track-azurecli
 ms.author: rayoflores
 ms.service: azure-container-registry
-#customer intent: As a DevOps engineer, I want to manage encryption keys so that I can maintain security and compliance.
 # Customer intent: As a DevOps engineer, I want to rotate and revoke customer-managed keys for my container registry, so that I can ensure data security and compliance with organizational standards.
 ---
 

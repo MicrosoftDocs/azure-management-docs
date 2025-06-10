@@ -6,7 +6,6 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#customer intent: As a user, I want to scan images in my Azure container registries for vulnerabilities so that I can ensure the security of my containerized applications.
 # Customer intent: As a cloud security engineer, I want to scan images in my container registries for vulnerabilities, so that I can ensure the integrity and security of my containerized applications.
 ---
 

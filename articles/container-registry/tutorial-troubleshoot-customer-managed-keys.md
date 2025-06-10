@@ -6,7 +6,6 @@ ms.topic: tutorial
 ms.date: 10/31/2023
 ms.author: rayoflores
 ms.service: azure-container-registry
-#customer intent: As a user, I want to troubleshoot customer-managed keys so that I can resolve common issues.
 # Customer intent: As a cloud administrator, I want to troubleshoot customer-managed keys in my container registry so that I can resolve common issues and ensure secure access to my images.
 ---
 

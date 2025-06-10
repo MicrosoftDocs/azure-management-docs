@@ -6,7 +6,6 @@ author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to understand how to use Azure Container Registry for multi-architecture images so that I can efficiently manage and deploy them.
 # Customer intent: As a developer, I want to learn how to build, import, and manage multi-architecture images in a container registry, so that I can efficiently deploy applications across different operating systems and architectures.
 ---
 
