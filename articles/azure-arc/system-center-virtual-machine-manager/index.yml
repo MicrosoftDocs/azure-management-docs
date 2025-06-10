@@ -62,7 +62,7 @@ landingContent:
           
   - title: Troubleshoot
     linkLists:
-      - linkListType: troubleshoot
+      - linkListType: concept
         links:
           - text: SCVMM-specific deployment errors
             url: troubleshoot-scvmm.md
@@ -75,7 +75,7 @@ landingContent:
   
   - title: Resource 
     linkLists:
-      - linkListType: resources
+      - linkListType: concept
         links:
           - text: Regional availability
             url: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
