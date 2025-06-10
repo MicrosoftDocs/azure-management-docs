@@ -6,7 +6,6 @@ author: rayoef
 ms.service: azure-container-registry
 ms.author: rayoflores
 ms.date: 02/28/2025
-#customer intent: As a developer, I want to securely access a network-restricted container registry using trusted Azure services so that I can pull or push images.
 
 # Customer intent: As a developer, I want to enable trusted Azure services to access my network-restricted container registry, so that I can securely pull or push images without compromising my registry's network security settings.
 ---
