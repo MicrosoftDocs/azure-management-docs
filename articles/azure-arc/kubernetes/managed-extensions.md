@@ -84,9 +84,9 @@ az vme install --resource-group my-resource-group --cluster-name my-cluster --in
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s).
 
-## Configure all available version-managed extensions
+### Configure all available version-managed extensions
 
-To deploy all extensions currently supported by version-managed extensions, run the following command
+To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command
 
 ```azurecli
 az vme install --resource-group my-resource-group --cluster-name my-cluster --include all
