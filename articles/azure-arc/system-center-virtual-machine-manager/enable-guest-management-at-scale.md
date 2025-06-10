@@ -20,7 +20,7 @@ In this article, you learn how to install Azure connected machine agents for SCV
 
 There are multiple avenues available to install Arc agents on SCVMM VMs which you can leverage based on your deployment preferences: 
 
-- Azure Portal
+- Azure portal
 - Script-based manual installation
 - Programmatic methods such as Azure CLI, Azure PowerShell, Azure REST APIs, Azure SDKs, Terraform, Bicep and ARM templates. The reference section of this documentation repository has information on the exact syntax. 
 - Out-of-band methods such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy and Ansible playbook.  
@@ -105,7 +105,7 @@ The out-of-band methods first onboard the machines as Arc-enabled Server resourc
     - Group policy. 
     - Ansible playbook. 
 
-2. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands updates the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
+2. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands update the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
 
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified subscription and links the machines with that SCVMM. 
 
