@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a DevOps engineer, I want to automate the rebuilding of application images when their base images are updated, so that I can ensure all applications are using the latest security patches and features without manual effort."
 ---
 
 # About base image updates for ACR Tasks

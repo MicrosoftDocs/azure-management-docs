@@ -7,6 +7,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to configure a managed identity for an ACR task to securely access Docker Hub credentials in Azure Key Vault, so that I can automate the image build and push process without managing sensitive credentials directly.
 ---
 
 # External authentication in an ACR task using an Azure-managed identity 

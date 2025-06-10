@@ -7,6 +7,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to configure an Azure Container Registry task with a managed identity, so that I can pull images from another private registry without managing credentials.
 ---
 
 # Cross-registry authentication in an ACR task using an Azure-managed identity 

@@ -6,6 +6,7 @@ ms.date: 02/07/2024
 ms.author: doveychase
 author: chasedmicrosoft
 ms.service: azure-container-registry
+# Customer intent: As a container image publisher, I want to transition from Docker Content Trust to the Notary Project, so that I can ensure the integrity and authenticity of my container images in a secure and standardized manner.
 --- 
 
 # Transition from Docker Content Trust to the Notary Project

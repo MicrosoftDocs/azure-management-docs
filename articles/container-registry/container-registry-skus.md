@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between service tiers and their limits, so that I can choose the most appropriate tier for my project's storage and performance needs."
 ---
 
 # Azure Container Registry service tiers

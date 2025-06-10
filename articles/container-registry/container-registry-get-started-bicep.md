@@ -9,6 +9,7 @@ ms.topic: quickstart
 ms.service: azure-container-registry
 tags: azure-resource-manager, bicep
 ms.custom: mode-api, devx-track-bicep
+# Customer intent: As a cloud engineer, I want to create an Azure Container Registry using a Bicep file, so that I can efficiently manage container images and streamline my deployment process.
 ---
 
 # Quickstart: Create a container registry by using a Bicep file

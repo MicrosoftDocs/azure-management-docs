@@ -7,6 +7,7 @@ ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli, mode-other
+# Customer intent: As a developer, I want to build, push, and run Docker container images on-demand in the cloud, so that I can streamline my container development workflow without requiring a local Docker installation.
 ---
 
 # Quickstart: Build and run a container image using Azure Container Registry Tasks

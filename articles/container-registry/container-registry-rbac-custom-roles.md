@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 04/24/2025
 ms.service: azure-container-registry
+# Customer intent: "As an IT administrator, I want to create custom roles for Azure Container Registry, so that I can manage fine-grained access permissions tailored to specific user needs and enhance security within my container management environment."
 ---
 
 # Azure Container Registry custom roles

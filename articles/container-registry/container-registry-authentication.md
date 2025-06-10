@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 10/31/2023
+# Customer intent: As a cloud engineer, I want to understand the different authentication methods for Azure container registries, so that I can choose the most suitable option for my application's deployment and integration requirements.
 ---
 
 # Authenticate with an Azure container registry

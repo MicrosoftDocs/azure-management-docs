@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to view and manage task run logs from my container registry tasks, so that I can efficiently monitor and troubleshoot the execution of my container workflows.
 ---
 
 # View and manage task run logs
