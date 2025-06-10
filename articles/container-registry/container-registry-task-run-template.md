@@ -7,6 +7,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to queue ACR task runs using Azure Resource Manager templates, so that I can automate container image builds and streamline my deployment processes."
 ---
 
 # Run ACR Tasks using Resource Manager templates

@@ -59,9 +59,11 @@ The following steps show how to configure the resources of workload orchestratio
     # Enter description of Line01
     childDesc="This line is used for soap and conditioner production"
     # Enter name of site
-    $siteName="Site01"
+    siteName="Site01"
     # Enter id of the site
-    $siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    # Enter capabilities for child target
+    capChildList="[soap,shampoo,conditioner]"
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
@@ -122,6 +124,8 @@ The following steps show how to configure the resources of workload orchestratio
     $siteName = "Site01"
     # Enter id of the site
     $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    # Enter capabilities for child target
+    $capChildList = "[soap, shampoo, conditioner]" 
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.

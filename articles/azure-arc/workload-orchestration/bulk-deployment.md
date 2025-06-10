@@ -33,11 +33,12 @@ You need to provide a *target-file.json* file that contains the list of targets 
 ```json
 [
     {
-        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName",
-        "solutionInstanceName": "<instance name>", // alphanumeric, small case, no spaces, no special characters
+        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$target1Name",
+        "solutionInstanceName": "<instance name1>", // alphanumeric, small case, no spaces, no special characters
     },
     {
-        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName",
+        "targetId": "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$target2Name",
+        "solutionInstanceName": "<instance name2>" // alphanumeric, small case, no spaces, no special characters
     }
 ]
 ```

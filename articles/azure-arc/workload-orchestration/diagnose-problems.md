@@ -30,6 +30,134 @@ The following table summarizes the different types of logs that can be collected
 | Any container logs, Kubernetes events, or syslogs         | Monitor container logs from any Kubernetes applications.                                                   | See [Enable monitoring for Kubernetes clusters - Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-enable) | Collected by Container Insights extension         | Log Analytics workspace only                           | Query in Log Analytics workspace | All Kubernetes containers and Kubernetes events             | Yes               |
 | Any OTLP (OpenTelemetry logs) or syslogs                  | Monitor OTLP (OpenTelemetry logs) or syslogs from any Kubernetes applications.                             | See [Configuration of Azure Monitor pipeline at edge and multicloud - Azure Monitor](/azure/azure-monitor/data-collection/edge-pipeline-configure) | Collected by microsoft.monitor.pipelinecontroller extension | Log Analytics workspace only                           | Query in Log Analytics workspace | Any apps (in cluster / outside of cluster); configure OTEL/syslog | Yes               |
 
+
+## Enable workload orchestration audit and diagnostic logs
+
+1. Create a `Microsoft.Edge/Diagnostics` resource per each Azure Arc-enabled Kubernetes cluster.
+
+    ```powershell
+    $diagnosticName = "default"
+     
+    az workload-orchestration diagnostic create `
+    --subscription $subscriptionId `
+    --resource-group $rg `
+    --diagnostic-name $diagnosticName `
+    --extended-location .\custom-location.json `
+    --location $location
+    ```
+
+1. Create log analytics workspace, or use and existing one, to create a diagnostic setting.
+
+    ```powershell
+    $diagnosticLAId = "<your log analytics workspace resource id>"
+    $diagnosticResourceId = (az workload-orchestration diagnostic show `
+                                --subscription $subscriptionId `
+                                --resource-group $rg `
+                                --diagnostic-name $diagnosticName `
+                                --query id -o tsv)
+    az monitor diagnostic-settings create `
+        --name diagSetting `
+        --resource $diagnosticResourceId `
+        --logs '[{"category":"UserAudits","enabled":true},{"category":"UserDiagnostics","enabled":true}]' `
+        --workspace $diagnosticLAId
+    ```
+
+     > [!NOTE]
+     > If you set up a Log Analytics workspace for the first time, it might take significant time to be ready. For more information, see [Diagnostic settings in Azure Monitor](/azure/azure-monitor/platform/diagnostic-settings).
+
+1. Go to [Azure portal](https://portal.azure.com). In the search bar, type "Log Analytics workspaces" and select it. Select your log analytics workspace.
+1. In the log analytics workspace, select **Logs** from the left-hand menu. In the query editor, select the **Tables** tab. You see two new tables: WOUserAudits and WOUserDiagnostics.
+
+    :::image type="content" source="./media/diagnose-audition-1.png" alt-text="Screenshot of Log Analytics workspaces showing the tables tab." lightbox="./media/diagnose-audition-1.png":::
+
+    - By querying WOUserAudits logs, you can inspect who manipulated the edge workload orchestration resource and if their operation is to pull chart or install chart on the on-premise cluster.
+
+    - By querying WOUserDiagnostics logs, you can inspect the detailed error logs reported by the workload orchestration extension for workload orchestration operations (such as installation).
+
+1. In the **Queries** tab, you have some built-in queries to search for workload orchestration log events. 
+
+    :::image type="content" source="./media/diagnose-audition-2.png" alt-text="Screenshot of Log Analytics workspaces showing the queries tab." lightbox="./media/diagnose-audition-2.png":::
+
+    The following table describes the parameters you can use in the queries to filter the logs:
+
+    | Parameter                | Data type | Description                                                                                                                                         |
+    |--------------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
+    | TimeGenerated            | DateTime  | Event generation time.                                                                                                                              |
+    | OperationName            | String    | Operation name of the event.                                                                                                                        |
+    | Category                 | String    | Category of the event.                                                                                                                              |
+    | Location                 | String    | Azure region in which the workload orchestration diagnostic resource is located.                                                                    |
+    | Properties               | Dynamic   | Properties of the event.                                                                                                                            |
+    | OperatingResourceId      | String    | The operating resource ID refers to the specific operational resource that the workload orchestration is managing when this event is triggered.      |
+    | OperatingResourceK8SId   | String    | The operating resource K8s ID refers to K8s resource ID (namespace/name) of the specific operational resource that the workload orchestration is managing when this event is triggered. |
+    | Message                  | String    | The audit message.                                                                                                                                  |
+    | User                     | Guid      | The Microsoft Entra ID object. ID of the requester.                                                                                                  |
+    | CorrelationId            | Guid      | Correlation ID of the operation.                                                                                                                    |
+    | WOServiceName            | String    | Workload orchestration service name.                                                                                                                |
+    | WOServiceInstance        | String    | Workload orchestration service pod name.                                                                                                            |
+    | EdgeLocation             | String    | The Azure Edge custom location resource ID on which the operation happens.                                                                          |
+
+1. You can debug a workload orchestration operation by using the built-in query **Workload orchestration target provider and solution deployment failures**. This query helps you to identify logs errors from the edge service. The query is as follows:
+
+    ```kusto
+    WOUserDiagnostics
+    | where Message startswith "solution.(*SolutionManager).Reconcile" or Message contains ".Apply"
+    | order by EdgeLocation, TimeGenerated asc
+    | project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
+    | take 100
+    ```
+
+1. You can audit a workload orchestration operation by using the built-in query **Auditing workload orchestration operations**. This query helps you to inspect who manipulated the edge WOM resource and if their operation is to pull chart or install chart on the on-premise cluster. The query is as follows:
+
+    ```kusto
+    WOUserAudits
+    | where Message !startswith_cs "Request"
+    | where OperatingResourceId contains "<your cluster ID>" # such as "subscriptions/<your subscription ID>/resourceGroups/<your resource group>/providers/Microsoft.Edge/targets/<your target resource name>/solutions/<your solution name>/instances/<your instance name>"
+    | order by EdgeLocation, TimeGenerated desc
+    | project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
+    ```
+
+1. (Optional) You can turn off workload orchestration user-facing logs emission by running the following command:
+
+    ```powershell
+    # Delete diagnostics settings resource
+    az monitor diagnostic-settings delete `
+        --name diagSetting `
+        --resource $diagnosticResourceId
+    
+    # Delete Microsoft.Edge/diagnostics resource
+    az workload-orchestration diagnostic delete `
+       --subscription $subscriptionId `
+       --resource-group $rg `
+       --diagnostic-name $diagnosticName
+    ```
+
+## Collect container logs or Kubernetes events
+
+1. To collect container logs or Kubernetes events from the Azure Arc-enabled Kubernetes cluster you need to enable [Container insights in Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#arc-enabled-cluster-1).
+
+1. Once you have enabled Container insights, you can use the following commands to collect logs and events using an existing Log Analytics workspace.
+
+    ```powershell
+    ### Use existing Log Analytics workspace
+    az k8s-extension create --name azuremonitor-containers --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings logAnalyticsWorkspaceResourceID=<workspace-resource-id>
+    ```
+
+1. Go to your Log Analytics workspace in the Azure portal. If you haven't already, follow the steps in [Enable workload orchestration audit and diagnostic logs](#enable-workload-orchestration-audit-and-diagnostic-logs) to see how.
+1. To inspect your container logs, add the following query in the query editor with your cluster ID and pod namespace. You can see all console logs collected to the cloud, which can help you identify if the solution crashes due to a business logic error.
+
+    ```kusto
+    ContainerLogV2
+    | where _ResourceId contains "<your cluster ID>"
+    | where PodNamespace contains "<your pod namespace>"
+    ```
+
+1. To inspect Kubernetes events, add the following query in the query editor with your cluster ID  You can see all Kubernetes events collected to the cloud, which can help you identify why the pod isn't started correctly, such as image pull fail, pod security context violation, persistent volume mounting issue, etc. In helm installation, you might only get a time-out error.
+
+    ```kusto
+    KubeEvents
+    | where _ResourceId contains "<your cluster ID>"
+    ```
+
 ## One-click script to enable workload orchestration level logs
 
 The following JSON file is a template that you can use to enable workload orchestration level logs. Modify the values in the JSON file to suit your environment and save it as `workload-orchestration-script-logs.json`.
@@ -124,134 +252,6 @@ If you want to enable workload orchestration level logs and kubernetes events on
 ```powershell
 .\infra_onboarding.ps1 .\workload-orchestration-script-logs.json -skipAksCreation $true -enableContainerInsights $true -skipSiteCreation $true -skipRelationshipCreation $true -skipTcoDeployment $true
 ```
-
-
-## Enable workload orchestration audit and diagnostic logs
-
-1. Create a `Microsoft.Edge/Diagnostics` resource per each Azure Arc-enabled Kubernetes cluster.
-
-    ```powershell
-    $diagnosticName = "default"
-     
-    az workload-orchestration diagnostic create `
-    --subscription $subscriptionId `
-    --resource-group $rg `
-    --diagnostic-name $diagnosticName `
-    --extended-location .\custom-location.json `
-    --location $location
-    ```
-
-1. Create log analytics workspace, or use and existing one, to create a diagnostic setting.
-
-    ```powershell
-    $diagnosticLAId = "<your log analytics workspace resource id>"
-    $diagnosticResourceId = (az workload-orchestration diagnostic show `
-                                --subscription $subscriptionId `
-                                --resource-group $rg `
-                                --diagnostic-name $diagnosticName `
-                                --query id -o tsv)
-    az monitor diagnostic-settings create `
-        --name diagSetting `
-        --resource $diagnosticResourceId `
-        --logs '[{"category":"UserAudits","enabled":true},{"category":"UserDiagnostics","enabled":true}]' `
-        --workspace $diagnosticLAId
-    ```
-
-     > [!NOTE]
-     > If you set up a Log Analytics workspace for the first time, it might take a few minutes to be ready. For more information, see [Diagnostic settings in Azure Monitor](/azure/azure-monitor/platform/diagnostic-settings).
-
-1. Go to [Azure portal](https://portal.azure.com). In the search bar, type "Log Analytics workspaces" and select it. Select your log analytics workspace.
-1. In the log analytics workspace, select **Logs** from the left-hand menu. In the query editor, select the **Tables** tab. You see two new tables: WOUserAudits and WOUserDiagnostics.
-
-    :::image type="content" source="./media/diagnose-audition-1.png" alt-text="Screenshot of Log Analytics workspaces showing the tables tab." lightbox="./media/diagnose-audition-1.png":::
-
-    - By querying WOUserAudits logs, you can inspect who manipulated the edge workload orchestration resource and if their operation is to pull chart or install chart on the on-premise cluster.
-
-    - By querying WOUserDiagnostics logs, you can inspect the detailed error logs reported by the workload orchestration extension for workload orchestration operations (such as installation).
-
-1. In the **Queries** tab, you have some built-in queries to search for workload orchestration log events. 
-
-    :::image type="content" source="./media/diagnose-audition-2.png" alt-text="Screenshot of Log Analytics workspaces showing the queries tab." lightbox="./media/diagnose-audition-2.png":::
-
-    The following table describes the parameters you can use in the queries to filter the logs:
-
-    | Parameter                | Data type | Description                                                                                                                                         |
-    |--------------------------|-----------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-    | TimeGenerated            | DateTime  | Event generation time.                                                                                                                              |
-    | OperationName            | String    | Operation name of the event.                                                                                                                        |
-    | Category                 | String    | Category of the event.                                                                                                                              |
-    | Location                 | String    | Azure region in which the workload orchestration diagnostic resource is located.                                                                    |
-    | Properties               | Dynamic   | Properties of the event.                                                                                                                            |
-    | OperatingResourceId      | String    | The operating resource ID refers to the specific operational resource that the workload orchestration is managing when this event is triggered.      |
-    | OperatingResourceK8SId   | String    | The operating resource K8s ID refers to K8s resource ID (namespace/name) of the specific operational resource that the workload orchestration is managing when this event is triggered. |
-    | Message                  | String    | The audit message.                                                                                                                                  |
-    | User                     | Guid      | The Microsoft Entra ID object. ID of the requester.                                                                                                  |
-    | CorrelationId            | Guid      | Correlation ID of the operation.                                                                                                                    |
-    | WOServiceName            | String    | Workload orchestration service name.                                                                                                                |
-    | WOServiceInstance        | String    | Workload orchestration service pod name.                                                                                                            |
-    | EdgeLocation             | String    | The Azure Edge custom location resource ID on which the operation happens.                                                                          |
-
-1. You can debug a workload orchestration operation by using the built-in query **Workload orchestration target provider and solution deployment failures**. This query helps you to identify logs errors from the edge service. The query is as follows:
-
-    ```kusto
-    WOUserDiagnostics
-    | where Message startswith "solution.(*SolutionManager).Reconcile" or Message contains ".Apply"
-    | order by EdgeLocation, TimeGenerated asc
-    | project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
-    | take 100
-    ```
-
-1. You can audit a workload orchestration operation by using the built-in query **Auditing workload orchestration operations**. This query helps you to inspect who manipulated the edge WOM resource and if their operation is to pull chart or install chart on the on-premise cluster. The query is as follows:
-
-    ```kusto
-    WOUserAudits
-    | where Message !startswith_cs "Request"
-    | where OperatingResourceId contains "<your cluster ID>"
-    | order by EdgeLocation, TimeGenerated desc
-    | project EdgeLocation, TimeGenerated, User, Message, OperatingResourceId, OperatingResourceK8SId, OperationName
-    ```
-
-1. (Optional) You can turn off workload orchestration user-facing logs emission by running the following command:
-
-    ```powershell
-    # Delete diagnostics settings resource
-    az monitor diagnostic-settings delete `
-        --name diagSetting `
-        --resource $diagnosticResourceId
-    
-    # Delete Microsoft.Edge/diagnostics resource
-    az workload-orchestration diagnostic delete `
-       --subscription $subscriptionId `
-       --resource-group $rg `
-       --diagnostic-name $diagnosticName
-    ```
-
-## Collect container logs or Kubernetes events
-
-1. To collect container logs or Kubernetes events from the Azure Arc-enabled Kubernetes cluster you need to enable [Container insights in Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#arc-enabled-cluster-1).
-
-1. Once you have enabled Container insights, you can use the following commands to collect logs and events using an existing Log Analytics workspace.
-
-    ```powershell
-    ### Use existing Log Analytics workspace
-    az k8s-extension create --name azuremonitor-containers --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --extension-type Microsoft.AzureMonitor.Containers --configuration-settings logAnalyticsWorkspaceResourceID=<workspace-resource-id>
-    ```
-
-1. Go to your Log Analytics workspace in the Azure portal. If you haven't already, follow the steps in [Enable workload orchestration audit and diagnostic logs](#enable-workload-orchestration-audit-and-diagnostic-logs) to see how.
-1. To inspect your container logs, add the following query in the query editor with your cluster ID and pod namespace. You can see all console logs collected to the cloud, which can help you identify if the solution crashes due to a business logic error.
-
-    ```kusto
-    ContainerLogV2
-    | where _ResourceId contains "<your cluster ID>"
-    | where PodNamespace contains "<your pod namespace>"
-    ```
-
-1. To inspect Kubernetes events, add the following query in the query editor with your cluster ID  You can see all Kubernetes events collected to the cloud, which can help you identify why the pod isn't started correctly, such as image pull fail, pod security context violation, persistent volume mounting issue, etc. In helm installation, you might only get a time-out error.
-
-    ```kusto
-    KubeEvents
-    | where _ResourceId contains "<your cluster ID>"
-    ```
 
 ## Enable OTLP (OpenTelemetry logs) or syslogs
 

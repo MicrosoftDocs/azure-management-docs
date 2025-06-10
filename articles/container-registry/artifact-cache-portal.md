@@ -7,7 +7,7 @@ ms.service: azure-container-registry
 ms.topic: how-to
 ms.date: 04/29/2025
 ai-usage: ai-assisted
-#customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
+# Customer intent: "As a developer, I want to enable artifact caching in Azure Container Registry so that I can improve the performance and efficiency of delivering containerized applications."
 ---
 
 # Enable artifact cache in your Azure Container Registry with Azure portal

@@ -4,7 +4,7 @@ description: "Learn how to deploy the Edge RAG extension by using either Azure C
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/06/2025
+ms.date: 06/10/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
@@ -136,5 +136,6 @@ If you added your own language model when you deployed the Edge RAG extension, c
 ## Related content
 
 - [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md)
+- [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
 - [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
 - [Add data source for the chat solution in Edge RAG](add-data-source.md)
