@@ -7,7 +7,7 @@ ms.custom:
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 04/17/2025
+ms.date: 06/10/2025
 ---
 
 # Prepare the environment for workload orchestration
@@ -411,17 +411,14 @@ The following steps are required to install workload orchestration service compo
     1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
     
         ```bash
-        storageClassName=""
+        storageClassName="<pick up one storage class from 'kubectl get sc'>"
         az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version "$extensionVersion" --auto-upgrade false --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
-        ```  
-
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
+        ```
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```bash
-        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train dev --version "$extensionVersion" --auto-upgrade false
+        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train preview --version "$extensionVersion" --auto-upgrade false
         ``` 
 
 1. Enable custom location for the cluster.
@@ -497,16 +494,14 @@ The following steps are required to install workload orchestration service compo
     1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
     
         ```powershell
-        $storageClassName = ""
+        $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
         az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version $extensionVersion --auto-upgrade $false --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
         ```      
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```powershell
-        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train dev --version $extensionVersion --auto-upgrade false
+        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train preview --version $extensionVersion --auto-upgrade false
         ```
 
 1. Enable custom location for the cluster.
