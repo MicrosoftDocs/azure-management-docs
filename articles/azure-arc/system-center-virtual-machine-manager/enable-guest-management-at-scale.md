@@ -77,10 +77,8 @@ An administrator can install agents for multiple machines from the Azure portal 
 >- If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and `add <username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`.
 >- If your VM template has these changes incorporated, you won't need to do this for the VM created from that template.
 
-## Install Arc agents using a script
-
 1. Sign in to the target VM as an administrator.
-2. Run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
+2. Install and run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
 3. Sign in to your Azure account in Azure CLI using `az login --use-device-code`
 4. Run the downloaded script *arcscvmm-enable-guest-management.ps1* or *arcscvmm-enable-guest-management.sh*, as applicable, using the following commands. The `vmmServerId` parameter should denote your VMM Server’s ARM ID.
 
@@ -98,15 +96,14 @@ An administrator can install agents for multiple machines from the Azure portal 
 
 # [Out-of-band methods](#tab/Out-of-band)
 
-The out-of-band methods first onboards the machines as Arc-enabled Server resources with Resource type as *Microsoft.HybridCompute/machines*. Then, perform **Link to vCenter** operation to update the machine's Kind property as **SCVMM** which enables VM lifecycle and powercycle operations. 
+The out-of-band methods first onboard the machines as Arc-enabled Server resources with Resource type as *Microsoft.HybridCompute/machines*. Then, perform **Link to SCVMM** operation to update the machine's Kind property as **SCVMM** which enables VM lifecycle and powercycle operations. 
 
 1. **Connect the machines as Arc-enabled Server resources** using any one of the following automation approaches: 
-      - Install Arc agents at scale using:
-           - a Service Principal. 
-           - a Configuration Manager script. 
-           - a Configuration Manager custom task sequence. 
-           - Group policy. 
-           - Ansible playbook. 
+    - Service Principal. 
+    - Configuration Manager script. 
+    - Configuration Manager custom task sequence. 
+    - Group policy. 
+    - Ansible playbook. 
 
 2. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands updates the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
 
