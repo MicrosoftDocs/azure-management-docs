@@ -2,8 +2,8 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 12/19/2024
-author: johnmarco
-ms.author: johnmarc
+author: JnHs
+ms.author: jenhayes
 ---
 
 ### Get count and percentage of Arc-enabled servers by domain
