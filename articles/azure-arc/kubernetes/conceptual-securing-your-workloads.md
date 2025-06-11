@@ -9,9 +9,9 @@ description: "Guidance for securing workloads running on Azure Arc-enabled Kuber
 
 ## Follow a secure container lifecycle as you acquire, catalog, and build your containers
 
-Follow the Microsoft Containers Secure Supply Chain framework as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities. 
+Follow the [Microsoft Containers Secure Supply Chain framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview) as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities. 
 
-Look track code provenance by obtaining or generating a Software Bill of Materials (SBOM). You can also configure [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction#vulnerability-assessment) to help perform a vulnerability assessment of images in your container registry – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=extva%2Cazurert%2Cazurespm%2Cawsnet#vulnerability-assessment-va-features) for which registries are supported at what level (preview or general availability).
+Track code provenance by obtaining or generating a Software Bill of Materials (SBOM). You can also configure [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-introduction#vulnerability-assessment) to help perform a vulnerability assessment of images in your container registry – see the [support matrix](/azure/defender-for-cloud/support-matrix-defender-for-containers?tabs=extva%2Cazurert%2Cazurespm%2Cawsnet#vulnerability-assessment-va-features) for which registries are supported at what level (preview or general availability).
 
 More generally, we recommend you follow the [Security Development Lifecycle](https://www.microsoft.com/securityengineering/sdl) as you develop your workload application software.
 
