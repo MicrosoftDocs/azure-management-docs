@@ -19,7 +19,7 @@ If so, consider using the [Azure Key Vault Secret Store extension for Kubernetes
 
 ## Protect the Kubernetes secrets store
 
-If you’re running AKS enabled by Azure Arc on Azure Local, then it restricts direct access to the K8s configuration store, etcd, which holds Kubernetes secrets. Further, it has a built-in [KMS plugin](/azure/aks/aksarc/encrypt-etcd-secrets) that helps to automatically encrypt these secrets. This plugin generates the [Key Encryption Key](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/#kms-encryption-and-per-object-encryption-keys) (KEK), isolates it away from the cluster in the underlying Windows host, and automatically rotates it every 30 days.
+If you’re running AKS enabled by Azure Arc on Azure Local, then it restricts direct access to the Kubernetes configuration store, etcd, which holds Kubernetes secrets. Further, it has a built-in [KMS plugin](/azure/aks/aksarc/encrypt-etcd-secrets) that helps to automatically encrypt these secrets. This plugin generates the [Key Encryption Key](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/#kms-encryption-and-per-object-encryption-keys) (KEK), isolates it away from the cluster in the underlying Windows host, and automatically rotates it every 30 days.
 
 If you connect your own cluster via Arc-enabled Kubernetes, then help ensure etcd is protected, and your secrets are encrypted, by following your vendor’s guidance.
 
