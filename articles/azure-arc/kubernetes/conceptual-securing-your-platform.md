@@ -13,9 +13,9 @@ We recommend upgrading your cluster and node OS with the latest security patches
 
 If you’re using AKS enabled by Azure Arc on Azure Local, then it's easy to [apply such upgrades](/azure/aks/aksarc/cluster-upgrade). It’s also easy to [upgrade Azure Local itself](/azure/azure-local/update/about-updates-23h2).
 
-If you connect your own cluster via Arc-enabled Kubernetes, then keep it up to date following your vendor’s guidance, and to configure automatic upgrades for the Arc-enabled Kubernetes agents that maintain the cluster’s connection to Azure.
+If you connect your own cluster via Arc-enabled Kubernetes, then keep it up to date following your vendor’s guidance, and [configure automatic upgrades](/azure/azure-arc/kubernetes/agent-upgrade) for the Arc-enabled Kubernetes agents that maintain the cluster’s connection to Azure.
 
-You may also deploy extensions to your cluster: other sections of this security book recommend many of these extensions for the security benefits they can help bring. If so, configure automatic upgrades for these extensions too.
+You may also deploy [extensions](/azure/azure-arc/kubernetes/extensions) to your cluster: other sections of this security book recommend many of these extensions for the security benefits they can help bring. If so, configure automatic upgrades for these extensions too.
 
 ### References
 * [NSA Kubernetes Hardening Guidance – "Upgrading and application security patches"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
