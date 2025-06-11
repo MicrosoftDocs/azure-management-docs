@@ -4,7 +4,7 @@ ms.date: 01/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Control agent upgrades for Azure Arc-enabled Kubernetes"
-# Customer intent: "As a Kubernetes administrator, I want to manage the upgrade settings for Azure Arc-enabled Kubernetes agents, so that I can ensure my clusters are running the latest compatible versions while adhering to the version support policy."
+# Customer intent: "As a Kubernetes administrator, I want to manage the upgrade settings for Azure Arc-enabled Kubernetes agents, so that I can control whether my clusters are running the latest compatible versions."
 ---
 
 # Upgrade Azure Arc-enabled Kubernetes agents
