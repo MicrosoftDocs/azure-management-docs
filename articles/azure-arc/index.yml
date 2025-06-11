@@ -10,7 +10,7 @@ metadata:
   description: Learn how to deploy resources to complex and distributed environments across on-premises, edge, and multicloud. Azure Arc enables deployment of Azure services anywhere and extends Azure management to any infrastructure.
   ms.service: azure-arc
   ms.topic: hub-page
-  ms.author: jroth
+  ms.author: jenhayes
   ms.date: 06/11/2025
   ms.custom:
     - e2e-hybrid
