@@ -1,6 +1,6 @@
 ---
 title: "Version-managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 06/10/2025
+ms.date: 06/12/2025
 ms.topic: overview
 description: "Version-managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping your extensions work better together."
 ms.custom:
@@ -47,6 +47,19 @@ Currently, version-managed extensions (preview) provides support for the followi
 
 To deploy and configure version-managed extensions (preview) for Arc-enabled Kubernetes, use the [az vme](/cli/azure/vme) command.
 
+### Configure all available version-managed extensions
+
+To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command
+
+```azurecli
+az vme install --resource-group my-resource-group --cluster-name my-cluster --include all
+```
+
+Currently, this command installs the Azure Container Storage enabled by Azure Arc and the Azure Key Vault Secret Store extension for Kubernetes ("SSE") extensions.
+
+> [!IMPORTANT]
+> The Azure IoT Operations dependencies (`cert-manager` and `trust-manager`) must also be installed before you can deploy the Azure Container Storage enabled by Azure Arc extension. See the following section for more information.
+
 ### Configure Azure Container Storage enabled by Azure Arc
 
 Follow these steps to configure Azure Container Storage enabled by Azure Arc.
@@ -69,7 +82,7 @@ Follow these steps to configure Azure Container Storage enabled by Azure Arc.
 1. Deploy the Azure Container Storage enabled by Azure Arc extension:
 
    ```azurecli
-   az vme install --resource-group my-resource-group --cluster-name my-cluster --include microsoft.arc.containerstorage --kube-config /path/to/kubeconfig.yaml --kube-context my-context
+   az vme install --resource-group my-resource-group --cluster-name my-cluster --include microsoft.arc.containerstorage
    ```
 
 For more information, see [What is Azure Container Storage enabled by Azure Arc?](/azure/azure-arc/container-storage/overview)
@@ -83,16 +96,3 @@ az vme install --resource-group my-resource-group --cluster-name my-cluster --in
 ```
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s).
-
-### Configure all available version-managed extensions
-
-To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command
-
-```azurecli
-az vme install --resource-group my-resource-group --cluster-name my-cluster --include all
-```
-
-Currently, this command installs the Azure Container Storage enabled by Azure Arc and the Azure Key Vault Secret Store extension for Kubernetes ("SSE") extensions.
-
-> [!IMPORTANT]
-> The Azure IoT Operations dependencies (`cert-manager` and `trust-manager`) must also be installed before you can deploy the Azure Container Storage enabled by Azure Arc extension. See the [Configure Azure Container Storage enabled by Azure Arc](#configure-azure-container-storage-enabled-by-azure-arc) section for more information.
