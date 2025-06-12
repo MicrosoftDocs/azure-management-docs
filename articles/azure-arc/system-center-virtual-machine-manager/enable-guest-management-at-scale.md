@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 06/10/2025
+ms.date: 06/12/2025
 keywords: "VMM, Arc, Azure"
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
@@ -84,13 +84,13 @@ An administrator can install agents for multiple machines from the Azure portal 
 
     **For a Windows VM:**
 
-    ```azurecli
+    ```azurecli-interactive
     ./arcscvmm-enable-guest-management.ps1 -<vmmServerId> '/subscriptions/<subscriptionId>/resourceGroups/<rgName>/providers/Microsoft.ScVmm/vmmServers/<vmmServerName>
     ```
 
     **For a Linux VM:**
 
-    ```azurecli
+    ```azurecli-interactive
     ./arcscvmm-enable-guest-management.sh -<vmmServerId> '/subscriptions/<subscriptionId>/resourceGroups/<rgName>/providers/Microsoft.ScVmm/vmmServers/<vmmServerName>
     ```
 
@@ -99,29 +99,29 @@ An administrator can install agents for multiple machines from the Azure portal 
 The out-of-band methods first onboard the machines as Arc-enabled Server resources with Resource type as *Microsoft.HybridCompute/machines*. Then, perform **Link to SCVMM** operation to update the machine's Kind property as **SCVMM** which enables VM lifecycle and powercycle operations. 
 
 1. **Connect the machines as Arc-enabled Server resources** using any one of the following automation approaches: 
-    - Service Principal. 
-    - Configuration Manager script. 
-    - Configuration Manager custom task sequence. 
-    - Group policy. 
-    - Ansible playbook. 
+    - [Service Principal](/azure/azure-arc/servers/onboard-service-principal). 
+    - [Configuration Manager script](/azure/azure-arc/servers/onboard-configuration-manager-powershell). 
+    - [Configuration Manager custom task sequence](/azure/azure-arc/servers/onboard-configuration-manager-custom-task). 
+    - [Group policy](/azure/azure-arc/servers/onboard-group-policy-powershell). 
+    - [Ansible playbook](/azure/azure-arc/servers/onboard-ansible-playbooks). 
 
 2. **Link Azure Arc-enabled Server resources to SCVMM**: The following commands update the Kind property of Hybrid Compute machines as **SCVMM**. Linking the machines to SCVMM enables VM lifecycle operations (Create/Delete) and powercycle operations (Start/Restart/Stop) on the machines. 
 
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified subscription and links the machines with that SCVMM. 
 
-      ```azurecli
+      ```azurecli-interactive
       az scvmm vm create-from-machines --subscription contoso-sub --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver 
       ```
 
    - The following command scans all the Azure Arc-enabled Server machines that belong to the SCVMM in the specified resource group and links the machines with that SCVMM. 
 
-      ```azurecli
+      ```azurecli-interactive
       az scvmm vm create-from-machines –resource group contoso-rg --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
       ```
 
    - The following command can be used to link an individual Azure Arc-enabled Server resource to SCVMM. 
 
-      ```azurecli
+      ```azurecli-interactive
       az scvmm vm create-from-machines –resource group contoso-rg --name contoso-vm --scvmm-id /subscriptions/01234567-0123-0123-0123-0123456789ab/resourceGroups/contoso-rg/providers/Microsoft.ScVmm/vmmServers/contoso-vmmserver   
       ```
 
