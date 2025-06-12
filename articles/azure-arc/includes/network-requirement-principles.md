@@ -1,6 +1,6 @@
 ---
-author: johnmarco
-ms.author: johnmarc
+author: JnHs
+ms.author: jenhayes
 ms.service: azure-arc
 ms.topic: include
 ms.date: 06/27/2023
