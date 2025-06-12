@@ -8,7 +8,9 @@ author: jyothisuri
 manager: akashdubey
 ms.author: jsuri
 ms.date: 05/08/2025
-ms.custom: generated
+ms.custom:
+  - generated
+  - build-2025
 ---
 
 # Azure built-in roles for Azure Arc-enabled SCVMM

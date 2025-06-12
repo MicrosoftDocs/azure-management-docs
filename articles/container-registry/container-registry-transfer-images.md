@@ -2,11 +2,12 @@
 title: A Step-by-Step Guide for ACR Transfer with ARM Templates
 description: Learn how to use Azure CLI with ARM templates for ACR Transfer. This guide covers the complete process for managing and transferring container images in Azure Container Registry.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to create and manage export and import pipelines using ARM templates and Azure CLI, so that I can efficiently transfer container images between Azure Container Registries.
 ---
 
 # ACR Transfer with ARM templates

@@ -2,10 +2,11 @@
 title: View Task Run Logs - Azure Container Registry Tasks
 description: Learn to view and manage run logs from Azure Container Registry (ACR) Tasks for efficient monitoring and troubleshooting of your container workflows.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to view and manage task run logs from my container registry tasks, so that I can efficiently monitor and troubleshoot the execution of my container workflows.
 ---
 
 # View and manage task run logs

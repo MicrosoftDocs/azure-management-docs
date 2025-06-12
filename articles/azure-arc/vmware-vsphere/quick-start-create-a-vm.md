@@ -9,6 +9,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a self-service user, I want to provision a VM using vCenter resources through Azure so that I can deploy my code
+ms.custom:
+  - build-2025
 ---
 
 # Create a virtual machine on VMware vCenter using Azure Arc

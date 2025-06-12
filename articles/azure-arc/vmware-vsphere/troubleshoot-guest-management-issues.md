@@ -5,7 +5,9 @@ ms.topic: reference
 ms.date: 09/27/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a VI admin, I want to understand the troubleshooting process for guest management issues.

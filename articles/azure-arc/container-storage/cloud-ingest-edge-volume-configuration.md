@@ -4,8 +4,11 @@ description: Learn about Cloud Ingest Edge Volumes configuration for Edge Volume
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 ms.date: 03/12/2025
+# Customer intent: "As a Kubernetes administrator, I want to configure Cloud Ingest Edge Volumes for my applications, so that I can efficiently manage data ingestion and ensure local purging of files while maintaining data integrity in disconnected environments."
 ---
 
 # Cloud Ingest Edge Volumes configuration

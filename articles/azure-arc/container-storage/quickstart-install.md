@@ -7,6 +7,7 @@ ms.topic: quickstart
 ms.date: 03/12/2025
 
 
+# Customer intent: As a system administrator, I want to install Container Storage on a single-node Ubuntu cluster, so that I can efficiently manage and utilize storage resources in my Kubernetes environment enabled by Azure Arc.
 ---
   
 # Quickstart: Install Azure Container Storage enabled by Azure Arc on a single-node Ubuntu cluster
