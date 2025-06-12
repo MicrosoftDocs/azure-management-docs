@@ -15,7 +15,6 @@ The onboarding PowerShell scripts are designed to help you set up the necessary 
 
 If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
 ## Prerequisites
 

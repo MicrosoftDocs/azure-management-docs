@@ -15,7 +15,6 @@ The Deploy tab in the workload orchestration portal displays the targets and the
 
 This article describes how to use the workload orchestration portal to deploy, delete, stop, roll back, and retry solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](monitor.md) and [Configure your solutions](configure.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
 ## Prerequisites
 

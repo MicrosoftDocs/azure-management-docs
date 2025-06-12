@@ -17,8 +17,6 @@ IT developers can use the Azure portal to monitor their solutions. In the Azure 
 - View alerts related to deployment.
 - Trace the issues causing failures.
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.

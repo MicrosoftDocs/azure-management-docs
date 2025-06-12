@@ -16,8 +16,6 @@ IT admins are responsible for the initial setup of workload orchestration, which
 
 This article describes how to prepare the environment for workload orchestration. The following steps are shared across all Azure resources. 
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
-
 ## Prerequisites
 
 * An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.

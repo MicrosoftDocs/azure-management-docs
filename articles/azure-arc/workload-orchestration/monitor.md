@@ -15,8 +15,6 @@ Workload orchestration portal provides a user-friendly interface for monitoring 
 
 This article describes how to use the workload orchestration portal to monitor your solutions. If you want information about other tabs in the workload orchestration portal, see [Configure your solutions](configure.md) and [Deploy your solutions](deploy.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.

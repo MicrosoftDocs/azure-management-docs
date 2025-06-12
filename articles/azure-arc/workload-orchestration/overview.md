@@ -9,11 +9,9 @@ ms.custom:
   - build-2025
 ---
 
-# What is workload orchestration (preview)?
+# What is workload orchestration?
 
 Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform orchestrator that simplifies the deployment, management, and update of application workloads across edge environments. Workload orchestration solves the Kubernetes application lifecycle management problem for customers who need to have common applications installed across fleets with site specific variations. 
-
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
 ## What problems does workload orchestration solve?
 

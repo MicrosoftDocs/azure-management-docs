@@ -1,10 +1,10 @@
 ### YamlMime:Landing
 
-title: Workload orchestration (preview) 
+title: Workload orchestration 
 summary: Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform orchestrator that simplifies the configuration management, deployment, and update of Kubernetes application lifecycle management across edge environments.
 
 metadata:
-  title: Workload Orchestration (preview)
+  title: Workload Orchestration 
   description: A cross-platform orchestrator for managing edge workloads using an Azure control plane # Required; article description that is displayed in search results. < 160 chars.
   ms.topic: landing-page # Required
   ms.service: azure-arc # Required

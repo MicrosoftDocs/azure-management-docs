@@ -15,7 +15,6 @@ The Configure tab in the workload orchestration portal provides a comprehensive 
 
 This article describes how to use the workload orchestration portal to add configuration values and publish values for deployment for your solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](monitor.md) and [Deploy your solutions](deploy.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
 ## Prerequisites
 
