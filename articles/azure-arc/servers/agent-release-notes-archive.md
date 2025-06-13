@@ -4,7 +4,7 @@ description: Release notes for Azure Connected Machine agent versions older than
 ms.topic: overview
 ms.date: 02/07/2025
 ms.custom: references_regions
-# Customer intent: "As an IT administrator managing hybrid environments, I want to access detailed release notes for the Azure Connected Machine agent, so that I can stay informed about improvements, bug fixes, and known issues necessary for effective system maintenance and update planning."
+# Customer intent: "As an IT administrator managing hybrid environments, I want to access detailed release notes for older versions of the Azure Connected Machine agent, so that I can understand issues about these agent versions, even though they are no longer actively supported."
 ---
 
 # Archive for What's new with Azure Connected Machine agent

@@ -4,7 +4,7 @@ description: This article describes how to deploy virtual machine extensions to 
 ms.date: 12/06/2024
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-# Customer intent: As a system administrator managing hybrid cloud environments, I want to deploy and manage VM extensions using the command line, so that I can efficiently automate tasks and maintain consistency across my Azure Arc-enabled servers.
+# Customer intent: As a system administrator managing hybrid cloud environments, I want to deploy and manage VM extensions using Azure CLI, so that I can efficiently automate tasks and maintain consistency across my Azure Arc-enabled servers.
 ---
 
 # Enable Azure VM extensions by using the Azure CLI
