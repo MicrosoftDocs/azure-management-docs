@@ -1,3 +1,6 @@
+- name: What's new
+  href: whats-new.md
+  displayName: Releases
 - name: Azure Arc site manager
   href: index.yml
 - name: Get started
