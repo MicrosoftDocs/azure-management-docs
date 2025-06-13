@@ -52,8 +52,6 @@
     items:
     - name: Install Arc agents at scale
       href: enable-guest-management-at-scale.md
-    - name: Install Arc agents using a script
-      href: install-arc-agents-using-script.md
     - name: Manage Arc agent
       href: ../servers/manage-agent.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: VM extensions management
