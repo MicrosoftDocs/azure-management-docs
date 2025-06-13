@@ -7,7 +7,7 @@ ms.topic: troubleshooting
 
 # Troubleshoot SSH access to Azure Arc-enabled servers
 
-[SSH for Arc-enabled servers](./ssh-arc-overview.md) enables SSH based connections to Arc-enabled servers without requiring a public IP address or additional open ports. This article provides information to help you troublehshoot issues that may occur while attempting to connect to Azure Arc-enabled servers via SSH.
+[SSH for Arc-enabled servers](./ssh-arc-overview.md) enables SSH based connections to Arc-enabled servers without requiring a public IP address or additional open ports. This article provides information to help you troubleshoot issues that may occur while attempting to connect to Azure Arc-enabled servers via SSH.
 
 ## Client-side issues
 
@@ -30,7 +30,7 @@ To resolve this issue:
 
 ### Azure PowerShell module version mismatch
 
-If the installed Azure PowerShell module [Az.Ssh.ArcProxy](https://aka.ms/PowerShellGallery-Az.Ssh.ArcProxy) isn't supported by the installed version of [Az.Ssh](/powershell/module/az.ssh/), you see the following error:
+If the installed version of [Az.Ssh](/powershell/module/az.ssh/) doesn't support the installed Azure PowerShell module [Az.Ssh.ArcProxy](https://aka.ms/PowerShellGallery-Az.Ssh.ArcProxy), you see the following error:
 
 - `This version of Az.Ssh only supports version 1.x.x of the Az.Ssh.ArcProxy PowerShell Module. The Az.Ssh.ArcProxy module {ModulePath} version is {ModuleVersion}, and it is not supported by this version of the Az.Ssh module. Check that this version of Az.Ssh is the latest available.`
 
@@ -73,7 +73,7 @@ This issue occurs when SSHD isn't running on the server, or SSH traffic isn't al
 To resolve this issue:
 
 - Ensure that the SSHD service is running on the Arc-enabled server.
-- Ensure that the functionality is enabled on your Arc-enabled server on port 22 (or other nondefault port).
+- Ensure that the functionality is enabled on your Arc-enabled server on port 22 (or other nondefault port) by running the following command:
 
 #### [Azure CLI](#tab/azure-cli)
 
@@ -95,7 +95,7 @@ Use this information to help resolve issues caused by insufficient permissions.
 
 ### Incorrect role assignments to enable SSH connectivity
 
-If you don't have the right role assignment to make contributions to the target resource, you'll see the following error:
+If you don't have the right role assignment to make contributions to the target resource, you see the following error:
 
 - `Client is not authorized to create a Default connectivity endpoint for {Name} in the Resource Group {ResourceGroupName}. This is a one-time operation that must be performed by an account with Owner or Contributor role to allow connections to target resource`
 
