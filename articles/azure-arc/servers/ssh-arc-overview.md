@@ -8,9 +8,9 @@ ms.custom: references_regions
 
 # SSH access to Azure Arc-enabled servers
 
-SSH for Arc-enabled servers enables SSH based connections to Arc-enabled servers without requiring a public IP address or additional open ports. This functionality can be used interactively, automated, or with existing SSH based tooling, expanding the impact of existing management tools on Azure Arc-enabled servers.
+You can enable SSH-based connections to Arc-enabled servers without requiring a public IP address or additional open ports. This functionality can be used interactively, automated, or with existing SSH based tooling, expanding the impact of existing management tools on Azure Arc-enabled servers.
 
-## Key benefits
+## Benefits
 
 SSH access to Arc-enabled servers provides the following benefits:
 
@@ -86,7 +86,7 @@ This operation can take 2-5 minutes to complete. Be sure the registration is com
 
 This step must be completed for each Arc-enabled server. However, you may not need to run these commands to do so, as it should complete automatically at first connection.
 
-#### [Azure CLI:](#tab/azure-cli)
+#### [Azure CLI](#tab/azure-cli)
 
 ```bash
 az rest --method put --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default?api-version=2023-03-15 --body '{"properties": {"type": "default"}}'
