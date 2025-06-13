@@ -56,7 +56,7 @@ If your account doesn't have permissions to execute the SSH proxy that is used t
 - `/bin/bash: line 1: exec: /usr/local/share/powershell/Modules/Az.Ssh.ArcProxy/1.0.0/sshProxy_linux_amd64_1.3.022941: cannot execute: Permission denied`
 - `CreateProcessW failed error:5 posix_spawnp: Input/output error`
 
-You can resolve this issue by ensuring that the user account has permissions to execute the SSH proxy. To enable SSH access, you must have the Owner or Contributor role assigned for the target Arc-enabled server.
+You can resolve this issue by ensuring that the user account has permissions to execute the SSH proxy on the management machine.
 
 ## Server-side issues
 
