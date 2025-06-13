@@ -12,16 +12,15 @@ ms.topic: whats-new
 ms.date: 06/15/2025
 ms.subservice: azure-arc-site-manager
 ---
+
 
-# What's new with Site Manager
+# What's new with Site Manager
 
 Azure Arc Site Manager is continually evolving to enhance performance and reliability for hybrid management scenarios. This article outlines what’s new, improved, or changed in these updates.
 
-**June 2025**
-
+## June 2025
 Site Manager 2.0 public preview refresh with significant performance improvements.
 
-**May 2025**
-
+## May 2025
 Address migration: Site address was previously stored as a separate resource via [Azure Edge Hardware Center](/azure/azure-edge-hardware-center/azure-edge-hardware-center-overview). With this release site address has been merged into the site resource and is no longer using a separate resource via Azure Edge Hardware Center. Additionally, only the physical address fields have been moved to site properties, and personal contact information is no longer stored. The fields that have been moved are as follows: Address line 1, Address line 2, City, Zip code, State/Province/Region, and Country/Region.
 
