@@ -50,8 +50,10 @@ Workload orchestration is designed for a wide range of users, which can be broad
 
 IT personas usually have admin privileges that span across certain subcomponents. These users are responsible for managing the overall IT infrastructure and ensuring that applications are deployed and maintained correctly. Workload orchestration CLI provides a command-line interface for IT personas to manage the workload orchestration environment.
 
-- **IT Admin:** Responsible for setting up and managing the physical hierarchy, user roles, and access control with RBACs. They also manage the overall IT infrastructure and monitor alters.
-- **IT DevOps:** Responsible for writing configuration expressions and attributes, as well as submitting configuration changes. They also manage the deployment process and ensure that applications are running correctly.
+| Role | Responsibilities |
+|------|------------------|
+|IT Admin | Responsible for setting up and managing the physical hierarchy, user roles, and access control with RBACs. They also manage the overall IT infrastructure and monitor alerts. |
+|IT DevOps | Responsible for writing configuration expressions and attributes, and submitting configuration changes. They also manage the deployment process and ensure that applications are running correctly. |
 
 If you're an IT user and want to set up workload orchestration, follow the steps below:
 
@@ -62,29 +64,23 @@ If you're an IT user and want to set up workload orchestration, follow the steps
 
 If your organization has a central IT team and no OT personas, workload orchestration covers the end-to-end journey with IT personas such as platform engineers and solution engineers. Both platform engineers and solution engineers have access to the Azure CLI and can use it to set up the environment, manage the overall IT infrastructure, and monitor alerts and infrastructure statuses.
 
-- **Platform engineers:** Responsible for setting up initial infrastructure, profiles of all personas with RBACs and hierarchy level configurations. They also monitor alerts and infrastructure statuses.
-- **Solution engineers:** Responsible for solutions and their configurations. They onboard the existing apps, write configuration expressions and attributes, and define configuration schema. They also configure and publish parameters for various applications, deploy the latest version of applications, and roll back when deployment fails. They also monitor application statuses and alerts.
+| Role | Responsibilities |
+|------|------------------|
+|Platform engineers | Responsible for setting up initial infrastructure, profiles of all personas with RBACs and hierarchy level configurations. They also monitor alerts and infrastructure statuses. |
+|Solution engineers | Responsible for solutions and their configurations. They onboard the existing apps, write configuration expressions and attributes, and define configuration schema. They also configure and publish parameters for various applications, deploy the latest version of applications, and roll back when deployment fails. They also monitor application statuses and alerts. |
+
 
 ### OT personas
 
-OT personas, also known as no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the workload orchestration portal to manage workload orchestration.
+OT personas, also known as no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface to allow no-code personas to easily manage various tasks. For more information, see the [Workload orchestration portal user guide](portal-user-guide.md).
 
-- **OT responsible for configuration authoring:** Responsible for configuring parameters at multiple hierarchical levels for various applications. They ensure that all values meet validation criteria before deployment.
-- **OT responsible for monitoring:** Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed
-- **OT responsible for deployment:** Responsible for deploying latest version of applications and configurations on production, and roll back when deployment fails.
+The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md).
 
-#### Workload orchestration portal for OT personas
-
-Workload orchestration portal provides a user-friendly interface to allow no-code personas to easily manage various tasks such as fill in required configuration parameters, ensuring all values meet validation criteria before deployment and deploy applications with configurations on production, including real-time status updates, error logs, and rollback options. 
-
-After logging in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), you can view three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md).
-
-
-|Tab|Actions| Access required|
-|----|-------|----------------|
-|[Monitor](monitor.md)|View the solutions, lines, status, and other details.|Read-only access to the solution and line levels.|
-|[Configure](configure.md)|Configure parameters at factory, line and solution levels. View revision details and publish to lines.|Read-write access to factory, line, and solution levels.|
-|[Deploy](deploy.md)|Deploy solutions and roll back to earlier versions if needed.|Deploy access on lines.|
+| Role | Responsibilities | Access required|
+|------|------------------| ---------------|
+|[Monitoring solutions](monitor.md) | Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed. | Read-only access to the solution and line levels.|
+|[Configuration of solutions](configure.md) | Responsible for configuring parameters at multiple hierarchical levels for various applications. They ensure that all values meet validation criteria before deployment.| Read-write access to factory, line, and solution levels.|       
+|[Deployment](deploy.md) | Responsible for deploying latest version of applications and configurations on production, and roll back when deployment fails. | Deploy access on lines. |
 
 > [!NOTE]
 > Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 

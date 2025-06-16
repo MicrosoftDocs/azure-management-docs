@@ -46,7 +46,7 @@ items:
         href: tutorial-service-group-scenario-3.md
       - name: Create multiple solutions with a single shared dependency at different levels
         href: tutorial-service-group-scenario-4.md
-  - name: Manage solutions with the portal
+  - name: Manage solutions 
     items:
     - name: Workload orchestration portal
       items:
@@ -62,7 +62,7 @@ items:
       href: azure-portal-monitoring.md
   - name: How-to guides
     items:
-    - name: Stage a solution before deploying
+    - name: Stage a solution before deployment
       href: how-to-stage.md
     - name: Perform a bulk deployment
       href: bulk-deployment.md
