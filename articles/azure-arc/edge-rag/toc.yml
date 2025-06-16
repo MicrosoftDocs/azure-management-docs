@@ -18,10 +18,24 @@ items:
         items:
           - name: Complete prerequisites
             items:
-              - name: Complete prerequisites
+              - name: Overview
                 href: complete-prerequisites.md
-              - name: Create model endpoint
+              - name: Verify contributor role
+                href: prerequisite-contributor-permission.md
+              - name: Choose language model
+                href: prerequisite-choose-language-model.md
+              - name: Create model endpoint (optional)
                 href: model_endpoint_setup.md
+              - name: Verify NFS server
+                href: prerequisite-verify-nfs-server.md
+              - name: Prepare AKS cluster
+                href: prerequisite-prepare-aks-cluster.md
+              - name: Configure authentication
+                href: prerequisite-configure-authentication.md
+              - name: Install networking components
+                href: prerequisite-networking-observability.md
+              - name: Configure DNS
+                href: prerequisite-configure-dns.md
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Deploy Edge RAG
