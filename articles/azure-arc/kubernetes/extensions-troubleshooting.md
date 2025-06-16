@@ -104,18 +104,6 @@ The following table lists the minimum and maximum limits for potential CPU and m
 
 If you enabled a custom or built-in Azure Policy Gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that either the resource limits on the policy are greater than the limits shown in the preceding table or that the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
 
-### Flux v1
-
-> [!NOTE]
-> We recommend that you [migrate to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible. Support for Flux v1-based cluster configuration resources that were created before January 1, 2024,  ends on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
-
-To help troubleshoot problems with the `sourceControlConfigurations` resource in Flux v1, run these Azure CLI commands, including the `--debug` parameter:
-
-```azurecli
-az provider show -n Microsoft.KubernetesConfiguration --debug
-az k8s-configuration flux create <parameters> --debug
-```
-
 ## Azure Monitor Container Insights
 
 This section provides help with troubleshooting problems with [Container insights in Azure Monitor for Azure Arc-enabled Kubernetes clusters](/azure/azure-monitor/containers/container-insights-enable-arc-enabled-clusters?toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=create-cli%2Cverify-portal).
