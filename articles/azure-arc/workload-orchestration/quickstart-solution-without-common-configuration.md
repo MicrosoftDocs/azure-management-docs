@@ -1,5 +1,5 @@
 ---
-title: Create a Solution without Common Configurations with Workload Orchestration
+title: Create a Basic Solution with Workload Orchestration
 description: Learn how to create a basic solution without common configurations using the workload orchestration via CLI. 
 author: SoniaLopezBravo
 ms.author: sonialopez
@@ -9,9 +9,9 @@ ms.custom:
   - build-2025
 ---
 
-# Quickstart: Create a basic solution without common configurations
+# Quickstart: Create a basic solution 
 
-In this quickstart, you create a basic solution without common configurations using the workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies.
+In this quickstart, you create a basic solution using the workload orchestration via CLI. 
 
 ## Prerequisites
 
@@ -328,5 +328,10 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```powershell
     az workload-orchestration target install --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
-
 ***
+
+## Next steps
+
+
+
+ [Create a solution with common configurations](quickstart-solution-with-common-configuration.md).

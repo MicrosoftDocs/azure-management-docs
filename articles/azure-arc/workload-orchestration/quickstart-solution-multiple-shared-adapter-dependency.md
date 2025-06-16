@@ -3,15 +3,15 @@ title: Create a Solution with Multiple Dependencies with Workload Orchestration
 description: Learn how to create a solution with multiple shared adapter dependencies using workload orchestration via CLI.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: quickstart
+ms.topic: tutorial
 ms.date: 05/07/2025
 ms.custom:
   - build-2025
 ---
 
-# Quickstart: Create a solution with multiple shared adapter dependencies
+# Tutorial: Create a solution with multiple shared adapter dependencies
 
-In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
+In this tutorial, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
 ## Prerequisites
 

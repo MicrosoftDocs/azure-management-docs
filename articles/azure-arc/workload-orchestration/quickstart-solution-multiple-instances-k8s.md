@@ -3,15 +3,15 @@ title: Create a Solution with Multiple Instances with Workload Orchestration
 description: Learn how to create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: quickstart
+ms.topic: how-to
 ms.date: 05/03/2025
 ms.custom:
   - build-2025
 ---
 
-# Quickstart: Create a solution with multiple instances in the same Kubernetes namespace
+# Create a solution with multiple instances in the same Kubernetes namespace
 
-In this quickstart, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies.
+In this, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. 
 
 ## Prerequisites
 

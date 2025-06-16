@@ -58,6 +58,10 @@ landingContent:
 
   - title: Workload orchestration for OT users
     linkLists:
+      - linkListType: overview
+        links:
+          - text: User guide for workload orchestration
+            url: portal-user-guide.md
       - linkListType: how-to-guide
         links:
           - text: Monitor your solutions 

@@ -3,15 +3,15 @@ title: Upgrade a Shared Application with Workload Orchestration
 description: Learn how to upgrade a shared application using workload orchestration via CLI.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: quickstart
+ms.topic: how-to
 ms.date: 05/10/2025
 ms.custom:
   - build-2025
 ---
 
-# Quickstart: Upgrade a shared solution
+# Upgrade a shared solution
 
-In this quickstart, you upgrade a shared Factory Sensor Anomaly Detector (FSAD) solution and deploy a dependent Shared Sync Adapter (SSA) solution using workload orchestration and the Azure CLI. 
+In this tutorial, you upgrade a shared Factory Sensor Anomaly Detector (FSAD) solution and deploy a dependent Shared Sync Adapter (SSA) solution using workload orchestration and the Azure CLI. 
 
 The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers. For more information about the FSAD and SSA solutions, see [Quickstart: Create a solution with multiple shared adapter dependencies](quickstart-solution-multiple-shared-adapter-dependency.md).
 
