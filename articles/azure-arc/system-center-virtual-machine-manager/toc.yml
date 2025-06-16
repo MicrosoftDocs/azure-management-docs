@@ -24,7 +24,7 @@
   items:
   - name: Enable resources for Azure management
     items:
-    - name: Enable inventory resources
+    - name: Enable SCVMM resources in Azure
       href: enable-scvmm-inventory-resources.md
     - name: Link Arc-enabled server machines to SCVMM
       href: enable-virtual-hardware-scvmm.md

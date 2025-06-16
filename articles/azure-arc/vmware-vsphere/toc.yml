@@ -4,6 +4,8 @@
   items:
   - name: About Azure Arc-enabled VMware vSphere
     href: overview.md
+  - name: Plan for deployment
+    href: support-matrix-for-arc-enabled-vmware-vsphere.md
   - name: Switch to the new version
     href: switch-to-new-version.md
 - name: Concepts
@@ -22,8 +24,6 @@
   items:
   - name: Deploy
     items: 
-    - name: Plan for deployment
-      href: support-matrix-for-arc-enabled-vmware-vsphere.md
     - name: Enable VMware vCenter resources in Azure
       href: browse-and-enable-vcenter-resources-in-azure.md
     - name: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter
