@@ -61,6 +61,16 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/conceptual-configurations.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-gitops-flux2",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/tutorial-use-gitops-connected-cluster.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/azure-arc/kubernetes/use-gitops-connected-cluster.md",
             "redirect_url": "/azure/azure-arc/kubernetes/tutorial-use-gitops-connected-cluster",
             "redirect_document_id": false
