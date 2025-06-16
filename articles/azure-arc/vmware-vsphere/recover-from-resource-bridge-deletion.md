@@ -25,7 +25,7 @@ The connection between on-premises infrastructure and Azure can be lost and any 
 
 - Expiration of the VM certs due to lack of upgrades
 
-In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same properties as the current resource bridge. This disaster recovery procedure requires deletion of the existing Arc resource bridge VM in vCenter and the resource bridge Azure resource in Azure Portal. Then you can modify the onboarding script to be used for disaster recovery and attempt the recovery. The recovery will create a new resource bridge Azure resource with the same ARM ID.
+In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same properties as the current resource bridge. This disaster recovery procedure requires deletion of the existing Arc resource bridge VM in vCenter and the resource bridge Azure resource in Azure Portal. Then you can modify the onboarding script to be used for disaster recovery and attempt the recovery. The recovery will create a new resource bridge Azure resource with the same ARM ID, vCenter resource and custom location.
 
  following the steps below:
 
@@ -41,9 +41,9 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 
 1. Go to your vCenter console and delete the Azure Arc resource bridge VM from the vCenter if it exists. The VM will be re-created in a later step as part of the disaster recovery.
 
-1. Download the [onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) from the Azure portal. You will need to make changes to this script as this is the day 0 deployment script and changes must be made to support the disaster recovery scenario.
+1. Download the [onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#download-the-onboarding-script) from the Azure portal. 
 
-1. Open the onboarding script in an editor and update the script with the properties that you copied in Step 1. This is necessary to replace the deleted resource bridge with a new resource bridge with the same properties, but you will use the existing vCenter and custom location with the new resource bridge:
+1. You will need to make changes to the downloaded onboarding script to use for the disaster recovery, which creates a new resource bridge with the same ARM ID, custom location and vCenter resource. Open the onboarding script in an editor and update the script with the properties that you copied in Step 1. This is necessary to replace the deleted resource bridge with a new resource bridge with the same properties:
 
     ```powershell
    $location = <Azure region of the resources>
