@@ -51,7 +51,7 @@ To deploy and configure version-managed extensions (preview) for Arc-enabled Kub
 
 To deploy all currently supported version-managed extensions, you can use the `az vme install` command with the `--include all` option. This command installs all extensions that are part of the version-managed extensions (preview) program.
 
-Before running the command to deploy all currently supported extension, you must first install Azure IoT Operations dependencies (`cert-manager` and `trust-manager`), which are required for the Azure Container Storage enabled by Azure Arc extension:
+Currently, before running the command to deploy all currently supported extension, you must first install Azure IoT Operations dependencies (`cert-manager` and `trust-manager`), which are required for the Azure Container Storage enabled by Azure Arc extension:
 
 ```azurecli
 az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
