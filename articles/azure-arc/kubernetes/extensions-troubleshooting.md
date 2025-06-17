@@ -7,6 +7,7 @@ ms.custom:
   - references_regions
   - build-2025
 description: "Learn how to resolve common problems with Azure Arc-enabled Kubernetes cluster extensions."
+# Customer intent: "As a Kubernetes administrator, I want to troubleshoot extension issues in Azure Arc-enabled clusters, so that I can ensure smooth operation and management of GitOps, Open Service Mesh, and other functionalities."
 ---
 
 # Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters

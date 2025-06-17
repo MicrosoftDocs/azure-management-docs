@@ -3,6 +3,7 @@ title: "Overview of Azure Arc-enabled Kubernetes"
 ms.date: 10/08/2024
 ms.topic: overview
 description: "Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running anywhere so that you can manage and configure them in Azure."
+# Customer intent: As a DevOps engineer managing multiple Kubernetes clusters across environments, I want to connect and manage them through a unified control plane in Azure, so that I can streamline operations, enforcement of policies, and application deployment across diverse platforms.
 ---
 
 # What is Azure Arc-enabled Kubernetes?

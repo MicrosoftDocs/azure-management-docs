@@ -4,6 +4,7 @@ ms.date: 11/01/2024
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Learn how to resolve common issues with Azure Arc-enabled Kubernetes clusters and GitOps."
+# Customer intent: As a Kubernetes administrator, I want to troubleshoot connectivity and configuration issues with Azure Arc-enabled Kubernetes clusters, so that I can ensure seamless integration and optimal performance in my cloud infrastructure.
 ---
 
 # Troubleshoot platform issues for Azure Arc-enabled Kubernetes clusters
