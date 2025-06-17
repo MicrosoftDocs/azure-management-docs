@@ -3,17 +3,17 @@ title: Choose the Right Language Model for Edge RAG Deployment
 description: "Learn how to choose the right language model for Edge RAG deployment, including Microsoft and custom options, to optimize your AI solution."
 author: cwatson-cat
 ms.author: cwatson
-ms.topic: how-to
+ms.topic: concept-article
 ms.date: 06/21/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent: As a cloud administrator, I want to prepare a language model for use with Edge RAG so that I can deploy and manage an AI chat solution at the edge.
+#CustomerIntent: As a cloud administrator, I want to choose a language model for use with Edge RAG so that I can deploy and manage an AI chat solution for my edge environment.
 
 ---
 
 # Choose the right language model for Edge RAG Deployment
 
-Choose the right language model for your Edge RAG deployment by reviewing available options and understanding model requirements. This article is part of the deployment prerequisites checklist.
+Review available model options and understand model requirements to choose the right language model for Edge RAG Preview enabled by Azure Arc. This article is part of the deployment prerequisites checklist.
 
 ## Select a language model
 
@@ -36,12 +36,12 @@ If you don't have your own language model to use with Edge RAG, select one of th
 
 ## Bring your own language model
 
-Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
+Edge RAG works with small language models (SLM) or large language models (LLM) that expose endpoints that support the OpenAI inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO) or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
 
 If you plan to use your own language model with Edge RAG, you must complete the steps in the following articles:
 
 - Before you deploy Edge RAG, [create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
-- After you deploy the Edge RAG extention, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
+- After you deploy the Edge RAG extension, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
 
 
 ## Next step

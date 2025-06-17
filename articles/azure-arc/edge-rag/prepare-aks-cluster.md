@@ -12,7 +12,7 @@ ms.subservice: edge-rag
 
 # Prepare AKS cluster on Azure Local for Edge RAG Deployment
 
-In this article, prepare an AKS cluster on Azure Local for your Edge RAG deployment by creating the cluster, configuring node pools, and installing GPU drivers if needed. This article is part of the deployment prerequisites checklist.
+For Edge RAG enabled by Azure Arc, prepare an AKS cluster on Azure Local by creating the cluster, configuring node pools, and installing GPU drivers as needed. This article is part of the deployment prerequisites checklist.
 
 ## Prepare your AKS cluster
 
@@ -30,7 +30,7 @@ Create an AKS Arc cluster by using one of the following methods:
 
 AKS Arc only supports Nvidia A2 and A16 GPUs. The following steps are applicable only to these two GPUs.
 
-If you have GPUs available in your Azure Local instance you want to use for Edge RAG, make sure that the necessary GPU drivers are installed and available in the AKS Arc cluster nodes.
+If you have GPUs available in your Azure Local instance that you want to use for Edge RAG, make sure that the necessary GPU drivers are installed and available in the AKS Arc cluster nodes.
 
 To check if the right drivers are already installed and the GPUs are available to the AKS Arc cluster, run the following command:
 
@@ -74,7 +74,7 @@ To create a node pool for AKS Arc, complete the following steps from the driver 
 
    If GPUs are available:
 
-   - You must create a node pool of at least three CPU VMs, with minimal size of "Standard_D8s_v3". Run the following command:
+   - You must create a node pool of at least three CPU virtual machines (VMs), with minimal size of "Standard_D8s_v3". Run the following command:
    
     	```powershell
     	$cpuPoolName = "<CPU Pool Name>"

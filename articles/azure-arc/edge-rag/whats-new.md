@@ -17,6 +17,17 @@ This article lists the various features and improvements that are available in E
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
+## June 2025
+
+### New article: Create an endpoint to use for Edge RAG deployment
+
+If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint to use with Edge RAG. For more information, see [Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
+
+### Prerequisites for deployment reorganized into a checklist
+
+To prepare for your deployment of Edge RAG, complete the steps listed in the new checklist:
+[Deployment prerequisites checklist for Edge RAG Preview enabled by Azure Arc](complete-prerequisites.md). To improve the documentation quality and experience, each deployment prerequisite is now in a separate article.
+
 ## May 2025
 
 ### Edge RAG in public preview

@@ -16,7 +16,7 @@ In this article, install networking and observability components for your Edge R
 
 ## Install components for Edge RAG
 
-From the driver machine, install and configure MetalLB for the AKS Arc cluster and the observability dependency modules.
+From the driver machine, install and configure MetalLB for the Azure Arc Azure Kubernetes Service (AKS) cluster and the observability dependency modules.
 
 1. **Install MetalLB**
 

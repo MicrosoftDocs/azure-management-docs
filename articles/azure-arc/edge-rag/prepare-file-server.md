@@ -12,11 +12,11 @@ ms.subservice: edge-rag
 
 # Verify NFS server access for Edge RAG deployment
 
-As part of preparing for your Edge RAG deployment, verify your NFS server is configured and reachable for your Edge RAG deployment. Check the connectivity and make sure your data is accessible. This article is part of the deployment prerequisites checklist.
+As part of preparing for your Edge RAG deployment, verify your network file share (NFS) server is configured and reachable for your Edge RAG deployment. Check the connectivity and make sure your data is accessible. This article is part of the deployment prerequisites checklist.
 
 ## Verify NFS server configuration and connectivity
 
-Make sure all your documents and images are available on a supported network file system (NFS) server. That NFS server must be configured correctly and reachable from the Edge RAG deployment on Azure Local. For more information, see the following articles:
+Make sure all your documents and images are available on a supported NFS server. That NFS server must be configured correctly and reachable from the Edge RAG deployment on Azure Local. For more information, see the following articles:
 
 - [Supported data sources](requirements.md#supported-data-sources) 
 - [Configure the network file system server for Edge RAG](configure-nfs-server.md).

@@ -12,7 +12,7 @@ ms.subservice: edge-rag
 
 # Create an endpoint to use for Edge RAG deployment
 
-If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint to use with Edge RAG. Choose one of the following methods included in this article to create your endpoint. 
+If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint for Edge RAG Preview enabled by Azure Arc. Choose one of the following methods included in this article to create your endpoint. 
 
 After you create your endpoint, use the endpoint when you [deploy the extension for Edge RAG](deploy.md) and choose to add your own language model.
 

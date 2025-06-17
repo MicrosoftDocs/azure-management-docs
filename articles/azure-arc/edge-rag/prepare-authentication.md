@@ -12,11 +12,11 @@ ms.subservice: edge-rag
 
 # Configure authentication for an Edge RAG Deployment
 
-In this article, configure authentication for your Edge RAG deployment by registering an application, creating app roles, and assigning users or groups. This article is part of the deployment prerequisites checklist.
+In this article, register an application, create app roles, and assign users or groups for Edge RAG Preview enabled by Azure Arc. This article is part of the deployment prerequisites checklist.
 
 ## Configure authentication for the chat solution
 
-Configure and control authentication to the Edge RAG for AI application developers and for end users of the chat endpoint. In this section, you create an application registration, create app roles, and assign users or groups to those roles. 
+Set up authentication to Edge RAG for AI application developers and for end users of the chat endpoint.
 
 You might need to work with your Microsoft Entra or cloud administrator to configure authentication.
 
