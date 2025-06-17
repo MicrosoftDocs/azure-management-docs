@@ -3,7 +3,7 @@ title: Edge Volumes storage options
 description: Learn about different data storage options in Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/05/2025
 # Customer intent: As a cloud architect, I want to understand the different storage options available in Azure Container Storage enabled by Azure Arc, so that I can design flexible data flow architectures for my applications at the edge and in the cloud.
 ---
