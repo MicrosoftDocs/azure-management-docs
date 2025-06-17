@@ -74,4 +74,4 @@ You might need to work with your Microsoft Entra or cloud administrator to confi
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Install networking and observability components](prepare-networking-observability.md)
+> [Install networking and observability components for Edge RAG deployment](prepare-networking-observability.md)

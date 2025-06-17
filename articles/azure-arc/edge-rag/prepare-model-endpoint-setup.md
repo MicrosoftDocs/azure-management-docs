@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Create an endpoint to use for Edge RAG deployment
 
-If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an endpoint to use with Edge RAG. Choose one of the following methods included in this article to create your endpoint. 
+If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint to use with Edge RAG. Choose one of the following methods included in this article to create your endpoint. 
 
 After you create your endpoint, use the endpoint when you [deploy the extension for Edge RAG](deploy.md) and choose to add your own language model.
 
@@ -25,15 +25,17 @@ To use your own model with Edge RAG, you can deploy a language model and create 
 
 1. On the Azure AI Foundry resource, select **Models + endpoints**.
 
-1. Select **Deploy model** to create a model deployment.
+1. Select **Deploy model** > **Deploy base model**.
+1. Choose a chat completion model from the list like `gpt-4o`.
+1. Select **Confirm**.
+1. Edit the following fields as appropriate for your scenario:
 
     | Field            | Description   |
     |------------------|--------------|
-    | Model            | Choose a chat completion model from the list like `gpt-4o`.  |
-    | Deployment name  | Choose deployment name. The default is model name.                   |
-    | Deployment type  | Select deployment type. The default is `Global Standard`.      |
+    | Deployment name  | Choose deployment name. The default is name of the model you selected.                   |
+    | Deployment type  | Select deployment type. The default is **Global Standard**.      |
 
-1. Select **Deploy**.
+1. Select **Deploy to selected resource**.
 
 1. Wait for the deployment to complete and the **State** is **Succeeded**.
 
@@ -41,6 +43,10 @@ To use your own model with Edge RAG, you can deploy a language model and create 
 
    `https://<Azure AI Foundry Resource Name>.openai.azure.com/openai/deployments/<Model Deployment Name>/chat/completions?api-version=<API Version>`
 
+For more information, see the following articles:
+
+- [Deployment types for Azure AI Foundry Models](/azure/ai-services/openai/how-to/deployment-types)
+- [Quickstart: Create your first AI Foundry resource](/azure/ai-services/multi-service-resource?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azportal)
 
 ## KAITO
 
@@ -56,162 +62,163 @@ You can set up Ollama as a language model endpoint on your Kubernetes cluster. U
 
 1. If you're using the Ollama with GPU, you must set the following two things on the GPU node. Replace `moc-gpunode` with the name of your GPU node.
 
-   `kubectl taint nodes <moc-gpunode> ollamasku=ollamagpu:NoSchedule –overwrite`
+   ```bash
+   kubectl taint nodes <moc-gpunode> ollamasku=ollamagpu:NoSchedule –overwrite
 
-   `kubectl label node <moc-gpunode> hardware=ollamagpu`
+   kubectl label node <moc-gpunode> hardware=ollamagpu`
+   ```
 
-1. Create a yaml file by using one of the following snippets depending on whether you're using CPU or GPU for your model.
-
-    - CPU yaml:
-
-     ```yaml
-     # ollama-deploy.yaml
-     
-     apiVersion: apps/v1
-     kind: Deployment
-     metadata:
-         name: ollama-deploy
-         namespace: default
-     spec:
-         replicas: 1
-         selector:
-             matchLabels:
-                 app: ollama-deploy
-         template:
-             metadata:
-                 labels:
-                     app: ollama-deploy
-             spec:
-                 containers:
-                     - name: ollama
-                         image: ollama/ollama
-                         args: ["serve"]
-                         ports:
-                             - containerPort: 11434
-                         volumeMounts:
-                             - name: ollama-data
-                                 mountPath: /root/.ollama
-                 volumes:
-                     - name: ollama-data
-                         emptyDir: {}
-     
-     ---
-     apiVersion: v1
-     kind: Service
-     metadata:
-         name: ollama-llm
-         namespace: default
-     spec:
-         selector:
-             app: ollama-deploy
-         ports:
-             - port: 11434
-                 targetPort: 11434
-                 protocol: TCP
-     ```
+1. Create a yaml file by using one of the following snippets depending on whether you're using GPU or CPU for your model.
 
     - GPU yaml:
 
-     ```yaml
-     # ollama-deploy.yaml
-     
-     apiVersion: apps/v1
-     kind: Deployment
-     metadata:
-         name: ollama-deploy
-         namespace: default
-     spec:
-         replicas: 1
-         selector:
-             matchLabels:
-                 app: ollama-deploy
-         template:
-             metadata:
-                 labels:
-                     app: ollama-deploy
-             spec:
-                 affinity:
-                     nodeAffinity:
-                         requiredDuringSchedulingIgnoredDuringExecution:
-                             nodeSelectorTerms:
-                             - matchExpressions:
-                                 - key: hardware
-                                     operator: In
-                                     values:
-                                     - ollamagpu
-                 containers:
-                     - name: ollama
-                         image: ollama/ollama
-                         args: ["serve"]
-                         ports:
-                             - containerPort: 11434
-                         volumeMounts:
-                             - name: ollama-data
-                                 mountPath: /root/.ollama
-                         resources:
-                             limits:
-                                 nvidia.com/gpu: "1"
-                 volumes:
-                     - name: ollama-data
-                         emptyDir: {}
-                 tolerations:
-                     - effect: NoSchedule
-                         key: ollamasku
-                         operator: Equal
-                         value: ollamagpu
-     
-     ---
-     apiVersion: v1
-     kind: Service
-     metadata:
-         name: ollama-llm
-         namespace: default
-     spec:
-         selector:
-             app: ollama-deploy
-         ports:
-             - port: 11434
-                 targetPort: 11434
-                 protocol: TCP
-     ```
+      ```yaml
+      # ollama-deploy.yaml
+      
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+          name: ollama-deploy
+          namespace: default
+      spec:
+          replicas: 1
+          selector:
+              matchLabels:
+                  app: ollama-deploy
+          template:
+              metadata:
+                  labels:
+                      app: ollama-deploy
+              spec:
+                  affinity:
+                      nodeAffinity:
+                          requiredDuringSchedulingIgnoredDuringExecution:
+                              nodeSelectorTerms:
+                              - matchExpressions:
+                                  - key: hardware
+                                      operator: In
+                                      values:
+                                      - ollamagpu
+                  containers:
+                      - name: ollama
+                          image: ollama/ollama
+                          args: ["serve"]
+                          ports:
+                              - containerPort: 11434
+                          volumeMounts:
+                              - name: ollama-data
+                                  mountPath: /root/.ollama
+                          resources:
+                              limits:
+                                  nvidia.com/gpu: "1"
+                  volumes:
+                      - name: ollama-data
+                          emptyDir: {}
+                  tolerations:
+                      - effect: NoSchedule
+                          key: ollamasku
+                          operator: Equal
+                          value: ollamagpu
+      
+      ---
+      apiVersion: v1
+      kind: Service
+      metadata:
+          name: ollama-llm
+          namespace: default
+      spec:
+          selector:
+              app: ollama-deploy
+          ports:
+              - port: 11434
+                  targetPort: 11434
+                  protocol: TCP
+      ```
+ 
+    - CPU yaml:
+
+      ```yaml
+      # ollama-deploy.yaml
+      
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+          name: ollama-deploy
+          namespace: default
+      spec:
+          replicas: 1
+          selector:
+              matchLabels:
+                  app: ollama-deploy
+          template:
+              metadata:
+                  labels:
+                      app: ollama-deploy
+              spec:
+                  containers:
+                      - name: ollama
+                          image: ollama/ollama
+                          args: ["serve"]
+                          ports:
+                              - containerPort: 11434
+                          volumeMounts:
+                              - name: ollama-data
+                                  mountPath: /root/.ollama
+                  volumes:
+                      - name: ollama-data
+                          emptyDir: {}
+      
+      ---
+      apiVersion: v1
+      kind: Service
+      metadata:
+          name: ollama-llm
+          namespace: default
+      spec:
+          selector:
+              app: ollama-deploy
+          ports:
+              - port: 11434
+                  targetPort: 11434
+                  protocol: TCP
+      ```
 
 1. Deploy Ollama in the default namespace by using the following yaml snippet. This snippet creates an Ollama deployment and service in default namespace.  
 
-   `kubectl apply -f ollama-deploy.yaml`
+   ```bash
+   kubectl apply -f ollama-deploy.yaml
+   ```
 
-1. Prepull a model by using one of the following commands. Get the latest supported models here: [Ollama Search](https://ollama.com/search).
+1. Download a model by using one of the following commands. Get the latest supported models here: [Ollama Search](https://ollama.com/search).
 
    ```bash
    kubectl exec -n default -it deploy/ollama-deploy -- bash -c "ollama pull <model_name>"
    ```
 
-   Or use kubernetes to connect to the pod and execute the following command inside the ollama pod:
+   Or use k9s to connect to the pod and execute the following command inside the ollama pod:
 
    ```bash
    ollama pull <model_name>
    ```
-
-1. Follow the steps in [Deploy the extension for Edge RAG Preview enabled by Azure Arc](deploy.md) and choose to add your own language model.
 1. Use the following endpoint value as you configure the Edge RAG extension deployment:
 
     `http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions`
 
-1. *[Optional]* To verify if model can be accessed from another namespace, run the following curl command from inference flow pod in the arc-rag namespace.
+After you deploy the Edge RAG extension, verify that the model can be accessed from another namespace. Run the following curl command from inference flow pod in the arc-rag namespace.
 
-   ```bash
-   curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
-       -H "Content-Type: application/json" \
-       -d '{
-           "model": "llama3:8b",
-           "messages": [
-               { "role": "system", "content": "You are a helpful assistant." },
-               { "role": "user", "content": "What is the capital of Japan?" }
-           ]
-       }'
-   ```
+```bash
+curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
+    -H "Content-Type: application/json" \
+    -d '{
+        "model": "llama3:8b",
+        "messages": [
+            { "role": "system", "content": "You are a helpful assistant." },
+            { "role": "user", "content": "What is the capital of Japan?" }
+        ]
+    }'
+```
 
-## Related content
+## Next step
 
-- [Complete deployment prerequisites for Edge RAG Preview, enabled by Azure Arc](complete-prerequisites.md)
-- [Deploy the extension for Edge RAG Preview enabled by Azure Arc](deploy.md)
-- [Configure "BYOM" endpoint authentication for Edge RAG Preview enabled by Azure Arc](configure-endpoint-authentication.md)
+> [!div class="nextstepaction"]
+> [Configure DNS for Edge RAG deployment](prepare-configure-dns.md)

@@ -27,7 +27,7 @@ items:
               - name: Create model endpoint (optional)
                 href: prepare-model-endpoint-setup.md
               - name: Verify NFS server
-                href: prepare-verify-nfs-server.md
+                href: prepare-file-server.md
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
               - name: Configure authentication

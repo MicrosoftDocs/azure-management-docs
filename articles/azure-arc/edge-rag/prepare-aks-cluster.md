@@ -108,4 +108,4 @@ For more information, see [Create node pools for a cluster in Azure Kubernetes S
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Configure authentication](prepare-configure-authentication.md)
+> [Configure authentication for Edge RAG deployment](prepare-configure-authentication.md)

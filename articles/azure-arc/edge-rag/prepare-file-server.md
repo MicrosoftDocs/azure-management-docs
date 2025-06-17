@@ -24,4 +24,4 @@ Use the NFS server you configured to host the documents and images you want to u
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prepare AKS cluster on Azure Local](prepare-aks-cluster.md)
+> [Prepare AKS cluster on Azure Local for Edge RAG deployment](prepare-aks-cluster.md)
