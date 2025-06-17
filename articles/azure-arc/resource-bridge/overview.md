@@ -66,7 +66,7 @@ Azure Arc resource bridge enables you to manage on-premises Windows and Linux vi
 
 - Provision and delete VMs from Azure portal or CLI
 
-Start, stop, and restart VMs
+- Start, stop, and restart VMs
 
 - Control access using Azure RBAC and apply Azure tags
 
