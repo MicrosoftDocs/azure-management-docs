@@ -14,6 +14,8 @@ ms.subservice: edge-rag
 
 Make sure you have contributor permissions at the subscription level for Edge RAG Preview enabled by Azure Arc by checking your Azure role assignments. This article is part of the deployment prerequisites checklist.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Verify contributor permissions
 
 Verify that you have [Contributor](/azure/role-based-access-control/built-in-roles/privileged#contributor) permissions for the subscription you want to use. See [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).

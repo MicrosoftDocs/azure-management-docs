@@ -14,6 +14,8 @@ ms.subservice: edge-rag
 
 In this article, install networking and observability components for your Edge RAG deployment by configuring MetalLB and setting up certificate and trust managers. This article is part of the deployment prerequisites checklist.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Install components for Edge RAG
 
 From the driver machine, install and configure MetalLB for the Azure Arc Azure Kubernetes Service (AKS) cluster and the observability dependency modules.

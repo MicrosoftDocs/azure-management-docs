@@ -14,6 +14,8 @@ ms.subservice: edge-rag
 
 For Edge RAG enabled by Azure Arc, prepare an AKS cluster on Azure Local by creating the cluster, configuring node pools, and installing GPU drivers as needed. This article is part of the deployment prerequisites checklist.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Prepare your AKS cluster
 
 Create an Azure Kubernetes Service (AKS) cluster on the Azure Local instance with a node pool that meets the minimum requirements.

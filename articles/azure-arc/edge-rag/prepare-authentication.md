@@ -14,6 +14,8 @@ ms.subservice: edge-rag
 
 In this article, register an application, create app roles, and assign users or groups for Edge RAG Preview enabled by Azure Arc. This article is part of the deployment prerequisites checklist.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Configure authentication for the chat solution
 
 Set up authentication to Edge RAG for AI application developers and for end users of the chat endpoint.

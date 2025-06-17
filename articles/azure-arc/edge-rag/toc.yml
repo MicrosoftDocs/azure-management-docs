@@ -36,8 +36,6 @@ items:
                 href: prepare-networking-observability.md
               - name: Configure DNS
                 href: prepare-dns.md
-          - name: Configure NFS server
-            href: configure-nfs-server.md
           - name: Deploy Edge RAG
             href: deploy.md
           - name: Configure endpoint authentication
@@ -70,6 +68,8 @@ items:
             href: configure-driver-machine.md
       - name: Reference
         items:
+          - name: Configure NFS server
+            href: configure-nfs-server.md
           - name: Evaluation metrics
             href: evaluation-metrics.md
           - name: Monitoring metrics

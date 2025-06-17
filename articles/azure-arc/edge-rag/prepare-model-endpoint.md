@@ -16,6 +16,8 @@ If you plan to use your own language model instead of one of the models provided
 
 After you create your endpoint, use the endpoint when you [deploy the extension for Edge RAG](deploy.md) and choose to add your own language model.
 
+[!INCLUDE [preview-notice](includes/preview-notice.md)]
+
 ## Azure AI Foundry
 
 To use your own model with Edge RAG, you can deploy a language model and create an endpoint by using Azure AI Foundry.
