@@ -5,6 +5,7 @@ ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
 ms.custom:
   - build-2025
+# Customer intent: "As a Kubernetes administrator, I want to explore and install available extensions for Azure Arc-enabled Kubernetes clusters, so that I can enhance cluster management and implement necessary functionalities efficiently."
 ---
 
 # Available extensions for Azure Arc-enabled Kubernetes clusters

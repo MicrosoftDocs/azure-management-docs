@@ -4,6 +4,7 @@ ms.date: 02/12/2025
 ms.custom: references-regions, devx-track-azurecli
 ms.topic: how-to
 description: "Learn how to discover Kubernetes applications in Azure Marketplace and deploy them to your Arc-enabled Kubernetes clusters."
+# Customer intent: As a cloud administrator, I want to discover and deploy Kubernetes applications from an online marketplace to my Azure Arc-enabled clusters so that I can enhance my deployment capabilities and manage applications more effectively.
 ---
 
 # Deploy and manage applications from Azure Marketplace on Azure Arc-enabled Kubernetes clusters

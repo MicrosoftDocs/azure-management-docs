@@ -8,6 +8,7 @@ ms.custom:
   - devx-track-azurecli
   - references_regions
   - build-2025
+# Customer intent: As a DevOps engineer, I want to deploy applications using GitOps with ArgoCD on Azure Arc or AKS clusters, so that I can manage configurations and automate application deployments efficiently.
 ---
 
 # Tutorial: Deploy applications using GitOps with ArgoCD
