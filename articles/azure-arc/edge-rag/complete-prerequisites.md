@@ -6,7 +6,7 @@ ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 06/16/2025
 ai-usage: ai-generated
-
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator or AI application developer, I want to complete the deployment prerequisites for Edge RAG so that I can ensure a successful setup and configuration of the environment for AI-powered applications.
 ms.custom:
   - build-2025

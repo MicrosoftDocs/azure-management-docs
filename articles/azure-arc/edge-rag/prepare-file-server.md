@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: concept-article
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to verify that my NFS server is configured and reachable for Edge RAG deployment so that my documents and images are accessible to the chat solution.
 ---
 

@@ -1,26 +1,25 @@
 ---
 title: Choose the Right Language Model for Edge RAG Deployment
-description: "Decide which language model to deploy for Edge RAG."
+description: "Learn how to choose the right language model for Edge RAG deployment, including Microsoft and custom options, to optimize your AI solution."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
+ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent
+#CustomerIntent: As a cloud administrator, I want to prepare a language model for use with Edge RAG so that I can deploy and manage an AI chat solution at the edge.
+
 ---
 
 # Choose the right language model for Edge RAG Deployment
 
-In this article, choose the right language model for your Edge RAG deployment by reviewing available options and understanding model requirements. This article is part of the deployment prerequisites checklist.
+Choose the right language model for your Edge RAG deployment by reviewing available options and understanding model requirements. This article is part of the deployment prerequisites checklist.
 
 ## Select a language model
 
-Decide which language model your organization wants to deploy. You can use your own language model or use the Microsoft provided language models: 
+Decide which language model your organization wants to deploy. You can use your own language model or use one of the Microsoft provided language models.  
 
-- [Microsoft Phi 3.5 Mini](https://huggingface.co/microsoft/Phi-3.5-mini-instruct) and
-- [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2). 
-
-After Edge RAG extension is deployed, you can't change the language model. Therefore, work with your application development team to decide which is the right model for your organization's use case. 
+After Edge RAG extension is deployed, you can't change the language model. Therefore, work with your application development team to decide which is the right model for your organization's use case.
 
 You can refer to some of these resources from Microsoft to choose the right model for your use case:
 
@@ -28,14 +27,31 @@ You can refer to some of these resources from Microsoft to choose the right mode
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
 - [Azure AI Foundry](/azure/ai-studio/concepts/model-benchmarks) also provides tooling such as model benchmarks to choose the right model.
 
+## Microsoft provided language models
 
-## Microsoft provided language model
+If you don't have your own language model to use with Edge RAG, select one of the following Microsoft provided language models when you deploy the Edge RAG extension:
+
+- [Microsoft Phi 3.5 Mini](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)
+- [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)
 
 ## Bring your own language model
 
-Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI Inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
+Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
+
+If you plan to use your own language model with Edge RAG, you must complete the steps in the following articles:
+
+- Before you deploy Edge RAG, [create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
+- After you deploy the Edge RAG extention, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
+
 
 ## Next step
 
+If you're using a Microsoft provided language model:
+
 > [!div class="nextstepaction"]
-> [Optional: Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md)
+> [Verify NFS server access for Edge RAG deployment](prepare-file-server.md)
+
+If you're bringing your own language model:
+
+> [!div class="nextstepaction"]
+> [Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md)

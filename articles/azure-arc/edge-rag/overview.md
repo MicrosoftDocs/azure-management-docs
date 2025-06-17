@@ -6,7 +6,7 @@ ms.author: cwatson
 ms.topic: overview #Don't change
 ms.date: 05/20/2025
 ai-usage: ai-assisted
-
+ms.subservice: edge-rag
 #CustomerIntent: As a business decision maker, I want to understand what Edge RAG offers so that I can determine whether the service meets my organization's requirements.
 ms.custom:
   - build-2025

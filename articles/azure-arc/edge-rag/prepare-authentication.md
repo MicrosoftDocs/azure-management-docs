@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Edge RAG so that I can securely connect to and manage the chat solution.
 ---
 

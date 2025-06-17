@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare an AKS cluster on Azure Local for Edge RAG deployment so that my environment meets the requirements for running the Edge RAG workload.
 ---
 

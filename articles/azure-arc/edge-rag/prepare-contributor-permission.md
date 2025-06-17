@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As an Azure administrator, I want to verify that I have contributor permissions for Edge RAG so that I have the necessary access to deploy the resources needed for Edge RAG.
 ---
 

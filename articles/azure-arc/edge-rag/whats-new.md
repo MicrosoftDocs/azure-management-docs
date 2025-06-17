@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
 ms.date: 05/20/2025
-
+ms.subservice: edge-rag
 #Customer intent: As a ..., I want to stay updated on the latest features and enhancements so that I can...
 ms.custom:
   - build-2025

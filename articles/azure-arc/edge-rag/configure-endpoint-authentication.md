@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 05/13/2025
-
+ms.subservice: edge-rag
 #CustomerIntent: As a developer, I want to configure endpoint authentication for Edge RAG so that I can securely manage and access resources across hybrid and multi-cloud environments.
 ms.custom:
   - build-2025

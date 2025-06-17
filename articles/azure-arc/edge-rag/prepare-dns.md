@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/06/2025
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to configure DNS for my Edge RAG deployment so that users and services can access the local portal using the correct domain name.
 ---
 

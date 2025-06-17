@@ -5,8 +5,8 @@ author: cwatson-cat
 ms.topic: how-to
 ms.date: 06/21/2025
 ms.author: cwatson
-ms.reviewer: cwatson
 ai-usage: ai-assisted
+ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Edge RAG deployment.
 ---
 
