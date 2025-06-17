@@ -1,18 +1,19 @@
 ---
 title: Configure Authentication for Edge RAG Deployment
-description: "Configure authentication for Edge RAG."
+description: "Learn how to configure authentication for Edge RAG deployment in Azure, including app registration, roles, and user assignments."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+#CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Edge RAG so that I can securely connect to and manage the chat solution.
 ---
 
-# Configure authentication for Edge RAG Deployment
+# Configure authentication for an Edge RAG Deployment
 
 In this article, configure authentication for your Edge RAG deployment by registering an application, creating app roles, and assigning users or groups. This article is part of the deployment prerequisites checklist.
 
-## Configure authentication for Edge RAG
+## Configure authentication for the chat solution
 
 Configure and control authentication to the Edge RAG for AI application developers and for end users of the chat endpoint. In this section, you create an application registration, create app roles, and assign users or groups to those roles. 
 

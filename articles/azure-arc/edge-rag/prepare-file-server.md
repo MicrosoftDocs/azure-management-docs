@@ -1,16 +1,17 @@
 ---
 title: Verify NFS Server Access for Edge RAG Deployment
-description: "Ensure NFS server is set up for Edge RAG deployment."
+description: "Learn about preparing your NFS server configuration and connectivity for Edge RAG deployment to make sure your data is accessible and ready."
 author: cwatson-cat
 ms.author: cwatson
-ms.topic: how-to
+ms.topic: concept-article
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+#CustomerIntent: As a cloud administrator, I want to verify that my NFS server is configured and reachable for Edge RAG deployment so that my documents and images are accessible to the chat solution.
 ---
 
-# Verify NFS server is configured and reachable for Edge RAG deployment
+# Verify NFS server access for Edge RAG deployment
 
-In this article, verify your NFS server is configured and reachable for your Edge RAG deployment by checking connectivity and ensuring your data is accessible. This article is part of the deployment prerequisites checklist.
+As part of preparing for your Edge RAG deployment, verify your NFS server is configured and reachable for your Edge RAG deployment. Check the connectivity and make sure your data is accessible. This article is part of the deployment prerequisites checklist.
 
 ## Verify NFS server configuration and connectivity
 

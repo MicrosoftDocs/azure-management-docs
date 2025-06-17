@@ -1,18 +1,19 @@
 ---
 title: Install Networking and Observability Components for Edge RAG Deployment
-description: "Install MetalLB and observability modules for Edge RAG."
+description: "Learn how to install and configure networking and observability components for Edge RAG deployment, including MetalLB and monitoring tools."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+#CustomerIntent: As a cloud administrator, I want to prepare networking and observability for Edge RAG so that I can ensure secure connectivity and effective monitoring of my chat solution.
 ---
 
 # Install networking and observability components for Edge RAG deployment
 
 In this article, install networking and observability components for your Edge RAG deployment by configuring MetalLB and setting up certificate and trust managers. This article is part of the deployment prerequisites checklist.
 
-## Install networking and observability components
+## Install components for Edge RAG
 
 From the driver machine, install and configure MetalLB for the AKS Arc cluster and the observability dependency modules.
 
@@ -59,4 +60,4 @@ From the driver machine, install and configure MetalLB for the AKS Arc cluster a
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Configure DNS for Edge RAG deployment](prepare-configure-dns.md)
+> [Configure DNS for Edge RAG deployment](prepare-dns.md)

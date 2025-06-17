@@ -1,11 +1,12 @@
 ---
 title: Verify "Contributor" Role for Edge RAG Deployment
-description: "Verify contributor permissions for Edge RAG deployment."
+description: "Learn how to verify you have the necessary Contributor role in Azure for Edge RAG deployment. Make sure you have proper permissions before continuing."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+#CustomerIntent: As an Azure administrator, I want to verify that I have contributor permissions for Edge RAG so that I have the necessary access to deploy the resources needed for Edge RAG.
 ---
 
 # Verify "contributor" role at the subscription level

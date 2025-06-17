@@ -6,6 +6,7 @@ ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/21/2025
 ai-usage: ai-assisted
+#CustomerIntent
 ---
 
 # Choose the right language model for Edge RAG Deployment
@@ -37,4 +38,4 @@ Edge RAG can work with small language models (SLM) or large language models (LLM
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Verify NFS server is accessible for Edge RAG deployment](prepare-file-server.md)
+> [Optional: Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md)

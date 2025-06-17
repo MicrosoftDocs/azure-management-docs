@@ -1,12 +1,13 @@
 ---
 title: Create Endpoint for Your Model for Edge RAG Deployment
-description: Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Azure AI Foundry, KAITO, Foundry Local, or Ollama.
+description: "Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Azure AI Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
 ms.date: 06/21/2025
 ms.author: cwatson
 ms.reviewer: cwatson
 ai-usage: ai-assisted
+#CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Edge RAG deployment.
 ---
 
 # Create an endpoint to use for Edge RAG deployment
@@ -221,4 +222,4 @@ curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Configure DNS for Edge RAG deployment](prepare-configure-dns.md)
+> [Verify NFS server access for Edge RAG deployment](prepare-file-server.md)

@@ -23,7 +23,7 @@ items:
               - name: Verify contributor role
                 href: prepare-contributor-permission.md
               - name: Choose language model
-                href: prepare-choose-language-model.md
+                href: prepare-language-model.md
               - name: Create model endpoint (optional)
                 href: prepare-model-endpoint-setup.md
               - name: Verify NFS server
@@ -31,11 +31,11 @@ items:
               - name: Prepare AKS cluster
                 href: prepare-aks-cluster.md
               - name: Configure authentication
-                href: prepare-configure-authentication.md
+                href: prepare-authentication.md
               - name: Install networking components
                 href: prepare-networking-observability.md
               - name: Configure DNS
-                href: prepare-configure-dns.md
+                href: prepare-dns.md
           - name: Configure NFS server
             href: configure-nfs-server.md
           - name: Deploy Edge RAG

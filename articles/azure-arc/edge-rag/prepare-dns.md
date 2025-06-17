@@ -1,18 +1,19 @@
 ---
 title: Configure DNS for Edge RAG Deployment
-description: "Configure DNS for Edge RAG deployment."
+description: "Learn how to configure DNS for your Edge RAG deployment so users and services can access the local portal using the correct domain name."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
 ms.date: 06/06/2025
 ai-usage: ai-assisted
+#CustomerIntent: As a cloud administrator, I want to configure DNS for my Edge RAG deployment so that users and services can access the local portal using the correct domain name.
 ---
 
 # Configure DNS for Edge RAG deployment
 
 In this article, configure DNS for your Edge RAG deployment by mapping the MetalLB IP address to your local portal domain or updating your hosts file. This article is part of the deployment prerequisites checklist.
 
-## Configure DNS for Edge RAG
+## Configure DNS for the local portal
 
 Make sure you configure your DNS to map the IP address assigned to MetalLB to the domain name of the local portal like `arcrag.contoso.com`.
 
