@@ -1,5 +1,5 @@
 ---
-title: Prerequisite: Configure DNS
+title: Configure DNS for Edge RAG Deployment
 description: "Configure DNS for Edge RAG deployment."
 author: cwatson-cat
 ms.author: cwatson
@@ -8,7 +8,7 @@ ms.date: 06/06/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Configure DNS
+# Configure DNS for Edge RAG deployment
 
 In this article, configure DNS for your Edge RAG deployment by mapping the MetalLB IP address to your local portal domain or updating your hosts file. This article is part of the deployment prerequisites checklist.
 

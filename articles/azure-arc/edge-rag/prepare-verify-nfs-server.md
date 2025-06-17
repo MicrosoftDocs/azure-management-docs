@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Verify NFS server is configured and reachable
+title: Verify NFS Server Access for Edge RAG Deployment
 description: "Ensure NFS server is set up for Edge RAG deployment."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Verify NFS server is configured and reachable
+# Verify NFS server is configured and reachable for Edge RAG deployment
 
 In this article, verify your NFS server is configured and reachable for your Edge RAG deployment by checking connectivity and ensuring your data is accessible. This article is part of the deployment prerequisites checklist.
 
@@ -24,4 +24,4 @@ Use the NFS server you configured to host the documents and images you want to u
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Prepare AKS cluster on Azure Local](prerequisites-prepare-aks-cluster.md)
+> [Prepare AKS cluster on Azure Local](prepare-aks-cluster.md)

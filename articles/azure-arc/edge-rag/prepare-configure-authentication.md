@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Configure authentication
+title: Configure Authentication for Edge RAG Deployment
 description: "Configure authentication for Edge RAG."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Configure authentication
+# Configure authentication for Edge RAG Deployment
 
 In this article, configure authentication for your Edge RAG deployment by registering an application, creating app roles, and assigning users or groups. This article is part of the deployment prerequisites checklist.
 
@@ -74,4 +74,4 @@ You might need to work with your Microsoft Entra or cloud administrator to confi
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Install networking and observability components](prerequisites-networking-observability.md)
+> [Install networking and observability components](prepare-networking-observability.md)

@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Ensure you have "contributor" permission at the subscription level
+title: Verify "Contributor" Role for Edge RAG Deployment
 description: "Verify contributor permissions for Edge RAG deployment."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Ensure you have "contributor" permission at the subscription level
+# Verify "contributor" role at the subscription level
 
 In this article, verify that you have contributor permissions at the subscription level for your Edge RAG deployment by checking your Azure role assignments and running required registration commands. This article is part of the deployment prerequisites checklist.
 
@@ -26,4 +26,4 @@ az feature register --namespace Microsoft.KubernetesConfiguration --name extensi
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Choose the right language model](prerequisites-choose-language-model.md)
+> [Choose the right language model](prepare-choose-language-model.md)

@@ -1,15 +1,15 @@
 ---
-title: Create Endpoint For Your Model | Edge RAG Enabled By Azure Arc
+title: Create Endpoint for Your Model for Edge RAG Deployment
 description: Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Azure AI Foundry, KAITO, Foundry Local, or Ollama.
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 06/16/2025
+ms.date: 06/21/2025
 ms.author: cwatson
 ms.reviewer: cwatson
 ai-usage: ai-assisted
 ---
 
-# Create an endpoint to use with Edge RAG enabled by Azure Arc
+# Create an endpoint to use for Edge RAG deployment
 
 If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an endpoint to use with Edge RAG. Choose one of the following methods included in this article to create your endpoint. 
 

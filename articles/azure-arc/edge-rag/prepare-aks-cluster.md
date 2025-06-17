@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Prepare AKS cluster on Azure Local
+title: Prepare AKS Cluster on Azure Local for Edge RAG Deployment
 description: "Set up AKS cluster for Edge RAG deployment."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Prepare AKS cluster on Azure Local
+# Prepare AKS cluster on Azure Local for Edge RAG Deployment
 
 In this article, prepare an AKS cluster on Azure Local for your Edge RAG deployment by creating the cluster, configuring node pools, and installing GPU drivers if needed. This article is part of the deployment prerequisites checklist.
 
@@ -108,4 +108,4 @@ For more information, see [Create node pools for a cluster in Azure Kubernetes S
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Configure authentication](prerequisites-configure-authentication.md)
+> [Configure authentication](prepare-configure-authentication.md)

@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Install networking and observability components
+title: Install Networking and Observability Components for Edge RAG Deployment
 description: "Install MetalLB and observability modules for Edge RAG."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Install networking and observability components
+# Install networking and observability components for Edge RAG deployment
 
 In this article, install networking and observability components for your Edge RAG deployment by configuring MetalLB and setting up certificate and trust managers. This article is part of the deployment prerequisites checklist.
 
@@ -59,4 +59,4 @@ From the driver machine, install and configure MetalLB for the AKS Arc cluster a
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Configure DNS](prerequisites-configure-dns.md)
+> [Configure DNS for Edge RAG deployment](prepare-configure-dns.md)

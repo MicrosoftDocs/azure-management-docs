@@ -1,14 +1,14 @@
 ---
-title: Prerequisite: Choose the right language model
+title: Choose the Right Language Model for Edge RAG Deployment
 description: "Decide which language model to deploy for Edge RAG."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 06/06/2025
+ms.date: 06/21/2025
 ai-usage: ai-assisted
 ---
 
-# Prerequisite: Choose the right language model
+# Choose the right language model for Edge RAG Deployment
 
 In this article, choose the right language model for your Edge RAG deployment by reviewing available options and understanding model requirements. This article is part of the deployment prerequisites checklist.
 
@@ -32,4 +32,4 @@ Edge RAG can work with small language models (SLM) or large language models (LLM
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prerequisite: Verify NFS server is configured and reachable](prerequisites-verify-nfs-server.md)
+> [Verify NFS server is configured and reachable](prepare-verify-nfs-server.md)
