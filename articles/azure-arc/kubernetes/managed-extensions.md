@@ -1,6 +1,6 @@
 ---
 title: "Version-managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 06/12/2025
+ms.date: 06/17/2025
 ms.topic: overview
 description: "Version-managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping your extensions work better together."
 ms.custom:
@@ -49,16 +49,30 @@ To deploy and configure version-managed extensions (preview) for Arc-enabled Kub
 
 ### Configure all available version-managed extensions
 
-To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command
+To deploy all currently supported version-managed extensions, you can use the `az vme install` command with the `--include all` option. This command installs all extensions that are part of the version-managed extensions (preview) program.
+
+Before running the command to deploy all currently supported extension, you must first install Azure IoT Operations dependencies (`cert-manager` and `trust-manager`), which are required for the Azure Container Storage enabled by Azure Arc extension:
+
+```azurecli
+az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
+ --cluster-type connectedClusters \
+ --extension-type "microsoft.iotoperations.platform" \
+ --name azure-iot-operations-platform \
+ --configuration-settings installCertManager=true \
+ --release-train preview \
+ --version 0.7.6 \
+ --auto-upgrade false \
+ --release-namespace cert-manager \
+ --scope cluster
+```
+
+To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command:
 
 ```azurecli
 az vme install --resource-group my-resource-group --cluster-name my-cluster --include all
 ```
 
 Currently, this command installs the Azure Container Storage enabled by Azure Arc and the Azure Key Vault Secret Store extension for Kubernetes ("SSE") extensions.
-
-> [!IMPORTANT]
-> The Azure IoT Operations dependencies (`cert-manager` and `trust-manager`) must also be installed before you can deploy the Azure Container Storage enabled by Azure Arc extension. See the following section for more information.
 
 ### Configure Azure Container Storage enabled by Azure Arc
 
