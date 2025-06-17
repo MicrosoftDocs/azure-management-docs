@@ -18,7 +18,7 @@ This article describes how to use the workload orchestration portal to monitor y
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-- All RBAC-enabled users can access the Monitor tab. For more information, see [Role-based access control (RBAC) guide](rbac-guide.md).
+- All RBAC-enabled users can access the Monitor tab. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
 ## Navigate the Solutions tab 
 

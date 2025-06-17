@@ -40,6 +40,8 @@ The following diagram shows how service groups structure groups related componen
 
 The following command creates a service group with the specified name and tenant ID. Make sure to replace `<service-group-name>` and `<tenant-id>` with your actual values. Service group names must be unique within the tenant and can only contain alphanumeric characters, underscores, and hyphens. 
 
+If your organization has multiple hierarchy levels, you need to create a service group at each level except for the target level. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels).
+
 #### [Bash](#tab/bash)
 
 ```bash
@@ -72,12 +74,11 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups.
+Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[Region, Factory, Line]*, then you create a Site at the region level.
 
-To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup. 
 
-For example, if the hierarchy is *[Factory, Line]*, when a Site is created at the factory level, it should be tagged as 
-\{`level`: `Factory`\}, where `level` is the label key and `Factory` is the label value.
+For example, if the hierarchy is *[Factory, Line]*, then Site is created at the factory level and it should be tagged as \{`level`: `Factory`\}, where `level` is the label key and `Factory` is the label value.
 
 #### [Bash](#tab/bash)
 
@@ -92,7 +93,7 @@ az rest \
   --resource https://management.azure.com
 ```
 
-If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
 
 ```bash
 # Patch a site with correct labels
@@ -337,8 +338,9 @@ The previous sections show how to create a service group for a two-level hierarc
 
 To ease the process, the following steps show how to create a four-level service group hierarchy organization. You need to consider the following points:
 
-- Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
-- If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
+- **Every level** in the hierarchy must its own **service group** created. For example, for four-level hierarchy organization, you need to create a service group for each level: country, region, factory, and line.
+- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
+- The **`editable_at`** field in the schema only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 
 
 ### [Bash](#tab/bash)

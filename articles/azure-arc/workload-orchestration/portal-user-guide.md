@@ -11,12 +11,18 @@ ms.date: 06/12/2025
 
 This guide is designed for nondeveloper users who want to manage solutions in the workload orchestration portal without writing code. 
 
+The workload orchestration portal provides a user-friendly interface with three main tabs on the left side: **Monitor**, **Configure**, and **Deploy**. Each tab has its own set of features and functionalities that help you manage your solutions effectively.
+
 |Tab|Actions|
 |----|-------|
-|[Monitor](monitor.md)|Track the health and status of your solutions.|
-|[Configure](configure.md)|Set up the parameters of your solutions.|
-|[Deploy](deploy.md)|Launch your solutions to the right targets and roll back to earlier versions if needed.|
+|[Monitor](#monitor-your-solutions)|Track the health and status of your solutions.|
+|[Configure](#configure-your-solutions)|Set up the parameters of your solutions.|
+|[Deploy](#deploy-your-solutions)|Launch your solutions to the right targets and rollback to earlier versions if needed.|
 
+## Prerequisites
+
+- An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- Each tab provides different functionalities and access levels based on the Role Based Access Control (RBAC) assigned to the user. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
 ## Monitor your solutions
 
@@ -29,8 +35,9 @@ In the [Monitor tab](monitor.md), you can:
 ### User scenario: Checking the failure of a solution deployment
 
 Goal: Identify why a solution deployment failed.
+
 Steps:
-1. Go to the **Monitor** tab.
+1. Go to the [**Monitor tab**](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
 1. Select the **Solutions** subtab.
 
     :::image type="content" source="./media/monitor-solutions.png" alt-text="Screenshot of the Solutions tab in workload orchestration portal showing the default view." lightbox="./media/monitor-solutions.png":::
@@ -52,9 +59,11 @@ Steps:
 
 In the Monitor tab, you can also:
 
-- [View the capabilities of a solution](monitor.md#view-the-capabilities-of-a-solution)
-- [View the details of a solution](monitor.md#view-the-details-of-a-solution)
-- [View the the details of a target](monitor.md#view-the-details-of-a-target)
+|Action	|Link|
+|------------------|---------------------|
+| View the features and functionalities of a solution. |[View the capabilities of a solution](monitor.md#view-the-capabilities-of-a-solution)|
+| View the detailed revision of a solution which is either Deployed, ReadyToDeploy, or Stopped. |[View the details of a solution](monitor.md#view-the-details-of-a-solution)|
+| View the detailed revision of a target if it has a solution available. |[View the details of a target](monitor.md#view-the-details-of-a-target)|
 
 ## Configure your solutions
 
@@ -64,21 +73,47 @@ In the [Configure tab](configure.md), you can:
 - Link solutions to targets.
 - Publish configurations for deployment.
 
-### User Scenario: Setting up a new factory 
+> [!NOTE]
+> Line and factory levels are custom-defined by the IT admin. You may see different names or levels based on your organization's setup.
 
-Goal: Configure a new factory called "Contoso North" with the Hotmelt solution.
+### User Scenario: Configuring a factory 
+
+Goal: Configure the parameters of a factory level to prepare it for deployment.
+
 Steps:
-1. Go to the Configure tab.
-1. Select the Factory subtab.
-1. Click on “Contoso North” and then Configure.
-1. Enter required values, for example, temperature range, endpoints, etc.
-1. Link the Hotmelt solution and define shared parameters.
-1. Click Configure Factory to save.
+1. Go to the [**Configure tab**](https://portal.digitaloperations.configmanager.azure.com/#/configure/overview).
+1. Select the **Factory** subtab.
+
+    :::image type="content" source="./media/configure-factory.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing the default view." lightbox="./media/configure-factory.png":::
+
+1. Select the name of the factory you want to configure and click on **Configure**. 
+
+    :::image type="content" source="./media/configure-factory-1.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to select a factory." lightbox="./media/configure-factory-1.png":::
+
+1. The new details pane shows the configuration values for the selected factory.
+1. In the **Configure factory** step, enter the value to configure the factory and click on **Next**.
+
+    :::image type="content" source="./media/configure-factory-2.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to configure a factory in the step 1." lightbox="./media/configure-factory-2.png":::
+
+1. In the **Linked solutions** step, select the solutions and define the common solution parameters. Click on **Next**.
+
+    :::image type="content" source="./media/configure-factory-3.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to add the configuration of the solutions for a factory." lightbox="./media/configure-factory-3.png":::
+
+1. Review the details and click on **Configure factory** to apply the changes.
+
+    :::image type="content" source="./media/configure-factory-4.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to review and apply the changes of a configuration." lightbox="./media/configure-factory-4.png":::
 
 ### Other things you can do in the Configure tab
 
 In the Configure tab, you can also:
 
+|Action	|Link|
+|------------------|---------------------|
+|Configure the parameters of a target at line level.|[Configure line parameters](configure.md#configure-line-parameters)|
+|Configure the parameters of a solution and choose the target to publish it.|[Configure solution parameters](configure.md#configure-solution-parameters)|
+|Configure the parameters of a solution which is dependent on another solution.|[Configure solution parameters for a solution with dependencies](configure.md#configure-solution-parameters-for-a-solution-with-dependencies)|
+|Resolve the failure of a solution that fails during the configuration process.|[Resolve a solution failure during authoring](configure.md#resolve-a-solution-failure-during-authoring)|
+|Add more targets to an existing solution without creating a new revision|[Publish a solution to more targets](configure.md#publish-a-solution-to-more-targets)|
 
 ## Deploy your solutions
 
@@ -90,28 +125,36 @@ In the [Deploy tab](deploy.md), you can:
 ### User Scenario: Deploying a solution to a target
 
 Goal: Deploy a solution to a target.
+
 Steps:
-1. Go to the **Deploy** tab.
-1. Select the target from the target list.
-1. Choose the solution in “Ready to deploy” state.
-1. Click **Deploy Solution** and confirm.
+1. Go to the [**Deploy tab**](https://portal.digitaloperations.configmanager.azure.com/#/deployment/overview).
+1. Click on the **target name** of the target you want to deploy the solution to.
+
+    :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
+
+1. In the details page of the target, choose the solution you want to deploy, which has to be in **Ready to deploy** state, and click on **Deploy Solution**.
+
+    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
+
+1. In the confirmation window, click on **Confirm** to proceed.
+
+    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/deploy-3.png":::
+
+1. You can see a notification of deployment in progress at the top right corner of the page. 
+
+    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
+
+1. Once the deployment finishes, the status of the solution is updated to **Deployed** and the notification panel opens to show the details of the deployment.
+
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing a successful deployment." lightbox="./media/deploy-5.png":::
 
 ### Other things you can do in the Deploy tab
 
 In case something goes wrong during deployment, you can:
 
-- [Rollback](deploy.md#roll-back-a-solution) the solution to a previous version.
-- [Retry](deploy.md#retry-a-failed-deployment) the deployment in case of a failure.
-- [Stop](deploy.md#stop-a-deployed-solution) a deployed solution to pause it.
-- [Delete](deploy.md#delete-a-solution) solutions that aren't yet deployed. 
-
-
-## Quick links to key actions
-
-|Action	|Where to go |Link|
-|------------------|---------------------|----------------------------|
-|Configure a factory|	Configure tab → Factory	|#configure-your-solutions|
-|Deploy a solution	|Deploy tab	|#deploy-your-solutions|
-|Monitor failures	|Monitor tab → Solutions|	#monitor-your-solutions|
-|Rollback a deployment|	Deploy tab	|#roll-back-a-solution|
-|View previous revisions|	Configure tab → Solutions	|#show-previous-versions-of-a-solution|
+|Action	|Link|
+|------------------|---------------------|
+|Rollback the solution to a previous version if a deployment fails.|[Rollback a solution](deploy.md#roll-back-a-solution)|
+|Retry the deployment in case of a failure.|[Retry a deployment](deploy.md#retry-a-failed-deployment) |
+|Stop a deployed solution but don't want to delete it.|[Stop a deployed solution](deploy.md#stop-a-deployed-solution) |
+|Delete solutions that aren't yet deployed. |[Delete a solution](deploy.md#delete-a-solution)  |

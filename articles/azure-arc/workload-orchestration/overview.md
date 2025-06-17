@@ -15,7 +15,9 @@ Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-pla
 
 ## What problems does workload orchestration solve?
 
-Imagine a factory with different production lines, modernizing and adding smart tech for better efficiency, security, and safety. The factory has legacy apps on Windows servers, new smart apps with IoT and AI running on Kubernetes, devices gathering sensor data, and Android tablets for employees to check dashboards. Deploying updates across all these systems is a huge headache, especially when you’re doing it for multiple lines in one factory, let alone dozens of factories worldwide. 
+Imagine a **factory** where workers use a **simple app** to monitor the status of **factory machines** — like motors, pumps, or mixers. This app doesn’t run in the cloud. It runs on-premises, inside the factory, on a computer. Now imagine that this factory has **multiple locations**, each with its own computer running the same app, but each location needs it set up a bit differently. Factory A might have 10 machines while factory B has 30. Factory A might have different safety thresholds than factory B. Factory A might need alerts in English, while factory B needs them in Spanish.
+
+So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to **each computer** in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many, some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
 
 You’d need a ton of resources just to keep up before even considering incorporating actions around approvals, maintenance windows, canary deployments. Workload orchestration simplifies this process by providing a single platform to manage all your solutions. 
 
@@ -39,6 +41,8 @@ Workload orchestration provides a centralized platform for managing applications
 Workload orchestration uses both cloud and edge components to deliver a unified management experience. At its core, the cloud-based control plane leverages a dedicated Azure resource provider, allowing you to centrally define deployment templates. These templates are then consumed by workload orchestration agents running at edge locations, which automatically adapt and apply the necessary customizations for each site.
 
 All workload orchestration resources are managed through Azure Resource Manager, enabling fine-grained Role-Based Access Control (RBAC) and consistent governance. You can interact with workload orchestration using an intuitive CLI and portal, while non-technical onsite staff benefit from a no-code interface for authoring, monitoring, and deploying solutions with site-specific configurations.
+
+### Architecture overview
 
 :::image type="content" source="./media/workload-orchestration-architecture.png" alt-text="Diagram of the workload orchestration architecture" lightbox="./media/workload-orchestration-architecture.png":::
 
@@ -72,7 +76,7 @@ If your organization has a central IT team and no OT personas, workload orchestr
 
 ### OT personas
 
-OT personas, also known as no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface to allow no-code personas to easily manage various tasks. For more information, see the [Workload orchestration portal user guide](portal-user-guide.md).
+OT personas, also known as low-code/no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface to allow no-code personas to easily manage various tasks. For more information, see the [User guide of workload orchestration portal ](portal-user-guide.md).
 
 The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md).
 

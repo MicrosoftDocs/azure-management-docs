@@ -1,5 +1,5 @@
 ---
-title: Setup Workload Orchestration
+title: Set Up Workload Orchestration
 description: Learn how to configure resources, author solutions, and manage deployments for Azure Arc workload orchestration.
 ms.custom:
   - references_regions
@@ -10,7 +10,7 @@ ms.topic: install-set-up-deploy
 ms.date: 05/08/2025
 ---
 
-# Setup workload orchestration
+# Set up workload orchestration
 
 IT admins and developers are responsible for setting up and configuring workload orchestration. This includes configuring the resources, authoring solutions, and managing deployments. 
 
