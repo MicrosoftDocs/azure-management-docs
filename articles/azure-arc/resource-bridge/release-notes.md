@@ -7,9 +7,9 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 # What's new with Azure Arc resource bridge
 
-To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, `az arcappliance`, that is used to deploy and upgrade Arc resource bridge.  
+To stay up to date with the most recent developments, this article provides you with information about recent releases of the Arc resource bridge Azure CLI extension, `az arcappliance`.  
 
-We generally recommend using the most recent versions released within the past 6 months. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade happens at least once every six months. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, whichever is more recent. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
 
 ## Version 1.5.0 (June 2025)
 
@@ -21,7 +21,8 @@ We generally recommend using the most recent versions released within the past 6
 
 ### Arc resource bridge platform
 
-- cloud logs collection feature added: Enables automatic log collection and upload to cloud on deployment failure
+- Cloud logs collection feature added: Enables automatic log collection and upload to cloud on deployment failure
+
 - Prevent non-essential debug file operations from blocking critical functionality
 - ARB container image signed and removed old unsigned cached images
 - Added validation to prevent network overlaps with the K8s Pod CIDR 10.244.0.0/16
