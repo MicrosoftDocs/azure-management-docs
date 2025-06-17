@@ -8,7 +8,7 @@ author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 08/02/2023
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # SQL Managed Instance enabled by Azure Arc - disaster recovery 

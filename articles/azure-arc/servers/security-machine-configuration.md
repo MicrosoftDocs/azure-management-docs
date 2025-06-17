@@ -1,7 +1,7 @@
 ---
 title: Configuration and remote access
 description: Configuration and remote access for Azure Arc-enabled servers.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/06/2024
 ---
 

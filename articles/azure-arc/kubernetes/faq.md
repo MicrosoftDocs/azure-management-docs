@@ -1,9 +1,10 @@
 ---
 title: "Azure Arc-enabled Kubernetes and GitOps frequently asked questions"
 ms.date: 11/25/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "This article contains a list of frequently asked questions related to Azure Arc-enabled Kubernetes and Azure GitOps."
 ms.custom: references_regions
+# Customer intent: As a Kubernetes administrator, I want to understand more about Azure Arc-enabled Kubernetes and its integration with GitOps workflows, so that I can streamline configuration management and ensure compliance across multiple Kubernetes clusters efficiently.
 ---
 
 # Frequently Asked Questions - Azure Arc-enabled Kubernetes and GitOps
@@ -18,7 +19,7 @@ Azure Arc-enabled Kubernetes allows you to extend Azure's management capabilitie
 
 ## Do I need to connect my AKS clusters running on Azure to Azure Arc?
 
-Connecting an Azure Kubernetes Service (AKS) cluster to Azure Arc is not required for most scenarios. You may want to connect a cluster to run certain Azure Arc-enabled services such as App Services and Data Services on top of the cluster. This can be done using the [custom locations](custom-locations.md) feature of Azure Arc-enabled Kubernetes.
+Connecting an Azure Kubernetes Service (AKS) cluster to Azure Arc is not required for most scenarios. You may want to connect an AKS cluster in order to run certain Azure Arc-enabled services, such as Azure Container Apps or Arc-enabled data services on top of the cluster. This can be done using the [custom locations](custom-locations.md) feature of Azure Arc-enabled Kubernetes.
 
 ## Should I connect my AKS on Azure Local or Azure Stack Edge to Azure Arc?
 

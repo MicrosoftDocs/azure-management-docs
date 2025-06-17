@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 11/25/2024
+ms.date: 06/13/2025
 ms.topic: overview
 ---
 
@@ -19,7 +19,9 @@ Azure Arc provides a centralized, unified way to:
 * Continue using traditional ITOps while introducing DevOps practices to support new cloud native patterns in your environment.
 * Configure custom locations as an abstraction layer on top of Azure Arc-enabled Kubernetes clusters and cluster extensions.  
 
-:::image type="content" source="./media/overview/azure-arc-control-plane.png" alt-text="Azure Arc management control plane diagram" border="false" lightbox="./media/overview/azure-arc-control-plane.png" :::
+:::image type="content" source="media/overview/azure-arc-control-plane.png" alt-text="Diagram showing the Azure Arc management control plane." lightbox="media/overview/azure-arc-control-plane.png" :::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 Currently, Azure Arc allows you to manage the following resource types hosted outside of Azure:
 
@@ -48,7 +50,7 @@ Some of the key scenarios that Azure Arc supports are:
 
 * Run [Azure data services](../azure-arc/kubernetes/custom-locations.md) on any Kubernetes environment as if it runs in Azure (specifically Azure SQL Managed Instance and Azure Database for PostgreSQL server, with benefits such as upgrades, updates, security, and monitoring). Use elastic scale and apply updates without any application downtime, even without continuous connection to Azure.
 
-* Create [custom locations](./kubernetes/custom-locations.md) on top of your [Azure Arc-enabled Kubernetes](./kubernetes/overview.md) clusters, using them as target locations for deploying Azure services instances. Deploy your Azure service cluster extensions for [Azure Arc-enabled data services](./data/create-data-controller-direct-azure-portal.md), [App services on Azure Arc](/azure/app-service/overview-arc-integration) (including web, function, and logic apps) and [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
+* Create [custom locations](./kubernetes/custom-locations.md) on top of your [Azure Arc-enabled Kubernetes](./kubernetes/overview.md) clusters, using them as target locations for deploying Azure services instances. Deploy your Azure service cluster extensions for [Azure Arc-enabled data services](./data/create-data-controller-direct-azure-portal.md), [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-overview), and [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 
 * Perform virtual machine lifecycle and management operations on [Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview) and on-premises environments managed by [VMware vCenter](./vmware-vsphere/overview.md) and [System Center Virtual Machine Manager (SCVMM)](./system-center-virtual-machine-manager/overview.md) through interactive and non-interactive methods. Empower developers and application teams to self-serve VM operations on-demand using Azure role-based access control (RBAC).
 

@@ -1,37 +1,32 @@
 ---
-title: Enable Anonymous Pull Access in Azure Container Registry
-description: Optionally enable anonymous pull access to make content in your Azure container registry publicly available
+title: Enable Unauthenticated Anonymous Pull Access in Azure Container Registry
+description: Optionally enable unauthenticated anonymous pull access to make content in your Azure container registry publicly available
 ms.topic: how-to
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
-ms.date: 10/31/2023
-#customer intent: As a user, I want to learn how to enable anonymous pull access in Azure container registry so that I can make my registry content publicly available.
+ms.date: 02/28/2025
+# Customer intent: As a cloud administrator, I want to enable unauthenticated anonymous pull access in Azure Container Registry so that I can distribute public container images without requiring user authentication.
 ---
 
-# Make your container registry content publicly available
+# Unauthenticated anonymous pull access
 
-Setting up an Azure container registry for anonymous (unauthenticated) pull access is an optional feature that allows any user with internet access the ability to pull any content from the registry.
+By default, access to pull or push content from an Azure container registry is only available to [authenticated](container-registry-authentication.md) users. Enabling anonymous (unauthenticated) pull access makes all registry content publicly available for read (pull) actions. Use anonymous pull access in scenarios that don't require user authentication, such as distributing public container images.
 
-Anonymous pull access is a preview feature, available in the Standard and Premium [service tiers](container-registry-skus.md). To configure anonymous pull access, update a registry using the Azure CLI (version 2.21.0 or later). To install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
-
-## About anonymous pull access
-
-By default, access to pull or push content from an Azure container registry is only available to [authenticated](container-registry-authentication.md) users. Enabling anonymous (unauthenticated) pull access makes all registry content publicly available for read (pull) actions. Anonymous pull access can be used in scenarios that do not require user authentication such as distributing public container images.
+Anonymous pull access is a preview feature, available in the Standard and Premium [service tiers](container-registry-skus.md). To configure anonymous pull access, update a registry using the Azure CLI (version 2.21.0 or later). For information about installing or upgrading, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
 - Enable anonymous pull access by updating the properties of an existing registry.
-- After enabling anonymous pull access, you may disable that access at any time.
+- After enabling anonymous pull access, you can disable that access at any time.
 - Only data-plane operations are available to unauthenticated clients.
-- The registry may throttle a high rate of unauthenticated requests.
+- The registry might throttle a high rate of unauthenticated requests.
 - If you previously authenticated to the registry, make sure you clear the credentials before attempting an anonymous pull operation.
 
 > [!WARNING]
-> Anonymous pull access currently applies to all repositories in the registry. If you manage repository access using [repository-scoped tokens](container-registry-repository-scoped-permissions.md), all users may pull from those repositories in a registry enabled for anonymous pull. We recommend deleting tokens when anonymous pull access is enabled.
-
+> Anonymous pull access currently applies to all repositories in the registry. If you manage repository access using [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md) or [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md), all users can still pull from those repositories in a registry enabled for unauthenticated anonymous pull. Please be aware of this when enabling unauthenticated anonymous pull access.
 
 ## Configure anonymous pull access 
 
-Users can enable, disable and query the status of anonymous pull access using the Azure CLI. The following examples demonstrate how to enable, disable, and query the status of anonymous pull access.
+Users can enable, disable, and query the status of anonymous pull access using the Azure CLI. The following examples demonstrate how to enable, disable, and query the status of anonymous pull access.
 
 ### Enable anonymous pull access
 
@@ -45,13 +40,13 @@ az acr update --name myregistry --anonymous-pull-enabled
 > If you previously authenticated to the registry with Docker credentials, run `docker logout` to ensure that you clear the existing credentials before attempting anonymous pull operations. Otherwise, you might see an error message similar to "pull access denied".
 > Remember to always specify the fully qualified registry name (all lowercase) when using `docker login` and tagging images for pushing to your registry. In the examples provided, the fully qualified name is `myregistry.azurecr.io`.
 
-If you've previously authenticated to the registry with Docker credentials, run the following command to clear existing credentials or any previous authentication is cleared.
+If you previously authenticated to the registry with Docker credentials, run the following command to clear existing credentials or any previous authentication.
  
    ```azurecli
       docker logout myregistry.azurecr.io
    ```
 
-This will help you to attempt an anonymous pull operation. If you encounter any issues, you might see an error message similar to "pull access denied."
+This step helps you attempt an anonymous pull operation. If you encounter any issues, you might see an error message similar to "pull access denied."
 
 
 ### Disable anonymous pull access
@@ -64,17 +59,18 @@ az acr update --name myregistry --anonymous-pull-enabled false
 
 ### Query the status of anonymous pull access
 
-Users can query the status of "anonymous-pull" using the [az acr show command][az-acr-show] with the --query parameter. Here's an example:
+You can query the status of "anonymous-pull" using the [az acr show command][az-acr-show] with the `--query` parameter. Here's an example:
 
 ```azurecli-interactive
 az acr show -n <registry_name> --query anonymousPullEnabled
 ```
 
-The command will return a boolean value indicating whether "Anonymous Pull" is enabled (true) or disabled (false). This will streamline the process for users to verify the status of features within ACR.
+The command returns a boolean value indicating whether "Anonymous Pull" is enabled (`true`) or disabled (`false`). This command streamlines the process of verifying the status of features within ACR.
 
 ## Next steps
 
-* Learn about using [repository-scoped tokens](container-registry-repository-scoped-permissions.md).
+* Learn about using [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
+* Learn about using [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md).
 * Learn about options to [authenticate](container-registry-authentication.md) to an Azure container registry.
 
 

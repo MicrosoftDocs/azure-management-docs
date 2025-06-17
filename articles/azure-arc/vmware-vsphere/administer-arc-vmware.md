@@ -5,10 +5,11 @@ ms.topic: how-to
 ms.date: 10/24/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-ms.custom: devx-track-azurecli
+ms.author: jsuri
+author: jyothisuri
+ms.custom:
+  - devx-track-azurecli
+  - build-2025
 ---
 
 # Perform ongoing administration for Arc-enabled VMware vSphere
@@ -48,7 +49,7 @@ As part of your security practices, you might need to rotate credentials for you
 There are two different sets of credentials stored on the Arc resource bridge. You can use the same account credentials for both.
 
 - **Account for Arc resource bridge**. This account is used for deploying the Arc resource bridge VM and will be used for upgrade.
-- **Account for VMware cluster extension**. This account is used to discover inventory and perform all VM operations through Azure Arc-enabled VMware vSphere
+- **Account for VMware cluster extension**. This account is used to discover inventory and perform all VM operations through Azure Arc-enabled VMware vSphere.
 
 To update the credentials of the account for Arc resource bridge, run the following Azure CLI commands. Run the commands from a workstation that can access cluster configuration IP address of the Arc resource bridge locally:
 

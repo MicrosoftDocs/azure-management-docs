@@ -2,30 +2,34 @@
 title: View and filter Azure resource information
 description: Filter information and use different views to better understand your Azure resources.
 ms.topic: how-to
-ms.date: 04/12/2024
+ms.date: 05/15/2025
+ms.custom:
+  - build-2025
 ---
 
 # View and filter Azure resource information
 
 The Azure portal enables you to browse detailed information about resources across your Azure subscriptions. This article shows you how to filter information and use different views to better understand your resources.
 
-This article focuses on filtering information the **All resources** screen. Screens for individual resource types, such as virtual machines, may have different options.
+This article focuses on filtering information in the **All resources** pane. Panes for individual resource types and services may have different options, but many of the same concepts apply.
 
 ## Filter resources
 
-Start exploring **All resources** by using filters to focus on a subset of your resources. The following screenshot shows filtering on resource groups, selecting two of the four resource groups in a subscription.
+Start exploring **All resources** by using filters to focus on a subset of your resources. The following screenshot shows filtering on resource groups, selecting two of the three resource groups in a subscription.
 
-:::image type="content" source="media/manage-filter-resource-views/filter-resource-group.png" alt-text="Filter view based on resource groups":::
+:::image type="content" source="media/manage-filter-resource-views/filter-resource-group.png" alt-text="Screenshot showing resources filtered to show only resources from two resource groups in the Azure portal.":::
 
-You can combine filters, including those based on text searches. For example, after selecting specific resource groups, you can enter text in the filter box, or select a different filter option.
+You can combine multiple filters, including filters based on text searches. For example, after selecting specific resource groups, you can enter text in the filter box, or select a different filter option.
 
 To change which columns are included in a view, select **Manage view**, then select **Edit columns**.
 
 :::image type="content" source="media/manage-filter-resource-views/edit-columns.png" alt-text="Edit columns shown in view":::
 
+You can then add, remove, and rearrange columns. When you're finished, select **Save**.
+
 ## Save, use, and delete views
 
-You can save views that include the filters and columns you've selected. To save and use a view:
+You can save views that include the filters and columns you selected. To save and use a view:
 
 1. Select **Manage view**, then select **Save view**.
 
@@ -37,7 +41,7 @@ Try switching between **Default** and one of your own views to see how that affe
 
 You can also select **Choose favorite view** to use one of your views as the default views for **All resources**.
 
-To delete a view you've created:
+To delete a view that you created:
 
 1. Select **Manage view**, then select **Browse all views for "All resources"**.
 
@@ -53,11 +57,13 @@ You can export the resource information from a view. To export information in CS
 
 1. Save the file locally, then open the file in Excel or another application that supports the CSV format.
 
-As you move around the portal, you'll see other areas where you can export information, such as an individual resource group.
+As you move around the portal, you may see other areas where you can export information, such as an individual resource group.
 
 ## Summarize resources with visuals
 
-The views we've looked at so far have been _list views_, but there are also _summary views_ that include visuals. You can save and use these views just like you can with list views. Filters persist between the two types of views. There are standard views, like the **Location** view shown below, as well as views that are relevant to specific services, such as the **Status** view for Azure Storage.
+The views described so far are _list views_, which show resources in lists that you can customize. The **All resources** pane also provides _summary views_ that include visual representations. You can save and use these views just like you can with list views. Filters persist between the two types of views.
+
+There are different types of summary views. For example, the **Location** view shows resources across regions.
 
 :::image type="content" source="media/manage-filter-resource-views/summary-map.png" alt-text="Summary of resources in a map view":::
 
@@ -79,7 +85,7 @@ In the summary view, you can select an item to view details filtered to that ite
 
 ## Run queries in Azure Resource Graph
 
-Azure Resource Graph provides efficient and performant resource exploration with the ability to query at scale across a set of subscriptions. The **All resources** screen in the Azure portal includes a link to open a Resource Graph query scoped to the current filtered view.
+Azure Resource Graph provides efficient and performant resource exploration with the ability to query at scale across a set of subscriptions. The **All resources** pane in the Azure portal includes a link to open a Resource Graph query scoped to the current filtered view.
 
 To run a Resource Graph query:
 

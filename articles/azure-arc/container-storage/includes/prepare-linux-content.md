@@ -1,14 +1,18 @@
 ---
 ms.service: azure-arc
+ms.subservice: azure-arc-container-storage
 ms.topic: include
-ms.date: 08/27/2024
-author: sethmanheim
-ms.author: sethm
+ms.date: 03/12/2025
+author: asergaz
+ms.author: sergaz
+# Customer intent: "As a cloud administrator, I want to understand the differences between single-node and multi-node Kubernetes clusters, so that I can choose the appropriate setup for my development or production environment based on resource constraints and performance requirements."
+ms.custom:
+  - build-2025
 ---
 
-### Arc-connected Kubernetes cluster
+### Arc-enabled Kubernetes cluster
 
-These instructions assume that you already have an Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
+These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
 
 If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
 
@@ -24,7 +28,7 @@ In summary, a [single-node Kubernetes cluster](../single-node-cluster-edge-volum
 
 ## Minimum hardware requirements
 
-### Single-node or 2-node cluster
+### Single-node or two-node cluster
 
 - Standard_D8ds_v5 VM recommended
 - Equivalent specifications per node:
@@ -51,7 +55,3 @@ The storage pool is configured to use 3-way replication to ensure fault toleranc
 For example, in a 3-node cluster with 20 GB of disk space per node, the cluster has a storage pool of 60 GB. However, due to replication, it has an effective storage size of 20 GB.
 
 When an Edge Volume is provisioned with a requested size of 10 GB, it allocates a reserved system volume (statically sized to 1 GB) and a data volume (sized to the requested volume size, for example 10 GB). The reserved system volume consumes 3 GB (3 x 1 GB) of disk space in the storage pool, and the data volume consumes 30 GB (3 x 10 GB) of disk space in the storage pool, for a total of 33 GB.
-
-### Cache Volumes requirements
-
-Cache Volumes requires at least 4 GB per node of storage. For example, if you have a 3-node cluster, you need at least 12 GB of storage.

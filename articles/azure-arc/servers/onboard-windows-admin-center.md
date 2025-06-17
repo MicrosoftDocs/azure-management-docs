@@ -2,7 +2,7 @@
 title: Connect hybrid machines to Azure from Windows Admin Center
 description: In this article, you learn how to install the agent and connect machines to Azure by using Azure Arc-enabled servers from  Windows Admin Center.
 ms.date: 12/04/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Connect hybrid machines to Azure from Windows Admin Center

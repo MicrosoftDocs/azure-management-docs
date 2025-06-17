@@ -1,8 +1,9 @@
 ---
 title: "Cluster extensions in Azure Arc-enabled Kubernetes"
-ms.date: 03/22/2024
-ms.topic: conceptual
+ms.date: 04/22/2025
+ms.topic: concept-article
 description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes cluster extensions capability."
+# Customer intent: As a cluster operator, I want to manage Kubernetes applications using cluster extensions, so that I can streamline installation and lifecycle management while ensuring compliance and efficient resource usage across my Azure Arc-enabled Kubernetes environment.
 ---
 
 # Cluster extensions
@@ -25,6 +26,8 @@ Extensions are available to support a wide range of Azure services and scenarios
 
 :::image type="content" source="media/conceptual-extensions.png" border="false" alt-text="Diagram showing the cluster extension installation workflow architecture." lightbox="media/conceptual-extensions.png":::
 
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
+
 The cluster extension instance is created as an extension Azure Resource Manager resource (`Microsoft.KubernetesConfiguration/extensions`) on top of the Azure Arc-enabled Kubernetes resource (represented by `Microsoft.Kubernetes/connectedClusters`) in Azure Resource Manager.
 
 This representation in Azure Resource Manager allows you to author policies that check for the presence or absence of a specific cluster extension in all Azure Arc-enabled Kubernetes resources. After you determine which clusters are missing cluster extensions that have specific property values, you can remediate noncompliant resources by using Azure Policy.
@@ -39,7 +42,7 @@ Both the `config-agent` and `extensions-manager` components running in the clust
 > Protected configuration settings for an extension instance are stored for up to 48 hours in the Azure Arc-enabled Kubernetes services. As a result, if the cluster remains disconnected during the 48 hours after the extension resource is created in Azure, the extension changes from a `Pending` state to a `Failed` state. To prevent this, we recommend that you bring clusters online regularly.
 
 > [!IMPORTANT]
-> Currently, Azure Arc-enabled Kubernetes cluster extensions aren't supported on ARM64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type `linux/amd64`.
+> Currently, Azure Arc-enabled Kubernetes cluster extensions aren't supported on ARM64-based clusters, except for [Flux (GitOps)](conceptual-gitops-flux2.md) and [Microsoft Defender for Containers](/azure/defender-for-cloud/defender-for-containers-enable?pivots=defender-for-container-arc&toc=%2Fazure%2Fazure-arc%2Fkubernetes%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fkubernetes%2Fbreadcrumb%2Ftoc.json&tabs=aks-deploy-portal%2Ck8s-deploy-asc%2Ck8s-verify-asc%2Ck8s-remove-arc%2Caks-removeprofile-api#protect-arc-enabled-kubernetes-clusters). To [install and use other cluster extensions](extensions.md), the cluster must have at least one node of operating system and architecture type linux/amd64 .
 
 ## Extension scope
 

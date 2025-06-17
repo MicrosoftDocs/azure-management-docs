@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge network requirements
 description: Learn about network requirements for Azure Arc resource bridge including URLs that must be allowlisted.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 09/20/2024
 ---
 
@@ -10,6 +10,8 @@ ms.date: 09/20/2024
 This article describes the networking requirements for deploying Azure Arc resource bridge in your enterprise.
 
 ## General network requirements
+
+The lowest network bandwidth validated for deployment of Arc resource bridge is 100 mbps. If your network bandwidth is slower, you may experience problems with deployment. 
 
 Arc resource bridge communicates outbound securely to Azure Arc over TCP port 443. If the appliance needs to connect through a firewall or proxy server to communicate over the internet, it communicates outbound using the HTTPS protocol.
 

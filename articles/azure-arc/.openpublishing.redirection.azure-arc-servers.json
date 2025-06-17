@@ -31,10 +31,20 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/azure-arc/servers/arc-explicit-proxy.md",
+            "redirect_url": "/azure/azure-arc/azure-firewall-explicit-proxy",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/concept-log-analytics-extension-deployment.md",
+            "redirect_url": "/azure/azure-arc/servers/azure-monitor-agent-deployment",
+            "redirect_document_id": false
+        },
+        {            
             "source_path_from_root": "/articles/azure-arc/servers/quickstart-onboard-portal.md",
             "redirect_url": "/azure/azure-arc/servers/onboard-portal",
             "redirect_document_id": false
-        },
+    },
         {
             "source_path_from_root": "/articles/azure-arc/servers/quickstart-onboard-powershell.md",
             "redirect_url": "/azure/azure-arc/servers/onboard-service-principal",

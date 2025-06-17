@@ -2,12 +2,12 @@
 title: Tutorial -Trigger Image Build on Private Base Image Update
 description: Configure an Azure Container Registry Task to automatically trigger container image builds when a base image in another private registry is updated.
 ms.topic: tutorial
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
-#customer intent: As a developer, I want to automate image builds so that my applications are always up-to-date with the latest base images.
+# Customer intent: As a developer, I want to set up automated container image builds that trigger on updates to base images in a private registry so that my application images remain current without manual intervention.
 ---
 
 # Tutorial: Automate container image builds when a base image is updated in another private container registry 
@@ -117,12 +117,13 @@ principalID=$(az acr task show --name baseexample2 --registry $ACR_NAME --query 
 baseregID=$(az acr show --name $BASE_ACR --query id --output tsv) 
 ```
  
-Assign the managed identity pull permissions to the registry by running [az role assignment create][az-role-assignment-create]:
+Assign the managed identity pull permissions to the registry by running [az role assignment create][az-role-assignment-create]. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
-  --scope $baseregID --role acrpull 
+  --scope $baseregID --role "$ROLE" 
 ```
 
 ## Add target registry credentials to the task

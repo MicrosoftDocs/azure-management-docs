@@ -17,13 +17,17 @@ ms.custom: references_regions
 
 The following are frequently asked questions and answers for Azure Arc site manager.
 
+__Question__: What is changing with site address?
+
+__Answer__: Site address is currently stored as a separate resource via [Azure Edge Hardware Center](/azure/azure-edge-hardware-center/azure-edge-hardware-center-overview). As of May, site address has been merged into the site resource and is no longer using a separate resource via Azure Edge Hardware Center. Additionally, only the physical address fields have been moved to site properties, and personal contact information is no longer stored. The fields that have been moved are as follows: Address line 1, Address line 2, City, Zip code, State/Province/Region, and Country/Region.
+
 **Question:** I have resources in the resource group, which aren't yet supported by site manager. Do I need to move them?
 
 **Answer:** Site manager provides status aggregation for only the supported resource types. Resources of other types won't be managed via site manager. They continue to function normally as they would without otherwise.
 
 **Question:** Does site manager have a subscription or fee for usage?
 
-**Answer:** Site manager is free. However, the Azure services that integrated with sites and site manager might have a fee. Additionally, alerts used with site manager via monitor might have fees as well.
+**Answer:** Site manager is free. However, the Azure services that integrate with sites and site manager might have a fee. Few examples: alerts used with site manager via monitor might have a fees, or enabling defender for monitoring site security might have a fees.
 
 **Question:** What regions are currently supported via site manager? What regions of these supported regions aren't fully supported?
 

@@ -1,17 +1,18 @@
 ---
 title: Quickstart - Create Registry - PowerShell
 description: Quickly learn to create a private Docker registry in Azure Container Registry with PowerShell
-author: tejaswikolli-web
-ms.author: tejaswikolli
-ms.date: 10/31/2023
+author: chasedmicrosoft
+ms.author: doveychase
+ms.date: 02/07/2025
 ms.topic: quickstart
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, mvc, mode-api
+# Customer intent: As a developer, I want to create a private Docker registry using PowerShell, so that I can efficiently manage and deploy my container images in Azure.
 ---
 
 # Quickstart: Create a private container registry using Azure PowerShell
 
-Azure Container Registry is a private registry service for building, storing, and managing container images and related artifacts. In this quickstart, you create an Azure container registry instance with Azure  PowerShell. Then, use Docker commands to push a container image into the registry, and finally pull and run the image from your registry.
+Azure Container Registry is a private registry service for building, storing, and managing container images and related artifacts. In this quickstart, you will create an Azure Container Registry instance by using the Azure PowerShell locally. Then, using the Docker CLI you will pull a hello-world container image, tag the hello-world container image to create a new container image, push the new container image into the container registry, delete the local container image, and finally pull and run the image from your registry.
 
 ## Prerequisites
 
@@ -46,7 +47,7 @@ Next, create a container registry in your new resource group with the [New-AzCon
 The registry name must be unique within Azure, and contain 5-50 alphanumeric characters. The following example creates a registry named "mycontainerregistry." Replace *mycontainerregistry* in the following command, then run it to create the registry:
 
 ```powershell
-$registry = New-AzContainerRegistry -ResourceGroupName "myResourceGroup" -Name "mycontainerregistry" -EnableAdminUser -Sku Basic
+$registry = New-AzContainerRegistry -ResourceGroupName "myResourceGroup" -Name "mycontainerregistry" -EnableAdminUser -Sku Standard -Location EastUS
 ```
 
 [!INCLUDE [container-registry-quickstart-sku](./includes/container-registry-quickstart-sku.md)]
@@ -78,7 +79,7 @@ Remove-AzResourceGroup -Name myResourceGroup
 
 ## Next steps
 
-In this quickstart, you created an Azure Container Registry with Azure PowerShell, pushed a container image, and pulled and ran the image from the registry. Continue to the Azure Container Registry tutorials for a deeper look at ACR.
+In this quickstart, you created an Azure Container Registry instance using the Azure PowerShell locally, pulled a hello-world container image, tagged the hello-world image to create a new container image, pushed the new container image into the container registry, deleted the local container image, and finally pulled and ran the image from your registry. Continue to the Azure Container Registry tutorials for a deeper look at ACR.
 
 > [!div class="nextstepaction"]
 > [Azure Container Registry tutorials][container-registry-tutorial-prepare-registry]

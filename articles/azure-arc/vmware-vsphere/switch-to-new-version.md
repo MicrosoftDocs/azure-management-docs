@@ -5,11 +5,11 @@ ms.topic: how-to
 ms.date: 03/13/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-
+ms.author: jsuri
+author: jyothisuri
 # Customer intent: As a VI admin, I want to switch to the new version of Arc-enabled VMware vSphere and leverage the associated capabilities.
+ms.custom:
+  - build-2025
 ---
 
 # Switch to the new version
@@ -34,7 +34,7 @@ If you onboarded to **Azure Arc-enabled VMware** before August 21, 2023, for VMs
 >[!Note]
 >If you had enabled guest management on any of the VMs, remove [VM extensions](/azure/azure-arc/vmware-vsphere/remove-vcenter-from-arc-vmware#step-1-remove-vm-extensions) and [disconnect agents](/azure/azure-arc/vmware-vsphere/remove-vcenter-from-arc-vmware#step-2-disconnect-the-agent-from-azure-arc).
 
-1. From your browser, go to the vCenters blade on [Azure Arc Center](https://ms.portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/overview) and select the vCenter resource. 
+1. From your browser, go to the vCenters blade on [Azure Arc Center](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/overview) and select the vCenter resource. 
 
 2. Select all the virtual machines that are Azure enabled with the older version.  
 

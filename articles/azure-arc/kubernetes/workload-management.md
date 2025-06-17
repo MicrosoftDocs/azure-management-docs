@@ -6,6 +6,7 @@ author: eedorenko
 ms.author: iefedore
 ms.topic: how-to
 ms.date: 03/29/2023
+# Customer intent: "As a platform engineer, I want to manage and deploy applications across multiple Kubernetes clusters using GitOps practices, so that I can streamline workload management and ensure consistent configurations in different environments."
 ---
 
 # Explore workload management in a multi-cluster environment with GitOps

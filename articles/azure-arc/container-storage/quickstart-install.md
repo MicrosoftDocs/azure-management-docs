@@ -1,24 +1,25 @@
 ---
 title: Install Container Storage on a single-node Ubuntu cluster
 description: Learn how to quickly install Container Storage on a single-node Ubuntu cluster.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: quickstart
-ms.date: 11/11/2024
+ms.date: 03/12/2025
 
 
+# Customer intent: As a system administrator, I want to install Container Storage on a single-node Ubuntu cluster, so that I can efficiently manage and utilize storage resources in my Kubernetes environment enabled by Azure Arc.
 ---
   
-# Quickstart: Install Azure Container Storage on a single-node Ubuntu cluster
+# Quickstart: Install Azure Container Storage enabled by Azure Arc on a single-node Ubuntu cluster
 
-This quickstart shows you how to install Azure Container Storage enabled by Azure Arc on a fresh single-node Ubuntu cluster.
+This quickstart shows you how to install Azure Container Storage on a fresh single-node Ubuntu cluster.
 
 ## Prerequisites
 
 Before you begin, you need the following prerequisites:
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free) before you begin.
-- An Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
+- An Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
 
 ### Parameters
 
@@ -27,23 +28,9 @@ You need the following parameter values to complete this quickstart:
 | Parameter name  | Description                                                   |
 |-----------------|---------------------------------------------------------------|
 | `resource-group`  | The name of the Azure Resource Group that your cluster is in.  |
-| `cluster-name`    | The name of your Arc-connected Kubernetes cluster.             |
+| `cluster-name`    | The name of your Arc-enabled Kubernetes cluster.             |
 
-## Step 1: Install Open Service Mesh (OSM)
-
-The first step is to install Open Service Mesh (OSM) using the following command:
-
-```azurecli
-az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \ 
---config "osm.osm.featureFlags.enableWASMStats=false" \ 
---config "osm.osm.enablePermissiveTrafficPolicy=false" \ 
---config "osm.osm.configResyncInterval=10s" \ 
---config "osm.osm.osmController.resource.requests.cpu=100m" \ 
---config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \ 
---config "osm.osm.injector.resource.requests.cpu=100m"
-```
-
-## Step 2: Set maximum user instances
+## Step 1: Set maximum user instances
 
 To determine if you set `fs.inotify.max_user_instances` to 1024, run the following command:
 
@@ -58,7 +45,7 @@ echo 'fs.inotify.max_user_instances = 1024' | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
-## Step 3: Install Azure IoT Operations dependencies
+## Step 2: Install Azure IoT Operations dependencies
 
 Run the following command to install the Azure IoT Operations dependencies:
 
@@ -66,9 +53,9 @@ Run the following command to install the Azure IoT Operations dependencies:
 az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
 ```
 
-## Step 4: Install the Azure Container Storage enabled by Azure Arc extension
+## Step 3: Install the Azure Container Storage enabled by Azure Arc extension
 
-Install the Azure Container Storage enabled by Azure Arc extension using the following command:
+Install the Azure Container Storage extension using the following command:
 
 ```azurecli
 az k8s-extension create --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-name "${YOUR-CLUSTER-NAME}" --cluster-type connectedClusters --name azure-arc-containerstorage --extension-type microsoft.arc.containerstorage
@@ -93,7 +80,6 @@ spec:
   defaultDiskStorageClasses: 
     - "default" 
     - "local-path" 
-  serviceMesh: "osm"
 ```
 
 To apply this .yaml file, run:

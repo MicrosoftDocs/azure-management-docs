@@ -2,8 +2,8 @@
 title: Tutorial - Quick Docker Image Build with Azure ACR Tasks
 description: Learn how to build a Docker container image in Azure with Azure Container Registry Tasks (ACR Tasks), then deploy it to Azure Container Instances.
 ms.topic: tutorial
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: mvc, devx-track-azurecli
@@ -187,20 +187,27 @@ You now need to create a service principal and store its credentials in your key
 
 Use the [az ad sp create-for-rbac][az-ad-sp-create-for-rbac] command to create the service principal, and [az keyvault secret set][az-keyvault-secret-set] to store the service principal's **password** in the vault. Use Azure CLI version **2.25.0** or later for these commands:
 
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
+
 ```azurecli
 # Create service principal, store its password in AKV (the registry *password*)
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az keyvault secret set \
   --vault-name $AKV_NAME \
   --name $ACR_NAME-pull-pwd \
   --value $(az ad sp create-for-rbac \
                 --name $ACR_NAME-pull \
                 --scopes $(az acr show --name $ACR_NAME --query id --output tsv) \
-                --role acrpull \
+                --role "$ROLE" \
                 --query password \
                 --output tsv)
 ```
 
-The `--role` argument in the preceding command configures the service principal with the *acrpull* role, which grants it pull-only access to the registry. To grant both push and pull access, change the `--role` argument to *acrpush*.
+The `--role` argument in the preceding command configures the service principal with a built-in role to grant it pull-only access to the registry. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md), with ABAC-enabled registries needing the `Container Registry Repository Reader` role and non-ABAC registries needing the `AcrPull` role.
+
+To grant both push and pull access, change the `--role` argument to either the `Container Registry Repository Writer` role for ABAC-enabled registries, or the `AcrPush` role for non-ABAC-enabled registries.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 Next, store the service principal's *appId* in the vault, which is the **username** you pass to Azure Container Registry for authentication:
 

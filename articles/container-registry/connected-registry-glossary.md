@@ -1,13 +1,13 @@
 ---
 title: "Glossary for Connected Registry with Azure Arc"
 description: "Learn the terms and definitions for the connected registry extension with Azure Arc for a seamless extension deployment."
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: glossary #Don't change
-ms.date: 06/18/2024
-#customer intent: As a customer, I want to understand the terms and definitions for the connected registry extension with Azure Arc for a successful deployment.
+ms.date: 02/28/2025
 
+# Customer intent: As an IT professional deploying the connected registry extension with Azure Arc, I want to understand key terms and definitions, so that I can ensure a smooth and successful deployment process.
 ---
 
 # Glossary for Connected registry with Azure Arc
@@ -27,7 +27,7 @@ This glossary provides terms and definitions for the connected registry extensio
 
 - **Definition:** Allows customers to use their own certificate management service.
 - **Accepted Values:** Kubernetes Secret or Public Certificate + Private Key pair
-- **Note:** Customer must specify.
+- **Note:** Customers must specify.
 
 ### Cert-manager.enabled
 
@@ -41,7 +41,7 @@ This glossary provides terms and definitions for the connected registry extensio
 - **Definition:** Installs the cert-manager tool as part of the extension deployment.
 - **Accepted Values:** `true`, `false`
 - **Default Value:** `true`
-- **Note:** Must be set to `false` if a customer is using their own cert-manager service.
+- **Note:** Set this value to `false` if you're using your own cert-manager service.
 
 ### Child Registry
 
@@ -59,23 +59,23 @@ This glossary provides terms and definitions for the connected registry extensio
 
 ### Cluster-name
 
-- **Definition:** The name of the Arc cluster for which the extension is deployed.
-- **Accepted Values:** Alphanumerical value
+- **Definition:** The name of the Arc cluster for which you deploy the extension.
+- **Accepted Values:** Alphanumeric value
 
 ### Cluster-type
 
-- **Definition:** Specifies the type of Arc cluster for the extension deployment.
+- **Definition:** The type of Arc cluster for the extension deployment.
 - **Accepted Values:** `connectedCluster`
 - **Default Value:** `connectedCluster`
 
 ### Single configuration value (--config)
 
 - **Definition:** The configuration parameters and values for deploying the connected registry extension on the Arc Kubernetes cluster.
-- **Accepted Values:** Alphanumerical value
+- **Accepted Values:** Alphanumeric value
 
 ### Connection String
 
-- **Value Type:** Alphanumerical
+- **Value Type:** Alphanumeric
 - **Customer Action:** Must generate and specify
 - **Description:** The connection string contains authorization details necessary for the connected registry to securely connect and sync data with the cloud registry using Shared Key authorization. It includes the connected registry name, sync token name, sync token password, parent gateway endpoint, and parent endpoint protocol.
 
@@ -88,7 +88,7 @@ This glossary provides terms and definitions for the connected registry extensio
 - **Definition:** Enables a [dedicated data endpoint](/azure/container-registry/container-registry-dedicated-data-endpoints) for client firewall configuration.
 - **Accepted Values:** `true`, `false`
 - **Default Value:** `false`
-- **Note:** Must be enabled for a successful creation of a connected registry.
+- **Note:** You must enable this setting for a successful creation of a connected registry.
 
 ### Extension-type
 
@@ -100,7 +100,7 @@ This glossary provides terms and definitions for the connected registry extensio
 
 - **Definition:** A Kubernetes managed secret for securely accessing data across pods within a cluster.
 - **Accepted Values:** Secret name
-- **Note:** Customer must specify.
+- **Note:** You must specify this value.
 
 ### Message TTL (Time To Live)
 
@@ -120,13 +120,13 @@ This glossary provides terms and definitions for the connected registry extensio
 
 ### Protected Settings File (--config-protected-file)
 
-- **Definition:** The file containing the connection string for deploying the connected registry extension on the Kubernetes cluster. This file would also include the Kubernetes Secret or Public Cert + Private Key values pair for BYOC scenarios.
-- **Accepted Values:** Alphanumerical value
-- **Note:** Customer must specify.
+- **Definition:** The file containing the connection string for deploying the connected registry extension on the Kubernetes cluster. This file also includes the Kubernetes Secret or Public Cert + Private Key values pair for BYOC scenarios.
+- **Accepted Values:** Alphanumeric value
+- **Note:** You must specify this file.
 
 ### Public Certificate + Private Key
 
-- **Value Type:** Alphanumerical base64-encoded
+- **Value Type:** Alphanumeric base64-encoded
 - **Customer Action:** Must specify
 - **Description:** The public key certificate comprises a pair of keys: a public key available to anyone for identity verification of the certificate holder, and a private key, a unique secret key.
 
@@ -138,20 +138,20 @@ This glossary provides terms and definitions for the connected registry extensio
 ### Pvc.storageRequest
 
 - **Definition:** Specifies the storage size that the connected registry claims in the cluster.
-- **Accepted Values:** Alphanumerical value (for example, “500Gi”)
+- **Accepted Values:** Alphanumeric value (for example, `500Gi`)
 - **Default Value:** `500Gi`
 
 ### Service.ClusterIP
 
 - **Definition:** The IP address within the Kubernetes service cluster IP range.
 - **Accepted Values:** IPv4 or IPv6 format
-- **Note:** Customer must specify. An incorrect IP not within the range will result in a failed extension deployment.
+- **Note:** You must specify. An incorrect IP not within the range results in a failed extension deployment.
 
 ### Sync Token
 
 - **Definition:** A token used by each connected registry to authenticate with its immediate parent for content synchronization and updates.
 - **Accepted Values:** Token name
-- **Action:** Customer action required.
+- **Action:** Your action required.
 
 ### Synchronization Schedule
 
@@ -161,19 +161,19 @@ This glossary provides terms and definitions for the connected registry extensio
 
 ### Synchronization Window
 
-- **Value Type:** Alphanumerical
+- **Value Type:** Alphanumeric
 - **Default Value/Behavior:** Hourly
 - **Description:** The synchronization window specifies the sync duration. This parameter is disregarded if the sync schedule is continuous.
 
 ### TrustDistribution.enabled
 
-- **Definition:** Trust distribution refers to the process of securely distributing trust between the connected registry and all client nodes within a Kubernetes cluster. When enabled, all nodes are configured with trust distribution.
+- **Definition:** Trust distribution refers to the process of securely distributing trust between the connected registry and all client nodes within a Kubernetes cluster. When you enable trust distribution, all nodes are configured with trust distribution.
 - **Accepted Values:** `true`, `false`
-- **Note:** Customer must choose `true` or `false`.
+- **Note:** You must choose `true` or `false`.
 
 ### TrustDistribution.useNodeSelector
 
-- **Definition:** By default, the trust distribution daemonsets, which are responsible for configuring the container runtime environment (containerd), will run on all nodes in the cluster. However, with this setting enabled, trust distribution is limited to only those nodes that have been specifically labeled with `containerd-configured-by: connected-registry`.
+- **Definition:** By default, the trust distribution daemonsets, which are responsible for configuring the container runtime environment (containerd), run on all nodes in the cluster. However, with this setting enabled, trust distribution is limited to only those nodes that you specifically label with `containerd-configured-by: connected-registry`.
 - **Accepted Values:** `true`, `false`
 - **Label:** `containerd-configured-by=connected-registry`
 - **Command to specify nodes for trust distribution:** `kubectl label node/[node name] containerd-configured-by=connected-registry`

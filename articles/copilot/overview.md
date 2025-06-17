@@ -1,41 +1,63 @@
 ---
-title:  Microsoft Copilot in Azure overview
+title: Microsoft Copilot in Azure Overview
 description: Microsoft Copilot in Azure is an AI-powered tool to help you do more with Azure.
-ms.date: 11/18/2024
-ms.topic: overview
+author: JnHs
+ms.author: jenhayes
+ms.reviewer: maghan
+ms.date: 04/08/2025
 ms.service: copilot-for-azure
+ms.topic: overview
 ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
-ms.author: jenhayes
-author: JnHs
-hideEdit: true
 ---
 
 # What is Microsoft Copilot in Azure?
 
-Microsoft Copilot in Azure (preview) is an AI-powered tool to help you do more with Azure. With Microsoft Copilot in Azure, you can gain new insights, discover more benefits of the cloud, and orchestrate across both cloud and edge. Copilot leverages Large Language Models (LLMs), the Azure control plane, and insights about your Azure environment to help you work more efficiently.
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
+Microsoft Copilot in Azure is an AI-powered tool to help you do more with Azure. With Microsoft Copilot in Azure, you can gain new insights, discover more benefits of the cloud, and orchestrate across both cloud and edge. Copilot leverages Large Language Models (LLMs), the Azure control plane, and insights about your Azure environment to help you work more efficiently.
 
 Microsoft Copilot in Azure can help you navigate the hundreds of services and thousands of resource types that Azure offers. It unifies knowledge and data across hundreds of services to increase productivity, reduce costs, and provide deep insights. Copilot in Azure can help you learn about Azure by answering questions, and it can provide information tailored to your own Azure resources and environment. By letting you [express your goals in natural language](write-effective-prompts.md), Copilot in Azure can simplify your Azure management experience.
 
-You can access Copilot in Azure in the Azure portal, [through the Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md), or through [AI Shell](ai-shell-overview.md). Throughout a conversation, Copilot in Azure answers questions, generates queries, performs tasks, and safely acts on your behalf. It makes high-quality recommendations and takes actions while respecting your organization's policy and privacy. Copilot in Azure can access all of the resources that you have permission to access, and can take actions that you have permission to perform, with your confirmation required for any actions. For more information about what Copilot in Azure can do, see [Capabilities of Microsoft Copilot in Azure](capabilities.md).
+## How Copilot in Azure works
 
-Microsoft Copilot in Azure (preview) is made available to customers under the terms governing their subscription to Microsoft Azure Services, including the Microsoft Copilot in Azure section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Please review these terms carefully as they contain important conditions and obligations governing your use of Microsoft Copilot in Azure.
+You can access Copilot in Azure in the Azure portal, [through the Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md), or through [AI Shell](ai-shell-overview.md). Throughout a conversation, Copilot in Azure answers questions, generates queries, performs tasks, and safely acts on your behalf. It makes high-quality recommendations and takes actions while respecting your organization's policy and privacy. Copilot in Azure can access all of the resources that you have permission to access, and can take actions that you have permission to perform, with your confirmation required for any actions.
 
-## Manage access
+## Features of Copilot in Azure
 
-By default, Copilot in Azure is available to all users in a tenant. However, [Global Administrators](/entra/identity/role-based-access-control/permissions-reference#global-administrator) can choose to control access to Copilot in Azure for their organization.
+Copilot in Azure helps you work with Azure services in many ways. It helps you design, operate, optimize, and troubleshoot your Azure apps and infrastructure. Copilot for Azure can help you gain new insights, discover benefits of the cloud, and work more efficiently.
 
-For more information, see [Manage access to Microsoft Copilot in Azure](manage-access.md).
+For more information about ways to use Copilot in Azure, see [Capabilities of Microsoft Copilot in Azure](capabilities.md).
+
+## Example prompts
+
+For a library of prompts you can try out, see [Example prompts for Microsoft Copilot in Azure](example-prompts.md). For tips on creating your own prompts, see [Write effective prompts for Microsoft Copilot in Azure](write-effective-prompts.md).
+
+## Responsible AI in Copilot in Azure
+
+Microsoft is committed to ensuring that our AI systems are guided by our [AI principles](https://www.microsoft.com/ai/principles-and-approach/) and [Responsible AI Standard](https://www.microsoft.com/ai/responsible-ai). These principles include empowering our customers to use these systems effectively and in line with their intended uses. Our approach to responsible AI is continually evolving to address emerging issues proactively.
+
+For more information, see [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md).
+
+## Pricing and availability
+
+The capabilities of Copilot in Azure available today are included at no additional cost. Future capabilities may be subject to pricing.
+
+Microsoft Copilot in Azure is made available to customers under the terms governing their subscription to Microsoft Azure Services, including the Microsoft Copilot in Azure section of the [Microsoft Product Terms](https://www.microsoft.com/licensing/terms/productoffering/MicrosoftAzure/EAEAS). Please review these terms carefully as they contain important conditions and obligations governing your use of Microsoft Copilot in Azure.
+
+Microsoft Copilot in Azure is available in 19 languages: Chinese (Simplified), Chinese (Traditional), Czech, Dutch, English, French, German, Hungarian, Indonesian, Italian, Japanese, Korean, Polish, Portuguese (Brazil), Portuguese (Portugal), Russian, Spanish, Swedish, and Turkish.
+
+Microsoft Copilot for Azure isn't available in national clouds (Azure Government, Microsoft Azure operated by 21Vianet).
+
+By default, Copilot in Azure is available to all users in a tenant. However, Global Administrators can choose to [control access to Copilot in Azure for their organization](manage-access.md).
 
 > [!IMPORTANT]
 > In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Please ask your network administrator to enable this connection.
 
-## Next steps
+## Related content
 
-- Learn about [some of the things you can do with Microsoft Copilot in Azure](capabilities.md).
-- Review our [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md).
-- Explore the [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/).
+- [Some of the things you can do with Microsoft Copilot in Azure](capabilities.md)
+- [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md)
+- [Write effective prompts](write-effective-prompts.md)
+- [Explore some examples](example-prompts.md)
+- [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/)

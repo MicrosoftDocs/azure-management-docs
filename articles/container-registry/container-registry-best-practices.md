@@ -3,9 +3,10 @@ title: Best Practices for Using Azure Container Registry
 description: Learn how to use your Azure container registry effectively by following these best practices.
 ms.topic: best-practice
 ms.service: azure-container-registry
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
+# Customer intent: "As a cloud architect, I want to implement best practices for managing Azure Container Registry, so that I can optimize performance, minimize costs, and ensure efficient deployment of container images across multiple environments."
 ---
 
 # Best practices for Azure Container Registry
@@ -66,7 +67,7 @@ When authenticating with an Azure container registry, there are two primary scen
 
 For in-depth information about these and other Azure Container Registry authentication scenarios, see [Authenticate with an Azure container registry](container-registry-authentication.md).
 
-Azure Container Registry supports security practices in your organization to distribute duties and privileges to different identities. Using [role-based access control](container-registry-roles.md), assign appropriate permissions to different users, service principals, or other identities that perform different registry operations. For example, assign push permissions to a service principal used in a build pipeline and assign pull permissions to a different identity used for deployment. Create [tokens](container-registry-repository-scoped-permissions.md) for fine-grained, time-limited access to specific repositories.
+Azure Container Registry supports security practices in your organization to distribute duties and privileges to different identities. Using [role-based access control](container-registry-rbac-built-in-roles-overview.md), assign appropriate permissions to different users, service principals, or other identities that perform different registry operations. For example, assign push permissions to a service principal used in a build pipeline and assign pull permissions to a different identity used for deployment. Use [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) for fine-grained access to specific repositories. Alternatively, you can use [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md).
 
 ## Manage registry size      
 

@@ -3,8 +3,8 @@ items:
   href: index.yml
 - name: Overview
   href: overview.md
-- name: Azure Arc Jumpstart
-  href: jumpstart.md
+- name: What's new?
+  href: whats-new.md
 - name: Quickstarts
   items:
   - name: Install Container Storage on a single-node Ubuntu cluster
@@ -15,18 +15,20 @@ items:
     href: tutorial-configure-edge-volume.md
 - name: Edge Volumes
   items:
+  - name: Edge Volumes overview
+    href: edge-volumes-overview.md 
   - name: How-to
     items:
     - name: Prepare Linux
-      href: prepare-linux-edge-volumes.md
-    - name: Prepare Linux using a single-node cluster
-      href: single-node-cluster-edge-volumes.md
-    - name: Prepare Linux using a multi-node cluster
-      href: multi-node-cluster-edge-volumes.md
+      items:
+      - name: Prepare Linux prerequisites
+        href: prepare-linux-edge-volumes.md
+      - name: Prepare Linux using a single-node cluster
+        href: single-node-cluster-edge-volumes.md
+      - name: Prepare Linux using a multi-node cluster
+        href: multi-node-cluster-edge-volumes.md
     - name: Install extension
       href: install-edge-volumes.md
-    - name: Map file to object path names
-      href: map-names.md
     - name: Configure your volumes
       items:
       - name: Local Shared Edge Volumes
@@ -35,57 +37,37 @@ items:
         items:
         - name: Cloud Ingest Edge Volumes configuration
           href: cloud-ingest-edge-volume-configuration.md
-        - name: Set ingest policy
-          href: ingest-policies.md
-        - name: Alternate OneLake configuration for Cloud Ingest Edge Volumes
+        - name: Alternative OneLake configuration
           href: alternate-onelake.md
-        - name: Alternate key-based authentication for Cloud Ingest Edge Volumes
-          href: alternate-key-based.md
-        - name: Blob index and metadata tags
-          href: blob-index-metadata-tags.md
-    - name: Monitor deployment
-      href: monitor-deployment-edge-volumes.md
-  - name: Conceptual
-    items:
-    - name: Volumes and subvolumes
-      href: volumes-subvolumes.md
-    - name: Storage options
-      href: storage-options.md
-    - name: Ingest data flow
-      href: ingest-data-flow.md
-- name: Cache Volumes
-  items:
-  - name: Cache Volumes overview
-    href: cache-volumes-overview.md 
-  - name: How-to
-    items:
-    - name: Prepare Linux
-      items:
-      - name: Prepare Linux prerequisites
-        href: prepare-linux.md
-      - name: Prepare Linux using a single-node cluster
-        href: single-node-cluster.md
-      - name: Prepare Linux using a multi-node cluster
-        href: multi-node-cluster.md
-    - name: Install extension
-      href: install-cache-volumes.md
-    - name: Attach applications
-      items:
-      - name: Create a persistent volume
-        href: create-persistent-volume.md
-      - name: Create persistent volume claim
-        href: create-persistent-volume-claim.md
-      - name: Attach your app
-        href: attach-app.md
     - name: Monitor deployment
       items:
+      - name: Monitor Edge Volumes deployment
+        href: monitor-deployment-edge-volumes.md
       - name: Third-party monitoring with Prometheus and Grafana
         href: third-party-monitoring.md
       - name: Azure Monitor and Kubernetes monitoring
         href: azure-monitor-kubernetes.md
+  - name: Conceptual
+    items:
+    - name: Volumes and subvolumes
+      href: volumes-subvolumes.md
+    - name: Map file to object path names
+      href: map-names.md
+    - name: Storage options
+      href: storage-options.md
+    - name: Set ingest policy
+      href: ingest-policies.md
+    - name: Ingest data flow
+      href: ingest-data-flow.md
+    - name: Blob index and metadata tags
+      href: blob-index-metadata-tags.md
 - name: Resources
   items:
-  - name: FAQ and release notes
+  - name: Azure Arc Jumpstart scenarios
+    href: jumpstart.md
+  - name: Release notes
     href: release-notes.md
+  - name: FAQ
+    href: faq.yml
   - name: Support and feedback
     href: support-feedback.md

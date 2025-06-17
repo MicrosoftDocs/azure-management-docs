@@ -1,9 +1,11 @@
 ---
 title: Azure Arc resource bridge overview
 description: Learn how to use Azure Arc resource bridge to support VM self-servicing on Azure Local, VMware, and System Center Virtual Machine Manager.
-ms.date: 08/26/2024
+ms.date: 04/22/2025
 ms.topic: overview
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 ---
 
 # What is Azure Arc resource bridge?
@@ -27,6 +29,8 @@ Azure Arc resource bridge hosts other components such as [custom locations](..\p
 * The solution layer for each service supported by Arc resource bridge (that is, the different type of VMs).
 
 :::image type="content" source="media/overview/architecture-overview.png" alt-text="Azure Arc resource bridge architecture diagram." border="false" lightbox="media/overview/architecture-overview.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 Azure Arc resource bridge can host other Azure services or solutions running on-premises. There are two objects hosted on the Arc resource bridge:
 
@@ -105,6 +109,8 @@ Arc resource bridge supports the following Azure regions:
 * Central US
 * North Central US
 * South Central US
+* US Gov Virginia
+
 * Canada Central
 * Australia East
 * Australia SouthEast
@@ -113,6 +119,8 @@ Arc resource bridge supports the following Azure regions:
 * UK South
 * UK West
 * Sweden Central
+* Italy North
+
 * Japan East
 * Southeast Asia
 * East Asia
@@ -132,16 +140,7 @@ The following private cloud environments and their versions are officially suppo
 
 ### Supported versions
 
-Generally, the latest released version and the previous three versions (n-3) of Arc resource bridge are supported. For example, if the current version is 1.0.18, then the typical n-3 supported versions are:
-
-* Current version: 1.0.18
-* n-1 version: 1.0.17
-* n-2 version: 1.0.16
-* n-3 version: 1.0.15
-
-There could be instances where supported versions aren't sequential. For example, version 1.0.18 is released and later found to contain a bug; a hot fix is released in version 1.0.19 and version 1.0.18 is removed. In this scenario, n-3 supported versions become 1.0.19, 1.0.17, 1.0.16, 1.0.15.
-
-Arc resource bridge typically releases a new version on a monthly cadence, at the end of the month. Delays might occur that could push the release date further out. Regardless of when a new release comes out, if you are within n-3 supported versions, then your Arc resource bridge version is supported. To stay updated on releases, visit the [Arc resource bridge release notes](release-notes.md). To learn more about upgrade options, visit [Upgrade Arc resource bridge](upgrade.md).
+We generally recommend keeping your Arc resource bridge on a version released within the last 6 months or within the latest n-3 versions, whichever is more recent. This ensures your appliance benefits from the latest features, security updates, and refreshed internal components such as certificates. While the support policy includes the latest version and the three preceding versions (n-3), you must still upgrade at least once every 6 months, even if your current version is technically within the supported range. This is critical to maintain system health and compatibility. To estimate your last upgrade date, check your appliance version and its corresponding release date. For version release news, please refer to [Arc resource bridge release notes](release-notes.md)
 
 ### Private link support
 

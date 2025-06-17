@@ -191,7 +191,7 @@ For uploading metrics, Azure monitor only accepts the last 30 minutes of data ([
 
 ## Related content
 
-[Learn about service principals](/powershell/azure/azurerm/create-azure-service-principal-azureps#what-is-a-service-principal)
+[Learn about service principals](/powershell/azure/create-azure-service-principal-azureps)
 
 [Upload billing data to Azure and view it in the Azure portal](view-billing-data-in-azure.md)
 

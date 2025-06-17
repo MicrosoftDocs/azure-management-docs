@@ -18,9 +18,10 @@ The Azure Linux Container Host is lightweight, containing only the packages need
 To learn more about Azure Linux, see the [Azure Linux GitHub repository](https://github.com/microsoft/CBL-Mariner).
 
 > [!NOTE]
-> Azure Linux 3.0 is available in preview on AKS. 
+> Azure Linux 3.0 is generally available on AKS. 
 >
-> To learn how to get started, see [Quickstart: Enable Azure Linux 3.0](./how-to-enable-azure-linux-3.md).
+> AKS customers will automatically move to Azure Linux 3.0 when upgrading their AKS versions from 1.31 to 1.32. No additional action is required.
+> To learn more, see [Quickstart: Enable Azure Linux 3.0](./how-to-enable-azure-linux-3.md).
 
 ## Azure Linux Container Host key benefits
 
@@ -44,14 +45,14 @@ The Azure Linux Container Host offers the following key benefits:
 
 ## What's new with Azure Linux 3.0?
 
-Azure Linux 3.0 is available in preview to use on AKS. Every three years, Azure Linux releases a new version of its operating system with upgrades to major components. 
+Azure Linux 3.0 is generally available to use on AKS. Every three years, Azure Linux releases a new version of its operating system with upgrades to major components. 
 
 The following table outlines information about the upgrades made to major components as part of this release: 
 
 |Component| Version|
 |--|--|
 |Kernel| 6.6 |
-|ContainerD| 1.7 and 2.0 support |
+|ContainerD| 2.0 |
 |SystemD | v255 | 
 |Crypto Library| [SymCrypt](https://github.com/microsoft/SymCrypt)
 

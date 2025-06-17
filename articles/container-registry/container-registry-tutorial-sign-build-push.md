@@ -1,13 +1,13 @@
 ---
 title: Sign Container Images with Notation and Azure Key Vault
 description: Learn to create a self-signed certificate in Azure Key Vault, build and sign a container image in Azure Container Registry, and verify it with Notation.
-author: yizha1
-ms.author: yizha1
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/3/2024
-#customer intent: As a developer, I want to sign and verify container images so that I can ensure their authenticity and integrity.
+# Customer intent: As a developer, I want to sign and verify container images using a self-signed certificate and secure storage solutions, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
 # Sign container images with Notation and Azure Key Vault using a self-signed certificate
@@ -43,16 +43,16 @@ In this tutorial:
     cp ./notation /usr/local/bin
     ```
 
-2. Install the Notation Azure Key Vault plugin `azure-kv` v1.2.0 on a Linux amd64 environment.
+2. Install the Notation Azure Key Vault plugin `azure-kv` v1.2.1 on a Linux amd64 environment.
 
     > [!NOTE]
     > The URL and SHA256 checksum for the Notation Azure Key Vault plugin can be found on the plugin's [release page](https://github.com/Azure/notation-azure-kv/releases).
 
     ```bash
-    notation plugin install --url https://github.com/Azure/notation-azure-kv/releases/download/v1.2.0/notation-azure-kv_1.2.0_linux_amd64.tar.gz --sha256sum 06bb5198af31ce11b08c4557ae4c2cbfb09878dfa6b637b7407ebc2d57b87b34
+    notation plugin install --url https://github.com/Azure/notation-azure-kv/releases/download/v1.2.1/notation-azure-kv_1.2.1_linux_amd64.tar.gz --sha256sum 67c5ccaaf28dd44d2b6572684d84e344a02c2258af1d65ead3910b3156d3eaf5
     ```
 
-3. List the available plugins and confirm that the `azure-kv` plugin with version `1.2.0` is included in the list. 
+3. List the available plugins and confirm that the `azure-kv` plugin with version `1.2.1` is included in the list. 
 
     ```bash
     notation plugin ls
@@ -107,7 +107,11 @@ When working with ACR and AKV, it’s essential to grant the appropriate permiss
 
 ### Authorize access to ACR
 
-The `AcrPull` and `AcrPush` roles are required for signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+
+For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the ACR resource
 
@@ -115,11 +119,13 @@ The `AcrPull` and `AcrPush` roles are required for signing container images in A
     az account set --subscription $ACR_SUB_ID
     ```
 
-2. Assign the roles
+2. Assign the roles. The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
     ```bash
     USER_ID=$(az ad signed-in-user show --query id -o tsv)
-    az role assignment create --role "AcrPull" --role "AcrPush" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
+    ROLE1="Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use "AcrPull" for non-ABAC-enabled registries.
+    ROLE2="Container Registry Repository Writer" # For ABAC-enabled registries. Otherwise, use "AcrPush" for non-ABAC-enabled registries.
+    az role assignment create --role "$ROLE1" --role "$ROLE2" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
     ```
 
 ### Authorize access to AKV
@@ -354,14 +360,14 @@ Since Notation v1.2.0, Notation supports [RFC 3161](https://www.rfc-editor.org/r
 
 ## Next steps
 
-Notation also provides CI/CD solutions on Azure Pipeline and GitHub Actions Workflow:
+Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
-- [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
-- [Sign and verify a container image with Notation in GitHub Actions Workflow](https://github.com/marketplace/actions/notation-actions)
+- To sign and verify container images in ADO pipelines, see [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
+- To sign container images using GitHub Actions, see [Sign a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+- To verify container images using GitHub Actions, see [Verify a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
 
-To validate signed image deployment in AKS or Kubernetes:
-
-- [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- [Use Ratify to validate and audit image deployment in any Kubernetes cluster](https://ratify.dev/)
+To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
+- Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/

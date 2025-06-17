@@ -2,13 +2,14 @@
 title: What is Azure Arc-enabled VMware vSphere?
 description: Azure Arc-enabled VMware vSphere extends Azure governance and management capabilities to VMware vSphere infrastructure and delivers a consistent management experience across both platforms. 
 ms.topic: overview
-ms.date: 08/08/2024
-ms.custom: references_regions
+ms.date: 04/17/2025
+ms.custom:
+  - references_regions
+  - build-2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ---
 
 # What is Azure Arc-enabled VMware vSphere?
@@ -28,7 +29,7 @@ Arc-enabled VMware vSphere allows you to:
 - Browse your VMware vSphere resources (VMs, templates, networks, and storage) in Azure, providing you with a single pane view for your infrastructure across both environments.
 
 > [!NOTE]
-> For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
+>For guidance on choosing the right Azure Arc service for your virtual machines, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
 ## Onboard resources to Azure management at scale
 
@@ -79,28 +80,7 @@ If you're trying to enable Arc for Azure VMware Solution (AVS) private cloud, se
 
 ## Supported regions
 
-You can use Azure Arc-enabled VMware vSphere in these supported regions:
-
-- East US
-- East US 2
-- West US 2
-- West US 3
-- Central US
-- North Central US
-- South Central US
-- Canada Central
-- UK West
-- UK South
-- North Europe
-- West Europe
-- Sweden Central
-- Japan East
-- East Asia
-- Southeast Asia
-- Central India
-- Australia East
-
-For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/?products=azure-arc&regions=all) page.
+For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 ## Data Residency
 
@@ -122,3 +102,5 @@ The following capabilities are available in the AKS Arc on VMware preview:
 - Plan your resource bridge deployment by reviewing the [support matrix for Arc-enabled VMware vSphere](support-matrix-for-arc-enabled-vmware-vsphere.md).
 - Once ready, [connect VMware vCenter to Azure Arc using the helper script](quick-start-connect-vcenter-to-arc-using-script.md).
 - Try out Arc-enabled VMware vSphere by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_vsphere).
+- [Consider unified operations and plan for hybrid and multicloud environments with the Cloud Adoption Framework](/azure/cloud-adoption-framework/scenarios/hybrid/plan).
+- [Choose the Azure Hybrid solution that meets your business requirements with guidance from the Azure Architecture Center](/azure/architecture/guide/technology-choices/hybrid-considerations).

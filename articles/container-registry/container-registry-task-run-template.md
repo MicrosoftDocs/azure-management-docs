@@ -3,10 +3,11 @@ title: Quick Task Run with Template
 description: Queue an ACR task run to build an image using an Azure Resource Manager template in Azure Container Registry.
 ms.topic: how-to
 ms.custom: devx-track-azurecli, devx-track-arm-template
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to queue ACR task runs using Azure Resource Manager templates, so that I can automate container image builds and streamline my deployment processes."
 ---
 
 # Run ACR Tasks using Resource Manager templates
@@ -167,13 +168,14 @@ baseregID=$(az acr show \
   --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the identity the Acrpull role to the base registry. This role has permissions only to pull images from the registry.
+Use the [az role assignment create][az-role-assignment-create] command to assign the identity the correct role to the base registry. This role assignment will grant permissions only to pull images from the registry. The role to use in the role assignment depends on whether your registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
   --scope $baseregID \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ### Template parameters

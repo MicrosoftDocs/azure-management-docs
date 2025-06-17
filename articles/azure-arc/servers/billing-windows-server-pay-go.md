@@ -2,7 +2,7 @@
 title: Billing service for Windows Server pay-as-you-go
 description: Learn about billing services for Windows Server pay-as-you-go enabled by Azure Arc.
 ms.date: 11/01/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Billing service for Windows Server pay-as-you-go enabled by Azure Arc

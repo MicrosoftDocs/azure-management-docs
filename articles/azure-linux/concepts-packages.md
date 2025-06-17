@@ -4,7 +4,7 @@ description: Learn about the packages supported by the Azure Linux Container Hos
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/18/2024
 ms.custom: template-concept, linux-related-content
 ---

@@ -1,7 +1,7 @@
 ---
 title: Connect hybrid machines to Azure using a deployment script
 description: In this article, you learn how to install the agent and connect machines to Azure by using Azure Arc-enabled servers using the deployment script you create in the Azure portal.
-ms.date: 11/25/2024
+ms.date: 03/13/2025
 ms.topic: how-to
 ms.custom: linux-related-content
 ---
@@ -27,25 +27,24 @@ Use the Azure portal to create a script that automates the agent download and in
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com).
 
-1. On the **Azure Arc - Machines** page, select **Add/Create** at the upper left, and then select **Add a machine** from the drop-down menu.
+1. On the **Azure Arc | Machines** page, select **Add/Create**, and then select **Add a machine** from the drop-down menu.
 
-1. On the **Add servers with Azure Arc** page, under the **Add a single server** tile, select **Generate script**.
+1. On the **Add servers with Azure Arc** page, in the **Add a single server** tile, select **Generate script**.
 
 1. On the **Basics** page, provide the following:
 
-    1. In the **Project Details** section, select the **Subscription** and **Resource group** the machine will be managed from.
-    1. In the **Region** drop-down list, select the Azure region to store the servers metadata.
+    1. In the **Project details** section, select the **Subscription** and **Resource group** the machine will be managed from.
+    1. In the **Server details** section, select the **Region** to store the servers metadata.
     1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
     1. In the **Connectivity method** section, choose how the Azure Connected Machine agent should connect to the internet: 
         * **Public endpoint** 
         * **Proxy server**—If the machine is communicating through a proxy server, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
         * **Private endpoint**—If the machine is communicating through a private endpoint, select an existing private link scope and endpoint or create a new one.
-    1. In the **Automanage machine best practices** section, you may enable automanage if you want to onboard and configure best practice services like Machine configuration and Insights, based on your server needs.
     1. Select **Next** to go to the Tags page.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards.
 
-1. Select **Next** to Download and run script page.
+1. Select **Next** to go to the Download and run script page.
 
 1. On the **Download and run script** page, review the summary information, and then select **Download**. If you still need to make changes, select **Previous**.
 
@@ -85,6 +84,11 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
     # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
     Restart-Service -Name himds
     ```
+    
+    > [!NOTE]
+    > The agent does not support setting proxy authentication.
+    > 
+
     For more information, see [Agent-specific proxy configuration](manage-agent.md#agent-specific-proxy-configuration).
 
 3. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:

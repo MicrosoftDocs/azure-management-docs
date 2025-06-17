@@ -2,16 +2,20 @@
 title: Manage Signed Images with Content Trust in ACR
 description: Learn how to enable content trust for your Azure container registry, and push and pull signed images. Content trust implements Docker content trust and is a feature of the Premium service tier.
 ms.topic: how-to
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: subject-rbac-steps, devx-track-azurecli 
 ms.devlang: azurecli
+# Customer intent: As a DevOps engineer, I want to enable content trust for my container registry, so that I can ensure the security and integrity of the images I publish and consume by verifying their authenticity.
 ---
 # Content trust in Azure Container Registry
 
 Azure Container Registry implements Docker's [content trust][docker-content-trust] model, enabling pushing and pulling of signed images. This article gets you started enabling content trust in your container registries.
+
+> [!IMPORTANT]
+> Docker Content Trust will be deprecated and completely removed on March 31, 2028. Refer to [Transition from Docker Content Trust to the Notary Project](./container-registry-content-trust-deprecation.md) for details and transition guidance.
 
 > [!NOTE]
 > Content trust is a feature of the [Premium service tier](container-registry-skus.md) of Azure Container Registry.
@@ -74,7 +78,7 @@ docker build --disable-content-trust -t myacr.azurecr.io/myimage:v1 .
 
 ## Grant image signing permissions
 
-Only the users or systems you've granted permission can push trusted images to your registry. To grant trusted image push permission to a user (or a system using a service principal), grant their Microsoft Entra identities the `AcrImageSigner` role. This is in addition to the `AcrPush` (or equivalent) role required for pushing images to the registry. For details, see [Azure Container Registry roles and permissions](container-registry-roles.md).
+Only the users or systems you've granted permission can push trusted images to your registry. To grant trusted image push permission to a user (or a system using a service principal), grant their Microsoft Entra identities the `AcrImageSigner` role. This is in addition to the `AcrPush` (or equivalent) role required for pushing images to the registry. For details, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
 
 > [!IMPORTANT]
 > You can't grant trusted image push permission to the following administrative accounts: 

@@ -16,9 +16,24 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/copilot/copilot-advisor.md",
+      "redirect_url": "/azure/copilot/find-recommendations-advisor",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/copilot/optimize-code-application-insights.md",
+      "redirect_url": "/azure/azure-monitor/insights/code-optimizations-extensions",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/copilot/use-guided-deployments.md",
       "redirect_url": "/azure/copilot/deploy-workload-templates",
       "redirect_document_id": false
-    }
+    },
+    {
+      "source_path_from_root": "/articles/copilot/discovery-plugin-marketplace.md",
+      "redirect_url": "/azure/copilot/capabilities",
+      "redirect_document_id": false
+    }    
   ]
 }

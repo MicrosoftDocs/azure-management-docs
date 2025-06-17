@@ -7,7 +7,11 @@ ms.topic: troubleshooting
 
 # Troubleshoot Azure Arc resource bridge issues
 
-This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md).
+This article provides information on troubleshooting and resolving issues that could occur while attempting to deploy, use, or remove the Azure Arc resource bridge. The resource bridge is a packaged virtual machine, which hosts a *management* Kubernetes cluster. For general information, see [Azure Arc resource bridge overview](./overview.md). 
+
+> [!NOTE]
+> - For ***Arc-enabled System Center Virtual Machine Manager***, refer to the [Arc-enabled SCVMM troubleshoot guide](../system-center-virtual-machine-manager/troubleshoot-scvmm.md).
+> - For ***Azure Local***, refer to  [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms) or contact Microsoft Support. Arc resource bridge is a critical component of Azure Local and should not be deleted without guidance from Microsoft Support.
 
 ## General issues
 
@@ -36,6 +40,53 @@ az account set -s <subscription id>
 az arcappliance get-credentials -n <Arc resource bridge name> -g <resource group name> 
 az arcappliance logs vmware --kubeconfig kubeconfig --out-dir <path to specified output directory>
    ```
+
+### Get login credentials error on Azure CLI v2.70.0
+
+You may encounter an error when running az arcappliance commands that looks like this:
+
+`File "C:\Program Files\Common Files\AzureCliExtensionDirectory\arcappliance\azext_arcappliance\helpers.py", line 103, in get_tenant_id_and_cloud
+```
+_, _, tenant = profile.get_login_credentials(resource=cmd.cli_ctx.cloud.endpoints.active_directory_graph_resource_id)
+```TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`
+
+Azure CLI v2.70.0 released a breaking change which triggers this error in arcappliance CLI extension v1.4.0 and below. A fix is available in arcappliance CLI extension 1.4.1 for compatibility with Azure CLI v2.70.0. You can get the latest arcappliance CLI extension by running the following command:
+
+
+```azurecli
+az extension add --upgrade --name arcappliance
+```
+
+If you are on az arcappliance extension is 1.4.0 or lower, you need to downgrade Azure CLI to v2.69.0. 
+
+If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+
+Also, for the Arc-enabled VMware onboarding script, you may need to comment out the below code in the script to not update the AZ CLI to latest again:
+
+```
+if (shouldInstallAzCli) {
+   installAzCli64Bit
+}
+```
+
+### Error downloading release file information
+
+> [!WARNING] 
+> For Azure Local, you must use the built-in LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
+
+When upgrading Arc resource bridge using Azure CLI, you may get the following error: 
+
+```azurecli
+az arcappliance upgrade vmware' failed: (DownloadError) "{\n\"message\": \"Error downloading file release information.: Unable to find file release: ^mariner-2-0-(.*)-vhdx-rpm-(.*)$ with version:  in product release: arc-appliance-stable-releases\"\n}
+```
+
+If you are using an az arcappliance Azure CLI extension version that is below 1.4.0 and attempting to upgrade to appliance version 1.4.0, you need to update your Azure CLI extension to the latest version:
+
+```azurecli
+az extension add --upgrade --name arcappliance
+```
+
+Once your az arcappliance extension is 1.4.0, re-try the upgrade to appliance version 1.4.0. When upgrading an Arc resource bridge, the upgrade will be to the next version which may not be the latest version. Refer to [Arc resource bridge release notes](release-notes.md).
 
 ### Download/upload connectivity was not successful
 
@@ -74,21 +125,13 @@ You might see this error: `Access to the file in the SSH folder was denied. This
 
 ### Arc resource bridge is offline
 
-Networking changes in the infrastructure, environment or cluster can stop the appliance VM from being able to communicate with its counterpart Azure resource. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for further investigation.
+There are a number of reasons Arc resource bridge may be offline. In general, if Arc resource bridge is unable to communicate with Azure, the appliance VM will go offline. For Arc-enabled VMware and SCVMM, you may need to [update the credentials stored within Arc resource bridge](maintenance.md#update-credentials-in-the-appliance-vm). Communication to Azure may have been impacted by networking changes in the infrastructure, environment or cluster. If you're unable to determine what changed, you can reboot the appliance VM, collect logs and submit a support ticket for investigation. As a best practice, [create a resource health alert](maintenance.md#create-resource-health-alerts) to stay informed if an Arc resource bridge becomes unavailable. Arc resource bridge can't be offline for longer than 45 days. After 45 days, the security key within the appliance VM may no longer be valid and can't be refreshed. If you are unable to get Arc resource bridge back online, please contact Microsoft Support.
 
 ### Remote PowerShell isn't supported
 
 If you run `az arcappliance` CLI commands for Arc resource bridge via remote PowerShell, you might see an authentication handshake failure error when trying to install the resource bridge on an Azure Local instance or another type of error.
 
 Using `az arcappliance` commands from remote PowerShell isn't currently supported. Instead, sign in to the node through Remote Desktop Protocol (RDP) or use a console session.
-
-### Resource bridge configurations can't be updated
-
-In this release, all the parameters are specified at time of creation. To update Arc resource bridge, you must delete it and redeploy it again.
-
-For example, if you specify the wrong location or subscription during deployment, resource creation fails. If you only try to recreate the resource without redeploying the resource bridge VM, the status gets stuck at `WaitForHeartBeat`.
-
-To resolve this issue, delete the appliance and update the appliance YAML file. After that, redeploy and create the resource bridge.
 
 ### Appliance Network Unavailable
 
@@ -104,46 +147,31 @@ This error occurs because when you sign in to Azure, the token has a maximum lif
 
 When you use the `az arcappliance createconfig` or `az arcappliance run` command, an interactive experience shows the list of VMware entities which you can select to deploy the virtual appliance. This list shows all user-created resource pools along with default cluster resource pools, but the default host resource pools aren't listed. When the appliance is deployed to a host resource pool, there's no high availability if the host hardware fails. We recommend that you don't deploy the appliance in a host resource pool.
 
-### Resource bridge status is Offline and Provisioning State is Failed
-
-When you deploy Arc resource bridge, the bridge might appear to be successfully deployed because no errors were encountered when running `az arcappliance deploy` or `az arcappliance create`. However, when viewing the bridge in Azure portal, you might see status showing as `Offline`, and `az arcappliance show` might show the `provisioningState` as `Failed`. This issue happens when required providers aren't registered before the bridge is deployed.
-
-For Azure Local, version 23H2 and later, the Arc Resource Bridge is automatically deployed during the cluster deployment and manual installation is no longer required.
-
-If your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM. If the issue persists, contact Microsoft Support.
-
-> [!NOTE]
-> Reinstalling the Arc Resource Bridge on Azure Local could cause issues with your existing Azure resources.
-
-To resolve this problem, delete the resource bridge, register the providers, then redeploy the resource bridge.
-
-1. Delete the resource bridge:
-
-   ```azurecli
-   az arcappliance delete <fabric> --config-file <path to appliance.yaml>
-   ```
-
-1. Register the providers:
-
-   ```azurecli
-   az provider register --namespace Microsoft.ExtendedLocation –-wait
-   az provider register --namespace Microsoft.ResourceConnector –-wait
-   ```
-
-1. Redeploy the resource bridge.
-
-> [!NOTE]
-> Partner products (such as Arc-enabled VMware vSphere) might have their own required providers to register. For information about these additional providers, see the product's documentation.
 
 ### Expired credentials in the appliance VM
 
-Arc resource bridge consists of an appliance VM that is deployed to the on-premises infrastructure. The appliance VM maintains a connection to the management endpoint of the on-premises infrastructure using locally stored credentials. If these credentials aren't updated, the resource bridge is no longer able to communicate with the management endpoint. This can cause problems when trying to upgrade the resource bridge or manage VMs through Azure.
+Arc resource bridge consists of an appliance VM that is deployed to the on-premises infrastructure. The appliance VM maintains a connection to the management endpoint (ex: VMware vCenter) of the on-premises infrastructure using locally stored credentials. If these credentials aren't updated, the resource bridge is no longer able to communicate with the management endpoint. This can cause problems when trying to upgrade the resource bridge or manage VMs through Azure.
 
 To fix this problem, the credentials in the appliance VM need to be updated. For more information, see [Update credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm).
 
 ### Private link is unsupported
 
 Arc resource bridge doesn't support private link. Calls coming from the appliance VM shouldn't be going through your private link setup. Private link IPs may conflict with the appliance IP pool range, which isn't configurable on the resource bridge. Arc resource bridge reaches out to [required URLs](network-requirements.md#firewallproxy-url-allowlist) that shouldn't go through a private link connection. You must deploy Arc resource bridge on a separate network segment unrelated to the private link setup.
+
+### Error downloading file release information
+
+When attempting to upgrade the Arc resource bridge, you may encounter the following error: 
+
+   ```
+'az arcappliance upgrade hci' failed: (DownloadError) "{\n\"message\": \"Error downloading file release information.: Unable to find file release: ^mariner-2-0-(.*)-vhdx-rpm-(.*)$ with version:  in product release: arc-appliance-stable-releases\"\n}",
+   ```
+
+This error occurs from using an older version of the Azure CLI `arcappliance` extension that is not forward-compatible with the upgraded version of Arc resource bridge. Before upgrading, update your Azure CLI extension for `arcappliance` by running the following Azure CLI command:
+
+   ```azurecli
+az extension add --upgrade --name arcappliance 
+   ```
+
 
 ## Networking issues
 
@@ -270,17 +298,17 @@ To resolve the error, one or more network misconfigurations might need to be add
 
 1. Appliance VM needs to be able to reach a DNS server that can resolve internal names, such as vCenter endpoint for vSphere or cloud agent endpoint for Azure Local. The DNS server also needs to be able to resolve external/internal addresses, such as Azure service addresses and container registry names for download of the Arc resource bridge container images from the cloud.
 
-   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. If not, [delete the appliance](/cli/azure/arcappliance/delete), recreate the Arc resource bridge configuration files with the correct DNS server settings, and then deploy Arc resource bridge using the new configuration files.
+   Verify that the DNS server IP used to create the configuration files has internal and external address resolution. 
 
 ### Move Arc resource bridge location
 
-Resource move of Arc resource bridge isn't currently supported. Instead, delete the Arc resource bridge and redeploy it to the desired location.
+Resource move of Arc resource bridge isn't currently supported. 
 
 ## Azure Arc-enabled VMs on Azure Local issues
 
 For general help resolving issues related to Azure Arc-enabled VMs on Azure Local, see [Troubleshoot Azure Arc VM management for Azure Local](/azure/azure-local/manage/troubleshoot-arc-enabled-vms).
 
-If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, do not attempt to reinstall or delete the Arc Resource Bridge. Instead, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance.
+If you are running Azure Local, version 23H2 or later, and your Arc Resource Bridge is offline, try restarting the Arc Resource Bridge VM to bring it back online. If the issue persists, contact [Microsoft Support](https://support.microsoft.com) for assistance. You should not delete the Arc Resource Bridge VM without guidance from Microsoft Support.
 
 ### Action failed - no such host
 
@@ -342,13 +370,21 @@ A combination of these errors usually indicates that the management machine has 
 
 To fix the issue, reestablish the connection between the management machine and datastore, then try deploying Arc resource bridge again.
 
-### x509 certificate has expired or isn't yet valid
+### Time difference causing x509 certificate has expired
 
 When you deploy Arc resource bridge, you may encounter the error:
 
 `Error: { _errorCode_: _PostOperationsError_, _errorResponse_: _{\n\_message\_: \_{\\n  \\\_code\\\_: \\\_GuestInternetConnectivityError\\\_,\\n  \\\_message\\\_: \\\_Not able to connect to https://msk8s.api.cdp.microsoft.com. Error returned: action failed after 3 attempts: Get \\\\\\\_https://msk8s.api.cdp.microsoft.com\\\\\\\_: x509: certificate has expired or isn't yet valid: current time 2022-01-18T11:35:56Z is before 2023-09-07T19:13:21Z. Arc Resource Bridge network and internet connectivity validation failed: http-connectivity-test-arc. 1.  check your networking setup and ensure the URLs mentioned in : https://aka.ms/AAla73m are reachable from the Appliance VM.   2. Check firewall/proxy settings`
 
-This error is caused when there's a clock/time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again.
+
+### Clock skew error between appliance VM and management machine
+
+If you encounter an error similar to the following:
+
+`"ErrorCode": "PostOperationsError", "errorResponse": "{\n\"message\": \"{\\n  \\\"code\\\": \\\"ClockSkewError\\\",\\n  \\\"message\\\": \\\"The time in Appliance VM is too far behind in the past compared to Management Machine : Time in Appliance VM is 2025-02-24T10:59:59Z, time in Management Machine is 2025-02-24T16:49:13Z. Max allowed difference is 30m0s. Recommendation: Please verify that the time of the workstation machine and the appliance VM are in sync.`
+
+This error is caused when there's a time difference between ESXi hosts and the management machine running the deployment commands for Arc resource bridge. To resolve this issue, turn on NTP time sync on the ESXi hosts, confirm that the management machine is also synced to NTP, then try the deployment again. 
 
 ### Resolves to multiple networks
 
@@ -377,9 +413,9 @@ To resolve this issue, manually delete the existing template. Then run [`az arca
 
 When you deploy Arc resource bridge on VMware, you specify the folder in which the template and VM are created. The selected folder must be a VM and template folder type. Other types of folder, such as storage folders, network folders, or host and cluster folders, can't be used for the resource bridge deployment.
 
-### Cannot retrieve resource - not found or does not exist
+### Cannot retrieve resource - resource not found or does not exist
 
-When you deploy Arc resource bridge, you specify where the appliance VM is deployed. The appliance VM can't be moved from that location path. If the appliance VM moves location and you try to upgrade, you might see errors similar the following:
+When you deploy Arc resource bridge, you specify where the appliance VM is deployed as its location path. The appliance VM can't be moved from that location path. If any component within that path changes, such as the datastore or resource pool, then the appliance VM loses its Azure connection. If the Arc resource bridge location is changed and you try to upgrade, you might see errors similar to the following:
 
 `{\n  \"code\": \"PreflightcheckError\",\n  \"message\": \"{\\n  \\\"code\\\": \\\"InvalidEntityError\\\",\\n  \\\"message\\\": \\\"Cannot retrieve <resource> 'resource-name': <resource> 'resource-name' not found\\\"\\n }\"\n }"`
 
@@ -388,9 +424,26 @@ When you deploy Arc resource bridge, you specify where the appliance VM is deplo
 To fix these errors, use one of these options:
 
 - Move the appliance VM back to its original location and ensure RBAC credentials are updated for the location change.
-- Create a resource with the same name, then move Arc resource bridge to that new resource.
+- Create a resource with the same name, then move Arc resource bridge to that new resource, ensuring the original location path is recreated.
+
 - For Arc-enabled VMware, [run the Arc-enabled VMware disaster recovery script](../vmware-vsphere/disaster-recovery.md). The script deletes the appliance, deploys a new appliance, and reconnects the appliance with the previously deployed custom location, cluster extension, and Arc-enabled VMs.
-- Delete and [redeploy the Arc resource bridge](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md).
+
+### vCenter account is locked out - Update credentials
+
+Arc resource bridge uses the vCenter account provided to it during initial deployment to connect to vCenter. If the vCenter account is updated and the corresponding account info is not updated in Arc resource bridge, this may cause the account to lockout. To immediately update the credentials without waiting for the lockout period to expire, run the following command with the `--skipWait` flag:
+
+```az cli
+az arcappliance update-infracredentials vmware --kubeconfig [REQUIRED] --address [REQUIRED] --username [REQUIRED] --password [REQUIRED] --skipWait
+```
+
+If you need to retrieve the kubeconfig, you can run the following command:
+
+```az cli
+az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --credentials-dir [OPTIONAL]
+```
+
+> [!NOTE] 
+> The Arc-enabled VMware cluster extension installed on the Arc resource bridge may also need the vCenter credentials to be updated. Refer to: [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding)
 
 ### Insufficient privileges
 
@@ -503,4 +556,4 @@ If you don't see your problem here or you can't resolve your issue, try one of t
 
 - Get answers from Azure experts through [Microsoft Q&A](/answers/topics/azure-arc.html).
 - Connect with [@AzureSupport](https://x.com/azuresupport), the official Microsoft Azure account for improving customer experience. Azure Support connects the Azure community to answers, support, and experts.
-- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md).
+- [Open an Azure support request](../../azure-portal/supportability/how-to-create-azure-support-request.md)

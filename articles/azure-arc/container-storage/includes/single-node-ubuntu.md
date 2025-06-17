@@ -1,26 +1,16 @@
 ---
 ms.service: azure-arc
+ms.subservice: azure-arc-container-storage
 ms.topic: include
-ms.date: 11/01/2024
-author: sethmanheim
-ms.author: sethm
+ms.date: 03/12/2025
+author: asergaz
+ms.author: sergaz
+# Customer intent: "As a system administrator, I want to configure Linux with Ubuntu for a cluster setup, so that I can ensure adequate file monitoring capabilities are in place."
 ---
 
 ## Prepare Linux with Ubuntu
 
 This section describes how to prepare Linux with Ubuntu if you run a single-node or two-node cluster.
-
-1. Install Open Service Mesh (OSM) using the following command:
-
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
-   --config "osm.osm.featureFlags.enableWASMStats=false" \
-   --config "osm.osm.enablePermissiveTrafficPolicy=false" \
-   --config "osm.osm.configResyncInterval=10s" \
-   --config "osm.osm.osmController.resource.requests.cpu=100m" \
-   --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m"
-   ```
 
 1. Run the following command to determine if you set `fs.inotify.max_user_instances` to 1024:
 

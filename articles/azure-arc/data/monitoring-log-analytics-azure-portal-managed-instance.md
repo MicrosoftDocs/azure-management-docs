@@ -8,7 +8,7 @@ author: lcwright
 ms.author: lancewright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Monitoring, log analytics, billing information, Azure portal (SQL Managed Instance)

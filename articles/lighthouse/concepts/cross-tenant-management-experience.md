@@ -2,7 +2,7 @@
 title: Cross-tenant management experiences
 description: Azure Lighthouse enables and enhances cross-tenant experiences in many Azure services.
 ms.date: 06/18/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Cross-tenant management experiences
@@ -99,7 +99,7 @@ Most Azure tasks and services can be used with delegated resources across manage
 - Create alerts in customer tenants that trigger automation, such as Azure Automation runbooks or Azure Functions, in the managing tenant through webhooks
 - Create [diagnostic settings](/azure/azure-monitor/essentials/diagnostic-settings) in workspaces created in customer tenants, to send resource logs to workspaces in the managing tenant
 - For SAP workloads, [monitor SAP Solutions metrics with an aggregated view across customer tenants](https://techcommunity.microsoft.com/t5/running-sap-applications-on-the/using-azure-lighthouse-and-azure-monitor-for-sap-solutions-to/ba-p/1537293)
-- For Azure AD B2C, [route sign-in and auditing logs](/azure/active-directory-b2c/azure-monitor) to different monitoring solutions
+- For Microsoft Entra External ID, [route sign-in and auditing logs](/entra/external-id/customers/how-to-azure-monitor) to different monitoring solutions
 
 [Azure Networking](/azure/networking/fundamentals/networking-overview):
 

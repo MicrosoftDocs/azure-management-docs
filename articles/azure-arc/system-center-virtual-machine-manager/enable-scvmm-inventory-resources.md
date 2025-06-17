@@ -3,12 +3,13 @@ title: Enable SCVMM inventory resources in Azure Arc center
 description: This article helps you enable SCVMM inventory resources from Azure portal
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-ms.date: 10/21/2024
+ms.author: jsuri
+author: jyothisuri
+ms.date: 04/23/2025
 ms.topic: how-to
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Enable SCVMM inventory resources from Azure portal
@@ -24,7 +25,7 @@ You can view all the connected SCVMM management servers under **SCVMM management
 In the inventory view, you can browse the virtual machines (VMs), VMM clouds, VM network, and VM templates.
 Under each inventory, you can select and enable one or more SCVMM resources in Azure to create an Azure resource representing your SCVMM resource.
 
-You can further use the Azure resource to assign permissions or perform management operations.
+You can further use the Azure resource to assign permissions at a granular level or perform management operations.
 
 ## Enable SCVMM cloud, VM templates, and VM networks in Azure
 
@@ -44,7 +45,7 @@ To enable the SCVMM inventory resources, follow these steps:
 
     The deployment is initiated and it creates a resource in Azure, representing your SCVMM resources. It allows you to manage the access to these resources through the Azure role-based access control (RBAC) granularly.
 
-    Repeat the above steps for one or more VM networks and VM template resources.
+    Repeat the above steps for one or more VMM Clouds or VM networks or VM template resources.
 
 ## Enable existing virtual machines in Azure
 
@@ -61,8 +62,8 @@ To enable the existing virtual machines in Azure, follow these steps:
 1. Select **Enable** to start the deployment of the VM represented in Azure.
 
 >[!NOTE]
->Moving SCVMM resources between Resource Groups and Subscriptions is currently not supported.
+>Moving SCVMM resources between Azure regions and Subscriptions and Resource Groups is currently not supported.
 
 ## Next steps
 
-[Connect virtual machines to Arc](quickstart-connect-system-center-virtual-machine-manager-to-arc.md)
+[Connect virtual machines to Arc](quickstart-connect-system-center-virtual-machine-manager-to-arc.md).

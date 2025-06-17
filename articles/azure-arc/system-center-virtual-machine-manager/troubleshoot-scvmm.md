@@ -3,13 +3,13 @@ title: Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
 description: Learn how to troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors. 
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ms.topic: how-to 
-ms.date: 11/26/2024
+ms.date: 02/21/2025
 keywords: "VMM, Arc, Azure, System Center"
-
+ms.custom:
+  - build-2025
 ---
 
 # Troubleshoot SCVMM-specific Azure Arc resource bridge deployment errors
@@ -43,6 +43,22 @@ This article provides troubleshooting steps that help you resolve the errors enc
 ### ValidateVlanIDNotAvailableOnVMNetwork
 
 [Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).
+
+## PostOperationsError
+
+### PostOperationTimeout
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).
+
+### PostOperationsErrorKubeadmControlPlane
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).
+
+## UpgradeError
+
+### Upgrade_PreflightCheckErrorOnPrem
+
+[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).
 
 ## Next steps
 

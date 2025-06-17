@@ -9,6 +9,9 @@ ms.date: 10/04/2024
 
 Dashboards are a focused and organized view of your cloud resources in the Azure portal. Use dashboards as a workspace where you can monitor resources and quickly launch tasks for day-to-day operations. For example, you can build custom dashboards based on projects, tasks, or user roles in your organization.
 
+> [!IMPORTANT]
+> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub.md).
+
 The Azure portal provides a default dashboard as a starting point. You can edit this default dashboard, and you can create and customize additional dashboards.
 
 All dashboards are private when created, and each user can create up to 100 private dashboards. If you publish and [share a dashboard with other users in your organization](azure-portal-dashboard-share-access.md), the shared dashboard is implemented as an Azure resource in your subscription, and doesn't count towards the private dashboard limit. 
@@ -95,6 +98,9 @@ If you want to reuse a tile on a different dashboard, you can copy it from one d
 You can then select whether to copy the tile to a different private or shared dashboard, or create a copy of the tile within the dashboard you're already working in. You can also create a new dashboard that includes a copy of the tile by selecting **Create new**.
 
 ## Modify tile settings
+
+> [!IMPORTANT]
+> This article describes the older dashboard experience, which you can still access. If you're using the improved dashboard editing experience, see [Create and manage dashboards in Dashboard hub (preview)](./dashboard-hub.md).
 
 Some tiles might require more configuration to show the information you want. For example, the **Metrics chart** tile has to be set up to display a metric from Azure Monitor. You can also customize tile data to override the dashboard's default time settings and filters, or to change the title and subtitle of a tile.
 

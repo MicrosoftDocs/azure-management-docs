@@ -1,10 +1,11 @@
 ---
 title: "CI/CD Workflow using GitOps (Flux v2) - Azure Arc-enabled Kubernetes"
 description: "This article provides a conceptual overview of a CI/CD workflow using GitOps."
-ms.date: 03/26/2024
-ms.topic: conceptual
+ms.date: 04/22/2025
+ms.topic: concept-article
 author: eedorenko
 ms.author: iefedore
+# Customer intent: As a DevOps engineer, I want to implement a CI/CD workflow using GitOps with Flux, so that I can automate application deployments across multiple Kubernetes environments while ensuring version control and maintaining the desired state of the clusters.
 ---
 # CI/CD workflow using GitOps (Flux v2)
 
@@ -17,6 +18,8 @@ This article describes how GitOps fits into the full application change lifecycl
 This diagram shows the CI/CD workflow for an application deployed to one or more Kubernetes environments.
 
 :::image type="content" source="media/gitops/gitops-flux2-ci-cd-arch.png" alt-text="Diagram showing GitOps CI/CD architecture." lightbox="media/gitops/gitops-flux2-ci-cd-arch.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 ### Application code repository
 

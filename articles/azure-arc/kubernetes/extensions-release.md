@@ -1,8 +1,11 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 11/21/2024
+ms.date: 06/13/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
+ms.custom:
+  - build-2025
+# Customer intent: "As a Kubernetes administrator, I want to explore and install available extensions for Azure Arc-enabled Kubernetes clusters, so that I can enhance cluster management and implement necessary functionalities efficiently."
 ---
 
 # Available extensions for Azure Arc-enabled Kubernetes clusters
@@ -77,16 +80,16 @@ This extension makes it possible for you to run Azure data services on-premises,
 
 For more information, see [Azure Arc-enabled data services](../data/create-data-controller-direct-prerequisites.md) and [Create custom locations](custom-locations.md#create-custom-location).
 
-## Azure App Service on Azure Arc
+## Azure Container Apps on Azure Arc and Azure Logic Apps Hybrid
 
-- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, OpenShift Container Platform.
+- **Supported distributions**: AKS, AKS on Azure Local, Azure Red Hat OpenShift, Google Kubernetes Engine, and OpenShift Container Platform.
 
-Use this extension to provision an App Service Kubernetes environment on top of an Azure Arc-enabled Kubernetes cluster.
+Use this extension to provision an Azure Container Apps Connected Environment and Container Apps on top of an Azure Arc-enabled Kubernetes cluster.  This extension also enables the [Logic Apps Hybrid Deployment Model (public preview)](/azure/logic-apps/set-up-standard-workflows-hybrid-deployment-requirements).
 
-For more information, see [Set up an Azure Arc-enabled Kubernetes cluster to run App Service apps, function apps, and logic apps (Preview)](/azure/app-service/overview-arc-integration).
+For more information, see [Azure Container Apps on Azure Arc (Preview)](/azure/container-apps/azure-arc-overview).
 
 > [!IMPORTANT]
-> App Service on Azure Arc is currently in public preview. Review the [public preview limitations for App Service Kubernetes environments](/azure/app-service/overview-arc-integration#public-preview-limitations) before you deploy this extension.
+> Azure Container Apps on Azure Arc is currently in public preview. Review the [public preview limitations](/azure/container-apps/azure-arc-overview#public-preview-limitations) before you deploy this extension.  This extension can't be installed on the same cluster as the Application services extension. If installed, the Application services extension must be removed before deploying this extension.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
@@ -118,48 +121,110 @@ For more information, see [Deploy an Azure API Management gateway on Azure Arc (
 
 ## Azure Arc-enabled Machine Learning
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for ARM64 architectures.
+- **Supported distributions**: All CNCF-certified Kubernetes clusters. Not currently supported for Arm64 architectures.
 
 Use the Azure Machine Learning extension to deploy and run Azure Machine Learning on an Azure Arc-enabled Kubernetes cluster.
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
+## ArgoCD (GitOps)
+
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
+
+The ArgoCD (GitOps) extension (preview) lets you use your Git repository as the source of truth for cluster configuration and application deployment.
+
+For more information, see [Tutorial: Deploy applications using GitOps with ArgoCD](tutorial-use-gitops-argocd.md).
+
+> [!IMPORTANT]
+> ArgoCD (GitOps) is currently in public preview.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability (GA).
+
 ## Flux (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-[GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) uses [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
+[GitOps on AKS and Azure Arc-enabled Kubernetes](conceptual-gitops-flux2.md) can be enabled through [Flux v2](https://fluxcd.io/docs/), a popular open-source tool set, to help manage cluster configuration and application deployment. With the Flux extension, GitOps is enabled in the cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` cluster extension resource.
 
 For more information, see [Tutorial: Deploy applications using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 
 The most recent version of the Flux v2 extension and the two previous versions (N-2) are supported. We generally recommend that you use the most recent version of the extension.
 
-> [!IMPORTANT]
-> The release [Flux v2.3.0](https://fluxcd.io/blog/2024/05/flux-v2.3.0/) includes API changes to the HelmRelease and HelmChart APIs, with deprecated fields removed, and an updated version of the Kustomize package. An upcoming minor version update of the Microsoft Flux extension will include these changes, consistent with the upstream open-source software (OSS) Flux project.
->
-> The [HelmRelease](https://fluxcd.io/flux/components/helm/helmreleases/) API will be promoted from `v2beta1` to `v2` (GA). The `v2` API is backward compatible with `v2beta1`, with the exception of these deprecated fields:
->
-> - **`.spec.chart.spec.valuesFile`**: Replaced by `.spec.chart.spec.valuesFiles` in `v2`.
-> - **`.spec.postRenderers.kustomize.patchesJson6902`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
-> - **`.spec.postRenderers.kustomize.patchesStrategicMerge`**: Replaced by `.spec.postRenderers.kustomize.patches` in `v2`.
-> - **`.status.lastAppliedRevision`**: Replaced by `.status.history.chartVersion` in `v2`.
->
-> The [HelmChart](https://fluxcd.io/flux/components/source/helmcharts/) API will be promoted from `v1beta2` to `v1` (GA). The `v1` API is backward compatible with `v1beta2`, with the exception of the `.spec.valuesFile` field, which is replaced by `.spec.valuesFiles`.
->
-> The new fields are already available in the current version of the APIs. Use the new fields instead of the fields that will be removed in the upcoming release.
->
-> The Kustomize package will be updated to v5.4.0. The version contains the following breaking changes:
->
-> - [Kustomization build fails when the resources key is missing](https://github.com/kubernetes-sigs/kustomize/issues/5337)
-> - [Components are now applied after generators and before transformers](https://github.com/kubernetes-sigs/kustomize/pull/5170) in [v5.1.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.1.0)
-> - [Null YAML values are replaced by "null"](https://github.com/kubernetes-sigs/kustomize/pull/5519) in [v5.4.0](https://github.com/kubernetes-sigs/kustomize/releases/tag/kustomize%2Fv5.4.0)
->
-> To avoid issues caused by breaking changes, we recommend that you update your manifest to ensure that your Flux configurations remain compliant with this release.
-
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-### 1.13.1 (October 2024)
+### Breaking change: Semantic versioning changes in source controller
+
+The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
+
+**What changed?** In the latest version (v3.3.1) of the semver package, certain version formats that were previously considered valid are now being rejected. Specifically, version strings with leading zeroes in numeric segments (e.g., 1.0.029903) are no longer accepted as valid semver.
+
+- GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+- Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+
+:::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
+
+**Impact on users:**
+
+- **Existing deployments are unaffected**. Anything currently deployed will continue to function as expected.
+- **Future deployments or reconciliations may fail** if they rely on chart versions that don’t follow the stricter semver rules.
+- A common error you might see: `invalid chart reference: validation: chart.metadata.version "1.0.029903" is invalid`
+
+**What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
+
+### 1.16.8 (June 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.2
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+- Fixed an issue in the `delete-fluxconfig` job by adding a toleration to the `delete-fluxconfig` prehook job, allowing it to run on nodes with the `CriticalAddonsOnly` taint.
+
+### 1.16.3 (May 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.1
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
+
+### 1.16.2 (March 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.1
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+- Can now specify tenant ID when enabling [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+- Support for image-automation controller in [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
+
+Breaking changes:
+
+- Semantic versioning changes in source controller (see note above)
+
+### 1.15.2 (May 2025)
 
 Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
 
@@ -172,40 +237,7 @@ Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4
 
 Changes in this version include:
 
-- Added support for the `--feature-gates=StrictPostBuildSubstitutions=true controller` flag to enable [strict post-build variable substitution](tutorial-use-gitops-flux2.md#strict-post-build-variable-substitution).
-- Addressed security vulnerabilities in the `fluxconfig-agent` by updating the Go packages.
-
-### 1.13.0 (October 2024)
-
-Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
-
-- source-controller: v1.4.1
-- kustomize-controller: v1.4.0
-- helm-controller: v1.1.0
-- notification-controller: v1.4.0
-- image-automation-controller: v0.39.0
-- image-reflector-controller: v0.33.0
-
-Changes in this version include:
-
-- Implemented fix to retrieve certificates from the correct location, resolving failures that occurred after switching the image from Alpine to Mariner.
-
-### 1.12.0 (September 2024)
-
-Flux version: [Release v2.3.0](https://github.com/fluxcd/flux2/releases/tag/v2.3.0)
-
-- source-controller: v1.3.0
-- kustomize-controller: v1.3.0
-- helm-controller: v1.0.1
-- notification-controller: v1.3.0
-- image-automation-controller: v0.38.0
-- image-reflector-controller: v0.32.0
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent` and `fluxconfig-controller` by updating the Go packages.
-- Fixed issue with software bill of materials (SBOM) generation for `fluxconfig-agent` and `fluxconfig-controller`.
-- Added support for [vertical scaling](tutorial-use-gitops-flux2.md#vertical-scaling). Currently, only specific parameters that are described in the [Flux vertical scaling documentation](https://fluxcd.io/flux/installation/configuration/vertical-scaling/) are natively supported.
+- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
@@ -236,6 +268,14 @@ For more information, see [What is Azure Container Storage enabled by Azure Arc?
 Use the connected registry extension for Azure Arc to sync container images between your instance of Azure Container Registry and your on-premises Azure Arc-enabled Kubernetes cluster. You can deploy this extension to either a local cluster or to a remote cluster. The extension uses a sync schedule and window to ensure seamless syncing of images between the on-premises connected registry and the cloud-based instance of Azure Container Registry.
 
 For more information, see [Connected registry for Azure Arc-enabled Kubernetes clusters](../../container-registry/quickstart-connected-registry-arc-cli.md).
+
+## Edge RAG Preview enabled by Azure Arc
+
+- **Supported distributions**: AKS enabled by Azure Arc
+
+Edge RAG Preview is an Azure Arc-enabled Kubernetes extension that enables you to search on-premises data with generative AI, using Retrieval Augmented Generation (RAG). RAG is an industry-standard architecture that augments the capabilities of a language model with private data. With Edge RAG, build custom chat assistants and derive insights from your private data.
+
+For more information, see [What is Edge RAG?](../edge-rag/overview.md)
 
 ## Related content
 

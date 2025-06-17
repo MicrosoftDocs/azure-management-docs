@@ -1,8 +1,9 @@
 ---
 title: "Azure Arc-enabled Kubernetes identity and access overview"
 ms.date: 05/22/2024
-ms.topic: conceptual
+ms.topic: concept-article
 description: "Understand identity and access options for Arc-enabled Kubernetes clusters."
+# Customer intent: As a Kubernetes administrator, I want to understand the identity and access management options for Azure Arc-enabled Kubernetes clusters, so that I can effectively authenticate users and control their permissions in a secure manner.
 ---
 
 # Azure Arc-enabled Kubernetes identity and access overview

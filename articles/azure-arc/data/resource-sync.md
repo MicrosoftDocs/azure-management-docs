@@ -8,7 +8,7 @@ author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/14/2022
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Resource sync

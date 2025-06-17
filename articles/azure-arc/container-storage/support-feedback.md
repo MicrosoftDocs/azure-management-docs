@@ -1,11 +1,12 @@
 ---
 title: Support and feedback for Azure Container Storage enabled by Azure Arc
 description: Learn how to get support and provide feedback on Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 
+# Customer intent: As a cloud administrator, I want to efficiently request support for Azure Container Storage enabled by Azure Arc, so that I can address issues promptly and maintain the functionality of my Kubernetes cluster.
 ---
 
 # Support and feedback for Azure Container Storage enabled by Azure Arc
@@ -14,7 +15,7 @@ If you experience an issue or need support, see the following video and steps to
 
 > [!VIDEO f477de99-2036-41a3-979a-586a39b1854f]
 
-1. Navigate to the desired Arc-connected Kubernetes cluster with the Azure Container Storage enabled by Azure Arc extension that you are experiencing issues with.
+1. Navigate to the desired Arc-enabled Kubernetes cluster with the Azure Container Storage enabled by Azure Arc extension that you are experiencing issues with.
 1. To expand the menu, select **Settings** on the left blade.
 1. Select **Extensions**.
 1. Select the name for **Type**: `microsoft.arc.containerstorage`. In this example, the name is `hydraext`.
@@ -24,7 +25,7 @@ If you experience an issue or need support, see the following video and steps to
 1. Select "Go" to the right of the search text box.
 1. For **Which service you are having an issue with**, make sure that **Edge Storage Accelerator - Preview** is selected. If not, you might need to search for **Edge Storage Accelerator - Preview** in the drop-down.
 1. Select **Next** after you select **Edge Storage Accelerator - Preview**.
-1. **Subscription** should already be populated with the subscription that you used to set up your Kubernetes cluster. If not, select the subscription to which your Arc-connected Kubernetes cluster is linked.
+1. **Subscription** should already be populated with the subscription that you used to set up your Kubernetes cluster. If not, select the subscription to which your Arc-enabled Kubernetes cluster is linked.
 1. For **Resource**, select **General question** from the drop-down menu.
 1. Select **Next**.
 1. For **Problem type**, from the drop-down menu, select the problem type that best describes your issue.

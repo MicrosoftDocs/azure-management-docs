@@ -1,17 +1,17 @@
 ---
 title: Access Control for Connected Registries in ACR
 description: Learn about token-based authentication and authorization for connected registries in Azure Container Registry.
-author: toddysm
-ms.author: memladen
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: overview
-ms.date: 10/31/2023
+ms.date: 05/20/2025
 #customer intent: As a user, I want to understand access control for connected registries so that I can manage them effectively.
 ---
 
 # Understand access to a connected registry
 
-To access and manage a [connected registry](intro-connected-registry.md), currently only ACR [token-based authentication](container-registry-repository-scoped-permissions.md) is supported. As shown in the following image, two different types of tokens are used by each connected registry:
+To access and manage a [connected registry](intro-connected-registry.md), currently only ACR [non-Microsoft Entra tokens](container-registry-token-based-repository-permissions.md) are supported. As shown in the following image, two different types of tokens are used by each connected registry:
 
 * [**Client tokens**](#client-tokens) - One or more tokens that on-premises clients use to authenticate with a connected registry and push or pull images and artifacts to or from it.
 * [**Sync token**](#sync-token) - A token used by each connected registry to access its parent and synchronize content.
@@ -37,7 +37,7 @@ Update client tokens, passwords, or scope maps as needed by using [az acr token]
 
 Each connected registry uses a sync token to authenticate with its immediate parent - which could be another connected registry or the cloud registry. The connected registry automatically uses this token when synchronizing content with the parent or performing other updates. 
 
-* The sync token and passwords are generated automatically when you create the connected registry resource. Run the [az acr connected-registry install renew-credentials][az-acr-connected-registry-install-renew-credentials] command to regenerate the passwords.
+* The sync token and passwords are generated automatically when you create the connected registry resource. Run the [az acr connected-registry get-settings][/cli/azure/acr/connected-registry#az-acr-connected-registry-get-settings] command to regenerate the passwords.
 * Include sync token credentials in the configuration used to deploy the connected registry on-premises. 
 * By default, the sync token is granted permission to synchronize selected repositories with its parent. You must provide an existing sync token or one or more repositories to sync when you create the connected registry resource.
 * It also has permissions to read and write synchronization messages on a gateway used to communicate with the connected registry's parent. These messages control the synchronization schedule and manage other updates between the connected registry and its parent.
@@ -65,10 +65,10 @@ Token credentials for connected registries are scoped to access specific registr
 Continue to  the following article to learn about specific scenarios where connected registry can be utilized.
 
 > [!div class="nextstepaction"]
-> [Overview: Connected registry and IoT Edge][overview-connected-registry-and-iot-edge]
+> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-update]: /cli/azure/acr/connected-registry#az_acr_connected_registry_update
 [az-acr-connected-registry-install-renew-credentials]: /cli/azure/acr/connected-registry/install#az_acr_connected_registry_install_renew_credentials
-[overview-connected-registry-and-iot-edge]:overview-connected-registry-and-iot-edge.md
-[repository-scoped-permissions]: container-registry-repository-scoped-permissions.md
+[quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
+[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

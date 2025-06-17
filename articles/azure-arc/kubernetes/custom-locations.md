@@ -1,14 +1,15 @@
 ---
 title: "Create and manage custom locations on Azure Arc-enabled Kubernetes"
-ms.date: 03/26/2024
+ms.date: 03/03/2025
 ms.topic: how-to
 ms.custom: references_regions, devx-track-azurecli
 description: "Use custom locations to deploy Azure PaaS services on Azure Arc-enabled Kubernetes clusters"
+# Customer intent: As a cloud architect, I want to configure custom locations on Azure Arc-enabled Kubernetes, so that I can deploy Azure PaaS services effectively within my Kubernetes environment while managing access controls and resource allocation efficiently.
 ---
 
 # Create and manage custom locations on Azure Arc-enabled Kubernetes
 
- The *custom locations* feature provides a way to configure your Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server, or application instances, such as App Services, Functions, Event Grid, Logic Apps, and API Management.
+ The *custom locations* feature provides a way to configure your Azure Arc-enabled Kubernetes clusters as target locations for deploying instances of Azure offerings. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server, or application instances, such as Container Apps, Logic Apps, Event Grid, Logic Apps, and API Management.
 
 A [custom location](conceptual-custom-locations.md) has a one-to-one mapping to a namespace within the Azure Arc-enabled Kubernetes cluster. The custom location Azure resource combined with Azure role-based access control (Azure RBAC) can be used to grant granular permissions to application developers or database admins, enabling them to deploy resources such as databases or application instances on top of Arc-enabled Kubernetes clusters in a multitenant environment.
 
@@ -57,26 +58,29 @@ In this article, you learn how to enable custom locations on an Arc-enabled Kube
 
 ## Enable custom locations on your cluster
 
-> [!TIP]
-> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function. To enable the custom locations feature, follow the steps below:
+> [!IMPORTANT]
+> The custom locations feature is dependent on the [cluster connect](cluster-connect.md) feature. Both features must be enabled in the cluster for custom locations to function.
+> 
+> The Custom Location Object ID (OID) is needed to enable custom location. If your user account has the required permissions, the OID is automatically retrieved during feature enablement. If you do not have a valid user account, then the manually passed OID is used but the OID can't be validated. If the OID is invalid, then custom location may not be properly enabled. 
 
-If you are signed in to Azure CLI as a Microsoft Entra user, use the following command:
+The custom locations feature must be enabled before creating the custom locations because the enablement provides the required permissions to create the custom locations namespace on the Kubernetes cluster. 
+
+### To enable the custom locations feature as a Microsoft Entra user, follow the steps below:
+
+1. Sign into Azure CLI as a Microsoft Entra user and run the following command:
 
 ```azurecli
 az connectedk8s enable-features -n <clusterName> -g <resourceGroupName> --features cluster-connect custom-locations
 ```
 
-If you run the above command while signed in to Azure CLI using a service principal, you may observe the following warning:
 
-```console
-Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
-```
+### To enable the custom locations feature with a service principal, follow the steps below:
 
-This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. To avoid this error, follow these steps:
+Manually retrieve the custom location OID by following these steps:
 
-1. Sign in to Azure CLI with your user account.
+1. Sign in to Azure CLI as a Microsoft Entra user.
 
-1. Run the following command to fetch the `oid` (object ID) of the custom location, where `--id` is predefined and set to `bc313c14-388c-4e7d-a58e-70017303ee3b`: 
+1. Run the following command to fetch the custom location `oid` (object ID), where `--id` refers to the Custom Location service app itself, and is predefined and set to `bc313c14-388c-4e7d-a58e-70017303ee3b`: 
 
    **Important!** Copy and run the command exactly as it is shown below. Do not replace the value passed to the `--id` parameter with a different value.
 
@@ -99,7 +103,7 @@ This warning occurs because the service principal lacks the necessary permission
      > [!NOTE]
      > Outbound proxy without authentication and outbound proxy with basic authentication are supported by the Azure Arc-enabled data services cluster extension. Outbound proxy that expects trusted certificates is currently not supported.
 
-   - [Azure App Service on Azure Arc](/azure/app-service/manage-create-arc-environment#install-the-app-service-extension)
+   - [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-enable-cluster?tabs=azure-cli#install-the-container-apps-extension)
 
    - [Event Grid on Kubernetes](/azure/event-grid/kubernetes/install-k8s-extension)
 
@@ -138,6 +142,12 @@ This warning occurs because the service principal lacks the necessary permission
      | `--location, --l` | Location of the custom location Azure Resource Manager resource in Azure. If not specified, the location of the connected cluster is used. |
      | `--tags` | Space-separated list of tags in the format `key[=value]`. Use '' to clear existing tags. |
      | `--kubeconfig` | Admin `kubeconfig` of cluster. |
+
+1. Confirm that custom location was successfully enabled by running the following command and checking that `ProvisioningState` is `Succeeded`:
+
+```azurecli
+az customlocation show -n <customLocationName> -g <resourceGroupName>
+```
 
 ## Show details of a custom location
 
@@ -181,11 +191,36 @@ az customlocation delete -n <customLocationName> -g <resourceGroupName>
 
 ## Troubleshooting
 
+### Get login credentials error on Azure CLI v2.70.0
+
+You may encounter an error that contains: `TypeError: get_login_credentials() got an unexpected keyword argument 'resource'`. Azure CLI v2.70.0 released a breaking change which triggers this error. A fix is available in customlocation Az CLI extension v0.1.4 for compatibility with Azure CLI v2.70.0 and higher. If you are using a customlocation Az CLI extension below v0.1.4, you need to downgrade Azure CLI to version 2.69.0. If you used the Azure CLI installer, you can uninstall the current version and install Azure CLI v2.69.0 from the [`Azure CLI installation page`](/cli/azure/install-azure-cli). If you used the pip installer, you can run the following command to downgrade: `pip install azure-cli==2.69.0`.
+
+### Unknown proxy error
 If custom location creation fails with the error `Unknown proxy error occurred`, modify your network policy to allow pod-to-pod internal communication within the `azure-arc` namespace. Be sure to also add the `azure-arc` namespace as part of the no-proxy exclusion list for your configured policy.
+
+### Service principal warning
+If you try to enable custom location while logged into Azure CLI using a service principal, you may observe the following warning:
+
+```console
+Unable to fetch oid of 'custom-locations' app. Proceeding without enabling the feature. Insufficient privileges to complete the operation.
+```
+This warning occurs because the service principal lacks the necessary permissions to retrieve the `oid` (object ID) of the custom location used by the Azure Arc service. Follow the instructions provided above to enable the custom location feature using a service principal. 
+
+
+### Resource Provider does not have required permissions
+
+If you try to create the custom location before the custom location feature has been enabled on the Kubernetes cluster, you may receive the following error message:
+
+
+```console
+Deployment failed. Correlation ID: ... "Microsoft.ExtendedLocation" resource provider does not have the required permissions to create a namespace on the cluster. Refer to https://aka.ms/ArcK8sCustomLocationsDocsEnableFeature to provide the required permissions to the resource provider.
+```
+
+First, follow the instructions above to enable the custom location feature on the Kubernetes cluster. After the feature is enabled, you can follow the steps to create the custom location.
 
 ## Next steps
 
 - Securely connect to the cluster using [Cluster Connect](cluster-connect.md).
-- Continue with [Azure App Service on Azure Arc](/azure/app-service/overview-arc-integration) for end-to-end instructions on installing extensions, creating custom locations, and creating the App Service Kubernetes environment.
+- Continue with [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-enable-cluster) for end-to-end instructions on installing extensions, creating custom locations, and creating the Azure Container Apps connected environment.
 - Create an Event Grid topic and an event subscription for [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 - Learn more about currently available [Azure Arc-enabled Kubernetes extensions](extensions-release.md).

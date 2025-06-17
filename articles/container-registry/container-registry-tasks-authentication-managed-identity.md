@@ -5,9 +5,10 @@ services: container-registry
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
+# Customer intent: As a cloud developer, I want to configure managed identities in Azure Container Registry tasks, so that I can securely access other Azure resources without managing credentials.
 ---
 
 # Use an Azure-managed identity in ACR Tasks 
@@ -77,23 +78,30 @@ You can get the resource ID of the identity by running the [az identity show][az
 "/subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourcegroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity"
 ```
 
+> [!NOTE]
+> If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must explicitly attach and set a managed identity that will be used by the Task to authenticate with an ABAC-enabled source registry using the new `--source-acr-auth-id` flag. Afterwards, you must perform a separate role assignment (with optional ABAC conditions) to grant this identity permissions to an ABAC-enabled source registry.
+>
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+
 ### 3. Grant the identity permissions to access other Azure resources
 
 Depending on the requirements of your task, grant the identity permissions to access other Azure resources. Examples include:
 
-* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry roles and permissions](container-registry-roles.md). 
+* Assign the managed identity a role with pull, push and pull, or other permissions to a target container registry in Azure. For a complete list of registry roles, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md). 
 * Assign the managed identity a role to read secrets in an Azure key vault.
 
 Use the [Azure CLI](/azure/role-based-access-control/role-assignments-cli) or other Azure tools to manage role-based access to resources. For example, run the [az role assignment create][az-role-assignment-create] command to assign the identity a role to the resource. 
 
 The following example assigns a managed identity the permissions to pull from a container registry. The command specifies the *principal ID* of the task identity and the *resource ID* of the target registry.
 
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee <principalID> \
   --scope <registryID> \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ### 4. (Optional) Add credentials to the task
@@ -121,8 +129,6 @@ az acr task credential add \
 ```
 
 You can get the client ID of the identity by running the [az identity show][az-identity-show] command. The client ID is a GUID of the form `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
-
-The `--use-identity` parameter is not optional, if the registry has public network access disabled and relies only on certain trusted services to run ACR tasks. See, [example of ACR Tasks](allow-access-trusted-services.md#example-acr-tasks) as a trusted service.
 
 ### 5. Run the task
 

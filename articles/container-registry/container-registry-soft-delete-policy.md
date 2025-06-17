@@ -1,12 +1,13 @@
 ---
 title: Recover Deleted Artifacts in Azure Container Registry
 description: Learn how to enable the soft delete policy in Azure Container Registry to manage and recover accidentally deleted artifacts with a set retention period.
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to #Don't change
 ms.date: 01/22/2024
 ms.custom: devx-track-azurecli
+# Customer intent: As a cloud administrator, I want to enable the soft delete policy for Azure Container Registry artifacts so that I can recover accidentally deleted items within a specified retention period, ensuring data integrity and minimizing potential data loss.
 ---
 
 # Recover deleted artifacts with soft delete policy in Azure Container Registry (Preview)
@@ -58,7 +59,7 @@ This feature is available in all the service tiers (also known as SKUs). For inf
 
 * You can use the Azure Cloud Shell or a local installation of the Azure CLI to run the command examples in this article. If you'd like to use it locally, version 2.0.74 or later is required. Run `az --version` for the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
-* Sign in to the [Azure portal](https://ms.portal.azure.com/). 
+* Sign in to the [Azure portal](https://portal.azure.com/). 
 
 ## Enable soft delete policy for registry - CLI
 

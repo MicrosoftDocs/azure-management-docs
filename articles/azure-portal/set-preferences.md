@@ -1,7 +1,7 @@
 ---
 title: Manage Azure portal settings and preferences
 description: Change Azure portal settings such as default subscription/directory, timeouts, menu mode, contrast, theme, notifications, language/region and more.
-ms.date: 07/18/2024
+ms.date: 12/13/2024
 ms.topic: how-to
 ---
 
@@ -106,11 +106,11 @@ The **Service menu behavior** section lets you choose how items in [service menu
 - **Collapsed**: Groups of commands in service menus will appear collapsed. You can still manually select any top-level item to display the commands within that menu group.
 - **Expanded**: Groups of commands in service menus will appear expanded. You can still manually select any top-level item to collapse that menu group.
 
-### Choose a theme or enable high contrast
+### Choose a theme
 
-The theme that you choose affects the background and font colors that appear in the Azure portal. In the **Theme** section, you can select from one of four preset color themes. Select each thumbnail to find the theme that best suits you.
+The theme that you choose affects the background and font colors that appear in the Azure portal. In the **Theme** section, you can choose to use a **Light** or **Dark** theme. You can also select **Auto** to have the Azure portal theme follow your system settings.
 
-Alternatively, you can choose a theme from the **High contrast theme** section. These themes can make the Azure portal easier to read, especially if you have a visual impairment. Selecting either the white or black high-contrast theme will override any other theme selections.
+If you use a high-contrast mode on your device, the Azure portal respects that setting and will appear in high-contrast mode.
 
 ### Choose a startup page
 

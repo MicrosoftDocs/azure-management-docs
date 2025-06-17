@@ -1,23 +1,24 @@
 ---
-title: Enable VM extension using Azure CLI
-description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments using the Azure CLI.
+title: Enable VM Extensions Using the Azure CLI
+description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using the Azure CLI.
 ms.date: 12/06/2024
 ms.topic: how-to
-ms.custom: devx-track-azurecli
+ms.custom:
+  - devx-track-azurecli
+  - build-2025
 ---
 
-# Enable Azure VM extensions using the Azure CLI
+# Enable Azure VM extensions by using the Azure CLI
 
-This article explains how to deploy, upgrade, update, and uninstall VM extensions supported by Azure Arc-enabled servers to a Linux or Windows hybrid machine using the Azure CLI.
-
-> [!NOTE]
-> Azure Arc-enabled servers doesn't support deploying and managing VM extensions to Azure virtual machines. For Azure VMs, see the following [VM extension overview](/azure/virtual-machines/extensions/overview) article.
+This article explains how to deploy, upgrade, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) supported by Azure Arc-enabled servers. It shows you how to perform these tasks on a Linux or Windows hybrid machine by using the Azure CLI.
 
 [!INCLUDE [Azure CLI Prepare your environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
 ## Install the Azure CLI extension
 
-The ConnectedMachine commands aren't shipped as part of the Azure CLI. Before using the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the ConnectedMachine extension. These management operations can be performed from your workstation; you don't need to run them on the Azure Arc-enabled server.
+The ConnectedMachine commands aren't shipped as part of the Azure CLI. Before you use the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the ConnectedMachine extension.
+
+You can perform these management operations from your workstation. You don't need to run them on the Azure Arc-enabled server.
 
 Run the following command to install the Azure CLI ConnectedMachine extension:
 
@@ -25,9 +26,9 @@ Run the following command to install the Azure CLI ConnectedMachine extension:
 az extension add --name connectedmachine
 ```
 
-## Enable extension
+## Enable an extension
 
-To enable a VM extension on your Azure Arc-enabled server, use [az connectedmachine extension create](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
+To enable a VM extension on your Azure Arc-enabled server, use [`az connectedmachine extension create`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
 
 The following example enables the Custom Script Extension on an Azure Arc-enabled server:
 
@@ -35,7 +36,7 @@ The following example enables the Custom Script Extension on an Azure Arc-enable
 az connectedmachine extension create --machine-name "myMachineName" --name "CustomScriptExtension" --location "regionName" --type "CustomScriptExtension" --publisher "Microsoft.Compute" --settings "{\"commandToExecute\":\"powershell.exe -c \\\"Get-Process | Where-Object { $_.CPU -gt 10000 }\\\"\"}" --type-handler-version "1.10" --resource-group "myResourceGroup"
 ```
 
-The following example enables the Key Vault VM extension on an Azure Arc-enabled server:
+The following example enables the Azure Key Vault VM extension on an Azure Arc-enabled server:
 
 ```azurecli
 az connectedmachine extension create --resource-group "resourceGroupName" --machine-name "myMachineName" --location "regionName" --publisher "Microsoft.Azure.KeyVault" --type "KeyVaultForLinux or KeyVaultForWindows" --name "KeyVaultForLinux or KeyVaultForWindows" --settings '{"secretsManagementSettings": { "pollingIntervalInS": "60", "observedCertificates": ["observedCert1"] }, "authenticationSettings": { "msiEndpoint": "http://localhost:40342/metadata/identity" }}'
@@ -55,15 +56,15 @@ az connectedmachine extension create --resource-group "resourceGroupName" --mach
 
 ## List extensions installed
 
-To get a list of VM extensions on your Azure Arc-enabled server, use [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
+To get a list of VM extensions on your Azure Arc-enabled server, use [`az connectedmachine extension list`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list) with the `--machine-name` and `--resource-group` parameters.
 
-Example:
+Here's an example:
 
 ```azurecli
 az connectedmachine extension list --machine-name "myMachineName" --resource-group "myResourceGroup"
 ```
 
-By default, the output of Azure CLI commands is in JSON (JavaScript Object Notation). To change the default output to a list or table, for example, use [az config set core.output=table](/cli/azure/reference-index). You can also add `--output` to any command for a one time change in output format.
+By default, the output of Azure CLI commands is in JSON (JavaScript Object Notation). To change the default output to a list or table, for example, use [az config set core.output=table](/cli/azure/reference-index). You can also add `--output` to any command for a one-time change in output format.
 
 The following example shows the partial JSON output from the `az connectedmachine extension -list` command:
 
@@ -78,9 +79,9 @@ The following example shows the partial JSON output from the `az connectedmachin
     "namePropertiesInstanceViewName": "DependencyAgentWindows",
 ```
 
-## Update extension configuration
+## Update an extension configuration
 
-Some VM extensions require configuration settings in order to install them on an Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [az connectedmachine extension update](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
+Some VM extensions require configuration settings so that you can install them on an Azure Arc-enabled server (like the Custom Script Extension). To upgrade the configuration of an extension, use [`az connectedmachine extension update`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-update).
 
 The following example shows how to configure the Custom Script Extension:
 
@@ -90,20 +91,21 @@ az connectedmachine extension update --name "CustomScriptExtension" --type "Cust
 
 ## Upgrade extensions
 
-When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [az connectedmachine upgrade-extension](/cli/azure/connectedmachine) with the `--machine-name`, `--resource-group`, and `--extension-targets` parameters.
+When a new version of a supported VM extension is released, you can upgrade it to that latest release. To upgrade a VM extension, use [`az connectedmachine upgrade-extension`](/cli/azure/connectedmachine) with the `--machine-name`, `--resource-group`, and `--extension-targets` parameters.
 
-For the `--extension-targets` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, visit the **Extensions** page for the selected Arc-enabled server in the Azure portal or  run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You may specify multiple extensions in a single upgrade request by providing a comma-separated list of extensions, defined by their publisher and type (separated by a period) and the target version for each extension.
+For the `--extension-targets` parameter, you need to specify the extension and the latest version available. To determine the latest version available for an extension, go to the **Extensions** page for the selected Azure Arc-enabled server in the Azure portal or run [az vm extension image list](/cli/azure/vm/extension/image#az-vm-extension-image-list). You can specify multiple extensions in a single upgrade request by providing both:
 
-You can review the version of installed VM extensions at any time by running the command [az connectedmachine extension list](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list). The `typeHandlerVersion` property value represents the version of the extension.
+- A comma-separated list of extensions, defined by their publisher and type (separated by a period)
+- The target version for each extension
+
+You can review the version of installed VM extensions at any time by running the command [`az connectedmachine extension list`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-list). The `typeHandlerVersion` property value represents the version of the extension.
 
 ## Remove extensions
 
-To remove an installed VM extension on your Azure Arc-enabled server, use [az connectedmachine extension delete](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
+To remove an installed VM extension from your Azure Arc-enabled server, use [`az connectedmachine extension delete`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
 
-## Next steps
+## Related content
 
-- You can deploy, manage, and remove VM extensions using the [Azure PowerShell](manage-vm-extensions-powershell.md), from the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
-
-- Troubleshooting information can be found in the [Troubleshoot VM extensions guide](troubleshoot-vm-extensions.md).
-
-- Review the Azure CLI VM extension [Overview](/cli/azure/connectedmachine/extension) article for more information about the commands.
+- You can deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
+- You can find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
+- For more information about the commands, review the [overview of the Azure CLI VM extension](/cli/azure/connectedmachine/extension).

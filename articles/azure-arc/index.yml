@@ -10,11 +10,12 @@ metadata:
   description: Learn how to deploy resources to complex and distributed environments across on-premises, edge, and multicloud. Azure Arc enables deployment of Azure services anywhere and extends Azure management to any infrastructure.
   ms.service: azure-arc
   ms.topic: hub-page
-  ms.author: jroth
-  ms.date: 11/18/2024
+  ms.author: jenhayes
+  ms.date: 06/11/2025
   ms.custom:
     - e2e-hybrid
     - ignite-2023
+    - build-2025
 # highlightedContent section (optional)
 # Maximum of 8 items
 highlightedContent:
@@ -161,15 +162,15 @@ additionalContent:
         # Card
         - title: Azure Kubernetes Service (AKS) enabled by Azure Arc 
           summary: Extend AKS to your on-premises environment.
-          url: https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-hybrid-options-overview
+          url: https://learn.microsoft.com/azure/aks/aksarc/aks-overview
         # Card
         - title: Multicloud connector enabled by Azure Arc
           summary: Connect non-Azure public cloud resources to centralize management and governance in Azure.
           url: ./multicloud-connector/overview.md
         # Card
-        - title: App Service, Functions, and Logic Apps on Azure Arc (preview)
-          summary: Run App Service, Functions, and Logic Apps on Azure Arc-enabled Kubernetes clusters.
-          url: /azure/app-service/overview-arc-integration
+        - title: Azure Container Apps on Azure Arc
+          summary: Run Container Apps on Azure Arc-enabled Kubernetes clusters.
+          url: /azure/container-apps/azure-arc-overview
         # Card
         - title: Azure IoT Operations Preview – enabled by Azure Arc
           summary: Azure IoT Operations is a unified data plane for the edge that helps organizations deploy the industrial metaverse.
@@ -178,3 +179,11 @@ additionalContent:
         - title: Azure Arc site manager (preview)
           summary: Use Arc sites to represent your on-premises environments and see centralized monitoring information across your edge infrastructure.
           url: /azure/azure-arc/site-manager/
+        # Card
+        - title: Edge RAG Preview enabled by Azure Arc
+          summary: Search on-premises data with generative AI, using Retrieval Augmented Generation.
+          url: /azure/azure-arc/edge-rag/
+        # Card
+        - title: Azure Container Storage enabled by Azure Arc
+          summary: A first-party storage system designed for Arc-connected Kubernetes clusters
+          url: /azure/azure-arc/container-storage/

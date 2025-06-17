@@ -1,8 +1,8 @@
 ---
 title: License provisioning guidelines for Extended Security Updates for Windows Server 2012
 description: Learn about license provisioning guidelines for Extended Security Updates for Windows Server 2012 through Azure Arc.
-ms.date: 02/05/2024
-ms.topic: conceptual
+ms.date: 01/21/2025
+ms.topic: concept-article
 ---
 
 # License provisioning guidelines for Extended Security Updates for Windows Server 2012
@@ -41,9 +41,9 @@ Another scenario (scenario 1, below) is a candidate for VM/Virtual core licensin
 
 Each WS2012 ESU license can cover up to and including 10,000 cores. If you need ESUs for more than 10,000 cores, split the total number of cores across multiple licenses. Additionally, only 800 licenses can be created in a single resource group. Use more resource groups if you need to create more than 800 license resources.
 
-### SA/SPLA conformance
+### Software Assurance/Services Provider License Agreement conformance
 
-In all cases, you're required to attest to conformance with SA or SPLA. There is no exception for these requirements. Software Assurance or an equivalent Server Subscription is required for you to purchase Extended Security Updates on-premises and in hosted environments. You are able to purchase Extended Security Updates from Enterprise Agreement (EA), Enterprise Subscription Agreement (EAS), a Server & Cloud Enrollment (SCE), and Enrollment for Education Solutions (EES). On Azure, you do not need Software Assurance to get free Extended Security Updates, but Software Assurance or Server Subscription is required to take advantage of the Azure Hybrid Benefit.
+In all cases, you're required to attest to conformance with Software Assurance (SA) or Services Provider License Agreement (SPLA). There is no exception for these requirements. Software Assurance or an equivalent Server Subscription is required for you to purchase Extended Security Updates on-premises and in hosted environments. You are able to purchase Extended Security Updates from Enterprise Agreement (EA), Enterprise Subscription Agreement (EAS), a Server & Cloud Enrollment (SCE), and Enrollment for Education Solutions (EES). On Azure, you do not need Software Assurance to get free Extended Security Updates, but Software Assurance or Server Subscription is required to take advantage of the Azure Hybrid Benefit.
 
 ### Visual Studio subscription benefit for dev/test scenarios
 

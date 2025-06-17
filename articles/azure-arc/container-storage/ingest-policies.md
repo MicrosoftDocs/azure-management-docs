@@ -1,10 +1,11 @@
 ---
 title: Set ingest policy
 description: Learn how to set ingest policies in Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.date: 10/02/2024
+# Customer intent: As a cloud administrator, I want to configure ingest policies for Azure Container Storage, so that I can manage the file ingestion and eviction processes tailored to my storage requirements.
 ---
 
 # Set ingest policy

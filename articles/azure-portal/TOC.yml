@@ -32,8 +32,6 @@
     href: manage-filter-resource-views.md
   - name: Find subscription and tenant IDs
     href: get-subscription-tenant-id.md
-  - name: Azure portal how-to video series
-    href: azure-portal-video-series.md
 - name: Dashboards
   items:
   - name: Create and manage dashboards in Dashboard hub
@@ -59,6 +57,8 @@
     href: supportability/how-to-manage-azure-support-request.md
   - name: Capture a browser trace for troubleshooting
     href: capture-browser-trace.md
+  - name: Get help through Priority Community Support
+    href: supportability/priority-community-support.md
 - name: Azure mobile app
   items:
   - name: Overview
@@ -70,6 +70,9 @@
   - name: Alerts and notifications
     href: mobile-app/alerts-notifications.md
     displayName: mobile, app, push
+  - name: Virtual machines
+    href: mobile-app/virtual-machines.md
+    displayName: mobile, app, resource, virtualmachines
   - name: Cloud Shell
     href: mobile-app/cloud-shell.md
     displayName: mobile, prompt, command, bash, powershell
@@ -108,7 +111,5 @@
     href: https://azure.microsoft.com/pricing/calculator/
   - name: Regional availability
     href: https://azure.microsoft.com/global-infrastructure/services/
-  - name: Azure videos
-    href: https://azure.microsoft.com/documentation/videos/index/?services=azure-portal&sort=newest
   - name: Product feedback
     href: https://feedback.azure.com/d365community/forum/a222eda7-2425-ec11-b6e6-000d3a4f09d0

@@ -1,8 +1,10 @@
 ---
 title: Learn about Azure in the Azure mobile app
 description: The Microsoft Learn features in the Azure mobile app help you learn Azure skills anytime, anywhere.
-ms.date: 02/26/2024
+ms.date: 05/15/2025
 ms.topic: how-to
+ms.custom:
+  - build-2025
 ---
 
 # Learn about Azure in the Azure mobile app
@@ -32,9 +34,9 @@ To start a lesson, just select it to begin. Remember to sign in to your Microsof
 The **Learn Links** section shows buttons that take you to different experiences across Microsoft Learn, including:
 
 - **Azure Learn**: Shows learning paths and other resources to help you build Azure skills.
-- **Azure Basics**: Launches the Microsoft Azure Fundamentals learning path with three modules about basic cloud concepts and Azure services.
+- **Azure AI**: Launches the Microsoft Azure AI Fundamentals learning path with modules about fundamental AI concepts and related Azure services.
 - **Certifications**: Shows information about available Azure-related Microsoft Certifications.
-- **Azure Q&A**: Explore technical questions and answers about Azure.
+- **Azure Q&A**: Opens  Microsoft Q&A, where you can ask and explore technical questions and answers about Azure.
 
 Select any of these links to explore their content.
 

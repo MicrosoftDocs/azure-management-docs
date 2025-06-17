@@ -1,7 +1,7 @@
 ---
 title: Azure Arc resource bridge system requirements
 description: Learn about system requirements for Azure Arc resource bridge.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 05/22/2024
 ---
 
@@ -136,16 +136,20 @@ Notice that the IP addresses for the gateway, control plane, appliance VM and DN
 
 ## User account and credentials
 
-Arc resource bridge may require a separate user account with the necessary roles to view and manage resources in the on-premises infrastructure (such as Arc-enabled VMware vSphere). If so, during creation of the configuration files, the `username` and `password` parameters are required. The account credentials are then stored in a configuration file locally within the appliance VM.  
+Arc resource bridge may require a dedicated user account with the necessary roles to view and manage resources in the on-premises private cloud. If so, during creation of the configuration files, the `username` and `password` parameters are required. The account credentials are then stored as a secret within the appliance VM.  
 
 > [!WARNING]
 > Arc resource bridge can only use a user account that does not have multifactor authentication enabled. If the user account is set to periodically change passwords, [the credentials must be immediately updated on the resource bridge](maintenance.md#update-credentials-in-the-appliance-vm). This user account can also be set with a lockout policy to protect the on-premises infrastructure, in case the credentials aren't updated and the resource bridge makes multiple attempts to use expired credentials to access the on-premises control center.
 
-For example, with Arc-enabled VMware, Arc resource bridge needs a separate user account for vCenter with the necessary roles. If the [credentials for the user account change](troubleshoot-resource-bridge.md#insufficient-privileges), then the credentials stored in Arc resource bridge must be immediately updated by running `az arcappliance update-infracredentials` from the [management machine](#management-machine-requirements). Otherwise, the appliance makes repeated attempts to use the expired credentials to access vCenter, which can result in a lockout of the account.
+For example, with Arc-enabled VMware, Arc resource bridge needs a dedicated user account for vCenter with the necessary roles. If the [credentials for the user account change](troubleshoot-resource-bridge.md#insufficient-privileges), then the credentials stored in Arc resource bridge must be immediately updated by running `az arcappliance update-infracredentials` from the [management machine](#management-machine-requirements). Otherwise, the appliance makes repeated attempts to use the expired credentials to access vCenter, which can result in a lockout of the account.
+
+## Internal Certificates
+
+Arc resource bridge contains internal certificates that are required to maintain secure communication to Azure and verify internal components. These certificates require that Arc resource bridge remain online and maintain a persistent connection to Azure. If Arc resource bridge is offline for greater than 45 days, there is a risk that the certificate will expire, requiring a redeployment as the certificate is irrecoverable. Arc resource bridge also requires an upgrade once every six months to ensure that internal certificates are refreshed. If Arc resource bridge is unable to upgrade and the certificates expire, then a redeployment is required. Please review the [Maintenance page](maintenance.md) for important information to maintain your Arc resource bridge.
 
 ## Configuration files
 
-Arc resource bridge consists of an appliance VM that is deployed in the on-premises infrastructure. To maintain the appliance VM, the configuration files generated during deployment must be saved in a secure location and made available on the management machine.
+Arc resource bridge consists of an appliance VM that is deployed in the on-premises infrastructure. To maintain the appliance VM, the configuration files generated during deployment must be saved in a secure location and available on the management machine.
 
 There are several different types of configuration files, based on the on-premises infrastructure.
 
@@ -154,6 +158,9 @@ There are several different types of configuration files, based on the on-premis
 Three configuration files are created when deploying the Arc resource bridge: `<appliance-name>-resource.yaml`, `<appliance-name>-appliance.yaml` and `<appliance-name>-infra.yaml`.
 
 By default, these files are generated in the current CLI directory of where the deployment commands are run. These files should be saved on the management machine because they're required for maintaining the appliance VM. The configuration files reference each other and should be stored in the same location. 
+
+The az arcappliance CLI commands that rely on the YAML configuration files are 'az arcappliance delete' to delete the Arc resource bridge and its Azure backend associations, and 'az arcappliance upgrade' to manually upgrade the Arc resource bridge.
+
 
 ### Kubeconfig
 

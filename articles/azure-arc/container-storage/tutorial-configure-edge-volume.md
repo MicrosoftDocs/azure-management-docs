@@ -3,10 +3,11 @@ title: Configure a Local Shared Edge Volume
 description: In this tutorial, you learn how to configure a Local Shared Edge Volume.
 ms.topic: tutorial
 ms.date: 11/11/2024
-ms.author: sethm 
-author: sethmanheim
+ms.author: sergaz 
+author: asergaz
 
 
+# Customer intent: "As a Kubernetes administrator, I want to configure a Local Shared Edge Volume so that I can manage read-write-many storage effectively for applications running in edge environments."
 ---
 
 # Tutorial: Configure a Local Shared Edge Volume
@@ -23,7 +24,7 @@ The tutorial covers the following tasks:
 
 ## Prerequisites
 
-- The tutorial assumes that you already have an Arc-connected Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
+- The tutorial assumes that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
 - You should have already installed the Azure Container Storage extension. If you haven't, see [Install Edge Volumes](install-edge-volumes.md).
 
 ## Create a Local Shared Edge Volume PVC

@@ -2,14 +2,14 @@
 title: Connect VMware vCenter Server to Azure Arc by using the helper script
 description: In this quickstart, you learn how to use the helper script to connect your VMware vCenter Server instance to Azure Arc.
 ms.topic: quickstart 
-ms.custom: references_regions
-ms.date: 11/05/2024
+ms.custom:
+  - references_regions
+  - build-2025
+ms.date: 04/08/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-
+ms.author: jsuri
+author: jyothisuri
 # Customer intent: As a VI admin, I want to connect my vCenter Server instance to Azure to enable self-service through Azure Arc.
 ---
 
@@ -56,7 +56,7 @@ You need a vSphere account that can:
 - Deploy and update VMs to all the resource pools (or clusters), networks, and VM templates that you want to use with Azure Arc.
 
 > [!IMPORTANT]
-> As part of the Azure Arc-enabled VMware onboarding script, you will be prompted to provide a vSphere account to deploy the Azure Arc resouce bridge VM on the ESXi host. This account will be stored locally within the Azure Arc resource bridge VM and encrypted as a Kubernetes secret at rest. The vSphere account allows Azure Arc-enabled VMware to interact with VMware vSphere. If your organization practices routine credential rotation, you must [update the credentials in Azure Arc-enabled VMware](administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding) to maintain the connection between Azure Arc-enabled VMware and VMware vSphere.
+> As part of the Azure Arc-enabled VMware onboarding script, you will be prompted to provide a vSphere account to deploy the Azure Arc resource bridge VM on the ESXi host. This account will be stored locally within the Azure Arc resource bridge VM and encrypted as a Kubernetes secret at rest. The vSphere account allows Azure Arc-enabled VMware to interact with VMware vSphere. If your organization practices routine credential rotation, you must [update the credentials in Azure Arc-enabled VMware](administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding) to maintain the connection between Azure Arc-enabled VMware and VMware vSphere.
 
 
 ### Workstation
@@ -84,7 +84,7 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 5. Select **Create a new resource bridge** and select **Next : Basics >**.
 6. Provide a name for **Azure Arc resource bridge**. For example: *contoso-nyc-resourcebridge*.
 7. Select a subscription and resource group where you want to create the resource bridge.
-8. Under **Region**, select an Azure location where you want to store the resource metadata. Currently, the supported regions are **East US**, **West Europe**, **Australia East**, and **Canada Central**.
+8. Under **Region**, select an Azure location where you want to store the resource metadata.
 9. Provide a name for **Custom location**. This is the name that you'll see when you deploy virtual machines. Name it for the datacenter or the physical location of your datacenter. For example: *contoso-nyc-dc.*
 10. Leave the option **Use the same subscription and resource group as your resource bridge** selected.
 11. Provide a name for your vCenter Server instance in Azure. For example: **contoso-nyc-vcenter**.

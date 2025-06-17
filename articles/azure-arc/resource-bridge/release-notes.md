@@ -1,18 +1,101 @@
 ---
 title: "What's new with Azure Arc resource bridge"
-ms.date: 08/26/2024
-ms.topic: conceptual
+ms.date: 03/19/2025
+ms.topic: concept-article
 description: "Learn about the latest releases of Azure Arc resource bridge."
 ---
 
 # What's new with Azure Arc resource bridge
 
-Azure Arc resource bridge is updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases.
+To stay up to date with the most recent developments, this article provides you with information about recent releases of the Arc resource bridge Azure CLI extension, `az arcappliance`.  
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) generally covers the most recent version and the three previous versions (n-3).
+The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, whichever is more recent. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+
+## Version 1.5.0 (June 2025)
+
+- Support version: n
+- Appliance: 1.5.0
+- CLI extension: 1.5.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250402
+
+### Arc resource bridge platform
+
+- Cloud logs collection feature added: Enables automatic log collection and upload to cloud on deployment failure
+
+- Prevent non-essential debug file operations from blocking critical functionality
+- ARB container image signed and removed old unsigned cached images
+- Added validation to prevent network overlaps with the K8s Pod CIDR 10.244.0.0/16
+- Added validation to warn for network overlaps with the K8s Service CIDR 10.96.0.0/12
+- Added validation to prevent the usage of Proxy URLs ending in .local.
+- Addressed bug in vSphere Cluster Client Set command creating conflicts.
+- Downloadsdk dyanmic parts - reducing the number of concurrent downloads with each retry.
+- Added kms-plugin token rotation to credential rotation
+
+
+## Version 1.4.1 (February 2025)
+
+- Support version: n-1
+- Appliance: 1.4.0
+- CLI extension: 1.4.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250102
+
+### Bug fixes
+
+- fix for compatibility with Azure CLI v2.70.0. From this version forward, Azure CLI version needs to be 2.70.0 or higher.
+
+> [!NOTE]
+> This patch version of the Azure CLI extension `az arcappliance` doesn't change the appliance version. Therefore, `az arcappliance` CLI extension 1.4.1 and 1.4.0 both have the same appliance version, 1.4.0.
+
+## Version 1.4.0 (February 2025)
+
+- Support version: n-1
+- Appliance: 1.4.0
+- CLI extension: 1.4.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250102
+
+### Arc-enabled SCVMM
+
+- Validate command - Add custom time-outs
+
+### Arc resource bridge platform
+
+- Enhanced telemetry for error type categorization
+- Support for US Gov Virginia/Fairfax region
+
+## Version 1.3.1 (December 2024)
+
+> [!NOTE]
+> This `az arcappliance` Azure CLI extension requires Azure CLI v2.69.0 or below. It isn't compatible with Azure CLI v2.70.0 or higher.
+
+- Support version: n-2 (older than 6 months, not recommended)
+- Appliance: 1.3.1
+- CLI extension: 1.3.1
+- Kubernetes: 1.29.4
+- Mariner: 2.0.20241029
+
+### Arc-enabled SCVMM
+
+- CreateConfig CLI command - Improve prompt messages, reorder Library Share input prompt
+- CreateConfig CLI command - Display Library Share, Cloud Names, and IP Pools inputs in alphabetical order
+- Image Provisioning from remote machine - Decompress Vhdx disk space error message improvement
+- Add retry and error message improvement for SCVMM createClient
+- Validate VLAN ID check error message improvement
+- Add TSG link in error message - validate checks, prep-createclient, createVM
+
+### Arc resource bridge platform
+
+- Error category framework update
+
+### Bug fixes
+
+- Azure Stack HCI CVE fix
 
 ## Version 1.3.0 (October 2024)
 
+- Support version: skipped, upgrades go directly to patch version 1.3.1
 - Appliance: 1.3.0
 - CLI extension: 1.3.0
 - SFS release: 0.1.34.10926
@@ -21,9 +104,9 @@ We generally recommend using the most recent versions. The [version support poli
 
 ### Arc-enabled SCVMM
 
-- Validation - fail if user is not part of an Admin User Group like DomainAdmins
+- Validation - fail if user isn't part of an Admin User Group like DomainAdmins
 - Conditional Validation on Gateway IP for SCVMM IP Pool Scenario and sshkeygen removal
-- Silently Clean Appliance VM Resources like HW Profiles, ISO Files and VM Templates in Delete command
+- Silently clean appliance VM resources like HW profiles, ISO Files, and VM templates in delete command
 - CAPVMM update to 1.1.19
 - SCVMM Image Provisioning Decompress Mariner Vhdx disk space error message improvement
 - SCVMM appliance deployment failing in Deploy due to IPPool missing access to HG
@@ -37,7 +120,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 - New error additional info field to add more context to errors
 - Add ACR image pull test suite
-- Add timeout for API Server Endpoint
+- Add time-out for API Server Endpoint
 - Added DNSError category
 
 ### Bug fixes
@@ -46,6 +129,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.2.0 (July 2024)
 
+- Support version: n-3 (older than 6 months, not recommended)
 - Appliance: 1.2.0
 - CLI extension: 1.2.0
 - SFS release: 0.1.32.10710
@@ -95,7 +179,7 @@ We generally recommend using the most recent versions. The [version support poli
 - Updated log collection with describe nodes
 - Error message enhancement for failure to reach Arc resource bridge VM
 - Improve troubleshoot command error handling with scoped access key
-- Longer timeout for individual pod pulls
+- Longer time-out for individual pod pulls
 - Updated `execute` command to allow passing in a kubeconfig
 - Catch `<>` in no_proxy string
 - Add validation to see if connections from the client machine are proxied
@@ -120,7 +204,7 @@ We generally recommend using the most recent versions. The [version support poli
 - SCVMM - Add fallback for VMM IP pool with support for IP range in appliance network, add `--vlanid` parameter to accept `vlanid`
 - Non-interactive mode for SCVMM `troubleshoot` and `logs` commands
 - `Createconfig` command uses styled text to warn about saving config files instead of standard logger
-- Improved handling and error reporting for timeouts while provisioning/deprovisioning images from the cloud fabric
+- Improved handling and error reporting for time-outs while provisioning/deprovisioning images from the cloud fabric
 - Verify template and snapshot health after provisioning an image, and clean up files associated to the template on image deprovision failures
 - Missing VHD state handing in SCVMM
 - SCVMM `validate` and `createconfig` fixes
@@ -128,9 +212,9 @@ We generally recommend using the most recent versions. The [version support poli
 ### Arc-enabled VMware vSphere
 
 - SSD storage validations added to VMware vSphere in telemetry mode to check if the ESXi host backing the resource pool has any SSD-backed storage
-- Improve missing privilege error message, show some privileges in error message
+- Improve missing privilege error message, and show some privileges in error message
 - Validate host ESXi version and provide a concrete error message for placement profile
-- Improve message for no datacenters found, display default folder
+- Improve message for no datacenters found, and display default folder
 - Surface VMware error when finder fails during validate
 - Verify template health and fix it during image provision
 
@@ -138,7 +222,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 - `deploy` command - diagnostic checker enhancements that add retries with exponential backoff to proxy client calls
 - `deploy` command - diagnostic checker enhancement: adds storage performance checker in telemetry mode to evaluate the storage performance of the VM used to deploy the appliance
-- `deploy` command - Add Timeout for SSH connection: New error message: "Error: Timeout occurred due to management machine being unable to reach the appliance VM IP, 192.168.0.11. Ensure that the requirements are met: `https://aka.ms/arb-machine-reqs: dial tcp 192.168.0.11:22: connect: connection timed out`
+- `deploy` command - Add time-out for SSH connection: New error message: "Error: Timeout occurred due to management machine being unable to reach the appliance VM IP, 192.168.0.11. Ensure that the requirements are met: `https://aka.ms/arb-machine-reqs: dial tcp 192.168.0.11:22: connect: connection timed out`"
 - `validate` command - The appliance deployment now fails if Proxy Connectivity and No Proxy checks report any errors
 
 ### Bug fixes
@@ -157,7 +241,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 - SCVMM `createconfig` command improvements - retry until valid Port and FQDN provided
 - SCVMM and VMware - Validate control plane IP address; add reprompts
-- SCVMM and VMware - extend `deploy` command timeout from 30 to 120 minutes
+- SCVMM and VMware - extend `deploy` command time-out from 30 to 120 minutes
 
 ### Features
 
@@ -184,7 +268,7 @@ We generally recommend using the most recent versions. The [version support poli
 ### Fabric/Private cloud provider
 
 - SCVMM `createconfig` command improvements
-- Azure Local - extend `deploy` command timeout from 30 to 120 minutes
+- Azure Local - extend `deploy` command time-out from 30 to 120 minutes
 - All private clouds - enable provider credential parameters to be passed in each command
 - All private clouds - basic validations for select `createconfig` command inputs
 - VMware - basic reprompts for select `createconfig` command inputs

@@ -25,7 +25,6 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 |Resource bridge (appliance) container image download| 443 | `*.blob.core.windows.net, ecpacr.azurecr.io`| Appliance VM IPs need outbound connection. | Required to pull container images. |
 |Managed Identity| 443 | `*.his.arc.azure.com`| Appliance VM IPs need outbound connection. | Required to pull system-assigned Managed Identity certificates. | 
 |Azure Arc for Kubernetes container image download| 443 | `azurearcfork8s.azurecr.io`|  Appliance VM IPs need outbound connection. | Pull container images. |
-|Azure Arc agent| 443 | `k8connecthelm.azureedge.net`|  Appliance VM IPs need outbound connection. | deploy Azure Arc agent. |
 |ADHS telemetry service | 443 | `adhs.events.data.microsoft.com`| Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data from appliance VM. |
 |Microsoft events data service | 443 |`v20.events.data.microsoft.com`| Appliance VM IPs need outbound connection. | Send diagnostic data from Windows. |
 |Log collection for Arc Resource Bridge| 443 | `linuxgeneva-microsoft.azurecr.io`| Appliance VM IPs need outbound connection. | Push logs for Appliance managed components.|
@@ -33,13 +32,13 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 |Microsoft open source packages manager| 443 | `packages.microsoft.com`| Appliance VM IPs need outbound connection. | Download Linux installation package.|
 |Custom Location| 443 | `sts.windows.net`| Appliance VM IPs need outbound connection. | Required for Custom Location.|
 |Azure Arc| 443 | `guestnotificationservice.azure.com` | Appliance VM IPs need outbound connection. | Required for Azure Arc.|
-|Custom Location | 443 | `k8sconnectcsp.azureedge.net` | Appliance VM IPs need outbound connection. | Required for Custom Location. |
 |Diagnostic data | 443 | `gcs.prod.monitoring.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Diagnostic data | 443 | `*.prod.microsoftmetrics.com` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Diagnostic data | 443 | `*.prod.hot.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Diagnostic data | 443 | `*.prod.warm.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Azure portal | 443 | `*.arc.azure.net`| Appliance VM IPs need outbound connection. | Manage cluster from Azure portal.|
-|Azure CLI & Extension | 443 | `*.blob.core.windows.net`| Management machine needs outbound connection. | Download Azure CLI Installer and extension. |
+|Azure CLI | 443 | `*.blob.core.windows.net`| Management machine needs outbound connection. | Download Azure CLI Installer. |
+|Arc Extension | 443 | `*.web.core.windows.net`| Management machine needs outbound connection. | Download Arc resource bridge extension. |
 |Azure Arc Agent| 443 | `*.dp.kubernetesconfiguration.azure.com`| Management machine needs outbound connection. | Dataplane used for Arc agent.|
 |Python package| 443 | `pypi.org`, `*.pypi.org`| Management machine needs outbound connection. | Validate Kubernetes and Python versions.|
 |Azure CLI| 443 | `pythonhosted.org`, `*.pythonhosted.org`| Management machine needs outbound connection. | Python packages for Azure CLI installation.|

@@ -1,7 +1,7 @@
 ---
 title:  Manage access to Microsoft Copilot in Azure
 description: Learn how administrators can manage user access to Microsoft Copilot in Azure.
-ms.date: 10/08/2024
+ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -21,8 +21,6 @@ If Copilot in Azure is not available for a user, they'll see an unauthorized mes
 > In some cases, your tenant may not have access to Copilot in Azure by default. Global Administrators can enable access by following the steps described in this article at any time.
 
 As always, Microsoft Copilot in Azure only has access to resources that the user has access to. It can only take actions that the user has permission to perform, and requires confirmation before making changes. Copilot in Azure complies with all existing access management rules and protections such as Azure role-based access control (Azure RBAC), Privileged Identity Management, Azure Policy, and resource locks.
-
-[!INCLUDE [preview-note](includes/preview-note.md)]
 
 ## Manage user access to Microsoft Copilot in Azure
 
@@ -46,8 +44,6 @@ Global Administrators for a tenant can change the **Access management** selectio
 
 > [!IMPORTANT]
 > In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Please ask your network administrator to enable this connection.
-
-
 
 ## Next steps
 

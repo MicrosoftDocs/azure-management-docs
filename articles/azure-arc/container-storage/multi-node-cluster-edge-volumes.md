@@ -1,32 +1,25 @@
 ---
 title: Prepare Linux for Edge Volumes using a multi-node cluster
 description: Learn how to prepare Linux for Edge Volumes with a multi-node cluster using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
-author: sethmanheim
-ms.author: sethm
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content
-ms.date: 11/01/2024
+ms.custom:
+  - linux-related-content
+  - build-2025
+ms.date: 03/12/2025
 zone_pivot_groups: platform-select-with-other
+# Customer intent: As a system administrator, I want to prepare a Linux environment for Edge Volumes using a multi-node cluster, so that I can ensure optimal performance and compatibility with Azure Container Storage.
 ---
 
 # Prepare Linux for Edge Volumes using a multi-node cluster
 
-This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux.md#prerequisites).
+This article describes how to prepare Linux using a multi-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux-edge-volumes.md#prerequisites).
 
 ::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
 
-Install and configure Open Service Mesh (OSM) using the following commands:
-
-```azurecli
-az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
---config "osm.osm.featureFlags.enableWASMStats=false" \
---config "osm.osm.enablePermissiveTrafficPolicy=false" \
---config "osm.osm.configResyncInterval=10s" \
---config "osm.osm.osmController.resource.requests.cpu=100m" \
---config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
---config "osm.osm.injector.resource.requests.cpu=100m"
-```
+If you run a multi-node cluster on Linux with AKS enabled by Azure Arc, you don't need to perform any additional steps.
 
 ::: zone-end
 
@@ -40,25 +33,13 @@ az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-na
 
 This section describes how to prepare Linux with Ubuntu if you run a multi-node cluster.
 
-First, install and configure Open Service Mesh (OSM) using the following command:
-
-```azurecli
-az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
---config "osm.osm.featureFlags.enableWASMStats=false" \
---config "osm.osm.enablePermissiveTrafficPolicy=false" \
---config "osm.osm.configResyncInterval=10s" \
---config "osm.osm.osmController.resource.requests.cpu=100m" \
---config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
---config "osm.osm.injector.resource.requests.cpu=100m"
-```
-
 [!INCLUDE [multi-node-ubuntu](includes/multi-node-ubuntu.md)]
 ::: zone-end
 
 ::: zone pivot="other"
 ## Prepare Linux with other platforms
 
-The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
+The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
 
 1. Run the following commands to increase the user watch and instance limits:
 

@@ -1,10 +1,11 @@
 ---
 title: Volumes and subvolumes
 description: Learn about Volumes and subvolumes in Azure Container Storage enabled by Azure Arc.
-author: sethmanheim
-ms.author: sethm
-ms.topic: conceptual
+author: asergaz
+ms.author: sergaz
+ms.topic: concept-article
 ms.date: 10/02/2024
+# Customer intent: As a cloud architect, I want to understand the functionalities of Edge Volumes and subvolumes in Azure Container Storage, so that I can effectively manage local and cloud data synchronization for my applications.
 ---
 
 # Overview of volumes and subvolumes

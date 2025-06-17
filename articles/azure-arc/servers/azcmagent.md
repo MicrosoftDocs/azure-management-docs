@@ -3,6 +3,8 @@ title: azcmagent CLI reference
 description: Reference documentation for the Azure Connected Machine agent command line tool
 ms.topic: reference
 ms.date: 04/20/2023
+ms.custom:
+  - build-2025
 ---
 
 # azcmagent CLI reference
@@ -25,6 +27,7 @@ Unless otherwise specified, the command syntax and flags represent available opt
 | [azcmagent logs](azcmagent-logs.md) | Collect logs to troubleshoot agent issues |
 | [azcmagent show](azcmagent-show.md) | Display the agent status |
 | [azcmagent version](azcmagent-version.md) | Display the agent version |
+| azcmagent partnerconfig | Reserved for internal use. |
 
 ## Frequently asked questions
 

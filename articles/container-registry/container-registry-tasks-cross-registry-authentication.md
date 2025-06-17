@@ -3,10 +3,11 @@ title: Cross-Registry Authentication from ACR Task
 description: Configure an Azure Container Registry Task (ACR Task) to access another private Azure container registry using a managed identity for Azure resources.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to configure an Azure Container Registry task with a managed identity, so that I can pull images from another private registry without managing credentials.
 ---
 
 # Cross-registry authentication in an ACR task using an Azure-managed identity 
@@ -91,13 +92,16 @@ Use the [az acr show][az-acr-show] command to get the resource ID of the base re
 baseregID=$(az acr show --name mybaseregistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the identity the `acrpull` role to the base registry. This role has permissions only to pull images from the registry.
+Use the [az role assignment create][az-role-assignment-create] command to assign the identity the correct role to the base registry. This role assignment grants permissions to only pull images from the registry.
+
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
   --scope $baseregID \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 Proceed to [Add target registry credentials to task](#add-target-registry-credentials-to-task).
@@ -130,13 +134,16 @@ Use the [az acr show][az-acr-show] command to get the resource ID of the base re
 baseregID=$(az acr show --name mybaseregistry --query id --output tsv)
 ```
 
-Use the [az role assignment create][az-role-assignment-create] command to assign the identity the `acrpull` role to the base registry. This role has permissions only to pull images from the registry.
+Use the [az role assignment create][az-role-assignment-create] command to assign the identity the correct role to the base registry. This role assignment grants permissions to only pull images from the registry.
+
+The correct role to use in the role assignment depends on whether the registry is [ABAC-enabled or not](container-registry-rbac-abac-repository-permissions.md).
 
 ```azurecli
+ROLE="Container Registry Repository Reader" # For ABAC-enabled registries. For non-ABAC registries, use AcrPull.
 az role assignment create \
   --assignee $principalID \
   --scope $baseregID \
-  --role acrpull
+  --role "$ROLE"
 ```
 
 ## Add target registry credentials to task

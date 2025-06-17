@@ -1,23 +1,20 @@
 ---
 title: How to deploy and configure Azure Monitor Agent using Azure Policy
 description: Learn how to deploy and configure Azure Monitor Agent using Azure Policy.
-ms.date: 05/17/2023
+ms.date: 05/01/2025
 ms.topic: how-to
 ---
 
 # Deploy and configure Azure Monitor Agent using Azure Policy
 
-This article covers how to deploy and configure the Azure Monitor Agent (AMA) to Arc-enabled servers through Azure Policy using a custom Policy definition. Using Azure Policy ensures that Azure Monitor is running on your selected Arc-enabled servers and automatically installs the AMA on newly added Arc resources.
+This article covers how to deploy and configure the Azure Monitor Agent (AMA) to Arc-enabled servers through Azure Policy using a custom policy definition. Using Azure Policy ensures that Azure Monitor is running on your selected Arc-enabled servers and that the AMA is automatically installed on newly added Arc resources.
 
 Deploying the Azure Monitor Agent through a custom Policy definition involves two main steps:
 
 - Selecting an existing or creating a new Data Collection Rule (DCR)
+- Creating and deploying the policy definition
 
-- Creating and deploying the Policy definition
-
-In this scenario, the Policy definition is used to verify that the AMA is installed on your Arc-enabled servers. It will also install the AMA on newly added machines or on existing machines that don't have the AMA installed.
-
-In order for Azure Monitor to work on a machine, it needs to be associated with a Data Collection Rule. Therefore, you'll need to include the resource ID of the DCR when you create your Policy definition.
+In order for Azure Monitor to work on a machine, it needs to be associated with a Data Collection Rule (DCR). You include the resource ID of the DCR when you create your policy definition.
 
 ## Select a Data Collection Rule
 
@@ -25,43 +22,39 @@ Data Collection Rules define the data collection process in Azure Monitor. They 
 
 1. From your browser, go to the [Azure portal](https://portal.azure.com).
 
-1. Navigate to the **Monitor | Overview** page. Under **Settings**, select **Data Collection Rules**.
-    A list of existing DCRs displays. You can filter this at the top of the window. If you need to create a new DCR, see [Data collection rules in Azure Monitor](/azure/azure-monitor/essentials/data-collection-rule-overview) for more information.
+1. Navigate to the **Monitor | Overview** page. Under **Settings**, select **Data Collection Rules** to show the list of existing DCRs.
 
-1. Select the DCR to apply to your ARM template to view its overview.
-
-1. Select **Resources** to view a list of resources, such as Arc-enabled VMs, assigned to the DCR. To add more resources, select **Add**. If you created a new DCR, you'll need to add resources.
+1. Select the DCR that you want to use.
 
 1. Select **Overview**, then select **JSON View** to view the JSON code for the DCR:
-    
-    :::image type="content" source="media/deploy-ama-policy/dcr-overview.png" alt-text="Screenshot of the Overview window for a data collection rule highlighting the JSON view button.":::
 
-1. Locate the **Resource ID** field at the top of the window and select the button to copy the resource ID for the DCR to the clipboard. Save this resource ID; you'll need to use it when creating your Policy definition.
-    
-    :::image type="content" source="media/deploy-ama-policy/dcr-json-view.png" alt-text="Screenshot of the Resource JSON window showing the JSON code for a data collection rule and highlighting the resource ID copy button.":::
+    :::image type="content" source="media/deploy-ama-policy/dcr-overview.png" alt-text="Screenshot of the Overview window for a data collection rule highlighting the JSON view button." lightbox="media/deploy-ama-policy/dcr-overview.png":::
+
+1. Locate the **Resource ID** field at the top of the **Resource JSON** pane, then select the button to copy the resource ID. You'll need to use this resource ID when creating your policy definition.
 
 ## Create and deploy the Policy definition
 
-In order for Azure Policy to check if AMA is installed on your Arc-enabled, you'll need to create a custom policy definition that does the following:
+In order for Azure Policy to check if the Azure Monitor Agent is installed on your Arc-enabled servers, you need to create a custom policy definition that does the following:
 
-- Evaluates if new VMs have the AMA installed and the association with the DCR.
+- Evaluates if new VMs have the agent installed and are associated with the DCR.
 
-- Enforces a remediation task to install the AMA and create the association with the DCR on VMs that aren't compliant with the policy.
+- Enforces a remediation task to install the Azure Monitor Agent and create the association with the DCR on any VMs that aren't compliant with the policy.
 
 1. Select one of the following policy definition templates, depending on the operating system of the machine:
     - [Configure Windows machines](https://portal.azure.com/#view/Microsoft_Azure_Policy/InitiativeDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicySetDefinitions%2F9575b8b7-78ab-4281-b53b-d3c1ace2260b/scopes/undefined)
     - [Configure Linux machines](https://portal.azure.com/#view/Microsoft_Azure_Policy/InitiativeDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicySetDefinitions%2F118f04da-0375-44d1-84e3-0fd9e1849403/scopes/undefined)
-    
+
     These templates are used to create a policy to configure machines to run Azure Monitor Agent and associate those machines to a DCR.
 
-1. Select **Assign** to begin creating the policy definition. Enter the applicable information for each tab. For example, **Basics**, **Advanced**, and so on.
+1. Select **Assign initiative** to begin creating the policy definition. Enter the applicable information for each tab. For more information about these options, see [Create a policy assignment ](/azure/governance/policy/assign-policy-portal#assign-a-policy-initiative).
+
 1. On the **Parameters** tab, paste the **Data Collection Rule Resource ID** that you copied during the previous procedure:
 
-    :::image type="content" source="media/deploy-ama-policy/resource-id-field.png" alt-text="Screenshot of the Parameters tab of the Configure Windows Machines dialog highlighting the Data Collection Rule Resource ID field.":::
-1. Complete the creation of the policy to deploy it for the applicable machines. Once Azure Monitor Agent is deployed, your Azure Arc-enabled servers can apply its services and use it for log collection.
+    :::image type="content" source="media/deploy-ama-policy/resource-id-field.png" alt-text="Screenshot of the Parameters tab highlighting the Data Collection Rule Resource ID field.":::
+
+1. Select **Review + create** to complete policy creation and deploy it to the applicable machines. Once Azure Monitor Agent is deployed, your Azure Arc-enabled servers can apply its services and use it for log collection.
 
 ## Additional resources
 
-* [Azure Monitor overview](/azure/azure-monitor/overview)
-
-* [Tutorial: Monitor a hybrid machine with VM insights](learn/tutorial-enable-vm-insights.md)
+- [Azure Monitor overview](/azure/azure-monitor/overview)
+- [Tutorial: Monitor a hybrid machine with VM insights](learn/tutorial-enable-vm-insights.md)

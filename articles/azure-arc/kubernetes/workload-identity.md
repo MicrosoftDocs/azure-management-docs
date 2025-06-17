@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.custom:
   - ignite-2024
 description: "Workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
+# Customer intent: As a Kubernetes administrator, I want to deploy and configure workload identity federation on my Azure Arc-enabled Kubernetes cluster, so that I can enable secure identity management for my workloads and streamline authentication with Azure services.
 ---
 
 # Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)
@@ -81,7 +82,7 @@ az connectedk8s update --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GRO
 Fetch the OIDC issuer URL and save it to an environmental variable. This issuer URL will be used in the following step.
 
 ```azurecli
-export OIDC_ISSUER="$(az connectk8s show --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" \ 
+export OIDC_ISSUER="$(az connectedk8s show --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" \ 
     --query "oidcIssuerProfile.issuerUrl" \  
     --output tsv)"
 ```

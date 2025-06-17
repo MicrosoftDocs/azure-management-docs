@@ -3,10 +3,11 @@ title: Set Up Private Endpoint with Private Link for ACR
 description: Set up a private endpoint on a container registry and enable access over a private link in a local virtual network. Available in the Premium service tier of Azure Container Registry.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to set up a private endpoint for an Azure container registry, so that I can secure access over a private link within my virtual network and eliminate exposure to the public internet.
 ---
 
 # Connect privately to an Azure container registry using Azure Private Link
@@ -343,8 +344,7 @@ az acr update --name $REGISTRY_NAME --public-network-enabled false
 Consider the following options to execute the `az acr build` successfully.
 
 * Assign a [dedicated agent pool.](./tasks-agent-pools.md) 
-* If agent pool is not available in the region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules.](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (a.k.a. AzureContainerRegistry Service Tag) for outbound requests. You can choose to add the IPs in the firewall allowed list.
-* Create an ACR task with a managed identity, and enable trusted services to [access network restricted ACR.](./allow-access-trusted-services.md#example-acr-tasks)
+* If agent pool is not available in the region, add the regional [Azure Container Registry Service Tag IPv4](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api) to the [firewall access rules](./container-registry-firewall-access-rules.md#allow-access-by-ip-address-range). Tasks reserve a set of public IPs in each region (a.k.a. AzureContainerRegistry Service Tag) for outbound requests. You can choose to add the IPs in the firewall allowed list.
 
 ## Disable access to a container registry using a service endpoint 
 

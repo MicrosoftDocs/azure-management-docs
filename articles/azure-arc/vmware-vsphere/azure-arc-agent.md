@@ -1,13 +1,14 @@
 ---
 title:  Azure Arc agent
 description: Learn about Azure Arc agent
-ms.topic: conceptual
-ms.date: 08/13/2024
+ms.topic: concept-article
+ms.date: 01/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Azure Arc agent
@@ -16,7 +17,9 @@ When you [enable guest management](enable-guest-management-at-scale.md) on VMwar
 
 ## Agent components
 
-:::image type="content" source="media/azure-arc-agent/connected-machine-agent-inline.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." lightbox="media/azure-arc-agent/connected-machine-agent-expanded.png":::
+:::image type="content" source="media/azure-arc-agent/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." lightbox="media/azure-arc-agent/connected-machine-agent.png":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 

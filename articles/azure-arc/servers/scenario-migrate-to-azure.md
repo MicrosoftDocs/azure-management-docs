@@ -2,7 +2,7 @@
 title: Migrate Azure Arc-enabled server to Azure
 description: Learn how to migrate your Azure Arc-enabled servers running on-premises or other cloud environment to Azure.
 ms.date: 12/04/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 
 # Migrate your on-premises or other cloud Azure Arc-enabled server to Azure
@@ -51,7 +51,7 @@ The VM migrated to Azure from on-premises doesn't have the Linux or Windows Azur
 
 ## Step 5: Migrate server or machine to Azure
 
-Before proceeding with the migration with Azure Migration, review the [Prepare on-premises machines for migration to Azure](/azure/migrate/prepare-for-migration) article to learn about requirements necessary to use Azure Migrate. To complete the migration to Azure, review the Azure Migrate [migration options](/azure/migrate/prepare-for-migration#next-steps) based on your environment.
+Before proceeding with the migration with Azure Migrate, review the [Prepare on-premises machines for migration to Azure](/azure/migrate/prepare-for-migration) article to learn about requirements necessary to use Azure Migrate. To complete the migration to Azure, review the Azure Migrate [migration options](/azure/migrate/prepare-for-migration#next-steps) based on your environment.
 
 ## Step 6: Deploy Azure VM extensions
 

@@ -1,9 +1,10 @@
 ---
 title: Use private connectivity for Azure Arc-enabled Kubernetes clusters with private link (preview)
-ms.date: 11/14/2024
+ms.date: 02/25/2025
 ms.topic: how-to
 description: With Azure Arc, you can use a Private Link Scope model to allow multiple Kubernetes clusters to use a single private endpoint.
 ms.custom: references_regions
+# Customer intent: "As a cloud administrator, I want to set up private connectivity for my Azure Arc-enabled Kubernetes clusters using Private Link, so that I can securely manage resources without exposing sensitive data over public networks."
 ---
 
 # Use private connectivity for Arc-enabled Kubernetes clusters with private link (preview)
@@ -42,10 +43,11 @@ Consider these current limitations when planning your Private Link setup.
 * An Azure Arc-enabled Kubernetes cluster can only connect to one Azure Arc Private Link Scope.
 * All on-premises Kubernetes clusters need to use the same private endpoint by resolving the correct private endpoint information (FQDN record name and private IP address) using the same DNS forwarder. For more information, see [Azure Private Endpoint private DNS zone values](/azure/private-link/private-endpoint-dns). The Azure Arc-enabled Kubernetes cluster, Azure Arc Private Link Scope, and virtual network must be in the same Azure region. The Private Endpoint and the virtual network must also be in the same Azure region, but this region can be different from that of your Azure Arc Private Link Scope and Arc-enabled Kubernetes cluster.
 * Traffic to Microsoft Entra ID, Azure Resource Manager, and Microsoft Container Registry service tags must be allowed through your on-premises network firewall during the preview.
+* Azure Arc resources utilizing Private Link and those that do not cannot share the same VNET or DNS zone. Azure Arc resources without Private Link must resolve to public endpoints.
 * Other Azure services that you use, such as Azure Monitor, may require their own private endpoints in your virtual network.
 
     > [!NOTE]
-    > The [Cluster Connect](conceptual-cluster-connect.md) (and hence the [Custom location](custom-locations.md)) feature is currently not supported on Azure Arc-enabled Kubernetes clusters with private connectivity enabled. Network connectivity using private links for Azure Arc services such as Azure Arc-enabled data services, and Azure Arc-enabled App services that use these features, are also currently not supported.
+    > The [Cluster Connect](conceptual-cluster-connect.md) (and hence the [Custom location](custom-locations.md)) feature is currently not supported on Azure Arc-enabled Kubernetes clusters with private connectivity enabled. Network connectivity using private links for Azure Arc services such as Azure Arc-enabled data services and Azure container Apps on Azure Arc are also currently not supported.
 
 ## Cluster extensions that support network connectivity through private links
 
@@ -58,6 +60,7 @@ On Azure Arc-enabled Kubernetes clusters configured with private links, these ex
 
 To connect your Kubernetes cluster to Azure Arc over a private link, configure your network as follows:
 
+1. The subscription in which Private link Scope is present should be registered to `Microsoft.kubernetes` and `Microsoft.kubernetes.Configurations`.
 1. Establish a connection between your on-premises network and an Azure virtual network using a [site-to-site VPN](/azure/vpn-gateway/tutorial-site-to-site-portal) or [ExpressRoute](/azure/expressroute/expressroute-howto-linkvnet-arm) circuit.
 1. Deploy an Azure Arc Private Link Scope, which controls which Kubernetes clusters can communicate with Azure Arc over private endpoints, and associate it with your Azure virtual network using a private endpoint.
 1. Update the DNS configuration on your local network to resolve the private endpoint addresses.
@@ -109,25 +112,26 @@ Once your Azure Arc Private Link Scope is created, you need to connect it with o
 The Private Endpoint on your virtual network allows it to reach Azure Arc-enabled Kubernetes cluster endpoints through private IPs from your network's pool, instead of using to the public IPs of these endpoints. That allows you to keep using your Azure Arc-enabled Kubernetes clusters without opening your VNet to unrequested outbound traffic. Traffic from the Private Endpoint to your resources goes through Microsoft Azure, and isn't routed to public networks.
 
 1. In the Azure portal, navigate to your Azure Arc Private Link Scope resource.
-1. In the resource menu, under **Configure**, select **Private Endpoint connections**.
+1. In the service menu, under **Configure**, select **Private Endpoint connections**.
 1. Select **Add** to start the endpoint create process. You can also approve connections that were started in the Private Link center by selecting them, then selecting **Approve**.
 
     :::image type="content" source="media/private-link/create-private-endpoint.png" lightbox="media/private-link/create-private-endpoint.png" alt-text="Screenshot of the Private Endpoint connections screen in the Azure portal.":::
 
 1. Select the subscription and resource group, and enter a name for the endpoint. Select the same region as your virtual network.
 1. Select **Next: Resource**.
-1. On the **Resource** page, if these values aren't already selected, do the following:
-   1. Select the subscription that contains your Azure Arc Private Link Scope resource.
-   1. For **Resource type**, choose `Microsoft.HybridCompute/privateLinkScopes`.
-   1. For **Resource**, choose the Azure Arc Private Link Scope that you created earlier.
-   1. Select **Next: Virtual Network**.
+1. On the **Resource** page, ensure that the following values are selected:
+   1. **Subscription**: the subscription that contains your Azure Arc Private Link Scope resource.
+   1. **Resource type**: `Microsoft.HybridCompute/privateLinkScopes`.
+   1. **Resource**: the Azure Arc Private Link Scope that you created earlier.
+   1. **Target sub-resource**: `hybridcompute`.
+1. Select **Next: Virtual Network**.
 1. On the **Virtual Network** page:
     1. Select the virtual network and subnet from which you want to connect to Azure Arc-enabled Kubernetes clusters.
     1. Select **Next: DNS**.
 1. On the **DNS** page:
     1. For **Integrate with private DNS zone**, select **Yes**. A new Private DNS Zone is created.
 
-        Alternately, if you prefer to manage DNS records manually, select **No**, then complete setting up your Private Link, including this private endpoint and the Private Scope configuration. Next, [configure your DNS](#manual-dns-server-configuration) according to the instructions in [Azure Private Endpoint private DNS zone values](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your Private Link setup. The DNS records you create can override existing settings and impact your connectivity with Arc-enabled Kubernetes clusters.
+        Alternately, if you prefer to manage DNS records manually, select **No**, then complete setting up your Private Link, including this private endpoint and the Private Scope configuration. Then, [configure your DNS](#manual-dns-server-configuration) according to the instructions in [Azure Private Endpoint private DNS zone values](/azure/private-link/private-endpoint-dns). Make sure not to create empty records as preparation for your Private Link setup. The DNS records you create can override existing settings and impact your connectivity with Arc-enabled Kubernetes clusters.
 
         > [!IMPORTANT]
         >The same VNET/DNS zone can't be used for both Arc resources using private link and ones which don't use private link. Arc resources which aren't private link connected must resolve to public endpoints.

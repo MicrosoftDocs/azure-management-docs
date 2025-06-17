@@ -1,7 +1,7 @@
 ---
 title: How to prepare to deliver Extended Security Updates for Windows Server 2012 through Azure Arc
 description: Learn how to prepare to deliver Extended Security Updates for Windows Server 2012 through Azure Arc.
-ms.date: 07/03/2024
+ms.date: 01/23/2025
 ms.topic: how-to
 ---
 
@@ -32,7 +32,7 @@ For Azure Arc-enabled servers enrolled in WS2012 ESUs enabled by Azure Arc, free
 
 * [Azure Update Manager](/azure/update-center/overview) - Unified management and governance of update compliance that includes not only Azure and hybrid machines, but also ESU update compliance for all your Windows Server 2012/2012 R2 machines.
     Enrollment in ESUs does not impact Azure Update Manager. After enrollment in ESUs through Azure Arc, the server becomes eligible for ESU patches. These patches can be delivered through Azure Update Manager or any other patching solution. You'll still need to configure updates from Microsoft Updates or Windows Server Update Services.
-* [Azure Automation Change Tracking and Inventory](/azure/automation/change-tracking/overview?tabs=python-2) - Track changes in virtual machines hosted in Azure, on-premises, and other cloud environments.
+* [Change Tracking and Inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm) - Track changes in virtual machines hosted in Azure, on-premises, and other cloud environments.
 * [Azure Policy Guest Configuration](/azure/cloud-adoption-framework/manage/azure-server-management/guest-configuration-policy) - Audit the configuration settings in a virtual machine. Guest configuration supports Azure VMs natively and non-Azure physical and virtual servers through Azure Arc-enabled servers.
 
 Other Azure services through Azure Arc-enabled servers are available as well, with offerings such as:
@@ -42,18 +42,28 @@ Other Azure services through Azure Arc-enabled servers are available as well, wi
    
 ## Prepare delivery of ESUs
 
-Plan and prepare to onboard your machines to Azure Arc-enabled servers through the installation of the [Azure Connected Machine agent](agent-overview.md) (version 1.34 or higher) to establish a connection to Azure. Windows Server 2012 Extended Security Updates supports Windows Server 2012 and R2 Standard and Datacenter editions. Windows Server 2012 Storage is not supported.
+1. Plan and prepare to connect your machines to Azure Arc-enabled servers through the installation of the [Azure Connected Machine agent](agent-overview.md) (version 1.34 or higher) to establish a connection to Azure.
 
-We recommend you deploy your machines to Azure Arc in preparation for when the related Azure services deliver supported functionality to manage ESU. Once these machines are onboarded to Azure Arc-enabled servers, you'll have visibility into their ESU coverage and enroll through the Azure portal or using Azure Policy. Billing for this service starts from October 2023 (i.e., after Windows Server 2012 end of support).
+    After establishing this connection, you can then enroll your servers to receive Extended Security Updates (ESUs). Windows Server 2012 Extended Security Updates supports Windows Server 2012 and R2 Standard and Datacenter editions. Windows Server 2012 Storage is not supported.
+    
+    We recommend you deploy your machines to Azure Arc in preparation for when the related Azure services deliver supported functionality to manage ESU. Once these machines are onboarded to Azure Arc-enabled servers, you'll have visibility into their ESU coverage and enroll through the Azure portal or using Azure Policy. Billing for this service starts from October 2023 (i.e., after Windows Server 2012 end of support).
+    
+    > [!NOTE]
+    > In order to purchase ESUs, you must have Software Assurance through Volume Licensing Programs such as an Enterprise Agreement (EA), Enterprise Agreement Subscription (EAS), Enrollment for Education Solutions (EES), Server and Cloud Enrollment (SCE), or through Microsoft Open Value Programs. Alternatively, if your Windows Server 2012/2012 R2 machines are licensed through SPLA or with a Server Subscription, Software Assurance is not required to purchase ESUs.
 
-> [!NOTE]
-> In order to purchase ESUs, you must have Software Assurance through Volume Licensing Programs such as an Enterprise Agreement (EA), Enterprise Agreement Subscription (EAS), Enrollment for Education Solutions (EES), Server and Cloud Enrollment (SCE), or through Microsoft Open Value Programs. Alternatively, if your Windows Server 2012/2012 R2 machines are licensed through SPLA or with a Server Subscription, Software Assurance is not required to purchase ESUs.
-
-You must also download both the licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented at [KB5031043: Procedure to continue receiving security updates after extended support has ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45).
+1. Download both the licensing package and servicing stack update (SSU) for the Azure Arc-enabled server as documented at [KB5031043: Procedure to continue receiving security updates after extended support has ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45).
 
 ### Deployment options
 
-There are several at-scale onboarding options for Azure Arc-enabled servers, including running a [Custom Task Sequence](onboard-configuration-manager-custom-task.md) through Configuration Manager and deploying a [Scheduled Task through Group Policy](onboard-group-policy-powershell.md). There are also at-scale ESU delivery options for [VMware vCenter managed VMs](../vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc.md) and [SCVMM managed VMs](../system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms.md) through Azure Arc.
+There are several at-scale onboarding options for Azure Arc-enabled servers:
+
+- Run a [Custom Task Sequence](onboard-configuration-manager-custom-task.md) through Configuration Manager.
+
+- Deploy a [Scheduled Task through Group Policy](onboard-group-policy-powershell.md). 
+
+- Use [VMware vCenter managed VMs](../vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc.md) through Azure Arc.
+
+- Use [SCVMM managed VMs](../system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms.md) through Azure Arc.
 
 > [!NOTE]
 > Delivery of ESUs through Azure Arc to virtual machines running on Virtual Desktop Infrastructure (VDI) is not recommended. VDI systems should use Multiple Activation Keys (MAK) to apply ESUs. See [Access your Multiple Activation Key from the Microsoft 365 Admin Center](/windows-server/get-started/extended-security-updates-deploy) to learn more.
@@ -61,7 +71,13 @@ There are several at-scale onboarding options for Azure Arc-enabled servers, inc
 
 ### Networking
 
-Connectivity options include public endpoint, proxy server, and private link or Azure Express Route. Review the [networking prerequisites](network-requirements.md) to prepare non-Azure environments for deployment to Azure Arc.
+Ensure your machines have the necessary network connectivity to Azure Arc. Connectivity options include:
+
+- Public endpoint
+- Proxy server
+- Private link or Azure Express Route.
+
+Review the [networking prerequisites](network-requirements.md) to prepare non-Azure environments for deployment to Azure Arc.
 
 [!INCLUDE [esu-network-requirements](./includes/esu-network-requirements.md)]
 

@@ -4,13 +4,14 @@ description: Learn about the support matrix for Arc-enabled System Center Virtua
 ms.topic: how-to 
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
-ms.date: 10/04/2024
+ms.author: jsuri
+author: jyothisuri
+ms.date: 04/10/2025
 keywords: "VMM, Arc, Azure"
 
 # Customer intent: As a VI admin, I want to understand the support matrix for System Center Virtual Machine Manager.
+ms.custom:
+  - build-2025
 ---
 
 # Support matrix for Azure Arc-enabled System Center Virtual Machine Manager
@@ -25,7 +26,7 @@ The following requirements must be met in order to use Arc-enabled SCVMM.
 
 ### Supported SCVMM versions
 
-Azure Arc-enabled SCVMM works with VMM 2019 and 2022 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
+Azure Arc-enabled SCVMM works with VMM 2025, 2022, and 2019 versions and supports SCVMM management servers with a maximum of 15,000 VMs.
 
 ### Azure Arc resource bridge prerequisites
 
@@ -91,6 +92,7 @@ Ensure the following before you install Arc agents at scale for SCVMM VMs:
 
 Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs managed by:
 
+- SCVMM 2025 or later versions of SCVMM server or console
 - SCVMM 2022 UR1 or later versions of SCVMM server or console
 - SCVMM 2019 UR5 or later versions of SCVMM server or console
 
@@ -101,7 +103,7 @@ For VMs managed by other SCVMM versions, [install Arc agents through the script]
 
 ### Supported operating systems
 
-Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2022, 2019, 2016, 2012R2, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
+Azure Arc-enabled SCVMM supports direct installation of Arc agents in VMs running Windows Server 2025, 2022, 2019, 2016, 2012R2, Windows 10, and Windows 11 operating systems. For other Windows and Linux operating systems, [install Arc agents through the script](install-arc-agents-using-script.md).
 
 ### Software requirements
 
@@ -136,6 +138,62 @@ The following firewall URL exceptions are required for the Azure Arc agents:
 | `*.servicebus.windows.net` | For Windows Admin Center and SSH scenarios |
 | `*.blob.core.windows.net` | Download source for Azure Arc-enabled servers extensions |
 | `dc.services.visualstudio.com` | Agent telemetry |
+
+### Instance metadata 
+
+The following metadata is collected during the deployment of Azure Arc resource bridge: 
+
+- **SCVMM server credentials**
+  - Username 
+  - Password (Password is stored as Kubernetes secret inside the Azure Arc resource bridge VM which resides in your datacenter and isn't propagated to Azure.) 
+- **SCVMM server version**
+- **SCVMM server FQDN/IP**
+- Other parameters specific to the deployment target of Azure Arc resource bridge VM such as VMM Cloud Name, VMM Cloud ID, Host Group Name, Host Group ID, VM Network Name, VM Network ID, IP ranges, Gateway, DNS, VLAN ID, Library Server Name. Only the parameters specific to the Azure Arc resource bridge VM are collected and not the entire information of your environment. 
+
+After the successful deployment of Azure Arc resource bridge, the metadata of the resources associated with the VMM server is collected: 
+- VMM Cloud 
+  - Name  
+  - UUID
+  - Storage QoS policies
+  - Cloud Capacity 
+    - CPU 
+    - Memory 
+    - VM 
+- VM Network 
+  - Name 
+  - UUID 
+- VM Template 
+  - Name 
+  - UUID 
+  - Operating System 
+  - Memory 
+  - CPU Count 
+  - VM Generation 
+  - Disks 
+  - NICs 
+- Virtual Machine
+  - Name 
+  - UUID 
+  - Power status 
+  - Operating System 
+  - Operating System SKU 
+  - Domain Name 
+  - Computer Name 
+  - CPU 
+  - Memory 
+  - NIC Properties 
+  - IP Address 
+  - Address Type 
+  - Disks 
+  - Availability Sets 
+  - AD/DNS FQDN
+  - Host Operating System 
+  - Host type 
+- Host 
+  - Operating System 
+  - Host type 
+
+After the installation of Azure Connected Machine agent in the individual VMs, the agent collects the metadata listed [here](/azure/azure-arc/servers/agent-overview#instance-metadata). 
 
 ## Next steps
 

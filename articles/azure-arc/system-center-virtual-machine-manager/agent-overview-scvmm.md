@@ -1,14 +1,15 @@
 ---
 title: Overview of Azure Connected Machine agent to manage Windows and Linux machines
 description: This article provides an overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 10/21/2024
-ms.topic: conceptual
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.date: 03/25/2025
+ms.topic: concept-article
+ms.author: jsuri
+author: jyothisuri
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 ---
 
 # Overview of Azure Connected Machine agent to manage Windows and Linux machines
@@ -18,6 +19,8 @@ When you [enable guest management](enable-guest-management-at-scale.md) on SCVMM
 ## Agent components
 
 :::image type="content" source="media/agent-overview-scvmm/connected-machine-agent.png" alt-text="Diagram of Azure Connected Machine agent architectural overview." border="false":::
+
+[!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
 The Azure Connected Machine agent package contains several logical components bundled together:
 
@@ -222,3 +225,4 @@ The agent requests the following metadata information from Azure:
 - [Connect your SCVMM server to Azure Arc](/azure/azure-arc/system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc).
 - [Install Arc agent at scale for your SCVMM VMs](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale).
 - [Install Arc agent using a script for SCVMM VMs](/azure/azure-arc/system-center-virtual-machine-manager/install-arc-agents-using-script).
+

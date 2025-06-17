@@ -1,12 +1,12 @@
 ---
 ms.service: azure-arc
+ms.subservice: azure-arc-container-storage
 ms.topic: include
-ms.date: 08/30/2024
-author: sethmanheim
-ms.author: sethm
+ms.date: 03/12/2025
+author: asergaz
+ms.author: sergaz
+# Customer intent: "As a Kubernetes administrator, I want to configure system settings for my cluster nodes, so that I can optimize performance and ensure compatibility with NVME over TCP storage."
 ---
-
-Then, perform the following steps in your Kubernetes cluster:
 
 > [!IMPORTANT]
 > You must complete the following steps for each node in your Kubernetes cluster.

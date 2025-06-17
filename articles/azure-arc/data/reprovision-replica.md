@@ -4,7 +4,7 @@ description: This article explains how to rebuild a broken SQL Managed Instance 
 services: sql-database
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.topic: conceptual
+ms.topic: concept-article
 author: MikeRayMSFT 
 ms.author: mikeray
 ms.reviewer: mikeray

@@ -2,11 +2,12 @@
 title: Build a Container Image On-Demand in Azure
 description: Use Azure Container Registry commands to quickly build, push, and run a Docker container image on-demand, in the Azure cloud.
 ms.topic: quickstart
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli, mode-other
+# Customer intent: As a developer, I want to build, push, and run Docker container images on-demand in the cloud, so that I can streamline my container development workflow without requiring a local Docker installation.
 ---
 
 # Quickstart: Build and run a container image using Azure Container Registry Tasks
@@ -57,6 +58,11 @@ az acr build --image sample/hello-world:v1 \
   --registry mycontainerregistry008 \
   --file Dockerfile . 
 ```
+
+> [!NOTE]
+> If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `build` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr build`.
+>
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 Output from a successful build and push is similar to the following:
 
@@ -120,6 +126,11 @@ The following example uses $Registry to specify the endpoint of the registry whe
 az acr run --registry mycontainerregistry008 \
   --cmd '$Registry/sample/hello-world:v1' /dev/null
 ```
+
+> [!NOTE]
+> If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `run` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr run`.
+>
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 The `cmd` parameter in this example runs the container in its default configuration, but `cmd` supports additional `docker run` parameters or even other `docker` commands.
 

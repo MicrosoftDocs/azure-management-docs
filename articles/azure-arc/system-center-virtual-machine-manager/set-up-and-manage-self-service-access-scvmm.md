@@ -3,12 +3,13 @@ title: Set up and manage self-service access to SCVMM resources
 description: This article describes how to use built-in roles to manage granular access to SCVMM resources through Azure Role-based Access Control (RBAC).
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-author: PriskeyJeronika-MS
-ms.author: v-gjeronika
-manager: jsuri
+ms.author: jsuri
+author: jyothisuri
 ms.topic: how-to 
 ms.date: 10/21/2024
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Set up and manage self-service access to SCVMM resources
@@ -27,7 +28,7 @@ To provision SCVMM VMs and change their size, add disks, change network interfac
 
 You must assign this role to an individual cloud, VM network, and VM template that a user or a group needs to access.
 
-1. Go to the [SCVMM management servers](https://ms.portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/scVmmManagementServer) list in Arc center.
+1. Go to the [SCVMM management servers](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/scVmmManagementServer) list in Arc center.
 2. Search and select your SCVMM management server.
 3. Navigate to the **Clouds** in **SCVMM inventory** section in the table of contents.
 4. Find and select the cloud for which you want to assign permissions. 
@@ -50,7 +51,7 @@ In addition to having access to SCVMM resources through the **Azure Arc ScVmm Pr
 
 The **Azure Arc ScVmm VM Contributor** role is a built-in role that provides permissions to conduct all SCVMM virtual machine operations.
 
-1. Go to the [Azure portal](https://ms.portal.azure.com/#home).
+1. Go to the [Azure portal](https://portal.azure.com/).
 2. Search and navigate to the subscription or resource group to which you want to provide access.
 3. Select **Access control (IAM)** from the table of contents on the left.
 4. Select **Add role assignments** on the **Grant access to this resource**.

@@ -1,8 +1,8 @@
 ---
 title: Allow the Azure portal URLs on your firewall or proxy server
 description: To optimize connectivity between your network and the Azure portal and its services, we recommend you add these URLs to your allowlist.
-ms.date: 07/12/2024
-ms.topic: conceptual
+ms.date: 04/21/2025
+ms.topic: concept-article
 ---
 
 # Allow the Azure portal URLs on your firewall or proxy server
@@ -12,7 +12,7 @@ To optimize connectivity between your network and the Azure portal and its servi
 Network administrators often deploy proxy servers, firewalls, or other devices, which can help secure and give control over how users access the internet. Rules designed to protect users can sometimes block or slow down legitimate business-related internet traffic. This traffic includes communications between you and Azure over the URLs listed here.
 
 > [!TIP]
-> For help diagnosing issues with network connections to these domains, check https://portal.azure.com/selfhelp.
+> For help diagnosing issues with network connections to these domains, visit [Self-diagnostics](https://portal.azure.com/selfhelp).
 
 You can use [service tags](/azure/virtual-network/service-tags-overview) to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of fully qualified domain names (FQDNs) or specific IP addresses when you create security rules and routes.
 
@@ -32,7 +32,6 @@ The URL endpoints to allow for the Azure portal are specific to the Azure cloud 
 > However, there is a possibility that unnecessary communication other than communication to access the portal may also be allowed. If granular control is required, FQDN-based access control such as Azure Firewall is required.
 
 #### Azure portal authentication
-
 ```
 login.microsoftonline.com
 *.aadcdn.msftauth.net
@@ -45,6 +44,9 @@ login.live.com
 *.microsoftonline-p.com
 ```
 
+> [!IMPORTANT]
+> Depending on your environment, you may need to allow additional URLs related to authentication, such as those listed in sections 56, 59, and 97 of [Microsoft 365 URLs and IP address ranges](/microsoft-365/enterprise/urls-and-ip-address-ranges#microsoft-365-common-and-office-online).
+
 #### Azure portal framework
 
 ```
@@ -55,6 +57,7 @@ management.azure.com
 *.ext.azure.com
 *.graph.windows.net
 *.graph.microsoft.com
+hosting.partners.azure.net
 ```
 
 #### Account data
@@ -110,6 +113,7 @@ kusto.windows.net (Azure Kusto Clusters)
 learn.microsoft.com (Azure documentation)
 logic.azure.com (Logic Apps)
 marketplacedataprovider.azure.com (Azure Marketplace)
+main.prod.marketplacedataprovider.azure.com (Azure Marketplace)
 marketplaceemail.azure.com (Azure Marketplace)
 media.azure.net (Azure Media Services)
 monitor.azure.com (Azure Monitor Service)
@@ -137,6 +141,7 @@ ux.console.azure.com (Azure Cloud Shell)
 *.applicationinsights.us
 *.azure.us
 *.azureedge.net
+*.azureedge.us
 *.loganalytics.us
 *.microsoft.us
 *.microsoftonline.us
@@ -147,6 +152,7 @@ ux.console.azure.com (Azure Cloud Shell)
 *.usgovtrafficmanager.net
 *.windowsazure.us
 graph.microsoftazure.us
+main.ff.marketplacedataprovider.azure.us
 ```
 
 ### [Microsoft Azure operated by 21Vianet Cloud](#tab/azure-china-cloud)

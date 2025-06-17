@@ -1,12 +1,13 @@
 ---
-title: Prepare Linux for Edge Volumes using a single-node or 2-node cluster
-description: Learn how to prepare Linux for Edge Volumes with a single-node or 2-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
-author: sethmanheim
-ms.author: sethm
+title: Prepare Linux for Edge Volumes using a single-node or two-node cluster
+description: Learn how to prepare Linux for Edge Volumes with a single-node or two-node cluster in Azure Container Storage enabled by Azure Arc using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
+author: asergaz
+ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 11/01/2024
+ms.date: 03/12/2025
 zone_pivot_groups: platform-select-with-other
+# Customer intent: As a DevOps engineer, I want to configure Linux for Edge Volumes on single-node or two-node clusters, so that I can ensure optimal performance and compatibility with Azure Container Storage enabled by Azure Arc.
 ---
 
 # Prepare Linux for Edge Volumes using a single-node or two-node cluster
@@ -16,19 +17,7 @@ This article describes how to prepare Linux using a single-node or two-node clus
 ::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
 
-This section describes how to prepare Linux with AKS enabled by Azure Arc if you run a single-node or two-node cluster.
-
-1. Install Open Service Mesh (OSM) using the following command:
-
-   ```azurecli
-   az k8s-extension create --resource-group "YOUR_RESOURCE_GROUP_NAME" --cluster-name "YOUR_CLUSTER_NAME" --cluster-type connectedClusters --extension-type Microsoft.openservicemesh --scope cluster --name osm \
-   --config "osm.osm.featureFlags.enableWASMStats=false" \
-   --config "osm.osm.enablePermissiveTrafficPolicy=false" \
-   --config "osm.osm.configResyncInterval=10s" \
-   --config "osm.osm.osmController.resource.requests.cpu=100m" \
-   --config "osm.osm.osmBootstrap.resource.requests.cpu=100m" \
-   --config "osm.osm.injector.resource.requests.cpu=100m"
-   ```
+If you run a single-node or two-node cluster on Linux with AKS enabled by Azure Arc, you don't need to perform any additional steps.
 
 ::: zone-end
 
@@ -43,7 +32,7 @@ This section describes how to prepare Linux with AKS enabled by Azure Arc if you
 ::: zone pivot="other"
 ## Prepare Linux with other platforms
 
-The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage enabled by Azure Arc can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
+The available platform options are production-like environments that Microsoft validated. These platforms aren't necessarily the only environments on which Azure Container Storage enabled by Azure Arc can run. Azure Container Storage can run on any Arc-enabled Kubernetes cluster that meets the Azure Arc-enabled Kubernetes system requirements. If you're running on an environment not listed, here are a few suggestions to increase the likelihood of a successful installation:
 
 1. Run the following commands to increase the user watch and instance limits:
 
@@ -69,4 +58,4 @@ The available platform options are production-like environments that Microsoft v
 
 ## Next steps
 
-[Install Azure Container Storage enabled by Azure Arc](install-edge-volumes.md)
+[Install Azure Container Storage enabled by Azure Arc Edge Volumes](install-edge-volumes.md)

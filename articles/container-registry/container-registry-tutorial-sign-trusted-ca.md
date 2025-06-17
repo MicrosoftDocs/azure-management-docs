@@ -1,13 +1,13 @@
 ---
 title: Sign Container Images with Notation and a CA-issued certificate Azure Key Vault
 description: Learn to create a CA-issued certificate in Azure Key Vault, sign a container image in Azure Container Registry with Notation and AKV, and verify it.
-author: yizha1
-ms.author: yizha1
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/5/2024
-#customer intent: As a developer, I want to sign and verify container images using a CA-issued certificate in Azure Key Vault so that I can ensure the integrity and authenticity of my images.
+# Customer intent: "As a developer, I want to sign and verify container images using a CA-issued certificate stored in a secure vault, so that I can ensure their integrity and authenticity throughout the deployment process."
 ---
 
 # Sign container images with Notation and Azure Key Vault using a CA-issued certificate
@@ -44,27 +44,27 @@ In this article:
 
 ## Install the notation CLI and AKV plugin
 
-1. Install Notation v1.2.0 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
+1. Install Notation v1.3.0 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
 
     ```bash
     # Download, extract and install
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.2.0/notation_1.2.0_linux_amd64.tar.gz
+    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.0/notation_1.3.0_linux_amd64.tar.gz
     tar xvzf notation.tar.gz
 
     # Copy the notation cli to the desired bin directory in your PATH, for example
     cp ./notation /usr/local/bin
     ```
 
-2. Install the Notation Azure Key Vault plugin `azure-kv` v1.2.0 on a Linux amd64 environment.
+2. Install the Notation Azure Key Vault plugin `azure-kv` v1.2.1 on a Linux amd64 environment.
 
     > [!NOTE]
     > The URL and SHA256 checksum for the Notation Azure Key Vault plugin can be found on the plugin's [release page](https://github.com/Azure/notation-azure-kv/releases).
 
     ```bash
-    notation plugin install --url https://github.com/Azure/notation-azure-kv/releases/download/v1.2.0/notation-azure-kv_1.2.0_linux_amd64.tar.gz --sha256sum 06bb5198af31ce11b08c4557ae4c2cbfb09878dfa6b637b7407ebc2d57b87b34
+    notation plugin install --url https://github.com/Azure/notation-azure-kv/releases/download/v1.2.1/notation-azure-kv_1.2.1_linux_amd64.tar.gz --sha256sum 67c5ccaaf28dd44d2b6572684d84e344a02c2258af1d65ead3910b3156d3eaf5
     ```
 
-3. List the available plugins and confirm that the `azure-kv` plugin with version `1.2.0` is included in the list. 
+3. List the available plugins and confirm that the `azure-kv` plugin with version `1.2.1` is included in the list. 
 
     ```bash
     notation plugin ls
@@ -158,11 +158,15 @@ To import the certificate:
 
 ## Sign a container image with Notation CLI and AKV plugin
 
-When working with ACR and AKV, it’s essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this tutorial, the access are authorized to a signed-in Azure user.
+When working with ACR and AKV, it’s essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this tutorial, the access is authorized to a signed-in Azure user.
 
 ### Authoring access to ACR
 
-The `AcrPull` and `AcrPush` roles are required for building and signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+
+For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
+
+For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the ACR resource
 
@@ -174,7 +178,9 @@ The `AcrPull` and `AcrPush` roles are required for building and signing containe
 
     ```bash
     USER_ID=$(az ad signed-in-user show --query id -o tsv)
-    az role assignment create --role "AcrPull" --role "AcrPush" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
+    ROLE1="Container Registry Repository Reader" # For ABAC-enabled registries. Otherwise, use "AcrPull" for non-ABAC-enabled registries.
+    ROLE2="Container Registry Repository Writer" # For ABAC-enabled registries. Otherwise, use "AcrPush" for non-ABAC-enabled registries.
+    az role assignment create --role "$ROLE1" --role "$ROLE2" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
     ```
 
 ### Build and push container images to ACR
@@ -185,8 +191,8 @@ The `AcrPull` and `AcrPush` roles are required for building and signing containe
     az acr login --name $ACR_NAME
     ```
 
-> [!IMPORTANT]
-> If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your ACR, your credentials are already stored and available to notation. In this case, you don’t need to run `notation login` again to authenticate to your ACR. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
+    > [!IMPORTANT]
+    > If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your ACR, your credentials are already stored and available to notation. In this case, you don’t need to run `notation login` again to authenticate to your ACR. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
 
 1. Build and push a new image with ACR Tasks. Always use `digest` to identify the image for signing, since tags are mutable and can be overwritten.
 
@@ -385,7 +391,7 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
 
 ## Timestamping
 
-Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161) compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Timestamping Authority (TSA), enabling successful signature verification even after the certificates have expired. As an image signer, you should ensure that you sign container images with timestamps generated by a trusted TSA. As an image verifier, to verify timestamps, you should ensure that you trust both the image signer and the associated TSA, and establish trust through trust stores and trust policies. Timestamping reduces costs by eliminating the need to periodically re-sign images due to certificate expiry, which is especially critical when using short-lived certificates. For detailed instructions on how to sign and verify using timestamping, please refer to the [Notary Project timestamping guide](https://v1-2.notaryproject.dev/docs/user-guides/how-to/timestamping/).
+Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161) compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Timestamping Authority (TSA), enabling successful signature verification even after the certificates have expired. As an image signer, you should ensure that you sign container images with timestamps generated by a trusted TSA. As an image verifier, to verify timestamps, you should ensure that you trust both the image signer and the associated TSA, and establish trust through trust stores and trust policies. Timestamping reduces costs by eliminating the need to periodically re-sign images due to certificate expiry, which is especially critical when using short-lived certificates. For detailed instructions on how to sign and verify using timestamping, refer to the [Notary Project timestamping guide](https://v1-2.notaryproject.dev/docs/user-guides/how-to/timestamping/).
 
 ## FAQ
 
@@ -399,14 +405,14 @@ Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-edit
 
 ## Next steps
 
-Notation also provides CI/CD solutions on Azure Pipeline and GitHub Actions Workflow:
+Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
-- [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
-- [Sign and verify a container image with Notation in GitHub Actions Workflow](https://github.com/marketplace/actions/notation-actions)
+- To sign and verify container images in ADO pipelines, see [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
+- To sign container images using GitHub Actions, see [Sign a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+- To verify container images using GitHub Actions, see [Verify a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
 
-To validate signed image deployment in AKS or Kubernetes:
-
-- [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- [Use Ratify to validate and audit image deployment in any Kubernetes cluster](https://ratify.dev/)
+To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
+- Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/

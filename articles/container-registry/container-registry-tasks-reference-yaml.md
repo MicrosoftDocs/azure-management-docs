@@ -3,10 +3,11 @@ title: YAML Reference for Azure Container Registry (ACR) Tasks
 description: Guide to defining tasks in YAML for Azure Container Registry (ACR) Tasks, covering task properties, step types, and built-in variables.
 ms.topic: reference
 ms.custom: devx-track-azurecli
-author: tejaswikolli-web
-ms.author: tejaswikolli
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to define and execute multi-step tasks using YAML for container registry operations, so that I can automate the build, test, and deployment processes in a consistent and efficient manner.
 ---
 
 # ACR Tasks reference: YAML
@@ -610,10 +611,11 @@ Each of the following aliases points to a stable image in Microsoft Container Re
 
 | Alias | Image |
 | ----- | ----- |
-| `acr` | `mcr.microsoft.com/acr/acr-cli:0.5` |
-| `az` | `mcr.microsoft.com/acr/azure-cli:7ee1d7f` |
-| `bash` | `mcr.microsoft.com/acr/bash:7ee1d7f` |
-| `curl` | `mcr.microsoft.com/acr/curl:7ee1d7f` |
+| `acr` | `mcr.microsoft.com/acr/acr-cli:0.14` |
+| `az` | `mcr.microsoft.com/acr/azure-cli:9fb281c` |
+| `bash` | `mcr.microsoft.com/acr/bash:9fb281c` |
+| `curl` | `mcr.microsoft.com/acr/curl:9fb281c` |
+| `cssc` | `mcr.microsoft.com/acr/cssc:9fb281c` |
 
 The following example task uses several aliases to [purge](container-registry-auto-purge.md) image tags older than 7 days in the repo `samples/hello-world` in the run registry:
 

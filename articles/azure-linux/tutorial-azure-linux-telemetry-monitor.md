@@ -4,12 +4,15 @@ description: In this Azure Linux Container Host for AKS tutorial, you'll learn h
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: linux-related-content
+ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
-ms.date: 08/18/2024
+ms.date: 04/06/2025
 ---
 
 # Tutorial: Enable telemetry and monitoring for your Azure Linux Container Host cluster
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321847)
 
 In this tutorial, part four of five, you'll set up Container Insights to monitor an Azure Linux Container Host cluster. You'll  learn how to: 
 
@@ -26,59 +29,45 @@ In the next and last tutorial, you'll learn how to upgrade your Azure Linux node
 - If you're connecting an existing AKS cluster to a Log Analytics workspace in another subscription, the Microsoft.ContainerService resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 - You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
-## 1 - Enable monitoring
+## Enable monitoring
 
-### Option 1: Use a default Log Analytics workspace
+### Connect to your cluster
+
+Before enabling monitoring, it's important to ensure you're connected to the correct cluster. The following command retrieves the credentials for your Azure Linux Container Host cluster and configures kubectl to use them:
+
+```azurecli
+az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
+```
+
+### Use a default Log Analytics workspace
 
 The following step enables monitoring for your Azure Linux Container Host cluster using Azure CLI. In this example, you aren't required to precreate or specify an existing workspace. This command simplifies the process for you by creating a default workspace in the default resource group of the AKS cluster subscription. If one doesn't already exist in the region, the default workspace created will resemble the format *DefaultWorkspace-< GUID >-< Region >*. 
 
 ```azurecli
-az aks enable-addons -a monitoring -n testAzureLinuxCluster -g testAzureLinuxResourceGroup
-```
+# Check if monitoring addon is already enabled
+MONITORING_ENABLED=$(az aks show -g $RESOURCE_GROUP -n $CLUSTER_NAME --query "addonProfiles.omsagent.enabled" -o tsv)
 
-The first few lines of the output should contain the following in the `addonProfiles` configuration :
-
-```output
-{
-  "aadProfile": null,
-  "addonProfiles": {
-    "omsagent": {
-      "config": {
-        "logAnalyticsWorkspaceResourceID": "/subscriptions/<WorkspaceSubscription>/resourceGroups/DefaultResourceGroup-EUS2/providers/Microsoft.OperationalInsights/workspaces/DefaultWorkspace-<WorkspaceSubscription>-EUS2",
-        "useAADAuth": "true"
-      },
-      "enabled": true,
-      "identity": null
-    }
-  },
-}
+if [ "$MONITORING_ENABLED" != "true" ]; then
+  az aks enable-addons -a monitoring -n $CLUSTER_NAME -g $RESOURCE_GROUP
+fi
 ```
 
 ### Option 2: Specify a Log Analytics workspace
 
-In this example, you can specify a Log Analytics workspace to enable monitoring of your Azure Linux Container Host cluster. The resource ID of the workspace will be in the form `"/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"`.
+In this example, you can specify a Log Analytics workspace to enable monitoring of your Azure Linux Container Host cluster. The resource ID of the workspace will be in the form `"/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"`. The command to enable monitoring with a specified workspace is as follows: ```az aks enable-addons -a monitoring -n $CLUSTER_NAME -g $RESOURCE_GROUP --workspace-resource-id <workspace-resource-id>```
 
-```azurecli
-az aks enable-addons -a monitoring -n testAzureLinuxCluster -g testAzureLinuxResourceGroup --workspace-resource-id <workspace-resource-id>
-```
-
-The output will resemble the following example:
-
-```output
-provisioningState       : Succeeded
-```
-
-## 2 - Verify agent and solution deployment
+## Verify agent and solution deployment
 
 Run the following command to verify that the agent is deployed successfully.
 
-```
+```bash
 kubectl get ds ama-logs --namespace=kube-system
 ```
 
 The output should resemble the following example, which indicates that it was deployed properly:
 
-```output
+<!-- expected_similarity=0.3 -->
+```text
 User@aksuser:~$ kubectl get ds ama-logs --namespace=kube-system
 NAME       DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
 ama-logs   3         3         3       3            3           <none>          3m22s
@@ -86,37 +75,37 @@ ama-logs   3         3         3       3            3           <none>          
 
 To verify deployment of the solution, run the following command:
 
-```
+```bash
 kubectl get deployment ama-logs-rs -n=kube-system
 ```
 
 The output should resemble the following example, which indicates that it was deployed properly:
 
-```output
+<!-- expected_similarity=0.3 -->
+```text
 User@aksuser:~$ kubectl get deployment ama-logs-rs -n=kube-system
-NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE    AGE
-ama-logs-rs   1         1         1            1            3h
+NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE    AGE
+ama-logs-rs    1         1         1            1            3h
 ```
 
-## 3 - Verify solution configuration
+## Verify solution configuration
 
 Use the `aks show` command to find out whether the solution is enabled or not, what the Log Analytics workspace resource ID is, and summary information about the cluster.
 
 ```azurecli
-az aks show -g testAzureLinuxResourceGroup -n testAzureLinuxCluster
+az aks show -g $RESOURCE_GROUP -n $CLUSTER_NAME --query "addonProfiles.omsagent"
 ```
 
 After a few minutes, the command completes and returns JSON-formatted information about the solution. The results of the command should show the monitoring add-on profile and resemble the following example output:
 
-```output
-"addonProfiles": {
-    "omsagent": {
-      "config": {
-        "logAnalyticsWorkspaceResourceID": "/subscriptions/<WorkspaceSubscription>/resourceGroups/<DefaultWorkspaceRG>/providers/Microsoft.OperationalInsights/workspaces/<defaultWorkspaceName>"
-      },
-      "enabled": true
-    }
-  }
+<!-- expected_similarity=0.3 -->
+```JSON
+{
+  "config": {
+    "logAnalyticsWorkspaceResourceID": "/subscriptions/xxxxx/resourceGroups/xxxxx/providers/Microsoft.OperationalInsights/workspaces/xxxxx"
+  },
+  "enabled": true
+}
 ```
 
 ## Next steps
