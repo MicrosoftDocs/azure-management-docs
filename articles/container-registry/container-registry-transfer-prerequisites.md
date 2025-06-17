@@ -2,12 +2,12 @@
 title: Overview and Prerequisites for Transfer artifacts
 description: Get an in-depth overview of ACR Transfer, including essential prerequisites and key features for managing and transferring container images in Azure Container Registry.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#customer intent: As a DevOps engineer, I want to understand the prerequisites and steps for transferring artifacts between Azure container registries so that I can manage and migrate container images efficiently.
 
+# Customer intent: As a DevOps engineer, I want to learn how to configure the transfer of container images between Azure container registries so that I can efficiently manage and migrate artifacts across different environments and clouds.
 ---
 
 # Transfer artifacts to another registry

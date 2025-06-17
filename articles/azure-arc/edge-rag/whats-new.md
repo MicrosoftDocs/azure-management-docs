@@ -7,7 +7,8 @@ ms.topic: concept-article
 ms.date: 05/20/2025
 
 #Customer intent: As a ..., I want to stay updated on the latest features and enhancements so that I can...
-
+ms.custom:
+  - build-2025
 ---
 
 # What's new in Edge RAG Preview enabled by Azure Arc

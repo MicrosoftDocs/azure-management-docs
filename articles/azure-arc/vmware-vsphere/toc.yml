@@ -4,6 +4,8 @@
   items:
   - name: About Azure Arc-enabled VMware vSphere
     href: overview.md
+  - name: Plan for deployment
+    href: support-matrix-for-arc-enabled-vmware-vsphere.md
   - name: Switch to the new version
     href: switch-to-new-version.md
 - name: Concepts
@@ -22,8 +24,6 @@
   items:
   - name: Deploy
     items: 
-    - name: Plan for deployment
-      href: support-matrix-for-arc-enabled-vmware-vsphere.md
     - name: Enable VMware vCenter resources in Azure
       href: browse-and-enable-vcenter-resources-in-azure.md
     - name: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter
@@ -38,9 +38,11 @@
         href: setup-and-manage-self-service-access.md
       - name: Perform VM operations on VMware VMs through Azure
         href: perform-vm-ops-through-azure.md
-  - name: Enable Extended Security Updates
+  - name: Azure Arc benefits for VMware VMs
     items:
-      - name: Deliver ESUs for VMware VMs through Arc
+      - name: Windows Server Management
+        href: ../servers/windows-server-management-overview.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Procure and deliver Extended Security Updates
         href: deliver-extended-security-updates-for-vmware-vms-through-arc.md
   - name: Administer
     items: 
@@ -53,8 +55,14 @@
       href: recover-from-resource-bridge-deletion.md
 - name: Troubleshoot
   items:
-  - name: Troubleshoot Arc agent install failures for Linux VMs
+  - name: VMware-specific agent installation errors for Linux VMs
     href: troubleshoot-guest-management-issues.md
+  - name: Common deployment errors
+    href: ../resource-bridge/troubleshoot-resource-bridge.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+  - name: Agent connection issues
+    href: ../servers/troubleshoot-agent-onboard.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+  - name: VM Extension issues
+    href: ../servers/troubleshoot-vm-extensions.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
 - name: Reference
   items:
   - name: Azure CLI

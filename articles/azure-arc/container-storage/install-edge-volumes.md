@@ -5,6 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.date: 03/12/2025
+# Customer intent: "As a cloud administrator, I want to install and configure the Azure Container Storage extension with Edge Volumes in Kubernetes, so that I can efficiently manage storage solutions across my containerized applications in a hybrid cloud environment."
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes

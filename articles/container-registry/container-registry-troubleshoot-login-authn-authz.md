@@ -2,10 +2,11 @@
 title: Troubleshooting Login, Authentication, and Authorization
 description: Identify symptoms, causes, and resolution of common problems when logging in, authenticating, or authorizing with Azure Container Registry.
 ms.topic: troubleshooting
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to troubleshoot login and authentication issues with my container registry, so that I can ensure seamless access to my images and maintain deployment workflows."
 ---
 
 # Troubleshoot registry login

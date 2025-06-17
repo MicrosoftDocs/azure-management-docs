@@ -87,12 +87,6 @@
         href: conceptual-workload-management.md
       - name: Inner loop developer experience
         href: conceptual-inner-loop-gitops.md
-      - name: GitOps with Flux v1
-        items:
-          - name: Configurations and GitOps (Flux v1)
-            href: conceptual-configurations.md
-          - name: Deploy configurations using GitOps (Flux v1)
-            href: tutorial-use-gitops-connected-cluster.md
   - name: Security
     items:
     - name: Security baseline

@@ -96,5 +96,5 @@ If you create a support request and are using a version that is outside of the s
 ## Next steps
 
 * Walk through our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
-* Already have a Kubernetes cluster connected Azure Arc? [[reate configurations on your Azure Arc-enabled Kubernetes cluster](tutorial-use-gitops-flux2.md).
+* Already have a Kubernetes cluster connected Azure Arc? [Create configurations on your Azure Arc-enabled Kubernetes cluster](tutorial-use-gitops-flux2.md).
 * Learn how to [use Azure Policy to apply configurations at scale](./use-azure-policy.md).

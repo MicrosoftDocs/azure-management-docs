@@ -3,6 +3,8 @@ title: View and filter Azure resource information
 description: Filter information and use different views to better understand your Azure resources.
 ms.topic: how-to
 ms.date: 05/15/2025
+ms.custom:
+  - build-2025
 ---
 
 # View and filter Azure resource information
