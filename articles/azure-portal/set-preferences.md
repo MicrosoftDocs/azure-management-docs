@@ -209,7 +209,7 @@ This pane lets you manage pop-up notifications and session timeouts.
 
 ### Signing out
 
-The inactivity timeout setting helps to protect resources from unauthorized access if you forget to secure your workstation. After you've been idle for a while, you're automatically signed out of your Azure portal session. As an individual, you can change the timeout setting for yourself. If you're an admin, you can set it at the directory level for all your users in the directory.
+The inactivity timeout setting helps to protect resources from unauthorized access if you forget to secure your workstation. Your session will automatically terminate when the device’s active focus is not on the Azure Portal for the period defined in the "Signing out + notifications" setting. As an individual, you can change the timeout setting for yourself. If you're an admin, you can set it at the directory level for all your users in the directory.
 
 ### Change your individual timeout setting (user)
 
