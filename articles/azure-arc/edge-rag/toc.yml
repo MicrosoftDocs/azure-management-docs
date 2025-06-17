@@ -25,7 +25,7 @@ items:
               - name: Choose language model
                 href: prepare-language-model.md
               - name: Create model endpoint (optional)
-                href: prepare-model-endpoint-setup.md
+                href: prepare-model-endpoint.md
               - name: Verify NFS server
                 href: prepare-file-server.md
               - name: Prepare AKS cluster

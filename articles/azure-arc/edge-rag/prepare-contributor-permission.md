@@ -28,4 +28,4 @@ az feature register --namespace Microsoft.KubernetesConfiguration --name extensi
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Choose the right language model for Edge RAG deployment](prepare-choose-language-model.md)
+> [Choose the right language model for Edge RAG deployment](prepare-language-model.md)
