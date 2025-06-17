@@ -73,12 +73,6 @@ For complete release version information, review [Version log](version-log.md#au
 
 For complete release version information, review [Version log](version-log.md#july-9-2024). 
 
-## June 11, 2024
-
-**Image tag**: `v1.30.0_2024-06-11` 
-
-For complete release version information, review [Version log](version-log.md#june-11-2024). 
-
 ## Related content
 
 > **Just want to try things out?**
