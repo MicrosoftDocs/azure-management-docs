@@ -32,11 +32,11 @@ In this tutorial:
 
 ## Install Notation CLI and AKV plugin
 
-1. Install Notation v1.3.0 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
+1. Install Notation v1.3.1 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
 
     ```bash
     # Download, extract and install
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.0/notation_1.3.0_linux_amd64.tar.gz
+    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.1/notation_1.3.0_linux_amd64.tar.gz
     tar xvzf notation.tar.gz
             
     # Copy the Notation binary to the desired bin directory in your $PATH, for example
@@ -282,7 +282,7 @@ The following steps show how to create a self-signed certificate for testing pur
     | Azure CLI credential         | `azurecli`                 |
 
  > [!NOTE]
- > Notation v1.3.0 uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
+ > Since `notation` v1.2.0, `notation` uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
     
 5. View the graph of signed images and associated signatures.
 
