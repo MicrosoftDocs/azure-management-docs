@@ -58,6 +58,8 @@ The custom location, infrastructure and VM resources in Azure are *projections* 
 
 Azure Arc resource bridge enables this projection and acts as the control plane that enables Azure to manage your private cloud infrastructure. If the resource bridge becomes unavailable or unhealthy, Azure may lose visibility or management capabilities of your on-premises resources. However, your on-premises resources, such as VMs running in vCenter, Azure Local or SCVMM, should not be affected and should continue to remain operational. 
 
+Arc Resource Bridge is a Microsoft product that requires ongoing customer maintenance. Customers are responsible for key operational tasks, including updating the private cloud credentials, monitoring the appliance health and ensuring the appliance stays within the supported versions. Microsoft may offer cloud-managed upgrades to assist in maintenance, but this does not replace the need for regular manual upgrades.
+
 ## Benefits of Azure Arc resource bridge
 
 Azure Arc resource bridge enables you to manage on-premises Windows and Linux virtual machines directly from Azure. Depending on the supported private cloud, you may be able to perform the following VM management operations:
