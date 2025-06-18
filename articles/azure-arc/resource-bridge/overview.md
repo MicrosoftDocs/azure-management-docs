@@ -42,7 +42,7 @@ To deliver this functionality, the resource bridge hosts additional Azure Arc co
 
 - **Azure Arc agents** – Power the communication and control layer between Azure and your infrastructure.
 
-:::image type="content" source="media/overview/architecture-overview.png" alt-text="Diagram of Azure Arc resource bridge architecture" border="false" lightbox="media/overview/architecture-overview.png":::
+:::image type="content" source="media/overview/architecture-overview.png" alt-text="Diagram of Azure Arc resource bridge architecture." border="false" lightbox="media/overview/architecture-overview.png":::
 
 [!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
