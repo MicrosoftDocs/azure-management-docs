@@ -65,7 +65,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 1. **This step is only if you are using Arc-enabled AVS. Do not follow this step if you are using Arc-enabled VMware.** Run the following command: `az rest --method delete --url  "https://management.azure.com/subscriptions/ <subId>/resourcegroups/<rgName>/providers/Microsoft.AVS/privateClouds/<pcName>/addons/arc?api-version=2022-05-01"`  
  
 
-1. [Run the onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#run-the-script) again with the `--force` parameter. The script will prompt you to enter the resource bridge configuration settings. [Provide the inputs](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) as prompted. You can re-use the same IPs and other configurations from the old resource bridge because you may have already permitted all necessary network/firewall/proxy requirements. Otherwise, if you use new IPs, you may have to ensure these IPs meet the networking requirements.
+1. [Run the onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#run-the-script) again with the `--force` parameter. The script prompts you to enter the resource bridge configuration settings. [Provide the inputs](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) as prompted. You can re-use the same IPs and other configurations from the old resource bridge because you may have already permitted all necessary network/firewall/proxy requirements. Otherwise, if you use new IPs, you may have to ensure these IPs meet the networking requirements.
 
     ``` powershell-interactive
    ./resource-bridge-onboarding-script.ps1 --force
