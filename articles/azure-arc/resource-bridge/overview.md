@@ -10,7 +10,7 @@ ms.custom:
 
 # What is Azure Arc resource bridge?
 
-Azure Arc resource bridge is a prepackaged virtual appliance that runs as a Kubernetes-based management cluster deployed on your on-premises infrastructure (private cloud). It acts as a core component of the Azure Arc private cloud products and enables Azure-based management of on-premises resources. Azure Arc resource bridge provides a secure conduit between Azure and your on-premises infrastructure. It allows projection of on-premises resources into Azure as native ARM resources, enabling consistent governance, automation, and management with Azure tools. The resource bridge facilitates self-service provisioning and lifecycle management of on-premises Windows and Linux virtual machines directly from Azure. 
+Azure Arc resource bridge is a prepackaged virtual appliance that runs as a Kubernetes-based management cluster deployed on your on-premises infrastructure (private cloud). It acts as a core component of the Azure Arc private cloud products and enables Azure-based management of on-premises resources. Azure Arc resource bridge provides a secure conduit between Azure and your on-premises infrastructure. It allows projection of on-premises resources into Azure as native Azure resources, enabling consistent governance, automation, and management with Azure tools. The resource bridge facilitates self-service provisioning and lifecycle management of on-premises Windows and Linux virtual machines directly from Azure. 
 
 Azure Arc resource bridge integrates with the following private cloud platforms:
 
@@ -20,11 +20,11 @@ Azure Arc resource bridge integrates with the following private cloud platforms:
 
 - System Center Virtual Machine Manager (via [Azure Arc-enabled SCVMM](../system-center-virtual-machine-manager/overview.md))
 
-Once deployed in your private cloud, the resource bridge is granted credentials to the local virtualization infrastructure, allowing it to project on-premises resources into Azure as Arc-enabled Azure Resource Manager (ARM) resources. This projection enables consistent management and automation using Azure tools, such as Azure Policy, and Azure CLI.
+Once deployed in your private cloud, the resource bridge is granted credentials to the local virtualization infrastructure, allowing it to project on-premises resources into Azure as Arc-enabled resources. This projection enables consistent management and automation using Azure tools, such as Azure Policy, and Azure CLI.
 
 Arc resource bridge enables the following hybrid management capabilities:
 
-* **Native Azure experience**: Projects on-premises VMs as Azure Resource Manager (ARM) resources, allowing you to view on-premises VMs in Azure and apply tags, policies, and extensions just like native Azure VMs.
+* **Native Azure experience**: Projects on-premises VMs as Azure resources, allowing you to view on-premises VMs in Azure and apply tags, policies, and extensions just like native Azure VMs.
 
 * **VM self-service from Azure**: Create, manage, and delete VMs on-premises through the Azure portal or CLI.
 
@@ -42,7 +42,7 @@ To deliver this functionality, the resource bridge hosts additional Azure Arc co
 
 - **Azure Arc agents** – Power the communication and control layer between Azure and your infrastructure.
 
-:::image type="content" source="media/overview/architecture-overview.png" alt-text="Azure Arc resource bridge architecture diagram." border="false" lightbox="media/overview/architecture-overview.png":::
+:::image type="content" source="media/overview/architecture-overview.png" alt-text="Diagram of Azure Arc resource bridge architecture" border="false" lightbox="media/overview/architecture-overview.png":::
 
 [!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
@@ -82,19 +82,19 @@ These examples show how Azure Arc resource bridge enables hybrid management of o
 
 ### Apply Azure Policy and other Azure services to on-premises VMware VMs
 
-A customer deploys Arc Resource Bridge onto their on-premises VMware vSphere environment. They sign into the Azure portal, select the VMware VMs that they'd like to connect to Azure and select the option to enable Azure Arc. Once the VMs are Arc-enabled, they can manage these on-premises VMware VMs in Azure Resource Manager (ARM) as Arc-enabled machines. They can enable Azure services, such as Defender for Cloud and Azure Policy to extend security and governance from Azure to their on-premises VMware workloads.
+A customer deploys Arc Resource Bridge onto their on-premises VMware vSphere environment. They sign into the Azure portal, select the VMware VMs that they'd like to connect to Azure and select the option to enable Azure Arc. Once the VMs are Arc-enabled, they can manage these on-premises VMware VMs in Azure Resource Manager as Arc-enabled machines. They can enable Azure services, such as Defender for Cloud and Azure Policy to extend security and governance from Azure to their on-premises VMware workloads.
 
 :::image type="content" source="../media/overview/resource-bridge-vmware.png" alt-text="Diagram showing VMware VMs connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-vmware.png":::
 
 ### Create physical Azure Local VMs on-premises from Azure
 
-A customer has multiple datacenter locations in Canada and New York. They deploy Arc resource bridge in each datacenter and enable Azure Arc VM management of their Azure Local VMs in Azure. They can then sign into Azure Portal and see all their Arc-enabled VMs from the two physical locations in one central view from Azure Portal. From Azure Portal, they can:
+A customer has multiple datacenter locations in Canada and New York. They deploy Arc resource bridge in each datacenter and enable Azure Arc VM management of their Azure Local VMs in Azure. They can then sign into Azure portal and see all their Arc-enabled VMs from the two physical locations in one central view from Azure portal. From Azure portal, they can:
 
 - View and manage all Arc-enabled VMs across both datacenters
 
-- Centrally create new VMs in either datacenter from Azure Portal
+- Centrally create new VMs in either datacenter from Azure portal
 
-Each new VM is provisioned on-premises in the selected location but appears in Azure Portal as an Arc-enabled VM. This setup enables centralized VM management across multiple physical sites all from within Azure.
+Each new VM is provisioned on-premises in the selected location but appears in Azure portal as an Arc-enabled VM. This setup enables centralized VM management across multiple physical sites all from within Azure.
 
 :::image type="content" source="../media/overview/resource-bridge-multi-datacenter.png" alt-text="Diagram showing Azure Local VMs in two datacenters connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-multi-datacenter.png":::
 
