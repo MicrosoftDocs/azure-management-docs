@@ -2,12 +2,13 @@
 title: Recover from accidental deletion of resource bridge VM
 description: Learn how to perform recovery operations for the Azure Arc resource bridge VM in Azure Arc-enabled System Center Virtual Machine Manager disaster scenarios.
 ms.topic: how-to 
-ms.custom:
 ms.date: 02/28/2025
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Recover from accidental deletion of resource bridge virtual machine

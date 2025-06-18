@@ -2,12 +2,12 @@
 title: Tutorial - Deploy Web App from Geo-Replicated Azure Container Registry
 description: Deploy a Linux-based web app to two Azure regions using a container image from a geo-replicated Azure container registry. Part two of a series.
 ms.topic: tutorial
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: mvc, linux-related-content
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to deploy a web app from a geo-replicated container registry so that it is available in multiple regions.
+# Customer intent: "As a developer, I want to deploy a Linux-based web app using a geo-replicated container image so that I can ensure availability and performance across multiple Azure regions."
 ---
 
 # Tutorial: Deploy a web app from a geo-replicated Azure container registry

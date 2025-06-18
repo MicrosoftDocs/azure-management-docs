@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 09/26/2024
+# Customer intent: "As a Kubernetes administrator, I want to configure Local Shared Edge Volumes for my clusters, so that I can provide highly available local storage for applications requiring temporary and persistent data without relying on cloud infrastructure."
 ---
 
 # Local Shared Edge Volumes

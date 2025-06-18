@@ -42,13 +42,14 @@ The following table outlines the first and last AKS release supported by each ve
 
 ### AKS LTS Releases
 
-- Azure Linux 2.0 is the node OS throughout AKS version v1.27 Standard Support and Long-term support. 
-- Azure Linux 2.0 has a lifecycle which ends when AKS version v1.30 ends Standard Support. Therefore, Azure Linux does not support AKS v1.30 LTS enrollment. 
+- Azure Linux 2.0 is the default node OS for AKS versions v1.27 to v1.31 during both Standard and Long-Term Support (LTS). However, Azure Linux 2.0 goes End of Life ends during the LTS period of AKS v1.28–v1.31. To maintain support and security updates, customers running Azure Linux 2.0 on AKS v1.27–v1.31 LTS are requested to migrate to Azure Linux 3.0 by November 2025. Before this date, AKS will offer a feature to facilitate the migration from Azure Linux 2.0 to 3.0 via a node pool update command. For feature availability and updates, see [Github issue](https://github.com/Azure/AKS/issues/4987). After November 2025 Azure Linux 2.0 will no longer receive updates, security patches, or support, which may put your systems at risk.
+- Azure Linux 3.0 is the default node OS for AKS version v1.32 and above during both Standard and Long-Term Support (LTS).
 
 | AKS version |  Azure Linux version during AKS Standard Support | Azure Linux version during AKS Long-Term Support  |
 |---|---|---|
 |1.27 | Azure Linux 2.0   | Azure Linux 2.0 |
-| 1.30 | Azure Linux 2.0   | Azure Linux 3.0 |
+| 1.28 - 1.31 | Azure Linux 2.0   | 	Azure Linux 2.0 (migrate to 3.0 by Nov 2025)   |
+| 1.32+ | Azure Linux 3.0   | Azure Linux 3.0  |
 
 ## Next steps
 

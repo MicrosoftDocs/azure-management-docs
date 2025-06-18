@@ -24,7 +24,7 @@ items:
         href: deploy.md
       - name: Configure endpoint authentication
         href: configure-endpoint-authentication.md
-    - name: Build
+    - name: Configure
       items:
       - name: Overview
         href: build-chat-solution-overview.md

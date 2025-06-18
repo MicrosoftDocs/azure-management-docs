@@ -6,6 +6,16 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/azure-arc/system-center-virtual-machine-manager/install-arc-agents-using-script.md",
+            "redirect_url": "/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/system-center-virtual-machine-manager/perform-vm-ops-on-scvmm-through-azure.md",
+            "redirect_url": "/azure/azure-arc/system-center-virtual-machine-manager/update-configuration-and-resize-vm",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/azure-arc/system-center-virtual-machine-manager/azure-arc-resource-bridge.md",
             "redirect_url": "/azure/azure-arc/system-center-virtual-machine-manager/overview",
             "redirect_document_id": false

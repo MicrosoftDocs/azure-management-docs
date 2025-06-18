@@ -4,6 +4,7 @@ ms.date: 10/08/2024
 ms.topic: concept-article
 ms.custom: devx-track-azurepowershell
 description: Learn about the system requirements to connect Kubernetes clusters to Azure Arc.
+# Customer intent: "As a cloud architect, I want to understand the system requirements for connecting Kubernetes clusters to Azure Arc, so that I can ensure my infrastructure meets the necessary criteria for effective integration and management."
 ---
 
 # Azure Arc-enabled Kubernetes system requirements

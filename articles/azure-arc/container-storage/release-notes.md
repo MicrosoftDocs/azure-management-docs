@@ -6,6 +6,9 @@ ms.author: sergaz
 ms.topic: release-notes
 ms.date: 05/13/2025
 
+# Customer intent: "As a cloud administrator, I want to review the latest release notes for Azure Container Storage enabled by Azure Arc, so that I can understand the new features and improvements to manage container data effectively."
+ms.custom:
+  - build-2025
 ---
 
 # Release notes for Azure Container Storage enabled by Azure Arc

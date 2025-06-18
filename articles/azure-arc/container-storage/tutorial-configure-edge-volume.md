@@ -7,6 +7,7 @@ ms.author: sergaz
 author: asergaz
 
 
+# Customer intent: "As a Kubernetes administrator, I want to configure a Local Shared Edge Volume so that I can manage read-write-many storage effectively for applications running in edge environments."
 ---
 
 # Tutorial: Configure a Local Shared Edge Volume

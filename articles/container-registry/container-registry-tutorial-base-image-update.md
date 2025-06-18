@@ -2,8 +2,8 @@
 title: Tutorial- Trigger Image Build on Base Image Update in Azure
 description: Learn to configure an Azure Container Registry Task to trigger container image builds when a base image is updated.
 ms.topic: tutorial
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: mvc, devx-track-azurecli
 ms.service: azure-container-registry

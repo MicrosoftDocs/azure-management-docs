@@ -7,7 +7,8 @@ ms.topic: how-to #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent: As a system administrator, I want to configure an NFS server for Azure Arc-enabled data services so that I can enable shared storage for high availability and scalability of my applications.
-
+ms.custom:
+  - build-2025
 ---
 
 # Configure an NFS server for Edge RAG Preview, enabled by Azure Arc 

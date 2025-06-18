@@ -3,6 +3,7 @@ title: "Azure Arc-enabled Kubernetes agent overview"
 ms.date: 10/02/2024
 ms.topic: concept-article
 description: "Learn about the Azure Arc agents deployed on the Kubernetes clusters when connecting them to Azure Arc."
+# Customer intent: "As a Kubernetes administrator, I want to deploy Azure Arc agents to my clusters, so that I can manage policy, governance, and security consistently across different environments without needing inbound firewall communication."
 ---
 
 # Azure Arc-enabled Kubernetes agent overview

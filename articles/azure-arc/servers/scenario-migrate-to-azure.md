@@ -52,7 +52,7 @@ The VM migrated to Azure from on-premises doesn't have the Linux or Windows Azur
 
 ## Step 5: Migrate server or machine to Azure
 
-Before proceeding with the migration with Azure Migration, review the [Prepare on-premises machines for migration to Azure](/azure/migrate/prepare-for-migration) article to learn about requirements necessary to use Azure Migrate. To complete the migration to Azure, review the Azure Migrate [migration options](/azure/migrate/prepare-for-migration#next-steps) based on your environment.
+Before proceeding with the migration with Azure Migrate, review the [Prepare on-premises machines for migration to Azure](/azure/migrate/prepare-for-migration) article to learn about requirements necessary to use Azure Migrate. To complete the migration to Azure, review the Azure Migrate [migration options](/azure/migrate/prepare-for-migration#next-steps) based on your environment.
 
 ## Step 6: Deploy Azure VM extensions
 

@@ -24,7 +24,7 @@
   items:
   - name: Enable resources for Azure management
     items:
-    - name: Enable inventory resources
+    - name: Enable SCVMM resources in Azure
       href: enable-scvmm-inventory-resources.md
     - name: Link Arc-enabled server machines to SCVMM
       href: enable-virtual-hardware-scvmm.md
@@ -40,14 +40,18 @@
     items:
     - name: Create a virtual machine
       href: create-virtual-machine.md
-    - name: Perform VM CRUD and power cycle operations
-      href: perform-vm-ops-on-scvmm-through-azure.md
+    - name: Perform VM powercycle operations
+      href: perform-powercycle-operations.md
+    - name: Apply Azure tags on resources
+      href: apply-azure-tags.md
+    - name: Update configuration and resize a VM
+      href: update-configuration-and-resize-vm.md
+    - name: Delete a virtual machine
+      href: delete-virtual-machine.md
   - name: Use Azure services for SCVMM VMs
     items:
     - name: Install Arc agents at scale
       href: enable-guest-management-at-scale.md
-    - name: Install Arc agents using a script
-      href: install-arc-agents-using-script.md
     - name: Manage Arc agent
       href: ../servers/manage-agent.md?toc=/azure/azure-arc/system-center-virtual-machine-manager/toc.json
     - name: VM extensions management

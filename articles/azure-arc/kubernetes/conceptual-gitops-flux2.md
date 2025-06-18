@@ -1,9 +1,10 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 04/22/2025
+ms.date: 06/16/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, references-regions
+# Customer intent: "As a DevOps engineer, I want to implement GitOps with Flux for managing application deployments on Azure Kubernetes clusters, so that I can ensure consistent configurations, streamline operations, and enhance visibility into the status of applications across multiple environments."
 ---
 
 # Application deployments with GitOps (Flux v2) for AKS and Azure Arc-enabled Kubernetes
@@ -98,11 +99,6 @@ You can monitor Flux configuration status and compliance in the Azure portal, or
 ### Version support
 
 The most recent version of the Flux v2 extension (`microsoft.flux`) and the two previous versions (N-2) are supported. We generally recommend that you use the [most recent version](extensions-release.md#flux-gitops) of the extension. Starting with `microsoft.flux` version 1.7.0, ARM64-based clusters are supported.
-
-> [!NOTE]
-> If you have been using Flux v1, we recommend [migrating to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible.
->
-> Support for Flux v1-based cluster configuration resources created prior to January 1, 2024 will end on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
 
 ## GitOps with private link
 
@@ -233,49 +229,6 @@ az k8s-extension create --extension-type microsoft.flux --configuration-settings
 ```azurecli
 az k8s-extension update --configuration-settings multiTenancy.enforce=false -c CLUSTER_NAME -g RESOURCE_GROUP -n flux -t <managedClusters or connectedClusters>
 ```
-
-## Migrate from Flux v1
-
-If you're still using Flux v1, we recommend migrating to Flux v2 as soon as possible.
-
-To migrate to using Flux v2 in the same clusters where you've been using Flux v1, you must first delete all Flux v1 `sourceControlConfigurations` from the clusters. Because Flux v2 has a fundamentally different architecture, the `microsoft.flux` cluster extension won't install if there are Flux v1 `sourceControlConfigurations` resources in a cluster. The process of removing Flux v1 configurations and deploying Flux v2 configurations shouldn't take more than 30 minutes.
-
-Removing Flux v1 `sourceControlConfigurations` doesn't stop any applications that are running on the clusters. However, during the period when Flux v1 configuration is removed and Flux v2 extension isn't yet fully deployed:
-
-* If there are new changes in the application manifests stored in a Git repository, these changes aren't pulled during the migration, and the application version deployed on the cluster will be stale.
-* If there are unintended changes in the cluster state and it deviates from the desired state specified in source Git repository, the cluster won't be able to self-heal.
-
-We recommend testing your migration scenario in a development environment before migrating your production environment.
-
-### View and delete Flux v1 configurations
-
-Use these Azure CLI commands to find and then delete existing `sourceControlConfigurations` in a cluster:
-
-```azurecli
-az k8s-configuration flux list --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
-az k8s-configuration flux delete --name <configuration name> --cluster-name <cluster name> --cluster-type <connectedClusters or managedClusters> --resource-group <resource group name>
-```
-
-You can also find and delete existing GitOps configurations for a cluster in the Azure portal. To do so, navigate to the cluster where the configuration was created and select **GitOps** in the left pane. Select the configuration, then select **Delete**.
-
-### Deploy Flux v2 configurations
-
-Use the Azure portal or Azure CLI to [apply Flux v2 configurations](tutorial-use-gitops-flux2.md#apply-a-flux-configuration) to your clusters.
-
-### Flux v1 retirement information
-
-The open-source project of Flux v1 has been archived, and [feature development has stopped indefinitely](https://fluxcd.io/docs/migration/).
-
-Flux v2 was launched as the upgraded open-source project of Flux. It has a new architecture and supports more GitOps use cases. Microsoft launched a version of an extension using Flux v2 in May 2022. Since then, customers have been advised to move to Flux v2 within three years, as support for using Flux v1 is scheduled to end in May 2025.
-
-Key new features introduced in the GitOps extension for Flux v2:
-
-* Flux v1 is a monolithic do-it-all operator. Flux v2 separates the functionalities into [specialized controllers](#controllers) (Source controller, Kustomize controller, Helm controller, and Notification controller).
-* Supports synchronization with multiple source repositories.
-* Supports [multi-tenancy](#multi-tenancy), like applying each source repository with its own set of permissions.
-* Provides operational insights through health checks, events and alerts.
-* Supports Git branches, pinning on commits and tags, and following SemVer tag ranges.
-* Credentials configuration per GitRepository resource: SSH private key, HTTP/S username/password/token, and OpenPGP public keys.
 
 ## Next steps
 
