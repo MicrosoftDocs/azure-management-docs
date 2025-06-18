@@ -29,7 +29,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 
  following these steps:
 
-1. Go to Azure Portal and find and copy the following properties from the resources related to your resource bridge: 
+1. In the Azure portal, find and copy the following properties from the resources related to your resource bridge: 
 
 - Arc resource bridge: Azure region, subscription ID, ARM resource ID, resource group name and Arc resource bridge name
 
