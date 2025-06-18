@@ -4,6 +4,7 @@ ms.date: 01/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Control agent upgrades for Azure Arc-enabled Kubernetes"
+# Customer intent: "As a Kubernetes administrator, I want to manage the upgrade settings for Azure Arc-enabled Kubernetes agents, so that I can control whether my clusters are running the latest compatible versions."
 ---
 
 # Upgrade Azure Arc-enabled Kubernetes agents
@@ -95,5 +96,5 @@ If you create a support request and are using a version that is outside of the s
 ## Next steps
 
 * Walk through our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
-* Already have a Kubernetes cluster connected Azure Arc? [[reate configurations on your Azure Arc-enabled Kubernetes cluster](tutorial-use-gitops-flux2.md).
+* Already have a Kubernetes cluster connected Azure Arc? [Create configurations on your Azure Arc-enabled Kubernetes cluster](tutorial-use-gitops-flux2.md).
 * Learn how to [use Azure Policy to apply configurations at scale](./use-azure-policy.md).

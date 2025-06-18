@@ -4,7 +4,7 @@ description: "Learn how to complete deployment prerequisites for Edge RAG to ens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/07/2025
+ms.date: 06/06/2025
 ai-usage: ai-assisted
 
 #CustomerIntent: As a cloud administrator or AI application developer, I want to complete the deployment prerequisites for Edge RAG so that I can ensure a successful setup and configuration of the environment for AI-powered applications.
@@ -36,7 +36,7 @@ az feature register --namespace Microsoft.KubernetesConfiguration --name extensi
 
 ## Step 2: Choose the right language model
 
-Decide which language model your organization wants to deploy. Edge RAG gives you two options: 
+Decide which language model your organization wants to deploy. You can use your own language model or use the Microsoft provided language models: 
 
 - [Microsoft Phi 3.5 Mini](https://huggingface.co/microsoft/Phi-3.5-mini-instruct) and
 - [Mistral 7B](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2). 
@@ -48,6 +48,8 @@ You can refer to some of these resources from Microsoft to choose the right mode
 - Blog: [How to Choose the Right Models for Your Apps | Azure AI](https://techcommunity.microsoft.com/blog/microsoftmechanicsblog/how-to-choose-the-right-models-for-your-apps--azure-ai/4271216)
 - Video: [How to Choose the Right Models for Your Apps | Azure AI - YouTube](https://www.youtube.com/watch?app=desktop&v=sx_uGylH8eg&t=53s)
 - [Azure AI Foundry](/azure/ai-studio/concepts/model-benchmarks) also provides tooling such as model benchmarks to choose the right model.
+
+Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI Inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
 
 ## Step 3: Verify NFS server is configured and reachable
 

@@ -5,6 +5,7 @@ ms.topic: quickstart
 ms.date: 10/08/2024
 ms.custom: template-quickstart, mode-other, devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: azurecli
+# Customer intent: As a Kubernetes operator, I want to connect my existing Kubernetes cluster to Azure Arc, so that I can manage and monitor it using Azure's capabilities and tools.
 ---
 
 # Quickstart: Connect an existing Kubernetes cluster to Azure Arc

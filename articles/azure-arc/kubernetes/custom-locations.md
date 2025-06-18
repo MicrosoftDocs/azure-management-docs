@@ -4,6 +4,7 @@ ms.date: 03/03/2025
 ms.topic: how-to
 ms.custom: references_regions, devx-track-azurecli
 description: "Use custom locations to deploy Azure PaaS services on Azure Arc-enabled Kubernetes clusters"
+# Customer intent: As a cloud architect, I want to configure custom locations on Azure Arc-enabled Kubernetes, so that I can deploy Azure PaaS services effectively within my Kubernetes environment while managing access controls and resource allocation efficiently.
 ---
 
 # Create and manage custom locations on Azure Arc-enabled Kubernetes

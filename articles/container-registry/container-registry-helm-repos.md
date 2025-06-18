@@ -7,6 +7,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 03/31/2025
+# Customer intent: "As a Kubernetes developer, I want to store and manage my Helm charts as OCI artifacts in an Azure Container Registry, so that I can leverage the latest Helm 3 features and ensure compatibility with future updates."
 ---
 
 # Push and pull Helm charts to an Azure container registry

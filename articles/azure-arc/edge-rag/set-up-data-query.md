@@ -4,7 +4,7 @@ description: "Learn how to set up your data query with Edge RAG to configure mod
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/05/2025
+ms.date: 06/06/2025
 
 #CustomerIntent: As a developer or data scientist, I want to learn how to use prompt engineering with Azure AI Search so that I can create more effective and accurate AI-driven search experiences for my applications.
 ms.custom:
@@ -84,6 +84,7 @@ Use the chat response details to analyze and fine-tune your model and search par
 
    :::image type="content" source="media/set-up-data-query/view-details.png" alt-text="Screenshot that shows the details of the chat response including the search type, parameters, and more." lightbox="media/set-up-data-query/view-details.png":::
 
+1. To analyze the **Details**, select **Copy** to paste a JSON version of the text into a text editor.
 1. Tune the inferencing parameters to get the type of responses that you want for your ingested data.
 
 ## Get the API endpoint

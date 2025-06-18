@@ -3,6 +3,7 @@ title: "What's new with Azure Arc-enabled Kubernetes"
 ms.date: 05/29/2025
 ms.topic: concept-article
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
+# Customer intent: "As a Kubernetes administrator, I want to stay informed about the latest updates and enhancements to Azure Arc-enabled Kubernetes agents, so that I can ensure my cluster is secure and operates with the most reliable version."
 ---
 
 # What's new with Azure Arc-enabled Kubernetes

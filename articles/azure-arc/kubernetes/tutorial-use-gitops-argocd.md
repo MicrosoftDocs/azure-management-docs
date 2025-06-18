@@ -8,6 +8,7 @@ ms.custom:
   - devx-track-azurecli
   - references_regions
   - build-2025
+# Customer intent: As a DevOps engineer, I want to deploy applications using GitOps with ArgoCD on Azure Arc or AKS clusters, so that I can manage configurations and automate application deployments efficiently.
 ---
 
 # Tutorial: Deploy applications using GitOps with ArgoCD
@@ -145,7 +146,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --version 0.0.7-preview \
 --config deployWithHightAvailability=false \
 --config namespaceInstall=false \
-–-config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
+--config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
 
 If you want to limit ArgoCD access to a specific namespace, use the `--config namespaceInstall=true` along with `--target-namespace <namespace>` parameters. This installation command creates a new `<namespace>` namespace and installs the ArgoCD components in the `<namespace>`. The installation command also enables the ability to install multiple instances of ArgoCD in the same cluster. ArgoCD application definitions in this configuration only function in the `<namespace>` namespace.

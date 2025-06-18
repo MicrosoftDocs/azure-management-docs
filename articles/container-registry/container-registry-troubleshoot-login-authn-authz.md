@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to troubleshoot login and authentication issues with my container registry, so that I can ensure seamless access to my images and maintain deployment workflows."
 ---
 
 # Troubleshoot registry login

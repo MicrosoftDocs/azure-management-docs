@@ -25,9 +25,7 @@ IT developers can use the Azure portal to monitor their solutions. In the Azure 
 
 ## Open the Azure portal
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-1. In the search box at the top of the page, type **Azure Arc** and select **Azure Arc** from the list of results.
-1. In the left-side menu of the Azure Arc page, open the **Management** section and select **Workload Orchestration (preview)**.
+1. In Azure portal, go to the [**workload orchestration** page of Azure Arc](https://aka.ms/configManager).
 1. The workload orchestration page has two tabs: **Deployment alerts** and **All resources**. Deployment alerts tab provides the list of issues to be debugged. All resources tab lists all the sites, K8 clusters and deployment targets.
 
     :::image type="content" source="./media/azure-portal-1.png" alt-text="Screenshot of the Azure portal showing the Workload Orchestration menu under management in Azure Arc." lightbox="./media/azure-portal-1.png":::

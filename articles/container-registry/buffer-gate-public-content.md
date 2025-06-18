@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 02/28/2025
+# Customer intent: As a cloud engineer, I want to manage dependencies on public container images in a private registry, so that I can mitigate risks associated with public content and ensure reliable and secure access to necessary artifacts for my deployment workflows.
 ---
 
 # Manage public content with Azure Container Registry

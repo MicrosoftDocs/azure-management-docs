@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: As a cloud administrator, I want to troubleshoot network issues with Azure Container Registry, so that I can ensure seamless access and operations for pushing and pulling images in a secure environment.
 ---
 
 # Troubleshoot network issues with registry

@@ -8,6 +8,7 @@ ms.date: 05/01/2025
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
+# Customer intent: "As a container registry administrator, I want to create and manage non-Microsoft tokens and scope maps for repository permissions, so that I can provide secure, fine-grained access to specific repositories without relying on Microsoft Entra."
 ---
 
 # Non-Microsoft Entra token-based repository permissions in Azure Container Registry

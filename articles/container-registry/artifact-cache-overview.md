@@ -8,7 +8,7 @@ ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli
 ms.date: 05/12/2025
 ai-usage: ai-assisted
-#customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
+# Customer intent: As a developer, I want to implement artifact caching in my container registry, so that I can optimize image pulls and improve the performance of my containerized applications.
 ---
 
 # Optimize image pulls with artifact cache in Azure Container Registry

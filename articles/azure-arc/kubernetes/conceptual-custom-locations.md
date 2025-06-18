@@ -3,6 +3,7 @@ title: "Custom locations with Azure Arc-enabled Kubernetes"
 ms.date: 04/21/2025
 ms.topic: concept-article
 description: "This article provides a conceptual overview of the custom locations capability of Azure Arc-enabled Kubernetes."
+# Customer intent: As a tenant administrator, I want to configure custom locations on my Azure Arc-enabled Kubernetes clusters, so that I can deploy Azure services instances efficiently using my organization’s private compute resources.
 ---
 
 # Custom locations with Azure Arc-enabled Kubernetes
