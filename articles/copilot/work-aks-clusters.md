@@ -166,7 +166,7 @@ The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagn
 
 #### Periscope example
 
-You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
+You can say **"Help me deploy periscope to my AKS cluster."** If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
 
 :::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
 
