@@ -7,7 +7,7 @@ ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to manage public registry content so that I can ensure security and functionality.
+# Customer intent: As a developer, I want to automate the management of public container images in my private registry, so that I can ensure security, maintain functionality, and streamline updates in my application workflows.
 ---
 
 # How to consume and maintain public content with Azure Container Registry Tasks

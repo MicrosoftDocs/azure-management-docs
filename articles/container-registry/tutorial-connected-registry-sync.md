@@ -7,7 +7,7 @@ ms.service: azure-container-registry
 ms.topic: tutorial  #Don't change.
 ms.date: 06/17/2024
 
-#customer intent: Learn how to sync the connected registry extension using a synchronization schedule and window.
+# Customer intent: As a cloud administrator, I want to configure synchronization schedules for a connected registry, so that I can automate updates to align with my operational requirements and optimize resource utilization.
 ---
 
 # Configuring the connected registry sync schedule and window
