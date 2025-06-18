@@ -186,7 +186,7 @@ The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic u
 
 #### CanIPull example
 
-When you say **"Help me deploy CanIPull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+When you say **"Help me deploy CanIPull to my AKS cluster"**, Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
 
