@@ -87,7 +87,7 @@ Here are a few examples of the kinds of prompts you can use to manage the IP add
 
 ## Manage cluster backups
 
-Microsoft Copilot in Azure can help streamlines the process of installing the Azure [Backup extension](/azure/backup/azure-kubernetes-service-backup-overview) to an AKS cluster. On clusters where the extension is already installed, it helps you [configure backups](/azure/backup/azure-kubernetes-service-cluster-backup#configure-backups) and view existing backups.
+Microsoft Copilot in Azure can help streamlines the process of installing the Azure [Backup extension](/azure/backup/azure-kubernetes-service-backup-overview) to an AKS cluster. On clusters where the extension is already installed, it helps you [configure backups](/azure/backup/azure-kubernetes-service-cluster-backup) and view existing backups.
 
 When you ask for help with backups, you're prompted to select a cluster. From there, Microsoft Copilot in Azure prompts you to open the **Backup** pane for that cluster, where you can proceed with installing the extension, configuring backups, or viewing existing backups.
 
