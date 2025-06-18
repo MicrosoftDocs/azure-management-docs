@@ -7,6 +7,7 @@ ms.date: 02/06/2024
 ms.topic: reference
 ms.service: azure-container-registry
 ms.custom: subject-policy-reference
+# Customer intent: "As a cloud administrator, I want to access built-in policy definitions for Azure Container Registry, so that I can effectively manage and secure Azure resources in my organization."
 ---
 # Azure Policy built-in definitions for Azure Container Registry
 

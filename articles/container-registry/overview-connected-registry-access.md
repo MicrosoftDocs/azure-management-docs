@@ -6,7 +6,7 @@ ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 05/20/2025
-#customer intent: As a user, I want to understand access control for connected registries so that I can manage them effectively.
+# Customer intent: As a developer managing container registries, I want to implement token-based authentication for connected registries so that I can securely control access and synchronization of image artifacts.
 ---
 
 # Understand access to a connected registry

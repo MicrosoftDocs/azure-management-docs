@@ -6,6 +6,7 @@ ms.service: azure-container-registry
 ms.topic: troubleshooting-general #Don't change.
 ms.date: 10/31/2023
 
+# Customer intent: "As a cloud administrator, I want to troubleshoot artifact streaming issues in the Azure Container Registry, so that I can effectively diagnose and resolve problems related to image retrieval and deployment in my AKS environment."
 ---
 
 # Troubleshoot Artifact streaming

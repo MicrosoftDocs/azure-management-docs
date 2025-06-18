@@ -7,6 +7,7 @@ ms.topic: reference
 author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
+# Customer intent: As a cloud operations manager, I want to access monitoring metrics and logs for Azure Container Registry, so that I can gain insights into performance and operational activities to ensure efficient management and troubleshooting of container resources.
 ---
 
 # Azure Container Registry monitoring data reference

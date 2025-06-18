@@ -8,7 +8,7 @@ ms.topic: concept-article #Don't change
 ms.custom: devx-track-azurecli
 ms.date: 04/18/2025
 ai-usage: ai-assisted
-#customer intent: As a developer, I want use wildcards with Artifact cache so that I can efficiently cache container images in Azure Container Registry.
+# Customer intent: As a developer, I want to configure wildcard rules for artifact caching in a container registry, so that I can efficiently manage and retrieve container images across multiple repositories.
 ---
 
 # Wildcard support for artifact cache in Azure Container Registry

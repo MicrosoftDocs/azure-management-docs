@@ -7,6 +7,7 @@ ms.topic: concept-article
 author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to set up monitoring and alerting for Azure Container Registry, so that I can ensure optimal usage and quickly respond to any resource-related issues or anomalies.
 ---
 
 # Monitor Azure Container Registry
