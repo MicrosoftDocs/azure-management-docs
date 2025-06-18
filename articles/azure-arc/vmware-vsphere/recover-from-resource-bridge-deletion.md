@@ -37,7 +37,7 @@ In such disaster scenarios, you can restore operations by deploying a new resour
 
 - Custom location: resource ID, subscription ID, resource group name, custom location name
 
-1. Go to Azure Portal, search for your resource bridge VM and delete the resource bridge VM from Azure Portal. This is a necessary step as part of the disaster recovery process because we will deploy a new resource bridge with the same properties to replace this one. All the other related components, like custom location, vCenter resource, in Azure Portal and any other Azure resources should remain in Azure Portal - you will re-connect the new resource bridge with these already existing resources. 
+1. In the Azure portal, search for your resource bridge VM and delete the resource bridge VM from the Azure portal. This is a necessary step as part of the disaster recovery process, because you'll deploy a new resource bridge with the same properties to replace this one. All the other related components, like custom location, vCenter resource, or any other Azure resources should remain in the Azure portal - you'll reconnect the new resource bridge with these already existing resources. 
 
 1. Go to your vCenter console and delete the Azure Arc resource bridge VM from the vCenter if it exists. The VM will be re-created in a later step as part of the disaster recovery.
 
