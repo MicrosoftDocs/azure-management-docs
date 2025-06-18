@@ -6,6 +6,8 @@
     href: overview.md
   - name: Quickstart
     href: quickstart.md
+  - name: What's new
+    href: whats-new.md
 - name: How-to guides 
   items:
   - name: Create, use, delete, and modify an Arc site
