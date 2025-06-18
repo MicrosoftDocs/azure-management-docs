@@ -17,7 +17,7 @@ In this article, you learn how to restore the Azure Arc resource bridge connecti
 
 ## Recover the Arc resource bridge
 
-The connection between on-premises infrastructure and Azure can be lost and any operations performed through Azure Arc can fail in case of the following disaster scenarios:
+The connection between on-premises infrastructure and Azure can be lost and any operations performed through Azure Arc can fail in the following disaster scenarios:
 
 - Accidental deletion of the VM
 - VM connection failure (for example, due to changes in the network configuration of the infrastructure)
