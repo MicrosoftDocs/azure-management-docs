@@ -1,5 +1,5 @@
 ---
-title:  Enable VM CRUD and power cycle operational ability in an SCVMM managed virtual machine with Arc agent installed
+title:  Enable VM CRUD and power cycle operational ability in an SCVMM managed Arc-enabled server machine
 description: This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 ms.topic: how-to 
 ms.date: 06/18/2025
@@ -11,13 +11,13 @@ ms.custom:
   - build-2025
 ---
 
-# Enable VM CRUD and power cycle operational ability in an SCVMM managed virtual machine with Arc agent installed
+# Enable VM CRUD and power cycle operational ability in an SCVMM managed Arc-enabled server machine
 
 This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 
 >[!IMPORTANT]
 >- This article is applicable only if you've installed Arc agents directly in SCVMM managed virtual machines **before** onboarding to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge. 
->- If you installed Arc agents directly in SCVMM managed virtual machines, **after** you onboard to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge, refer to this [troubleshooting guide](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/1_Unifed%20resource%20model.md) to link the machines to Azure Arc-enabled SCVMM and get the full range of Azure Arc's VM management capabilities. 
+>- If you installed Arc agents directly in SCVMM managed virtual machines, **after** onboarding to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge, refer to this [troubleshooting guide](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/1_Unifed%20resource%20model.md) to link the machines to Azure Arc-enabled SCVMM and get the full range of Azure Arc's VM management capabilities. 
 
 ## Prerequisites
 
@@ -32,7 +32,7 @@ To enable the virtual machine lifecycle and power cycle management ability and s
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to the Virtual machines inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM** status under virtual hardware management.
+1. Navigate to the **Virtual machines** inventory page of your SCVMM management servers. The virtual machines that have Arc agent installed via the Arc-enabled Servers route will have **Link to SCVMM** status under virtual hardware management.
 
 
      :::image type="content" source="media/enable-virtual-hardware-scvmm/virtual-machines.png" alt-text="Screenshot of Virtual machines screen." lightbox="media/enable-virtual-hardware-scvmm/virtual-machines.png":::
