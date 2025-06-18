@@ -1,6 +1,6 @@
 ---
-title:  Enable VM CRUD and powercycle operational ability in an SCVMM managed virtual machine with Arc agent installed
-description: This article describes how to enable VM CRUD and powercycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
+title:  Enable VM CRUD and power cycle operational ability in an SCVMM managed virtual machine with Arc agent installed
+description: This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 ms.topic: how-to 
 ms.date: 06/18/2025
 ms.service: azure-arc
@@ -11,24 +11,24 @@ ms.custom:
   - build-2025
 ---
 
-# Enable VM CRUD and powercycle operational ability in an SCVMM managed virtual machine with Arc agent installed
+# Enable VM CRUD and power cycle operational ability in an SCVMM managed virtual machine with Arc agent installed
 
-This article describes how to enable VM CRUD and powercycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
+This article describes how to enable VM CRUD and power cycle operational ability on an SCVMM managed VM that has Arc agents installed via the Azure Arc-enabled Servers route.
 
 >[!IMPORTANT]
 >- This article is applicable only if you've installed Arc agents directly in SCVMM managed virtual machines **before** onboarding to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge. 
->- If you have installed Arc agents directly in SCVMM managed virtual machines, **after** you onboard to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge, refer to this [troubleshooting guide](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/1_Unifed%20resource%20model.md) to link the machines to Azure Arc-enabled SCVMM and get the full range of Azure Arc's VM management capabilities. 
+>- If you installed Arc agents directly in SCVMM managed virtual machines, **after** you onboard to Azure Arc-enabled SCVMM by deploying Azure Arc resource bridge, refer to this [troubleshooting guide](https://github.com/microsoft/AzureArcSCVMMTSG/blob/main/1_Unifed%20resource%20model.md) to link the machines to Azure Arc-enabled SCVMM and get the full range of Azure Arc's VM management capabilities. 
 
 ## Prerequisites
 
-Before you enable VM CRUD and powercycle management on an SCVMM managed VM, ensure you meet these prerequisites:
+Before you enable VM CRUD and power cycle management on an SCVMM managed VM, ensure you meet these prerequisites:
 
 - An Azure subscription and resource group where you have *Arc SCVMM VM Administrator* role. 
 - Your SCVMM management server instance must be [onboarded](quickstart-connect-system-center-virtual-machine-manager-to-arc.md) to Azure Arc. The onboarded SCVMM management server must be in a *Connected* state and its associated Azure Arc resource bridge must be in a *Running* state. 
 
 ## Link Azure Arc-enabled server machines to Azure Arc-enabled SCVMM 
 
-To enable the virtual machine lifecycle and powercycle management ability and self-service access, follow these steps:
+To enable the virtual machine lifecycle and power cycle management ability and self-service access, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/).
 
@@ -44,7 +44,7 @@ To enable the virtual machine lifecycle and powercycle management ability and se
 
 1. Choose all the machines that need to be enabled in Azure, and select **Link** to link the machines to the Azure Arc-enabled SCVMM management server.
 
-1. After you perform the **Link to SCVMM** operation, the **virtual hardware management** status reflects as **Enabled** for all the VMs, and you can perform lifecycle and powercycle operations on them. 
+1. After you perform the **Link to SCVMM** operation, the **virtual hardware management** status reflects as **Enabled** for all the VMs, and you can perform lifecycle and power cycle operations on them. 
 
 ## Next step
 
