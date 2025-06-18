@@ -87,9 +87,7 @@ To manually upgrade your resource bridge, use the following command:
 az arcappliance upgrade <private cloud> --config-file <file path to ARBname-appliance.yaml> 
 ```
 
-For example, to upgrade a resource bridge on VMware, run: `az arcappliance upgrade vmware --config-file c:\contosoARB01-appliance.yaml`
-
-To upgrade a resource bridge on SCVMM, run: `az arcappliance upgrade scvmm --config-file c:\contosoARB01-appliance.yaml`
+For example, to upgrade a resource bridge on VMware, run: `az arcappliance upgrade vmware --config-file c:\contosoARB01-appliance.yaml`. To upgrade a resource bridge on SCVMM, run: `az arcappliance upgrade scvmm --config-file c:\contosoARB01-appliance.yaml`
 
 To upgrade a resource bridge on Azure Local, transition to 23H2 and use the built-in upgrade management tool. For more information, see [About updates for Azure Local, version 23H2](/azure/azure-local/update/about-updates-23h2).
 
@@ -107,7 +105,7 @@ If a resource bridge isn't upgraded to one of the supported versions (n-3), it f
 
 ## Notification and upgrade availability
 
-If your Arc resource bridge is at version n-3, you might receive an email notification letting you know that your resource bridge will be out of support once the next version is released. If you receive this notification, upgrade the resource bridge as soon as possible to allow debug time for any issues with manual upgrade, or submit a support ticket if cloud-managed upgrade was unable to upgrade your resource bridge.
+If your Arc resource bridge is at version n-3, you might receive an email notification letting you know that your resource bridge will be out of support once the next version is released. If you receive this notification, upgrade the resource bridge as soon as possible to allow debug time for any issues with manual upgrade.
 
 To check if your Arc resource bridge has an upgrade available, run the command:
 
@@ -115,7 +113,7 @@ To check if your Arc resource bridge has an upgrade available, run the command:
 az arcappliance get-upgrades --resource-group [REQUIRED] --name [REQUIRED] 
 ```
 
-To see the current version of an Arc resource bridge appliance, run `az arcappliance show` or check the Azure resource of your Arc resource bridge.
+To see the current version of an Arc resource bridge appliance, check the Azure resource of your Arc resource bridge.
 
 ## Next steps
 
