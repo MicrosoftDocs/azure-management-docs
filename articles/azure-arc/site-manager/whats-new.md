@@ -13,8 +13,8 @@ ms.date: 06/15/2025
 ms.subservice: azure-arc-site-manager
 ---
 
-
-# What's new with Site Manager
+
+# What's new with Site Manager
 
 Azure Arc Site Manager is continually evolving to enhance performance and reliability for hybrid management scenarios. This article outlines what’s new, improved, or changed in these updates.
 
