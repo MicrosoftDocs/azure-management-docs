@@ -82,7 +82,7 @@ These examples show how Azure Arc resource bridge enables hybrid management of o
 
 ### Apply Azure Policy and other Azure services to on-premises VMware VMs
 
-A customer deploys Arc Resource Bridge onto their on-premises VMware vSphere environment. They sign into the Azure portal, select the VMware VMs that they'd like to connect to Azure and select the option to enable Azure Arc. Once the VMs are Arc-enabled, they can manage these on-premises VMware VMs in Azure Resource Manager as Arc-enabled machines. They can enable Azure services, such as Defender for Cloud and Azure Policy to extend security and governance from Azure to their on-premises VMware workloads.
+A customer deploys Arc resource bridge onto their on-premises VMware vSphere environment. They sign into the Azure portal, select the VMware VMs that they'd like to connect to Azure and select the option to enable Azure Arc. Once the VMs are Arc-enabled, they can manage these on-premises VMware VMs in Azure Resource Manager as Arc-enabled machines. They can enable Azure services, such as Defender for Cloud and Azure Policy to extend security and governance from Azure to their on-premises VMware workloads.
 
 :::image type="content" source="../media/overview/resource-bridge-vmware.png" alt-text="Diagram showing VMware VMs connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-vmware.png":::
 
@@ -102,7 +102,7 @@ Each new VM is provisioned on-premises in the selected location but appears in A
 
 ### Supported regions
 
-In order to use Arc resource bridge in a region, Arc resource bridge and the Arc-enabled private cloud must be supported in the region. For example, to use Arc resource bridge with Azure Local in East US, Arc resource bridge and the Arc VM management feature for Azure Local must be supported in East US. To confirm feature availability across regions for each private cloud provider, review their deployment guide and other documentation. There could be instances where Arc resource bridge is available in a region where the private cloud feature isn't yet available.
+To use an Azure Arc-enabled private cloud in a specific region, both Azure Arc resource bridge and the Arc-enabled private cloud must be supported in that region. For example, to use Azure-Arc enabled VMware in East US, both Arc resource bridge and Arc-enabled VMware must be available in East US. To confirm region availability for an Arc-enabled private cloud, review the corresponding onboarding documentation. There could be instances where Arc resource bridge is available in a region but the private cloud isn't yet available.
 
 Arc resource bridge supports the following Azure regions:
 
@@ -132,11 +132,11 @@ Arc resource bridge supports the following Azure regions:
 
 ### Regional resiliency
 
-While Azure has redundancy features at every level of failure, if a service impacting event occurs, Azure Arc resource bridge currently doesn't support cross-region failover or other resiliency capabilities. If the service becomes unavailable, on-premises VMs continue to operate unaffected. Management from Azure is unavailable during that service outage.
+While Azure includes redundancy across all levels of its infrastructure, the Azure Arc resource bridge does not currently support cross-region failover or other resiliency capabilities. If a service-impacting event occurs and the resource bridge becomes unavailable, your on-premises VMs will continue to run without interruption. However, management capabilities from Azure will be temporarily unavailable until the service is restored.
 
 ### Private cloud environments
 
-The following private cloud environments and their versions are officially supported for Arc resource bridge:
+The following private clouds and their versions are officially supported for Arc resource bridge:
 
 * VMware vSphere version 7.0, 8.0
 * Azure Local
