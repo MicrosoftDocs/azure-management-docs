@@ -25,7 +25,7 @@ The connection between on-premises infrastructure and Azure can be lost and any 
 
 - Expiration of the VM certs due to lack of upgrades
 
-In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same properties as the current resource bridge. This disaster recovery procedure requires deletion of the existing Arc resource bridge VM in vCenter and the resource bridge Azure resource in Azure Portal. Then you can modify the onboarding script to be used for disaster recovery and attempt the recovery. The recovery will create a new resource bridge Azure resource with the same ARM ID, vCenter resource and custom location.
+In such disaster scenarios, you can restore operations by deploying a new resource bridge with the same properties as the current resource bridge. This disaster recovery procedure requires deletion of the existing Arc resource bridge VM in vCenter and the resource bridge Azure resource in Azure Portal. Then you can modify the onboarding script to be used for disaster recovery and attempt the recovery. The recovery creates a new resource bridge Azure resource with the same ARM ID, vCenter resource and custom location.
 
  following these steps:
 
