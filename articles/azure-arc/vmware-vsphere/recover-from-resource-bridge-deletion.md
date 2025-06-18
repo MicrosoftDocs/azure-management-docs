@@ -31,7 +31,7 @@ To deploy the new resource bridge, follow these steps:
 
 1. In the Azure portal, find and copy the following properties from the resources related to your resource bridge: 
 
-- Arc resource bridge: Azure region, subscription ID, ARM resource ID, resource group name and Arc resource bridge name
+- Arc resource bridge: Azure region, subscription ID, ARM resource ID, resource group name, Arc resource bridge name
 
 - vCenter Azure resource: resource ID, subscription ID, resource group name, name of vCenter resource in Azure
 
