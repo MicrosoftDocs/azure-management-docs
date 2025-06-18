@@ -1,6 +1,6 @@
 ---
 title: "Version-managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 06/17/2025
+ms.date: 06/19/2025
 ms.topic: overview
 description: "Version-managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping your extensions work better together."
 ms.custom:
@@ -27,11 +27,15 @@ Version-managed extensions (preview) for Arc-enabled Kubernetes is currently ava
 
 To use version-managed extensions, an Arc-enabled Kubernetes cluster needs version 1.24.4 or later of the [Azure Arc-enabled Kubernetes agents](conceptual-agent-overview.md), To verify that your agent version is 1.24.4 or later, run the following command:
 
-`az connectedk8s show  -g $RESOURCE_GROUP  -n $CLUSTER_NAME --query '{version:agentVersion}'`
+```azurecli
+az connectedk8s show  -g $RESOURCE_GROUP  -n $CLUSTER_NAME --query '{version:agentVersion}'
+```
 
 If the agent version is lower, [upgrade your agents manually](agent-upgrade.md):
 
-`az connectedk8s upgrade -g $RESOURCE_GROUP  -n $CLUSTER_NAME --agent-version 1.24.4`
+```azurecli
+az connectedk8s upgrade -g $RESOURCE_GROUP  -n $CLUSTER_NAME --agent-version 1.24.4
+```
 
 > [!TIP]
 > We recommend upgrading to [the latest version of the Azure Arc-enabled Kubernetes agents](/azure/azure-arc/kubernetes/release-notes).
@@ -51,19 +55,10 @@ To deploy and configure version-managed extensions (preview) for Arc-enabled Kub
 
 To deploy all currently supported version-managed extensions, you can use the `az vme install` command with the `--include all` option. This command installs all extensions that are part of the version-managed extensions (preview) program.
 
-Currently, before running the command to deploy all currently supported extension, you must first install Azure IoT Operations dependencies (`cert-manager` and `trust-manager`), which are required for the Azure Container Storage enabled by Azure Arc extension:
+Currently, before running the command to deploy all currently supported extension, you must first install `cert-manager` and `trust-manager`, which are required for the Azure Container Storage enabled by Azure Arc extension:
 
 ```azurecli
-az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
- --cluster-type connectedClusters \
- --extension-type "microsoft.iotoperations.platform" \
- --name azure-iot-operations-platform \
- --configuration-settings installCertManager=true \
- --release-train preview \
- --version 0.7.6 \
- --auto-upgrade false \
- --release-namespace cert-manager \
- --scope cluster
+az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
 ```
 
 To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command:
@@ -78,19 +73,10 @@ Currently, this command installs the Azure Container Storage enabled by Azure Ar
 
 Follow these steps to configure Azure Container Storage enabled by Azure Arc.
 
-1. Install the Azure IoT Operations dependencies (`cert-manager` and `trust-manager`):
+1. Install `cert-manager` and `trust-manager`:
 
    ```azurecli
-   az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
-    --cluster-type connectedClusters \
-    --extension-type "microsoft.iotoperations.platform" \
-    --name azure-iot-operations-platform \
-    --configuration-settings installCertManager=true \
-    --release-train preview \
-    --version 0.7.6 \
-    --auto-upgrade false \
-    --release-namespace cert-manager \
-    --scope cluster
+   az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
    ```
 
 1. Deploy the Azure Container Storage enabled by Azure Arc extension:
