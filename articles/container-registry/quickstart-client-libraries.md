@@ -9,6 +9,7 @@ zone_pivot_groups: programming-languages-set-fivedevlangs
 ms.custom: mode-api, devx-track-azurecli, devx-track-extended-java, devx-track-js, devx-track-python, devx-track-go
 ms.devlang: azurecli
 ms.service: azure-container-registry
+# Customer intent: "As a software developer, I want to use client libraries to manage my container registry, so that I can efficiently perform operations like listing and deleting images and setting properties on artifacts."
 ---
 
 # Quickstart: Use the Azure Container Registry client libraries
