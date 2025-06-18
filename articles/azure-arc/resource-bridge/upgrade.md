@@ -7,19 +7,22 @@ ms.topic: how-to
 
 # Upgrade Arc resource bridge
 
-This article describes how Arc resource bridge is upgraded, and the two ways upgrade can be performed: cloud-managed upgrade or manual upgrade. Currently, some private cloud providers differ in how they handle Arc resource bridge upgrades.
+This article describes how Arc resource bridge is upgraded, and the two ways upgrade can be performed: cloud-managed upgrade or manual upgrade. Currently, some private cloud providers differ in how they handle Arc resource bridge upgrades. 
 
 ## Private cloud providers
 
-Currently, private cloud providers differ in how they perform Arc resource bridge upgrades. Review the following information to see how to upgrade your Arc resource bridge for a specific private cloud.
+Private cloud providers have different support policies and upgrade procedures for Arc resource bridge. Review the sections below to learn how to upgrade your Arc resource bridge for your private cloud.
 
-For **Arc-enabled VMware vSphere**, you are responsible for upgrading your Arc Resource Bridge to a version that has been released within the past 6 months. We recommend performing manual upgrades every 6 months to stay current and ensure compliance with the [supported version policy](overview.md#supported-versions). You can check your appliance version and the version release date for an estimate on the last upgrade date. For version information, please refer to [Arc resource bridge release notes](release-notes.md). Microsoft may offer cloud-managed upgrades to assist in maintenance, but this does not replace the need for regular manual upgrades. 
+### Arc-enabled VMware vSphere
+For **Arc-enabled VMware vSphere**, you must upgrade your Azure Arc resource bridge to a version released within the past 6 months. We recommend performing manual upgrades every 6 months to stay current and comply with the [supported version policy](overview.md#supported-versions). To find your appliance version and its release date, see the [Arc resource bridge release notes](release-notes.md). Microsoft may offer cloud-managed upgrades, but you still need to perform regular manual upgrades. 
 
-Appliances on version 1.0.15 and higher are automatically opted-in to cloud-managed upgrade. Microsoft may attempt to perform a cloud-managed upgrade of your Arc resource bridge at any time if your appliance is at risk of falling out of support (n-3). Disruptions or errors may prevent cloud-managed upgrade from succeeding. If your appliance is nearing the end of its supported version range, we strongly recommend performing a manual upgrade to avoid service disruptions. If there are continuous problems attempting cloud-managed upgrade, your Arc resource bridge may fall out of support and you are responsible for manually upgrading to reach a supported version.
+If your appliance is version 1.0.15 or higher, it is automatically opted in to cloud-managed upgrades. Microsoft may upgrade your Arc resource bridge if your appliance is close to being unsupported (n-3). Cloud-managed upgrades may not succeed due to disruptions or errors. If your appliance is nearing the end of its supported version, perform a manual upgrade to avoid service disruptions.
 
-For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is only available on Azure Local build 23H2. In Azure Local 23H2, you manage upgrades via the built-in LCM tool which manages upgrades across all Azure Local, Arc resource bridge, and extension components as a validated package. Any preview version of Arc resource bridge must be removed before updating from 22H2 to 23H2. Attempting to upgrade Arc resource bridge independent of other Azure Local environment components may cause problems in your environment that could result in a disaster recovery scenario. For more information, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
+### Azure Local
+For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is available only on Azure Local build 23H2. In this version, use the built-in LCM tool to manage upgrades for Azure Local, Arc resource bridge, and extensions as a single package. Remove any preview version of Arc resource bridge before updating from 22H2 to 23H2. Do not upgrade Arc resource bridge separately from other Azure Local components, as this can cause severe issues. For details, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
 
-For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, the manual upgrade feature is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to perform the recovery option to get to version 1.0.15 or higher. Review the steps for [performing the recovery operation](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
+### Azure Arc-enabled SCVMM
+For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, you are responsible for upgrading your Azure Arc resource bridge to a version that has been released within the past 6 months. We recommend performing manual upgrades every 6 months to stay current and ensure compliance with the [supported version policy](overview.md#supported-versions). You can check your appliance version and the version release date for an estimate on the last upgrade date. For version information, please refer to [Arc resource bridge release notes](release-notes.md). Manual upgrade is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to perform the recovery option to get to version 1.0.15 or higher. Review the steps for [performing the recovery operation](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
 
 ## Prerequisites
 
@@ -41,19 +44,28 @@ Before an Arc resource bridge can be upgraded, the following prerequisites must 
 
 ## Overview
 
-The upgrade process deploys a new resource bridge using the reserved appliance VM IP (`k8snodeippoolend` IP, VM IP 2). Once the new resource bridge is up, it becomes the active resource bridge. The old resource bridge is deleted, and its appliance VM IP (`k8dsnodeippoolstart`, VM IP 1) becomes the new reserved appliance VM IP that will be used in the next upgrade.
+The upgrade process deploys a new resource bridge using the reserved appliance VM IP. When the new resource bridge is ready, it becomes active. The old resource bridge is deleted, and its VM IP is reserved for the next upgrade.
 
-Deploying a new resource bridge is a process consisting of several steps: downloading the appliance image (~3.5 GB) from the cloud, using the image to deploy a new appliance VM, verifying the new resource bridge is running, connecting it to Azure, deleting the old appliance VM, and reserving the old IP to be used for a future upgrade.
+The upgrade process consists of the following actions:
 
-Overall, the upgrade generally takes at least 30 minutes, depending on network speeds. A short intermittent downtime might happen during the handoff between the old Arc resource bridge to the new Arc resource bridge. Additional downtime can occur if prerequisites aren't met, or if a change in the network (DNS, firewall, proxy, etc.) impacts the Arc resource bridge's network connectivity.
+- Download the appliance image (~3.5 GB) from the cloud.
+- Use the image to deploy a new appliance VM.
+- Verify that the new resource bridge is running and connect it to Azure.
+- Delete the old appliance VM.
+- Reserve the old IP for a future upgrade.
 
-There are two ways to upgrade Arc resource bridge: cloud-managed upgrades managed by Microsoft, or manual upgrades where Azure CLI commands are performed by an admin.
+The upgrade usually takes at least 30 minutes, depending on network speed. Expect a brief downtime during the transition from the old resource bridge to the new one. More downtime may occur if prerequisites are not met or if there are network issues.
+
+You can upgrade Arc resource bridge in two ways:
+
+- Cloud-managed upgrade (offered by Microsoft)
+- Manual upgrade (recommended)
 
 ## Cloud-managed upgrade
 
 Microsoft may offer cloud-managed upgrades as a supplementary service, but this does not replace the need for manual upgrades every 6 months. With cloud-managed upgrade, Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work. While Microsoft offers cloud-managed upgrade, you’re responsible for maintaining your Arc resource bridge. Disruptions or errors could cause cloud-managed upgrades to fail. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version.
 
-To check your resource bridge status and the appliance version, run the `az arcappliance show` command from your management machine or check the version of your Arc resource bridge Azure resource and ensure the status is **Running**. If your appliance VM isn't in a healthy, Running state, cloud-managed upgrade might fail. If an upgrade fails, your appliance version may show an incorrect version that is higher than the actual version. The upgrade must succeed in order for your appliance to be on the upgraded version.
+To check the status and version of your resource bridge, run `az arcappliance show` from your management machine, or view the Azure resource for your Arc resource bridge. Make sure the status is "Running." If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
 
 Cloud-managed upgrades are handled through Azure. A notification is pushed to Azure to reflect the state of the appliance VM as it upgrades. As the resource bridge progresses through the upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
 
@@ -66,9 +78,9 @@ az arcappliance show --resource-group [REQUIRED] --name [REQUIRED]
 ## Manual upgrade
 
 > [!WARNING] 
-> For Azure Local, you must use the built-in LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
+> For Azure Local, you must use the built-in Azure Local LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
 
-Arc resource bridge can be manually upgraded from the management machine. You must meet all upgrade prerequisites before attempting to upgrade. The management machine must have the kubeconfig and [appliance configuration files](system-requirements.md#configuration-files) stored locally, or you won't be able to run the upgrade.
+You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig and [appliance configuration files](system-requirements.md#configuration-files) stored locally; otherwise, you cannot run the upgrade.
 
 Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades could be needed to reach a [supported version](#supported-versions). You can check your appliance version by checking the Azure resource of your Arc resource bridge.
 
@@ -84,9 +96,13 @@ To manually upgrade your resource bridge, use the following command:
 az arcappliance upgrade <private cloud> --config-file <file path to ARBname-appliance.yaml> 
 ```
 
-For example, to upgrade a resource bridge on VMware, run: `az arcappliance upgrade vmware --config-file c:\contosoARB01-appliance.yaml`
+For example:
 
-To upgrade a resource bridge on SCVMM, run: `az arcappliance upgrade scvmm --config-file c:\contosoARB01-appliance.yaml`
+To upgrade a resource bridge on VMware:
+```az arcappliance upgrade vmware --config-file c:\contosoARB01-appliance.yaml```
+
+To upgrade on SCVMM:
+```az arcappliance upgrade scvmm --config-file c:\contosoARB01-appliance.yaml```
 
 To upgrade a resource bridge on Azure Local, transition to 23H2 and use the built-in upgrade management tool. For more information, see [About updates for Azure Local, version 23H2](/azure/azure-local/update/about-updates-23h2).
 
@@ -104,7 +120,7 @@ If a resource bridge isn't upgraded to one of the supported versions (n-3), it f
 
 ## Notification and upgrade availability
 
-If your Arc resource bridge is at version n-3, you might receive an email notification letting you know that your resource bridge will be out of support once the next version is released. If you receive this notification, upgrade the resource bridge as soon as possible to allow debug time for any issues with manual upgrade, or submit a support ticket if cloud-managed upgrade was unable to upgrade your resource bridge.
+If your Arc resource bridge is at version n-3, you might receive an email notification letting you know that your resource bridge will be out of support once the next version is released. If you receive this notification, upgrade the resource bridge as soon as possible to allow debug time for any issues with manual upgrade.
 
 To check if your Arc resource bridge has an upgrade available, run the command:
 
@@ -112,7 +128,7 @@ To check if your Arc resource bridge has an upgrade available, run the command:
 az arcappliance get-upgrades --resource-group [REQUIRED] --name [REQUIRED] 
 ```
 
-To see the current version of an Arc resource bridge appliance, run `az arcappliance show` or check the Azure resource of your Arc resource bridge.
+To see the current version of an Arc resource bridge appliance, check the Azure resource of your Arc resource bridge.
 
 ## Next steps
 
