@@ -18,7 +18,7 @@ items:
         items:
           - name: Complete prerequisites
             items:
-              - name: Overview
+              - name: Checklist
                 href: complete-prerequisites.md
               - name: Verify contributor role
                 href: prepare-contributor-permission.md
