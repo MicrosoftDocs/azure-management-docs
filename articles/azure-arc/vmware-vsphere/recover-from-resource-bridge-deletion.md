@@ -31,11 +31,11 @@ To deploy the new resource bridge, follow these steps:
 
 1. In the Azure portal, find and copy the following properties from the resources related to your resource bridge: 
 
-- Arc resource bridge: Azure region, subscription ID, ARM resource ID, resource group name, Arc resource bridge name
-
-- vCenter Azure resource: resource ID, subscription ID, resource group name, name of vCenter resource in Azure
-
-- Custom location: resource ID, subscription ID, resource group name, custom location name
+    - Arc resource bridge: Azure region, subscription ID, ARM resource ID, resource group name, Arc resource bridge name
+    
+    - vCenter Azure resource: resource ID, subscription ID, resource group name, name of vCenter resource in Azure
+    
+    - Custom location: resource ID, subscription ID, resource group name, custom location name
 
 1. In the Azure portal, search for your resource bridge VM and delete the resource bridge VM from the Azure portal. This is a necessary step as part of the disaster recovery process, because you'll deploy a new resource bridge with the same properties to replace this one. All the other related components, like custom location, vCenter resource, or any other Azure resources should remain in the Azure portal - you'll reconnect the new resource bridge with these already existing resources. 
 
