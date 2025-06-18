@@ -79,7 +79,7 @@ The following scenarios are supported in Azure Arc-enabled SCVMM:
      Watch this video to learn more about Azure monitoring, security, and update services across hybrid and multicloud environments.
 
      > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
-- Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server 2012/R2 VMs.
+- Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server and SQL Server VMs.
 
 ### Unsupported scenarios
 
