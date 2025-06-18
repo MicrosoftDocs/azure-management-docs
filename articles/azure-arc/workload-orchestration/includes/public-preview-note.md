@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.topic: include
 ms.date: 03/27/2025
 ms.author: sonialopez
+ms.custom:
+  - build-2025
 # Customer intent: "As a cloud architect, I want to understand the implications of using preview features in my workload orchestration, so that I can make informed decisions regarding adoption and compliance."
 ---
 

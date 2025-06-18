@@ -1,7 +1,9 @@
 ---
 title: Setup Workload Orchestration
 description: Learn how to configure resources, author solutions, and manage deployments for Azure Arc workload orchestration.
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
@@ -39,6 +41,8 @@ The following steps show how to configure the resources of workload orchestratio
     ```bash
     # No space is allowed between comma-separated values for lists
 
+    # Enter resource group 
+    rg="<resource-group-name>"
     # Enter name of Configuration Manager instance
     instanceName="redmondInstance"
     # Enter name of hierarchy list
@@ -55,6 +59,12 @@ The following steps show how to configure the resources of workload orchestratio
     childName="Line01"
     # Enter description of Line01
     childDesc="This line is used for soap and conditioner production"
+    # Enter name of site
+    siteName="Site01"
+    # Enter id of the site
+    siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    # Enter capabilities for child target
+    capChildList="[soap,shampoo,conditioner]"
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
@@ -93,6 +103,8 @@ The following steps show how to configure the resources of workload orchestratio
     ```powershell
     # No space is allowed between comma-separated values for lists
 
+    # Enter resource group 
+    $rg = "<resource-group-name>"
     # Enter name of Configuration Manager instance
     $instanceName = "redmondInstance"
     # Enter name of hierarchy list
@@ -109,6 +121,12 @@ The following steps show how to configure the resources of workload orchestratio
     $childName = "Line01"
     # Enter description of Line01
     $childDesc = "This line is used for soap and conditioner production"
+    # Enter name of site
+    $siteName = "Site01"
+    # Enter id of the site
+    $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    # Enter capabilities for child target
+    $capChildList = "[soap, shampoo, conditioner]" 
     ```
 
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
@@ -187,6 +205,12 @@ Once solution is uploaded to workload orchestration, IT DevOps author the config
 ## Revisions of configurations
 
 When user provides values for solution configurations and publishes them for certain targets, revisions of configurations are created for each target. These revisions are incremented with each new change made by user for respective target.
+
+## Staging before deployment
+
+Workload orchestration supports staging of solutions before deployment. Staging allows users to download the artifacts and validate the configurations before deploying them to the edge cluster. Staging is an optional step, but it's beneficial for some user scenarios with large-scale deployments or network latency issues. 
+
+For more information, see [Staging before deployment](how-to-stage.md).
 
 ## Different solution authoring scenarios
 

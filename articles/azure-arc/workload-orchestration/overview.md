@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: overview
 ms.date: 05/10/2025
+ms.custom:
+  - build-2025
 # Customer intent: "As an IT admin managing diverse edge environments, I want to use a centralized workload orchestration platform, so that I can efficiently deploy and monitor applications while minimizing manual errors and enhancing security across multiple locations."
 ---
 
@@ -26,7 +28,6 @@ You’d need a ton of resources just to keep up before even considering incorpor
 - **Lack of framework to handle administrative tasks:** Production solutions require administrative tasks that apply across multiple tools and applications, such as managing approvals, scheduling maintenance windows, and handling canary deployments.
 - **Access control and security:** Your organization needs to ensure that only authorized users can access and manage their edge applications and devices, and that sensitive data is protected from unauthorized access or tampering. This is especially important in industries such as manufacturing, retail, and healthcare, where data privacy and security are critical.
 
-
 ## What are the key features of workload orchestration?
 
 Workload orchestration provides a centralized platform for managing applications, their configurations and thus enabling better overall collaboration between the different personas who may interact with the system. The Role-Based Access Control (RBAC) feature ensures that only authorized users can access and manage the applications and devices.
@@ -35,6 +36,14 @@ Workload orchestration provides a centralized platform for managing applications
 1. **Custom parameters and rules:** DevOps users can use a default template and schema for writing configuration expressions and attributes respectively. Then, no-code OT personas can define required configuration parameters, ensuring all values meet validation criteria before deployment.
 1. **User-friendly portal:** No-code personas have a user interface to easily deploy applications and configurations on production, including real-time status updates, error logs, and rollback options. 
 1. **Azure Portal for monitoring:** Azure portal provides the technical details about the deployment process, aiding IT persona in debugging helm issues and tracking running applications across sites.
+
+## How does workload orchestration work?
+
+Workload orchestration uses both cloud and edge components to deliver a unified management experience. At its core, the cloud-based control plane leverages a dedicated Azure resource provider, allowing you to centrally define deployment templates. These templates are then consumed by workload orchestration agents running at edge locations, which automatically adapt and apply the necessary customizations for each site.
+
+All workload orchestration resources are managed through Azure Resource Manager, enabling fine-grained Role-Based Access Control (RBAC) and consistent governance. You can interact with workload orchestration using an intuitive CLI and portal, while non-technical onsite staff benefit from a no-code interface for authoring, monitoring, and deploying solutions with site-specific configurations.
+
+:::image type="content" source="./media/workload-orchestration-architecture.png" alt-text="Diagram of the workload orchestration architecture" lightbox="./media/workload-orchestration-architecture.png":::
 
 ## Who can use workload orchestration?
 

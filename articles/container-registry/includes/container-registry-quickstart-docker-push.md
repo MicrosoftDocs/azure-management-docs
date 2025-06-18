@@ -2,12 +2,12 @@
 title: include file
 description: include file
 services: container-registry
-author: dlepow
+author: chasedmicrosoft
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 08/04/2020
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file
 ---
 ## Push image to registry

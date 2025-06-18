@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: reference
 ms.date: 04/17/2025
+ms.custom:
+  - build-2025
 # Customer intent: As a developer, I want to create a YAML configuration schema for workload orchestration, so that I can define properties, validation rules, and options for a solution template, ensuring proper structure and consistency during deployment.
 ---
 

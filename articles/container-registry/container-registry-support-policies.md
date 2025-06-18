@@ -2,11 +2,11 @@
 title: Azure Container Registry technical support policies
 description: Learn about Azure Container Registry (ACR) technical support policies, supported features, and limitations.
 ms.topic: concept-article
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-#Customer intent: As a developer, I want to understand what ACR components I need to manage, what components are managed by Microsoft.
+# Customer intent: As a developer, I want to understand the support policies for Azure Container Registry, so that I can effectively manage my container images and address any technical issues that arise.
 ---
 
 # Support policies for Azure Container Registry (ACR)

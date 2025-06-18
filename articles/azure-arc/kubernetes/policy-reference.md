@@ -6,6 +6,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-kubernetes
 ms.topic: reference
 ms.custom: subject-policy-reference
+# Customer intent: As a Kubernetes administrator, I want to access built-in Azure Policy definitions for Azure Arc-enabled Kubernetes, so that I can effectively manage and enforce compliance across my Azure resources.
 ---
 # Azure Policy built-in definitions for Azure Arc-enabled Kubernetes
 

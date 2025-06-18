@@ -1,11 +1,13 @@
 ---
 title: Prepare the Environment for Workload Orchestration 
 description: Learn how to set up the environment for workload orchestration. This procedure is done by IT admins.
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 04/17/2025
+ms.date: 06/10/2025
 # Customer intent: "As an IT admin, I want to prepare the environment for workload orchestration, so that I can ensure the appropriate Azure resources and configurations are in place for managing workloads effectively."
 ---
 
@@ -192,7 +194,7 @@ Sites and site addresses are used to identify the physical hierarchy such as pla
     ```bash
     siteJson="<SITE_NAME>.json"
     siteAddressJson="<SITE_NAME_ADDRESS>.json"
-    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
     siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
     siteReference="<SITE_NAME>"
     extensionVersion="2.0.10" # or latest Arc version
@@ -243,7 +245,7 @@ Sites and site addresses are used to identify the physical hierarchy such as pla
     ```powershell
     $siteJson = "<SITE_NAME>.json"
     $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
-    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
     $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
     $siteReference = "<SITE_NAME>"
     $extensionVersion = "2.0.10" # or latest Arc version
@@ -410,17 +412,14 @@ The following steps are required to install workload orchestration service compo
     1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
     
         ```bash
-        storageClassName=""
+        storageClassName="<pick up one storage class from 'kubectl get sc'>"
         az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version "$extensionVersion" --auto-upgrade false --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
-        ```  
-
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
+        ```
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```bash
-        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train dev --version "$extensionVersion" --auto-upgrade false
+        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train preview --version "$extensionVersion" --auto-upgrade false
         ``` 
 
 1. Enable custom location for the cluster.
@@ -496,16 +495,14 @@ The following steps are required to install workload orchestration service compo
     1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
     
         ```powershell
-        $storageClassName = ""
+        $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
         az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version $extensionVersion --auto-upgrade $false --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
         ```      
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```powershell
-        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train dev --version $extensionVersion --auto-upgrade false
+        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train preview --version $extensionVersion --auto-upgrade false
         ```
 
 1. Enable custom location for the cluster.

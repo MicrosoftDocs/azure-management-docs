@@ -2,11 +2,12 @@
 title: Build a Container Image On-Demand in Azure
 description: Use Azure Container Registry commands to quickly build, push, and run a Docker container image on-demand, in the Azure cloud.
 ms.topic: quickstart
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli, mode-other
+# Customer intent: As a developer, I want to build, push, and run Docker container images on-demand in the cloud, so that I can streamline my container development workflow without requiring a local Docker installation.
 ---
 
 # Quickstart: Build and run a container image using Azure Container Registry Tasks

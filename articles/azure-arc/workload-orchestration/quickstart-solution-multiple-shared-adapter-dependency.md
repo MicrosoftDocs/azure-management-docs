@@ -5,12 +5,14 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/07/2025
+ms.custom:
+  - build-2025
 # Customer intent: As a cloud solution architect, I want to create a multi-dependency solution using workload orchestration via CLI so that I can efficiently manage data synchronization across various production lines in a factory environment.
 ---
 
 # Quickstart: Create a solution with multiple shared adapter dependencies
 
-In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) application. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA application to synchronize data between devices and servers.
+In this quickstart, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
 ## Prerequisites
 

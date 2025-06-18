@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 
+# Customer intent: "As a cloud administrator, I want to monitor my Azure Container Storage enabled by Azure Arc Edge Volumes, so that I can ensure optimal performance and reliability of my deployments."
 ---
 
 # Monitor your Edge Volumes deployment

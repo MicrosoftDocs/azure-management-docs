@@ -3,7 +3,9 @@ title: Azure Resource Graph sample queries for Azure Arc
 description: Sample Azure Resource Graph queries for Azure Arc showing use of resource types and tables to access Azure Arc related resources and properties.
 ms.date: 05/14/2025
 ms.topic: sample
-ms.custom: subject-resourcegraph-sample
+ms.custom:
+  - subject-resourcegraph-sample
+  - build-2025
 # Customer intent: As a cloud administrator, I want to leverage sample queries for Azure Resource Graph related to Azure Arc, so that I can efficiently govern and manage my resources across diverse environments.
 ---
 

@@ -5,6 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: concept-article
 ms.date: 10/02/2024
+# Customer intent: "As a cloud architect, I want to configure data ingest options for Azure Container Storage, so that I can control the data flow to the cloud and optimize upload performance based on my organization’s needs."
 ---
 
 # Ingest data flow
