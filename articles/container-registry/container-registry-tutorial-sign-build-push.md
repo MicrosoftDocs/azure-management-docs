@@ -1,13 +1,13 @@
 ---
 title: Sign Container Images with Notation and Azure Key Vault
 description: Learn to create a self-signed certificate in Azure Key Vault, build and sign a container image in Azure Container Registry, and verify it with Notation.
-author: yizha1
-ms.author: yizha1
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/3/2024
-#customer intent: As a developer, I want to sign and verify container images so that I can ensure their authenticity and integrity.
+# Customer intent: As a developer, I want to sign and verify container images using a self-signed certificate and secure storage solutions, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
 # Sign container images with Notation and Azure Key Vault using a self-signed certificate

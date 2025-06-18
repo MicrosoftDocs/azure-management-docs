@@ -2,13 +2,13 @@
 
 title: Manage network bypass policy for tasks
 description: This article provides guidance on managing network bypass policy for ACR tasks.
-author: getk12
-ms.author: gaking
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to 
 ms.date: 05/15/2025
-#customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
 
+# Customer intent: As a developer, I want to configure the network bypass policy for my ACR tasks, so that I can ensure secure access while managing necessary exceptions for trusted services.
 ---
 
 # Manage network bypass policy for tasks

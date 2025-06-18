@@ -74,10 +74,6 @@
       href: generate-kubernetes-yaml.md
     - name: Troubleshoot deployed apps
       href: troubleshoot-app-service.md
-  - name: Discover and implement solutions
-    items:
-    - name: Discover solutions in Marketplace
-      href: Discovery-plugin-marketplace.md
 - name: Resources
   items:
   - name: Azure updates

@@ -2,12 +2,13 @@
 title: Perform disaster recovery operations
 description: Learn how to perform recovery operations for the Azure Arc resource bridge VM in Azure Arc-enabled VMware vSphere disaster scenarios.
 ms.topic: how-to 
-ms.custom:
 ms.date: 10/24/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 # Customer intent: As an IT administrator managing Azure Arc-enabled VMware environments, I want to perform disaster recovery operations for the resource bridge VM, so that I can restore connectivity and functionality after accidental deletion or other failures.
 ---
 

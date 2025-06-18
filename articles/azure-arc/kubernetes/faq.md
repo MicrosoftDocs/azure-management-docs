@@ -4,6 +4,7 @@ ms.date: 11/25/2024
 ms.topic: concept-article
 description: "This article contains a list of frequently asked questions related to Azure Arc-enabled Kubernetes and Azure GitOps."
 ms.custom: references_regions
+# Customer intent: As a Kubernetes administrator, I want to understand more about Azure Arc-enabled Kubernetes and its integration with GitOps workflows, so that I can streamline configuration management and ensure compliance across multiple Kubernetes clusters efficiently.
 ---
 
 # Frequently Asked Questions - Azure Arc-enabled Kubernetes and GitOps

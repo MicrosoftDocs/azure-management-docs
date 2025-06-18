@@ -1,14 +1,14 @@
 ---
 title: "Quickstart: Deploying the Connected Registry Arc Extension"
 description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
-author: rayoef
-ms.author: gaking
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: quickstart  #Don't change
 ms.date: 05/20/2025
 ai-usage: ai-assisted
 
-#customer intent: As a user, I want to learn how to deploy the connected registry Arc extension using the CLI UX with secure-by-default settings, such as using HTTPS, Read Only, Trust Distribution, and Cert Manager service, so that I can ensure the secure and efficient operation of my container workloads."
+# Customer intent: As a DevOps engineer, I want to deploy the Connected Registry Arc extension using CLI with secure settings, so that I can manage container workloads efficiently and securely in my Kubernetes cluster.
 ---
 
 # Quickstart: Deploy the connected registry Arc extension 

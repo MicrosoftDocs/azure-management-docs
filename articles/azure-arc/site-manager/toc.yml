@@ -6,6 +6,8 @@
     href: overview.md
   - name: Quickstart
     href: quickstart.md
+  - name: What's new
+    href: whats-new.md
 - name: How-to guides 
   items:
   - name: Create, use, delete, and modify an Arc site
@@ -14,6 +16,8 @@
     href: how-to-view-connectivity-status.md
   - name: View update status
     href: how-to-view-update-status.md
+  - name: View security compliance status
+    href: view-security-compliance-status.md
   - name: Configure Azure Monitor alerts
     href: how-to-configure-monitor-site.md
   - name: View alerts

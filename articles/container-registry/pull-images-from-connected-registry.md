@@ -2,12 +2,13 @@
 title: Pull Images from a Connected Registry 
 description: Learn how to use Azure Container Registry CLI commands to configure a client token and pull images from a connected registry.
 ms.topic: quickstart
-author: rayoef
-ms.author: gaking
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 05/20/2025
 ms.custom: mode-other, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
+# Customer intent: As a cloud developer, I want to configure a client token and pull images from a connected container registry, so that I can efficiently manage and deploy containerized applications in my development environment.
 ---
 
 # Pull images from a connected registry 

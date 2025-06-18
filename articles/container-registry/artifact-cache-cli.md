@@ -1,14 +1,14 @@
 ---
 title: "Enable artifact cache in your Azure Container Registry with Azure CLI"
 description: "Learn how to use Azure CLI to cache container images in Azure Container Registry, improving performance and efficiency."
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 ms.date: 04/29/2025
 ai-usage: ai-assisted
-#customer intent: As a developer, I want Artifact cache capabilities so that I can efficiently deliver and serve containerized applications to end-users in real-time.
+# Customer intent: "As a developer, I want to enable artifact caching in my container registry using CLI commands, so that I can efficiently manage and deliver container images to improve application performance."
 ---
 
 # Enable artifact cache in your Azure Container Registry with Azure CLI

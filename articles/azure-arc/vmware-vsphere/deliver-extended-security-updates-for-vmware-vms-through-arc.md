@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMware, Arc, Azure"
+ms.custom:
+  - build-2025
 # Customer intent: As an IT administrator managing VMware VMs, I want to enroll Windows Server 2012/2012 R2 VMs in Extended Security Updates through Azure Arc, so that I can ensure they receive critical updates and maintain security compliance efficiently.
 ---
 

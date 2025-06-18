@@ -4,9 +4,10 @@ description: Access essential reference material for monitoring Azure Container 
 ms.date: 06/17/2024
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: reference
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
+# Customer intent: As a cloud operations manager, I want to access monitoring metrics and logs for Azure Container Registry, so that I can gain insights into performance and operational activities to ensure efficient management and troubleshooting of container resources.
 ---
 
 # Azure Container Registry monitoring data reference
