@@ -83,7 +83,7 @@
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-arm-template
   - name: Bicep Templates
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-bicep
-  - name: Terraform Templates
+  - name: Terraform Templates (AzAPI provider)
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-terraform
   - name: Python SDK
     href: /python/api/overview/azure/mgmt-connectedvmware-readme
