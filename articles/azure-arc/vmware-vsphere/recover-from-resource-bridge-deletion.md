@@ -21,7 +21,7 @@ The connection between on-premises infrastructure and Azure can be lost and any 
 
 - Accidental deletion of the VM
 - VM connection failure (for example, due to changes in the network configuration of the infrastructure)
-- VM upgrade failures which can’t be fixed and need redeployment
+- VM upgrade failures, which can’t be fixed and need redeployment
 
 - Expiration of the VM certs due to lack of upgrades
 
