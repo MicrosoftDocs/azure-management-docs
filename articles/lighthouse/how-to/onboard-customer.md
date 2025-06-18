@@ -315,7 +315,7 @@ In the customer's tenant:
 
 ### [Azure CLI](#tab/azure-cli)
 
-Use the [`az managedservices definition list`](/cli/azure/managedservices/definition#az-managedservices-definition-list and [`az managedservices assignment list`](/cli/azure/managedservices/assignment#az-managedservices-assignment-list) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
+Use the [`az managedservices definition list`](/cli/azure/managedservices/definition#az-managedservices-definition-list) and [`az managedservices assignment list`](/cli/azure/managedservices/assignment#az-managedservices-assignment-list) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
 
 ```azurecli-interactive
 # Log in first with az login if you're not using Cloud Shell
@@ -330,7 +330,7 @@ az managedservices assignment list
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Use the [`Get-AzManagedServicesDefinition`](/powershell/module/az.managedservices/get-azmanagedservicesdefinition) and [`Get-AzManagedServicesAssignment]`(/powershell/module/az.managedservices/get-azmanagedservicesassignment) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
+Use the [`Get-AzManagedServicesDefinition`](/powershell/module/az.managedservices/get-azmanagedservicesdefinition) and [`Get-AzManagedServicesAssignment`](/powershell/module/az.managedservices/get-azmanagedservicesassignment) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
 
 ```azurepowershell-interactive
 # Log in first with Connect-AzAccount if you're not using Cloud Shell
