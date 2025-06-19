@@ -82,9 +82,9 @@ The workload orchestration portal has three main tabs: **Monitor**, **Configure*
 
 | Role | Responsibilities | Access required|
 |------|------------------| ---------------|
-|[Monitoring solutions](monitor.md) | Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed. | Read-only access to the solution and line levels.|
 |[Configuration of solutions](configure.md) | Responsible for configuring parameters at multiple hierarchical levels for various applications. They ensure that all values meet validation criteria before deployment.| Read-write access to factory, line, and solution levels.|       
 |[Deployment](deploy.md) | Responsible for deploying latest version of applications and configurations on production, and roll back when deployment fails. | Deploy access on lines. |
+|[Monitoring solutions](monitor.md) | Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed. | Read-only access to the solution and line levels.|
 
 > [!NOTE]
 > Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 

@@ -15,58 +15,14 @@ The [workload orchestration portal](https://portal.digitaloperations.configmanag
 
 |Tab|Actions|
 |----|-------|
-|[Monitor](#monitor-your-solutions)|Track the health and status of your solutions.|
 |[Configure](#configure-your-solutions)|Set up the parameters of your solutions.|
-|[Deploy](#deploy-your-solutions)|Launch your solutions to the right targets and rollback to earlier versions if needed.|
+|[Deploy](#deploy-your-solutions)|Deploy your solutions to the right targets and rollback to earlier versions if needed.|
+|[Monitor](#monitor-your-solutions)|Track the health and status of your solutions.|
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 - Each tab provides different functionalities and access levels based on the Role Based Access Control (RBAC) assigned to the user. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
-
-## Monitor your solutions
-
-In the [Monitor tab](monitor.md), you can:
-
-- View deployment status across all solutions and targets.
-- Investigate failures and view configuration details.
-- Filter and group data for easier analysis.
-
-### User scenario: Checking the failure of a solution deployment
-
-Goal: Identify why a solution deployment failed.
-
-Steps:
-
-1. Go to the [**Monitor tab**](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
-1. Select the **Solutions** subtab.
-
-    :::image type="content" source="./media/monitor-solutions.png" alt-text="Screenshot of the Solutions tab in workload orchestration portal showing the default view." lightbox="./media/monitor-solutions.png":::
-
-1. Search for the solution you're interested in.
-    - Enter the keyword in the **search box** on the top right of the list next to "Group by:", or
-    - Select the **Deployment failure** status tile at the top of the page to filter the list of solutions by that status.
-    
-    :::image type="content" source="./media/user-guide-monitor.png" alt-text="Screenshot of the Monitor tab showing how to filter by status or keyword." lightbox="./media/user-guide-monitor.png":::
-
-1. Identify the solution you're looking for, it should display "Deployment failure" status.
-1. Click on the **status** to view the details of the failure. 
-
-    :::image type="content" source="./media/monitor-failure.png" alt-text="Screenshot of the Monitor tab showing how to click on a failed deployment." lightbox="./media/monitor-failure.png":::
-
-1. In the new pane, review the failure reason, fired time, and affected target.
-
-    :::image type="content" source="./media/monitor-failure-2.png" alt-text="Screenshot of the Monitor tab showing how to view the details of a failed deployment." lightbox="./media/monitor-failure-2.png":::
-
-### Other things you can do in the Monitor tab
-
-In the Monitor tab, you can also:
-
-|Link|Action	|
-|---------------------|------------------|
-|[View the capabilities of a solution](monitor.md#view-the-capabilities-of-a-solution)|View the features and functionalities of a solution.|
-|[View the details of a solution](monitor.md#view-the-details-of-a-solution)|View the detailed revision of a solution which is either Deployed, ReadyToDeploy, or Stopped.|
-|[View the details of a target](monitor.md#view-the-details-of-a-target)|View the detailed revision of a target if it has a solution available.|
 
 ## Configure your solutions
 
@@ -163,3 +119,48 @@ In case something goes wrong during deployment, you can:
 |[Retry a deployment](deploy.md#retry-a-failed-deployment)|Retry the deployment in case of a failure.|
 |[Stop a deployed solution](deploy.md#stop-a-deployed-solution)|Stop a deployed solution but don't want to delete it.|
 |[Delete a solution](deploy.md#delete-a-solution)|Delete solutions that aren't yet deployed.|
+
+
+## Monitor your solutions
+
+In the [Monitor tab](monitor.md), you can:
+
+- View deployment status across all solutions and targets.
+- Investigate failures and view configuration details.
+- Filter and group data for easier analysis.
+
+### User scenario: Checking the failure of a solution deployment
+
+Goal: Identify why a solution deployment failed.
+
+Steps:
+
+1. Go to the [**Monitor tab**](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
+1. Select the **Solutions** subtab.
+
+    :::image type="content" source="./media/monitor-solutions.png" alt-text="Screenshot of the Solutions tab in workload orchestration portal showing the default view." lightbox="./media/monitor-solutions.png":::
+
+1. Search for the solution you're interested in.
+    - Enter the keyword in the **search box** on the top right of the list next to "Group by:", or
+    - Select the **Deployment failure** status tile at the top of the page to filter the list of solutions by that status.
+    
+    :::image type="content" source="./media/user-guide-monitor.png" alt-text="Screenshot of the Monitor tab showing how to filter by status or keyword." lightbox="./media/user-guide-monitor.png":::
+
+1. Identify the solution you're looking for, it should display "Deployment failure" status.
+1. Click on the **status** to view the details of the failure. 
+
+    :::image type="content" source="./media/monitor-failure.png" alt-text="Screenshot of the Monitor tab showing how to click on a failed deployment." lightbox="./media/monitor-failure.png":::
+
+1. In the new pane, review the failure reason, fired time, and affected target.
+
+    :::image type="content" source="./media/monitor-failure-2.png" alt-text="Screenshot of the Monitor tab showing how to view the details of a failed deployment." lightbox="./media/monitor-failure-2.png":::
+
+### Other things you can do in the Monitor tab
+
+In the Monitor tab, you can also:
+
+|Link|Action	|
+|---------------------|------------------|
+|[View the capabilities of a solution](monitor.md#view-the-capabilities-of-a-solution)|View the features and functionalities of a solution.|
+|[View the details of a solution](monitor.md#view-the-details-of-a-solution)|View the detailed revision of a solution which is either Deployed, ReadyToDeploy, or Stopped.|
+|[View the details of a target](monitor.md#view-the-details-of-a-target)|View the detailed revision of a target if it has a solution available.|

@@ -3,13 +3,13 @@ title: Configuration Schemas for Workload Orchestration
 description: Learn the rules on how to create configuration schemas for workload orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: reference
+ms.topic: conceptual-article
 ms.date: 04/17/2025
 ms.custom:
   - build-2025
 ---
 
-# Create a configuration schema for workload orchestration
+# Configuration schema for workload orchestration
 
 The configuration schema is a YAML file that defines the structure and rules for the configuration of a solution template. It specifies the properties, types, and validation rules for the configuration values that users can provide when deploying the solution template. A configuration template can refer to a single schema or none.
 

@@ -3,13 +3,13 @@ title: Configuration Templates for workload orchestration
 description: Learn how to create configuration templates for workload orchestration using the templating language.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: reference
+ms.topic: conceptual-article
 ms.date: 04/17/2025
 ms.custom:
   - build-2025
 ---
 
-# Create a configuration template for workload orchestration
+# Configuration template for workload orchestration
 
 A configuration template can refer to a single schema or none. Schema can be referred with its full path, that is, subscription, resource group name, schema name and version, or just with schema name and version. If subscription and resource group name aren't provided, then, these details are taken from the request for solution or target creation.
 

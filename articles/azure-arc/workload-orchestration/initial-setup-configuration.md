@@ -16,7 +16,11 @@ IT admins and developers are responsible for setting up and configuring workload
 
 This article describes the steps to configure application specific resources such as workload orchestration resources, author solutions, and manage deployments. It also provides information about application and solution versioning, different ways to author configurations, and different solution authoring scenarios.
 
-For information about prerequisites and initial setup, see [Prepare the environment for workload orchestration](initial-setup-environment.md).
+You can follow the instructions and run one step after another, or if you prefer, you can run the [onboarding scripts](onboarding-scripts.md) for a one-click setup.
+
+## Prerequisites
+
+Before you begin, you need to have the prerequisites and ensure you followed the steps listed in [Prepare the environment for workload orchestration](initial-setup-environment.md).
 
 ## Configure the resources of workload orchestration
 
@@ -158,69 +162,6 @@ The following steps show how to configure the resources of workload orchestratio
 
 ***
 
-## Solution authoring and deployment 
-
-The process of authoring and deploying solutions using workload orchestration involves creating schemas, configuration templates, and deploying solutions to the target environments. This process is typically performed by IT DevOps.
-
-### Hierarchical configuration authoring
-
-Solution authoring requires seamless integration of workload orchestration-managed ARM assets with user-provided artifacts, such as Helm charts and container images. Workload orchestration supports both CLI and portal-based methods for authoring solution configurations across various use cases.
-
-The diagram below represents an example hierarchical configuration of objects:
-
-:::image type="content" source="./media/hierarchy-configuration-objects.png" alt-text="Diagram illustrating the hierarchical configuration of objects in the Solution Authoring and Deployments process.":::
-
-A typical solution consists of:
-
-- **Schema:** A schema is a JSON file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
-- **Configuration template:** A configuration template is a JSON file that  represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
-- **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided application artifacts. Applications must be packaged as containers before uploading them to workload orchestration.
-- **Published solution configuration:** A published solution configuration is a JSON file that represents the final configuration of the solution after it's validated and approved. The published solution configuration is created by combining the schema, configuration template, and solution Helm chart. The published solution represents a fully rendered, a pre-deployment ready, targeted solution. At this point, the solution is ready to be deployed.
-
-
-## Application and solution versioning
-
-Application and solution versions must be manually updated. It's recommended to follow Semantic Versioning, a widely adopted versioning scheme that uses a three-part version number format: `major.minor.patch`. Each part of the version number reflects the scope of changes:
-
-- *Major:* Incremented for changes that are not backward-compatible.
-- *Minor:* Incremented for new features that are backward-compatible.
-- *Patch:* Incremented for backward-compatible bug fixes.
-
-Version information can also be specified in a file instead of being passed as a CLI argument when creating solution templates, schemas, or configuration templates. To include version details, add the following section to the YAML file:
-
-```yaml
-metadata:
-    name: <name> [optional]
-    version: <version> [optional]
-```
-
-## Different ways to author configurations
-
-Once solution is uploaded to workload orchestration, IT DevOps author the configuration template and schema for validation rules. IT DevOps can provide technical configurations and set the default values and ranges for all configurations in the template and schema.
-
-- Azure CLI: IT DevOps can provide values for these configurations via CLI. The CLI will validate the configurations and publish them to the target. For more information, see [Different solution authoring scenarios](#different-solution-authoring-scenarios).
-- Workload orchestration portal: The published solutions and configurations are reflected on the portal. Any no-code persona is able to view the configurations and provide values via workload orchestration portal based on RBAC. For more information, see [Configure your solutions](configure.md).
-
-## Revisions of configurations
-
-When user provides values for solution configurations and publishes them for certain targets, revisions of configurations are created for each target. These revisions are incremented with each new change made by user for respective target.
-
-## Staging before deployment
-
-Workload orchestration supports staging of solutions before deployment. Staging allows users to download the artifacts and validate the configurations before deploying them to the edge cluster. Staging is an optional step, but it's beneficial for some user scenarios with large-scale deployments or network latency issues. 
-
-For more information, see [Staging before deployment](how-to-stage.md).
-
-## Different solution authoring scenarios
-
-There are different variants of schemas that can be used to author solutions. See the following quickstarts for examples of different solution authoring scenarios:
-
-- **Shared schema:** This schema comprises configurable attributes/properties that can be used across hierarchies and solutions. For more information, see [Create a basic solution without common configurations](quickstart-solution-without-common-configuration.md).
-- **Common schema:** This schema defines configurable attributes/properties at each hierarchical level that can be used for a particular solution. For more information, see [Create a basic solution with common configurations](quickstart-solution-with-common-configuration.md).
-- **Schema with dependencies:** This schema defines configurable attributes/properties of an application dependent on another application. For more information, see [Create a solution with shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md).
-- **Multiple shared adapter dependencies:** This schema defines configurable attributes/properties of an application dependent on more than one other application. For more information, see [Create a solution with multiple shared adapter dependencies](quickstart-solution-multiple-shared-adapter-dependency.md).
-- **Deploy multiple instances of the same application:** This schema defines configurable attributes/properties of an application that can be deployed multiple times in the same namespace. For more information, see [Create a solution with multiple instances](quickstart-solution-multiple-instances-k8s.md).
-- **Upgrade a shared solution:** This schema shows how to upgrade shared solution along with dependent solutions. For more information, see [Upgrade a shared solution](quickstart-upgrade-shared-application.md).
 
 ## Related content
 

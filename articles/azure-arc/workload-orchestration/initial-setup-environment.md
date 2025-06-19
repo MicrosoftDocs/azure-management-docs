@@ -14,7 +14,7 @@ ms.date: 06/10/2025
 
 IT admins are responsible for the initial setup of workload orchestration, which includes creating a custom location, downloading the workload orchestration extension, and installing the required components. The IT admin also needs to set up the Azure resources for workload orchestration, including the Azure Kubernetes Service (AKS) cluster, site, and site address.
 
-This article describes how to prepare the environment for workload orchestration. The following steps are shared across all Azure resources. 
+This article describes how to prepare the environment for workload orchestration. The following steps are shared across all Azure resources. You can follow the instructions and run one step after another, or if you prefer, you can run the [onboarding scripts](onboarding-scripts.md) for a one-click setup.
 
 ## Prerequisites
 

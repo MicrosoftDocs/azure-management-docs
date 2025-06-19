@@ -5,7 +5,7 @@ items:
     href: overview.md
   - name: Set up workload orchestration
     items:
-    - name: Prepare infra requirements
+    - name: Prepare environment requirements
       href: initial-setup-environment.md
     - name: Set up workload orchestration
       href: initial-setup-configuration.md
@@ -18,6 +18,8 @@ items:
     expanded: true
   - name: Concepts
     items:
+    - name: Workflow and features
+      href: workflow-features.md
     - name: Configuration template
       href: configuring-template.md
     - name: Configuration schema
@@ -48,16 +50,16 @@ items:
       href: tutorial-service-group-scenario-3.md
     - name: Create multiple solutions with a single shared dependency at different levels
       href: tutorial-service-group-scenario-4.md
-  - name: Workload orchestration portal
+  - name: Configure, deploy, and monitor solutions
     items:
     - name: User guide for workload orchestration portal
       href: portal-user-guide.md
-    - name: Monitor your solutions 
-      href: monitor.md
     - name: Configure your solutions 
       href: configure.md
     - name: Deploy your solutions 
       href: deploy.md
+    - name: Monitor your solutions 
+      href: monitor.md
   - name: Observability in Azure portal 
     href: azure-portal-monitoring.md
   - name: How-to guides
