@@ -68,7 +68,7 @@ Many VM extensions support automatic extension upgrade, including the following 
 - Microsoft Antimalware extension (Windows only)
 - Defender for SQL Servers Advanced Threat Protection (Windows only)
 
-Extensions that don't currently support automatic extension upgrade are still configured to enable automatic upgrades by default once the feature is available for those extensions. This setting has no effect until the extension publisher chooses to support automatic upgrades. For a complete list of extensions that support automatic extension upgrade, including extensions that aren't currently supported by Azure Arc, see [Automatic Extension Upgrade for virtual machines and scale sets in Azure](/azure/virtual-machines/automatic-extension-upgrade#supported-extensions).
+Extensions that don't currently support automatic extension upgrade are still configured to enable automatic upgrades by default once the feature is available for those extensions. This setting has no effect until the extension publisher chooses to support automatic upgrades. For a list of extensions that support automatic extension upgrade, including extensions that aren't currently supported by Azure Arc, see [Automatic Extension Upgrade for virtual machines and scale sets in Azure](/azure/virtual-machines/automatic-extension-upgrade#supported-extensions).
 
 ## Manage automatic extension upgrade
 
