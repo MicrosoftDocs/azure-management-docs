@@ -7,6 +7,8 @@ description: "Network security best practices for Azure Arc-enabled Kubernetes c
 
 # Secure your network
 
+Network security provides an additional layer of defense for your Kubernetes clusters. This article discusses how to use network policies, infrastructure configuration, and Azure-specific features to control traffic flow, segment workloads, and help protect communications. Implementing these measures helps reduce the attack surface and limit unauthorized access to your resources.
+
 ## Configure Kubernetes network policy to control access to/from your workloads
 
 In addition to [helping to protect your cluster’s workload data traffic via TLS](conceptual-secure-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. Evaluate if you can use the [Calico](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy) or [Cillium](https://docs.cilium.io/en/latest/security/policy/index.html) engines in your cluster.

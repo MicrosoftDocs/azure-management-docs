@@ -7,6 +7,8 @@ description: "Guidance on securing the platform layer of Azure Arc-enabled Kuber
 
 # Secure your platform
 
+Securing your platform is foundational to improving the overall security of your Kubernetes environment. This article focuses on configuring your Kubernetes cluster, its underlying operating system, and hardware infrastructure to operate more securely. By leveraging built-in capabilities and following best practices, you can help ensure that your platform is more resilient against threats and provides a stronger base for your workloads and operations.
+
 ## Stay up to date with the latest security patches
 
 We recommend upgrading your cluster and node OS with the latest security patches as they're published. In turn, this means it’s important to keep your cluster up to date with a supported version of Kubernetes, for which patches are released. Similarly, it's also important to keep your nodes up to date with a supported version of their OS.

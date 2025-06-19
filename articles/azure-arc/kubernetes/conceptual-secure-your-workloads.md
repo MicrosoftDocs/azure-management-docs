@@ -7,6 +7,8 @@ description: "Guidance for securing workloads running on Azure Arc-enabled Kuber
 
 # Secure your workloads
 
+Securing your workloads involves building, deploying, and running containers in ways that help reduce risk and align with industry standards. This article provides guidance on container security, pod security standards, and workload identity, helping you protect your applications from supply chain risks, unauthorized access, and runtime threats within and outside your clusters.
+
 ## Follow a secure container lifecycle as you acquire, catalog, and build your containers
 
 Follow the [Microsoft Containers Secure Supply Chain framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview) as you acquire, catalog, and build your workloads. This framework helps you better protect against untrusted sources, avoid compromised dependencies, and scan for vulnerabilities. 

@@ -7,6 +7,8 @@ description: "Operational security guidance for managing Azure Arc-enabled Kuber
 
 # Secure your operations
 
+Operational security is important for maintaining control over your Kubernetes clusters and responding to emerging threats. This article covers best practices for managing access, enforcing policies, monitoring activity, and responding to incidents. By implementing strong operational controls, you can help ensure that only authorized users and processes can make changes to your clusters and workloads.
+
 ## Control who can use the Azure control plane to manage your cluster
 
 It’s important to control access to the Azure control plane, including the subscription and resources that enable Azure Arc cloud management of your edge clusters. Review and implement the [Azure access control best practices](/azure/security/fundamentals/identity-management-best-practices), including multifactor authentication and conditional access. Use Azure RBAC to control who can perform which operations with which clusters in just the same way you may already use for controlling access to your other Azure cloud resources.

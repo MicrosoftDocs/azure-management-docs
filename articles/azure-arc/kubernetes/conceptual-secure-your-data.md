@@ -7,6 +7,8 @@ description: "Best practices for protecting data at rest and in transit in Azure
 
 # Secure your data
 
+Protecting your data is essential for maintaining confidentiality, integrity, and availability in your Kubernetes environment. This article outlines strategies for securing secrets, encrypting data at rest and in transit, and planning for cluster recovery. By following these practices, you can help safeguard sensitive information and support business continuity.
+
 ## Use a vault to store your secrets and sync to the cluster as needed
 
 Keep secret values (passwords, keys, etc.) in a vault, such as [Azure Key Vault](/azure/key-vault/general/overview). It's good practice for such secrets never to leave the vault, and to be used only for signing/crypto operations inside the vault itself. However, for on-premises clusters, you may not be able to reliably maintain your cloud connection to this vault and hence maintain your ability always to use secrets when they're needed. 
