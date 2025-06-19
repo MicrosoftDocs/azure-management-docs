@@ -55,7 +55,7 @@ To deploy and configure version-managed extensions (preview) for Arc-enabled Kub
 
 To deploy all currently supported version-managed extensions, you can use the `az vme install` command with the `--include all` option. This command installs all extensions that are part of the version-managed extensions (preview) program.
 
-Currently, before running the command to deploy all currently supported extension, you must first install `cert-manager` and `trust-manager`, which are required for the Azure Container Storage enabled by Azure Arc extension:
+Currently, before running the command to deploy all currently supported extension, you must first install `cert-manager`, which is required for the Azure Container Storage enabled by Azure Arc extension:
 
 ```azurecli
 az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
@@ -73,7 +73,7 @@ Currently, this command installs the Azure Container Storage enabled by Azure Ar
 
 Follow these steps to configure Azure Container Storage enabled by Azure Arc.
 
-1. Install `cert-manager` and `trust-manager`:
+1. Install `cert-manager`:
 
    ```azurecli
    az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
