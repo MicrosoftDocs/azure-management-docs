@@ -3,11 +3,11 @@ title: Delete Image Resources to Manage Registry Storage in ACR
 description: Details on how to effectively manage registry size by deleting container image data using Azure CLI commands.
 ms.topic: how-to
 ms.custom: devx-track-azurecli
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 10/31/2023
-#customer intent: As a user, I want to delete image resources in Azure Container Registry so that I can manage registry storage effectively.
+# Customer intent: As a cloud administrator, I want to delete stale image resources from Azure Container Registry, so that I can efficiently manage storage and prevent unnecessary charges.
 ---
 
 # Delete container images in Azure Container Registry

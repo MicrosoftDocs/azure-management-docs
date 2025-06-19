@@ -7,6 +7,8 @@ ms.topic: reference #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent: As a cloud administrator or DevOps engineer, I want to monitor and analyze Edge RAG metrics to track API performance, ingestion rates, and processing times so that I can ensure optimal system performance and quickly identify and resolve issues in my infrastructure.
+ms.custom:
+  - build-2025
 ---
 
 # Metrics available for monitoring Edge RAG Preview, enabled by Azure Arc

@@ -3,6 +3,7 @@ title: "Cluster extensions in Azure Arc-enabled Kubernetes"
 ms.date: 04/22/2025
 ms.topic: concept-article
 description: "Get a conceptual overview of the Azure Arc-enabled Kubernetes cluster extensions capability."
+# Customer intent: As a cluster operator, I want to manage Kubernetes applications using cluster extensions, so that I can streamline installation and lifecycle management while ensuring compliance and efficient resource usage across my Azure Arc-enabled Kubernetes environment.
 ---
 
 # Cluster extensions

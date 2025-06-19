@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a VI admin, I want to understand the support matrix for Arc-enabled VMware vSphere.
+ms.custom:
+  - build-2025
 ---
 
 # Support matrix for Azure Arc-enabled VMware vSphere

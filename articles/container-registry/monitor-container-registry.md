@@ -4,9 +4,10 @@ description: Start here to learn how you can use the features of Azure Monitor t
 ms.date: 06/17/2024
 ms.custom: horz-monitor, subject-monitoring 
 ms.topic: concept-article
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
+# Customer intent: As a DevOps engineer, I want to set up monitoring and alerting for Azure Container Registry, so that I can ensure optimal usage and quickly respond to any resource-related issues or anomalies.
 ---
 
 # Monitor Azure Container Registry

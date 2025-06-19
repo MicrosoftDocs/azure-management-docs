@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a VI admin, I want to represent a subset of my vCenter resources in Azure to enable self-service.
+ms.custom:
+  - build-2025
 ---
 
 # Enable your VMware vCenter resources in Azure

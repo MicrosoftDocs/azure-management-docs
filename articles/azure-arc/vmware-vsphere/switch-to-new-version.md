@@ -8,6 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a VI admin, I want to switch to the new version of Arc-enabled VMware vSphere and leverage the associated capabilities.
+ms.custom:
+  - build-2025
 ---
 
 # Switch to the new version

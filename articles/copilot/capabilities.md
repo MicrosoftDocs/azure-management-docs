@@ -59,8 +59,6 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Author API Management policies](author-api-management-policies.md)
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)
   - [Troubleshoot apps faster with App Service](troubleshoot-app-service.md)
-- Discover and implement solutions:
-  - [Discover solutions in Marketplace](discovery-plugin-marketplace.md)
 
 ## Get information
 

@@ -4,6 +4,7 @@ description: "This tutorial shows how to use GitOps with Flux v2 to manage confi
 ms.date: 03/26/2025
 ms.topic: tutorial
 ms.custom: template-tutorial, devx-track-azurecli, references_regions
+# Customer intent: As a DevOps engineer, I want to implement GitOps workflows using Flux v2 in my Kubernetes clusters, so that I can manage application deployment and configuration through Git repositories efficiently and maintain cluster compliance automatically.
 ---
 
 # Tutorial: Deploy applications using GitOps with Flux v2

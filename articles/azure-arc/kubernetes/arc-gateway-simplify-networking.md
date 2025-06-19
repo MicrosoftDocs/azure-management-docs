@@ -4,6 +4,7 @@ ms.custom: devx-track-azurecli
 ms.date: 04/22/2025
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
+# Customer intent: As a network administrator, I want to configure the Azure Arc gateway for my Kubernetes clusters, so that I can simplify network access requirements and manage outbound traffic through enterprise proxies efficiently.
 ---
 
 # Simplify network configuration requirements with Azure Arc Gateway (preview)

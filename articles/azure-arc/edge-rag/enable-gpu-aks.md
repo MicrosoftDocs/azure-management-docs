@@ -7,7 +7,8 @@ ms.topic: reference #Don't change
 ms.date: 05/13/2025
 
 #CustomerIntent: As a system administrator, I want to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc so that I can meet the prerequisites for deploying Edge RAG.
-
+ms.custom:
+  - build-2025
 ---
 
 

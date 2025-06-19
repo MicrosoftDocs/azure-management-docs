@@ -5,6 +5,7 @@ ms.topic: how-to
 ms.custom:
   - ignite-2024
 description: "Workload identity federation can be used with Azure Arc-enabled Kubernetes clusters."
+# Customer intent: As a Kubernetes administrator, I want to deploy and configure workload identity federation on my Azure Arc-enabled Kubernetes cluster, so that I can enable secure identity management for my workloads and streamline authentication with Azure services.
 ---
 
 # Deploy and configure workload identity federation in Azure Arc-enabled Kubernetes (preview)

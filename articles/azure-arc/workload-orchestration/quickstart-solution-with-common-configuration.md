@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
 ms.date: 05/03/2025
+ms.custom:
+  - build-2025
 ---
 
 # Quickstart: Create a basic solution with common configurations

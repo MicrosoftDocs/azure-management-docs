@@ -4,8 +4,9 @@ description: In this tutorial, learn how to encrypt your Premium registry with a
 ms.topic: tutorial
 ms.custom: devx-track-azurecli
 ms.date: 10/31/2023
-ms.author: rayoflores
+ms.author: doveychase
 ms.service: azure-container-registry
+# Customer intent: "As a DevOps engineer, I want to enable a customer-managed key for an Azure Container Registry, so that I can ensure data security by utilizing my own key for encryption and manage access effectively."
 ---
 
 # Enable a customer-managed key
