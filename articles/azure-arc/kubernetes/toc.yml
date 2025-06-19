@@ -174,16 +174,16 @@
     - name: Security book - recommendations and best practices
       href: conceptual-security-book.md
       displayName: security, best practices, recommendations
-    - name: Securing your platform
-      href: conceptual-securing-your-platform.md
-    - name: Securing your workloads
-      href: conceptual-securing-your-workloads.md
-    - name: Securing your operations
-      href: conceptual-securing-your-operations.md
-    - name: Securing your data
-      href: conceptual-securing-your-data.md
-    - name: Securing your network
-      href: conceptual-securing-your-network.md
+    - name: Secure your platform
+      href: conceptual-secure-your-platform.md
+    - name: Secure your workloads
+      href: conceptual-secure-your-workloads.md
+    - name: Secure your operations
+      href: conceptual-secure-your-operations.md
+    - name: Secure your data
+      href: conceptual-secure-your-data.md
+    - name: Secure your network
+      href: conceptual-secure-your-network.md
 - name: Reference
   items:
   - name: Azure Policy built-ins
