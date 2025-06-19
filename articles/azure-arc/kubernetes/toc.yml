@@ -49,17 +49,17 @@
     href: conceptual-data-exchange.md
   - name: Identity and access management
     items:
-      - name: Identity and access overview
-        displayName: connect, rbac, authentication, authorization
-        href: identity-access-overview.md
-      - name: Cluster connect access
-        displayName: identity
-        href: conceptual-cluster-connect.md
-      - name: Azure RBAC integration
-        displayName: azure ad, azure active directory, identity, access, role
-        href: conceptual-azure-rbac.md
-      - name: Workload identity federation
-        href: conceptual-workload-identity.md
+    - name: Identity and access overview
+      displayName: connect, rbac, authentication, authorization
+      href: identity-access-overview.md
+    - name: Cluster connect access
+      displayName: identity
+      href: conceptual-cluster-connect.md
+    - name: Azure RBAC integration
+      displayName: azure ad, azure active directory, identity, access, role
+      href: conceptual-azure-rbac.md
+    - name: Workload identity federation
+      href: conceptual-workload-identity.md
   - name: Extend Azure capabilities to clusters anywhere
     items:
       - name: Cluster extensions
@@ -87,10 +87,12 @@
         href: conceptual-workload-management.md
       - name: Inner loop developer experience
         href: conceptual-inner-loop-gitops.md
-  - name: Security
-    items:
-    - name: Security baseline
-      href: /security/benchmark/azure/baselines/azure-arc-enabled-kubernetes-security-baseline?toc=/azure/azure-arc/kubernetes/toc.json
+      - name: GitOps with Flux v1
+        items:
+          - name: Configurations and GitOps (Flux v1)
+            href: conceptual-configurations.md
+          - name: Deploy configurations using GitOps (Flux v1)
+            href: tutorial-use-gitops-connected-cluster.md
   - name: Frequently Asked Questions
     displayName: FAQ
     href: faq.md
@@ -167,6 +169,21 @@
     - name: Extension issues
       displayName: gitops, flux, osm, open
       href: extensions-troubleshooting.md
+- name: Security
+  items:  
+    - name: Security book - recommendations and best practices
+      href: conceptual-security-book.md
+      displayName: security, best practices, recommendations
+    - name: Secure your platform
+      href: conceptual-secure-your-platform.md
+    - name: Secure your workloads
+      href: conceptual-secure-your-workloads.md
+    - name: Secure your operations
+      href: conceptual-secure-your-operations.md
+    - name: Secure your data
+      href: conceptual-secure-your-data.md
+    - name: Secure your network
+      href: conceptual-secure-your-network.md
 - name: Reference
   items:
   - name: Azure Policy built-ins

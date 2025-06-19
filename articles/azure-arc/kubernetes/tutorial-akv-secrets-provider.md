@@ -445,3 +445,4 @@ For more information about resolving common issues, see the open source troubles
 
 - Want to try things out? Get started quickly with an [Azure Arc Jumpstart scenario](https://aka.ms/arc-jumpstart-akv-secrets-provider) using Cluster API.
 - Learn more about [Azure Key Vault](/azure/key-vault/general/overview).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

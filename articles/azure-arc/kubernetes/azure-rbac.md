@@ -460,3 +460,4 @@ node-3    Ready    agent    6m33s    v1.18.14
 
 - Read about the [architecture of Azure RBAC on Arc-enabled Kubernetes](conceptual-azure-rbac.md).
 - Securely connect to an Arc-enabled Kubernetes cluster by using [cluster connect](cluster-connect.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).
