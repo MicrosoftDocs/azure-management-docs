@@ -1,15 +1,15 @@
 ---
-title: "Securing your network in Azure Arc-enabled Kubernetes"
+title: "Secure your network in Azure Arc-enabled Kubernetes"
 ms.date: 06/06/2025
 ms.topic: concept-article
 description: "Network security best practices for Azure Arc-enabled Kubernetes clusters, including segmentation, encryption, and access controls."
 ---
 
-# Securing your network
+# Secure your network
 
 ## Configure Kubernetes network policy to control access to/from your workloads
 
-In addition to [helping to protect your cluster’s workload data traffic via TLS](conceptual-securing-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. Evaluate if you can use the [Calico](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy) or [Cillium](https://docs.cilium.io/en/latest/security/policy/index.html) engines in your cluster.
+In addition to [helping to protect your cluster’s workload data traffic via TLS](conceptual-secure-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. Evaluate if you can use the [Calico](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy) or [Cillium](https://docs.cilium.io/en/latest/security/policy/index.html) engines in your cluster.
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -29,7 +29,7 @@ Further, we recommend evaluating your organization’s external firewall rules s
 
 ## Use Azure Private Link (preview) to access Azure resources
 
-In addition to helping protect your traffic to Azure with [TLS and Workload Identity Federation](conceptual-securing-your-workloads.md#use-workload-identity-for-accessing-azure-resources), also consider using [Azure Private Link for Arc-enabled clusters (preview)](/azure/azure-arc/kubernetes/private-link). This feature sets up private endpoints inside your cloud virtual network for Azure Arc, and other services such as Azure Key Vault. This network itself can then be connected to your premises using [site-to-site VPN](/azure/vpn-gateway/tutorial-site-to-site-portal) or [ExpressRoute circuit](/azure/expressroute/expressroute-howto-linkvnet-arm). Evaluate the [advantages](/azure/azure-arc/kubernetes/private-link#advantages) and [current limitations](/azure/azure-arc/kubernetes/private-link#current-limitations) to decide if this solution works for you.
+In addition to helping protect your traffic to Azure with [TLS and Workload Identity Federation](conceptual-secure-your-workloads.md#use-workload-identity-for-accessing-azure-resources), also consider using [Azure Private Link for Arc-enabled clusters (preview)](/azure/azure-arc/kubernetes/private-link). This feature sets up private endpoints inside your cloud virtual network for Azure Arc, and other services such as Azure Key Vault. This network itself can then be connected to your premises using [site-to-site VPN](/azure/vpn-gateway/tutorial-site-to-site-portal) or [ExpressRoute circuit](/azure/expressroute/expressroute-howto-linkvnet-arm). Evaluate the [advantages](/azure/azure-arc/kubernetes/private-link#advantages) and [current limitations](/azure/azure-arc/kubernetes/private-link#current-limitations) to decide if this solution works for you.
 
 ## Next steps
 

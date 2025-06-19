@@ -1,11 +1,11 @@
 ---
-title: "Securing your platform in Azure Arc-enabled Kubernetes"
+title: "Secure your platform in Azure Arc-enabled Kubernetes"
 ms.date: 06/06/2025
 ms.topic: concept-article
 description: "Guidance on securing the platform layer of Azure Arc-enabled Kubernetes clusters, including node, OS, and control plane protections."
 ---
 
-# Securing your platform
+# Secure your platform
 
 ## Stay up to date with the latest security patches
 
@@ -46,7 +46,7 @@ If you connect your own cluster via Arc-enabled Kubernetes, then determine if tr
 
 ## Protect direct access to your nodes
 
-In general, we don't recommend direct access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See our [further guidance](conceptual-securing-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac) on this topic.
+In general, we don't recommend direct access your cluster’s nodes. It’s best to administer your cluster via the API server, and Role-Based Access Control (RBAC) can help you control which users can perform which operations. See our [further guidance](conceptual-secure-your-operations.md#control-who-can-deploy-to-your-cluster-with-role-based-access-control-rbac) on this topic.
 
 Therefore, SSH access to your worker nodes should be disabled by default. However, if this access does prove to be required, and you’re running AKS enabled by Azure Arc on Azure Local, then it’s important to manage it carefully. [Safely store the SSH keys when you create the cluster](/azure/aks/aksarc/configure-ssh-keys) and [restrict SSH access to only expected network addresses](/azure/aks/hybrid/restrict-ssh-access). Beyond this limited exception, there should be no other way to reach the control plane nodes and the Kubernetes infrastructure components that run on them such as kube-scheduler, etcd, kubelet.
 
@@ -57,5 +57,5 @@ Finally, because edge clusters often reside in nonsecure locations, consider wha
 
 ## Next steps
 
-- Learn about [securing your workloads](conceptual-securing-your-workloads.md)
+- Learn how to [secure your workloads](conceptual-secure-your-workloads.md)
 - Return to the top of this [security book](conceptual-security-book.md)

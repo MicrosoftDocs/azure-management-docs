@@ -1,11 +1,11 @@
 ---
-title: "Securing your data in Azure Arc-enabled Kubernetes"
+title: "Secure your data in Azure Arc-enabled Kubernetes"
 ms.date: 06/06/2025
 ms.topic: concept-article
 description: "Best practices for protecting data at rest and in transit in Azure Arc-enabled Kubernetes clusters."
 ---
 
-# Securing your data
+# Secure your data
 
 ## Use a vault to store your secrets and sync to the cluster as needed
 
@@ -32,7 +32,7 @@ If you connect your own cluster via Arc-enabled Kubernetes, then help ensure etc
 
 Beyond your secret values, consider the protection at rest of other workload data that may still be sensitive. If you’re running AKS on Azure Local, then all data volumes are [encrypted at rest using BitLocker](/azure/azure-local/concepts/security-features#bitlocker-encryption). If you connect your own cluster via Arc-enabled Kubernetes then use any similar protection offered by the vendor.
 
-In addition to helping protect your workload data at rest, it’s also important to help protect your workload data in transit. See sections 2.5-2.7 above about establishing encryption, authentication, and authorization for data traffic between your workloads and to/from Azure. See also [our guidance](conceptual-securing-your-network.md) on adding further network layer protections. If you use [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) to store data locally and synchronize it with Azure in the cloud, then it uses such transit protections automatically.
+In addition to helping protect your workload data at rest, it’s also important to help protect your workload data in transit. See sections 2.5-2.7 above about establishing encryption, authentication, and authorization for data traffic between your workloads and to/from Azure. See also [our guidance](conceptual-secure-your-network.md) on adding further network layer protections. If you use [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview) to store data locally and synchronize it with Azure in the cloud, then it uses such transit protections automatically.
 
 ## Enable cluster recovery without impacting your security posture
 
@@ -44,5 +44,5 @@ Alternatively, you may still need to consider using a dedicated cluster backup s
 
 ## Next steps
 
-- Learn about [securing your network](conceptual-securing-your-network.md)
+- Learn how to [secure your network](conceptual-secure-your-network.md)
 - Return to the top of this [security book](conceptual-security-book.md)

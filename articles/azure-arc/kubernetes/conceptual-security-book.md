@@ -29,14 +29,14 @@ If you're a security professional, this book surveys all these factors and makes
 :::image type="content" source="media/conceptual-security-book/security-challenges.png" lightbox="media/conceptual-security-book/security-challenges.png" alt-text="Diagram showing the five categories of security challenges for edge Kubernetes.":::
 
 The security challenges fall into five categories:
-1. Securing your platform. This category includes configuring your Kubernetes cluster to operate more securely, and doing the same for its underlying OS and hardware infrastructure as needed, appropriately using all their built-in capabilities. 
-1. Securing your workloads. This category includes building your containers more securely by following Kubernetes and Linux security standards. It also covers how to establish more secure authentication and authorization for requests to/from other services inside and outside of the clusters.
-1. Securing your operations. This category includes controlling who can deploy to these clusters. It covers how to unify the cluster-local Kubernetes system for authentication and authorization with Microsoft Entra and Azure role-based access control (Azure RBAC) in the cloud. It also discusses how to better secure your software supply chain and enforce standards on your deployments through policies.
-1. Securing your data. This category includes better securing access both to your workload application data and to the data that Kubernetes stores on your behalf, particularly secrets such as passwords.
-1. Securing your network. This category includes configuring the extra defense in depth that comes from controlling management and data traffic at the network level. It discusses how to restrict which sources your clusters and workloads can receive from, and which targets they can they send to.
+1. Secure your platform. This category includes configuring your Kubernetes cluster to operate more securely, and doing the same for its underlying OS and hardware infrastructure as needed, appropriately using all their built-in capabilities. 
+1. Secure your workloads. This category includes building your containers more securely by following Kubernetes and Linux security standards. It also covers how to establish more secure authentication and authorization for requests to/from other services inside and outside of the clusters.
+1. Secure your operations. This category includes controlling who can deploy to these clusters. It covers how to unify the cluster-local Kubernetes system for authentication and authorization with Microsoft Entra and Azure role-based access control (Azure RBAC) in the cloud. It also discusses how to better secure your software supply chain and enforce standards on your deployments through policies.
+1. Secure your data. This category includes better securing access both to your workload application data and to the data that Kubernetes stores on your behalf, particularly secrets such as passwords.
+1. Secure your network. This category includes configuring the extra defense in depth that comes from controlling management and data traffic at the network level. It discusses how to restrict which sources your clusters and workloads can receive from, and which targets they can they send to.
 
 This book provides guidance on these challenges for Arc-enabled Kubernetes clusters in general and for AKS enabled by Azure Arc clusters in particular. There are many [deployment options](/azure/aks/aksarc/aks-overview#aks-enabled-by-azure-arc-deployment-options) for AKS enabled by Azure Arc. This book covers the [Azure Local 23H2](/azure/aks/aksarc/cluster-architecture) deployment option and builds upon the [Azure Local security features](/azure/azure-local/concepts/security-features) and [security book](https://github.com/Azure-Samples/AzureLocal/blob/main/SecurityBook/Azure%20Local%20Security%20Book_04302025.pdf)). (Other deployment options offer some but not all of the same benefits.)
 
 ## Next steps
 
-- Learn about [securing your platform](conceptual-securing-your-platform.md)
+- Learn how to [secure your platform](conceptual-secure-your-platform.md)
