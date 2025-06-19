@@ -251,7 +251,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -262,7 +262,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
     ```
 
 ***
@@ -330,7 +330,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```bash
     # Any modifications to solution files will necessitate version update.
 
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --configuration-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$app2Version"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --config-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$app2Version"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -342,7 +342,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```powershell
     # Any modifications to solution files will necessitate version update.
 
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --configuration-template-file $appConfig2 --specification "@fsad-specs.json" --version $app2Version
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --config-template-file $appConfig2 --specification "@fsad-specs.json" --version $app2Version
     ```
 
 ***
@@ -387,7 +387,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     # Fetch the appVersion from SSA solution create command
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$parentName"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$parentName"
     ```
 
 1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
@@ -395,7 +395,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     # Fetch the appVersion from FSAD solution create command
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName2" --solution-template-version "$app2Version" --target-name "$childName" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `solutionTemplateVersionId` from `solutionDependencies` in the output. Execute the `az rest` command and ensure FSAD configuration is injected.
@@ -413,7 +413,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     # Fetch the appVersion from SSA solution create command
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $parentName
+    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $parentName
     ```
 
 1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
@@ -421,7 +421,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     # Fetch the appVersion from FSAD solution create command
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName2 --solution-template-version $app2Version --target-name $childName --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `solutionTemplateVersionId` from `solutionDependencies` in the output. Execute the `az rest` command and ensure FSAD configuration is injected.

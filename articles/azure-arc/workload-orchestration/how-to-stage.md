@@ -542,7 +542,7 @@ az workload-orchestration target create `
         -l "$l" \
         --capabilities "This is the capability" \
         --description "This is Staging Solution" \
-        --configuration-template-file "./demo-app-config-template.yaml" \
+        --config-template-file "./demo-app-config-template.yaml" \
         --specification "@demo-app-spec.json" \
         --version "1.0.0"
     ```
@@ -585,7 +585,7 @@ az workload-orchestration target create `
         -l $l `
         --capabilities "This is the capability" `
         --description "This is Staging Solution" `
-        --configuration-template-file ".\demo-app-config-template.yaml" `  
+        --config-template-file ".\demo-app-config-template.yaml" `  
         # --config-template ".\demo-app-config-template.yaml" `  # private RP
         --specification "@demo-app-spec.json" `
         --version "1.0.0" 
@@ -616,13 +616,13 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Resolve the solution template version.
 
     ```bash
-    az workload-orchestration target resolve --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target resolve --solution-name "$solutionTemplateName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
     ```
 
 1. Review the template version.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target review --solution-name "$solutionTemplateName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -630,7 +630,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Resolve the solution template version.
 
     ```powershell
-    az workload-orchestration target resolve  --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName
+    az workload-orchestration target resolve  --solution-name $solutionTemplateName --solution-version 1.0.0 --resource-group $rg --target-name $targetName
     ```
 
 1. Review the template version.

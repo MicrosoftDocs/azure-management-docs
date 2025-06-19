@@ -183,10 +183,10 @@ az workload-orchestration solution-template create \
     --location $l \
     --capabilities $appCapList1 \
     --description $desc \
-    --configuration-template-file $appConfig \
+    --config-template-file $appConfig \
     --specification "@specs.json" \
     --version $appVersion \
-    --enable-external-validation "true"
+    --enable-ext-validation "true"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -200,10 +200,10 @@ az workload-orchestration solution-template create `
   --location $l `
   --capabilities $appCapList1 `
   --description $desc `
-  --configuration-template-file $appConfig `
+  --config-template-file $appConfig `
   --specification "@specs.json" `
   --version $appVersion `
-  --enable-external-validation "true"
+  --enable-ext-validation "true"
 ```
 ***
 

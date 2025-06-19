@@ -90,6 +90,7 @@ $chartVersion = "enter in this format x.x.x e.g. 0.8.0"
 ## Create the solution template 
 
 The solution template consists of a schema and a configuration template. Both are defined in YAML format. 
+
 - **Schema template**: The schema represents the declaration of configurable attributes/properties of the solution and the associated permissions as it applies to hierarchies and personas. For more information, see [Configuring schema](configuring-schema.md).
 - **Configuration template**: The application configuration template represents associated configurations of the previously declared schema. These values can be modified as necessary. For more information, see [Configuring template](configuring-template.md).
 
@@ -167,7 +168,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -181,7 +182,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without `--version` argument. The service takes version input from file.
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json"
     ```
 
     The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
@@ -196,7 +197,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -210,7 +211,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without `--version` argument. The service takes version input from file.
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
     ```
 
     The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
@@ -280,13 +281,13 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Resolve the configurations for a particular target.
 
     ```bash
-    az workload-orchestration target resolve --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target resolve --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and `name` values. The name displays the new solution template version.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
 1. Run `target publish` to publish the solution. Enter `reviewId` from the previous command response.
@@ -307,13 +308,13 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Resolve the configurations for a particular target.
 
     ```powershell
-    az workload-orchestration target resolve --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
+    az workload-orchestration target resolve --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and `name` values. The name displays the new solution template version.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
+    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
 
 1. Run `target publish` to publish the solution. Enter `reviewId` from the previous command response.

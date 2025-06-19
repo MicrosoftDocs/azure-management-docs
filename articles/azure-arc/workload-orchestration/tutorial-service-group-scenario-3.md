@@ -320,7 +320,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is CA Solution" \
-        --configuration-template-file ./ca-config-template.yaml \
+        --config-template-file ./ca-config-template.yaml \
         --specification "@ca-specs.json" \
         --version "$caversion"
     ```
@@ -344,7 +344,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is CA Solution" `
-        --configuration-template-file .\ca-config-template.yaml `
+        --config-template-file .\ca-config-template.yaml `
         --specification "@ca-specs.json" `
         --version $caversion
     ```
@@ -371,7 +371,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is RA Solution" \
-        --configuration-template-file ./ra-config-template.yaml \
+        --config-template-file ./ra-config-template.yaml \
         --specification "@ra-specs.json" \
         --version "$raversion"
     ```
@@ -395,7 +395,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is RA Solution" `
-        --configuration-template-file .\ra-config-template.yaml `
+        --config-template-file .\ra-config-template.yaml `
         --specification "@ra-specs.json" `
         --version $raversion
     ```
@@ -422,7 +422,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is fa Solution" \
-        --configuration-template-file ./fa-config-template.yaml \
+        --config-template-file ./fa-config-template.yaml \
         --specification "@fa-specs.json" \
         --version "$faversion"
     ```
@@ -446,7 +446,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is FA Solution" `
-        --configuration-template-file .\fa-config-template.yaml `
+        --config-template-file .\fa-config-template.yaml `
         --specification "@fa-specs.json" `
         --version $faversion
     ```
@@ -473,7 +473,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is LET Solution" \
-        --configuration-template-file ./let-config-template.yaml \
+        --config-template-file ./let-config-template.yaml \
         --specification "@let-specs.json" \
         --version "$letversion"
     ```
@@ -497,7 +497,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is LET Solution" `
-        --configuration-template-file .\let-config-template.yaml `
+        --config-template-file .\let-config-template.yaml `
         --specification "@let-specs.json" `
         --version $letversion
     ```
@@ -589,25 +589,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration for CA solution with "ca-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$caname" --solution-template-version "$caversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ca-instance-a"
+    az workload-orchestration target review --solution-name "$caname" --solution-version "$caversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for RA solution with "ra-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$raname" --solution-template-version "$raversion" --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
+    az workload-orchestration target review --solution-name "$raname" --solution-version "$raversion" --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
     ```
 
 1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$faname" --solution-template-version "$faversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
+    az workload-orchestration target review --solution-name "$faname" --solution-version "$faversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
     ```
 
 1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$letname" --solution-template-version "$letversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name "$letname" --solution-version "$letversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.
@@ -622,7 +622,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration for CA solution with "ca-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $caname --solution-template-version $caversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ca-instance-a"
+    az workload-orchestration target review --solution-name $caname --solution-version $caversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for RA solution with "ra-instance-a" instance.
@@ -634,13 +634,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $faname --solution-template-version $faversion --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
+    az workload-orchestration target review --solution-name $faname --solution-version $faversion --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
     ```
 
 1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $letname --solution-template-version $letversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name $letname --solution-version $letversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.

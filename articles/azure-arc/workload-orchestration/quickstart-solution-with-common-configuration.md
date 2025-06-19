@@ -13,7 +13,6 @@ ms.custom:
 
 In this quickstart, you create a basic solution with common configurations using the workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies. The common configurations are used to define the configurable attributes at each hierarchical level that can be used for a particular solution.
 
-Check out [Configuration template](configuring-template.md) and [Configuration schema](configuring-schema.md) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
 
 ## Prerequisites
 
@@ -103,12 +102,7 @@ $appConfig = "app-config-template.yaml"
 
 ## Create the solution template
 
-The solution template is a Helm chart that contains the application and its dependencies. The solution template is defined in the *specs.json* file. The *specs.json* file contains the following sections:
-- **specification**: The specification section contains the Helm chart URL and version. The Helm chart URL is the location of the Helm chart in the container registry. The version is the version of the Helm chart.        
-- **configuration**: The configuration section contains the configuration template file name. The configuration template file is the file that contains the configuration schema and template for the solution.
-- **schema**: The schema section contains the schema name and version. The schema name is the name of the schema that is used to validate the configuration template file. The version is the version of the schema.
-
-For more information, see [Introduction to Helm](https://helm.sh/docs/intro/install/).
+The solution template consists of a schema and a configuration template. Both are defined in YAML format. 
 
 ### Create a common schema
 
@@ -202,7 +196,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -216,7 +210,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without the `--version` argument. The service will take the version input from the file.
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -227,7 +221,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
+        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
         ```
 
         Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -241,7 +235,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
         Run the same CLI command without the `--version` argument. The service will take the version input from the file.
 
         ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json"
+        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
         ```
 
 ***
@@ -311,13 +305,13 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```bash
     # Optional step
-    az workload-orchestration target resolve --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target resolve --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.
@@ -339,13 +333,13 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```powershell
     # Optional step
-    az workload-orchestration target resolve --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
+    az workload-orchestration target resolve --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
+    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.

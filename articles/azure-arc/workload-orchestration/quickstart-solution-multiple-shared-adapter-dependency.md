@@ -9,7 +9,7 @@ ms.custom:
   - build-2025
 ---
 
-# Tutorial: Create a solution with multiple shared adapter dependencies
+# Create a solution with multiple shared adapter dependencies
 
 In this tutorial, you create a solution with multiple shared adapter dependencies using workload orchestration via CLI. You will create a Factory Sensor Anomaly Detector (FSAD) solution that depends on a Shared Sync Adapter (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
@@ -39,8 +39,6 @@ The following scenario describes the use case for creating a solution with multi
 > Both SSA and FSAD have configuration called `DeploymentName` at line level. This is introduced to isolate instances of both SSA and FSAD from each other since all these instances are deployed in same name space. Ensure `DeploymentName` is unique and follows K8s object naming convention.
 >
 > You have to provide solution instance name for SSA Review command. Ensure it's unique and follows K8s object naming convention.
-
-
 
 ## Define the variables for solution templating
 
@@ -223,7 +221,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```bash
     # Create Helm Solution / Application
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
 > [!NOTE]
@@ -243,7 +241,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```powershell
     # Create Helm Solution / Application
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification @specs.json --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification @specs.json --version $appVersion
     ```
 
 > [!NOTE]
@@ -284,7 +282,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     # Any modifications to solution files will necessitate a version update.
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --configuration-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --config-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$appVersion"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -295,7 +293,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     # Any modifications to solution files will necessitate a version update.
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --configuration-template-file $appConfig2 --specification @fsad-specs.json --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --config-template-file $appConfig2 --specification @fsad-specs.json --version $appVersion
     ```
 
 ***
@@ -350,13 +348,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Verify that FSAD *Line01* and FSAD *Line02* depend on *ssa-instance-a* at factory level.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --target-name "$factory" --solution-template-name "$appName" --solution-template-version "$appVersion" --solution-instance-name "ssa-instance-a"
+    az workload-orchestration target review --resource-group "$rg" --target-name "$factory" --solution-name "$appName" --solution-version "$appVersion" --solution-instance-name "ssa-instance-a"
     ```
 
 1. Verify that FSAD is targeted to *Line01*. Replace the `solutionVersionId` in *dependencies.json* file with ID from the previous command response.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --target-name "$line01" --solution-template "$appName2" --solution-template-version "$app2Version" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group "$rg" --target-name "$line01" --solution-name "$appName2" --solution-version "$app2Version" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:
@@ -371,13 +369,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Verify that FSAD *Line01* and FSAD *Line02* depend on *ssa-instance-a* at factory level.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --target-name $factory --solution-template-name $appName --solution-template-version $appVersion --solution-instance-name "ssa-instance-a"
+    az workload-orchestration target review --resource-group $rg --target-name $factory --solution-name $appName --solution-template-version $appVersion --solution-instance-name "ssa-instance-a"
     ```
 
 1. Verify that FSAD is targeted to *Line01*. Replace the `solutionVersionId` in *dependencies.json* file with ID from the previous command response.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --target-name $line01 --solution-template $appName2 --solution-template-version $app2Version --solution-dependencies @dependencies.json
+    az workload-orchestration target review --resource-group $rg --target-name $line01 --solution-name $appName2 --solution-version $app2Version --solution-dependencies @dependencies.json
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:
@@ -448,7 +446,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Verify that FSAD is targeted to *Line02*. Replace the `solutionVersionId` in *dependencies.json* file with ID from the command response in the [Review the configurations of FSAD at *Line01*](#review-the-configurations-of-fsad-at-line01) section.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --target-name "$line02" --solution-template "$appName2" --solution-template-version "$app2Version" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group "$rg" --target-name "$line02" --solution-name "$appName2" --solution-version "$app2Version" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:
@@ -463,7 +461,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Verify that FSAD is targeted to *Line02*. Replace the `solutionVersionId` in *dependencies.json* file with ID from the command response in the [Review the configurations of FSAD at *Line01*](#review-the-configurations-of-fsad-at-line01) section.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --target-name $line02 --solution-template $appName2 --solution-template-version $app2Version --solution-dependencies @dependencies.json
+    az workload-orchestration target review --resource-group $rg --target-name $line02 --solution-name $appName2 --solution-version $app2Version --solution-dependencies @dependencies.json
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:
@@ -536,13 +534,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```bash
     az workload-orchestration configuration set --resource-group "$rg" --solution-template-name "$appName" --target-name "$factory"
     
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName" --solution-template-version "$appVersion" --target-name "$factory" --solution-instance-name "ssa-instance-b"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName" --solution-version "$appVersion" --target-name "$factory" --solution-instance-name "ssa-instance-b"
     ```
 
 1. For FSAD in *Line03*, replace the `solutionVersionId` in *dependencies.json* with ID from the previous command response.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --target-name "$line03" --solution-template "$appName2" --solution-template-version "$app2Version" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group "$rg" --target-name "$line03" --solution-name "$appName2" --solution-version "$app2Version" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:
@@ -559,13 +557,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```powershell
     az workload-orchestration configuration set --resource-group $rg --solution-template-name $appName --target-name $factory
     
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName --solution-template-version $appVersion --target-name $factory --solution-instance-name "ssa-instance-b"
+    az workload-orchestration target review --resource-group $rg --solution-name $appName --solution-version $appVersion --target-name $factory --solution-instance-name "ssa-instance-b"
     ```
 
 1. For FSAD in *Line03*, replace the `solutionVersionId` in *dependencies.json* with ID from the previous command response.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --target-name $line03 --solution-template $appName2 --solution-template-version $app2Version --solution-dependencies @dependencies.json
+    az workload-orchestration target review --resource-group $rg --target-name $line03 --solution-name $appName2 --solution-version $app2Version --solution-dependencies @dependencies.json
     ```
 
 1. Copy the `reviewId` and `name` from the previous command and set the following variables:

@@ -55,14 +55,14 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 1. Review the FSAD solution template using the `az workload-orchestration target review` command.
 
     ```bash 
-    az workload-orchestration target review --solution-template-name "$fsad" --solution-template-version 1.0.0 --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
+    az workload-orchestration target review --solution-name "$fsad" --solution-version 1.0.0 --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
     ```
 
 1. Copy the ID from the output of the FSAD review command and add it to `"solutionVersionId":  "<solution version id>"` in the *dependencies.json* file. 
 1. Review the SSA solution template.
 
     ```bash 
-    az workload-orchestration target review --solution-template-name "$ssa" --solution-template-version 1.0.0 --resource-group "$rg" --target-name "$t2" --solution-dependencies "@dependencies.json" 
+    az workload-orchestration target review --solution-name "$ssa" --solution-version 1.0.0 --resource-group "$rg" --target-name "$t2" --solution-dependencies "@dependencies.json" 
     ```
 
 1. Publish and install the SSA solution instance.
@@ -111,14 +111,14 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 1. Review the FSAD solution template using the `az workload-orchestration target review` command.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $fsad --solution-template-version 1.0.0 --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
+    az workload-orchestration target review --solution-name $fsad --solution-version 1.0.0 --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
     ```
 
 1. Copy the ID from the output of the FSAD review command and add it to `"solutionVersionId":  "<solution version id>"` in the *dependencies.json* file. 
 1. Review the SSA solution template.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $ssa --solution-template-version 1.0.0 --resource-group $rg --target-name $t2 --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name $ssa --solution-version 1.0.0 --resource-group $rg --target-name $t2 --solution-dependencies "@dependencies.json"
     ```
 
 1. Publish and install the SSA solution instance.
@@ -150,7 +150,7 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
 1. Run the review command for FSAD instance with new solution template version.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$fsad" --solution-template-version "<new version>" --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
+    az workload-orchestration target review --solution-name "$fsad" --solution-version "<new version>" --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
     ```
 
 1. Publish and install the FSAD solution instance.
@@ -176,7 +176,7 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
 1. Run the review command for FSAD instance with new solution template version.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $fsad --solution-template-version "<new version>" --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
+    az workload-orchestration target review --solution-name $fsad --solution-version "<new version>" --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
     ```
 
 1. Publish and install the FSAD solution instance.

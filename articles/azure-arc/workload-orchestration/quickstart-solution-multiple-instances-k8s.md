@@ -4,14 +4,14 @@ description: Learn how to create a solution with multiple instances in the same 
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/03/2025
+ms.date: 06/18/2025
 ms.custom:
   - build-2025
 ---
 
 # Create a solution with multiple instances in the same Kubernetes namespace
 
-In this, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. 
+In this article, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. 
 
 ## Prerequisites
 
@@ -64,7 +64,7 @@ spec:
 
 ```
 
-Here deployment name is being taken from *values.yaml* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). 
+Here, deployment name is being taken from *values.yaml* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). 
 
 Similarly, if `configmap` is used in the application, then the name of the `configmap` is also dynamic.
 
@@ -128,4 +128,4 @@ In the *fsad-specs.json* file, refer the component name to `DeploymentName`:
 }
 ```
 
-Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Quickstart: Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](configure.md).
+Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](configure.md).

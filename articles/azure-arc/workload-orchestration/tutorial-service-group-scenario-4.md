@@ -319,7 +319,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is GA Solution" \
-        --configuration-template-file ./ga-config-template.yaml \
+        --config-template-file ./ga-config-template.yaml \
         --specification "@ga-specs.json" \
         --version "$gaversion"
     ```
@@ -343,7 +343,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is GA Solution" `
-        --configuration-template-file .\ga-config-template.yaml `
+        --config-template-file .\ga-config-template.yaml `
         --specification "@ga-specs.json" `
         --version $gaversion
     ```
@@ -370,7 +370,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is RApp Solution" \
-        --configuration-template-file ./rapp-config-template.yaml \
+        --config-template-file ./rapp-config-template.yaml \
         --specification "@rapp-specs.json" \
         --version "$rappversion"
     ```
@@ -394,7 +394,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is RApp Solution" `
-        --configuration-template-file .\rapp-config-template.yaml `
+        --config-template-file .\rapp-config-template.yaml `
         --specification "@rapp-specs.json" `
         --version $rappversion
     ```
@@ -421,7 +421,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is FApp Solution" \
-        --configuration-template-file ./fapp-config-template.yaml \
+        --config-template-file ./fapp-config-template.yaml \
         --specification "@fapp-specs.json" \
         --version "$fappversion"
     ```
@@ -445,7 +445,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is FApp Solution" `
-        --configuration-template-file .\fapp-config-template.yaml `
+        --config-template-file .\fapp-config-template.yaml `
         --specification "@fapp-specs.json" `
         --version $fappversion
     ```
@@ -472,7 +472,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is LApp Solution" \
-        --configuration-template-file ./lapp-config-template.yaml \
+        --config-template-file ./lapp-config-template.yaml \
         --specification "@lapp-specs.json" \
         --version "$lappversion"
     ```
@@ -496,7 +496,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is LApp Solution" `
-        --configuration-template-file .\lapp-config-template.yaml `
+        --config-template-file .\lapp-config-template.yaml `
         --specification "@lapp-specs.json" `
         --version $lappversion
     ```
@@ -594,7 +594,7 @@ az workload-orchestration target review --solution-template-name "$ganame" --sol
 
 
 ```powershell
-az workload-orchestration target review --solution-template-name $ganame --solution-template-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-name $ganame --solution-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
 ```
 
 ***
@@ -608,7 +608,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for RApp solution with dependency on GA solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$rappname" --solution-template-version "$rappversion" --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name "$rappname" --solution-version "$rappversion" --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -635,7 +635,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for RApp solution with dependency on GA solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $rappname --solution-template-version $rappversion --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name $rappname --solution-version $rappversion --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -665,7 +665,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for FApp solution with dependency on GA solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$fappname" --solution-template-version "$fappversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name "$fappname" --solution-version "$fappversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -692,7 +692,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for FApp solution with dependency on GA solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $fappname --solution-template-version $fappversion --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name $fappname --solution-version $fappversion --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -722,7 +722,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for LApp solution with dependency on GA solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$lappname" --solution-template-version "$lappversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name "$lappname" --solution-version "$lappversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -749,7 +749,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for LApp solution with dependency on GA solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $lappname --solution-template-version $lappversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-name $lappname --solution-version $lappversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.

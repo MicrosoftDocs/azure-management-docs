@@ -11,14 +11,12 @@ items:
       href: initial-setup-configuration.md
     - name: RBAC guide 
       href: rbac-guide.md
-    - name: Service groups
-      items:
-      - name: Use service groups with workload orchestration
-        href: service-group.md
+    - name: Use service groups 
+      href: service-group.md
     - name: Onboarding scripts
       href: onboarding-scripts.md
     expanded: true
-  - name: Flexible configuration system
+  - name: Concepts
     items:
     - name: Configuration template
       href: configuring-template.md
@@ -50,20 +48,18 @@ items:
       href: tutorial-service-group-scenario-3.md
     - name: Create multiple solutions with a single shared dependency at different levels
       href: tutorial-service-group-scenario-4.md
-  - name: Monitor, configure, and deploy solutions
+  - name: Workload orchestration portal
     items:
-    - name: Workload orchestration portal
-      items:
-      - name: User guide for workload orchestration portal
-        href: portal-user-guide.md
-      - name: Monitor your solutions 
-        href: monitor.md
-      - name: Configure your solutions 
-        href: configure.md
-      - name: Deploy your solutions 
-        href: deploy.md
-    - name: Observability in Azure portal 
-      href: azure-portal-monitoring.md
+    - name: User guide for workload orchestration portal
+      href: portal-user-guide.md
+    - name: Monitor your solutions 
+      href: monitor.md
+    - name: Configure your solutions 
+      href: configure.md
+    - name: Deploy your solutions 
+      href: deploy.md
+  - name: Observability in Azure portal 
+    href: azure-portal-monitoring.md
   - name: How-to guides
     items:
     - name: Stage a solution before deployment
