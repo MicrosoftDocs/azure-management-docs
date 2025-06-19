@@ -1,6 +1,6 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 05/29/2025
+ms.date: 06/19/2025
 ms.topic: concept-article
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
 # Customer intent: "As a Kubernetes administrator, I want to stay informed about the latest updates and enhancements to Azure Arc-enabled Kubernetes agents, so that I can ensure my cluster is secure and operates with the most reliable version."
@@ -13,6 +13,10 @@ Azure Arc-enabled Kubernetes is updated on an ongoing basis. To stay up to date 
 When any of the Arc-enabled Kubernetes agents are updated, all of the agents in the `azure-arc` namespace are incremented with a new version number, so that the version numbers are consistent across agents. When a new version is released, all of the agents are upgraded together to the newest version (whether or not there are functionality changes in a given agent), unless you [disabled automatic upgrades](agent-upgrade.md) for the cluster.
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
+
+## Version 1.27.0 (June 2025)
+
+- Security vulnerability fixes
 
 ## Version 1.26.0 (May 2025)
 
@@ -27,13 +31,13 @@ We generally recommend using the most recent versions of the agents. The [versio
 - Upgrade connected proxy agent
 - Security vulnerability fixes
 
+## Older agent releases
+
 ## Version 1.24.4 (March 2025)
 
 - Security vulnerability fixes
 - Various bug fixes
 - Support for [version-managed extensions](managed-extensions.md)
-
-## Older agent releases
 
 ### Version 1.23.3 (February 2025)
 
