@@ -166,7 +166,7 @@ var clusterName = '<aks-or-arc-cluster-name>'
 var workloadIdentityClientId = 'replace-me##-##-###-###'
 var ssoWorkloadIdentityClientId = 'replace-me##-##-###-###'
 
-var url = 'https://<public-ip-for-argocd-ui>/auth/callback'
+var url = 'https://<public-ip-for-argocd-ui>/'
 var oidcConfig = '''
 name: Azure
 issuer: https://login.microsoftonline.com/<your-tenant-id>/v2.0
