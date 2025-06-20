@@ -6,6 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/13/2025
+ms.subservice: edge-rag
 
 #CustomerIntent: As a system administrator or IT professional, I want to understand the hardware, software, networking, and configuration requirements for deploying Edge RAG so that I can ensure my infrastructure meets the prerequisites for a successful deployment and operation.
 ms.custom:

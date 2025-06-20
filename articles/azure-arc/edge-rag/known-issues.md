@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/20/2025
-
+ms.subservice: edge-rag
 #CustomerIntent:
 ms.custom:
   - build-2025
