@@ -158,6 +158,14 @@ To fix this problem, the credentials in the appliance VM need to be updated. For
 
 Arc resource bridge doesn't support private link. Calls coming from the appliance VM shouldn't be going through your private link setup. Private link IPs may conflict with the appliance IP pool range, which isn't configurable on the resource bridge. Arc resource bridge reaches out to [required URLs](network-requirements.md#firewallproxy-url-allowlist) that shouldn't go through a private link connection. You must deploy Arc resource bridge on a separate network segment unrelated to the private link setup.
 
+### Unapproved extension installation
+
+Arc resource bridge is a locked-down virtual appliance built to host only approved Azure Arc-enabled private cloud extensions. If you attempt to install any other extension onto the resource bridge, you will receive an error:
+
+```  
+Extension installation failed. The specified extension is not permitted on Azure Arc Resource Bridge. Only Azure Arc resource bridge approved extensions can be installed.
+```
+
 ### Error downloading file release information
 
 When attempting to upgrade the Arc resource bridge, you may encounter the following error: 
