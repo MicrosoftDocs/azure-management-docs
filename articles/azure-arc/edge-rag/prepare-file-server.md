@@ -1,18 +1,18 @@
 ---
-title: Verify NFS Server Access for Edge RAG Deployment
+title: Verify NFS Server Access for Edge RAG Preview Enabled by Azure Arc
 description: "Learn about preparing your NFS server configuration and connectivity for Edge RAG deployment to make sure your data is accessible and ready."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 06/21/2025
+ms.date: 06/20/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to verify that my NFS server is configured and reachable for Edge RAG deployment so that my documents and images are accessible to the chat solution.
 ---
 
-# Verify NFS server access for Edge RAG deployment
+# Verify NFS server access for Edge RAG Preview enabled by Azure Arc
 
-As part of preparing for your Edge RAG deployment, verify your network file share (NFS) server is configured and reachable for your Edge RAG deployment. Check the connectivity and make sure your data is accessible. This article is part of the deployment prerequisites checklist.
+As part of preparing for your deployment, verify your network file share (NFS) server is configured and reachable for Edge RAG. Check the connectivity and make sure your data is accessible. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -28,4 +28,4 @@ Use the NFS server you configured to store the documents and images you plan to 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Prepare AKS cluster on Azure Local for Edge RAG deployment](prepare-aks-cluster.md)
+> [Prepare AKS cluster on Azure Local](prepare-aks-cluster.md)

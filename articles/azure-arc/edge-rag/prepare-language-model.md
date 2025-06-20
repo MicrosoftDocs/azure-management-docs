@@ -1,19 +1,19 @@
 ---
-title: Choose the Right Language Model for Edge RAG Deployment
+title: Choose the Right Language Model for Edge RAG Preview Enabled by Azure Arc
 description: "Learn how to choose the right language model for Edge RAG deployment, including Microsoft and custom options, to optimize your AI solution."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 06/21/2025
+ms.date: 06/20/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 #CustomerIntent: As a cloud administrator, I want to choose a language model for use with Edge RAG so that I can deploy and manage an AI chat solution for my edge environment.
 
 ---
 
-# Choose the right language model for Edge RAG Deployment
+# Choose the right language model for Edge RAG Preview enabled by Azure Arc
 
-Review available model options and understand model requirements to choose the right language model for Edge RAG Preview enabled by Azure Arc. This article is part of the deployment prerequisites checklist.
+Review available model options and understand model requirements to choose the right language model for your Edge RAG deployment. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -49,5 +49,5 @@ If you plan to use your own language model with Edge RAG, you must complete the 
 ## Next step
 
 If you choose to:
-- Use a Microsoft provided language model, the next step is to [Verify NFS server access for Edge RAG deployment](prepare-file-server.md).
-- Bring use your own language model, see [Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
+- Use a Microsoft provided language model, see [Verify NFS server access for Edge RAG](prepare-file-server.md).
+- Bring use your own language model, see [Create an endpoint to use for Edge RAG](prepare-model-endpoint.md).

@@ -1,18 +1,18 @@
 ---
-title: Verify "Contributor" Role for Edge RAG Deployment
+title: Verify Contributor Role for Edge RAG Preview Enabled by Azure Arc
 description: "Learn how to verify you have the necessary Contributor role in Azure for Edge RAG deployment. Make sure you have proper permissions before continuing."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 06/21/2025
+ms.date: 06/20/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As an Azure administrator, I want to verify that I have contributor permissions for Edge RAG so that I have the necessary access to deploy the resources needed for Edge RAG.
 ---
 
-# Verify "contributor" role at the subscription level for Edge RAG deployment
+# Verify contributor role for Edge RAG Preview enabled by Azure Arc
 
-Make sure you have contributor permissions at the subscription level for Edge RAG Preview enabled by Azure Arc by checking your Azure role assignments. This article is part of the deployment prerequisites checklist.
+Make sure you have contributor permissions at the subscription level for your Edge RAG deployment by checking your Azure role assignments. This article is part of the deployment prerequisites checklist.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -30,4 +30,4 @@ az feature register --namespace Microsoft.KubernetesConfiguration --name extensi
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Choose the right language model for Edge RAG deployment](prepare-language-model.md)
+> [Choose the right language model](prepare-language-model.md)
