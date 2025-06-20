@@ -9,6 +9,7 @@ ms.custom:
   - copilot-learning-hub
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a Global Administrator, I want to manage user access to Microsoft Copilot in Azure, so that I can control whether users in my organization can use its features."
 ---
 
 # Manage access to Microsoft Copilot in Azure

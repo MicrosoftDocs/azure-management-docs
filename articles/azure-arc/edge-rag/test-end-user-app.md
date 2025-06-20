@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 05/13/2025
-
+ms.subservice: edge-rag
 #CustomerIntent: As a developer or IT administrator, I want to test the Edge RAG chat solution by using the out-of-the-box application  so that I can evaluate and demonstrate the capabilities of AI-powered search in a hybrid or multicloud environment.
 ms.custom:
   - build-2025
