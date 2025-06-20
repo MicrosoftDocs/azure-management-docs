@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a cloud administrator, I want to analyze disk performance issues using an AI tool, so that I can identify and resolve bottlenecks impacting my virtual machines and applications efficiently.
 ---
 
 # Troubleshoot disk performance using Microsoft Copilot in Azure

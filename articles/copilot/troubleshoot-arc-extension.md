@@ -5,6 +5,7 @@ ms.date: 04/08/2025
 ms.topic: how-to
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As an IT administrator managing Azure Arc-enabled servers, I want to troubleshoot extension failures using a guided tool, so that I can quickly identify issues and apply recommended fixes to maintain system functionality.
 ---
 
 # Troubleshoot extension failures for Azure Arc-enabled servers using Microsoft Copilot in Azure

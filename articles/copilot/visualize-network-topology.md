@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a network administrator, I want to visualize my network topology and specific resources, so that I can better understand relationships, troubleshoot issues, and optimize performance across my Azure environment.
 ---
 
 # Visualize network topology using Microsoft Copilot in Azure
