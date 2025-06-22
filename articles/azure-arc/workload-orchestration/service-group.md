@@ -325,7 +325,7 @@ az rest `
 
 ***
 
-Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](initial-setup-configuration.md#solution-authoring-and-deployment).
+Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](workflow-features.md#solution-authoring-and-deployment).
 
 > [!NOTE]
 > If you run into any issues while creating service groups or configuring them, see the [Troubleshooting guide](troubleshooting.md#troubleshoot-service-groups).

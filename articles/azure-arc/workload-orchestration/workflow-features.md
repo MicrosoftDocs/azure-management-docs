@@ -1,12 +1,11 @@
 ---
 title: Workflow and Features in Workload Orchestration
-description: 
+description: Learn about the workflow in workload orchestration and the features available for authoring, deploying, and managing solutions.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: conceptual-article
+ms.topic: concept-article
 ms.date: 06/19/2025
 ---
-
 
 # Workflow and features in workload orchestration
 
@@ -65,7 +64,7 @@ metadata:
 
 Once solution is uploaded to workload orchestration, IT DevOps author the configuration template and schema for validation rules. IT DevOps can provide technical configurations and set the default values and ranges for all configurations in the template and schema.
 
-- **Azure CLI**: IT DevOps can provide values for these configurations via CLI. The CLI will validate the configurations and publish them to the target. For more information, see [Different solution authoring scenarios](#different-solution-authoring-scenarios).
+- **Azure CLI**: IT DevOps can provide values for these configurations via CLI. The CLI will validate the configurations and publish them to the target. For more information, see [Solution authoring scenarios](#solution-authoring-scenarios).
 - **Workload orchestration portal**: The published solutions and configurations are reflected on the portal. Any no-code persona is able to view the configurations and provide values via workload orchestration portal based on RBAC. For more information, see [Configure your solutions](configure.md).
 
 ## Revisions of configurations
