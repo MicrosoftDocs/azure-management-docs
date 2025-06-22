@@ -339,6 +339,9 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Deploy the solution FSAD at *Line01*
 
 ### Review the configurations of FSAD at *Line01*
@@ -386,6 +389,9 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```
 
 ***
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
 
 ### Publish and install the solution FSAD at *Line01*
 

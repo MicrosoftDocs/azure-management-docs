@@ -379,6 +379,9 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Review the configuration values
 
 ### [Bash](#tab/bash)
@@ -468,4 +471,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
     ```
 
 ***
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
 

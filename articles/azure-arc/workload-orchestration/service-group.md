@@ -189,7 +189,7 @@ az rest `
     ```
 
     > [!NOTE]
-    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels)
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
@@ -281,7 +281,7 @@ az rest `
     ```
 
     > [!NOTE]
-    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels)
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.

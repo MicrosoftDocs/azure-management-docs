@@ -274,6 +274,9 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Deploy the solution
 
 ### [Bash](#tab/bash)
@@ -331,8 +334,10 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```
 ***
 
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
+
 ## Next steps
 
+Once you know how to create a basic solution, you can explore more advanced scenarios. For example, check out how to [Create a basic solution with common configurations](quickstart-solution-with-common-configuration.md), which is an extension of this quickstart.
 
-
- [Create a solution with common configurations](quickstart-solution-with-common-configuration.md).

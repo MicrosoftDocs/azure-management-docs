@@ -7,7 +7,7 @@ items:
     items:
     - name: Prepare environment requirements
       href: initial-setup-environment.md
-    - name: Set up workload orchestration
+    - name: Configure workload orchestration
       href: initial-setup-configuration.md
     - name: RBAC guide 
       href: rbac-guide.md
@@ -72,7 +72,7 @@ items:
       href: diagnose-problems.md
     - name: Delete resources
       href: delete-resources.md
-    - name: Externally validate business logic
+    - name: Enable external validation
       items:
       - name: Enable external validation with Event Grid
         href: external-validation.md

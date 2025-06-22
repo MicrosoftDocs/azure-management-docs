@@ -4,7 +4,7 @@ description: Workload orchestration is a cross-platform orchestrator for managin
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: overview
-ms.date: 05/10/2025
+ms.date: 06/22/2025
 ms.custom:
   - build-2025
 ---
@@ -21,26 +21,34 @@ So whenever there’s an update to this app — like a new feature or a bug fix 
 
 You’d need a ton of resources just to keep up before even considering incorporating actions around approvals, maintenance windows, canary deployments. Workload orchestration simplifies this process by providing a single platform to manage all your solutions. 
 
-- **Diversity and complexity of the edge ecosystem:** Your organization needs to manage different device types, operating systems, hardware configurations, and service providers, each with their own capabilities, limitations, and interfaces.
-- **Incompatible toolchains:** Even for simple solutions deployed in plants and factories, your organization needs to manage a combination of cloud native applications and legacy applications. Each new component adds to the challenge of defining and managing the whole solution.
-- **Manual effort and coordination during deployment cycles:** Your organization needs to distribute and install their edge applications on various devices, often in remote or disconnected locations, and ensure that they're running the latest and most secure versions. This process requires manual effort, coordination, and network bandwidth and exposes customers to potential errors, failures, and security risks.
-- **Lack of framework to handle administrative tasks:** Production solutions require administrative tasks that apply across multiple tools and applications, such as managing approvals, scheduling maintenance windows, and handling canary deployments.
-- **Access control and security:** Your organization needs to ensure that only authorized users can access and manage their edge applications and devices, and that sensitive data is protected from unauthorized access or tampering. This is especially important in industries such as manufacturing, retail, and healthcare, where data privacy and security are critical.
+Workload orchestration addresses several key challenges faced by organizations managing applications at the edge:
+
+- **Distributed configuration authoring:** Managing configuration files for multiple applications often requires input from different stakeholders across various edge locations, making collaboration and consistency difficult.
+- **Edge contextualization:** Edge environments typically include diverse devices and complex topologies, each requiring tailored configurations to meet site-specific needs.
+- **Configuration validation:** Ensuring that configuration parameters are correct before deployment is critical to prevent misconfigurations and avoid costly downtime or productivity loss.
+- **Version management:** Maintaining multiple versions of application code and configuration files can complicate auditing and tracking changes across deployments.
+- **Lack of visibility:** Without a unified view of applications and deployment status, identifying failures and optimizing operations becomes a manual, resource-intensive process.
+- **Role-Based Access Control (RBAC):** Enforcing role-based access ensures that only authorized users can manage and operate within their designated scope, improving security and governance.
+- **Logging and traceability:** Comprehensive logging and error tracing are essential for effective debugging, remediation, and compliance.
+
 
 ## What are the key features of workload orchestration?
 
 Workload orchestration provides a centralized platform for managing applications, their configurations and thus enabling better overall collaboration between the different personas who may interact with the system. The Role-Based Access Control (RBAC) feature ensures that only authorized users can access and manage the applications and devices.
 
-1. **Easy onboarding:** IT admins set up and manage their physical hierarchy, user roles, and access control.
-1. **Custom parameters and rules:** DevOps users can use a default template and schema for writing configuration expressions and attributes respectively. Then, no-code OT personas can define required configuration parameters, ensuring all values meet validation criteria before deployment.
-1. **User-friendly portal:** No-code personas have a user interface to easily deploy applications and configurations on production, including real-time status updates, error logs, and rollback options. 
-1. **Azure Portal for monitoring:** Azure portal provides the technical details about the deployment process, aiding IT persona in debugging helm issues and tracking running applications across sites.
+- **Template framework and schema inheritance:** Define [solution configurations](configuring-template.md) and [schemas](configuring-schema.md) once, then reuse or extend them for multiple deployments. Central IT teams can create a single source of truth for app configurations, which sites can inherit and customize as needed. This ensures consistency and reduces duplicate work.
+- **Dependent application management:** Deploy and manage interdependent applications using orchestrated workflows. Workload orchestration supports configuring and deploying apps with dependencies through the [CLI](quickstart-solution-without-common-configuration.md) or [workload orchestration portal](portal-user-guide.md), reducing errors and streamlining complex rollouts.
+- **Custom and external validation rules:** Administrators can define pre-deployment validation rules to check parameter inputs and settings, preventing misconfigurations. For advanced scenarios, [external validation](external-validation.md) lets you verify templates through services like Azure Functions or webhooks, enabling business-specific logic and reducing runtime errors.
+- **Integrated monitoring and unified control:** Monitor deployments and workload health from a [centralized dashboard](deploy.md). Pause, retry, or roll back deployments as needed, with full logging and compliance visibility.
+- **No-code authoring experience with RBAC:** The workload orchestration portal offers a no-code UI for [defining and updating application settings](configure.md), secured with role-based access control and audit logging. Non-developers can safely make approved changes without compromising security.
+- **CLI and automation support:** IT admins and DevOps engineers can use the CLI for scripted deployments, automation, and CI/CD integration, enabling bulk management of application lifecycles across sites.
+- **Fast onboarding and setup:** Guided workflows help you quickly configure your [organizational hierarchy](service-group.md#set-up-a-service-group-hierarchy-for-workload-orchestration), user roles, and access policies, so you can onboard teams and prepare [edge infrastructure](initial-setup-environment.md) for orchestration in minutes.
 
 ## How does workload orchestration work?
 
 Workload orchestration uses both cloud and edge components to deliver a unified management experience. At its core, the cloud-based control plane leverages a dedicated Azure resource provider, allowing you to centrally define deployment templates. These templates are then consumed by workload orchestration agents running at edge locations, which automatically adapt and apply the necessary customizations for each site.
 
-All workload orchestration resources are managed through Azure Resource Manager, enabling fine-grained Role-Based Access Control (RBAC) and consistent governance. You can interact with workload orchestration using an intuitive CLI and portal, while non-technical onsite staff benefit from a no-code interface for authoring, monitoring, and deploying solutions with site-specific configurations.
+All workload orchestration resources are managed through Azure Resource Manager, enabling fine-grained [Role-Based Access Control (RBAC)](rbac-guide.md) and consistent governance. You can interact with workload orchestration using the [CLI](quickstart-solution-without-common-configuration.md) and [Azure portal](azure-portal-monitoring.md), while non-code onsite staff benefit from a [user-friendly interface](portal-user-guide.md) for authoring, monitoring, and deploying solutions with site-specific configurations.
 
 ### Architecture overview
 
@@ -73,12 +81,11 @@ If your organization has a central IT team and no OT personas, workload orchestr
 |Platform engineers | Responsible for setting up initial infrastructure, profiles of all personas with RBACs and hierarchy level configurations. They also monitor alerts and infrastructure statuses. |
 |Solution engineers | Responsible for solutions and their configurations. They onboard the existing apps, write configuration expressions and attributes, and define configuration schema. They also configure and publish parameters for various applications, deploy the latest version of applications, and roll back when deployment fails. They also monitor application statuses and alerts. |
 
-
 ### OT personas
 
 OT personas, also known as low-code/no-code personas, are users with limited privileges enabled for day-to-day business floor operations. OT personas use the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview), which provides a user-friendly interface to allow no-code personas to easily manage various tasks. For more information, see the [User guide of workload orchestration portal ](portal-user-guide.md).
 
-The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md).
+The workload orchestration portal has three main tabs: **Monitor**, **Configure**, and **Deploy**. Each tab provides different functionalities and access levels based on the RBACs assigned to the user. The access to these features is controlled by the [RBACs assigned to the user](rbac-guide.md), which are defined by the IT admin. 
 
 | Role | Responsibilities | Access required|
 |------|------------------| ---------------|

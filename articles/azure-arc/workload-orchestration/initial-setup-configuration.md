@@ -16,7 +16,8 @@ IT admins and developers are responsible for setting up and configuring workload
 
 This article describes the steps to configure application specific resources such as workload orchestration resources, author solutions, and manage deployments. It also provides information about application and solution versioning, different ways to author configurations, and different solution authoring scenarios.
 
-You can follow the instructions and run one step after another, or if you prefer, you can run the [onboarding scripts](onboarding-scripts.md) for a one-click setup.
+> [!TIP]
+> You can follow the instructions in this article and run through each command, or if you prefer, you can run the [onboarding scripts](onboarding-scripts.md) for a one-click setup.
 
 ## Prerequisites
 

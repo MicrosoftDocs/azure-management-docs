@@ -297,6 +297,9 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Deploy the solution
 
 ### [Bash](#tab/bash)
@@ -356,3 +359,6 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```
 
 ***
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
