@@ -27,13 +27,13 @@ Any installed solution can be uninstalled from a target using the following comm
 #### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target uninstall --subscription "$subscriptionId" --resource-group "$rg" --solution-template "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+az workload-orchestration target uninstall --resource-group "$rg"  --target-name "$targetName" --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target uninstall --subscription $subscriptionId --resource-group $rg --solution-template $appName1 --solution-template-version $appVersion --target-name $childName
+az workload-orchestration target uninstall --resource-group $rg --target-name $targetName --solution-template-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName"
 ```
 
 ***
@@ -45,13 +45,13 @@ Delete a solution revision for a target if it's not installed using the followin
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target remove-revision --subscription "$subscriptionId" --resource-group "$rg" --solution-template "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+az workload-orchestration target remove-revision --resource-group "$rg" --solution-template-version "$version" --target-name "$targetName" --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target remove-revision --subscription $subscriptionId --resource-group $rg --solution-template $appName1 --solution-template-version $appVersion --target-name $childName
+az workload-orchestration target remove-revision --resource-group $rg --solution-template-version $version --target-name $targetName --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName
 ```
 
 ***

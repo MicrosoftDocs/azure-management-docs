@@ -13,6 +13,8 @@ In this tutorial, you create a solution with multiple shared dependencies at dif
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
@@ -589,25 +591,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration for CA solution with "ca-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-name "$caname" --solution-version "$caversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ca-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for RA solution with "ra-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-name "$raname" --solution-version "$raversion" --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$raname/versions/$raversion  --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
     ```
 
 1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```bash
-    az workload-orchestration target review --solution-name "$faname" --solution-version "$faversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$faname/versions/$faversion  --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
     ```
 
 1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```bash
-    az workload-orchestration target review --solution-name "$letname" --solution-version "$letversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$letname/versions/$letversion  --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.
@@ -622,25 +624,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration for CA solution with "ca-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-name $caname --solution-version $caversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ca-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group $rg --target-name $countryTarget --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for RA solution with "ra-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $raname --solution-template-version $raversion --resource-group $rg --target-name $regionTarget --solution-instance-name "ra-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$raname/versions/$raversion  --resource-group $rg --target-name $regionTarget --solution-instance-name "ra-instance-a"
     ```
 
 1. Review the configuration for FA solution with "fa-instance-a" instance.
 
     ```powershell
-    az workload-orchestration target review --solution-name $faname --solution-version $faversion --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$faname/versions/$faversion  --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
     ```
 
 1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```powershell
-    az workload-orchestration target review --solution-name $letname --solution-version $letversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$letname/versions/$letversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command. You will need it to publish the solution.
@@ -658,27 +660,29 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$letname" --solution-version "$version" --review-id "$reviewId" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letName/versions/$version
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --solution-name "$letname" --solution-version "$version" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letname/versions/$version
     ```
+
+
 
 ### [PowerShell](#tab/powershell)
 
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --solution-name $letname --solution-version $version --review-id $reviewId --resource-group $rg --target-name $lineTarget 
+    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letName/versions/$version
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --solution-name $letname --solution-version $version --resource-group $rg --target-name $lineTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letname/versions/$version
     ```
 ***
 

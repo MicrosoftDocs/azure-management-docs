@@ -43,8 +43,8 @@ This article describes how to prepare the environment for workload orchestration
   winget install -e --id Kubernetes.kubectl
   ```  
  
-> [!NOTE]
-> If you already have resources from workload orchestration in *preview*, you can clean them up using this [cleanup script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/PrivatePreviewCleanup.zip).
+> [!IMPORTANT]
+> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, should be created in the same Azure region. 
 
 ## System requirements
 

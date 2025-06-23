@@ -13,6 +13,8 @@ In this tutorial, you create a scenario with multiple solutions that share a sin
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
@@ -588,13 +590,14 @@ Review the configuration for Global Adapter solution with "ga-instance-a" instan
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target review --solution-template-name "$ganame" --solution-template-version "$gaversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion  --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
 ```
+
 ### [PowerShell](#tab/powershell)
 
 
 ```powershell
-az workload-orchestration target review --solution-name $ganame --solution-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
 ```
 
 ***
@@ -608,7 +611,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for Region App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-name "$rappname" --solution-version "$rappversion" --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -621,21 +624,22 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Region App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$rappname" --solution-version "$rappSolutionVersion" --review-id "$rappReviewId" --resource-group "$rg" --target-name "$regionTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
 1. Deploy the Region App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$rappname" --solution-version "$rappSolutionVersion" --resource-group "$rg" --target-name "$regionTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
+
 
 ### [PowerShell](#tab/powershell)
 
 1. Review the configuration for Region App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-name $rappname --solution-version $rappversion --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -648,13 +652,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Region App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $rappname --solution-version $rappSolutionVersion --review-id $rappReviewId --resource-group $rg --target-name $regionTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
 1. Deploy the Region App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $rappname --solution-version $rappSolutionVersion  --resource-group $rg --target-name $regionTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 ***
 
@@ -665,7 +669,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for Factory App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-name "$fappname" --solution-version "$fappversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fappname/versions/$fappversion  --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -678,13 +682,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Factory App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$fappname" --solution-version "$fappSolutionVersion" --review-id "$fappReviewId" --resource-group "$rg" --target-name "$factoryTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 1. Deploy the Factory App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$fappname" --solution-version "$fappSolutionVersion" --resource-group "$rg" --target-name "$factoryTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -692,7 +696,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for Factory App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-name $fappname --solution-version $fappversion --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fappname/versions/$fappversion  --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -705,13 +709,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Factory App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $fappname --solution-version $fappSolutionVersion --review-id $fappReviewId --resource-group $rg --target-name $factoryTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 1. Deploy the Factory App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $fappname --solution-version $fappSolutionVersion  --resource-group $rg --target-name $factoryTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion 
     ```
 ***
 
@@ -722,7 +726,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for Line App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-name "$lappname" --solution-version "$lappversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$lappname/versions/$lappversion  --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -735,13 +739,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Line App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$lappname" --solution-version "$lappSolutionVersion" --review-id "$lappReviewId" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 1. Deploy the Line App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$lappname" --solution-version "$lappSolutionVersion" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -749,7 +753,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for Line App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-name $lappname --solution-version $lappversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$lappname/versions/$lappversion  --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -762,13 +766,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Line App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $lappname --solution-version $lappSolutionVersion --review-id $lappReviewId --resource-group $rg --target-name $lineTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 1. Deploy the Line App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $lappname --solution-version $lappSolutionVersion  --resource-group $rg --target-name $lineTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 ***
 

@@ -15,6 +15,8 @@ Service groups are a new resource type in Azure Resource Manager (ARM) that help
 
 For more information, see [RBAC for service groups](rbac-guide.md#rbac-for-service-groups).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
+
 ## What is a service group?
 
 Service groups are tenant-level resource containers that represent a subset of collection of resources across Azure subscriptions or resource groups. They allow you to organize selected resources into a unified logical grouping, while maintaining your existing setup. 

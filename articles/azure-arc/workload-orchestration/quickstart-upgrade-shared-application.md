@@ -55,29 +55,30 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 1. Review the FSAD solution template using the `az workload-orchestration target review` command.
 
     ```bash 
-    az workload-orchestration target review --solution-name "$fsad" --solution-version 1.0.0 --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fsad/versions/1.0.0 --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
     ```
 
 1. Copy the ID from the output of the FSAD review command and add it to `"solutionVersionId":  "<solution version id>"` in the *dependencies.json* file. 
 1. Review the SSA solution template.
 
     ```bash 
-    az workload-orchestration target review --solution-name "$ssa" --solution-version 1.0.0 --resource-group "$rg" --target-name "$t2" --solution-dependencies "@dependencies.json" 
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ssa/versions/1.0.0 --resource-group "$rg" --target-name "$t2" --solution-dependencies "@dependencies.json" 
     ```
 
 1. Publish and install the SSA solution instance.
 
     ```bash 
+    ssareviewId="<copy the reviewId from review output>"
+    ssaVersion="<copy the name from review output>"
+
     az workload-orchestration target publish \
-        --solution-name "$ssa" \
-        --solution-version "<copy the name from review output>" \
-        --review-id "<copy the reviewId from review output>" \
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
         --resource-group "$rg" \
         --target-name "$t2"
 
+
     az workload-orchestration target install \
-        --solution-name "$ssa" \
-        --solution-version "<copy the name from review output>" \
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
         --resource-group "$rg" \
         --target-name "$t2"
     ```
@@ -111,29 +112,29 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
 1. Review the FSAD solution template using the `az workload-orchestration target review` command.
 
     ```powershell
-    az workload-orchestration target review --solution-name $fsad --solution-version 1.0.0 --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fsad/versions/1.0.0 --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
     ```
 
 1. Copy the ID from the output of the FSAD review command and add it to `"solutionVersionId":  "<solution version id>"` in the *dependencies.json* file. 
 1. Review the SSA solution template.
 
     ```powershell
-    az workload-orchestration target review --solution-name $ssa --solution-version 1.0.0 --resource-group $rg --target-name $t2 --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ssa/versions/1.0.0 --resource-group $rg --target-name $t2 --solution-dependencies "@dependencies.json"
     ```
 
 1. Publish and install the SSA solution instance.
 
     ```powershell
+    $ssareviewId = "<copy the reviewId from review output>"
+    $ssaVersion = "<copy the name from review output>"
+
     az workload-orchestration target publish `
-        --solution-name $ssa `
-        --solution-version "<copy the name from review output>" `
-        --review-id "<copy the reviewId from review output>" `
+    --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
         --resource-group $rg `
         --target-name $t2
 
     az workload-orchestration target install `
-        --solution-name $ssa `
-        --solution-version "<copy the name from review output>" `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
         --resource-group $rg `
         --target-name $t2
     ```
@@ -150,22 +151,25 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
 1. Run the review command for FSAD instance with new solution template version.
 
     ```bash
-    az workload-orchestration target review --solution-name "$fsad" --solution-version "<new version>" --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
+    $new_version="<new version>"
+
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fsad/versions/$new_version 
+    --resource-group "$rg" --target-name "$t1" --solution-instance-name "$fsad_instance_name"
     ```
 
 1. Publish and install the FSAD solution instance.
 
     ```bash
+    fsadreviewId="<copy the reviewId from review output>"
+    fsadVersion="<copy the name from review output>"
+
     az workload-orchestration target publish \
-            --solution-name "$fsad" \
-            --solution-version "<copy the name from review output>" \
-            --review-id "<copy the reviewId from review output>" \
+            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
             --resource-group "$rg" \
             --target-name "$t1"
     
     az workload-orchestration target install \
-            --solution-name "$fsad" \
-            --solution-version "<copy the name from review output>" \
+            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
             --resource-group "$rg" \
             --target-name "$t1"
     ```
@@ -176,22 +180,25 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
 1. Run the review command for FSAD instance with new solution template version.
 
     ```powershell
-    az workload-orchestration target review --solution-name $fsad --solution-version "<new version>" --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
+    $new_version="<new version>"
+
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fsad/versions/$new_version 
+    --resource-group $rg --target-name $t1 --solution-instance-name $fsad_instance_name
     ```
 
 1. Publish and install the FSAD solution instance.
 
     ```powershell
+    $fsadreviewId = "<copy the reviewId from review output>"
+    $fsadVersion = "<copy the name from review output>"
+
     az workload-orchestration target publish `
-        --solution-name $fsad `
-        --solution-version "<copy the name from review output>" `
-        --review-id "<copy the reviewId from review output>" `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
         --resource-group $rg `
         --target-name $t1
 
     az workload-orchestration target install `
-        --solution-name $fsad `
-        --solution-version "<copy the name from review output>" `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
         --resource-group $rg `
         --target-name $t1
     ```

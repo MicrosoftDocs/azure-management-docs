@@ -127,7 +127,7 @@ Solution: To resolve this issue, retry publishing the solution.
 ```powershell
 $reviewId = "<input the id acquired from previous step>" 
 
-az workload-orchestration target publish  --solution-name $solutionName --solution-version $solutionVersion --review-id $reviewId --resource-group $rg --target-name $targetName
+az workload-orchestration target publish --resource-group $rg --target-name $targetName         --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/$solutionVersion
 ```
 
 ### Issue: Container image file is corrupted or missing 

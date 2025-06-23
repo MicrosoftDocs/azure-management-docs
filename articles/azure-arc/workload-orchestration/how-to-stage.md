@@ -622,7 +622,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Review the template version.
 
     ```bash
-    az workload-orchestration target review --solution-name "$solutionTemplateName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionTemplateName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -648,15 +648,17 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
     ```bash
     reviewId="<input the ID from previous step>"
-    az workload-orchestration target publish --solution-name "$solutionName" --solution-version "1.0.0" --review-id "$reviewId" --resource-group "$rg" --target-name "$targetName"
+    subId="<your subscription id>"
+
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
     ```
+
 
 1. Check the solution status. It should change from "inReview" to "staging".
 
     ```bash
-    subscriptionId="<your subscription id>"
     curl -H "Authorization: Bearer <access_token>" \
-      "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+      "https://eastus2euap.management.azure.com/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
     ```
 
 1. After publish completed, run the following commands to check that the images are staged locally:
@@ -671,7 +673,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Install the solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$targetName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.
@@ -685,14 +687,15 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
     ```powershell
     $reviewId = "<input the ID from previous step>"
-    az workload-orchestration target publish  --solution-name $solutionName --solution-version "1.0." --review-id $reviewId --resource-group $rg --target-name $targetName
+    $subId = "<your subscription id>"
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group $rg --target-name $targetName
     ```
 
 1. Check the solution status. It should change from "inReview" to "staging".
 
     ```powershell
-    $subscriptionId = "<your subscription id>"
-    armclient get "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+    
+    armclient get "https://eastus2euap.management.azure.com/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
     ```
 
 1. After publish completed, run the following commands to check that the images are staged in local:
@@ -707,7 +710,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Install the solution.
 
     ```powershell
-    az workload-orchestration target install  --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $targetName
+    az workload-orchestration target install --resource-group $rg --target-name $targetName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.

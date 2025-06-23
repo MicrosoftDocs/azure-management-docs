@@ -400,14 +400,16 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line01*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line01" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg"  --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
+
 
 1. Run `target install` to install FSAD solution at *Line01*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line01"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
+
 
 1. Make sure all configurations are updated at edge. 
 
@@ -423,13 +425,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line01*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line01 --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` to install FSAD solution at *Line01*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line01
+    az workload-orchestration target install --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -486,13 +488,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line02*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line02" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$line02" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line02*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line02"
+    az workload-orchestration target install --resource-group "$rg" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version --target-name "$line02"
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -509,13 +511,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line02*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line02 --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line02*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line02
+    az workload-orchestration target install --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -588,13 +590,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line03*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line03" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line03*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$line03"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -611,13 +613,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line03*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line03 --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` to install FSAD solution at *Line03*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $line03
+    az workload-orchestration target install --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -642,7 +644,7 @@ If any dependent app, for example, FSAD is uninstalled from any target line, the
 1. Uninstall FSAD from *Line01*.
 
     ```bash
-    az workload-orchestration target uninstall --resource-group "$rg" --solution-name "$appName2" --target-name "$line01"
+    az workload-orchestration target uninstall --resource-group "$rg" --target-name "$line01" --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName2
     ```
 
     Verify whether FSAD *Line01* configurations are removed from *ssa-instance-a* instance using `kubectl` command.
@@ -655,7 +657,7 @@ If any dependent app, for example, FSAD is uninstalled from any target line, the
 1. Uninstall FSAD from *Line02*.
 
     ```bash
-    az workload-orchestration target uninstall --resource-group "$rg" --solution-name "$appName2" --target-name "$line02"
+    az workload-orchestration target uninstall --resource-group "$rg" --target-name "$line02" --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName2
     ```
 
     Verify whether *ssa-instance-a* instance has been uninstalled.
@@ -665,7 +667,7 @@ If any dependent app, for example, FSAD is uninstalled from any target line, the
 1. Uninstall FSAD from *Line01*.
 
     ```powershell
-    az workload-orchestration target uninstall --resource-group $rg --solution-name $appName2 --target-name $line01
+    az workload-orchestration target uninstall --resource-group $rg --target-name $line01 --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName2
     ```
 
     Verify whether FSAD *Line01* configurations are removed from *ssa-instance-a* instance using `kubectl` command.
@@ -678,7 +680,7 @@ If any dependent app, for example, FSAD is uninstalled from any target line, the
 1. Uninstall FSAD from *Line02*.
 
     ```powershell
-    az workload-orchestration target uninstall --resource-group $rg --solution-name $appName2 --target-name $line02
+    az workload-orchestration target uninstall --resource-group $rg --target-name $line02 --solution-template-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName2
     ```
 
     Verify whether *ssa-instance-a* instance has been uninstalled.

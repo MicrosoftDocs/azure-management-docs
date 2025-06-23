@@ -24,9 +24,8 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### Improvements
 
-- Improve Performance: Reduced API response time by 30% for all actions.  
-- Instance Name: You can add the instance name in the [configuring flow](configure.md#configure-solution-parameters).
-- Grouping by version: When configuring shared applications in the portal, choose the instance from the dropdown, which is now grouped by solution version.
+- **Instance name**: You can add the instance name in the [configuring flow](configure.md#configure-solution-parameters).
+- **Grouping by version**: When configuring shared applications in the portal, choose the instance from the dropdown, which is now grouped by solution version.
 
 ## May 2025 release
 

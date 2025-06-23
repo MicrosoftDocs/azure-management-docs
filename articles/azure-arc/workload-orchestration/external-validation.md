@@ -220,12 +220,12 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```bash
     az workload-orchestration target publish \
-      --solution-name $appName1 \
-      --solution-version <new-version> \
-      --review-id <review-id> \
-      --resource-group $rg \
-      --target-name $childName
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 \
+      --resource-group "$rg" \
+      --target-name "$childName"
     ```
+
+ --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0
 
 1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
 
@@ -240,9 +240,7 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```powershell
     az workload-orchestration target publish `
-      --solution-name $appName1 `
-      --solution-version <new-version> `
-      --review-id <review-id> `
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 `
       --resource-group $rg `
       --target-name $childName
     ```
@@ -275,18 +273,26 @@ If the state changes from `PendingExternalValidation` to `ReadyToDeploy`, it mea
 
 #### [Bash](#tab/bash)
 
-Change `--solution-version` to the new version you created in the previous step.
+Change `solutionVersion` to the new version you created in the previous step.
 
 ```bash
-az workload-orchestration target install --solution-name <solution-template-name> --solution-version <solution-version> --resource-group $rg --target-name $childName
+subId="<subscription-id>"
+solutionVersion="<new-solution-version>"
+solutionName="<solution-template-name>"
+
+az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName$/versions/$solutionVersion
 ```
 
 #### [PowerShell](#tab/powershell)
 
-Change `--solution-version` to the new version you created in the previous step.
+Change `solutionVersion` to the new version you created in the previous step.
 
 ```powershell
-az workload-orchestration target install --solution-name <solution-template-name> --solution-version <solution-version> --resource-group $rg --target-name $childName
+$subId = "<subscription-id>"
+$solutionVersion = "<new-solution-version>"
+$solutionName = "<solution-template-name>"
+
+az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName/versions/$solutionVersion
 ```
 
 ***

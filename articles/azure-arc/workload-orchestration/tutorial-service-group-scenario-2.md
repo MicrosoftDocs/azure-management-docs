@@ -13,6 +13,7 @@ In this tutorial, you create and configure a target at the region level, which i
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
 
 ## Prerequisites
 
@@ -42,13 +43,13 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific region in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```bash
-    Regionname="Region01"
+    RegionName="Region01"
 
     az workload-orchestration target create \
       --resource-group "$rg" \
       --location "$l" \
-      --name "$Regionname" \
-      --display-name "$Regionname" \
+      --name "$RegionName" \
+      --display-name "$RegionName" \
       --hierarchy-level "region" \
       --capabilities "Use for soap soap" \
       --description "This is Region01 Target" \
@@ -60,7 +61,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```bash
-    targetId=$(az workload-orchestration target show --resource-group $rg --name "$Regionname" --query id --output tsv)
+    targetId=$(az workload-orchestration target show --resource-group $rg --name "$RegionName" --query id --output tsv)
     ```
 
 1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
@@ -75,7 +76,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```bash
-    az workload-orchestration target update --resource-group "$rg" --name "$Regionname"
+    az workload-orchestration target update --resource-group "$rg" --name "$RegionName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -83,13 +84,13 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```powershell
-    $Regionname = "Region01"
+    $RegionName = "Region01"
 
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$Regionname" `
-      --display-name "$Regionname" `
+      --name "$RegionName" `
+      --display-name "$RegionName" `
       --hierarchy-level "region" `
       --capabilities "Use for soap production" `
       --description "This is Region01 Target" `
@@ -101,7 +102,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```powershell
-    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$Regionname" --query id --output tsv)
+    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$RegionName" --query id --output tsv)
     ```
 
 1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
@@ -116,7 +117,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```powershell
-    az workload-orchestration target update --resource-group $rg --name $Regionname
+    az workload-orchestration target update --resource-group $rg --name $RegionName
     ```
 ***
 
@@ -132,7 +133,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./regionHub-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$RegionName-schema" --schema-file ./regionHub-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file. 
@@ -156,7 +157,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Regionname-schema" --schema-file ./regionHub-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$RegionName-schema" --schema-file ./regionHub-schema.yaml -l $l
     ```
 
 1. Create the solution template file. 
@@ -211,42 +212,49 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
+1. Review the configuration. Replace the `<solution-version>` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```bash
-    az workload-orchestration target review --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$Regionname"
+    solutionVersion="<solution-version>"
+    subId="<subscription-id>"
+
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$RegionName"
     ```
 
 1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` with the value of `properties.properties.reviewId` returned from the previous command.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$solutionName" --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group "$rg" --target-name "$Regionname"
+    solutionVersion="<SolutionVersion>" 
+
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
 
     ```bash
-    az workload-orchestration target install --solution-name "$solutionName" --solution-version <SolutionVersion> --resource-group "$rg" --target-name "$Regionname"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
+1. Review the configuration. Replace the `<solution-version>` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```powershell
-    az workload-orchestration target review --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $Regionname
+    $solutionVersion = "<solution-version>"
+    $subId = "<subscription-id>"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0--resource-group $rg --target-name $RegionName
     ```
 
-1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` the value of `properties.properties.reviewId` returned from the previous command.
+1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --solution-name $solutionName --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group $rg --target-name $Regionname
+    az workload-orchestration target publish --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
-1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
+1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --solution-name $solutionName --solution-version <SolutionVersion> --resource-group $rg --target-name $Regionname
+   az workload-orchestration target install --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 

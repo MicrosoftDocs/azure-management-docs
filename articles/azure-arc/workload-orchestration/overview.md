@@ -11,15 +11,15 @@ ms.custom:
 
 # What is workload orchestration?
 
-Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform orchestrator that simplifies the deployment, management, and update of application workloads across edge environments. Workload orchestration solves the Kubernetes application lifecycle management problem for customers who need to have common applications installed across fleets with site specific variations. 
+Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform service engine that simplifies the deployment, management, and update of application workloads across edge environments. Workload orchestration addresses typical application lifecycle management problems for customers who need to have application deployments across multiple fleets with site-specific configurations. It natively supports kubernetes workloads. 
 
 ## What problems does workload orchestration solve?
 
-Imagine a **factory** where workers use a **simple app** to monitor the status of **factory machines** — like motors, pumps, or mixers. This app doesn’t run in the cloud. It runs on-premises, inside the factory, on a computer. Now imagine that this factory has **multiple locations**, each with its own computer running the same app, but each location needs it set up a bit differently. Factory A might have 10 machines while factory B has 30. Factory A might have different safety thresholds than factory B. Factory A might need alerts in English, while factory B needs them in Spanish.
+Imagine a factory where workers use a simple app to monitor the status of factory machines — like motors, pumps, or mixers. This app doesn’t run in the cloud. It runs on-premises, inside the factory, on a computer. Now imagine that this factory has multiple locations, each with its own computer running the same app, but each location needs it set up a bit differently. Factory A might have 10 machines while factory B has 30. Factory A might have different safety thresholds than factory B. Factory A might need alerts in English, while factory B needs them in Spanish.
 
-So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to **each computer** in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many, some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
+So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to each computer in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many, some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
 
-You’d need a ton of resources just to keep up before even considering incorporating actions around approvals, maintenance windows, canary deployments. Workload orchestration simplifies this process by providing a single platform to manage all your solutions. 
+These challenges aren't limited to manufacturing — workload orchestration is sector-agnostic and highly relevant for enterprise customers in industries like retail, QSR, energy, and healthcare, where distributed operations rely on consistent, localized applications.
 
 Workload orchestration addresses several key challenges faced by organizations managing applications at the edge:
 
@@ -30,7 +30,6 @@ Workload orchestration addresses several key challenges faced by organizations m
 - **Lack of visibility:** Without a unified view of applications and deployment status, identifying failures and optimizing operations becomes a manual, resource-intensive process.
 - **Role-Based Access Control (RBAC):** Enforcing role-based access ensures that only authorized users can manage and operate within their designated scope, improving security and governance.
 - **Logging and traceability:** Comprehensive logging and error tracing are essential for effective debugging, remediation, and compliance.
-
 
 ## What are the key features of workload orchestration?
 
@@ -56,7 +55,7 @@ All workload orchestration resources are managed through Azure Resource Manager,
 
 ## Who can use workload orchestration?
 
-Workload orchestration is designed for a wide range of users, which can be broadly categorized into two main groups: IT(Information Technology) and OT (Operational Technology) personas. IT personas are responsible for setting up the environment, while OT personas are responsible for managing the applications. The workload orchestration portal provides a user-friendly interface for OT personas to manage their applications, while IT personas can use the Azure CLI to set up the environment.
+Workload orchestration is designed for a wide range of users, who can be broadly categorized into two main groups: IT (Information Technology) and OT (Operational Technology) personas. 
 
 ### IT personas
 
@@ -95,6 +94,11 @@ The workload orchestration portal has three main tabs: **Monitor**, **Configure*
 
 > [!NOTE]
 > Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 
+
+## Pricing
+
+Workload orchestration pricing is based on a tiered model that reflects your usage levels. You can choose from multiple categories, including Standard and Premium tiers, depending on your operational needs. Charges are determined by the number of operations performed and the storage used for configuration files. For detailed pricing information, please contact your account manager.
+
 
 
 

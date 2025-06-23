@@ -446,13 +446,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     reviewId="<reviewId>"
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -461,13 +461,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     $reviewId = "<reviewId>"
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName
+    az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ***

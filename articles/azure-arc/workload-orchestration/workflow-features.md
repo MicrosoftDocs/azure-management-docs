@@ -7,7 +7,7 @@ ms.topic: concept-article
 ms.date: 06/19/2025
 ---
 
-# Workflow and features in workload orchestration
+# Workflows and features in workload orchestration
 
 This article provides an overview of the workflow in workload orchestration and the available features to easily author, deploy, and manage solutions.
 
@@ -71,6 +71,10 @@ Once solution is uploaded to workload orchestration, IT DevOps author the config
 
 When user provides values for solution configurations and publishes them for certain targets, revisions of configurations are created for each target. These revisions are incremented with each new change made by user for respective target.
 
+## Ways to monitor solutions
+
+
+
 ## Staging before deployment
 
 Workload orchestration supports staging of solutions before deployment. Staging allows users to download the artifacts and validate the configurations before deploying them to the edge cluster. Staging is an optional step, but it's beneficial for some user scenarios with large-scale deployments or network latency issues. 
@@ -83,4 +87,7 @@ Service groups are a new resource type in Azure Resource Manager (ARM) that allo
 
 For more information, see [Service groups](service-group.md).
 
+## Diagnostics 
 
+
+## Bulk deployment 

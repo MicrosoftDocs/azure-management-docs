@@ -23,6 +23,9 @@ This article describes the steps to configure application specific resources suc
 
 Before you begin, you need to have the prerequisites and ensure you followed the steps listed in [Prepare the environment for workload orchestration](initial-setup-environment.md).
 
+> [!IMPORTANT]
+> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, should be created in the same Azure region. 
+
 ## Configure the resources of workload orchestration
 
 Workload orchestration is implemented as a resource provider in Azure and exposes multiple resource types that stitch the whole experience together. The IT admin is responsible for setting up the resources that are needed to run workload orchestration. The resources are created in the Azure portal and are used to manage the deployment of applications across the Arc-enabled Kubernetes cluster.
