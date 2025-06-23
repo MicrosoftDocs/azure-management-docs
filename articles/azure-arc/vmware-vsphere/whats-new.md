@@ -8,6 +8,7 @@ ms.date: 06/19/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
+ms.custom: references_regions
 ---
 
 # What's new in Azure Arc-enabled VMware vSphere
@@ -28,7 +29,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## October 2024
 
-- Ability to install Arc agents at-scale on VMware VMs using [out-of band methods](enable-guest-management-at-scale.md#approach-d-install-arc-agents-at-scale-using-out-of-band-approach) such as:
+- Ability to install Arc agents at-scale on VMware VMs using [out-of-band methods](enable-guest-management-at-scale.md#approach-d-install-arc-agents-at-scale-using-out-of-band-approach) such as:
    - Service principal
    - System Center Configuration Manager script
    - System Center Configuration Manager custom task sequence
@@ -74,7 +75,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## November 2023 (General Availability) 
 
-- Ability to [link VMs](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware) with Arc agent installed to leverage self-service lifecycle and powercycle management. 
+- Ability to [link VMs](/azure/azure-arc/vmware-vsphere/enable-virtual-hardware) with Arc agent installed to leverage self-service lifecycle and power cycle management. 
 - Procurement and delivery of [Extended Security Updates](/azure/azure-arc/vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc) for Windows Server and SQL server Arc-enabled VMware/AVS VMs. 
 - Microsoft-managed upgrade support for Azure Arc resource bridge.
 
