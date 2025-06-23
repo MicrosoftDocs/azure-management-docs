@@ -12,7 +12,7 @@ ms.subservice: azure-arc-vmware-vsphere
 
 # What's new in Azure Arc-enabled VMware vSphere
 
-Azure Arc-enabled VMware vSphere receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments which are common to both on-premises VMware and Azure VMware solution private clouds. 
+Azure Arc-enabled VMware vSphere receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments, which are common to both on-premises VMware and Azure VMware Solution private clouds. 
 
 ## June 2025 
 
@@ -24,7 +24,16 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## January 2025 
 
-- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for VMware VMs with active Windows Server Software Assurance licenses, giving you cost benefits on Azure Update Manager, Azure Change Tracking and Inventory billing and exclusive capabilities. 
+- [Windows Server Management](/azure/azure-arc/servers/windows-server-management-overview) for VMware VMs with active Windows Server Software Assurance licenses, giving you cost benefits on Azure Update Manager, Azure Change Tracking, and Inventory billing and exclusive capabilities. 
+
+## October 2024
+
+- Ability to install Arc agents at-scale on VMware VMs using [out-of band methods](enable-guest-management-at-scale.md#approach-d-install-arc-agents-at-scale-using-out-of-band-approach) such as:
+   - Service principal
+   - System Center Configuration Manager script
+   - System Center Configuration Manager custom task sequence
+   - Group policy
+   - Ansible playbook
 
 ## September 2024 
 
