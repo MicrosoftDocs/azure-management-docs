@@ -77,7 +77,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## August 2023 
 
-- Manual [upgrade support](/azure/azure-arc/vmware-vsphere/administer-arc-vmware#upgrade-the-arc-resource-bridge-manually) for Azure Arc resource bridge 
+- Manual [upgrade support](/azure/azure-arc/vmware-vsphere/administer-arc-vmware#upgrade-the-arc-resource-bridge-manually) for Azure Arc resource bridge.
 
 ## Next steps 
 
