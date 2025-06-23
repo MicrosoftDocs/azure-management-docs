@@ -18,7 +18,7 @@ Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing bas
 
 ## June 2025
 
-- Ability to install Arc agents at-scale on SCVMM VMs using [out-of band methods](enable-guest-management-at-scale.md) such as:
+- Ability to install Arc agents at-scale on SCVMM VMs using [out-of band methods](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale?tabs=Out-of-band) such as:
    - Service principal
    - System Center Configuration Manager script
    - System Center Configuration Manager custom task sequence
