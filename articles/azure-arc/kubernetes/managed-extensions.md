@@ -94,7 +94,7 @@ For more information, see [What is Azure Container Storage enabled by Azure Arc?
 
 ### Configure Azure Key Vault Secret Store extension for Kubernetes
 
-To deploy the Azure Key Vault Secret Store extension for Kubernetes ("SSE"), run the following command
+To deploy the Azure Key Vault Secret Store extension for Kubernetes ("SSE"), run the following command:
 
 ```azurecli
 az vme install --resource-group my-resource-group --cluster-name my-cluster --include microsoft.azure.secretstore
