@@ -50,7 +50,6 @@ The following diagram illustrates the file structure.
 
 :::image type="content" source="./media/github-actions-file-structure.png" alt-text="Diagram illustrating the file structure of the GitHub action that automates workload orchestration." lightbox="./media/github-actions-file-structure.png":::
 
-
 ## Push and manual trigger comparison
 
 The following table compares the features and behaviors of the push trigger and manual trigger for the GitHub action.
@@ -64,12 +63,24 @@ The following table compares the features and behaviors of the push trigger and 
 | Validation | Directory existence checked automatically | Validates each directory exists before processing |
 | Parallel | Processes all detected apps concurrently (max 4) | Processes all specified apps concurrently (max 4) | 
 
+### Push trigger workflow
+
+The following diagram illustrates the workflow for the push trigger. It automatically detects changes in the repository and processes the affected applications and common resources.
+
+:::image type="content" source="./media/github-actions-push-trigger.png" alt-text="Diagram illustrating the workflow of the GitHub action when user pushes to main." lightbox="./media/github-actions-push-trigger.png":::
+
+### Manual trigger workflow
+
+The following diagram illustrates the workflow for the manual trigger. It allows users to specify which applications and common resources to deploy, providing more control over the deployment process.
+
+:::image type="content" source="./media/github-actions-manual-trigger.png" alt-text="Diagram illustrating the workflow of the GitHub action when user performs manual trigger." lightbox="./media/github-actions-manual-trigger.png":::
+
 ## Job skipping conditions 
 
-The deploy-apps job is skipped when no apps are detected or provided, or when `action="none"` is selected in manual trigger.
+The workflow includes conditions to skip jobs when deployment is not required:
 
-The deploy-common-resources job is skipped when `deploy_common="none"` is selected in manual trigger, or when no common resource files have changed in push trigger.
-
+- **deploy-apps job**: Skipped if no applications are detected (push trigger), no applications are provided (manual trigger), or if the selected app action is `none` in the manual trigger.
+- **deploy-common-resources job**: Skipped if the selected common resource action is `none` in the manual trigger, or if no common resource files have changed in the push trigger.
 
 ## Deployment Process 
 
@@ -215,6 +226,9 @@ For common resources, the process is similar but focuses on the common schema an
         ```
 
 ## Error handling 
+
+> [!NOTE]
+> If you run into any issues while running the GitHub action, see the [Troubleshooting guide](troubleshooting.md#troubleshoot-github-actions).
 
 ### Schema version check
 

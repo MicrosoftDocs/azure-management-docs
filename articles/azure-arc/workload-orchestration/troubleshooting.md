@@ -241,18 +241,24 @@ az rest `
 
 ### Schema creation failures 
 
-- Verify schema file syntax 
-- Check if schema name/version already exists 
-- Ensure Azure credentials have proper permissions 
+If you encounter issues while creating a schema in GitHub actions, consider the following troubleshooting steps:
+
+- Verify schema file syntax. 
+- Check if schema name/version already exists.
+- Ensure Azure credentials have proper permissions.
 
 ### Template issues 
 
-- Verify schema version exists
-- Check specification file JSON format
-- Validate capabilities in metadata
-- Check external validation settings
+If you encounter issues with templates in GitHub actions, consider the following troubleshooting steps:
+
+- Verify schema version exists.
+- Check specification file JSON format.
+- Validate capabilities in metadata.
+- Check external validation settings.
 
 ### File detection issues 
+
+If you encounter issues with file detection in GitHub actions, consider the following troubleshooting steps:
 
 - Ensure files use correct naming patterns.
 - Verify files are in the correct directories:
