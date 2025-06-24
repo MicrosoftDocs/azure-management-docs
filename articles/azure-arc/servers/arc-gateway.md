@@ -21,11 +21,11 @@ This article explains how to set up and use Arc gateway (preview).
 
 Azure Arc gateway consists of two main components:
 
-- **The Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
+- **Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
 
-- **The Arc Proxy:** A new component added to Arc agentry. This component runs as a service called "Azure Arc Proxy" and acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for the Arc Proxy. This Proxy is part of Arc core agentry and runs within the context of an Arc-enabled resource.
+- **Arc proxy:** A new component added to the Azure Arc agents. This component runs within the context of an Arc-enabled resource as a service called "Azure Arc Proxy. It acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for this proxy.
 
-When the gateway is in place, traffic flows via the following hops: **Arc agentry → Arc Proxy → Enterprise proxy → Arc gateway  → Target service**.
+When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**.
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
 
@@ -51,7 +51,7 @@ To create Arc gateway resources and manage their association with Arc-enabled se
 
 ## Create the Arc gateway resource
 
-You can create an Arc gateway (preview) resource using the Azure portal, Azure CLI, or Azure PowerShell.
+You can create an Arc gateway (preview) resource using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
 
 ### [Portal](#tab/portal)
 
@@ -73,8 +73,6 @@ You can create an Arc gateway (preview) resource using the Azure portal, Azure C
 
 1. Review your input details, and then select **Create**.
 
-    It generally takes about ten minutes to finish creating the Arc gateway resource.
-
 ### [CLI](#tab/cli)
 
 1. Add the Arc gateway extension to your Azure CLI:
@@ -90,8 +88,6 @@ You can create an Arc gateway (preview) resource using the Azure portal, Azure C
         --location [Location]
     ```
 
-    It generally takes about ten minutes to finish creating the Arc gateway resource.
-
 ### [PowerShell](#tab/powershell)
 
 On a machine with access to Azure, run the following PowerShell command to create your Arc gateway resource:
@@ -105,8 +101,6 @@ On a machine with access to Azure, run the following PowerShell command to creat
         -gateway-type public
 ```
 
-It generally takes about ten minutes to finish creating the Arc gateway resource.
-
 ---
 
 ## Confirm access to required URLs
@@ -115,12 +109,12 @@ After the resource is created successfully, the success response will include th
 
 |URL  |Purpose  |
 |---------|---------|
-|`[Your URL Prefix].gw.arc.azure.com`  |Your gateway URL (This URL can be obtained by running `az arcgateway list` after you create your gateway Resource)  |
-|`management.azure.com`  |Azure Resource Manager Endpoint, required for Azure Resource Manager control channel  |
-|`login.microsoftonline.com`  |Microsoft Entra ID’s endpoint, for acquiring Identity access tokens  |
+|`[Your URL Prefix].gw.arc.azure.com`  |Your gateway URL (obtained by running `az arcgateway list` after you create your gateway resource)  |
+|`management.azure.com`  |Azure Resource Manager endpoint, required for Azure Resource Manager control channel  |
+|`login.microsoftonline.com`  |Microsoft Entra ID endpoint for acquiring identity access tokens  |
 |`gbl.his.arc.azure.com`  |The cloud service endpoint for communicating with Azure Arc agents  |
-|`\<region\>.his.arc.azure.com`  |Used for Arc’s core control channel  |
-|`packages.microsoft.com`  |Required to acquire Linux based Arc agentry payload, only needed to connect Linux servers to Arc  |
+|`\<region\>.his.arc.azure.com`  |Used for Arc's core control channel  |
+|`packages.microsoft.com`  |Required to connect Linux servers to Arc  |
 
 ## Onboard new Azure Arc resources with your Arc gateway resource
 
@@ -183,7 +177,7 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
 
 ---
 
-With 1.50 or earlier of the Connected Machine agent, you must also run `azcmagent config set connection.type gateway` to update your Arc-enabled server to use Arc gateway. For agent versions 1.51 and later, this step is not required, as the operation happens automatically. We recommend using the [latest version of the Connected Machine agent](agent-release-notes.md).
+With 1.50 or earlier of the Connected Machine agent, you must also run `azcmagent config set connection.type gateway` to update your Arc-enabled server to use Arc gateway. For agent versions 1.51 and later, this step isn't required, as the operation happens automatically. We recommend using the [latest version of the Connected Machine agent](agent-release-notes.md).
 
 ## Verify successful Arc gateway set-up
 
