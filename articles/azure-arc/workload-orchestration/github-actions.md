@@ -11,7 +11,7 @@ ms.custom:
 
 # Use GitHub actions to automate workload orchestration
 
-GitHub actions facilitates creating workflows to enable managing workload orchestration solution templates and schemas. The wo-onboarding workflow automates the process of deploying workload orchestration configurations for multiple applications and common resources. 
+GitHub actions facilitates creating workflows to enable managing workload orchestration solution templates and schemas. This workflow automates the process of deploying workload orchestration configurations for multiple applications and common resources. 
 
 ## Architecture overview
 
@@ -31,24 +31,20 @@ The workflow requires the following environment variables:
 
 ## Required files
 
-Each application under the .pg/apps directory requires these files in its workload-orchestration directory: 
+Each application under the `.pg/apps` directory requires these files in its workload-orchestration directory: 
 
-- *schema.yaml: Defines the schema for workload orchestration 
+- *schema.yaml: Defines the schema for workload orchestration.
+- *-sol-template.yaml: Contains the solution template configuration.
+- *specs.json: Specifies the deployment specifications.
+- metadata.yaml: Contains metadata like capabilities and external validation settings. 
 
-- *-sol-template.yaml: Contains the solution template configuration 
+The common resources under `.pg/apps/common` include: 
 
-- *specs.json: Specifies the deployment specifications 
-
-- metadata.yaml: Contains metadata like capabilities and external validation settings 
-
-The common resources under .pg/apps/common include: 
-
-- common-schema.yaml: Common schema shared across applications 
-
-- common-config-template.yaml: Common configuration template 
+- common-schema.yaml: Common schema shared across applications. 
+- common-config-template.yaml: Common configuration template. 
 
 > [!NOTE]
-> The * in filenames represents any prefix specific to your app. 
+> The /* character in filenames indicates a variable prefix unique to each application. For example, if the application is named `testapp`, the files would be named `testapp-schema.yaml`, `testapp-sol-template.yaml`, `testapp-specs.json`, and `metadata.yaml`.
 
 The following diagram illustrates the file structure. 
 
@@ -70,16 +66,18 @@ The following table compares the features and behaviors of the push trigger and 
 
 ## Job skipping conditions 
 
-- The deploy-apps job is skipped when no apps are detected or provided, or when `action="none"` is selected in manual trigger.
+The deploy-apps job is skipped when no apps are detected or provided, or when `action="none"` is selected in manual trigger.
 
-- The deploy-common-resources job is skipped when `deploy_common="none"` is selected in manual trigger, or when no common resource files have changed in push trigger.
+The deploy-common-resources job is skipped when `deploy_common="none"` is selected in manual trigger, or when no common resource files have changed in push trigger.
 
 
 ## Deployment Process 
 
 ### 1. Resource detection and validation 
 
-Push Event: 
+The deployment process begins with detecting and validating the resources that need to be deployed. This is done through two main triggers: push and manual. 
+
+#### Push Event:
 
 1. Detects application names by analyzing changed file paths under `.pg/apps/$app/workload-orchestration/`.
 1. Identifies updates to common resources by checking for changes in `.pg/apps/common/*`.
@@ -88,7 +86,7 @@ Push Event:
 1. Determines required actions based on the specific files that were modified.
 1. Logs details of changed and validated files for traceability.
 
-Manual Event: 
+#### Manual Event: 
 
 1. Validates the list of applications provided by the user against the existing directory structure.
 1. Determines which application components to deploy based on the selected app action type.
@@ -97,30 +95,29 @@ Manual Event:
 
 ### 2. Azure login 
 
-1. Authenticates with Azure using OIDC (OpenID Connect) 
+The deployment process requires authentication with Azure to manage resources. This is done using the Azure CLI and OpenID Connect (OIDC) for secure access.
+
+1. Authenticates with Azure using OIDC.
 1. Requires these secrets in repository settings: 
 
-    - AZURE_CLIENT_ID: Azure AD application (service principal) client ID 
-    - AZURE_TENANT_ID: Azure AD tenant ID where the service principal is registered 
-    - AZURE_SUBSCRIPTION_ID: Target Azure subscription ID 
+    - AZURE_CLIENT_ID: Azure AD application (service principal) client ID.
+    - AZURE_TENANT_ID: Azure AD tenant ID where the service principal is registered. 
+    - AZURE_SUBSCRIPTION_ID: Target Azure subscription ID.
 
 1. Uses Azure CLI for authentication and resource management 
 
 ### 3. File processing 
 
+The file processing step is crucial for deploying workload orchestration configurations. It involves reading, validating, and creating schemas and solution templates based on the files found in the specified directories.
+
 #### File processing in applications
 
-For each app to deploy the following steps are performed: 
+For each app to deploy, the following steps are performed: 
 
 1. Get files: 
 
-    - Locates required files in `.pg/apps/$app/workload-orchestration/` directory 
-    - Required patterns: 
-    
-        - *schema.yaml - Schema definition 
-        - *-sol-template.yaml - Solution template 
-        - *specs.json - Specifications 
-        - metadata.yaml - Metadata and capabilities 
+    - Locates required files in `.pg/apps/$app/workload-orchestration/` directory. 
+    - Required patterns: *schema.yaml, *-sol-template.yaml, *specs.json, and metadata.yaml 
 
 1. Schema creation: 
 
@@ -142,11 +139,11 @@ For each app to deploy the following steps are performed:
 
     1. Extracts metadata from files: 
     
-        - Schema name and version from template file 
-        - Template name and version from template file 
-        - Description from metadata file 
-        - Capabilities from metadata file or input 
-        - External validation settings from metadata file 
+        - Schema name and version from template file.
+        - Template name and version from template file. 
+        - Description from metadata file. 
+        - Capabilities from metadata file or input. 
+        - External validation settings from metadata file. 
     
     1. Verifies required schema version exists: 
     
@@ -167,7 +164,7 @@ For each app to deploy the following steps are performed:
     ```
 
 > [!NOTE]
-> - Ensure capabilities are provided either in metadata or as input.
+> - Ensure capabilities are provided either in `metadata.yaml` file or as input.
 > - Schema version must exist before template creation.
 > - Templates are versioned - only creates if version doesn't exist.
 
@@ -175,7 +172,7 @@ For each app to deploy the following steps are performed:
 
 For common resources, the process is similar but focuses on the common schema and configuration template files:
 
-1. Schema creation.
+1. Schema creation:
 
     1. Checks for existing schema version first: 
     
@@ -236,6 +233,8 @@ For common resources, the process is similar but focuses on the common schema an
 - The deployment process fails if capabilities are missing.
     
 ## Best practices
+
+The following best practices help maintain a clean and efficient workflow orchestration process.
 
 ### File organization 
 

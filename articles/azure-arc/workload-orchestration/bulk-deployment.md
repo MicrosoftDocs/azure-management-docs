@@ -7,20 +7,19 @@ ms.topic: how-to
 ms.date: 06/24/2025
 ---
 
-# Bulk deployment with workload orchestration
+# Bulk publish and deploy with workload orchestration
 
-Workload orchestration allows you to deploy multiple workloads in bulk. With bulk deployment, you can publish and deploy a solution across multiple clusters. 
+Workload orchestration allows you to publish and deploy a solution across multiple clusters. 
 
-Currently bulk deployment is only supported via CLI.
+Currently bulk publishing and deployment is only supported via CLI.
 
 ## Prerequisites
 
 Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 
+## Perform bulk publishing
 
-## Perform bulk publish
-
-To perform a bulk publish, run `bulk-publish` command in the Azure CLI.
+To perform a bulk publishing, run `bulk-publish` command in the Azure CLI.
 
 ```powershell
 az workload-orchestration solution-template bulk-publish -g $rg --targets "@targets.json" --name "<solution-template-name>" --version "<solution-template-version>" --solution-dependencies "@dependencies.json"
@@ -50,7 +49,7 @@ The `solutionInstanceName` parameter can be given for each target as part of tar
 > You need to have access to the target clusters on which the solution is deployed. 
 
 
-### Bulk publish output
+### Bulk publishing output
 
 If the bulk publish is successful, the CLI returns the list of published targets under `publishedTargets`. If any target has external validation enabled, the CLI also returns the list of targets that are pending external validation under `externalValidationPending`. These targets can't be deployed until external validation is completed. The CLI output looks like this:
 
@@ -74,7 +73,7 @@ If the bulk publish is successful, the CLI returns the list of published targets
 
 If the bulk publish isn't successful, there are two types of failures: complete failure, when all the targets fail to publish, and partial failure, when some targets succeed to publish while others fail. In the case of a partial failure, the CLI returns the list of targets that succeeded, `publishedTargets` and those that failed, `failedTargets`. In case of a complete failure, the CLI returns a message indicating that all targets failed to publish. 
 
-### Bulk publish with dependencies
+### Bulk publishing with dependencies
 
 If your solution has dependencies on other solutions, you also need to provide a *dependencies.json* file that contains the list of dependencies for the solution. The file should be in the following format:
 
@@ -86,7 +85,7 @@ If your solution has dependencies on other solutions, you also need to provide a
 ]
 ```
 
-In this case, workload orchestration creates a new revision of the dependency and publish it. For example, if the solution has the dependency on shared-app-1.0.0.1, when bulk publish triggers, workload orchestration creates a new revision shared-app-1.0.0.2 and use it for publish.
+In this case, workload orchestration creates a new revision of the dependency and publishes it. For example, if the solution has the dependency on shared-app-1.0.0.1, when bulk publishing triggers, workload orchestration creates new revision shared-app-1.0.0.2 and use it for publishing.
 
 Once publish succeeds, you can find the dependencies of solution by using `az rest` command:
 
@@ -123,7 +122,7 @@ If the bulk publish is successful, the CLI returns the list of published targets
 }
 ```
 
-If the bulk deployment isn't successful, there are two types of failures: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed to deploy while others fail. In the case of a partial failure, the CLI returns the list of targets that succeeded, `deployedTargets` and those that failed, `failedTargets`. In case of a complete failure, the CLI returns a message indicating that all targets failed to deployed. You can retry the deployment for the failed targets by running the `bulk-deploy` command again with the same parameters.
+If the bulk deployment isn't successful, there are two types of failures: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed to deploy while others fail. In the case of a partial failure, the CLI returns the list of targets that succeeded, `deployedTargets` and those that failed, `failedTargets`. In case of a complete failure, the CLI returns a message indicating that all targets failed to deploy. You can retry the deployment for the failed targets by running the `bulk-deploy` command again with the same parameters.
 
 ## Related content
 

@@ -119,12 +119,12 @@ For more information, see [Staging before deployment](how-to-stage.md).
 
 Workload orchestration supports bulk publishing and deployment of solutions to multiple targets. This feature allows users to publish a solution to multiple targets within the same Kubernetes cluster, streamlining the deployment process and reducing manual effort. For more information, see [Bulk publish and deployment](bulk-deployment.md).
 
-
 ## Ways to monitor solutions
 
-Once the solution is deployed, IT DevOps can monitor the solution using the workload orchestration menu in Azure portal. In Azure portal, IT DevOps can view the applications on lines and their statuses, view alerts related to deployment, and trace the issues causing failures. For more information, see [Use Azure portal to monitor your solutions](azure-portal-monitoring.md).
+Once the solutions are deployed, IT DevOps and low-code/non-code personas can monitor the solutions using different tools:
 
-Low-code/non-code personas can also monitor the solutions, but they may use the workload orchestration portal instead of the Azure portal. The workload orchestration portal provides a simplified interface for monitoring solutions, allowing users to view the status of applications and their configurations without needing to access the full Azure portal. For more information, see [Monitor your solutions](monitor.md).
+- **Azure portal_** IT DevOps can monitor the solution using the workload orchestration menu in Azure portal. In Azure portal, IT DevOps can view the applications on lines and their statuses, view alerts related to deployment, and trace the issues causing failures. For more information, see [Use Azure portal to monitor your solutions](azure-portal-monitoring.md).
+- **Workload orchestration portal:** Low-code/non-code personas can also monitor the solutions, but they may use the workload orchestration portal instead of the Azure portal. The workload orchestration portal provides a simplified interface for monitoring solutions, allowing users to view the status of applications and their configurations without needing to access the full Azure portal. For more information, see [Monitor your solutions](monitor.md).
 
 ## Diagnostics 
 
