@@ -13,6 +13,11 @@ This article provides an overview of the workflow in workload orchestration and 
 
 For information about the prerequisites and how to set up workload orchestration, see [Prepare your environment for workload orchestration](initial-setup-environment.md) and [Set up workload orchestration](initial-setup-configuration.md).
 
+## Cluster support
+
+Workload orchestration supports all Arc-enabled clusters, including Azure Kubernetes Service (AKS), Azure Arc-enabled Kubernetes, and Tanzu clusters. 
+Workload orchestration provides comprehensive support for Tanzu environments, enabling users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters. 
+
 ## Solution authoring and deployment 
 
 The process of authoring and deploying solutions using workload orchestration involves creating schemas, configuration templates, and deploying solutions to the target environments. This process is typically performed by IT DevOps.
@@ -71,7 +76,6 @@ There are different variants of schemas that can be used to author solutions. Se
 - **Deploy multiple instances of the same application:** This schema defines configurable attributes/properties of an application that can be deployed multiple times in the same namespace. For more information, see [Create a solution with multiple instances](quickstart-solution-multiple-instances-k8s.md).
 - **Upgrade a shared solution:** This schema shows how to upgrade shared solution along with dependent solutions. For more information, see [Upgrade a shared solution](quickstart-upgrade-shared-application.md).
 
-
 ## Application and solution versioning
 
 Application and solution versions must be manually updated. It's recommended to follow Semantic Versioning, a widely adopted versioning scheme that uses a three-part version number format: `major.minor.patch`. Each part of the version number reflects the scope of changes:
@@ -99,9 +103,11 @@ Once solution is uploaded to workload orchestration, IT DevOps author the config
 
 When user provides values for solution configurations and publishes them for certain targets, revisions of configurations are created for each target. These revisions are incremented with each new change made by user for respective target.
 
-## Ways to monitor solutions
+## Service groups 
 
+Service groups are a new resource type in Azure Resource Manager (ARM) that allow you to organize selected resources into a unified logical grouping in a way that matches your real-world structure. With service groups you can organize resources in a way that reflects your organizational hierarchical structure, such as departments, teams, or projects. Relationships are created between resources to establish a hierarchical structure such as parent and child associations.
 
+For more information, see [Service groups](service-group.md).
 
 ## Staging before deployment
 
@@ -109,13 +115,26 @@ Workload orchestration supports staging of solutions before deployment. Staging 
 
 For more information, see [Staging before deployment](how-to-stage.md).
 
-## Service groups 
+## Bulk publish and bulk deployment 
 
-Service groups are a new resource type in Azure Resource Manager (ARM) that allow you to organize selected resources into a unified logical grouping in a way that matches your real-world structure. With service groups you can organize resources in a way that reflects your organizational hierarchical structure, such as departments, teams, or projects. Relationships are created between resources to establish a hierarchical structure such as parent and child associations.
+Workload orchestration supports bulk publishing and deployment of solutions to multiple targets. This feature allows users to publish a solution to multiple targets within the same Kubernetes cluster, streamlining the deployment process and reducing manual effort. For more information, see [Bulk publish and deployment](bulk-deployment.md).
 
-For more information, see [Service groups](service-group.md).
+
+## Ways to monitor solutions
+
+Once the solution is deployed, IT DevOps can monitor the solution using the workload orchestration menu in Azure portal. In Azure portal, IT DevOps can view the applications on lines and their statuses, view alerts related to deployment, and trace the issues causing failures. For more information, see [Use Azure portal to monitor your solutions](azure-portal-monitoring.md).
+
+Low-code/non-code personas can also monitor the solutions, but they may use the workload orchestration portal instead of the Azure portal. The workload orchestration portal provides a simplified interface for monitoring solutions, allowing users to view the status of applications and their configurations without needing to access the full Azure portal. For more information, see [Monitor your solutions](monitor.md).
 
 ## Diagnostics 
 
+Workload orchestration provides diagnostic capabilities to help users troubleshoot edge-related logs issues. You can enable workload orchestration audit and diagnostic logs, collect container logs or Kubernetes events, and enable OTLP (OpenTelemetry logs) or syslogs to collect logs from the edge cluster. These logs can be used to diagnose issues related to solution deployments, configurations, and runtime behavior.
 
-## Bulk deployment 
+For more information, see [Diagnose edge-related logs and errors ](diagnose-problems.md).
+
+
+
+
+
+
+

@@ -273,7 +273,6 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 
 If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these additional steps to install the connected registry CLI extension. Once the connected registry is installed, you can proceed with steps in the [Set up Azure Container Registry (ACR)](#set-up-azure-container-registry-acr) section.
 
-
 #### [Bash](#tab/bash)
 
 1. Add the privilege label to the connected registry namespace.

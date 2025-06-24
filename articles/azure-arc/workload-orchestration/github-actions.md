@@ -1,6 +1,6 @@
 ---
 title: GitHub Actions for Workload Orchestration
-description: 
+description: Learn how to use GitHub actions to automate workload orchestration solution templates and schemas.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
@@ -17,7 +17,7 @@ GitHub actions facilitates creating workflows to enable managing workload orches
 
 The following diagram illustrates the architecture of the GitHub action that automates workload orchestration. The action is triggered by a push to the .pg/apps directory in the repository. It then processes each application and common resource, generating the necessary configuration files and deploying them to Azure Arc.
 
-:::image type="content" source="./media/github-actions-architecture.png" alt-text="Diagram illustrating the architecture of the GitHub action that automates workload orchestration. lightbox"="./media/github-actions-architecture.png":::
+:::image type="content" source="./media/github-actions-architecture.png" alt-text="Diagram illustrating the architecture of the GitHub action that automates workload orchestration." lightbox="./media/github-actions-architecture.png":::
 
 ## Environment setup
 
@@ -81,19 +81,19 @@ The following table compares the features and behaviors of the push trigger and 
 
 Push Event: 
 
-1. Extracts app names from changed file paths (.pg/apps/<app>/workload-orchestration/) 
-1. Checks for changes in common resources (.pg/apps/common/*) 
-1. Validates YAML files automatically using yq 
-1. Creates lists of apps and common resources to deploy 
-1. Changed files determine which actions to take 
-1. Logs which files were changed and validated 
+1. Detects application names by analyzing changed file paths under `.pg/apps/$app/workload-orchestration/`.
+1. Identifies updates to common resources by checking for changes in `.pg/apps/common/*`.
+1. Automatically validates YAML files using `yq` to ensure correctness.
+1. Compiles lists of applications and common resources that require deployment.
+1. Determines required actions based on the specific files that were modified.
+1. Logs details of changed and validated files for traceability.
 
 Manual Event: 
 
-1. Validates provided app list against directory structure 
-1. App action type determines which app components to deploy 
-1. Common resource action determines which common components to deploy 
-1. Processes all files for selected resources regardless of changes 
+1. Validates the list of applications provided by the user against the existing directory structure.
+1. Determines which application components to deploy based on the selected app action type.
+1. Determines which common resource components to deploy based on the selected common resource action.
+1. Processes all files for the specified applications and common resources, regardless of whether changes have occurred.
 
 ### 2. Azure login 
 
@@ -114,7 +114,7 @@ For each app to deploy the following steps are performed:
 
 1. Get files: 
 
-    - Locates required files in .pg/apps/<app>/workload-orchestration/ directory 
+    - Locates required files in `.pg/apps/$app/workload-orchestration/` directory 
     - Required patterns: 
     
         - *schema.yaml - Schema definition 
@@ -221,21 +221,21 @@ For common resources, the process is similar but focuses on the common schema an
 
 ### Schema version check
 
-    - Verifies schema version exists before creating solution/config templates.
-    - Fails deployment if required schema version is missing.
+- Checks for the existence of the required schema version before creating solution or configuration templates.
+- Stops deployment and logs an error if the required schema version is not found.
 
 ### File validation
 
-    - Validates file existence before processing 
-    - Logs warnings for missing files 
-    - Continues processing available files 
+- Checks for the existence of required files before processing.
+- Logs a warning if any expected file is missing.
+- Continues processing with the available files to avoid blocking the workflow.
 
 ### Capability validation 
 
-    - Ensures capabilities are provided either in metadata or as input. 
-    - Fails if no capabilities are found. 
+- Ensure that capabilities are specified either in the `metadata.yaml` file or provided as input.
+- The deployment process fails if capabilities are missing.
     
-## Best practices 
+## Best practices
 
 ### File organization 
 

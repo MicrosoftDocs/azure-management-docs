@@ -11,7 +11,7 @@ ms.custom:
 
 # Use Azure portal to monitor your solutions as an IT developer
 
-IT developers can use the Azure portal to monitor their solutions. In the Azure portal, you can:
+IT DevOps can use the Azure portal to monitor their solutions. In the Azure portal, you can:
 
 - View the applications on lines and their statuses.
 - View alerts related to deployment.
