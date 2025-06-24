@@ -195,7 +195,7 @@ The result should indicate that the `connection.type` is set to gateway, and the
 
 ## Remove Arc gateway association
 
-You can disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster to use the direct route instead.
+You can disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster. This results in the Arc-enabled cluser using direct traffic instead. to use direct traffic instead.
 
 > [!NOTE]
 > This operation only applies to Azure Arc gateway on Azure Arc-enabled servers, not Azure Local. If you're using Azure Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview) for removal information.
@@ -256,7 +256,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
 ### Delete an Arc gateway resource
 
-You can delete an Arc gateway resource by using the Azure portal, Azure CLI, or Azure Powershell. This operation can take 4 to 5 minutes to complete.
+You can delete an Arc gateway resource by using the Azure portal, Azure CLI, or Azure Powershell. This operation may take up to 5 minutes to complete.
 
 ### [Portal](#tab/portal)
 
