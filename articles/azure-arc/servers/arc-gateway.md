@@ -57,7 +57,7 @@ You can create an Arc gateway (preview) resource using the Azure portal, Azure C
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to the **Azure Arc | Azure Arc gateway** page, and then select **Create**.
+1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway (preview)**, then select **Create**.
 
 1. Select the subscription and resource group where you want the Arc gateway resource to be managed within Azure. An Arc gateway resource can be used by any Arc-enabled resource in the same Azure tenant.
 
@@ -67,9 +67,9 @@ You can create an Arc gateway (preview) resource using the Azure portal, Azure C
 
 1. Select **Next**.
 
-1. On the **Tags** page, specify one or more custom tags to support your standards.  
+1. On the **Tags** page, optionally specify one or more custom tags to support your standards.  
 
-1. Select **Review & Create**.
+1. Select **Review + create**.
 
 1. Review your input details, and then select **Create**.
 
@@ -141,15 +141,15 @@ You can configure existing Azure Arc resources to use Arc gateway by using the A
 
 ### [Portal](#tab/portal)
 
-1. In the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
 
 1. Select the Arc gateway resource to associate with your Arc-enabled server.
 
-1. Go to the **Associated Resources** page for your gateway resource.
+1. In the service menu for your gateway resource, select **Associated resources**.
 
 1. Select **Add**.
 
-1. Select the Arc-enabled resource to associate with your Arc gateway resource.
+1. Select the Arc-enabled server resource to associate with your Arc gateway resource.
 
 1. Select **Apply**.
 
@@ -213,11 +213,11 @@ You can associate an existing Arc-enabled server with a new Arc gateway resource
 
 ### [Portal](#tab/portal)
 
-1. In the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
 
 1. Select the new Arc gateway resource to associate with the machine.
 
-1. Go to the **Associated Resources** page for your gateway resource.
+1. In the service menu for your gateway resource, select **Associated resources**.
 
 1. Select **Add**.
 
@@ -283,11 +283,13 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ### [Portal](#tab/portal)
 
-   1. On the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
 
    1. Select the Arc gateway Resource.
 
-   1. Go to the **Associated Resources** page for your gateway resource and select the server.
+   1. In the service menu for your gateway resource, select **Associated resources**.
+
+   1. Select the server.
 
    1. Select **Remove**.
 
@@ -331,11 +333,11 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
 ### [Portal](#tab/portal)
 
-1. On the Azure portal, go to the **Azure Arc - Azure Arc gateway** page.
+1. In the Azure portal, go to the **Azure Arc - Azure Arc gateway**.
 
 1. Select the Arc gateway resource.
 
-1. Select **Delete**.
+1. Select **Delete**, then confirm the deletion.
 
 ### [CLI](#tab/cli)
 
@@ -362,6 +364,7 @@ Remove-AzArcGateway
 ---
 
 ## Monitor traffic
+
 You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 
 To view Arc proxy logs on Windows:
