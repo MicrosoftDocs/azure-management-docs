@@ -59,10 +59,6 @@ You have the flexibility to start with either option, and incorporate the other 
 > [!NOTE]
 >For guidance on choosing the right Azure Arc service for your virtual machines, see [Choose the right Azure Arc service for machines](../choose-service.md).
 
-## Supported regions
-
-For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
-
 ## Supported scenarios
 
 - Azure Arc-enabled VMware vSphere currently works with vCenter Server versions 7 and 8 with a maximum of 9500 VMs.
@@ -92,6 +88,11 @@ For the most up-to-date information about region availability of Azure Arc-enabl
 
      > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
 - Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server and SQL Server VMs.
+
+
+## Supported regions
+
+For the most up-to-date information about region availability of Azure Arc-enabled VMware vSphere, see [Azure Products by Region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 ## Data Residency
 
