@@ -51,7 +51,7 @@ To create Arc gateway resources and manage their association with Arc-enabled se
 
 ## Create the Arc gateway resource
 
-You can create an Arc gateway (preview) resource using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
+You can create an Arc gateway (preview) resource by using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
 
 ### [Portal](#tab/portal)
 
@@ -256,8 +256,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
 ### Delete an Arc gateway resource
 
-> [!NOTE]
-> This operation can take 4 to 5 minutes to complete.
+You can delete an Arc gateway resource by using the Azure portal, Azure CLI, or Azure Powershell. This operation can take 4 to 5 minutes to complete.
 
 ### [Portal](#tab/portal)
 
