@@ -64,14 +64,14 @@ Delete a target and all its child resources using the following command:
 
 ```bash
 # Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription "$subscriptionId" --resource-group "$rg" --target-name "$childName" --force-delete false
+az workload-orchestration target delete --subscription "$subId" --resource-group "$rg" --target-name "$childName" --force-delete false
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
 # Set force-delete argument to true if you want to delete target with installed apps
-az workload-orchestration target delete --subscription $subscriptionId --resource-group $rg --target-name $childName --force-delete false
+az workload-orchestration target delete --subscription $subId --resource-group $rg --target-name $childName --force-delete false
 ```
 
 ***
@@ -83,13 +83,13 @@ Delete solution template version across all targets if it's not deployed using t
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template remove-version --subscription "$subscriptionId" --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
+az workload-orchestration solution-template remove-version --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1" --version "$appVersion"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration solution-template remove-version --subscription $subscriptionId --resource-group $rg --solution-template-name $appName1 --version $appVersion
+az workload-orchestration solution-template remove-version --subscription $subId --resource-group $rg --solution-template-name $appName1 --version $appVersion
 ```
 
 ***
@@ -101,13 +101,13 @@ Delete a solution template across all targets if it has no versions using the fo
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration solution-template delete --subscription "$subscriptionId" --resource-group "$rg" --solution-template-name "$appName1"
+az workload-orchestration solution-template delete --subscription "$subId" --resource-group "$rg" --solution-template-name "$appName1"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration solution-template delete --subscription $subscriptionId --resource-group $rg --solution-template-name $appName1
+az workload-orchestration solution-template delete --subscription $subId --resource-group $rg --solution-template-name $appName1
 ```
 
 ***
@@ -119,13 +119,13 @@ Delete a schema and all its versions using the following command:
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration schema delete --subscription "$subscriptionId" --resource-group "$rg" --schema-name "$schemaName"
+az workload-orchestration schema delete --subscription "$subId" --resource-group "$rg" --schema-name "$schemaName"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration schema delete --subscription $subscriptionId --resource-group $rg --schema-name $schemaName
+az workload-orchestration schema delete --subscription $subId --resource-group $rg --schema-name $schemaName
 ```
 
 ***
@@ -137,13 +137,13 @@ Delete a configuration template and all its versions using the following command
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration config-template delete --subscription "$subscriptionId" --resource-group "$rg" --config-template-name "$appConfig"
+az workload-orchestration config-template delete --subscription "$subId" --resource-group "$rg" --config-template-name "$appConfig"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration config-template delete --subscription $subscriptionId --resource-group $rg --config-template-name $appConfig
+az workload-orchestration config-template delete --subscription $subId --resource-group $rg --config-template-name $appConfig
 ```
 
 ***

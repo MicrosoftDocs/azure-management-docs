@@ -19,7 +19,7 @@ Imagine a factory where workers use a simple app to monitor the status of factor
 
 So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to each computer in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many, some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
 
-These challenges aren't limited to manufacturing — workload orchestration is sector-agnostic and highly relevant for enterprise customers in industries like retail, QSR, energy, and healthcare, where distributed operations rely on consistent, localized applications.
+These challenges aren't limited to manufacturing — workload orchestration is sector-agnostic and highly relevant for enterprise customers in industries like retail, quick service restaurants, energy, and healthcare, where distributed operations rely on consistent, localized applications.
 
 Workload orchestration addresses several key challenges faced by organizations managing applications at the edge:
 

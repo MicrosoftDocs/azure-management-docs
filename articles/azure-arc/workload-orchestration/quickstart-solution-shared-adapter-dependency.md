@@ -282,7 +282,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 > The ``solution-template create` command displays the ID along with solution template version.
 >
 > ```bash
-> solutionTemplateId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
+> solutionTemplateId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ### [PowerShell](#tab/powershell)
@@ -296,7 +296,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 > The ``solution-template create` command displays the ID along with solution template version.
 >
 > ```powershell
-> $solutionTemplateId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
+> $solutionTemplateId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ***

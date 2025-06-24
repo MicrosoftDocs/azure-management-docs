@@ -48,7 +48,7 @@ providerOid=$(az ad sp show --id $providerAppId --query id -o tsv)
     
 az role assignment create --assignee "$providerOid" \
     --role "Workload Orchestration IT Admin" \
-    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+    --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -61,7 +61,7 @@ $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
     
 az role assignment create --assignee "$providerOid" `
     --role "Workload Orchestration IT Admin" `
-    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+    --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
 ```
 ***
 
@@ -75,7 +75,7 @@ Create an Event Grid subscription for your Azure subscription and resource group
 
 ```bash
 az eventgrid event-subscription create --name <subscription-name> \
-    --source-resource-id "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" \
+    --source-resource-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" \
     --endpoint <function-app-endpoint> \
     --endpoint-type azurefunction 
 ```
@@ -86,7 +86,7 @@ Create an Event Grid subscription for your Azure subscription and resource group
 
 ```powershell
 az eventgrid event-subscription create --name <subscription-name> `
-    --source-resource-id "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" `
+    --source-resource-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" `
     --endpoint <function-app-endpoint> `
     --endpoint-type azurefunction 
 ```
@@ -139,7 +139,7 @@ If you use a function app as the endpoint for the Event Grid subscription, you n
     az role assignment create \
         --assignee $functionAppMSIObjectId \
         --role "Workload Orchestration Solution External Validator" \
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$rg"
+        --scope "/subscriptions/$subId/resourceGroups/$rg"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -164,7 +164,7 @@ If you use a function app as the endpoint for the Event Grid subscription, you n
     az role assignment create `
       --assignee $functionAppMSIObjectId `
       --role "Workload Orchestration Solution External Validator" `
-      --scope "/subscriptions/$subscriptionId/resourceGroups/$rg" 
+      --scope "/subscriptions/$subId/resourceGroups/$rg" 
     ```
 ***
 

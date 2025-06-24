@@ -4,7 +4,7 @@ description: Learn about service groups and how to configure them in workload or
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 06/24/2025
 ms.custom:
   - build-2025
 ---
@@ -153,7 +153,7 @@ az rest `
     ```bash
     # Create a site reference
     az workload-orchestration context site-reference create \
-      --subscription "$subscriptionId" \
+      --subscription "$subId" \
       --resource-group "$rg" \
       --context-name "$instanceName" \
       --name "$siteReference" \
@@ -182,7 +182,7 @@ az rest `
     ```bash
     # Create a new context
     az workload-orchestration context create \
-      --subscription "$subscriptionId" \
+      --subscription "$subId" \
       --resource-group "$rg" \
       --location "$l" \
       --name "Contoso-Context" \
@@ -253,7 +253,7 @@ az rest `
     ```powershell
     # Create a site reference
     az workload-orchestration context site-reference create `
-       --subscription $subscriptionId `
+       --subscription $subId `
        --resource-group $rg `
        --context-name $instanceName `
        --name $siteReference `
@@ -274,7 +274,7 @@ az rest `
     $context.properties.capabilities | ConvertTo-JSON -Compress | Set-Content context-capabilities.json
     
     az workload-orchestration context create `
-      --subscription $subscriptionId `
+      --subscription $subId `
       --resource-group $rg `
       --location $l `
       --name Contoso-Context `
@@ -342,8 +342,7 @@ To ease the process, the following steps show how to create a four-level service
 
 - **Every level** in the hierarchy must its own **service group** created. For example, for four-level hierarchy organization, you need to create a service group for each level: country, region, factory, and line.
 - **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
-- The **`editable_at`** field in the schema only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
-
+- The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 
 ### [Bash](#tab/bash)
 

@@ -4,7 +4,7 @@ description: Learn the rules on how to create configuration schemas for workload
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: concept-article
-ms.date: 04/17/2025
+ms.date: 06/24/2025
 ms.custom:
   - build-2025
 ---
@@ -35,7 +35,7 @@ rules:
       disallowedValues: #array applicable for string, int, float (optional)
       expression: # any valid expression. should be wrapped in expression template like: "${{ expression }}"
       editableAt: #array of levels ex: Line, Factory where value can be edited at (optional)
-      editableBy: # array of Personas Ex: IT, OT who can edit the value. (optional)
+      editableBy: # array of personas Ex: IT, OT who can edit the value. (optional)
       minValue: # minimum number  (optional)
       maxValue: # maximum number (optional)
       defaultValue: # default value applicable for primitive types i.e. int, string, boolen, float (optional) 
@@ -60,6 +60,8 @@ The following constraints apply to the rules defined in the configuration schema
 - The `allowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
+- The `editableBy` property accepts either IT, OT or both values. If IT is set, this property isn't shown on the workload orchestration portal and has to be configured via CLI. If OT is set, this property is visible on the workload orchestration portal and can be set via CLI also.
+- The `editableAt` property accepts any hierarchy level value as defined during context creation, for example, `Line`, `Factory`, or `Region`.
 
 ## Including and referencing rules from another schema
 

@@ -7,7 +7,7 @@ ms.custom:
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 06/10/2025
+ms.date: 06/24/2025
 ---
 
 # Prepare the environment for workload orchestration
@@ -102,8 +102,8 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```bash
-    subscriptionId="<SUBSCRIPTION_ID>"
-    az account set --subscription "$subscriptionId"
+    subId="<SUBSCRIPTION_ID>"
+    az account set --subscription "$subId"
     ```
 
 1. Global variables are commonly used variables that can help with the next set of commands. Replace the placeholder variables with your values.
@@ -127,8 +127,8 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```powershell
-    $subscriptionId = "<SUBSCRIPTION_ID>"
-    az account set --subscription $subscriptionId
+    $subId = "<SUBSCRIPTION_ID>"
+    az account set --subscription $subId
     ```
 
 1. Global variables are commonly used variables that can help with the next set of commands. Replace the placeholder variables with your values.
@@ -138,118 +138,6 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
     $l = "<LOCATION>"
     $clusterName = "<CLUSTER_NAME>"
     $siteName = "<SITE_NAME>"
-    ```
-
-***
-
-
-### Create JSON files for site address and site
-
-Sites and site addresses are used to identify the physical hierarchy such as plant, factory, or store. 
-
-> [!TIP]
-> You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded folder for examples of how to create the JSON files.
-
-#### [Bash](#tab/bash)
-
-1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
-
-    ```json
-       {
-           "contactDetails": {
-               "contactName": "<CONTACT_NAME>",
-               "emailList": [
-                   "<EMAIL_LIST>"        
-               ],
-               "phone": "<PHONE>",
-               "phoneExtension": "<PHONE_EXTENSION>"
-           },
-           "shippingAddress": {
-               "addressType": "<ADDRESS_TYPE>",
-               "city": "<CITY>",
-               "companyName": "<COMPANY_NAME>",
-               "country": "<COUNTRY>",
-               "postalCode": "<POSTAL_CODE>",
-               "stateOrProvince": "<STATE_OR_PROVINCE>",
-               "streetAddress1": "<STREET_ADDRESS_1>",
-               "streetAddress2": "<STREET_ADDRESS_2>"
-           }
-        }
-    ```
-
-1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
-
-    ```json
-        {
-            "properties": {
-                "description": "<DESCRIPTION>",
-                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
-                "displayName": "<SITE_NAME>"
-            }
-        }
-    ```
-
-1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
-
-    ```bash
-    siteJson="<SITE_NAME>.json"
-    siteAddressJson="<SITE_NAME_ADDRESS>.json"
-    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
-    siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    siteReference="<SITE_NAME>"
-    extensionVersion="2.0.10" # or latest Arc version
-    extensionName="<PREFERRED_EXTENSION_NAME>"
-    ```
-
-#### [PowerShell](#tab/powershell)
-
-1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
-
-    ```json
-       {
-           "contactDetails": {
-               "contactName": "<CONTACT_NAME>",
-               "emailList": [
-                   "<EMAIL_LIST>"        
-               ],
-               "phone": "<PHONE>",
-               "phoneExtension": "<PHONE_EXTENSION>"
-           },
-           "shippingAddress": {
-               "addressType": "<ADDRESS_TYPE>",
-               "city": "<CITY>",
-               "companyName": "<COMPANY_NAME>",
-               "country": "<COUNTRY>",
-               "postalCode": "<POSTAL_CODE>",
-               "stateOrProvince": "<STATE_OR_PROVINCE>",
-               "streetAddress1": "<STREET_ADDRESS_1>",
-               "streetAddress2": "<STREET_ADDRESS_2>"
-           }
-        }
-    ```
-
-1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
-
-    ```json
-        {
-            "properties": {
-                "description": "<DESCRIPTION>",
-                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
-                "displayName": "<SITE_NAME>"
-            }
-        }
-    ```
-
-1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
-
-    ```powershell
-    $siteJson = "<SITE_NAME>.json"
-    $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
-    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
-    $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    $siteReference = "<SITE_NAME>"
-    $extensionVersion = "2.0.10" # or latest Arc version
-    $extensionName = "<PREFERRED_EXTENSION_NAME>"
     ```
 
 ***
@@ -550,9 +438,17 @@ The following steps are required to install workload orchestration service compo
 
 At this point, the environment and infrastructure for workload orchestration should be set up with the required permissions, Arc-connected cluster, extensions and plugins to support configuration and management of the solution/applications.
 
-## Create Site address and Site
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. You can create Sites using a resource group or a service group. 
+## Create site address and site
+
+Sites and site addresses represent the physical hierarchy of your organization, such as a plant, factory, or store. Hierarchies are defined as name-description pairs that map to the levels of your organization's resource structure. For example, a manufacturing organization might use two levels: Factory and Line.
+
+You can create sites using either a resource group or a service group.
+
+|Group type|Description|Note|
+|---|---|---|
+|Service group|A service group is a resource type in Azure Resource Manager (ARM) that helps you custom grouping your services for organizational or monitoring purposes, while maintaining your existing setup. For more information, see [Service groups](service-group.md)| For hierarchies with more than two levels, you need to use service groups to create sites. If you want to logically group resources without modifying the existing resource group, consider using service groups.|
+|Resource group|A resource group is a core Azure management logical container that holds related Azure resources.| For hierarchies with two levels, you can use either service groups or resource groups. |
 
 To use a service group, follow the steps in [Create a service group](service-group.md#create-a-service-group). 
 
@@ -560,23 +456,131 @@ To use a resource group, run the following commands:
 
 ### [Bash](#tab/bash)
 
-```bash
-#Create site address
-az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group "$rg" --location "$l" --name "$siteName" --properties "@$siteAddressJson"
+1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
 
-#Create site 
-az rest --method PUT --uri "$siteUri" --body "@$siteJson"
-```
+    ```json
+       {
+           "contactDetails": {
+               "contactName": "<CONTACT_NAME>",
+               "emailList": [
+                   "<EMAIL_LIST>"        
+               ],
+               "phone": "<PHONE>",
+               "phoneExtension": "<PHONE_EXTENSION>"
+           },
+           "shippingAddress": {
+               "addressType": "<ADDRESS_TYPE>",
+               "city": "<CITY>",
+               "companyName": "<COMPANY_NAME>",
+               "country": "<COUNTRY>",
+               "postalCode": "<POSTAL_CODE>",
+               "stateOrProvince": "<STATE_OR_PROVINCE>",
+               "streetAddress1": "<STREET_ADDRESS_1>",
+               "streetAddress2": "<STREET_ADDRESS_2>"
+           }
+        }
+    ```
+
+1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
+
+    ```json
+        {
+            "properties": {
+                "description": "<DESCRIPTION>",
+                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
+                "displayName": "<SITE_NAME>"
+            }
+        }
+    ```
+
+    > [!TIP]
+    > You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded ZIP folder for examples of how to create the JSON files.
+
+1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
+
+    ```bash
+    siteJson="<SITE_NAME>.json"
+    siteAddressJson="<SITE_NAME_ADDRESS>.json"
+    siteUri="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
+    siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    siteReference="<SITE_NAME>"
+    extensionVersion="2.0.10" # or latest Arc version
+    extensionName="<PREFERRED_EXTENSION_NAME>"
+    ```
+
+1. Create the site address and site using the following commands:
+
+    ```bash
+    #Create site address
+    az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group "$rg" --location "$l" --name "$siteName" --properties "@$siteAddressJson"
+    
+    #Create site 
+    az rest --method PUT --uri "$siteUri" --body "@$siteJson"
+    ```
 
 ### [PowerShell](#tab/powershell)
 
-```powershell
-# Create site address
-az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group $rg --location $l --name $siteName --properties "@$siteAddressJson"
+1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
 
-# Create site
-az rest --method PUT --uri $siteUri --body "@$siteJson"
-```
+    ```json
+       {
+           "contactDetails": {
+               "contactName": "<CONTACT_NAME>",
+               "emailList": [
+                   "<EMAIL_LIST>"        
+               ],
+               "phone": "<PHONE>",
+               "phoneExtension": "<PHONE_EXTENSION>"
+           },
+           "shippingAddress": {
+               "addressType": "<ADDRESS_TYPE>",
+               "city": "<CITY>",
+               "companyName": "<COMPANY_NAME>",
+               "country": "<COUNTRY>",
+               "postalCode": "<POSTAL_CODE>",
+               "stateOrProvince": "<STATE_OR_PROVINCE>",
+               "streetAddress1": "<STREET_ADDRESS_1>",
+               "streetAddress2": "<STREET_ADDRESS_2>"
+           }
+        }
+    ```
+
+1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
+
+    ```json
+        {
+            "properties": {
+                "description": "<DESCRIPTION>",
+                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
+                "displayName": "<SITE_NAME>"
+            }
+        }
+    ```
+
+    > [!TIP]
+    > You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded ZIP folder for examples of how to create the JSON files.
+
+1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
+
+    ```powershell
+    $siteJson = "<SITE_NAME>.json"
+    $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
+    $siteUri = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
+    $siteId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    $siteReference = "<SITE_NAME>"
+    $extensionVersion = "2.0.10" # or latest Arc version
+    $extensionName = "<PREFERRED_EXTENSION_NAME>"
+    ```
+
+1. Create the site address and site using the following commands:
+
+    ```powershell
+    # Create site address
+    az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group $rg --location $l --name $siteName --properties "@$siteAddressJson"
+    
+    # Create site
+    az rest --method PUT --uri $siteUri --body "@$siteJson"
+    ```
 
 ***
 

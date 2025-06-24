@@ -4,7 +4,7 @@ description: Learn about the workflow in workload orchestration and the features
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: concept-article
-ms.date: 06/19/2025
+ms.date: 06/24/2025
 ---
 
 # Workflows and features in workload orchestration
@@ -23,14 +23,42 @@ Solution authoring requires seamless integration of workload orchestration-manag
 
 The diagram below represents an example hierarchical configuration of objects:
 
-:::image type="content" source="./media/hierarchy-configuration-objects.png" alt-text="Diagram illustrating the hierarchical configuration of objects in the Solution Authoring and Deployments process.":::
+:::image type="content" source="./media/hierarchy-configuration-objects.png" alt-text="Diagram illustrating the hierarchical configuration of objects in the Solution Authoring and Deployments process." lightbox="./media/hierarchy-configuration-objects.png":::
 
 A typical solution consists of:
 
 - **Schema:** A schema is a JSON file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
 - **Configuration template:** A configuration template is a JSON file that  represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
-- **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided application artifacts. Applications must be packaged as containers before uploading them to workload orchestration.
+- **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided solution artifacts. Solutions must be packaged as containers before uploading them to workload orchestration.
 - **Published solution configuration:** A published solution configuration is a JSON file that represents the final configuration of the solution after it's validated and approved. The published solution configuration is created by combining the schema, configuration template, and solution Helm chart. The published solution represents a fully rendered, a pre-deployment ready, targeted solution. At this point, the solution is ready to be deployed.
+
+### Helm deployment
+
+When deploying solutions using Helm, a release name is required. The release name is a unique identifier for the deployed solution instance in the Kubernetes cluster. It helps in managing and tracking the deployed resources. 
+
+You can provide the release name as part of specifications in the [solution template](configuring-template.md). The release name should follow the naming conventions for Kubernetes resources, which typically include lowercase alphanumeric characters, dashes, and dots.
+
+```json
+{
+  "components": [
+    {
+      "name": "<name>",
+      "type": "helm.v3",
+      "properties": {
+        "chart": {
+          "repo": "acr",
+          "version": "0.8.0",
+          "wait": true,
+          "timeout": "5m"
+        },
+        "releaseName": "test-release"
+      }
+    }    
+  ]
+}
+```
+
+If you choose not to specify a Helm release name, omit the `releaseName` property from the specifications. Workload orchestration automatically generates a unique hash to use as the release name.
 
 ### Solution authoring scenarios
 

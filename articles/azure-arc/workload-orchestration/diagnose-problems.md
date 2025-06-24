@@ -39,7 +39,7 @@ The following table summarizes the different types of logs that can be collected
     $diagnosticName = "default"
      
     az workload-orchestration diagnostic create `
-    --subscription $subscriptionId `
+    --subscription $subId `
     --resource-group $rg `
     --diagnostic-name $diagnosticName `
     --extended-location .\custom-location.json `
@@ -51,7 +51,7 @@ The following table summarizes the different types of logs that can be collected
     ```powershell
     $diagnosticLAId = "<your log analytics workspace resource id>"
     $diagnosticResourceId = (az workload-orchestration diagnostic show `
-                                --subscription $subscriptionId `
+                                --subscription $subId `
                                 --resource-group $rg `
                                 --diagnostic-name $diagnosticName `
                                 --query id -o tsv)
@@ -126,7 +126,7 @@ The following table summarizes the different types of logs that can be collected
     
     # Delete Microsoft.Edge/diagnostics resource
     az workload-orchestration diagnostic delete `
-       --subscription $subscriptionId `
+       --subscription $subId `
        --resource-group $rg `
        --diagnostic-name $diagnosticName
     ```
@@ -166,7 +166,7 @@ The following JSON file is a template that you can use to enable workload orches
 {
   "common": {
     "resourceGroup": "<your resource group name>",
-    "subscriptionId": "<your subscription ID>",
+    "subId": "<your subscription ID>",
     "location": "eastus2",
     "tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47",
     "providerAppId": "cba491bc-48c0-44a6-a6c7-23362a7f54a9",

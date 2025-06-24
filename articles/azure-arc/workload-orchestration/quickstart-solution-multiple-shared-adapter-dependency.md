@@ -229,7 +229,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 > The ``solution-template create` command will display the ID along with solution template version.
 >
 > ```bash
-> solutionTemplateId="/subscriptions/$subscriptionId/resourceGroups/$rg/ providers/Microsoft.Edge/solutiontemplates/$appName1"
+> solutionTemplateId="/subscriptions/$subId/resourceGroups/$rg/ providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ### [PowerShell](#tab/powershell)
@@ -249,7 +249,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 > The ``solution-template create` command will display the ID along with solution template version.
 >
 > ```powershell
-> $solutionTemplateId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
+> $solutionTemplateId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ***

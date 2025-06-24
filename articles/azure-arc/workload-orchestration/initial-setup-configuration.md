@@ -7,7 +7,7 @@ ms.custom:
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 05/08/2025
+ms.date: 06/24/2025
 ---
 
 # Set up workload orchestration
@@ -26,7 +26,7 @@ Before you begin, you need to have the prerequisites and ensure you followed the
 > [!IMPORTANT]
 > Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, should be created in the same Azure region. 
 
-## Configure the resources of workload orchestration
+## Set up the resources of workload orchestration
 
 Workload orchestration is implemented as a resource provider in Azure and exposes multiple resource types that stitch the whole experience together. The IT admin is responsible for setting up the resources that are needed to run workload orchestration. The resources are created in the Azure portal and are used to manage the deployment of applications across the Arc-enabled Kubernetes cluster.
 
@@ -69,7 +69,7 @@ The following steps show how to configure the resources of workload orchestratio
     # Enter name of site
     siteName="Site01"
     # Enter id of the site
-    siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
     # Enter capabilities for child target
     capChildList="[soap,shampoo,conditioner]"
     ```
@@ -77,7 +77,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```bash
-    az workload-orchestration context create --subscription "$subscriptionId" --resource-group "$rg" --location "$l" --name "$instanceName" \
+    az workload-orchestration context create --subscription "$subId" --resource-group "$rg" --location "$l" --name "$instanceName" \
       --hierarchies '[{"name":"factory","description":"belongs to Factory and hence lines within the factory"},{"name":"line","description":"belongs to specific line"}]' \
       --capabilities '[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     ```
@@ -87,7 +87,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
     ```bash
-    az workload-orchestration context site-reference create --subscription "$subscriptionId" --resource-group "$rg" --context-name "$instanceName" --name "$siteReference" --site-id "$siteId"
+    az workload-orchestration context site-reference create --subscription "$subId" --resource-group "$rg" --context-name "$instanceName" --name "$siteReference" --site-id "$siteId"
     ```
 
 1. Create a JSON file named `targetspecs.json` by referring to the sample file [here](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
@@ -131,7 +131,7 @@ The following steps show how to configure the resources of workload orchestratio
     # Enter name of site
     $siteName = "Site01"
     # Enter id of the site
-    $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+    $siteId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
     # Enter capabilities for child target
     $capChildList = "[soap, shampoo, conditioner]" 
     ```
@@ -139,7 +139,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```powershell
-    az workload-orchestration context create --subscription $subscriptionId --resource-group $rg --location $l --name $instanceName --hierarchies "[0].name=factory" "[0].description=belongs to Factory and hence lines within the factory" "[1].name=line" "[1].description=belongs to specific line" --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" "[2].name=conditioner" "[2].description=For conditioner production"
+    az workload-orchestration context create --subscription $subId --resource-group $rg --location $l --name $instanceName --hierarchies "[0].name=factory" "[0].description=belongs to Factory and hence lines within the factory" "[1].name=line" "[1].description=belongs to specific line" --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" "[2].name=conditioner" "[2].description=For conditioner production"
     ```
 
     You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
@@ -148,7 +148,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
     ```powershell
-    az workload-orchestration context site-reference create --subscription $subscriptionId --resource-group $rg --context-name $instanceName --name $siteReference --site-id $siteId
+    az workload-orchestration context site-reference create --subscription $subId --resource-group $rg --context-name $instanceName --name $siteReference --site-id $siteId
     ```
 
 1. Create a JSON file named `targetspecs.json` by referring to the sample file [here](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
@@ -165,7 +165,6 @@ The following steps show how to configure the resources of workload orchestratio
     ```
 
 ***
-
 
 ## Related content
 

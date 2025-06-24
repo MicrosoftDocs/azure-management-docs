@@ -13,6 +13,37 @@ This article provides the latest and past release notes for workload orchestrati
 
 [!INCLUDE [cli-version-note](includes/cli-version-note.md)]
 
+## June 2025 GA release
+
+Workload orchestration is now generally available (GA) in Azure Arc. This release includes all the features and improvements that were previously in preview, along with additional enhancements.
+
+### New features
+
+- End-to-end support for Tanzu environment: Enable users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters.
+- Automation via Git: Automate generation of configuration template and schema via Git. 
+- [Publish solutions in bulk to multiple targets:](bulk-deployment.md) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) is automatically triggered as part of the process. 
+
+### Improvements in workload orchestration portal
+
+- "Preview" tag has been removed from the workload orchestration portal to reflect its general availability (GA) status.
+- Improved error messaging: Users now receive clearer guidance when required context is missing, making it easier to resolve issues.
+- Updated column name in the Solution subtab of the Configure tab: "Lines Published To" is now labeled as "Targets Published To."
+- Enhanced filter logic: Filtering now supports hierarchies beyond two levels, providing better support for complex configurations.
+- Refined rollback experience: The rollback flow now displays only solutions with matching instance names, improving clarity and usability.
+
+### Improvements in CLI
+
+- Added the `--context-id` parameter to the `target create` command, enabling users to specify the full ARM ID for precise targeting.
+- Updated arguments across multiple commands for improved clarity and consistency. See the table below for a summary of these changes:
+
+|Command|Old arguments|New argument|
+|---|---|---|
+|`az workload-orchestration target review`|`--solution-name`, `--solution-version`|`--solution-template-version-id`|
+|`az workload-orchestration target publish`|`--review-id`, `--solution-name`, `--solution-version`|`--solution-version-id`|
+|`az workload-orchestration target install`|`--solution-name`, `--solution-version`|`--solution-version-id`|
+|`az workload-orchestration target uninstall`|`--solution-name`|`--solution-template-id`|
+|`az workload-orchestration target remove-revision`|`--solution-name`|`--solution-template-id`|
+
 ## June 2025 release
 
 ### New features
@@ -24,8 +55,8 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### Improvements
 
-- **Instance name**: You can add the instance name in the [configuring flow](configure.md#configure-solution-parameters).
-- **Grouping by version**: When configuring shared applications in the portal, choose the instance from the dropdown, which is now grouped by solution version.
+- Instance name: You can add the instance name in the [configuring flow](configure.md#configure-solution-parameters).
+- Grouping by version: When configuring shared applications in the portal, choose the instance from the dropdown, which is now grouped by solution version.
 
 ## May 2025 release
 

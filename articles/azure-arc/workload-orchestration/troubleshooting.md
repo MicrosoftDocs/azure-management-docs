@@ -236,3 +236,26 @@ az rest `
     --resource https://management.azure.com
 ```
 ***
+
+## Troubleshoot GitHub actions 
+
+### Schema creation failures 
+
+- Verify schema file syntax 
+- Check if schema name/version already exists 
+- Ensure Azure credentials have proper permissions 
+
+### Template issues 
+
+- Verify schema version exists
+- Check specification file JSON format
+- Validate capabilities in metadata
+- Check external validation settings
+
+### File detection issues 
+
+- Ensure files use correct naming patterns.
+- Verify files are in the correct directories:
+    - **Apps:** `.pg/apps/<app>/workload-orchestration/`
+    - **Common:** `.pg/apps/common/`
+- Check workflow logs for file detection output.
