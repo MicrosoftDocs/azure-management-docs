@@ -153,8 +153,6 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
 
 1. Select **Apply**.
 
-1. Update your Arc-enabled server to use Arc gateway by running `azcmagent config set connection.type gateway`.
-
 ### [CLI](#tab/cli)
 
 1. On a machine with access to Azure, run the following commands:
@@ -168,10 +166,6 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
         --base-resource-name <server_name> `
         --gateway-resource-id <gateway_resource_id>
     ```
-
-1. Update your Arc-enabled server to use Arc gateway by running the following command:
-
-    `azcmagent config set connection.type gateway`
 
 ### [PowerShell](#tab/powershell)
 
@@ -187,11 +181,9 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
         -GatewayResourceId <resource ID>
     ```
 
-1. Update your Arc-enabled server to use Arc gateway by running the following command:
-
-    `azcmagent config set connection.type gateway`
-
 ---
+
+With 1.50 or earlier of the Connected Machine agent, you must also run `azcmagent config set connection.type gateway` to update your Arc-enabled server to use Arc gateway. For agent versions 1.51 and later, this step is not required, as the operation happens automatically. We recommend using the [latest version of the Connected Machine agent](agent-release-notes.md).
 
 ## Verify successful Arc gateway set-up
 
