@@ -122,14 +122,14 @@ After the resource is created successfully, the success response will include th
 |\<region\>.his.arc.azure.com  |Used for Arc’s core control channel  |
 |packages.microsoft.com  |Required to acquire Linux based Arc agentry payload, only needed to connect Linux servers to Arc  |
 
-## Onboard Azure Arc resources with your Arc gateway resource
+## Onboard new Azure Arc resources with your Arc gateway resource
 
 1. Generate the installation script.
 
     Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](learn/quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
 
     > [!IMPORTANT]
-    > When generating the onboarding script, select **Proxy Server** under **Connectivity method** to reveal the dropdown for **Gateway resource**.
+    > When generating the onboarding script, select the **Gateway resource** in the **Connectivity method** section.
 
 1. Run the installation script to onboard your servers to Azure Arc.
 
@@ -137,7 +137,7 @@ After the resource is created successfully, the success response will include th
 
 ## Configure existing Azure Arc resources to use Arc gateway
 
-You can configure existing Azure Arc resources to use Arc gateway by using the Azure portal, Azure CLI, or Azure PowerShell.
+You can associate existing Azure Arc resources with an Arc gateway resource by using the Azure portal, Azure CLI, or Azure PowerShell.
 
 ### [Portal](#tab/portal)
 
@@ -161,12 +161,12 @@ You can configure existing Azure Arc resources to use Arc gateway by using the A
 
      ```azurecli
     az arcgateway settings update `
-        --resource-group <Your Resource Group> `
-        --subscription <subscription name> `
+        --resource-group <resource_group> `
+        --subscription <subscription_name> `
         --base-provider Microsoft.HybridCompute `
         --base-resource-type machines `
-        --base-resource-name [Arc-Server’s name] `
-        --gateway-resource-id [Full Arm resource id of the new Arc gateway resource]
+        --base-resource-name <server_name> `
+        --gateway-resource-id <gateway_resource_id>
     ```
 
 1. Update your Arc-enabled server to use Arc gateway by running the following command:
@@ -179,12 +179,12 @@ You can configure existing Azure Arc resources to use Arc gateway by using the A
 
     ```powershell
     Update-AzArcSetting `
-        -ResourceGroupName <Your Resource Group> `
-        -SubscriptionId <subscription ID> `
+        -ResourceGroupName <Resource Group> `
+        -SubscriptionId <Subscription ID> `
         -BaseProvider Microsoft.HybridCompute `
         -BaseResourceType machine `
-        -BaseResourceName <Arc-server's resource name> `
-        -GatewayResourceId <Full Arm resourceid>
+        -BaseResourceName <Server Name> `
+        -GatewayResourceId <resource ID>
     ```
 
 1. Update your Arc-enabled server to use Arc gateway by running the following command:
@@ -206,64 +206,6 @@ The result should indicate the following values:
 Additionally, to verify successful set-up, run the following command: `azcmagent check`
 
 The result should indicate that the `connection.type` is set to gateway, and the **Reachable** column should indicate **true** for all URLs.
-
-## Associate a machine with a new Arc gateway
-
-You can associate an existing Arc-enabled server with a new Arc gateway resource by using the Azure portal, Azure CLI, or Azure PowerShell.
-
-### [Portal](#tab/portal)
-
-1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
-
-1. Select the new Arc gateway resource to associate with the machine.
-
-1. In the service menu for your gateway resource, select **Associated resources**.
-
-1. Select **Add**.
-
-1. Select the Arc-enabled machine to associate with the new Arc gateway resource.
-
-1. Select **Apply**.
-
-1. Update your Arc-enabled server to use Arc gateway by running `azcmagent config set connection.type gateway`.
-
-### [CLI](#tab/cli)
-
-1. On the machine you want to associate with a new Arc gateway, run the following commands:
-
-     ```azurecli
-    az arcgateway settings update `
-        --resource-group <Your Resource Group> `
-        --subscription <subscription name> `
-        --base-provider Microsoft.HybridCompute `
-        --base-resource-type machines `
-        --base-resource-name [Arc-Server’s name] `
-        --gateway-resource-id [Full Arm resource id of the new Arc gateway resource]
-    ```
-
-1. Update your Arc-enabled server to use Arc gateway by running the following command:
-
-    `azcmagent config set connection.type gateway`
-
-### [PowerShell](#tab/powershell)
-
-1. On the machine you want to associate with a new Arc gateway, run the following command:
-
-    ```powershell
-    Update-AzArcSetting `
-        -ResourceGroupName <Your Resource Group> `
-        -SubscriptionId <Subscription ID > `
-        -BaseProvider Microsoft.HybridCompute `
-        -BaseResourceType machine `
-        -BaseResourceName <Arc-server's resource name> `
-        -GatewayResourceId <Full Arm resourceid>
-    ```
-
-1. Update your Arc-enabled server to use Arc gateway by running the following command:
-
-    `azcmagent config set connection.type gateway`
-
----
 
 ## Remove Arc gateway association
 
@@ -299,12 +241,12 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ```azurecli
    az arcgateway settings update `
-       --resource-group <Your Resource Group> `
-       --subscription <subscription name> `
-       --base-provider Microsoft.HybridCompute `
-       --base-resource-type machines `
-       --base-resource-name <Arc-Server’s name > `
-       --gateway-resource-id ""
+        --resource-group <resource_group> `
+        --subscription <subscription_name> `
+        --base-provider Microsoft.HybridCompute `
+        --base-resource-type machines `
+        --base-resource-name <server_name> `
+        --gateway-resource-id <gateway_resource_id>
    ```
 
    > [!NOTE]
@@ -316,12 +258,12 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ```powershell
    Update-AzArcSetting  `
-       -ResourceGroupName <Your Resource Group> `
-       -SubscriptionId <Subscription ID > `
-       -BaseProvider Microsoft.HybridCompute `
-       -BaseResourceType machines `
-       -BaseResourceName <NameOfResource> `
-       -GatewayResourceId ""
+        -ResourceGroupName <Resource Group> `
+        -SubscriptionId <Subscription ID> `
+        -BaseProvider Microsoft.HybridCompute `
+        -BaseResourceType machine `
+        -BaseResourceName <Server Name> `
+        -GatewayResourceId <resource ID>
    ```
 
    ---
@@ -345,9 +287,9 @@ On a machine with access to Azure, run the following Azure CLI command:
 
 ```azurecli-interactive
 az arcgateway delete `
-    --resource-group <Your Resource Group> `
-    --subscription <subscription name> `
-    --gateway-name <Arc gateway Resource Name >
+    --resource-group <resource_group> `
+    --subscription <subscription_name> `
+    --gateway-name <gateway_resource_name>
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -356,9 +298,9 @@ On a machine with access to Azure, run the following PowerShell command:
 
 ```powershell
 Remove-AzArcGateway  
-    -ResourceGroup <Your Resource Group> `
-    -SubscriptionId <subscription id> `
-    -GatewayName <RP Name>
+    -ResourceGroup <Resource Group> `
+    -SubscriptionId <Subscription ID> `
+    -GatewayName <Gateway Resource Name>
 ```
 
 ---
@@ -442,12 +384,12 @@ On a machine with access to Azure, run the following Azure CLI command:
 
 ```azurecli
 az arcgateway settings update `
-    --resource-group <Your Resource Group> `
-    --subscription <subscription name> `
+    --resource-group <resource_group> `
+    --subscription <subscription_name> `
     --base-provider Microsoft.HybridCompute `
     --base-resource-type machines `
-    --base-resource-name <Arc-Server’s name> `
-    --gateway-resource-id <Full Arm resource id of the new Arc gateway resource>
+    --base-resource-name <server_name> `
+    --gateway-resource-id <gateway_resource_id>
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -456,12 +398,12 @@ On a machine with access to Azure, run the following PowerShell command:
 
 ```powershell
 Update-AzArcSetting  `
-    -ResourceGroupName <Your Resource Group> `
-    -SubscriptionId <Subscription ID > `
+    -ResourceGroupName <Resource Group> `
+    -SubscriptionId <Subscription ID> `
     -BaseProvider Microsoft.HybridCompute `
-    -BaseResourceType machines `
-    -BaseResourceName <NameOfResource> `
-    -GatewayResourceId <Full Arm resource id of the new Arc gateway resource>
+    -BaseResourceType machine `
+    -BaseResourceName <Server Name> `
+    -GatewayResourceId <resource ID>
 ```
 
 ---
@@ -511,34 +453,34 @@ In this scenario, the machine incorrectly displays in Azure portal as a resource
 
 ### [CLI](#tab/cli)
 
-On a machine with access to Azure, run the following Azure CLI command:
+   On a machine with access to Azure, run the following Azure CLI command:
 
-```azurecli
-       az arcgateway settings update `
-           --resource-group <Your Resource Group> `
-           --subscription <subscription name > `
-           --base-provider Microsoft.HybridCompute `
-           --base-resource-type machines `
-           --base-resource-name <Arc-Server’s name > `
-           --gateway-resource-id ""
-```
+   ```azurecli
+   az arcgateway settings update `
+       --resource-group <resource_group> `
+       --subscription <subscription_name> `
+       --base-provider Microsoft.HybridCompute `
+       --base-resource-type machines `
+       --base-resource-name <server_name> `
+       --gateway-resource-id <gateway_resource_id>
+   ```
 
-> [!NOTE]
-> If you’re running this Azure CLI command within Windows PowerShell, set the `--gateway-resource-id` to null.
+   > [!NOTE]
+   > If you’re running this Azure CLI command within Windows PowerShell, set the `--gateway-resource-id` to null.
 
 ### [PowerShell](#tab/powershell)
 
-On a machine with access to Azure, run the following PowerShell command:
+   On a machine with access to Azure, run the following PowerShell command:
 
-```powershell
-    Update-AzArcSetting  `
-        -ResourceGroupName <Your Resource Group> `
-        -SubscriptionId <Subscription ID > `
-        -BaseProvider Microsoft.HybridCompute `
-        -BaseResourceType machines `
-        -BaseResourceName <NameOfResource> `
-        -GatewayResourceId ""
-```
+   ```powershell
+   Update-AzArcSetting  `
+       -ResourceGroupName <Resource Group> `
+       -SubscriptionId <Subscription ID> `
+       -BaseProvider Microsoft.HybridCompute `
+       -BaseResourceType machine `
+       -BaseResourceName <Server Name> `
+       -GatewayResourceId <resource ID>
+   ```
 
 ---
 
