@@ -23,7 +23,7 @@ Azure Arc gateway consists of two main components:
 
 - **Arc gateway resource:** An Azure resource that serves as a common front-end for Azure traffic. This gateway resource is served on a specific domain. Once the Arc gateway resource is created, the domain is returned to you in the success response.
 
-- **Arc proxy:** A new component added to the Azure Arc agents. This component runs within the context of an Arc-enabled resource as a service called "Azure Arc Proxy. It acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for this proxy.
+- **Arc proxy:** A new component added to the Azure Arc agents. This component runs within the context of an Arc-enabled resource as a service called "Azure Arc Proxy". It acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for this proxy.
 
 When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**.
 
@@ -195,7 +195,7 @@ The result should indicate that the `connection.type` is set to gateway, and the
 
 ## Remove Arc gateway association
 
-You can disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster. This results in the Arc-enabled cluser using direct traffic instead. to use direct traffic instead.
+You can disable Arc gateway and remove the association between the Arc gateway resource and the Arc-enabled cluster. This results in the Arc-enabled cluster using direct traffic instead.
 
 > [!NOTE]
 > This operation only applies to Azure Arc gateway on Azure Arc-enabled servers, not Azure Local. If you're using Azure Arc gateway on Azure Local, see [About Azure Arc gateway for Azure Local](/azure/azure-local/deploy/deployment-azure-arc-gateway-overview) for removal information.
@@ -256,7 +256,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
 ### Delete an Arc gateway resource
 
-You can delete an Arc gateway resource by using the Azure portal, Azure CLI, or Azure Powershell. This operation may take up to 5 minutes to complete.
+You can delete an Arc gateway resource by using the Azure portal, Azure CLI, or Azure PowerShell. This operation may take up to 5 minutes to complete.
 
 ### [Portal](#tab/portal)
 
