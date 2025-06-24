@@ -9,7 +9,7 @@ ms.date: 06/24/2025
 
 # Bulk publish and deploy with workload orchestration
 
-Workload orchestration allows you to publish and deploy a solution across multiple clusters. 
+Workload orchestration allows you to bulk publish and deploy a solution to multiple targets within the same cluster. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process. 
 
 Currently bulk publishing and deployment is only supported via CLI.
 
@@ -51,7 +51,7 @@ The `solutionInstanceName` parameter can be given for each target as part of tar
 
 ### Bulk publishing output
 
-If the bulk publish is successful, the CLI returns the list of published targets under `publishedTargets`. If any target has external validation enabled, the CLI also returns the list of targets that are pending external validation under `externalValidationPending`. These targets can't be deployed until external validation is completed. The CLI output looks like this:
+If the bulk publish is successful, the CLI returns the list of published targets under `publishedTargets`. If any target has [external validation enabled](external-validation.md), the CLI also returns the list of targets that are pending external validation under `externalValidationPending`. These targets can't be deployed until external validation is completed. The CLI output looks like this:
 
 ```json
 {
