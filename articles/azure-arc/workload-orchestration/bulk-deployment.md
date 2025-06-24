@@ -71,7 +71,7 @@ If the bulk publish is successful, the CLI returns the list of published targets
 }
 ```
 
-If the bulk publish isn't successful, there are two types of failures: complete failure, when all the targets fail to publish, and partial failure, when some targets succeed to publish while others fail. In the case of a partial failure, the CLI returns the list of targets that succeeded, `publishedTargets` and those that failed, `failedTargets`. In case of a complete failure, the CLI returns a message indicating that all targets failed to publish. 
+If the bulk publish isn't successful, there are two types of failures: complete failure, when all the targets fail to publish, and partial failure, when some targets succeed to publish while others fail. In a partial failure, the CLI returns the list of targets that succeeded, `publishedTargets` and the targets that failed, `failedTargets`. In a complete failure, the CLI returns a message indicating that all targets failed to publish. 
 
 ### Bulk publishing with dependencies
 
@@ -93,7 +93,7 @@ Once publish succeeds, you can find the dependencies of solution by using `az re
 az rest -u "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<revision>?api-version=2025-06-01" -m GET 
 ```
 
-In the output, search for the property called `solutionDependencies` which contains all the dependency solutions.
+In the output, search for the property called `solutionDependencies`, which contains all the dependency solutions.
 
 ## Perform bulk deployment
 
@@ -104,7 +104,7 @@ az workload-orchestration solution-template bulk-deploy --targets "@target.json"
 ```
 
 > [!NOTE]
-> The `--solution-dependencies` parameter is only required if the solution has dependencies. See the [previous section](#bulk-publish-with-dependencies) for more information on how to create the *dependencies.json* file.
+> The `--solution-dependencies` parameter is only required if the solution has dependencies. For more information, see the [previous section](#bulk-publishing-with-dependencies) on how to create the *dependencies.json* file.
 
 ### Bulk deployment output
 
@@ -122,7 +122,7 @@ If the bulk publish is successful, the CLI returns the list of published targets
 }
 ```
 
-If the bulk deployment isn't successful, there are two types of failures: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed to deploy while others fail. In the case of a partial failure, the CLI returns the list of targets that succeeded, `deployedTargets` and those that failed, `failedTargets`. In case of a complete failure, the CLI returns a message indicating that all targets failed to deploy. You can retry the deployment for the failed targets by running the `bulk-deploy` command again with the same parameters.
+If the bulk deployment isn't successful, there are two types of failures: complete failure, when all the targets fail to deploy, and partial failure, when some targets succeed to deploy while others fail. In a partial failure, the CLI returns the list of targets that succeeded, `deployedTargets` and the targets that failed, `failedTargets`. In a complete failure, the CLI returns a message indicating that all targets failed to deploy. You can retry the deployment for the failed targets by running the `bulk-deploy` command again with the same parameters.
 
 ## Related content
 

@@ -20,7 +20,7 @@ Workload orchestration is now generally available (GA) in Azure Arc. This releas
 ### New features
 
 - End-to-end support for Tanzu environment: Enable users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters.
-- Automation via Git: Automate generation of configuration template and schema via Git. 
+- [Automation via Git:](github-actions.md) Automate generation of configuration template and schema via Git. 
 - [Publish solutions in bulk to multiple targets:](bulk-deployment.md) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) is automatically triggered as part of the process. 
 
 ### Improvements in workload orchestration portal

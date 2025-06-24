@@ -3,15 +3,13 @@ title: GitHub Actions for Workload Orchestration
 description: Learn how to use GitHub actions to automate workload orchestration solution templates and schemas.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: how-to
+ms.topic: reference
 ms.date: 06/24/2025
-ms.custom:
-  - build-2025
 ---
 
 # Use GitHub actions to automate workload orchestration
 
-GitHub actions facilitates creating workflows to enable managing workload orchestration solution templates and schemas. This workflow automates the process of deploying workload orchestration configurations for multiple applications and common resources. 
+GitHub actions facilitates creating workflows to enable managing workload orchestration [solution templates](configuring-template.md) and [schemas](configuring-schema.md). This workflow automates the process of deploying workload orchestration configurations for multiple applications and common resources. 
 
 ## Architecture overview
 
@@ -44,9 +42,9 @@ The common resources under `.pg/apps/common` include:
 - common-config-template.yaml: Common configuration template. 
 
 > [!NOTE]
-> The /* character in filenames indicates a variable prefix unique to each application. For example, if the application is named `testapp`, the files would be named `testapp-schema.yaml`, `testapp-sol-template.yaml`, `testapp-specs.json`, and `metadata.yaml`.
+> The \* character in filenames indicates a variable prefix unique to each application. For example, if the application is named `testapp`, the files would be named `testapp-schema.yaml`, `testapp-sol-template.yaml`, `testapp-specs.json`, and `metadata.yaml`.
 
-The following diagram illustrates the file structure. 
+The following diagram illustrates the file structure.
 
 :::image type="content" source="./media/github-actions-file-structure.png" alt-text="Diagram illustrating the file structure of the GitHub action that automates workload orchestration." lightbox="./media/github-actions-file-structure.png":::
 
