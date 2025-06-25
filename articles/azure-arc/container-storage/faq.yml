@@ -59,3 +59,9 @@ sections:
 
       - question: Can ACStor triplication occur on a single physical device?
         answer: No, ACStor triplication isn't designed to operate on a single physical device with three attached hard drives.
+
+      - question: Does Azure Container Storage enabled by Azure Arc support ARM deployments? 
+        answer: No, at this time, Arc itself does not support ARM, so neither does this Arc extension.
+
+      - question: When using Extension Identity, permissions as a `StorageBlobDataOwner` role are needed to write data. Is there a reason it needs `Owner` instead of just `Contributor`?
+        answer: Yes, the `StorageBlobDataOwner` role is required for metadata operations to store Extended Attributes.
