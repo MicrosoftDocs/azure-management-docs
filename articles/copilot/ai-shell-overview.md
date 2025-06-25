@@ -6,6 +6,7 @@ ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: sewhee
 author: sdwheeler
+# Customer intent: As a developer or IT administrator, I want to use natural language in the CLI to generate Azure commands with an AI assistant, so that I can streamline workflows, learn command syntax, and troubleshoot efficiently without deep prior knowledge.
 ---
 
 # Use Microsoft Copilot in Azure with AI Shell
@@ -63,5 +64,5 @@ Shell [documentation][01].
 
 <!-- link references -->
 [01]: /powershell/utility-modules/aishell/overview
-[02]: https://github.com/PowerShell/ProjectMercury
+[02]: https://github.com/PowerShell/AIShell
 [03]: media/ai-shell-overview/ai-shell-azure-agent.gif

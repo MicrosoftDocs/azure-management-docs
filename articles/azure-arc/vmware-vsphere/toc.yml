@@ -4,6 +4,8 @@
   items:
   - name: About Azure Arc-enabled VMware vSphere
     href: overview.md
+  - name: What's new
+    href: whats-new.md 
   - name: Plan for deployment
     href: support-matrix-for-arc-enabled-vmware-vsphere.md
   - name: Switch to the new version
@@ -34,6 +36,8 @@
       href: enable-guest-management-at-scale.md
   - name: Use VM lifecycle and self-service capabilities
     items: 
+      - name: Create custom roles
+        href: create-custom-roles.md
       - name: Set up self service access to vCenter using Azure Arc
         href: setup-and-manage-self-service-access.md
       - name: Perform VM operations on VMware VMs through Azure

@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As an Azure user, I want to execute commands using natural language prompts, so that I can efficiently manage my resources without manual navigation in the portal.
 ---
 
 # Execute commands using Microsoft Copilot in Azure
