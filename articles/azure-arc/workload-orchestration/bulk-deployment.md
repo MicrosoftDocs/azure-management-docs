@@ -26,7 +26,7 @@ az workload-orchestration solution-template bulk-publish -g $rg --targets "@targ
 ```
 
 > [!NOTE]
-> The `--solution-dependencies` parameter is only required if the solution has dependencies. 
+> The `--solution-dependencies` parameter is only required if the solution has dependencies. See the [Bulk publishing with dependencies](#bulk-publishing-with-dependencies) section.
 
 You need to provide a *targets.json* file that contains the list of targets where you want to publish the solution. The file should be in the following format:
 
