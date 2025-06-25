@@ -74,6 +74,15 @@ The following steps show how to configure the resources of workload orchestratio
     capChildList="[soap,shampoo,conditioner]"
     ```
 
+    > [!NOTE]
+    > All resource names—including targets, solution templates, configuration schemas, and instance names—must follow the naming pattern given by the regular expression `^(?!v-)(?!.*-v-)a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
+    > - Must start and end with an alphanumeric character.
+    > - Can contain hyphens, but not at the start or end of any segment.
+    > - Can contain dots to separate segments, but not consecutive dots or empty segments.
+    > - Can't have any special characters other than hyphen and dot.
+    > - Can't start with v-.
+    > - Can't contain -v- anywhere.
+
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```bash
@@ -83,6 +92,13 @@ The following steps show how to configure the resources of workload orchestratio
     ```
 
     You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
+
+    > [!NOTE]
+    > The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
+    > - Must start and end with an alphanumeric character.
+    > - Can contain hyphens, but not at the start or end of any segment.
+    > - Can contain dots to separate segments, but not consecutive dots or empty segments.
+    > - Can't have any special characters other than hyphen and dot.
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
@@ -136,6 +152,15 @@ The following steps show how to configure the resources of workload orchestratio
     $capChildList = "[soap, shampoo, conditioner]" 
     ```
 
+    > [!NOTE]
+    > All resource names—including targets, solution templates, configuration schemas, and instance names—must follow the naming pattern given by the regular expression `^(?!v-)(?!.*-v-)a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
+    > - Must start and end with an alphanumeric character.
+    > - Can contain hyphens, but not at the start or end of any segment.
+    > - Can contain dots to separate segments, but not consecutive dots or empty segments.
+    > - Can't have any special characters other than hyphen and dot.
+    > - Can't start with v-.
+    > - Can't contain -v- anywhere.
+
 1. Create workload orchestration context with hierarchies. Edit the `--hierarchies` and `--capabilities` parameters as per your requirements. The following example creates a context with two hierarchies: `factory` and `line`, and three capabilities: `soap`, `shampoo`, and `conditioner`.
 
     ```powershell
@@ -144,6 +169,12 @@ The following steps show how to configure the resources of workload orchestratio
 
     You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
 
+    > [!NOTE]
+    > The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
+    > - Must start and end with an alphanumeric character.
+    > - Can contain hyphens, but not at the start or end of any segment.
+    > - Can contain dots to separate segments, but not consecutive dots or empty segments.
+    > - Can't have any special characters other than hyphen and dot.
 
 1. Create a site reference to link the workload orchestration instance to `Site` for parent hierarchical level operations.
 
