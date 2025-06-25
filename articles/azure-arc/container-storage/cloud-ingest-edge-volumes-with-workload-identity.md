@@ -1,12 +1,12 @@
 ---
 title: Cloud Ingest Edge Volumes with Workload Identity  
-description: #Required; Keep the description within 100- and 165-characters including spaces.
+description: Learn how to configure Cloud Ingest Edge Volumes with Workload Identity.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.date: 06/25/2025
 
-#CustomerIntent: As a < type of user >, I want < what? > so that < why? >.
+#CustomerIntent: As a Kubernetes administrator, I want to configure Cloud Ingest Edge Volumes with Workload Identity.
 ---
 
 # Cloud Ingest Edge Volumes with Workload Identity
