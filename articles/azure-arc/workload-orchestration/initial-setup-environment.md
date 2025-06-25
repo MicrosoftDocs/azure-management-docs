@@ -443,7 +443,7 @@ At this point, the environment and infrastructure for workload orchestration sho
 
 Sites and site addresses represent the physical hierarchy of your organization, such as a plant, factory, or store. Hierarchies are defined as name-description pairs that map to the levels of your organization's resource structure. For example, a manufacturing organization might use two levels: Factory and Line.
 
-You can create sites using either a resource group or a service group.
+You can create sites using either a resource group or a service group. The choice depends on the hierarchy of your organization and how you want to logically group resources.
 
 |Group type|Description|Note|
 |---|---|---|

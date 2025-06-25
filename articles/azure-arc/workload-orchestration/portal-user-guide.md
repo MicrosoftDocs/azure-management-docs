@@ -9,7 +9,7 @@ ms.date: 06/18/2025
 
 # User guide for the workload orchestration portal
 
-This guide is designed for low code/non-code users who want to manage solutions in the workload orchestration portal without writing code. 
+This guide is designed for low code/non-code users who want to manage solutions in the workload orchestration portal. 
 
 The [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview) provides a user-friendly interface with three main tabs on the left side: **Monitor**, **Configure**, and **Deploy**. Each tab has its own set of features and functionalities that help you manage your solutions effectively.
 
@@ -17,7 +17,7 @@ The [workload orchestration portal](https://portal.digitaloperations.configmanag
 |----|-------|
 |[Configure](#configure-your-solutions)|Set up the parameters of your solutions.|
 |[Deploy](#deploy-your-solutions)|Deploy your solutions to the right targets and rollback to earlier versions if needed.|
-|[Monitor](#monitor-your-solutions)|Track the health and status of your solutions.|
+|[Monitor](#monitor-your-solutions)|Track the status of your solutions.|
 
 ## Prerequisites
 
