@@ -4,6 +4,7 @@ description: In this article, you'll learn how to use PowerShell to connect a ma
 ms.date: 12/04/2024
 ms.topic: how-to
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a system administrator, I want to connect my hybrid machines to Azure using PowerShell, so that I can manage them effectively through Azure Arc and ensure seamless integration with cloud services."
 ---
 
 # Connect hybrid machines to Azure by using PowerShell

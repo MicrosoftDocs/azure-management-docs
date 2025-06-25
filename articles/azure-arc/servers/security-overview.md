@@ -3,6 +3,7 @@ title: Security overview
 description: Basic security information about Azure Arc-enabled servers.
 ms.topic: overview
 ms.date: 04/21/2025
+# Customer intent: "As a security practitioner managing Azure Arc-enabled servers, I want to implement best practices for security and management features, so that I can ensure compliance and protect sensitive resources from unauthorized access or vulnerabilities."
 ---
 
 # Security overview for Azure Arc-enabled servers

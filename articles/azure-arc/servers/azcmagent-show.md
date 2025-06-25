@@ -3,6 +3,7 @@ title: azcmagent show CLI reference
 description: Syntax for the azcmagent show command line tool
 ms.topic: reference
 ms.date: 06/06/2023
+# Customer intent: As a system administrator, I want to use the command line to check the status of the Azure Connected Machine agent, so that I can ensure proper connectivity and monitor the health of the services.
 ---
 
 # azcmagent show

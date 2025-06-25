@@ -3,6 +3,7 @@ title: How to simplify network configuration requirements with Azure Arc gateway
 description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
 ms.date: 06/24/2025
 ms.topic: how-to
+# Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
 
 # Simplify network configuration requirements with Azure Arc gateway (preview)

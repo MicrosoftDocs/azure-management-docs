@@ -3,6 +3,7 @@ title: azcmagent extension CLI reference
 description: Syntax for the azcmagent extension command line tool
 ms.topic: reference
 ms.date: 03/11/2024
+# Customer intent: "As a system administrator managing Azure Arc extensions, I want to use the command-line interface to list and uninstall extensions on my machine, so that I can efficiently control the installed extensions even in a disconnected state."
 ---
 
 # azcmagent extension

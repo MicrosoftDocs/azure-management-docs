@@ -3,6 +3,7 @@ title: Azure Arc-enabled servers Overview
 description: Learn how to use Azure Arc-enabled servers to manage servers hosted outside of Azure like an Azure resource.
 ms.date: 01/23/2025
 ms.topic: overview
+# Customer intent: As an IT administrator managing hybrid environments, I want to connect and manage physical and virtual servers outside of Azure using Azure Arc, so that I can apply consistent governance, security, and monitoring across all my resources.
 ---
 
 # What is Azure Arc-enabled servers?

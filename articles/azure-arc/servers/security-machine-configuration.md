@@ -3,6 +3,7 @@ title: Configuration and remote access
 description: Configuration and remote access for Azure Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 06/06/2024
+# Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to configure secure remote access and check compliance settings at scale, so that I can efficiently maintain system integrity and control access without compromising security."
 ---
 
 # Configuration and remote access

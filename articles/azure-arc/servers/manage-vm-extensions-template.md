@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.custom:
   - devx-track-arm-template
   - build-2025
+# Customer intent: As a cloud administrator, I want to deploy virtual machine extensions to Azure Arc-enabled servers using an ARM template, so that I can efficiently manage and enhance the capabilities of my hybrid cloud infrastructure.
 ---
 
 # Enable Azure VM extensions by using an ARM template

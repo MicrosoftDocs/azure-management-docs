@@ -3,6 +3,7 @@ title: Programmatically deploy and manage Azure Arc Extended Security Updates li
 description: Learn how to programmatically deploy and manage Azure Arc Extended Security Updates licenses for Windows Server 2012.
 ms.date: 08/28/2024
 ms.topic: concept-article
+# Customer intent: As a cloud administrator, I want to programmatically deploy and manage Extended Security Updates licenses for Windows Server 2012 through Azure APIs, so that I can efficiently handle license provisioning, linking, modifying, and unlinking.
 ---
 
 # Programmatically deploy and manage Azure Arc Extended Security Updates licenses

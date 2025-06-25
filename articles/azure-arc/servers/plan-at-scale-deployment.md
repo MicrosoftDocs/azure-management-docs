@@ -3,6 +3,7 @@ title: Plan and deploy Azure Arc-enabled servers
 description: Learn how to enable a large number of machines to Azure Arc-enabled servers to simplify configuration of essential security, management, and monitoring capabilities in Azure.
 ms.date: 05/08/2025
 ms.topic: how-to
+# Customer intent: As an IT administrator, I need to plan a large-scale deployment of machines to Azure Arc-enabled servers, so that I can effectively manage and monitor our infrastructure while ensuring compliance, minimizing risks, and optimizing operational efficiency.
 ---
 
 # Plan and deploy Azure Arc-enabled servers

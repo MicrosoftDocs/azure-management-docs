@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.custom:
   - devx-track-azurepowershell
   - build-2025
+# Customer intent: As a system administrator, I want to deploy and manage VM extensions on Azure Arc-enabled servers using PowerShell, so that I can efficiently manage my hybrid cloud environment and enhance the functionality of my virtual machines.
 ---
 
 # Enable Azure VM extensions by using Azure PowerShell

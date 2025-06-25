@@ -3,6 +3,7 @@ title: How to evaluate Azure Arc-enabled servers with an Azure virtual machine
 description: Learn how to evaluate Azure Arc-enabled servers using an Azure virtual machine.
 ms.date: 01/23/2025
 ms.topic: how-to
+# Customer intent: As a system administrator, I want to configure an Azure virtual machine for evaluating Azure Arc-enabled servers, so that I can test Azure Arc capabilities in a controlled environment while ensuring compatibility with on-premises setups.
 ---
 
 # Evaluate Azure Arc-enabled servers on an Azure virtual machine

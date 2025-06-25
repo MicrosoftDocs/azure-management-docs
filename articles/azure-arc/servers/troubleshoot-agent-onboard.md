@@ -5,6 +5,7 @@ ms.date: 05/14/2025
 ms.topic: troubleshooting
 ms.custom:
   - build-2025
+# Customer intent: "As a system administrator, I want to troubleshoot Azure Connected Machine agent connection errors, so that I can ensure successful configuration and management of Azure Arc-enabled servers."
 ---
 
 # Troubleshoot Azure Connected Machine agent connection issues

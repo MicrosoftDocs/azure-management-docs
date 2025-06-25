@@ -4,6 +4,7 @@ description: Learn how to migrate to Azure Monitor Agent using Red Hat Ansible A
 ms.date: 03/10/2025
 ms.topic: how-to
 ms.custom: devx-track-ansible
+# Customer intent: As an IT operations manager, I want to migrate from the Azure Log Analytics agent to the Azure Monitor agent using Ansible Automation, so that I can enhance monitoring performance for non-Azure machines managed under Azure Arc.
 ---
 
 # Migrate to Azure Monitor Agent on Azure Arc using Red Hat Ansible Automation Platform
