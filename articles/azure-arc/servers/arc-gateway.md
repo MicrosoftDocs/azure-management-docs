@@ -186,7 +186,7 @@ On the onboarded server, run the following command: `azcmagent show`
 The result should indicate the following values:
 
 - **Agent Status** should show as **Connected**.
-- **Using HTTPS Proxy** should show as **http://localhost:40343**.
+- **Using HTTPS Proxy** should show as **`http://localhost:40343`**.
 - **Upstream Proxy** should show as your enterprise proxy (if you set one). Gateway URL should reflect your gateway resource's URL.
 
 Additionally, to verify successful set-up, run the following command: `azcmagent check`
@@ -313,7 +313,6 @@ During public preview, Arc gateway covers the endpoints required for onboarding 
 - Windows Admin Center
 - SSH
 - Extended Security Updates
-- Microsoft Defender  
 - Azure Extension for SQL Server
 
 ### Scenarios that require additional endpoints
@@ -342,3 +341,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 - Windows OS Update Extension / Azure Update Manager
 
   - Your environment must meet all the [prerequisites](/windows/privacy/manage-windows-11-endpoints) for Windows Update
+
+- Microsoft Defender
+
+  - Your environment must meet all the [prerequisites](/defender-endpoint/configure-device-connectivity) for Microsoft Defender
