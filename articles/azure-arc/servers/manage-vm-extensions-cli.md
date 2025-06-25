@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.custom:
   - devx-track-azurecli
   - build-2025
+# Customer intent: As a system administrator managing hybrid cloud environments, I want to deploy and manage VM extensions using Azure CLI, so that I can efficiently automate tasks and maintain consistency across my Azure Arc-enabled servers.
 ---
 
 # Enable Azure VM extensions by using the Azure CLI

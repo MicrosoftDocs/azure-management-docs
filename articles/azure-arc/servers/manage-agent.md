@@ -3,6 +3,7 @@ title:  Manage and maintain the Azure Connected Machine agent
 description: This article describes the different management tasks that you typically perform during the lifecycle of the Azure Connected Machine agent.
 ms.date: 05/08/2025
 ms.topic: how-to
+# Customer intent: As a system administrator, I want to manage the lifecycle of the Azure Connected Machine agent, including installation, upgrades, and configurations, so that I can ensure optimal performance and reliability of my Azure-connected servers.
 ---
 
 # Manage and maintain the Connected Machine agent

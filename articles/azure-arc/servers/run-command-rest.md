@@ -4,6 +4,7 @@ description: Learn how to use the REST API to remotely execute scripts and comma
 ms.date: 02/28/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As a cloud engineer managing Arc-enabled servers, I want to execute scripts remotely via a REST API, so that I can configure system settings without needing direct access to the servers.
 ---
 
 # REST API requests for Run command on Azure Arc-enabled servers (Preview)
