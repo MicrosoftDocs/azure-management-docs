@@ -5,8 +5,6 @@ author: SoniaLopezBravo
 ms.topic: include
 ms.date: 06/24/2025
 ms.author: sonialopez
-ms.custom:
-  - build-2025
 ---
 
 > [!NOTE]

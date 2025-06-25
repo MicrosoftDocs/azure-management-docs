@@ -169,6 +169,10 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
     - `specificationFile`: (Required) File path to Specification File.
     - `configTemplate`: (Required) Configuration template for the solution.
 
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+
 ## Related content
 
 - [Service groups with workload orchestration](service-group.md)

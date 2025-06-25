@@ -265,3 +265,7 @@ If you encounter issues with file detection in GitHub actions, consider the foll
     - **Apps:** `.pg/apps/<app>/workload-orchestration/`
     - **Common:** `.pg/apps/common/`
 - Check workflow logs for file detection output.
+
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]

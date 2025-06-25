@@ -42,6 +42,10 @@ In the case of deployment failure, the CLI returns an error message and only lis
 
 The message in the CLI response is a known issue and doesn't reflect the actual deployment status of the targets. Check the [workload orchestration portal](deploy.md) to verify the application status for each target. 
 
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+
 ## Related content
 
 - [Troubleshooting workload orchestration](troubleshooting.md)

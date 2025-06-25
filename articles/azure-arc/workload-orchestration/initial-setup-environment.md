@@ -584,6 +584,10 @@ To use a resource group, run the following commands:
 
 ***
 
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+
 ## Related content
 
 - [Setup workload orchestration](initial-setup-configuration.md)

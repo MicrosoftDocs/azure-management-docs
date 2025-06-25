@@ -99,6 +99,7 @@ The workload orchestration portal has three main tabs: **Monitor**, **Configure*
 
 Workload orchestration pricing is based on a tiered model that reflects your usage levels. You can choose from multiple categories, including Standard and Premium tiers, depending on your operational needs. Charges are determined by the number of operations performed and the storage used for configuration files. For detailed pricing information, please contact your account manager.
 
+## Contact us
 
-
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
 

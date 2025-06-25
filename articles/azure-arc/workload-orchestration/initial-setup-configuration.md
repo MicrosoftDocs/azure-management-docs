@@ -197,6 +197,10 @@ The following steps show how to configure the resources of workload orchestratio
 
 ***
 
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+
 ## Related content
 
 - [Onboarding scripts](onboarding-scripts.md)
