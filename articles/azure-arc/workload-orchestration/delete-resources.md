@@ -150,7 +150,7 @@ az workload-orchestration config-template delete --subscription $subId --resourc
 
 ## Delete existing resources in a resource group 
 
-You can run the following PowerShell script to clean up resources in a specified Azure resource group. The script allows you to delete resources such as sites, targets, configurations, schemas, and solutions created with workload orchestration.
+You run the following PowerShell script `RGCleanScript.ps1` to clean up resources in a specified Azure resource group. The script allows you to delete resources such as sites, targets, configurations, schemas, and solutions created with workload orchestration.
 
 ```powershell
 # Input Prameters

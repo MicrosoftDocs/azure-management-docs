@@ -21,7 +21,7 @@ az extension add --name resource-graph
 
 ## Migration script
 
-You can run the following PowerShell script to migrate your workload orchestration environment to GA. The script updates the `contextId` property of your existing targets to point to the new API version of workload orchestration.
+You run the following PowerShell script `WOGAMigration.ps1` to migrate your workload orchestration environment to GA. The script updates the `contextId` property of your existing targets to point to the new API version of workload orchestration.
 
 ```powershell
 param (
