@@ -15,7 +15,7 @@ For information about the prerequisites and how to set up workload orchestration
 
 ## Cluster support
 
-Workload orchestration supports all Arc-enabled clusters, including Azure Kubernetes Service (AKS), Azure Arc-enabled Kubernetes, and Tanzu clusters. 
+Workload orchestration supports all Arc-enabled clusters, including Azure Kubernetes Service (AKS), Azure Arc-enabled Kubernetes, and Tanzu Kubernetes Grid (TKG) clusters. 
 Workload orchestration provides comprehensive support for Tanzu environments, enabling users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters. 
 
 ## Solution authoring and deployment 

@@ -157,7 +157,7 @@ The following table summarizes the different types of logs that can be collected
     | where _ResourceId contains "<your cluster ID>"
     ```
 
-## One-click script to enable workload orchestration level logs
+##  Enable workload orchestration level logs with one-click script
 
 The following JSON file is a template that you can use to enable workload orchestration level logs. Modify the values in the JSON file to suit your environment and save it as `workload-orchestration-script-logs.json`.
 
@@ -252,7 +252,9 @@ If you want to enable workload orchestration level logs and kubernetes events on
 .\infra_onboarding.ps1 .\workload-orchestration-script-logs.json -skipAksCreation $true -enableContainerInsights $true -skipSiteCreation $true -skipRelationshipCreation $true -skipTcoDeployment $true
 ```
 
-## Enable OTLP (OpenTelemetry logs) or syslogs
+## Enable OpenTelemetry (OTLP) logs and syslogs
+
+To enable [OpenTelemetry (OTLP)](https://opentelemetry.io/docs/collector/) logs and syslogs collection from your Arc Kubernetes cluster, follow these steps:
 
 1. Install the `microsoft.monitor.pipelinecontroller` extension to collect OTLP (OpenTelemetry logs) or syslogs from your Arc Kubernetes cluster. See [Configuration of Azure Monitor pipeline at edge and multicloud ](/azure/azure-monitor/data-collection/edge-pipeline-configure?tabs=CLI#enable-and-configure-pipeline).
 

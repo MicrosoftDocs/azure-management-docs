@@ -175,13 +175,13 @@ Create the configuration template. The following command takes version input fro
 #### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile"
+az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile" --description "<description>"
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile
+az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile --description "<description>"
 ```
 
 ***

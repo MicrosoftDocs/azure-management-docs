@@ -4,7 +4,7 @@ description: Release notes for Workload Orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: release-notes
-ms.date: 06/01/2025
+ms.date: 06/24/2025
 ---
 
 # Release notes for workload orchestration
@@ -16,6 +16,8 @@ This article provides the latest and past release notes for workload orchestrati
 ## June 2025 GA release
 
 Workload orchestration is now generally available (GA) in Azure Arc. This release includes all the features and improvements that were previously in preview, along with additional enhancements.
+
+To migrate your existing workload orchestration target resources to the GA version, see [Migration script for workload orchestration](migration-script.md).
 
 ### New features
 

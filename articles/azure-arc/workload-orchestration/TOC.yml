@@ -88,6 +88,8 @@ items:
       href: known-issues.md
   - name: Resources
     items: 
+    - name: Migration script for GA
+      href: migration-script.md
     - name: Release notes
       href: release-notes.md
 
