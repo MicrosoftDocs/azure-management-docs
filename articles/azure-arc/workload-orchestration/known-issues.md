@@ -44,7 +44,7 @@ The message in the CLI response is a known issue and doesn't reflect the actual 
 
 ## Contact support
 
-[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+[!INCLUDE [form-feedback-note](includes/form-feeback.md)]
 
 ## Related content
 

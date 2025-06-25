@@ -171,7 +171,7 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
 
 ## Contact support
 
-[!INCLUDE [form-feedback-note](includes/form-feeback-note.md)]
+[!INCLUDE [form-feedback-note](includes/form-feeback.md)]
 
 ## Related content
 

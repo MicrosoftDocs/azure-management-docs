@@ -279,9 +279,6 @@ Create a target at child level. Ensure *custom-location.json* is updated with th
 az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
 ```
 
-Where:
-```
-
 > [!NOTE]
 > Update the parameter `solutionTemplateId` under dependencies section of FSAD configuration template and schema with the SSA solution template ID.
 > The ``solution-template create` command displays the ID along with solution template version.
