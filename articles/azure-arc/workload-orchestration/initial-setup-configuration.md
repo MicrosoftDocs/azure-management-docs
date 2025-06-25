@@ -199,7 +199,7 @@ The following steps show how to configure the resources of workload orchestratio
 
 ## Contact support
 
-[!INCLUDE [form-feedback-note](includes/form-feeback.md)]
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
 ## Related content
 

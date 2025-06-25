@@ -586,7 +586,7 @@ To use a resource group, run the following commands:
 
 ## Contact support
 
-[!INCLUDE [form-feedback-note](includes/form-feeback.md)]
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
 ## Related content
 

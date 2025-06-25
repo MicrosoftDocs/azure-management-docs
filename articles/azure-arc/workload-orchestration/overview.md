@@ -101,5 +101,5 @@ Workload orchestration pricing is based on a tiered model that reflects your usa
 
 ## Contact support
 
-[!INCLUDE [form-feedback-note](includes/form-feeback.md)]
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
