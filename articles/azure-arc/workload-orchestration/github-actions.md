@@ -1,5 +1,5 @@
 ---
-title: GitHub Actions for Workload Orchestration
+title: Automate Template Generation Using GitHub Actions
 description: Learn how to use GitHub actions to automate workload orchestration solution templates and schemas.
 author: SoniaLopezBravo
 ms.author: sonialopez
@@ -7,7 +7,7 @@ ms.topic: reference
 ms.date: 06/24/2025
 ---
 
-# Use GitHub actions to automate workload orchestration
+# Automate template generation using GitHub actions
 
 GitHub actions facilitates creating workflows to enable managing workload orchestration [solution templates](configuring-template.md) and [schemas](configuring-schema.md). This workflow automates the process of deploying workload orchestration configurations for multiple applications and common resources. 
 

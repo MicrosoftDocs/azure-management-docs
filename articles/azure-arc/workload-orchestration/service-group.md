@@ -208,7 +208,8 @@ az rest `
       --description "$childDesc" \
       --solution-scope "new" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
     ```
 
 1. Get the ID for Target created in the previous step.
@@ -300,7 +301,8 @@ az rest `
       --description $childDesc `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
     ```
 
 1. Get the ID for target created in the previous step.

@@ -146,20 +146,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName"
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -174,20 +174,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
-    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json
+    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json
+    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json
+    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json
+    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
     ```
 
 ***

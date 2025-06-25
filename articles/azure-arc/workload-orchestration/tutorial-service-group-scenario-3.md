@@ -67,7 +67,8 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --description "This is Country Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -80,7 +81,8 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --description "This is Region Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -93,7 +95,8 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --description "This is Factory Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName"
 
     # Create target at line level
     az workload-orchestration target create \
@@ -106,7 +109,8 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --description "This is Line01 Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName"
     ```
 
 1. Get the target IDs of the created targets.
@@ -185,53 +189,57 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$countryTarget" `
-      --display-name "$countryTarget" `
+      --name $countryTarget `
+      --display-name $countryTarget `
       --hierarchy-level "country" `
       --capabilities "Use for soap production" `
       --description "This is Country Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$regionTarget" `
-      --display-name "$regionTarget" `
+      --name $regionTarget `
+      --display-name $regionTarget `
       --hierarchy-level "region" `
       --capabilities "Use for soap production" `
       --description "This is Region Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName
     
     # Create target at factory level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$factoryTarget" `
-      --display-name "$factoryTarget" `
+      --name $factoryTarget `
+      --display-name $factoryTarget `
       --hierarchy-level "factory" `
       --capabilities "Use for soap production" `
       --description "This is Factory Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' ` 
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName
     
     # Create target at line level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$lineTarget" `
-      --display-name "$lineTarget" `
+      --name $lineTarget `
+      --display-name $lineTarget `
       --hierarchy-level "line" `
       --capabilities "Use for soap production" `
       --description "This is Line01 Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName
     ```
 
 1. Get the target IDs of the created targets.

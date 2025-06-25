@@ -188,7 +188,8 @@ $app2Version = "1.0.1"
         --description "$parentDesc" \
         --solution-scope "$parentScope" \
         --target-specification "@targetspecs.json" \
-        --extended-location "@custom-location.json"
+        --extended-location "@custom-location.json" \
+        --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -217,7 +218,8 @@ $app2Version = "1.0.1"
         --description $parentDesc `
         --solution-scope $parentScope `
         --target-specification "@targetspecs.json" `
-        --extended-location "@custom-location.json"
+        --extended-location "@custom-location.json" `
+        --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName
     ```
 
 
@@ -274,7 +276,10 @@ Create a target at child level. Ensure *custom-location.json* is updated with th
 ### [Bash](#tab/bash)
 
 ```bash	
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
+```
+
+Where:
 ```
 
 > [!NOTE]
@@ -288,7 +293,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
 ```
 
 > [!NOTE]

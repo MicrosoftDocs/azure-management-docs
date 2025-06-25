@@ -54,7 +54,8 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --description "Use for soap production" \
       --solution-scope "new" \
       --target-specification '@targetspecs.json' \
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
     ```
 
 1. Get the target ID of the created target.
@@ -88,14 +89,15 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$Linename" `
-      --display-name "$Linename" `
+      --name $Linename `
+      --display-name $Linename `
       --hierarchy-level "line" `
       --capabilities "soap" `
       --description "Use for soap production" `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
     ```
 
 1. Get the target ID of the created target.

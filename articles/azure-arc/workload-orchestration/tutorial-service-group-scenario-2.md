@@ -55,7 +55,8 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
       --description "This is Region01 Target" \
       --solution-scope "new" \
       --target-specification @targetspecs.json \
-      --extended-location @custom-location.json
+      --extended-location @custom-location.json \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
     ```
 
 1. Get the target ID of the created target.
@@ -89,14 +90,15 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$RegionName" `
-      --display-name "$RegionName" `
+      --name $RegionName`
+      --display-name $RegionName `
       --hierarchy-level "region" `
       --capabilities "Use for soap production" `
       --description "This is Region01 Target" `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
     ```
 
 1. Get the target ID of the created target.

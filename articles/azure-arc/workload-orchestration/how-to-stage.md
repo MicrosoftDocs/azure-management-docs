@@ -477,7 +477,8 @@ az workload-orchestration target create \
     --description "This is Line01 Site" \
     --solution-scope "$scopename" \
     --target-specification "@targetspecs.json" \
-    --extended-location "@custom-location.json"
+    --extended-location "@custom-location.json" \
+    --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -496,7 +497,8 @@ az workload-orchestration target create `
   --description "This is Line01 Site" `
   --solution-scope $scopename `
   --target-specification '@targetspecs.json' `
-  --extended-location '@custom-location.json'
+  --extended-location '@custom-location.json' `
+  --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
 ```
 ***
 
