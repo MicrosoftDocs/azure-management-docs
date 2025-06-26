@@ -129,5 +129,6 @@ The out-of-band methods first onboard the machines as Arc-enabled Server resourc
 
 ## Next steps
 
+- [Set up and manage self-service access to SCVMM resources](set-up-and-manage-self-service-access-scvmm.md)
 - [Manage and maintain the Azure Connected Machine agent](../servers/manage-agent.md).
 - [Manage VM extensions to use Azure management services for your SCVMM VMs](../servers/manage-vm-extensions.md).
