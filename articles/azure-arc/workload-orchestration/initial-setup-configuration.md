@@ -211,5 +211,5 @@ The following steps show how to configure the resources of workload orchestratio
 
 ## Next steps
 
-Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, see the [Quickstart: Create a basic solution](quickstart-solution-without-commmon-configuration.md), to learn how to create a basic solution, configure it, and deploy it to a target.
+Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, see the [Quickstart: Create a basic solution](quickstart-solution-without-common-configuration.md) to learn how to create a basic solution, configure it, and deploy it to a target.
 

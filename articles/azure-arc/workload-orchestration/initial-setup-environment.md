@@ -296,7 +296,7 @@ The following steps are required to install workload orchestration service compo
         ```bash
         kubectl get sc
         ```
-    Run the following command to install the`microsoft.workloadorchestration` extension:
+        Run the following command to install the `microsoft.workloadorchestration` extension:
     
         ```bash
         storageClassName="<pick up one storage class from 'kubectl get sc'>"
@@ -378,7 +378,7 @@ The following steps are required to install workload orchestration service compo
         ```bash
         kubectl get sc
         ```
-    Run the following command to install the`microsoft.workloadorchestration` extension:
+        Run the following command to install the `microsoft.workloadorchestration` extension:
     
         ```powershell
         $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
