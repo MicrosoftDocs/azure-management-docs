@@ -49,7 +49,7 @@ Next you need to configure your Kubernetes cluster to utilize workload identity:
 
 ## Create a User Assigned Managed Identity (UAMI)
 
-You need to create a User Assigned Managed Identity (UAMI) to federate with your Kubernetes cluster. This is the identity in Azure Public Cloud that you grant role based access to your Storage Account or OneLake Lakehouse for use with Azure Container Storage Enabled by Azure Arc.
+You need to create a UAMI to federate with your Kubernetes cluster. This is the identity in Azure Public Cloud that you grant role based access to your Storage Account or OneLake Lakehouse for use with Azure Container Storage Enabled by Azure Arc.
 
 You can create one UAMI using Azure CLI with the following command:
 
@@ -59,7 +59,7 @@ az identity create --name <USER_ASSIGNED_IDENTITY_NAME> --resource-group <RESOUR
 
 This will return a client id that you will use later to federate the credential and configure Azure Container Storage.
 
-## Federate the User Assigned Managed Identity (UAMI)
+## Federate the UAMI
 
 1. Add the UAMI to your EdgeStorageConfiguration Custom Resource Definition (CRD) for Azure Container Storage:
 
@@ -95,7 +95,7 @@ This will return a client id that you will use later to federate the credential 
     az role assignment create --assignee <USER_ASSIGNED_IDENTITY_ID> --role "Storage Blob Data Owner" --scope "/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Storage/storageAccounts/<STORAGEACCOUNT>"
     ```
 
-## Create a Cloud Ingest Persistent Volume Claim (PVC)
+## Create a Cloud Ingest Persistent Volume Claim (PVC) with Workload Identity
 
 To create a Cloud Ingest Persistent Volume Claim (PVC) with Workload Identity, you can use the following example YAML file:
 
@@ -113,7 +113,7 @@ spec:
   storageaccountendpoint: ""
 ```
 
-Then continue following the instructions in the [Create a Cloud Ingest Persistent Volume Claim (PVC)](cloud-ingest-edge-volume-configuration.md#create-a-cloud-ingest-persistent-volume-claim-pvc) section.
+Continue with the steps in the Cloud Ingest Edge Volumes configuration guide, starting from the [Create a Cloud Ingest Persistent Volume Claim (PVC)](cloud-ingest-edge-volume-configuration.md#create-a-cloud-ingest-persistent-volume-claim-pvc) section and using the example above.
 
 ## Next step
 
