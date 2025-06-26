@@ -36,6 +36,8 @@
         href: create-custom-roles.md
       - name: Set up and manage self-service access
         href: setup-and-manage-self-service-access.md
+  - name: Use VM lifecycle and self-service capabilities
+    items: 
       - name: Perform VM operations on VMware VMs through Azure
         href: perform-vm-ops-through-azure.md
   - name: Use Azure services for VMware VMs
