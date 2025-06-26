@@ -4,7 +4,7 @@ description: Learn how to stage resources before deployment in Azure Arc Workloa
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/08/2025
+ms.date: 06/25/2025
 ---
 
 # Stage resources before deployment
@@ -283,20 +283,9 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
 1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
 
     ```bash
-    az k8s-extension create --cluster-name "$cluster" --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name connectedext --resource-group "$rg" --config trustDistribution.enabled=false --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
-    ```
-
-1. Check the ca.crt file created for the connected registry.
-
-    ```bash
-    kubectl get secret connectedext-ca-cert -n connected-registry -o yaml
-    ```
-
-1. Copy the ca.crt file out and store it into a `$certification` variable.
-
-    ```bash
-    $certification="<ca.crt content>"
-    echo "$certification" | base64 --decode > ca.crt
+    az k8s-extension create --cluster-name "$cluster"  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name "$storageName" --resource-group "$rg" --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    # you can find a valid storage class name in tanzu by the following command:
+    # kubectl get sc
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -310,23 +299,11 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
 1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
 
    ```powershell
-    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name connectedext --resource-group $rg --config trustDistribution.enabled=false --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension
+    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $storageName --resource-group $rg --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    # you can find a valid storage class name in tanzu by the following command:
+    # kubectl get sc
    ```
 
-1. Check the ca.crt file created for the connected registry.
-
-   ```powershell
-    kubectl get secret connectedext-ca-cert -n connected-registry -o yaml
-   ```
-
-1. Copy the ca.crt file out and store it into a `$certification` variable.
-
-    ```powershell
-    $certification = "<ca.crt content>"
-    $decodedBytes = [System.Convert]::FromBase64String($certification)
-    $decodedString = [System.Text.Encoding]::UTF8.GetString($decodedBytes)
-    echo $decodedString > ca.crt
-    ```
 ***
 
 #### Manually configure `config.toml` in individual debug pods
