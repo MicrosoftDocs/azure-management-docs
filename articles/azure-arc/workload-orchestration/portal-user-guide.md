@@ -115,7 +115,7 @@ In case something goes wrong during deployment, you can:
 
 |Link|Action	|
 |---------------------|------------------|
-|[Rollback a solution](deploy.md#roll-back-a-solution)|Rollback the solution to a previous version if a deployment fails.|
+|[Roll back a solution](deploy.md#roll-back-a-solution)|Roll back the solution to a previous version if a deployment fails.|
 |[Retry a deployment](deploy.md#retry-a-failed-deployment)|Retry the deployment in case of a failure.|
 |[Stop a deployed solution](deploy.md#stop-a-deployed-solution)|Stop a deployed solution but don't want to delete it.|
 |[Delete a solution](deploy.md#delete-a-solution)|Delete solutions that aren't yet deployed.|

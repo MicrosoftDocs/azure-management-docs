@@ -111,7 +111,7 @@ rules:
 
 ```  
 
-The final schema is generated as follows. The content of *LogSettingsSchema* is included in the final schema.:
+The final schema is generated as follows. The content of *LogSettingsSchema* is included in the final schema:
 
 ```yaml
 rules:

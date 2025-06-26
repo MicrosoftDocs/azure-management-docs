@@ -225,8 +225,6 @@ For more information about solution templates and publishing a solution, see [Qu
       --target-name "$childName"
     ```
 
- --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0
-
 1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
 
     ```bash

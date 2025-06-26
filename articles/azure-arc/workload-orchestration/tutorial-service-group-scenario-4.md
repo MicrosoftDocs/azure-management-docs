@@ -36,10 +36,10 @@ The sites references are created at each level of the hierarchy, being the Servi
 
 A solution is deployed at each target as follows:
 
-- Line App (Line App) is a solution at line level.
-- Factory App (Factory App) is a solution at factory level.
-- Region App (Region App) is a solution at region level.
-- Global Adapter (Global Adapter) is a solution at country level. Line App, Factory App, and Rregion App are dependent on Global Adapter, which means that during deployment, the Region App, Factory App, and Line App configurations are inherited from the Global Adapter configuration.
+- Line App is a solution at line level.
+- Factory App is a solution at factory level.
+- Region App is a solution at region level.
+- Global Adapter is a solution at country level. Line App, Factory App, and Region App are dependent on Global Adapter, which means that during deployment, the Region App, Factory App, and Line App configurations are inherited from the Global Adapter configuration.
 
 All the instances of Line App, Factory App, Region App, and Global Adapter are deployed in the same Azure Arc-enabled Kubernetes cluster. 
 
