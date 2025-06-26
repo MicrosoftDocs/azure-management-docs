@@ -48,7 +48,7 @@ providerOid=$(az ad sp show --id $providerAppId --query id -o tsv)
     
 az role assignment create --assignee "$providerOid" \
     --role "Workload Orchestration IT Admin" \
-    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+    --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -61,7 +61,7 @@ $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
     
 az role assignment create --assignee "$providerOid" `
     --role "Workload Orchestration IT Admin" `
-    --scope "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
+    --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName"
 ```
 ***
 
@@ -75,7 +75,7 @@ Create an Event Grid subscription for your Azure subscription and resource group
 
 ```bash
 az eventgrid event-subscription create --name <subscription-name> \
-    --source-resource-id "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" \
+    --source-resource-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" \
     --endpoint <function-app-endpoint> \
     --endpoint-type azurefunction 
 ```
@@ -86,7 +86,7 @@ Create an Event Grid subscription for your Azure subscription and resource group
 
 ```powershell
 az eventgrid event-subscription create --name <subscription-name> `
-    --source-resource-id "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" `
+    --source-resource-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$instanceName" `
     --endpoint <function-app-endpoint> `
     --endpoint-type azurefunction 
 ```
@@ -139,7 +139,7 @@ If you use a function app as the endpoint for the Event Grid subscription, you n
     az role assignment create \
         --assignee $functionAppMSIObjectId \
         --role "Workload Orchestration Solution External Validator" \
-        --scope "/subscriptions/$subscriptionId/resourceGroups/$rg"
+        --scope "/subscriptions/$subId/resourceGroups/$rg"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -164,7 +164,7 @@ If you use a function app as the endpoint for the Event Grid subscription, you n
     az role assignment create `
       --assignee $functionAppMSIObjectId `
       --role "Workload Orchestration Solution External Validator" `
-      --scope "/subscriptions/$subscriptionId/resourceGroups/$rg" 
+      --scope "/subscriptions/$subId/resourceGroups/$rg" 
     ```
 ***
 
@@ -183,10 +183,10 @@ az workload-orchestration solution-template create \
     --location $l \
     --capabilities $appCapList1 \
     --description $desc \
-    --configuration-template-file $appConfig \
+    --config-template-file $appConfig \
     --specification "@specs.json" \
     --version $appVersion \
-    --enable-external-validation "true"
+    --enable-ext-validation "true"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -200,10 +200,10 @@ az workload-orchestration solution-template create `
   --location $l `
   --capabilities $appCapList1 `
   --description $desc `
-  --configuration-template-file $appConfig `
+  --config-template-file $appConfig `
   --specification "@specs.json" `
   --version $appVersion `
-  --enable-external-validation "true"
+  --enable-ext-validation "true"
 ```
 ***
 
@@ -220,11 +220,9 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```bash
     az workload-orchestration target publish \
-      --solution-name $appName1 \
-      --solution-version <new-version> \
-      --review-id <review-id> \
-      --resource-group $rg \
-      --target-name $childName
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 \
+      --resource-group "$rg" \
+      --target-name "$childName"
     ```
 
 1. Set `solutionVersionId` and `externalValidationId` as variables which you get as part of the publish response.
@@ -240,9 +238,7 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```powershell
     az workload-orchestration target publish `
-      --solution-name $appName1 `
-      --solution-version <new-version> `
-      --review-id <review-id> `
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 `
       --resource-group $rg `
       --target-name $childName
     ```
@@ -275,18 +271,26 @@ If the state changes from `PendingExternalValidation` to `ReadyToDeploy`, it mea
 
 #### [Bash](#tab/bash)
 
-Change `--solution-version` to the new version you created in the previous step.
+Change `solutionVersion` to the new version you created in the previous step.
 
 ```bash
-az workload-orchestration target install --solution-name <solution-template-name> --solution-version <solution-version> --resource-group $rg --target-name $childName
+subId="<subscription-id>"
+solutionVersion="<new-solution-version>"
+solutionName="<solution-template-name>"
+
+az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName$/versions/$solutionVersion
 ```
 
 #### [PowerShell](#tab/powershell)
 
-Change `--solution-version` to the new version you created in the previous step.
+Change `solutionVersion` to the new version you created in the previous step.
 
 ```powershell
-az workload-orchestration target install --solution-name <solution-template-name> --solution-version <solution-version> --resource-group $rg --target-name $childName
+$subId = "<subscription-id>"
+$solutionVersion = "<new-solution-version>"
+$solutionName = "<solution-template-name>"
+
+az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName/versions/$solutionVersion
 ```
 
 ***

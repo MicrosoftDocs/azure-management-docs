@@ -13,6 +13,8 @@ In this tutorial, you create and configure a target at the line level, which is 
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
@@ -21,7 +23,7 @@ For more information, see [Service groups at different hierarchy levels in workl
 - Create the service groups and hierarchy levels. If you haven't, follow the steps in [Service groups at different hierarchy levels](service-group.md#service-groups-at-different-hierarchy-levels).
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 ## Define the scenario
 
@@ -52,7 +54,8 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --description "Use for soap production" \
       --solution-scope "new" \
       --target-specification '@targetspecs.json' \
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
     ```
 
 1. Get the target ID of the created target.
@@ -86,14 +89,15 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$Linename" `
-      --display-name "$Linename" `
+      --name $Linename `
+      --display-name $Linename `
       --hierarchy-level "line" `
       --capabilities "soap" `
       --description "Use for soap production" `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
     ```
 
 1. Get the target ID of the created target.
@@ -231,42 +235,48 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
+1. Review the configuration. Replace the `<solution-version>` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```bash
-    az workload-orchestration target review --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$Linename"
+    solutionVersion="<solution-version>"
+    subId="<subscription-id>"
+
+    az workload-orchestration target review --resource-group "$rg" --target-name "$Linename" --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/$solutionVersion
     ```
 
-1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` with the value of `properties.properties.reviewId` returned from the previous command.
+1. Publish the configuration.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$solutionName" --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group "$rg" --target-name "$Linename"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
-1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
+1. Deploy the solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$solutionName" --solution-version <SolutionVersion> --resource-group "$rg" --target-name "$Linename"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration. Replace the `--solution-version` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
+1. Review the configuration. Replace the `<solution-version>` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```powershell
-    az workload-orchestration target review --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $Linename
+    $solutionVersion = "<solution-version>"
+    $subId = "<subscription-id>"
+
+    az workload-orchestration target review --resource-group $rg --target-name $Linename --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/$solutionVersion 
     ```
 
-1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` the value of `properties.properties.reviewId` returned from the previous command.
+1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --solution-name $solutionName --solution-version <SolutionVersion> --review-id <ReviewID> --resource-group $rg --target-name $Linename
+    az workload-orchestration target publish --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
-1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
+1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --solution-name $solutionName --solution-version <SolutionVersion> --resource-group $rg --target-name $Linename
+   az workload-orchestration target install --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 

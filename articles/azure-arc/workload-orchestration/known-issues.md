@@ -33,14 +33,9 @@ This issue affects Azure CLI version 2.70.0 and occurs when using the `az custom
 
 After creating the custom location through the portal, run the onboarding script with `-skipCustomLocationCreation` set to `$true` to skip this step.
 
+## Contact support
 
-## Bulk deployment response lists a single deployed target 
-
-When executing a [bulk deployment](bulk-deployment.md), the CLI response only lists one target in the `DeployedTargets` array, even though all the targets are successfully deployed. 
-
-In the case of deployment failure, the CLI returns an error message and only lists one target under both `DeployedTargets` and `FailedTargets` arrays, even though the deployment fails. 
-
-The message in the CLI response is a known issue and doesn't reflect the actual deployment status of the targets. Check the [workload orchestration portal](deploy.md) to verify the application status for each target. 
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
 ## Related content
 

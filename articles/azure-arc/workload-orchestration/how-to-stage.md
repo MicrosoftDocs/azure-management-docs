@@ -4,7 +4,7 @@ description: Learn how to stage resources before deployment in Azure Arc Workloa
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/08/2025
+ms.date: 06/25/2025
 ---
 
 # Stage resources before deployment
@@ -268,11 +268,9 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 
 ***
 
-
 ### Install connected registry for Tanzu Kubernetes clusters (Only for TKG clusters)
 
 If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these additional steps to install the connected registry CLI extension. Once the connected registry is installed, you can proceed with steps in the [Set up Azure Container Registry (ACR)](#set-up-azure-container-registry-acr) section.
-
 
 #### [Bash](#tab/bash)
 
@@ -285,20 +283,9 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
 1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
 
     ```bash
-    az k8s-extension create --cluster-name "$cluster" --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name connectedext --resource-group "$rg" --config trustDistribution.enabled=false --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
-    ```
-
-1. Check the ca.crt file created for the connected registry.
-
-    ```bash
-    kubectl get secret connectedext-ca-cert -n connected-registry -o yaml
-    ```
-
-1. Copy the ca.crt file out and store it into a `$certification` variable.
-
-    ```bash
-    $certification="<ca.crt content>"
-    echo "$certification" | base64 --decode > ca.crt
+    az k8s-extension create --cluster-name "$cluster"  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name "$storageName" --resource-group "$rg" --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    # you can find a valid storage class name in tanzu by the following command:
+    # kubectl get sc
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -312,23 +299,11 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
 1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
 
    ```powershell
-    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name connectedext --resource-group $rg --config trustDistribution.enabled=false --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension
+    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $storageName --resource-group $rg --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    # you can find a valid storage class name in tanzu by the following command:
+    # kubectl get sc
    ```
 
-1. Check the ca.crt file created for the connected registry.
-
-   ```powershell
-    kubectl get secret connectedext-ca-cert -n connected-registry -o yaml
-   ```
-
-1. Copy the ca.crt file out and store it into a `$certification` variable.
-
-    ```powershell
-    $certification = "<ca.crt content>"
-    $decodedBytes = [System.Convert]::FromBase64String($certification)
-    $decodedString = [System.Text.Encoding]::UTF8.GetString($decodedBytes)
-    echo $decodedString > ca.crt
-    ```
 ***
 
 #### Manually configure `config.toml` in individual debug pods
@@ -479,7 +454,8 @@ az workload-orchestration target create \
     --description "This is Line01 Site" \
     --solution-scope "$scopename" \
     --target-specification "@targetspecs.json" \
-    --extended-location "@custom-location.json"
+    --extended-location "@custom-location.json" \
+    --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -498,7 +474,8 @@ az workload-orchestration target create `
   --description "This is Line01 Site" `
   --solution-scope $scopename `
   --target-specification '@targetspecs.json' `
-  --extended-location '@custom-location.json'
+  --extended-location '@custom-location.json' `
+  --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
 ```
 ***
 
@@ -542,7 +519,7 @@ az workload-orchestration target create `
         -l "$l" \
         --capabilities "This is the capability" \
         --description "This is Staging Solution" \
-        --configuration-template-file "./demo-app-config-template.yaml" \
+        --config-template-file "./demo-app-config-template.yaml" \
         --specification "@demo-app-spec.json" \
         --version "1.0.0"
     ```
@@ -585,7 +562,7 @@ az workload-orchestration target create `
         -l $l `
         --capabilities "This is the capability" `
         --description "This is Staging Solution" `
-        --configuration-template-file ".\demo-app-config-template.yaml" `  
+        --config-template-file ".\demo-app-config-template.yaml" `  
         # --config-template ".\demo-app-config-template.yaml" `  # private RP
         --specification "@demo-app-spec.json" `
         --version "1.0.0" 
@@ -616,13 +593,13 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Resolve the solution template version.
 
     ```bash
-    az workload-orchestration target resolve --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target resolve --solution-name "$solutionTemplateName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
     ```
 
 1. Review the template version.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$solutionTemplateName" --solution-template-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionTemplateName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -630,7 +607,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Resolve the solution template version.
 
     ```powershell
-    az workload-orchestration target resolve  --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName
+    az workload-orchestration target resolve  --solution-name $solutionTemplateName --solution-version 1.0.0 --resource-group $rg --target-name $targetName
     ```
 
 1. Review the template version.
@@ -648,15 +625,17 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
     ```bash
     reviewId="<input the ID from previous step>"
-    az workload-orchestration target publish --solution-name "$solutionName" --solution-version "1.0.0" --review-id "$reviewId" --resource-group "$rg" --target-name "$targetName"
+    subId="<your subscription id>"
+
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
     ```
+
 
 1. Check the solution status. It should change from "inReview" to "staging".
 
     ```bash
-    subscriptionId="<your subscription id>"
     curl -H "Authorization: Bearer <access_token>" \
-      "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+      "https://eastus2euap.management.azure.com/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
     ```
 
 1. After publish completed, run the following commands to check that the images are staged locally:
@@ -671,7 +650,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Install the solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$solutionName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$targetName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.
@@ -685,14 +664,15 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
     ```powershell
     $reviewId = "<input the ID from previous step>"
-    az workload-orchestration target publish  --solution-name $solutionName --solution-version "1.0." --review-id $reviewId --resource-group $rg --target-name $targetName
+    $subId = "<your subscription id>"
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group $rg --target-name $targetName
     ```
 
 1. Check the solution status. It should change from "inReview" to "staging".
 
     ```powershell
-    $subscriptionId = "<your subscription id>"
-    armclient get "https://eastus2euap.management.azure.com/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
+    
+    armclient get "https://eastus2euap.management.azure.com/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions?api-version=2025-01-01-preview"
     ```
 
 1. After publish completed, run the following commands to check that the images are staged in local:
@@ -707,7 +687,7 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 1. Install the solution.
 
     ```powershell
-    az workload-orchestration target install  --solution-name $solutionName --solution-version "1.0.0" --resource-group $rg --target-name $targetName
+    az workload-orchestration target install --resource-group $rg --target-name $targetName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.

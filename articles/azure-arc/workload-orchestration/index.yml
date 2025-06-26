@@ -1,16 +1,16 @@
 ### YamlMime:Landing
 
-title: Workload orchestration (preview) 
+title: Workload orchestration 
 summary: Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-platform orchestrator that simplifies the configuration management, deployment, and update of Kubernetes application lifecycle management across edge environments.
 
 metadata:
-  title: Workload Orchestration (preview)
+  title: Workload Orchestration 
   description: A cross-platform orchestrator for managing edge workloads using an Azure control plane # Required; article description that is displayed in search results. < 160 chars.
   ms.topic: landing-page # Required
   ms.service: azure-arc # Required
   author: SoniaLopezBravo
   ms.author: sonialopez
-  ms.date: 05/10/2025
+  ms.date: 06/18/2025
   ms.custom: build-2025
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | sample | tutorial | video | whats-new
 
@@ -30,6 +30,10 @@ landingContent:
             url: initial-setup-environment.md
           - text: Setup workload orchestration
             url: initial-setup-configuration.md
+      - linkListType: quickstart
+        links:
+          - text: Create a basic solution
+            url: quickstart-solution-without-common-configuration.md
 
   - title: Workload orchestration for IT users
     linkLists:
@@ -41,23 +45,25 @@ landingContent:
             url: configuring-template.md
           - text: Configuration schema
             url: configuring-schema.md
-      - linkListType: how-to-guide
-        links:
-          - text: Monitor your solutions with Azure portal
-            url: azure-portal-monitoring.md
           - text: Use service groups 
             url: service-group.md
+      - linkListType: how-to-guide
+        links:
           - text: Enable external validation 
             url: external-validation.md
-          - text: Stage your solutions before deploying
+          - text: Stage your solutions before deployment
             url: how-to-stage.md
-      - linkListType: quickstart
-        links:
-          - text: Create a solution without common configurations
-            url: quickstart-solution-without-common-configuration.md
+          - text: Perform a bulk deployment
+            url: bulk-deployment.md
+          - text: Diagnose edge-related errors
+            url: diagnose-problems.md
 
   - title: Workload orchestration for OT users
     linkLists:
+      - linkListType: overview
+        links:
+          - text: User guide for workload orchestration
+            url: portal-user-guide.md
       - linkListType: how-to-guide
         links:
           - text: Monitor your solutions 
