@@ -44,7 +44,7 @@ This article describes how to prepare the environment for workload orchestration
   ```  
  
 > [!IMPORTANT]
-> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, should be created in the same Azure region. 
+> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, must be created in the same Azure region. 
 
 ## System requirements
 
@@ -204,7 +204,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```bash
     az identity create --resource-group "$rg" --name "$clusterName"
     clusterIdentity=$(az identity show --resource-group "$rg" --name "$clusterName" --query id --output tsv)
-    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count 2 --assign-identity "$clusterIdentity" --generate-ssh-keys
+    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count "<node-count>" --assign-identity "$clusterIdentity" --generate-ssh-keys
     ```
 
     > [!NOTE]
@@ -249,7 +249,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```powershell
     az identity create --resource-group $rg --name $clusterName
     $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
-    az aks create --resource-group $rg --location $l --name $clusterName --node-count 2 --assign-identity $clusterIdentity --generate-ssh-keys
+    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys
     ```
 
     > [!NOTE]
@@ -285,29 +285,28 @@ The following steps are required to install workload orchestration service compo
     az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --name "aio-certmgr" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
     ```
 
-1. Determine persistent volume storage class for the cluster. From the storage class list, pick one to use as the persistent volume storage class for workload orchestration extension in the next step.
-
-    ```bash
-    kubectl get sc
-    ```
-
 1. Determine if you installed the `microsoft.workloadorchestration` Arc extension on the Arc cluster. 
 
     ```bash
     az k8s-extension list --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --query "[?extensionType=='microsoft.workloadorchestration'].name"
     ```
  
-    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
+    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command and pick a storage class list to use as the persistent volume storage class for workload orchestration extension.
+
+        ```bash
+        kubectl get sc
+        ```
+    Run the following command to install the`microsoft.workloadorchestration` extension:
     
         ```bash
         storageClassName="<pick up one storage class from 'kubectl get sc'>"
-        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version "$extensionVersion" --auto-upgrade false --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
+        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
         ```
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```bash
-        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train preview --version "$extensionVersion" --auto-upgrade false
+        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train stable  --auto-upgrade true
         ``` 
 
 1. Enable custom location for the cluster.
@@ -368,29 +367,28 @@ The following steps are required to install workload orchestration service compo
     az k8s-extension create --resource-group $rg --cluster-name $clusterName --name "aio-certmgr" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
     ```
 
-1. Determine persistent volume storage class for the cluster. From the storage class list, pick one to use as the persistent volume storage class for workload orchestration extension in the next step.
-
-    ```powershell
-    kubectl get sc
-    ```
-
 1. Determine if you installed the `microsoft.workloadorchestration` Arc extension on the Arc cluster. 
 
     ```powershell
     az k8s-extension list --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --query "[?extensionType=='microsoft.workloadorchestration'].name"
     ```
  
-    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
+    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command and pick a storage class list to use as the persistent volume storage class for workload orchestration extension.
+
+        ```bash
+        kubectl get sc
+        ```
+    Run the following command to install the`microsoft.workloadorchestration` extension:
     
         ```powershell
         $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
-        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version $extensionVersion --auto-upgrade $false --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
+        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
         ```      
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```powershell
-        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train preview --version $extensionVersion --auto-upgrade false
+        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train stable  --auto-upgrade true
         ```
 
 1. Enable custom location for the cluster.
@@ -588,8 +586,6 @@ To use a resource group, run the following commands:
 
 [!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
-## Related content
+## Next steps
 
-- [Setup workload orchestration](initial-setup-configuration.md)
-- [Onboarding scripts](onboarding-scripts.md)
-- [Service groups for workload orchestration](service-group.md)
+Once you have prepared the environment and the global variables, you can proceed to [Set up workload orchestration](initial-setup-configuration.md).

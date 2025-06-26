@@ -52,7 +52,7 @@ items:
       href: tutorial-service-group-scenario-3.md
     - name: Create multiple solutions with a single shared dependency at different levels
       href: tutorial-service-group-scenario-4.md
-  - name: Workloads orchestration portal
+  - name: Workload orchestration portal
     items:
     - name: User guide 
       href: portal-user-guide.md

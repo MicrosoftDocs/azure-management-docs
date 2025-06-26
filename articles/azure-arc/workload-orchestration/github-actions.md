@@ -29,14 +29,16 @@ The workflow requires the following environment variables:
 
 ## Required files
 
-Each application under the `.pg/apps` directory requires these files in its workload-orchestration directory: 
+The GitHub action processes files in the `.contoso/apps` directory of the repository. Each application has its own subdirectory under `.contoso/apps/<app>/workload-orchestration/`, and common resources are located under `.contoso/apps/common/`. The name "contoso" is a placeholder and can be replaced with your organization's name or any other identifier.
+
+Each application under the `.contoso/apps` directory requires these files in its workload-orchestration directory: 
 
 - *schema.yaml: Defines the schema for workload orchestration.
 - *-sol-template.yaml: Contains the solution template configuration.
 - *specs.json: Specifies the deployment specifications.
 - metadata.yaml: Contains metadata like capabilities and external validation settings. 
 
-The common resources under `.pg/apps/common` include: 
+The common resources under `.contoso/apps/common` include: 
 
 - common-schema.yaml: Common schema shared across applications. 
 - common-config-template.yaml: Common configuration template. 
@@ -55,7 +57,7 @@ The following table compares the features and behaviors of the push trigger and 
 | Feature      | Push Trigger | Manual Trigger |
 |--------------|--------------|---------------|
 | When     | Activates on push to main branch | Manually triggered via GitHub Actions UI |
-| Files    | - App changes: Processes changed files in `.pg/apps/<app>/workload-orchestration/**`<br> - Common changes: Processes changed files in `.pg/apps/common/*` | Processes all files for specified apps/resources |
+| Files    | - App changes: Processes changed files in `.contoso/apps/<app>/workload-orchestration/**`<br> - Common changes: Processes changed files in `.contoso/apps/common/*` | Processes all files for specified apps/resources |
 | App Detection | Automatically detects apps from changed file paths (excludes common) | User provides comma-separated list (for example, `testapp1,testapp2`) |
 | Actions* | - Creates/updates schema if schema file changed<br>- Creates/updates template if template, specs, or metadata file changed<br>- Creates/updates common resources if common files changed | - User chooses which common resources to deploy: none, schema-only, config-only, or all<br>- User chooses app actions: none, create-schema, create-sol-template, or all |
 | Validation | Directory existence checked automatically | Validates each directory exists before processing |
@@ -88,8 +90,8 @@ The deployment process begins with detecting and validating the resources that n
 
 #### Push Event:
 
-1. Detects application names by analyzing changed file paths under `.pg/apps/$app/workload-orchestration/`.
-1. Identifies updates to common resources by checking for changes in `.pg/apps/common/*`.
+1. Detects application names by analyzing changed file paths under `.contos/apps/$app/workload-orchestration/`.
+1. Identifies updates to common resources by checking for changes in `.contoso/apps/common/*`.
 1. Automatically validates YAML files using `yq` to ensure correctness.
 1. Compiles lists of applications and common resources that require deployment.
 1. Determines required actions based on the specific files that were modified.
@@ -123,10 +125,7 @@ The file processing step is crucial for deploying workload orchestration configu
 
 For each app to deploy, the following steps are performed: 
 
-1. Get files: 
-
-    - Locates required files in `.pg/apps/$app/workload-orchestration/` directory. 
-    - Required patterns: *schema.yaml, *-sol-template.yaml, *specs.json, and metadata.yaml 
+1. Locates and gets the required files in `.contoso/apps/$app/workload-orchestration/` directory, which are *schema.yaml, *-sol-template.yaml, *specs.json, and metadata.yaml.
 
 1. Schema creation: 
 
@@ -168,9 +167,9 @@ For each app to deploy, the following steps are performed:
     
     1. Creates new template only if version doesn't exist: 
     
-    ```powershell
-    az workload-orchestration solution-template create -g <resource-group> -l <location> --capabilities <from-metadata-or-input> --configuration-template-file <template-path> --specification <specs-path> --description <description> --enable-external-validation <true/false>
-    ```
+        ```powershell
+        az workload-orchestration solution-template create -g <resource-group> -l <location> --capabilities <from-metadata-or-input> --configuration-template-file <template-path> --specification <specs-path> --description <description> --enable-external-validation <true/false>
+        ```
 
 > [!NOTE]
 > - Ensure capabilities are provided either in `metadata.yaml` file or as input.
@@ -179,7 +178,7 @@ For each app to deploy, the following steps are performed:
 
 #### File processing in common resources 
 
-For common resources, the process is similar but focuses on the common schema and configuration template files:
+For common resources, the process is similar but focuses on the common schema and configuration template files.
 
 1. Schema creation:
 
@@ -192,12 +191,12 @@ For common resources, the process is similar but focuses on the common schema an
     1. Creates new schema only if version doesn't exist: 
     
         ```powershell
-        az workload-orchestration schema create -g <resource-group> -l <location> --schema-file .pg/apps/common/common-schema.yaml 
+        az workload-orchestration schema create -g <resource-group> -l <location> --schema-file .contoso/apps/common/common-schema.yaml 
         ```
 
     1. Schema name and version are extracted from metadata section in schema file. 
 
-1. Config Template Creation: 
+1. Config template creation: 
 
     1. Extracts metadata from template file: 
 
@@ -250,8 +249,8 @@ The following best practices help maintain a clean and efficient workflow orches
 
 ### File organization 
 
-- Keep all app files in `.pg/apps/<app>/workload-orchestration/` directory.
-- Keep all common files in `.pg/apps/common/` directory.
+- Keep all app files in `.contoso/apps/<app>/workload-orchestration/` directory.
+- Keep all common files in `.contoso/apps/common/` directory.
 - Use consistent naming patterns.
 - Maintain `metadata.yaml` with current capabilities.
 

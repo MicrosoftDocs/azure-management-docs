@@ -24,7 +24,7 @@ The process of authoring and deploying solutions using workload orchestration in
 
 ### Hierarchical configuration authoring
 
-Solution authoring requires seamless integration of workload orchestration-managed ARM assets with user-provided artifacts, such as Helm charts and container images. Workload orchestration supports both CLI and portal-based methods for authoring solution configurations across various use cases.
+Solution authoring requires seamless integration of workload orchestration-managed ARM assets with user-provided artifacts, such as Helm charts and container images.
 
 The diagram below represents an example hierarchical configuration of objects:
 

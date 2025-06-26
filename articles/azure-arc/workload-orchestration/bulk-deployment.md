@@ -55,7 +55,7 @@ The `solutionInstanceName` parameter can be given for each target as part of tar
 You can perform bulk publishing of a solution to multiple targets using the **Configure tab** in workload orchestration portal. 
 
 - In the **Solutions subtab**, when you configure the parameters of the solution, select the targets where you want to publish the solution. For more information, see [Configure solution parameters](configure.md#configure-solution-parameters).
-- In the **Published Solutions subtab**, you can publish a solution to more targets after the solution is published. For more information, see [Publish a solution to more targets](configure.md#publish-solution-to-more-targets).
+- In the **Published Solutions subtab**, you can publish a solution to more targets after the solution is published. For more information, see [Publish a solution to more targets](configure.md#publish-a-solution-to-more-targets).
 
 ***
 

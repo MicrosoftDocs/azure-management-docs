@@ -45,6 +45,10 @@ To migrate your existing workload orchestration target resources to the GA versi
 |`az workload-orchestration target uninstall`|`--solution-name`|`--solution-template-id`|
 |`az workload-orchestration target remove-revision`|`--solution-name`|`--solution-template-id`|
 
+### Bug fixes
+
+- Fixed issue with bulk deployment where the CLI response only listed one target in the `DeployedTargets` array, even when multiple targets were successfully deployed. The CLI now correctly lists all deployed targets.
+
 ## June 2025 release
 
 ### New features

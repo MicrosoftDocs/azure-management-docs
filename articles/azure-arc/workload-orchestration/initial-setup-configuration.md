@@ -91,7 +91,11 @@ The following steps show how to configure the resources of workload orchestratio
       --capabilities '[{"name":"soap","description":"For soap production"},{"name":"shampoo","description":"For shampoo production"},{"name":"conditioner","description":"For conditioner production"}]'
     ```
 
-    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
+    You can also use an already existing context by running the `context update` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
+    
+    ```powershell
+    az workload-orchestration context update --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/context/$contextName" --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
+    ``` 
 
     > [!NOTE]
     > The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
@@ -167,7 +171,11 @@ The following steps show how to configure the resources of workload orchestratio
     az workload-orchestration context create --subscription $subId --resource-group $rg --location $l --name $instanceName --hierarchies "[0].name=factory" "[0].description=belongs to Factory and hence lines within the factory" "[1].name=line" "[1].description=belongs to specific line" --capabilities "[0].name=soap" "[0].description=For soap production" "[1].name=shampoo" "[1].description=For shampoo production" "[2].name=conditioner" "[2].description=For conditioner production"
     ```
 
-    You can expand or reduce the capabilities by running the `context update` command while passing the desired list into it. You can add more capabilities, but removing and deleting isn't supported currently.
+    You can also use an already existing context by running the `context update` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
+    
+    ```powershell
+    az workload-orchestration context update --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
+    ``` 
 
     > [!NOTE]
     > The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:
@@ -201,9 +209,7 @@ The following steps show how to configure the resources of workload orchestratio
 
 [!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
-## Related content
+## Next steps
 
-- [Onboarding scripts](onboarding-scripts.md)
-- [Prepare the environment for workload orchestration](initial-setup-environment.md)
-- [Service groups for workload orchestration](service-group.md)
-- [Monitor your solutions in Azure portal](azure-portal-monitoring.md)
+Once you have set up the infrastructure and the workload orchestration resources, you can start authoring solutions and managing deployments. To get started, see the [Quickstart: Create a basic solution](quickstart-solution-without-commmon-configuration.md), to learn how to create a basic solution, configure it, and deploy it to a target.
+
