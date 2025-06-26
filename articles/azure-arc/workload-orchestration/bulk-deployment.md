@@ -11,13 +11,15 @@ ms.date: 06/24/2025
 
 Workload orchestration allows you to bulk publish and deploy a solution to multiple targets within the same cluster. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process. 
 
-Currently bulk publishing and deployment is only supported via CLI.
-
 ## Prerequisites
 
 Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
 
 ## Perform bulk publishing
+
+You can perform bulk publishing of a solution to multiple targets using the Azure CLI or the workload orchestration portal.
+
+### [CLI](#tab/cli)
 
 To perform a bulk publishing, run `bulk-publish` command in the Azure CLI.
 
@@ -48,6 +50,14 @@ The `solutionInstanceName` parameter can be given for each target as part of tar
 > [!IMPORTANT]
 > You need to have access to the target clusters on which the solution is deployed. 
 
+### [WO portal](#tab/woportal)
+
+You can perform bulk publishing of a solution to multiple targets using the **Configure tab** in workload orchestration portal. 
+
+- In the **Solutions subtab**, when you configure the parameters of the solution, select the targets where you want to publish the solution. For more information, see [Configure solution parameters](configure.md#configure-solution-parameters).
+- In the **Published Solutions subtab**, you can publish a solution to more targets after the solution is published. For more information, see [Publish a solution to more targets](configure.md#publish-solution-to-more-targets).
+
+***
 
 ### Bulk publishing output
 
@@ -97,7 +107,7 @@ In the output, search for the property called `solutionDependencies`, which cont
 
 ## Perform bulk deployment
 
-To perform a bulk deployment, run `bulk-deploy` command in the Azure CLI.
+Currently bulk deployment is only supported via CLI. To perform a bulk deployment, run `bulk-deploy` command in the Azure CLI. 
 
 ```powershell
 az workload-orchestration solution-template bulk-deploy --targets "@target.json" --version "<solution template version>" --name "<solution-name>" -g $rg --solution-dependencies "@dependencies.json"
@@ -127,4 +137,6 @@ If the bulk deployment isn't successful, there are two types of failures: comple
 ## Related content
 
 - [Diagnose of problems](diagnose-problems.md)
+- [External validation](external-validation.md)
+- [Stage solution before deployment](how-to-stage.md)
 - [Service groups](service-group.md)

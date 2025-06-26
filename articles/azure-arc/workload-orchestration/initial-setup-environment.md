@@ -67,7 +67,7 @@ Workload orchestration is available for Arc-enabled clusters in the following Az
 
 The following steps show how to prepare your environment to configure workload orchestration. 
 
-Global variables, JSON files, and other configuration resources can be downloaded from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
+Global variables, JSON files, and other configuration resources can be downloaded from this [ZIP folder in GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
 
 Run the following commands to extract the files from the zip file. Skip if you already extracted files.
 

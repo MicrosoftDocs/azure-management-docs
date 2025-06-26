@@ -22,12 +22,11 @@ To migrate your existing workload orchestration target resources to the GA versi
 ### New features
 
 - End-to-end support for Tanzu environment: Enable users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters.
-- [Automation via Git:](github-actions.md) Automate generation of configuration template and schema via Git. 
-- [Publish solutions in bulk to multiple targets:](bulk-deployment.md) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) is automatically triggered as part of the process. 
+- [Automation via Git:](github-actions.md) Workload Orchestration can be now integrated with GitHub to leverage GitHub Actions for automating the creation of configuration templates and schemas. 
+- [Bulk-publish to multiple targets via CLI:](bulk-deployment.md#perform-bulk-publishing) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) is automatically triggered as part of the process. 
 
 ### Improvements in workload orchestration portal
 
-- "Preview" tag has been removed from the workload orchestration portal to reflect its general availability (GA) status.
 - Improved error messaging: Users now receive clearer guidance when required context is missing, making it easier to resolve issues.
 - Updated column name in the Solution subtab of the Configure tab: "Lines Published To" is now labeled as "Targets Published To."
 - Enhanced filter logic: Filtering now supports hierarchies beyond two levels, providing better support for complex configurations.
