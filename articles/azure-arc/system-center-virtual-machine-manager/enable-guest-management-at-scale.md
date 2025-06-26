@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 06/12/2025
+ms.date: 06/26/2025
 keywords: "VMM, Arc, Azure"
 
 #Customer intent: As an IT infrastructure admin, I want to install arc agents to use Azure management services for SCVMM VMs.
@@ -56,7 +56,7 @@ An administrator can install agents for multiple machines from the Azure portal 
 
 1. Navigate to the **SCVMM management servers** blade on [Azure Arc Center](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/AzureArcCenterBlade/~/overview), and select the SCVMM management server resource.
 2. Select the machines you want to onboard to Arc at-scale and choose the **Enable in Azure** option.
-3. Optionally, select **Enable guest management** checkbox to install Arc agents on the selected machines. This allows you to use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, etc. to secure, govern, patch and monitor your virtual machines.
+3. Select **Enable guest management** checkbox to install Arc agents on the selected machines. This allows you to use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, etc. to secure, govern, patch and monitor your virtual machines.
 
      :::image type="content" source="media/enable-guest-management-at-scale/virtual-machines.png" alt-text="Screenshot of virtual machines screen." lightbox="media/enable-guest-management-at-scale/virtual-machines.png":::
 
@@ -129,5 +129,6 @@ The out-of-band methods first onboard the machines as Arc-enabled Server resourc
 
 ## Next steps
 
+- [Set up and manage self-service access to SCVMM resources](set-up-and-manage-self-service-access-scvmm.md)
 - [Manage and maintain the Azure Connected Machine agent](../servers/manage-agent.md).
 - [Manage VM extensions to use Azure management services for your SCVMM VMs](../servers/manage-vm-extensions.md).
