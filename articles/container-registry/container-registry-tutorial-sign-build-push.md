@@ -36,7 +36,7 @@ In this tutorial:
 
     ```bash
     # Download, extract and install
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.1/notation_1.3.1_linux_amd64.tar.gz
+    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
     tar xvzf notation.tar.gz
             
     # Copy the Notation binary to the desired bin directory in your $PATH, for example
