@@ -4,6 +4,7 @@ description: Azure Lighthouse lets you deploy a policy definition and policy ass
 ms.date: 07/16/2024
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As a service provider managing multiple customer tenants, I want to deploy Azure Policy across these tenants so that I can ensure compliance with organizational policies and streamline management tasks."
 ---
 
 # Deploy Azure Policy to delegated subscriptions at scale

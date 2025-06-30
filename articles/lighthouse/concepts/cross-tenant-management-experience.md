@@ -3,6 +3,7 @@ title: Cross-tenant management experiences
 description: Azure Lighthouse enables and enhances cross-tenant experiences in many Azure services.
 ms.date: 06/18/2024
 ms.topic: concept-article
+# Customer intent: As a service provider, I want to manage multiple customers' Azure resources from my own tenant using cross-tenant management, so that I can streamline administration and enhance efficiency while maintaining the necessary access controls.
 ---
 
 # Cross-tenant management experiences

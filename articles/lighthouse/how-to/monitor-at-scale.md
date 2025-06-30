@@ -4,6 +4,7 @@ description: Azure Lighthouse helps you use Azure Monitor Logs in a scalable way
 ms.date: 11/08/2024
 ms.topic: how-to
 ms.custom:
+# Customer intent: As a service provider managing multiple customer tenants, I want to monitor and analyze data across these tenants using Log Analytics workspaces, so that I can improve operational efficiency and ensure compliance with diagnostic data policies.
 ---
 
 # Monitor delegated resources at scale

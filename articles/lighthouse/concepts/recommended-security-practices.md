@@ -3,6 +3,7 @@ title: Recommended security practices
 description: When using Azure Lighthouse, it's important to consider security and access control.
 ms.date: 01/17/2025
 ms.topic: concept-article
+# Customer intent: "As a security administrator, I want to implement Azure Lighthouse using multifactor authentication and role-based access control with least privilege, so that I can enhance the security of our Azure environment and protect customer resources from unauthorized access."
 ---
 
 # Recommended security practices

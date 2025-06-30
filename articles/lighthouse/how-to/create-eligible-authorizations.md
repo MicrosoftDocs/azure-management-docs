@@ -4,6 +4,7 @@ description: When onboarding customers to Azure Lighthouse, you can let users in
 ms.date: 04/28/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
+# Customer intent: "As a cloud administrator onboarding customers to Azure Lighthouse, I want to create eligible authorizations with just-in-time role elevation, so that I can control privileged access while minimizing security risks associated with permanent role assignments."
 ---
 
 # Create eligible authorizations

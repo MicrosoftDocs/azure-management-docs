@@ -5,6 +5,7 @@ ms.date: 01/09/2025
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli 
 ms.devlang: azurecli
+# Customer intent: "As a service provider, I want to monitor delegation changes to my managing tenant, so that I can maintain oversight of customer subscriptions and resource groups and respond to any modifications effectively."
 ---
 
 # Monitor delegation changes in your managing tenant

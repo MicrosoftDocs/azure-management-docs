@@ -7,6 +7,7 @@ ms.service: azure-lighthouse
 ms.topic: include
 ms.date: 07/10/2024
 ms.author: jenhayes
+# Customer intent: As a service provider, I want to use onboarding templates for Azure Lighthouse, so that I can efficiently start to manage customer subscriptions and resource groups.
 ---
 
 We provide different templates to address specific onboarding scenarios. Be sure to modify the parameter file to reflect your environment. For more info about how to use these files in your deployment, see [Onboard a customer to Azure Lighthouse](../how-to/onboard-customer.md).

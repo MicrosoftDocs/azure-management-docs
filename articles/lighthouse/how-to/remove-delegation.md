@@ -3,6 +3,7 @@ title: Remove access to a delegation
 description: Learn how to remove access to resources that were delegated to a service provider for Azure Lighthouse.
 ms.date: 07/10/2024
 ms.topic: how-to 
+# Customer intent: As an Azure Lighthouse user, I want to remove a service provider's access to delegated customer resources, so that the service provider can no longer work on those resources.
 ---
 
 # Remove access to a delegation
