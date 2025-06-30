@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a cloud cost manager, I want to analyze and estimate our cloud expenses using natural language prompts, so that I can optimize our costs and make informed budget decisions."
 ---
 
 # Analyze, estimate and optimize cloud costs using Microsoft Copilot in Azure

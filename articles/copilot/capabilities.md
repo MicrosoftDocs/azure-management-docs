@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As an Azure user, I want to utilize AI-driven assistance in Azure operations, so that I can optimize my app management, enhance troubleshooting, and efficiently navigate Azure services for improved performance and insights.
 ---
 
 # Microsoft Copilot in Azure capabilities
@@ -58,8 +59,6 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Author API Management policies](author-api-management-policies.md)
   - [Create Kubernetes YAML files](generate-kubernetes-yaml.md)
   - [Troubleshoot apps faster with App Service](troubleshoot-app-service.md)
-- Discover and implement solutions:
-  - [Discover solutions in Marketplace](discovery-plugin-marketplace.md)
 
 ## Get information
 

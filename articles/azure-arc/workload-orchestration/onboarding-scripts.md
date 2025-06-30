@@ -4,16 +4,17 @@ description: The onboarding scripts are designed to help you set up the necessar
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 05/07/2025
+ms.date: 06/10/2025
+ms.custom:
+  - build-2025
 ---
 
 # Onboarding scripts for workload orchestration
 
 The onboarding PowerShell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
 
-If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
-
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
+> [!TIP]
+> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
 
 ## Prerequisites
 
@@ -41,15 +42,18 @@ Open a PowerShell terminal and run the following command.
 - **Command**: `infra_onboarding.ps1 mock-data.json`
 - **Arguments**: 
     - `-skipResourceGroupCreation`: Skip creation of the resource group.
+    - `-skipAzLogin`: Skip Azure login, use when you are already logged in.
     - `-skipAzExtensions`: Skip installing/updating `connectedk8s`, `k8s-extension` and `customlocation` extensions.
     - `-skipAksCreation`: Skip creation of AKS cluster, use when the cluster is already created.
     - `-skipTcoDeployment`: Skip connecting AKS to Arc and creation of TCO extension, use when TCO has been deployed already.
     - `-skipCustomLocationCreation`: Skip creation of CustomLocation, use when it has been created before.
     - `-skipSiteCreation`: Skip creation of Site and SiteAddress, use when it has been created before.
     - `-skipAutoParsing`: Skip auto-creation of custom location file and auto-parsing of site file. By default, you don't need to set the "addressResourceId" field in the site file and do not need to pass a customLocationFile in the target data section. Set to `$true` if you want to assign your own custom location (not created via onboarding script) or your own site address (not created via onboarding script).
+    - `-enableWODiagnostics`: Enable workload orchestration extension user-facing logs, use when you want to collect workload orchestration extension user audits and user diagnostics logs. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
+    - `-enableContainerInsights`: Enable `Container.Insights` on arc cluster to collect container logs and k8s events. Use when you want to collect container logs or k8s events. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
 
 > [!NOTE]
->  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`.
+>  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`, except for `-skipAzLogin` which is `$true` by default. 
 
 ## Context creation script (only if there is no existing context)
 
@@ -164,6 +168,10 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
     - `version`: (Required) Version of the solution.
     - `specificationFile`: (Required) File path to Specification File.
     - `configTemplate`: (Required) Configuration template for the solution.
+
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
 ## Related content
 

@@ -3,6 +3,7 @@ title: azcmagent check CLI reference
 description: Syntax for the azcmagent check command line tool
 ms.topic: reference
 ms.date: 05/22/2024
+# Customer intent: As a system administrator, I want to run network connectivity checks using the command line tool, so that I can ensure the agent can communicate with required Azure endpoints accurately.
 ---
 
 # azcmagent check

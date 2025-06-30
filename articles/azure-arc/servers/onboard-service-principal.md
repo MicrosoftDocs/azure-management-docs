@@ -4,6 +4,7 @@ description: In this article, you learn how to connect machines to Azure using A
 ms.date: 03/17/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurepowershell
+# Customer intent: As an IT administrator, I want to connect multiple hybrid machines to Azure Arc by using a service principal, so that I can efficiently manage and monitor them at scale while ensuring security best practices.
 ---
 
 # Connect hybrid machines to Azure at scale

@@ -3,6 +3,7 @@ title: Deliver Extended Security Updates for Windows Server 2012
 description: Learn how to deliver Extended Security Updates for Windows Server 2012.
 ms.date: 05/12/2025
 ms.topic: concept-article
+# Customer intent: "As an IT administrator managing Windows Server 2012, I want to provision and link Extended Security Updates to Arc-enabled servers, so that I can ensure my systems remain compliant and secure beyond their support lifecycle."
 ---
 
 # Deliver Extended Security Updates for Windows Server 2012
@@ -29,7 +30,7 @@ You also need the [Contributor](/azure/role-based-access-control/built-in-roles#
 
 The first step is to provision Windows Server 2012 and 2012 R2 Extended Security Update licenses from Azure Arc. You link these licenses to one or more Arc-enabled servers that you select in the next section.
 
-After you provision an ESU license, you need to specify the SKU (Standard or Datacenter), type of cores (Physical or vCore), and number of 16-core and 2-core packs to provision an ESU license. You can also provision an Extended Security Update license in a deactivated state so that it won't initiate billing or be functional on creation. Moreover, the cores associated with the license can be modified after provisioning.
+After you provision an ESU license, you need to specify the SKU (Standard or Datacenter), type of cores (Physical or vCore), and number of cores to provision an ESU license. You can also provision an Extended Security Update license in a deactivated state so that it won't initiate billing or be functional on creation. Moreover, the cores associated with the license can be modified after provisioning.
 
 > [!NOTE]
 > The provisioning of ESU licenses requires you to attest to their SA or SPLA coverage.

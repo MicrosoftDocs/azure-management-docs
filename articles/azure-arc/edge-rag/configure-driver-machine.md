@@ -5,8 +5,10 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: reference #Don't change
 ms.date: 04/24/2025
-
+ms.subservice: edge-rag
 #Customerintent: As a system administrator, I want to configure a driver machine to manage an Azure Arc-enabled Kubernetes cluster so that I can deploy and manage Edge RAG workloads efficiently.
+ms.custom:
+  - build-2025
 ---
 
 # Script to configure machine to manage Azure Arc-enabled Kubernetes cluster 

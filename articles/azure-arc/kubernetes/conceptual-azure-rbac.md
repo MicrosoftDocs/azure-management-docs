@@ -3,6 +3,7 @@ title: "Azure RBAC on Azure Arc-enabled Kubernetes"
 ms.date: 04/22/2025
 ms.topic: concept-article
 description: "This article provides a conceptual overview of the Azure RBAC capability on Azure Arc-enabled Kubernetes."
+# Customer intent: As a Kubernetes administrator, I want to implement Azure RBAC on my Azure Arc-enabled clusters so that I can manage user access and authorization efficiently, ensuring secure operations and compliance across my resources.
 ---
 
 # Azure RBAC on Azure Arc-enabled Kubernetes clusters
@@ -33,3 +34,4 @@ For detailed information about how to set up Azure RBAC and create role assignme
 
 * Use our quickstart to [connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md).
 * [Set up Azure RBAC](./azure-rbac.md) on your Azure Arc-enabled Kubernetes cluster.
+* Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

@@ -3,6 +3,9 @@ title: azcmagent CLI reference
 description: Reference documentation for the Azure Connected Machine agent command line tool
 ms.topic: reference
 ms.date: 04/20/2023
+ms.custom:
+  - build-2025
+# Customer intent: As a systems administrator, I want to use the azcmagent CLI to configure and manage the Azure Connected Machine agent, so that I can ensure proper connectivity and performance of my servers with Azure Arc.
 ---
 
 # azcmagent CLI reference

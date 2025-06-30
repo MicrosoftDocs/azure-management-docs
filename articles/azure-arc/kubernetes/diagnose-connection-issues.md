@@ -4,6 +4,7 @@ ms.date: 12/15/2023
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Learn how to resolve common issues when connecting Kubernetes clusters to Azure Arc."
+# Customer intent: As a Kubernetes administrator, I want to diagnose and resolve connection issues for Azure Arc-enabled Kubernetes clusters, so that I can ensure reliable connectivity and management of my clusters from within Azure.
 ---
 
 # Diagnose connection issues for Azure Arc-enabled Kubernetes clusters

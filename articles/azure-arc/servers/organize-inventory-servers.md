@@ -3,6 +3,7 @@ title: How to organize and inventory servers using hierarchies, tagging, and rep
 description: Learn how to organize and inventory servers using hierarchies, tagging, and reporting.
 ms.date: 03/21/2025
 ms.topic: how-to
+# Customer intent: "As an IT administrator managing hybrid and multicloud environments, I want to organize and inventory servers using hierarchies and tagging, so that I can improve resource management, compliance, and reporting efficiency across my infrastructure."
 ---
 
 # Organize and inventory servers with hierarchies, tagging, and reporting

@@ -1,14 +1,17 @@
 ---
 title: Enable VM Extensions Using Azure PowerShell
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using Azure PowerShell.
-ms.date: 01/22/2025
+ms.date: 06/19/2025
 ms.topic: how-to 
-ms.custom: devx-track-azurepowershell
+ms.custom:
+  - devx-track-azurepowershell
+  - build-2025
+# Customer intent: As a system administrator, I want to deploy and manage VM extensions on Azure Arc-enabled servers using PowerShell, so that I can efficiently manage my hybrid cloud environment and enhance the functionality of my virtual machines.
 ---
 
 # Enable Azure VM extensions by using Azure PowerShell
 
-This article explains how to deploy, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) supported by Azure Arc-enabled servers. It shows you how to perform these tasks on a Linux or Windows hybrid machine by using Azure PowerShell.
+This article explains how to deploy, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) on Azure Arc-enabled servers by using Azure PowerShell.
 
 ## Prerequisites
 
@@ -16,40 +19,38 @@ This article explains how to deploy, update, and uninstall [virtual machine (VM)
 
 - The `Az.ConnectedMachine` module. Before you use Azure PowerShell to manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to install this module.
 
-  You can perform these management operations from your workstation. You don't need to run them on the Azure Arc-enabled server.
+  You can perform these management operations from your workstation, rather than on the Azure Arc-enabled server.
 
-  Run the following command on your Azure Arc-enabled server:
+  Run the following command to install the `Az.ConnectedMachine` module:
 
-```powershell
-Install-Module -Name Az.ConnectedMachine
-```
+  ```powershell
+  Install-Module -Name Az.ConnectedMachine
+  ```
 
 ## Enable an extension
 
 To enable a VM extension on your Azure Arc-enabled server, use [`New-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/new-azconnectedmachineextension) with the `-Name`, `-ResourceGroupName`, `-MachineName`, `-Location`, `-Publisher`, -`ExtensionType`, and `-Settings` parameters.
 
-The following example enables the Custom Script Extension on an Azure Arc-enabled server:
+This example enables the Custom Script Extension on an Azure Arc-enabled server:
 
 ```powershell
 $Setting = @{ "commandToExecute" = "powershell.exe -c Get-Process" }
 New-AzConnectedMachineExtension -Name "custom" -ResourceGroupName "myResourceGroup" -MachineName "myMachineName" -Location "regionName" -Publisher "Microsoft.Compute"  -Settings $Setting -ExtensionType CustomScriptExtension
 ```
 
-The following example enables the Microsoft Antimalware extension on an Azure Arc-enabled Windows server:
+This example enables the Microsoft Antimalware extension on an Azure Arc-enabled Windows server:
 
 ```powershell
 $Setting = @{ "AntimalwareEnabled" = $true }
 New-AzConnectedMachineExtension -Name "IaaSAntimalware" -ResourceGroupName "myResourceGroup" -MachineName "myMachineName" -Location "regionName" -Publisher "Microsoft.Azure.Security" -Settings $Setting -ExtensionType "IaaSAntimalware"
 ```
 
-### Key Vault VM extension
+This example enables the Key Vault VM extension on an Azure Arc-enabled server:
 
 > [!WARNING]
 > Adding `\` to `"` in the settings.json file will cause `akvvm_service` to fail with the following error: `[CertificateManagementConfiguration] Failed to parse the configuration settings with:not an object.`
 >
 > Although PowerShell users commonly use the `\"` sequence to escape quotation marks in other code blocks, you should avoid that formatting in the settings.json file.
-
-The following example enables the Key Vault VM extension on an Azure Arc-enabled server:
 
 ```powershell
 # Build settings
@@ -75,9 +76,7 @@ The following example enables the Key Vault VM extension on an Azure Arc-enabled
     New-AzConnectedMachineExtension -ResourceGroupName $resourceGroup -Location $location -MachineName $machineName -Name "KeyVaultForWindows or KeyVaultforLinux" -Publisher "Microsoft.Azure.KeyVault" -ExtensionType "KeyVaultforWindows or KeyVaultforLinux" -Setting $settings
 ```
 
-### Datadog VM extension
-
-The following example enables the Datadog VM extension on an Azure Arc-enabled server:
+This example enables the Datadog VM extension on an Azure Arc-enabled server:
 
 ```azurepowershell
 $resourceGroup = "resourceGroupName"
@@ -96,11 +95,12 @@ $protectedSettings = @{
 New-AzConnectedMachineExtension -ResourceGroupName $resourceGroup -Location $location -MachineName $machineName -Name "Datadog$($osType)Agent" -Publisher "Datadog.Agent" -ExtensionType "Datadog$($osType)Agent" -Setting $settings -ProtectedSetting $protectedSettings
 ```
 
+> [!TIP]
+> Many other extensions are supported on Arc-enabled servers. For details, see [Virtual machine extension management with Azure Arc-enabled servers](manage-vm-extensions.md#extensions).
+
 ## List extensions installed
 
-To get a list of the VM extensions on your Azure Arc-enabled server, use [`Get-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/get-azconnectedmachineextension) with the `-MachineName` and `-ResourceGroupName` parameters.
-
-Here's an example:
+To get a list of the VM extensions on your Azure Arc-enabled server, use [`Get-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/get-azconnectedmachineextension) with the `-MachineName` and `-ResourceGroupName` parameters:
 
 ```powershell
 Get-AzConnectedMachineExtension -ResourceGroupName myResourceGroup -MachineName myMachineName
@@ -112,9 +112,9 @@ custom  westus2   CustomScriptExtension Succeeded
 
 ## Update an extension configuration
 
-To reconfigure an installed extension, you can use the [`Update-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/update-azconnectedmachineextension) cmdlet with the `-Name`, `-MachineName`, `-ResourceGroupName`, and `-Settings` parameters.
+To reconfigure an installed extension, you can use the `Update-AzConnectedMachineExtension` cmdlet with the `-Name`, `-MachineName`, `-ResourceGroupName`, and `-Settings` parameters.
 
-To understand the methods for providing the changes that you want to the extension, refer to the reference article for the cmdlet.
+For more details, see [`Update-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/update-azconnectedmachineextension).
 
 ## Upgrade extensions
 
@@ -127,11 +127,14 @@ For the `-ExtensionTarget` parameter, you need to specify the extension and the 
 
 You can review the version of installed VM extensions at any time by running the command [`Get-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/get-azconnectedmachineextension). The `TypeHandlerVersion` property value represents the version of the extension.
 
+> [!TIP]
+> Many VM extensions can be configured for [automatic upgrades](manage-automatic-vm-extension-upgrade.md).
+
 ## Remove extensions
 
 To remove an installed VM extension on your Azure Arc-enabled server, use [`Remove-AzConnectedMachineExtension`](/powershell/module/az.connectedmachine/remove-azconnectedmachineextension) with the `-Name`, `-MachineName`, and `-ResourceGroupName` parameters.
 
 ## Related content
 
-- You can deploy, manage, and remove VM extensions by using the [Azure CLI](manage-vm-extensions-cli.md), the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
-- You can find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
+- Deploy, manage, and remove VM extensions by using the [Azure CLI](manage-vm-extensions-cli.md), the [Azure portal](manage-vm-extensions-portal.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
+- Find troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).

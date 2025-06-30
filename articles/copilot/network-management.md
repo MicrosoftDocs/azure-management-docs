@@ -8,6 +8,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a network administrator, I want to utilize an intelligent assistant to design, troubleshoot, and secure my Azure network, so that I can enhance operational efficiency and effectively resolve connectivity issues.
 ---
 
 # Design, troubleshoot, and secure networks using Microsoft Copilot in Azure

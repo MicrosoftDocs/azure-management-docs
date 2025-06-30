@@ -4,6 +4,7 @@ ms.date: 01/24/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "With cluster connect, you can securely connect to Azure Arc-enabled Kubernetes clusters from anywhere without requiring any inbound port to be enabled on the firewall."
+# Customer intent: As an IT administrator managing Azure Arc-enabled Kubernetes clusters, I want to securely connect to the cluster without requiring firewall adjustments, so that I can perform debugging and access Azure services seamlessly from any location.
 ---
 
 # Use cluster connect to securely connect to Azure Arc-enabled Kubernetes clusters
@@ -279,3 +280,4 @@ This is a known limitation. To get past this error:
 
 - Set up [Microsoft Entra RBAC](azure-rbac.md) on your clusters.
 - Deploy and manage [cluster extensions](extensions.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

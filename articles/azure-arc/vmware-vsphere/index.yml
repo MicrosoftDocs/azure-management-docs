@@ -10,6 +10,7 @@ metadata:
   ms.service: azure-arc
   ms.topic: landing-page
   ms.date: 04/15/2025
+  ms.custom: build-2025
 
 landingContent:
   - title: About Azure Arc-enabled VMware vSphere

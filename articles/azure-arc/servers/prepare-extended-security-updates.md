@@ -3,6 +3,7 @@ title: How to prepare to deliver Extended Security Updates for Windows Server 20
 description: Learn how to prepare to deliver Extended Security Updates for Windows Server 2012 through Azure Arc.
 ms.date: 01/23/2025
 ms.topic: how-to
+# Customer intent: As a system administrator managing Windows Server 2012/2012 R2 machines, I want to enroll these servers in Extended Security Updates through Azure Arc, so that I can maintain security and compliance after the end of support and streamline the migration to Azure.
 ---
 
 # Prepare to deliver Extended Security Updates for Windows Server 2012

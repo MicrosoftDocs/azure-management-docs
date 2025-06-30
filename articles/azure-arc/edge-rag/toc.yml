@@ -2,61 +2,79 @@ items:
   - name: Edge RAG
     href: index.yml
     items:
-    - name: Overview
-      items:
-      - name: What is Edge RAG?
-        href: overview.md
-      - name: What's new
-        href: whats-new.md
-      - name: Known issues
-        href: known-issues.md
-    - name: Plan
-      items:
-      - name: Requirements
-        href: Requirements.md 
-    - name: Deploy
-      items:
-      - name: Complete prerequisites
-        href: complete-prerequisites.md
-      - name: Configure NFS server
-        href: configure-nfs-server.md
-      - name: Deploy Edge RAG
-        href: deploy.md
-      - name: Configure endpoint authentication
-        href: configure-endpoint-authentication.md
-    - name: Build
-      items:
       - name: Overview
-        href: build-chat-solution-overview.md
-      - name: Add data source
-        href: add-data-source.md
-      - name: Set up the data query
-        href: set-up-data-query.md
-      - name: Test end user app
-        href: test-end-user-app.md
-    - name: Evaluate
-      href: evaluate-solution.md
-    - name: Maintain 
-      items:
-      - name: Monitor Edge RAG
-        href: observability.md
-      - name: Delete data
-        href: delete-data.md
-      - name: Uninstall extension
-        href: uninstall-extension.md
-    - name: Samples
-      items:
-      - name: Enable GPU on AKS
-        href: enable-gpu-aks.md
-      - name: Configure driver machine
-        href: configure-driver-machine.md
-    - name: Reference
-      items:
-      - name: Evaluation metrics
-        href: evaluation-metrics.md
-      - name: Monitoring metrics
-        href: observability-metrics.md
-      - name: Azure Kubernetes Service (AKS) REST API reference
-        href: /rest/api/aks/ 
-      - name: Azure Local REST API reference
-        href: /rest/api/stackhci/
+        items:
+          - name: What is Edge RAG?
+            href: overview.md
+          - name: What's new
+            href: whats-new.md
+          - name: Known issues
+            href: known-issues.md
+      - name: Plan
+        items:
+          - name: Requirements
+            href: Requirements.md
+      - name: Deploy
+        items:
+          - name: Complete prerequisites
+            items:
+              - name: Checklist
+                href: complete-prerequisites.md
+              - name: Verify contributor role
+                href: prepare-contributor-permission.md
+              - name: Choose language model
+                href: prepare-language-model.md
+              - name: Create model endpoint (optional)
+                href: prepare-model-endpoint.md
+              - name: Verify NFS server
+                href: prepare-file-server.md
+              - name: Prepare AKS cluster
+                href: prepare-aks-cluster.md
+              - name: Configure authentication
+                href: prepare-authentication.md
+              - name: Install networking components
+                href: prepare-networking-observability.md
+              - name: Configure DNS
+                href: prepare-dns.md
+          - name: Deploy Edge RAG
+            href: deploy.md
+          - name: Configure model endpoint (optional)
+            href: configure-endpoint-authentication.md
+      - name: Configure chat solution
+        items:
+          - name: Overview
+            href: build-chat-solution-overview.md
+          - name: Add data source
+            href: add-data-source.md
+          - name: Set up the data query
+            href: set-up-data-query.md
+          - name: Test end user app
+            href: test-end-user-app.md
+      - name: Evaluate system
+        href: evaluate-solution.md
+      - name: Maintain
+        items:
+          - name: Monitor Edge RAG
+            href: observability.md
+          - name: Delete data
+            href: delete-data.md
+          - name: Uninstall extension
+            href: uninstall-extension.md
+      - name: Samples
+        items:
+          - name: Enable GPU on AKS
+            href: enable-gpu-aks.md
+          - name: Configure driver machine
+            href: configure-driver-machine.md
+      - name: Reference
+        items:
+          - name: Configure NFS server
+            href: configure-nfs-server.md
+          - name: Evaluation metrics
+            href: evaluation-metrics.md
+          - name: Monitoring metrics
+            href: observability-metrics.md
+          - name: Azure Kubernetes Service (AKS) REST API reference
+            href: /rest/api/aks/
+          - name: Azure Local REST API reference
+            href: /rest/api/stackhci/

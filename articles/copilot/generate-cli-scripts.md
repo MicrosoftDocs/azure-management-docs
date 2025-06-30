@@ -7,6 +7,7 @@ ms.service: copilot-for-azure
 ms.custom: ignite-2023, ignite-2023-copilotinAzure, devx-track-azurecli, build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a cloud user, I want to generate Azure CLI scripts using an AI assistant, so that I can easily create and manage resources without manual coding."
 ---
 
 # Generate Azure CLI scripts using Microsoft Copilot in Azure

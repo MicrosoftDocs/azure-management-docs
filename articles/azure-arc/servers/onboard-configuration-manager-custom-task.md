@@ -3,6 +3,7 @@ title: Connect machines at scale with a Configuration Manager custom task sequen
 description: You can use a custom task sequence that can deploy the Connected Machine Agent to onboard a collection of devices to Azure Arc-enabled servers.
 ms.date: 03/12/2025
 ms.topic: how-to
+# Customer intent: "As an IT administrator, I want to create a custom task sequence to deploy the Connected Machine Agent, so that I can efficiently onboard multiple devices to Azure Arc-enabled servers at scale."
 ---
 
 # Connect machines at scale with a Configuration Manager custom task sequence

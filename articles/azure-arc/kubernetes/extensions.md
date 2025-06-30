@@ -4,6 +4,7 @@ ms.custom: devx-track-azurecli
 ms.date: 02/08/2024
 ms.topic: how-to
 description: "Learn how to create and manage an extension instance on an Azure Arc-enabled Kubernetes cluster."
+# Customer intent: As a Kubernetes administrator, I want to deploy and manage extensions on my Azure Arc-enabled Kubernetes cluster, so that I can effectively access and utilize Azure services to enhance my cluster's capabilities.
 ---
 
 # Deploy and manage an Azure Arc-enabled Kubernetes cluster extension

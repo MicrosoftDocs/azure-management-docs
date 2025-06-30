@@ -3,6 +3,7 @@ title: Deploy Azure Management services to Arc-enabled servers at scale
 description: Learn how to deploy Azure Management services to Arc-enabled servers at scale.
 ms.date: 11/03/2024
 ms.topic: how-to
+# Customer intent: "As an IT administrator managing a fleet of Arc-enabled servers, I want to deploy Azure Management services at scale, so that I can efficiently monitor, manage updates, and ensure security across all machines."
 ---
 
 # Deploy Azure Management services to Arc-enabled servers at scale (Preview)

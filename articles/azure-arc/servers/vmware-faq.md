@@ -3,6 +3,7 @@ title: Azure Arc-enabled servers VMware Frequently Asked Questions
 description: Learn how to use Azure Arc-enabled servers on virtual machines running in VMware vSphere environments.
 ms.date: 11/20/2023
 ms.topic: faq
+# Customer intent: As a cloud architect, I want to evaluate the management capabilities of Azure Arc-enabled servers and Azure Arc-enabled VMware vSphere, so that I can choose the best solution for integrating on-premises VMware environments with Azure management tools.
 ---
 
 # Azure Arc-enabled servers VMware Frequently Asked Questions

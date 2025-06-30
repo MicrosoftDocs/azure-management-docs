@@ -7,6 +7,7 @@ ms.service: copilot-for-azure
 ms.author: v-josmartin
 author: jm-247-ms
 
+# Customer intent: "As a cloud administrator, I want to use AI to query and retrieve tailored Azure Advisor recommendations, so that I can enhance my cloud infrastructure's reliability, security, and performance based on the Well Architected Framework."
 ---
 
 # Find your recommendations using Microsoft Copilot in Azure

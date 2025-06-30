@@ -3,6 +3,7 @@ title:  Azure Connected Machine agent deployment options
 description: Learn about the different options to onboard machines to Azure Arc-enabled servers.
 ms.date: 03/19/2025
 ms.topic: how-to 
+# Customer intent: As a system administrator, I want to choose an appropriate onboarding method for the Connected Machine agent, so that I can effectively connect my hybrid machines to Azure for management and monitoring.
 ---
 
 # Azure Connected Machine agent deployment options

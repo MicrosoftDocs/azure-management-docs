@@ -11,6 +11,7 @@ ms.custom:
 ms.author: jenhayes
 author: JnHs
 hideEdit: true
+# Customer intent: As an Azure user, I want to understand how Microsoft Copilot in Azure uses my data and the reliability of its responses, so that I can effectively manage and optimize my Azure environment while ensuring data privacy and security.
 ---
 
 # Responsible AI FAQ for Microsoft Copilot in Azure

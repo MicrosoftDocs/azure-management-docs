@@ -3,6 +3,7 @@ title: Connect machines from Azure Automation Update Management
 description: In this article, you learn how to connect hybrid machines to Azure Arc managed by Automation Update Management.
 ms.date: 11/06/2023
 ms.topic: concept-article
+# Customer intent: "As a systems administrator, I want to connect hybrid machines to Azure Arc using Automation Update Management, so that I can centrally manage and monitor my on-premises and cloud resources effectively."
 ---
 
 # Connect hybrid machines to Azure from Automation Update Management

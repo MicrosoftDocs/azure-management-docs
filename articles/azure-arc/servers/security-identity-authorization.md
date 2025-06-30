@@ -3,6 +3,7 @@ title: Identity and authorization
 description: Identity and authorization for Azure Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 03/06/2025
+# Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to configure managed identities and assign appropriate roles, so that I can control authentication and access to Azure resources securely and efficiently."
 ---
 
 # Identity and authorization

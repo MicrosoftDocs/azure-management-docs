@@ -2,12 +2,12 @@
 title: A Comprehensive Guide on ACR Transfer with Azure CLI 
 description: Learn how to use ACR Transfer with Azure CLI to efficiently manage and transfer container images in Azure Container Registry.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-#customer intent: As a DevOps engineer, I want to use ACR Transfer with Azure CLI so that I can efficiently manage and transfer container images in Azure Container Registry.
+# Customer intent: As a DevOps engineer, I want to implement ACR Transfer using Azure CLI so that I can efficiently manage and automate the transfer of container images between Azure Container Registries.
 ---
 
 # ACR Transfer with Az CLI
@@ -29,12 +29,6 @@ In AzureCloud, you can install the extension with the following command:
 
 ```azurecli
 az extension add --name acrtransfer
-```
-
-In AzureCloud and other clouds, you can install the blob directly from a public storage account container. The blob is hosted in the `acrtransferext` storage account, `dist` container, `acrtransfer-1.0.0-py2.py3-none-any.wh` blob. You may need to change the storage URI suffix depending on which cloud you are in. The following will install in AzureCloud:
-
-```azurecli
-az extension add --source https://acrtransferext.blob.core.windows.net/dist/acrtransfer-1.0.0-py2.py3-none-any.whl
 ```
 
 ## Create ExportPipeline with the acrtransfer Az CLI extension
@@ -77,7 +71,7 @@ The `options` property for the export pipelines supports optional boolean values
 
 If you created your pipeline with a user-assigned identity, simply give this user-assigned identity `secret get` access policy permissions on the keyvault.
 
-If you created your pipeline with a system-assigned identity, you will first need to retrieve the principalId that the system has assigned to your pipeline resource.
+If you created your pipeline with a system-assigned identity, you'll first need to retrieve the principalId that the system has assigned to your pipeline resource.
 
 Run the following command to retrieve your pipeline resource:
 
@@ -85,9 +79,9 @@ Run the following command to retrieve your pipeline resource:
 az acr export-pipeline show --resource-group $MyRG --registry $MyReg --name $MyPipeline
 ```
 
-From this output, you will want to copy the value in the `principalId` field.
+From this output, you'll want to copy the value in the `principalId` field.
 
-Then, you will run the following command to give this principal the appropriate `secret get` access policy permissions on your keyvault.
+Then, you'll run the following command to give this principal the appropriate `secret get` access policy permissions on your keyvault.
 
 ```azurecli
 az keyvault set-policy --name $MyKeyvault --secret-permissions get --object-id $MyPrincipalID
@@ -134,7 +128,7 @@ The `options` property for the import pipeline supports optional boolean values.
 
 If you created your pipeline with a user-assigned identity, simply give this user-assigned identity `secret get` access policy permissions on the keyvault.
 
-If you created your pipeline with a system-assigned identity, you will first need to retrieve the principalId that the system has assigned to your pipeline resource.
+If you created your pipeline with a system-assigned identity, you'll first need to retrieve the principalId that the system has assigned to your pipeline resource.
 
 Run the following command to retrieve your pipeline resource:
 
@@ -142,9 +136,9 @@ Run the following command to retrieve your pipeline resource:
 az acr import-pipeline show --resource-group $MyRG --registry $MyReg --name $MyPipeline
 ```
 
-From this output, you will want to copy the value in the `principalId` field.
+From this output, you'll want to copy the value in the `principalId` field.
 
-Then, you will run the following command to give this principal the appropriate `secret get` access policy on your keyvault.
+Then, you'll run the following command to give this principal the appropriate `secret get` access policy on your keyvault.
 
 ```azurecli
 az keyvault set-policy --name $MyKeyvault --secret-permissions get --object-id $MyPrincipalID
@@ -178,11 +172,11 @@ az storage blob list --account-name $MyStorageAccount --container $MyContainer -
 
 ## Transfer blob across domain
 
-In most use-cases, you will now use a Cross Domain Solution or other method to transfer your blob from the storage account in your source domain (the storage account associated with your export pipeline) to the storage account in your target domain (the storage account associated with your import pipeline). At this point, we will assume that the blob has arrived in the target domain storage account associated with your import pipeline.
+In most use-cases, you'll now use a Cross Domain Solution or other method to transfer your blob from the storage account in your source domain (the storage account associated with your export pipeline) to the storage account in your target domain (the storage account associated with your import pipeline). At this point, we'll assume that the blob has arrived in the target domain storage account associated with your import pipeline.
 
 ## Trigger ImportPipeline resource
 
-If you did not use the `--source-trigger-enabled False` parameter when creating your import pipeline, the pipeline will be triggered within 15 minutes after the blob arrives in the storage account container. It can take several minutes for artifacts to import. When the import completes successfully, verify artifact import by listing the tags on the repository you are importing in the target container registry. For example, run [az acr repository show-tags][az-acr-repository-show-tags]:
+If you didn't use the `--source-trigger-enabled False` parameter when creating your import pipeline, the pipeline will be triggered within 15 minutes after the blob arrives in the storage account container. It can take several minutes for artifacts to import. When the import completes successfully, verify artifact import by listing the tags on the repository you're importing in the target container registry. For example, run [az acr repository show-tags][az-acr-repository-show-tags]:
 
 ```azurecli
 az acr repository show-tags --name $MyRegistry --repository $MyRepository
@@ -191,7 +185,7 @@ az acr repository show-tags --name $MyRegistry --repository $MyRepository
 > [!Note]
 > Source Trigger will only import blobs that have a Last Modified time within the last 60 days. If you intend to use Source Trigger to import blobs older than that, please refresh the Last Modified time of the blobs by add blob metadata to them or else import them with manually created pipeline runs.
 
-If you did use the `--source-trigger-enabled False` parameter when creating your ImportPipeline, you will need to create a PipelineRun manually, as shown in the following section.
+If you did use the `--source-trigger-enabled False` parameter when creating your ImportPipeline, you'll need to create a PipelineRun manually, as shown in the following section.
 
 ## Create PipelineRun for import with the acrtransfer Az CLI extension
 
@@ -232,7 +226,7 @@ Delete an ImportPipeline:
 az acr import-pipeline delete --resource-group $MyRG --registry $MyReg --name $MyPipeline
 ```
 
-Delete a PipelineRun resource. Note that this does not reverse the action taken by the PipelineRun. This is more like deleting the log of the PipelineRun.
+Delete a PipelineRun resource. Note that this doesn't reverse the action taken by the PipelineRun. This is more like deleting the log of the PipelineRun.
 
 ```azurecli
 az acr pipeline-run delete --resource-group $MyRG --registry $MyReg --name $MyPipelineRun

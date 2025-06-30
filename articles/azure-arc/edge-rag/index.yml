@@ -9,9 +9,11 @@ metadata:
   ms.topic: landing-page
   author: cwatson-cat
   ms.author: cwatson
-  ms.date: 05/13/2025
+  ms.date: 06/05/2025
   ms.service: azure-arc
-
+  ms.custom: build-2025
+  ms.subservice: edge-rag
+  
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:
@@ -42,7 +44,7 @@ landingContent:
             url: deploy.md
 
   # Card (optional)
-  - title: Build chat solution
+  - title: Configure chat solution
     linkLists:
       - linkListType: concept
         links:

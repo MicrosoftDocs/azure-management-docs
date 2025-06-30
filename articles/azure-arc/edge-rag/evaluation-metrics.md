@@ -7,8 +7,10 @@ ms.author: cwatson
 ms.topic: reference #Don't change
 ms.date: 05/13/2025
 ai-usage: ai-assisted
-
+ms.subservice: edge-rag
 #CustomerIntent:  As a developer or data scientist, I want to understand the metrics for evaluating the Edge RAG system so that I can assess the quality and performance of generated responses and retrieval processes effectively.
+ms.custom:
+  - build-2025
 ---
 
 # Metrics for evaluating the Edge RAG Preview system
