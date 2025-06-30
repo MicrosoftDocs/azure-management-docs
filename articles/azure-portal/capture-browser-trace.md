@@ -3,6 +3,7 @@ title: Capture a browser trace for troubleshooting
 description: Capture network information from a browser trace to help troubleshoot issues with the Azure portal.
 ms.date: 01/10/2025
 ms.topic: how-to
+# Customer intent: "As an Azure portal user, I want to capture a browser trace for troubleshooting issues in the Azure portal, so that I can provide detailed information to Microsoft support to resolve the problem effectively."
 ---
 
 # Capture a browser trace for troubleshooting

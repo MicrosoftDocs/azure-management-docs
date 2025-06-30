@@ -3,6 +3,7 @@ title: Azure Lighthouse in enterprise scenarios
 description: The capabilities of Azure Lighthouse can be used to simplify cross-tenant management within an enterprise which uses multiple Microsoft Entra tenants.
 ms.date: 03/28/2025
 ms.topic: concept-article
+# Customer intent: As an enterprise IT manager, I want to implement Azure Lighthouse for cross-tenant management, so that I can efficiently manage resources across multiple Microsoft Entra tenants while ensuring security and compliance.
 ---
 
 # Azure Lighthouse in enterprise scenarios

@@ -4,6 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Azure Lighthouse
 ms.date: 02/06/2024
 ms.topic: reference
 ms.custom: subject-policy-reference
+# Customer intent: "As a cloud administrator, I want to access and utilize built-in Azure Policy definitions for Azure Lighthouse, so that I can effectively manage and govern service provider access to my Azure resources."
 ---
 # Azure Policy built-in definitions for Azure Lighthouse
 
