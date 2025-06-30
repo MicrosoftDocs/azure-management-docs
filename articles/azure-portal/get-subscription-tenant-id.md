@@ -3,6 +3,7 @@ title: Get subscription and tenant IDs in the Azure portal
 description: Learn how to locate and copy the IDs of Azure tenants and subscriptions.
 ms.date: 12/19/2024
 ms.topic: how-to
+# Customer intent: "As an Azure user, I want to locate and copy my subscription and tenant IDs in the Azure portal, so that I can use these values when performing management tasks."
 ---
 
 # Get subscription and tenant IDs in the Azure portal
@@ -40,7 +41,7 @@ Follow these steps to retrieve the ID for a Microsoft Entra tenant in the Azure 
    :::image type="content" source="media/get-subscription-tenant-id/copy-tenant-id.png" alt-text="Screenshot showing the option to copy a tenant ID in the Azure portal.":::
 
 > [!TIP]
-> You can also find your tenant programmatically by using [Azure Powershell](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-powershell) or [Azure CLI](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-cli).
+> You can also find your tenant programmatically by using [Azure PowerShell](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-powershell) or [Azure CLI](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-cli).
 
 ## Next steps
 

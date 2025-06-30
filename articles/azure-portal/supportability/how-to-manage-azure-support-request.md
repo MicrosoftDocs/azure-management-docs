@@ -4,6 +4,7 @@ description: Learn about viewing support requests and how to send messages, uplo
 tags: billing
 ms.topic: how-to
 ms.date: 12/03/2024
+# Customer intent: As an Azure user, I want to manage my support requests effectively, so that I can efficiently communicate with support engineers and ensure timely resolution of issues.
 ---
 
 # Manage an Azure support request

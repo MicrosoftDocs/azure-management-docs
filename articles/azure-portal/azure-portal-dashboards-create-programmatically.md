@@ -4,6 +4,7 @@ description: Use a dashboard in the Azure portal as a template to programmatical
 ms.topic: how-to
 ms.custom:
 ms.date: 09/25/2024
+# Customer intent: "As an Azure user, I want to programmatically create and deploy Azure portal dashboards using JSON templates, so that I can manage and customize multiple dashboards efficiently."
 ---
 
 # Programmatically create Azure dashboards

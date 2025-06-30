@@ -3,6 +3,7 @@ title: Create and manage dashboards in Dashboard hub
 description: This article describes how to create and customize a shared dashboard in Dashboard hub in the Azure portal.
 ms.topic: how-to
 ms.date: 04/21/2025
+# Customer intent: As an Azure portal user, I want to create and customize shared dashboards using the newest experience, so that I can efficiently monitor and visualize my organization's resources and data in the Azure portal.
 ---
 
 # Create and manage dashboards in Dashboard hub (preview)

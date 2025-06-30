@@ -4,6 +4,8 @@ description: "Quickstart: Learn how to create a dashboard in the Azure portal us
 ms.topic: quickstart
 ms.custom: devx-track-azurecli, mode-api
 ms.date: 03/04/2025
+# Customer intent: As an Azure developer, I want to create a customized dashboard in the Azure portal using Azure CLI, so that I can effectively manage and visualize my cloud resources and their performance.
+
 ---
 
 # Quickstart: Create an Azure portal dashboard with Azure CLI

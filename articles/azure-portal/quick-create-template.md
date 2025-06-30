@@ -4,6 +4,7 @@ description: Learn how to create an Azure portal dashboard by using an Azure Res
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ms.date: 12/11/2023
+# Customer intent: "As an Azure developer, I want to create a dashboard using an Azure Resource Manager template, so that I can visualize the performance of my virtual machine and better manage my cloud resources."
 ---
 
 # Quickstart: Create a dashboard in the Azure portal by using an ARM template
@@ -23,7 +24,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this examle VM by following these steps:
+- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this example VM by following these steps:
 
     1. In the Azure portal, select **Cloud Shell** from the global controls at the top of the page.
 
