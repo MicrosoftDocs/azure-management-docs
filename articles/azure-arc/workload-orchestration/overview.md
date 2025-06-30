@@ -93,11 +93,7 @@ The workload orchestration portal has three main tabs: **Monitor**, **Configure*
 |[Monitoring solutions](monitor.md) | Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed. | Read-only access to the solution and line levels.|
 
 > [!NOTE]
-> Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 
-
-## Pricing
-
-Workload orchestration pricing is based on a tiered model that reflects your usage levels. You can choose from multiple categories, including Standard and Premium tiers, depending on your operational needs. Charges are determined by the number of operations performed and the storage used for configuration files. For detailed pricing information, please contact your account manager.
+> Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements.
 
 ## Contact support
 
