@@ -22,7 +22,7 @@ To migrate your existing workload orchestration target resources to the GA versi
 ### New features
 
 - End-to-end support for Tanzu environment: Enable users to onboard and manage solution deployments across Tanzu-based Kubernetes clusters.
-- [Bulk-publish to multiple targets via CLI:](bulk-deployment.md#perform-bulk-publishing) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) is automatically triggered as part of the process. 
+- [Bulk-publish to multiple targets via CLI:](bulk-deployment.md#perform-bulk-publishing) Enables users to publish an application to multiple targets within the same cluster. External validation and staging (if enabled) are automatically triggered as part of the process. 
 
 ### Improvements in workload orchestration portal
 
