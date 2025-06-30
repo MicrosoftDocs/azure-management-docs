@@ -30,8 +30,6 @@ items:
       href: quickstart-solution-without-common-configuration.md
     - name: Create solution with common configurations
       href: quickstart-solution-with-common-configuration.md
-    - name: Automate template generation using GitHub actions
-      href: github-actions.md
   - name: Create solutions with dependencies
     items:
     - name: Create a solution with shared adapter dependency

@@ -61,6 +61,8 @@ items:
       href: ingest-data-flow.md
     - name: Blob index and metadata tags
       href: blob-index-metadata-tags.md
+    - name: Disconnected operations
+      href: disconnected-operations.md
 - name: Resources
   items:
   - name: Azure Arc Jumpstart scenarios
