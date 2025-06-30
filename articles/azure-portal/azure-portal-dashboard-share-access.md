@@ -3,7 +3,7 @@ title: Share Azure portal dashboards by using Azure role-based access control
 description: This article explains how to share a dashboard in the Azure portal by using Azure role-based access control.
 ms.topic: how-to
 ms.date: 09/05/2023
-# Customer intent: As an Azure administrator, I want to share dashboards using role-based access control so that I can manage who has view and edit permissions within my organization effectively.
+# Customer intent: As an Azure administrator, I want to share Azure portal dashboards using role-based access control so that I can manage who has view and edit permissions within my organization effectively.
 ---
 
 # Share Azure dashboards by using Azure role-based access control
