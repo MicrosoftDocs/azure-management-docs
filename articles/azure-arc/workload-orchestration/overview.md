@@ -17,7 +17,7 @@ Workload orchestration for Azure Arc is a comprehensive, cloud-native, cross-pla
 
 Imagine a factory where workers use a simple app to monitor the status of factory machines — like motors, pumps, or mixers. This app doesn’t run in the cloud. It runs on-premises, inside the factory, on a computer. Now imagine that this factory has multiple locations, each with its own computer running the same app, but each location needs it set up a bit differently. Factory A might have 10 machines while factory B has 30. Factory A might have different safety thresholds than factory B. Factory A might need alerts in English, while factory B needs them in Spanish.
 
-So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to each computer in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many, some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
+So whenever there’s an update to this app — like a new feature or a bug fix — it has to be deployed carefully to each computer in every location, making sure it keeps the factory-specific settings intact. That’s already a big job for one app. But in reality, factories don’t run on just one app. They have many — some monitoring sensors, others doing predictive maintenance, some running on old Windows systems, others powered by AI.
 
 These challenges aren't limited to manufacturing — workload orchestration is sector-agnostic and highly relevant for enterprise customers in industries like retail, quick service restaurants, energy, and healthcare, where distributed operations rely on consistent, localized applications.
 
@@ -93,11 +93,7 @@ The workload orchestration portal has three main tabs: **Monitor**, **Configure*
 |[Monitoring solutions](monitor.md) | Responsible for monitoring new versions of applications and hierarchical levels where new version of applications isn't yet deployed. | Read-only access to the solution and line levels.|
 
 > [!NOTE]
-> Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements. 
-
-## Pricing
-
-Workload orchestration pricing is based on a tiered model that reflects your usage levels. You can choose from multiple categories, including Standard and Premium tiers, depending on your operational needs. Charges are determined by the number of operations performed and the storage used for configuration files. For detailed pricing information, please contact your account manager.
+> Line and factory levels are custom-defined by the IT admin. You can create up to four hierarchical levels and name them per your requirements.
 
 ## Contact support
 
