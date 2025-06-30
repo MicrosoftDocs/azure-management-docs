@@ -41,7 +41,7 @@ Follow these steps to retrieve the ID for a Microsoft Entra tenant in the Azure 
    :::image type="content" source="media/get-subscription-tenant-id/copy-tenant-id.png" alt-text="Screenshot showing the option to copy a tenant ID in the Azure portal.":::
 
 > [!TIP]
-> You can also find your tenant programmatically by using [Azure Powershell](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-powershell) or [Azure CLI](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-cli).
+> You can also find your tenant programmatically by using [Azure PowerShell](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-powershell) or [Azure CLI](/azure/active-directory/fundamentals/how-to-find-tenant#find-tenant-id-with-cli).
 
 ## Next steps
 

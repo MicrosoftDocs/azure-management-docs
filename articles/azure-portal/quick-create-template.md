@@ -24,7 +24,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
-- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this examle VM by following these steps:
+- A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this example VM by following these steps:
 
     1. In the Azure portal, select **Cloud Shell** from the global controls at the top of the page.
 

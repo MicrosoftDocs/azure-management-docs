@@ -33,7 +33,7 @@ To learn more about ways to use Copilot in Azure, see [Microsoft Copilot in Azur
 - Get answers to general Azure knowledge questions
 - Generate CLI and PowerShell scripts
 - Generate and running Azure Resource Graph queries
-- Get cost managment information
+- Get cost management information
 - Get information about Azure resources, concepts, services, and offerings
 
 In some cases, Microsoft Copilot in Azure may not be able to complete your request, or may have a limited ability to respond. For more information, see [Current limitations](/azure/copilot/capabilities#current-limitations).
