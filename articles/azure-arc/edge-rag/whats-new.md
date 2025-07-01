@@ -4,9 +4,10 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 05/20/2025
+ms.date: 07/01/2025
 ms.subservice: edge-rag
-#Customer intent: As a ..., I want to stay updated on the latest features and enhancements so that I can...
+ai-usage: ai-assisted
+#CustomerIntent: As an IT administrator or technical decision maker, I want to stay updated on the latest features and improvements for Edge RAG so that I can effectively plan, deploy, and manage the Edge RAG solution in my organization.
 ms.custom:
   - build-2025
 ---
@@ -16,6 +17,16 @@ ms.custom:
 This article lists the various features and improvements that are available in Edge RAG.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## July 2025
+
+### Release of extension version `0.1.5`
+
+The newly released Edge RAG extension version `0.1.5` includes the following changes:
+
+- Resolved an authentication issue for endpoints created by Azure AI Foundry for bring your own model (BYOM) deployments.
+- Disabled chat history temporarily to improve performance. Each question now starts a new chat. A more performant chat history feature is planned for future releases.
+- Improved security with an additional fix.
 
 ## June 2025
 
@@ -31,6 +42,8 @@ To prepare for your deployment of Edge RAG, complete the steps listed in the new
 ## May 2025
 
 ### Edge RAG in public preview
+
+**Extension version**: `0.1.3`
 
 Edge RAG is now available as a public preview. To learn more, see the following documentation:
 
