@@ -29,7 +29,7 @@ To try the chat for end users, start from to the local chat portal.
 1. Sign in with the end user credentials that has the "EdgeRAGEndUser" role assigned. If you have the right access configured, you're automatically redirected to the chat portal.
 1. Start using the simple chat interface by entering a query.
 
-   Be aware that with Edge RAG extension version `0.1.5` each question is a new chat. Chat history is not saved between questions.
+    Be aware that with Edge RAG extension version `0.1.5` each question is answered based on retrieved content only and doesn't include the chat history. Chat history is not saved between questions. Treat each question as a new chat.
 1. (Optional) To share feedback to Microsoft, select thumbs up or thumbs down.
 
 ## Related content

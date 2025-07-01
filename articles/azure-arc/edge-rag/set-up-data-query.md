@@ -58,7 +58,7 @@ Next, test the chat endpoint.
 
    :::image type="content" source="media/set-up-data-query/test-chat.png" alt-text="Screenshot of the chat playground with a question in the chat window." lightbox="media/set-up-data-query/test-chat.png":::
 
-   Be aware that with Edge RAG extension version `0.1.5` each question is a new chat. Chat history is not saved between questions.
+   Be aware that with Edge RAG extension version `0.1.5` each question is answered based on retrieved content only and doesn't include the chat history. Chat history is not saved between questions. Treat each question as a new chat.
 1. (Optional) [Test the end user experience by using the chat solution app for Edge RAG](test-end-user-app.md).
 
 ## View details to refine settings
