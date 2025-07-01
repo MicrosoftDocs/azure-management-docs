@@ -47,13 +47,14 @@ Open a PowerShell terminal and run the following command.
     - `-skipAksCreation`: Skip creation of AKS cluster, use when the cluster is already created.
     - `-skipTcoDeployment`: Skip connecting AKS to Arc and creation of TCO extension, use when TCO has been deployed already.
     - `-skipCustomLocationCreation`: Skip creation of CustomLocation, use when it has been created before.
+    - `-skipConnectedRegistryDeployment`: Skip connected registry deployment. By default, this step is skipped. Set to false when user need to deploy the connected registry on AKS cluster for staging. 
     - `-skipSiteCreation`: Skip creation of Site and SiteAddress, use when it has been created before.
     - `-skipAutoParsing`: Skip auto-creation of custom location file and auto-parsing of site file. By default, you don't need to set the "addressResourceId" field in the site file and do not need to pass a customLocationFile in the target data section. Set to `$true` if you want to assign your own custom location (not created via onboarding script) or your own site address (not created via onboarding script).
     - `-enableWODiagnostics`: Enable workload orchestration extension user-facing logs, use when you want to collect workload orchestration extension user audits and user diagnostics logs. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
     - `-enableContainerInsights`: Enable `Container.Insights` on arc cluster to collect container logs and k8s events. Use when you want to collect container logs or k8s events. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
 
 > [!NOTE]
->  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`, except for `-skipAzLogin` which is `$true` by default. 
+>  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`, except for `-skipAzLogin` and `-skipConnectedRegistryDeployment` which are `$true` by default. 
 
 ## Context creation script (only if there is no existing context)
 
@@ -95,6 +96,15 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `contextName`: (Required) Name of the Workload Orchestration Context (for example, "Contoso-Context").
 - `contextSubscriptionId`: (Required) Subscription ID where the Workload Orchestration Context exists.
 - `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2euap").
+- `diagInfo`: (Optional) An array defining the diagnostic configurations.
+    - `diagnosticWorkspaceId`: (Optional) The ARM resource id of log analytics workspace.
+    - `diagnosticResourceName`: (Optional) Name of the diagnostic resource.
+    - `diagnosticSettingName`: (Optional) Name of the diagnostic settings.
+- `acrName`: (Optional) Name of the Azure container registry.
+- `connectedRegistryName`: (Optional) Name of the connected registry.
+- `connectedRegistryIp`: (Required if `skipConnectedRegistryDeployment=$false`) Available IP address to host the connected registry service.
+- `connectedRegistryClientToken`: (Optional) Name of the connected registry client token secret.
+- `storageSizeRequest`: (Optional) Size of the storage used for connected registry.
 - `siteHierarchy`: (Optional) An array defining the site structure and associated deployment targets.
     - `siteName`: (Required) Name of the site resource to be created. Avoid adding trailing numbers in the name.
     - `parentSite`: (Optional) Name of the parent site in the hierarchy. Set to `null` for top-level sites.
