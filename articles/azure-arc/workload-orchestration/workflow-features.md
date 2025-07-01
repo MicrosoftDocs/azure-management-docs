@@ -32,8 +32,8 @@ The diagram below represents an example hierarchical configuration of objects:
 
 A typical solution consists of:
 
-- **Schema:** A schema is a JSON file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
-- **Configuration template:** A configuration template is a JSON file that  represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
+- **Schema:** A schema is a YAML file that represents the declaration of configurable attributes of the solution and the associated permissions as it applies to hierarchies and personas. The schema is used to define the structure and format of the configuration data that is used in the solution. The schema is used to validate the configuration data before it's deployed to the target environment. For more information, see [Configuration Schema](configuring-schema.md).
+- **Configuration template:** A configuration template is a YAML file that represents associated configurations of the previously declared schema. These values can be modified as necessary. See [Configuration template](configuring-template.md) for the list of rules used to define the template and schema for configurations. This page also details the steps to write conditional or nested expressions.
 - **Solution Helm chart:** A solution Helm chart is a package that contains all the necessary files and resources to deploy the solution to the target environment. The solution Helm chart integrates the configurable workload orchestration assets with the user provided solution artifacts. Solutions must be packaged as containers before uploading them to workload orchestration.
 - **Published solution configuration:** A published solution configuration is a JSON file that represents the final configuration of the solution after it's validated and approved. The published solution configuration is created by combining the schema, configuration template, and solution Helm chart. The published solution represents a fully rendered, a pre-deployment ready, targeted solution. At this point, the solution is ready to be deployed.
 
@@ -131,6 +131,10 @@ Once the solutions are deployed, IT DevOps and low-code/non-code personas can mo
 Workload orchestration provides diagnostic capabilities to help users troubleshoot edge-related logs issues. You can enable workload orchestration audit and diagnostic logs, collect container logs or Kubernetes events, and enable OTLP (OpenTelemetry logs) or syslogs to collect logs from the edge cluster. These logs can be used to diagnose issues related to solution deployments, configurations, and runtime behavior.
 
 For more information, see [Diagnose edge-related logs and errors ](diagnose-problems.md).
+
+## Automation using GitHub Actions
+
+GitHub Action workflows can be used to automate setting up infrastructure, targets and automatic generation of configuration template and schema.
 
 
 
