@@ -25,7 +25,7 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 ## Version 1.53 - June 2025
 
-Download for [Windows ](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi)or [Linux ](manage-agent.md#install-a-specific-version-of-the-agent)
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
 ### Fixed
 
