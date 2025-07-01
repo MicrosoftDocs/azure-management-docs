@@ -142,29 +142,19 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
 ***
 
-### Download the workload orchestration CLI extension
+## Install workload orchestration CLI extension
 
-[!INCLUDE [cli-version-note](includes/cli-version-note.md)]
+### [Bash](#tab/bash)
 
-#### [Bash](#tab/bash)
+```bash
+az extension add --name workload-orchestration
+```
 
-1. Download the workload orchestration extension from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
-1. Define the path to the downloaded extension. Replace the placeholder variable with the full path to the `workload_orchestration-X.X.X-py3-none-any.whl` file, making sure to include version extension.
+### [PowerShell](#tab/powershell)
 
-   ```bash
-    # Enter full path 
-    extensionPath="<path to workload_orchestration-X.X.X-py3-none-any.whl>" # path to latest workload orchestration version
-   ```
-
-#### [PowerShell](#tab/powershell)
-
-1. Download the workload orchestration extension from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
-1. Define the path to the downloaded extension. Replace the placeholder variable with the full path to the `workload_orchestration-X.X.X-py3-none-any.whl` file, making sure to include version extension.
-
-    ```powershell
-     # Enter full path 
-     $extensionPath = "<path to workload_orchestration-X.X.X-py3-none-any.whl>" # path to latest workload orchestration version
-    ```
+```powershell
+az extension add --name workload-orchestration
+```
     
 ***
 
@@ -204,7 +194,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```bash
     az identity create --resource-group "$rg" --name "$clusterName"
     clusterIdentity=$(az identity show --resource-group "$rg" --name "$clusterName" --query id --output tsv)
-    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count "<node-count>" --assign-identity "$clusterIdentity" --generate-ssh-keys
+    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count "<node-count>" --assign-identity "$clusterIdentity" --generate-ssh-keys --node-vm-size "<node size>"
     ```
 
     > [!NOTE]
@@ -249,7 +239,7 @@ The following steps are required to set up the Azure resources for workload orch
     ```powershell
     az identity create --resource-group $rg --name $clusterName
     $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
-    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys
+    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys --node-vm-size <node size>
     ```
 
     > [!NOTE]

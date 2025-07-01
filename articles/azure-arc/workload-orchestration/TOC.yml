@@ -88,6 +88,8 @@ items:
     items: 
     - name: Migration script for GA
       href: migration-script.md
+    - name: Clean-up script
+      href: clean-up-script.md
     - name: Release notes
       href: release-notes.md
 
