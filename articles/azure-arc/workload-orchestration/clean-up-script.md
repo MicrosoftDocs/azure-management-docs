@@ -1,5 +1,5 @@
 ---
-title: Clean-Up Scripts for Workload Orchestration
+title: Clean-Up Script for Workload Orchestration
 description: This article provides a clean-up script for Azure Arc workload orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
