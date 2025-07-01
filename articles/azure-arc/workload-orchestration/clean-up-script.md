@@ -39,7 +39,7 @@ az role assignment create --assignee "63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e" --ro
 1. Select **Contributor** role.
 1. Assign access to **User, group, or service principal**.
 1. Enter the object ID **63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e**.
-1. Click on **Nex** and then **Review + assign**.
+1. Click on **Next** and then **Review + assign**.
 
 ***
 
