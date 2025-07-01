@@ -50,10 +50,21 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
 1. Create connected registry for the ACR.
 
     ```bash
-    connectedRegistryName="<any connected registry name>"
-    # leave "staging-temp" as default value, connected registry doesn't need this repo to be existing but it needs at least one repo.
+    connectedRegistryName="<any connected registry name>" # leave "staging-temp" as default value, connected registry doesn't need this repo to be existing but it needs at least one repo.
     az acr connected-registry create --registry "$acrName" --name "$connectedRegistryName" --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
+    ```
+
+1. Check the connected registry state on ACR. It should show as **Offline**.
+
+    ```bash
     az acr connected-registry list --registry "$acrName" --output table # shows offline
+    ```
+
+1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to grant the service principal EdgeConfigurationManagerApp, with object ID `cba491bc-48c0-44a6-a6c7-23362a7f54a9`.
+
+    ```bash
+    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Contributor" --scope --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
     ```
 
 1. Check available IP range on cluster to use for connected registry service.
@@ -62,7 +73,7 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     resourceGroup="<resource_group>"
     arcCluster="<arc_cluster>"
 
-    az aks show --resource-group "$resourceGroup" --name "$arcCluster" --query "networkProfile.serviceCidr"
+    az aks show --resource-group "$rg" --name "$arcCluster" --query "networkProfile.serviceCidr"
     # check IPs which are in use
     kubectl get services -A
 
@@ -177,7 +188,19 @@ To stage resources, you need to set up an Azure Container Registry (ACR) to stor
     $connectedRegistryName = "<any connected registry name>"
     # leave "staging-temp" as default value, connected registry doesn't need this repo to be existing but it needs at least one repo.
     az acr connected-registry create --registry $acrName --name $connectedRegistryName --repository "staging-temp" --mode ReadOnly --log-level Debug --yes
+    ```
+
+1. Check the connected registry state on ACR. It should show as **Offline**.
+
+    ```powershell
     az acr connected-registry list --registry $acrName --output table # shows offline
+    ```
+
+1. Add **Contributor** and **Container Registry Contributor and Data Access Configuration Administrator** permissions to grant the service principal EdgeConfigurationManagerApp, with object ID `cba491bc-48c0-44a6-a6c7-23362a7f54a9`.
+
+    ```powershell
+    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Contributor" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
+    az role assignment create --assignee "cba491bc-48c0-44a6-a6c7-23362a7f54a9" --role "Container Registry Contributor and Data Access Configuration Administrator" --scope "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.ContainerRegistry/registries/$acrName"
     ```
 
 1. Check available IP range on cluster to use for connected registry service.
@@ -306,7 +329,7 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
 
 ***
 
-#### Manually configure `config.toml` in individual debug pods
+### Manually configure `config.toml` in individual debug pods
 
 Follow these steps to manually update the containerd configuration in each debug pod:
 

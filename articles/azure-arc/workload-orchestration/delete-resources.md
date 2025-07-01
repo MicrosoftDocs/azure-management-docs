@@ -150,34 +150,4 @@ az workload-orchestration config-template delete --subscription $subId --resourc
 
 ## Delete existing resources in a resource group 
 
-In the [ZIP folder](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) you downloaded as part of [Prepare your environment for workload orchestration](initial-setup-environment.md), you can find the PowerShell script `RGCleanScript.ps1` that allows you to clean up resources in a specified Azure resource group. This script is useful for removing all resources created with workload orchestration, including sites, targets, configurations, schemas, and solutions.
-
-> [!NOTE]
-> You need to have the necessary permissions to delete resources in the specified resource group. For most cases, by default your alias will have permission.
-
-You execute the script by running the following command in PowerShell, replacing `<YourResourceGroupName>` with the name of your resource group:
-
-```powershell
-.\RGCleanScript.ps1 -resourceGroupName <YourResourceGroupName> [-skipSiteAndAddressDeletion $false] [-skipTargetDeletion $false] 
-```
-
-The script contains the following parameters, which you can set to customize the cleanup process:
-
-| Parameter                  | Required/Optional | Type    | Description                                                                                      |
-|----------------------------|-------------------|---------|--------------------------------------------------------------------------------------------------|
-| `resourceGroupName`        | Required          | string  | The name of the resource group to clean.                                                         |
-| `subscriptionId`           | Optional          | string  | Subscription ID for resources (For Microsoft.Edge). Defaults to the subscription shown by az CLI. |
-| `contextSubscriptionId`    | Optional          | string  | Subscription ID where context is present (For Microsoft.Edge). Defaults to the subscription shown by az CLI. |
-| `contextResourceGroupName` | Optional          | string  | Resource group of the Context (For Microsoft.Edge). Default is `Mehoopany`.                      |
-| `contextName`              | Optional          | string  | Name of the Context (For Microsoft.Edge). Default is `Mehoopany-Context`.                        |
-| `deleteSite`               | Optional          | bool    | Delete site resources. Default is `false`.                                                       |
-| `deleteTarget`             | Optional          | bool    | Delete target resources. Default is `false`.                                                     |
-| `deleteConfiguration`      | Optional          | bool    | Delete CM created configuration resources. Default is `false`.                                   |
-| `deleteSchema`             | Optional          | bool    | Delete schema/dynamic schema resources. Default is `false`.                                      |
-| `deleteConfigTemplate`     | Optional          | bool    | Delete user created config template resources. Default is `false`.                               |
-| `deleteSolution`           | Optional          | bool    | Delete solution template resources. Default is `false`.                                          |
-| `deleteInstance`           | Optional          | bool    | Delete application instances. Default is `false`.                                                |
-| `deleteAks`                | Optional          | bool    | Delete AKS cluster resources. Default is `false`.                                                |
-| `deleteManagedIdentity`    | Optional          | bool    | Delete managed identity resources. Default is `false`.                                           |
-| `deleteMicrosoftEdge`      | Optional          | bool    | Delete Microsoft Edge resources. Default is `false`.                                             |
-| `deleteAll`                | Optional          | bool    | Delete all resources (sets all delete parameters to true). Default is `false`.                   |
+To delete all resources created with workload orchestration in a resource group, see [Clean-up script](clean-up-script.md). This script allows you to clean up resources in a specified Azure resource group, including sites, targets, configurations, schemas, and solutions.
