@@ -25,7 +25,7 @@ This article lists the various features and improvements that are available in E
 The newly released Edge RAG extension version `0.1.5` includes the following changes:
 
 - Resolved an authentication issue for endpoints created by Azure AI Foundry for bring your own model (BYOM) deployments.
-- Disabled chat history temporarily while performance improvements are being made for a future release. Each question is answered based on retrieved content only and doesn't include the chat history.
+- Disabled chat history temporarily while performance improvements are being made for a future release. Each question is answered based on retrieved content only and doesn't include the context of the chat history. Treat each question as a new chat.
 - Improved security with an additional fix.
 
 ## June 2025
