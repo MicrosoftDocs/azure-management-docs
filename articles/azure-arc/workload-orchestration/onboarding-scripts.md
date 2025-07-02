@@ -97,7 +97,7 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `contextSubscriptionId`: (Required) Subscription ID where the Workload Orchestration Context exists.
 - `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2").
 - `diagInfo`: (Optional) An array defining the diagnostic configurations.
-    - `diagnosticWorkspaceId`: (Optional) The ARM resource id of log analytics workspace.
+    - `diagnosticWorkspaceId`: (Optional) The ARM resource ID of log analytics workspace.
     - `diagnosticResourceName`: (Optional) Name of the diagnostic resource.
     - `diagnosticSettingName`: (Optional) Name of the diagnostic settings.
 - `acrName`: (Optional) Name of the Azure container registry.
