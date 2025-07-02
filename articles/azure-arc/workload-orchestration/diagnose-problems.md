@@ -69,7 +69,7 @@ The following table summarizes the different types of logs that can be collected
 
     :::image type="content" source="./media/diagnose-audition-1.png" alt-text="Screenshot of Log Analytics workspaces showing the tables tab." lightbox="./media/diagnose-audition-1.png":::
 
-    - By querying WOUserAudits logs, you can inspect who manipulated the edge workload orchestration resource and if their operation is to pull chart or install chart on the on-premise cluster.
+    - By querying WOUserAudits logs, you can inspect who manipulated the edge workload orchestration resource and if their operation is to pull chart or install chart on the on-premises cluster.
 
     - By querying WOUserDiagnostics logs, you can inspect the detailed error logs reported by the workload orchestration extension for workload orchestration operations (such as installation).
 
@@ -105,7 +105,7 @@ The following table summarizes the different types of logs that can be collected
     | take 100
     ```
 
-1. You can audit a workload orchestration operation by using the built-in query **Auditing workload orchestration operations**. This query helps you to inspect who manipulated the edge WOM resource and if their operation is to pull chart or install chart on the on-premise cluster. The query is as follows:
+1. You can audit a workload orchestration operation by using the built-in query **Auditing workload orchestration operations**. This query helps you to inspect who manipulated the edge WOM resource and if their operation is to pull chart or install chart on the on-premises cluster. The query is as follows:
 
     ```kusto
     WOUserAudits
