@@ -19,7 +19,7 @@ The onboarding PowerShell scripts are designed to help you set up the necessary 
 ## Prerequisites
 
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. From the compressed folder, you find the following files:
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. From the compressed folder, you find the following files:
     - Download the workload-orchestration CLI extension.
     - Download the JSON files for site-address and site content, schemas, configs, *onboarding-data.json* and *mock-data.json*.
     - Edit the `onboarding-data.json` file. You can find mock data in `mock-data.json`.
@@ -95,9 +95,9 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `contextResourceGroup`: (Required) Resource group where the Workload Orchestration Context exists (for example, "Contoso"). This is used for setting up capabilities and site references.
 - `contextName`: (Required) Name of the Workload Orchestration Context (for example, "Contoso-Context").
 - `contextSubscriptionId`: (Required) Subscription ID where the Workload Orchestration Context exists.
-- `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2euap").
+- `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2").
 - `diagInfo`: (Optional) An array defining the diagnostic configurations.
-    - `diagnosticWorkspaceId`: (Optional) The ARM resource id of log analytics workspace.
+    - `diagnosticWorkspaceId`: (Optional) The ARM resource ID of log analytics workspace.
     - `diagnosticResourceName`: (Optional) Name of the diagnostic resource.
     - `diagnosticSettingName`: (Optional) Name of the diagnostic settings.
 - `acrName`: (Optional) Name of the Azure container registry.
