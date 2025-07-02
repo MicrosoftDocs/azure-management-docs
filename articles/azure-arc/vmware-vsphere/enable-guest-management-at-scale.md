@@ -34,7 +34,7 @@ Ensure the following before you install Arc agents at scale for VMware VMs:
     - Running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
     - VMware tools are installed on the machines. If VMware tools aren't installed, enable guest management operation is grayed out in the portal.  
         >[!Note]
-        >You can use the [out-of-band method](./enable-guest-management-at-scale.md#out-of-band-methods) to install Arc agents if VMware tools aren't installed.  
+        >You can use the out-of-band method to install Arc agents if VMware tools aren't installed.  
     - Able to connect through the firewall to communicate over the internet, and [these URLs](../servers/network-requirements.md#urls) aren't blocked.
 
    > [!NOTE]
@@ -74,7 +74,7 @@ An administrator can install agents for multiple machines from the Azure portal 
 
 This method is applicable only if VMware tools are installed on the target machines. If VMware tools aren't installed, Arc agents can be installed through out-of-band methods. 
 
-Arc agent installation can be automated using the helper script built using the AzCLI command provided [here](./enable-guest-management-at-scale.md#auto-arc-enablement-script). Download this [helper script](https://aka.ms/arcvmwarebatchenable) to enable VMs and install Arc agents at scale. In a single ARM deployment, the helper script can enable and install Arc agents on 200 VMs.  
+Arc agent installation can be automated using the helper script built using the AzCLI command. Download this [helper script](https://aka.ms/arcvmwarebatchenable) to enable VMs and install Arc agents at scale. In a single ARM deployment, the helper script can enable and install Arc agents on 200 VMs.  
 
 ### Features of the script
 

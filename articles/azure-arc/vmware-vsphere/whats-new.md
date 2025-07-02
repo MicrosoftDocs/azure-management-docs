@@ -29,7 +29,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## October 2024
 
-- Ability to install Arc agents at-scale on VMware VMs using [out-of-band methods](./enable-guest-management-at-scale.md#out-of-band-methods) such as:
+- Ability to install Arc agents at-scale on VMware VMs using out-of-band methods such as:
    - Service principal
    - System Center Configuration Manager script
    - System Center Configuration Manager custom task sequence
