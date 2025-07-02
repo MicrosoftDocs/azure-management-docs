@@ -23,7 +23,7 @@ If you used workload orchestration in preview, you need to run a migration scrip
 
 ## Migration script
 
-In the [ZIP folder](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) you downloaded as part of [Prepare your environment for workload orchestration](initial-setup-environment.md), you can find the PowerShell script `WOGAMigration.ps1` that migrates your existing workload orchestration target resources to the GA version. The script updates the `contextId` property of your existing targets to point to the new API version of workload orchestration.
+In the [ZIP folder](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) you downloaded as part of [Prepare your environment for workload orchestration](initial-setup-environment.md), you can find the PowerShell script `WOGAMigration.ps1` that migrates your existing workload orchestration target resources to the GA version. The script updates the `contextId` property of your existing targets to point to the new API version of workload orchestration.
 
 Run the script in PowerShell with the `-location` parameter set to the Azure region where your workload orchestration environment is deployed. 
 

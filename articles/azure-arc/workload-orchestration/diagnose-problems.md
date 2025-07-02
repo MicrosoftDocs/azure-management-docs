@@ -181,7 +181,7 @@ The following JSON file is a template that you can use to enable workload orches
     "contextResourceGroup": "Contoso",
     "contextName": "Contoso-Context",
     "contextSubscriptionId": "973d15c6-6c57-447e-b9c6-6d79b5b784ab",
-    "contextLocation": "eastus2euap",
+    "contextLocation": "eastus2",
     "diagInfo": {
       "diagnosticWorkspaceId": "",
       "diagnosticResourceName": "default",
