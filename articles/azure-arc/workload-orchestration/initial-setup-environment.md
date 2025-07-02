@@ -190,7 +190,7 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location "$l" --name "$rg"
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/virtual-machines/sizes/overview#name-structure-breakdown).
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```bash
     az identity create --resource-group "$rg" --name "$clusterName"
@@ -235,7 +235,7 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location $l --name $rg
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/virtual-machines/sizes/overview#name-structure-breakdown).
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```powershell
     az identity create --resource-group $rg --name $clusterName
