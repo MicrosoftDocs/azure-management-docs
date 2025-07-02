@@ -90,6 +90,7 @@ items:
       href: migration-script.md
     - name: Clean-up script
       href: clean-up-script.md
+    - name: Sample files of Azure/workload-orchestration
+      href: https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip
     - name: Release notes
       href: release-notes.md
-

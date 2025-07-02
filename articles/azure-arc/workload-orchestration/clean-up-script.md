@@ -45,7 +45,7 @@ az role assignment create --assignee "63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e" --ro
 
 ## Run the clean-up script 
 
-In the [ZIP folder](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) you downloaded as part of [Prepare your environment for workload orchestration](initial-setup-environment.md), you can find the PowerShell script `RGCleanScript.ps1` that allows you to clean up resources in a specified Azure resource group. This script is useful for removing all resources created with workload orchestration, including sites, targets, configurations, schemas, and solutions.
+In the [ZIP folder](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) you downloaded as part of [Prepare your environment for workload orchestration](initial-setup-environment.md), you can find the PowerShell script `RGCleanScript.ps1` that allows you to clean up resources in a specified Azure resource group. This script is useful for removing all resources created with workload orchestration, including sites, targets, configurations, schemas, and solutions.
 
 You execute the script by running the following command in PowerShell, replacing `<YourResourceGroupName>` with the name of your resource group. You can also specify which resources to delete by using the optional parameters.
 

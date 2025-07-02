@@ -67,7 +67,7 @@ Workload orchestration is available for Arc-enabled clusters in the following Az
 
 The following steps show how to prepare your environment to configure workload orchestration. 
 
-Global variables, JSON files, and other configuration resources can be downloaded from this [ZIP folder in GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
+Global variables, JSON files, and other configuration resources can be downloaded from this [ZIP folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
 
 Run the following commands to extract the files from the zip file. Skip if you already extracted files.
 
@@ -86,6 +86,7 @@ Expand-Archive -Path "<enter zip file path e.g. 'C:\path\to\archive.zip'>" -Dest
 # Point to the directory
 Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 ```
+
 ***
 
 ### Set up the Azure CLI commands 
@@ -189,7 +190,7 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location "$l" --name "$rg"
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and maestro objects should be the same.
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```bash
     az identity create --resource-group "$rg" --name "$clusterName"
@@ -234,7 +235,7 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location $l --name $rg
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and maestro objects should be the same.
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```powershell
     az identity create --resource-group $rg --name $clusterName

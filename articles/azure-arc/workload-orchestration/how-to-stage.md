@@ -303,10 +303,10 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
     kubectl label --overwrite ns connected-registry pod-security.kubernetes.io/enforce=privileged
     ```
 
-1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
+1. Install the connected registry CLI extension. You must provide an IP within the valid IP range on Tanzu.
 
     ```bash
-    az k8s-extension create --cluster-name "$cluster"  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name "$storageName" --resource-group "$rg" --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    az k8s-extension create --cluster-name "$cluster"  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name "$storageName" --resource-group "$rg" --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
     # you can find a valid storage class name in tanzu by the following command:
     # kubectl get sc
     ```
@@ -319,73 +319,15 @@ If you are using Tanzu Kubernetes Grid (TKG) clusters, you need to follow these 
     kubectl label --overwrite ns connected-registry pod-security.kubernetes.io/enforce=privileged
     ```
 
-1. Install the connected registry CLI extension with `trustDistribution` disabled. You must provide an IP within the valid IP range on Tanzu.
+1. Install the connected registry CLI extension. You must provide an IP within the valid IP range on Tanzu.
 
    ```powershell
-    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $storageName --resource-group $rg --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file E:/staging/password/settings5.json
+    az k8s-extension create --cluster-name $cluster  --cluster-type connectedClusters --extension-type Microsoft.ContainerRegistry.ConnectedRegistry --name $storageName --resource-group $rg --config service.clusterIP=<serviceIP> --config pvc.storageClassName=<storage_class_name> --config pvc.storageRequest=20Gi --config cert-manager.install=false --config-protected-file protected-settings-extension.json
     # you can find a valid storage class name in tanzu by the following command:
     # kubectl get sc
    ```
 
 ***
-
-### Manually configure `config.toml` in individual debug pods
-
-Follow these steps to manually update the containerd configuration in each debug pod:
-
-1. Open a shell session in the target pod.
-
-    ```powershell
-    # Replace with the actual pod name
-    kubectl exec -it debug-xxxxx -- bash
-    root [ / ]# chroot /host
-    sh-5.1# ls etc/containerd/
-    ```
-
-1. Create the required directory and add the `ca.crt` file.
-
-    ```powershell
-    sh-5.1# sudo mkdir -p /etc/containerd/certs.d/<serviceIP>:443/
-    sh-5.1# cd /etc/containerd/certs.d/<serviceIP>:443/
-    sh-5.1# vi ca.crt
-    (copy and paste the content of ca.crt into the file)
-    ```
-
-1. Edit the `config.toml` file.
-
-    ```powershell
-    sh-5.1# cd /etc/containerd/
-    sh-5.1# vi config.toml 
-    ```
-
-1. In the `config.toml` file, comment out the existing registry entries and add the new configuration for your service IP.
-
-    1. Comment out the existing section:
-
-        ```toml
-        
-        #    [plugins."io.containerd.grpc.v1.cri".registry]
-        #      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
-        #        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
-        #          endpoint = ["https://registry-1.docker.io"]
-        #        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."localhost:5000"]
-        #          endpoint = ["http://localhost:5000"]
-        ```
-
-    1. Add the following configuration:
-
-        ```toml
-          [plugins."io.containerd.grpc.v1.cri".registry]
-            [plugins."io.containerd.grpc.v1.cri".registry.configs."<serviceIP>:443".tls]
-              ca_file   = "/etc/containerd/certs.d/<serviceIP>:443/ca.crt"
-        ```
-
-1. Restart the containerd service and verify the kubelet status.
-
-    ```powershell
-    sh-5.1# sudo systemctl restart containerd
-    sh-5.1# sudo systemctl status kubelet
-    ```
 
 ## Enable staging at solution level
 

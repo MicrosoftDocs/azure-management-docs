@@ -30,6 +30,10 @@ To migrate your existing workload orchestration target resources to the GA versi
 - Updated column name in the Solution subtab of the Configure tab: "Lines Published To" is now labeled as "Targets Published To."
 - Enhanced filter logic: Filtering now supports hierarchies beyond two levels, providing better support for complex configurations.
 - Refined rollback experience: The rollback flow now displays only solutions with matching instance names, improving clarity and usability.
+- Breadcrumb navigation is now available on all details screens, providing improved navigation throughout the portal.
+- Configure flows are now fully responsive, ensuring a seamless experience across devices.
+- Enhanced retry logic for solution reviews: Users can now more easily retry reviewing solutions after a failure.
+- Additional accessibility improvements have been implemented to further enhance the user experience.
 
 ### Improvements in CLI
 
@@ -43,6 +47,16 @@ To migrate your existing workload orchestration target resources to the GA versi
 |`az workload-orchestration target install`|`--solution-name`, `--solution-version`|`--solution-version-id`|
 |`az workload-orchestration target uninstall`|`--solution-name`|`--solution-template-id`|
 |`az workload-orchestration target remove-revision`|`--solution-name`|`--solution-template-id`|
+
+### Extension updates
+
+- Cloud extension **workload-orchestration 1.1.8**: Now available and officially part of the Azure CLI extension index. To install it, simply run: 
+
+    ```bash
+    az extension add —name workload-orchestration 
+    ```
+
+- Arc extension **Microsoft.workloadorchestration 2.1.2**: Delivers new capabilities along with critical bug fixes.
 
 ### Bug fixes
 
