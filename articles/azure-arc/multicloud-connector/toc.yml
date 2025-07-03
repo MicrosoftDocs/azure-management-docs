@@ -16,6 +16,8 @@
     href: view-multicloud-inventory.md
   - name: Onboard VMs to Azure Arc
     href: onboard-multicloud-vms-arc.md
+  - name: Enable cloud-to-cloud migration
+    href: /azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json
   - name: Troubleshooting
     href: troubleshoot-multicloud-connector.md
 - name: Reference

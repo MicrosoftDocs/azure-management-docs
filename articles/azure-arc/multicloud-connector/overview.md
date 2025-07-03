@@ -14,7 +14,7 @@ The Multicloud connector supports these solutions:
 
 - **Inventory**: Allows you to see an up-to-date view of your resources from other public clouds in Azure, providing you with a single place to see all of your cloud resources. You can query all your cloud resources through Azure Resource Graph. When assets are represented in Azure, metadata from the source cloud is also included. For instance, if you need to query all of your Azure and AWS resources with a certain tag, you can do so. The **Inventory** solution will scan your source cloud on a periodic basis to ensure a complete, correct view is represented in Azure. You can also apply Azure tags or Azure policies on these resources.
 - **Arc onboarding**: Auto-discovers EC2 instances running in your AWS environment and installs the [Azure Connected Machine agent](/azure/azure-arc/servers/agent-overview) on the VMs so that they're onboarded to Azure Arc. This simplified experience lets you use Azure management services such as Azure Monitor on these VMs, providing a centralized way to manage Azure and AWS resources together.
-- **Storage - Data management** (preview): Reads data from Amazon Simple Storage Service (Amazon S3) in your AWS environment cloud. This solution is used to set up the [Azure Storage Mover data connection for cloud-to-cloud migration](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/key-vault/general/toc.json).
+- **Storage - Data management** (preview): Reads data from Amazon Simple Storage Service (Amazon S3) in your AWS environment cloud. This solution is used to set up the [Azure Storage Mover data connection for cloud-to-cloud migration](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json).
 
 For more information about how the multicloud connector works, including Azure and AWS prerequisites, see [Add a public cloud with the multicloud connector in the Azure portal](connect-to-aws.md).
 
@@ -46,4 +46,4 @@ After you connect your AWS cloud, the multicloud connector queries the AWS resou
 - Learn how to [connect a public cloud in the Azure portal](connect-to-aws.md).
 - Learn how to [use the multicloud connector **Inventory** solution](view-multicloud-inventory.md).
 - Learn how to [use the multicloud connector **Arc onboarding** solution](onboard-multicloud-vms-arc.md).
-- Learn how to [use the multicloud connector **Storage - Data management** solution](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/key-vault/general/toc.json).
+- Learn how to [use the multicloud connector **Storage - Data management** solution](/azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json).
