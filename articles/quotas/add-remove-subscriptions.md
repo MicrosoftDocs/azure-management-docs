@@ -20,11 +20,11 @@ To add subscriptions from the Quota Group using the REST API, make a `PUT` reque
 ```http
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01
 ```
-Azrest example
+Example using az rest:
 ```json
 az rest --method put --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}?api-version=2025-03-01"
 ```
-Response
+Sample response
 ```
 {
   "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/subscriptions/{subscriptionId}",
