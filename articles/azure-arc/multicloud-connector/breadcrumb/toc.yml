@@ -9,3 +9,6 @@
     - name: Multicloud connector
       tocHref: /azure/azure-arc/multicloud-connector
       topicHref: /azure/azure-arc/multicloud-connector
+    - name: Multicloud connector
+      tocHref: /azure/storage-mover
+      topicHref: /azure/azure-arc/multicloud-connector
