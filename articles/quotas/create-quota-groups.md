@@ -19,24 +19,23 @@ To create a Quota Group using the REST API, make a `PUT` request to the followin
 
 ```http
 PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 
-```
 
-Request body:
-```json
 {
   "properties": {
-    "displayName": "allocationGroupTest"
+    "displayName": "GQdemo"
   }
 }
 ```
 Example using `az rest`:
-Sample response: 
 ```json
 az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
   "properties": {
-    "displayName": "allocationGroupTest"
+    "displayName": "GQdemo"
   }
 }'
+```
+Sample response: 
+```
 {
   "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}",
   "name": "{groupquota}",
