@@ -44,11 +44,11 @@ In this article:
 
 ## Install the notation CLI and AKV plugin
 
-1. Install Notation v1.3.0 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
+1. Install Notation v1.3.2 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
 
     ```bash
     # Download, extract and install
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.0/notation_1.3.0_linux_amd64.tar.gz
+    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
     tar xvzf notation.tar.gz
 
     # Copy the notation cli to the desired bin directory in your PATH, for example
@@ -320,6 +320,9 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
     └── application/vnd.cncf.notary.signature
         └── sha256:d7258166ca820f5ab7190247663464f2dcb149df4d1b6c4943dcaac59157de8e
     ```
+
+> [!NOTE]
+ > Since `notation` v1.2.0, `notation` uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
 
 ## Verify a container image with Notation CLI 
 
