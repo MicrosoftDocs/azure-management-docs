@@ -8,15 +8,21 @@ ms.date: 05/29/2025
 ---
 
 
-## Submit Quota Group Limit increase request
-One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can then follow steps to allocate/transfer quota from group to target subscriptions  for a given region x VM family.  
+# Submit Quota Group Limit increase request
+One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can self-distribute cores from group to target subscriptions for a given region x VM family.  
+
+
+## Considerations
 - Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
 - Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
 - Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
 - If Quota Group  Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details.
 
-### [REST API](#tab/rest-5)
+This below sections cover how to submit Quota Group requests through both the API and the portal, and how to file a support ticket via the portal if your request is not automatically approved.
+
+   
+## Quota Group limit increase request 
 ```http
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 ```
@@ -68,8 +74,8 @@ Retry-After: 30
 Response Content
 ```
 
-## GET groupQuotaLimit request status
-Since groupQuotaLimit request is async operation, capture status of request using groupQuotaOperationsStatus ID from response header when submitting limit increase request
+## Quota Group limit request status
+Quota Group limit request is an async operation, capture status of request using groupQuotaOperationsStatus ID from response header when submitting limit increase request
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 ```
@@ -105,7 +111,7 @@ Sample response of approved Quota Group increase request
   "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
 }
 ```
-### GET groupQuotaLimits  
+### Snapshot of Quota Group limit
 
 Validate that the correct number of cores  were transferred from source subscription to group or that your group limit increase request was approved. Consider the below when interpreting the API response. 
 - Available limit = how many  cores do I have at group level to distribute  
@@ -167,3 +173,29 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 }
 
 ```
+--- 
+# Submit Quota Group Limit increase and file support ticket if request fails 
+The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
+- If Quota Group  Limit request is rejected via API or portal; then customer must submit support ticket via the self-serve Quota group request portal blade.  
+- Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level.  
+- User requires at a minimum the **Support request contributor role** to create support ticket on subscription in the group.  
+- Quota Groups addresses the quota management pain point, it does not address the regional and or zonal access pain point. To get region and or zonal access on subscriptions, [see region access request process](/troubleshoot/azure/general/region-access-request-process). Quota transfers between subscriptions and deployments will fail unless regional and or zonal access is provided on the subscription.    
+
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
+4. Select **Quota group** from list of Quota Group(s)
+5. In the Quota Group resources view there will be the list of Quota group resources by region by Group quota (limit)
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
+7. Select the checkbox to the desired **Quota group resource**, then select the **Increase group quota** button at the top of page
+8. On right side view the **New quota request** blade with selected region(s) at the top with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit. I.e., I want 20 cores assigned at group for DSv3 in Australia Central, I will enter 20 under **New group quota**
+9. Select **Submit** button, notification **We are reviewing your request to adjust the quota** this may take up to ~3 minutes to complete
+10. If successful the **New quota request** view will show the selected **Quota Group resource** by location status of request, the **Increase** value and **New limit**
+11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
+12. If Quota Group limit increase was rejected notification **We were unable to adjust your quota** will surface
+13. Select the **Generate a support ticket** button to start process of creating support ticket
+14. In the **Request details** view  **Deployment model** as **Resource Manager**, request details view will surface the Quota Group name, Management GroupID, Quota Group resource, Location selected, and the Desired increase value, select **Save and Continue** button
+16. In **Additional details** view select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
+17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner will ticketID and link
+18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
+--- 
