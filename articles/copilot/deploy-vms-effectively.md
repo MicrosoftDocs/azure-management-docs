@@ -61,19 +61,6 @@ During the VM creation process, you can ask "**How do I create a resilient and h
 
 :::image type="content" source="media/deploy-vms-effectively/vm-resilient-high-availability.png" lightbox="media/deploy-vms-effectively/vm-resilient-high-availability.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing ways to configure a VM for high availability.":::
 
-## Choose the right compute offering
-
-When you're not sure exactly which compute offering to choose, Copilot in Azure can guide you to successfully identify and deploy the right type of resource (such as [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) or [Azure Compute Fleet](/azure/azure-compute-fleet/overview)) for your workload needs. Copilot in Azure can also help direct you to the right service if you want to assess how to integrate your on-premises compute solutions into Azure or migrate from another cloud platform.
-
-If you're migrating compute instances from other cloud platforms, Copilot in Azure can help determine the equivalent Azure size family for those resources.
-
-While familiarity with the product options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it's important to exercise due diligence before deploying the suggested options.
-
-### Compute offering sample prompts
-
-- "Help me choose the right Compute infrastructure service"
-- "I'd like to use a compute resource for a batch processing job, which one should I pick?"
-
 ## Choose the right size for your VMs
 
 Azure offers several size options based on your workload needs. Microsoft Copilot in Azure can help you identify the best VM size based on your scenario needs and assess it in the context of your other configuration requirements.  
