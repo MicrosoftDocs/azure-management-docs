@@ -17,7 +17,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-arcservers](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.hybridcompute.md)]
+[!INCLUDE [azure-policy-compliancecontrols-arcservers](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.hybridcompute.md)]
 
 ## Next steps
 

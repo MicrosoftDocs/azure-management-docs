@@ -21,7 +21,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Container Registry
 
-[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.containerregistry.md)]
+[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.containerregistry.md)]
 
 ## Next steps
 

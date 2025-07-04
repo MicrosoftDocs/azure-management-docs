@@ -19,7 +19,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Lighthouse
 
-[!INCLUDE [azure-policy-reference-rp-managedservices](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.managedservices.md)]
+[!INCLUDE [azure-policy-reference-rp-managedservices](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.managedservices.md)]
 
 ## Next steps
 

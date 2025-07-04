@@ -21,7 +21,7 @@ There is no charge for using Azure Policy.
 
 The following built-in policy definitions are specific to Azure Container Registry:
 
-[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.containerregistry.md)]
+[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.containerregistry.md)]
 
 ## Create policy assignments
 

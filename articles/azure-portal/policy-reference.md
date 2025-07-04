@@ -19,7 +19,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure portal
 
-[!INCLUDE [azure-policy-reference-rp-portal](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.portal.md)]
+[!INCLUDE [azure-policy-reference-rp-portal](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.portal.md)]
 
 ## Next steps
 
