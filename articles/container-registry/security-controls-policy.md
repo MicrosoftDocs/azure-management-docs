@@ -20,7 +20,7 @@ compliant with the specific standard.
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](~/azure-docs-pr/includes/policy/standards/intro-warning.md)]
 
-[!INCLUDE [azure-policy-compliancecontrols-acr](~/azure-docs-pr/includes/policy/standards/byrp/microsoft.containerregistry.md)]
+[!INCLUDE [azure-policy-compliancecontrols-acr](~/azure-policy-autogen-docs/includes/policy/standards/byrp/microsoft.containerregistry.md)]
 
 ## Next steps
 
