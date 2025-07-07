@@ -4,7 +4,7 @@ description: Learn how to transfer quota within a quota group.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 07/07/2025
 ---
 # Transfer quota within Quota Group
 Using the Quota Group APIs, customers are able to self-distribute quota from group to subscriptions in a group. 
