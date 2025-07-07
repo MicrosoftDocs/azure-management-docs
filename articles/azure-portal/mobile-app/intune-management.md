@@ -1,7 +1,7 @@
 ---
 title: Use Microsoft Intune MAM on devices that run the Azure mobile app
 description: Learn about setting and enforcing app protection policies on devices that run the Azure mobile app.
-ms.date: 06/17/2024
+ms.date: 07/07/2025
 ms.topic: how-to
 ms.custom:
   - build-2024
@@ -18,7 +18,7 @@ Since the Azure mobile app is an Intune-protected app, app protection policies (
 
 Intune [app protection policies (APP)](/mem/intune/apps/app-protection-policy) are rules or sets of action that ensure an organization's data remains safe. Administrators use these policies to control how data is accessed and shared. For an overview of how to create an app protection policy, see [How to create and assign app protection policies](/mem/intune/apps/app-protection-policies).
 
-Available app protection settings are continuously being updated and may vary across platforms. For details about the currently available settings, see [Android app protection policy settings in Microsoft Intune](/mem/intune/apps/app-protection-policy-settings-android) and [iOS app protection policy settings](/mem/intune/apps/app-protection-policy-settings-ios) devices.
+Available app protection settings are continuously being updated and may vary across platforms. For details about the currently available settings, see [Android app protection policy settings in Microsoft Intune](/mem/intune/apps/app-protection-policy-settings-android) and [iOS app protection policy settings](/mem/intune/apps/app-protection-policy-settings-ios).
 
 ## User management
 
@@ -50,5 +50,5 @@ If a user is marked as out of compliance with their policy (following any remedi
 
 ## Next steps
 
-- Learn more about the [Microsoft Intune](/mem/intune/fundamentals/what-is-intune).
+- Learn more about [Microsoft Intune](/mem/intune/fundamentals/what-is-intune).
 - Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc), or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
