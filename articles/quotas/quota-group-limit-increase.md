@@ -14,12 +14,10 @@ One of the key benefits of Quota Group offering is the ability to submit Quota G
 
 ## Considerations
 - Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
-- Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota is be stamped on the specified Quota GroupID.  
+- Customers can submit Quota Group limit increase requests for a region x Virtual Machine family combination, and if approved, quota is be stamped on the specified Quota GroupID.  
 - Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
-- If Quota Group  Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
-- Support tickets for Quota Groups are created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details.
-
-This below sections cover how to submit Quota Group requests through both the API and the portal, and how to file a support ticket via the portal if your request is not automatically approved.
+- If Quota Group  Limit request is rejected, then customer must submit support ticket via the self-serve Quota group request blade.  
+- Support tickets for Quota Groups are created based on a preselected subscriptionID within the group. The customer has the ability to edit the subID when updating request details.
 
    
 ## Quota Group limit increase request 
@@ -114,9 +112,9 @@ Sample response of approved Quota Group increase request
 ### Snapshot of Quota Group limit
 
 Validate that the correct number of cores  were transferred from source subscription to group or that your group limit increase request was approved. Consider the below when interpreting the API response. 
-- Available limit = how many  cores do I have at group level to distribute  
-- Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
-- Quota allocated = how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group 
+- Available limit = how many cores do I have at group level to distribute  
+- Limit = how many cores are explicitly requested and approved/stamped on your group via quota increase requests  
+- Quota allocated = how many cores the are allocated from subscription group, ‘-‘ value indicates cores are de-allocated from subscription to group 
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
@@ -128,9 +126,9 @@ GET https://management.azure.com/providers/Microsoft.Management/managementGroups
 
 Example using `az rest`:
 I do a GET group limit for my quota group in centralus.  
-- For the resource standardddv4family my **availableLimit** = 50 cores which match the number of cores  I requested and got approved at the group level
-- The **Limit** = 40 because even though I submitted an increase for 50 I already had 10 cores at the group level from quota transfer example, and Azure only stamped an additional 40 cores 
-- The **quotaAllocated** = -10 because I transferred 10 cores from source sub to group from previous section
+- For the resource standardddv4family my **availableLimit** = 50 cores, which match the number of cores I requested and got approved at the group level.  
+- The **Limit** = 40 because I already had 10 cores at the group level from a previous quota transfer. When submitting Quota group limit increase request and getting approved, Azure only stamped an additional 40 cores.  
+- The **quotaAllocated** = -10 because I transferred 10 cores from source sub to group from previous section.
 ```http
 az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq standardddv4family
 
