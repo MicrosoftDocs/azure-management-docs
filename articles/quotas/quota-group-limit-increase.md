@@ -1,6 +1,6 @@
 ---
-title: Share Quota Across Subscriptions with Azure Quota Groups
-description: Learn how to share quota across Azure subscriptions with Azure Quota Groups to reduce the number of quota transactions.
+title: Quota Group limit increase requests
+description: Learn how to submit a quota group limit increase request.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
