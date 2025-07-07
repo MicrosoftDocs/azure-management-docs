@@ -23,7 +23,7 @@ In addition to the [general prerequisites for connecting a public cloud](connect
 
 EC2 instances must also include the permissions described in the following section.
 
-## Required AWS permissions for onboarding EC2 instances
+## Required AWS permissions
 
 The **ArcForServerSSMRole** IAM role must be [attached on each EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) via the **ArcForServerSSMInstanceProfile** after the CloudFormation Template is deployed. This role includes the **AmazonSSMManagedInstanceCore** policy, which enables the SSM agent running on the EC2 instance to perform the actions required by Azure Arc for discovery, management, and onboarding into Azure Arc.
 
@@ -42,7 +42,7 @@ The **ArcForServerRole** IAM role is assumed by Azure Arc using OIDC federated i
 > [!NOTE]
 > These permissions are included in the **ArcForServerRole** IAM role. While these permissions are provisioned through the CloudFormation Template, you should ensure there are no explicit deny policies in place, as they can override allowed permissions and prevent successful onboarding.
 
-## Optional AWS permissions for SSM instance profile assignment
+## Optional AWS permissions
 
 In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This simplifies Azure Arc onboarding by properly configuring the SSM agent without requiring manual intervention. If you don't enable these permissions, you must manually the SSM instance profile to your EC2 machines.
 
