@@ -1,6 +1,6 @@
 ---
-title: Share Quota Across Subscriptions with Azure Quota Groups
-description: Learn how to share quota across Azure subscriptions with Azure Quota Groups to reduce the number of quota transactions.
+title: Transfer quota within a Quota Group
+description: Learn how to transfer quota within a quota group.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
