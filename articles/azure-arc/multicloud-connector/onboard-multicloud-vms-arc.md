@@ -51,7 +51,7 @@ Configure the following parameters in your CloudFormation Template to control th
 - `EC2SSMIAMRoleAutoAssignment` (default: `true`): Enables automatic assignment of the IAM role used for SSM tasks to EC2 instances. Set to false to disable this feature and manage instance profiles manually.
 - `EC2SSMIAMRoleAutoAssignmentSchedule` (default: `Enable`): Controls whether the auto-assignment process runs periodically. Set to `Disable` to turn off scheduled checks.
 - `EC2SSMIAMRoleAutoAssignmentScheduleInterval` (default: 1 day): Defines how frequently the auto-assignment Lambda function runs (e.g., 15 minutes, 6 hours, 1 day).
--  C2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions if they are missing.
+- `EC2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions if they are missing.
 
 To support automatic instance profile assignment, the following permissions must be allowed.
 
@@ -93,9 +93,11 @@ The periodic sync time that you select when configuring the **Arc onboarding** s
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
-## EC2 Filter Options
+## EC2 filter options
 
-You can choose to filter to scan for EC2 based on AWS regions or AWS tags. You can select which regions you would like to scan for EC2 resources. You can also filter by AWS tag to only onboard EC2 machines that have the matching tag (case-insensitive) to be eligible for EC2 onboarding.
+You can choose to filter to scan for EC2 instances based on AWS regions or AWS tags.
+
+You can select specific regions which you would like to scan for EC2 resources. You can also filter by AWS tag so that only EC2 machines that have the matching tag (case-insensitive) are eligible for EC2 onboarding.
 
 ## Next steps
 
