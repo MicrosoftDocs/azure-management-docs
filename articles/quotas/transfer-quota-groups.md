@@ -12,8 +12,8 @@ Using the Quota Group APIs, customers are able to self-distribute quota from gro
 - Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
 - Once your quota group is created and subscriptions are added, you can transfer quota between subscriptions by transferring quota from source subscription to group. First, deallocate quota from the source subscription and return it to the group. Then, allocate that quota from the group to the target subscription.
 - To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20. This applies to a specific region and VM family.  
-- You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level
-- To view your existing subscription usage for a given region, please use the [Compute Usages API](/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).
+- You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level.  
+- To view your existing subscription usage for a given region, please use the [Compute Usages API](/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).  
 
 ```http
 PATCH https://management.azure.com/"providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01"
