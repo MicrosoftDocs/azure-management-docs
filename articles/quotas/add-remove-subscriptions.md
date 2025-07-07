@@ -1,10 +1,10 @@
 ---
-title: Share Quota Across Subscriptions with Azure Quota Groups
+title: Add and remove subscriptions -  Share Quota Across Subscriptions with Azure Quota Groups
 description: Learn how to share quota across Azure subscriptions with Azure Quota Groups to reduce the number of quota transactions.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 07/07/2025
 ---
 # Add subscriptions to a Quota Group
 - This section covers how to add subscriptions  after the Quota group is created.  
