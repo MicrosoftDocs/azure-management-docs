@@ -1,5 +1,5 @@
 ---
-title: Create and delete Quota Group - Share Quota Across Subscriptions with Azure Quota Groups
+title: Create and delete Quota Group
 description: Learn how to share quota across Azure subscriptions with Azure Quota Groups to reduce the number of quota transactions.
 author: yaya-5
 ms.author: yaalanis
