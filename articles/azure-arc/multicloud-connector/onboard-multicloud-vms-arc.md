@@ -15,12 +15,61 @@ You can enable the **Arc onboarding** solution when you [connect your public clo
 
 ## Prerequisites
 
-In addition to the [general prerequisites](connect-to-aws.md#prerequisites) for connecting a public cloud, be sure to meet the requirements for the **Arc onboarding** solution. This includes requirements for each EC2 instance to be onboarded to Azure Arc.
+In addition to the [general prerequisites for connecting a public cloud](connect-to-aws.md#prerequisites), be sure to meet the requirements for the **Arc onboarding** solution. This includes requirements for each EC2 instance to be onboarded to Azure Arc.
 
 - You must have **AmazonEC2FullAccess** permissions in your public cloud.
 - EC2 instances must meet the [general prerequisites for installing the Connected Machine agent](../servers/prerequisites.md).
 - EC2 instances must have the SSM agent installed. Most EC2 instances have this preconfigured if you use a [supported OS](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html).
-- The **ArcForServerSSMRole** IAM role [attached on each EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role). This role attachment must be done after you upload your Cloud Formation Template in the Connector creation steps.
+
+EC2 instances must also include the permissions described in the following section.
+
+### Required AWS permissions for onboarding EC2 instances
+
+The **ArcForServerSSMRole** IAM role must be [attached on each EC2 instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#attach-iam-role) via the **ArcForServerSSMInstanceProfile** after the Cloud Formation Template is deployed. This role includes the **AmazonSSMManagedInstanceCore** policy, which enables the SSM agent running on the EC2 instance to perform the actions required by Azure Arc for discovery, management, and onboarding into Azure Arc.
+
+The **ArcForServerRole** IAM role is assumed by Azure Arc using OIDC federated identity. This role grants Azure Arc the ability to remotely trigger and monitor SSM commands, as well as retrieve EC2 and CloudFormation metadata—allowing it to manage the instance from outside AWS. This role includes the following permissions:
+
+| Permission | Description |
+|---|---|
+| `ssm:SendCommand` | Allows sending commands to one or more managed instances. This is used to execute onboarding scripts on the target machine. |
+| `ssm:CancelCommand` | Allows canceling a command currently running on a managed instance. This is used to stop onboarding commands if needed. |
+| `ssm:DescribeInstanceInformation` | Allows viewing information about your managed instances. This is used to identify EC2 instances that have the AWS Systems Manager (SSM) agent installed and are managed by SSM, which is required for onboarding into Azure Arc. |
+| `ssm:GetCommandInvocation` | Allows viewing the details and results of a command that was sent. This is used to monitor the status and output of onboarding scripts. |
+| `ec2:DescribeInstances` | Allows retrieving information about your EC2 instances. This is used to check the instance’s current state (such as running or stopped) to determine eligibility for onboarding into Azure Arc. |
+| `ec2:DescribeImages` | Allows retrieving information about your Amazon Machine Images (AMIs). This is used to validate the operating system details of the instance. |
+| `cloudformation:ListStackInstances` | Allows listing all stack instances in your AWS CloudFormation stacks (required only when onboarding from an account that is part of an AWS Organization). This is used to identify resources created through CloudFormation that are relevant for onboarding. Although this permission is only required for accounts in an AWS Organization, it is available by default to both management and member accounts. |
+
+> [!NOTE]
+> These permissions are included in the **ArcForServerRole** IAM role. While these permissions are provisioned through the Cloud Formation Template, you should ensure there are no explicit deny policies in place, as they can override allowed permissions and prevent successful onboarding.
+
+In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This simplifies Azure Arc onboarding by ensuring the SSM Agent is properly configured without manual intervention. If you don't enable these permissions, the SSM instance profile must be manually added to your EC2 machines.
+
+Configure the following parameters in your Cloud Formation Template to control this behavior:
+
+- `EC2SSMIAMRoleAutoAssignment` (default: `true`): Enables automatic assignment of the IAM role used for SSM tasks to EC2 instances. Set to false to disable this feature and manage instance profiles manually.
+- `EC2SSMIAMRoleAutoAssignmentSchedule` (default: `Enable`): Controls whether the auto-assignment process runs periodically. Set to `Disable` to turn off scheduled checks.
+- `EC2SSMIAMRoleAutoAssignmentScheduleInterval` (default: 1 day): Defines how frequently the auto-assignment Lambda function runs (e.g., 15 minutes, 6 hours, 1 day).
+-  C2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions if they are missing.
+
+To support automatic instance profile assignment, the following permissions must also be allowed.
+
+> [!TIP]
+> These permissions are provisioned automatically if the Lambda-based auto-assignment (**EC2SSMIAMRoleAutoAssignment**) is enabled. Otherwise, you must manually ensure that the EC2 instances have the correct instance profile attached.
+
+| Permission | Description |
+|---|---|
+| `ec2:DescribeInstances` | Allows viewing EC2 instances. |
+| `ec2:DescribeRegions` | Allows retrieving available AWS regions. |
+| `ec2:DescribeIamInstanceProfileAssociations` | Allows viewing existing IAM instance profile associations. |
+| `ec2:AssociateIamInstanceProfile` | Allows attaching an instance profile to an EC2 instance. |
+| `ec2:DisassociateIamInstanceProfile` | Allows detaching an instance profile from an EC2 instance. |
+| `iam:GetInstanceProfile` | Allows retrieving instance profile information. |
+| `iam:ListAttachedRolePolicies` | Allows viewing role policies attached to IAM roles. |
+| `iam:AttachRolePolicy` | Allows attaching a policy to an IAM role. |
+| `iam:PassRole` | Allows passing a role to a service like EC2. |
+| `iam:AddRoleToInstanceProfile` | Allows adding a role to an instance profile. |
+| `logs:CreateLogGroup`, `logs:CreateLogStream`, `logs:PutLogEvents` | Allows writing logs from Lambda to CloudWatch. |
+| `ssm:GetServiceSetting` | Allows getting settings related to SSM services. |
 
 ## AWS resource representation in Azure
 
