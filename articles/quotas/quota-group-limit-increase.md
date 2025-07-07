@@ -4,7 +4,7 @@ description: Learn how to submit a quota group limit increase request.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/07/2025
 ---
 
 
@@ -174,7 +174,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 
 ```
 --- 
-# Submit Quota Group Limit increase and file support ticket via Azure Portal
+## Submit Quota Group Limit increase and file support ticket via Azure Portal
 The below covers how to submit Quota Group Limit increase via portal and file support ticket if request fails. 
 - If Quota Group  Limit request is rejected via API or portal; then customer must submit support ticket via the self-serve Quota group request portal blade.  
 - Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level.  
