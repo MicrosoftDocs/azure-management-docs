@@ -361,7 +361,7 @@ kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.da
 
 ## Troubleshooting
 
-See the [troubleshooting guide](secret-store-troubleshooting.md) for assistance diagnosing and resolving issues.
+See the [troubleshooting guide](secret-store-extension-troubleshooting.md) for assistance diagnosing and resolving issues.
 
 ## Remove the SSE
 
