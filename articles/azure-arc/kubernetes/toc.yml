@@ -196,7 +196,7 @@
   - name: Secrets Store Extension
     items:
     - name: Release notes
-      href: secrets-store-extension-release-notes.md
+      href: secret-store-extension-release-notes.md
     - name: Configuration
       href: secrets-store-extension-configuration.md
     - name: Troubleshooting
