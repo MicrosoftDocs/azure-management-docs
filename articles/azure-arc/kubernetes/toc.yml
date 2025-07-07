@@ -193,14 +193,14 @@
     href: /cli/azure/connectedk8s
   - name: Azure PowerShell
     href: /powershell/module/az.connectedkubernetes#connected-kubernetes
-  - name: Secrets Store Extension
+  - name: Secret Store Extension
     items:
     - name: Release notes
       href: secret-store-extension-release-notes.md
     - name: Configuration
-      href: secrets-store-extension-configuration.md
+      href: secret-store-extension-configuration.md
     - name: Troubleshooting
-      href: secrets-store-extension-troubleshooting.md
+      href: secret-store-extension-troubleshooting.md
 - name: Resources
   items:
   - name: Azure Arc Jumpstart
