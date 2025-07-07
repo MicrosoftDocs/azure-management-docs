@@ -9,7 +9,7 @@ ms.date: 07/07/2025
 
 
 # Submit Quota Group Limit increase request
-One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can self-distribute cores from group to target subscriptions for a given region x VM family.  
+One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved, you can self-distribute cores from group to target subscriptions for a given region x VM family.  
 
 
 ## Considerations
