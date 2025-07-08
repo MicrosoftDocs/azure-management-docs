@@ -52,6 +52,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Design, troubleshoot, and secure networks](network-management.md)
   - [Troubleshoot Azure Arc extension issues](troubleshoot-arc-extension.md)
   - [Improve Azure SQL Database-driven applications](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
+  - [Discover Azure Marketplace solutions](discover-marketplace.md)
 - Write and optimize code:
   - [Generate Azure CLI scripts](generate-cli-scripts.md)
   - [Generate PowerShell scripts](generate-powershell-scripts.md)
