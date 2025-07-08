@@ -34,7 +34,7 @@ Here are a few examples of the kinds of prompts you can use to discover Azure Ma
 
 ## Examples
 
-You can ask "**I'm looking for a blockchain solution for managing digital assets. Can you help me find one?**" Copilot in Azure provides a curated list blockchain solutions for your scenario, along with the **Explore Marketplace** button to view more details.
+You can ask "**I'm looking for a blockchain solution for managing digital assets. Can you help me find one?**" Copilot in Azure provides a curated list of blockchain solutions for your scenario, along with the **Explore Marketplace** button to view more details.
 
 :::image type="content" source="media/discover-marketplace/blockchain-solutions.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for blockchain solutions in Azure Marketplace.":::
 
