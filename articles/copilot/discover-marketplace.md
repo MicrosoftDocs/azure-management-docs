@@ -1,12 +1,11 @@
 ---
 title: Discover Azure Marketplace solutions 
 description: Learn how Microsoft Copilot in Azure helps you find the right Azure Marketplace solutions using natural language queries.
-ms.date: 06/16/2025
+ms.date: 07/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
-ms.custom: ignite-2025, ignite-2025-copilotinAzure, devx-track-marketplace, build-2025
-ms.author: aherskovitz
-author: AmirHerskovitz
+ms.author: jenhayes
+author: JnHs
 # Customer intent: "As a cloud user, I want to use natural language queries to find relevant Azure Marketplace solutions, so that I can quickly identify and implement the tools that meet my needs without manually filtering through extensive options."
 ---
 
@@ -43,7 +42,7 @@ In this example, the prompt "**Show me virtual machine offers**" results in a li
 
 :::image type="content" source="media/discover-marketplace/virtual-machine-offers.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for virtual machine offers in Azure Marketplace.":::
 
-Similarly, the prompt "**I'm looking for speech to text recognition tool.**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
+Similarly, the prompt "**I'm looking for speech to text recognition tool**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
 
 :::image type="content" source="media/discover-marketplace/speech-to-text-tools.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for speech-to-text recognition tools in Azure Marketplace.":::
 
