@@ -36,15 +36,15 @@ Here are a few examples of the kinds of prompts you can use to discover Azure Ma
 
 You can ask "**I'm looking for a blockchain solution for managing digital assets. Can you help me find one?**" Copilot in Azure provides a curated list blockchain solutions for your scenario, along with the **Explore Marketplace** button to view more details.
 
-:::image type="content" source="media/discover-marketplace/blockchain-solutions.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for blockchain solutions in Azure Marketplace.":::
+:::image type="content" source="media/discover-marketplace/marketplace-blockchain-solutions.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for blockchain solutions in Azure Marketplace.":::
 
 In this example, the prompt "**Show me virtual machine offers**" results in a list of virtual machine options, including Azure Virtual Machines and Windows Virtual Desktop.
 
-:::image type="content" source="media/discover-marketplace/virtual-machine-offers.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for virtual machine offers in Azure Marketplace.":::
+:::image type="content" source="media/discover-marketplace/marketplace-virtual-machine-offers.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for virtual machine offers in Azure Marketplace.":::
 
-Similarly, the prompt "**I'm looking for speech to text recognition tool**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
+Similarly, the prompt "**I'm looking for a speech to text recognition tool**" provides tools like Azure Speech Service for real-time speech-to-text conversion.
 
-:::image type="content" source="media/discover-marketplace/speech-to-text-tools.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for speech-to-text recognition tools in Azure Marketplace.":::
+:::image type="content" source="media/discover-marketplace/marketplace-speech-to-text-tools.png" alt-text="Screenshot of Microsoft Copilot in Azure providing options for speech-to-text recognition tools in Azure Marketplace.":::
 
 
 ## Next steps
