@@ -2,7 +2,7 @@
 title: Onboard VMs to Azure Arc through the multicloud connector
 description: Learn how to enable the Arc onboarding solution with the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
-ms.date: 01/08/2025
+ms.date: 07/09/2025
 ---
 
 # Onboard VMs to Azure Arc through the multicloud connector
@@ -40,11 +40,11 @@ The **ArcForServerRole** IAM role is assumed by Azure Arc using OIDC federated i
 | **cloudformation:ListStackInstances** | Allows listing all stack instances in your AWS CloudFormation stacks. Used to identify resources created through CloudFormation that are relevant for onboarding. This permission is only required for accounts in an AWS Organization, but it's available by default to both management and member accounts. |
 
 > [!NOTE]
-> These permissions are included in the **ArcForServerRole** IAM role. While these permissions are provisioned through the CloudFormation Template, you should ensure there are no explicit deny policies in place, as they can override allowed permissions and prevent successful onboarding.
+> These permissions are bundled into the **ArcForServerRole** IAM role and are automatically provisioned through the CloudFormation Template. However, be aware that any explicit deny policies will override allowed permissions and can block onboarding. To avoid deployment failures, ensure that no such deny policies are in place.
 
 ## Optional AWS permissions
 
-In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This simplifies Azure Arc onboarding by properly configuring the SSM agent without requiring manual intervention. If you don't enable these permissions, you must manually the SSM instance profile to your EC2 machines.
+In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This simplifies Azure Arc onboarding by properly configuring the SSM agent without requiring manual intervention. If you don't enable these permissions, you must manually attach the SSM instance profile to your EC2 machines.
 
 Configure the following parameters in your CloudFormation Template to control this behavior:
 
@@ -53,7 +53,7 @@ Configure the following parameters in your CloudFormation Template to control th
 - `EC2SSMIAMRoleAutoAssignmentScheduleInterval` (default: 1 day): Defines how frequently the auto-assignment Lambda function runs (e.g., 15 minutes, 6 hours, 1 day).
 - `EC2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions if they are missing.
 
-To support automatic instance profile assignment, the following permissions must be allowed.
+To support automatic instance profile assignment, the following permissions must be allowed:
 
 > [!TIP]
 > These permissions are provisioned automatically if the Lambda-based auto-assignment (**EC2SSMIAMRoleAutoAssignment**) is enabled. Otherwise, you must manually ensure that the EC2 instances have the correct instance profile attached.
