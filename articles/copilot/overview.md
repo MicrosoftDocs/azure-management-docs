@@ -4,7 +4,7 @@ description: Microsoft Copilot in Azure is an AI-powered tool to help you do mor
 author: JnHs
 ms.author: jenhayes
 ms.reviewer: maghan
-ms.date: 04/08/2025
+ms.date: 07/09/2025
 ms.service: copilot-for-azure
 ms.topic: overview
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 
 Microsoft Copilot in Azure is an AI-powered tool to help you do more with Azure. With Microsoft Copilot in Azure, you can gain new insights, discover more benefits of the cloud, and orchestrate across both cloud and edge. Copilot leverages Large Language Models (LLMs), the Azure control plane, and insights about your Azure environment to help you work more efficiently.
 
-Microsoft Copilot in Azure can help you navigate the hundreds of services and thousands of resource types that Azure offers. It unifies knowledge and data across hundreds of services to increase productivity, reduce costs, and provide deep insights. Copilot in Azure can help you learn about Azure by answering questions, and it can provide information tailored to your own Azure resources and environment. By letting you [express your goals in natural language](write-effective-prompts.md), Copilot in Azure can simplify your Azure management experience.
+Microsoft Copilot in Azure can help you navigate the hundreds of services and thousands of resource types that Azure offers. It unifies knowledge and data across hundreds of services to increase productivity, reduce costs, and provide deep insights. Copilot in Azure helps you learn about Azure by answering questions, and it can provide information tailored to your own Azure resources and environment. By letting you [express your goals in natural language](write-effective-prompts.md), Copilot in Azure simplifies your Azure management experience.
 
 ## How Copilot in Azure works
 
@@ -26,13 +26,13 @@ You can access Copilot in Azure in the Azure portal, [through the Azure mobile a
 
 ## Features of Copilot in Azure
 
-Copilot in Azure helps you work with Azure services in many ways. It helps you design, operate, optimize, and troubleshoot your Azure apps and infrastructure. Copilot for Azure can help you gain new insights, discover benefits of the cloud, and work more efficiently.
+Copilot in Azure helps you work with Azure services in many ways. You can use Copilot in Azure to help you design, operate, optimize, and troubleshoot your Azure apps and infrastructure. Copilot for Azure helps you gain new insights, discover benefits of the cloud, and work more efficiently.
 
-For more information about ways to use Copilot in Azure, see [Capabilities of Microsoft Copilot in Azure](capabilities.md).
+To learn about some popular ways to use Copilot in Azure, see [Capabilities of Microsoft Copilot in Azure](capabilities.md).
 
 ## Example prompts
 
-For a library of prompts you can try out, see [Example prompts for Microsoft Copilot in Azure](example-prompts.md). For tips on creating your own prompts, see [Write effective prompts for Microsoft Copilot in Azure](write-effective-prompts.md).
+For a library of prompts you can try out, see [Example prompts for Microsoft Copilot in Azure](example-prompts.md). You can also get [tips on creating your own effective prompts](write-effective-prompts.md).
 
 ## Responsible AI in Copilot in Azure
 
@@ -53,7 +53,7 @@ Microsoft Copilot for Azure isn't available in national clouds (Azure Government
 By default, Copilot in Azure is available to all users in a tenant. However, Global Administrators can choose to [control access to Copilot in Azure for their organization](manage-access.md).
 
 > [!IMPORTANT]
-> In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Please ask your network administrator to enable this connection.
+> In order to use Microsoft Copilot in Azure, your organization must allow websocket connections to `https://directline.botframework.com`. Ask your network administrator to enable this connection.
 
 ## Related content
 
