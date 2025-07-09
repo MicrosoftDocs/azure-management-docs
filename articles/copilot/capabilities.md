@@ -16,7 +16,7 @@ author: JnHs
 
 # Microsoft Copilot in Azure capabilities
 
-Microsoft Copilot in Azure amplifies your impact with AI-enhanced operations. You can ask Copilot in Azure for help with designing, operating, optimizing, and troubleshooting your Azure apps and infrastructure. Copilot for Azure can help you gain new insights, discover more benefits of the cloud, and orchestrate data across both the cloud and the edge.
+Microsoft Copilot in Azure amplifies your impact with AI-enhanced operations. You can ask Copilot in Azure for help with designing, operating, optimizing, and troubleshooting your Azure apps and infrastructure. Copilot for Azure helps you gain new insights, discover more benefits of the cloud, and orchestrate data across both the cloud and the edge.
 
 To access Copilot in Azure, you must be signed in to the Azure portal. Select the **Copilot** icon in the page header to open the Copilot pane. You can then enter your prompts in the text box, or try out one of the provided suggestions.
 
@@ -26,7 +26,7 @@ In some cases, suggested prompts appear near the top of a pane when working with
 
 You can also use Copilot in Azure from within the [Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md).
 
-The following sections describe some common ways you can use Copilot in Azure.
+The following sections describe some of the ways you can use Copilot in Azure.
 
 ## Perform tasks
 
@@ -62,13 +62,13 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
 
 ## Get information
 
-From anywhere in the Azure portal, you can ask Microsoft Copilot in Azure to explain more about Azure concepts, services, or offerings. You can ask questions to learn how a feature works, or which configurations best meet your budgets, security, and scale requirements. Copilot can guide you to the right user experience or even author scripts and other artifacts that you can use to deploy your solutions. Answers are grounded in the latest Azure documentation, so you can get up-to-date guidance just by asking a question.
+From anywhere in the Azure portal, you can ask Microsoft Copilot in Azure to explain more about Azure concepts, services, or offerings. You can ask questions to learn how a feature works, or which configurations best meet your budgets, security, and scale requirements. Copilot can guide you to the right user experience, or even author scripts and other artifacts that you can use to deploy your solutions. Answers are grounded in the latest Azure documentation, so you can get up-to-date guidance just by asking a question.
 
 ## Solve problems
 
-Asking questions to understand more can be especially helpful when you're troubleshooting problems. Describe the problem, and Microsoft Copilot in Azure will provide some suggestions on how you might be able to resolve the issue. For example, you can say things like "Cluster stuck in upgrading state while performing update operation" or "Azure database unable to connect from Power BI". Copilot in Azure will show information about the problem and possible resolution options.
+Asking questions to understand more can be helpful when troubleshooting problems. For example, you can say things like "Cluster stuck in upgrading state while performing update operation" or "Azure database unable to connect from Power BI." Copilot in Azure responds with information about the problem and possible ways to fix it.
 
-Copilot in Azure can also help you understand more about information presented in Azure. This can be especially helpful when looking at diagnostic details. For example, when viewing diagnostics for a resource, you can say "Give me a summary of this page" or "What's the issue with my app?" You can ask what an error means, or ask what the next steps would be to implement a recommended solution.
+Copilot in Azure also helps you understand more about information presented in Azure. For example, when viewing diagnostic details for a resource, you can say "Give me a summary of this page" or "What's the issue with my app?" You can ask what an error means, or ask what the next steps would be to implement a recommended solution.
 
 Copilot in Azure can also help explain errors from the Notifications pane.
 
@@ -76,7 +76,7 @@ Copilot in Azure can also help explain errors from the Notifications pane.
 
 ## Find recommendations
 
-Copilot in Azure can provide Azure Advisor recommendations across the [Well Architected Framework](/azure/well-architected) pillars: Reliability, Cost Optimization, Operational Excellence, Performance Efficiency, and Security. You can ask about general Advisor recommendations, or get specific recommendations such as cost savings, performance improvements, or security enhancements.
+Copilot in Azure can show Azure Advisor recommendations across the [Well Architected Framework](/azure/well-architected/what-is-well-architected-framework) pillars: Reliability, Cost Optimization, Operational Excellence, Performance Efficiency, and Security. You can ask about general Advisor recommendations, or get specific recommendations related to cost savings, performance improvements, security enhancements, or other areas.
 
 For example, you can say "Show me my reliability recommendations." Copilot in Azure returns a list of top reliability recommendations for you, including links to each recommendation page in Advisor. You can optionally select specific resources for which to view associated recommendations.
 
@@ -84,17 +84,17 @@ You can also ask questions to get recommendations about services that help suppo
 
 ## Navigation
 
-Rather than searching for a service to open, simply ask Microsoft Copilot in Azure to open the service for you. If you can't remember the exact name, choose from the provided suggestions or ask Microsoft Copilot in Azure which service to use for your intended task.
+Rather than searching for a service to open, ask Microsoft Copilot in Azure to open the service for you. If you can't remember the exact name, choose from the provided suggestions, or ask Microsoft Copilot in Azure which service to use for your intended task.
 
 ## Manage portal settings
 
-Use Microsoft Copilot in Azure to confirm your settings selection or change options, without having to open the **Settings** pane. For example, you can ask Copilot in Azure to change from Light to Dark theme, or vice versa. You can also ask Copilot in Azure to make changes to your language or region settings.
+Use Microsoft Copilot in Azure to confirm your settings selection or change options, without having to open the **Settings** pane. For example, you can ask Copilot in Azure to change from Light to Dark theme, or vice versa.
 
 ## Current limitations
 
-While Microsoft Copilot in Azure can perform many types of tasks, it's important to understand what not to expect. In some cases, Microsoft Copilot in Azure might not be able to complete your request. In these cases, you'll generally see an explanation along with more information about how you can carry out the intended action.
+While Microsoft Copilot in Azure can perform many types of tasks, it might not be able to complete all requests. In these cases, Copilot in Azure typically explains the limitation and provides information about how you can carry out the intended action.
 
-Keep in mind these current limitations:
+Keep in mind these general current limitations:
 
 - You can't continue the same conversation beyond 24 hours.
 - Any action taken on more than 10 resources must be performed outside of Microsoft Copilot in Azure.
@@ -107,4 +107,3 @@ Keep in mind these current limitations:
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Microsoft Copilot in Azure.
 - Learn about [managing access to Copilot in Azure](manage-access.md) in your organization.
 - Learn how to use Copilot in Azure with [AI Shell](ai-shell-overview.md) or [in the Azure mobile app](/azure/azure-portal/mobile-app/microsoft-copilot-in-azure).
-- Explore the [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/).

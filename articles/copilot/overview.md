@@ -57,8 +57,8 @@ By default, Copilot in Azure is available to all users in a tenant. However, Glo
 
 ## Related content
 
-- [Some of the things you can do with Microsoft Copilot in Azure](capabilities.md)
+- [Learn about things you can do with Microsoft Copilot in Azure](capabilities.md)
+- [Explore some example prompts](example-prompts.md)
+- [Get tips on creating effective prompts](write-effective-prompts.md)
 - [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md)
-- [Write effective prompts](write-effective-prompts.md)
-- [Explore some examples](example-prompts.md)
-- [Microsoft Copilot in Azure video series](/shows/microsoft-copilot-in-azure/)
+
