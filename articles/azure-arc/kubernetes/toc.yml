@@ -149,12 +149,12 @@
       items:
       - name: Getting started
         href: secret-store-extension.md
-      - name: Release notes
-        href: secret-store-extension-release-notes.md
       - name: Configuration
         href: secret-store-extension-configuration.md
       - name: Troubleshooting
         href: secret-store-extension-troubleshooting.md
+      - name: Release notes
+        href: secret-store-extension-release-notes.md
       displayName: secret synchronization, azure secret store, secret store
   - name: Deploy Arc-enabled services
     items:
