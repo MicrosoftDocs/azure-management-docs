@@ -98,6 +98,9 @@ conceptualContent:
             - url: ./troubleshoot-arc-extension.md
               itemType: get-started
               text: Troubleshoot Azure Arc extension issues
+            - url: ./discover-marketplace.md
+              itemType: get-started
+              text: Discover Azure Marketplace solutions
         # Card
         - title: Write and optimize code
           links:
