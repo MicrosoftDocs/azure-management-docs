@@ -19,7 +19,7 @@ In addition to the [general prerequisites for connecting a public cloud](connect
 
 - You must have **AmazonEC2FullAccess** permissions in your public cloud.
 - EC2 instances must meet the [general prerequisites for installing the Connected Machine agent](../servers/prerequisites.md).
-- EC2 instances must have the AWS Systems Manager (SSM) agent  installed. Most EC2 instances have this preconfigured if you use a [supported OS](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html).
+- EC2 instances must have the AWS Systems Manager (SSM) agent installed. Most EC2 instances are preconfigured with this agent if you use a [supported OS](https://docs.aws.amazon.com/systems-manager/latest/userguide/setup-instance-permissions.html).
 
 EC2 instances must also include the permissions described in the following section.
 
@@ -40,23 +40,23 @@ The **ArcForServerRole** IAM role is assumed by Azure Arc using OIDC federated i
 | **cloudformation:ListStackInstances** | Allows listing all stack instances in your AWS CloudFormation stacks. Used to identify resources created through CloudFormation that are relevant for onboarding. This permission is only required for accounts in an AWS Organization, but it's available by default to both management and member accounts. |
 
 > [!NOTE]
-> These permissions are bundled into the **ArcForServerRole** IAM role and are automatically provisioned through the CloudFormation Template. However, be aware that any explicit deny policies will override allowed permissions and can block onboarding. To avoid deployment failures, ensure that no such deny policies are in place.
+> These permissions are bundled into the **ArcForServerRole** IAM role and are automatically provisioned through the CloudFormation Template. However, explicit deny policies will override allowed permissions and can block onboarding. To avoid deployment failures, ensure that no such deny policies are in place.
 
 ## Optional AWS permissions
 
-In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This simplifies Azure Arc onboarding by properly configuring the SSM agent without requiring manual intervention. If you don't enable these permissions, you must manually attach the SSM instance profile to your EC2 machines.
+In addition to the **ArcForServerRole** permissions, you can optionally grant permissions to automatically attach an SSM instance profile to EC2 machines. This option simplifies Azure Arc onboarding by properly configuring the SSM agent without manual intervention. If you don't enable these permissions, you must manually attach the SSM instance profile to your EC2 machines.
 
 Configure the following parameters in your CloudFormation Template to control this behavior:
 
 - `EC2SSMIAMRoleAutoAssignment` (default: `true`): Enables automatic assignment of the IAM role used for SSM tasks to EC2 instances. Set to false to disable this feature and manage instance profiles manually.
-- `EC2SSMIAMRoleAutoAssignmentSchedule` (default: `Enable`): Controls whether the auto-assignment process runs periodically. Set to `Disable` to turn off scheduled checks.
-- `EC2SSMIAMRoleAutoAssignmentScheduleInterval` (default: 1 day): Defines how frequently the auto-assignment Lambda function runs (e.g., 15 minutes, 6 hours, 1 day).
-- `EC2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions if they are missing.
+- `EC2SSMIAMRoleAutoAssignmentSchedule` (default: `Enable`): Controls whether the autoassignment process runs periodically. Set to `Disable` to turn off scheduled checks.
+- `EC2SSMIAMRoleAutoAssignmentScheduleInterval` (default: 1 day): Defines how frequently the autoassignment Lambda function runs (for example, 15 minutes, 6 hours, 1 day).
+- `EC2SSMIAMRolePolicyUpdateAllowed` (default: `true`): Allows the system to update existing IAM roles with required SSM permissions that are missing.
 
 To support automatic instance profile assignment, the following permissions must be allowed:
 
 > [!TIP]
-> These permissions are provisioned automatically if the Lambda-based auto-assignment (**EC2SSMIAMRoleAutoAssignment**) is enabled. Otherwise, you must manually ensure that the EC2 instances have the correct instance profile attached.
+> These permissions are provisioned automatically if the Lambda-based autoassignment (**EC2SSMIAMRoleAutoAssignment**) is enabled. Otherwise, you must manually ensure that the EC2 instances have the correct instance profile attached.
 
 | Permission | Description |
 |---|---|
@@ -89,7 +89,7 @@ For more information, see [Connected machine agent network requirements](../serv
 
 ## Periodic sync options
 
-The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance that meets the prerequisites is discovered, the Arc agent is automatically installed. The periodic sync option will also help clean up your resources in Azure. For instance, if the EC2 instance is removed from AWS, the Arc server in Azure will also be deleted. This is only applicable to Arc servers created in the aws_accountId resource group.
+The periodic sync time that you select when configuring the **Arc onboarding** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, whenever a new EC2 instance that meets the prerequisites is discovered, the Arc agent is automatically installed. The periodic sync option also helps clean up your resources in Azure. For instance, if the EC2 instance is removed from AWS, the corresponding Arc server created in the aws_accountId resource groupin Azure is also deleted.
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
@@ -97,7 +97,7 @@ If you prefer, you can turn periodic sync off when configuring this solution. If
 
 You can choose to filter to scan for EC2 instances based on AWS regions or AWS tags.
 
-You can select specific regions which you would like to scan for EC2 resources. You can also filter by AWS tag so that only EC2 machines that have the matching tag (case-insensitive) are eligible for EC2 onboarding.
+You can select specific regions to scan for EC2 resources. You can also filter by AWS tag so that only EC2 machines that have the matching tag (case-insensitive) are eligible for EC2 onboarding.
 
 ## Next steps
 
