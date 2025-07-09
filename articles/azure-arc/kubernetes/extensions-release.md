@@ -38,7 +38,7 @@ For more information, see [Use the Azure Key Vault Secrets Provider extension to
 
 ## Secret Store
 
-- **Supported distributions**: AKS on Azure Local, AKS enabled by Azure Arc, OpenShift Kubernetes Distribution, and VMware Tanzu Kubernetes Grid.
+- **Supported distributions**: Arc-enabled Kubernetes clusters running Kubernetes 1.27 or later, including: AKS on Azure Local, AKS enabled by Azure Arc, OpenShift Kubernetes Distribution, Rancher Kubernetes Engine, and VMware Tanzu Kubernetes Grid.
 
 The Azure Key Vault Secret Store extension for Kubernetes (Secret Store) automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
 
