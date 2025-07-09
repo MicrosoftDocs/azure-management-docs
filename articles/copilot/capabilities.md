@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 04/28/2025
+ms.date: 07/09/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.custom:
@@ -36,7 +36,6 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Get resource information through Azure Resource Graph queries](get-information-resource-graph.md)
   - [Understand service health events and status](understand-service-health.md)
   - [Analyze, estimate, and optimize costs](analyze-cost-management.md)
-  - [Find Azure Advisor recommendations](find-recommendations-advisor.md)
   - [Visualize network topology](visualize-network-topology.md)
   - [Query your attack surface](query-attack-surface.md)
   - [Investigate Azure Firewall IDPS attacks](/azure/firewall/firewall-copilot)
@@ -75,9 +74,13 @@ Copilot in Azure can also help explain errors from the Notifications pane.
 
 :::image type="content" source="media/capabilities/help-notifications.png" alt-text="Screenshot of Copilot in Azure providing a link to help troubleshoot an error in the Notifications pane.":::
 
-## Find recommended services
+## Find recommendations
 
-Ask questions to learn which services are best suited for your workloads, or get ideas about additional services that might help support your objectives. For instance, you can ask "What service would you recommend to implement distributed caching?" or "What are popular services used with Azure Container Apps?" Where applicable, Microsoft Copilot in Azure provides links to start working with the service or learn more. In some cases, you also see metrics about how often a service is used. You can also ask additional questions to find out more about the service and whether it's right for your needs.
+Copilot in Azure can provide Azure Advisor recommendations across the [Well Architected Framework](/azure/well-architected) pillars: Reliability, Cost Optimization, Operational Excellence, Performance Efficiency, and Security. You can ask about general Advisor recommendations, or get specific recommendations such as cost savings, performance improvements, or security enhancements.
+
+For example, you can say "Show me my reliability recommendations." Copilot in Azure returns a list of top reliability recommendations for you, including links to each recommendation page in Advisor. You can optionally select specific resources for which to view associated recommendations.
+
+You can also ask questions to get recommendations about services that help support your objectives. For instance, you can ask "What service would you recommend to implement distributed caching?" or "What are popular services used with Azure Container Apps?" Where applicable, Microsoft Copilot in Azure provides links to start working with the service or learn more. In some cases, you also see metrics about how often a service is used.
 
 ## Navigation
 
