@@ -1,15 +1,15 @@
 ---
-title: Upgrade the Azure Arc resource bridge
-description: This article describes how to upgrade the Azure Arc resource bridge associated with your SCVMM environment.
+title: Upgrade the Azure Arc resource bridge associated with VMware vSphere environment
+description: This article describes how to upgrade the Azure Arc resource bridge associated with your VMware vSphere environment.
 ms.service: azure-arc
-ms.subservice: azure-arc-scvmm
+ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
 ms.date: 07/09/2025
 ---
 
-# Upgrade the Azure Arc resource bridge
+# Upgrade the Azure Arc resource bridge associated with VMware vSphere environment
 
 This article describes how to upgrade the Azure Arc resource bridge associated with your VMware vSphere environment.
 
