@@ -28,7 +28,7 @@
     items: 
     - name: Enable VMware vCenter resources in Azure
       href: browse-and-enable-vcenter-resources-in-azure.md
-    - name: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter
+    - name: Link Arc-enabled server machines to VMware vSphere
       href: enable-virtual-hardware.md
   - name: Manage role-based access control
     items: 
