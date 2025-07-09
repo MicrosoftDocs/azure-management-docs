@@ -28,8 +28,6 @@
       href: understand-service-health.md
     - name: Analyze costs
       href: analyze-cost-management.md
-    - name: Find your recommendations
-      href: find-recommendations-advisor.md
     - name: Visualize network topology
       href: visualize-network-topology.md
     - name: Query attack surface
