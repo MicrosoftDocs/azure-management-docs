@@ -86,11 +86,13 @@
         href: deliver-extended-security-updates-for-vmware-vms-through-arc.md
   - name: Administer
     items: 
+    - name: Upgrade Azure Arc resource bridge
+      href: upgrade-azure-arc-resource-bridge.md
     - name: Administer Arc-enabled VMware vSphere
       href: administer-arc-vmware.md
-    - name: Remove vCenter from Azure Arc
+    - name: Remove your vCenter environment from Azure Arc
       href: remove-vcenter-from-arc-vmware.md
-    - name: Perform recovery operations
+    - name: Perform recovery operations for Arc resource bridge
       displayName: disaster
       href: recover-from-resource-bridge-deletion.md
 - name: Troubleshoot
