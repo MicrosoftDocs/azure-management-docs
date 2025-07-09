@@ -131,10 +131,6 @@ additionalContent:
     - title: Explore more
       items:
         # Card
-        - title: Copilot in Azure video series
-          summary: See how Microsoft Copilot integrates with various Azure services to help with hybrid management tasks. 
-          url: https://learn.microsoft.com/en-us/shows/microsoft-copilot-in-azure/
-        # Card
         - title: Copilot learning hub
           summary: Get started on your Copilot learning journey.
           url: /copilot/
