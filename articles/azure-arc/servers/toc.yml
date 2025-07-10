@@ -191,6 +191,8 @@
       href: troubleshoot-agent-onboard.md
     - name: VM Extension issues
       href: troubleshoot-vm-extensions.md
+    - name: Connectivity loss
+      href: troubleshoot-connectivity.md
 - name: Security
   items:
   - name: Security overview
