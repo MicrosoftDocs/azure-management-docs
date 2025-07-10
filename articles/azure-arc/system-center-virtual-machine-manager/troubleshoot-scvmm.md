@@ -23,6 +23,7 @@ This article provides troubleshooting steps that help you resolve the errors enc
 |PSSessionAccessDenied|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298170).|
 |PSSessionGet-SCVMMServer|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297694).|
 |PSSessionMIResultFailed|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298171).|
+|KVAAlreadyDeployedCustomerError|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2326777).|
 
 ## KVAInvalidEntityCustomerError
 
