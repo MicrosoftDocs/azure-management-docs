@@ -39,17 +39,17 @@ This article provides troubleshooting steps that help you resolve the errors enc
 |PostOperationTimeout|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).|
 |PostOperationsErrorKubeadmControlPlane|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).|
 
-## UpgradeError
-
-|**Error**|**Troubleshooting guide link**|
-|---|---|
-|Upgrade_PreflightCheckErrorOnPrem|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).|
-
 ## KVAAlreadyDeployedCustomerError
 
 |**Error**|**Troubleshooting guide link**|
 |---|---|
 |KVAAlreadyDeployedCustomerError|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2326777).|
+
+## UpgradeError
+
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|Upgrade_PreflightCheckErrorOnPrem|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).|
 
 ## Next steps
 
