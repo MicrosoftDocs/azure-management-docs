@@ -6,7 +6,7 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 07/09/2025
+ms.date: 07/10/2025
 ---
 
 # Upgrade the Azure Arc resource bridge associated with VMware vSphere environment
@@ -48,18 +48,6 @@ Before you upgrade a resource bridge, the following prerequisites must be met:
 
 ## Upgrade the Azure Arc resource bridge
 
-# [Managed upgrade](#tab/managed)
-
-Microsoft offers cloud-managed upgrades as a supplementary service, but this doesn't replace the need for manual upgrades every six months. With cloud-managed upgrade, Microsoft attempts to upgrade the Arc resource bridge if it will soon be out of support. The upgrade trigger time will at the discretion of Microsoft. The upgrade prerequisites must be met for cloud-managed upgrade to work. Disruptions, errors, or unhealthy resource bridge state could cause cloud-managed upgrades to fail and since Microsoft has negligible control over the resource bridge, which runs in an on-premises environment, we recommend periodic manual upgrades to ensure a supported Azure Arc resource bridge version.  
-
-Cloud-managed upgrades are handled through Azure. A notification is pushed to Azure to reflect the state of the resource bridge as it upgrades. As the resource bridge progresses through the upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the **resource bridge status** is *Running* and **provisioningState** is *Succeeded*. 
-
-To check the status of a cloud-managed upgrade, run the following Azure CLI command from the management machine: 
-
-```azurecli
-az arcappliance show --resource-group <ResourceGroup> --name <ARBName>
-```
-
 # [Manual upgrade](#tab/manual)
 
 The Azure Arc resource bridge can be manually upgraded, and the upgrade command takes your Azure Arc resource bridge to the immediate next version, which might not be the latest available version. Multiple upgrades could be needed to reach a [supported version](/azure/azure-arc/resource-bridge/release-notes). To manually upgrade your resource bridge, follow these steps:
@@ -75,6 +63,18 @@ The Azure Arc resource bridge can be manually upgraded, and the upgrade command 
      ```
 
 Once the upgrade is successful, you can navigate to the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) and verify if it is in a [supported version](/azure/azure-arc/resource-bridge/release-notes).
+
+# [Microsoft-managed upgrade](#tab/managed)
+
+Microsoft offers cloud-managed upgrades as a supplementary service, but this doesn't replace the need for manual upgrades every six months. With cloud-managed upgrade, Microsoft attempts to upgrade the Arc resource bridge if it will soon be out of support. The upgrade trigger time will at the discretion of Microsoft. The upgrade prerequisites must be met for cloud-managed upgrade to work. Disruptions, errors, or unhealthy resource bridge state could cause cloud-managed upgrades to fail and since Microsoft has negligible control over the resource bridge, which runs in an on-premises environment, we recommend periodic manual upgrades to ensure a supported Azure Arc resource bridge version.  
+
+Cloud-managed upgrades are handled through Azure. A notification is pushed to Azure to reflect the state of the resource bridge as it upgrades. As the resource bridge progresses through the upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the **resource bridge status** is *Running* and **provisioningState** is *Succeeded*. 
+
+To check the status of a cloud-managed upgrade, run the following Azure CLI command from the management machine: 
+
+```azurecli
+az arcappliance show --resource-group <ResourceGroup> --name <ARBName>
+```
 
 ---
 
