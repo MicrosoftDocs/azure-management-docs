@@ -281,12 +281,6 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 ### [Bash](#tab/bash)
 
-1. Resolve the configurations for a particular target.
-
-    ```bash
-    az workload-orchestration target resolve --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
-    ```
-
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and `name` values. The name displays the new solution template version.
 
     ```bash
@@ -307,12 +301,6 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     ```
 
 ### [PowerShell](#tab/powershell)
-
-1. Resolve the configurations for a particular target.
-
-    ```powershell
-    az workload-orchestration target resolve --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
-    ```
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and `name` values. The name displays the new solution template version.
 
