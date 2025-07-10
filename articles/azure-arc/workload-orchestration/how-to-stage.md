@@ -555,12 +555,6 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
 #### [Bash](#tab/bash)
 
-1. Resolve the solution template version.
-
-    ```bash
-    az workload-orchestration target resolve --solution-name "$solutionTemplateName" --solution-version "1.0.0" --resource-group "$rg" --target-name "$targetName"
-    ```
-
 1. Review the template version.
 
     ```bash
@@ -568,12 +562,6 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
     ```
 
 #### [PowerShell](#tab/powershell)
-
-1. Resolve the solution template version.
-
-    ```powershell
-    az workload-orchestration target resolve  --solution-name $solutionTemplateName --solution-version 1.0.0 --resource-group $rg --target-name $targetName
-    ```
 
 1. Review the template version.
 
