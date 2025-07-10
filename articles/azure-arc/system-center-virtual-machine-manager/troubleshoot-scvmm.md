@@ -18,16 +18,15 @@ This article provides troubleshooting steps that help you resolve the errors enc
 
 ## CreateConfigKvaCustomerError
 
-|**Error code ID**|**Cause and recommended action**|
+|**Error**|**Troubleshooting guide link**|
 |---|---|
 |PSSessionAccessDenied|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298170).|
 |PSSessionGet-SCVMMServer|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297694).|
 |PSSessionMIResultFailed|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298171).|
-|KVAAlreadyDeployedCustomerError|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2326777).|
 
 ## KVAInvalidEntityCustomerError
 
-|**Error code ID**|**Cause and recommended action**|
+|**Error**|**Troubleshooting guide link**|
 |---|---|
 |ValidateInsufficientLibSharePermission|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297975).|
 |ValidateInsufficientPrivilege|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298222).|
@@ -35,16 +34,22 @@ This article provides troubleshooting steps that help you resolve the errors enc
 
 ## PostOperationsError
 
-|**Error code ID**|**Cause and recommended action**|
+|**Error**|**Troubleshooting guide link**|
 |---|---|
 |PostOperationTimeout|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).|
 |PostOperationsErrorKubeadmControlPlane|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).|
 
 ## UpgradeError
 
-|**Error code ID**|**Cause and recommended action**|
+|**Error**|**Troubleshooting guide link**|
 |---|---|
 |Upgrade_PreflightCheckErrorOnPrem|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).|
+
+## KVAAlreadyDeployedCustomerError
+
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|KVAAlreadyDeployedCustomerError|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2326777).|
 
 ## Next steps
 
