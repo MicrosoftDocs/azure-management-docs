@@ -4,7 +4,7 @@ description: This article provides a clean-up script for Azure Arc workload orch
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 07/01/2025
+ms.date: 07/10/2025
 ---
 
 # Clean-up script for workload orchestration
@@ -20,28 +20,6 @@ Set up your environment for workload orchestration. If you haven't, go to [Prepa
 > [!NOTE]
 > You need to have the necessary permissions to delete resources in the specified resource group. For most cases, by default your alias will have permission.
 
-## Update RBAC (only for ADO pipeline)
-
-If you are using the clean-up script as a part of `RGCleanup` step via ADO pipeline for your private resource group, then you need to add **Contributor** permissions to your private resource group for the object ID `63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e`.
-
-### [Azure CLI](#tab/azcli)
-
-```powershell
-az role assignment create --assignee "63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e" --role "Contributor" --scope "/subscriptions/<your subscription>/resourceGroups/<yourResourceGroupName>"
-```
-
-### [Azure portal](#tab/azportal)
-
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-1. Go to your resource group.
-1. Click on **Access control (IAM)**.
-1. Click on **Add** and select **Add role assignment**.
-1. Select **Contributor** role.
-1. Assign access to **User, group, or service principal**.
-1. Enter the object ID **63a63b4c-a8d7-4aba-9d46-7dd032c7ce4e**.
-1. Click on **Next** and then **Review + assign**.
-
-***
 
 ## Run the clean-up script 
 

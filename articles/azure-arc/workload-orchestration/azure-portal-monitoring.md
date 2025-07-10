@@ -21,14 +21,15 @@ IT DevOps can use the Azure portal to monitor their solutions. In the Azure port
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-## Open the Azure portal
+## Open workload orchestration page
 
-1. In Azure portal, go to the [**workload orchestration** page of Azure Arc](https://aka.ms/configManager).
+1. Go to the [**workload orchestration** page in Azure Arc](https://aka.ms/configManager).
 1. The workload orchestration page has two tabs: **Deployment alerts** and **All resources**. Deployment alerts tab provides the list of issues to be debugged. All resources tab lists all the sites, K8 clusters and deployment targets.
 
     :::image type="content" source="./media/azure-portal-1.png" alt-text="Screenshot of the Azure portal showing the Workload Orchestration menu under management in Azure Arc." lightbox="./media/azure-portal-1.png":::
 
-## Monitor deployment alerts
+    > [!NOTE]
+    > The workload orchestration page is only available via [the direct link](https://aka.ms/configManager). 
 
 1. In the **Deployment alerts** tab, you can see the list of deployment alerts. The list shows the target name, type, and other details.
 1. Click on the name of the target to view the details of the alert.

@@ -6,7 +6,7 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 02/21/2025
+ms.date: 07/10/2025
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom:
   - build-2025
@@ -18,47 +18,38 @@ This article provides troubleshooting steps that help you resolve the errors enc
 
 ## CreateConfigKvaCustomerError
 
-### PSSessionAccessDenied
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298170).
-
-### PSSessionGet-SCVMMServer
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297694).
-
-### PSSessionMIResultFailed
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298171).
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|PSSessionAccessDenied|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298170).|
+|PSSessionGet-SCVMMServer|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297694).|
+|PSSessionMIResultFailed|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298171).|
 
 ## KVAInvalidEntityCustomerError
 
-### ValidateInsufficientLibSharePermission
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297975).
-
-### ValidateInsufficientPrivilege
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298222).
-
-### ValidateVlanIDNotAvailableOnVMNetwork
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|ValidateInsufficientLibSharePermission|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297975).|
+|ValidateInsufficientPrivilege|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2298222).|
+|ValidateVlanIDNotAvailableOnVMNetwork|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2297976).|
 
 ## PostOperationsError
 
-### PostOperationTimeout
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|PostOperationTimeout|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).|
+|PostOperationsErrorKubeadmControlPlane|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).|
 
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2300587).
+## KVAAlreadyDeployedCustomerError
 
-### PostOperationsErrorKubeadmControlPlane
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2301242).
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|KVAAlreadyDeployedCustomerError|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2326777).|
 
 ## UpgradeError
 
-### Upgrade_PreflightCheckErrorOnPrem
-
-[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).
+|**Error**|**Troubleshooting guide link**|
+|---|---|
+|Upgrade_PreflightCheckErrorOnPrem|[Learn about the cause and recommended action](https://go.microsoft.com/fwlink/?linkid=2304710).|
 
 ## Next steps
 
