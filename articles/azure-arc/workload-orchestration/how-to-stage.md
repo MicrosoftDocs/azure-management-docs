@@ -4,7 +4,7 @@ description: Learn how to stage resources before deployment in Azure Arc Workloa
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/25/2025
+ms.date: 07/10/2025
 ---
 
 # Stage resources before deployment
@@ -555,19 +555,19 @@ az workload-orchestration configuration set -g $rg --solution-template-name $sol
 
 #### [Bash](#tab/bash)
 
-1. Review the template version.
+Review the template version.
 
-    ```bash
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionTemplateName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
-    ```
+```bash
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionTemplateName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
+```
 
 #### [PowerShell](#tab/powershell)
 
-1. Review the template version.
+Review the template version.
 
-    ```powershell
-    az workload-orchestration target --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName review
-    ```
+```powershell
+az workload-orchestration target --solution-template-name $solutionTemplateName --solution-template-version 1.0.0 --resource-group $rg --target-name $targetName review
+```
 ***
 
 ### Publish and install the solution
