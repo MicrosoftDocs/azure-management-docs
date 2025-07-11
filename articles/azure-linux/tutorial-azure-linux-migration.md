@@ -343,7 +343,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
 Once the migration is complete on your test clusters, you should verify the following to ensure a successful migration:
 
-* If your migration target is Azure Linux, run the `kubectl get nodes -o wide` command. The output should show `CBL-Mariner/Linux` as your OS image and `.cm2` at the end of your kernel version.
+* If your migration target is Azure Linux, run the `kubectl get nodes -o wide` command. The output should show `Microsoft Azure Linux 3.0` as your OS image and `.azl3` at the end of your kernel version.
 * Run the `kubectl get pods -o wide -A` command to verify that all of your pods and daemonsets are running on the new node pool.
 * Run the `kubectl get nodes --show-labels` command to verify that all of the node labels in your upgraded node pool are what you expect.
 

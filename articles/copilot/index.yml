@@ -98,6 +98,9 @@ conceptualContent:
             - url: ./troubleshoot-arc-extension.md
               itemType: get-started
               text: Troubleshoot Azure Arc extension issues
+            - url: ./discover-marketplace.md
+              itemType: get-started
+              text: Discover Azure Marketplace solutions
         # Card
         - title: Write and optimize code
           links:
@@ -127,10 +130,6 @@ additionalContent:
   sections:
     - title: Explore more
       items:
-        # Card
-        - title: Copilot in Azure video series
-          summary: See how Microsoft Copilot integrates with various Azure services to help with hybrid management tasks. 
-          url: https://learn.microsoft.com/en-us/shows/microsoft-copilot-in-azure/
         # Card
         - title: Copilot learning hub
           summary: Get started on your Copilot learning journey.
