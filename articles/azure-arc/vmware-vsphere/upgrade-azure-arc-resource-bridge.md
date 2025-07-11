@@ -83,7 +83,7 @@ az arcappliance show --resource-group <ResourceGroup> --name <ARBName>
 >- If a resource bridge can't be upgraded to a supported version, you must perform a fresh deployment of a resource bridge and reassociate the existing resources with the new resource bridge. For more information, see [how to perform recovery operations on your resource bridge](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery).
 >- We recommend you to trigger the upgrade as soon as you receive the email notification to allow debugging time if there are any issues. To receive assistance from Microsoft, submit a support ticket while you're still in a supported version.
 
-## Next Step
+## Next steps
 
 - [Troubleshoot SCVMM-specific upgrade errors](/azure/azure-arc/system-center-virtual-machine-manager/troubleshoot-scvmm).
 - Learn how to [administer Arc-enabled SCVMM](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm).
