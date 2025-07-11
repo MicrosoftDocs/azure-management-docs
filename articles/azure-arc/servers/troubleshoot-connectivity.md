@@ -10,7 +10,7 @@ ms.topic: overview
 
 Azure Arc-enabled servers is designed for connected scenarios. When Azure Arc-enabled servers become disconnected from the internet for a short amount of time, they operate in limited scenarios with curtailed functionality.
 
-This article describes how Azure Arc-enabled servers behave when they are disconnected from the internet, and ways to mitigate issues due to low connectivity. It also describes how you can get alerts when servers become disconnected.
+This article describes how Azure Arc-enabled servers behave when they're disconnected from the internet, and ways to mitigate issues due to low connectivity. It also describes how you can get alerts when servers become disconnected.
 
 ## Impact on Arc-enabled servers when disconnected
 
@@ -22,7 +22,7 @@ When an Azure Arc-enabled server loses connectivity:
 - Azure Policy assignments that target disconnected machines continue to run. However, guest assignment is stored locally for 14 days. Within the 14-day period, if the Connected Machine agent reconnects to the service, policy assignments are reapplied. After 14 days, assignments are deleted and aren't reassigned to the machine.
 - Existing extensions continue to run, but operations on extensions (such as install, uninstall, or update) can't be completed while the server is disconnected. These operations are queued on the service for up to 6 hours, and can only be executed when connectivity is restored.
 
-When an Azure Arc-enabled server loses connectivity, other Azure services running on the server can be impacted. For example, if you have the Azure Monitor agent installed on the server, it continues to run even when disconnected, with logs cached for up to 5 minutes. No data is sent to Azure while the connection is offline. Other services which depend on the Azure Monitor agent, such as Microsoft Sentinel, won't function properly until the server is reconnected.
+When an Azure Arc-enabled server loses connectivity, other Azure services running on the server can be impacted. For example, if you have the Azure Monitor agent installed on the server, it continues to run even when disconnected, with logs cached for up to 5 minutes. No data is sent to Azure while the connection is offline. Other services that depend on the Azure Monitor agent, such as Microsoft Sentinel, won't function properly until the server is reconnected.
 
 ## Contingency options for disconnected servers
 
