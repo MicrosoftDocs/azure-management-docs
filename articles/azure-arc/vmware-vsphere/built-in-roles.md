@@ -112,41 +112,41 @@ Arc VMware VM Contributor has permission to perform all connected VMwarevSphere 
 > |Microsoft.HybridCompute/machines/runcommands/read|Reads any Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/write|Installs or Updates an Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/delete|Deletes an Azure Arc runcommands.|
-> | |Gets extention instance resource.|
+> |Microsoft.KubernetesConfiguration/extensions/read |Gets extention instance resource.|
 > |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
-> |Microsoft.SCVMM/unregister/action|unregister RP.|
-> |Microsoft.SCVMM/register/action|register RP.|
-> |Microsoft.SCVMM/availabilitySets/Read|Read clusters.|
-> |Microsoft.SCVMM/availabilitySets/Write|Writes clusters.|
-> |Microsoft.SCVMM/availabilitySets/Delete|Deletes clusters.|
-> |Microsoft.SCVMM/clouds/Read|Deploys on cluster.|
-> |Microsoft.SCVMM/clouds/Write|Read datastores.|
-> |Microsoft.SCVMM/clouds/Delete|Writes datastores.|
-> |Microsoft.SCVMM/clouds/deploy/action|Deletes datastores.|
->| |Allocates on datastores.|
->| |Read hosts.|
->| |Writes hosts.|
->| |Deletes hosts.|
->| |Deploys on host.| 
-> |Microsoft.SCVMM/locations/operationstatuses/read|Read operationstatus.|
-> |Microsoft.SCVMM/locations/operationstatuses/write|Write operationstatus.|
-> | |Reads the status of an update center operation on virtual machines.|
-> | |Reads the status of an upgrade extensions operation on virtual machines.|
-> |Microsoft.SCVMM/operations/read|Read operations.|
-> | |Read resourcepools.|
-> | |Writes resourcepools.|
-> | |Deletes resourcepools.|
-> | |Deploys on resource pool.|
-> |Microsoft.SCVMM/skus/read|Get skus.|
-> | |Read vcenters.|
-> | |Writes vcenters.|
-> | |Deletes vcenters.|
-> | |Deletes vcenter inventoryitems.|
-> | |Read vcenter inventoryitems.|
-> | |Writes vcenter inventoryitems.|
-> | |Project vcenters inventoryitems.
-> | |Start VM.|
+> |microsoft.connectedvmwarevsphere/unregister/action |unregister RP.|
+> |microsoft.connectedvmwarevsphere/register/action/register/action|register RP.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Read |Read clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Write |Writes clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Delete |Deletes clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/deploy/action |Deploys on cluster.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Read /Write|Read datastores.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Write |Writes datastores.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Delete |Deletes datastores.|
+>|Microsoft.ConnectedVMwarevSphere/datastores/AllocateSpace/action |Allocates on datastores.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Read |Read hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Write |Writes hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Delete |Deletes hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/deploy/action |Deploys on host.| 
+> |microsoft.connectedvmwarevsphere/locations/operationstatuses/read |Read operationstatus.|
+> |microsoft.connectedvmwarevsphere/locations/operationstatuses/write |Write operationstatus.|
+> |Microsoft.ConnectedVMwarevSphere/locations/updateCenterOperationResults/read |Reads the status of an update center operation on virtual machines.|
+> |Microsoft.ConnectedVMwarevSphere/locations/upgradeExtensionsOperationResults/read |Reads the status of an upgrade extensions operation on virtual machines.|
+> |microsoft.connectedvmwarevsphere/operations/read |Read operations.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Read |Read resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Write |Writes resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Delete |Deletes resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/deploy/action |Deploys on resource pool.|
+> |microsoft.connectedvmwarevsphere/skus/read |Get skus.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Read |Read vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Write |Writes vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Delete |Deletes vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete |Deletes vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete |Read vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Write |Writes vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/onboard/action |Project vcenters inventoryitems.
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/start/action  |Start VM.|
 > | |Restart VM.|
 > | |Stop VM.|
 > | |Read virtualmachineinstances.|
