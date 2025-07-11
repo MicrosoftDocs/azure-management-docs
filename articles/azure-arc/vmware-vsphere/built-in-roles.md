@@ -6,7 +6,7 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.topic: reference
 author: jyothisuri
 ms.author: jsuri
-ms.date: 07/10/2025
+ms.date: 07/11/2025
 ---
 
 # Azure built-in roles for Azure Arc-enabled VMware vSphere
@@ -25,7 +25,6 @@ If the built-in Azure roles doesn’t match your requirements, you can [create c
 
 Arc VMware VM Contributor has permission to perform all connected VMwarevSphere actions.
 
-
 > [!div class="mx-tableFixed"]
 > | Actions | Description |
 > | --- | --- |
@@ -39,7 +38,7 @@ Arc VMware VM Contributor has permission to perform all connected VMwarevSphere 
 > |Microsoft.Authorization/operations/read|Gets the list of operations.|
 > |Microsoft.Authorization/permissions/read|Lists all the permissions the caller has at a given scope.|
 > |Microsoft.Authorization/policyAssignments/read|Get information about a policy assignment.|
-> |Microsoft.Authorization/policyAssignments/ privateLinkAssociations/read|Get information about private link association.|
+> |Microsoft.Authorization/policyAssignments/privateLinkAssociations/read|Get information about private link association.|
 > |Microsoft.Authorization/policyAssignments/resourceManagementPrivateLinks/read|Get information about resource management private link.|
 > |Microsoft.Authorization/policyAssignments/resourceManagementPrivateLinks/privateEndpointConnections/read|Get information about private endpoint connection.|
 > |Microsoft.Authorization/policyAssignments/resourceManagementPrivateLinks/privateEndpointConnectionProxies/read|Get information about private endpoint connection proxy.|
@@ -112,72 +111,72 @@ Arc VMware VM Contributor has permission to perform all connected VMwarevSphere 
 > |Microsoft.HybridCompute/machines/runcommands/read|Reads any Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/write|Installs or Updates an Azure Arc runcommands.|
 > |Microsoft.HybridCompute/machines/runcommands/delete|Deletes an Azure Arc runcommands.|
-> |Microsoft.KubernetesConfiguration/extensions/read |Gets extention instance resource.|
+> |Microsoft.KubernetesConfiguration/extensions/read|Gets extention instance resource.|
 > |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
-> |microsoft.connectedvmwarevsphere/unregister/action |unregister RP.|
+> |microsoft.connectedvmwarevsphere/unregister/action|unregister RP.|
 > |microsoft.connectedvmwarevsphere/register/action/register/action|register RP.|
-> |Microsoft.ConnectedVMwarevSphere/clusters/Read |Read clusters.|
-> |Microsoft.ConnectedVMwarevSphere/clusters/Write |Writes clusters.|
-> |Microsoft.ConnectedVMwarevSphere/clusters/Delete |Deletes clusters.|
-> |Microsoft.ConnectedVMwarevSphere/clusters/deploy/action |Deploys on cluster.|
-> |Microsoft.ConnectedVMwarevSphere/datastores/Read /Write|Read datastores.|
-> |Microsoft.ConnectedVMwarevSphere/datastores/Write |Writes datastores.|
-> |Microsoft.ConnectedVMwarevSphere/datastores/Delete |Deletes datastores.|
->|Microsoft.ConnectedVMwarevSphere/datastores/AllocateSpace/action |Allocates on datastores.|
->|Microsoft.ConnectedVMwarevSphere/hosts/Read |Read hosts.|
->|Microsoft.ConnectedVMwarevSphere/hosts/Write |Writes hosts.|
->|Microsoft.ConnectedVMwarevSphere/hosts/Delete |Deletes hosts.|
->|Microsoft.ConnectedVMwarevSphere/hosts/deploy/action |Deploys on host.| 
-> |microsoft.connectedvmwarevsphere/locations/operationstatuses/read |Read operationstatus.|
-> |microsoft.connectedvmwarevsphere/locations/operationstatuses/write |Write operationstatus.|
-> |Microsoft.ConnectedVMwarevSphere/locations/updateCenterOperationResults/read |Reads the status of an update center operation on virtual machines.|
-> |Microsoft.ConnectedVMwarevSphere/locations/upgradeExtensionsOperationResults/read |Reads the status of an upgrade extensions operation on virtual machines.|
-> |microsoft.connectedvmwarevsphere/operations/read |Read operations.|
-> |Microsoft.ConnectedVMwarevSphere/resourcepools/Read |Read resourcepools.|
-> |Microsoft.ConnectedVMwarevSphere/resourcepools/Write |Writes resourcepools.|
-> |Microsoft.ConnectedVMwarevSphere/resourcepools/Delete |Deletes resourcepools.|
-> |Microsoft.ConnectedVMwarevSphere/resourcepools/deploy/action |Deploys on resource pool.|
-> |microsoft.connectedvmwarevsphere/skus/read |Get skus.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/Read |Read vcenters.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/Write |Writes vcenters.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/Delete |Deletes vcenters.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete |Deletes vcenter inventoryitems.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete |Read vcenter inventoryitems.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Write |Writes vcenter inventoryitems.|
-> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/onboard/action |Project vcenters inventoryitems.
-> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/start/action  |Start VM.|
-> | |Restart VM.|
-> | |Stop VM.|
-> | |Read virtualmachineinstances.|
-> | |Writes virtualmachineinstances.|
-> | |Deletes virtualmachineinstances.|
-> | |Read virtualmachines.|
-> | |Writes virtualmachines.|
-> | |Deletes virtualmachines.|
-> | |Start VM.|
-> | |Restart VM.|
-> | |Stop VM.|
-> | |Install patches on Azure Arc VMware machines.|
-> | |Assess patches on Azure Arc VMware machines.|
-> | |Upgrade extensions on Azure Arc VMware machines.|
-> | |Delete extension resource.|
-> | |Gets extension resource.|
-> | |Write extension resource.|
-> | |Delete guestagent resource.|
-> | |Gets guestagent resource.|
-> | |Write guestagent resource.|
-> | |Deletes hybridIdentityMetadata.|
-> | |Gets hybridIdentityMetadata.|
-> | |Write hybridIdentityMetadata.|
-> | |Read virtualmachinetemplates.|
-> | |Writes virtualmachinetemplates.|
-> | |Deletes virtualmachinetemplates.|
-> | |Clones virtualmachinetemplates.|
-> | |Read virtualnetworks.|
-> | |Writes virtualnetworks.|
-> | |Deletes virtualnetworks.|
-> | |Deletes virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Read|Read clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Write|Writes clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Delete|Deletes clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/deploy/action|Deploys on cluster.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Read/Write|Read datastores.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Write|Writes datastores.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Delete|Deletes datastores.|
+>|Microsoft.ConnectedVMwarevSphere/datastores/AllocateSpace/action|Allocates on datastores.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Read|Read hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Write|Writes hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/Delete|Deletes hosts.|
+>|Microsoft.ConnectedVMwarevSphere/hosts/deploy/action|Deploys on host.| 
+> |microsoft.connectedvmwarevsphere/locations/operationstatuses/read|Read operationstatus.|
+> |microsoft.connectedvmwarevsphere/locations/operationstatuses/write|Write operationstatus.|
+> |Microsoft.ConnectedVMwarevSphere/locations/updateCenterOperationResults/read|Reads the status of an update center operation on virtual machines.|
+> |Microsoft.ConnectedVMwarevSphere/locations/upgradeExtensionsOperationResults/read|Reads the status of an upgrade extensions operation on virtual machines.|
+> |microsoft.connectedvmwarevsphere/operations/read|Read operations.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Read|Read resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Write|Writes resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Delete|Deletes resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/deploy/action|Deploys on resource pool.|
+> |microsoft.connectedvmwarevsphere/skus/read|Get skus.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Read|Read vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Write|Writes vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Delete|Deletes vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete|Deletes vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Delete|Read vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/Write|Writes vcenter inventoryitems.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/inventoryitems/onboard/action|Project vcenters inventoryitems.
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/start/action|Start VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/restart/action|Restart VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/stop/action|Stop VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Read|Read virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Write|Writes virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Delete|Deletes virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Read|Read virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Write|Writes virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Delete|Deletes virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/start/action|Start VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/restart/action|Restart VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/stop/action|Stop VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/installPatches/action|Install patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/assessPatches/action|Assess patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/upgradeExtensions/action|Upgrade extensions on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Delete|Delete extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Read|Gets extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Write|Write extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Delete|Delete guestagent resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Read|Gets guestagent resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Write|Write guestagent resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Delete|Deletes hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Read|Gets hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Write|Write hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/Read|Read virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/Write|Writes virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/Delete|Deletes virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/clone/action|Clones virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/Read|Read virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/Write|Writes virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/Delete|Deletes virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/join/action|Deletes virtualnetworks.|
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
@@ -403,20 +402,21 @@ Azure Arc VMware Private Cloud User has permissions to use the VMware Cloud reso
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
 > |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
+> |Microsoft.KubernetesConfiguration/extensions/read|Gets extension instance resource.|
 > |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
-> | |Read clusters.|
-> | |Deploys on clusters.|
-> | |Read datastores.|
-> | |Allocates on datastores.|
-> | |Read hosts.|
-> | |Deploys on host.|
-> | |Read resourcepools.|
-> | |Deploys on resource pool.|
-> | |Read virtualmachinetemplates.|
-> | |Clones virtualmachinetemplates.|
-> | |Read virtualnetworks.|
-> | |Deletes virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/Read|Read clusters.|
+> |Microsoft.ConnectedVMwarevSphere/clusters/deploy/action|Deploys on clusters.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/Read|Read datastores.|
+> |Microsoft.ConnectedVMwarevSphere/datastores/AllocateSpace/action|Allocates on datastores.|
+> |Microsoft.ConnectedVMwarevSphere/hosts/Read|Read hosts.|
+> |Microsoft.ConnectedVMwarevSphere/hosts/deploy/action|Deploys on host.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/Read|Read resourcepools.|
+> |Microsoft.ConnectedVMwarevSphere/resourcepools/deploy/action|Deploys on resource pool.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/Read|Read virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachinetemplates/clone/action|Clones virtualmachinetemplates.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/Read|Read virtualnetworks.|
+> |Microsoft.ConnectedVMwarevSphere/virtualnetworks/join/action|Deletes virtualnetworks.|
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
@@ -607,25 +607,25 @@ Azure Arc VMware Private Clouds Onboarding role has permissions to provision all
 > |Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read|Gets or lists deployment operation statuses.|
 > |Microsoft.Resources/subscriptions/operationresults/read|Get the subscription operation results.|
 > |Microsoft.ResourceHealth/AvailabilityStatuses/read|Gets the availability statuses for all resources in the specified scope.|
-> | |Creates or updates extension resource.|
-> | |Gets extension instance resource.|
-> | |Deletes extension instance resource.|
-> | |Gets Async Operation status.|
-> | |Gets available operations of the Microsoft.KubernetesConfiguration resource provider.|
+> |Microsoft.KubernetesConfiguration/extensions/write|Creates or updates extension resource.|
+> |Microsoft.KubernetesConfiguration/extensions/read|Gets extension instance resource.|
+> |Microsoft.KubernetesConfiguration/extensions/delete|Deletes extension instance resource.|
+> |Microsoft.KubernetesConfiguration/extensions/operations/read|Gets Async Operation status.|
+> |Microsoft.KubernetesConfiguration/extensions/operations/read|Gets available operations of the Microsoft.KubernetesConfiguration resource provider.|
 > |Microsoft.ExtendedLocation/customLocations/read|Gets an Custom Location resource.|
-> | |Creates or Updates Custom Location resource.|
+> |Microsoft.ExtendedLocation/customLocations/write|Creates or Updates Custom Location resource.|
 > |Microsoft.ExtendedLocation/customLocations/deploy/action|Deploy permissions to a Custom Location resource.|
-> | |Deletes Custom Location resource.|
-> | |Gets an Appliance resource.|
-> | |Creates or Updates Appliance resource.|
-> | |Deletes Appliance resource.|
-> | |Gets an appliance cluster user credential.|
-> |Microsoft.SCVMM/vmmservers/Read|Read vcenters.|
-> |Microsoft.SCVMM/vmmservers/Write|Writes vcenters.|
-> |Microsoft.SCVMM/vmmservers/Delete|Deletes vcenters.|
-> | |Retrieves a list of applications.|
-> | |Creates an application.|
-> | |Removes an application.|
+> |Microsoft.ExtendedLocation/customLocations/delete|Deletes Custom Location resource.|
+> |Microsoft.ResourceConnector/appliances/read|Gets an Appliance resource.|
+> |Microsoft.ResourceConnector/appliances/write|Creates or Updates Appliance resource.|
+> |Microsoft.ResourceConnector/appliances/delete|Deletes Appliance resource.|
+> |Microsoft.ResourceConnector/appliances/listClusterUserCredential/action|Gets an appliance cluster user credential.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Read|Read vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Write|Writes vcenters.|
+> |Microsoft.ConnectedVMwarevSphere/vcenters/Delete|Deletes vcenters.|
+> |Microsoft.BackupSolutions/VMwareApplications/read|Retrieves a list of applications.|
+> |Microsoft.BackupSolutions/VMwareApplications/write|Creates an application.|
+> |Microsoft.BackupSolutions/VMwareApplications/delete|Removes an application.|
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |
@@ -986,18 +986,18 @@ Arc VMware VM Contributor has permissions to perform all VM actions.
 > | |Read virtualmachines.|
 > | |Writes virtualmachines.|
 > | |Deletes virtualmachines.|
-> | |Start VM.|
-> | |Restart VM.|
-> | |Stop VM.|
-> | |Install patches on Azure Arc VMware machines.|
-> | |Assess patches on Azure Arc VMware machines.|
-> | |Upgrade extensions on Azure Arc VMware machines.|
-> | |Delete extension resource.|
-> | |Gets extension resource.|
-> | |Writes extension resource.|
-> | |Deletes hybridIdentityMetadata.|
-> | |Gets hybridIdentityMetadata.|
-> | |Write hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/installPatches/action|Start VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/assessPatches/action|Restart VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/upgradeExtensions/action|Stop VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Delete|Install patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Read|Assess patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Write|Upgrade extensions on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Delete|Delete extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Read|Gets extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Write|Writes extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Delete|Deletes hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Read|Gets hybridIdentityMetadata.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Write|Write hybridIdentityMetadata.|
 > | **NotActions** |  |
 > | *none* |  |
 > | **DataActions** |  |

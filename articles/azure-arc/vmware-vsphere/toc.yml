@@ -32,6 +32,8 @@
       href: enable-virtual-hardware.md
   - name: Manage role-based access control
     items: 
+      - name: Built-in roles
+        href: built-in-roles.md
       - name: Create custom roles
         href: create-custom-roles.md
       - name: Set up and manage self-service access
