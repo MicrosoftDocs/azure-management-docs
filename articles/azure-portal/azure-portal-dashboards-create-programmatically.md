@@ -9,9 +9,7 @@ ms.date: 07/11/2025
 
 # Programmatically create Azure dashboards
 
-This article walks you through the process of programmatically creating and publishing Azure dashboards, using the example dashboard shown below. You can use this process with any dashboard.
-
-:::image type="content" source="media/azure-portal-dashboards-create-programmatically/sample-dashboard.png" alt-text="Screenshot of a sample dashboard in the Azure portal.":::
+This article walks you through the process of programmatically creating and publishing Azure dashboards. You can use this process to create a deployable template based on any dashboard.
 
 ## Overview
 
@@ -80,9 +78,17 @@ Once you've configured your template, deploy it using any of the following metho
 - [Azure CLI](/azure/azure-resource-manager/templates/deploy-cli)
 - [Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template)
 
-## Example JSON representation exported from dashboard
+## Example dashboard
 
-This example template is similar to what you'll see when you export a dashboard that looks like the example at the beginning of this article. The hard-coded resource identifiers show that this dashboard is pointing at a specific Azure virtual machine.
+Consider the following example dashboard:
+
+:::image type="content" source="media/azure-portal-dashboards-create-programmatically/sample-dashboard.png" alt-text="Screenshot of a sample dashboard in the Azure portal.":::
+
+The following sections show two JSON representations of this example dashboard. The first is the version exported from the portal that's bound to a specific VM resource. The second is the template version that can be programmatically bound to any VM and deployed using Azure Resource Manager.
+
+### Example JSON representation exported from dashboard
+
+This example template is similar to what you'll see when you export a dashboard that looks like the example at the beginning of this article. The hard-coded resource identifiers show that this dashboard is pointing at a specific Azure VM.
 
 ```json
 {
@@ -319,7 +325,7 @@ This example template is similar to what you'll see when you export a dashboard 
 }
 ```
 
-## Example parameterized dashboard template
+### Example parameterized dashboard template
 
 This example shows the template version of the previous dashboard, which can be programmatically bound to any virtual machine and deployed using Azure Resource Manager.
 
