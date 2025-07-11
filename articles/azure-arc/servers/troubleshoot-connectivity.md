@@ -1,14 +1,14 @@
 ---
 title: Troubleshoot Azure Arc-enabled servers in disconnected scenarios
 description: Learn how Azure Arc-enabled servers operate in disconnected scenarios and how to be notified when servers become disconnected.
-ms.date: 07/10/2025
+ms.date: 07/11/2025
 ms.topic: overview
 # Customer intent: "As a system administrator managing a hybrid cloud environment, I want to understand how Azure Arc-enabled servers works when they are disconnected from the internet, so that I can resolve problems and manage my environment more effectively."
 ---
 
 # Troubleshoot Azure Arc-enabled servers in disconnected scenarios
 
-When Azure Arc-enabled servers become disconnected from the internet, they can still operate, even though the connection to Azure is unavailable. This capability lets you maintain control over your hybrid cloud environment, even in scenarios where network connectivity is intermittent or unavailable. However, features dependent on a reliable connection to Azure may not be available.
+Azure Arc-enabled servers is designed for connected scenarios. When Azure Arc-enabled servers become disconnected from the internet for a short amount of time, they operate in limited scenarios with curtailed functionality.
 
 This article describes how Azure Arc-enabled servers behave when they are disconnected from the internet, and ways to mitigate issues due to low connectivity. It also describes how you can get alerts when servers become disconnected.
 
