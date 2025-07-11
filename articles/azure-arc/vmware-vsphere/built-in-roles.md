@@ -968,33 +968,36 @@ Arc VMware VM Contributor has permissions to perform all VM actions.
 > |Microsoft.HybridCompute/machines/installPatches/action|Installs patches on any Azure Arc machines.|
 > |Microsoft.HybridCompute/machines/patchInstallationResults/read|Reads any Azure Arc patchInstallationResults.|
 > |Microsoft.HybridCompute/machines/patchInstallationResults/softwarePatches/read|Reads any Azure Arc patchInstallationResults/softwarePatches.|
-> |Microsoft.HybridCompute/machines/extensions/read|Reads any Azure Arc extensions.|
-> |Microsoft.HybridCompute/machines/extensions/write|Installs or Updates an Azure Arc extensions.|
-> |Microsoft.HybridCompute/machines/extensions/delete|Deletes an Azure Arc extensions.|
-> |Microsoft.HybridCompute/machines/licenseProfiles/read|Reads any Azure Arc licenseProfiles.|
-> | |Read any Azure Arc machine's Hybrid Identity Metadata.|
-> | |Reads any Azure Arc patchAssessmentResults/softwarePatches.|
-> | |Reads any Azure Arc runcommands.|
-> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or Updates an Azure Arc runcommands.|
-> |Microsoft.HybridCompute/machines/licenseProfiles/delete|Deletes an Azure Arc runcommands.|
-> | |Start VM.|
-> | |Restart VM.|
-> | |Stop VM.|
-> | |Read virtualmachineinstances.|
-> | |Writes virtualmachineinstances.|
-> | |Deletes virtualmachineinstances.|
-> | |Read virtualmachines.|
-> | |Writes virtualmachines.|
-> | |Deletes virtualmachines.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/installPatches/action|Start VM.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/assessPatches/action|Restart VM.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/upgradeExtensions/action|Stop VM.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Delete|Install patches on Azure Arc VMware machines.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Read|Assess patches on Azure Arc VMware machines.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Write|Upgrade extensions on Azure Arc VMware machines.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Delete|Delete extension resource.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Read|Gets extension resource.|
-> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Write|Writes extension resource.|
+> |Microsoft.HybridCompute/machines/licenseProfiles/read|Reads any Azure Arc extensions.|
+> |Microsoft.HybridCompute/machines/licenseProfiles/write|Installs or Updates an Azure Arc extensions.|
+> |Microsoft.HybridCompute/machines/licenseProfiles/delete|Deletes an Azure Arc extensions.|
+> |Microsoft.HybridCompute/machines/hybridIdentityMetadata/read|Reads any Azure Arc licenseProfiles.|
+> |Microsoft.HybridCompute/machines/patchAssessmentResults/read|Read any Azure Arc machine's Hybrid Identity Metadata.|
+> |Microsoft.HybridCompute/machines/patchAssessmentResults/softwarePatches/read|Reads any Azure Arc patchAssessmentResults/softwarePatches.|
+> |Microsoft.HybridCompute/machines/runcommands/read|Reads any Azure Arc runcommands.|
+> |Microsoft.HybridCompute/machines/runcommands/write|Installs or Updates an Azure Arc runcommands.|
+> |Microsoft.HybridCompute/machines/runcommands/delete|Deletes an Azure Arc runcommands.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/start/action|Start VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/restart/action|Restart VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/stop/action|Stop VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Read|Read virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Write|Writes virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachineinstances/Delete|Deletes virtualmachineinstances.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Read|Read virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Write|Writes virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/Delete|Deletes virtualmachines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/start/action|Start VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/restart/action|Restart VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/stop/action|Stop VM.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/installPatches/action|Install patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/assessPatches/action|Assess patches on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/upgradeExtensions/action|Upgrade extensions on Azure Arc VMware machines.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Delete|Delete extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Read|Gets extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/extensions/Write|Writes extension resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Delete|Delete guestagent resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Read|Gets guestagent resource.|
+> |Microsoft.ConnectedVMwarevSphere/virtualmachines/guestagents/Write|Write guestagent resource.|
 > |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Delete|Deletes hybridIdentityMetadata.|
 > |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Read|Gets hybridIdentityMetadata.|
 > |Microsoft.ConnectedVMwarevSphere/virtualmachines/hybridIdentityMetadata/Write|Write hybridIdentityMetadata.|
