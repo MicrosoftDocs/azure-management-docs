@@ -6,7 +6,7 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.topic: reference
 author: jyothisuri
 ms.author: jsuri
-ms.date: 07/11/2025
+ms.date: 07/14/2025
 ---
 
 # Azure built-in roles for Azure Arc-enabled VMware vSphere
@@ -23,7 +23,7 @@ If the built-in Azure roles doesn’t match your requirements, you can [create c
 
 ## Azure Arc VMware Administrator role
 
-Arc VMware VM Contributor has permission to perform all connected VMwarevSphere actions.
+Arc VMware VM Contributor has permission to perform all VMware vSphere actions.
 
 > [!div class="mx-tableFixed"]
 > | Actions | Description |
@@ -342,7 +342,7 @@ Arc VMware VM Contributor has permission to perform all connected VMwarevSphere 
 
 ## Azure Arc VMware Private Cloud User
 
-Azure Arc VMware Private Cloud User has permissions to use the VMware Cloud resources to deploy VMs.
+Azure Arc VMware Private Cloud User has permissions to use the VMware resources to deploy VMs.
 
 
 > [!div class="mx-tableFixed"]
