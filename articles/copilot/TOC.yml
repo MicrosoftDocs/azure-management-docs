@@ -56,8 +56,6 @@
       href: network-management.md
     - name: Work with Azure Load Balancer
       href: work-load-balancer.md
-    - name: Troubleshoot Azure Arc extensions
-      href: troubleshoot-arc-extension.md
     - name: Discover Azure Marketplace solutions
       href: discover-marketplace.md
   - name: Write and optimize code
