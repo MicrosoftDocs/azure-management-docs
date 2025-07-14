@@ -26,6 +26,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/copilot/troubleshoot-arc-extension.md",
+      "redirect_url": "/azure/copilot/capabilities#solve-problems-and-troubleshoot-resources",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/copilot/optimize-code-application-insights.md",
       "redirect_url": "/azure/azure-monitor/insights/code-optimizations-extensions",
       "redirect_document_id": false
