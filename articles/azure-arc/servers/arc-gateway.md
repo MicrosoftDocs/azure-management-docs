@@ -42,6 +42,9 @@ During the public preview, the following limitations apply. Consider these facto
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
 
+> [!IMPORTANT]
+> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may need to enable additional endpoints in order to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios).
+
 ## Required permissions
 
 To create Arc gateway resources and manage their association with Arc-enabled servers, the following permissions are required:
