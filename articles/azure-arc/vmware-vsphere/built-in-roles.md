@@ -19,7 +19,7 @@ Azure Arc-enabled VMware vSphere has four built-in roles:
 - [Azure Arc VMware Private Clouds Onboarding](#azure-arc-vmware-private-clouds-onboarding)
 - [Azure Arc VMware VM Contributor](#azure-arc-vmware-vm-contributor)
 
-If the built-in Azure roles doesn’t match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
+If the built-in Azure roles don't match your requirements, you can [create custom roles](/azure/azure-arc/system-center-virtual-machine-manager/create-custom-roles) with granular permissions. 
 
 ## Azure Arc VMware Administrator role
 
