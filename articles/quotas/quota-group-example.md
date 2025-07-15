@@ -27,7 +27,7 @@ https://aka.ms/patterns-feedback
 
 -->
 
-# Quota Group scenario and example walkthrough
+# Quota Group example walkthrough
 
 <!-- Required: Article headline - H1
 
@@ -36,7 +36,23 @@ article describes.
 
 -->
 
-[Introduce and explain the purpose of the article.]
+This covers a Quota Group scenario and walks through an end-to-end Quota Group example. 
+
+## Quota Group Scenario
+Anna is a lead developer on the Contoso Cloud Readiness team. Contoso manages hundreds of Azure subscriptions and continues to stamp new ones to support business continuity. One of Anna’s key challenges is the inability to deploy new VMs due to quota limitations. Managing quotas at the individual subscription level is inefficient—each time a subscription runs out of quota or a new one is created, Anna must file a support ticket.
+Anna explores Azure’s new Quota Groups feature, which streamlines quota management by allowing it to be handled at the group level. With the Quota Group APIs, she can easily create a group tailored to a new application she plans to deploy. Instead of submitting multiple quota requests for each subscription, Anna submits a single group-level request for the necessary compute resources. Once the quota is approved, she can allocate cores from the group to individual subscriptions, ensuring smooth and consistent deployments. As her application scales, Anna can continue to manage quotas efficiently by submitting group-level requests, eliminating the need for repetitive, subscription-specific requests.
+With Quota Groups, Anna can also support and maintain existing applications more effectively by grouping subscriptions and redistributing already procured quota among them. For instance, if one of her current subscriptions has unused quota, she can seamlessly transfer it to another subscription that needs it. This flexibility allows Anna to keep her deployments running smoothly—without the need to file a support ticket—by reallocating resources where they’re needed most.
+
+The reader will learn how to complete the following operations via API and portal.
+1.	Creating a Quota Group object to manage quota for a group of subscription(s)
+2.	Adding subscription to Quota Group object 
+3.	Submit Quota Group Limit increase request
+  a.	GET groupQuotaLimit request status
+  b.	GET groupQuotaLimits
+4.	Transferring quota from source subscription to target subscription 
+  a.	View request status for quotaAllocation request
+  b.	View quota allocation snapshot for subscription in Quota Group
+5.	GroupLimit request is escalated and support ticket is filed via portal
 
 <!-- Required: Introductory paragraphs (no heading)
 
@@ -47,6 +63,17 @@ and to describe the task the article covers.
 -->
 
 ## Prerequisites
+•	Before you can use the Quota Group feature, you must:  
+•	Register the Microsoft.Quota and Microsoft.Compute resource provider on all relevant subscriptions before adding to a Quota Group.  
+•	A Management Group (MG) is needed to create a Quota Group. Your group inherits quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.  
+•	Certain permissions are required to create Quota Groups and to add subscriptions.  
+
+Limitations
+•	Available only for Enterprise Agreement or Microsoft Customer Agreement.  
+•	Supports IaaS compute resources only.  
+•	Available in public cloud regions only.  
+•	Management Group deletion results in the loss of access to the Quota Group limit. To clear out the group limit, allocate cores to subscriptions, delete subscriptions, then the Quota Group object before deletion of Management Group. In the even that the MG is deleted, access your Quota Group limit by recreating the MG with the same ID as before.  
+
 
 <!-- Optional: Prerequisites - H2
 
@@ -60,9 +87,11 @@ provide instructions and a link.
 
 -->
 
-## "[verb] * [noun]"
+## Creating a Quota Group object to manage quota for a group of subscriptions
 
-[Introduce the procedure.]
+•	Create a Quota Group object to be able to do quota transfers between subscriptions and submit Quota Group increase requests.  
+•	Requires the GroupQuota Request Operator role on the Management Group used to create Quota group.  
+
 
 1. Procedure step
 1. Procedure step
