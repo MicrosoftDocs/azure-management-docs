@@ -109,7 +109,7 @@ Sample response of approved Quota Group increase request
   "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
 }
 ```
-### Snapshot of Quota Group limit
+## Snapshot of Quota Group limit
 
 Validate that the correct number of cores  were transferred from source subscription to group or that your group limit increase request was approved. Consider this when interpreting the API response. 
 - Available limit = how many cores do I have at group level to distribute  
