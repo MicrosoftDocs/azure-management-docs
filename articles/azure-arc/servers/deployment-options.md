@@ -20,14 +20,15 @@ The following table highlights each method so you can determine which works best
 | Interactively | [Connect machines from Windows Admin Center](onboard-windows-admin-center.md) |
 | Interactively | [Connect Windows Servers machines to Azure through Azure Arc Setup](onboard-windows-server.md) |
 | Interactively or at scale | [Connect machines using PowerShell](onboard-powershell.md) |
+| At scale | [Connect machines at scale using Ansible playbooks](onboard-ansible-playbooks.md)  to create a service principal for onboarding Ansible-managed nodes to Azure Arc-enabled servers at scale using Ansible playbooks. |
 | At scale | [Connect machines using a service principal](onboard-service-principal.md) to install the agent at scale non-interactively.|
-| At scale | [Connect machines by running PowerShell scripts with Configuration Manager](onboard-configuration-manager-powershell.md)
-| At scale | [Connect machines with a Configuration Manager custom task sequence](onboard-configuration-manager-custom-task.md)
-| At scale | [Connect Windows machines using Group Policy](onboard-group-policy-powershell.md)
+| At scale | [Connect machines by running PowerShell scripts with Configuration Manager](onboard-configuration-manager-powershell.md)|
+| At scale | [Connect machines with a Configuration Manager custom task sequence](onboard-configuration-manager-custom-task.md)|
+| At scale | [Connect Windows machines using Group Policy](onboard-group-policy-powershell.md)|
 | At scale | [Connect machines from Automation Update Management](onboard-update-management-machines.md) to create a service principal that installs and configures the agent for multiple machines managed with Azure Automation Update Management to connect machines non-interactively. |
 | At scale | [Install the Arc agent on VMware VMs at scale using Arc enabled VMware vSphere](../vmware-vsphere/enable-guest-management-at-scale.md). Arc enabled VMware vSphere allows you to [connect your VMware vCenter server to Azure](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md), automatically discover your VMware VMs, and install the Arc agent on them. Requires VMware tools on VMs.|
 | At scale | [Install the Arc agent on SCVMM VMs at scale using Arc-enabled System Center Virtual Machine Manager](../system-center-virtual-machine-manager/enable-guest-management-at-scale.md). Arc-enabled System Center Virtual Machine Manager allows you to [connect your SCVMM management server to Azure](../system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc.md), automatically discover your SCVMM VMs, and install the Arc agent on them. |
-| At scale | [Connect your AWS cloud through the multicloud connector enabled by Azure Arc](../multicloud-connector/connect-to-aws.md) and [enable the **Arc onboarding** solution](../multicloud-connector/onboard-multicloud-vms-arc.md) to auto-discover and onboard EC2 VMs. |
+| At scale | [Connect your AWS cloud through the multicloud connector enabled by Azure Arc](../multicloud-connector/connect-to-aws.md) and [enable the ](../multicloud-connector/onboard-multicloud-vms-arc.md)**[Arc onboarding](../multicloud-connector/onboard-multicloud-vms-arc.md)**[ solution](../multicloud-connector/onboard-multicloud-vms-arc.md) to auto-discover and onboard EC2 VMs. |
 
 > [!IMPORTANT]
 > The Connected Machine agent cannot be installed on an Azure virtual machine. The install script will warn you and roll back if it detects the server is running in Azure.
