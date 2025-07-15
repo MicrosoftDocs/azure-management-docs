@@ -1,12 +1,11 @@
 ---
-title: [Follow SEO guidance at 
-https://review.learn.microsoft.com/en-us/help/platform/seo-meta-title]
-description: "[Article description]."
-author: [your GitHub alias]
-ms.author: [your Microsoft alias or a team alias]
-ms.service: [the approved service name]
+title: Quota Group scenario and example walkthrough
+description: Walks through Quota Group scenario and how to use quota group operations to self-manage quota.
+author: yaya-5
+ms.author: yaalanis
+ms.service: Quota Groups
 ms.topic: how-to #Don't change
-ms.date: [mm/dd/yyyy]
+ms.date: 07/15/25
 
 #customer intent: As a <role>, I want <what> so that <why>.
 
