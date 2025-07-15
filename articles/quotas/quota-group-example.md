@@ -205,7 +205,26 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
   ]
 
 ```
-### [REST API](#tab/rest-2)
+### [Azure portal](#tab/portal-2)
+Add or remove subscriptions from the Quota Group through the Azure portal. Subscriptions can only belong to one quota group at a time.
+
+To add subscriptions from Quota Group through portal.
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
+4. Select **Edit** or **Add** button under **Subscriptions added** column
+5. In the Edit subscriptions, view the existing subscriptions are listed, select **Add subscription** button
+6. In the Add Subscriptions view, select the desired subscription and select **Save**. You can search for subscription in search box at the top of blade. subscriptions  will be greyed out if they belong to existing group and indicate 'No' under **Available to add** column.
+7. Notification should indicate that subscriptions  was successfully added and the Edit Subscriptions view is updated with the added subscriptions 
+   
+To remove subscription from Quota Group through portal. 
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
+4. Select **Edit** or **Add** button under **Subscriptions added** column
+5. In the Edit subscriptions, view the existing subscriptions are listed, select trashcan icon for the subscription you'd like to remove
+6. Notification pops up, it asks whether you're sure about removing the selected subscription, select **remove**
+7. Notification should indicate that subscriptions  was successfully removed and the Edit Subscriptions view is updated with the latest list of subscriptions 
 
 
 ## Clean up resources
