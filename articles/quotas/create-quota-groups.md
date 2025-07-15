@@ -8,7 +8,8 @@ ms.date: 07/07/2025
 ---
 
 # Create Quota Groups object to manage quota for a group of subscriptions
-A Quota group is an ARM object that can be used to manage quota at the group level and self-distribute quota between subscriptions added to the group. The first step is to create a Quota Group object under a Management Group. 
+- A Quota group is an ARM object that can be used to manage quota at the group level and self-distribute quota between subscriptions added to the group.  
+- The first step is to create a Quota Group object under a Management Group.  
 
 ## Considerations
 - Requires the *GroupQuota Request Operator* role on the Management Group used to create Quota group
