@@ -7,13 +7,13 @@ ms.topic: how-to
 ms.date: 07/07/2025
 ---
 # Transfer quota within Quota Group
-- Using the Quota Group APIs, customers are able to self-distribute quota from group to subscriptions in a group.
-- Once quota is approved at the group level, customer can distribute approved quota across subscription to support successful depoyments.
-- Additionally customers can transfer quota from a source suscription to group, then move to a target subscription also in the group.  
+- Customers are able to self-distribute quota from group to subscriptions in a group using the Quota Group ARM object.
+- Once quota is approved at the group level, customer can distribute approved quota across subscription to support successful deployments.
+- Additionally customers can transfer quota from a source subscription to group, then move to a target subscription also in the group.  
 ### [REST API](#tab/rest-4)
 - Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.  
 - To allocate or transfer quota from group to target subscription, update subID to target subscription, then set the limit property to the new desired subscription limit. If your current subscription quota is 10 and you want to transfer 10 cores from group to target subscription, set the new limit to 20. This applies to a specific region and Virtual Machine family.  
-- To de-allocate or transfer quota from source subscription to group, update subID to source subscription, then set limit property to new desired subscription limit. If your current subscription quota is 20 cores and you want to transfer 10 cores from source subscription to group, set new limit to 10. This will initate transfer for the specific region and Virtual Machine Family.  
+- To de-allocate or transfer quota from source subscription to group, update subID to source subscription, then set limit property to new desired subscription limit. If your current subscription quota is 20 cores and you want to transfer 10 cores from source subscription to group, set new limit to 10. This will initiate transfer for the specific region and Virtual Machine Family.  
 - You can view quota allocation snapshot for subscription in Quota Group or view group limit to validate transfer and stamping of cores at group level.   
 - To view your existing subscription usage for a given region, please use the [Compute Usages API](/rest/api/compute/usage/list?view=rest-compute-2023-07-01&tabs=HTTP&tryIt=true&source=docs#code-try-0).  
 
@@ -101,7 +101,7 @@ Transfer from source subscription to group.
 7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscriptions  usage over sum of subscription quota. Lastly view list of subscriptions  in selected group -> Quota Group resource  
 8. Select from the list of subscriptions  and select **Manage subscription quota** button  
 9. Select **Return quota to family limit** option, the **Increase subscription quota** option will be greyed out if Group quota for selected   resource = 0  
-10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
+10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop-down, ensure **Return quota to group quota** is selected if you want to transfer unused quota from source subscription to group.  
 11. View the list of subscriptions  by **Current usage / limit** and **Return to group quota column**, input value of quota you'd like to transfer from source subscription to group. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the current subscription quota or above the value of (subscription quota - usage)  
 12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Returned to group quota** column indicates the quota being moved from subscription to group.  
 13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
@@ -118,7 +118,7 @@ Transfer from group to target subscription
 7. Select the **Quota group resource** link to view the Quota Group resources details view for selected resource, view your **Group Quota** also known as group limit, **Total current usage / limit** also know as the sum of subscriptions  usage over sum of subscription quota. Lastly view list of subscriptions  in selected group -> Quota Group resource
 8. Select from the list of subscriptions  and select **Manage subscription quota** button
 9. Select **Increase subscription quota** option, this will be geyed out if Group quota for selected resource = 0
-10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop down, ensure **Increase subscription quota** is selected if you want to transfer unused quota from group to target subscription
+10. In the **Distribute** blade you can view your **Group quota** also known as group limit and the **Manage subscription quota** drop-down, ensure **Increase subscription quota** is selected if you want to transfer unused quota from group to target subscription
 11. View the list of subscriptions  by **Current usage / limit** and **Distribute to subscription quota**, input value of quota you'd like to transfer from group to target subscription. Output message **Your new quota limit will be** will indicate the new subscription quota if you complete transfer. You cannot insert value above the group quota limit or 0.
 12. Select **Next** button to view the **Review + Distribute** page. You can view your **New group quota** value if you submit quota transfer, you can also view list of subscription selected by **New usage / limit** with the value inputted in previous step. The **Distribute to subscription quota** column indicates the quota being moved from group to subscription. 
 13. Select **Submit** button to trigger quota transfer, notification **We are reviewing your request to adjust quota** on right hand side will surface. Quota transfer may take up to ~3 minutes to complete.  
