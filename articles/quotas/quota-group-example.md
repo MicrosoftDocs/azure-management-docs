@@ -5,7 +5,7 @@ author: yaya-5
 ms.author: yaalanis
 ms.service: Quota Groups
 ms.topic: how-to #Don't change
-ms.date: 07/15/25
+ms.date: 7/16/25
 
 #customer intent: As a <role>, I want <what> so that <why>.
 
@@ -272,7 +272,7 @@ Example using `az rest`:
 ```json
 az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/e1933713-dea6-4f31-8431-116c5285c5c1?api-version=2025-03-01"
 {
-  "id": "/providers/Microsoft.Management/managementGroups/YayatestMG/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/e1933713-dea6-4f31-8431-116c5285c5c1",
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/e1933713-dea6-4f31-8431-116c5285c5c1",
   "name": "e1933713-dea6-4f31-8431-116c5285c5c1",
   "properties": {
     "provisioningState": "Succeeded",
@@ -296,11 +296,11 @@ az rest --method get --uri "https://management.azure.com/providers/Microsoft.Man
 ```
 5. Anna submits a GETgroupQuotaLimit request to view snapshot of the group limit for GQdemo group. Consider the below when interpreting the API response.  
    a. Available limit = how many cores do I have at group level to distribute  
-     i. GQdemo Available limit = 50 cores because there are 50 cores available at group level from the request previously submitted  
+       i. GQdemo Available limit = 50 cores because there are 50 cores available at group level from the request previously submitted  
    b.	Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
-     i. GQdemo Limit = 50 because I requested and was approved 50 cores
+       i. GQdemo Limit = 50 because I requested and was approved 50 cores
    c. how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group
-     i. quotaAllocated for Subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96) = 0 and Subscription2 ((c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7) = 0 because I haven't completed any quota             transfers yet
+       i. quotaAllocated for Subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96) = 0 and Subscription2 ((c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7) = 0 because I haven't completed any quota             transfers yet
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
@@ -411,9 +411,9 @@ az rest --method get --uri "https://management.azure.com/providers/Microsoft.Man
 • Transfer unused quota between subscriptions using the Quota Group ARM object
 
 ### [REST API](#tab/rest-4)
-1.	Anna invokes the Usages API to get current quota and usage for the two subscriptions added in CentralUS for Standard DDv4 Family vCPUs
-  a.	Source sub: subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96)
-  b.	Target sub: subscription2 (c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7)
+1.	Anna invokes the Usages API to get current quota and usage for the two subscriptions added in CentralUS for Standard DDv4 Family vCPUs  
+  a.	Source sub: subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96)  
+  b.	Target sub: subscription2 (c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7)  
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
