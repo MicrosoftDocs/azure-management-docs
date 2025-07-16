@@ -388,6 +388,24 @@ az rest --method get --uri "https://management.azure.com/providers/Microsoft.Man
 }
 ```
 ### [Azure portal](#tab/portal-3)
+1. To view the Quotas page, sign in to the Azure portal and enter "quotas" into the search box, then select **Quotas**.
+2. Under settings in left hand side, select **Quota groups**.
+3. To view existing Quota group, select **Management Group** filter and select management group used to create Quota Group
+4. Select **Quota group** from list of Quota Groups
+5. In the Quota Group resources view, there is the list of Quota group resources by region by Group quota (limit)
+6. Use the filters to select **Region** and or **VM Family**, you can also search for region and or VM family in the search bar
+7. Select the checkbox to the desired **Quota group resource**, then select the **Increase group quota** button at the top of page
+8. On right side view the **New quota request** blade with selected regions at the top, with details on the selected **Quota group resource**, the **Current group quota** value, and under **New group quota** column enter the  absolute value of desired net new group limit. For example, I want 20 cores assigned at group for DSv3 in Australia Central, I enter 20 under **New group quota**
+9. Select **Submit** button, notification **We are reviewing your request to adjust the quota** this may take up to ~3 minutes to complete
+10. If successful, the **New quota request** view shows the selected **Quota Group resource** by location status of request, the **Increase** value and **New limit**
+11. Refresh the Quota Group resources view to view latest **Group quota** / group limit
+12. If Quota Group limit increase was rejected notification **We were unable to adjust your quota** surfaces in the top right corner
+13. Select the **Generate a support ticket** button to start process of creating support ticket
+14. In the **Request details** view  **Deployment model** as **Resource Manager**, request details view surface the Quota Group name, Management GroupID, Quota Group resource, Location selected, and the Desired increase value, select **Save and Continue** button
+16. In **Additional details** view, select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
+17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner has ticketID and link
+18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
+
 
 ## Clean up resources
 
