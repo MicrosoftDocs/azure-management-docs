@@ -35,7 +35,7 @@ Identify the product or service and the task the
 article describes.
 
 -->
-
+Customers begin by creating a Quota Group object and adding the relevant subscriptions to it. This enables them to manage quota collectively across those subscriptions. Instead of submitting separate quota requests for each subscription, customers can submit a single group-level limit request for an entire application or workload. Once the quota is approved, they can distribute it across subscriptions to support successful deployments. Additionally, customers can group existing subscriptions—such as those tied to a specific application or department—and seamlessly transfer or reallocate quota between them using the Quota Group object, all without needing to file a support ticket.
 This covers a Quota Group scenario and walks through an end-to-end Quota Group example. 
 
 ## Quota Group Scenario
@@ -189,7 +189,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
         "provisioningState": "SUCCEEDED",
         "subscriptionId": "dbd56dd1-1e41-4dff-a289-b815fc1acd96"
       },
-      "id": "/providers/Microsoft.Management/managementGroups/YayatestMG/providers/Microsoft.Quota/groupQuotas/GQdemo/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96",
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96",
       "name": "dbd56dd1-1e41-4dff-a289-b815fc1acd96",
       "type": "Microsoft.Quota/groupQuotas/subscriptions"
     },
@@ -198,7 +198,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
         "provisioningState": "SUCCEEDED",
         "subscriptionId": "c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7"
       },
-      "id": "/providers/Microsoft.Management/managementGroups/YayatestMG/providers/Microsoft.Quota/groupQuotas/GQdemo/subscriptions/c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7",
+      "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/subscriptions/c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7",
       "name": "c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7",
       "type": "Microsoft.Quota/groupQuotas/subscriptions"
     }
@@ -225,7 +225,169 @@ To remove subscription from Quota Group through portal.
 5. In the Edit subscriptions, view the existing subscriptions are listed, select trashcan icon for the subscription you'd like to remove
 6. Notification pops up, it asks whether you're sure about removing the selected subscription, select **remove**
 7. Notification should indicate that subscriptions  was successfully removed and the Edit Subscriptions view is updated with the latest list of subscriptions 
+---
 
+## Submit Quota Group limit increase
+One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved you can then follow steps to allocate/transfer quota from group to target subscriptions for a given region x VM family.  
+•	Require GroupQuota Request Operator role on the Management Group to submit Quota Group limit increase request.  
+•	Customers can submit Quota Group limit increase requests for a region x VM family combination, and if approved, quota will be stamped on the specified Quota GroupID.  
+•	Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.  
+•	If Quota Group Limit request is rejected then customer must submit support ticket via the self-serve Quota group request blade.  
+•	Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details.  
+
+1.	Anna does PATCH call for group limit increase request for 50 cores for standardddv4family in centralus
+```http
+PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01
+
+{
+  "properties": {
+    "value": [
+      {
+        "properties": {
+          "limit": 50,
+          "resourceName": "standardddv4family",
+          "comment": "Contoso requires more quota."
+        }
+      }
+```
+Example using `az rest`:
+```json
+az rest --method patch --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"resourceName":"standardddv4family","limit":50,"comment":"comments"}}]}}' –verbose
+```
+2. Anna gets the below response and captures the groupQuotaOperationStatus ID which she will use to get the request status in next step
+```json
+Status code: 202
+Response header:
+Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaOperationsStatus/e1933713-dea6-4f31-8431-116c5285c5c1?api-version=2025-03-01
+Retry-After: 30 
+Response Content
+```
+3. Anna submits GET groupLimit request status using groupQuotaOperationsStatus ID(e1933713-dea6-4f31-8431-116c5285c5c1) from response header when submitting limit increase request
+4. Anna gets the below request status response and sees the provisioningState = Succeeded, which means the request for 50 cores in central us for Standardddv4 was approved
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
+```
+Example using `az rest`:
+```json
+az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/e1933713-dea6-4f31-8431-116c5285c5c1?api-version=2025-03-01"
+{
+  "id": "/providers/Microsoft.Management/managementGroups/YayatestMG/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/e1933713-dea6-4f31-8431-116c5285c5c1",
+  "name": "e1933713-dea6-4f31-8431-116c5285c5c1",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "requestProperties": {
+      "requestSubmitTime": "2025-06-23T19:05:26.6535642+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 50,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Succeeded",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
+}
+```
+5. Anna submit a GETgroupQuotaLimit request to view snapshot of the group limit for GQdemo group. Consider the below when interpreting the API response.  
+   a. Available limit = how many cores do I have at group level to distribute  
+     i. GQdemo Available limit = 50 cores because there are 50 cores available at group level from the request previously submitted  
+   b.	Limit = how many cores have been explicitly requested and approved/stamped on your group via quota increase requests  
+     i. GQdemo Limit = 50 because I requested and was approved 50 cores
+   c. how many cores the sub has been allocated from group, ‘-‘ value indicates cores have been de-allocated from sub to group
+     i. quotaAllocated for Subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96) = 0 and Subscription2 ((c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7) = 0 because I have not completed any quota             transfers yet
+
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
+```
+Example using `az rest`:
+```json
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&%24filter=resourceName%20eq%20'standardddv4family'" –debug
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus",
+  "name": "centralus",
+  "properties": {
+    "nextLink": "",
+    "provisioningState": "Succeeded",
+    "value": [
+      {
+        "properties": {
+          "allocatedToSubscriptions": {
+            "value": [
+              {
+                "quotaAllocated": 0,
+                "subscriptionId": "dbd56dd1-1e41-4dff-a289-b815fc1acd96"
+              },
+              {
+                "quotaAllocated": 0,
+                "subscriptionId": "c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7"
+              }
+            ]
+          },
+          "availableLimit": 50,
+          "limit": 50,
+          "name": {
+            "localizedValue": "standardddv4family",
+            "value": "standardddv4family"
+          },
+          "resourceName": "standardddv4family",
+          "unit": "Count"
+        }
+      }
+
+```
+
+## GroupLimit request is escalated
+•	If Quota Group Limit request is rejected via API or portal; then customer must submit support ticket via the self-serve Quota group request portal blade.  
+•	Support tickets for Quota Groups will be created based on a preselected subscriptionID within the group, the customer has the ability to edit the subID when updating request details. Even though ticket is created using subID, if approved the quota will be stamped at the group level.  
+•	Anna requires at a minimum the Support request contributor role to create support ticket on subscription in the group.  
+### [REST API](#tab/rest-3)
+1. Anna submit group limit request for 10k; PATCH call for group limit increase request for 10k  cores for standardddv4family in centralus
+
+Example using `az rest`:
+```json
+az rest --method patch --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"resourceName":"standardddv4family","limit":10000,"comment":"comments"}}]}}' –verbose
+```
+2. Anna gets the below response and captures the groupQuotaOperationStatus ID which she will use to get the request status in next step
+```json
+Status code: 202
+Response header:
+Location: https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaOperationsStatus/3e01a682-1349-4ac7-813e-b9e1b95461f1?api-version=2025-03-01
+Retry-After: 30 
+Response Content
+```
+3. Anna submit GET groupLimit request status using groupQuotaOperationsStatus ID(3e01a682-1349-4ac7-813e-b9e1b95461f1) from response header when submitting limit increase request
+4. Anna gets the below request status response and sees the provisioningState = Failed, which means the request for 10k cores in central us for Standardddv4 was NOT approved and Anna must submit a support ticket via the Azure portal.
+```json
+az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/3e01a682-1349-4ac7-813e-b9e1b95461f1?api-version=2025-03-01"
+{
+  "id": "/providers/Microsoft.Management/managementGroups/YayatestMG/providers/Microsoft.Quota/groupQuotas/GQdemo/groupQuotaRequests/3e01a682-1349-4ac7-813e-b9e1b95461f1",
+  "name": "3e01a682-1349-4ac7-813e-b9e1b95461f1",
+  "properties": {
+    "provisioningState": "Failed",
+    "requestProperties": {
+      "requestSubmitTime": "2025-06-23T19:37:56.9442264+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 10000,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Failed",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/groupQuotaRequests"
+}
+```
+### [Azure portal](#tab/portal-3)
 
 ## Clean up resources
 
