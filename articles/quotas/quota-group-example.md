@@ -405,7 +405,175 @@ az rest --method get --uri "https://management.azure.com/providers/Microsoft.Man
 16. In **Additional details** view, select required options **Advance diagnostic information** and **Preferred contact method** and select **Next**
 17. Review details in **Review + Create** view and select **Create** button, notification **New Support Request** in top right corner has ticketID and link
 18. To view request details return to **Quotas** blade and select the **Request** tab under the **Overview** page, see the list of quota requests, you may also search and go to **Help + Support** blade and view request under **Recent support requests** table
+---
+## Transfer quota between subscriptions
+• Transfer unused quota between subscriptions using the Quota Group ARM object
 
+### [REST API](#tab/rest-3)
+1.	Anna invokes the Usages API to get current quota and usage for the two subscriptions added in CentralUS for Standard DDv4 Family vCPUs
+  a.	Source sub: subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96)
+  b.	Target sub: subscription2 (c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7)
+
+```http
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Compute/locations/{location}/usages?api-version=2023-07-01
+```
+
+Example using `az rest`:
+```json
+az rest --method get --url https://management.azure.com/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Compute/locations/centralus/usages?api-version=2023-07-01
+```
+
+2. Anna gets below responses for the subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96) for Standard DDv4 Family vCPUs in CentralUS  
+    a.	Remaining quota = Limit – currentValue  
+    b.	For subscription1 my remaining quota is 400 because I have no usage, therefore I can distribute up to 400 cores to my Quota Group from this subscription
+```json
+{
+      "limit": 400,
+      "unit": "Count",
+      "currentValue": 0,
+      "name": {
+        "value": "standardDDv4Family",
+        "localizedValue": "Standard DDv4 Family vCPUs"
+      }
+    }
+
+```
+
+3. Anna gets below response for subscription2 (c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7) for Standard DDv4 Family vCPUs in CentralUS
+    a. For subscription2 my remaining quota is 350 because I have no usage, therefore I am able to distribute up to 350 cores to my Quota Group from this subscription
+```json
+       {
+      "limit": 350,
+      "unit": "Count",
+      "currentValue": 0,
+      "name": {
+        "value": "standardDDv4Family",
+        "localizedValue": "Standard DDv4 Family vCPUs"
+      }
+    }
+```
+4. Anna wants to transfer 100 cores from Subscription1 to subscription2  for Standard DDv4 Family vCPUs in CentralUS using Quota group object  
+    a. Transfers between subscriptions require transfering cores from source subscription to Quota group, then to target subscription  
+
+5. Anna does PATCH quotaAllocation to transfer 100 cores to group by setting new limit for subscription1 to 300 cores. This is because I want to transfer 100 cores to subscription1 -> Group -> subscription2 and the new Limit for subscription1 should be 300 cores  
+    a. New limit for source subscription = (Current source subscription limit) – (desired value to transfer to target subscription)    
+    b. 300 = 400 – 100  
+```http
+PATCH https://management.azure.com/”providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/ {groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01”
+{
+  “properties”: {
+    “value”: [
+      {
+        “properties”: {
+          “limit”: 300,
+          “resourceName”: “standardddv4family”
+        }
+      }
+    ]
+  }
+
+```
+Example using `az rest`:
+```json
+"https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"limit":300,"resourceName":"standardddv4family"}}]}}' –debug
+```
+6. Anna gets the below response and captures the quotaAllocationOperationsStatus ID which she will use to get the request status in next step
+```json
+Response status: 202
+Response headers:
+'Location': 'https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/quotaAllocationOperationsStatus/8cb2da64-21e3-4d33-af8e-51c88ccca09c?api-version=2025-03-01
+
+```
+7. Anna gets request status for quotaAllocation request using the quotaAllocationOperationsStatus/8cb2da64-21e3-4d33-af8e-51c88ccca09c from response header, request has succeeded 
+```json
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocationRequests/8cb2da64-21e3-4d33-af8e-51c88ccca09c?api-version=2025-03-01"
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocationRequests/8cb2da64-21e3-4d33-af8e-51c88ccca09c",
+  "name": "8cb2da64-21e3-4d33-af8e-51c88ccca09c",
+  "properties": {
+    "provisioningState": "Succeeded",
+    "requestProperties": {
+      "requestSubmitTime": "2025-06-16T20:35:57.0327825+00:00"
+    },
+    "requestedResource": {
+      "properties": {
+        "limit": 300,
+        "name": {
+          "localizedValue": "STANDARDDDV4FAMILY",
+          "value": "STANDARDDDV4FAMILY"
+        },
+        "provisioningState": "Succeeded",
+        "region": "centralus"
+      }
+    }
+  },
+  "type": "Microsoft.Quota/groupQuotas/quotaAllocationRequests"
+}
+
+```
+8. Anna does PATCH quotaAllocation to transfer 100 cores from group to subscription2 by setting new limit for subscription2 to 450 cores. This is because my current subscription limit for target subscription2 is 350 cores and I want to increase it by 100, or set my new limit for target subscription2 as 450.    
+    a.	New limit for target subscription= (Current target subscription limit) + (desired value to transfer to target subscription)  
+    b.	450 = 350 + 100  
+   
+```json
+"https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementgroup}/subscriptions/c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"limit":450,"resourceName":"standardddv4family"}}]}}' –-debug
+```
+9. Anna does GET quotaAllocation to view snapshot of the quota allocations for subscription1 and subscription2 
+    a.	Consider that Limit = current subscription limit and Shareable quota = how many cores have been transferred from sub to group, ‘-5’ means that 5 cores were transferred from sub to           group.  
+    b.	Response for subscription1, Anna can see subscription limit = 300 for standardddv4family and shareaable quota = ‘-100’ because I gave/transferred 100 cores to my group.   
+    c.	Response for subscription2, Anna can see subscription limit =450 for standardddv4family and shareaable quota = ‘100’ because this sub was given 100 cores from the group, that                originally came from subscription1.
+
+```http
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
+```
+Example using `az rest`:
+Response for Subscription1 (dbd56dd1-1e41-4dff-a289-b815fc1acd96)
+```json
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus?api-version=2025-03-01&%24filter=resourceName%20eq%20'standardddv4family'" --debug
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/dbd56dd1-1e41-4dff-a289-b815fc1acd96/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus",
+  "name": "centralus",
+  "provisioningState": "Succeeded",
+  "type": "Microsoft.Quota/groupQuotas/quotaAllocations",
+  "value": [
+    {
+      "properties": {
+        "limit": 300,
+        "name": {
+          "localizedValue": "standardddv4family",
+          "value": "standardddv4family"
+        },
+        "resourceName": "standardddv4family",
+        "shareableQuota": -100
+      }
+    }
+  ]
+}
+```
+Response for Subscription2 (c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7) 
+```json
+az rest --method get --url "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus?api-version=2025-03-01&%24filter=resourceName%20eq%20'standardddv4family'" --debug
+{
+  "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/c54a40cd-9a9c-4c70-bc2a-a532c75e7ca7/providers/Microsoft.Quota/groupQuotas/GQdemo/resourceProviders/Microsoft.Compute/quotaAllocations/centralus",
+  "name": "centralus",
+  "provisioningState": "Succeeded",
+  "type": "Microsoft.Quota/groupQuotas/quotaAllocations",
+  "value": [
+    {
+      "properties": {
+        "limit": 450,
+        "name": {
+          "localizedValue": "standardddv4family",
+          "value": "standardddv4family"
+        },
+        "resourceName": "standardddv4family",
+        "shareableQuota": 100
+      }
+    }
+  ]
+}
+
+```
 
 ## Clean up resources
 
