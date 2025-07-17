@@ -149,10 +149,10 @@
       items:
       - name: Getting started
         href: secret-store-extension.md
-      - name: Configuration
-        href: secret-store-extension-configuration.md
       - name: Troubleshooting
         href: secret-store-extension-troubleshooting.md
+      - name: Reference
+        href: secret-store-extension-reference.md
       - name: Release notes
         href: secret-store-extension-release-notes.md
       displayName: secret synchronization, azure secret store, secret store
