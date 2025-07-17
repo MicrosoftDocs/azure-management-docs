@@ -145,6 +145,10 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
 ## Install workload orchestration CLI extension
 
+The workload orchestration CLI extension is required to run the commands for workload orchestration. The extension is available in the Azure CLI extension index.
+
+[!INCLUDE [cli-version-note](includes/cli-version-note.md)]
+
 ### [Bash](#tab/bash)
 
 ```bash
@@ -257,7 +261,7 @@ Once the resources are created, they are visible in the Overview page of the Res
 
 ## Install the required components for workload orchestration 
 
-The following steps are required to install workload orchestration service component.
+The following steps are required to run workload orchestration service component.
 
 ### [Bash](#tab/bash)
 
@@ -291,7 +295,7 @@ The following steps are required to install workload orchestration service compo
     
         ```bash
         storageClassName="<pick up one storage class from 'kubectl get sc'>"
-        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
+        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi --extension-version "2.1.2" # or latest workload orchestration Arc version
         ```
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
@@ -335,11 +339,6 @@ The following steps are required to install workload orchestration service compo
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
 1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
-1. Install workload orchestration.
-
-    ```bash
-    az extension add --source "$extensionPath"
-    ```
 
 ### [PowerShell](#tab/powershell)
 
@@ -373,7 +372,7 @@ The following steps are required to install workload orchestration service compo
     
         ```powershell
         $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
-        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
+        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi --extension-version "2.1.2" # or latest workload orchestration Arc version
         ```      
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
@@ -417,11 +416,6 @@ The following steps are required to install workload orchestration service compo
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
 1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
-1. Install workload orchestration.
-
-    ```powershell
-    az extension add --source $extensionPath
-    ```
 
 ***
 

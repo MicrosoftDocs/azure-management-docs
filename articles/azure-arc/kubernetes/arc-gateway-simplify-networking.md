@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway (preview)"
 ms.custom: devx-track-azurecli
-ms.date: 04/22/2025
+ms.date: 07/13/2025
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
 # Customer intent: As a network administrator, I want to configure the Azure Arc gateway for my Kubernetes clusters, so that I can simplify network access requirements and manage outbound traffic through enterprise proxies efficiently.
@@ -44,9 +44,10 @@ During the public preview, the following limitations apply. Consider these facto
 - There is a limit of five Arc gateway resources per Azure subscription.
 - The Arc gateway can only be used for connectivity in the Azure public cloud.
 
-You can create an Arc gateway resource by using Azure CLI or Azure PowerShell.
+> [!IMPORTANT]
+> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled Kubernetes, you may need to enable additional endpoints in order to use some extensions and services with your clusters. For details, see [Additional scenarios](#additional-scenarios).
 
-When you create the Arc gateway resource, you specify the subscription and resource group in which the resource is created, along with an Azure region. However, all Arc-enabled resources in the same tenant can use the resource, regardless of their own subscription or region.
+## Required permissions
 
 To create Arc gateway resources, and manage their association with Arc-enabled Kubernetes clusters, the following permissions are required:
 
@@ -55,6 +56,10 @@ To create Arc gateway resources, and manage their association with Arc-enabled K
 - `Microsoft.hybridcompute/gateways/write`
 
 ## Create the Arc gateway resource
+
+You can create an Arc gateway resource by using Azure CLI or Azure PowerShell.
+
+When you create the Arc gateway resource, you specify the subscription and resource group in which the resource is created, along with an Azure region. However, all Arc-enabled resources in the same tenant can use the resource, regardless of their own subscription or region.
 
 ### [Azure CLI](#tab/azure-cli)
 

@@ -95,9 +95,6 @@ conceptualContent:
             - url: ./work-load-balancer.md
               itemType: get-started
               text: Work with Azure Load Balancer
-            - url: ./troubleshoot-arc-extension.md
-              itemType: get-started
-              text: Troubleshoot Azure Arc extension issues
             - url: ./discover-marketplace.md
               itemType: get-started
               text: Discover Azure Marketplace solutions

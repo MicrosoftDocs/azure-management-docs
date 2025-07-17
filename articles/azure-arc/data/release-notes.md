@@ -17,6 +17,10 @@ ms.custom: references_regions, ignite-2023
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
 
+## July 14, 2025
+
+Azure Arc-enabled PostgreSQL server is retired.
+
 ## May 13, 2025
 
 **Image tag**: `v1.39.0_2025-05-13`

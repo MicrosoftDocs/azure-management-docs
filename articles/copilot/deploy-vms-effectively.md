@@ -1,7 +1,7 @@
 ---
 title: Deploy and manage virtual machines effectively using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can help you deploy cost-efficient VMs.
-ms.date: 07/02/2025
+ms.date: 07/13/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -60,6 +60,19 @@ Microsoft Copilot in Azure can provide additional context to help you create hig
 During the VM creation process, you can ask "**How do I create a resilient and high availability virtual machine?**", or select the **Help me create a VM optimized for high availability** button near the top of the pane. Microsoft Copilot in Azure guides you through options to configure your VM for high availability, providing options that you can enable.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-resilient-high-availability.png" lightbox="media/deploy-vms-effectively/vm-resilient-high-availability.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing ways to configure a VM for high availability.":::
+
+## Choose the right compute offering
+
+When you're not sure exactly which compute offering to choose, Copilot in Azure can guide you to successfully identify and deploy the right type of resource (such as [Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/overview) or [Azure Compute Fleet](/azure/azure-compute-fleet/overview)) for your workload needs. Copilot in Azure can also help direct you to the right service if you want to assess how to integrate your on-premises compute solutions into Azure or migrate from another cloud platform.
+
+If you're migrating compute instances from other cloud platforms, Copilot in Azure can help determine the equivalent Azure size family for those resources.
+
+While familiarity with the product options can be beneficial, Copilot in Azure is designed to assist you regardless of your expertise level. However, it's important to exercise due diligence before deploying the suggested options.
+
+### Compute offering sample prompts
+
+- "Help me choose the right Compute infrastructure service"
+- "I'd like to use a compute resource for a batch processing job, which one should I pick?"
 
 ## Choose the right size for your VMs
 
