@@ -4,20 +4,20 @@ description: This guide will help you to efficiently diagnose and resolve issues
 ms.date: 08/01/2025
 ---
 
-# Troubleshooting Guide
-The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which manages access to, and pulling secrets from, the Azure Key Vault. Each synchronized secret has a `SecretSync` object that contains the status of the synchronization of that secret from Azure Key Vault to the cluster secret store.
+# Troubleshooting
+The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which accesses secrets from Azure Key Vault. SSE is configured via `SecretSync` and `SecretProviderClass` resources. In addition to configuration parameters, `SecretSync` classes are updated by the SSE controller with the status of the sync operation, including error messages where appropriate.
 
-### View last sync status
+## Checking a SecretSync status
 
-To view the status of the most recent synchronization for a given secret, use the `kubectl describe` command for the `SecretSync` object. The output includes the secret creation timestamp, the versions of the secret, and detailed status messages for each synchronization event. This output can be used to diagnose connection or configuration errors, and to observe when the secret value changes.
+The most common issues with the SSE can be investigated by checking the status of the related `SecretSync` object. Use a `kubectl describe ...` command to view the status of a sync object. In addition to the overall configuration, the output includes the the secret creation timestamp, the versions of the secret, and detailed status messages for each synchronization event. This output can be used to diagnose connection or configuration errors and to observe when the secret value changes.
 
 ```bash
-kubectl describe secretsync secret-sync-name -n ${KUBERNETES_NAMESPACE}
+kubectl describe secretsync <secret-sync-name> -n ${KUBERNETES_NAMESPACE}
 ```
 
-## SecretSync Statuses
+## SecretSync status reasons
 
-To troubleshoot an issue, start by looking at the state of the `SecretSync` object, as described in [View last sync status](#view-last-sync-status).  The following table lists common status reasons, their meanings, and potential troubleshooting steps to resolve errors.
+The following table lists common status reasons, their meanings, and potential troubleshooting steps to resolve errors.
 
 | SecretSync Status Reason     | Details      | Steps to fix/investigate further    |
 |------------|--------------|-------------------------------------|
@@ -30,3 +30,16 @@ To troubleshoot an issue, start by looking at the state of the `SecretSync` obje
 | `ControllerSpcError` | Secret update failed because the SSE failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
 | `ControllerInternalError`<br>`ValidatingAdmissionPolicyCheckFailed`<br>`ControllerSyncFailed`  | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
 | `UnknownError`| Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the SSE or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the `SecretSync` object: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>```<br>If this does not help, follow the steps to inspect the logs as with a  `ControllerInternalError`. |
+
+## Network access issues
+
+If you see a `ProviderError` status reason with a message indicating a timeout or inability to reach your key vault endpoint (`<vault name>.vault.azure.net`), there is a likely network access issue to resolve. Possible network access issues include:
+
+### Azure Key Vault firewall configuration
+By default Azure Key Vault has a permissive firewall configuration and can be accessed via the public internet, but it is good practice to limit network access to Azure Key Vault. Double check that your key vault firewall configuration permits access for your cluster. See [Network security for Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/network-security)
+
+#### Azure Arc Gateway (preview)
+If using Azure Arc Gateway (preview) for cluster connectivity, be aware that network access to Azure Key Vault is not covered by the gateway. You must independently allow network access to <vault-name>.vault.azure.net so that SSE can synchronize secrets. See related [arc gateway](https://learn.microsoft.com/azure/azure-arc/kubernetes/arc-gateway-simplify-networking) and [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/access-behind-firewall) documentation.
+
+### Azure Private Link
+If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-connected cluster to reach the Key Vault’s private endpoint. Verify that DNS resolution for the vault name returns the private IP and that the private link IP is routed correctly from your cluster. See [Azure Private Link](https://learn.microsoft.com/azure/key-vault/general/private-link-diagnostics)
