@@ -224,11 +224,6 @@
       "source_path_from_root": "/articles/container-registry/quickstart-connected-registry-portal.md",
       "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
       "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/container-registry/includes/container-registry-connected-connection-configuration.md",
-      "redirect_url": "/azure/container-registry/container-registry-intro",
-      "redirect_document_id": false
     }
   ]
 }
