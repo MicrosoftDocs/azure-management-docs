@@ -82,7 +82,7 @@
       href: ../servers/deploy-management-services.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
     - name: Manage with Windows Admin Center
       href: /windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines?toc=/azure/azure-arc/vmware-vsphere/toc.json&bc=/azure/azure-arc/vmware-vsphere/breadcrumb/toc.json
-    - name: Azure Kubernetes Service on VMware (Preview)
+    - name: Azure Kubernetes Service on VMware
       href: /azure/aks/aksarc/aks-vmware-overview
   - name: Azure Arc benefits for VMware VMs
     items:
