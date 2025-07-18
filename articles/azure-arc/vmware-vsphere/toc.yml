@@ -38,10 +38,18 @@
         href: create-custom-roles.md
       - name: Set up and manage self-service access
         href: setup-and-manage-self-service-access.md
-  - name: Use VM lifecycle and self-service capabilities
-    items: 
-      - name: Perform VM operations on VMware VMs through Azure
-        href: perform-vm-ops-through-azure.md
+  - name: Perform VM operations
+    items:
+    - name: Create a virtual machine
+      href: create-virtual-machine.md
+    - name: Perform VM powercycle operations
+      href: perform-powercycle-operations.md
+    - name: Apply Azure tags on resources
+      href: apply-azure-tags.md
+    - name: Update configuration and resize a VM
+      href: update-configuration-and-resize-vm.md
+    - name: Delete a virtual machine
+      href: delete-virtual-machine.md
   - name: Use Azure services for VMware VMs
     items: 
     - name: Install Arc agent at scale
