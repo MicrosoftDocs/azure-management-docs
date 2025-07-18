@@ -17,7 +17,7 @@ In this article, you learn how to delete a VMware vCenter-managed virtual machin
 
 Before you delete a virtual machine or remove its Azure resource, ensure that you meet the following prerequisites: 
 
-- The VMware vCenter, that manages the VM which is to be deleted from the host or which’s Azure resource is to be removed, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
+- The VMware vCenter that manages the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
 - Ensure the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
 - If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), [uninstall the agent and remove any VM extensions](/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fvmware-vsphere%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
 - *Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to delete the VMware vSphere VMs which you want to be deleted.
@@ -30,9 +30,9 @@ Before you delete a virtual machine or remove its Azure resource, ensure that yo
 
 To delete a VM, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters** and then select the VMware vCenter which manages the VM which you are planning to delete from Azure.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters** and then select the VMware vCenter, which manages the VM, which you're planning to delete from Azure.
 2. Navigate to the dedicated **Virtual machines** inventory view under the vCenter inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
-3. Select the machine which you want to delete and then select **Delete**.
+3. Select the machine, which you want to delete and then select **Delete**.
  
    :::image type="content" source="media/delete-virtual-machine/delete-virtual-machine.png" alt-text="Screenshot showing delete VM option." lightbox="media/delete-virtual-machine/delete-virtual-machine.png":::
 
@@ -44,7 +44,7 @@ To delete a VM, follow these steps:
 
 To remove a VM from Azure only, follow these steps: 
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **Mware vCenters** and then select the Mware vCenters which manages the VM which you are planning to operate from Azure. 
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters** and then select the VMware vCenters which manages the VM, which you're planning to operate from Azure. 
 2. Navigate to the dedicated **Virtual machines** inventory view under the vCenter inventory. Select the machine for which you want to remove the Azure representation and then select **Remove from Azure**.
 
    :::image type="content" source="media/delete-virtual-machine/remove-from-azure.png" alt-text="Screenshot showing Virtual machines screen." lightbox="media/delete-virtual-machine/remove-from-azure.png":::

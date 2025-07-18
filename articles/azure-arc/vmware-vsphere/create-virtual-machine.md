@@ -15,7 +15,7 @@ keywords: "VMware, Arc, Azure"
 
 Once your administrator has connected a VMware vCenter server to Azure, enabled vCenter resources such as Resource Pools, Clusters, Hosts, VM templates and VM networks in Azure, and provided you the required permissions on those resources, you'll be able to create a new VMware vCenter managed virtual machine in Azure. 
 
-In this article, you'll learn how to create a new VMware vCenter managed virtual machine from Azure Arc portal. Refer to the **Reference** section of this documentation to explore non-portal methods such as Azure CLI, PowerShell, REST APIs, SDKs and Infrastructure-as-Code mechanisms.
+In this article, you learn how to create a new VMware vCenter managed virtual machine from Azure Arc portal. Refer to the **Reference** section of this documentation to explore nonportal methods such as Azure CLI, PowerShell, REST APIs, SDKs, and Infrastructure-as-Code mechanisms.
 
 ## Prerequisites
 
@@ -62,9 +62,9 @@ In this article, you'll learn how to create a new VMware vCenter managed virtual
 
     :::image type="content" source="media/create-virtual-machine/admin-account.png" alt-text="Screenshot of administrator account screen.":::
 
-    If you are creating a Linux virtual machine, SSH key can be used as an authentication method instead of administrator account.
+    If you're creating a Linux virtual machine, SSH key can be used as an authentication method instead of administrator account.
 
-1. If you chose to enable guest management, choose the **Connectivity method** for the Arc agent that is installed in your VM connect to Azure. The available options are Public endpoint, Proxy server and Private endpoint. 
+1. If you chose to enable guest management, choose the **Connectivity method** for the Arc agent that is installed in your VM connect to Azure. The available options are Public endpoint, Proxy server, and Private endpoint. 
 
      - If you want to connect the Arc agent via proxy, provide the proxy server details. 
 

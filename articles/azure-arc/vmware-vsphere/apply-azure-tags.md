@@ -13,7 +13,7 @@ author: jyothisuri
 
 Tags are metadata elements that you can apply to your Azure resources. They are key-value pairs that help you identify resources based on settings that are relevant to your organization. You can use Azure tags to organize and manage your resources effectively, to set up automation and to govern your resources with tag-based policies. For recommendations on how to implement a tagging strategy, see [Resource naming and tagging decision guide](/azure/cloud-adoption-framework/ready/azure-best-practices/resource-naming-and-tagging-decision-guide?toc=%2Fazure%2Fazure-resource-manager%2Fmanagement%2Ftoc.json).
 
-In this article, you learn how to apply Azure tags to Azure Arc-enabled VMware vSphere resources. You can apply Azure tags to all Azure Arc-enabled VMware vSphere resources such as Virtual machines, Resource Pools, Clusters, Hosts, VM templates, VM networks, vCenters and its associated Azure Arc resource bridge. 
+In this article, you learn how to apply Azure tags to Azure Arc-enabled VMware vSphere resources. You can apply Azure tags to all Azure Arc-enabled VMware vSphere resources such as Virtual machines, Resource Pools, Clusters, Hosts, VM templates, VM networks, vCenters, and its associated Azure Arc resource bridge. 
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Before you apply Azure tags to an Azure Arc-enabled VMware vSphere resource, ens
 
 To apply Azure tags to the VMware vSphere resources, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters** and then select the VMware vCenter which manages the resource you plan to apply Azure tags.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenters** and then select the VMware vCenter, which manages the resource you plan to apply Azure tags.
        To apply Azure tags to the VMware vCenter, navigate to the **Tags** blade in the VMware vCenter Azure resource. 
        To apply Azure tags to the associated Azure Arc resource bridge, navigate to its Azure resource from the **Overview** blade.
  

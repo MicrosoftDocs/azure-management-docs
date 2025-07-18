@@ -24,15 +24,15 @@ From Azure, you can modify the following configuration of a VM:
 Before you update and resize a virtual machine, ensure that you meet the following prerequisites: 
  
 -	The VMware vCenter is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
--	Ensure the VM which will be modified from Azure is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
--	If you are modifying the Disk settings, ensure the VM which will be modified from Azure is in a *Stopped* state.
+-	Ensure the VM, which is modified from Azure is [enabled for management in Azure](browse-and-enable-vcenter-resources-in-azure.md).
+-	If you're modifying the Disk settings, ensure the VM, which is modified from Azure is in a *Stopped* state.
 -	*Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to make changes to the VMware vSphere VM on which you want to perform update and resize operations.
 
 ## Add or remove NICs to a virtual machine
 
 To add or remove NICs to a VM, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenter which manages the VM which you are planning to modify from Azure.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenter, which manages the VM, which you're planning to modify from Azure.
 2. Navigate to the dedicated **Virtual machines** inventory view under the vCenter inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
 3. Select the machine for which you want to update the NICs and then select **Settings** > **Networking**:
 
@@ -46,11 +46,11 @@ To add or remove NICs to a VM, follow these steps:
 
 To add or remove disks to a VM, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenters which manages the VM which you are planning to modify from Azure.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenters which manages the VM, which you're planning to modify from Azure.
 2. Navigate to the dedicated **Virtual machines** inventory view under the vCenter inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
 3. Select the machine for which you want to add or remove a disk and then select **Settings** > **Disks**:
 
-   - **Add a disk**: Select **Add disk** and enter the mandatory fields such as Disk name, size, controller and mode. Select **Add** and then **Apply** to apply the changes.
+   - **Add a disk**: Select **Add disk** and enter the mandatory fields such as Disk name, size, controller, and mode. Select **Add** and then **Apply** to apply the changes.
    
      :::image type="content" source="media/update-configuration-and-resize-vm/add-a-disk.png" alt-text="Screenshot showing add a disk screen." lightbox="media/update-configuration-and-resize-vm/add-a-disk.png":::
 
@@ -60,7 +60,7 @@ To add or remove disks to a VM, follow these steps:
 
 To resize a VM, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenter which manages the VM which you are planning to modify from Azure.
+1. Sign in to the [Azure portal](https://portal.azure.com/), go to **Azure Arc** > **VMware vCenter** and then select the VMware vCenter, which manages the VM, which you're planning to modify from Azure.
 2. Navigate to the dedicated **Virtual machines** inventory view under the vCenter inventory. Alternatively, you can navigate to the inventory view for VMs enabled for management in Azure from **Azure Arc** > **Machines** blade.
 3. Select the machine that you want to resize and then select **Settings** > **Size**. You can change the number of CPU cores, and memory size. 
    
