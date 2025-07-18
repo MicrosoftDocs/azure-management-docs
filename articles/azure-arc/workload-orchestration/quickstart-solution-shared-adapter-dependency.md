@@ -189,7 +189,7 @@ $app2Version = "1.0.1"
         --solution-scope "$parentScope" \
         --target-specification "@targetspecs.json" \
         --extended-location "@custom-location.json" \
-        --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName"
+        --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -219,7 +219,7 @@ $app2Version = "1.0.1"
         --solution-scope $parentScope `
         --target-specification "@targetspecs.json" `
         --extended-location "@custom-location.json" `
-        --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName
+        --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName
     ```
 
 
@@ -276,7 +276,7 @@ Create a target at child level. Ensure *custom-location.json* is updated with th
 ### [Bash](#tab/bash)
 
 ```bash	
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
 ```
 
 > [!NOTE]
@@ -290,7 +290,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
 ```
 
 > [!NOTE]
@@ -448,13 +448,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     reviewId="<reviewId>"
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version 
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -463,13 +463,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     $reviewId = "<reviewId>"
-    az workload-orchestration target publish --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target publish --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ***

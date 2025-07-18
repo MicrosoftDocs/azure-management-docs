@@ -146,20 +146,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName"
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -174,20 +174,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
-    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextParentName
+    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
     ```
 
 ***
@@ -400,14 +400,14 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line01*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg"  --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target publish --resource-group "$rg"  --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 
 1. Run `target install` to install FSAD solution at *Line01*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group "$rg" --target-name "$line01" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 
@@ -425,13 +425,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line01*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target publish --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` to install FSAD solution at *Line01*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line01/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group $rg --target-name $line01 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -488,13 +488,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line02*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$line02" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version 
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$line02" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line02*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version --target-name "$line02"
+    az workload-orchestration target install --resource-group "$rg" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02/solutions/$appName2/versions/$app2Version --target-name "$line02"
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -511,13 +511,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line02*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version 
+    az workload-orchestration target publish --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line02*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line02/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group $rg --target-name $line02 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -590,13 +590,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line03*.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version 
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` to install FSAD solution at *Line03*.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group "$rg" --target-name "$line03" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 
@@ -613,13 +613,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Run `target publish` to publish FSAD solution at *Line03*.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target publish --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` to install FSAD solution at *Line03*.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$line03/solutions/$appName2/versions/$app2Version
+    az workload-orchestration target install --resource-group $rg --target-name $line03 --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03/solutions/$appName2/versions/$app2Version
     ```
 
 1. Make sure all configurations are updated at edge. 

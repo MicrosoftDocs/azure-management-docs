@@ -72,13 +72,13 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
     ssaVersion="<copy the name from review output>"
 
     az workload-orchestration target publish \
-        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
         --resource-group "$rg" \
         --target-name "$t2"
 
 
     az workload-orchestration target install \
-        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t2/solutions/$ssa/versions/$ssaVersion \
         --resource-group "$rg" \
         --target-name "$t2"
     ```
@@ -129,12 +129,12 @@ The FSAD solution is deployed on a child target, while the SSA solution is deplo
     $ssaVersion = "<copy the name from review output>"
 
     az workload-orchestration target publish `
-    --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
+    --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
         --resource-group $rg `
         --target-name $t2
 
     az workload-orchestration target install `
-        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t2/solutions/$ssa/versions/$ssaVersion `
         --resource-group $rg `
         --target-name $t2
     ```
@@ -164,12 +164,12 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
     fsadVersion="<copy the name from review output>"
 
     az workload-orchestration target publish \
-            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
+            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
             --resource-group "$rg" \
             --target-name "$t1"
     
     az workload-orchestration target install \
-            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
+            --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t1/solutions/$fsad/versions/$fsadVersion \
             --resource-group "$rg" \
             --target-name "$t1"
     ```
@@ -193,12 +193,12 @@ Once installation succeeds, you see both SSA and FSAD solutions deployed on edge
     $fsadVersion = "<copy the name from review output>"
 
     az workload-orchestration target publish `
-        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
         --resource-group $rg `
         --target-name $t1
 
     az workload-orchestration target install `
-        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
+        --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$t1/solutions/$fsad/versions/$fsadVersion `
         --resource-group $rg `
         --target-name $t1
     ```

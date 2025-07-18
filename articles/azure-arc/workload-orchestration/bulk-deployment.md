@@ -113,6 +113,16 @@ Currently bulk deployment is only supported via CLI. To perform a bulk deploymen
 az workload-orchestration solution-template bulk-deploy --targets "@target.json" --version "<solution template version>" --name "<solution-name>" -g $rg --solution-dependencies "@dependencies.json"
 ```
 
+You need to provide a *targets.json* file that contains the list of targets where you want to publish the solution. The file should be in the following format:
+
+```json
+[
+    {
+        "solutionVersionId": "/subscriptions/$subId/resourceGroups/$rg/Microsoft.Edge/targets/<target1>/solutions/<solution>/versions/<instance>"
+    }
+]
+```
+
 > [!NOTE]
 > The `--solution-dependencies` parameter is only required if the solution has dependencies. For more information, see the [previous section](#bulk-publishing-with-dependencies) on how to create the *dependencies.json* file.
 

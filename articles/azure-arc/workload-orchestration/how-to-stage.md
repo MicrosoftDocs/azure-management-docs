@@ -420,7 +420,7 @@ az workload-orchestration target create \
     --solution-scope "$scopename" \
     --target-specification "@targetspecs.json" \
     --extended-location "@custom-location.json" \
-    --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
+    --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -440,7 +440,7 @@ az workload-orchestration target create `
   --solution-scope $scopename `
   --target-specification '@targetspecs.json' `
   --extended-location '@custom-location.json' `
-  --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
+  --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
 ```
 ***
 
@@ -580,7 +580,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
     reviewId="<input the ID from previous step>"
     subId="<your subscription id>"
 
-    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$targetName"
     ```
 
 
@@ -603,7 +603,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
 1. Install the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$targetName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
+    az workload-orchestration target install --resource-group "$rg" --target-name "$targetName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.
@@ -618,7 +618,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
     ```powershell
     $reviewId = "<input the ID from previous step>"
     $subId = "<your subscription id>"
-    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group $rg --target-name $targetName
+    az workload-orchestration target publish --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/1.0.0 --resource-group $rg --target-name $targetName
     ```
 
 1. Check the solution status. It should change from "inReview" to "staging".
@@ -640,7 +640,7 @@ az workload-orchestration target --solution-template-name $solutionTemplateName 
 1. Install the solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $targetName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
+    az workload-orchestration target install --resource-group $rg --target-name $targetName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName$/versions/1.0.0
     ```
 
 1. After installation, check that the image is used in deployment.

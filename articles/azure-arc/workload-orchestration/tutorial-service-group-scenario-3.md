@@ -68,7 +68,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -82,7 +82,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -96,7 +96,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName"
 
     # Create target at line level
     az workload-orchestration target create \
@@ -110,7 +110,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName"
     ```
 
 1. Get the target IDs of the created targets.
@@ -197,7 +197,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
@@ -211,7 +211,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName
     
     # Create target at factory level
     az workload-orchestration target create `
@@ -225,7 +225,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' ` 
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName
     
     # Create target at line level
     az workload-orchestration target create `
@@ -239,7 +239,7 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName
     ```
 
 1. Get the target IDs of the created targets.
@@ -668,13 +668,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letName/versions/$version
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$letName/versions/$version
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letname/versions/$version
+    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$letname/versions/$version
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -682,13 +682,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the solution with the review ID and version name.
 
     ```bash
-    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letName/versions/$version
+    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$letName/versions/$version
     ```
 
 1. Deploy the solution to the target.
 
     ```bash
-    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$letname/versions/$version
+    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$letname/versions/$version
     ```
 ***
 
