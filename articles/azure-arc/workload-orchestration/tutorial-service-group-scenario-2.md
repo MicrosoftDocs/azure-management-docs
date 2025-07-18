@@ -56,7 +56,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
       --solution-scope "new" \
       --target-specification @targetspecs.json \
       --extended-location @custom-location.json \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 1. Get the target ID of the created target.
@@ -98,7 +98,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 1. Get the target ID of the created target.
@@ -228,13 +228,13 @@ To create the solution schema and solution template files, you can use *common-s
     ```bash
     solutionVersion="<SolutionVersion>" 
 
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -250,13 +250,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+   az workload-orchestration target install --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 

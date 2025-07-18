@@ -55,7 +55,7 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --solution-scope "new" \
       --target-specification '@targetspecs.json' \
       --extended-location '@custom-location.json' \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 1. Get the target ID of the created target.
@@ -73,7 +73,7 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --body "{ \"properties\": { \"targetId\": \"/providers/Microsoft.Management/serviceGroups/$level3Name\" } }"
     ```
 
-1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
+1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated.
 
     ```bash
     az workload-orchestration target update --resource-group "$rg" --name "$Linename"
@@ -97,7 +97,7 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 1. Get the target ID of the created target.
@@ -115,7 +115,7 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level3Name'}}"
     ```
 
-1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
+1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated.
 
     ```powershell
     az workload-orchestration target update --resource-group $rg --name $Linename
@@ -247,13 +247,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the configuration.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$Linename" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -270,13 +270,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
+   az workload-orchestration target install --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 
