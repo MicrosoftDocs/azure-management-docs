@@ -7,9 +7,13 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
+# Customer intent: As a DevOps engineer, I want to add an Azure Linux node pool to my existing AKS cluster, so that I can accommodate varying compute and storage needs for my applications.
 ---
 
 # Tutorial: Add an Azure Linux node pool to your existing AKS cluster
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
 
 In AKS, nodes with the same configurations are grouped together into node pools. Each pool contains the VMs that run your applications. In the previous tutorial, you created an Azure Linux Container Host cluster with a single node pool. To meet the varying compute or storage requirements of your applications, you can create additional user node pools.
 

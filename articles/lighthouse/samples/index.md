@@ -3,6 +3,7 @@ title: Azure Lighthouse samples and templates
 description: These samples and Azure Resource Manager templates help you onboard customers and support Azure Lighthouse scenarios.
 ms.topic: sample
 ms.date: 07/10/2024
+# Customer intent: As a managed service provider, I want to access sample templates for Azure Lighthouse, so that I can effectively onboard customers and implement cross-tenant management scenarios.
 ---
 # Azure Lighthouse samples
 

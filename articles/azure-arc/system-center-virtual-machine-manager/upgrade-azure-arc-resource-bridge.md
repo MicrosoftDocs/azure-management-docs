@@ -6,8 +6,10 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 ms.topic: how-to 
-ms.date: 05/13/2025
+ms.date: 07/08/2025
 keywords: "VMM, Arc, Azure"
+ms.custom:
+  - build-2025
 ---
 
 # Upgrade the Azure Arc resource bridge
@@ -40,7 +42,7 @@ az arcappliance get-upgrades --resource-group <ResourceGroup> --name <ARBName>
 
 Before you upgrade a resource bridge, the following prerequisites must be met:
 
-- The Azure Arc resource bridge must be online and healthy with a status of Running. You can check the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) to verify.  
+- The Azure Arc resource bridge must be online and healthy with a status of *Running*. You can check the [Azure resource of your resource bridge](https://portal.azure.com/#view/Microsoft_Azure_ArcCenterUX/ArcCenterMenuBlade/~/resourceBridges) to verify.  
 - The credentials in the resource bridge VM must be valid. You can update the credentials by following the steps given in [this article](/azure/azure-arc/system-center-virtual-machine-manager/administer-arc-scvmm#update-the-scvmm-account-credentials-using-a-new-password-or-a-new-scvmm-account-after-onboarding). To test the credentials, perform an operation on an Azure-enabled VM from Azure.
 - The resource bridge must be in the same location path where it was originally deployed.
 - The VMM server on which the resource bridge is deployed needs 11 GB of free space. The library share used to store the downloaded VHDX needs at least 7 GB of free space.

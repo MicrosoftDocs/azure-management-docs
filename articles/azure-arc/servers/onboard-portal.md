@@ -4,6 +4,7 @@ description: In this article, you learn how to install the agent and connect mac
 ms.date: 03/13/2025
 ms.topic: how-to
 ms.custom: linux-related-content
+# Customer intent: "As a system administrator, I want to automate the installation and onboarding of hybrid machines to Azure using a deployment script, so that I can efficiently manage my servers and ensure their connectivity with Azure Arc."
 ---
 
 # Connect hybrid machines to Azure using a deployment script

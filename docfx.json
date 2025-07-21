@@ -149,8 +149,8 @@
         "articles/azure-portal/**/*.yml": "JnHs",
         "articles/container-registry/**/*.md": "rayoef",
         "articles/lighthouse/**/*.md": "JnHs",
-        "articles/quotas/**/*.md": "JnHs",
-        "articles/quotas/**/*.yml": "JnHs"
+        "articles/quotas/**/*.md": "iamwilliew",
+        "articles/quotas/**/*.yml": "iamwilliew"
       },
       "featureFlags": {
         "articles/**/*.md": [
@@ -196,12 +196,16 @@
         "articles/container-registry/**/*.yml": "rayoflores",
         "articles/lighthouse/**/*.md": "rayoflores",
         "articles/lighthouse/**/*.yml": "rayoflores",
-        "articles/quotas/**/*.md": "rayoflores",
-        "articles/quotas/**/*.yml": "rayoflores"
+        "articles/quotas/**/*.md": "akashdubey",
+        "articles/quotas/**/*.yml": "akashdubey"
       },
       "ms.reviewer": {
-        "articles/azure-arc/**/*.md": "jenhayes",
-        "articles/azure-arc/**/*.yml": "jenhayes",
+        "articles/azure-arc/*.md": "jenhayes",
+        "articles/azure-arc/*.yml": "jenhayes",
+        "articles/azure-arc/servers/**/*.md": "jenhayes",
+        "articles/azure-arc/servers/**/*.yml": "jenhayes",
+        "articles/azure-arc/kubernetes/**/*.md": "jenhayes",
+        "articles/azure-arc/kubernetes/**/*.yml": "jenhayes",
         "articles/copilot/**/*.md": "jenhayes",
         "articles/copilot/**/*.yml": "jenhayes",      
         "articles/azure-portal/**/*.md": "jenhayes",
@@ -212,22 +216,26 @@
         "articles/container-registry/**/*.yml": "doveychase",
         "articles/lighthouse/**/*.md": "jenhayes",
         "articles/lighthouse/**/*.yml": "jenhayes",
-        "articles/quotas/**/*.md": "jenhayes",
-        "articles/quotas/**/*.yml": "jenhayes"
+        "articles/quotas/**/*.md": "wwilliams",
+        "articles/quotas/**/*.yml": "wwilliams"
       },
       "ms.author": {
         "articles/azure-arc/**/*.md": "jenhayes",
-        "articles/azure-arc/servers/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "doveychase",
+        "articles/container-registry/**/*.yml": "doveychase",
         "articles/lighthouse/**/*.md": "jenhayes",
-        "articles/quotas/**/*.md": "jenhayes",
-        "articles/quotas/**/*.yml": "jenhayes"
+        "articles/quotas/**/*.md": "wwilliams",
+        "articles/quotas/**/*.yml": "wwilliams"
       },
       "ms.collection": {
         "articles/copilot/*.md": "ce-skilling-ai-copilot",
         "articles/copilot/*.yml": "ce-skilling-ai-copilot"
+      },
+      "ms.update-cycle": {
+        "articles/copilot/*.md": "180-days",
+        "articles/copilot/*.yml": "180-days"
       },
       "ms.service": {
         "articles/azure-arc/**/*.md": "azure-arc",

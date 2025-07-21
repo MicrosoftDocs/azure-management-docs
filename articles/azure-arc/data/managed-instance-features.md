@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to understand the features and capabilities of SQL Managed Instance enabled by Azure Arc, so that I can effectively manage and optimize my database environments across different platforms."
 ---
 
 # Features and Capabilities of SQL Managed Instance enabled by Azure Arc

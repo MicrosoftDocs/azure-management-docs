@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to connect to Azure Arc data controllers using Azure Data Studio dashboards, so that I can manage and monitor my SQL Managed Instances and PostgreSQL servers effectively, even without an Azure connection."
 ---
 
 # Azure Data Studio dashboards

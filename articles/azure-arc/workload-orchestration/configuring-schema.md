@@ -3,11 +3,13 @@ title: Configuration Schemas for Workload Orchestration
 description: Learn the rules on how to create configuration schemas for workload orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: reference
-ms.date: 04/17/2025
+ms.topic: concept-article
+ms.date: 06/24/2025
+ms.custom:
+  - build-2025
 ---
 
-# Create a configuration schema for workload orchestration
+# Configuration schema for workload orchestration
 
 The configuration schema is a YAML file that defines the structure and rules for the configuration of a solution template. It specifies the properties, types, and validation rules for the configuration values that users can provide when deploying the solution template. A configuration template can refer to a single schema or none.
 
@@ -33,7 +35,7 @@ rules:
       disallowedValues: #array applicable for string, int, float (optional)
       expression: # any valid expression. should be wrapped in expression template like: "${{ expression }}"
       editableAt: #array of levels ex: Line, Factory where value can be edited at (optional)
-      editableBy: # array of Personas Ex: IT, OT who can edit the value. (optional)
+      editableBy: # array of personas Ex: IT, OT who can edit the value. (optional)
       minValue: # minimum number  (optional)
       maxValue: # maximum number (optional)
       defaultValue: # default value applicable for primitive types i.e. int, string, boolen, float (optional) 
@@ -58,6 +60,8 @@ The following constraints apply to the rules defined in the configuration schema
 - The `allowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
+- The `editableBy` property accepts either IT, OT or both values. If IT is set, this parameter isn't shown on the workload orchestration portal and has to be configured via CLI. If OT is set, this parameter is visible on the workload orchestration portal and can be set via CLI also.
+- The `editableAt` parameter accepts any hierarchy level value as defined during context creation, for example, `Line`, `Factory`, or `Region`.
 
 ## Including and referencing rules from another schema
 
@@ -107,7 +111,7 @@ rules:
 
 ```  
 
-The final schema is generated as follows. The content of *LogSettingsSchema* is included in the final schema.:
+The final schema is generated as follows. The content of *LogSettingsSchema* is included in the final schema:
 
 ```yaml
 rules:

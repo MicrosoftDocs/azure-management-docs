@@ -4,6 +4,7 @@ description: Learn how to use PowerShell to remotely execute scripts and command
 ms.date: 02/28/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As an IT administrator managing Arc-enabled servers, I want to remotely execute PowerShell scripts and commands, so that I can automate tasks and streamline server management without needing direct access to the machines.
 ---
 # PowerShell requests for Run command on Azure Arc-enabled servers (Preview)
 

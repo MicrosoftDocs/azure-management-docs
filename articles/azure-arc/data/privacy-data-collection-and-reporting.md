@@ -9,6 +9,7 @@ ms.subservice: azure-arc-data
 ms.topic: concept-article 
 ms.date: 07/30/2021
 ms.custom: template-concept
+# Customer intent: As an IT administrator, I want to understand the types of data collected by Azure Arc-enabled data services, so that I can ensure compliance with data privacy policies and manage data transmission requirements effectively.
 ---
 
 # Azure Arc-enabled data services data collection and reporting

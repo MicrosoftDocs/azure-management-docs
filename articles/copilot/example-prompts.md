@@ -6,6 +6,7 @@ ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As an Azure user, I want to experiment with prompts for Copilot so that I can effectively manage and optimize my Azure environment."
 ---
 
 # Example prompts for Microsoft Copilot in Azure

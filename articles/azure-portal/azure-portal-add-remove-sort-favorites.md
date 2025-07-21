@@ -3,6 +3,9 @@ title: Manage favorites in Azure portal
 description: Learn how to add or remove services from the Favorites list.
 ms.date: 05/15/2025
 ms.topic: how-to
+ms.custom:
+  - build-2025
+# Customer intent: "As an Azure portal user, I want to customize my Favorites list by adding or removing services, so that I can quickly access the tools I use most frequently and improve my workflow efficiency."
 ---
 
 # Manage favorites

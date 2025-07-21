@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a Kubernetes cluster administrator, I want to create an Azure Arc-enabled data controller using Kubernetes tools, so that I can manage and deploy Azure Arc-enabled data services efficiently in my cluster.
 ---
 
 # Create Azure Arc-enabled data controller using Kubernetes tools

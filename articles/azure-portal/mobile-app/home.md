@@ -3,6 +3,7 @@ title: Azure mobile app Home
 description: Azure mobile app Home surfaces the most essential information and the resources you use most often.
 ms.date: 08/28/2024
 ms.topic: concept-article
+# Customer intent: As a mobile user managing Azure resources, I want to customize my app home screen with essential display cards, so that I can quickly access and organize the tools and information I use most often.
 ---
 
 # Azure mobile app Home

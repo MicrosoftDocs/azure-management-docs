@@ -10,6 +10,7 @@ ms.subservice: azure-arc-sql-mi
 ms.topic: how-to
 ms.custom:
   - devx-track-azurecli
+# Customer intent: As a database administrator, I want to configure SQL Managed Instance resources and settings through the command line, so that I can optimize performance and manage deployment options effectively in a cloud environment.
 ---
 # Configure SQL Managed Instance enabled by Azure Arc
 

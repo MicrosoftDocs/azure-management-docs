@@ -3,6 +3,7 @@ title: azcmagent genkey CLI reference
 description: Syntax for the azcmagent genkey command line tool
 ms.topic: reference
 ms.date: 04/20/2023
+# Customer intent: "As a system administrator, I want to generate a private-public key pair using the command line, so that I can onboard a server to Azure Arc-enabled virtual machines efficiently and securely."
 ---
 
 # azcmagent genkey

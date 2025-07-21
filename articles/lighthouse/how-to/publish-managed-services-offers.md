@@ -3,6 +3,7 @@ title: Publish a Managed Service offer to Azure Marketplace
 description: Learn how to publish a Managed Service offer that onboards customers to Azure Lighthouse.
 ms.date: 03/07/2024
 ms.topic: how-to
+# Customer intent: "As a service provider, I want to publish a Managed Service offer to Azure Marketplace, so that I can onboard customers and manage their subscriptions or resource groups efficiently through Azure Lighthouse."
 ---
 
 # Publish a Managed Service offer to Azure Marketplace

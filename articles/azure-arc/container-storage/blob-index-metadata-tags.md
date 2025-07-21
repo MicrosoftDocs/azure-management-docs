@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 08/26/2024
+# Customer intent: As a cloud storage administrator, I want to generate blob index and metadata tags using extended attributes, so that I can effectively categorize and manage my files within Cloud Ingest Edge Volumes.
 ---
 
 # Blob index and metadata tags

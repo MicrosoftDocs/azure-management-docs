@@ -3,6 +3,7 @@ title:  View quotas
 description: Learn how to view quotas in the Azure portal.
 ms.date: 05/02/2023
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to view and manage quotas from the Azure portal, so that I can assess usage and request quota increases effectively to meet my organization's resource needs."
 ---
 
 # View quotas

@@ -4,6 +4,7 @@ description: Learn about the prerequisites for installing the Connected Machine 
 ms.date: 03/21/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurepowershell
+# Customer intent: "As an IT administrator managing physical and virtual servers, I want to understand the prerequisites for installing the Connected Machine agent for Azure Arc, so that I can ensure successful onboarding and optimal operation within my environment."
 ---
 
 # Connected Machine agent prerequisites

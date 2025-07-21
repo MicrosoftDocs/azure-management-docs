@@ -3,9 +3,10 @@ title: Compliance with Azure Policy for Azure Container Registry
 description: Assign built-in policy definitions in Azure Policy to audit compliance of your Azure container registries
 ms.topic: concept-article
 ms.service: azure-container-registry
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
+# Customer intent: As a compliance officer, I want to assign built-in policy definitions for Azure Container Registry, so that I can audit and ensure that our container registries remain compliant with corporate standards and service level agreements.
 ---
 
 # Audit compliance of Azure container registries using Azure Policy
@@ -20,7 +21,7 @@ There is no charge for using Azure Policy.
 
 The following built-in policy definitions are specific to Azure Container Registry:
 
-[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.containerregistry.md)]
+[!INCLUDE [azure-policy-reference-rp-containerreg](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.containerregistry.md)]
 
 ## Create policy assignments
 

@@ -5,6 +5,7 @@ ms.date: 03/29/2023
 ms.topic: concept-article
 author: eedorenko
 ms.author: iefedore
+# Customer intent: "As a DevOps engineer managing multiple Kubernetes clusters, I want to automate workload scheduling and reconciliation across environments using GitOps practices, so that I can efficiently handle application deployments at scale while ensuring compliance and observability."
 ---
 
 # Workload management in a multi-cluster environment with GitOps

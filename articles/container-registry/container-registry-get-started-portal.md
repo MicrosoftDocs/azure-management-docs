@@ -1,12 +1,13 @@
 ---
 title: Quickstart - Create Registry in Portal
 description: Quickly learn to create a private Azure container registry using the Azure portal, push a container image, and pull and run the image from the registry.
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.topic: quickstart
 ms.service: azure-container-registry
 ms.custom: mvc, mode-ui
+# Customer intent: "As a cloud developer, I want to create and manage a private container registry in the portal, so that I can efficiently store and deploy container images for my applications."
 ---
 
 # Quickstart: Create an Azure container registry using the Azure portal

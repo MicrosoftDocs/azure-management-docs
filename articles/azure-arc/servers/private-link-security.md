@@ -4,6 +4,7 @@ description: Learn how to use Azure Private Link to securely connect networks to
 ms.topic: concept-article
 ms.custom:
 ms.date: 04/23/2025
+# Customer intent: "As a network administrator, I want to configure Azure Private Link to connect on-premises servers to Azure Arc, so that I can securely manage my resources without exposing data to public networks."
 ---
 
 # Use Azure Private Link to securely connect servers to Azure Arc
@@ -31,7 +32,6 @@ For more information, see  [Key benefits of Azure Private Link](/azure/private-l
 Azure Arc Private Link Scope connects private endpoints (and the virtual networks they're contained in) to an Azure resource, in this case Azure Arc-enabled servers. When you enable any one of the Azure Arc-enabled servers supported VM extensions, such as Azure Monitor, those resources connect other Azure resources. Such as:
 
 - Log Analytics workspace, required for Azure Automation Change Tracking and Inventory, Azure Monitor VM insights, and Azure Monitor log collection with Azure Monitor agent.
-- Azure Automation account, required for Update Management and Change Tracking and Inventory.
 - Azure Key Vault
 - Azure Blob storage, required for Custom Script Extension.
 
@@ -61,7 +61,7 @@ The Azure Arc-enabled servers Private Link Scope object has a number of limits y
 - All on-premises machines need to use the same private endpoint by resolving the correct private endpoint information (FQDN record name and private IP address) using the same DNS forwarder. For more information, see [Azure Private Endpoint DNS configuration](/azure/private-link/private-endpoint-dns)
 - The Azure Arc-enabled server and Azure Arc Private Link Scope must be in the same Azure region. The Private Endpoint and the virtual network must also be in the same Azure region, but this region can be different from that of your Azure Arc Private Link Scope and Arc-enabled server.
 - Network traffic to Microsoft Entra ID and Azure Resource Manager does not traverse the Azure Arc Private Link Scope and will continue to use your default network route to the internet. You can optionally [configure a resource management private link](/azure/azure-resource-manager/management/create-private-link-access-portal) to send Azure Resource Manager traffic to a private endpoint.
-- Other Azure services that you will use, for example Azure Monitor, requires their own private endpoints in your virtual network.
+- Other Azure services that you will use, for example Azure Monitor, require their own private endpoints in your virtual network.
 - Remote access to the server using Windows Admin Center or SSH is not supported over private link at this time.
 
 ## Planning your Private Link setup
@@ -107,7 +107,7 @@ There are two ways you can achieve this:
     |Priority |150 (must be lower than any rules that block internet access) |151 (must be lower than any rules that block internet access) |
     |Name |`AllowAADOutboundAccess` |`AllowAzOutboundAccess` |
 
-- Configure the firewall on your local network to allow outbound TCP 443 (HTTPS) access to Microsoft Entra ID and Azure using the downloadable service tag files. The [JSON file](https://www.microsoft.com/en-us/download/details.aspx?id=56519) contains all the public IP address ranges used by Microsoft Entra ID and Azure and is updated monthly to reflect any changes. Azure AD's service tag is `AzureActiveDirectory` and Azure's service tag is `AzureResourceManager`. Consult with your network administrator and network firewall vendor to learn how to configure your firewall rules.
+- Configure the firewall on your local network to allow outbound TCP 443 (HTTPS) access to Microsoft Entra ID and Azure using the downloadable service tag files. The [JSON file](https://www.microsoft.com/en-us/download/details.aspx?id=56519) contains all the public IP address ranges used by Microsoft Entra ID and Azure and is updated monthly to reflect any changes. Entra ID's service tag is `AzureActiveDirectory` and Azure's service tag is `AzureResourceManager`. Consult with your network administrator and network firewall vendor to learn how to configure your firewall rules.
 
 To understand more about the network traffic flows, see the diagram in the [How it works](#how-it-works) section of this article.
 

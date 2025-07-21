@@ -10,6 +10,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: "As a data manager, I want to install the necessary client tools for Azure Arc-enabled data services, so that I can effectively deploy and manage my data services across diverse environments."
 ---
 
 # Install client tools for deploying and managing Azure Arc-enabled data services

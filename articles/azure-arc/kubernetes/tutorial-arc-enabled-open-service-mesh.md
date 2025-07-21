@@ -4,6 +4,7 @@ description: Deploy the Open Service Mesh (OSM) extension on Azure Arc-enabled K
 ms.custom: devx-track-azurecli, devx-track-arm-template
 ms.date: 02/26/2025
 ms.topic: tutorial
+# Customer intent: As a cloud architect, I want to install and configure Azure Arc-enabled Open Service Mesh on Kubernetes, so that I can manage, secure, and enhance observability for microservices across my cloud environments.
 ---
 
 # Azure Arc-enabled Open Service Mesh

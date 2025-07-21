@@ -7,6 +7,7 @@ ms.custom:
   - build-2024
 ms.topic: include
 ms.date: 04/08/2025
+# Customer intent: "As an Azure user, I want to explore prompts for Azure Copilot, so that I can discover how to effectively manage my Azure resources and improve my operational efficiency."
 ---
 
 > [!TIP]

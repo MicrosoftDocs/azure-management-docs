@@ -1,18 +1,18 @@
 ---
 title: Sign Container Images with Notation and Azure Key Vault
 description: Learn to create a self-signed certificate in Azure Key Vault, build and sign a container image in Azure Container Registry, and verify it with Notation.
-author: yizha1
-ms.author: yizha1
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/3/2024
-#customer intent: As a developer, I want to sign and verify container images so that I can ensure their authenticity and integrity.
+# Customer intent: As a developer, I want to sign and verify container images using a self-signed certificate and secure storage solutions, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
 # Sign container images with Notation and Azure Key Vault using a self-signed certificate
 
-Signing container images is a process that ensures their authenticity and integrity. This is achieved by adding a digital signature to the container image, which can be validated during deployment. The signature helps to verify that the image is from a trusted publisher and has not been modified. [Notation](https://github.com/notaryproject/notation) is an open source supply chain security tool developed by the [Notary Project community](https://notaryproject.dev/) and backed by Microsoft, which supports signing and verifying container images and other artifacts. The Azure Key Vault (AKV) is used to store certificates with signing keys that can be used by Notation with the Notation AKV plugin (azure-kv) to sign and verify container images and other artifacts. The Azure Container Registry (ACR) allows you to attach signatures to container images and other artifacts as well as view those signatures.
+Signing container images is a process that ensures their authenticity and integrity. This is achieved by adding a digital signature to the container image, which can be validated during deployment. The signature helps to verify that the image is from a trusted publisher and has not been modified. [Notation](https://github.com/notaryproject/notation) is an open source supply chain security tool developed by the [Notary Project community](https://notaryproject.dev/) and backed by Microsoft, which supports signing and verifying container images and other artifacts. The Azure Key Vault (AKV) is used to store certificates with signing keys that can be used by Notation with the Notation AKV plugin (azure-kv) to sign and verify container images and other artifacts. The Azure Container Registry (ACR) allows you to attach signatures to container images and other artifacts as well as view those signatures. If you want to sign a container image with `notation` in CI/CD pipelines, follow the guidance of [Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign) or [GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha). 
 
 In this tutorial:
 
@@ -32,11 +32,11 @@ In this tutorial:
 
 ## Install Notation CLI and AKV plugin
 
-1. Install Notation v1.3.0 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
+1. Install Notation v1.3.2 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
 
     ```bash
     # Download, extract and install
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.0/notation_1.3.0_linux_amd64.tar.gz
+    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
     tar xvzf notation.tar.gz
             
     # Copy the Notation binary to the desired bin directory in your $PATH, for example
@@ -280,6 +280,9 @@ The following steps show how to create a self-signed certificate for testing pur
     | Workload identity credential | `workloadid`               |
     | Managed identity credential  | `managedid`                |
     | Azure CLI credential         | `azurecli`                 |
+
+ > [!NOTE]
+ > Since `notation` v1.2.0, `notation` uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
     
 5. View the graph of signed images and associated signatures.
 
@@ -353,7 +356,7 @@ To verify the container image, add the root certificate that signs the leaf cert
 
 ## Timestamping
 
-Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161) compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Timestamping Authority (TSA), enabling successful signature verification even after the certificates have expired. As an image signer, you should ensure that you sign container images with timestamps generated by a trusted TSA. As an image verifier, to verify timestamps, you should ensure that you trust both the image signer and the associated TSA, and establish trust through trust stores and trust policies. Timestamping reduces costs by eliminating the need to periodically re-sign images due to certificate expiry, which is especially critical when using short-lived certificates. For detailed instructions on how to sign and verify using timestamping, refer to the [Notary Project timestamping guide](https://v1-2.notaryproject.dev/docs/user-guides/how-to/timestamping/).
+Since Notation v1.2.0, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161) compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Timestamping Authority (TSA), enabling successful signature verification even after the certificates have expired. As an image signer, you should ensure that you sign container images with timestamps generated by a trusted TSA. As an image verifier, to verify timestamps, you should ensure that you trust both the image signer and the associated TSA, and establish trust through trust stores and trust policies. Timestamping reduces costs by eliminating the need to periodically re-sign images due to certificate expiry, which is especially critical when using short-lived certificates. For detailed instructions on how to sign and verify using timestamping, please refer to the [Notary Project timestamping guide](https://v1-2.notaryproject.dev/docs/user-guides/how-to/timestamping/).
 
 ## Next steps
 

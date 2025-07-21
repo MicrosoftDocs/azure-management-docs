@@ -10,6 +10,8 @@ ms.date: 02/25/2025
 keywords: "VMM, Arc, Azure"
 
 #Customer intent: As a VI admin, I want to switch to the new version of Arc-enabled SCVMM and leverage the associated capabilities
+ms.custom:
+  - build-2025
 ---
 
 # Switch to the new version of Arc-enabled SCVMM

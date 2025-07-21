@@ -4,6 +4,7 @@ description: Learn how to create a dashboard in the Azure portal using Azure Pow
 ms.topic: quickstart
 ms.custom: devx-track-azurepowershell, mode-api
 ms.date: 03/04/2025
+# Customer intent: As an Azure developer, I want to create a customized dashboard in the Azure portal using PowerShell, so that I can monitor and manage my cloud resources efficiently.
 ---
 
 # Quickstart: Create an Azure portal dashboard with PowerShell

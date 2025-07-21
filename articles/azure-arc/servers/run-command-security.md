@@ -4,6 +4,7 @@ description: Learn how to use RBAC roles and allowlists and blocklists to limit 
 ms.date: 02/28/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, devx-track-azurepowershell
+# Customer intent: As an IT administrator, I want to limit access to Run commands using RBAC roles and allowlists/blocklists, so that I can enhance the security of remote access to virtual machines and control who can execute commands.
 ---
 
 # Limit access to Run commands (Preview)

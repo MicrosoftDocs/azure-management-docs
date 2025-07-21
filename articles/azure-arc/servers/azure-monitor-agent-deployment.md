@@ -4,6 +4,7 @@ description: This article reviews the different methods to deploy the Azure Moni
 ms.date: 05/01/2025
 ms.topic: concept-article
 ms.custom: linux-related-content
+# Customer intent: "As an IT administrator managing hybrid environments, I want to deploy the Azure Monitor agent on Arc-enabled servers, so that I can monitor performance, ensure security, and maintain compliance across both virtual and physical machines."
 ---
 
 # Deployment options for Azure Monitor agent on Azure Arc-enabled servers
