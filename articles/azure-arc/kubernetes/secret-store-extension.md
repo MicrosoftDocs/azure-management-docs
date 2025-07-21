@@ -10,7 +10,7 @@ ms.custom: references_regions, ignite-2024
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
 
 > [!IMPORTANT]
-> - This documentation relates to SSE's release candidate V1.0. The installation instruction has been customised with the specific version number needed.
+> - This documentation is for SSE's V1.0 release candidate. The extension creation instruction below has been customized with the specific version number needed.
 > - This RC is only available in the following regions: northeurope, westus2, eastus, westus, eastus2, westus3, westeurope
 
 The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
