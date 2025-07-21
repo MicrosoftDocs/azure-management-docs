@@ -142,9 +142,6 @@
     - name: Deploy Azure Arc-enabled Open Service Mesh
       displayName: osm, microservice
       href: tutorial-arc-enabled-open-service-mesh.md
-    - name: Access secrets from Azure Key Vault
-      displayName: akv, cert
-      href: tutorial-akv-secrets-provider.md
     - name: Access secrets offline from Azure Key Vault
       items:
       - name: Getting started
@@ -155,6 +152,9 @@
         href: secret-store-extension-reference.md
       - name: Release notes
         href: secret-store-extension-release-notes.md
+      - name: Online-only zero-copy secrets access
+        displayName: akv, cert
+        href: tutorial-akv-secrets-provider.md
       displayName: secret synchronization, azure secret store, secret store
   - name: Deploy Arc-enabled services
     items:
