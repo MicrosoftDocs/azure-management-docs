@@ -36,7 +36,7 @@ The following table lists common status reasons, their meanings, and potential t
 If you see a `ProviderError` status reason with a message indicating a timeout or inability to reach your key vault endpoint (`<vault_name>.vault.azure.net`), there is a likely network access issue to resolve. Possible network access issues include:
 
 ### Azure Key Vault firewall configuration
-By default Azure Key Vault has a permissive firewall configuration and can be accessed via the public internet, but it is good practice to limit network access to Azure Key Vault. Double check that your key vault firewall configuration permits access for your cluster. See [Network security for Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/network-security)
+By default Azure Key Vault has a permissive firewall configuration and can be accessed via the public internet, but it is good practice to limit network access to Azure Key Vault. Double check that your key vault firewall configuration permits access for your cluster. See [Network security for Azure Key Vault](/azure/key-vault/general/network-security)
 
 #### Azure Arc Gateway (preview)
 If using Azure Arc Gateway (preview) for cluster connectivity, be aware that network access to Azure Key Vault is not covered by the gateway. You must independently allow network access to <vault-name>.vault.azure.net so that SSE can synchronize secrets. See related [arc gateway](https://learn.microsoft.com/azure/azure-arc/kubernetes/arc-gateway-simplify-networking) and [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/general/access-behind-firewall) documentation.
