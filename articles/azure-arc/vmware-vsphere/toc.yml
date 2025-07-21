@@ -18,6 +18,8 @@
   items:
   - name: Connect vCenter to Azure Arc
     href: quick-start-connect-vcenter-to-arc-using-script.md
+  - name: Connect Azure VMware Solution private cloud to Azure Arc
+    href: /azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows
 - name: Tutorial
   items:
   - name: Create a virtual machine on VMware vCenter
@@ -80,6 +82,8 @@
       href: ../servers/deploy-management-services.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
     - name: Manage with Windows Admin Center
       href: /windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines?toc=/azure/azure-arc/vmware-vsphere/toc.json&bc=/azure/azure-arc/vmware-vsphere/breadcrumb/toc.json
+    - name: Azure Kubernetes Service on VMware
+      href: /azure/aks/aksarc/aks-vmware-overview
   - name: Azure Arc benefits for VMware VMs
     items:
       - name: Windows Server Management
@@ -94,6 +98,8 @@
       href: administer-arc-vmware.md
     - name: Remove your vCenter environment from Azure Arc
       href: remove-vcenter-from-arc-vmware.md
+    - name: Remove Azure VMware Solution resources from Azure Arc
+      href: /azure/azure-vmware/remove-arc-enabled-azure-vmware-solution-vsphere-resources-from-azure
     - name: Perform recovery operations for Arc resource bridge
       displayName: disaster
       href: recover-from-resource-bridge-deletion.md
