@@ -40,8 +40,6 @@ When the user creates a data service instance on the cluster:
    * The Azure Arc-enabled Data Services operator was deployed via cluster extension creation before the custom location existed.
 1. The Azure Arc-enabled Data Services operator reads the new custom resource created on the cluster and creates the data controller, translating into realization of the desired state on the cluster.
 
-The sequence of steps to create the SQL managed instance are identical to the sequence of steps described above.
-
 ## Next steps
 
 * Use our quickstart to [connect a Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
