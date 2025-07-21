@@ -89,12 +89,12 @@ conceptualContent:
         - url: ./data/plan-azure-arc-data-services.md
           itemType: get-started
           text: Plan deployment
+        - url: ./data/connectivity.md
+          itemType: concept
+          text: Connectivity modes
         - url: ./data/create-sql-managed-instance.md
           itemType: how-to-guide
           text: Create SQL Managed Instance
-        - url: ./data/create-postgresql-hyperscale-server-group.md
-          itemType: how-to-guide
-          text: Create PostgreSQL server
       # footerLink (optional)
       footerLink:
         url: ./data/index.yml
