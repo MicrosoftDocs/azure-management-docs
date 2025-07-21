@@ -9,18 +9,18 @@ ms.custom: references_regions, ignite-2024
 
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
 
+> [!IMPORTANT]
+> - This documentation relates to SSE's release candidate V1.0. The installation instruction has been customised with the specific version number needed.
+> - This RC is only available in the following regions: northeurope, westus2, eastus, westus, eastus2, westus3, westeurope
+
 The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
 
 Synchronized secrets are critical business assets, so the SSE secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
 
-> [!TIP]
-> The SSE is recommended for scenarios where offline access is necessary, or if you need secrets synced into the Kubernetes secret store. If you don't need these features, you can use the [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) for secret management in your Arc-enabled Kubernetes clusters. It's not recommended to run both the online Azure Key Vault Secrets Provider extension and the offline SSE side-by-side in a cluster.
-
 This article shows you how to install and configure the SSE as an [Azure Arc-enabled Kubernetes extension](conceptual-extensions.md).
 
-> [!IMPORTANT]
-> SSE is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> [!TIP]
+> The SSE is recommended for clusters outside of Azure cloud where connectivity to Azure Key Vault may not be perfect. SSE by its nature creates copies of your secrets in the Kubernetes secrets store. If you  prefer to avoid creating local copies of secrets and your cluster has perfect connectivity to Azure Key Vault, then you can use the online-only [Azure Key Vault Secrets Provider extension](tutorial-akv-secrets-provider.md) for secret access in your Arc-enabled Kubernetes clusters. It is not recommended to run both the online Azure Key Vault Secrets Provider extension and the offline SSE side-by-side in the same cluster.
 
 ## Prerequisites
 
@@ -239,7 +239,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
      --version 1.0.0
    ```
 
-   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-parameters)
+   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-parameters).
 
 ## Configure the SSE
 

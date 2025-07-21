@@ -46,3 +46,5 @@ If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-conne
 
 ## Slow or missing updates
 
+Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV it will only be downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-parameters).
+
