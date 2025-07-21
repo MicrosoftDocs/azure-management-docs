@@ -67,7 +67,7 @@ The custom locations feature must be enabled before creating custom locations, b
 
 ### Enable custom locations as a Microsoft Entra user
 
-1. Sign into Azure CLI as a Microsoft Entra user and run the following command:
+Sign into Azure CLI as a Microsoft Entra user and run the following command:
 
 ```azurecli
 az connectedk8s enable-features -n <clusterName> -g <resourceGroupName> --features cluster-connect custom-locations
