@@ -12,6 +12,7 @@ ms.custom:
 ms.date: 03/13/2025
 ms.topic: concept-article
 #Customer intent: As a data professional, I want to understand what versions of components align with specific releases.
+# Customer intent: As a data professional, I want to access a log of release versions for Azure Arc-enabled data services, so that I can ensure compatibility and stay updated on component versions relevant to my data management tasks.
 ---
 
 # Version log

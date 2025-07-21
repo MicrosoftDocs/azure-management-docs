@@ -9,6 +9,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to configure Active Directory objects for Azure Arc-enabled data services, so that I can ensure proper authentication and management for SQL Managed Instances during deployment.
 ---
 
 # SQL Server enabled by Azure Arc in Active Directory authentication with system-managed keytab - prerequisites
