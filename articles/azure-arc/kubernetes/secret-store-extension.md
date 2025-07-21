@@ -235,10 +235,11 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
      --resource-group ${RESOURCE_GROUP} \
      --release-train preview \
      --name ssarcextension \
-     --scope cluster 
+     --scope cluster
+     --version 1.0.0
    ```
 
-   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference#arc-extension-configuration-parameters)
+   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-parameters)
 
 ## Configure the SSE
 
