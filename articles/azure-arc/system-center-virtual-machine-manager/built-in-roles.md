@@ -8,7 +8,9 @@ author: jyothisuri
 manager: akashdubey
 ms.author: jsuri
 ms.date: 05/08/2025
-ms.custom: generated
+ms.custom:
+  - generated
+  - build-2025
 # Customer intent: As a cloud administrator, I want to understand the built-in role definitions for Azure Arc-enabled SCVMM, so that I can manage permissions effectively and ensure secure operations across virtual machine instances.
 ---
 

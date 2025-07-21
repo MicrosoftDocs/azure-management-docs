@@ -90,7 +90,7 @@
     items:
     - name: VM extensions
       items:
-      - name: Overview
+      - name: Extensions overview
         displayName: extensions
         href: manage-vm-extensions.md
       - name: Manage extensions by using the Azure portal
@@ -191,6 +191,8 @@
       href: troubleshoot-agent-onboard.md
     - name: VM Extension issues
       href: troubleshoot-vm-extensions.md
+    - name: Connectivity loss
+      href: troubleshoot-connectivity.md
 - name: Security
   items:
   - name: Security overview
@@ -256,7 +258,7 @@
   - name: JavaScript
     href: /javascript/api/%40azure/arm-hybridcompute
   - name: Python
-    href: https://azuresdkdocs.blob.core.windows.net/$web/python/azure-mgmt-hybridcompute/2.0.0/index.html
+    href: /python/api/overview/azure/mgmt-hybridcompute-readme
   - name: Azure Policy built-ins 
     displayName: samples, policies, definitions
     href: policy-reference.md

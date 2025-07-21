@@ -23,6 +23,9 @@ landingContent:
             url: quotas-overview.md
           - text: Monitoring and alerts
             url: monitoring-alerting.md
+          - text: Quota Groups
+            url: quota-groups.md
+           
          
   # Card
   - title: View quotas and request increases

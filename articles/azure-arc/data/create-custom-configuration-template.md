@@ -10,6 +10,7 @@ ms.author: dinethi
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As a cloud architect, I want to create and customize configuration templates for Azure Arc-enabled data controllers, so that I can ensure they meet the specific requirements of my environment during deployment.
 ---
 # Create custom configuration templates
 

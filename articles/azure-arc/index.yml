@@ -10,11 +10,12 @@ metadata:
   description: Learn how to deploy resources to complex and distributed environments across on-premises, edge, and multicloud. Azure Arc enables deployment of Azure services anywhere and extends Azure management to any infrastructure.
   ms.service: azure-arc
   ms.topic: hub-page
-  ms.author: jroth
-  ms.date: 11/18/2024
+  ms.author: jenhayes
+  ms.date: 06/11/2025
   ms.custom:
     - e2e-hybrid
     - ignite-2023
+    - build-2025
 # highlightedContent section (optional)
 # Maximum of 8 items
 highlightedContent:
@@ -88,12 +89,12 @@ conceptualContent:
         - url: ./data/plan-azure-arc-data-services.md
           itemType: get-started
           text: Plan deployment
+        - url: ./data/connectivity.md
+          itemType: concept
+          text: Connectivity modes
         - url: ./data/create-sql-managed-instance.md
           itemType: how-to-guide
           text: Create SQL Managed Instance
-        - url: ./data/create-postgresql-hyperscale-server-group.md
-          itemType: how-to-guide
-          text: Create PostgreSQL server
       # footerLink (optional)
       footerLink:
         url: ./data/index.yml
@@ -161,13 +162,13 @@ additionalContent:
         # Card
         - title: Azure Kubernetes Service (AKS) enabled by Azure Arc 
           summary: Extend AKS to your on-premises environment.
-          url: https://learn.microsoft.com/en-us/azure/aks/hybrid/aks-hybrid-options-overview
+          url: https://learn.microsoft.com/azure/aks/aksarc/aks-overview
         # Card
         - title: Multicloud connector enabled by Azure Arc
           summary: Connect non-Azure public cloud resources to centralize management and governance in Azure.
           url: ./multicloud-connector/overview.md
         # Card
-        - title: Azure Container Apps on Azure Arc (preview)
+        - title: Azure Container Apps on Azure Arc
           summary: Run Container Apps on Azure Arc-enabled Kubernetes clusters.
           url: /azure/container-apps/azure-arc-overview
         # Card
@@ -182,3 +183,7 @@ additionalContent:
         - title: Edge RAG Preview enabled by Azure Arc
           summary: Search on-premises data with generative AI, using Retrieval Augmented Generation.
           url: /azure/azure-arc/edge-rag/
+        # Card
+        - title: Azure Container Storage enabled by Azure Arc
+          summary: A first-party storage system designed for Arc-connected Kubernetes clusters
+          url: /azure/azure-arc/container-storage/

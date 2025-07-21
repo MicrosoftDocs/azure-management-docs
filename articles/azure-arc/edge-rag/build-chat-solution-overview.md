@@ -1,32 +1,33 @@
 ---
-title: Building Chat Solution Overview for Edge RAG
-description: "Learn about building a chat solution with Edge RAG, including data ingestion, prompt engineering, and endpoint integration."
+title: Configuring the Chat Solution for Edge RAG
+description: "Learn about configuring the chat solution in Edge RAG, including ingesting data, prompt engineering, and integrating an endpoint."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/13/2025
+ms.date: 06/05/2025
 ai-usage: ai-assisted
-
-#CustomerIntent: As a developer or IT professional, I want to learn how to build a chat solution using Edge RAG so that I can effectively configure data ingestion, perform prompt engineering, and integrate the chat endpoint into business applications.
-
+ms.subservice: edge-rag
+#CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Edge RAG so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
+ms.custom:
+  - build-2025
 ---
 
-# Building chat solution for Edge RAG Preview, enabled by Azure Arc
+# Configuring the chat solution for Edge RAG Preview enabled by Azure Arc
 
-After you deploy Edge RAG, plan your chat solution by reviewing the steps and configuration information you need for data ingestion and prompt engineering.
+This article provides a high-level overview of the key configuration concepts for the Edge RAG chat solution. Use this guidance to help plan your approach before configuring your chat solution.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Building in the developer portal
+## Configuring the solution in the developer portal
 
 As part of the Edge RAG solution, a local developer portal is deployed on the Azure Kubernetes Service (AKS) cluster. Developers can access this portal to do the following tasks:
 
 - **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
 - **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
 
-Access the portal via the redirect URI (for example,  [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
+Access the portal via the redirect URI (for example, [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
 
-To authenticate and authorize your access to the portal, ensure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
+To authenticate and authorize your access to the portal, make sure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Data ingestion
 
@@ -34,7 +35,7 @@ Data ingestion refers to a set of user activities around providing on-premises d
 
 ### Planning data ingestion
 
-Before you start building your chat solution, do the following steps:
+Before you start configuring your chat solution, complete the following steps:
 
 - **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources). Make sure all your private data is in a network file system (NFS) share that's' accessible from Edge RAG. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
@@ -44,7 +45,7 @@ Before you start building your chat solution, do the following steps:
 
 ### Chunk settings
 
-Before you add a data source in Edge RAG, choose the appropriate chunk settings (chunk size and chunk overlap) and sync frequency. Here's some high-level guidance to select the right chunk settings for your data, as provided by Azure:
+Before you add a data source in Edge RAG, choose the appropriate chunk size, chunk overlap, and sync frequency. Here's some high-level guidance to select the right chunk settings for your data, as provided by Azure:
 
 - **Chunk size**: Define a fixed size that's sufficient for semantically meaningful paragraphs (for example, 200 words) and allows for some overlap (for example, 10-15% of the content) can produce good chunks as input for embedding vector generators.
 
@@ -70,6 +71,8 @@ When it comes to chunking data, think about these factors:
 
 ### Data ingestion by using REST APIs
 
+You can also perform data ingestion programmatically by using the  REST APIs.
+
 - Data ingestion can take a long time depending on the size of the data, the compute resources available to the embedding model, and other factors.
 - Create as many data ingestions as you'd like. However, all the data is vectorized and stored in a single index.
 
@@ -89,15 +92,15 @@ To choose the model parameters, here's directional guidance:
 | **Name** | **Description** |
 |---|---|
 | **Temperature** | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both. |
-| **Top k** | Refers to number of most relevant chunks given to the language model. Choosing *k* depends on the application's needs:<br> <br>- For broad coverage, use a larger *k*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *k*. For example, 3-5.<br><br> Experiment with *k* values to balance retrieval accuracy and downstream model performance. Bigger the *value of k*, the longer the inference time. |
-| **Top p** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
+| **Top-N** | Refers to number of most relevant chunks given to the language model. Choosing *N* depends on the application's needs:<br> <br>- For broad coverage, use a larger *N*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *N*. For example, 3-5.<br><br> Experiment with *N* values to balance retrieval accuracy and downstream model performance. Bigger the *value of N*, the longer the inference time. |
+| **Top-P** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
 | **Past Messages Included** | Determines how many messages from the conversation history (previous user and assistant messages) are included in the current inference request. |
 | **Text strictness** | Controls how strictly the RAG system filters and ranks retrieved text documents before passing them to the generation model.<br><br>- **Low strictness**: More documents are considered relevant, even if they're only loosely related to the query.<br>- **High strictness**: Only documents that closely match the query are used. |
 | **Image strictness** | Similar to text strictness but applies to retrieved image data if the RAG system supports multimodal retrieval.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are very closely aligned with the query are retrieved. |
 
 ### Data querying by using REST APIs
 
-In addition to the developer portal, you can use the REST APIs to do prompt engineering activities such as providing the system message and model parameters.
+In addition to the developer portal, you can use the REST APIs to configure the chat solution such as providing the system message and model parameters.
 
 ### Consuming the chat endpoint
 

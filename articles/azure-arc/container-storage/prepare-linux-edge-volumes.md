@@ -4,9 +4,13 @@ description: Learn how to prepare Linux in Azure Container Storage enabled by Az
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content, references_regions
+ms.custom:
+  - linux-related-content
+  - references_regions
+  - build-2025
 ms.date: 08/30/2024
 
+# Customer intent: As a cloud developer, I want to prepare my Linux environment for Edge Volumes in Azure Container Storage, so that I can effectively manage and deploy workloads using AKS enabled by Azure Arc.
 ---
 
 # Prepare Linux for Edge Volumes

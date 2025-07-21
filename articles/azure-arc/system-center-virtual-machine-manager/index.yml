@@ -8,8 +8,9 @@ metadata:
   ms.author: jsuri
   ms.service: azure-arc
   ms.topic: landing-page
-  ms.date: 04/15/2025
+  ms.date: 06/09/2025
   author: jyothisuri
+  ms.custom: build-2025
 
 landingContent:
   - title: About Azure Arc-enabled System Center Virtual Machine Manager
@@ -18,6 +19,8 @@ landingContent:
         links:
           - text: What is Azure Arc-enabled System Center Virtual Machine Manager?
             url: overview.md
+          - text: What's new
+            url: whats-new.md
           - text: Plan for deployment
             url: support-matrix-for-system-center-virtual-machine-manager.md
                 
@@ -29,29 +32,53 @@ landingContent:
             url: quickstart-connect-system-center-virtual-machine-manager-to-arc.md
       - linkListType: tutorial
         links:
-          - text: Create a VM on SCVMM using Azure Arc
-            url: create-virtual-machine.md
+          - text: Terraform based VM management (AzAPI provider)
+            url: terraform-vm-management.md
       
   - title: Use Azure to manage SCVMM VMs
     linkLists:
       - linkListType: how-to-guide
         links:  
-          - text: Enable SCVMM inventory resources in Azure
+          - text: Enable SCVMM inventory resources
             url: enable-scvmm-inventory-resources.md
-          - text: Enable virtual hardware and VM CRUD capabilities in an SCVMM machine with Arc agent installed
+          - text: Link Arc-enabled server machines to SCVMM
             url: enable-virtual-hardware-scvmm.md
-          - text: Set up and manage self-service access to SCVMM resources
+          - text: Set up and manage self-service access
             url: set-up-and-manage-self-service-access-scvmm.md
-          - text: Manage SCVMM VMs in Azure through Arc-enabled SCVMM
-            url: perform-vm-ops-on-scvmm-through-azure.md
-          - text: Install Arc agent at scale for your SCVMM VMs
+          - text: Create a virtual machine
+            url: create-virtual-machine.md
+          - text: Install Arc agents on SCVMM VMs
             url: enable-guest-management-at-scale.md
-          - text: Install Arc agents using a script
-            url: install-arc-agents-using-script.md
-          - text: Deliver ESUs for SCVMM VMs through Arc
-            url: deliver-esus-for-system-center-virtual-machine-manager-vms.md
-          - text: Perform ongoing administration for Arc-enabled SCVMM
-            url: administer-arc-scvmm.md
+          - text: Modernize VM management
+            url: /azure/azure-arc/servers/modernize-server-management
+          - text: Monitor VMs
+            url: /azure/azure-arc/servers/learn/tutorial-enable-vm-insights
+          - text: Onboard to Microsoft Defender for Cloud
+            url: /azure/defender-for-cloud/quickstart-onboard-machines
+          - text: Onboard to Microsoft Sentinel
+            url: /azure/azure-arc/servers/scenario-onboard-azure-sentinel
+          - text: Assign policy to assess compliance
+            url: /azure/azure-arc/servers/learn/tutorial-assign-policy-portal
+          
+  - title: Troubleshoot
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: SCVMM-specific deployment errors
+            url: troubleshoot-scvmm.md
+          - text: Common deployment errors
+            url: /azure/azure-arc/resource-bridge/troubleshoot-resource-bridge
+          - text: Agent connection issues
+            url: /azure/azure-arc/servers/troubleshoot-agent-onboard
+          - text: VM Extension issues
+            url: /azure/azure-arc/servers/troubleshoot-vm-extensions
+  
+  - title: Resources
+    linkLists:
+      - linkListType: concept
+        links:
+          - text: Regional availability
+            url: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table
 
   - title: Reference
     linkLists:
@@ -65,7 +92,7 @@ landingContent:
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-bicep
           - text: ARM templates
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-arm-template
-          - text: Terraform templates
+          - text: Terraform Templates (AzAPI provider)
             url: /azure/templates/microsoft.scvmm/virtualmachineinstances?pivots=deployment-language-terraform
           - text: Python SDK
             url: /python/api/overview/azure/mgmt-scvmm-readme?view=azure-python

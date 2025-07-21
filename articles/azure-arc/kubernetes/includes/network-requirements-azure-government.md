@@ -2,6 +2,7 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 02/18/2025
+# Customer intent: "As a network administrator, I want to configure outbound network access for Azure Arc agents in the Azure Government cloud, so that they can connect to necessary endpoints for proper functionality and management of connected clusters."
 ---
 
 > [!IMPORTANT]

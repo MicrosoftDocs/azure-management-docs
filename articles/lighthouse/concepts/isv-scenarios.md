@@ -3,6 +3,7 @@ title: Azure Lighthouse in ISV scenarios
 description: ISVs can use the capabilities of Azure Lighthouse for more flexibility with customer offerings.
 ms.date: 07/10/2024
 ms.topic: concept-article
+# Customer intent: "As an Independent Software Vendor, I want to use Azure Lighthouse to manage customer resources in a secure and scalable way, so that I can offer enhanced managed services while maintaining control over my intellectual property and support processes."
 ---
 
 # Azure Lighthouse in ISV scenarios

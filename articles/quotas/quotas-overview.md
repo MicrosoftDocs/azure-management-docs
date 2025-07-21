@@ -1,8 +1,9 @@
 ---
 title:  Quotas overview
 description: Learn about to view quotas and request increases in the Azure portal.
-ms.date: 08/17/2023
+ms.date: 03/25/2025
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to monitor and manage resource quotas in my Azure subscription, so that I can ensure optimal resource allocation and request increases when necessary to accommodate changing usage demands.
 ---
 
 # Quotas overview

@@ -4,16 +4,27 @@ title: What's new in Azure Arc-enabled SCVMM
 description: This article describes the new features and enhancements supported in Azure Arc-enabled System Center Virtual Machine Manager.
 ms.author: jsuri
 author: jyothisuri
-ms.date: 04/09/2025
+ms.date: 06/10/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
+ms.custom:
+  - build-2025
 # Customer intent: As a cloud administrator, I want to understand the new features in Azure Arc-enabled SCVMM, so that I can optimize VM management and leverage enhancements for better performance and cost efficiency in my cloud infrastructure.
 ---
 
 # What's new in Azure Arc-enabled SCVMM
 
 Azure Arc-enabled SCVMM receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments.
+
+## June 2025
+
+- Ability to install Arc agents at-scale on SCVMM VMs using [out-of band methods](/azure/azure-arc/system-center-virtual-machine-manager/enable-guest-management-at-scale?tabs=Out-of-band) such as:
+   - Service principal
+   - System Center Configuration Manager script
+   - System Center Configuration Manager custom task sequence
+   - Group policy
+   - Ansible playbook
 
 ## April 2025 
  

@@ -2,7 +2,8 @@
 title: Share Azure portal dashboards by using Azure role-based access control
 description: This article explains how to share a dashboard in the Azure portal by using Azure role-based access control.
 ms.topic: how-to
-ms.date: 09/05/2023
+ms.date: 06/19/2025
+# Customer intent: As an Azure administrator, I want to share Azure portal dashboards using role-based access control so that I can manage who has view and edit permissions within my organization effectively.
 ---
 
 # Share Azure dashboards by using Azure role-based access control
@@ -57,7 +58,7 @@ For each dashboard that you have published, you can assign Azure RBAC built-in r
 
 1. In **Access Control**, select **Role assignments** to see existing users that are already assigned a role for this dashboard.
 
-1. To add a new user or group, select **Add** then **Add role assignment**.
+1. To add a new user or group, select **Add**, then select **Add role assignment**.
 
    :::image type="content" source="media/azure-portal-dashboard-share-access/manage-users-existing-users.png" alt-text="Screenshot showing how to add a role assignment for an Azure portal dashboard.":::
 

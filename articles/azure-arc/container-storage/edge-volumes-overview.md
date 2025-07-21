@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: overview
 ms.date: 05/05/2025
 
+# Customer intent: As an IoT application developer, I want to utilize Edge Volumes for data storage and ingestion, so that I can optimize local resource utilization and manage data effectively in disconnected environments.
 ---
 
 # Overview of Edge Volumes

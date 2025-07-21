@@ -4,6 +4,7 @@ ms.date: 02/25/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli
 description: "Use Azure RBAC for authorization checks on Azure Arc-enabled Kubernetes clusters."
+# Customer intent: As a Kubernetes administrator, I want to implement Azure RBAC on my Azure Arc-enabled clusters, so that I can effectively manage user access and authorizations for Kubernetes objects within my environment.
 ---
 
 # Use Azure RBAC on Azure Arc-enabled Kubernetes clusters
@@ -459,3 +460,4 @@ node-3    Ready    agent    6m33s    v1.18.14
 
 - Read about the [architecture of Azure RBAC on Arc-enabled Kubernetes](conceptual-azure-rbac.md).
 - Securely connect to an Arc-enabled Kubernetes cluster by using [cluster connect](cluster-connect.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

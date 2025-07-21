@@ -3,6 +3,7 @@ title: What is the Azure mobile app?
 description: The Azure mobile app is a tool that allows you to monitor and manage your Azure resources and services from your mobile device. 
 ms.date: 04/03/2025
 ms.topic: overview
+# Customer intent: "As an Azure user, I want to monitor and manage my Azure resources from my mobile device, so that I can maintain operational oversight and respond to alerts while on the go."
 ---
 
 # What is the Azure mobile app?

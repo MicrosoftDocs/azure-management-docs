@@ -4,6 +4,7 @@ description: In this article, you learn how to create a Group Policy Object to o
 ms.date: 05/04/2023
 ms.topic: how-to
 ms.custom: template-how-to
+# Customer intent: As an IT administrator, I want to onboard Active Directory-joined Windows machines to Azure Arc-enabled servers using Group Policy and PowerShell scripts, so that I can efficiently manage and scale my server environment within Azure.
 ---
 
 # Connect machines at scale using Group Policy

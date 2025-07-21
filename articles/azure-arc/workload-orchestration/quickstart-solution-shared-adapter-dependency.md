@@ -3,23 +3,25 @@ title: Create a Solution with Shared Adapter Dependency with Workload Orchestrat
 description: Learn how to create a solution with shared adapter dependency using workload orchestration via CLI.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: quickstart
+ms.topic: tutorial
 ms.date: 05/07/2025
+ms.custom:
+  - build-2025
 ---
 
-# Quickstart: Create a solution with shared adapter dependency
+# Tutorial: Create a solution with shared adapter dependency
 
-In this quickstart, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which is dependent on Shared Sync Adapter (SSA). A shared sync adapter is a component used in various applications to manage data synchronization between devices and servers.
+In this tutorial, you use the workload orchestration via CLI to create a Factory Sensor Anomaly Detector (FSAD) solution which is dependent on a Shared Sync Adapter (SSA) solution. A shared sync adapter is a component used in various solutions to manage data synchronization between devices and servers.
 
-The FSAD application is deployed on a child target, while the SSA application is deployed on a parent target. The FSAD application uses the SSA application to synchronize data between devices and servers.
+The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
 
 ## Prerequisites
 
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 
 ## Description of the user scenario
@@ -78,7 +80,7 @@ configs:
 
 ## Define the variables for solution templating
 
-Create the template and schema YAML files by referring to *shared-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+Create the template and schema YAML files by referring to *shared-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 
 ### [Bash](#tab/bash)
 
@@ -160,7 +162,7 @@ $app2Version = "1.0.1"
 
 ### [Bash](#tab/bash)
 
-1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. Look up the custom location details.
 
     ```bash
@@ -186,12 +188,13 @@ $app2Version = "1.0.1"
         --description "$parentDesc" \
         --solution-scope "$parentScope" \
         --target-specification "@targetspecs.json" \
-        --extended-location "@custom-location.json"
+        --extended-location "@custom-location.json" \
+        --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create *targetspecs.json* file by referring to the *targetspecs.json* file in the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. Look up the custom location details.
 
     ```powershell
@@ -215,7 +218,8 @@ $app2Version = "1.0.1"
         --description $parentDesc `
         --solution-scope $parentScope `
         --target-specification "@targetspecs.json" `
-        --extended-location "@custom-location.json"
+        --extended-location "@custom-location.json" `
+        --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName
     ```
 
 
@@ -243,24 +247,24 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [Bash](#tab/bash)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the previous step.
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the previous step.
 1. Create the SSA solution template using the following command. The following command takes version input from CLI argument:
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
     ```
 
 ***
@@ -272,7 +276,7 @@ Create a target at child level. Ensure *custom-location.json* is updated with th
 ### [Bash](#tab/bash)
 
 ```bash	
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
 ```
 
 > [!NOTE]
@@ -280,13 +284,13 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 > The ``solution-template create` command displays the ID along with solution template version.
 >
 > ```bash
-> solutionTemplateId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
+> solutionTemplateId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json'
+az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description "$childDesc" --solution-scope "$childName-scope" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
 ```
 
 > [!NOTE]
@@ -294,7 +298,7 @@ az workload-orchestration target create --resource-group $rg --location $l --nam
 > The ``solution-template create` command displays the ID along with solution template version.
 >
 > ```powershell
-> $solutionTemplateId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
+> $solutionTemplateId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutiontemplates/$appName1"
 > ```
 
 ***
@@ -321,26 +325,26 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [Bash](#tab/bash)
 
-1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 1. Create the FSAD solution template using the following command:
 
     ```bash
     # Any modifications to solution files will necessitate version update.
 
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --configuration-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$app2Version"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName2" --description "$desc2" --capabilities "$appCapList2" --config-template-file "$appConfig2" --specification "@fsad-specs.json" --version "$app2Version"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *fsad-specs.json* file by referring to *fsad-specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *fsad-specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 1. Create the FSAD solution template using the following command:
 
     ```powershell
     # Any modifications to solution files will necessitate version update.
 
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --configuration-template-file $appConfig2 --specification "@fsad-specs.json" --version $app2Version
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName2 --description $desc2 --capabilities $appCapList2 --config-template-file $appConfig2 --specification "@fsad-specs.json" --version $app2Version
     ```
 
 ***
@@ -377,6 +381,9 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Review the configuration values
 
 ### [Bash](#tab/bash)
@@ -385,7 +392,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     # Fetch the appVersion from SSA solution create command
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$parentName"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$parentName"
     ```
 
 1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
@@ -393,7 +400,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     # Fetch the appVersion from FSAD solution create command
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName2" --solution-template-version "$app2Version" --target-name "$childName" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `solutionTemplateVersionId` from `solutionDependencies` in the output. Execute the `az rest` command and ensure FSAD configuration is injected.
@@ -411,7 +418,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     # Fetch the appVersion from SSA solution create command
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $parentName
+    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $parentName
     ```
 
 1. Update the solution version ID, `Id`, from the output of previous command in the *dependencies.json* file. 
@@ -419,7 +426,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     # Fetch the appVersion from FSAD solution create command
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName2 --solution-template-version $app2Version --target-name $childName --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `solutionTemplateVersionId` from `solutionDependencies` in the output. Execute the `az rest` command and ensure FSAD configuration is injected.
@@ -441,13 +448,13 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```bash
     reviewId="<reviewId>"
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version 
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName2" --solution-version "$app2Version" --target-name "$childName"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -456,14 +463,17 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
     ```powershell
     $reviewId = "<reviewId>"
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 1. Run `target install` command to deploy the solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName2 --solution-version $app2Version --target-name $childName
+    az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName2/versions/$app2Version
     ```
 
 ***
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)
 

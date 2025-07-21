@@ -1,10 +1,11 @@
 ---
 title: Onboard a customer to Azure Lighthouse
 description: Learn how to onboard a customer to Azure Lighthouse, allowing their resources to be accessed and managed by users in your tenant.
-ms.date: 06/03/2024
+ms.date: 06/18/2025
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
+# Customer intent: As a service provider, I want to onboard a customer to a resource management solution, so that I can manage their Azure resources efficiently from my tenant without requiring them to share credentials.
 ---
 
 # Onboard a customer to Azure Lighthouse
@@ -48,7 +49,7 @@ To define authorizations in your template, you must include the ID values for ea
 Whenever possible, we recommend using Microsoft Entra user groups for each assignment whenever possible, rather than individual users. This gives you the flexibility to add or remove individual users to the group that has access, so that you don't have to repeat the onboarding process to make user changes. You can also assign roles to a service principal, which can be useful for automation scenarios.
 
 > [!IMPORTANT]
-> In order to add permissions for a Microsoft Entra group, the **Group type** must be set to **Security**. This option is selected when the group is created. For more information, see [Learn about groups and access rights in Microsoft Entra ID](/entra/fundamentals/concept-learn-about-groups).
+> In order to add permissions for a Microsoft Entra group, the **Group type** must be set to **Security**. This option is selected when the group is created. For more information, see [Learn about group types, membership types, and access management](/entra/fundamentals/concept-learn-about-groups).
 
 When defining your authorizations, be sure to follow the principle of least privilege so that users only have the permissions needed to complete their job. For information about supported roles and best practices, see [Tenants, users, and roles in Azure Lighthouse scenarios](../concepts/tenants-users-roles.md).
 
@@ -183,51 +184,31 @@ When onboarding a subscription (or one or more resource groups within a subscrip
 > [!IMPORTANT]
 > This deployment must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](/azure/role-based-access-control/role-assignments-list-portal#list-owners-of-a-subscription).
 >
-> If the subscription was created through the [Cloud Solution Provider (CSP) program](../concepts/cloud-solution-provider.md), any user who has the [Admin Agent](/partner-center/permissions-overview#manage-commercial-transactions-in-partner-center-azure-ad-and-csp-roles) role in your service provider tenant can perform the deployment.
+> If the subscription was created through the [Cloud Solution Provider (CSP) program](../concepts/cloud-solution-provider.md), any user who has the [Admin Agent](/partner-center/account-settings/permissions-overview#admin-agent-role) role in your service provider tenant can perform the deployment.
 
-The deployment may be done by using PowerShell, by using Azure CLI, or in the Azure portal, as shown below.
+The deployment may be done in the Azure portal, by using Azure CLI, or by using PowerShell.
 
-### Deploy by using PowerShell
+### [Azure portal](#tab/azure-portal)
 
-To deploy a single template:
+To deploy a template in the Azure portal, follow the process described below. These steps must be done by a user in the customer tenant with the **Owner** role (or another role with the `Microsoft.Authorization/roleAssignments/write` permission).
 
-```azurepowershell-interactive
-# Log in first with Connect-AzAccount if you're not using Cloud Shell
+1. From the [Service providers](view-manage-service-providers.md) page in the Azure portal, select **Server provider offers**.
+1. Near the top of the screen, select the arrow next to **Add offer**, and then select **Add via template**.
 
-# Deploy Azure Resource Manager template using template and parameter file locally
-New-AzSubscriptionDeployment -Name <deploymentName> `
-                 -Location <AzureRegion> `
-                 -TemplateFile <pathToTemplateFile> `
-                 -Verbose
+   :::image type="content" source="../media/add-offer-via-template.png" alt-text="Screenshot showing the Add via template option in the Azure portal.":::
 
-# Deploy Azure Resource Manager template that is located externally
-New-AzSubscriptionDeployment -Name <deploymentName> `
-                 -Location <AzureRegion> `
-                 -TemplateUri <templateUri> `
-                 -Verbose
-```
+1. Upload the template by dragging and dropping it, or select **Browse for files** to find and upload the template.
+1. If applicable, select the **I have a separate parameter file** box, then upload your parameter file.
+1. After you've uploaded your template (and parameter file if needed), select **Upload**.
+1. In the **Custom deployment** screen, review the details that appear. If needed, you can make changes to these values in this screen, or by selecting **Edit parameters**. 
+1. Select **Review and create**, then select **Create**.
 
-To deploy a template with a separate parameter file:
+After a few minutes, you should see a notification that the deployment has completed.
 
-```azurepowershell-interactive
-# Log in first with Connect-AzAccount if you're not using Cloud Shell
+> [!TIP]
+> Alternately, from our [GitHub repo](https://github.com/Azure/Azure-Lighthouse-samples/), select the **Deploy to Azure** button shown next to the template you want to use (in the **Auto-deploy** column). The example template will open in the Azure portal. If you use this process, you must update the values for **Msp Offer Name**, **Msp Offer Description**, **Managed by Tenant Id**, and **Authorizations** before you select **Review and create**.
 
-# Deploy Azure Resource Manager template using template and parameter file locally
-New-AzSubscriptionDeployment -Name <deploymentName> `
-                 -Location <AzureRegion> `
-                 -TemplateFile <pathToTemplateFile> `
-                 -TemplateParameterFile <pathToParameterFile> `
-                 -Verbose
-
-# Deploy Azure Resource Manager template that is located externally
-New-AzSubscriptionDeployment -Name <deploymentName> `
-                 -Location <AzureRegion> `
-                 -TemplateUri <templateUri> `
-                 -TemplateParameterUri <parameterUri> `
-                 -Verbose
-```
-
-### Deploy by using Azure CLI
+### [Azure CLI](#tab/azure-cli)
 
 To deploy a single template:
 
@@ -267,31 +248,53 @@ az deployment sub create --name <deploymentName> \
                          --verbose
 ```
 
-### Deploy in the Azure portal
+### [Azure PowerShell](#tab/azure-powershell)
 
-To deploy a template in the Azure portal, follow the process described below. These steps must be done by a user in the customer tenant with the **Owner** role (or another role with the `Microsoft.Authorization/roleAssignments/write` permission).
+To deploy a single template:
 
-1. From the [Service providers](view-manage-service-providers.md) page in the Azure portal, select **Server provider offers**.
-1. Near the top of the screen, select the arrow next to **Add offer**, and then select **Add via template**.
+```azurepowershell-interactive
+# Log in first with Connect-AzAccount if you're not using Cloud Shell
 
-   :::image type="content" source="../media/add-offer-via-template.png" alt-text="Screenshot showing the Add via template option in the Azure portal.":::
+# Deploy Azure Resource Manager template using template and parameter file locally
+New-AzSubscriptionDeployment -Name <deploymentName> `
+                 -Location <AzureRegion> `
+                 -TemplateFile <pathToTemplateFile> `
+                 -Verbose
 
-1. Upload the template by dragging and dropping it, or select **Browse for files** to find and upload the template.
-1. If applicable, select the **I have a separate parameter file** box, then upload your parameter file.
-1. After you've uploaded your template (and parameter file if needed), select **Upload**.
-1. In the **Custom deployment** screen, review the details that appear. If needed, you can make changes to these values in this screen, or by selecting **Edit parameters**. 
-1. Select **Review and create**, then select **Create**.
+# Deploy Azure Resource Manager template that is located externally
+New-AzSubscriptionDeployment -Name <deploymentName> `
+                 -Location <AzureRegion> `
+                 -TemplateUri <templateUri> `
+                 -Verbose
+```
 
-After a few minutes, you should see a notification that the deployment has completed.
+To deploy a template with a separate parameter file:
 
-> [!TIP]
-> Alternately, from our [GitHub repo](https://github.com/Azure/Azure-Lighthouse-samples/), select the **Deploy to Azure** button shown next to the template you want to use (in the **Auto-deploy** column). The example template will open in the Azure portal. If you use this process, you must update the values for **Msp Offer Name**, **Msp Offer Description**, **Managed by Tenant Id**, and **Authorizations** before you select **Review and create**.
+```azurepowershell-interactive
+# Log in first with Connect-AzAccount if you're not using Cloud Shell
+
+# Deploy Azure Resource Manager template using template and parameter file locally
+New-AzSubscriptionDeployment -Name <deploymentName> `
+                 -Location <AzureRegion> `
+                 -TemplateFile <pathToTemplateFile> `
+                 -TemplateParameterFile <pathToParameterFile> `
+                 -Verbose
+
+# Deploy Azure Resource Manager template that is located externally
+New-AzSubscriptionDeployment -Name <deploymentName> `
+                 -Location <AzureRegion> `
+                 -TemplateUri <templateUri> `
+                 -TemplateParameterUri <parameterUri> `
+                 -Verbose
+```
+
+---
 
 ## Confirm successful onboarding
 
-When a customer subscription has successfully been onboarded to Azure Lighthouse, users in the service provider's tenant will be able to see the subscription and its resources (if they have been granted access to it through the process above, either individually or as a member of a Microsoft Entra group with the appropriate permissions). To confirm this, check to make sure the subscription appears in one of the following ways.  
+When a customer subscription has successfully been onboarded to Azure Lighthouse, users in the service provider's tenant will be able to see the subscription and its resources if they have been granted access to it through the process above, either individually or as a member of a Microsoft Entra group with the appropriate permissions. You can confirm that the resources were successfully delegated by using the Azure portal, Azure PowerShell, or Azure CLI.
 
-### Confirm in the Azure portal
+### [Azure portal](#tab/azure-portal)
 
 In the service provider's tenant:
 
@@ -311,20 +314,9 @@ In the customer's tenant:
 > [!NOTE]
 > It may take up to 15 minutes after your deployment is complete before the updates are reflected in the Azure portal. You may be able to see the updates sooner if you update your Azure Resource Manager token by refreshing the browser, signing in and out, or requesting a new token.
 
-### Confirm by using PowerShell
+### [Azure CLI](#tab/azure-cli)
 
-```azurepowershell-interactive
-# Log in first with Connect-AzAccount if you're not using Cloud Shell
-
-Get-AzContext
-
-# Confirm successful onboarding for Azure Lighthouse
-
-Get-AzManagedServicesDefinition
-Get-AzManagedServicesAssignment
-```
-
-### Confirm by using Azure CLI
+Use the [`az managedservices definition list`](/cli/azure/managedservices/definition#az-managedservices-definition-list) and [`az managedservices assignment list`](/cli/azure/managedservices/assignment#az-managedservices-assignment-list) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
 
 ```azurecli-interactive
 # Log in first with az login if you're not using Cloud Shell
@@ -337,19 +329,36 @@ az managedservices definition list
 az managedservices assignment list
 ```
 
+### [Azure PowerShell](#tab/azure-powershell)
+
+Use the [`Get-AzManagedServicesDefinition`](/powershell/module/az.managedservices/get-azmanagedservicesdefinition) and [`Get-AzManagedServicesAssignment`](/powershell/module/az.managedservices/get-azmanagedservicesassignment) commands to confirm that the customer has been successfully onboarded to Azure Lighthouse. These commands return a list of [registration definitions](../concepts/architecture.md#registration-definition) and [registration assignments](../concepts/architecture.md#registration-assignment) in the subscription.
+
+```azurepowershell-interactive
+# Log in first with Connect-AzAccount if you're not using Cloud Shell
+
+Get-AzContext
+
+# Confirm successful onboarding for Azure Lighthouse
+
+Get-AzManagedServicesDefinition
+Get-AzManagedServicesAssignment
+```
+
+---
+
 If you need to make changes after the customer has been onboarded, you can [update the delegation](update-delegation.md). You can also [remove access to the delegation](remove-delegation.md) completely.
 
 ## Troubleshooting
 
-If you are unable to successfully onboard your customer, or if your users have trouble accessing the delegated resources, check the following tips and requirements and try again.
+If you're unable to successfully onboard your customer, or if your users have trouble accessing the delegated resources, check the following tips and requirements and try again.
 
 - Users who need to view customer resources in the Azure portal must have been granted the [Reader](/azure/role-based-access-control/built-in-roles#reader) role (or another built-in role which includes Reader access) during the onboarding process.
 - The `managedbyTenantId` value must not be the same as the tenant ID for the subscription being onboarded.
 - You can't have multiple assignments at the same scope with the same `mspOfferName`.
-- The **Microsoft.ManagedServices** resource provider must be registered for the delegated subscription. This should happen automatically during the deployment but if not, you can [register it manually](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+- The **Microsoft.ManagedServices** resource provider must be registered for the delegated subscription. This should happen automatically during the deployment, but you can also [register it manually](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
 - Authorizations must not include any users with the [Owner](/azure/role-based-access-control/built-in-roles#owner) role, any roles with [DataActions](/azure/role-based-access-control/role-definitions#dataactions), or any roles that include [restricted actions](../concepts/tenants-users-roles.md#role-support-for-azure-lighthouse).
 - Groups must be created with [**Group type**](/entra/fundamentals/concept-learn-about-groups#group-types) set to **Security** and not **Microsoft 365**.
-- If access was granted to a group, check to make sure the user is a member of that group. If they aren't, you can [add them to the group using Microsoft Entra ID](/entra/fundamentals/how-to-manage-groups), without having to perform another deployment. Note that group owners are not necessarily members of the groups they manage, and may need to be added in order to have access.
+- If access was granted to a group, check to make sure the user is a member of that group. If they aren't, you can [add them to the group using Microsoft Entra ID](/entra/fundamentals/how-to-manage-groups), without having to perform another deployment. Note that group owners aren't necessarily members of the groups they manage, and may need to be added in order to have access.
 - There may be an additional delay before access is enabled for [nested groups](/entra/fundamentals/how-to-manage-groups#add-a-group-to-another-group).
 - The [Azure built-in roles](/azure/role-based-access-control/built-in-roles) that you include in authorizations must not include any deprecated roles. If an Azure built-in role becomes deprecated, any users who were onboarded with that role will lose access, and you won't be able to onboard additional delegations. To fix this, update your template to use only supported built-in roles, then perform a new deployment.
 

@@ -1,0 +1,9 @@
+{
+    "redirections": [
+        {
+            "source_path_from_root": "/articles/azure-arc/workload-orchestration/github-actions.md",
+            "redirect_url": "/azure/azure-arc/workload-orchestration/overview",
+            "redirect_document_id": false
+        }
+    ]
+}

@@ -8,6 +8,8 @@
     href: view-quotas.md
   - name: Monitoring and alerts
     href: monitoring-alerting.md
+  - name: Quota Groups
+    href: quota-groups.md
 - name: Quickstarts
   items:
   - name: Request a quota increase

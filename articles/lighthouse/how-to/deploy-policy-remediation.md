@@ -3,6 +3,7 @@ title: Deploy a policy that can be remediated within a delegated subscription
 description: To deploy policies that use a remediation task via Azure Lighthouse, you need to create a managed identity in the customer tenant.
 ms.date: 07/16/2024
 ms.topic: how-to
+# Customer intent: "As a service provider, I want to deploy remediation policies in delegated customer subscriptions, so that I can ensure compliant resource configurations across managed tenants."
 ---
 
 # Deploy a policy that can be remediated within a delegated subscription

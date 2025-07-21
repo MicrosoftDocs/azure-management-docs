@@ -3,6 +3,7 @@ title: Azure Lighthouse in enterprise scenarios
 description: The capabilities of Azure Lighthouse can be used to simplify cross-tenant management within an enterprise which uses multiple Microsoft Entra tenants.
 ms.date: 03/28/2025
 ms.topic: concept-article
+# Customer intent: As an enterprise IT manager, I want to implement Azure Lighthouse for cross-tenant management, so that I can efficiently manage resources across multiple Microsoft Entra tenants while ensuring security and compliance.
 ---
 
 # Azure Lighthouse in enterprise scenarios
@@ -47,11 +48,11 @@ Since enterprise users typically have direct access to the enterprise’s tenant
 
 If you prefer, tenants within an enterprise can be onboarded by [publishing a Managed Services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md). To ensure that the offer is only available to the appropriate tenants, be sure that your [plans are set to private](/partner-center/marketplace-offers/create-managed-service-offer-plans#make-your-plan-private). With a private plan, you provide the subscription IDs for each tenant that you plan to onboard, and no one else will be able to get your offer.
 
-## Azure AD B2C
+## Microsoft Entra External ID
 
-[Azure Active Directory B2C (Azure AD B2C)](/azure/active-directory-b2c/overview) provides business-to-customer identity as a service. When you delegate a resource group through Azure Lighthouse, you can use Azure Monitor to route Azure Active Directory B2C (Azure AD B2C) sign-in and auditing logs to different monitoring solutions. You can retain the logs for long-term use, or integrate with third-party security information and event management (SIEM) tools to gain insights into your environment.
+[Microsoft Entra External ID](/entra/external-id/customers/overview-customers-ciam) provides business-to-customer identity as a service. When you delegate a resource group through Azure Lighthouse, you can use Azure Monitor to route Microsoft Entra External ID sign-in and auditing logs to different monitoring solutions. You can retain the logs for long-term use, or integrate with third-party security information and event management (SIEM) tools to gain insights into your environment.
 
-For more information, see [Monitor Azure AD B2C with Azure Monitor](/azure/active-directory-b2c/azure-monitor).
+For more information, see [Set up Azure Monitor in external tenants](/entra/external-id/customers/how-to-azure-monitor).
 
 ## Terminology notes
 

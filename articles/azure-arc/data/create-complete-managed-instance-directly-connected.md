@@ -9,6 +9,7 @@ ms.subservice: azure-arc-sql-mi
 ms.topic: quickstart 
 ms.date: 12/09/2021
 ms.custom: template-quickstart 
+# Customer intent: As a data engineer, I want to deploy Azure Arc-enabled data services on a Kubernetes cluster, so that I can manage data services across hybrid environments effectively.
 ---
 
 # Quickstart: Deploy Azure Arc-enabled data services - directly connected mode - Azure portal

@@ -1,13 +1,14 @@
 ---
 title: "Custom locations with Azure Arc-enabled Kubernetes"
-ms.date: 04/21/2025
+ms.date: 07/21/2025
 ms.topic: concept-article
 description: "This article provides a conceptual overview of the custom locations capability of Azure Arc-enabled Kubernetes."
+# Customer intent: As a tenant administrator, I want to configure custom locations on my Azure Arc-enabled Kubernetes clusters, so that I can deploy Azure services instances efficiently using my organization’s private compute resources.
 ---
 
 # Custom locations with Azure Arc-enabled Kubernetes
 
-As an extension of the Azure location construct, the *custom locations* feature provides a way for tenant administrators to use their Azure Arc-enabled Kubernetes clusters as target locations for deploying Azure services instances. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server.
+As an extension of the Azure location construct, the *custom locations* feature provides a way for tenant administrators to use their Azure Arc-enabled Kubernetes clusters as target locations for deploying Azure services instances. Examples of Azure offerings that can be deployed on top of custom locations include databases, such as SQL Managed Instance enabled by Azure Arc.
 
 Similar to Azure locations, end users within the tenant who have access to Custom Locations can deploy resources there using their company's private compute.
 
@@ -32,8 +33,6 @@ When the user creates a data service instance on the cluster:
 1. The Azure Arc-enabled data services resource provider uses the `kubeconfig` to communicate with the cluster to create a custom resource of the Azure Arc-enabled data services type on the namespace mapped to the custom location.
    * The Azure Arc-enabled data services operator was deployed via cluster extension creation before the custom location existed.
 1. The Azure Arc-enabled data services operator reads the new custom resource created on the cluster and creates the data controller, translating into realization of the desired state on the cluster.
-
-The sequence of steps to create the SQL managed instance and PostgreSQL instance are identical to the sequence of steps described above.
 
 ## Next steps
 

@@ -7,13 +7,35 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 # What's new with Azure Arc resource bridge
 
-Azure Arc resource bridge should be updated on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about recent releases of the Azure CLI extension, `az arcappliance`, that is used to deploy Arc resource bridge.  
+To stay up to date with the most recent developments, this article provides you with information about recent releases of the Arc resource bridge Azure CLI extension, `az arcappliance`.  
 
-We generally recommend using the most recent versions. The [version support policy](overview.md#supported-versions) for the appliance generally covers the most recent version and the three previous versions (n-3). Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date and ensure an upgrade happens at least once every six months. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, whichever is more recent. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+
+## Version 1.5.0 (June 2025)
+
+- Support version: n
+- Appliance: 1.5.0
+- CLI extension: 1.5.0
+- Kubernetes: 1.30.4
+- Mariner: 3.0.20250402
+
+### Arc resource bridge platform
+
+- Cloud logs collection feature added: Enables automatic log collection and upload to cloud on deployment failure
+
+- Prevent non-essential debug file operations from blocking critical functionality
+- ARB container image signed and removed old unsigned cached images
+- Added validation to prevent network overlaps with the K8s Pod CIDR 10.244.0.0/16
+- Added validation to warn for network overlaps with the K8s Service CIDR 10.96.0.0/12
+- Added validation to prevent the usage of Proxy URLs ending in .local.
+- Addressed bug in vSphere Cluster Client Set command creating conflicts.
+- Downloadsdk dyanmic parts - reducing the number of concurrent downloads with each retry.
+- Added kms-plugin token rotation to credential rotation
+
 
 ## Version 1.4.1 (February 2025)
 
-- Support version: n
+- Support version: n-1
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
@@ -23,12 +45,12 @@ We generally recommend using the most recent versions. The [version support poli
 
 - fix for compatibility with Azure CLI v2.70.0. From this version forward, Azure CLI version needs to be 2.70.0 or higher.
 
-> [NOTE]
+> [!NOTE]
 > This patch version of the Azure CLI extension `az arcappliance` doesn't change the appliance version. Therefore, `az arcappliance` CLI extension 1.4.1 and 1.4.0 both have the same appliance version, 1.4.0.
 
 ## Version 1.4.0 (February 2025)
 
-- Support version: n
+- Support version: n-1
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
@@ -48,7 +70,7 @@ We generally recommend using the most recent versions. The [version support poli
 > [!NOTE]
 > This `az arcappliance` Azure CLI extension requires Azure CLI v2.69.0 or below. It isn't compatible with Azure CLI v2.70.0 or higher.
 
-- Support version: n-1
+- Support version: n-2 (older than 6 months, not recommended)
 - Appliance: 1.3.1
 - CLI extension: 1.3.1
 - Kubernetes: 1.29.4
@@ -107,7 +129,7 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.2.0 (July 2024)
 
-- Support version: n-2
+- Support version: n-3 (older than 6 months, not recommended)
 - Appliance: 1.2.0
 - CLI extension: 1.2.0
 - SFS release: 0.1.32.10710
@@ -138,7 +160,6 @@ We generally recommend using the most recent versions. The [version support poli
 
 ## Version 1.1.1 (April 2024)
 
-- Support version: n-3
 - Appliance: 1.1.1
 - CLI extension: 1.1.1
 - SFS release: 0.1.26.10327

@@ -10,6 +10,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As an Azure user, I want to inquire about current service health events and status, so that I can quickly assess if my resources are impacted and understand any ongoing maintenance or security issues affecting my system."
 ---
 
 # Understand service health events and status using Microsoft Copilot in Azure

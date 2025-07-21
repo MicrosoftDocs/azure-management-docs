@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 02/28/2022
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to deploy a SQL Managed Instance using Kubernetes tools, so that I can leverage Azure Arc for streamlined management and scalability within my existing containerized environment."
 ---
 
 # Deploy SQL Managed Instance enabled by Azure Arc using Kubernetes tools 

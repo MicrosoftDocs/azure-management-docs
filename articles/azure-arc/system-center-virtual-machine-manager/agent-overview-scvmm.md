@@ -7,7 +7,9 @@ ms.author: jsuri
 author: jyothisuri
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 # Customer intent: "As an IT administrator, I want to install and configure the Azure Connected Machine agent on my Windows and Linux virtual machines, so that I can manage them effectively in a hybrid cloud environment."
 ---
 

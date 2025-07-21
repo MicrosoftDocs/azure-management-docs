@@ -3,6 +3,7 @@ title: Azure Lighthouse architecture
 description: Learn about the relationship between tenants in Azure Lighthouse, and the resources created in the customer's tenant that enable that relationship.
 ms.date: 10/22/2024
 ms.topic: concept-article
+# Customer intent: "As a service provider, I want to onboard and manage customer resources through Azure Lighthouse, so that I can efficiently handle multiple tenants without needing separate accounts for each customer."
 ---
 
 # Azure Lighthouse architecture

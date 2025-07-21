@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: troubleshooting
 ms.date: 08/18/2024
+# Customer intent: "As a system administrator managing Azure Linux Container Hosts for AKS, I want to troubleshoot package upgrade issues, so that I can ensure that all necessary updates are applied and the system remains stable and secure."
 ---
 
 # Troubleshoot issues with package upgrades on the Azure Linux Container Host

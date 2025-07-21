@@ -7,9 +7,13 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
+# Customer intent: "As a cloud engineer, I want to create an Azure Kubernetes Service (AKS) cluster with Azure Linux Container Host, so that I can deploy and manage containerized applications effectively in a production-ready environment."
 ---
 
 # Tutorial: Create a cluster with the Azure Linux Container Host for AKS
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321737)
 
 To create a cluster with the Azure Linux Container Host, you use:
 1. Azure resource groups, a logical container into which Azure resources are deployed and managed.
