@@ -6,6 +6,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/azure-arc/vmware-vsphere/perform-vm-ops-through-azure.md",
+            "redirect_url": "/azure/azure-arc/vmware-vsphere/update-configuration-and-resize-vm",
+            "redirect_document_id": false
+        },
+        {
             "source_path_from_root": "/articles/azure-arc/vmware-vsphere/custom-locations.md",
             "redirect_url": "/azure/azure-arc/vmware-vsphere/overview",
             "redirect_document_id": false

@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: devx-track-arm-template, linux-related-content
 ms.topic: quickstart
 ms.date: 04/18/2023
+# Customer intent: "As a cloud engineer, I want to deploy an Azure Linux Container Host for my AKS cluster using an ARM template, so that I can efficiently manage containerized applications within my infrastructure."
 ---
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using an ARM template

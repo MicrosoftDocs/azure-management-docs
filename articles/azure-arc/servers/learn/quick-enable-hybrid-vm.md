@@ -4,6 +4,7 @@ description: In this quickstart, you connect and register a hybrid machine with 
 ms.topic: quickstart
 ms.date: 04/23/2025
 ms.custom: mode-other
+# Customer intent: "As an IT administrator, I want to connect and register hybrid machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
 # Quickstart: Connect hybrid machines with Azure Arc-enabled servers
@@ -11,6 +12,8 @@ ms.custom: mode-other
 Get started with [Azure Arc-enabled servers](../overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
 In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
+
+For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager.
 
 While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
 

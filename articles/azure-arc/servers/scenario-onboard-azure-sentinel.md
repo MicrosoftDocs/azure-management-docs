@@ -2,7 +2,8 @@
 title: Onboard Azure Arc-enabled server to Microsoft Sentinel
 description: Learn how to add your Azure Arc-enabled servers to Microsoft Sentinel and proactively monitor their security status.
 ms.date: 05/08/2025
-ms.topic: conceptual
+ms.topic: how-to
+# Customer intent: "As a security administrator, I want to onboard my Azure Arc-enabled servers to a centralized monitoring solution, so that I can collect and analyze security events for proactive threat detection and response."
 ---
 
 # Onboard Azure Arc-enabled servers to Microsoft Sentinel

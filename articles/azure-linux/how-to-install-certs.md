@@ -8,6 +8,7 @@ ms.service: microsoft-linux
 ms.topic: how-to
 ms.date: 08/18/2023
 ms.custom: template-how-to-pattern, linux-related-content
+# Customer intent: As a DevOps engineer, I want to install custom certificates on the Azure Linux Container Host for AKS, so that I can ensure secure communication with trusted resources while adhering to the principle of least privilege.
 ---
 
 # Installing certificates on the Azure Linux Container host for AKS

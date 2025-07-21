@@ -3,6 +3,7 @@ title: Manage Azure portal settings and preferences
 description: Change Azure portal settings such as default subscription/directory, timeouts, menu mode, contrast, theme, notifications, language/region and more.
 ms.date: 12/13/2024
 ms.topic: how-to
+# Customer intent: As a cloud user, I want to customize my Azure portal settings and preferences, so that I can enhance my workflow and improve my user experience according to my specific needs.
 ---
 
 # Manage Azure portal settings and preferences
@@ -209,7 +210,9 @@ This pane lets you manage pop-up notifications and session timeouts.
 
 ### Signing out
 
-The inactivity timeout setting helps to protect resources from unauthorized access if you forget to secure your workstation. After you've been idle for a while, you're automatically signed out of your Azure portal session. As an individual, you can change the timeout setting for yourself. If you're an admin, you can set it at the directory level for all your users in the directory.
+The inactivity timeout setting helps to protect resources from unauthorized access if you forget to secure your workstation. Your session automatically terminates when the device’s active focus isn't on the Azure portal for the period defined in the **Sign me out when inactive** option.
+
+As an individual, you can change the timeout setting for yourself. If you're an admin, you can set it at the directory level for all your users in the directory.
 
 ### Change your individual timeout setting (user)
 

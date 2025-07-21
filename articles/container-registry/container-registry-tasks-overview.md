@@ -2,11 +2,11 @@
 title: Automate Container Builds with Azure Container Registry Tasks 
 description: Discover Azure Container Registry tasks to automate the building, management, and patching of container images in the cloud with ease.
 ms.topic: overview
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 01/24/2024
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to automate container builds so that I can streamline my CI/CD pipeline.
+# Customer intent: As a developer, I want to automate the building and management of container images in the cloud, so that I can enhance my CI/CD process and maintain security and efficiency throughout the container lifecycle.
 ---
 
 # Automate container image builds and maintenance with Azure Container Registry tasks

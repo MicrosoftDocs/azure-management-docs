@@ -9,6 +9,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to connect to an AD-integrated SQL Managed Instance enabled by Azure Arc using Active Directory authentication, so that I can manage database tasks securely and efficiently across my enterprise environment.
 ---
 
 # Connect to AD-integrated SQL Managed Instance enabled by Azure Arc

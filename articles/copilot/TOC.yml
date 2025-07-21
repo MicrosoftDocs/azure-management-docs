@@ -28,8 +28,6 @@
       href: understand-service-health.md
     - name: Analyze costs
       href: analyze-cost-management.md
-    - name: Find your recommendations
-      href: find-recommendations-advisor.md
     - name: Visualize network topology
       href: visualize-network-topology.md
     - name: Query attack surface
@@ -58,8 +56,8 @@
       href: network-management.md
     - name: Work with Azure Load Balancer
       href: work-load-balancer.md
-    - name: Troubleshoot Azure Arc extensions
-      href: troubleshoot-arc-extension.md
+    - name: Discover Azure Marketplace solutions
+      href: discover-marketplace.md
   - name: Write and optimize code
     items:
     - name: Generate Azure CLI scripts
@@ -74,10 +72,6 @@
       href: generate-kubernetes-yaml.md
     - name: Troubleshoot deployed apps
       href: troubleshoot-app-service.md
-  - name: Discover and implement solutions
-    items:
-    - name: Discover solutions in Marketplace
-      href: Discovery-plugin-marketplace.md
 - name: Resources
   items:
   - name: Azure updates

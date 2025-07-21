@@ -8,6 +8,8 @@ ms.subservice: azure-arc-scvmm
 ms.author: jsuri
 author: jyothisuri
 keywords: "VMM, Arc, Azure, System Center"
+ms.custom:
+  - build-2025
 ---
 
 # Deliver Extended Security Updates for SCVMM VMs through Arc

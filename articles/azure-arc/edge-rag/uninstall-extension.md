@@ -5,9 +5,10 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 05/13/2025
-
+ms.subservice: edge-rag
 #CustomerIntent: As a Kubernetes cluster administrator, I want to uninstall the Edge RAG extension so that I can remove the extension and clean up the associated namespace from my cluster.
-
+ms.custom:
+  - build-2025
 ---
 
 # Uninstall extension for Edge RAG Preview, enabled by Azure Arc

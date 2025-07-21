@@ -1,57 +1,96 @@
 items: 
-  - name: Workload orchestration (preview)
+  - name: Workload orchestration
     href: index.yml
+  - name: Overview
+    href: overview.md
+  - name: Getting started with workload orchestration
     items:
-    - name: Get started
-      items:
-      - name: What is workload orchestration?
-        href: overview.md
-      - name: Prepare the environment for workload orchestration
-        href: initial-setup-environment.md
-      - name: Setup workload orchestration
-        href: initial-setup-configuration.md
-      - name: Onboarding scripts
-        href: onboarding-scripts.md
-      expanded: true
-    - name: Quickstarts with Azure CLI 
-      items:
-      - name: Create a solution without common configurations
-        href: quickstart-solution-without-common-configuration.md
-      - name: Create a solution with common configurations
-        href: quickstart-solution-with-common-configuration.md
-      - name: Create a solution with shared adapter dependency
-        href: quickstart-solution-shared-adapter-dependency.md
-      - name: Create a solution with multiple shared adapter dependencies
-        href: quickstart-solution-multiple-shared-adapter-dependency.md
-      - name: Create multiple instances of solution in the same K8s
-        href: quickstart-solution-multiple-instances-k8s.md
-      - name: Upgrade a shared application
-        href: quickstart-upgrade-shared-application.md
-    - name: Workload orchestration portal
-      items:
-      - name: Monitor your solutions in the portal
-        href: monitor.md
-      - name: Configure your solutions in the portal
-        href: configure.md
-      - name: Deploy your solutions in the portal
-        href: deploy.md
-    - name: Monitor your solutions in Azure portal 
-      href: azure-portal-monitoring.md
-    - name: Configuration templates
-      items: 
-      - name: Configuration template
-        href: configuring-template.md
-      - name: Configuration schema
-        href: configuring-schema.md
-    - name: Use service groups
+    - name: Prepare the environment
+      href: initial-setup-environment.md
+    - name: Set up workload orchestration
+      href: initial-setup-configuration.md
+    - name: RBAC guide 
+      href: rbac-guide.md
+    - name: Use service groups 
       href: service-group.md
-    - name: External validation for workload orchestration
+    - name: Onboard using scripts
+      href: onboarding-scripts.md
+    expanded: true
+  - name: Concepts
+    items:
+    - name: Workflows and features
+      href: workflow-features.md
+    - name: Configuration template
+      href: configuring-template.md
+    - name: Configuration schema
+      href: configuring-schema.md
+  - name: Quickstart
+    items:
+    - name: Create a basic solution 
+      href: quickstart-solution-without-common-configuration.md
+    - name: Create solution with common configurations
+      href: quickstart-solution-with-common-configuration.md
+  - name: Create solutions with dependencies
+    items:
+    - name: Create a solution with shared adapter dependency
+      href: quickstart-solution-shared-adapter-dependency.md
+    - name: Create a solution with multiple shared adapter dependencies
+      href: quickstart-solution-multiple-shared-adapter-dependency.md
+    - name: Create multiple instances of a solution in the same K8s
+      href: quickstart-solution-multiple-instances-k8s.md
+    - name: Upgrade a shared application
+      href: quickstart-upgrade-shared-application.md
+  - name: Create solutions with four-level hierarchy
+    items:
+    - name: Create a solution with a leaf target
+      href: tutorial-service-group-scenario-1.md
+    - name: Create a solution with a non-leaf target
+      href: tutorial-service-group-scenario-2.md
+    - name: Create a solution with shared dependencies at different levels
+      href: tutorial-service-group-scenario-3.md
+    - name: Create multiple solutions with a single shared dependency at different levels
+      href: tutorial-service-group-scenario-4.md
+  - name: Workload orchestration portal
+    items:
+    - name: User guide 
+      href: portal-user-guide.md
+    - name: Configure your solutions 
+      href: configure.md
+    - name: Deploy your solutions 
+      href: deploy.md
+    - name: Monitor your solutions 
+      href: monitor.md
+  - name: Observability in Azure portal 
+    href: azure-portal-monitoring.md
+  - name: How-to guides
+    items:
+    - name: Stage a solution before deployment
+      href: how-to-stage.md
+    - name: Perform a bulk deployment
+      href: bulk-deployment.md
+    - name: Diagnose edge-related errors
+      href: diagnose-problems.md
+    - name: Delete resources
+      href: delete-resources.md
+    - name: Enable external validation
       items:
-      - name: External validation with Event Grid
+      - name: Enable external validation with Event Grid
         href: external-validation.md
       - name: External validation payloads
         href: external-validation-payload.md
-    - name: RBAC guide 
-      href: rbac-guide.md
-    - name: Delete resources
-      href: delete-resources.md
+  - name: Troubleshoot
+    items:
+    - name: Troubleshooting guide
+      href: troubleshooting.md
+    - name: Known issues
+      href: known-issues.md
+  - name: Resources
+    items: 
+    - name: Migration script for GA
+      href: migration-script.md
+    - name: Clean-up script
+      href: clean-up-script.md
+    - name: Sample files of Azure/workload-orchestration
+      href: https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip
+    - name: Release notes
+      href: release-notes.md

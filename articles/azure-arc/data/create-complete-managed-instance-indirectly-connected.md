@@ -9,6 +9,7 @@ ms.subservice: azure-arc-data
 ms.topic: quickstart 
 ms.date: 09/20/2022
 ms.custom: template-quickstart , devx-track-azurecli
+# Customer intent: As a data engineer, I want to deploy Azure Arc-enabled data services in indirectly connected mode using the Azure CLI, so that I can manage and scale my SQL Managed Instances and other data services across different environments seamlessly.
 ---
 
 # Quickstart: Deploy Azure Arc-enabled data services - indirectly connected mode - Azure CLI

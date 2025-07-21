@@ -8,13 +8,14 @@ metadata:
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
   ms.date: 05/13/2025
+  ms.custom: build-2025
 
 title: Azure Container Storage enabled by Azure Arc FAQ
 summary: |
   This article provides a list of frequently asked questions (FAQ) for Azure Container Storage enabled by Azure Arc and their answers. 
 
 sections:
-  - name: Uninstall previous instance of the Azure Container Storage enabled by Azure Arc extension
+  - name: FAQ
     questions:
       - question: If I installed the 1.2.0-preview or any earlier release, how do I uninstall the extension? 
         answer: |
@@ -39,8 +40,6 @@ sections:
 
           3. If you installed the extension before the **1.1.0-preview** release (released on 4/19/24) and have a preexisting `config.json` file, the `config.json` schema changed. Remove the old `config.json` file using `rm config.json`.
 
-  - name: Encryption
-    questions:
       - question: What types of encryption are used by Azure Container Storage enabled by Azure Arc?
         answer: |
           There are three types of encryption that might be interesting for an Azure Container Storage customer:
@@ -55,10 +54,14 @@ sections:
       - question: Is data encrypted at REST?
         answer: Data persisted by the Azure Container Storage enabled by Azure Arc extension is encrypted at REST if the underlying platform provides encrypted disks.
 
-  - name: ACStor Triplication
-    questions:
       - question: What is ACStor triplication?
         answer: ACStor triplication stores data across three different nodes, each with its own hard drive. This intended behavior ensures data redundancy and reliability.
 
       - question: Can ACStor triplication occur on a single physical device?
         answer: No, ACStor triplication isn't designed to operate on a single physical device with three attached hard drives.
+
+      - question: Does Azure Container Storage enabled by Azure Arc support ARM deployments? 
+        answer: No, at this time, Arc itself does not support ARM, so neither does this Arc extension.
+
+      - question: When using Extension Identity, permissions as a StorageBlobDataOwner role are needed to write data. Is there a reason it needs Owner instead of just Contributor?
+        answer: Yes, the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.

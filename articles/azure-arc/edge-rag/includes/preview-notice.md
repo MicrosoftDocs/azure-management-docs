@@ -3,6 +3,8 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: include
 ms.date: 05/13/2025
+ms.custom:
+  - build-2025
 ---
 > [!IMPORTANT]
 > Edge RAG Preview, enabled by Azure Arc is currently in PREVIEW.

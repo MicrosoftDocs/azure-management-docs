@@ -2,6 +2,7 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 02/18/2025
+# Customer intent: "As a system administrator, I want to configure outbound access for Azure Arc agents in Microsoft Azure operated by 21Vianet, so that I can ensure proper connectivity for registration, management, and operation of connected clusters in my environment."
 ---
 
 > [!IMPORTANT]

@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 04/22/2025
+ms.date: 06/13/2025
 ms.topic: overview
 ---
 

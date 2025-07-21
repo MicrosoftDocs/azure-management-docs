@@ -4,9 +4,12 @@ description: Learn how to prepare Linux for Edge Volumes with a multi-node clust
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 ms.date: 03/12/2025
 zone_pivot_groups: platform-select-with-other
+# Customer intent: As a system administrator, I want to prepare a Linux environment for Edge Volumes using a multi-node cluster, so that I can ensure optimal performance and compatibility with Azure Container Storage.
 ---
 
 # Prepare Linux for Edge Volumes using a multi-node cluster

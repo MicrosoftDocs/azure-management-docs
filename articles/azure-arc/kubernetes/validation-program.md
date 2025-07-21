@@ -3,6 +3,7 @@ title: "Azure Arc-enabled Kubernetes validation"
 ms.date: 01/07/2025
 ms.topic: how-to
 description: "Describes Arc validation program for Kubernetes distributions"
+# Customer intent: As a DevOps engineer, I want to understand which Kubernetes distributions have passed conformance tests for Azure Arc, so that I can ensure compatibility and successful integration for managing my clusters across cloud environments.
 ---
 
 # Azure Arc-enabled Kubernetes validation
@@ -30,7 +31,7 @@ The following providers and their corresponding Kubernetes distributions have su
 | SUSE Rancher | [Rancher Kubernetes Engine (RKE1/RKE2)](https://www.rancher.com/index.php/products/rke) | [v1.31.7+rke2r1](https://github.com/rancher/rke2/releases)<br>v1.30.8-rancher1-1<br>v1.29.12-rancher1-1 |
 | SUSE Rancher      | [K3s](https://rancher.com/products/k3s/) | [K3S version v1.31.5+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.31.5%2Bk3s1)<br>[K3S version v1.30.4+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.30.4%2Bk3s1)<br> [K3S version v1.29.8+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.29.8%2Bk3s1) |
 | Red Hat       | [OpenShift Container Platform](https://www.openshift.com/products/container-platform) | [4.17.5](https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/release_notes/ocp-4-17-release-notes), [4.16.10](https://docs.redhat.com/en/documentation/openshift_container_platform/4.16/html/release_notes/ocp-4-16-release-notes),  [4.15.8](https://docs.redhat.com/en/documentation/openshift_container_platform/4.15/html/release_notes/ocp-4-15-release-notes#ocp-4-15-release-notes),  |
-| VMware       | [Tanzu Kubernetes Grid](https://tanzu.vmware.com/kubernetes-grid) | TKG version v2.4; Upstream K8s v1.27.5<br>TKG version v2.3; Upstream K8s v1.26.5 |
+| VMware       | [Tanzu Kubernetes Grid/vSphere Kubernetes Service](https://tanzu.vmware.com/kubernetes-grid) | VKS 3.3, TKr v1.32.0+vmware.6-fips, Upstream K8s 1.32<br>VKS 3.3, TKr v1.31.4+vmware.1-fips, Upstream K8s 1.31 |
 | Canonical    | [Charmed Kubernetes](https://ubuntu.com/kubernetes)| [1.31](https://ubuntu.com/kubernetes/docs/1.31/components), [1.30](https://ubuntu.com/kubernetes/charmed-k8s/docs/1.30/components), [1.29](https://ubuntu.com/kubernetes/charmed-k8s/docs/1.29/components) |
 | Wind River | [Wind River Cloud Platform](https://www.windriver.com/studio/operator/cloud-platform) |Wind River Cloud Platform 24.09; Upstream K8s version: 1.30.6|
 

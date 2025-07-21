@@ -4,6 +4,10 @@
   items:
   - name: About Azure Arc-enabled VMware vSphere
     href: overview.md
+  - name: What's new
+    href: whats-new.md 
+  - name: Plan for deployment
+    href: support-matrix-for-arc-enabled-vmware-vsphere.md
   - name: Switch to the new version
     href: switch-to-new-version.md
 - name: Concepts
@@ -14,6 +18,8 @@
   items:
   - name: Connect vCenter to Azure Arc
     href: quick-start-connect-vcenter-to-arc-using-script.md
+  - name: Connect Azure VMware Solution private cloud to Azure Arc
+    href: /azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows
 - name: Tutorial
   items:
   - name: Create a virtual machine on VMware vCenter
@@ -22,39 +28,99 @@
   items:
   - name: Deploy
     items: 
-    - name: Plan for deployment
-      href: support-matrix-for-arc-enabled-vmware-vsphere.md
     - name: Enable VMware vCenter resources in Azure
       href: browse-and-enable-vcenter-resources-in-azure.md
-    - name: Enable additional capabilities on Arc-enabled Server machines by linking to vCenter
+    - name: Link Arc-enabled server machines to VMware vSphere
       href: enable-virtual-hardware.md
-  - name: Use Azure Management services for VMware VMs
+  - name: Manage role-based access control
     items: 
-    - name: Install Arc agent at scale for your VMware VMs
-      href: enable-guest-management-at-scale.md
-  - name: Use VM lifecycle and self-service capabilities
-    items: 
-      - name: Set up self service access to vCenter using Azure Arc
+      - name: Built-in roles
+        href: built-in-roles.md
+      - name: Create custom roles
+        href: create-custom-roles.md
+      - name: Set up and manage self-service access
         href: setup-and-manage-self-service-access.md
-      - name: Perform VM operations on VMware VMs through Azure
-        href: perform-vm-ops-through-azure.md
-  - name: Enable Extended Security Updates
+  - name: Perform VM operations
     items:
-      - name: Deliver ESUs for VMware VMs through Arc
+    - name: Create a virtual machine
+      href: create-virtual-machine.md
+    - name: Perform VM powercycle operations
+      href: perform-powercycle-operations.md
+    - name: Apply Azure tags on resources
+      href: apply-azure-tags.md
+    - name: Update configuration and resize a VM
+      href: update-configuration-resize-vm.md
+    - name: Delete a virtual machine
+      href: delete-virtual-machine.md
+  - name: Use Azure services for VMware VMs
+    items: 
+    - name: Install Arc agent at scale
+      href: enable-guest-management-at-scale.md
+    - name: Manage Arc agent
+      href: ../servers/manage-agent.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: VM extensions management
+      items:
+      - name: Overview
+        href: ../servers/manage-vm-extensions.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Manage extensions by using the Azure portal
+        href: ../servers/manage-vm-extensions-portal.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Manage extensions by using the Azure CLI
+        href: ../servers/manage-vm-extensions-cli.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Manage extensions by using Azure PowerShell
+        href: ../servers/manage-vm-extensions-powershell.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Deploy extensions by using an ARM template
+        href: ../servers/manage-vm-extensions-template.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Deploy extensions by using Ansible
+        href: ../servers/manage-vm-extensions-ansible.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Automatic extension upgrade
+        href: ../servers/manage-automatic-vm-extension-upgrade.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: Modernize VM management
+      href: ../servers/modernize-server-management.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: Monitor VMs
+      href: ../servers/learn/tutorial-enable-vm-insights.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: Onboard to Microsoft Defender for Cloud
+      href: /azure/defender-for-cloud/quickstart-onboard-machines?toc=/azure/azure-arc/vmware-vsphere/toc.json&bc=/azure/azure-arc/vmware-vsphere/breadcrumb/toc.json
+    - name: Onboard to Microsoft Sentinel
+      href: ../servers/scenario-onboard-azure-sentinel.md?toc=/azure/azure-arc/vmware-vsphere/toc.json 
+    - name: Enable Azure Automation
+      href: /azure/automation/quickstarts/install-hybrid-worker-extension?toc=/azure/azure-arc/vmware-vsphere/toc.json&bc=/azure/azure-arc/vmware-vsphere/breadcrumb/toc.json
+    - name: Assign policy to assess compliance
+      href: ../servers/learn/tutorial-assign-policy-portal.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: Deploy Azure services at scale
+      href: ../servers/deploy-management-services.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+    - name: Manage with Windows Admin Center
+      href: /windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines?toc=/azure/azure-arc/vmware-vsphere/toc.json&bc=/azure/azure-arc/vmware-vsphere/breadcrumb/toc.json
+    - name: Azure Kubernetes Service on VMware
+      href: /azure/aks/aksarc/aks-vmware-overview
+  - name: Azure Arc benefits for VMware VMs
+    items:
+      - name: Windows Server Management
+        href: ../servers/windows-server-management-overview.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+      - name: Procure and deliver Extended Security Updates
         href: deliver-extended-security-updates-for-vmware-vms-through-arc.md
   - name: Administer
     items: 
+    - name: Upgrade Azure Arc resource bridge
+      href: upgrade-azure-arc-resource-bridge.md
     - name: Administer Arc-enabled VMware vSphere
       href: administer-arc-vmware.md
-    - name: Remove vCenter from Azure Arc
+    - name: Remove your vCenter environment from Azure Arc
       href: remove-vcenter-from-arc-vmware.md
-    - name: Perform recovery operations
+    - name: Remove Azure VMware Solution resources from Azure Arc
+      href: /azure/azure-vmware/remove-arc-enabled-azure-vmware-solution-vsphere-resources-from-azure
+    - name: Perform recovery operations for Arc resource bridge
       displayName: disaster
       href: recover-from-resource-bridge-deletion.md
 - name: Troubleshoot
   items:
-  - name: Troubleshoot Arc agent install failures for Linux VMs
+  - name: VMware-specific agent installation errors for Linux VMs
     href: troubleshoot-guest-management-issues.md
+  - name: Common deployment errors
+    href: ../resource-bridge/troubleshoot-resource-bridge.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+  - name: Agent connection issues
+    href: ../servers/troubleshoot-agent-onboard.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
+  - name: VM Extension issues
+    href: ../servers/troubleshoot-vm-extensions.md?toc=/azure/azure-arc/vmware-vsphere/toc.json
 - name: Reference
   items:
   - name: Azure CLI
@@ -75,7 +141,7 @@
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-arm-template
   - name: Bicep Templates
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-bicep
-  - name: Terraform Templates
+  - name: Terraform Templates (AzAPI provider)
     href: /azure/templates/microsoft.connectedvmwarevsphere/clusters?pivots=deployment-language-terraform
   - name: Python SDK
     href: /python/api/overview/azure/mgmt-connectedvmware-readme

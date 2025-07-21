@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a Kubernetes administrator, I want to use AI assistance to manage and configure my AKS clusters effectively, so that I can enhance my efficiency and streamline operations without needing to navigate complex interfaces.
 ---
 
 # Work with AKS clusters efficiently using Microsoft Copilot in Azure
@@ -87,7 +88,7 @@ Here are a few examples of the kinds of prompts you can use to manage the IP add
 
 ## Manage cluster backups
 
-Microsoft Copilot in Azure can help streamlines the process of installing the Azure [Backup extension](/azure/backup/azure-kubernetes-service-backup-overview) to an AKS cluster. On clusters where the extension is already installed, it helps you [configure backups](/azure/backup/azure-kubernetes-service-cluster-backup#configure-backups) and view existing backups.
+Microsoft Copilot in Azure can help streamlines the process of installing the Azure [Backup extension](/azure/backup/azure-kubernetes-service-backup-overview) to an AKS cluster. On clusters where the extension is already installed, it helps you [configure backups](/azure/backup/azure-kubernetes-service-cluster-backup) and view existing backups.
 
 When you ask for help with backups, you're prompted to select a cluster. From there, Microsoft Copilot in Azure prompts you to open the **Backup** pane for that cluster, where you can proceed with installing the extension, configuring backups, or viewing existing backups.
 
@@ -166,7 +167,7 @@ The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagn
 
 #### Periscope example
 
-You can say **"Help me deploy periscope to my AKS cluster." If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
+You can say **"Help me deploy periscope to my AKS cluster."** If you're not already in the context of a cluster, Copilot in Azure prompts you to select one. Once you make the selection, Copilot in Azure asks you to confirm details, then deploys Periscope to your cluster.
 
 :::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Copilot in Azure prompting to confirm before deploying Periscope to a cluster.":::
 
@@ -186,7 +187,7 @@ The [AKS CanIPull tool](https://github.com/Azure/aks-canipull) is a diagnostic u
 
 #### CanIPull example
 
-When you say **"Help me deploy CanIPull to my AKS cluster", Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
+When you say **"Help me deploy CanIPull to my AKS cluster"**, Copilot in Azure prompts you to select a cluster, along with one node on the cluster to which CanIPull will be deployed.
 
 :::image type="content" source="media/work-aks-clusters/aks-canipull-deploy.png" alt-text="Screenshot of Copilot in Azure confirming the cluster and node on which to deploy CanIPull.":::
 

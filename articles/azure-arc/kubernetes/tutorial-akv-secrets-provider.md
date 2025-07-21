@@ -4,6 +4,7 @@ description: Learn how to set up the Azure Key Vault Provider for Secrets Store 
 ms.custom: devx-track-azurecli
 ms.date: 02/19/2025
 ms.topic: how-to
+# Customer intent: As a DevOps engineer managing Azure Arc-enabled Kubernetes clusters, I want to deploy the Azure Key Vault Secrets Provider extension, so that I can securely fetch and manage secrets within my Kubernetes environment.
 ---
 
 # Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters
@@ -444,3 +445,4 @@ For more information about resolving common issues, see the open source troubles
 
 - Want to try things out? Get started quickly with an [Azure Arc Jumpstart scenario](https://aka.ms/arc-jumpstart-akv-secrets-provider) using Cluster API.
 - Learn more about [Azure Key Vault](/azure/key-vault/general/overview).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

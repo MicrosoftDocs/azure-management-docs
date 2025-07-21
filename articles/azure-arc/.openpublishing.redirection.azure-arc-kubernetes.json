@@ -33,32 +33,42 @@
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/tutorial-workload-management.md",
             "redirect_url": "/azure/azure-arc/kubernetes/workload-management",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/move-regions.md",
             "redirect_url": "/azure/azure-arc/kubernetes/conceptual-agent-overview#move-arc-enabled-kubernetes-clusters-across-azure-regions",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/conceptual-gitops-ci-cd.md",
             "redirect_url": "/azure/azure-arc/kubernetes/conceptual-gitops-flux2-ci-cd",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/tutorial-gitops-ci-cd.md",
             "redirect_url": "/azure/azure-arc/kubernetes/tutorial-gitops-flux2-ci-cd",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/use-gitops-with-helm.md",
             "redirect_url": "/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/use-azure-policy.md",
             "redirect_url": "/azure/azure-arc/kubernetes/use-azure-policy-flux-2",
-            "redirect_document_id": true
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/conceptual-configurations.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/conceptual-gitops-flux2",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/kubernetes/tutorial-use-gitops-connected-cluster.md",
+            "redirect_url": "/azure/azure-arc/kubernetes/tutorial-use-gitops-flux2",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/azure-arc/kubernetes/use-gitops-connected-cluster.md",

@@ -2,12 +2,12 @@
 title: Use Dedicated Pool to Run Tasks in Azure Container Registry
 description: Set up a dedicated compute pool (agent pool) in your registry to run an Azure Container Registry task.
 ms.topic: how-to
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry
-#customer intent: As a user, I want to set up a dedicated compute pool in my registry to run an Azure Container Registry task so that I can have a dedicated compute environment.
+# Customer intent: As a developer, I want to set up a dedicated compute pool in my Azure Container Registry so that I can run tasks in a scalable and managed environment tailored to my workload needs.
 ---
 
 # Run an ACR task on a dedicated agent pool
@@ -118,7 +118,7 @@ More information on service endpoints is documented [here][az-vnet-svc-ep].
 At minimum, the following service endpoints will be required
  
 - Microsoft.AzureActiveDirectory
-- Microsoft.ContainerRegistry
+- Microsoft.ContainerRegistry (only if the registry is not using a [private link](/azure/container-registry/container-registry-vnet))
 - Microsoft.EventHub
 - Microsoft.KeyVault
 - Microsoft.Storage (or the corresponding storage regions taking geo-replication into account)
@@ -127,6 +127,14 @@ At minimum, the following service endpoints will be required
 > Currently a service endpoint for Azure Monitor does not exist. If outbound traffic for Azure Monitor is not configured, the agent pool will be unable to emit diagnostic logs but may appear to still operate normally. In this case ACR will be unable to help fully troubleshoot any issues encountered so it is important that the network administrator take this into account when planning the network configuration.
  
 Also, it is important to note that all of ACR Tasks have pre-cached images for some of the more common use cases. Tasks will only cache a single version at a time, meaning that if the full tagged image reference is used, then the build agent will attempt to pull the image. For example, a common use case is `cmd: mcr.microsoft.com/acr/acr-cli:<tag>`. However, the pre-cached version is frequently updated, which means the actual version on the machine will likely be higher. In this case, the network configuration must configure a route for outbound traffic to the target registry host which in the example above would be mcr.microsoft.com. The same rules would apply to any other external public registry (docker.io, quay.io, ghcr.io, etc.).
+
+#### Using custom DNS
+
+If the subnet has a custom DNS server configured, this will be inherited by the build agent during runtime. 
+
+> [!IMPORTANT]
+> The IP range used by the custom DNS endpoint must not conflict with docker's default range of `172.17.0.0/16`
+>
 
 ### Create pool in VNet
 

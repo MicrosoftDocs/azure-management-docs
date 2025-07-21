@@ -3,6 +3,7 @@ title: How to modernize server management from Configuration Manager to Azure Ar
 description: Learn how to modernize server management from Configuration Manager to Azure Arc.
 ms.date: 02/18/2025
 ms.topic: how-to
+# Customer intent: "As a server administrator using Configuration Manager, I want to transition management to Azure Arc, so that I can leverage modern capabilities for OS patching, compliance monitoring, and unified reporting across both Windows and Linux environments."
 ---
 
 # Modernize server management from Configuration Manager to Azure Arc

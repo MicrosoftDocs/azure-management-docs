@@ -3,7 +3,10 @@ title: Azure Resource Graph sample queries for Azure Arc-enabled servers
 description: Sample Azure Resource Graph queries for Azure Arc-enabled servers showing use of resource types and tables to access Azure Arc-enabled servers related resources and properties.
 ms.date: 05/14/2025
 ms.topic: sample
-ms.custom: subject-resourcegraph-sample
+ms.custom:
+  - subject-resourcegraph-sample
+  - build-2025
+# Customer intent: "As a cloud administrator, I want to run sample queries using Azure Resource Graph for Azure Arc-enabled servers, so that I can efficiently access and manage resource information across my environment."
 ---
 
 # Azure Resource Graph sample queries for Azure Arc-enabled servers

@@ -1,11 +1,12 @@
 ---
 title: "Troubleshoot Continuous Patching in Azure Container Registry"
 description: "Learn how to troubleshoot continuous patching in Azure Container Registry."
-ms.author: wleo
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: troubleshooting-general #Don't change.
 ms.date: 03/27/2025
 
+# Customer intent: "As a DevOps engineer, I want to troubleshoot continuous patching tasks in a container registry, so that I can ensure proper configuration and timely updates of container images."
 ---
 # Troubleshoot continuous patching in Azure Container Registry
 The troubleshooting tips in this article can help you resolve common issues that you may encounter when using continuous patching in Azure Container Registry. Two new commands will be introduced to help debug. 
