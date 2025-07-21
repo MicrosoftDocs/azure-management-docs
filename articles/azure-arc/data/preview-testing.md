@@ -11,6 +11,7 @@ ms.date: 12/06/2023
 ms.topic: concept-article
 ms.custom: references_regions
 #Customer intent: As a data professional, I want to validate upcoming releases.
+# Customer intent: As a data professional, I want to access and test pre-release versions of Azure Arc-enabled data services, so that I can provide feedback and validate features before they are officially released.
 ---
 
 # Pre-release testing

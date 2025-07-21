@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: how-to
+# Customer intent: As a data architect, I want to effectively plan the deployment of Azure Arc-enabled data services, so that I can ensure the infrastructure meets performance, availability, and business continuity requirements for our database workloads.
 ---
 # Plan an Azure Arc-enabled data services deployment
 

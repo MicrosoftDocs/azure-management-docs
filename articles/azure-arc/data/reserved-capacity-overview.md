@@ -9,6 +9,7 @@ author: anosov1960
 ms.author: sashan
 ms.reviewer: mikeray
 ms.date: 10/27/2021
+# Customer intent: As a cloud cost manager, I want to purchase reserved capacity for SQL Managed Instance enabled by Azure Arc, so that I can reduce my expenses through significant discounts by committing to longer-term usage.
 ---
 
 # Reserved capacity - SQL Managed Instance enabled by Azure Arc

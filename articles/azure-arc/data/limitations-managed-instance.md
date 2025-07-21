@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 09/07/2021
 ms.topic: concept-article
+# Customer intent: As a database administrator, I want to understand the limitations of SQL Managed Instance enabled by Azure Arc, so that I can effectively manage backups, restores, and replication within my cloud infrastructure.
 ---
 
 # Limitations of SQL Managed Instance enabled by Azure Arc

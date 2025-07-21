@@ -10,6 +10,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 12/15/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to rotate user-provided TLS certificates for SQL Managed Instances managed through Azure Arc, so that I can maintain secure connections in indirectly connected environments."
 ---
 # Rotate certificate SQL Managed Instance enabled by Azure Arc (indirectly connected)
 
