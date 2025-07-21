@@ -3,6 +3,7 @@ title: Manage hybrid infrastructure at scale with Azure Arc
 description: Azure Lighthouse helps you use Azure Arc to effectively manage customers' machines and Kubernetes clusters outside of Azure.
 ms.date: 01/09/2025
 ms.topic: how-to
+# Customer intent: As a service provider managing customer environments, I want to leverage Azure Arc and Azure Lighthouse to oversee hybrid infrastructure, so that I can simplify operations and maintain compliance across both cloud and on-premises resources effectively.
 ---
 
 # Manage hybrid infrastructure at scale with Azure Arc

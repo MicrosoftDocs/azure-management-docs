@@ -3,6 +3,9 @@ title: View and filter Azure resource information
 description: Filter information and use different views to better understand your Azure resources.
 ms.topic: how-to
 ms.date: 05/15/2025
+ms.custom:
+  - build-2025
+# Customer intent: As an Azure user, I want to filter and customize views of my resources in the Azure portal, so that I can efficiently manage and analyze them across my subscriptions.
 ---
 
 # View and filter Azure resource information

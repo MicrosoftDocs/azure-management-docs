@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 09/26/2024
+# Customer intent: "As a cloud administrator, I want to configure Cloud Ingest Edge Volumes in OneLake, so that I can optimize data uploads and manage storage efficiently within my Kubernetes environment."
 ---
 
 # Alternate: OneLake configuration for Cloud Ingest Edge Volumes

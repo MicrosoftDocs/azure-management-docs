@@ -3,10 +3,10 @@ title: Troubleshoot artifact cache issues in Azure Container Registry
 description: Learn how to troubleshoot the most common problems for a registry that uses the Artifact cache feature.
 ms.topic: troubleshooting
 ms.date: 04/23/2025
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
-# customer intent: As a user, I want to troubleshoot the most common problems for a registry enabled with the Artifact cache feature so that I can effectively use the feature.
+# Customer intent: As a user managing an Azure Container Registry, I want to troubleshoot common artifact cache issues, so that I can maintain optimal performance and resolve problems effectively.
 ---
 
 # Troubleshoot artifact cache issues in Azure Container Registry

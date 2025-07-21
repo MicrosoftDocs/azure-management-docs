@@ -3,6 +3,7 @@ title: Quickstart - Request a quota increase in the Azure portal
 description: This quickstart shows you how to increase a quota in the Azure portal.
 ms.date: 03/13/2024
 ms.topic: how-to
+# Customer intent: "As an Azure account administrator, I want to request a quota increase through the Azure portal, so that I can ensure my services have the necessary resources to operate effectively."
 ---
 
 # Quickstart: Request a quota increase in the Azure portal

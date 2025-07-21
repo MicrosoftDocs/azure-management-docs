@@ -4,6 +4,7 @@ description: Learn how to update a delegation for a customer previously onboarde
 ms.date: 01/17/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
+# Customer intent: As a service provider managing customer subscriptions, I want to update delegations using ARM templates or through a new offer in Azure Marketplace, so that I can adjust authorizations or change managing tenants effectively while ensuring proper access and permissions are maintained.
 ---
 
 # Update a delegation

@@ -5,19 +5,23 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.date: 03/12/2025
+# Customer intent: "As a cloud administrator, I want to install and configure the Azure Container Storage extension with Edge Volumes in Kubernetes, so that I can efficiently manage storage solutions across my containerized applications in a hybrid cloud environment."
 ---
 
 # Install Azure Container Storage enabled by Azure Arc Edge Volumes
 
 This article describes the steps to install the Azure Container Storage extension.
 
-## Install Azure IoT Operations dependencies
+## Install certificate and trust managers
 
-First, run the following command to install the Azure IoT Operations dependencies:
+Azure Container Storage is dependent upon a `cert-manager` and `trust-manager`. You can bring your own, or these are available as a platform extension that can be installed using the following command:
 
 ```azurecli 
 az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "${NAME}-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
 ```
+
+> [!NOTE]
+> This platform extension is supplied by Azure IoT Operations, but installing the platform extension does not install Azure IoT Operations on your device. 
 
 ## Install the Azure Container Storage enabled by Azure Arc extension
 

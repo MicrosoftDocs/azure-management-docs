@@ -6,6 +6,7 @@ ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As a cloud developer, I want to generate and customize Terraform and Bicep configurations using an AI tool, so that I can efficiently manage and deploy Azure infrastructure.
 ---
 
 # Generate Terraform and Bicep configurations using Microsoft Copilot in Azure

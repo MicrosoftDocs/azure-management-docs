@@ -3,9 +3,9 @@ title: Customer-Managed Keys for Azure Container Registry
 description: Learn how to encrypt your Premium container registry by using a customer-managed key stored in Azure Key Vault.
 ms.topic: tutorial
 ms.date: 10/31/2023
-ms.author: rayoflores
+ms.author: doveychase
 ms.service: azure-container-registry
-#customer intent: As a developer, I want to use customer-managed keys so that I can have more control over encryption.
+# Customer intent: "As a cloud administrator, I want to implement customer-managed keys for my container registry so that I can enhance encryption security and maintain compliance with regulatory requirements."
 ---
 
 # Overview of customer-managed keys

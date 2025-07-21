@@ -8,6 +8,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: As an Azure user, I want to craft effective prompts for AI models, so that I can receive accurate responses and enhance my productivity in code generation and task management.
 ---
 
 # Write effective prompts for Microsoft Copilot in Azure

@@ -1,8 +1,11 @@
 ---
 title: Enable VM extensions to Arc-enabled servers from the Azure portal
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments from the Azure portal.
-ms.date: 04/28/2025
+ms.date: 06/19/2025
 ms.topic: how-to
+ms.custom:
+  - build-2025
+# Customer intent: "As a system administrator managing hybrid environments, I want to deploy and manage VM extensions on Azure Arc-enabled servers via the Azure portal, so that I can efficiently enhance server functionality without needing command-line tools."
 ---
 
 # Enable Azure VM extensions to Arc-enabled servers from the Azure portal
@@ -10,7 +13,7 @@ ms.topic: how-to
 You can deploy, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) supported by Azure Arc-enabled servers. This article shows you how to perform these tasks on a Linux or Windows hybrid machine by using the Azure portal.
 
 > [!NOTE]
-> The Azure Key Vault VM extension doesn't support deployment from the Azure portal. Use the Azure CLI, Azure PowerShell, or an Azure Resource Manager template to deploy this extension.
+> Some extensions, such as the Azure Key Vault VM extension, don't support deployment from the Azure portal. Use the [Azure CLI](manage-vm-extensions-cli.md), [Azure PowerShell](manage-vm-extensions-powershell.md), or an [Azure Resource Manager template](manage-vm-extensions-template.md) to deploy this extension.
 
 ## Enable extensions
 
@@ -45,12 +48,14 @@ You can get a list of the VM extensions on your Azure Arc-enabled server from th
 
 ## Upgrade extensions
 
-When a new version of a supported extension is released, you can upgrade the extension to that latest release. When you go to Azure Arc-enabled servers in the Azure portal, a banner informs you that upgrades are available for one or more extensions installed on a machine.
+When a new version of a supported extension is released, you can upgrade the extension to that latest release. Extensions are upgraded by installing a newer version of the extension than the one currently installed on the machine, rather than deploying an update to the current version.
+
+> [!TIP]
+> Many VM extensions can be configured for [automatic upgrades](manage-automatic-vm-extension-upgrade.md).
+
+When viewing an Arc-enabled server in the Azure portal, a banner appears if upgrades are available for one or more of the installed extensions.
 
 When you view the list of installed extensions for a selected Azure Arc-enabled server, notice the column labeled **Update available**. If a newer version of an extension is released, the **Update available** value for that extension shows a value of **Yes**, along with the new version number.
-
-> [!NOTE]
-> The Azure portal currently uses the word **Update** for this experience. However, extensions are upgraded by installing a newer version of the extension than the one currently installed on the machine, rather than deploying an update to the current version.
 
 Upgrading an extension to the newest version doesn't affect the configuration of that extension. When you upgrade an extension, you don't have to respecify configuration information.
 

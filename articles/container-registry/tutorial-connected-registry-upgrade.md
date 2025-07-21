@@ -1,12 +1,12 @@
 ---
 title: "Upgrade and Roll Back Connected Registry Extension"
 description: "Upgrade and roll back the connected registry Arc extension version. Learn how to manage the connected registry extension version."
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: tutorial  #Don't change.
 ms.date: 06/17/2024
-#customer intent: Learn how to upgrade and roll back the connected registry Arc extension.
+# Customer intent: As an IT administrator managing container registries, I want to upgrade and roll back the connected registry extension version, so that I can ensure my system runs on the latest stable features while maintaining control over version stability.
 ---
 
 # Upgrade and roll back the connected registry extension version

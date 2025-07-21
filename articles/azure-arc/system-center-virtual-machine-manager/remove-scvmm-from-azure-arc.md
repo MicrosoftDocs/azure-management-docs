@@ -7,8 +7,9 @@ ms.topic: how-to
 ms.date: 02/25/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.custom:
 # Customer intent: As an infrastructure admin, I want to cleanly remove my SCVMM environment from Azure Arc.
+ms.custom:
+  - build-2025
 ---
 
 # Remove your SCVMM environment from Azure Arc

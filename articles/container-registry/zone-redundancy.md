@@ -2,12 +2,13 @@
 title: Zone-Redundant Registry in Azure Container Registry
 description: Learn about enabling zone redundancy in Azure Container Registry, a feature of the Premium service tier, for high availability.
 ms.topic: concept-article
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry
 
+# Customer intent: As a cloud architect, I want to configure zone redundancy for Azure Container Registry, so that I can ensure high availability and resiliency for container images within a specific region.
 ---
 
 # Enable zone redundancy in Azure Container Registry for resiliency and high availability

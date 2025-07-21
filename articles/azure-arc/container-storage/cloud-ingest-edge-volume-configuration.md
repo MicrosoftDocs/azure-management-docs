@@ -4,9 +4,13 @@ description: Learn about Cloud Ingest Edge Volumes configuration for Edge Volume
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content
+ms.custom:
+  - linux-related-content
+  - build-2025
 ms.date: 03/12/2025
+# Customer intent: "As a Kubernetes administrator, I want to configure Cloud Ingest Edge Volumes for my applications, so that I can efficiently manage data ingestion and ensure local purging of files while maintaining data integrity in disconnected environments."
 ---
+
 
 # Cloud Ingest Edge Volumes configuration
 
@@ -20,6 +24,8 @@ For example, you can write a file to your cloud ingest PVC, and a process runs a
 
 ## Prerequisites
 
+If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](alternate-onelake.md).
+
 1. Create a storage account [following the instructions here](/azure/storage/common/storage-account-create?tabs=azure-portal).
 
    > [!NOTE]
@@ -31,9 +37,7 @@ For example, you can write a file to your cloud ingest PVC, and a process runs a
 
 Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing you to upload cloud ingest volumes to these storage systems.
 
-It's recommended that you use Extension Identity. If your final destination is blob storage or ADLSgen2, see the following instructions. If your final destination is OneLake, follow the instructions in [Configure OneLake for Extension Identity](alternate-onelake.md).
-
-While it's not recommended, if you prefer to use key-based authentication, follow the instructions in [Key-based authentication](alternate-key-based.md).
+If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](cloud-ingest-edge-volumes-with-workload-identity.md).
 
 ### Obtain Extension Identity
 
@@ -65,6 +69,8 @@ az k8s-extension list --cluster-name ${CLUSTER_NAME} --resource-group ${RESOURCE
 
 #### Add Extension Identity permissions to a storage account
 
+##### [Azure portal](#tab/portal)
+
 1. Navigate to storage account in the Azure portal.
 1. Select **Access Control (IAM)**.
 1. Select **Add+ -> Add role assignment**.
@@ -73,6 +79,27 @@ az k8s-extension list --cluster-name ${CLUSTER_NAME} --resource-group ${RESOURCE
 1. To add your principal ID to the **Selected Members:** list, paste the ID and select **+** next to the identity.
 1. Click **Select**.
 1. To review and assign permissions, select **Next**, then select **Review + Assign**.
+
+##### [Azure CLI](#tab/cli)
+
+In Azure CLI, enter your values for the variables (`STORAGE_ACCOUNT_NAME`, `RESOURCE_GROUP`, `PRINCIPAL_ID`) and run the following command:
+
+1. **Set your storage account variables:**  
+   ```sh
+   STORAGE_ACCOUNT_NAME=<your-storage-account-name>
+   RESOURCE_GROUP=<your-resource-group>
+   PRINCIPAL_ID=<your-extension-identity-principal-ID-from-the-previous-section>
+   SUBSCRIPTION_ID=<your-subscription-id>
+   ```
+
+2. **Assign the `Storage Blob Data Owner` role to your Extension Identity:**  
+   ```sh
+   az role assignment create --assignee $PRINCIPAL_ID --role "Storage Blob Data Owner" --scope /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.Storage/storageAccounts/$STORAGE_ACCOUNT_NAME
+   ```
+
+   This command assigns the `Storage Blob Data Owner` role to the specified identity at the scope of your storage account.
+
+---
 
 ## Create a Cloud Ingest Persistent Volume Claim (PVC)
 

@@ -3,6 +3,7 @@ title: Monitor service provider activity
 description: Customers can monitor logged activity to see actions performed by service providers through Azure Lighthouse.
 ms.date: 01/16/2025
 ms.topic: how-to
+# Customer intent: "As a cloud resource manager, I want to monitor Azure Lighthouse service provider activity logs, so that I can ensure accountability and track actions on delegated subscriptions for compliance and security purposes."
 ---
 
 # Monitor service provider activity

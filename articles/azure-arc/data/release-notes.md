@@ -7,8 +7,8 @@ ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 03/12/2025
-ms.topic: concept-article
+ms.date: 05/13/2025
+ms.topic: release-notes
 ms.custom: references_regions, ignite-2023
 #Customer intent: As a data professional, I want to understand why my solutions would benefit from running with Azure Arc-enabled data services so that I can leverage the capability of the feature.
 ---
@@ -16,6 +16,16 @@ ms.custom: references_regions, ignite-2023
 # Release notes - Azure Arc-enabled data services
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
+
+## July 14, 2025
+
+Azure Arc-enabled PostgreSQL server is retired.
+
+## May 13, 2025
+
+**Image tag**: `v1.39.0_2025-05-13`
+
+For complete release version information, review [Version log](version-log.md#may-13-2025).
 
 ## April 8, 2025
 
@@ -66,19 +76,6 @@ For complete release version information, review [Version log](version-log.md#au
 **Image tag**: `v1.31.0_2024-07-09`
 
 For complete release version information, review [Version log](version-log.md#july-9-2024). 
-
-## June 11, 2024
-
-**Image tag**: `v1.30.0_2024-06-11` 
-
-For complete release version information, review [Version log](version-log.md#june-11-2024). 
-
-## April 9, 2024
-
-**Image tag**:`v1.29.0_2024-04-09`
-
-For complete release version information, review [Version log](version-log.md#april-9-2024).
-
 
 ## Related content
 

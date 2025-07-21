@@ -5,6 +5,7 @@ ms.topic: include
 ms.date: 08/16/2024
 author: asergaz
 ms.author: sergaz
+# Customer intent: "As a Kubernetes administrator, I want to ensure I use the correct naming conventions for objects, so that I can maintain compatibility and avoid issues within the Kubernetes ecosystem."
 ---
 
 > [!NOTE]

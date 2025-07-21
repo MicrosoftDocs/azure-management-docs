@@ -10,6 +10,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As an IT administrator managing hybrid infrastructure, I want to use an AI assistant to summarize and analyze my Azure Local instances, so that I can swiftly identify issues and improve operational efficiency."
 ---
 
 # Work smarter with your Azure Local instances using Microsoft Copilot in Azure

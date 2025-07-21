@@ -3,6 +3,7 @@ title: Recover a deleted dashboard in the Azure portal
 description: If you delete a published dashboard in the Azure portal, you can recover the dashboard.
 ms.date: 10/10/2024
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to recover a deleted published dashboard within seven days, so that I can restore important visualizations and data tracking without losing shared insights."
 ---
 
 # Recover a deleted dashboard in the Azure portal

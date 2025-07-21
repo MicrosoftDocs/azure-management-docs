@@ -1,8 +1,9 @@
 ---
 title: "What's new with Azure Arc-enabled Kubernetes"
-ms.date: 04/29/2025
+ms.date: 06/19/2025
 ms.topic: concept-article
 description: "Learn about the latest releases of Arc-enabled Kubernetes."
+# Customer intent: "As a Kubernetes administrator, I want to stay informed about the latest updates and enhancements to Azure Arc-enabled Kubernetes agents, so that I can ensure my cluster is secure and operates with the most reliable version."
 ---
 
 # What's new with Azure Arc-enabled Kubernetes
@@ -13,6 +14,16 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.27.0 (June 2025)
+
+- Security vulnerability fixes
+
+## Version 1.26.0 (May 2025)
+
+- Updated to Microsoft Go v1.24.2
+- Migrated from Mariner 2.0 to Azure Linux 3.0
+- Security vulnerability fixes
+
 ## Version 1.25.0 (April 2025)
 
 - Fixes to MSI-Adapter response to improve retrieval of JWT tokens by extensions and upstream libraries
@@ -20,27 +31,26 @@ We generally recommend using the most recent versions of the agents. The [versio
 - Upgrade connected proxy agent
 - Security vulnerability fixes
 
+## Older agent releases
+
 ## Version 1.24.4 (March 2025)
 
 - Security vulnerability fixes
 - Various bug fixes
 - Support for [version-managed extensions](managed-extensions.md)
 
-## Version 1.23.3 (February 2025)
+### Version 1.23.3 (February 2025)
 
 - Updates to improve MSI adapter support
 - Updates to improve disconnected scenario
 - Security vulnerability fixes
 - Various bug fixes
 
-## Older agent releases
-
-## Version 1.22.4 (January 2025)
+### Version 1.22.4 (January 2025)
 
 - Fixed issue with resource health reporting
 - Allow special characters in password for proxy server
 - Security vulnerability fixes
-
 
 ### Version 1.21.10 (November 2024)
 

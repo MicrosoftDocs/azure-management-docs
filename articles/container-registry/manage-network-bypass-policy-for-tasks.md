@@ -1,14 +1,13 @@
 ---
-
 title: Manage network bypass policy for tasks
 description: This article provides guidance on managing network bypass policy for ACR tasks.
-author: getk12
-ms.author: gaking
+author: chasedmicrosoft
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to 
 ms.date: 05/15/2025
-#customer intent: As a developer, I want to manage my network bypass policy for task so that I can control security parameters for ACR tasks.
 
+# Customer intent: As a developer, I want to configure the network bypass policy for my ACR tasks, so that I can ensure secure access while managing necessary exceptions for trusted services.
 ---
 
 # Manage network bypass policy for tasks
@@ -80,7 +79,7 @@ az resource show \
 --name $registry \  
 --resource-group $resourceGroup \  
 --api-version 2025-05-01-preview \  
---query properties.networkRuleBypassAllowedForTasks`
+--query properties.networkRuleBypassAllowedForTasks
 ```
 
 
@@ -135,6 +134,13 @@ az resource update \
  
 Verify that tasks can continue bypassing network restrictions successfully by running az acr build, az acr run, or az acr task run commands and viewing the [streamed logs](~/articles/container-registry/container-registry-tasks-logs.md).
 
+
+> [!IMPORTANT]
+> When enabling the new network bypass policy for ACR tasks, it is important to understand the implications of using a System Assigned Managed Identity (SAMI). This identity allows ACR tasks to authenticate securely without embedding credentials in your workflows. The SAMI token used by ACR tasks is a sensitive credential. If mishandled, such as being written to logs, it could be intercepted and misused.
+> **Best practices for safeguarding tokens include**:
+> - avoid outputting the token to logs or exposing it in any way.
+> - implement strict logging hygiene and monitor for accidental token leakage.
+> - regularly audit task definitions and logs for compliance.
 
 ### Scenario 3: No action is taken (default behavior) to enable the new network bypass policy setting
 

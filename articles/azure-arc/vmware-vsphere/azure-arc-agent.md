@@ -7,6 +7,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
+ms.custom:
+  - build-2025
 ---
 
 # Azure Arc agent

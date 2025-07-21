@@ -5,6 +5,7 @@ ms.topic: include
 ms.date: 03/12/2025
 author: asergaz
 ms.author: sergaz
+# Customer intent: As a system administrator, I want to configure a single-node Kubernetes cluster with adequate resources and storage provisions, so that I can deploy and manage applications effectively using Azure IoT Operations and Azure Container Storage.
 ---
 
 ## Prepare Linux with AKS Edge Essentials

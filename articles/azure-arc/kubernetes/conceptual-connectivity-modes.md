@@ -3,6 +3,7 @@ title: "Azure Arc-enabled Kubernetes connectivity modes"
 ms.date: 03/26/2024
 ms.topic: concept-article
 description: "This article provides an overview of the connectivity modes supported by Azure Arc-enabled Kubernetes"
+# Customer intent: "As a Kubernetes administrator, I want to understand the connectivity modes of Azure Arc-enabled Kubernetes, so that I can effectively manage agents and ensure consistent communication with Azure services for my clusters."
 ---
 
 # Azure Arc-enabled Kubernetes connectivity modes

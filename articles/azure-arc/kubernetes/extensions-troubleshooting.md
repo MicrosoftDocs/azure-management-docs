@@ -2,8 +2,12 @@
 title: "Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters"
 ms.date: 05/13/2025
 ms.topic: how-to
-ms.custom: devx-track-azurecli, references_regions
+ms.custom:
+  - devx-track-azurecli
+  - references_regions
+  - build-2025
 description: "Learn how to resolve common problems with Azure Arc-enabled Kubernetes cluster extensions."
+# Customer intent: "As a Kubernetes administrator, I want to troubleshoot extension issues in Azure Arc-enabled clusters, so that I can ensure smooth operation and management of GitOps, Open Service Mesh, and other functionalities."
 ---
 
 # Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters
@@ -100,18 +104,6 @@ The following table lists the minimum and maximum limits for potential CPU and m
 | `image-reflector-controller` | 100 m | 64 Mi | 1,000 m | 1 Gi |
 
 If you enabled a custom or built-in Azure Policy Gatekeeper policy that limits the resources for containers on Kubernetes clusters, ensure that either the resource limits on the policy are greater than the limits shown in the preceding table or that the `flux-system` namespace is part of the `excludedNamespaces` parameter in the policy assignment. An example of a policy in this scenario is `Kubernetes cluster containers CPU and memory resource limits should not exceed the specified limits`.
-
-### Flux v1
-
-> [!NOTE]
-> We recommend that you [migrate to Flux v2](conceptual-gitops-flux2.md#migrate-from-flux-v1) as soon as possible. Support for Flux v1-based cluster configuration resources that were created before January 1, 2024,  ends on [May 24, 2025](https://azure.microsoft.com/updates/migrate-your-gitops-configurations-from-flux-v1-to-flux-v2-by-24-may-2025/). Starting on January 1, 2024, you won't be able to create new Flux v1-based cluster configuration resources.
-
-To help troubleshoot problems with the `sourceControlConfigurations` resource in Flux v1, run these Azure CLI commands, including the `--debug` parameter:
-
-```azurecli
-az provider show -n Microsoft.KubernetesConfiguration --debug
-az k8s-configuration flux create <parameters> --debug
-```
 
 ## Azure Monitor Container Insights
 

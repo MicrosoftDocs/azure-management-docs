@@ -2,6 +2,7 @@
 ms.service: azure-arc
 ms.topic: include
 ms.date: 01/13/2025
+# Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent, so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
 Azure Arc-enabled server endpoints are required for all server based Arc offerings. 
