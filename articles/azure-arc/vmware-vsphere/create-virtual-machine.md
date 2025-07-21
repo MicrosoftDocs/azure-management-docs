@@ -46,7 +46,7 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
    - **Resource pool/cluster/host** - Select a resource pool/cluster/host from the dropdown menu.
    - **Datastore** - Select a datastore from the dropdown menu.
 
-       :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen." lightbox="media/create-virtual-machine/machine.png":::
+       :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen." lightbox="media/create-virtual-machine/machines.png":::
 
 1. Under **Template details**, provide the following details:
    - **Template** - Choose the VM template for deployment.
@@ -92,4 +92,4 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
 
 - [Set up and manage self-service access](setup-and-manage-self-service-access.md).
 - [Perform VM powercycle operations](perform-powercycle-operations.md).
-- [Update configuration and resize a VM](update-configuration-and-resize-vm.md).
+- [Update configuration and resize a VM](update-configuration-resize-vm.md).
