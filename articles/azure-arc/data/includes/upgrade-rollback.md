@@ -4,6 +4,7 @@ ms.service: azure-arc
 ms.topic: include
 ms.date: 10/22/2022
 ms.author: jeschult
+# Customer intent: As a cloud operations engineer, I want to diagnose and troubleshoot upgrade failures in my container pods, so that I can ensure successful deployments and maintain application stability.
 ---
 
 ## Troubleshooting

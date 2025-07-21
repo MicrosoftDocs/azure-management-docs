@@ -10,6 +10,7 @@ ms.reviewer: mikeray
 ms.topic: how-to
 ms.date: 06/06/2023
 ms.custom: template-how-to, devx-track-azurecli
+# Customer intent: As a database administrator using Azure Arc, I want to enable transparent data encryption on my SQL Managed Instance, so that I can automatically secure all databases at rest and meet compliance requirements for data protection.
 ---
 
 # Enable transparent data encryption on SQL Managed Instance enabled by Azure Arc (preview)

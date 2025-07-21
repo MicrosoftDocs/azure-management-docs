@@ -7,6 +7,7 @@ author: suhuruli
 ms.author: suhuruli
 ms.topic: overview
 ms.date: 09/29/2023
+# Customer intent: As an AKS administrator, I want to understand the support lifecycle for Azure Linux Container Host, so that I can ensure my Kubernetes environment remains up-to-date and compliant with the necessary security and performance standards.
 ---
 
 # Azure Linux Container Host support lifecycle

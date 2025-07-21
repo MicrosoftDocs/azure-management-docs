@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 09/22/2020
 ms.topic: how-to
+# Customer intent: As a DevOps engineer, I want to automate the process of pulling and pushing container images to a private registry, so that I can deploy Azure Arc services in offline environments without connectivity to the Microsoft Container Registry.
 ---
 
 # Offline Deployment Overview

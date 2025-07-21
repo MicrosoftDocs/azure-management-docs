@@ -13,6 +13,8 @@ Get started with [Azure Arc-enabled servers](../overview.md) to manage and gover
 
 In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
 
+For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager.
+
 While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
 
 > [!TIP]

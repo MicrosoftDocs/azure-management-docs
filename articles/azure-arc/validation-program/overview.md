@@ -1,7 +1,7 @@
 ---
 title: Azure Arc-enabled services validation overview
 description: Explains the Azure Arc validation process to conform to the Azure Arc-enabled Kubernetes, Data Services, and cluster extensions.
-ms.date: 01/08/2024
+ms.date: 07/21/2025
 ms.topic: overview
 ---
 
@@ -17,7 +17,7 @@ Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (C
 
 ## Validated data services solutions
 
-The Azure Arc team worked with original equipment manufacturer (OEM) partners and storage providers to [validate Azure Arc-enabled data services solutions](../data/validation-program.md?toc=/azure/azure-arc/toc.json&bc=/azure/azure-arc/breadcrumb/toc.json). This includes partner solutions, versions, Kubernetes versions, SQL engine versions, and PostgreSQL server versions that have been verified to support the data services.
+The Azure Arc team worked with original equipment manufacturer (OEM) partners and storage providers to [validate Azure Arc-enabled data services solutions](../data/validation-program.md?toc=/azure/azure-arc/toc.json&bc=/azure/azure-arc/breadcrumb/toc.json). This includes partner solutions, versions, Kubernetes versions, and SQL engine versions that have been verified to support the data services.
 
 ## Validation process
 

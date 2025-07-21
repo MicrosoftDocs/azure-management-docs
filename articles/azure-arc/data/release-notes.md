@@ -11,6 +11,7 @@ ms.date: 05/13/2025
 ms.topic: release-notes
 ms.custom: references_regions, ignite-2023
 #Customer intent: As a data professional, I want to understand why my solutions would benefit from running with Azure Arc-enabled data services so that I can leverage the capability of the feature.
+# Customer intent: As a data professional, I want to stay updated on the latest features and enhancements of Azure Arc-enabled data services, so that I can effectively leverage these capabilities to improve my data solutions.
 ---
 
 # Release notes - Azure Arc-enabled data services

@@ -4,6 +4,7 @@ ms.author: mikeray
 ms.service: azure-arc
 ms.topic: include
 ms.date: 04/18/2022
+# Customer intent: As a cloud architect, I want to understand the outbound connectivity requirements for Azure Arc data services, so that I can ensure proper configuration and seamless integration with Azure Monitor and APIs for efficient data processing and management.
 ---
 
 

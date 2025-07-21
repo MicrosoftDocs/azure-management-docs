@@ -1,6 +1,7 @@
 ---
 ms.topic: include
 ms.date: 07/18/2024
+# Customer intent: "As a cloud administrator, I want to create virtual machines from existing virtual machines, so that I can efficiently scale my resources in a hybrid cloud environment."
 ---
 
 ```azurecli-interactive
