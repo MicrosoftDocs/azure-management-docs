@@ -10,6 +10,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: As a hybrid IT administrator, I want to integrate VMware vSphere with Azure management capabilities, so that I can streamline governance, enhance security, and enable self-service operations for development teams across both environments.
 ---
 
 # What is Azure Arc-enabled VMware vSphere?

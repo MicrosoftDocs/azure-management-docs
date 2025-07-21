@@ -10,6 +10,7 @@ author: jyothisuri
 ms.custom:
   - devx-track-azurecli
   - build-2025
+# Customer intent: "As a cloud administrator, I want to perform ongoing management of the Arc resource bridge for VMware vSphere, so that I can ensure connectivity and functionality between my vSphere environment and Azure services."
 ---
 
 # Perform ongoing maintenance and administration for Azure Arc-enabled VMware vSphere
