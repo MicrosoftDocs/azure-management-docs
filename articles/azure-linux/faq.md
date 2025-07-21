@@ -7,6 +7,7 @@
   ms.custom: linux-related-content
   ms.topic: faq
   ms.date: 12/12/2023
+# Customer intent: "As a cloud engineer, I want to understand how to effectively use Azure Linux Container Host on AKS, so that I can optimize container workloads and manage my Kubernetes environments efficiently."
 ---
 
 # Frequently asked questions about the Azure Linux Container Host for AKS

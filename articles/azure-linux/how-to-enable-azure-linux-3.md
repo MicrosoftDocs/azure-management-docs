@@ -8,6 +8,7 @@ ms.custom: references_regions, devx-track-azurecli, linux-related-content
 ms.topic: quickstart
 ms.date: 10/10/2024
 
+# Customer intent: As a Kubernetes administrator, I want to enable Azure Linux 3.0 for my AKS clusters and node pools, so that I can take advantage of the latest features and improvements in the node operating system.
 ---
 # Quickstart: Enable Azure Linux 3.0 for Azure Kubernetes Service (AKS) clusters and node pools
 

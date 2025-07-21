@@ -8,6 +8,7 @@ ms.service: microsoft-linux
 ms.custom: devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
+# Customer intent: As a cloud administrator, I want to migrate existing AKS node pools to Azure Linux, so that I can take advantage of the latest OS features and ensure optimal performance for my containerized applications.
 ---
 
 # Tutorial: Migrate nodes to Azure Linux
