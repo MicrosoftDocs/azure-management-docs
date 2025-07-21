@@ -37,7 +37,7 @@ Sept, 2024 preview release is now available.
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.18 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.33.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 972 |
 
 Pre-release Notes:

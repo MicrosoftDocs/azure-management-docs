@@ -2,13 +2,14 @@
 title: include file
 description: include file
 services: container-registry
-author: dlepow
+author: chasedmicrosoft
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/06/2020
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file
+# Customer intent: "As a cloud administrator, I want to retrieve the principal ID of a system-assigned identity from Azure Container Registry tasks, so that I can use it for subsequent command executions and manage access effectively."
 ---
 In the command output, the `identity` section shows an identity of type `SystemAssigned` is set in the task. The `principalId` is the principal ID of the task identity:
 

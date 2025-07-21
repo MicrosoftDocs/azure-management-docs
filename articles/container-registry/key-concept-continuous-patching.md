@@ -1,11 +1,12 @@
 ---
 title: "Continuous Patching in Azure Container Registry Key Concepts"
 description: "Learn about Key Concepts for continuous patching in Azure Container Registry."
-ms.author: wleo
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: concept-article
 ms.date: 03/27/2025
 
+# Customer intent: As a DevOps engineer, I want to implement continuous patching for container images, so that I can quickly address OS vulnerabilities and maintain security without needing to rebuild images or wait for upstream updates.
 ---
 
 # Concepts: Continuous patching in Azure Container Registry

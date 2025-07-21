@@ -1,8 +1,9 @@
 ---
 title: View and manage service providers
 description: Customers can view info about Azure Lighthouse service providers, service provider offers, and delegated resources in the Azure portal.
-ms.date: 01/17/2025
+ms.date: 06/18/2025
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to view and manage Azure Lighthouse service providers and their offers in the Azure portal, so that I can control access and delegate resources effectively while ensuring compliance with my organization's resource management policies.
 ---
 
 # View and manage service providers
@@ -32,7 +33,7 @@ You can add a new service provider offer in **Service provider offers**.
 
 To add an offer from the marketplace, select **Add offer** in the command bar, then choose **Add via marketplace**. To view [Managed Service offers](../concepts/managed-services-offers.md) that were published specifically for a customer, select **Private products**. Otherwise, search for a public offer. When you find the offer you're interested in, select it to review details. To add the offer, select **Create**, then provide any necessary information.
 
-To add an offer from a template, select **Add offer** in the command bar, then choose **Add via template**. The **Upload Offer Template** pane appears, allowing you to upload a template from your service provider and onboard your subscription (or resource group). For detailed steps, see [Deploy in the Azure portal](onboard-customer.md#deploy-in-the-azure-portal).
+To add an offer from a template, select **Add offer** in the command bar, then choose **Add via template**. The **Upload Offer Template** pane appears, allowing you to upload a template from your service provider and onboard your subscription (or resource group). For detailed steps, see [Deploy the Azure Resource Manager template](onboard-customer.md#deploy-the-azure-resource-manager-template).
 
 ## Update service provider offers
 

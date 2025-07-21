@@ -2,7 +2,8 @@
 title: azcmagent connect CLI reference
 description: Syntax for the azcmagent connect command line tool
 ms.topic: reference
-ms.date: 10/05/2023
+ms.date: 06/30/2025
+# Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
 # azcmagent connect
@@ -63,7 +64,7 @@ To authenticate with a service principal using a secret, provide the service pri
 
 ### Service principal with certificate
 
-Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PCKS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files are not supported.
+Certificate-based authentication is a more secure way to authenticate using service principals. The agent accepts both PCKS #12 (.PFX) files and ASCII-encoded files (such as .PEM) that contain both the private and public keys. The certificate must be available on the local disk and the user running the `azcmagent` command needs read access to the file. Password-protected PFX files and encrypted PEM files are not supported.
 
 To authenticate with a service principal using a certificate, provide the service principal's application ID, tenant ID, and path to the certificate file: `--service-principal-id [appId] --service-principal-cert [pathToPEMorPFXfile] --tenant-id [tenantid]`
 

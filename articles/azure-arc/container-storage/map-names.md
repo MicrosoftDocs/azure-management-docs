@@ -5,6 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.date: 10/31/2024
+# Customer intent: As a cloud developer, I want to understand how to map file paths in Azure Container Storage to various storage destinations, so that I can configure my application to correctly save and access data in both local and cloud environments.
 ---
 
 # Map file to object path names

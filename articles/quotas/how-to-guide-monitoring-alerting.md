@@ -3,6 +3,7 @@ title: Create alerts for quotas
 description: Learn how to create alerts for quotas
 ms.date: 09/04/2024
 ms.topic: how-to
+# Customer intent: "As an IT administrator, I want to create quota alerts within the cloud management portal, so that I can monitor resource usage and prevent service disruptions due to quota limits."
 ---
 
 # Create alerts for quotas

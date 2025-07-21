@@ -3,6 +3,7 @@ title: Network security
 description: Network security for Azure Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 06/06/2024
+# Customer intent: As a network administrator, I want to understand the networking requirements for Azure Arc-enabled servers, so that I can secure and configure our connections effectively while ensuring compliance with our organization's network policies.
 ---
 
 # Network security

@@ -3,6 +3,7 @@ title: Billing service for Extended Security Updates for Windows Server 2012 thr
 description: Learn about billing services for Extended Security Updates for Windows Server 2012 enabled by Azure Arc.
 ms.date: 01/21/2025
 ms.topic: concept-article
+# Customer intent: As a cloud administrator managing Extended Security Updates for Windows Server 2012 via Azure Arc, I want to understand the billing structure and back-billing implications so that I can accurately forecast costs and optimize my license management.
 ---
 
 # Billing service for Extended Security Updates for Windows Server 2012 enabled by Azure Arc

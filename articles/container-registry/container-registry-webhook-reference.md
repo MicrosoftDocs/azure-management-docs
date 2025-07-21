@@ -2,10 +2,11 @@
 title: Webhook Schema Reference for Azure Container Registry
 description: Reference for JSON payload for webhook requests in an Azure container registry, which are generated when webhooks are enabled for artifact push or delete events
 ms.topic: reference
-author: rayoef
-ms.author: rayoflores
+author: chasedmicrosoft
+ms.author: doveychase
 ms.date: 10/31/2023
 ms.service: azure-container-registry
+# Customer intent: "As a cloud developer, I want to configure webhooks for my container registry, so that I can receive real-time notifications of image and Helm chart push and delete events for automated processing."
 ---
 
 # Azure Container Registry webhook reference

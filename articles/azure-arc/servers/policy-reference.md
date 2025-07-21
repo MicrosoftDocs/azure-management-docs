@@ -4,6 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Azure Arc-enable
 ms.date: 02/06/2024
 ms.topic: reference
 ms.custom: subject-policy-reference
+# Customer intent: As an IT administrator managing hybrid environments, I want to access built-in policy definitions for Azure Arc-enabled servers, so that I can ensure compliance and effective governance of my Azure resources.
 ---
 # Azure Policy built-in definitions for Azure Arc-enabled servers
 
@@ -17,7 +18,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Arc-enabled servers
 
-[!INCLUDE [azure-policy-reference-rp-arcserver](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.hybridcompute.md)]
+[!INCLUDE [azure-policy-reference-rp-arcserver](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.hybridcompute.md)]
 
 ## Next steps
 

@@ -5,6 +5,8 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+ms.custom:
+  - build-2025
 ---
 
 # Deploy your solutions with workload orchestration portal
@@ -13,12 +15,11 @@ The Deploy tab in the workload orchestration portal displays the targets and the
 
 This article describes how to use the workload orchestration portal to deploy, delete, stop, roll back, and retry solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](monitor.md) and [Configure your solutions](configure.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-- Only users with access to deploy solutions can see the Deploy tab. For more information, see [Role-based access control (RBAC) guide](rbac-guide.md).
+- Only users with access to deploy solutions can see the Deploy tab. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
 ## Navigate the Deploy tab
 

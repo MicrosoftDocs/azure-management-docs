@@ -5,9 +5,10 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/20/2025
-
-#CustomerIntent: 
-
+ms.subservice: edge-rag
+#CustomerIntent:
+ms.custom:
+  - build-2025
 ---
 
 # Known issues in Edge RAG Preview, enabled by Azure Arc

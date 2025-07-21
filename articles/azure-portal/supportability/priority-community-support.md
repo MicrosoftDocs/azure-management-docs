@@ -4,6 +4,7 @@ description: Introducing Priority Community Support for Azure Developer Support 
 ms.topic: overview
 ms.custom: support-help-page
 ms.date: 03/10/2025
+# Customer intent: As an Azure Developer Support Plan customer, I want to access Priority Community Support for technical inquiries so that I can receive timely, expert assistance and benefit from shared solutions in the community.
 ---
 
 # Priority community support (PCS) for Azure developer support plan customers 

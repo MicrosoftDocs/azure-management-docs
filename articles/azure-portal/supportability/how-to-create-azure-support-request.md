@@ -4,6 +4,7 @@ description: Customers who need assistance can use the Azure portal to find self
 ms.topic: how-to
 ms.custom: support-help-page
 ms.date: 02/26/2024
+# Customer intent: As an Azure user seeking assistance, I want to create and manage support requests through the portal or API, so that I can effectively resolve issues and access technical support for my resources.
 ---
 
 # Create an Azure support request

@@ -3,21 +3,23 @@ title: Create a Solution with Multiple Instances with Workload Orchestration
 description: Learn how to create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: quickstart
-ms.date: 05/03/2025
+ms.topic: how-to
+ms.date: 06/18/2025
+ms.custom:
+  - build-2025
 ---
 
-# Quickstart: Create a solution with multiple instances in the same Kubernetes namespace
+# Create a solution with multiple instances in the same Kubernetes namespace
 
-In this quickstart, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies.
+In this article, you create a solution with multiple instances in the same Kubernetes namespace using workload orchestration via CLI. 
 
 ## Prerequisites
 
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 
 ## Create the target
@@ -62,7 +64,7 @@ spec:
 
 ```
 
-Here deployment name is being taken from *values.yaml* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). 
+Here, deployment name is being taken from *values.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip). 
 
 Similarly, if `configmap` is used in the application, then the name of the `configmap` is also dynamic.
 
@@ -126,4 +128,4 @@ In the *fsad-specs.json* file, refer the component name to `DeploymentName`:
 }
 ```
 
-Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Quickstart: Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](configure.md).
+Based on the hierarchy, set `DeploymentName` using the `config set` command as described in [Create a solution with multiple shared adapter dependencies](quickstart-solution-shared-adapter-dependency.md#set-the-configuration-values-for-the-solution), or via the [Configure tab in workload orchestration portal](configure.md).

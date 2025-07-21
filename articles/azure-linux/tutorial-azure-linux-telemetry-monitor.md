@@ -11,6 +11,9 @@ ms.date: 04/06/2025
 
 # Tutorial: Enable telemetry and monitoring for your Azure Linux Container Host cluster
 
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321847)
+
 In this tutorial, part four of five, you'll set up Container Insights to monitor an Azure Linux Container Host cluster. You'll  learn how to: 
 
 > [!div class="checklist"]

@@ -46,7 +46,6 @@ landingContent:
           - text: Create - Indirectly connected
             url: create-complete-managed-instance-indirectly-connected.md
   # Card (optional)
-  # Card (optional)
   - title: SQL Managed Instance enabled by Azure Arc
     linkLists:
       - linkListType: quickstart
@@ -66,17 +65,3 @@ landingContent:
        links:
           - text: Jumpstart
             url: https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_data
- # Card
-  - title: Azure Arc-enabled PostgreSQL (preview)
-    linkLists:
-      - linkListType: quickstart
-        links:
-          - text: Create
-            url: create-postgresql-server.md
-          - text: Connect
-            url: get-connection-endpoints-and-connection-strings-postgresql-server.md
-          - text: Migrate
-            url: migrate-postgresql-data.md
-          - text: Restore
-            url: restore-adventureworks-sample-db-into-postgresql-server.md
-

@@ -3,6 +3,7 @@ title: Windows Server Management enabled by Azure Arc
 description: Enrollment in Windows Server Management enabled by Azure Arc.
 ms.date: 03/13/2025
 ms.topic: concept-article
+# Customer intent: As an IT administrator managing hybrid environments, I want to enroll Windows Server Management through Azure Arc, so that I can leverage remote management, configuration, and update capabilities for improved oversight and operational efficiency across my server infrastructure.
 ---
 
 # Windows Server Management enabled by Azure Arc

@@ -6,6 +6,7 @@ ms.author: sergaz
 ms.topic: how-to
 ms.date: 08/26/2024
 
+# Customer intent: "As a system administrator, I want to configure Prometheus and Grafana to monitor Azure Container Storage enabled by Azure Arc, so that I can effectively visualize and manage my containerized applications' performance and metrics."
 ---
 
 # Third-party monitoring with Prometheus and Grafana

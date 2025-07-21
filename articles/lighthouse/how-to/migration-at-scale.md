@@ -3,6 +3,7 @@ title: Manage Azure Migrate projects at scale
 description: Azure Lighthouse helps you effectively use Azure Migrate across delegated customer resources.
 ms.date: 07/16/2024
 ms.topic: how-to
+# Customer intent: As a service provider, I want to manage multiple Azure Migrate projects across different customer tenants using Azure Lighthouse, so that I can efficiently assess and migrate their workloads without accessing each subscription individually.
 ---
 
 # Manage Azure Migrate projects at scale with Azure Lighthouse

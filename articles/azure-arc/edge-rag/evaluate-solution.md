@@ -1,14 +1,15 @@
 ---
 title: Evaluate the Edge RAG System
-description: "Learn how to evaluate the functionality of the RAG system after you build a chat solution with Edge RAG."
+description: "Learn how to evaluate the functionality of the RAG system after you configure the chat solution in Edge RAG."
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/20/2025
+ms.date: 06/05/2025
 ai-usage: ai-assisted
-
+ms.subservice: edge-rag
 #CustomerIntent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
-
+ms.custom:
+  - build-2025
 ---
 # Evaluate the Edge RAG Preview system
 
@@ -18,8 +19,10 @@ Evaluate the system, models, and datasets within Edge RAG Preview, enabled by Az
 
 ## Prerequisites
 
-Review [Metrics for evaluating the Edge RAG system](evaluation-metrics.md).
+Before you begin:
 
+- Review [Metrics for evaluating the Edge RAG system](evaluation-metrics.md).
+- To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Run baseline check
 
@@ -32,7 +35,7 @@ The baseline check evaluates the functionality of the RAG system to make sure it
 To run a baseline check:
 
 1. Go to the developer portal using the domain name provided at deployment and app registration. For example: `https://arcrag.contoso.com`.
-1. Sign in with developer credentials (with both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned").
+1. Sign in with developer credentials that have both "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles assigned.
 1. Select the **Evaluation** tab.
 
    :::image type="content" source="media/evaluate-solution/evaluation-tab.png" alt-text="A screenshot showing the Evaluation tab in the developer portal, highlighting options for running checks and managing evaluations." lightbox="media/evaluate-solution/evaluation-tab.png":::

@@ -3,6 +3,7 @@ title: "Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure"
 ms.date: 10/11/2024
 ms.topic: concept-article
 description: "The scenarios enabled by Azure Arc-enabled Kubernetes involve exchange of desired state configurations, metadata, and other scenario specific operational data."
+# Customer intent: As a cloud administrator, I want to understand the data exchange between Azure Arc-enabled Kubernetes clusters and Azure, so that I can effectively monitor, manage, and optimize the infrastructure and configurations in my hybrid cloud environment.
 ---
 
 # Data exchanged between Azure Arc-enabled Kubernetes cluster and Azure
