@@ -9,7 +9,8 @@ Important updates and improvements to the Azure Key Vault Secret Store extension
 
 ## August 2025
 ### 1.0.0
-* First GA release of AKV SSE! 🎉
+- First GA release of AKV SSE! 🎉
+- You are CEVing this version.
 
 ## May 2025
 ### 0.10.0 [PREVIEW]
