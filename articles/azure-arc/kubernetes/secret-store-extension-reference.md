@@ -8,15 +8,16 @@ ms.date: 08/01/2025
 
 The SSE can be configured in three places: Configuration setting provided to Arc infrastructure when creating or updating the extension, SecretSync kubernetes resources, and SecretProviderClass kubernetes resources.
 
-## Arc extension configuration parameters
+## Arc extension configuration settings
 
-Configuration parameters can be set when the SSE arc extension instance is created, or can be updated later. Use ```--configuration-settings <setting>=<value>``` with ```az k8s-extension create ...``` or ```az k8s-extension update ...``` to create or update an SSE instance respectively.
+Configuration settings can be set when the SSE arc extension instance is created, or can be updated later. Use ```--configuration-settings <setting>=<value>``` with ```az k8s-extension create ...``` or ```az k8s-extension update ...``` to create or update an SSE instance respectively.
 
 SSE accepts the following arc extension configuration parameters:
 
    | Parameter name                    | Description                         | Default value                         |
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
    | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
+   | `enablePartialSecretSync` | When set to `false` a secret will only be updated if every item could be fetched from AKV successfully. When `true` each item in a secret will be updated it it was fetched successfully, without regard to the success of other items in the secret. | `true` |
 
 ## SecretSync resources
 
