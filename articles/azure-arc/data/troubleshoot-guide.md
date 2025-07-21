@@ -168,8 +168,6 @@ If you see a message about insufficient CPU or memory, you should add more nodes
 
 ## Resources by type
 
-[Scenario: Troubleshooting PostgreSQL servers](troubleshoot-postgresql-server.md)
-
 [View logs and metrics using Kibana and Grafana](monitor-grafana-kibana.md)
 
 ## Related content

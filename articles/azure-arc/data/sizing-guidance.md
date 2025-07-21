@@ -26,7 +26,6 @@ These resources are required for:
 
 - The data controller
 - SQL managed instances
-- PostgreSQL servers
 
 Because Azure Arc-enabled data services deploy on Kubernetes, you have the flexibility of adding more capacity to your Kubernetes cluster over time by compute nodes or storage. This guide explains minimum requirements and recommends sizes for some common requirements.
 
@@ -45,11 +44,11 @@ When you deploy with Azure CLI (az), use a power of two number to set the memory
 
 Limit values must always be greater than to the request value, if specified.
 
-Limit values for cores are the billable metric on SQL managed instance and PostgreSQL servers.
+Limit values for cores are the billable metric on SQL managed instance.
 
 ## Minimum deployment requirements
 
-A minimum size Azure Arc-enabled data services deployment could be considered to be the Azure Arc data controller plus one SQL managed instance plus one PostgreSQL server.  For this configuration, you need at least 16-GB RAM and 4 cores of _available_ capacity on your Kubernetes cluster.  You should ensure that you have a minimum Kubernetes node size of 8-GB RAM and 4 cores and a sum total capacity of 16-GB RAM available across all of your Kubernetes nodes.  For example, you could have 1 node at 32-GB RAM and 4 cores or you could have 2 nodes with 16-GB RAM and 4 cores each.
+A minimum size Azure Arc-enabled data services deployment could be considered to be the Azure Arc data controller plus one SQL managed instance. For this configuration, you need at least 16-GB RAM and 4 cores of _available_ capacity on your Kubernetes cluster.  You should ensure that you have a minimum Kubernetes node size of 8-GB RAM and 4 cores and a sum total capacity of 16-GB RAM available across all of your Kubernetes nodes. For example, you could have 1 node at 32-GB RAM and 4 cores or you could have 2 nodes with 16-GB RAM and 4 cores each.
 
 See the [storage-configuration](storage-configuration.md) article for details on storage sizing.
 
@@ -113,25 +112,11 @@ Each SQL managed instance pod that is created has three containers:
 
 The default volume size for all persistent volumes is `5Gi`.
 
-## PostgreSQL server sizing details
-
-Each PostgreSQL server node must have the following minimum resource requests:
-- Memory: `256Mi`
-- Cores: 1
-
-Each PostgreSQL server pod that is created has three containers:
-
-|Container name|CPU Request|Memory Request|CPU Limit|Memory Limit|Notes|
-|---|---|---|---|---|---|
-|`fluentbit`|`100m`|`100Mi`|Not specified|Not specified|The `fluentbit` container resource requests are _in addition to_ the requests specified for the PostgreSQL server.|
-|`postgres`|User specified or not specified.|User specified or `256Mi` (default).|User specified or not specified.|User specified or not specified.||
-|`arc-postgresql-agent`|Not specified|Not specified|Not specified|Not specified||
-
 ## Cumulative sizing
 
 The overall size of an environment required for Azure Arc-enabled data services is primarily a function of the number and size of the database instances. The overall size can be difficult to predict ahead of time knowing that the number of instances may grow and shrink and the amount of resources that are required for each database instance can change.
 
-The baseline size for a given Azure Arc-enabled data services environment is the size of the data controller, which requires 4 cores and 16-GB RAM. From there, add the cumulative total of cores and memory required for the database instances. SQL Managed Instance requires one pod for each instance. PostgreSQL server creates one pod for each server.
+The baseline size for a given Azure Arc-enabled data services environment is the size of the data controller, which requires 4 cores and 16-GB RAM. From there, add the cumulative total of cores and memory required for the database instances. SQL Managed Instance requires one pod for each instance.
 
 In addition to the cores and memory you request for each database instance, you should add `250m` of cores and `250Mi` of RAM for the agent containers.
 
@@ -141,7 +126,6 @@ Requirements:
 
 - **"SQL1"**: 1 SQL managed instance with 16-GB RAM, 4 cores
 - **"SQL2"**: 1 SQL managed instance with 256-GB RAM, 16 cores
-- **"Postgres1"**: 1 PostgreSQL server at 12-GB RAM, 4 cores
 
 Sizing calculations:
 
@@ -160,9 +144,6 @@ Sizing calculations:
   - For SQL:
      - 12.25-GB RAM
      - 4.25 cores 
-  - For PostgreSQL server 
-     - 284.75-GB RAM
-     - 24.75 cores
 
 - The total capacity required for the database instances plus the data controller is: 
   - For the database instance

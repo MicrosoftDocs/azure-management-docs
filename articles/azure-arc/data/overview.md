@@ -20,7 +20,6 @@ Azure Arc makes it possible to run Azure data services on-premises, at the edge,
 Currently, the following Azure Arc-enabled data services are available: 
 
 - SQL Managed Instance
-- Azure Arc-enabled PostgreSQL (preview)
 
 For an introduction to how Azure Arc-enabled data services supports your hybrid work environment, see this introductory video:
 
@@ -28,7 +27,7 @@ For an introduction to how Azure Arc-enabled data services supports your hybrid 
 
 ## Always current
 
-Azure Arc-enabled data services such as SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL server receive updates on a frequent basis including servicing patches and new features similar to the experience in Azure. Updates from the Microsoft Container Registry are provided to you and deployment cadences are set by you in accordance with your policies. This way, on-premises databases can stay up to date while ensuring you maintain control. Because Azure Arc-enabled data services are a subscription service, you will no longer face end-of-support situations for your databases.
+Azure Arc-enabled data services such as SQL Managed Instance enabled by Azure Arc receive updates on a frequent basis including servicing patches and new features similar to the experience in Azure. Updates from the Microsoft Container Registry are provided to you and deployment cadences are set by you in accordance with your policies. This way, on-premises databases can stay up to date while ensuring you maintain control. Because Azure Arc-enabled data services are a subscription service, you will no longer face end-of-support situations for your databases.
 
 ## Elastic scale
 
@@ -66,5 +65,3 @@ To see the regions that currently support Azure Arc-enabled data services, go to
 [Plan your Azure Arc data services deployment](plan-azure-arc-data-services.md) (requires installing the client tools first)
 
 [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md) (requires creation of an Azure Arc data controller first)
-
-[Create an Azure Database for PostgreSQL server on Azure Arc](create-postgresql-server.md) (requires creation of an Azure Arc data controller first)
