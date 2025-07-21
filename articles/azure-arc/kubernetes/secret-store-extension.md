@@ -238,11 +238,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
      --scope cluster 
    ```
 
-   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`:
-
-   | Parameter name                    | Description                         | Default value                         |
-   |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
-   | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
+   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference#arc-extension-configuration-parameters)
 
 ## Configure the SSE
 

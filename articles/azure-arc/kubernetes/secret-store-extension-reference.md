@@ -4,7 +4,9 @@ description: A reference guide for the Azure Key Vault Secret Store Extension, d
 ms.date: 08/01/2025
 ---
 
-## Arc Extension Configuration parameters
+# Azure Key Vault Secret Store extension configuration reference
+
+## Arc extension configuration parameters
 
 Configuration parameters can be set when the SSE arc extension instance is created, or can be updated later. Use ```--configuration-settings <setting>=<value>``` with ```az k8s-extension create ...``` or ```az k8s-extension update ...``` to create or update an SSE instance respectively.
 
@@ -14,10 +16,10 @@ SSE accepts the following arc extension configuration parameters:
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
    | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
 
-## SecretSync configuration
+## SecretSync resources
 
 Soon
 
-## SecretProviderClass configuration
+## SecretProviderClass resources
 
 Soon
