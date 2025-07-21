@@ -17,7 +17,7 @@ SSE accepts the following arc extension configuration parameters:
    | Parameter name                    | Description                         | Default value                         |
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
    | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
-   | `enablePartialSecretSync` | When set to `false` a secret will only be updated if every item could be fetched from AKV successfully. When `true` each item in a secret will be updated it it was fetched successfully, without regard to the success of other items in the secret. | `true` |
+   | `enablePartialSecretSync` | When set to `false` a secret will only be updated if every contained item could be fetched from AKV successfully. When `true` each item in a secret will be updated it it was fetched successfully, without regard to the success of other items in the secret. | `true` |
 
 ## SecretSync resources
 
