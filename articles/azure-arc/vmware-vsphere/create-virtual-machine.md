@@ -31,12 +31,12 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
 2. You can initiate the creation of a new VM in either of the following two ways:
    - Select **Azure Arc** as the service and then select **VMware vCenters** under **Host environments** from the left blade. Search and select your VMware vCenters. Select **Virtual machines** under **vCenter inventory** from the left blade and select **Add**. 
 
-       :::image type="content" source="media/create-virtual-machine/add.png" alt-text="Screenshot of Add screen.":::
+       :::image type="content" source="media/create-virtual-machine/add.png" alt-text="Screenshot of Add screen." lightbox="media/create-virtual-machine/add.png":::
 
    Or
    - Select **Azure Arc** as the service and then select **Machine** under **Azure Arc resources** from the left blade. Select **Add/Create** and select **Create a machine in a connected host environment** from the dropdown.
 
-       :::image type="content" source="media/create-virtual-machine/create-machine.png" alt-text="Screenshot of create a machine screen.":::
+       :::image type="content" source="media/create-virtual-machine/create-machine.png" alt-text="Screenshot of create a machine screen." lightbox="media/create-virtual-machine/create-machine.png":::
 
 1. Once the **Create an Azure Arc virtual machine** page opens, under **Basics** > **Project details**, select the **Subscription** and **Resource group** where you want to deploy the VM.
 1. Under **Instance details**, provide the following details:
@@ -46,7 +46,7 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
    - **Resource pool/cluster/host** - Select a resource pool/cluster/host from the dropdown menu.
    - **Datastore** - Select a datastore from the dropdown menu.
 
-       :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen.":::
+       :::image type="content" source="media/create-virtual-machine/machines.png" alt-text="Screenshot of machines screen." lightbox="media/create-virtual-machine/machine.png":::
 
 1. Under **Template details**, provide the following details:
    - **Template** - Choose the VM template for deployment.
@@ -60,7 +60,7 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
    - Password
    - Confirm password
 
-    :::image type="content" source="media/create-virtual-machine/admin-account.png" alt-text="Screenshot of administrator account screen.":::
+    :::image type="content" source="media/create-virtual-machine/admin-account.png" alt-text="Screenshot of administrator account screen." lightbox="media/create-virtual-machine/admin-account.png":::
 
     If you're creating a Linux virtual machine, SSH key can be used as an authentication method instead of administrator account.
 
@@ -72,19 +72,19 @@ In this article, you learn how to create a new VMware vCenter managed virtual ma
 
 1. Under **Disks**, you can optionally change the disks configured in the template. You can add more disks or update existing disks.
 
-    :::image type="content" source="media/create-virtual-machine/disks.png" alt-text="Screenshot of Disks tab screen.":::
+    :::image type="content" source="media/create-virtual-machine/disks.png" alt-text="Screenshot of Disks tab screen." lightbox="media/create-virtual-machine/disks.png":::
 
 1. Under **Networking**, you can optionally change the network interfaces configured in the template. You can add Network interface cards (NICs) or update the existing NICs. You can also change the network that this NIC will be attached to provided you have appropriate permissions to the network resource.
 
-    :::image type="content" source="media/create-virtual-machine/networking.png" alt-text="Screenshot of Networking tab screen.":::
+    :::image type="content" source="media/create-virtual-machine/networking.png" alt-text="Screenshot of Networking tab screen." lightbox="media/create-virtual-machine/networking.png":::
 
 1. Under **Advanced**, customize the guest operating system settings of the VM as required.
 
-    :::image type="content" source="media/create-virtual-machine/advanced.png" alt-text="Screenshot of Advanced tab screen.":::
+    :::image type="content" source="media/create-virtual-machine/advanced.png" alt-text="Screenshot of Advanced tab screen." lightbox="media/create-virtual-machine/advanced.png":::
 
 1. Under **Tags**, you can optionally add tags to the VM resource.
 
-    :::image type="content" source="media/create-virtual-machine/tags.png" alt-text="Screenshot of Tags tab screen.":::
+    :::image type="content" source="media/create-virtual-machine/tags.png" alt-text="Screenshot of Tags tab screen." lightbox="media/create-virtual-machine/tags.png":::
 
 1. Under **Review + create**, review all the properties and select **Create**. The VM will be created in a few minutes.
 

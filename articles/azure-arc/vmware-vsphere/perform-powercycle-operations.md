@@ -37,6 +37,6 @@ To perform power cycle operations, follow these steps:
     - **Restart**: Select **Restart** > **Yes** to restart the machine. 
     - **Stop**: Select **Stop** > **Yes** to stop the machine. 
     
-   :::image type="content" source="media/perform-powercycle-operations/power-cycle-operations.png" alt-text="Screenshot showing power cycle operations screen.":::
+   :::image type="content" source="media/perform-powercycle-operations/power-cycle-operations.png" alt-text="Screenshot showing power cycle operations screen." lightbox="media/perform-powercycle-operations/power-cycle-operations.png":::
 
 You can track the progress of the Azure operations from the Azure [activity log](https://ms.portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade). 

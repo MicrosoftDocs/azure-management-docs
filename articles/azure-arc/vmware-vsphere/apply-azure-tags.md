@@ -35,12 +35,12 @@ To apply Azure tags to the VMware vSphere resources, follow these steps:
  
 2. To apply tags to Virtual machines or a Resource Pool or a Cluster or a Host or VM templates or VM networks or Datastores, navigate to the specific resource through the dedicated inventory views under the **vCenter inventory**.
 
-    :::image type="content" source="media/apply-azure-tags/vmware-vcenter.png" alt-text="Screenshot showing VMware vCenter.":::
+    :::image type="content" source="media/apply-azure-tags/vmware-vcenter.png" alt-text="Screenshot showing VMware vCenter." lightbox="media/apply-azure-tags/vmware-vcenter.png":::
  
 3. Select the resource to which you want to apply Azure tags and then select **Tags**.
 4. Enter the name and value in the fields respectively and then select **Apply**.
  
-   :::image type="content" source="media/apply-azure-tags/tags.png" alt-text="Screenshot showing Tags screen.":::
+   :::image type="content" source="media/apply-azure-tags/tags.png" alt-text="Screenshot showing Tags screen." lightbox="media/apply-azure-tags/tags.png":::
         
 For an Azure resource, you can view the applied tags under the **Tags** blade and also under the **Overview** blade. Use the **Box** icon next to a tag to list all the resources with the same tag. 
 

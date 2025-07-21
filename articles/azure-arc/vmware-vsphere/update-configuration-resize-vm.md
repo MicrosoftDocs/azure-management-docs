@@ -38,7 +38,7 @@ To add or remove NICs to a VM, follow these steps:
 
    - **Add a network interface**: Select **Add network interface** and enter the mandatory fields such as Name, VM network, and Adapter settings, and check Enable power on at boot checkbox. Select **Add** and then **Save** to apply the changes.
 
-     :::image type="content" source="media/update-configuration-and-resize-vm/add-network-interface.png" alt-text="Screenshot showing add network interface screen." lightbox="media/update-configuration-and-resize-vm/add-network-interface.png":::
+     :::image type="content" source="media/update-configuration-resize-vm/add-network-interface.png" alt-text="Screenshot showing add network interface screen." lightbox="media/update-configuration-resize-vm/add-network-interface.png":::
 
    - **Remove a network interface**: Choose the network interface to be removed and select **Delete** > **Yes**.
 
@@ -52,7 +52,7 @@ To add or remove disks to a VM, follow these steps:
 
    - **Add a disk**: Select **Add disk** and enter the mandatory fields such as Disk name, size, controller, and mode. Select **Add** and then **Apply** to apply the changes.
    
-     :::image type="content" source="media/update-configuration-and-resize-vm/add-a-disk.png" alt-text="Screenshot showing add a disk screen." lightbox="media/update-configuration-and-resize-vm/add-a-disk.png":::
+     :::image type="content" source="media/update-configuration-resize-vm/add-a-disk.png" alt-text="Screenshot showing add a disk screen." lightbox="media/update-configuration-resize-vm/add-a-disk.png":::
 
    - **Remove a disk**: Choose the disk to be removed and select **Delete** > **Yes**.
 
@@ -66,10 +66,9 @@ To resize a VM, follow these steps:
    
 4. Select **Save** to apply the changes.
 
-   :::image type="content" source="media/update-configuration-and-resize-vm/size.png" alt-text="Screenshot showing size screen." lightbox="media/update-configuration-and-resize-vm/size.png":::
+   :::image type="content" source="media/update-configuration-resize-vm/size.png" alt-text="Screenshot showing size screen." lightbox="media/update-configuration-resize-vm/size.png":::
 
 ## Next step
 
 - [Create a virtual machine](create-virtual-machine.md).
 - [Perform VM powercycle operations](perform-powercycle-operations.md).
-
