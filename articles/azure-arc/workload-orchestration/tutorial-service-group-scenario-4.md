@@ -68,7 +68,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -82,7 +82,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -96,7 +96,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName"
 
     # Create target at line level
     az workload-orchestration target create \
@@ -110,7 +110,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName"
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName"
     ```
 
 1. Get the target IDs of the created targets.
@@ -197,7 +197,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextCountryName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
@@ -211,7 +211,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextRegionName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName
     
     # Create target at factory level
     az workload-orchestration target create `
@@ -225,7 +225,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextFactoryName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName
     
     # Create target at line level
     az workload-orchestration target create `
@@ -239,7 +239,7 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextLineName
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName
     ```
 
 1. Get the target IDs of the created targets.
@@ -632,13 +632,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Region App solution.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
 1. Deploy the Region App solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
 
@@ -660,13 +660,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Region App solution.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
 1. Deploy the Region App solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 ***
 
@@ -690,13 +690,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Factory App solution.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 1. Deploy the Factory App solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -717,13 +717,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Factory App solution.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 1. Deploy the Factory App solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion 
+    az workload-orchestration target install --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion 
     ```
 ***
 
@@ -747,13 +747,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Line App solution.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 1. Deploy the Line App solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -774,13 +774,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Publish the Line App solution.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 1. Deploy the Line App solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
+    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 ***
 

@@ -220,7 +220,7 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```bash
     az workload-orchestration target publish \
-      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 \
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/1.0.0 \
       --resource-group "$rg" \
       --target-name "$childName"
     ```
@@ -238,7 +238,7 @@ For more information about solution templates and publishing a solution, see [Qu
 
     ```powershell
     az workload-orchestration target publish `
-      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$appName1/versions/1.0.0 `
+      --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/1.0.0 `
       --resource-group $rg `
       --target-name $childName
     ```
@@ -278,7 +278,7 @@ subId="<subscription-id>"
 solutionVersion="<new-solution-version>"
 solutionName="<solution-template-name>"
 
-az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName$/versions/$solutionVersion
+az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$solutionName$/versions/$solutionVersion
 ```
 
 #### [PowerShell](#tab/powershell)
@@ -290,7 +290,7 @@ $subId = "<subscription-id>"
 $solutionVersion = "<new-solution-version>"
 $solutionName = "<solution-template-name>"
 
-az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/targets/$childName/solutions/$solutionName/versions/$solutionVersion
+az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$solutionName/versions/$solutionVersion
 ```
 
 ***

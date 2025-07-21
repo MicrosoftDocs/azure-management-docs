@@ -94,7 +94,7 @@ The following steps show how to configure the resources of workload orchestratio
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
     
     ```powershell
-    az workload-orchestration context create --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/context/$contextName" --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
+    az workload-orchestration context create --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName" --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
     ``` 
 
     > [!NOTE]
@@ -120,7 +120,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
 
     ```bash
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$childName" --display-name "$childName" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "new" --target-specification '@targetspecs.json' --extended-location '@custom-location.json' --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -174,7 +174,7 @@ The following steps show how to configure the resources of workload orchestratio
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
     
     ```powershell
-    az workload-orchestration context create --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
+    az workload-orchestration context create --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
     ``` 
 
     > [!NOTE]
@@ -200,7 +200,7 @@ The following steps show how to configure the resources of workload orchestratio
 1. Create a target reference. The attribute `--solution-scope` is set to `new` to create a new target. The `--target-specification` attribute specifies that the Helm charts are being used for the K8s deployment. The `--extended-location` attribute is used to specify the custom location of the AKS cluster.
 
     ```powershell
-    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id /subscriptions/$subId/resourceGroups/$rg/providers/private.edge/contexts/$contextName
+    az workload-orchestration target create --resource-group $rg --location $l --name $childName --display-name $childName --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope "new" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 ***
