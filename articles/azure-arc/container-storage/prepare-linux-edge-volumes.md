@@ -1,6 +1,6 @@
 ---
 title: Prepare Linux for Edge Volumes
-description: Learn how to prepare Linux in Azure Container Storage enabled by Azure Arc Edge Volumes using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
+description: Learn how to prepare Linux in Azure Container Storage enabled by Azure Arc Edge Volumes using Azure Kubernetes Service enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
@@ -8,14 +8,14 @@ ms.custom:
   - linux-related-content
   - references_regions
   - build-2025
-ms.date: 08/30/2024
+ms.date: 07/18/2025
 
-# Customer intent: As a cloud developer, I want to prepare my Linux environment for Edge Volumes in Azure Container Storage, so that I can effectively manage and deploy workloads using AKS enabled by Azure Arc.
+# Customer intent: As a cloud developer, I want to prepare my Linux environment for Edge Volumes in Azure Container Storage, so that I can effectively manage and deploy workloads using Azure Kubernetes Service (AKS) enabled by Azure Arc.
 ---
 
 # Prepare Linux for Edge Volumes
 
-The article describes how to prepare Linux for Edge Volumes using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
+The article describes how to prepare Linux for Edge Volumes using Azure Kubernetes Service (AKS) enabled by Azure Arc, Edge Essentials, or Ubuntu.
 
 > [!NOTE]
 > The minimum supported Linux kernel version is 5.1. At this time, there are known issues with 6.4 and 6.2.
@@ -27,7 +27,7 @@ The article describes how to prepare Linux for Edge Volumes using AKS enabled by
 
 ### Uninstall previous instance of Azure Container Storage enabled by Azure Arc extension
 
-If you previously installed a version of Azure Container Storage enabled by Azure Arc earlier than **2.1.0-preview**, you must uninstall that previous instance in order to install the newer version. If you installed the **1.2.0-preview** release or earlier, [use these instructions](faq.yml#if-i-installed-the-1-2-0-preview-or-any-earlier-release--how-do-i-uninstall-the-extension). Versions after **2.1.0-preview** are upgradeable and do not require this uninstall.
+If you previously installed a version of Azure Container Storage enabled by Azure Arc earlier than **2.1.0-preview**, you must uninstall that previous instance in order to install the newer version. If you installed the **1.2.0-preview** release or earlier, [use these instructions](faq.yml#if-i-installed-the-1-2-0-preview-or-any-earlier-release--how-do-i-uninstall-the-extension). Versions after **2.1.0-preview** are upgradeable and don't require this uninstall.
 
 1. In order to delete the old version of the extension, the Kubernetes resources holding references to old version of the extension must be cleaned up. Any pending resources can delay the clean-up of the extension. There are at least two ways to clean up these resources: either using `kubectl delete <resource_type> <resource_name>`, or by "unapplying" the YAML files used to create the resources. The resources that need to be deleted are typically the pods, the PVC referenced, and the subvolume CRD (if Cloud Ingest Edge Volume was configured). Alternatively, the following four YAML files can be passed to `kubectl delete -f` using the following commands in the specified order. These variables must be updated with your information:
 
