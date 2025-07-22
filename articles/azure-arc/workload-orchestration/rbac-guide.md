@@ -7,6 +7,7 @@ ms.topic: overview
 ms.date: 05/03/2025
 ms.custom:
   - build-2025
+# Customer intent: "As an IT administrator managing workload orchestration, I want to implement Role-Based Access Control (RBAC) using standard and custom roles, so that I can ensure secure and appropriate access for users based on their responsibilities."
 ---
 
 # Role Based Access Control (RBAC) guide for workload orchestration

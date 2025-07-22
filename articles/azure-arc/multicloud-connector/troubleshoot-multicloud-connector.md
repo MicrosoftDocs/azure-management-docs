@@ -3,6 +3,7 @@ title: Troubleshoot multicloud connector enabled by Azure Arc
 description: Troubleshoot the multicloud connector enabled by Azure Arc
 ms.topic: how-to
 ms.date: 11/18/2024
+# Customer intent: As a cloud administrator, I want to troubleshoot issues with the multicloud connector enabled by Azure Arc, so that I can ensure seamless integration and management of my AWS resources within the Azure environment.
 ---
 
 # Troubleshoot the multicloud connector enabled by Azure Arc

@@ -6,6 +6,7 @@ ms.topic: overview
 ms.custom:
   - references_regions
   - build-2025
+# Customer intent: "As a system administrator managing hybrid cloud environments, I want to utilize the Azure Arc resource bridge to enable self-service VM management, so that I can centrally control and operate my on-premises virtual machines from the Azure portal."
 ---
 
 # What is Azure Arc resource bridge?

@@ -5,6 +5,7 @@ ms.service: azure-arc
 ms.date: 07/21/2025
 ms.topic: concept-article
 description: "This article provides a conceptual overview of the custom locations capability of Azure Arc."
+# Customer intent: As an IT administrator, I want to create and manage custom locations in Azure Arc-enabled Kubernetes, so that developers can deploy applications without needing to understand the underlying infrastructure details.
 ---
 
 # Custom locations

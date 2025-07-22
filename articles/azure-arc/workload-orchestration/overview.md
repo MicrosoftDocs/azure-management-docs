@@ -7,6 +7,7 @@ ms.topic: overview
 ms.date: 06/22/2025
 ms.custom:
   - build-2025
+# Customer intent: "As an IT admin managing diverse edge environments, I want to use a centralized workload orchestration platform, so that I can efficiently deploy and monitor applications while minimizing manual errors and enhancing security across multiple locations."
 ---
 
 # What is workload orchestration?

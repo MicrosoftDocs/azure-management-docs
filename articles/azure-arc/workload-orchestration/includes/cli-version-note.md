@@ -5,6 +5,9 @@ author: SoniaLopezBravo
 ms.topic: include
 ms.date: 06/24/2025
 ms.author: sonialopez
+ms.custom:
+  - build-2025
+# Customer intent: "As a developer, I want to access the latest version of the workload-orchestration CLI, so that I can utilize its features for efficient task management and automation in my projects."
 ---
 
 > [!NOTE]

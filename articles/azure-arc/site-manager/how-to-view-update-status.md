@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 # As a site admin, I want to know how to view update status for sites so that I can use my site.
 
+# Customer intent: "As a site administrator, I want to view the update status for my sites so that I can ensure all underlying resources are properly maintained and operational."
 ---
 
 # How to view update status for an Arc site

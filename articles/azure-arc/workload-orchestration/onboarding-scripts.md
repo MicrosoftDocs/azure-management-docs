@@ -7,6 +7,7 @@ ms.topic: install-set-up-deploy
 ms.date: 06/10/2025
 ms.custom:
   - build-2025
+# Customer intent: "As a system administrator, I want to automate the setup of infrastructure and resources for workload orchestration, so that I can efficiently provision a Kubernetes cluster and related services without manual intervention."
 ---
 
 # Onboarding scripts for workload orchestration

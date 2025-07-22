@@ -7,6 +7,7 @@ ms.topic: tutorial
 ms.date: 05/07/2025
 ms.custom:
   - build-2025
+# Customer intent: As a cloud solution architect, I want to create a multi-dependency solution using workload orchestration via CLI so that I can efficiently manage data synchronization across various production lines in a factory environment.
 ---
 
 # Create a solution with multiple shared adapter dependencies

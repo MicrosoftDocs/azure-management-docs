@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 05/10/2025
 ms.custom:
   - build-2025
+# Customer intent: As a solutions architect, I want to monitor the status and capabilities of my deployed solutions in a centralized portal, so that I can ensure optimal performance and quickly address any deployment issues.
 ---
 
 # Monitor your solutions with the workload orchestration portal

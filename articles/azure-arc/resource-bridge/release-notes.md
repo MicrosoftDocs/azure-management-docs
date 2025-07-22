@@ -3,6 +3,7 @@ title: "What's new with Azure Arc resource bridge"
 ms.date: 03/19/2025
 ms.topic: concept-article
 description: "Learn about the latest releases of Azure Arc resource bridge."
+# Customer intent: "As a cloud operations manager, I want to stay informed about the latest updates and features for the Arc resource bridge, so that I can ensure my deployment is secure, efficient, and compliant with the evolving platform requirements."
 ---
 
 # What's new with Azure Arc resource bridge

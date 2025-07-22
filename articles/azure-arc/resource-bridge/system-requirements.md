@@ -3,6 +3,7 @@ title: Azure Arc resource bridge system requirements
 description: Learn about system requirements for Azure Arc resource bridge.
 ms.topic: concept-article
 ms.date: 05/22/2024
+# Customer intent: "As an IT administrator, I want to understand the system requirements for deploying Azure Arc resource bridge, so that I can ensure proper configuration and prevent errors during deployment."
 ---
 
 # Azure Arc resource bridge system requirements
