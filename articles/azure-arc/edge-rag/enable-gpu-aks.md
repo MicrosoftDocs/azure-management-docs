@@ -6,9 +6,9 @@ ms.author: cwatson
 ms.topic: reference #Don't change
 ms.date: 05/13/2025
 ms.subservice: edge-rag
-#CustomerIntent: As a system administrator, I want to enable GPU on Azure Kubernetes Service (AKS) enabled by Azure Arc so that I can meet the prerequisites for deploying Edge RAG.
 ms.custom:
   - build-2025
+# Customer intent: As a system administrator, I want to enable GPU support on Azure Kubernetes Service (AKS) through Azure Arc, so that I can prepare for deploying Edge RAG applications efficiently.
 ---
 
 
