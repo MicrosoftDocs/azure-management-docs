@@ -5,13 +5,13 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 09/26/2024
+ms.date: 07/18/2025
 # Customer intent: "As a cloud administrator, I want to configure Cloud Ingest Edge Volumes in OneLake, so that I can optimize data uploads and manage storage efficiently within my Kubernetes environment."
 ---
 
 # Alternate: OneLake configuration for Cloud Ingest Edge Volumes
 
-This article describes an alternate configuration for [Cloud Ingest Edge Volumes](cloud-ingest-edge-volume-configuration.md) (blob upload with local purge) for OneLake Lakehouses.
+This article describes an alternate configuration for [Cloud Ingest Edge Volumes](cloud-ingest-edge-volume-configuration.md) (blob upload with local purge) for OneLake lakehouses.
 
 ## Configure OneLake for Extension Identity
 
@@ -60,7 +60,7 @@ This article describes an alternate configuration for [Cloud Ingest Edge Volumes
 
 ### Attach subvolume to Edge Volume
 
-You can use the following process to create a subvolume using Extension Identity to connect to your OneLake LakeHouse.
+You can use the following process to create a subvolume using Extension Identity to connect to your OneLake lakehouse.
 
 1. Get the name of your Edge Volume using the following command:
 
@@ -75,7 +75,7 @@ You can use the following process to create a subvolume using Extension Identity
    - `metadata.name`: Create a name for your subvolume.
    - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
    - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
-   - `spec.container`: Details of your One Lake Data Lake Lakehouse (for example, `<WORKSPACE>/<DATA_LAKE>.Datalake/Files`).
+   - `spec.container`: Details of your OneLake lakehouse (for example, `<WORKSPACE>/<DATA_LAKE>.Datalake/Files`).
    - `spec.storageaccountendpoint`: Your storage account endpoint is the prefix of your Power BI web link. For example, if your OneLake page is `https://contoso-motors.powerbi.com/`, then your endpoint is `https://contoso-motors.dfs.fabric.microsoft.com`.
 
     ```yaml
@@ -89,7 +89,7 @@ You can use the following process to create a subvolume using Extension Identity
       auth:
         authType: MANAGED_IDENTITY
       storageaccountendpoint: "https://<Your AZ Site>.dfs.fabric.microsoft.com/" # Your AZ site is the root of your Power BI OneLake interface URI, such as https://contoso-motors.powerbi.com
-      container: "<WORKSPACE>/<DATA_LAKE>.Datalake/Files" # Details of your One Lake Data Lake Lakehouse
+      container: "<WORKSPACE>/<DATA_LAKE>.Datalake/Files" # Details of your OneLake lakehouse
       ingestPolicy: edgeingestpolicy-default # Optional: See the following instructions if you want to update the ingestPolicy with your own configuration
     ```
 
@@ -203,7 +203,7 @@ You can use the following process to create a subvolume using Extension Identity
 
 1. Change directories into the `/data` mount path as specified in `deploymentExample.yaml`.
 
-1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume) section. Now, `cd` into `/YOUR_PATH_NAME_HERE`, replacing `YOUR_PATH_NAME_HERE` with your details.
+1. You should see a directory with the name you specified as your `path` in step 2 of the [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume) section. Now, `cd` into `/YOUR_PATH_NAME_HERE`, replacing `YOUR_PATH_NAME_HERE` with your details.
 
 1. As an example, create a file named `file1.txt` and write to it using `echo "Hello World" > file1.txt`.
 
@@ -213,4 +213,4 @@ You can use the following process to create a subvolume using Extension Identity
 
 After you complete these steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or 3rd-party monitoring with Prometheus and Grafana.
 
-[Monitor Your Deployment](monitor-deployment-edge-volumes.md)
+[Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
