@@ -117,4 +117,4 @@ After you complete the previous steps, begin monitoring your deployment using Az
 
 ## Next steps
 
-[Monitor your deployment](monitor-deployment-edge-volumes.md)
+[Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
