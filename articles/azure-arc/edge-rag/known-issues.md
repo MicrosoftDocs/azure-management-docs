@@ -6,9 +6,9 @@ ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 05/20/2025
 ms.subservice: edge-rag
-#CustomerIntent:
 ms.custom:
   - build-2025
+# Customer intent: As a cloud solution architect, I want to understand the known issues in Edge RAG preview so that I can make informed decisions during deployment and mitigate potential problems for my team.
 ---
 
 # Known issues in Edge RAG Preview, enabled by Azure Arc

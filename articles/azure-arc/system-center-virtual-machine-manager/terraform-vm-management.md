@@ -9,6 +9,7 @@ ms.author: jsuri
 author: jyothisuri
 ms.custom:
   - build-2025
+# Customer intent: "As a cloud infrastructure engineer, I want to manage SCVMM on-premises virtual machines using Terraform, so that I can automate lifecycle operations and enhance efficiency in resource management."
 ---
 
 # Terraform based SCVMM VM management

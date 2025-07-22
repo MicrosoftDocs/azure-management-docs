@@ -7,9 +7,9 @@ ms.topic: how-to #Don't change
 ms.date: 06/05/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-#CustomerIntent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
 ms.custom:
   - build-2025
+# Customer Intent: As a developer working with Edge RAG, I want to evaluate the system, models, and datasets using baseline or automatic evaluations so that I can ensure the functionality, quality, and performance of the RAG system for my chat solution.
 ---
 # Evaluate the Edge RAG Preview system
 
