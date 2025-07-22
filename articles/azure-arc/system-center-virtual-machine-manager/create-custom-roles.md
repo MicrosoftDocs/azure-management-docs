@@ -9,6 +9,7 @@ author: jyothisuri
 ms.subservice: azure-arc-scvmm
 ms.custom:
   - build-2025
+# Customer intent: "As an IT administrator, I want to create custom roles in Azure Arc-enabled SCVMM, so that I can fine-tune user permissions and access control according to my organization’s specific requirements."
 ---
 
 # Create custom roles with Azure Arc-enabled SCVMM

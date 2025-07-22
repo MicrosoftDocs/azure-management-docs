@@ -9,6 +9,7 @@ ms.author: jsuri
 author: jyothisuri
 ms.custom:
   - build-2025
+# Customer intent: As a systems administrator, I want to enable virtual hardware management and VM CRUD capabilities for SCVMM VMs with Arc agents, so that I can streamline operations and manage resources more effectively within my Azure environment.
 ---
 
 # Enable VM CRUD and power cycle operational ability in an SCVMM managed Arc-enabled server machine
