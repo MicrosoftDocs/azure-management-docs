@@ -5,6 +5,7 @@ author: MikeRayMSFT
 ms.author: mikeray
 ms.topic: troubleshooting-general 
 ms.date: 03/15/2023
+# Customer intent: "As a database administrator, I want to troubleshoot connection issues with SQL Managed Instances in Azure Arc failover groups, so that I can ensure high availability and maintain proper synchronization between replicas."
 ---
 
 # Troubleshoot SQL Managed Instance enabled by Azure Arc deployments
