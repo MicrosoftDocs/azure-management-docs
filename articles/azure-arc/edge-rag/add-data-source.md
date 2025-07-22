@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 06/05/2025
-
+ms.subservice: edge-rag
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
   - build-2025

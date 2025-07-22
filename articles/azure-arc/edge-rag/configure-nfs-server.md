@@ -5,10 +5,10 @@ author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 05/13/2025
-
-#CustomerIntent: As a system administrator, I want to configure an NFS server for Azure Arc-enabled data services so that I can enable shared storage for high availability and scalability of my applications.
+ms.subservice: edge-rag
 ms.custom:
   - build-2025
+# Customer intent: As a system administrator, I want to configure an NFS server for Edge RAG, so that I can implement shared storage that enhances the high availability and scalability of my applications.
 ---
 
 # Configure an NFS server for Edge RAG Preview, enabled by Azure Arc 
@@ -31,12 +31,6 @@ Complete the following steps to set up your NFS server to use with Edge RAG.
 1. Create the shared directory.
 
     ```bash
-     # Create the directory you want to share over NFS. For example:**
-     
-     sudo mkdir -p /srv/edgerag/share 
-     
-     # Set the appropriate permissions for the directory:
-     
      # Create the directory.
      
      sudo mkdir -p /srv/edgerag/share 

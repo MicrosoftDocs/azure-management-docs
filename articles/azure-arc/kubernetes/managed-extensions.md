@@ -1,6 +1,6 @@
 ---
 title: "Version-managed extensions (preview) for Arc-enabled Kubernetes"
-ms.date: 05/05/2025
+ms.date: 06/23/2025
 ms.topic: overview
 description: "Version-managed extensions (preview) for Arc-enabled Kubernetes adds efficiency by helping your extensions work better together."
 ms.custom:
@@ -11,7 +11,11 @@ ms.custom:
 
 # Version-managed extensions (preview) for Arc-enabled Kubernetes
 
-Version-managed extensions (preview) makes it easier to build, deploy, and manage applications on Arc-enabled Kubernetes clusters. The version-managed extensions are validated to reduce version incompatibility errors across the extensions installed in the cluster. Supported extensions are updated in sync to avoid version conflicts.
+Version-managed extensions (preview) simplifies the process of building, deploying, and maintaining applications on Arc-enabled Kubernetes clusters. Applications can use version-managed extensions to assure compatibility, reconcile interdependencies, and remove the complexity of relying on bring-your-own open-source solutions.
+
+Version-managed extensions are provided in bundled sets that are validated for interoperability against a set of supported Arc-enabled Kubernetes platforms, providing a streamlined interface for installing, maintaining, and upgrading core Arc extension services. When version-managed extension bundles are upgraded, all dependencies are appropriately handled, resulting in a more robust operating experience.
+
+The version-managed extensions experience currently includes two foundational services: Azure Container Storage enabled by Azure Arc (storage) and Azure Key Vault Secret Store extension for Kubernetes (secrets).
 
 > [!IMPORTANT]
 > Version-managed extensions for Arc-enabled Kubernetes is currently in PREVIEW.
@@ -19,88 +23,81 @@ Version-managed extensions (preview) makes it easier to build, deploy, and manag
 
 Version-managed extensions (preview) currently offers the following benefits:
 
-- **Consistent releases and updates**: Using version-managed extensions ensures that supported services are continuously updated together, rather than individually. This means that developers benefit from regular updates and servicing, including monthly updates, major version updates, and critical security fixes. These updates are applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the platform remains secure, reliable, and up to date.
-- **Improved extension compatibility**: Because supported extensions are updated together, there's less risk of version incompatibility issues between extensions. This lets you focus on building and deploying applications without worrying about whether your extensions will work together seamlessly or whether particular versions are compatible with each other.
+- **Consistent releases and updates**: Using version-managed extensions ensures that supported services are updated together, rather than individually. This means that system administrators benefit from regular updates of validated bundles, including critical security fixes, monthly updates, and major version updates. These updates are handled by version-managed extensions and applied using a rolling update strategy, which minimizes downtime and disruption to workloads. This consistent update process ensures that the software platform remains secure, reliable, and up to date.
+- **Improved extension compatibility**: Updating supported extensions together reduces the risk of version incompatibility issues between extensions. This lets you focus on building and deploying applications knowing that your extensions will work together seamlessly and are validated to be compatible with each other. When a new version of a bundled extension is available, the resulting bundle that is installed has already qualified the interoperability of this new extension version with the others in the bundle.
 
-## Extension support
+Version-managed extensions (preview) for Arc-enabled Kubernetes is currently available in the following regions: East US, East US 2, West US, West US 2, West US 3, West Europe, North Europe.
+
+## Prerequisites
+
+To use version-managed extensions, an Arc-enabled Kubernetes cluster needs version 1.27.0 or later of the [Azure Arc-enabled Kubernetes agents](conceptual-agent-overview.md), To verify that your agent version is 1.27.0 or later, run the following command:
+
+```azurecli
+az connectedk8s show  -g $RESOURCE_GROUP  -n $CLUSTER_NAME --query '{version:agentVersion}'
+```
+
+If the agent version is lower, [upgrade your agents manually](agent-upgrade.md):
+
+```azurecli
+az connectedk8s upgrade -g $RESOURCE_GROUP  -n $CLUSTER_NAME --agent-version 1.27.0
+```
+
+> [!TIP]
+> We recommend upgrading to [the latest version of the Azure Arc-enabled Kubernetes agents](/azure/azure-arc/kubernetes/release-notes).
+
+You must have version 2.70.0 or later of the Azure CLI to deploy version-managed extensions to your clusters.
+
+## Deploy version-managed extensions (preview)
 
 Currently, version-managed extensions (preview) provides support for the following extensions:
 
 - [Azure Container Storage enabled by Azure Arc](/azure/azure-arc/container-storage/overview)
 - [Azure Key Vault Secret Store extension for Kubernetes ("SSE")](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s)
 
-Version-managed extensions (preview) for Arc-enabled Kubernetes is currently available in the following regions: East US, East US 2, West US, West US 2, West US 3, West Europe, North Europe.
+To deploy and configure version-managed extensions (preview) for Arc-enabled Kubernetes, use the [az vme](/cli/azure/vme) command.
 
-## Enable version-managed extensions
+### Configure all available version-managed extensions
 
-During the preview period, enabling version-managed extensions on your cluster requires you to use version 1.24.4 or later of the [Arc-enabled Kubernetes agents](release-notes.md) and enable the `BundleFull` feature flag.
+To deploy all currently supported version-managed extensions, you can use the `az vme install` command with the `--include all` option. This command installs all extensions that are part of the version-managed extensions (preview) program.
 
-For Kubernetes clusters that are already [connected to Azure Arc](quickstart-connect-cluster.md), enable version-managed extensions (preview) by running the following commands.
+Currently, before running the command to deploy all currently supported extension, you must first install `cert-manager`, which is required for the Azure Container Storage enabled by Azure Arc extension:
 
-1. Verify that your agent version is 1.24.4 or later:
+```azurecli
+az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+```
 
-   `az connectedk8s show  -g $RESOURCE_GROUP  -n $CLUSTER_NAME --query '{version:agentVersion}'`
+To simultaneously deploy all extensions currently supported by version-managed extensions, run the following command:
 
-   If the agent version is lower, upgrade your agents:
+```azurecli
+az vme install --resource-group my-resource-group --cluster-name my-cluster --include all
+```
 
-   `az connectedk8s upgrade -g $RESOURCE_GROUP  -n $CLUSTER_NAME --agent-version 1.24.4`
+Currently, this command installs the Azure Container Storage enabled by Azure Arc and the Azure Key Vault Secret Store extension for Kubernetes ("SSE") extensions.
 
-1. Enable the `BundleFull` feature flag:
+### Configure Azure Container Storage enabled by Azure Arc
 
-   `az connectedk8s update -g $RESOURCE_GROUP -n $CLUSTER_NAME \ --auto-upgrade false --config extensionbundle.featureflag=BundleFull`
+Follow these steps to configure Azure Container Storage enabled by Azure Arc.
 
-1. Verify that the feature flag is set to `BundleFull`:
-
-   `kubectl get configmap azure-clusterconfig -n azure-arc -o jsonpath='{.data.EXTENSION_BUNDLE_ENABLED_FEATURE_FLAG}'`
-
-Next, configure the extensions that you want to use.
-
-### Azure Container Storage enabled by Azure Arc
-
-After you enable version-managed extensions (preview), follow these steps to configure Azure Container Storage enabled by Azure Arc.
-
-1. Install the Azure IoT Operations dependencies (`cert-manager` and `trust-manager`):
+1. Install `cert-manager` as a prerequisite for the extension:
 
    ```azurecli
-   az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
-    --cluster-type connectedClusters \
-    --extension-type "microsoft.iotoperations.platform" \
-    --name azure-iot-operations-platform \
-    --configuration-settings installCertManager=true \
-    --release-train preview \
-    --version 0.7.6 \
-    --auto-upgrade false \
-    --release-namespace cert-manager \
-    --scope cluster
+   az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
    ```
 
 1. Deploy the Azure Container Storage enabled by Azure Arc extension:
 
    ```azurecli
-   az k8s-extension create -g $RESOURCE_GROUP -c $CLUSTER_NAME \
-    --cluster-type connectedClusters \
-    --cluster-name $CLUSTER_NAME --cluster-type connectedClusters \
-    --name azure-arc-containerstorage \
-    --extension-type microsoft.arc.containerstorage \
-    --release-train stable \
-    --auto-upgrade false
+   az vme install --resource-group my-resource-group --cluster-name my-cluster --include microsoft.arc.containerstorage
    ```
 
 For more information, see [What is Azure Container Storage enabled by Azure Arc?](/azure/azure-arc/container-storage/overview)
 
-### Azure Key Vault Secret Store extension for Kubernetes
+### Configure Azure Key Vault Secret Store extension for Kubernetes
 
-After you enable version-managed extensions (preview), deploy Azure Key Vault Secret Store extension for Kubernetes (SSE):
+To deploy the Azure Key Vault Secret Store extension for Kubernetes ("SSE"), run the following command:
 
 ```azurecli
-az k8s-extension create --cluster-name $CLUSTER_NAME \ 
-  --cluster-type connectedClusters  \ 
-  --extension-type microsoft.azure.secretstore \ 
-  --resource-group $RESOURCE_GROUP
-  --name azure-secret-store 
+az vme install --resource-group my-resource-group --cluster-name my-cluster --include microsoft.azure.secretstore
 ```
-
-> [!IMPORTANT]
-> Currently, during the preview period, you must specify the exact value `azure-secret-store` to install the SSE extension with version-managed extensions.
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](/azure/azure-arc/kubernetes/secret-store-extension?tabs=arc-k8s).

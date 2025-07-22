@@ -14,19 +14,18 @@ ms.custom:
 
 In this quickstart, you create a basic solution with common configurations using the workload orchestration via CLI. The solution is a Helm chart that contains the application and its dependencies. The common configurations are used to define the configurable attributes at each hierarchical level that can be used for a particular solution.
 
-Check out [Configuration template](configuring-template.md) and [Configuration schema](configuring-schema.md) for the list of rules used to define the template and schema for configurations and details to write conditional or nested expressions in the schema for custom validations.
 
 ## Prerequisites
 
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 ## Define the variables for solution templating
 
-Create the template and schema files by referring to *common-config.yaml*, *common-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+Create the template and schema files by referring to *common-config.yaml*, *common-schema.yaml* and *app-config-template.yaml* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 
 ### [Bash](#tab/bash)
 
@@ -104,12 +103,7 @@ $appConfig = "app-config-template.yaml"
 
 ## Create the solution template
 
-The solution template is a Helm chart that contains the application and its dependencies. The solution template is defined in the *specs.json* file. The *specs.json* file contains the following sections:
-- **specification**: The specification section contains the Helm chart URL and version. The Helm chart URL is the location of the Helm chart in the container registry. The version is the version of the Helm chart.        
-- **configuration**: The configuration section contains the configuration template file name. The configuration template file is the file that contains the configuration schema and template for the solution.
-- **schema**: The schema section contains the schema name and version. The schema name is the name of the schema that is used to validate the configuration template file. The version is the version of the schema.
-
-For more information, see [Introduction to Helm](https://helm.sh/docs/intro/install/).
+The solution template consists of a schema and a configuration template. Both are defined in YAML format. 
 
 ### Create a common schema
 
@@ -182,13 +176,13 @@ Create the configuration template. The following command takes version input fro
 #### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile"
+az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile" --description "<description>"
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile
+az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile --description "<description>"
 ```
 
 ***
@@ -197,13 +191,13 @@ az workload-orchestration config-template create --resource-group $rg --location
 
 #### [Bash](#tab/bash)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the above step.
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -217,18 +211,18 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without the `--version` argument. The service will take the version input from the file.
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json"
     ```
 
 #### [PowerShell](#tab/powershell)
 
-1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
+1. Create a *specs.json* file by referring to *specs.json* in the compressed folder from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip).
 1. In your *specs.json* file, update the helm url, for example, *contosocm.azurecr.io/helm/app*, and chart version in x.x.x format, for example, *0.5.0*.
 Update the *app-config-template.yaml* file with proper reference to your schema which you created in the above step.
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
+        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
         ```
 
         Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -242,7 +236,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
         Run the same CLI command without the `--version` argument. The service will take the version input from the file.
 
         ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json"
+        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
         ```
 
 ***
@@ -304,62 +298,54 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 ***
 
+> [!TIP]
+> You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
+
 ## Deploy the solution
 
 ### [Bash](#tab/bash)
 
-1. Resolve the configurations for a particular target.
-
-    ```bash
-    # Optional step
-    az workload-orchestration target resolve --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
-    ```
-
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --solution-template-name "$appName1" --solution-template-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.
 
     ```bash
     reviewId="<reviewId>"
-    az workload-orchestration target publish --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName" --review-id "$reviewId"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
 1. Deploy the solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Resolve the configurations for a particular target.
-
-    ```powershell
-    # Optional step
-    az workload-orchestration target resolve --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
-    ```
-
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --solution-template-name $appName1 --solution-template-version $appVersion --target-name $childName
+    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.
 
     ```powershell
     $reviewId = "<reviewId>"
-    az workload-orchestration target publish --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName --review-id $reviewId
+    az workload-orchestration target publish --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
 1. Deploy the solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
+    az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
 ***
+
+> [!TIP]
+> You can also deploy the solution using the [Deploy tab in Workload orchestration portal](deploy.md)

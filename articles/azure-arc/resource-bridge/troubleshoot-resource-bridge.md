@@ -159,6 +159,14 @@ To fix this problem, the credentials in the appliance VM need to be updated. For
 
 Arc resource bridge doesn't support private link. Calls coming from the appliance VM shouldn't be going through your private link setup. Private link IPs may conflict with the appliance IP pool range, which isn't configurable on the resource bridge. Arc resource bridge reaches out to [required URLs](network-requirements.md#firewallproxy-url-allowlist) that shouldn't go through a private link connection. You must deploy Arc resource bridge on a separate network segment unrelated to the private link setup.
 
+### Unapproved extension installation
+
+Arc resource bridge is a locked-down virtual appliance built to host only approved Azure Arc-enabled private cloud extensions. If you attempt to install any other extension onto the resource bridge, you will receive an error:
+
+```  
+Extension installation failed. The specified extension is not permitted on Azure Arc Resource Bridge. Only Azure Arc resource bridge approved extensions can be installed.
+```
+
 ### Error downloading file release information
 
 When attempting to upgrade the Arc resource bridge, you may encounter the following error: 
@@ -246,6 +254,15 @@ Be sure that the proxy server on your management machine trusts both the SSL cer
 
 An error that contains `dial tcp: lookup westeurope.dp.kubernetesconfiguration.azure.com: no such host` while deploying Arc resource bridge means that the configuration data plane is currently unavailable in the specified region. The service may be temporarily unavailable. Wait for the service to be available, then retry the deployment.
 
+### Certificate signed by unknown authority 
+You may encounter the following error when deploying Arc resource bridge:
+
+```
+"errorResponse": "{\n\"message\": \"{\\n  \\\"code\\\": \\\"GuestInternetConnectivityError\\\",\\n  \\\"message\\\": \\\"Name: http-connectivity-test-arc. Message: Not able to connect to https://msk8s.api.cdp.microsoft.com. Error returned: action failed after 5 attempts: Get \\\\\\\"https://msk8s.api.cdp.microsoft.com\\\\\\\": **tls: failed to verify certificate: x509: certificate signed by unknown authority.** Arc Resource Bridge network and internet connectivity validation failed: http-connectivity-test-arc. 1. Please check your networking setup and ensure the URLs mentioned in : https://aka.ms/AAla73m are reachable from the Appliance VM.   2. Check firewall/proxy settings\\\",\\n  \\\"category\\\": \\\"\\\"\\n }\"\n}",
+```
+
+This error occurs when SSL inspection is occurring within the network and that is preventing HTTPS/SSL trust from being established with the endpoint referenced in the error. This error is most commonly seen with a SSL proxy server that is doing SSL inspection/termination and is intercepting the connection to the endpoint and breaking the connectivity. If you have not configured a proxy server during deployment, then your network may have a transparent proxy or a network security device which is interfering with this connection. We recommend that you work with your networking team to debug the cause using your proxy/firewall/security device logs. 
+
 ### Proxy connect tcp - No such host for Arc resource bridge required URL
 
 An error that contains an Arc resource bridge required URL with the message `proxyconnect tcp: dial tcp: lookup http: no such host` indicates that DNS is unable to resolve the URL. The error may look similar to this example, where the required URL is `https://msk8s.api.cdp.microsoft.com`:
@@ -328,6 +345,7 @@ To test connectivity to the DNS server:
 To check if the DNS server is able to resolve an address, run this command from a machine that can reach the DNS servers:
 
 ```Resolve-DnsName -Name "http://aszhcitest01.company.org:55000" -Server "<dns-server.com>"```
+
 
 ## Azure Arc-enabled VMware VCenter issues
 
@@ -444,7 +462,7 @@ az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --
 ```
 
 > [!NOTE] 
-> The Arc-enabled VMware cluster extension installed on the Arc resource bridge may also need the vCenter credentials to be updated. Refer to: [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#updating-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding)
+> The Arc-enabled VMware cluster extension installed on the Arc resource bridge may also need the vCenter credentials to be updated. Refer to: [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding)
 
 ### Insufficient privileges
 

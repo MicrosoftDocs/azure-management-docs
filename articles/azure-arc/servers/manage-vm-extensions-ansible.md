@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.custom:
   - devx-track-ansible
   - build-2025
+# Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to deploy and automate VM extensions using Red Hat Ansible, so that I can efficiently manage and scale my hybrid cloud environment."
 ---
 
 # Enable Azure VM extensions by using Red Hat Ansible automation

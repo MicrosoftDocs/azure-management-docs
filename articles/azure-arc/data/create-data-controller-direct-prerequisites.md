@@ -9,6 +9,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.date: 11/03/2021
 ms.topic: overview
+# Customer intent: As a cloud administrator, I want to prepare my Kubernetes cluster for direct connectivity with Azure Arc, so that I can deploy the data controller and enable seamless management of my data services.
 ---
 
 # Prerequisites to deploy the data controller in direct connectivity mode

@@ -4,6 +4,7 @@ description: Learn how to use Azure Private Link to securely connect networks to
 ms.topic: concept-article
 ms.custom:
 ms.date: 04/23/2025
+# Customer intent: "As a network administrator, I want to configure Azure Private Link to connect on-premises servers to Azure Arc, so that I can securely manage my resources without exposing data to public networks."
 ---
 
 # Use Azure Private Link to securely connect servers to Azure Arc

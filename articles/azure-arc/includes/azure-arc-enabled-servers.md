@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 12/19/2024
+ms.date: 07/21/2025
 author: JnHs
 ms.author: jenhayes
 # Customer intent: "As a system administrator managing Azure Arc-enabled servers, I want to query and analyze the installation status of databases such as SQL Server, PostgreSQL, or MySQL, so that I can ensure compliance and optimize resource allocation."

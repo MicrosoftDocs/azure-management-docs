@@ -6,10 +6,10 @@ ms.author: cwatson
 ms.topic: how-to #Don't change
 ms.date: 06/10/2025
 ai-usage: ai-assisted
-
-#CustomerIntent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
+ms.subservice: edge-rag
 ms.custom:
   - build-2025
+# Customer Intent: As a cloud administrator or developer, I want to deploy the Edge RAG extension using Azure CLI or the Azure portal so that I can enable advanced language model capabilities on my Azure Kubernetes Service (AKS) Arc cluster to provide an intelligent chat solutions.
 ---
 # Deploy the extension for Edge RAG Preview enabled by Azure Arc
 

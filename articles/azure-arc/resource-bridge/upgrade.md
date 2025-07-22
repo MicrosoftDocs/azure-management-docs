@@ -25,23 +25,6 @@ For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or high
 ### Azure Arc-enabled SCVMM
 For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, you are responsible for upgrading your Azure Arc resource bridge to a version that has been released within the past 6 months. We recommend performing manual upgrades every 6 months to stay current and ensure compliance with the [supported version policy](overview.md#supported-versions). You can check your appliance version and the version release date for an estimate on the last upgrade date. For version information, please refer to [Arc resource bridge release notes](release-notes.md). Manual upgrade is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to perform the recovery option to get to version 1.0.15 or higher. Review the steps for [performing the recovery operation](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
 
-## Prerequisites
-
-Before an Arc resource bridge can be upgraded, the following prerequisites must be met:
-
-- Arc resource bridge must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
-
-- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled VM from Azure.
-
-- Arc resource bridge must be in the same location path where it was originally deployed.
-
-- The appliance VM needs 35 GB of free space.
-
-- For Arc-enabled VMware, upgrading the resource bridge requires 200 GB of free space on the datastore. A new template is also created.
-
-- (Manual upgrade only) When performing a manual upgrade, run the upgrade command from the management machine used to initially deploy the Arc resource bridge. The [appliance configuration files](system-requirements.md#configuration-files) initially created at deployment are also needed. You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements).
-
-- (Manual upgrade only) The management machine needs 3.5 GB of free space.
 
 ## Overview
 
@@ -61,6 +44,29 @@ You can upgrade Arc resource bridge in two ways:
 
 - Cloud-managed upgrade (offered by Microsoft)
 - Manual upgrade (recommended)
+
+## Prerequisites
+
+Before an Arc resource bridge can be upgraded, the following prerequisites must be met:
+
+- Arc resource bridge must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
+
+- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled VM from Azure.
+
+- Arc resource bridge must be in the same location path where it was originally deployed.
+
+- The appliance VM needs 35 GB of free space.
+
+- For Arc-enabled VMware, upgrading the resource bridge requires 200 GB of free space on the datastore. A new template is also created.
+
+- (Manual upgrade only) When performing a manual upgrade, run the upgrade command from the management machine used to initially deploy the Arc resource bridge. The [appliance configuration files](system-requirements.md#configuration-files) initially created at deployment are also needed. You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements).
+
+- (Manual upgrade only) The management machine needs 3.5 GB of free space.
+
+## Check the version
+To check the appliance version of your Arc resource bridge, you can check the Azure resource of your resource bridge in Azure Resource Manager.
+
+If the appliance status or provisioningState is “UpgradeFailed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
 
 ## Cloud-managed upgrade
 

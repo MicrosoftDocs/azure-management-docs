@@ -6,7 +6,7 @@ ms.author: cwatson
 ms.topic: concept-article #Don't change
 ms.date: 06/05/2025
 ai-usage: ai-assisted
-
+ms.subservice: edge-rag
 #CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Edge RAG so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
 ms.custom:
   - build-2025

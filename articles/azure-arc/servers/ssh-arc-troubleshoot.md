@@ -3,6 +3,7 @@ title: Troubleshoot SSH access to Azure Arc-enabled servers
 description: Learn how to troubleshoot and resolve issues with SSH access to Arc-enabled servers.
 ms.date: 06/12/2025
 ms.topic: troubleshooting
+# Customer intent: As a system administrator, I want to troubleshoot SSH access issues for Azure Arc-enabled servers, so that I can ensure successful connections and maintain operational efficiency.
 ---
 
 # Troubleshoot SSH access to Azure Arc-enabled servers

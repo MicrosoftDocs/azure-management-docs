@@ -14,14 +14,13 @@ ms.custom:
 
 The onboarding PowerShell scripts are designed to help you set up the necessary infrastructure and resources for workload orchestration in Azure Arc. The scripts automate the process of creating a Kubernetes cluster, deploying on the cluster, creating custom location and site, and installing the workload orchestration CLI extension.
 
-If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
-
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
+> [!TIP]
+> If you prefer to not use the scripts and want to do the setup manually, you can follow the instruction in [Prepare the environment for workload orchestration](initial-setup-environment.md) and [Setup workload orchestration](initial-setup-configuration.md).
 
 ## Prerequisites
 
 - Run `winget install -e --id Microsoft.AzureCLI` and `winget install -e --id Kubernetes.kubectl`.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. From the compressed folder, you find the following files:
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. From the compressed folder, you find the following files:
     - Download the workload-orchestration CLI extension.
     - Download the JSON files for site-address and site content, schemas, configs, *onboarding-data.json* and *mock-data.json*.
     - Edit the `onboarding-data.json` file. You can find mock data in `mock-data.json`.
@@ -49,13 +48,14 @@ Open a PowerShell terminal and run the following command.
     - `-skipAksCreation`: Skip creation of AKS cluster, use when the cluster is already created.
     - `-skipTcoDeployment`: Skip connecting AKS to Arc and creation of TCO extension, use when TCO has been deployed already.
     - `-skipCustomLocationCreation`: Skip creation of CustomLocation, use when it has been created before.
+    - `-skipConnectedRegistryDeployment`: Skip connected registry deployment. By default, this step is skipped. Set to false when user need to deploy the connected registry on AKS cluster for staging. 
     - `-skipSiteCreation`: Skip creation of Site and SiteAddress, use when it has been created before.
     - `-skipAutoParsing`: Skip auto-creation of custom location file and auto-parsing of site file. By default, you don't need to set the "addressResourceId" field in the site file and do not need to pass a customLocationFile in the target data section. Set to `$true` if you want to assign your own custom location (not created via onboarding script) or your own site address (not created via onboarding script).
     - `-enableWODiagnostics`: Enable workload orchestration extension user-facing logs, use when you want to collect workload orchestration extension user audits and user diagnostics logs. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
     - `-enableContainerInsights`: Enable `Container.Insights` on arc cluster to collect container logs and k8s events. Use when you want to collect container logs or k8s events. For more information, see [Diagnose edge-related logs and errors](diagnose-problems.md).
 
 > [!NOTE]
->  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`, except for `-skipAzLogin` which is `$true` by default. 
+>  All arguments are boolean which take `$true`/`$false` as values and the default value is `$false`, except for `-skipAzLogin` and `-skipConnectedRegistryDeployment` which are `$true` by default. 
 
 ## Context creation script (only if there is no existing context)
 
@@ -96,7 +96,16 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `contextResourceGroup`: (Required) Resource group where the Workload Orchestration Context exists (for example, "Contoso"). This is used for setting up capabilities and site references.
 - `contextName`: (Required) Name of the Workload Orchestration Context (for example, "Contoso-Context").
 - `contextSubscriptionId`: (Required) Subscription ID where the Workload Orchestration Context exists.
-- `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2euap").
+- `contextLocation`: (Required) Azure region where the Workload Orchestration Context exists (for example, "eastus2").
+- `diagInfo`: (Optional) An array defining the diagnostic configurations.
+    - `diagnosticWorkspaceId`: (Optional) The ARM resource ID of log analytics workspace.
+    - `diagnosticResourceName`: (Optional) Name of the diagnostic resource.
+    - `diagnosticSettingName`: (Optional) Name of the diagnostic settings.
+- `acrName`: (Optional) Name of the Azure container registry.
+- `connectedRegistryName`: (Optional) Name of the connected registry.
+- `connectedRegistryIp`: (Required if `skipConnectedRegistryDeployment=$false`) Available IP address to host the connected registry service.
+- `connectedRegistryClientToken`: (Optional) Name of the connected registry client token secret.
+- `storageSizeRequest`: (Optional) Size of the storage used for connected registry.
 - `siteHierarchy`: (Optional) An array defining the site structure and associated deployment targets.
     - `siteName`: (Required) Name of the site resource to be created. Avoid adding trailing numbers in the name.
     - `parentSite`: (Optional) Name of the parent site in the hierarchy. Set to `null` for top-level sites.
@@ -170,6 +179,10 @@ The workload orchestration related properties fall under the `cmOnboarding` sect
     - `version`: (Required) Version of the solution.
     - `specificationFile`: (Required) File path to Specification File.
     - `configTemplate`: (Required) Configuration template for the solution.
+
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
 
 ## Related content
 

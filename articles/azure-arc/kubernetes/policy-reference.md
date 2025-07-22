@@ -21,7 +21,7 @@ the link in the **Version** column to view the source on the
 
 ## Azure Arc-enabled Kubernetes
 
-[!INCLUDE [azure-policy-reference-rp-aks-kubernetes](~/azure-docs-pr/includes/policy/reference/byrp/microsoft.kubernetes.md)]
+[!INCLUDE [azure-policy-reference-rp-aks-kubernetes](~/azure-policy-autogen-docs/includes/policy/reference/byrp/microsoft.kubernetes.md)]
 
 ## Next steps
 

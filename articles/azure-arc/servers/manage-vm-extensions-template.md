@@ -1,11 +1,12 @@
 ---
 title: Enable VM Extensions Using Azure Resource Manager Template
 description: This article describes how to deploy virtual machine extensions to Azure Arc-enabled servers running in hybrid cloud environments by using an Azure Resource Manager template.
-ms.date: 05/12/2025
+ms.date: 06/19/2025
 ms.topic: how-to
 ms.custom:
   - devx-track-arm-template
   - build-2025
+# Customer intent: As a cloud administrator, I want to deploy virtual machine extensions to Azure Arc-enabled servers using an ARM template, so that I can efficiently manage and enhance the capabilities of my hybrid cloud infrastructure.
 ---
 
 # Enable Azure VM extensions by using an ARM template
@@ -164,9 +165,9 @@ Save the template and parameter file, and edit the parameter file with the appro
 
 To use the Custom Script Extension, deploy one of the following sample templates for Linux and Windows. For information about the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are a few differing characteristics that you should understand when you're using this extension with hybrid machines:
 
-* The list of supported operating systems with the Azure VM Custom Script Extension doesn't apply to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
-* Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model aren't applicable.
-* If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
+- The list of supported operating systems with the Azure VM Custom Script Extension doesn't apply to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
+- Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model aren't applicable.
+- If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
 
 The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following templates.
 
@@ -536,5 +537,6 @@ Save the template and edit as needed for your environment. Then install the Azur
 
 ## Related content
 
-* Learn how to deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
-* Explore troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).
+- Read more about [VM extensions supported by Azure Arc-enabled servers](manage-vm-extensions.md).
+- Learn how to deploy, manage, and remove VM extensions by using [Azure PowerShell](manage-vm-extensions-powershell.md), the [Azure portal](manage-vm-extensions-portal.md), or the [Azure CLI](manage-vm-extensions-cli.md).
+- Explore troubleshooting information in the [guide for troubleshooting VM extensions](troubleshoot-vm-extensions.md).

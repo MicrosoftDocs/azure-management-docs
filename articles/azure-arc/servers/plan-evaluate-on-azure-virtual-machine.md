@@ -3,6 +3,7 @@ title: How to evaluate Azure Arc-enabled servers with an Azure virtual machine
 description: Learn how to evaluate Azure Arc-enabled servers using an Azure virtual machine.
 ms.date: 01/23/2025
 ms.topic: how-to
+# Customer intent: As a system administrator, I want to configure an Azure virtual machine for evaluating Azure Arc-enabled servers, so that I can test Azure Arc capabilities in a controlled environment while ensuring compatibility with on-premises setups.
 ---
 
 # Evaluate Azure Arc-enabled servers on an Azure virtual machine
@@ -47,7 +48,7 @@ When Azure Arc-enabled servers is configured on the VM, you see two representati
 > For Linux, set the environment variable to override the ARC on an Azure VM installation. Also set it in the environment of daemons.
 > ```bash
 > export MSFT_ARC_TEST=true
-> systemctl set-environment MSFT_ARC_TEST=true
+> sudo systemctl set-environment MSFT_ARC_TEST=true
 > ```
 
 1. Remove any VM extensions on the Azure VM.

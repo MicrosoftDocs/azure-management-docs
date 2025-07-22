@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: references_regions, devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: quickstart
 ms.date: 04/18/2023
+# Customer intent: "As a cloud developer, I want to deploy an Azure Linux Container Host for an AKS cluster using the Azure CLI, so that I can manage and run multi-container applications efficiently in a Kubernetes environment."
 ---
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using the Azure CLI

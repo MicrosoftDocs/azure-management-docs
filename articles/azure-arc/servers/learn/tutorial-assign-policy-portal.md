@@ -3,6 +3,7 @@ title: Tutorial - New policy assignment with Azure portal
 description: In this tutorial, you use Azure portal to create an Azure Policy assignment to identify non-compliant resources.
 ms.topic: tutorial
 ms.date: 05/05/2025
+# Customer intent: "As a cloud administrator, I want to create and assign an Azure Policy to identify non-compliant Azure Arc-enabled servers, so that I can ensure compliance with machine configuration standards and improve the security of my environment."
 ---
 
 # Tutorial: Create a policy assignment to identify non-compliant resources

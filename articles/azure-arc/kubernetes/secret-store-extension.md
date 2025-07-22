@@ -406,3 +406,4 @@ In these cases, secrets must be deleted directly using `kubectl`.
 
 - Learn more about [Azure Arc extensions](extensions.md).
 - Learn more about [Azure Key Vault](/azure/key-vault/general/overview).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

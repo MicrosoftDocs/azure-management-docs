@@ -211,3 +211,4 @@ az connectedk8s update
 ## Next steps
 
 - Explore a [sample for configuring an application to use workload identity](https://azure.github.io/azure-workload-identity/docs/quick-start.html).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

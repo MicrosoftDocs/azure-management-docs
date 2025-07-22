@@ -6,6 +6,7 @@ ms.custom:
   - ignite-2023
 ms.topic: include
 ms.date: 06/11/2024
+# Customer intent: "As a cloud architect, I want to access the latest preview release notes for Azure Arc, so that I can evaluate new features and determine their applicability to our data management strategy."
 ---
 
 At this time, a test or preview build is not available for the next release.

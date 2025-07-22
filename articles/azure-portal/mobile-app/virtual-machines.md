@@ -3,6 +3,7 @@ title: Monitor and Manage Virtual Machines from the Azure mobile app
 description: Use the Azure mobile app to monitor and manage virtual machines.
 ms.date: 02/21/2025
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to monitor and manage Azure virtual machines via a mobile app, so that I can ensure service availability and respond to incidents while on the go.
 ---
 
 # Manage virtual machines in the Azure mobile app

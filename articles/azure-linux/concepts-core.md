@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.topic: concept-article 
 ms.date: 08/18/2024
 ms.custom: template-concept, linux-related-content
+# Customer intent: "As a cloud administrator, I want to understand the core concepts of the Azure Linux Container Host for AKS, so that I can effectively manage security vulnerabilities and optimize cluster performance."
 ---
 
 # Core concepts for the Azure Linux Container Host for AKS

@@ -280,3 +280,4 @@ This is a known limitation. To get past this error:
 
 - Set up [Microsoft Entra RBAC](azure-rbac.md) on your clusters.
 - Deploy and manage [cluster extensions](extensions.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

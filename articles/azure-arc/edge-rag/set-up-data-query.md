@@ -4,11 +4,11 @@ description: "Learn how to set up your data query with Edge RAG to configure mod
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/06/2025
-
-#CustomerIntent: As a developer or data scientist, I want to learn how to use prompt engineering with Azure AI Search so that I can create more effective and accurate AI-driven search experiences for my applications.
+ms.date: 07/01/2025
+ms.subservice: edge-rag
 ms.custom:
   - build-2025
+# Customer intent: As a developer, I want to set up the data query and configure model settings for the Edge RAG chat solution, so that I can create effective AI-driven chat experiences tailored to my application's requirements.
 ---
 
 # Set up the data query for chat solution in Edge RAG Preview, enabled by Azure Arc
@@ -57,7 +57,8 @@ Next, test the chat endpoint.
 1. In the chat window, enter a question that uses a simple question and answer format. Queries that require summarization across multiple documents might not return accurate answers.
 
    :::image type="content" source="media/set-up-data-query/test-chat.png" alt-text="Screenshot of the chat playground with a question in the chat window." lightbox="media/set-up-data-query/test-chat.png":::
-1. (Optional) To refresh the chat playground and clear the chat history, select **New chat**.
+
+   Be aware that with Edge RAG extension version `0.1.5` each question is answered based on retrieved content only and doesn't include the context of the chat history. Chat history is not saved between questions. Treat each question as a new chat.
 1. (Optional) [Test the end user experience by using the chat solution app for Edge RAG](test-end-user-app.md).
 
 ## View details to refine settings

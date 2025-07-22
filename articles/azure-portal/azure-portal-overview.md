@@ -3,6 +3,7 @@ title: What is the Azure portal?
 description: The Azure portal is a graphical user interface that you can use to manage your Azure services. Learn how to navigate and find resources in the Azure portal.
 ms.date: 07/18/2024
 ms.topic: overview
+# Customer intent: "As an Azure user, I want to navigate and manage my resources through a web-based interface, so that I can efficiently create, monitor, and optimize my cloud services."
 ---
 
 # What is the Azure portal?

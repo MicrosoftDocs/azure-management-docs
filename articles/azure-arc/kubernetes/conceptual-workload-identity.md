@@ -62,3 +62,4 @@ Keep in mind the following current limitations:
 ## Next steps
 
 - Learn how to [enable workload identity on your Azure Arc enabled Kubernetes cluster and configure your application to use workload identity](workload-identity.md).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

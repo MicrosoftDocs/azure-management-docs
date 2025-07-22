@@ -19,7 +19,7 @@ Before you delete a virtual machine or remove its Azure resource, ensure that yo
 
 - The SCVMM management server, that manages the VM which is to be deleted from the host or which’s Azure resource is to be removed, is in a *Connected* state and its associated Azure Arc resource bridge is in a *Running* state.
 - Ensure the VM, which is to be deleted from the host or which’s Azure resource is to be removed, is [enabled for management in Azure](enable-scvmm-inventory-resources.md).
-- If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), [uninstall the agent and remove any VM extensions](https://learn.microsoft.com/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fsystem-center-virtual-machine-manager%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
+- If the VM, which is to be deleted from the host or which’s Azure resource is to be deleted, has the Arc agent installed (guest management enabled), [uninstall the agent and remove any VM extensions](/azure/azure-arc/servers/manage-agent?toc=%2Fazure%2Fazure-arc%2Fsystem-center-virtual-machine-manager%2Ftoc.json&tabs=windows#uninstall-the-agent) to prevent billing beyond the lifetime of the VM.
 - *Azure Arc SCVMM VM Contributor* role or a custom Azure role with permissions to delete the SCVMM VMs which you want to be deleted.
 	
 ## Delete a Virtual Machine

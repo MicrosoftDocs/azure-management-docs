@@ -4,7 +4,7 @@ description: Learn about service groups and how to configure them in workload or
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/07/2025
+ms.date: 06/24/2025
 ms.custom:
   - build-2025
 # Customer intent: As a cloud administrator, I want to configure service groups for workload orchestration, so that I can efficiently organize and manage resources across multiple subscriptions and apply governance effectively.
@@ -15,6 +15,8 @@ ms.custom:
 Service groups are a new resource type in Azure Resource Manager (ARM) that help you organize related resources, like resource groups, subscriptions, and management groups, under one service, application, or workload. This article explains how to create a service group and configure it to use it with workload orchestration.
 
 For more information, see [RBAC for service groups](rbac-guide.md#rbac-for-service-groups).
+
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
 
 ## What is a service group?
 
@@ -32,14 +34,16 @@ The following diagram shows how service groups structure groups related componen
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 ## Create a service group
 
 The following command creates a service group with the specified name and tenant ID. Make sure to replace `<service-group-name>` and `<tenant-id>` with your actual values. Service group names must be unique within the tenant and can only contain alphanumeric characters, underscores, and hyphens. 
+
+If your organization has multiple hierarchy levels, you need to create a service group at each level except for the target level. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels).
 
 #### [Bash](#tab/bash)
 
@@ -73,12 +77,11 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups.
+Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[Region, Factory, Line]*, then you create a Site at the region level.
 
-To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup. 
 
-For example, if the hierarchy is *[Factory, Line]*, when a Site is created at the factory level, it should be tagged as 
-\{`level`: `Factory`\}, where `level` is the label key and `Factory` is the label value.
+For example, if the hierarchy is *[Factory, Line]*, then Site is created at the factory level and it should be tagged as \{`level`: `Factory`\}, where `level` is the label key and `Factory` is the label value.
 
 #### [Bash](#tab/bash)
 
@@ -93,7 +96,7 @@ az rest \
   --resource https://management.azure.com
 ```
 
-If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
 
 ```bash
 # Patch a site with correct labels
@@ -151,7 +154,7 @@ az rest `
     ```bash
     # Create a site reference
     az workload-orchestration context site-reference create \
-      --subscription "$subscriptionId" \
+      --subscription "$subId" \
       --resource-group "$rg" \
       --context-name "$instanceName" \
       --name "$siteReference" \
@@ -180,7 +183,7 @@ az rest `
     ```bash
     # Create a new context
     az workload-orchestration context create \
-      --subscription "$subscriptionId" \
+      --subscription "$subId" \
       --resource-group "$rg" \
       --location "$l" \
       --name "Contoso-Context" \
@@ -189,7 +192,7 @@ az rest `
     ```
 
     > [!NOTE]
-    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels)
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
@@ -206,7 +209,8 @@ az rest `
       --description "$childDesc" \
       --solution-scope "new" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 1. Get the ID for Target created in the previous step.
@@ -251,7 +255,7 @@ az rest `
     ```powershell
     # Create a site reference
     az workload-orchestration context site-reference create `
-       --subscription $subscriptionId `
+       --subscription $subId `
        --resource-group $rg `
        --context-name $instanceName `
        --name $siteReference `
@@ -272,7 +276,7 @@ az rest `
     $context.properties.capabilities | ConvertTo-JSON -Compress | Set-Content context-capabilities.json
     
     az workload-orchestration context create `
-      --subscription $subscriptionId `
+      --subscription $subId `
       --resource-group $rg `
       --location $l `
       --name Contoso-Context `
@@ -281,7 +285,7 @@ az rest `
     ```
 
     > [!NOTE]
-    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups ate different hierarchy levels](#service-groups-at-different-hierarchy-levels)
+    > If you have a two-level hierarchy organization and you want to update the hierarchy levels to three or four levels, or vice versa, you can also use the `az workload-orchestration context create` to update the context with the new hierarchy levels. For more information, see [Service groups at different hierarchy levels](#service-groups-at-different-hierarchy-levels)
 
 1. Update *custom-location.json* file with your custom location details.
 1. Create a target. Make sure to update `solution-scope` value and `--capabilities` with the necessary values as per your scenario.
@@ -298,7 +302,8 @@ az rest `
       --description $childDesc `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 1. Get the ID for target created in the previous step.
@@ -325,7 +330,7 @@ az rest `
 
 ***
 
-Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](initial-setup-configuration.md#solution-authoring-and-deployment).
+Once the setup is completed, you can proceed with the solution authoring steps in [Solution authoring and deployment](workflow-features.md#solution-authoring-and-deployment).
 
 > [!NOTE]
 > If you run into any issues while creating service groups or configuring them, see the [Troubleshooting guide](troubleshooting.md#troubleshoot-service-groups).
@@ -338,9 +343,9 @@ The previous sections show how to create a service group for a two-level hierarc
 
 To ease the process, the following steps show how to create a four-level service group hierarchy organization. You need to consider the following points:
 
-- Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
-- If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
-
+- **Every level** in the hierarchy must its own **service group** created. For example, for four-level hierarchy organization, you need to create a service group for each level: country, region, factory, and line.
+- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
+- The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 
 ### [Bash](#tab/bash)
 

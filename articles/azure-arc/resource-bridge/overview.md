@@ -83,7 +83,9 @@ These examples show how Azure Arc resource bridge enables hybrid management of o
 
 ### Apply Azure Policy and other Azure services to on-premises VMware VMs
 
-A customer deploys Arc resource bridge onto their on-premises VMware vSphere environment. They sign into the Azure portal, select the VMware VMs that they'd like to connect to Azure and select the option to enable Azure Arc. Once the VMs are Arc-enabled, they can manage these on-premises VMware VMs in Azure Resource Manager as Arc-enabled machines. They can enable Azure services, such as Defender for Cloud and Azure Policy to extend security and governance from Azure to their on-premises VMware workloads.
+A customer deploys the Arc resource bridge into their on-premises VMware vSphere environment. The resource bridge connects to their vCenter instance. Visibility and management of VMware virtual machines in Azure are scoped to specific resource pools, networks, and VM templates defined during deployment.
+
+From Azure portal, the customer selects the VMware virtual machines and enables Azure Arc. The Arc-enabled virtual machines can now be managed alongside native Azure VMs. The customer can enable Azure services, such as Defender for Cloud and Azure Policy, to their on-premises VMware workloads. This enables consistent security and compliance enforcement across both cloud and on-premises environments, with centralized policy management through Azure.
 
 :::image type="content" source="../media/overview/resource-bridge-vmware.png" alt-text="Diagram showing VMware VMs connected to Azure through Arc resource bridge." lightbox="../media/overview/resource-bridge-vmware.png":::
 

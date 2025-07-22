@@ -17,7 +17,17 @@
     },
     {
       "source_path_from_root": "/articles/copilot/copilot-advisor.md",
-      "redirect_url": "/azure/copilot/find-recommendations-advisor",
+      "redirect_url": "/azure/copilot/capabilities#find-recommendations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/copilot/find-recommendations-advisor.md",
+      "redirect_url": "/azure/copilot/capabilities#find-recommendations",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/copilot/troubleshoot-arc-extension.md",
+      "redirect_url": "/azure/copilot/capabilities#solve-problems-and-troubleshoot-resources",
       "redirect_document_id": false
     },
     {
@@ -32,7 +42,7 @@
     },
     {
       "source_path_from_root": "/articles/copilot/discovery-plugin-marketplace.md",
-      "redirect_url": "/azure/copilot/capabilities",
+      "redirect_url": "/azure/copilot/discover-marketplace",
       "redirect_document_id": false
     }    
   ]

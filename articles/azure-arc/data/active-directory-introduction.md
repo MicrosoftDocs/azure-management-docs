@@ -9,6 +9,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to enable Active Directory authentication for SQL Managed Instances using Azure Arc, so that I can ensure secure access management and streamline user authentication across my network."
 ---
 
 # SQL Managed Instance enabled by Azure Arc with Active Directory authentication 

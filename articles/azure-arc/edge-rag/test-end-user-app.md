@@ -4,11 +4,11 @@ description: "Learn how to test the end user experience of the Edge RAG chat sol
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
-
-#CustomerIntent: As a developer or IT administrator, I want to test the Edge RAG chat solution by using the out-of-the-box application  so that I can evaluate and demonstrate the capabilities of AI-powered search in a hybrid or multicloud environment.
+ms.date: 07/01/2025
+ms.subservice: edge-rag
 ms.custom:
   - build-2025
+# Customer intent: As a developer or IT administrator, I want to test the Edge RAG chat solution using the provided application, so that I can assess the performance and user experience of AI-powered search in hybrid or multicloud environments.
 ---
 
 # Test the chat solution for Edge RAG Preview, enabled by Azure Arc
@@ -28,7 +28,8 @@ To try the chat for end users, start from to the local chat portal.
 1. Go to the developer portal by using the domain name provided at deployment and app registration, appended with "/user". For example: `https://arcrag.contoso.com/user`.
 1. Sign in with the end user credentials that has the "EdgeRAGEndUser" role assigned. If you have the right access configured, you're automatically redirected to the chat portal.
 1. Start using the simple chat interface by entering a query.
-1. (Optional) To refresh the chat playground and clear the chat history, select **New chat**.
+
+    Be aware that with Edge RAG extension version `0.1.5` each question is answered based on retrieved content only and doesn't include the context of the chat history. Chat history is not saved between questions. Treat each question as a new chat.
 1. (Optional) To share feedback to Microsoft, select thumbs up or thumbs down.
 
 ## Related content

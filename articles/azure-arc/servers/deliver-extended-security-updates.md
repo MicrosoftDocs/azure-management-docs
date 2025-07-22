@@ -3,6 +3,7 @@ title: Deliver Extended Security Updates for Windows Server 2012
 description: Learn how to deliver Extended Security Updates for Windows Server 2012.
 ms.date: 05/12/2025
 ms.topic: concept-article
+# Customer intent: "As an IT administrator managing Windows Server 2012, I want to provision and link Extended Security Updates to Arc-enabled servers, so that I can ensure my systems remain compliant and secure beyond their support lifecycle."
 ---
 
 # Deliver Extended Security Updates for Windows Server 2012

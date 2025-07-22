@@ -12,7 +12,8 @@ metadata:
   ms.date: 06/05/2025
   ms.service: azure-arc
   ms.custom: build-2025
-
+  ms.subservice: edge-rag
+  
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
 landingContent:

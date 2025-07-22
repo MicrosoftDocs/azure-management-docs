@@ -10,6 +10,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
+# Customer intent: "As a cloud administrator, I want to utilize an AI assistant to improve the security posture, enhance data resiliency, troubleshoot issues, and reduce costs of storage accounts, so that I can efficiently manage and optimize our cloud storage resources."
 ---
 
 # Manage and improve storage accounts using Microsoft Copilot in Azure

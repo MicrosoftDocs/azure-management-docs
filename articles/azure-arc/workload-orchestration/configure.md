@@ -16,12 +16,10 @@ The Configure tab in the workload orchestration portal provides a comprehensive 
 
 This article describes how to use the workload orchestration portal to add configuration values and publish values for deployment for your solutions. If you want information about other tabs in the workload orchestration portal, see [Monitor your solutions](monitor.md) and [Deploy your solutions](deploy.md).
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
-- All users with access to configure platform or solution level parameters can access the Configure tab. For more information, see [Role-based access control (RBAC) guide](rbac-guide.md).
+- All users with access to configure platform or solution level parameters can access the Configure tab. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
 ## Navigate the Configure tab
 
@@ -109,7 +107,6 @@ To configure a solution, follow these steps:
 
     :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable auto-publish." lightbox="./media/configure-solution-2.png":::
 
-
 1. In the **Configure target** step, enter the instance name and the parameters to publish the solution and click on **Next**.
 
     :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
@@ -143,7 +140,9 @@ To configure a solution, follow these steps:
 
 ### Configure solution parameters for a solution with dependencies
 
-To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to configure the dependent solution, which is the Smart Sensor Anomaly (SSA) solution. The configuration process is similar to the one described in the previous section, but with some additional steps.
+To configure a solution with dependencies, you need to ensure that the dependent solution is also configured. For example, let's consider a Factory Sensor Anomaly Detector (FSAD) solution, which depends on a Smart Sensor Anomaly (SSA) solution. The FSAD solution is deployed on a child target, while the SSA solution is deployed on a parent target. The FSAD solution uses the SSA solution to synchronize data between devices and servers.
+
+The configuration process is similar to the one described in the previous section, but with some additional steps.
 
 1. Select the **FSAD solution** you want to configure and click on **Configure and publish**.
 1. The new details pane shows the configuration values for the selected solution.
@@ -177,7 +176,7 @@ To configure a Factory Sensor Anomaly Detector (FSAD) solution you need to confi
 
 ### Show previous revisions of a solution during authoring
 
-You can view the previous revisions  of a solution while authoring it. This feature allows you to compare the current configuration with previous revisions and make necessary changes.
+You can view the previous revisions of a solution while authoring it. This feature allows you to compare the current configuration with previous revisions and make necessary changes.
 
 1. While configuring a solution, in the **Configure target** step, click on **Show previous versions**.
 

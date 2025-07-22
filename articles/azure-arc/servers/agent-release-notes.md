@@ -2,8 +2,9 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 05/13/2025
+ms.date: 07/01/2025
 ms.custom: references_regions
+# Customer intent: As a system administrator, I want to access the release notes for the Azure Connected Machine agent, so that I can stay informed about updates, fixes, and new features to ensure optimal performance and compliance of my cloud-based infrastructure.
 ---
 
 # What's new with Azure Connected Machine agent
@@ -22,13 +23,31 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
-## Version 1.53 - June 2025
+## Version 1.54 - July 2025
 
-Download for [Windows ](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi)or [Linux ](/editor/MicrosoftDocs/azure-management-docs-pr/articles%2Fazure-arc%2Fservers%2Fagent-release-notes.md/main/cd12107b-7017-8732-b1c3-2ab63e80212d/manage-agent.md)
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
 ### Fixed
 
-- [Linux Only] Resolved "No public key" error by adding GPG package signature validation. 
+- Fixed issues related to double-free memory errors and updating policy compliance status.
+
+- [Linux Only] Updated Boost on Linux to resolve service start issues caused by compatibility problems.
+
+- [Linux Only] Corrected Arc proxy log file permission during upgrade.
+
+- [Windows Only] Updated local PATH environment variable to resolve service install/delete errors.
+
+### New features and enhancements
+
+- Added support for managed identity-based custom policy downloads.
+
+## Version 1.53 - June 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.53/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- [Linux Only] Resolved "No public key" error by adding GPG package signature validation.
 
 ### New features and enhancements
 
@@ -67,12 +86,12 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.51/AzureConnect
 ### New features and enhancements
 
 - Updated Dependencies
-  - Upgraded to __PowerShell 7.4.7__
-  - Upgraded to __.NET 8.0__
+  - Upgraded to **PowerShell 7.4.7**
+  - Upgraded to **.NET 8.0**
 
 - IP address caching to reduce excessive DNS resolver calls.
 
-- [Windows only] __Optimized PayGo processing__ for improved efficiency.
+- [Windows only] **Optimized PayGo processing** for improved efficiency.
 
 - Enabled Arc proxy to run by default
 

@@ -54,3 +54,4 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 * Learn about best practices and design patterns through the [Cloud Adoption Framework for hybrid and multicloud](/azure/cloud-adoption-framework/scenarios/hybrid/arc-enabled-kubernetes/eslz-arc-kubernetes-identity-access-management).
 * Try out Arc-enabled Kubernetes without provisioning a full environment by using the [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_k8s).
 * [Connect an existing Kubernetes cluster to Azure Arc](quickstart-connect-cluster.md).
+* Help to protect your cluster by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

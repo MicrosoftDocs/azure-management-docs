@@ -13,16 +13,18 @@ In this tutorial, you create a scenario with multiple solutions that share a sin
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
+[!INCLUDE [service-groups-note](includes/service-groups-note.md)]
+
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
 - Set up your environment for workload orchestration. If you haven't, go to [Prepare your environment for workload orchestration](initial-setup-environment.md) to set up the prerequisites.
-- Download and extract the artifacts from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) into a particular folder. 
+- Download and extract the artifacts from the [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) into a particular folder. 
 - Create the service groups and hierarchy levels. If you haven't, follow the steps in [Service groups at different hierarchy levels](service-group.md#service-groups-at-different-hierarchy-levels).
 
 
 > [!NOTE]
-> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Configure the resources of workload orchestration](initial-setup-configuration.md#configure-the-resources-of-workload-orchestration).
+> You can reuse the global variables defined in [Prepare the basics to run workload orchestration](initial-setup-environment.md#prepare-the-basics-to-run-workload-orchestration) and the resource variables defined in [Set up the resources of workload orchestration](initial-setup-configuration.md#set-up-the-resources-of-workload-orchestration).
 
 ## Define the scenario
 
@@ -30,16 +32,16 @@ The organization has a four-level hierarchy, which is represented in the followi
 
 :::image type="content" source="./media/scenario-multiple-solutions-dependency.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-multiple-solutions-dependency.png":::
 
-The sites references are created at each level of the hierarchy, being SGCountry at the country level, SGRegion at the region level, SGFactory at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
+The sites references are created at each level of the hierarchy, being the Service Group Country (SGCountry) at the country level, Service Group Region (SGRegion) at the region level, Service Group Factory (SGFactory) at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
 
 A solution is deployed at each target as follows:
 
-- Line App (LApp) is a solution at line level.
-- Factory App (FApp) is a solution at factory level.
-- Region App (RApp) is a solution at region level.
-- Global Adapter (GA) is a solution at country level. LApp, FApp, and RApp are dependent on GA, which means that during deployment, the RApp, FApp, and LApp configurations are inherited from the GApp configuration.
+- Line App is a solution at line level.
+- Factory App is a solution at factory level.
+- Region App is a solution at region level.
+- Global Adapter is a solution at country level. Line App, Factory App, and Region App are dependent on Global Adapter, which means that during deployment, the Region App, Factory App, and Line App configurations are inherited from the Global Adapter configuration.
 
-All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc-enabled Kubernetes cluster. 
+All the instances of Line App, Factory App, Region App, and Global Adapter are deployed in the same Azure Arc-enabled Kubernetes cluster. 
 
 ## Create targets
 
@@ -65,7 +67,8 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
       --description "This is Country Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -78,7 +81,8 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
       --description "This is Region Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -91,7 +95,8 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
       --description "This is Factory Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName"
 
     # Create target at line level
     az workload-orchestration target create \
@@ -104,7 +109,8 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
       --description "This is Line01 Target" \
       --solution-scope "$solution_scope" \
       --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json"
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName"
     ```
 
 1. Get the target IDs of the created targets.
@@ -183,53 +189,57 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$countryTarget" `
-      --display-name "$countryTarget" `
+      --name $countryTarget `
+      --display-name $countryTarget `
       --hierarchy-level "country" `
       --capabilities "Use for soap production" `
       --description "This is Country Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$regionTarget" `
-      --display-name "$regionTarget" `
+      --name $regionTarget `
+      --display-name $regionTarget `
       --hierarchy-level "region" `
       --capabilities "Use for soap production" `
       --description "This is Region Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName
     
     # Create target at factory level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$factoryTarget" `
-      --display-name "$factoryTarget" `
+      --name $factoryTarget `
+      --display-name $factoryTarget `
       --hierarchy-level "factory" `
       --capabilities "Use for soap production" `
       --description "This is Factory Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextFactoryName
     
     # Create target at line level
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name "$lineTarget" `
-      --display-name "$lineTarget" `
+      --name $lineTarget `
+      --display-name $lineTarget `
       --hierarchy-level "line" `
       --capabilities "Use for soap production" `
       --description "This is Line01 Target" `
       --solution-scope $solution_scope `
       --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json'
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextLineName
     ```
 
 1. Get the target IDs of the created targets.
@@ -296,9 +306,9 @@ All the instances of LApp, FApp, RApp, and GA are deployed in the same Azure Arc
 
 ## Prepare the solution templates
 
-To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip) as reference. 
+To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
 
-### Solution template for GA
+### Solution template for Global Adapter
 
 #### [Bash](#tab/bash)
 
@@ -318,8 +328,8 @@ To create the solution schema and solution template files, you can use *common-s
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is GA Solution" \
-        --configuration-template-file ./ga-config-template.yaml \
+        --description "This is Global Adapter Solution" \
+        --config-template-file ./ga-config-template.yaml \
         --specification "@ga-specs.json" \
         --version "$gaversion"
     ```
@@ -342,14 +352,14 @@ To create the solution schema and solution template files, you can use *common-s
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is GA Solution" `
-        --configuration-template-file .\ga-config-template.yaml `
+        --description "This is Global Adapter Solution" `
+        --config-template-file .\ga-config-template.yaml `
         --specification "@ga-specs.json" `
         --version $gaversion
     ```
 ***
 
-### Solution template for RApp
+### Solution template for Region App
 
 #### [Bash](#tab/bash)
 
@@ -369,8 +379,8 @@ To create the solution schema and solution template files, you can use *common-s
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is RApp Solution" \
-        --configuration-template-file ./rapp-config-template.yaml \
+        --description "This is Region App Solution" \
+        --config-template-file ./rapp-config-template.yaml \
         --specification "@rapp-specs.json" \
         --version "$rappversion"
     ```
@@ -393,14 +403,14 @@ To create the solution schema and solution template files, you can use *common-s
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is RApp Solution" `
-        --configuration-template-file .\rapp-config-template.yaml `
+        --description "This is Region App Solution" `
+        --config-template-file .\rapp-config-template.yaml `
         --specification "@rapp-specs.json" `
         --version $rappversion
     ```
 ***
 
-### Solution template for FApp
+### Solution template for Factory App
 
 #### [Bash](#tab/bash)
 
@@ -420,8 +430,8 @@ To create the solution schema and solution template files, you can use *common-s
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is FApp Solution" \
-        --configuration-template-file ./fapp-config-template.yaml \
+        --description "This is Factory App Solution" \
+        --config-template-file ./fapp-config-template.yaml \
         --specification "@fapp-specs.json" \
         --version "$fappversion"
     ```
@@ -444,14 +454,14 @@ To create the solution schema and solution template files, you can use *common-s
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is FApp Solution" `
-        --configuration-template-file .\fapp-config-template.yaml `
+        --description "This is Factory App Solution" `
+        --config-template-file .\fapp-config-template.yaml `
         --specification "@fapp-specs.json" `
         --version $fappversion
     ```
 ***
 
-### Solution template for LApp
+### Solution template for Line App
 
 #### [Bash](#tab/bash)
 
@@ -471,8 +481,8 @@ To create the solution schema and solution template files, you can use *common-s
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is LApp Solution" \
-        --configuration-template-file ./lapp-config-template.yaml \
+        --description "This is Line App Solution" \
+        --config-template-file ./lapp-config-template.yaml \
         --specification "@lapp-specs.json" \
         --version "$lappversion"
     ```
@@ -495,8 +505,8 @@ To create the solution schema and solution template files, you can use *common-s
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is LApp Solution" `
-        --configuration-template-file .\lapp-config-template.yaml `
+        --description "This is Line App Solution" `
+        --config-template-file .\lapp-config-template.yaml `
         --specification "@lapp-specs.json" `
         --version $lappversion
     ```
@@ -506,13 +516,13 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for GA solution.
+1. Set the configuration for Global Adapter solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "$level1Name"
     ```
 
-1. Set the configuration for RApp solution.
+1. Set the configuration for Region App solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level1Name"
@@ -520,7 +530,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level2Name"
     ```
 
-1. Set the configuration for FApp solution.
+1. Set the configuration for Factory App solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level1Name"
@@ -530,7 +540,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level3Name"
     ```
 
-1. Set the configuration for LApp solution.
+1. Set the configuration for Line App solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level1Name"
@@ -544,19 +554,19 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for GA solution.
+1. Set the configuration for Global Adapter solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $level1Name
     ```
-1. Set the configuration for RApp solution.
+1. Set the configuration for Region App solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level1Name
     
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level2Name
     ```    
-1. Set the configuration for FApp solution.
+1. Set the configuration for Factory App solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level1Name
@@ -567,7 +577,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level3Name
     ```
 
-1. Set the configuration for LApp solution.
+1. Set the configuration for Line App solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level1Name
@@ -581,34 +591,35 @@ To create the solution schema and solution template files, you can use *common-s
 
 ***
 
-## Review the GA configuration
+## Review the Global Adapter configuration
 
-Review the configuration for GA solution with "ga-instance-a" instance.
+Review the configuration for Global Adapter solution with "ga-instance-a" instance.
 
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target review --solution-template-name "$ganame" --solution-template-version "$gaversion" --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion  --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
 ```
+
 ### [PowerShell](#tab/powershell)
 
 
 ```powershell
-az workload-orchestration target review --solution-template-name $ganame --solution-template-version $gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
 ```
 
 ***
 
 In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
-## Review, publish, and deploy RApp solution
+## Review, publish, and deploy Region App solution
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration for RApp solution with dependency on GA solution.
+1. Review the configuration for Region App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$rappname" --solution-template-version "$rappversion" --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -618,24 +629,25 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     rappSolutionVersion="<name>"
     ```
 
-1. Publish the RApp solution.
+1. Publish the Region App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$rappname" --solution-version "$rappSolutionVersion" --review-id "$rappReviewId" --resource-group "$rg" --target-name "$regionTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
-1. Deploy the RApp solution.
+1. Deploy the Region App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$rappname" --solution-version "$rappSolutionVersion" --resource-group "$rg" --target-name "$regionTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
+
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration for RApp solution with dependency on GA solution.
+1. Review the configuration for Region App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $rappname --solution-template-version $rappversion --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -645,27 +657,27 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     $rappSolutionVersion = "<name>"
     ```
 
-1. Publish the RApp solution.
+1. Publish the Region App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $rappname --solution-version $rappSolutionVersion --review-id $rappReviewId --resource-group $rg --target-name $regionTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
-1. Deploy the RApp solution.
+1. Deploy the Region App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $rappname --solution-version $rappSolutionVersion  --resource-group $rg --target-name $regionTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 ***
 
-## Review, publish, and deploy FApp solution
+## Review, publish, and deploy Factory App solution
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration for FApp solution with dependency on GA solution.
+1. Review the configuration for Factory App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$fappname" --solution-template-version "$fappversion" --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fappname/versions/$fappversion  --resource-group "$rg" --target-name "$factoryTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -675,24 +687,24 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     fappSolutionVersion="<name>"
     ```
 
-1. Publish the FApp solution.
+1. Publish the Factory App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$fappname" --solution-version "$fappSolutionVersion" --review-id "$fappReviewId" --resource-group "$rg" --target-name "$factoryTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
-1. Deploy the FApp solution.
+1. Deploy the Factory App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$fappname" --solution-version "$fappSolutionVersion" --resource-group "$rg" --target-name "$factoryTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$factoryTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration for FApp solution with dependency on GA solution.
+1. Review the configuration for Factory App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $fappname --solution-template-version $fappversion --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$fappname/versions/$fappversion  --resource-group $rg --target-name $factoryTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -702,27 +714,27 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     $fappSolutionVersion = "<name>"
     ```
 
-1. Publish the FApp solution.
+1. Publish the Factory App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $fappname --solution-version $fappSolutionVersion --review-id $fappReviewId --resource-group $rg --target-name $factoryTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion
     ```
 
-1. Deploy the FApp solution.
+1. Deploy the Factory App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $fappname --solution-version $fappSolutionVersion  --resource-group $rg --target-name $factoryTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $factoryTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget/solutions/$fappname/versions/$fappSolutionVersion 
     ```
 ***
 
-## Review, publish, and deploy LApp solution
+## Review, publish, and deploy Line App solution
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration for LApp solution with dependency on GA solution.
+1. Review the configuration for Line App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-name "$lappname" --solution-template-version "$lappversion" --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$lappname/versions/$lappversion  --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -732,24 +744,24 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     lappSolutionVersion="<name>"
     ```
 
-1. Publish the LApp solution.
+1. Publish the Line App solution.
 
     ```bash
-    az workload-orchestration target publish --solution-name "$lappname" --solution-version "$lappSolutionVersion" --review-id "$lappReviewId" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
-1. Deploy the LApp solution.
+1. Deploy the Line App solution.
 
     ```bash
-    az workload-orchestration target install --solution-name "$lappname" --solution-version "$lappSolutionVersion" --resource-group "$rg" --target-name "$lineTarget"
+    az workload-orchestration target install --resource-group "$rg" --target-name "$lineTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration for LApp solution with dependency on GA solution.
+1. Review the configuration for Line App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-name $lappname --solution-template-version $lappversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$lappname/versions/$lappversion  --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
@@ -759,16 +771,16 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     $lappSolutionVersion = "<name>"
     ```
 
-1. Publish the LApp solution.
+1. Publish the Line App solution.
 
     ```powershell
-    az workload-orchestration target publish --solution-name $lappname --solution-version $lappSolutionVersion --review-id $lappReviewId --resource-group $rg --target-name $lineTarget
+    az workload-orchestration target publish --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 
-1. Deploy the LApp solution.
+1. Deploy the Line App solution.
 
     ```powershell
-    az workload-orchestration target install --solution-name $lappname --solution-version $lappSolutionVersion  --resource-group $rg --target-name $lineTarget 
+    az workload-orchestration target install --resource-group $rg --target-name $lineTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget/solutions/$lappname/versions/$lappSolutionVersion
     ```
 ***
 

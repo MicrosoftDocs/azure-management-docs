@@ -22,7 +22,7 @@ This article is divided into two main sections:
 
 * **Azure container registry** - Create a container registry in your Azure subscription. For example, use the [Azure portal](container-registry-get-started-portal.md) or the [Azure CLI][az-acr-create].  
 * **Azure CLI** - Version `2.29.1` or later is required. See [Install Azure CLI][azure-cli-install] for installation and/or upgrade.
-* **ORAS CLI** - Version `v1.1.0` or later version is required. See: [ORAS installation][oras-install-docs].
+* **ORAS CLI** - Version `v1.2.3` or later version is required. See: [ORAS installation][oras-install-docs].
 * **Docker (Optional)** - To complete the walkthrough, a container image is referenced. The `oras` CLI utilizes the Docker desktop credential store for storing credentials. 
 You can use [Docker installed locally][docker-install] to build and push a container image, or use [`acr build`][az-acr-build] to build remotely in Azure.
 
@@ -226,6 +226,9 @@ To demonstrate this capability, this article shows how to use the [OCI Registry 
 Storing individual (subject) OCI Artifacts are covered in [Push and pull OCI artifacts](container-registry-manage-artifact.md#push-and-pull-oci-artifacts-with-oras).
 
 To store a graph of artifacts, a reference to a `subject` artifact is defined using the [OCI image manifest][oci-image-manifest], which is part of the [prerelease OCI 1.1 Distribution specification][oci-1_1-spec].
+
+ > [!NOTE]
+ > ORAS v1.2.3 uses the [OCI Referrers API][oci-artifact-referrers] to store the attached referrer artifacts in the registry by default. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry. ORAS will fall back to use [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md#referrers-tag-schema) to store the attached referrers in the CMK-encrypted registry.
 
 ### Push a container image
 
@@ -493,9 +496,9 @@ In this article, you learned how to use Azure Container Registry to store, manag
 
 <!-- LINKS - external -->
 [docker-install]:           https://www.docker.com/get-started/
-[oci-image-manifest]:    https://github.com/opencontainers/image-spec/blob/main/manifest.md
-[oci-artifact-referrers]:   https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers/
-[oci-spec]:                 https://github.com/opencontainers/distribution-spec/blob/main/spec.md/
+[oci-image-manifest]:    https://github.com/opencontainers/image-spec/blob/v1.1.1/manifest.md
+[oci-artifact-referrers]:   https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md#listing-referrers/
+[oci-spec]:                 https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md/
 [oci-1_1-spec]:             https://github.com/opencontainers/distribution-spec/releases/tag/v1.1.0-rc1
 [oras-docs]:                https://oras.land/
 [oras-install-docs]:        https://oras.land/docs/installation

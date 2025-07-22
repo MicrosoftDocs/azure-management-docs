@@ -3,6 +3,7 @@ title: azcmagent config CLI reference
 description: Syntax for the azcmagent config command line tool
 ms.topic: reference
 ms.date: 04/20/2023
+# Customer intent: As an IT administrator managing the Azure connected machine agent, I want to configure and retrieve various agent settings via a command line tool, so that I can optimize the agent's performance and tailor it to my infrastructure needs.
 ---
 
 # azcmagent config

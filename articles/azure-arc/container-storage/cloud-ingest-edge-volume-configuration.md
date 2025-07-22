@@ -24,6 +24,8 @@ For example, you can write a file to your cloud ingest PVC, and a process runs a
 
 ## Prerequisites
 
+If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](alternate-onelake.md).
+
 1. Create a storage account [following the instructions here](/azure/storage/common/storage-account-create?tabs=azure-portal).
 
    > [!NOTE]
@@ -35,9 +37,7 @@ For example, you can write a file to your cloud ingest PVC, and a process runs a
 
 Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing you to upload cloud ingest volumes to these storage systems.
 
-It's recommended that you use Extension Identity. If your final destination is blob storage or ADLSgen2, see the following instructions. If your final destination is OneLake, follow the instructions in [Configure OneLake for Extension Identity](alternate-onelake.md).
-
-While it's not recommended, if you prefer to use key-based authentication, follow the instructions in [Key-based authentication](alternate-key-based.md).
+If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](cloud-ingest-edge-volumes-with-workload-identity.md).
 
 ### Obtain Extension Identity
 

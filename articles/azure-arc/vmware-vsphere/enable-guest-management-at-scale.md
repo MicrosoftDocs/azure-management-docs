@@ -2,81 +2,79 @@
 title: Install Arc agent at scale for your VMware VMs
 description: Learn how to enable guest management at scale for Arc enabled VMware vSphere VMs. 
 ms.topic: how-to
-ms.date: 07/18/2024
+ms.date: 07/02/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
-#Customer intent: As an IT infra admin, I want to install arc agents to use Azure management services for VMware VMs.
 ms.custom:
   - build-2025
+# Customer intent: As an IT infrastructure administrator, I want to install Arc agents at scale on VMware VMs, so that I can leverage Azure management capabilities for efficient resource management and operations.
 ---
 
 # Install Arc agents at scale for your VMware VMs
 
-In this article, you learn how to install Arc agents at scale for VMware VMs and use Azure management capabilities.
+In this article, you learn how to install Azure connected machine agents for VMware VMs which is a prerequisite to use Azure services for securing, patching, monitoring your VMs and leverage Azure Arc benefits such as Extended Security Updates, pay-as-you-go licensing for Windows Server and SQL servers, and Software Attestation benefits. 
+
+There are multiple avenues available to install Arc agents on VMware VMs which you can leverage based on your deployment preferences: 
+
+- Azure portal
+- Programmatic methods such as Azure CLI, Azure PowerShell, Azure REST APIs, Azure SDKs, Terraform, Bicep and ARM templates. The reference section of this documentation repository has information on the exact syntax.
+- Out-of-band methods such as using a Service Principal, System Center Configuration Manager script, System Center Configuration Manager custom task sequence, Group policy and Ansible playbook. 
 
 ## Prerequisites
 
 Ensure the following before you install Arc agents at scale for VMware VMs:
 
 - The resource bridge must be in running state.
-- The vCenter must be in connected state.
-- The user account must have permissions listed in Azure Arc VMware Administrator role.
+- The vCenter must be in *Connected* state and its associated Azure Arc resource bridge in a *Running* state.
+- *Azure Arc VMware VM Contributor* role or a custom Azure role with permissions to install Arc agents on the target machines.
 - All the target machines are:
-    - Powered on and the resource bridge has network connectivity to the host running the VM.
+    - Powered on.
     - Running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
     - VMware tools are installed on the machines. If VMware tools aren't installed, enable guest management operation is grayed out in the portal.  
         >[!Note]
-        >You can use the [out-of-band method](./enable-guest-management-at-scale.md#approach-d-install-arc-agents-at-scale-using-out-of-band-approach) to install Arc agents if VMware tools aren't installed.  
+        >You can use the out-of-band method to install Arc agents if VMware tools aren't installed.  
     - Able to connect through the firewall to communicate over the internet, and [these URLs](../servers/network-requirements.md#urls) aren't blocked.
 
    > [!NOTE]
    > If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and add `<username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`. <br> <br>If your VM template has these changes incorporated, you won't need to do this for the VM created from that template.
 
-## Approach A: Install Arc agents at scale from portal
+> [!Note]
+> **Automatic connection for SQL Server**:
+> When you connect a Windows or Linux server to Azure Arc that also has Microsoft SQL Server installed, the SQL Server instances will automatically be connected to Azure Arc as well. [SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/overview) provides a detailed inventory and additional management capabilities for your SQL Server instances and databases. As part of the connection process, an extension is deployed to your Azure Arc-enabled server and [new roles](/sql/sql-server/azure-arc/permissions-granted-agent-extension) will be applied to your SQL Server and databases. If you don't want to automatically connect your SQL Servers to Azure Arc, you can opt out by adding a tag to the Windows or Linux server with the name `ArcSQLServerExtensionDeployment` and value `Disabled` when it's connected to Azure Arc.
+> For more information, see [Manage automatic connection for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/manage-autodeploy).
 
-An admin can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
+## Install Arc agents 
+
+# [Azure portal](#tab/azure-portal)
+
+This method is applicable only if VMware tools are installed on the target machines. If VMware tools aren't installed, enable guest management operation is grayed out in the portal and Arc agents can be installed through out-of-band methods.
+
+An administrator can install agents for multiple machines from the Azure portal if the machines share the same administrator credentials.
 
 1. Navigate to **Azure Arc center** and select **vCenter resource**.
 
-2. Select all the machines and choose **Enable in Azure** option. 
+2. Select all the target machines and choose **Enable in Azure** option. 
 
-3. Select **Enable guest management** checkbox to install Arc agents on the selected machine.
+3. Select **Enable guest management** checkbox to install Arc agents on the selected machines. This allows you to use Azure services such as Azure Update Manager, Azure Monitor, Microsoft Defender for Cloud, Azure Policy, Azure Automation, Change Tracking and Inventory, etc. to secure, govern, patch and monitor your virtual machines.
 
-4. If you want to connect the Arc agent via proxy, provide the proxy server details.
-
-5. If you want to connect Arc agent via private endpoint, follow these [steps](../servers/private-link-security.md) to set up Azure private link. 
+4. If you enable guest management on any of your machines, based on your organization's network policies, choose the connectivity method for the Arc agents that runs in your VMware VMs to connect to Azure. The available options are Public endpoint, Proxy server and Private endpoint. 
+     - If you want to connect the Arc agent via proxy, provide the proxy server details.
+     - If you want to connect Arc agent via private endpoint, follow these [steps](../servers/private-link-security.md) to set up Azure private link. 
 
       >[!Note]
       > Private endpoint connectivity is only available for Arc agent to Azure communications. For Arc resource bridge to Azure connectivity, Azure private link isn't supported.
 
-6. Provide the administrator username and password for the machine. 
+5. Provide the administrator username and password for the machine. For Windows VMs, the account must be part of local administrator group; and for Linux VM, it must be a root account.
 
-> [!NOTE]
-> For Windows VMs, the account must be part of local administrator group; and for Linux VM, it must be a root account.
+6. Select **Enable** to start the installation of the Arc agent in the specified machines. Once installation is complete, the Guest management column will switch to Enabled for the machines with Arc agent running. You can start using Azure services for these machines. These credentials won't be persisted in Azure. They're used to install the Azure Arc agent and then discarded.
 
-## Approach B: Install Arc agents using AzCLI commands
+# [Auto Arc-enablement script](#tab/ercenablement-script)
 
-The following Azure CLI commands can be used to install Arc agents.  
+This method is applicable only if VMware tools are installed on the target machines. If VMware tools aren't installed, Arc agents can be installed through out-of-band methods. 
 
-```azurecli
-az connectedvmware vm guest-agent enable --password 
-
-                                         --resource-group 
-
-                                         --username 
-
-                                         --vm-name 
-
-                                         [--https-proxy] 
-
-                                         [--no-wait]
-```
-
-## Approach C: Install Arc agents at scale using helper script
-
-Arc agent installation can be automated using the helper script built using the AzCLI command provided [here](./enable-guest-management-at-scale.md#approach-b-install-arc-agents-using-azcli-commands). Download this [helper script](https://aka.ms/arcvmwarebatchenable) to enable VMs and install Arc agents at scale. In a single ARM deployment, the helper script can enable and install Arc agents on 200 VMs.  
+Arc agent installation can be automated using the helper script built using the AzCLI command. Download this [helper script](https://aka.ms/arcvmwarebatchenable) to enable VMs and install Arc agents at scale. In a single ARM deployment, the helper script can enable and install Arc agents on 200 VMs.  
 
 ### Features of the script
 
@@ -140,7 +138,7 @@ To unregister the task, run the following command:
 Unregister-ScheduledTask -TaskName "EnableVMs"
 ```
 
-## Approach D: Install Arc agents at scale using out-of-band approach 
+# [Out-of-band methods](#tab/Out-of-band)
 
 Arc agents can be installed directly on machines without relying on VMware tools or APIs. By following the out-of-band approach, first onboard the machines as Arc-enabled Server resources with Resource type as Microsoft.HybridCompute/machines. After that, perform **Link to vCenter** operation to update the machine's Kind property as VMware, enabling virtual lifecycle operations.  
 
@@ -168,6 +166,10 @@ Arc agents can be installed directly on machines without relying on VMware tools
 
      [!INCLUDE [azure-cli-specified-arc](./includes/azure-cli-specified-arc.md)]
 
+--- 
+
 ## Next steps
 
-[Set up and manage self-service access to VMware resources through Azure RBAC](setup-and-manage-self-service-access.md).
+- [Set up and manage self-service access to VMware resources through Azure RBAC](setup-and-manage-self-service-access.md).
+- [Manage and maintain the Azure Connected Machine agent](../servers/manage-agent.md).
+- [VM Extension Management with Azure Arc-Enabled Servers](../servers/manage-vm-extensions.md).

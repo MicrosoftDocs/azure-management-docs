@@ -127,7 +127,7 @@ Solution: To resolve this issue, retry publishing the solution.
 ```powershell
 $reviewId = "<input the id acquired from previous step>" 
 
-az workload-orchestration target publish  --solution-name $solutionName --solution-version $solutionVersion --review-id $reviewId --resource-group $rg --target-name $targetName
+az workload-orchestration target publish --resource-group $rg --target-name $targetName         --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName/solutions/$solutionName/versions/$solutionVersion
 ```
 
 ### Issue: Container image file is corrupted or missing 
@@ -236,3 +236,36 @@ az rest `
     --resource https://management.azure.com
 ```
 ***
+
+## Troubleshoot GitHub actions 
+
+### Schema creation failures 
+
+If you encounter issues while creating a schema in GitHub actions, consider the following troubleshooting steps:
+
+- Verify schema file syntax. 
+- Check if schema name/version already exists.
+- Ensure Azure credentials have proper permissions.
+
+### Template issues 
+
+If you encounter issues with templates in GitHub actions, consider the following troubleshooting steps:
+
+- Verify schema version exists.
+- Check specification file JSON format.
+- Validate capabilities in metadata.
+- Check external validation settings.
+
+### File detection issues 
+
+If you encounter issues with file detection in GitHub actions, consider the following troubleshooting steps:
+
+- Ensure files use correct naming patterns.
+- Verify files are in the correct directories:
+    - **Apps:** `.pg/apps/<app>/workload-orchestration/`
+    - **Common:** `.pg/apps/common/`
+- Check workflow logs for file detection output.
+
+## Contact support
+
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]

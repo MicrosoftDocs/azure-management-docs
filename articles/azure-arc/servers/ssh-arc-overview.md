@@ -4,6 +4,7 @@ description: Use SSH remoting to access and manage Azure Arc-enabled servers.
 ms.date: 06/13/2025
 ms.topic: concept-article
 ms.custom: references_regions
+# Customer intent: As an IT administrator, I want to configure SSH access to Azure Arc-enabled servers without public IPs, so that I can securely manage both Linux and Windows machines using existing SSH tools without exposing additional ports.
 ---
 
 # SSH access to Azure Arc-enabled servers

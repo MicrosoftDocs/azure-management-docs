@@ -5,6 +5,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-sql-mi
 ms.topic: include
 ms.date: 08/01/2023
+# Customer intent: As a database administrator, I want to set up failover groups between SQL Managed Instances in Azure Arc, so that I can ensure high availability and disaster recovery for my database environment.
 ---
 
 
