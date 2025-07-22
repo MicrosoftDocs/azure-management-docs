@@ -40,12 +40,10 @@ groups:
   - id: workload-identity
     title: Workload identity
 # Owner: v-gjeronika
-- id: vmware-portal-bicep-terraform
-  title: Create a virtual machine on VMware vCenter using Azure Arc
+- id: vmware-bicep-terraform
+  title: Create a virtual machine on VMware vCenter using Infrastructure as Code methods
   prompt: Choose a method
   pivots:
-  - id: portal
-    title: Azure portal
   - id: bicep
     title: Bicep
   - id: terraform
