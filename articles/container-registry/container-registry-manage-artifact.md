@@ -228,7 +228,7 @@ Storing individual (subject) OCI Artifacts are covered in [Push and pull OCI art
 To store a graph of artifacts, a reference to a `subject` artifact is defined using the [OCI image manifest][oci-image-manifest], which is part of the [prerelease OCI 1.1 Distribution specification][oci-1_1-spec].
 
  > [!NOTE]
- > ORAS v1.2.3 uses the OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md#listing-referrers) to store the attached referrer artifacts in the registry by default. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry. ORAS will fall back to use [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md#referrers-tag-schema) to store the attached referrers in the CMK-encrypted registry.
+ > ORAS v1.2.3 uses the [OCI Referrers API][oci-artifact-referrers] to store the attached referrer artifacts in the registry by default. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry. ORAS will fall back to use [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/v1.1.1/spec.md#referrers-tag-schema) to store the attached referrers in the CMK-encrypted registry.
 
 ### Push a container image
 
