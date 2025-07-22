@@ -16,7 +16,7 @@ This article describes how to set ingest policies in Azure Container Storage ena
 
 You can configure the following parameters. The following table also lists the default values if you don't edit the policy:
 
-| Parameter | Description | Available values | Default            |
+| Parameter | Description | Available values | Default |
 |---|---|---|---|
 | `spec.ingest.order` | The order in which files written to the subvolume are ingested. This order is a best effort, not a guarantee. | `oldest-first`: the oldest files yet to be ingested are prioritized.<br/><br/> `newest-first`: the newest files yet to be ingested are prioritized.  | `oldest-first` |
 | `spec.ingest.minDelaySec` | The minimum number of seconds after the last file handle is closed before the file is eligible for ingest. | Any integer value of seconds between 0 and 31536000 (one year). | 60 seconds |
