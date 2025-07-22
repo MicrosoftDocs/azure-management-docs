@@ -10,6 +10,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom:
   - build-2025
+# Customer intent: As a cloud administrator, I want to understand the new features in Azure Arc-enabled SCVMM, so that I can optimize VM management and leverage enhancements for better performance and cost efficiency in my cloud infrastructure.
 ---
 
 # What's new in Azure Arc-enabled SCVMM

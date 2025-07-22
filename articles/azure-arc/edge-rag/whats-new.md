@@ -7,9 +7,9 @@ ms.topic: concept-article
 ms.date: 07/01/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
-#CustomerIntent: As an IT administrator or technical decision maker, I want to stay updated on the latest features and improvements for Edge RAG so that I can effectively plan, deploy, and manage the Edge RAG solution in my organization.
 ms.custom:
   - build-2025
+# Customer intent: As an IT administrator or technical decision maker, I want to stay updated on the latest features and improvements for Edge RAG so that I can effectively plan, deploy, and manage the Edge RAG solution in my organization.
 ---
 
 # What's new in Edge RAG Preview enabled by Azure Arc

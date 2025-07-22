@@ -10,6 +10,7 @@ ms.custom:
   - build-2025
 ms.author: jsuri
 author: jyothisuri
+# Customer intent: "As a system administrator managing Azure Arc-enabled SCVMM, I want to perform maintenance and update account credentials for the Arc resource bridge, so that I can ensure secure and reliable connectivity between on-premises servers and Azure services."
 ---
 
 # Perform ongoing maintenance and administration for Azure Arc-enabled System Center Virtual Machine Manager
