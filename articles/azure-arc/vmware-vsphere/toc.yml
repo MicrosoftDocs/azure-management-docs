@@ -22,7 +22,7 @@
     href: /azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows
 - name: Tutorial
   items:
-  - name: Create a virtual machine on VMware vCenter
+  - name: Terraform and Bicep based VM creation
     href: quick-start-create-a-vm.md
 - name: How-to guides
   items:
