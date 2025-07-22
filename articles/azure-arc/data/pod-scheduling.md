@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2023
 ms.topic: how-to
+# Customer intent: "As a Kubernetes administrator, I want to configure pod scheduling options for Azure Arc-enabled SQL Managed Instances, so that I can optimize resource allocation and ensure effective management of my database deployments."
 ---
 
 # Arc SQL Managed Instance pod scheduling

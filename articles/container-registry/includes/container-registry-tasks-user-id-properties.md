@@ -2,13 +2,14 @@
 title: include file
 description: include file
 services: container-registry
-author: dlepow
+author: chasedmicrosoft
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/12/2019
-ms.author: danlep
+ms.author: doveychase
 ms.custom: include file
+# Customer intent: "As a cloud administrator, I want to configure a User Assigned identity in my container registry tasks, so that I can securely manage access and authentication for my applications."
 ---
 In the command output, the `identity` section shows the identity of type `UserAssigned` is set in the task:
 

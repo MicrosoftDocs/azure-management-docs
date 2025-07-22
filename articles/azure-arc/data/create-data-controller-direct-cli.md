@@ -11,6 +11,7 @@ ms.subservice: azure-arc-data
 ms.custom: devx-track-azurecli
 ms.date: 05/27/2022
 ms.topic: overview
+# Customer intent: "As a cloud administrator, I want to deploy an Azure Arc data controller in direct connectivity mode using CLI commands, so that I can manage and monitor my data services efficiently in a connected Kubernetes environment."
 ---
 
 #  Create Azure Arc data controller in direct connectivity mode using CLI

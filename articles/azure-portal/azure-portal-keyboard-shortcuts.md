@@ -4,6 +4,7 @@ description: The Azure portal supports global keyboard shortcuts to help you per
 ms.topic: concept-article
 ms.date: 12/13/2024
 ms.custom: accessibility
+# Customer intent: "As a user navigating the Azure portal, I want to utilize keyboard shortcuts so that I can efficiently perform actions and improve my workflow without excessive mouse reliance."
 ---
 
 # Keyboard shortcuts in the Azure portal

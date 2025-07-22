@@ -5,32 +5,31 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
 ms.date: 05/01/2025
+ms.custom:
+  - build-2025
 ---
 
 # Use Azure portal to monitor your solutions as an IT developer
 
-IT developers can use the Azure portal to monitor their solutions. In the Azure portal, you can:
+IT DevOps can use the Azure portal to monitor their solutions. In the Azure portal, you can:
 
 - View the applications on lines and their statuses.
 - View alerts related to deployment.
 - Trace the issues causing failures.
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
-
 ## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
-## Open the Azure portal
+## Open workload orchestration page
 
-1. Sign in to the [Azure portal](https://portal.azure.com/).
-1. In the search box at the top of the page, type **Azure Arc** and select **Azure Arc** from the list of results.
-1. In the left-side menu of the Azure Arc page, open the **Management** section and select **Workload Orchestration (preview)**.
+1. Go to the [**workload orchestration** page in Azure Arc](https://aka.ms/configManager).
 1. The workload orchestration page has two tabs: **Deployment alerts** and **All resources**. Deployment alerts tab provides the list of issues to be debugged. All resources tab lists all the sites, K8 clusters and deployment targets.
 
     :::image type="content" source="./media/azure-portal-1.png" alt-text="Screenshot of the Azure portal showing the Workload Orchestration menu under management in Azure Arc." lightbox="./media/azure-portal-1.png":::
 
-## Monitor deployment alerts
+    > [!NOTE]
+    > The workload orchestration page is only available via [the direct link](https://aka.ms/configManager). 
 
 1. In the **Deployment alerts** tab, you can see the list of deployment alerts. The list shows the target name, type, and other details.
 1. Click on the name of the target to view the details of the alert.
@@ -46,6 +45,10 @@ IT developers can use the Azure portal to monitor their solutions. In the Azure 
 1. In the **All resources** tab, the default view shows the flattened list of sites and targets.
 
     :::image type="content" source="./media/azure-portal-4.png" alt-text="Screenshot of the Azure portal showing how to change the view to monitor all resources in the Workload Orchestration menu." lightbox="./media/azure-portal-4.png":::
+
+1. In the **Hierarchy level** column, you can see the hierarchy level of the resources. Workload orchestration allows you to have an organization with a minimum of two and a maximum of four levels of hierarchy. For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
+
+    :::image type="content" source="./media/azure-portal-hierarchy.png" alt-text="Screenshot of the Azure portal showing the hierarchy levels of the resources." lightbox="./media/azure-portal-hierarchy.png":::
 
 1. Click on **View solutions**. 
 

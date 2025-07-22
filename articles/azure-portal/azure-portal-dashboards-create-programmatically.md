@@ -3,71 +3,55 @@ title: Programmatically create Azure Dashboards
 description: Use a dashboard in the Azure portal as a template to programmatically create Azure Dashboards. Includes JSON reference.
 ms.topic: how-to
 ms.custom:
-ms.date: 09/25/2024
+ms.date: 07/11/2025
+# Customer intent: "As an Azure user, I want to programmatically create and deploy Azure portal dashboards using JSON templates, so that I can manage and customize multiple dashboards efficiently."
 ---
 
 # Programmatically create Azure dashboards
 
-This article walks you through the process of programmatically creating and publishing Azure dashboards. The sample dashboard shown below is referenced throughout the document, but you can use this process with any dashboard.
-
-:::image type="content" source="media/azure-portal-dashboards-create-programmatically/sample-dashboard.png" alt-text="Screenshot of a sample dashboard in the Azure portal.":::
+This article walks you through the process of programmatically creating and publishing Azure dashboards. You can use this process to create a deployable template based on any dashboard.
 
 ## Overview
 
-Shared dashboards in the [Azure portal](https://portal.azure.com) are [resources](/azure/azure-resource-manager/management/overview), just like virtual machines and storage accounts. You can manage resources programmatically by using the [REST APIs](/rest/api/?view=Azure&preserve-view=true), the [Azure CLI](/cli/azure), and [Azure PowerShell commands](/powershell/azure/get-started-azureps).
+Shared dashboards in the [Azure portal](https://portal.azure.com) are [resources](/azure/azure-resource-manager/management/overview), just like virtual machines and storage accounts. You can manage resources programmatically by using [Azure REST API](/rest/api/?preserve-view=true&view=Azure), [Azure CLI](/cli/azure), and [Azure PowerShell](/powershell/azure/get-started-azureps). Each of these APIs and tools provide ways to create, list, retrieve, modify, and delete resources.
 
-Many features build on these APIs to make resource management easier. Each of these APIs and tools offers ways to create, list, retrieve, modify, and delete resources. Since dashboards are resources, you can pick your favorite API or tool to use.
+Whichever tools you use, to create a dashboard programmatically, you construct a [JSON representation](azure-portal-dashboards-structure.md) of your dashboard object. This object contains information about the tiles on the dashboard. It includes sizes, positions, resources, and customizations.
 
-Whichever tools you use, to create a dashboard programmatically, you construct a JSON representation of your dashboard object. This object contains information about the tiles on the dashboard. It includes sizes, positions, resources they're bound to, and any user customizations.
-
-The most practical way to generate this JSON document is to use the Azure portal to create an initial dashboard with the tiles you want. Then export the JSON and create a template from the result that you can modify further and use in scripts, programs, and deployment tools.
+The most practical way to generate this JSON document is to use the Azure portal to create an initial dashboard with the tiles you want. After you create the dashboard, you export the JSON, then use it as a template. The template can be modified further and deployed using Azure Resource Manager.
 
 ## Fetch the JSON representation of a dashboard
 
-We'll start by downloading the JSON representation of an existing dashboard. Open the dashboard that you want to start with. Select **Export** and then select **Download**.
+First, download the JSON representation of an existing dashboard. From the dashboard that you want to start with, select **Export** and then select **Download**.
 
 :::image type="content" source="media/azure-portal-dashboards-create-programmatically/download-command.png" alt-text="Screenshot of the command to export the JSON representation of a template in the Azure portal.":::
 
-You can also retrieve information about the dashboard resource programmatically by using [REST APIs](/rest/api/resources/Resources/Get) or other methods.
-
-## Create a template from the JSON
-
-The next step is to create a template from the downloaded JSON. You'll be able to use the template programmatically with the appropriate resource management APIs, command-line tools, or within the portal.
-
-In most cases, you want to preserve the structure and configuration of each tile. Then parameterize the set of Azure resources that the tiles point to. You don't have to fully understand the [dashboard JSON structure](azure-portal-dashboards-structure.md) to create a template.
-
-In your exported JSON dashboard, find all occurrences of Azure resource IDs. Our example dashboard has multiple tiles that all point at a single Azure virtual machine. That's because our dashboard only looks at this single resource. If you search the sample JSON included at the end of the document for "/subscriptions", you'll find several occurrences of this ID.
-
-`/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1`
-
-To publish this dashboard for any virtual machine in the future, parameterize every occurrence of this string within the JSON.
+If you prefer, you can retrieve the representation and other information about the dashboard resource programmatically, such as by using [REST APIs](/rest/api/resources/Resources/Get).
 
 ## Create a dashboard template
 
-Azure offers the ability to orchestrate the deployment of multiple resources. You create a deployment template that expresses the set of resources to deploy and the relationships between them. For more information, see [Deploy resources with Resource Manager templates and Azure PowerShell](/azure/azure-resource-manager/templates/deploy-powershell).
+Azure lets you orchestrate the deployment of multiple resources, such as dashboards. You create a deployment template that expresses the set of resources to deploy and the relationships between them. In this case, you create a template by modifying the JSON you downloaded. 
 
 The JSON format of each deployed template resource is the same as if you were creating them individually by uploading an exported dashboard, except that the template language adds a few concepts like variables, parameters, basic functions, and more. This extended syntax is only supported in the context of a template deployment. For more information, see [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax).
 
-Parameterization should be done using the template's parameter syntax.  You replace all instances of the resource ID we found earlier as shown here.
+You can preserve the structure and configuration of each tile, then parameterize the set of Azure resources that the tiles refer to, so they can be reused and adapted for different resources. TO do so, use the template's parameter syntax to replace specific resource IDs with parameterized values.
 
-Example JSON property with hard-coded resource ID:
-
-```json
-id: "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1"
-```
-
-Example JSON property converted to a parameterized version based on template parameters
+For example, your template might include a hard-coded resource ID for a VM, such as:
 
 ```json
-id: "[resourceId(parameters('virtualMachineResourceGroup'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
+resourceId: "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/contoso/providers/Microsoft.Compute/virtualMachines/myVM1"
 ```
 
-Declare required template metadata and the parameters at the top of the JSON template like this:
+This can be replaced with a parameterized version that you can use with other VMs, such as:
+```json
+resourceId: "[resourceId(parameters('virtualMachineResourceGroup'), 'Microsoft.Compute/virtualMachines', parameters('virtualMachineName'))]"
+```
+
+Declare required template metadata and the parameters at the top of the JSON template, like this:
 
 ```json
 
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "virtualMachineName": {
@@ -89,16 +73,22 @@ Declare required template metadata and the parameters at the top of the JSON tem
 
 Once you've configured your template, deploy it using any of the following methods:
 
-- [REST APIs](/rest/api/resources/deployments)
+- [REST API](/azure/azure-resource-manager/templates/deploy-rest)
 - [PowerShell](/azure/azure-resource-manager/templates/deploy-powershell)
-- [Azure CLI](/cli/azure/deployment/group#az-deployment-group-create)
-- [The Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template)
+- [Azure CLI](/azure/azure-resource-manager/templates/deploy-cli)
+- [Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template)
 
-Next you'll see two versions of our example dashboard JSON. The first is the version that we exported from the portal that was already bound to a resource. The second is the template version that can be programmatically bound to any virtual machine and deployed using Azure Resource Manager.
+## Example dashboard
 
-## Example JSON representation exported from dashboard
+Consider the following example dashboard:
 
-This example is similar to what you'll see when you export a dashboard similar to the example at the beginning of this article. The hard-coded resource identifiers show that this dashboard is pointing at a specific Azure virtual machine.
+:::image type="content" source="media/azure-portal-dashboards-create-programmatically/sample-dashboard.png" alt-text="Screenshot of a sample dashboard in the Azure portal.":::
+
+The following sections show two JSON representations of this example dashboard. The first is the version exported from the portal that's bound to a specific VM resource. The second is the template version that can be programmatically bound to any VM and deployed using Azure Resource Manager.
+
+### Example JSON representation exported from dashboard
+
+This example template is similar to what you'll see when you export a dashboard that looks like the example at the beginning of this article. The hard-coded resource identifiers show that this dashboard is pointing at a specific Azure VM.
 
 ```json
 {
@@ -335,11 +325,13 @@ This example is similar to what you'll see when you export a dashboard similar t
 }
 ```
 
-## Example dashboard template representation
+### Example parameterized dashboard template
 
-The templatized version of the example dashboard has defined three parameters called `virtualMachineName`, `virtualMachineResourceGroup`, and `dashboardName`.  The parameters let you point this dashboard at a different Azure virtual machine every time you deploy. This dashboard can be programmatically configured and deployed to point to any Azure virtual machine. To test this feature, copy the following template and paste it into the [Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template).
+This example shows the template version of the previous dashboard, which can be programmatically bound to any virtual machine and deployed using Azure Resource Manager.
 
-This example deploys a dashboard by itself, but the template language lets you deploy multiple resources, and bundle one or more dashboards alongside them.
+The templatized version of the example dashboard has defined three parameters called `virtualMachineName`, `virtualMachineResourceGroup`, and `dashboardName`. These parameters let you use the same dashboard template with a different Azure virtual machine every time you deploy. It can be programmatically configured and deployed to point to any Azure virtual machine. To test this feature, copy the following template and paste it into the [Azure portal template deployment page](https://portal.azure.com/#create/Microsoft.Template).
+
+This example deploys one dashboard by itself, but the template language lets you deploy multiple resources and bundle one or more dashboards together.
 
 ```json
 {
@@ -609,11 +601,10 @@ This example deploys a dashboard by itself, but the template language lets you d
 }
 ```
 
-Now that you've seen an example of using a parameterized template to deploy a dashboard, you can try deploying the template by using the [Azure Resource Manager REST APIs](/rest/api/), the [Azure CLI](quickstart-portal-dashboard-azure-cli.md), or [Azure PowerShell](quickstart-portal-dashboard-powershell.md).
+Now that you've seen an example of using a parameterized template to deploy a dashboard, you can try deploying the template by using the [Azure Resource Manager REST APIs](/azure/azure-resource-manager/templates/deploy-rest), the [Azure CLI](quickstart-portal-dashboard-azure-cli.md), or [Azure PowerShell](quickstart-portal-dashboard-powershell.md).
 
 ## Next steps
 
 - Learn more about the [structure of Azure dashboards](azure-portal-dashboards-structure.md).
 - Learn how to [use markdown tiles on Azure dashboards to show custom content](azure-portal-markdown-tile.md).
 - Learn how to [manage access for shared dashboards](azure-portal-dashboard-share-access.md).
-

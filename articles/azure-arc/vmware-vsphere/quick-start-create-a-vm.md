@@ -1,69 +1,19 @@
 ---
-title: Create a virtual machine on VMware vCenter using Azure Arc
+title: Create a virtual machine on VMware vCenter using Infrastructure as Code methods
 description: In this quickstart, you learn how to create a virtual machine on VMware vCenter using Azure Arc
 ms.topic: tutorial
-ms.date: 08/29/2024
+ms.date: 07/22/2025
 ms.service: azure-arc
-zone_pivot_groups: vmware-portal-bicep-terraform
+zone_pivot_groups: vmware-bicep-terraform
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: jsuri
 author: jyothisuri
 # Customer intent: As a self-service user, I want to provision a VM using vCenter resources through Azure so that I can deploy my code
+ms.custom:
+  - build-2025
 ---
 
-# Create a virtual machine on VMware vCenter using Azure Arc
-
-::: zone pivot="portal"
-
-This article describes how to provision a VM using vCenter resources from Azure portal.
-
-## Create a VM in the Azure portal
-
-Once your administrator has connected a VMware vCenter to Azure, represented VMware vCenter resources in Azure, and provided you with permissions on those resources, you'll create a virtual machine.
-
-### Prerequisites
-
-- An Azure subscription and resource group where you have an Arc VMware VM contributor role.
-- A resource pool/cluster/host on which you have Arc Private Cloud Resource User Role.
-- A virtual machine template resource on which you have Arc Private Cloud Resource User Role.
-- A virtual network resource on which you have Arc Private Cloud Resource User Role.
-
-Follow these steps to create VM in the Azure portal:
-
-1. From your browser, go to the [Azure portal](https://portal.azure.com). Navigate to virtual machines browse view. You'll see a unified browse experience for Azure and Arc virtual machines.
-
-   :::image type="content" source="media/quick-start-create-a-vm/browse-virtual-machines.png" alt-text="Screenshot showing the unified browse experience for Azure and Arc virtual machines." lightbox="media/quick-start-create-a-vm/browse-virtual-machines.png":::
-
-2. Select **Add** and then select **Azure Arc machine** from the drop-down.
-
-   :::image type="content" source="media/quick-start-create-a-vm/create-azure-arc-virtual-machine.png" alt-text="Screenshot showing the Basic tab for creating an Azure Arc virtual machine." lightbox="media/quick-start-create-a-vm/create-azure-arc-virtual-machine.png":::
-
-3. Select the **Subscription** and **Resource group** where you want to deploy the VM.
-
-4. Provide the **Virtual machine name** and then select a **Custom location** that your administrator has shared with you.
-
-   If multiple kinds of VMs are supported, select **VMware** from the **Virtual machine kind** drop-down.
-
-5. Select the **Resource pool/cluster/host** into which the VM should be deployed.
-
-6. Select the **datastore** that you want to use for storage.
-
-7. Select the **Template** based on which you'll create the VM.
-
-   >[!TIP]
-   >You can override the template defaults for **CPU Cores** and **Memory**.
-
-   If you selected a Windows template, provide a **Username**, **Password** for the **Administrator account**.
-
-8. (Optional) Change the disks configured in the template. For example, you can add more disks or update existing disks. All the disks and VM will be on the datastore selected in step 6.
-
-9. (Optional) Change the network interfaces configured in the template. For example, you can add network interface (NIC) cards or update existing NICs. You can also change the network to which this NIC will be attached, provided you have appropriate permissions to the network resource.
-
-10. (Optional) Add tags to the VM resource if necessary.
-
-11. Select **Create** after reviewing all the properties. It should take a few minutes to create the VM.
-
-::: zone-end
+# Create a virtual machine on VMware vCenter using Infrastructure as Code methods
 
 ::: zone pivot="bicep"
 

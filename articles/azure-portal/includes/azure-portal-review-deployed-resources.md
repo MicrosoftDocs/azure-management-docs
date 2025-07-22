@@ -6,6 +6,7 @@ ms.service: azure-portal
 ms.topic: "include"
 ms.date: 09/05/2023
 ms.author: jenhayes
+# Customer intent: "As an Azure user, I want to access the Simple VM Dashboard in the Azure portal, so that I can confirm that I created that dashboard successfully."
 ---
 
 Verify that you can see data about your virtual machine in the Azure portal dashboard.

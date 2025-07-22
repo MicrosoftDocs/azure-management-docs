@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to restore the AdventureWorks sample database into my SQL Managed Instance, so that I can use it for testing and learning purposes with my cloud-based SQL environment.
 ---
 
 # Restore the AdventureWorks sample database into SQL Managed Instance - Azure Arc

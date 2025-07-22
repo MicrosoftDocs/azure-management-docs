@@ -3,6 +3,7 @@ title: Data and privacy
 description: Data and privacy for Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 06/06/2024
+# Customer intent: As an IT administrator managing Azure Arc-enabled servers, I want to understand the data collection and compliance processes, so that I can ensure data privacy and regulatory adherence while effectively monitoring and troubleshooting server actions.
 ---
 
 # Data and privacy for Arc-enabled servers

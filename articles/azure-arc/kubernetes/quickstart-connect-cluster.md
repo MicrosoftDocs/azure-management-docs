@@ -5,6 +5,7 @@ ms.topic: quickstart
 ms.date: 10/08/2024
 ms.custom: template-quickstart, mode-other, devx-track-azurecli, devx-track-azurepowershell
 ms.devlang: azurecli
+# Customer intent: As a Kubernetes operator, I want to connect my existing Kubernetes cluster to Azure Arc, so that I can manage and monitor it using Azure's capabilities and tools.
 ---
 
 # Quickstart: Connect an existing Kubernetes cluster to Azure Arc
@@ -393,3 +394,4 @@ Remove-AzConnectedKubernetes -ClusterName AzureArcTest1 -ResourceGroupName Azure
 * Learn how to [deploy configurations using GitOps with Flux v2](tutorial-use-gitops-flux2.md).
 * [Troubleshoot common Azure Arc-enabled Kubernetes issues](troubleshooting.md).
 * Experience Azure Arc-enabled Kubernetes automated scenarios with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_k8s).
+* Help to protect your cluster by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

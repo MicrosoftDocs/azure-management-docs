@@ -5,6 +5,7 @@ ms.date: 05/12/2025
 ms.topic: how-to
 ms.custom:
   - build-2024
+# Customer intent: As a mobile user managing Azure resources, I want to access AI-powered assistance through the mobile app, so that I can efficiently generate code snippets and receive personalized insights to optimize my Azure environment.
 ---
 
 # Use Microsoft Copilot in Azure with the Azure mobile app
@@ -32,7 +33,7 @@ To learn more about ways to use Copilot in Azure, see [Microsoft Copilot in Azur
 - Get answers to general Azure knowledge questions
 - Generate CLI and PowerShell scripts
 - Generate and running Azure Resource Graph queries
-- Get cost managment information
+- Get cost management information
 - Get information about Azure resources, concepts, services, and offerings
 
 In some cases, Microsoft Copilot in Azure may not be able to complete your request, or may have a limited ability to respond. For more information, see [Current limitations](/azure/copilot/capabilities#current-limitations).

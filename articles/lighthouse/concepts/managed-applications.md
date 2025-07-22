@@ -3,6 +3,7 @@ title: Azure Lighthouse and Azure managed applications
 description: Understand how Azure Lighthouse and Azure managed applications can be used together.
 ms.date: 07/10/2024
 ms.topic: concept-article
+# Customer intent: As a service provider, I want to use both Azure Lighthouse and Azure managed applications, so that I can efficiently manage customer resources while maintaining control and access permissions tailored to their specific needs.
 ---
 
 # Azure Lighthouse and Azure managed applications

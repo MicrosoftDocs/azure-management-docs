@@ -8,9 +8,13 @@ ms.service: microsoft-linux
 ms.custom: devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
+# Customer intent: As a cloud administrator, I want to migrate existing AKS node pools to Azure Linux, so that I can take advantage of the latest OS features and ensure optimal performance for my containerized applications.
 ---
 
 # Tutorial: Migrate nodes to Azure Linux
+
+> [!div class="nextstepaction"]
+> [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321934)
 
 In this tutorial, part three of five, you migrate your existing nodes to Azure Linux. You can migrate your existing nodes to Azure Linux using one of the following methods:
 
@@ -340,7 +344,7 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
 Once the migration is complete on your test clusters, you should verify the following to ensure a successful migration:
 
-* If your migration target is Azure Linux, run the `kubectl get nodes -o wide` command. The output should show `CBL-Mariner/Linux` as your OS image and `.cm2` at the end of your kernel version.
+* If your migration target is Azure Linux, run the `kubectl get nodes -o wide` command. The output should show `Microsoft Azure Linux 3.0` as your OS image and `.azl3` at the end of your kernel version.
 * Run the `kubectl get pods -o wide -A` command to verify that all of your pods and daemonsets are running on the new node pool.
 * Run the `kubectl get nodes --show-labels` command to verify that all of the node labels in your upgraded node pool are what you expect.
 

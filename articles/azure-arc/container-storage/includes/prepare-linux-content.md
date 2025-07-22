@@ -5,6 +5,9 @@ ms.topic: include
 ms.date: 03/12/2025
 author: asergaz
 ms.author: sergaz
+# Customer intent: "As a cloud administrator, I want to understand the differences between single-node and multi-node Kubernetes clusters, so that I can choose the appropriate setup for my development or production environment based on resource constraints and performance requirements."
+ms.custom:
+  - build-2025
 ---
 
 ### Arc-enabled Kubernetes cluster

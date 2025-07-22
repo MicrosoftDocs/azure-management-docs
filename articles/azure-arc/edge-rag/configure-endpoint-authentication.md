@@ -4,17 +4,16 @@ description: "Learn how to configure API-key based authentication for Edge RAG t
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 05/13/2025
-
+ms.date: 06/18/2025
+ms.subservice: edge-rag
 #CustomerIntent: As a developer, I want to configure endpoint authentication for Edge RAG so that I can securely manage and access resources across hybrid and multi-cloud environments.
-
+ms.custom:
+  - build-2025
 ---
 
-# Configure "BYOM" endpoint authentication for Edge RAG Preview, enabled by Azure Arc
+# Configure "BYOM" endpoint authentication for Edge RAG Preview enabled by Azure Arc
 
-Edge RAG can work with small language models (SLM) or large language models (LLM) that expose endpoints which support the OpenAI Inference API. Set up these models locally using Kubernetes AI toolchain operator (KAITO)  or similar mechanisms. Edge RAG can also work with OpenAI models in Azure that need API Key-based authentication.
-
-This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  
+This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  If you configured Edge RAG to use your own language model instead of a Microsoft provided model, complete the steps in this article. 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 

@@ -3,12 +3,12 @@ title: Quickstart - Create Connected Registry Using the CLI and Portal
 description: Use Azure CLI commands or Azure portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
 ms.topic: quickstart
 ms.date: 05/20/2025
-ms.author: gaking
-author: toddysm
+ms.author: doveychase
+author: chasedmicrosoft
 ms.custom: mode-api, devx-track-azurecli
 ms.devlang: azurecli
 ms.service: azure-container-registry
-# customer intent: To create a connected registry resource in Azure using the Azure CLI or Azure Portal.
+# Customer intent: "As a cloud infrastructure engineer, I want to create a connected registry in Azure using the CLI or portal, so that I can synchronize images and artifacts between my local environment and the cloud registry."
 ---
 
 # Quickstart: Create a connected registry using the Azure CLI or Azure portal

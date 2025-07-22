@@ -1,12 +1,12 @@
 ---
 title: Connected Registry in Azure Container Registry
 description: Discover the connected registry feature in Azure Container Registry. Learn about its benefits and practical use cases for container management.
-ms.author: gaking
+ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 05/20/2025
 ms.custom: references_regions
-#customer intent: As a reader, I want to understand the overview and scenarios of the connected registry feature of Azure Container Registry so that I can utilize it effectively.
+# Customer intent: "As a container management administrator, I want to understand the connected registry feature of Azure Container Registry so that I can effectively synchronize container images between on-premises and cloud environments to enhance accessibility and performance for my workloads."
 ---
 
 # What is a connected registry? 

@@ -12,11 +12,36 @@ ms.custom:
 ms.date: 03/13/2025
 ms.topic: concept-article
 #Customer intent: As a data professional, I want to understand what versions of components align with specific releases.
+# Customer intent: As a data professional, I want to access a log of release versions for Azure Arc-enabled data services, so that I can ensure compatibility and stay updated on component versions relevant to my data management tasks.
 ---
 
 # Version log
 
 This article identifies the component versions with each release of Azure Arc-enabled data services.
+
+## May 13, 2025
+
+|Component|Value|
+|-----------|-----------|
+|Container images tag |`v1.39.0_2025-05-13`|
+|`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
+|`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
+|`exporttasks.tasks.arcdata.microsoft.com`| v1beta1, v1, v2|
+|`failovergroups.sql.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
+|`kafkas.arcdata.microsoft.com`| v1beta1 through v1beta4|
+|`monitors.arcdata.microsoft.com`| v1beta1, v1, v3|
+|`postgresqls.arcdata.microsoft.com`| v1beta1 through v1beta6|
+|`postgresqlrestoretasks.tasks.postgresql.arcdata.microsoft.com`| v1beta1|
+|`sqlmanagedinstances.sql.arcdata.microsoft.com`| v1beta1, v1 through v13|
+|`sqlmanagedinstancemonitoringprofiles.arcdata.microsoft.com`| v1beta1, v1beta2|
+|`sqlmanagedinstancereprovisionreplicatasks.tasks.sql.arcdata.microsoft.com`| v1beta1|
+|`sqlmanagedinstancerestoretasks.tasks.sql.arcdata.microsoft.com`| v1beta1, v1|
+|`telemetrycollectors.arcdata.microsoft.com`| v1beta1 through v1beta5|
+|`telemetryrouters.arcdata.microsoft.com`| v1beta1 through v1beta5|
+|Azure Resource Manager (ARM) API version|2023-11-01-preview|
+|`arcdata` Azure CLI extension version|1.5.24 ([Download](https://aka.ms/az-cli-arcdata-ext))|
+|Arc-enabled Kubernetes helm chart extension version|1.39.0|
+|SQL Database version | 978 |
 
 ## April 8, 2025
 
@@ -113,7 +138,7 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.20 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.35.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 976 |
 
 ## October 8, 2024
@@ -139,7 +164,7 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.19 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.34.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 974 |
 
 ## September 9, 2024
@@ -165,7 +190,7 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.18 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.33.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 972 |
 
 
@@ -192,7 +217,7 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.17 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.32.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 972 |
 
 ## July 9, 2024
@@ -218,57 +243,5 @@ This article identifies the component versions with each release of Azure Arc-en
 |Azure Resource Manager (ARM) API version|2023-11-01-preview|
 |`arcdata` Azure CLI extension version|1.5.16 ([Download](https://aka.ms/az-cli-arcdata-ext))|
 |Arc-enabled Kubernetes helm chart extension version|1.31.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
+|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0</br>1.8.0|
 |SQL Database version | 970 |
-
-## June 11, 2024
-
-|Component|Value|
-|-----------|-----------|
-|Container images tag |`v1.30.0_2024-06-11`|
-|**CRD names and version:**| |
-|`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
-|`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
-|`exporttasks.tasks.arcdata.microsoft.com`| v1beta1, v1, v2|
-|`failovergroups.sql.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
-|`kafkas.arcdata.microsoft.com`| v1beta1 through v1beta4|
-|`monitors.arcdata.microsoft.com`| v1beta1, v1, v3|
-|`postgresqls.arcdata.microsoft.com`| v1beta1 through v1beta6|
-|`postgresqlrestoretasks.tasks.postgresql.arcdata.microsoft.com`| v1beta1|
-|`sqlmanagedinstances.sql.arcdata.microsoft.com`| v1beta1, v1 through v13|
-|`sqlmanagedinstancemonitoringprofiles.arcdata.microsoft.com`| v1beta1, v1beta2|
-|`sqlmanagedinstancereprovisionreplicatasks.tasks.sql.arcdata.microsoft.com`| v1beta1|
-|`sqlmanagedinstancerestoretasks.tasks.sql.arcdata.microsoft.com`| v1beta1, v1|
-|`telemetrycollectors.arcdata.microsoft.com`| v1beta1 through v1beta5|
-|`telemetryrouters.arcdata.microsoft.com`| v1beta1 through v1beta5|
-|Azure Resource Manager (ARM) API version|2023-11-01-preview|
-|`arcdata` Azure CLI extension version|1.5.15 ([Download](https://aka.ms/az-cli-arcdata-ext))|
-|Arc-enabled Kubernetes helm chart extension version|1.30.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
-|SQL Database version | 970 |
-
-## April 9, 2024
-
-|Component|Value|
-|-----------|-----------|
-|Container images tag |`v1.29.0_2024-04-09`|
-|**CRD names and version:**| |
-|`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
-|`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
-|`exporttasks.tasks.arcdata.microsoft.com`| v1beta1, v1, v2|
-|`failovergroups.sql.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
-|`kafkas.arcdata.microsoft.com`| v1beta1 through v1beta4|
-|`monitors.arcdata.microsoft.com`| v1beta1, v1, v3|
-|`postgresqls.arcdata.microsoft.com`| v1beta1 through v1beta6|
-|`postgresqlrestoretasks.tasks.postgresql.arcdata.microsoft.com`| v1beta1|
-|`sqlmanagedinstances.sql.arcdata.microsoft.com`| v1beta1, v1 through v13|
-|`sqlmanagedinstancemonitoringprofiles.arcdata.microsoft.com`| v1beta1, v1beta2|
-|`sqlmanagedinstancereprovisionreplicatasks.tasks.sql.arcdata.microsoft.com`| v1beta1|
-|`sqlmanagedinstancerestoretasks.tasks.sql.arcdata.microsoft.com`| v1beta1, v1|
-|`telemetrycollectors.arcdata.microsoft.com`| v1beta1 through v1beta5|
-|`telemetryrouters.arcdata.microsoft.com`| v1beta1 through v1beta5|
-|Azure Resource Manager (ARM) API version|2023-11-01-preview|
-|`arcdata` Azure CLI extension version|1.5.11 ([Download](https://aka.ms/az-cli-arcdata-ext))|
-|Arc-enabled Kubernetes helm chart extension version|1.28.0|
-|Azure Arc Extension for Azure Data Studio<br/>`arc`<br/>`azcli`|<br/>1.8.0 ([Download](https://aka.ms/ads-arcdata-ext))</br>1.8.0 ([Download](https://aka.ms/ads-azcli-ext))|
-|SQL Database version | 964 |

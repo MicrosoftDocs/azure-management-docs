@@ -7,7 +7,9 @@ ms.topic: quickstart
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.date: 04/10/2025
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 
 # Customer intent: As a VI admin, I want to connect my VMM management server to Azure Arc.
 ---

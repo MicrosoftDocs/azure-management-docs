@@ -2,7 +2,8 @@
 title: Automatic extension upgrade for Azure Arc-enabled servers
 description: Learn how to enable automatic extension upgrades for your Azure Arc-enabled servers.
 ms.topic: concept-article
-ms.date: 05/09/2025
+ms.date: 06/19/2025
+# Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to enable automatic extension upgrades so that I can reduce operational overhead and ensure that my server extensions are always up to date with minimal intervention."
 ---
 
 # Automatic extension upgrade for Azure Arc-enabled servers
@@ -56,17 +57,19 @@ For a group of Arc-enabled servers undergoing an update, the Azure platform orch
 
 ## Supported extensions
 
-Automatic extension upgrade supports the following extensions:
+Many VM extensions support automatic extension upgrade, including the following extensions that are available for Azure Arc-enabled servers:
 
-- Azure Monitor Agent - Linux and Windows
-- Dependency agent – Linux and Windows
-- Azure Security agent - Linux and Windows
-- Key Vault Extension - Linux only
-- Azure Update Manager - Linux and Windows
-- Azure Automation Hybrid Runbook Worker - Linux and Windows
-- Azure extension for SQL Server - Linux and Windows
+- Azure Monitor Agent
+- Azure Monitor Dependency agent
+- Azure Key Vault
+- Azure Update Manager 
+- Azure Automation Hybrid Runbook Worker
+- Network Watcher
+- Boot Integrity Monitoring - Guest Attestation
+- Microsoft Antimalware extension (Windows only)
+- Defender for SQL Servers Advanced Threat Protection (Windows only)
 
-Extensions that don't currently support automatic extension upgrade are still configured to enable automatic upgrades by default once the feature is available for those extensions. This setting has no effect until the extension publisher chooses to support automatic upgrades.
+Extensions that don't currently support automatic extension upgrade are still configured to enable automatic upgrades by default once the feature is available for those extensions. This setting has no effect until the extension publisher chooses to support automatic upgrades. For a list of extensions that support automatic extension upgrade, including extensions that aren't currently supported for Azure Arc-enabled servers, see [Automatic Extension Upgrade for virtual machines and scale sets in Azure](/azure/virtual-machines/automatic-extension-upgrade#supported-extensions).
 
 ## Manage automatic extension upgrade
 
@@ -141,7 +144,7 @@ Update-AzConnectedMachineExtension -ResourceGroup resourceGroupName -MachineName
 
 You can use the Azure Activity Log to identify extensions that were automatically upgraded. You can find the Activity Log tab on individual Azure Arc-enabled server resources, resource groups, and subscriptions. Extension upgrades are identified by the `Upgrade Extensions on Azure Arc machines (Microsoft.HybridCompute/machines/upgradeExtensions/action)` operation.
 
-To view automatic extension upgrade history, search for the **Activity Log** in the Azure portal. Select **Add filter** and choose the **Operation** filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. You can optionally add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria to only see automatic upgrade attempts and exclude upgrades manually initiated by users.
+To view automatic extension upgrade history, search for the **Activity Log** in the Azure portal. Select **Add filter** and choose the **Operation** filter. For the filter criteria, search for "Upgrade Extensions on Azure Arc machines" and select that option. To only see automatic upgrade attempts and exclude upgrades manually initiated by users, add a second filter for **Event initiated by** and set "Azure Regional Service Manager" as the filter criteria.
 
 :::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" lightbox="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Screenshot of the Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
 

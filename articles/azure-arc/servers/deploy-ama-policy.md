@@ -3,6 +3,7 @@ title: How to deploy and configure Azure Monitor Agent using Azure Policy
 description: Learn how to deploy and configure Azure Monitor Agent using Azure Policy.
 ms.date: 05/01/2025
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to deploy and configure the Azure Monitor Agent on Arc-enabled servers using Azure Policy, so that I can ensure consistent monitoring and data collection practices across my hybrid environment."
 ---
 
 # Deploy and configure Azure Monitor Agent using Azure Policy

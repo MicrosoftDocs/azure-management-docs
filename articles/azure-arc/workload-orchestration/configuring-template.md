@@ -3,13 +3,15 @@ title: Configuration Templates for workload orchestration
 description: Learn how to create configuration templates for workload orchestration using the templating language.
 author: SoniaLopezBravo
 ms.author: sonialopez
-ms.topic: reference
+ms.topic: concept-article
 ms.date: 04/17/2025
+ms.custom:
+  - build-2025
 ---
 
-# Create a configuration template for workload orchestration
+# Configuration template for workload orchestration
 
-A configuration template can refer to a single schema or none. Schema can be referred with its full path, that is, subscription, resource group name, schema name and version, or just with schema name and version. If subscription and resource group name aren't provided, then, these details are taken from the request for solution or target creation.
+A configuration template can refer to a single schema or none. Schema can be referred with its full path, that is, subscription, resource group name, schema name and version, or just with schema name and version. If subscription and resource group name aren't provided, then these details are taken from the request for solution or target creation.
 
 The building blocks of a templating language help you manage configurations dynamically using different expressions:
 
@@ -39,8 +41,8 @@ Expressions are defined using `${{<expression>}}` syntax.
 
 | Expression        | Example                     | Behavior       |
 |----------------------------|---------------------|--------------------------------------------------|
-| `$val(<jsonPath>)`                               | `${{$val(key1.key2.key3)}}`                                                    | Reads the value from current config value of given json path set in different hierarchy. If the value is set in multiple hierarchy levels, lowest level value will be taken.                                                                                                                                                                                                                                                                                                                |
-| `$config(<config path>, <json path (optional)>)` | `$config(subscriptionId/resourceGroupName/commonConfig/1.0.0, key1.key2.key3)` | Reads the value of given json path from given config path set. If the value is set in multiple hierarchy levels, lowest level value will be taken.<br><br>Config path can be full path i.e. subscription/resourceGroupName/configName/version or just configName/version, in case of configName/Version. the subscription and resourceGroup will be taken from current resolveconfig request context.<br><br>If json path is not provided, then it reads the entire config from ARM object. |
+| `$val(<jsonPath>)`                               | `${{$val(key1.key2.key3)}}`                                                    | Reads the value from current config value of given json path set in different hierarchy. If the value is set in multiple hierarchy levels, lowest level value is taken.                                                                                                                                                                                                                                                                                                                |
+| `$config(<config path>, <json path (optional)>)` | `$config(subId/resourceGroupName/commonConfig/1.0.0, key1.key2.key3)` | Reads the value of given json path from given config path set. If the value is set in multiple hierarchy levels, lowest level value is taken.<br><br>Config path can be full path, that is, subscription/resourceGroupName/configName/version or just configName/version, in case of configName/Version. the subscription and resourceGroup is taken from current resolveconfig request context.<br><br>If json path isn't provided, then it reads the entire config from ARM object. |
 | `$property(<json path>)`                         | `$property(key1.key2.key3)`                                                    | This is used to read config key within the config template                   |
 
 ### *$val*
@@ -89,7 +91,7 @@ TargetArmId = ${{$target(id)}}
  
 ## Nested Expression
 
-Expression can be nested, for example ${{$if($eq($val(key1), value), equal, notEqual)}}. In this case, the expression is evaluated from inside out. The inner expression is evaluated first, $val(key1), then the outer expression $eq($val(key1), value) is evaluated, and finally the outermost expression $if($eq($val(key1), value), equal, notEqual) is evaluated.
+Expression can be nested, for example ${{$if($eq($val(key1), value), equal, notEqual)}}. In this case, the expression is evaluated from inside out. The inner expression is evaluated first, $val(key1), then the outer expression $eq($val(key1), value) is evaluated, and finally the outermost expression *$if($eq($val(key1), value), equal, notEqual) is evaluated.
 
 ### Example 
 

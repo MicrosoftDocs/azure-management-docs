@@ -3,6 +3,7 @@ title: View and manage customers and delegated resources in the Azure portal
 description: As a service provider or enterprise using Azure Lighthouse, you can view  delegated resources and subscriptions by going to My customers in the Azure portal. 
 ms.date: 01/17/2025
 ms.topic: how-to
+# Customer intent: As a service provider, I want to view and manage my customers and their delegated resources in the Azure portal, so that I can efficiently consolidate and oversee multiple customer engagements.
 ---
 
 # View and manage customers and delegated resources in the Azure portal

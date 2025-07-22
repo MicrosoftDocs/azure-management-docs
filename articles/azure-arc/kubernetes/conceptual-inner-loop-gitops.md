@@ -3,6 +3,7 @@ title: "Inner loop developer experience for teams adopting GitOps"
 ms.date: 01/23/2025
 ms.topic: concept-article
 description: "Learn how an established inner loop can enhance developer productivity and help in a seamless transition for teams adopting GitOps."
+# Customer intent: As a cloud-native developer, I want to implement an inner dev loop framework, so that I can enhance my productivity and streamline the transition to GitOps for efficient application deployment and debugging.
 ---
 # Inner loop developer experience for teams adopting GitOps
 

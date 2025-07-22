@@ -4,6 +4,7 @@ description: Learn about the networking requirements to connect Kubernetes clust
 ms.date: 04/15/2025
 ms.topic: concept-article 
 ms.custom: references-regions
+# Customer intent: As a cloud administrator, I want to understand the networking requirements for connecting Kubernetes clusters to Azure Arc, so that I can ensure proper connectivity and support for Arc-enabled scenarios.
 ---
 
 # Azure Arc-enabled Kubernetes network requirements

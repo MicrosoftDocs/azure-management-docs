@@ -1,11 +1,13 @@
 ---
 title: Prepare the Environment for Workload Orchestration 
 description: Learn how to set up the environment for workload orchestration. This procedure is done by IT admins.
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - build-2025
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 04/17/2025
+ms.date: 06/24/2025
 ---
 
 # Prepare the environment for workload orchestration
@@ -14,13 +16,14 @@ IT admins are responsible for the initial setup of workload orchestration, which
 
 This article describes how to prepare the environment for workload orchestration. The following steps are shared across all Azure resources. 
 
-[!INCLUDE [public-preview-note](includes/public-preview-note.md)]
+> [!TIP]
+> You can follow the instructions in this article and run through each command, or if you prefer, you can run the [onboarding scripts](onboarding-scripts.md) for a one-click setup.
 
 ## Prerequisites
 
 * An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 * Role-Based Access Control (RBAC) enabled user role assignment. For more information, see [Role-Based Access Control (RBAC) guide](rbac-guide.md).
-* An Arc-enabled Kubernetes cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
+* An Arc-enabled cluster. For more information, see [Quickstart: Connect an existing Kubernetes cluster to Azure Arc](../kubernetes/quickstart-connect-cluster.md).
 
     > [!NOTE]
     > The workload orchestration Arc extension doesn't support Arm-based architecture nodes. If you're using Azure Kubernetes Service for your cluster, make sure that it uses a non-Arm virtual machine.
@@ -40,8 +43,8 @@ This article describes how to prepare the environment for workload orchestration
   winget install -e --id Kubernetes.kubectl
   ```  
  
-> [!NOTE]
-> If you already have resources from workload orchestration in *preview*, you can clean them up using this [cleanup script](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/PrivatePreviewCleanup.zip).
+> [!IMPORTANT]
+> Standard Azure resources, such as Arc-enabled Kubernetes clusters and custom location, and workload orchestration resources, such as context, targets, and solutions, must be created in the same Azure region. 
 
 ## System requirements
 
@@ -64,7 +67,7 @@ Workload orchestration is available for Arc-enabled clusters in the following Az
 
 The following steps show how to prepare your environment to configure workload orchestration. 
 
-Global variables, JSON files, and other configuration resources can be downloaded from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
+Global variables, JSON files, and other configuration resources can be downloaded from this [ZIP folder in GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip). You can extract the downloaded artifacts from the compressed into a particular folder. 
 
 Run the following commands to extract the files from the zip file. Skip if you already extracted files.
 
@@ -83,6 +86,7 @@ Expand-Archive -Path "<enter zip file path e.g. 'C:\path\to\archive.zip'>" -Dest
 # Point to the directory
 Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 ```
+
 ***
 
 ### Set up the Azure CLI commands 
@@ -99,8 +103,8 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```bash
-    subscriptionId="<SUBSCRIPTION_ID>"
-    az account set --subscription "$subscriptionId"
+    subId="<SUBSCRIPTION_ID>"
+    az account set --subscription "$subId"
     ```
 
 1. Global variables are commonly used variables that can help with the next set of commands. Replace the placeholder variables with your values.
@@ -124,8 +128,8 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 1. Choose the subscription you want to use from the list. Replace the placeholder variables with your values.
 
     ```powershell
-    $subscriptionId = "<SUBSCRIPTION_ID>"
-    az account set --subscription $subscriptionId
+    $subId = "<SUBSCRIPTION_ID>"
+    az account set --subscription $subId
     ```
 
 1. Global variables are commonly used variables that can help with the next set of commands. Replace the placeholder variables with your values.
@@ -139,141 +143,23 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
 ***
 
+## Install workload orchestration CLI extension
 
-### Create JSON files for site address and site
-
-Sites and site addresses are used to identify the physical hierarchy such as plant, factory, or store. 
-
-> [!TIP]
-> You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded folder for examples of how to create the JSON files.
-
-#### [Bash](#tab/bash)
-
-1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
-
-    ```json
-       {
-           "contactDetails": {
-               "contactName": "<CONTACT_NAME>",
-               "emailList": [
-                   "<EMAIL_LIST>"        
-               ],
-               "phone": "<PHONE>",
-               "phoneExtension": "<PHONE_EXTENSION>"
-           },
-           "shippingAddress": {
-               "addressType": "<ADDRESS_TYPE>",
-               "city": "<CITY>",
-               "companyName": "<COMPANY_NAME>",
-               "country": "<COUNTRY>",
-               "postalCode": "<POSTAL_CODE>",
-               "stateOrProvince": "<STATE_OR_PROVINCE>",
-               "streetAddress1": "<STREET_ADDRESS_1>",
-               "streetAddress2": "<STREET_ADDRESS_2>"
-           }
-        }
-    ```
-
-1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
-
-    ```json
-        {
-            "properties": {
-                "description": "<DESCRIPTION>",
-                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
-                "displayName": "<SITE_NAME>"
-            }
-        }
-    ```
-
-1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
-
-    ```bash
-    siteJson="<SITE_NAME>.json"
-    siteAddressJson="<SITE_NAME_ADDRESS>.json"
-    siteUri="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    siteId="/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    siteReference="<SITE_NAME>"
-    extensionVersion="2.0.10" # or latest Arc version
-    extensionName="<PREFERRED_EXTENSION_NAME>"
-    ```
-
-#### [PowerShell](#tab/powershell)
-
-1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
-
-    ```json
-       {
-           "contactDetails": {
-               "contactName": "<CONTACT_NAME>",
-               "emailList": [
-                   "<EMAIL_LIST>"        
-               ],
-               "phone": "<PHONE>",
-               "phoneExtension": "<PHONE_EXTENSION>"
-           },
-           "shippingAddress": {
-               "addressType": "<ADDRESS_TYPE>",
-               "city": "<CITY>",
-               "companyName": "<COMPANY_NAME>",
-               "country": "<COUNTRY>",
-               "postalCode": "<POSTAL_CODE>",
-               "stateOrProvince": "<STATE_OR_PROVINCE>",
-               "streetAddress1": "<STREET_ADDRESS_1>",
-               "streetAddress2": "<STREET_ADDRESS_2>"
-           }
-        }
-    ```
-
-1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
-
-    ```json
-        {
-            "properties": {
-                "description": "<DESCRIPTION>",
-                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
-                "displayName": "<SITE_NAME>"
-            }
-        }
-    ```
-
-1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
-
-    ```powershell
-    $siteJson = "<SITE_NAME>.json"
-    $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
-    $siteUri = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    $siteId = "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
-    $siteReference = "<SITE_NAME>"
-    $extensionVersion = "2.0.10" # or latest Arc version
-    $extensionName = "<PREFERRED_EXTENSION_NAME>"
-    ```
-
-***
-
-### Download the workload orchestration CLI extension
+The workload orchestration CLI extension is required to run the commands for workload orchestration. The extension is available in the Azure CLI extension index.
 
 [!INCLUDE [cli-version-note](includes/cli-version-note.md)]
 
-#### [Bash](#tab/bash)
+### [Bash](#tab/bash)
 
-1. Download the workload orchestration extension from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
-1. Define the path to the downloaded extension. Replace the placeholder variable with the full path to the `workload_orchestration-X.X.X-py3-none-any.whl` file, making sure to include version extension.
+```bash
+az extension add --name workload-orchestration
+```
 
-   ```bash
-    # Enter full path 
-    extensionPath="<path to workload_orchestration-X.X.X-py3-none-any.whl>" # path to latest workload orchestration version
-   ```
+### [PowerShell](#tab/powershell)
 
-#### [PowerShell](#tab/powershell)
-
-1. Download the workload orchestration extension from the [GitHub repository](https://github.com/microsoft/AEP/blob/main/content/en/docs/Configuration%20Manager%20(Public%20Preview)/Scripts%20for%20Onboarding/Configuration%20manager%20files.zip).
-1. Define the path to the downloaded extension. Replace the placeholder variable with the full path to the `workload_orchestration-X.X.X-py3-none-any.whl` file, making sure to include version extension.
-
-    ```powershell
-     # Enter full path 
-     $extensionPath = "<path to workload_orchestration-X.X.X-py3-none-any.whl>" # path to latest workload orchestration version
-    ```
+```powershell
+az extension add --name workload-orchestration
+```
     
 ***
 
@@ -308,12 +194,12 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location "$l" --name "$rg"
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and maestro objects should be the same.
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```bash
     az identity create --resource-group "$rg" --name "$clusterName"
     clusterIdentity=$(az identity show --resource-group "$rg" --name "$clusterName" --query id --output tsv)
-    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count 2 --assign-identity "$clusterIdentity" --generate-ssh-keys
+    az aks create --resource-group "$rg" --location "$l" --name "$clusterName" --node-count "<node-count>" --assign-identity "$clusterIdentity" --generate-ssh-keys --node-vm-size "<node size>"
     ```
 
     > [!NOTE]
@@ -353,12 +239,12 @@ The following steps are required to set up the Azure resources for workload orch
     az group create --location $l --name $rg
     ```
 
-1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and maestro objects should be the same.
+1. Create the Azure Kubernetes Service (AKS) cluster. The location of your Azure Arc enabled cluster, custom location and workload orchestration objects should be the same. For information about virtual machines available sizes, see [Sizes for virtual machines in Azure](/azure/virtual-machines/sizes/overview).
 
     ```powershell
     az identity create --resource-group $rg --name $clusterName
     $clusterIdentity = az identity show --resource-group $rg --name $clusterName --query id --output tsv
-    az aks create --resource-group $rg --location $l --name $clusterName --node-count 2 --assign-identity $clusterIdentity --generate-ssh-keys
+    az aks create --resource-group $rg --location $l --name $clusterName --node-count <node-count> --assign-identity $clusterIdentity --generate-ssh-keys --node-vm-size <node size>
     ```
 
     > [!NOTE]
@@ -375,7 +261,7 @@ Once the resources are created, they are visible in the Overview page of the Res
 
 ## Install the required components for workload orchestration 
 
-The following steps are required to install workload orchestration service component.
+The following steps are required to run workload orchestration service component.
 
 ### [Bash](#tab/bash)
 
@@ -394,32 +280,28 @@ The following steps are required to install workload orchestration service compo
     az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --name "aio-certmgr" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
     ```
 
-1. Determine persistent volume storage class for the cluster. From the storage class list, pick one to use as the persistent volume storage class for workload orchestration extension in the next step.
-
-    ```bash
-    kubectl get sc
-    ```
-
 1. Determine if you installed the `microsoft.workloadorchestration` Arc extension on the Arc cluster. 
 
     ```bash
     az k8s-extension list --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --query "[?extensionType=='microsoft.workloadorchestration'].name"
     ```
  
-    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
+    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command and pick a storage class list to use as the persistent volume storage class for workload orchestration extension.
+
+        ```bash
+        kubectl get sc
+        ```
+        Run the following command to install the `microsoft.workloadorchestration` extension:
     
         ```bash
-        storageClassName=""
-        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version "$extensionVersion" --auto-upgrade false --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi
-        ```  
-
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
+        storageClassName="<pick up one storage class from 'kubectl get sc'>"
+        az k8s-extension create --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass="$storageClassName" --config redis.persistentVolume.size=20Gi --extension-version "2.1.2" # or latest workload orchestration Arc version
+        ```
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```bash
-        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train dev --version "$extensionVersion" --auto-upgrade false
+        az k8s-extension update --resource-group "$rg" --cluster-name "$clusterName" --cluster-type connectedClusters --name "$extensionName" --release-train stable  --auto-upgrade true
         ``` 
 
 1. Enable custom location for the cluster.
@@ -457,11 +339,6 @@ The following steps are required to install workload orchestration service compo
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
 1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
-1. Install workload orchestration.
-
-    ```bash
-    az extension add --source "$extensionPath"
-    ```
 
 ### [PowerShell](#tab/powershell)
 
@@ -480,31 +357,28 @@ The following steps are required to install workload orchestration service compo
     az k8s-extension create --resource-group $rg --cluster-name $clusterName --name "aio-certmgr" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
     ```
 
-1. Determine persistent volume storage class for the cluster. From the storage class list, pick one to use as the persistent volume storage class for workload orchestration extension in the next step.
-
-    ```powershell
-    kubectl get sc
-    ```
-
 1. Determine if you installed the `microsoft.workloadorchestration` Arc extension on the Arc cluster. 
 
     ```powershell
     az k8s-extension list --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --query "[?extensionType=='microsoft.workloadorchestration'].name"
     ```
  
-    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command to install the extension:
+    1. If the output returns an empty list, it means you don't have the `microsoft.workloadorchestration` extension installed on your Arc cluster. Run the following command and pick a storage class list to use as the persistent volume storage class for workload orchestration extension.
+
+        ```bash
+        kubectl get sc
+        ```
+        Run the following command to install the `microsoft.workloadorchestration` extension:
     
         ```powershell
-        $storageClassName = ""
-        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train preview --version $extensionVersion --auto-upgrade $false --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi
+        $storageClassName = "<pick up one storage class from 'kubectl get sc'>"
+        az k8s-extension create --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --extension-type Microsoft.workloadorchestration --scope cluster --release-train stable --config redis.persistentVolume.storageClass=$storageClassName --config redis.persistentVolume.size=20Gi --extension-version "2.1.2" # or latest workload orchestration Arc version
         ```      
-        > [!NOTE]
-        > If you don’t know which storage class to use, set `redis.persistentVolume.storageClass=""` to use the default storage class if available.
 
     1. If you already installed the `microsoft.workloadorchestration` Arc extension, you can update it. Make sure to replace `<extensionName>` with the name of your existing extension. 
     
         ```powershell
-        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train dev --version $extensionVersion --auto-upgrade false
+        az k8s-extension update --resource-group $rg --cluster-name $clusterName --cluster-type connectedClusters --name $extensionName --release-train stable  --auto-upgrade true
         ```
 
 1. Enable custom location for the cluster.
@@ -542,19 +416,22 @@ The following steps are required to install workload orchestration service compo
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
 1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
-1. Install workload orchestration.
-
-    ```powershell
-    az extension add --source $extensionPath
-    ```
 
 ***
 
 At this point, the environment and infrastructure for workload orchestration should be set up with the required permissions, Arc-connected cluster, extensions and plugins to support configuration and management of the solution/applications.
 
-## Create Site address and Site
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. You can create Sites using a resource group or a service group. 
+## Create site address and site
+
+Sites and site addresses represent the physical hierarchy of your organization, such as a plant, factory, or store. Hierarchies are defined as name-description pairs that map to the levels of your organization's resource structure. For example, a manufacturing organization might use two levels: Factory and Line.
+
+You can create sites using either a resource group or a service group. The choice depends on the hierarchy of your organization and how you want to logically group resources.
+
+|Group type|Description|Note|
+|---|---|---|
+|Service group|A service group is a resource type in Azure Resource Manager (ARM) that helps you custom grouping your services for organizational or monitoring purposes, while maintaining your existing setup. For more information, see [Service groups](service-group.md)| For hierarchies with more than two levels, you need to use service groups to create sites. If you want to logically group resources without modifying the existing resource group, consider using service groups.|
+|Resource group|A resource group is a core Azure management logical container that holds related Azure resources.| For hierarchies with two levels, you can use either service groups or resource groups. |
 
 To use a service group, follow the steps in [Create a service group](service-group.md#create-a-service-group). 
 
@@ -562,28 +439,138 @@ To use a resource group, run the following commands:
 
 ### [Bash](#tab/bash)
 
-```bash
-#Create site address
-az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group "$rg" --location "$l" --name "$siteName" --properties "@$siteAddressJson"
+1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
 
-#Create site 
-az rest --method PUT --uri "$siteUri" --body "@$siteJson"
-```
+    ```json
+       {
+           "contactDetails": {
+               "contactName": "<CONTACT_NAME>",
+               "emailList": [
+                   "<EMAIL_LIST>"        
+               ],
+               "phone": "<PHONE>",
+               "phoneExtension": "<PHONE_EXTENSION>"
+           },
+           "shippingAddress": {
+               "addressType": "<ADDRESS_TYPE>",
+               "city": "<CITY>",
+               "companyName": "<COMPANY_NAME>",
+               "country": "<COUNTRY>",
+               "postalCode": "<POSTAL_CODE>",
+               "stateOrProvince": "<STATE_OR_PROVINCE>",
+               "streetAddress1": "<STREET_ADDRESS_1>",
+               "streetAddress2": "<STREET_ADDRESS_2>"
+           }
+        }
+    ```
+
+1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
+
+    ```json
+        {
+            "properties": {
+                "description": "<DESCRIPTION>",
+                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
+                "displayName": "<SITE_NAME>"
+            }
+        }
+    ```
+
+    > [!TIP]
+    > You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded ZIP folder for examples of how to create the JSON files.
+
+1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
+
+    ```bash
+    siteJson="<SITE_NAME>.json"
+    siteAddressJson="<SITE_NAME_ADDRESS>.json"
+    siteUri="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
+    siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    siteReference="<SITE_NAME>"
+    extensionVersion="2.0.10" # or latest Arc version
+    extensionName="<PREFERRED_EXTENSION_NAME>"
+    ```
+
+1. Create the site address and site using the following commands:
+
+    ```bash
+    #Create site address
+    az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group "$rg" --location "$l" --name "$siteName" --properties "@$siteAddressJson"
+    
+    #Create site 
+    az rest --method PUT --uri "$siteUri" --body "@$siteJson"
+    ```
 
 ### [PowerShell](#tab/powershell)
 
-```powershell
-# Create site address
-az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group $rg --location $l --name $siteName --properties "@$siteAddressJson"
+1. Create a JSON file for site address and contact details. Name the file `<SITE_NAME_ADDRESS>.json` and save it in the same directory as your CLI commands. The JSON file must contain the following information:
 
-# Create site
-az rest --method PUT --uri $siteUri --body "@$siteJson"
-```
+    ```json
+       {
+           "contactDetails": {
+               "contactName": "<CONTACT_NAME>",
+               "emailList": [
+                   "<EMAIL_LIST>"        
+               ],
+               "phone": "<PHONE>",
+               "phoneExtension": "<PHONE_EXTENSION>"
+           },
+           "shippingAddress": {
+               "addressType": "<ADDRESS_TYPE>",
+               "city": "<CITY>",
+               "companyName": "<COMPANY_NAME>",
+               "country": "<COUNTRY>",
+               "postalCode": "<POSTAL_CODE>",
+               "stateOrProvince": "<STATE_OR_PROVINCE>",
+               "streetAddress1": "<STREET_ADDRESS_1>",
+               "streetAddress2": "<STREET_ADDRESS_2>"
+           }
+        }
+    ```
+
+1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
+
+    ```json
+        {
+            "properties": {
+                "description": "<DESCRIPTION>",
+                "addressResourceId": "<ADDRESS_RESOURCE_ID>",
+                "displayName": "<SITE_NAME>"
+            }
+        }
+    ```
+
+    > [!TIP]
+    > You can refer to *redmond-site-address.json* and *redmond-site.json* files in the downloaded ZIP folder for examples of how to create the JSON files.
+
+1. Define the global variables for site address and site. Replace the placeholder variables with the values from your JSON files.
+
+    ```powershell
+    $siteJson = "<SITE_NAME>.json"
+    $siteAddressJson = "<SITE_NAME_ADDRESS>.json"
+    $siteUri = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName?api-version=2024-02-01-preview"
+    $siteId = "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$siteName"
+    $siteReference = "<SITE_NAME>"
+    $extensionVersion = "2.0.10" # or latest Arc version
+    $extensionName = "<PREFERRED_EXTENSION_NAME>"
+    ```
+
+1. Create the site address and site using the following commands:
+
+    ```powershell
+    # Create site address
+    az resource create --resource-type Microsoft.EdgeOrder/addresses --resource-group $rg --location $l --name $siteName --properties "@$siteAddressJson"
+    
+    # Create site
+    az rest --method PUT --uri $siteUri --body "@$siteJson"
+    ```
 
 ***
 
-## Related content
+## Contact support
 
-- [Setup workload orchestration](initial-setup-configuration.md)
-- [Onboarding scripts](onboarding-scripts.md)
-- [Service groups for workload orchestration](service-group.md)
+[!INCLUDE [form-feedback-note](includes/form-feedback.md)]
+
+## Next steps
+
+Once you have prepared the environment and the global variables, you can proceed to [Set up workload orchestration](initial-setup-configuration.md).

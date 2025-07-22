@@ -4,6 +4,7 @@ description: The Azure Key Vault Secret Store extension for Kubernetes ("SSE") a
 ms.date: 09/26/2024
 ms.topic: how-to
 ms.custom: references_regions, ignite-2024
+# Customer intent: "As a Kubernetes administrator, I want to automatically synchronize secrets from Azure Key Vault to my Kubernetes cluster for offline access, so that I can manage critical business assets securely, even in semi-disconnected environments."
 ---
 
 # Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters
@@ -203,7 +204,7 @@ Create a Kubernetes service account for the workload that needs access to secret
 1. Create a federated identity credential:
 
    ```azurecli
-   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name ${USER_ASSIGNED_IDENTITY_NAME} --resource-group ${RESOURCE_GROUP} --issuer ${SERVICE_ACCOUNT_ISSUER} --subject system:serviceaccount:${KUBERNETES_NAMESPACE}:${SERVICE_ACCOUNT_NAME}
+   az identity federated-credential create --name ${FEDERATED_IDENTITY_CREDENTIAL_NAME} --identity-name ${USER_ASSIGNED_IDENTITY_NAME} --resource-group ${RESOURCE_GROUP} --issuer ${SERVICE_ACCOUNT_ISSUER} --subject system:serviceaccount:${KUBERNETES_NAMESPACE}:${SERVICE_ACCOUNT_NAME} --audience api://AzureADTokenExchange
    ```
 
 ## Install the SSE
@@ -273,7 +274,7 @@ spec:
     objects: |
       array:
         - |
-          objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to sychronize.
+          objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to synchronize.
           objectType: secret
           objectVersionHistory: 2                       # [optional] The number of versions to synchronize, starting from latest.
     tenantID: "${AZURE_TENANT_ID}"                       # The tenant ID of the Key Vault 
@@ -282,9 +283,9 @@ EOF
 
 ### Create a `SecretSync` object
 
-Each synchronized secret also requires a `SecretSync` object, to define cluster-specific information. Here you specify information such as the name of the secret in your cluster and names for each version of the secret stored in your cluster.
+A `SecretSync` object is needed to define how items fetched by the `SecretsProviderClass` are stored in Kubernetes. Kubernetes secrets are key-value maps, just like `ConfigMaps`, and the `SecretSync` object tells SSE how to map items defined in the linked `SecretsProviderClass` into keys in the Kubernetes secret. SSE will create a Kubernetes secret with the same name as the `SecretSync` that describes it.
 
-Create one `SecretSync` object YAML file for each secret, following this template. The Kubernetes namespace should match the namespace of the matching `SecretProviderClass`.
+Create one `SecretSync` object YAML file for each kubernetes secret, following this template. The Kubernetes namespace should match the namespace of the matching `SecretProviderClass`.
 
 ```yaml
 cat <<EOF > ss.yaml
@@ -305,6 +306,9 @@ spec:
       targetKey: ${KEYVAULT_SECRET_NAME}-data-key1         # [optional] Next target name of the secret in the K8s secret store
 EOF
 ```
+
+> [!TIP]
+> Do not include "/0" when referencing a secret from the `SecretProviderClass` where `objectVersionHistory` < 2. The latest version is used implicitly.
 
 ### Apply the configuration CRs
 
@@ -367,23 +371,19 @@ kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.da
 
 The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which manages access to, and pulling secrets from, the Azure Key Vault. Each synchronized secret has a `SecretSync` object that contains the status of the synchronization of that secret from Azure Key Vault to the cluster secret store.
 
-To troubleshoot an issue, start by looking at the state of the `SecretSync` object, as described in [View last sync status](#view-last-sync-status). The following table lists common status types, their meanings, and potential troubleshooting steps to resolve errors.
+To troubleshoot an issue, start by looking at the state of the `SecretSync` object, as described in [View last sync status](#view-last-sync-status).  The following table lists common status reasons, their meanings, and potential troubleshooting steps to resolve errors.
 
-| SecretSync Status Type     | Details      | Steps to fix/investigate further    |
+| SecretSync Status Reason     | Details      | Steps to fix/investigate further    |
 |------------|--------------|-------------------------------------|
-| `CreateSucceeded` | The secret was created successfully. | n/a |
-| `CreateFailedProviderError` | Secret creation failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, misconfiguration of the `SecretProviderClass`, or other issues. | Investigate further by looking at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
-| `CreateFailedInvalidLabel` | The secret creation failed because the secret already exists without the correct Kubernetes label that the SSE uses to manage its secrets.| Remove the existing label and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `CreateFailedInvalidAnnotation` | Secret creation failed because the secret already exists without the correct Kubernetes annotation that the SSE uses to manage its secrets. | Remove the existing annotation and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `UpdateNoValueChangeSucceeded` | The SSE checked Azure Key Vault for updates at the end of the configured poll interval, but there were no changes to sync. | n/a |
-| `UpdateValueChangeOrForceUpdateSucceeded` | The SSE checked Azure Key Vault for updates and successfully updated the value. | n/a |
-| `UpdateFailedInvalidLabel` | Secret update failed because the label on the secret that the SSE uses to manage its secrets was modified. | Remove the existing label and secret, and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `UpdateFailedInvalidAnnotation` | Secret update failed because the annotation on the secret that the SSE uses to manage its secrets was modified. | Remove the existing annotation and secret and allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
-| `UpdateFailedProviderError` | Secret update failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, configuration of the `SecretProviderClass`, or other issues. | Investigate further by looking at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
+| `UpdateNoValueChangeSucceeded` | The secret in Kubernetes is fully up-to-date to the AKV version. No change was needed during the latest check. | n/a |
+| `UpdateValueChangeOrForceUpdateSucceeded` | The whole secret in Kubernetes was successfully updated to the AKV version during the latest check. | n/a |
+| `PartialSync` | Some items in the secret could not be updated. | Investigate further by looking at the `status.conditions.message` field of the `SecretSync` object. This field will contain a stringified json summary of the success or failure for each item in the secret. |
+| `ProviderError` | Secret creation failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, misconfiguration of the `SecretProviderClass`, or other issues. | Investigate first as with `PartialSync`, next look at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
+| `InvalidClusterSecretLabelError`<br>`InvalidClusterSecretAnnotationError` | A secret already exists with this name that is not managed by the SSE. | Remove the secret to allow the SSE to recreate the secret: ```kubectl delete secret <secret-name>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```) and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
 | `UserInputValidationFailed` | Secret update failed because the secret sync class was configured incorrectly (such as an invalid secret type). | Review the secret sync class definition and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the secret sync class (```kubectl delete -f <path_to_secret_sync>```), and reapply the secret sync class (```kubectl apply -f <path_to_secret_sync>```). |
 | `ControllerSpcError` | Secret update failed because the SSE failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
-| `ControllerInternalError` | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
-| `SecretPatchFailedUnknownError` | Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the SSE or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the secret sync CR: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>``` |
+| `ControllerInternalError`<br>`ValidatingAdmissionPolicyCheckFailed`<br>`ControllerSyncFailed`  | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='manager'``` |
+| `UnknownError`| Secret update failed during patching the Kubernetes secret value. This failure might occur if the secret was modified by someone other than the SSE or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the `SecretSync` object: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>```<br>If this does not help, follow the steps to inspect the logs as with a  `ControllerInternalError`. |
 
 ## Remove the SSE
 
@@ -406,3 +406,4 @@ In these cases, secrets must be deleted directly using `kubectl`.
 
 - Learn more about [Azure Arc extensions](extensions.md).
 - Learn more about [Azure Key Vault](/azure/key-vault/general/overview).
+- Help to protect your cluster in other ways by following the guidance in the [security book for Azure Arc-enabled Kubernetes](conceptual-security-book.md).

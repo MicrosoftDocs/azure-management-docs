@@ -3,6 +3,9 @@ title: Use Microsoft Entra ID with the Azure mobile app
 description: Use the Azure mobile app to manage users and groups with Microsoft Entra ID.
 ms.date: 05/15/2025
 ms.topic: how-to
+ms.custom:
+  - build-2025
+# Customer intent: "As an IT administrator managing Azure users remotely, I want to use the mobile app to manage user accounts and groups in Microsoft Entra ID, so that I can maintain user access and security efficiently from my mobile device."
 ---
 
 # Use Microsoft Entra ID with the Azure mobile app

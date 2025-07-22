@@ -3,6 +3,7 @@ title: Security onboarding and updates
 description: Azure Arc-enabled servers planning and deployment guidance.
 ms.topic: concept-article
 ms.date: 01/29/2025
+# Customer intent: "As an IT administrator planning to deploy Azure Arc-enabled servers, I want to establish secure onboarding and update processes, so that I can maintain system integrity and protect sensitive credentials throughout the deployment lifecycle."
 ---
 
 # Planning and deployment guidance

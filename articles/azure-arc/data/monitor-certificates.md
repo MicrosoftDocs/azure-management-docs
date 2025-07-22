@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 12/15/2021
 ms.topic: how-to
+# Customer intent: As a cloud engineer, I want to configure SSL/TLS certificates for monitoring dashboards, so that I can ensure secure access to logs and metrics in Azure Arc-enabled data services.
 ---
 
 # Provide SSL certificates for monitoring
