@@ -1,15 +1,15 @@
 ---
-title: Create and delete Quota Groups to manage quota for a group of subscriptions
-description: Learn how to create and delete Quota Group objects to manage quota for a group of subscriptions. 
+title: Create and delete Azure Quota Groups to manage quota for a group of subscriptions
+description: Learn how to create and delete Azure Quota Group objects to manage quota for a group of subscriptions. 
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
 ms.date: 07/23/2025
 ---
 
-# Create or delete Quota Groups to manage quota for a group of subscriptions
+# Create or delete Azure Quota Groups to manage quota for a group of subscriptions
 
-A Quota Group is an Azure Resource Manager (ARM) object that can be used to manage quota at the group level. This object can self-distribute quota between subscriptions added to the group.   
+An Azure Quota Group is an Azure Resource Manager (ARM) object that can be used to manage quota at the group level. This object can self-distribute quota between subscriptions added to the group.   
 
 ## Considerations
 - Creating or deleting Quota Groups requires the *GroupQuota Request Operator* role on the Management Group.

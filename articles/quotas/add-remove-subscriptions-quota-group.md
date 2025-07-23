@@ -1,15 +1,15 @@
 ---
-title: Add or remove subscriptions from a Quota Group
-description: Learn how to add and or remove subscriptions from a Quota Group. 
+title: Add or remove subscriptions from an Azure Quota Group
+description: Learn how to add and or remove subscriptions from an Azure Quota Group. 
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
 ms.date: 07/23/2025
 ---
 
-# Add or remove subscriptions from a Quota Group
+# Add or remove subscriptions from an Azure Quota Group
 
-You can add or remove subscriptions from a Quota Group after the group is created.    
+You can add or remove subscriptions from an Azure Quota Group after the group is created.    
 
 ## Add subscriptions to a Quota Group
 When added to the group, subscriptions carry their existing quota and usage. The subscriptions' quota isn't manipulated when added to a group. Subscription quota remains separate from the group limit.
