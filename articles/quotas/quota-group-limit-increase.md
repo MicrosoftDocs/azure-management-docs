@@ -81,18 +81,6 @@ Request a limit increase for a Quota Group through the Azure portal.
 2. Type "quotas" into the search box, then select **Quotas**.
 3. Under the settings in left hand side, select **Quota groups**.
 4. To view existing Quota group, select **Management Group** filter and select the management group used to create your Quota Group.
-5. 
-6. Select **Edit** or **Add** button under **Subscriptions added** column.
-   1. In the Edit subscriptions, view the existing subscriptions listed and select the **Add subscription** button.
-   2. In the Add Subscriptions view, select the desired subscription and select **Save**.
-7. You can search for the subscription in the search box at the top of the blade. Subscriptions are greyed out if they belong to an existing group and indicate 'No' under **Available to add** column.
-8. A notification indicates that the subscription was successfully added and the Edit Subscriptions view is updated with the added subscriptions.
-
-
-1. Sign in to the [Azure portal](https://portal.azure.com).
-2. Type "quotas" into the search box, then select **Quotas**.
-3. Under the settings in left hand side, select **Quota groups**.
-4. To view existing Quota group, select **Management Group** filter and select the management group used to create your Quota Group.
 5. Select a **Quota group** from list of Quota Groups.
 6. The Quota Group resources view lists group resources by region and by Group quota (limit).
 7. Use the filters to select **Region** and or **VM Family**.
