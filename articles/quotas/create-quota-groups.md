@@ -1,25 +1,27 @@
 ---
-title: Create and delete Quota Group
-description: Learn how to create and delete quota groups. 
+title: Create and delete Quota Groups to manage quota for a group of subscriptions
+description: Learn how to create and delete Quota Group objects to manage quota for a group of subscriptions. 
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 07/07/2025
+ms.date: 07/23/2025
 ---
 
-# Create Quota Groups object to manage quota for a group of subscriptions
-- A Quota group is an ARM object that can be used to manage quota at the group level and self-distribute quota between subscriptions added to the group.  
-- The first step is to create a Quota Group object under a Management Group.  
+# Create or delete Quota Groups to manage quota for a group of subscriptions
+
+A Quota Group is an Azure Resource Manager (ARM) object that can be used to manage quota at the group level. This object can self-distribute quota between subscriptions added to the group.   
 
 ## Considerations
-- Requires the *GroupQuota Request Operator* role on the Management Group used to create Quota group
-<!-- Please write at least a sentance to introduce this subsection. -->
+- Requires the *GroupQuota Request Operator* role on the Management Group used to create Quota group.
+
+## Create Quota Groups 
+The first step is to create a Quota Group object under a Management Group.
 
 ### [REST API](#tab/rest-1)
 To create a Quota Group using the REST API, make a `PUT` request to the following endpoint:
 
 ```http
-PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 
+PUT https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01
 
 {
   "properties": {
@@ -27,7 +29,9 @@ PUT https://management.azure.com/providers/Microsoft.Management/managementGroups
   }
 }
 ```
-Example using `az rest`:
+
+The following example uses the `az rest` command:
+
 ```json
 az rest --method put --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}?api-version=2025-03-01 --body '{
   "properties": {
@@ -35,7 +39,9 @@ az rest --method put --url https://management.azure.com/providers/Microsoft.Mana
   }
 }'
 ```
+
 Sample response: 
+
 ```
 {
   "id": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}",
