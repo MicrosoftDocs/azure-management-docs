@@ -4,7 +4,7 @@ description: Learn how to share quota across Azure subscriptions with Azure Quot
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 07/23/2025
 ---
 
 # Azure Quota Groups
@@ -30,7 +30,7 @@ The transfer of unused quota between subscriptions is done via Quota Group objec
 ## Prerequisites
 
 Before you can use the Quota Group feature, you must:  
-- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](/rest/api/quota/#registering-the-microsoft-quota-resource-provider)
+- Register the `Microsoft.Quota` and `Microsoft.Compute` resource provider on all relevant subscriptions before adding to a Quota Group. For more information, see [Registering the Microsoft Quota resource provider](/rest/api/quota/#registering-the-microsoft-quota-resource-provider).
 - A Management Group (MG) is needed to create a Quota Group. Your group inherits quota write and or read permissions from the Management Group. Subscriptions belonging to another MG can be added to the Quota Group.
 - Certain permissions are required to create Quota Groups and to add subscriptions.    
 
@@ -77,10 +77,7 @@ Certain permissions are required to create Quota Groups and to add subscriptions
  
 ## Quota Group APIs
 
-This section covers the supported Quota Group operations via API and portal.
-<!-- What is the purpose here? Please write at least a sentance to introduce this subsection. Elaborate, but keep it to the point. Write in an active voice speaking to the customer. -->
-
-Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json) to:  
+Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json) to do the following supported Quota Group operations:  
 - Create or delete a Quota Group.
 - Add or remove subscriptions from a Quota Group.
 - Transfer or deallocate unused quota from subscriptions to a Quota Group. 
@@ -90,8 +87,7 @@ Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/s
 
 ## SDK sample links
 
-Use the below links to download the latest supported SDKs for Quota Group operations
-<!-- What is the purpose here? Please write at least a sentance to introduce this subsection. -->
+Use the below links to download the latest supported SDKs for Quota Group operations.
 
 - [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/quota/armquota@v1.1.0)
 - [Python](https://pypi.org/project/azure-mgmt-quota/2.0.0/)
