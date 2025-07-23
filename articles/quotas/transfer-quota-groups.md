@@ -102,7 +102,7 @@ View the quota allocation snapshot for the subscription in your Quota Group.
 - **Limit** is current subscription limit.
 - **Shareable quota** is how many cores have been deallocated or transferred from the subscription to the group. For example, a value of `-5` is 5 cores were given from the subscription to the group.   
 
-### [REST API](#tab/rest-2)
+### REST API
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/quotaAllocations/{location}?api-version=2025-03-01
@@ -135,5 +135,3 @@ Response content
 }
 
 ```
-
---- 
