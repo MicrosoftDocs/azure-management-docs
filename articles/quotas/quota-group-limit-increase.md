@@ -97,7 +97,7 @@ To learn how to get support for a rejected Quota Group limit increase request, s
 
 ## Quota Group limit request status
 
-The Quota Group limit request is an async operation. This operation capture the status of the request using *groupQuotaOperationsStatus* ID from the response header when submitting a limit increase request.
+The Quota Group limit request is an async operation. This operation captures the status of the request using *groupQuotaOperationsStatus* ID from the response header when you submit a limit increase request.
 
 ### [REST API](#tab/rest-2)
 Use REST API and make a `GET` request to the following endpoint:
@@ -106,7 +106,7 @@ Use REST API and make a `GET` request to the following endpoint:
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/{requestId}?api-version=2025-03-01
 ```
 
-The following example uses `az rest` after submitting a a successful `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request.
+The following example uses `az rest` after submitting a successful `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request.
 
 ```http
 az rest --method get --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/groupQuotaRequests/6c1cdfb8-d1ba-4ade-8a5f-2496f0845ce2?api-version=2025-03-01"
@@ -162,9 +162,9 @@ Example using `az rest`:
 GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01&$filter=resourceName eq standarddv4family" -verbose
 ```
 
-The following example uses `az rest` after submitting a a successful `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request.
+The following example uses `az rest` after submitting a successful `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request.
 
-The following example uses `az rest`. For the resource *standardddv4family*, the **availableLimit** is `50` cores, which match the number of cores requested and approved at the group level. The **Limit** is `40` because there were already 10 cores at the group level from a previous quota transfer. When submitting Quota Group limit increase request and getting approved, Azure only stamped 40 more cores. The **quotaAllocated** is `-10` because 10 cores were transferred from a source subscription to the group from the previous section example.
+The following example uses `az rest`. For the resource *standardddv4family*, the **availableLimit** is `50` cores, which match the number of cores requested and approved at the group level. The **Limit** is `40` because there were already 10 cores at the group level from a previous quota transfer. When you submit a Quota Group limit increase request and get it approved, Azure only stamped 40 more cores. The **quotaAllocated** is `-10` because 10 cores were transferred from a source subscription to the group from the previous section example.
 
 ```http
 az rest --method get --url https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01&$filter=resourceName eq standardddv4family
@@ -210,7 +210,7 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
 
 ## File a support ticket
 
-This sections covers how to file asupport ticket through the Azure portal if your Quota Groups limin increase request fails. 
+This section covers how to file a support ticket through the Azure portal if your Quota Groups limit increase request fails. 
 
 - If a Quota Group limit request is rejected through REST API or Azure portal, then you must submit a support ticket via the self-serve Quota Group request blade in Azure portal.  
 - Support tickets for Quota Groups are created based on a preselected `subscriptionID` within the group. You have the ability to edit the `subscriptionID` when updating request details.
