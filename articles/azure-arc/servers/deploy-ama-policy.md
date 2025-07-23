@@ -58,4 +58,4 @@ In order for Azure Policy to check if the Azure Monitor Agent is installed on yo
 ## Additional resources
 
 - [Azure Monitor overview](/azure/azure-monitor/overview)
-- [Tutorial: Monitor a hybrid machine with VM insights](learn/tutorial-enable-vm-insights.md)
+- [Tutorial: Monitor a hybrid machine with VM insights](tutorial-enable-vm-insights.md)

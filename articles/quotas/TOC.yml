@@ -8,8 +8,6 @@
     href: view-quotas.md
   - name: Monitoring and alerts
     href: monitoring-alerting.md
-  - name: Quota Groups
-    href: quota-groups.md
 - name: Quickstarts
   items:
   - name: Request a quota increase
@@ -32,6 +30,18 @@
         href: storage-account-quota-requests.md
     - name: Create and manage alerts
       href: how-to-guide-monitoring-alerting.md
+- name: Quota Groups
+  items:
+  - name: Overview
+    href: quota-groups.md
+  - name: Create and delete Quota Groups 
+    href: create-quota-groups.md
+  - name: Add or remove subscriptions
+    href: add-remove-subscriptions-quota-group.md
+  - name: Transfer quota with a Quota Group
+    href: transfer-quota-groups.md
+  - name: Quota Group limit increase request
+    href: quota-group-limit-increase.md
 - name: Reference
   items:
   - name: Azure CLI
