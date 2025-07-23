@@ -1,26 +1,25 @@
 ---
-title: Quota Group limit increase requests
-description: Learn how to submit a quota group limit increase request.
+title: Submit a Quota Group limit increase request
+description: Learn how to submit a Quota Group limit increase request.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 07/07/2025
+ms.date: 07/23/2025
 ---
 
+# Submit a Quota Group limit increase request
 
-# Submit Quota Group Limit increase request
-One of the key benefits of Quota Group offering is the ability to submit Quota Group Limit increase requests rather than at the per subscription level. If your group limit request is approved, you can self-distribute cores from group to target subscriptions for a given region x Virtual Machine family.  
-
+One of the key benefits of the Quota Group offering is the ability to submit limit requests at the Quota Group level, rather than per subscription level. If your group limit request is approved, you can self-distribute cores from the group to target subscriptions for a given region and Virtual Machine (VM) family.
 
 ## Considerations
-- Require *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
-- Customers can submit Quota Group limit increase requests for a region x Virtual Machine family combination, and if approved, quota is stamped on the specified Quota GroupID.  
-- Quota Group Limit increase requests undergo the same checks as subscription level requests. Value should be absolute value of the new desired amount.   
-- If Quota Group  Limit request is rejected, then customer must submit support ticket via the self-serve Quota group request blade.  
-- Support tickets for Quota Groups are created based on a preselected subscriptionID within the group. The customer has the ability to edit the subID when updating request details.
-
+- Requires *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
+- You can submit Quota Group limit increase requests for a region and VM family combination. If approved, quota is stamped on the specified Quota `GroupID`.
+- Quota Group limit increase requests undergo the same checks as subscription level requests.   
+- If a Quota Group limit request is rejected, then you must submit a support ticket via the self-serve Quota Group request blade in Azure portal.  
+- Support tickets for Quota Groups are created based on a preselected `subscriptionID` within the group. You have the ability to edit the `subscriptionID` when updating request details.
    
 ## Quota Group limit increase request 
+
 ```http
 PATCH https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/{location}?api-version=2025-03-01
 ```
@@ -39,7 +38,8 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
   }
 }
 ```
-Example using `az rest`
+
+Example using `az rest`:
 - I submit PATCH Quota Group limit increase request of 50 cores for ***standardddv4family*** in centralus
 - Use the groupQuotaOperationsStatus ID in my response header to validate the status of request in next section
 
@@ -63,7 +63,9 @@ az rest --method patch --uri "https://management.azure.com/providers/Microsoft.M
   }
 }
 ```
-Example response Quota Group increase request
+
+Example response:
+
 ```json
 Status code: 202
 Response header:
