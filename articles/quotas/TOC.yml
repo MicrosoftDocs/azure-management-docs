@@ -40,7 +40,7 @@
     href: add-remove-subscriptions-quota-group.md
   - name: Transfer quota with a Quota Group
     href: transfer-quota-groups.md
-  - name: Quota limit increase request
+  - name: Quota Group limit increase request
     href: quota-group-limit-increase.md
 - name: Reference
   items:
