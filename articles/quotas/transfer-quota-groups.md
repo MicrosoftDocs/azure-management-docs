@@ -1,15 +1,15 @@
 ---
-title: Transfer quota within a Quota Group
-description: Learn how to transfer quota within a Quota Group.
+title: Transfer quota within an Azure Quota Group
+description: Learn how to transfer quota within an Azure Quota Group.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
 ms.date: 07/23/2025
 ---
 
-# Transfer quota within a Quota Group
+# Transfer quota within an Azure Quota Group
 
-You can self-distribute quota from a group to subscriptions in a group using the Quota Group ARM object. Once quota is approved at the group level, you can distribute approved quota across the subscription to support successful deployments. Additionally, you can transfer quota from a source subscription to your group, then move to a target subscription also in the group.  
+You can self-distribute quota from a group to subscriptions in a group using the Azure Quota Group ARM object. Once quota is approved at the group level, you can distribute approved quota across the subscription to support successful deployments. Additionally, you can transfer quota from a source subscription to your group, then move to a target subscription also in the group.  
 
 ## Transfer quota
 Transfer unused quota from your subscription to a Quota Group or from a Quota Group to a subscription.
