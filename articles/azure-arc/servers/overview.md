@@ -73,7 +73,7 @@ Azure Arc-enabled servers support the management of physical servers and virtual
 
 ## Agent status
 
-The status for a connected machine can be viewed in the Azure portal under **Azure Arc > Servers**.
+The status for a connected machine can be viewed in the Azure portal under **Azure Arc > Machines**.
 
 The Connected Machine agent sends a regular heartbeat message to the service every five minutes. If the service stops receiving these heartbeat messages from a machine, that machine is considered offline, and its status will automatically be changed to **Disconnected** within 15 to 30 minutes. Upon receiving a subsequent heartbeat message from the Connected Machine agent, its status will automatically be changed back to **Connected**.
 

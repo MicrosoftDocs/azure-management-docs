@@ -7,6 +7,7 @@ ms.topic: quickstart
 ms.date: 05/03/2025
 ms.custom:
   - build-2025
+# Customer intent: As a developer working with workload orchestration, I want to create a basic solution template with common configurations using CLI commands, so that I can streamline my deployment process and manage application dependencies effectively.
 ---
 
 # Quickstart: Create a basic solution with common configurations

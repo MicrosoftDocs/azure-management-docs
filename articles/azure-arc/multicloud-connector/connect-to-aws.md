@@ -3,6 +3,7 @@ title: "Connect to AWS with the multicloud connector in the Azure portal"
 description: "Learn how to add an AWS cloud by using the multicloud connector enabled by Azure Arc."
 ms.topic: how-to
 ms.date: 07/03/2025
+# Customer intent: "As a cloud administrator, I want to connect my AWS account to Azure using the multicloud connector, so that I can manage my AWS resources alongside Azure services efficiently."
 ---
 
 # Connect to AWS with the multicloud connector in the Azure portal

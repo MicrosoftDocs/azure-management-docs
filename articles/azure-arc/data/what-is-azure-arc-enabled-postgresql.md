@@ -9,6 +9,7 @@ ms.author: dhmahaja
 ms.reviewer: mikeray
 ms.date: 07/19/2023
 ms.topic: concept-article
+# Customer intent: "As a database administrator, I want to deploy and manage PostgreSQL on any Kubernetes infrastructure, so that I can leverage Azure Arc's capabilities for monitoring, backups, and security, while ensuring flexibility in my deployment environment."
 ---
 
 # Azure Arc-enabled PostgreSQL server

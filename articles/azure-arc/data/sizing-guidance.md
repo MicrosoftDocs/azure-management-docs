@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: As a cloud architect, I want to determine the resource requirements for deploying Azure Arc-enabled data services, so that I can ensure optimal capacity planning and performance for my Kubernetes cluster.
 ---
 
 # Sizing Guidance

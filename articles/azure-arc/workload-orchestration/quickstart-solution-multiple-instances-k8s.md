@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 06/18/2025
 ms.custom:
   - build-2025
+# Customer intent: As a DevOps engineer, I want to create a solution with multiple instances in a Kubernetes namespace using workload orchestration via CLI, so that I can efficiently manage and deploy applications with dynamic configurations.
 ---
 
 # Create a solution with multiple instances in the same Kubernetes namespace
