@@ -41,7 +41,7 @@ PATCH https://management.azure.com/providers/Microsoft.Management/managementGrou
 }
 ```
 
-The following example uses `az rest` after submitting a `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request in the [Quota Group limit request status](#guota-group-limit-request-status) section.
+The following example uses `az rest` after submitting a `PATCH` Quota Group limit increase request of 50 cores for *standardddv4family* in *centralus*. The example also uses the *groupQuotaOperationsStatus* ID in the response header to validate the status of the request in the [Quota Group limit request status](#quota-group-limit-request-status) section.
 
 ```http
 az rest --method patch --uri "https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupquota}/resourceProviders/Microsoft.Compute/groupQuotaLimits/centralus?api-version=2025-03-01" --body '{"properties":{"value":[{"properties":{"resourceName":"standardddv4family","limit":20,"comment":"comments"}}]}}' --verbose
