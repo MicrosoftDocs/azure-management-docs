@@ -99,7 +99,7 @@ To learn how to get support for a rejected Quota Group limit increase request, s
 
 The Quota Group limit request is an async operation. This operation captures the status of the request using *groupQuotaOperationsStatus* ID from the response header when you submit a limit increase request.
 
-### [REST API](#tab/rest-2)
+### REST API
 Use REST API and make a `GET` request to the following endpoint:
 
 ```http
@@ -139,8 +139,6 @@ Sample response of an approved Quota Group limit increase request:
 }
 ```
 
----
-
 ## Snapshot of Quota Group limit
 
 Validate that the correct number of cores were transferred from source subscription to the group, or that your group limit increase request was approved. 
@@ -150,7 +148,7 @@ Consider the following when interpreting the API response:
 - **Limit** is how many cores are explicitly requested and approved or stamped on your group via quota increase requests.  
 - **Quota allocated** is how many cores are allocated from the subscription group. A `-` value indicates cores are de-allocated from the subscription to the group. 
 
-### [REST API](#tab/rest-3)
+### REST API
 To view and validate a snapshot you your Quota Group limit using the REST API, make a `GET` request to the following endpoint:
 
 ```http
@@ -206,7 +204,6 @@ az rest --method get --url "https://management.azure.com/providers/Microsoft.Man
   "type": "Microsoft.Quota/groupQuotas/groupQuotaLimits"
 }
 ```
---- 
 
 ## File a support ticket
 
