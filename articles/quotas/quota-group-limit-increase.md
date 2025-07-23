@@ -1,15 +1,15 @@
 ---
-title: Submit a Quota Group limit increase request
-description: Learn how to submit a Quota Group limit increase request.
+title: Submit an Azure Quota Group limit increase request
+description: Learn how to submit an Azure Quota Group limit increase request.
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
 ms.date: 07/23/2025
 ---
 
-# Submit a Quota Group limit increase request
+# Submit an Azure Quota Group limit increase request
 
-One of the key benefits of the Quota Group offering is the ability to submit limit requests at the Quota Group level, rather than per subscription level. If your group limit request is approved, you can self-distribute cores from the group to target subscriptions for a given region and Virtual Machine (VM) family.
+One of the key benefits of the Azure Quota Group offering is the ability to submit limit requests at the Quota Group level, rather than per subscription level. If your group limit request is approved, you can self-distribute cores from the group to target subscriptions for a given region and Virtual Machine (VM) family.
 
 ## Considerations
 - Requires *GroupQuota Request Operator* role on the Management Group to submit Quota Group limit increase request.
