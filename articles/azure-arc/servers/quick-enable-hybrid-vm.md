@@ -9,13 +9,13 @@ ms.custom: mode-other
 
 # Quickstart: Connect hybrid machines with Azure Arc-enabled servers
 
-Get started with [Azure Arc-enabled servers](../overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
+Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
 In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
 
 For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager.
 
-While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
+While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 > [!TIP]
 > If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
@@ -26,17 +26,17 @@ While you can repeat the steps in this article as needed to onboard additional m
 * Administrator permissions to install and configure the Connected Machine agent. 
   * Linux—Use the root account. 
   * Windows—Use an account that's a member of the Local Administrators group.
-* Review the [Connected Machine agent prerequisites](../prerequisites.md) and verify the following requirements:
-  * These [resource providers are registered](../prerequisites.md#azure-resource-providers) on your subscription:
+* Review the [Connected Machine agent prerequisites](prerequisites.md) and verify the following requirements:
+  * These [resource providers are registered](prerequisites.md#azure-resource-providers) on your subscription:
     * Microsoft.HybridCompute
     * Microsoft.GuestConfiguration
     * Microsoft.HybridConnectivity
     * Microsoft.AzureArcData  
-  * Your target machine is running a supported [operating system](../prerequisites.md#supported-operating-systems).
-  * Your account has the [required Azure built-in roles](../prerequisites.md#required-permissions).
-  * The machine is in a [supported region](../overview.md#supported-regions).
+  * Your target machine is running a supported [operating system](prerequisites.md#supported-operating-systems).
+  * Your account has the [required Azure built-in roles](prerequisites.md#required-permissions).
+  * The machine is in a [supported region](overview.md#supported-regions).
   * The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](../network-requirements.md#urls) aren't blocked.
+  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked.
 
 ## Generate installation script
 
