@@ -44,11 +44,26 @@
             "source_path_from_root": "/articles/azure-arc/servers/quickstart-onboard-portal.md",
             "redirect_url": "/azure/azure-arc/servers/onboard-portal",
             "redirect_document_id": false
-    },
+        },
         {
             "source_path_from_root": "/articles/azure-arc/servers/quickstart-onboard-powershell.md",
             "redirect_url": "/azure/azure-arc/servers/onboard-service-principal",
             "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/learn/quick-enable-hybrid-vm.md",
+            "redirect_url": "/azure/azure-arc/servers/quick-enable-hybrid-vm",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/learn/tutorial-assign-policy-portal.md",
+            "redirect_url": "/azure/azure-arc/servers/tutorial-assign-policy-portal",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/azure-arc/servers/learn/tutorial-enable-vm-insights.md",
+            "redirect_url": "/azure/azure-arc/servers/tutorial-enable-vm-insights",
+            "redirect_document_id": true
         }
     ]
 }

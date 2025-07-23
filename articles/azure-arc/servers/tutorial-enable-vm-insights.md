@@ -8,7 +8,7 @@ ms.date: 05/08/2025
 
 # Tutorial: Monitor a hybrid machine with VM insights
 
-[Azure Monitor](/azure/azure-monitor/overview) can collect data directly from your hybrid machines into a Log Analytics workspace for detailed analysis and correlation. You can enable [VM insights](/azure/azure-monitor/vm/vminsights-overview) to collect data from your non-Azure virtual machines (VM). While there are [different options for deploying the Azure Monitor Agent](../azure-monitor-agent-deployment.md) to your Arc-enabled servers, this tutorial shows how to do so by using the Azure portal to enable VM insights on a connected machine.
+[Azure Monitor](/azure/azure-monitor/overview) can collect data directly from your hybrid machines into a Log Analytics workspace for detailed analysis and correlation. You can enable [VM insights](/azure/azure-monitor/vm/vminsights-overview) to collect data from your non-Azure virtual machines (VM). While there are [different options for deploying the Azure Monitor Agent](azure-monitor-agent-deployment.md) to your Arc-enabled servers, this tutorial shows how to do so by using the Azure portal to enable VM insights on a connected machine.
 
 In this tutorial, you'll learn how to:
 
