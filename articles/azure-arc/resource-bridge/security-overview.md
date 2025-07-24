@@ -3,6 +3,7 @@ title: Azure Arc resource bridge security overview
 description: Understand security configuration and considerations for Azure Arc resource bridge.
 ms.topic: concept-article
 ms.date: 09/20/2024
+# Customer intent: As a security administrator, I want to understand the security configuration and considerations for Azure Arc resource bridge, so that I can ensure compliance and protect sensitive data before deploying it in my enterprise environment.
 ---
 
 # Azure Arc resource bridge security overview

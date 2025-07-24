@@ -4,6 +4,7 @@ description: Learn about the Azure CLI commands that can be used to manage your 
 ms.date: 04/23/2025
 ms.topic: overview
 ms.custom: devx-track-azurecli
+# Customer intent: As a cloud engineer, I want to use Azure CLI commands for deploying and managing the Arc resource bridge, so that I can integrate on-premises resources with Azure for better hybrid cloud management.
 ---
 
 # Azure Arc resource bridge deployment command overview

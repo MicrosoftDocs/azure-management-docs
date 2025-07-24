@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 05/01/2025
 ms.custom:
   - build-2025
+# Customer intent: As an IT developer, I want to monitor my application solutions through the management tools in the cloud portal, so that I can quickly identify and resolve deployment issues and ensure optimal performance.
 ---
 
 # Use Azure portal to monitor your solutions as an IT developer

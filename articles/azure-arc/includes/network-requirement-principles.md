@@ -4,6 +4,7 @@ ms.author: jenhayes
 ms.service: azure-arc
 ms.topic: include
 ms.date: 06/27/2023
+# Customer intent: "As a network administrator, I want to ensure that my agents meet the connectivity requirements for cloud onboarding, so that I can successfully establish secure outbound connections using HTTPS and compliant proxy settings."
 ---
 
 Generally, connectivity requirements include these principles:

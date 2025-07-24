@@ -59,7 +59,7 @@ To confirm installation of the Connected Machine Agent, in Windows Admin Center 
 
 After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server connected successfully. View your machine in the [Azure portal](https://portal.azure.com).
 
-:::image type="content" source="./learn/media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="A successful machine connection" border="false":::
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
 ## Next steps
 

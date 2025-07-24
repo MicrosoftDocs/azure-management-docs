@@ -3,6 +3,7 @@ title: Azure Arc-enabled services validation overview
 description: Explains the Azure Arc validation process to conform to the Azure Arc-enabled Kubernetes, Data Services, and cluster extensions.
 ms.date: 07/21/2025
 ms.topic: overview
+# Customer intent: "As an IT administrator overseeing cloud infrastructure, I want to understand the validation process for Azure Arc-enabled services, so that I can ensure compatibility and reliability of the services we deploy on validated platforms."
 ---
 
 # Overview of Azure Arc-enabled service validation

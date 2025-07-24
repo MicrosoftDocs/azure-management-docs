@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: "As a Kubernetes administrator, I want to upgrade an Azure SQL Managed Instance connected to Azure Arc, so that I can ensure it is running the latest features and security updates while managing the deployment efficiently."
 ---
 
 # Upgrade Azure SQL Managed Instance indirectly connected to Azure Arc using Kubernetes tools

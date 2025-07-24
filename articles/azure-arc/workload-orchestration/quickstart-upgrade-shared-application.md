@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 05/10/2025
 ms.custom:
   - build-2025
+# Customer intent: As a solutions engineer, I want to upgrade shared applications using workload orchestration via command line, so that I can efficiently deploy updates and manage dependencies between interconnected solutions.
 ---
 
 # Upgrade a shared solution

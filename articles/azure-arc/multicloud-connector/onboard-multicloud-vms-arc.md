@@ -3,6 +3,7 @@ title: Onboard VMs to Azure Arc through the multicloud connector
 description: Learn how to enable the Arc onboarding solution with the multicloud connector enabled by Azure Arc.
 ms.topic: how-to
 ms.date: 07/09/2025
+# Customer intent: As a cloud administrator, I want to onboard EC2 instances to Azure Arc using the multicloud connector, so that I can manage AWS and Azure VMs centrally and leverage Azure management services.
 ---
 
 # Onboard VMs to Azure Arc through the multicloud connector

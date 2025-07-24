@@ -3,6 +3,7 @@ title: View multicloud inventory with the multicloud connector enabled by Azure 
 description: View multicloud inventory with the multicloud connector enabled by Azure Arc
 ms.topic: how-to
 ms.date: 06/11/2024
+# Customer intent: "As a cloud architect, I want to view my AWS resources within Azure, so that I can maintain an organized and unified multicloud inventory for efficient resource governance."
 ---
 
 # View multicloud inventory with the multicloud connector enabled by Azure Arc

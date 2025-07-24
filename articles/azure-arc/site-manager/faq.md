@@ -11,6 +11,7 @@ ms.custom: references_regions
 
 #customer intent: As a customer, I want answers to questions so that I can answer my own questions.
 
+# Customer intent: As an Azure Arc user, I want to find answers to common questions about site manager and address migration, so that I can troubleshoot effectively and understand the features and limitations of the service.
 ---
 
 # Frequently asked questions: Azure Arc site manager (preview)
