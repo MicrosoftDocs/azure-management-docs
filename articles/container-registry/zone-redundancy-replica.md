@@ -35,7 +35,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Go to your Premium tier container registry, and select **Replications**.
+1. Go to your Premium tier container registry, and select **Geo-replications**.
 
 1. On the map that appears, you do one of the following:
 
@@ -47,7 +47,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
 
     In **Availability zones**, select **Enabled**, and then select **Create**.
 
-    :::image type="content" source="media/zone-redundancy/enable-availability-zones-replication-portal.png" alt-text="Enable zone-redundant replication in Azure portal":::
+    :::image type="content" source="media/zone-redundancy-replica/enable-availability-zones-replication-portal.png" alt-text="Enable zone-redundant replication in Azure portal":::
 
 ### [Azure CLI](#tab/cli)
 
@@ -68,7 +68,7 @@ To create a zone-redundant replica, use Azure portal, Azure CLI, or a Bicep file
     ```JSON
     {
       [...]
-    "zoneRedundancy": "Enabled",
+      "zoneRedundancy": "Enabled"
     }
     ```
 

@@ -78,8 +78,8 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
     
     ```JSON
     {
-     [...]
-    "zoneRedundancy": "Enabled",
+      [...]
+      "zoneRedundancy": "Enabled"
     }
     ```
 
