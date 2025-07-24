@@ -6,7 +6,7 @@ ms.date: 05/08/2025
 # Customer intent: "As a system administrator, I want to configure and secure VM extensions for Azure Arc-enabled servers, so that I can manage monitoring and security capabilities while restricting unauthorized access and maintaining compliance with security policies."
 ---
 
-# Extensions security for Azure ARc-enabled servers
+# Extensions security for Azure Arc-enabled servers
 
 This article describes the fundamentals of [VM extensions](manage-vm-extensions.md) for Azure Arc-enabled servers and details how extension settings can be customized.
 
