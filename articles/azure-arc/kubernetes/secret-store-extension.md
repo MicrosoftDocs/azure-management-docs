@@ -52,6 +52,13 @@ export KUBERNETES_NAMESPACE="my-namespace"
 export SERVICE_ACCOUNT_NAME="my-service-account"
 ```
 
+Create the resource group if necessary:
+
+```azurecli
+az group create --name ${RESOURCE_GROUP}  --location ${LOCATION}
+```
+
+
 ## Activate workload identity federation in your cluster
 
 The SSE uses a feature called [workload identity federation](conceptual-workload-identity.md) to access and synchronize Azure Key Vault secrets. This section describes how to set the feature up. The following sections will explain how it's used in detail.
@@ -74,8 +81,6 @@ az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP}
 ```
 
 Now configure your cluster to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set earlier.
-
-Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
 1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
