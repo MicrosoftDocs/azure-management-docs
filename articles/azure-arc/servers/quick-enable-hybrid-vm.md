@@ -1,13 +1,13 @@
 ---
-title: Quickstart - Connect hybrid machine with Azure Arc-enabled servers
-description: In this quickstart, you connect and register a hybrid machine with Azure Arc-enabled servers.
+title: Quickstart - Connect a machine to Arc-enabled servers (Windows or Linux install script)
+description: In this quickstart, you connect and register a hybrid machine to Azure Arc using an install script.
 ms.topic: quickstart
-ms.date: 04/23/2025
+ms.date: 07/23/2025
 ms.custom: mode-other
 # Customer intent: "As an IT administrator, I want to connect and register hybrid machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
-# Quickstart: Connect hybrid machines with Azure Arc-enabled servers
+# Quickstart: Connect a machine to Arc-enabled servers (Windows or Linux install script)
 
 Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
