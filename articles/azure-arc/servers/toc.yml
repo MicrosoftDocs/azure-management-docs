@@ -13,9 +13,9 @@
     href: agent-release-notes-archive.md
 - name: Quickstarts
   items:
-  - name: Connect Windows or Linux machine with install script
+  - name: Onboard with install script (Windows/Linux)
     href: quick-enable-hybrid-vm.md
-  - name: Connect Linux machine with package-based installation
+  - name: Onboard with package-based installation (Linux)
     href: quick-onboard-linux.md
 - name: Tutorials
   items:
