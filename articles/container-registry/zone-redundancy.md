@@ -13,10 +13,6 @@ ms.service: azure-container-registry
 
 # Create a zone-redundant registry and replica in Azure Container Registry
 
-[!INCLUDE [azure-cli-version](../includes/azure-cli-version.md)]
-
-[!INCLUDE [reliability-in-acr](../includes/reliability-in-acr.md)]
-
 This article shows how to set up a zone-redundant container registry and replica by using the Azure CLI, Azure portal, or Azure Resource Manager template. 
 
 Zone redundancy in the [Premium tier of Azure Container Registry](container-registry-skus.md) provides protection against single zone failures. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region. In addition, if your registry uses [geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) and zone redundancy together, you can  configure zone redundancy on each regional replica.  
