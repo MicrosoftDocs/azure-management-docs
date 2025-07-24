@@ -13,9 +13,11 @@ ms.service: azure-container-registry
 
 # Create a zone-redundant registry and replica in Azure Container Registry
 
-This article shows how to set up a zone-redundant container registry and replica by using the Azure CLI, Azure portal, or Azure Resource Manager template. 
+This article describes how to set up a zone-redundant container registry and replica. 
 
-Zone redundancy in the [Premium tier of Azure Container Registry](container-registry-skus.md) provides protection against single zone failures. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region. In addition, if your registry uses [geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) and zone redundancy together, you can  configure zone redundancy on each regional replica.  
+Zone redundancy in the [Premium tier of Azure Container Registry](container-registry-skus.md) provides protection against single zone failures. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region. In addition, if your registry uses [geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) and zone redundancy together, you can configure zone redundancy on each regional replica.  
+
+For more information about availability zone support requirements and features -  as well as multi-region deployment options, see [Reliability in Azure Container Registry](/azure/reliability/reliability-container-registry).
 
 
 ## Prerequisites
@@ -25,7 +27,6 @@ Zone redundancy in the [Premium tier of Azure Container Registry](container-regi
 
 - You must use the [Premium service tier](container-registry-skus.md) to enable zone redundancy in Azure Container Registry.
 
-For more information about availability zone support requirements and features -  as well as multi-region deployment options, see [Reliability in Azure Container Registry](/azure/reliability/reliability-container-registry).
 
 ## Create a zone-redundant registry and replica
 
