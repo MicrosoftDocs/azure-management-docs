@@ -11,3 +11,6 @@
   - name: Container Registry
     tocHref: /azure/event-grid/
     topicHref: /azure/container-registry/index
+  - name: Container Registry
+    tocHref: /azure/reliability/
+    topicHref: /azure/container-registry/index
