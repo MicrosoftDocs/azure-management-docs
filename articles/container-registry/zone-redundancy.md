@@ -21,7 +21,7 @@ Zone redundancy in the [Premium tier of Azure Container Registry](container-regi
 ## Prerequisites
 - An [Azure subscription](https://azure.microsoft.com/free/).
 
-- Select a region that [supports availability zones](/azure/reliability/region-list.md), such as *eastus*.
+- Select a region that [supports availability zones](/azure/reliability/region-list), such as *eastus*.
 
 - You must use the [Premium service tier](container-registry-skus.md) to enable zone redundancy in Azure Container Registry.
 
@@ -40,7 +40,7 @@ To create a zone-redundant registry and replica in the Premium service tier, use
 
 1. In the **Basics** tab, select or create a resource group, and enter a unique registry name.
 
-1. In **Location**, select a region that [supports availability zones](/azure/reliability/region-list.md), such as *East US*.
+1. In **Location**, select a region that [supports availability zones](/azure/reliability/region-list), such as *East US*.
 
 1. In **SKU**, select **Premium**.
 
@@ -57,7 +57,7 @@ To create a zone-redundant registry and replica in the Premium service tier, use
     1. Go to your Premium tier container registry, and select **Replications**.
 
     1. On the map that appears, you do one of the following:
-       - Select a green hexagon in a region that [supports availability zones](/azure/reliability/region-list.md), such as **West US 2**.
+       - Select a green hexagon in a region that [supports availability zones](/azure/reliability/region-list), such as **West US 2**.
 
        - Select **+ Add**.
 
@@ -75,7 +75,7 @@ To create a zone-redundant registry and replica in the Premium service tier, use
     ```azurecli
     az group create --name <resource-group-name> --location <location>
     ```
-1. Select a region that [supports availability zones](/azure/reliability/region-list.md), such as *eastus*.
+1. Select a region that [supports availability zones](/azure/reliability/region-list), such as *eastus*.
 
 1. Create a zone-enabled registry in the Premium service tier by running the [az acr create](/cli/azure/acr#az-acr-create) command (replace `<resource-group-name>`, `<container-registry-name>`, and `<region-name>` with your values):
 
