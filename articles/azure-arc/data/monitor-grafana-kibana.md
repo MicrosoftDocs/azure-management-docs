@@ -41,22 +41,6 @@ The relevant Grafana dashboards are:
 >  You will be prompted with a certificate warning because the certificates are self-signed certificates.
 
 
-## Monitor Azure Arc-enabled PostgreSQL server
-
-To access the logs and monitoring dashboards for an Azure Arc-enabled PostgreSQL server, run the following `azdata` CLI command
-
-```azurecli
-az postgres server-arc endpoint list -n <name of postgreSQL instance> --k8s-namespace <namespace> --use-k8s
-```
-
-The relevant postgreSQL dashboards are:
-
-* "Postgres Metrics"
-* "Postgres Table Metrics"
-* "Host Node Metrics"
-* "Host Pods Metrics"
-
-
 ## Additional firewall configuration
 
 Depending on where the data controller is deployed, you may find that you need to open up ports on your firewall to access the Kibana and Grafana endpoints.

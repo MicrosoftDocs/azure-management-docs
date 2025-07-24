@@ -64,5 +64,3 @@ The progress of Azure Arc data controller deployment can be monitored as follows
 ## Related information
 
 [Deploy SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md)
-
-[Create an Azure Arc-enabled PostgreSQL server](create-postgresql-server.md)

@@ -15,7 +15,7 @@ ms.topic: how-to
 
 # Upload logs to Azure Monitor
 
-Periodically, you can export logs and then upload them to Azure. Exporting and uploading logs also creates and updates the data controller, SQL managed instance, and PostgreSQL server resources in Azure.
+Periodically, you can export logs and then upload them to Azure. Exporting and uploading logs also creates and updates the data controller, and Azure Arc-enabled SQL managed instance.
 
 ## Before you begin
 
@@ -223,7 +223,7 @@ kubectl edit datacontroller <DC name> --name <namespace>
 
 ## Upload logs to Azure Monitor in **indirect** mode
 
- To upload logs for SQL Managed Instance enabled by Azure Arc and Azure Arc-enabled PostgreSQL servers run the following CLI commands-
+ To upload logs for SQL Managed Instance enabled by Azure Arc run the following CLI commands-
 
 1. Export all logs to the specified file:
 
@@ -249,7 +249,7 @@ Once your logs are uploaded, you should be able to query them using the log quer
 2. Select Logs in the left panel.
 3. Select Get Started (or select the links on the Getting Started page to learn more about Log Analytics if you are new to it).
 4. Follow the tutorial to learn more about Log Analytics if this is your first time using Log Analytics.
-5. Expand Custom Logs at the bottom of the list of tables and you will see a table called 'sql_instance_logs_CL' or 'postgresInstances_postgresql_logs_CL'.
+5. Expand Custom Logs at the bottom of the list of tables and you will see a table called 'sql_instance_logs_CL'.
 6. Select the 'eye' icon next to the table name.
 7. Select the 'View in query editor' button.
 8. You'll now have a query in the query editor that will show the most recent 10 events in the log.

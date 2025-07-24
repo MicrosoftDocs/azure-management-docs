@@ -19,14 +19,12 @@ This article describes the data that Azure Arc-enabled data services transmit to
 Neither Azure Arc-enabled data services nor any of the applicable data services store any customer data. This applies to:
 
 - SQL Managed Instance enabled by Azure Arc
-- Azure Arc-enabled PostgreSQL
 
 ## Azure Arc-enabled data services
 
 Azure Arc-enabled data services may use some or all of the following products:
 
 - SQL Managed Instance enabled by Azure Arc 
-- Azure Arc-enabled PostgreSQL
 - Azure Data Studio
 
    [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
@@ -81,7 +79,6 @@ Every database instance and the data controller itself will be reflected in Azur
 There are three resource types: 
 
 - SQL Managed Instance enabled by Azure Arc 
-- Azure Arc-enabled PostgreSQL server 
 - Data controller
 
 The following sections show the properties, types, and descriptions that are collected and stored about each type of resource: 
@@ -340,19 +337,6 @@ The following JSON document is an example of the Azure Arc Data Controller resou
     }
 }
 ```
-
-
-
-### PostgreSQL server - Azure Arc
-
-| Description | Property name | Property type|
-|:--|:--|:--|
-| The data controller ID | DataControllerId | string |
-| The instance admin name | Admin | string |
-| Username and password for basic authentication | BasicLoginInformation | public: BasicLoginInformation | 
-| The raw Kubernetes information (`kubectl get postgres12`) | K8sRaw | object |
-| Last uploaded date from on premises cluster | LastUploadedDate | System.DateTime |
-| Group provisioning state | ProvisioningState | string |
 
 ### SQL managed instance - Azure Arc
 
