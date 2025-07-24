@@ -169,5 +169,3 @@ If you encounter any troubles with creation, please see the [troubleshooting gui
 ## Related content
 
 - [Create a SQL managed instance using Kubernetes-native tools](./create-sql-managed-instance-using-kubernetes-native-tools.md)
-- [Create a PostgreSQL server using Kubernetes-native tools](./create-postgresql-server-kubernetes-native-tools.md)
-
