@@ -121,9 +121,9 @@ To create a zone-redundant registry and replica in the Premium service tier, use
 
 1. If you don't have a resource group in a region that supports availability zones, run [az group create](/cli/azure/group#az-group-create) to create a resource group (replace `<resource-group-name>` and `<location>` with your values):
 
-  ```azurecli
-  az group create --name <resource-group-name> --location <location>
-  ```
+    ```azurecli
+    az group create --name <resource-group-name> --location <location>
+    ```
 
 1. To create a zone-redundant, geo-replicated registry, copy the following ARM template to a new file and save it using a filename such as `registryZone.json`. 
 
