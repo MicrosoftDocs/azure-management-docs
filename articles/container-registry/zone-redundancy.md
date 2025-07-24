@@ -49,7 +49,8 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 
 1. Select **Create** to deploy the registry instance.
 
-    :::image type="content" source="media/zone-redundancy/enable-availability-zones-portal.png" alt-text="Enable zone redundancy in Azure portal":::
+    :::image type="content" source="media/zone-redundancy/enable-availability-zones-portal.png" alt-text="Enable zone redundancy in Azure portal.":::
+
 
 ### [Azure CLI](#tab/cli)
 
@@ -135,7 +136,8 @@ To create a zone-redundant registry in the Premium service tier, use Azure porta
 1. Run the following [az deployment group create](/cli/azure/deployment/group#az-deployment-group-create) command to create the registry using the preceding template file (replace `<resource-group-name>` and `<registry-name>` with your values). 
 
      >[!NOTE]
-     > If you deploy the template without parameters, it create a unique name for you.
+     > If you deploy the template without parameters, it creates a unique name for you.
+
     
     ```azurecli
     az deployment group create \
