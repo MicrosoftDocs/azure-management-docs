@@ -20,7 +20,7 @@ The following Microsoft-provided Kubernetes distributions and infrastructure pro
 | Distribution and infrastructure provider | Version |
 | ---------------------------------------- | ------- |
 | Cluster API Provider on Azure            | Release version: [1.18.0](https://github.com/kubernetes-sigs/cluster-api-provider-azure/releases/tag/v1.18.0); API version v1.8.8; Kubernetes version: [1.31.1](https://github.com/kubernetes/kubernetes/releases/tag/v1.31.1) |
-| AKS on Azure Local                       | Release version: [December 2020 Update](https://github.com/Azure/aks-hci/releases/tag/AKS-HCI-2012); Kubernetes version: [1.18.8](https://github.com/kubernetes/kubernetes/releases/tag/v1.18.8) |
+| AKS Enabled by Azure Arc                 | Release version: [AKS on Azure Local version 2503](/azure/aks/aksarc/aks-whats-new-local#release-2503); Kubernetes version: [1.30.4](https://github.com/kubernetes/kubernetes/releases/tag/v1.30.4); [1.29.9](https://github.com/kubernetes/kubernetes/releases/tag/v1.29.9); [1.28.14](https://github.com/kubernetes/kubernetes/releases/tag/v1.28.14) |
 | K8s on Azure Stack Edge                  | Release version: Azure Stack Edge 2501 (3.3.2501.1176); Kubernetes version: [1.29.4](https://github.com/kubernetes/kubernetes/releases/tag/v1.29.4) |
 | AKS Edge Essentials                      | Release version [1.10.868.0](https://github.com/Azure/AKS-Edge/releases); Kubernetes version [1.29.9](https://github.com/kubernetes/kubernetes/releases/tag/v1.29.9) |
 
