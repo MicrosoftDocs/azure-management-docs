@@ -31,73 +31,70 @@ While you can repeat the steps in this article as needed to onboard additional m
   - Your account has the [required Azure built-in roles](prerequisites.md#required-permissions).
   - The machine is in a [supported region](overview.md#supported-regions).
   - The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  - If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked.
+  - If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked. You can also use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli) to reduce the number of required endpoints.
 
-## Package-based installation of the Connected Machine agent
+## Deploy the Connected Machine agent using package manager
 
-Follow these steps to install the Azure Connected Machine agent by using your distribution's package manager:
+Follow these steps to install the Azure Connected Machine agent by using your distribution's package manager.
 
-1. Configure the Microsoft package repository on your machine.
+1. Configure the [Microsoft package repository](https://packages.microsoft.com/) on your machine.
 
-1. Install the agent using your package manager.
+1. Install the Connected Machine agent using your package manager.
 
    For example, for Ubuntu 24.04, perform the following steps:
 
-   1. Download packages-microsoft-prod.deb. This is the debian package that configures your system to use the Microsoft package repository.
-   1. Install the package: sudo dpkg -i packages-microsoft-prod.deb
-   1. Install the agent: sudo apt update && sudo apt install azcmagent
+   1. Download `packages-microsoft-prod.deb`. This is the debian package that configures your system to use the Microsoft package repository.
+   1. Install the package: `sudo dpkg -i packages-microsoft-prod.deb`
+   1. Install the agent: `sudo apt update && sudo apt install azcmagent`
 
-   Repository configuration packages:
+      Install the appropriate Repository configuration packages:
 
-   - Ubuntu 24.04 azcmagent package
-   - RHEL, Rocky, Oracle, and Alma 9 azcmagent package
-   - SLES 15 azcmagent package
-   - Amazon Linux 2023 azcmagent package
-   - Debian12 azcmagent package
+      - Ubuntu 24.04 [azcmagent package](https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/a/azcmagent/)
+      - RHEL, Rocky, Oracle, and Alma 9 [azcmagent package](https://packages.microsoft.com/rhel/9/prod/Packages/a/azcmagent-1.54.03104-480.x86_64.rpm)
+      - SLES 15 [azcmagent package](https://packages.microsoft.com/sles/15/prod/Packages/a/azcmagent-1.9.21208-007.x86_64.rpm)
+      - Amazon Linux 2023 [azcmagent package](https://packages.microsoft.com/amazonlinux/2023/prod/Packages/a/azcmagent-1.54.03104-480.x86_64.rpm)
+      - Debian12 [azcmagent package](https://packages.microsoft.com/debian/12/prod/pool/main/a/azcmagent/azcmagent_1.54.03104.480_amd64.deb)
 
-   Other supported Linux packages are available at Microsoft Package Repository.
+      Other supported Linux packages are available at Microsoft Package Repository.
 
-1. Onboard your Linux machine to Azure by using the following command:
+1. Onboard your Linux machine to Azure by using the [`azcmagent connect](azcmagent-connect.md) command:
 
    ```sh
-   sudo azcmagent connect --resource-group "<resource_group_name>" --tenant-id "<tenant_id>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --gateway-id "<gatewayId>" --tags 'ArcSQLServerExtensionDeployment=Disabled'
+   sudo azcmagent connect --resource-group "<resource_group_name>" --tenant-id "<tenant_id>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --tags 'ArcSQLServerExtensionDeployment=Disabled'
    ```
 
-   Parameters Description:
+   Adjust the parameters as needed:
 
-   1. Tenant ID – an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant. To find your Tenant ID, run this Azure CLI command: az account show --query tenantId --output tsv
-   1. Subscription ID – an Azure unique identifier (GUID) assigned to each Azure subscription. To find your Sub ID, run this Azure CLI command: az account show --query id --output tsv
-   1. Location – The Azure region for your Arc machine location. This should match or be near the actual machine location.
-   1. Resource group - Azure logical container that holds related resources for an Azure solution. The location should be the same as your Arc machine. To create a new resource group, run this Azure CLI command: az group create --name \<rg-name\> --location \<Azure-region\>
-   1. Cloud – Keep the default value, AzureCloud.
-   1. Gateway ID – Optional; Arc Gateway resource reduces the number of required Arc-enabled Server URLs to allow if you have a proxy or firewall.
-   1. Tags – Organize your Azure resources as categories defined by tags. Please keep the tag 'ArcSQLServerExtensionDeployment=Disabled'.
+   - `--tenant-id`: an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant. To find your tenant ID, run this Azure CLI command: `az account show --query tenantId --output tsv`
+   - `--subscription-id`: an Azure unique identifier (GUID) assigned to each Azure subscription. To find your subscription ID, run this Azure CLI command: `az account show --query id --output tsv`
+   - `--location`: The Azure region for to create your Arc-enabled server in Azure. This should match or be near the actual machine location.
+   - `--resource_group_name`: An Azure logical container that holds related resources for an Azure solution, created in the same region as your Arc-enabled server resource. To create a new resource group, run this Azure CLI command: `az group create --name \<rg-name\> --location \<Azure-region\>`
+   - `--cloud`: Keep the default value, `AzureCloud`, unless you're using a [different Azure cloud environment](azcmagent-connect.md#flags).
+   - `--tags`: Organize your Azure resources as categories defined by tags. Please keep the tag 'ArcSQLServerExtensionDeployment=Disabled'.
 
-   For more information about this command, see azcmagent-connect CLI.
+> [!TIP]
+> You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, you should verify that the server has successfully connected. You can do this with command line or with Azure Portal.
-
-1. Check that the Arc agent status of the Arc-enabled machine is "Connected". The show command also provides a link directly to the Azure Arc server resource in Azure Portal:
+After you install the agent, verify that the server was successfully connected to Azure Arc. You can do this by running the following command to ensure the agent status is "Connected":
 
    ```bash
    azcmagent show
    ```
 
-1. Go to the Azure portal page for Azure Arc machines.
+This command also provides a link directly to the Azure Arc server resource in the Azure portal.
 
-   > [!TIP]
-   > You can also reach this page in the portal by searching for and selecting "Machines - Azure Arc".
+Alternately, you can go to the [Azure portal page for hybrid machines](https://aka.ms/hybridmachineportal) and confirm that the machine has a connected status.
 
-1. Confirm the machine has a connected status.
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshow showing a successful machine connection in the Azure portal." border="false":::
 
 ## Next steps
 
 Now that you've Arc-enabled your Linux machine, you can enable Azure services, like Microsoft Defender, Azure Monitor, Azure Policy and Microsoft Sentinel, to manage and secure your Arc-enabled machines.
 
-Onboard Azure Arc-enabled servers to Microsoft Sentinel
-Deploy and configure Azure Monitor Agent using Azure Policy
-Connect your non-Azure machines to Microsoft Defender for Cloud
-Tutorial: Create a policy assignment to identify non-compliant resources
-Tutorial: Monitor a hybrid machine with VM insights
+- [Onboard Azure Arc-enabled servers to Microsoft Sentinel](scenario-onboard-azure-sentinel.md)
+- [Deploy and configure Azure Monitor Agent using Azure Policy](deploy-ama-policy.md)
+- [Connect your non-Azure machines to Microsoft Defender for Cloud](/azure/defender-for-cloud/quickstart-onboard-machines?toc=%2Fazure%2Fazure-arc%2Fservers%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fservers%2Fbreadcrumb%2Ftoc.json)
+- [Tutorial: Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)
+- [Tutorial: Monitor a hybrid machine with VM insights](tutorial-enable-vm-insights.md)
