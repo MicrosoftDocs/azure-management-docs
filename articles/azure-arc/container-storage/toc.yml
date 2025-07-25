@@ -45,7 +45,7 @@ items:
       items:
       - name: Monitor Edge Volumes deployment
         href: monitor-deployment-edge-volumes.md
-      - name: Third-party monitoring with Prometheus and Grafana
+      - name: Non-Microsoft monitoring with Prometheus and Grafana
         href: third-party-monitoring.md
       - name: Azure Monitor and Kubernetes monitoring
         href: azure-monitor-kubernetes.md
