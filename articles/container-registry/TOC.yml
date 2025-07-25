@@ -66,6 +66,14 @@
         href: ./security-controls-policy.md
       - name: Security baseline
         href: /security/benchmark/azure/baselines/container-registry-security-baseline?toc=/azure/container-registry/TOC.json
+    - name: Reliability
+      items:
+      - name: Reliability in Azure Container Registry
+        href: /azure/reliability/reliability-container-registry?toc=/azure/container-registry/TOC.json&bc=/azure/container-registry/breadcrumb/toc.json
+      - name: Create a zone-redundant registry
+        href: zone-redundancy.md
+      - name: Create a zone-redundant replica
+        href: zone-redundancy-replica.md
     - name: Container registry tiers and limits
       href: container-registry-skus.md
     - name: Registries, repositories, and images
@@ -80,9 +88,6 @@
       href: container-registry-artifact-streaming.md
     - name: Geo-replication
       href: container-registry-geo-replication.md
-    - name: Zone redundancy
-      displayName: availability zone
-      href: zone-redundancy.md
     - name: Registry best practices
       href: container-registry-best-practices.md
     - name: Multi-arch images
