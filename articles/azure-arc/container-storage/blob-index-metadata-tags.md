@@ -18,7 +18,7 @@ Cloud Ingest Edge Volumes now supports the ability to generate blob index tags a
 To generate a blob index tag, create an extended attribute using the prefix `azindex`, followed by the desired key and its corresponding value for the index tag. Edge Volumes then propagates these values to the blob, appearing as the key matching the value.
 
 > [!NOTE]
-> Index tags aren't supported for hierarchical namespace (HNS) accounts. 
+> Index tags aren't supported for hierarchical namespace (HNS) accounts.
 
 ### Example 1: index tags
 
@@ -48,7 +48,7 @@ To generate a blob metadata tag, create an extended attribute using the prefix `
 > Metadata tags are supported for HNS and non-HNS accounts.
 
 > [!NOTE]
-> HNS blobs also receive `x-ms-meta-is_adls=true` to indicate that the blob was created with Data APIs.
+> HNS blobs also receive `x-ms-meta-is_adls=true` to indicate that the blob was created with Data Lake APIs.
 
 ### Example 1: metadata tags
 
