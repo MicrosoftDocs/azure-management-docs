@@ -72,16 +72,12 @@ Follow these steps to install the Azure Connected Machine agent by using your di
    - `--cloud`: Keep the default value, `AzureCloud`, unless you're using a [different Azure cloud environment](azcmagent-connect.md#flags).
    - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other flags if desired.
 
-> [!TIP]
-> You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
+   > [!TIP]
+   > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
 
 ## Verify the connection with Azure Arc
 
-After you install the agent, verify that the server was successfully connected to Azure Arc. To do so, run the following command to ensure the agent status is "Connected":
-
-   ```bash
-   azcmagent show
-   ```
+After you install the agent, verify that the server was successfully connected to Azure Arc. To do so, run `azcmagent show` and ensure the agent status is **Connected**.
 
 This command also provides a link directly to the Azure Arc server resource in the Azure portal.
 
