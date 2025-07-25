@@ -15,9 +15,9 @@ This article describes how to monitor your Edge Volumes offering from Azure Cont
 
 ## Deployment monitoring overviews
 
-For information about how to monitor your Edge Volumes deployment using Azure Monitor and Kubernetes Monitoring and 3rd-party monitoring with Prometheus and Grafana, see the following articles:
+For information about how to monitor your Edge Volumes deployment using Azure Monitor and Kubernetes monitoring, and using non-Microsoft monitoring tools such as Prometheus and Grafana, see the following articles:
 
-- [Partner monitoring with Prometheus and Grafana](third-party-monitoring.md)
+- [Non-Microsoft monitoring with Prometheus and Grafana](third-party-monitoring.md)
 - [Azure Monitor and Kubernetes monitoring](azure-monitor-kubernetes.md)
 
 ## Next steps
