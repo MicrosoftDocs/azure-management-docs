@@ -8,14 +8,14 @@ ms.date: 07/23/2025
 
 # Quickstart: Connect a Linux machine with Azure Arc-enabled servers (package-based installation)
 
-Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Linux machines hosted across on-premises, edge, and multicloud environments. Once your Linux machine is Arc-enabled, you can use Azure services on your on-premises machine, such as Azure Policy, Azure Monitor, Microsoft Defender and Azure Update Manager.
+Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Linux machines hosted across on-premises, edge, and multicloud environments. Once your Linux machine is Arc-enabled, you can use Azure services on your on-premises machine, such as Azure Policy, Azure Monitor, Microsoft Defender, and Azure Update Manager.
 
-In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Linux machine hosted outside of Azure. This is a manual option to onboard to Arc Server with your package manager. Another onboarding option is to use the installation script that automates these steps. The installation script will configure the Microsoft package repository on your machine and install the agent using your package manager.
+In this quickstart, you deploy and configure the Azure Connected Machine agent on a Linux machine hosted outside of Azure. This quickstart provides a manual option to onboard to Arc-enabled servers with your package manager. If you prefer, you can [use an installation script](quick-enable-hybrid-vm.md) to automates these steps. The installation script configures the Microsoft package repository on your machine and install the agent using your package manager.
 
 While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 > [!TIP]
-> If you prefer to try out things in a sample/practice experience, get started quickly with Azure Arc Jumpstart.
+> If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
    For example, for Ubuntu 24.04, perform the following steps:
 
-   1. Download `packages-microsoft-prod.deb`. This is the debian package that configures your system to use the Microsoft package repository.
+   1. Download `packages-microsoft-prod.deb`. This is the Debian package that configures your system to use the Microsoft package repository.
    1. Install the package: `sudo dpkg -i packages-microsoft-prod.deb`
    1. Install the agent: `sudo apt update && sudo apt install azcmagent`
 
@@ -67,17 +67,17 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
    - `--tenant-id`: an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant. To find your tenant ID, run this Azure CLI command: `az account show --query tenantId --output tsv`
    - `--subscription-id`: an Azure unique identifier (GUID) assigned to each Azure subscription. To find your subscription ID, run this Azure CLI command: `az account show --query id --output tsv`
-   - `--location`: The Azure region for to create your Arc-enabled server in Azure. This should match or be near the actual machine location.
+   - `--location`: The Azure region in which to create your Arc-enabled server in Azure. The region should match or be near the actual machine location.
    - `--resource_group_name`: An Azure logical container that holds related resources for an Azure solution, created in the same region as your Arc-enabled server resource. To create a new resource group, run this Azure CLI command: `az group create --name \<rg-name\> --location \<Azure-region\>`
    - `--cloud`: Keep the default value, `AzureCloud`, unless you're using a [different Azure cloud environment](azcmagent-connect.md#flags).
-   - `--tags`: Organize your Azure resources as categories defined by tags. Please keep the tag 'ArcSQLServerExtensionDeployment=Disabled'.
+   - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other flags if desired.
 
 > [!TIP]
 > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
 
 ## Verify the connection with Azure Arc
 
-After you install the agent, verify that the server was successfully connected to Azure Arc. You can do this by running the following command to ensure the agent status is "Connected":
+After you install the agent, verify that the server was successfully connected to Azure Arc. To do so, run the following command to ensure the agent status is "Connected":
 
    ```bash
    azcmagent show
@@ -91,10 +91,10 @@ Alternately, you can go to the [Azure portal page for hybrid machines](https://a
 
 ## Next steps
 
-Now that you've Arc-enabled your Linux machine, you can enable Azure services, like Microsoft Defender, Azure Monitor, Azure Policy and Microsoft Sentinel, to manage and secure your Arc-enabled machines.
+Now that your Linux machine is Arc-enabled, you can enable Azure services, like Microsoft Defender, Azure Monitor, Azure Policy and Microsoft Sentinel, to manage and secure your Arc-enabled machines.
 
 - [Onboard Azure Arc-enabled servers to Microsoft Sentinel](scenario-onboard-azure-sentinel.md)
 - [Deploy and configure Azure Monitor Agent using Azure Policy](deploy-ama-policy.md)
 - [Connect your non-Azure machines to Microsoft Defender for Cloud](/azure/defender-for-cloud/quickstart-onboard-machines?toc=%2Fazure%2Fazure-arc%2Fservers%2Ftoc.json&bc=%2Fazure%2Fazure-arc%2Fservers%2Fbreadcrumb%2Ftoc.json)
-- [Tutorial: Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)
+- [Tutorial: Create a policy assignment to identify noncompliant resources](tutorial-assign-policy-portal.md)
 - [Tutorial: Monitor a hybrid machine with VM insights](tutorial-enable-vm-insights.md)

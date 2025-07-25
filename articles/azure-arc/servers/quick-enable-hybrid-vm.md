@@ -11,9 +11,9 @@ ms.custom: mode-other
 
 Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
-In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
+In this quickstart, you deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers.
 
-For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager.
+For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager. If you prefer to onboard your Linux machine without an installation script, you can [manually onboard the machine by using your package manager](quick-onboard-linux.md).
 
 While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
@@ -105,7 +105,7 @@ Install the Linux agent on the target machine in one of the following ways:
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. 
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected.
 
 1. Go to the [Azure portal page for hybrid machines](https://aka.ms/hybridmachineportal).
    > [!TIP]
@@ -117,7 +117,7 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 
 ## Next steps
 
-Now that you've enabled your Linux or Windows hybrid machine and successfully connected to the service, you're ready to enable Azure Policy to understand compliance in Azure.
+Now that your Linux or Windows hybrid machine is Arc-enabled, you're ready to enable Azure Policy to understand compliance in Azure.
 
 > [!div class="nextstepaction"]
 > [Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)
