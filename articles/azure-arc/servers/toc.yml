@@ -13,8 +13,10 @@
     href: agent-release-notes-archive.md
 - name: Quickstarts
   items:
-  - name: Connect a machine to Arc-enabled servers
+  - name: Onboard with install script (Windows/Linux)
     href: quick-enable-hybrid-vm.md
+  - name: Onboard with package-based installation (Linux)
+    href: quick-onboard-linux.md
 - name: Tutorials
   items:
   - name: Assign policy to assess compliance
