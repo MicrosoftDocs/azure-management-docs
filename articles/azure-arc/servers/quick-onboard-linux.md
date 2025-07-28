@@ -37,7 +37,7 @@ While you can repeat the steps in this article as needed to onboard additional m
 
 Follow these steps to install the Azure Connected Machine agent by using your distribution's package manager.
 
-1. Configure the [Microsoft package repository](https://learn.microsoft.com/en-us/linux/packages) on your machine.
+1. Configure the [Microsoft package repository](/linux/packages) on your machine.
 
 1. Install the Connected Machine agent using your package manager.
 
