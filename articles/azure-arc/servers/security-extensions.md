@@ -14,19 +14,17 @@ This article describes the fundamentals of [VM extensions](manage-vm-extensions.
 
 [Virtual machine (VM) extensions for Azure Arc-enabled servers](manage-vm-extensions.md) are optional add-ons that enable other functionality, such as monitoring, patch management, and script execution. Extensions are published by Microsoft and select third parties from the Azure Marketplace and stored in Microsoft-managed storage accounts. All extensions are scanned for malware as part of the publishing process. Extensions supported for Azure Arc-enabled servers are identical to those available for Azure VMs, ensuring consistency across your operating environments.
 
-Extensions are downloaded directly from Azure Storage (`*.blob.core.windows.net`) at the time they are installed or upgraded, unless you've configured private endpoints. The storage accounts regularly change and can't be predicted in advance. When private endpoints are used, extensions are proxied via the regional URL for the Azure Arc service instead.
+Extensions are downloaded directly from Azure Storage (`*.blob.core.windows.net`) as they're installed or upgraded, unless you configured private endpoints. The storage accounts regularly change and can't be predicted in advance. When private endpoints are used, extensions are proxied via the regional URL for the Azure Arc service instead.
 
-A digitally signed catalog file is downloaded separately from the extension package and used to verify the integrity of each extension before the extension manager opens or executes the extension package. If the downloaded ZIP file for the extension doesn't match the contents in the catalog file, the extension operation will be aborted.
+A digitally signed catalog file is downloaded separately from the extension package and used to verify the integrity of each extension before the extension manager opens or executes the extension package. If the downloaded ZIP file for the extension doesn't match the contents in the catalog file, the extension operation aborts.
 
 Extensions can take settings to customize or configure installation, such as proxy URLs or API keys that connect a monitoring agent to its cloud service. Extension settings fall into two categories: regular settings and protected settings. Protected settings aren't persisted in Azure and are encrypted at rest on your local machine.
 
-All extension operations originate from Azure through an API call, CLI, PowerShell, or Azure portal action. This design ensures that any action to install, update, or upgrade an extension on a server gets logged in the Azure Monitor Activity Log. The Azure Connected Machine agent does allow extensions to be removed locally for troubleshooting and cleanup purposes. However, if the extension is removed locally and the service still expects the machine to have the extension installed, it will be reinstalled the next time the extension manager syncs with Azure.
+All extension operations originate from Azure through an API call, CLI, PowerShell, or Azure portal action. This design ensures that any action to install, update, or upgrade an extension on a server gets logged in the Azure Monitor Activity Log. The Azure Connected Machine agent does allow extensions to be removed locally for troubleshooting and cleanup purposes. However, if the extension is removed locally and the service still expects the machine to have that extension, the extension is reinstalled the next time the extension manager syncs with Azure.
 
 ## Script execution
 
-The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allowlist or blocklist](#allowlists-and-blocklists).
-
-You can use available controls to restrict or disable unnecessary management features. For instance, unless you intend to use custom script extension for remote code execution, it's best to disable its use, as it can be used by attackers to remotely execute commands to place malware or other malicious code into your virtual machine. You can use the allowlist mechanism to disable use of the custom script extension if its use doesn't meet your security requirements.
+The extension manager can be used to run scripts on machines using the Custom Script Extension or Run Command. By default, these scripts run in the extension manager's user context – Local System on Windows or root on Linux – meaning these scripts have unrestricted access to the machine. If you don't intend to use these features, you can block them using an [allowlist or blocklist](#allowlists-and-blocklists). For instance, unless you plan to use the Custom Script extension for remote code execution, you should disable its use, as it can be used by attackers to remotely execute commands that deploy malicious code.
 
 ## Local agent security controls
 
@@ -50,17 +48,17 @@ The most secure option is to explicitly allow the extensions you expect to be in
 azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorLinuxAgent"
 ```
 
-Here is an example blocklist that blocks all extensions with the capability of running arbitrary scripts:
+For example, this command blocks extensions that have the capability of running arbitrary scripts:
 
 ```bash
 azcmagent config set extensions.blocklist "Microsoft.Cplat.Core/RunCommandHandlerWindows, Microsoft.Cplat.Core/RunCommandHandlerLinux,Microsoft.Compute/CustomScriptExtension,Microsoft.Azure.Extensions/CustomScript,Microsoft.Azure.Automation.HybridWorker/HybridWorkerForWindows,Microsoft.Azure.Automation/HybridWorkerForLinux,Microsoft.EnterpriseCloud.Monitoring/MicrosoftMonitoringAgent, Microsoft.EnterpriseCloud.Monitoring/OMSAgentForLinux"
 ```
 
-Specify extensions with their publisher and type, separated by a forward slash `/`. See the list of the [most common extensions](manage-vm-extensions.md#extensions) in the docs.
+Specify extensions with their publisher and type, separated by a forward slash `/`. See details for the [most common extensions](manage-vm-extensions.md#extensions) in the docs.
 
 You can list the VM extensions that are already installed on your server in the [portal](manage-vm-extensions-portal.md#list-extensions-installed), [Azure PowerShell](manage-vm-extensions-powershell.md#list-extensions-installed), or [Azure CLI](manage-vm-extensions-cli.md#list-extensions-installed).
 
-The table describes the behavior when performing an extension operation against an agent that has the allowlist or blocklist configured.
+The table describes the behavior for extension operations against an agent that has the allowlist or blocklist configured.
 
 | Operation | In the allowlist | In the blocklist | In both the allowlist and blocklist | Not in any list, but an allowlist is configured |
 |--|--|--|--|
@@ -70,7 +68,7 @@ The table describes the behavior when performing an extension operation against 
 | Delete extension | Allowed | Allowed | Allowed | Allowed |
 
 > [!IMPORTANT]
-> If an extension is already installed on your server before you configure an allowlist or blocklist, it isn't automatically removed. It's your responsibility to delete the extension from Azure to fully remove it from the machine. Delete requests are always accepted to accommodate this scenario. Once deleted, the allowlist and blocklist determine whether or not to allow future install attempts.
+> If an extension is already installed on your server before you configure an allowlist or blocklist, it isn't removed. It's your responsibility to delete the extension from Azure to fully remove it from the machine. Delete requests are always accepted to accommodate this scenario. Once deleted, the allowlist and blocklist determine whether or not to allow future install attempts.
 
 The allowlist value `Allow/None` instructs the extension manager to run, but not allow any extensions to be installed. This value is recommended when using Azure Arc to deliver Windows Server 2012 Extended Security Updates (ESU) without intending to use any other extensions.
 
@@ -115,7 +113,7 @@ azcmagent config set config.mode full
 When configuring the Azure Connected Machine agent with a reduced set of capabilities, it's important to consider the mechanisms that someone could use to remove those restrictions and implement appropriate controls. Anybody capable of running commands as an administrator or root user on the server can change the Azure Connected Machine agent configuration. Extensions and guest configuration policies execute in privileged contexts on your server, and as such might be able to change the agent configuration. If you apply local agent security controls to lock down the agent, Microsoft recommends the following best practices to ensure only local server admins can update the agent configuration:
 
 * Use allowlists for extensions instead of blocklists whenever possible.
-* Don't include the Custom Script Extension in the extension allowlist, to prevent execution of arbitrary scripts that could change the agent configuration.
+* Don't allow the Custom Script Extension unless you need it for a specific purpose.
 * Disable Guest Configuration to prevent the use of custom Guest Configuration policies that could change the agent configuration.
 
 ### Example configuration for monitoring and security scenarios
