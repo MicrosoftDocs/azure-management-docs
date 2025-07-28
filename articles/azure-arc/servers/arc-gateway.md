@@ -124,7 +124,7 @@ After the resource is created successfully, the success response will include th
 
 1. Generate the installation script.
 
-    Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](learn/quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
+    Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
 
     > [!IMPORTANT]
     > When generating the onboarding script, select the **Gateway resource** in the **Connectivity method** section.

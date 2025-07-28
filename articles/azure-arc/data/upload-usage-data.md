@@ -9,11 +9,12 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 05/27/2022
 ms.topic: how-to
+# Customer intent: "As a cloud administrator managing Azure Arc-enabled data services, I want to upload usage data to Azure in indirect mode, so that I can ensure accurate resource billing and maintain optimal functionality of my data controller."
 ---
 
 # Upload usage data to Azure in **indirect** mode
 
-Periodically, you can export out usage information. The export and upload of this information creates and updates the data controller, SQL managed instance, and PostgreSQL resources in Azure.
+Periodically, you can export out usage information. The export and upload of this information creates and updates the data controller and SQL managed instance.
 
 > [!NOTE] 
 > Usage information is automatically uploaded for Azure Arc data controller deployed in **direct** connectivity mode. The instructions in this article only apply to uploading usage information for Azure Arc data controller deployed in **indirect** connectivity mode..
@@ -42,12 +43,12 @@ Usage information such as inventory and resource usage can be uploaded to Azure 
    az arcdata dc export --type usage --path usage.json --k8s-namespace <namespace> --use-k8s
    ```
  
-   This command creates a `usage.json` file with all the Azure Arc-enabled data resources such as SQL managed instances and PostgreSQL instances etc. that are created on the data controller.
+   This command creates a `usage.json` file with all the Azure Arc-enabled data resources such as SQL managed instances that are created on the data controller.
 
 
 For now, the file is not encrypted so that you can see the contents. Feel free to open in a text editor and see what the contents look like.
 
-You will notice that there are two sets of data: `resources` and `data`. The `resources` are the data controller, PostgreSQL, and SQL Managed Instances. The `resources` records in the data capture the pertinent events in the history of a resource - when it was created, when it was updated, and when it was deleted. The `data` records capture how many cores were available to be used by a given instance for every hour.
+You will notice that there are two sets of data: `resources` and `data`. The `resources` are the data controller, and SQL Managed Instances. The `resources` records in the data capture the pertinent events in the history of a resource - when it was created, when it was updated, and when it was deleted. The `data` records capture how many cores were available to be used by a given instance for every hour.
 
 Example of a `resource` entry:
 

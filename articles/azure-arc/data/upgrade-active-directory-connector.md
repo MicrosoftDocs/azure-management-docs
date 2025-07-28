@@ -9,6 +9,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+# Customer intent: As a system administrator managing Active Directory connectors, I want to upgrade the connector for Azure SQL Managed Instances, so that I can ensure compatibility and maintain the functionality of our Azure Arc deployment.
 ---
 
 # Upgrade Active Directory connector

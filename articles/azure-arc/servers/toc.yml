@@ -13,15 +13,17 @@
     href: agent-release-notes-archive.md
 - name: Quickstarts
   items:
-  - name: Connect a machine to Arc-enabled servers
-    href: ./learn/quick-enable-hybrid-vm.md
+  - name: Onboard with install script (Windows/Linux)
+    href: quick-enable-hybrid-vm.md
+  - name: Onboard with package-based installation (Linux)
+    href: quick-onboard-linux.md
 - name: Tutorials
   items:
   - name: Assign policy to assess compliance
-    href: ./learn/tutorial-assign-policy-portal.md
+    href: tutorial-assign-policy-portal.md
   - name: Monitor machine
     displayName: insights, analytics
-    href: ./learn/tutorial-enable-vm-insights.md
+    href: tutorial-enable-vm-insights.md
 - name: Samples
   items:
   - name: Azure Resource Graph queries

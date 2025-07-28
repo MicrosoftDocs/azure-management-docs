@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/28/2022
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to uninstall Azure Arc-enabled data services and all associated resources, so that I can cleanly remove all artifacts and ensure proper resource management in my environment."
 ---
 
 # Uninstall Azure Arc-enabled data services
@@ -19,7 +20,7 @@ This article describes how to delete Azure Arc-enabled data service resources fr
 > [!WARNING]
 > When you delete resources as described in this article, these actions are irreversible.
 
-Deploying Azure Arc-enabled data services involves deploying an Azure Arc data controller and instances of data services SQL Managed Instance enabled by Azure Arc or Azure Arc-enabled PostgresQL server. Deployment creates several artifacts, such as: 
+Deploying Azure Arc-enabled data services involves deploying an Azure Arc data controller and SQL Managed Instance enabled by Azure Arc. Deployment creates several artifacts, such as: 
 - Custom Resource Definitions (CRDs)
 - Cluster roles
 - Cluster role bindings
@@ -39,10 +40,9 @@ Before you delete a resource such as SQL Managed Instance enabled by Azure Arc o
 2. Ensure all the data services that have been create on the data controller are uninstalled as described in:
 
    - [Delete SQL Managed Instance enabled by Azure Arc](delete-managed-instance.md)
-   - [Delete an Azure Arc-enabled PostgreSQL server](delete-postgresql-hyperscale-server-group.md).
 
 
-After deleting any existing instances of SQL Managed Instance enabled by Azure Arc and/or Azure Arc-enabled PostgreSQL server, delete the data controller using one of the appropriate method for connectivity mode.
+After deleting any existing instances, delete the data controller using one of the appropriate method for connectivity mode.
 
 > [!Note]
 > If you deployed the data controller in directly connected mode then follow the steps to:

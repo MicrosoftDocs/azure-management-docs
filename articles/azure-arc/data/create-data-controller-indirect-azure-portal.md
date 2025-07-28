@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: how-to
+# Customer intent: "As a system administrator, I want to create an Azure Arc data controller in indirect connectivity mode using the Azure portal, so that I can establish a secure connection to my on-premises Kubernetes infrastructure."
 ---
 
 # Create Azure Arc data controller from Azure portal - Indirect connectivity mode

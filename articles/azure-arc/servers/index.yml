@@ -44,7 +44,7 @@ landingContent:
       - linkListType: quickstart
         links:
           - text: Connect a hybrid machine
-            url: ./learn/quick-enable-hybrid-vm.md
+            url: quick-enable-hybrid-vm.md
       - linkListType: deploy
         links:
           - text: Use a deployment script
@@ -98,9 +98,9 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Azure Policy
-            url: ./learn/tutorial-assign-policy-portal.md 
+            url: tutorial-assign-policy-portal.md 
           - text: Azure Monitor
-            url: ./learn/tutorial-enable-vm-insights.md  
+            url: tutorial-enable-vm-insights.md
       - linkListType: how-to-guide
         links:
           - text: Microsoft Sentinel

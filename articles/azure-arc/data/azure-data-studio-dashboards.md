@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: "As a database administrator, I want to connect to Azure Arc data controllers using Azure Data Studio dashboards, so that I can manage and monitor my SQL Managed Instance servers effectively, even without an Azure connection."
 ---
 
 # Azure Data Studio dashboards
@@ -41,7 +42,7 @@ ms.topic: how-to
 7. Select **Connect**.
 
 
-After you connect to a data controller, you can view the dashboards. Azure Data Studio has dashboards for the data controller and any SQL managed instances or PostgreSQL server resources that you have.
+After you connect to a data controller, you can view the dashboards. Azure Data Studio has dashboards for the data controller and any SQL managed instance resources that you have.
 
 ## View the data controller dashboard
 
@@ -51,7 +52,7 @@ Here you can see details about the data controller resource such as name, region
 
 You'll notice that the layout is similar to what you might see in the Azure portal.
 
-Conveniently, you can launch the creation of a SQL managed instance or PostgreSQL server by clicking the + New Instance button.
+Conveniently, you can launch the creation of a SQL managed instance by clicking the + New Instance button.
 
 You can also open the Azure portal in context to this data controller by clicking the Open in Azure portal button.
 
@@ -70,26 +71,6 @@ With a connection to the SQL manage instance, you can see additional information
 You can delete the SQL managed instance from here or open the Azure portal to view the SQL managed instance in the Azure portal.
 
 If you click on the **Connection Strings** tab, the Azure Data Studio presents a list of pre-constructed connection strings for that instance making. Copy and paste these strings into various other applications or code.
-
-## View the PostgreSQL server dashboards
-
-If the deployment includes PostgreSQL servers, Azure Data Studio lists them  in the **Connections** panel in the **Azure Data Controllers** expandable panel underneath the data controller that is managing them.
-
-To view the PostgreSQL server dashboard for a given server group, right-click on the server group and choose Manage.
-
-On the **Overview** tab, review details about the server group such as resource group, data controller, subscription ID, status, region and more. The tab also has links to the Grafana dashboard for viewing metrics or Kibana dashboard for viewing logs in context to that server group.
-
-You can delete the server group from here or open the Azure portal to view the server group in the Azure portal.
-
-If you click on the **Connection Strings** tab on the left, Azure Data Studio provides pre-constructed connection strings for that server group. Copy and paste these strings to various other applications or code.
-
-Select the **Properties** tab on the left to see additional details.
-
-The **Resource health** tab on the left displays the current health of that server group.
-
-The **Diagnose and solve problems** tab on the left, launches the PostgreSQL troubleshooting notebook.
-
-For Azure support, select the **New support request** tab. This launches the Azure portal in context to the server group. Create an Azure support request from there.
 
 ## Related content
 

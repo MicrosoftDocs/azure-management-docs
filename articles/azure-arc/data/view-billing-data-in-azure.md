@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to upload billing data to Azure and access it via the Azure portal, so that I can effectively monitor and analyze the costs associated with my Azure Arc-enabled data services.
 ---
 
 # Upload billing data to Azure and view it in the Azure portal
@@ -34,9 +35,7 @@ In the indirectly connected mode, billing data is periodically exported out of t
 
 To upload billing data to Azure, the following should happen first:
 
-1. Create an Azure Arc-enabled data service if you don't have one already. For example create one of the following:
-   - [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md)
-   - [Create an Azure Arc-enabled PostgreSQL server](create-postgresql-server.md)
+1. Create an Azure Arc-enabled data service if you don't have one already. For example, [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md).
 2. Wait for at least 2 hours since the creation of the data service so that the billing telemetry collection process can collect some billing data.
 3. Follow the steps described in [Upload resource inventory, usage data, metrics and logs to Azure Monitor](upload-metrics-and-logs-to-azure-monitor.md) to get setup with prerequisites for uploading usage/billing/logs data and then proceed to the [Upload usage data to Azure](upload-usage-data.md) to upload the billing data. 
 

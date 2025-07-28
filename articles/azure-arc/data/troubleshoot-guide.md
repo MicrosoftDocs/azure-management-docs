@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: As a cloud administrator, I want to troubleshoot Azure Arc-enabled data services issues, so that I can ensure proper log uploads, upgrade processes, and resource management for optimal performance and reliability of my data controllers.
 ---
 
 # Troubleshooting resources
@@ -167,8 +168,6 @@ kubectl logs <pod name> <container name> -n <namespace>
 If you see a message about insufficient CPU or memory, you should add more nodes to your Kubernetes cluster, or add more resources to your existing nodes.
 
 ## Resources by type
-
-[Scenario: Troubleshooting PostgreSQL servers](troubleshoot-postgresql-server.md)
 
 [View logs and metrics using Kibana and Grafana](monitor-grafana-kibana.md)
 

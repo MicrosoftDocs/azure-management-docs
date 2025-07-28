@@ -9,13 +9,14 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: As a Kubernetes operator, I want to upgrade an indirectly connected Azure Arc-enabled data controller using Kubernetes tools, so that I can ensure my data services remain current without experiencing downtime during the process.
 ---
 
 # Upgrade an indirectly connected Azure Arc-enabled data controller using Kubernetes tools
 
 This article explains how to upgrade an indirectly connected Azure Arc-enabled data controller with Kubernetes tools.
 
-During a data controller upgrade, portions of the data control plane such as Custom Resource Definitions (CRDs) and containers may be upgraded. An upgrade of the data controller will not cause downtime for the data services (SQL Managed Instance or PostgreSQL server).
+During a data controller upgrade, portions of the data control plane such as Custom Resource Definitions (CRDs) and containers may be upgraded. An upgrade of the data controller will not cause downtime for the data services.
 
 In this article, you'll apply a .yaml file to:
 

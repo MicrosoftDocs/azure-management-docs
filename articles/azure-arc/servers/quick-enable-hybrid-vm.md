@@ -1,19 +1,21 @@
 ---
-title: Quickstart - Connect hybrid machine with Azure Arc-enabled servers
-description: In this quickstart, you connect and register a hybrid machine with Azure Arc-enabled servers.
+title: Quickstart - Connect a machine to Arc-enabled servers (Windows or Linux install script)
+description: In this quickstart, you connect and register a hybrid machine to Azure Arc using an install script.
 ms.topic: quickstart
-ms.date: 04/23/2025
+ms.date: 07/23/2025
 ms.custom: mode-other
 # Customer intent: "As an IT administrator, I want to connect and register hybrid machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
-# Quickstart: Connect hybrid machines with Azure Arc-enabled servers
+# Quickstart: Connect a machine to Arc-enabled servers (Windows or Linux install script)
 
-Get started with [Azure Arc-enabled servers](../overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
+Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Windows and Linux machines hosted across on-premises, edge, and multicloud environments.
 
-In this quickstart, you'll deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers. 
+In this quickstart, you deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers.
 
-While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](../deployment-options.md).
+For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager. If you prefer to onboard your Linux machine without an installation script, you can [manually onboard the machine by using your package manager](quick-onboard-linux.md).
+
+While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 > [!TIP]
 > If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
@@ -24,17 +26,17 @@ While you can repeat the steps in this article as needed to onboard additional m
 * Administrator permissions to install and configure the Connected Machine agent. 
   * Linux—Use the root account. 
   * Windows—Use an account that's a member of the Local Administrators group.
-* Review the [Connected Machine agent prerequisites](../prerequisites.md) and verify the following requirements:
-  * These [resource providers are registered](../prerequisites.md#azure-resource-providers) on your subscription:
+* Review the [Connected Machine agent prerequisites](prerequisites.md) and verify the following requirements:
+  * These [resource providers are registered](prerequisites.md#azure-resource-providers) on your subscription:
     * Microsoft.HybridCompute
     * Microsoft.GuestConfiguration
     * Microsoft.HybridConnectivity
     * Microsoft.AzureArcData  
-  * Your target machine is running a supported [operating system](../prerequisites.md#supported-operating-systems).
-  * Your account has the [required Azure built-in roles](../prerequisites.md#required-permissions).
-  * The machine is in a [supported region](../overview.md#supported-regions).
+  * Your target machine is running a supported [operating system](prerequisites.md#supported-operating-systems).
+  * Your account has the [required Azure built-in roles](prerequisites.md#required-permissions).
+  * The machine is in a [supported region](overview.md#supported-regions).
   * The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](../network-requirements.md#urls) aren't blocked.
+  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked.
 
 ## Generate installation script
 
@@ -103,19 +105,19 @@ Install the Linux agent on the target machine in one of the following ways:
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. 
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected.
 
 1. Go to the [Azure portal page for hybrid machines](https://aka.ms/hybridmachineportal).
    > [!TIP]
    > You can also reach this page in the portal by searching for and selecting "Machines - Azure Arc".
- 
+
 1. Confirm the machine has a connected status.
 
-:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="A successful machine connection." border="false":::
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
 ## Next steps
 
-Now that you've enabled your Linux or Windows hybrid machine and successfully connected to the service, you're ready to enable Azure Policy to understand compliance in Azure.
+Now that your Linux or Windows hybrid machine is Arc-enabled, you're ready to enable Azure Policy to understand compliance in Azure.
 
 > [!div class="nextstepaction"]
 > [Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)

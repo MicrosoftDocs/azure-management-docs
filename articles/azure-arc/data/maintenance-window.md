@@ -10,6 +10,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 03/31/2022
 ms.topic: how-to
+# Customer intent: As a database administrator, I want to configure a maintenance window for Azure Arc-enabled SQL Managed Instances, so that I can schedule and manage automatic upgrades without disrupting operations.
 ---
 
 # Maintenance window - Azure Arc-enabled data services

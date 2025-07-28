@@ -9,6 +9,7 @@ ms.author: umajay
 ms.reviewer: mikeray
 ms.date: 07/30/2021
 ms.topic: concept-article
+# Customer intent: As a cloud administrator, I want to configure Kubernetes storage classes for my data services, so that I can ensure data durability and optimize performance based on my specific workload requirements.
 ---
 
 # Storage Configuration
@@ -183,13 +184,6 @@ The table below lists the paths inside the Azure SQL Managed Instance container 
 |`--storage-class-data`, `-d`|/var/opt|Contains directories for the mssql installation and other system processes. The mssql directory contains default data (including transaction logs), error log & backup directories|
 |`--storage-class-logs`, `-g`|/var/log|Contains directories that store console output (stderr, stdout), other logging information of processes inside the container|
 
-The table below lists the paths inside the PostgreSQL instance container that is mapped to the persistent volume for data and logs:
-
-|Parameter name, short name|Path inside postgres container|Description|
-|---|---|---|
-|`--storage-class-data`, `-d`|/var/opt/postgresql|Contains data and log directories for the postgres installation|
-|`--storage-class-logs`, `-g`|/var/log|Contains directories that store console output (stderr, stdout), other logging information of processes inside the container|
-
 Each database instance has a separate persistent volume for data files, logs, and backups. This means that there is separation of the I/O for each of these types of files subject to how the volume provisioner provisions storage. Each database instance has its own persistent volume claims and persistent volumes.
 
 If there are multiple databases on a given database instance, all of the databases use the same persistent volume claim, persistent volume, and storage class. All backups - both differential log backups and full backups use the same persistent volume claim and persistent volume. The persistent volume claims for the database instance pods are shown below:
@@ -197,8 +191,6 @@ If there are multiple databases on a given database instance, all of the databas
 |**Instance**|**Persistent Volume Claims**|
 |---|---|
 |**Azure SQL Managed Instance**|`<namespace>/logs-<instance name>-0`, `<namespace>/data-<instance name>-0`|
-|**Azure database for PostgreSQL instance**|`<namespace>/logs--<instance name>-0`, `<namespace>/data--<instance name>-0`|
-|**Azure PostgreSQL**|`<namespace>/logs-<instance name>-<ordinal>`, `<namespace>/data-<instance name>-0`
 
 Important factors to consider when choosing a storage class for the database instance pods:
 
@@ -209,13 +201,12 @@ Important factors to consider when choosing a storage class for the database ins
 - Because all databases on a given instance share a persistent volume claim and persistent volume, be sure not to colocate busy database instances on the same database instance. If possible, separate busy databases on to their own database instances to avoid I/O contention. Further, use node label targeting to land database instances onto separate nodes so as to distribute overall I/O traffic across multiple nodes. If you're using virtualization, be sure to consider distributing I/O traffic not just at the node level but also the combined I/O activity happening by all the node VMs on a given physical host.
 
 ## Estimating storage requirements
-Every pod that contains stateful data uses at least two persistent volumes - one persistent volume for data and another persistent volume for logs. The table below lists the number of persistent volumes required for a single Data Controller, Azure SQL Managed instance, Azure Database for PostgreSQL instance and Azure PostgreSQL HyperScale instance:
+Every pod that contains stateful data uses at least two persistent volumes - one persistent volume for data and another persistent volume for logs. The table below lists the number of persistent volumes required for a single Data Controller and Azure SQL Managed instance:
 
 |Resource Type|Number of stateful pods|Required number of persistent volumes|
 |---|---|---|
 |Data Controller|4 (`control`, `controldb`, `logsdb`, `metricsdb`)|4 * 2 = 8|
 |Azure SQL Managed Instance|1|2|
-|Azure PostgreSQL|1|2|
 
 The table below shows the total number of persistent volumes required for a sample deployment:
 
@@ -223,7 +214,6 @@ The table below shows the total number of persistent volumes required for a samp
 |---|---|---|
 |Data Controller|1|4 * 2 = 8|
 |Azure SQL Managed Instance|5|5 * 2 = 10|
-|Azure PostgreSQL|5|5 * 2 = 10|
 |***Total Number of persistent volumes***||8 + 10 + 10 = 28|
 
 This calculation can be used to plan the storage for your Kubernetes cluster based on the storage provisioner or environment. For example, if local storage provisioner is used for a Kubernetes cluster with five (5) nodes then for the sample deployment above every node requires at least storage for 10 persistent volumes. Similarly, when provisioning an Azure Kubernetes Service (AKS) cluster with five (5) nodes picking an appropriate VM size for the node pool such that 10 data disks can be attached is critical. More details on how to size the nodes for storage needs for AKS nodes can be found [here](/azure/aks/operator-best-practices-storage#size-the-nodes-for-storage-needs).

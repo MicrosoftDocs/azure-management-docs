@@ -10,13 +10,14 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: "As a cloud administrator, I want to upgrade the Azure Arc-enabled data controller using the CLI, so that I can ensure the latest features and improvements are applied without causing downtime for the data services."
 ---
 
 # Upgrade a directly connected Azure Arc data controller using the CLI
 
 This article describes how to upgrade a directly connected Azure Arc-enabled data controller using the Azure CLI (`az`).
 
-During a data controller upgrade, portions of the data control plane such as Custom Resource Definitions (CRDs) and containers may be upgraded. An upgrade of the data controller won't cause downtime for the data services (SQL Managed Instance or PostgreSQL server).
+During a data controller upgrade, portions of the data control plane such as Custom Resource Definitions (CRDs) and containers may be upgraded. An upgrade of the data controller won't cause downtime for the data services.
 
 ## Prerequisites
 

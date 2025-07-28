@@ -2,16 +2,17 @@
 title: "Overview of custom locations with Azure Arc"
 services: azure-arc
 ms.service: azure-arc
-ms.date: 01/08/2024
+ms.date: 07/21/2025
 ms.topic: concept-article
 description: "This article provides a conceptual overview of the custom locations capability of Azure Arc."
+# Customer intent: As an IT administrator, I want to create and manage custom locations in Azure Arc-enabled Kubernetes, so that developers can deploy applications without needing to understand the underlying infrastructure details.
 ---
 
 # Custom locations
 
 As an extension of the Azure location construct, a *custom location* provides a reference as a deployment target that administrators can set up when creating an Azure resource. The custom location feature abstracts the backend infrastructure details from application developers, database admin users, or other users in the organization. These users can then reference the custom location without having to be aware of these details.
 
-Custom locations can be used to enable [Azure Arc-enabled Kubernetes clusters](../kubernetes/overview.md) as target locations for deploying Azure services instances. Azure offerings that can be deployed on top of custom locations include databases, such as [SQL Managed Instance enabled by Azure Arc](/azure/azure-arc/data/managed-instance-overview) and [Azure Arc-enabled PostgreSQL server](/azure/azure-arc/data/what-is-azure-arc-enabled-postgresql).
+Custom locations can be used to enable [Azure Arc-enabled Kubernetes clusters](../kubernetes/overview.md) as target locations for deploying Azure services instances. Azure offerings that can be deployed on top of custom locations include databases, such as [SQL Managed Instance enabled by Azure Arc](/azure/azure-arc/data/managed-instance-overview).
 
 On Arc-enabled Kubernetes clusters, a custom location represents an abstraction of a namespace within the Azure Arc-enabled Kubernetes cluster. Custom locations create the granular [RoleBindings and ClusterRoleBindings](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#rolebinding-and-clusterrolebinding) necessary for other Azure services to access the cluster.
 
@@ -19,7 +20,7 @@ On Arc-enabled Kubernetes clusters, a custom location represents an abstraction 
 
 Since the custom location is an Azure Resource Manager resource that supports [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview), an administrator or operator can determine which users have access to create resource instances on:
 
-* A namespace within a Kubernetes cluster to target deployment of SQL Managed Instance enabled by Azure Arc or Azure Arc-enabled PostgreSQL server.
+* A namespace within a Kubernetes cluster to target deployment of SQL Managed Instance enabled by Azure Arc.
 * The compute, storage, networking, and other vCenter or Azure Local resources to deploy and manage VMs.
 
 For example, a cluster operator could create a custom location **Contoso-Michigan-Healthcare-App** representing a namespace on a Kubernetes cluster in your organization's Michigan Data Center. The operator can assign Azure RBAC permissions to application developers on this custom location so that they can deploy healthcare-related web applications. The developers can then deploy these applications to **Contoso-Michigan-Healthcare-App** without having to know details of the namespace and Kubernetes cluster.
@@ -39,8 +40,6 @@ When the user creates a data service instance on the cluster:
 1. The Azure Arc-enabled Data Services RP uses the `kubeconfig` to communicate with the cluster to create a custom resource of the Azure Arc-enabled Data Services type on the namespace mapped to the custom location.
    * The Azure Arc-enabled Data Services operator was deployed via cluster extension creation before the custom location existed.
 1. The Azure Arc-enabled Data Services operator reads the new custom resource created on the cluster and creates the data controller, translating into realization of the desired state on the cluster.
-
-The sequence of steps to create the SQL managed instance or PostgreSQL instance are identical to the sequence of steps described above.
 
 ## Next steps
 

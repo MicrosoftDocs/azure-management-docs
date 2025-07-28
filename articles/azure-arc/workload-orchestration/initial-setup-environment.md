@@ -8,6 +8,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
 ms.date: 06/24/2025
+# Customer intent: "As an IT admin, I want to prepare the environment for workload orchestration, so that I can ensure the appropriate Azure resources and configurations are in place for managing workloads effectively."
 ---
 
 # Prepare the environment for workload orchestration

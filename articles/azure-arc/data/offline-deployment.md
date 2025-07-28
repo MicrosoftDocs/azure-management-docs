@@ -9,11 +9,12 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 09/22/2020
 ms.topic: how-to
+# Customer intent: As a DevOps engineer, I want to automate the process of pulling and pushing container images to a private registry, so that I can deploy Azure Arc services in offline environments without connectivity to the Microsoft Container Registry.
 ---
 
 # Offline Deployment Overview
 
-Typically the container images used in the creation of the Azure Arc data controller, SQL managed instances and PostgreSQL servers are directly pulled from the Microsoft Container Registry (MCR). In some cases, the environment that you're deploying to won't have connectivity to the Microsoft Container Registry.  For situations like this, you can pull the container images using a computer, which _does_ have access to the Microsoft Container Registry and then tag and push them to a private container registry that _is_ connectable from the environment in which you want to deploy Azure Arc-enabled data services.
+Typically the container images used in the creation of the Azure Arc data controller, and SQL managed instances are directly pulled from the Microsoft Container Registry (MCR). In some cases, the environment that you're deploying to won't have connectivity to the Microsoft Container Registry.  For situations like this, you can pull the container images using a computer, which _does_ have access to the Microsoft Container Registry and then tag and push them to a private container registry that _is_ connectable from the environment in which you want to deploy Azure Arc-enabled data services.
 
 Because monthly updates are provided for Azure Arc-enabled data services and there are a large number of container images, it's best to perform this process of pulling, tagging, and pushing the container images to a private container registry using a script.  The script can either be automated or run manually.
 

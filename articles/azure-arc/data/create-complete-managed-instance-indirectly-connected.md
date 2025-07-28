@@ -9,6 +9,7 @@ ms.subservice: azure-arc-data
 ms.topic: quickstart 
 ms.date: 09/20/2022
 ms.custom: template-quickstart , devx-track-azurecli
+# Customer intent: As a data engineer, I want to deploy Azure Arc-enabled data services in indirectly connected mode using the Azure CLI, so that I can manage and scale my SQL Managed Instances and other data services across different environments seamlessly.
 ---
 
 # Quickstart: Deploy Azure Arc-enabled data services - indirectly connected mode - Azure CLI
@@ -24,7 +25,7 @@ When you complete the steps in this article, you will have:
 
 Use these objects to experience Azure Arc-enabled data services. 
 
-Azure Arc allows you to run Azure data services on-premises, at the edge, and in public clouds via Kubernetes. Deploy SQL Managed Instance and PostgreSQL server data services (preview) with Azure Arc. The benefits of using Azure Arc include staying current with constant service patches, elastic scale, self-service provisioning, unified management, and support for disconnected mode.  
+Azure Arc allows you to run Azure data services on-premises, at the edge, and in public clouds via Kubernetes. Deploy SQL Managed Instance with Azure Arc. The benefits of using Azure Arc include staying current with constant service patches, elastic scale, self-service provisioning, unified management, and support for disconnected mode.  
 
 ## Prerequisites
 

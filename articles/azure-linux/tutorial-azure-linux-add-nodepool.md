@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
+# Customer intent: As a DevOps engineer, I want to add an Azure Linux node pool to my existing AKS cluster, so that I can accommodate varying compute and storage needs for my applications.
 ---
 
 # Tutorial: Add an Azure Linux node pool to your existing AKS cluster

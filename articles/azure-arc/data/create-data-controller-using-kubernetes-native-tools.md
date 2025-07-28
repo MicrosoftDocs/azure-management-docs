@@ -9,6 +9,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+# Customer intent: As a Kubernetes cluster administrator, I want to create an Azure Arc-enabled data controller using Kubernetes tools, so that I can manage and deploy Azure Arc-enabled data services efficiently in my cluster.
 ---
 
 # Create Azure Arc-enabled data controller using Kubernetes tools
@@ -168,5 +169,3 @@ If you encounter any troubles with creation, please see the [troubleshooting gui
 ## Related content
 
 - [Create a SQL managed instance using Kubernetes-native tools](./create-sql-managed-instance-using-kubernetes-native-tools.md)
-- [Create a PostgreSQL server using Kubernetes-native tools](./create-postgresql-server-kubernetes-native-tools.md)
-

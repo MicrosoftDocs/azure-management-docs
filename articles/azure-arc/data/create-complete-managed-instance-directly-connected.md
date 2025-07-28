@@ -9,6 +9,7 @@ ms.subservice: azure-arc-sql-mi
 ms.topic: quickstart 
 ms.date: 12/09/2021
 ms.custom: template-quickstart 
+# Customer intent: As a data engineer, I want to deploy Azure Arc-enabled data services on a Kubernetes cluster, so that I can manage data services across hybrid environments effectively.
 ---
 
 # Quickstart: Deploy Azure Arc-enabled data services - directly connected mode - Azure portal
@@ -24,7 +25,7 @@ When you complete the steps in this article, you will have:
 - An instance of SQL Managed Instance enabled by Azure Arc.
 - A connection to the instance with Azure Data Studio.
 
-Azure Arc allows you to run Azure data services on-premises, at the edge, and in public clouds via Kubernetes. Deploy SQL Managed Instance and PostgreSQL server (preview) data services  with Azure Arc. The benefits of using Azure Arc include staying current with constant service patches, elastic scale, self-service provisioning, unified management, and support for disconnected mode.  
+Azure Arc allows you to run Azure data services on-premises, at the edge, and in public clouds via Kubernetes. Deploy SQL Managed Instance with Azure Arc. The benefits of using Azure Arc include staying current with constant service patches, elastic scale, self-service provisioning, unified management, and support for disconnected mode.  
 
 ## Install client tools
 

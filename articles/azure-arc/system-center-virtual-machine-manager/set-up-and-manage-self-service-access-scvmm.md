@@ -10,6 +10,7 @@ ms.date: 10/21/2024
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
+# Customer intent: As an IT administrator, I want to manage user access to SCVMM resources through Azure Role-based Access Control, so that my teams can effectively deploy and manage VMs with the appropriate permissions.
 ---
 
 # Set up and manage self-service access to SCVMM resources

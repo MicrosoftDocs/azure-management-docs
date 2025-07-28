@@ -3,6 +3,7 @@ title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
 ms.date: 06/13/2025
 ms.topic: overview
+# Customer intent: As an IT administrator managing a hybrid environment, I want to use Azure Arc to unify the management of my on-premises and cloud resources, so that I can simplify governance and operational processes across diverse infrastructures.
 ---
 
 # Azure Arc overview
@@ -27,8 +28,7 @@ Currently, Azure Arc allows you to manage the following resource types hosted ou
 
 * [Servers](servers/overview.md) and virtual machines: Manage Windows and Linux physical servers and virtual machines hosted outside of Azure. Provision, resize, delete, and manage virtual machines based on [Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview) and on [VMware vCenter](./vmware-vsphere/overview.md) or [System Center Virtual Machine Manager](./system-center-virtual-machine-manager/overview.md) managed on-premises environments.
 * [Kubernetes clusters](kubernetes/overview.md): Attach and configure Kubernetes clusters running anywhere, with multiple supported distributions.
-* [Azure data services](data/overview.md): Run Azure data services on-premises, at the edge, and in public clouds using Kubernetes and the infrastructure of your choice. SQL Managed Instance
-and PostgreSQL (preview) services are currently available.
+* [Azure data services](data/overview.md): Run SQL Managed Instance on-premises, at the edge, and in public clouds using Kubernetes and the infrastructure of your choice.
 * [SQL Server](/sql/sql-server/azure-arc/overview): Extend Azure services to SQL Server instances hosted outside of Azure.
 
 > [!NOTE]
@@ -48,7 +48,7 @@ Some of the key scenarios that Azure Arc supports are:
 
 * Zero-touch compliance and configuration for Kubernetes clusters using Azure Policy.
 
-* Run [Azure data services](../azure-arc/kubernetes/custom-locations.md) on any Kubernetes environment as if it runs in Azure (specifically Azure SQL Managed Instance and Azure Database for PostgreSQL server, with benefits such as upgrades, updates, security, and monitoring). Use elastic scale and apply updates without any application downtime, even without continuous connection to Azure.
+* Run [Azure data services](../azure-arc/kubernetes/custom-locations.md) on any Kubernetes environment as if it runs in Azure (specifically Azure SQL Managed Instance, with benefits such as upgrades, updates, security, and monitoring). Use elastic scale and apply updates without any application downtime, even without continuous connection to Azure.
 
 * Create [custom locations](./kubernetes/custom-locations.md) on top of your [Azure Arc-enabled Kubernetes](./kubernetes/overview.md) clusters, using them as target locations for deploying Azure services instances. Deploy your Azure service cluster extensions for [Azure Arc-enabled data services](./data/create-data-controller-direct-azure-portal.md), [Azure Container Apps on Azure Arc](/azure/container-apps/azure-arc-overview), and [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview).
 
