@@ -245,7 +245,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
      --auto-upgrade-minor-version false
    ```
 
-   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-parameters).
+   If desired, you can optionally modify the default rotation poll interval by adding `--configuration-settings rotationPollIntervalInSeconds=<time_in_seconds>` (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)).
 
 ## Configure the SSE
 
@@ -284,6 +284,8 @@ spec:
 EOF
 ```
 
+See [SecretProviderClass reference](secret-store-extension-reference.md#secretproviderclass-resources)) for additional configuration guidance.
+
 ### Create a `SecretSync` object
 
 A `SecretSync` object is needed to define how items fetched by the `SecretsProviderClass` are stored in Kubernetes. Kubernetes secrets are key-value maps, just like `ConfigMaps`, and the `SecretSync` object tells SSE how to map items defined in the linked `SecretsProviderClass` into keys in the Kubernetes secret. SSE will create a Kubernetes secret with the same name as the `SecretSync` that describes it.
@@ -313,6 +315,8 @@ EOF
 > [!TIP]
 > Do not include "/0" when referencing a secret from the `SecretProviderClass` where `objectVersionHistory` < 2. The latest version is used implicitly.
 
+See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for additional configuration guidance.
+
 ### Apply the configuration CRs
 
 Apply the configuration custom resources (CRs) using the `kubectl apply` command:
@@ -323,19 +327,6 @@ kubectl apply -f ./ss.yaml
 ```
 
 The SSE automatically looks for the secrets and begins syncing them to the cluster.
-
-### View configuration options
-
-To view additional configuration options for these two custom resource types, use the `kubectl describe` command to inspect the CRDs in the cluster:
-
-```bash
-# Get the name of any applied CRD(s)
-kubectl get crds -o custom-columns=NAME:.metadata.name
-
-# View the full configuration options and field parameters for a given CRD
-kubectl describe crd secretproviderclass
-kubectl describe crd secretsync
-```
 
 ## Observe secrets synchronizing to the cluster
 

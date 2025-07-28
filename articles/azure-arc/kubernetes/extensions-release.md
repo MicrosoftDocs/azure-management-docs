@@ -36,7 +36,7 @@ Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an in
 
 For more information, see [Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters](tutorial-akv-secrets-provider.md).
 
-## Secret Store
+## Azure Key Vault Secret Store
 
 - **Supported distributions**: Arc-enabled Kubernetes clusters running Kubernetes 1.27 or later, including: AKS on Azure Local, AKS Edge Esssentials, OpenShift Kubernetes Distribution, and VMware Tanzu Kubernetes Grid.
 
