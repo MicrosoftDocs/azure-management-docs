@@ -15,7 +15,7 @@ ms.custom: references_regions, ignite-2024
 
 The Azure Key Vault Secret Store extension for Kubernetes ("SSE") automatically synchronizes secrets from an [Azure Key Vault](/azure/key-vault/general/overview) to an [Azure Arc-enabled Kubernetes cluster](overview.md) for offline access. This means you can use Azure Key Vault to store, maintain, and rotate your secrets, even when running your Kubernetes cluster in a semi-disconnected state. Synchronized secrets are stored in the cluster [secret store](https://Kubernetes.io/docs/concepts/configuration/secret/), making them available as Kubernetes secrets to be used in all the usual ways: mounted as data volumes, or exposed as environment variables to a container in a pod.
 
-Synchronized secrets are critical business assets, so the SSE secures them through isolated namespaces and nodes, role-based access control (RBAC) policies, and limited permissions for the secrets synchronizer. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
+Synchronized secrets are critical business assets, so the SSE secures them through isolated namespaces, role-based access control (RBAC) policies, and limited permissions for the synchronization controller. For extra protection, [encrypt](https://Kubernetes.io/docs/tasks/administer-cluster/encrypt-data/) the Kubernetes secret store on your cluster.
 
 This article shows you how to install and configure the SSE as an [Azure Arc-enabled Kubernetes extension](conceptual-extensions.md).
 
@@ -267,8 +267,8 @@ cat <<EOF > spc.yaml
 apiVersion: secrets-store.csi.x-k8s.io/v1
 kind: SecretProviderClass
 metadata:
-  name: secret-provider-class-name                      # Name of the class; must be unique per Kubernetes namespace
-  namespace: ${KUBERNETES_NAMESPACE}                    # Kubernetes namespace to make the secrets accessible in
+  name: secret-provider-class-name                       # Name of the class; must be unique per Kubernetes namespace
+  namespace: ${KUBERNETES_NAMESPACE}                     # Kubernetes namespace to make the secrets accessible in
 spec:
   provider: azure
   parameters:
@@ -279,7 +279,7 @@ spec:
         - |
           objectName: ${KEYVAULT_SECRET_NAME}            # The name of the secret to synchronize.
           objectType: secret
-          objectVersionHistory: 2                       # [optional] The number of versions to synchronize, starting from latest.
+          objectVersionHistory: 2                        # [optional] The number of versions to synchronize, starting from latest.
     tenantID: "${AZURE_TENANT_ID}"                       # The tenant ID of the Key Vault 
 EOF
 ```
@@ -295,11 +295,11 @@ cat <<EOF > ss.yaml
 apiVersion: secret-sync.x-k8s.io/v1alpha1
 kind: SecretSync
 metadata:
-  name: secret-sync-name                                  # Name of the object; must be unique per Kubernetes namespace
-  namespace: ${KUBERNETES_NAMESPACE}                      # Kubernetes namespace
+  name: secret-sync-name                                   # Name of the object; must be unique per Kubernetes namespace
+  namespace: ${KUBERNETES_NAMESPACE}                       # Kubernetes namespace
 spec:
-  serviceAccountName: ${SERVICE_ACCOUNT_NAME}             # The Kubernetes service account to be given permissions to access the secret.
-  secretProviderClassName: secret-provider-class-name     # The name of the matching SecretProviderClass with the configuration to access the AKV storing this secret
+  serviceAccountName: ${SERVICE_ACCOUNT_NAME}              # The Kubernetes service account to be given permissions to access the secret.
+  secretProviderClassName: secret-provider-class-name      # The name of the matching SecretProviderClass with the configuration to access the AKV storing this secret
   secretObject:
     type: Opaque
     data:
