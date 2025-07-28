@@ -35,7 +35,7 @@ VM extension functionality is available only in the [supported regions](overview
 
 For the regional availabilities of Azure services and VM extensions that are available for Azure Arc-enabled servers, refer to the [Azure Global Product Availability Roadmap](https://global.azure.com/product-availability/roadmap).
 
-You can configure lists of the extensions that you want to allow and block on servers. For more information, see [Extension allowlists and blocklists](/azure/azure-arc/servers/security-overview#extension-allowlists-and-blocklists).
+You can configure lists of the extensions that you want to allow and block on servers. For more information, see [Extensions security for Azure Arc-enabled servers](/azure/azure-arc/servers/security-overview#allowlists-and-blocklists).
 
 ## Extensions
 
