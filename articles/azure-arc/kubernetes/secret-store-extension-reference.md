@@ -59,7 +59,7 @@ Within .spec:
  - **secretObject** *(required)*: Defines how the stored secret resource should be structured.
    - **type** *(required)*: The type of the Kubernetes secret object. Set this field to `Opaque` for a general purpose secret with no imposed structure. See [Types of Kubernetes secrets](https://kubernetes.io/docs/concepts/configuration/secret/#secret-types) for guidance on how the special purpose secret types need to be structured.
    -  **data** *(required)*: A list of data items within the secret resource. There must be at least one item. Each data item must contain these two fields:
-       - **sourcePath** *(required)*: The path to an item fetched from AKV. When only one version of the named secret is fetched from AKV, the path is simply `<secret name>`.<br> If more than one version of the named secret is fetched from AKV, then the latest version's sourcePath is `<secret name>/0`, second latest is `<secret name>/1`, etc.<br> When a certificate is fetched from AKV, the sourcePaths will depend on the value of `objectType` in the SecretProviderClass. When the `objectType`` in the SPC` is "secret" then both a certificate and a private key will be available at sourcePaths of `<secret name>/tls.crt` and `<secret name>/tls.key` respectively.
+       - **sourcePath** *(required)*: The path to an item fetched from AKV. When only one version of the named secret is fetched from AKV, the path is simply `<secret name>`.<br> If more than one version of the named secret is fetched from AKV, then the latest version's sourcePath is `<secret name>/0`, second latest is `<secret name>/1`, etc.<br> When a certificate is fetched from AKV, the sourcePaths will depend on the value of `objectType` in the SecretProviderClass. When the `objectType` in the SPC is "secret" then both a certificate and a private key will be available at sourcePaths of `<secret name>/tls.crt` and `<secret name>/tls.key` respectively.
        - **targetKey** *(required)*: The key in the Kubernetes secret object to store the data into.
    - **labels** *(optional)*: A list of key-value pairs of additional labels to apply to the secret object.
    - **annotations** *(optional)*: A list of key-value pairs of additional annotations to apply to the secret object.
@@ -67,4 +67,46 @@ Within .spec:
 
 ## SecretProviderClass resources
 
-Soon
+SecretProviderClass resources configure what and how to fetch from an Azure Key Vault. This reference only covers the fields necessary for the SSE use cases of the SecretProviderClass; 
+
+### example
+
+``` yaml
+apiVersion: secrets-store.csi.x-k8s.io/v1
+kind: SecretProviderClass
+metadata:
+  name: secret-provider-class-name
+  namespace: workload-namespace
+spec:
+  provider: azure
+  parameters:
+    clientID: "xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx"
+    tenantID: "xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx"
+    keyvaultName: exampleKeyvault
+    objects: |
+      array:
+        - |
+          objectName: aSecret
+          objectType: secret
+          objectVersionHistory: 2
+        - |
+          objectName: aCertificate
+          objectType: secret
+```
+
+### values
+
+Within .spec:
+
+ - **provider** *(required)*: Set this to `azure` when using SSE to fetch secrets from Azure Key Vault.
+ - **parameters** *(required)*: Defines how and where to fetch AKV secrets from.
+     - **clientID** *(required)*: The clientID for the managed identity with access to the required secrets. This managed identity will have a federated credential associated with the service account named in the SecretSync resource that uses this SecretProviderClass.
+     - **tenantID** *(required)*: The ID of the Azure tenant containing the AKV instance.
+     - **keyvaultName** *(required)*: The name of the keyvault.
+     - **objects** *(required)*: A **string** containing a YAML fragment representing the items to be fetched from this AKV. Pay close attention to the example to see how the objects field is constructed. Additional examples of SecretProviderClass resources for use with Azure Key Vault may be found in the [AKV provider docs](https://github.com/Azure/secrets-store-csi-driver-provider-azure/blob/master/examples/keyvault-secrets/v1alpha1_secretproviderclass_secrets.yaml). **objects** must contain at least one item within the "array" sub-object.
+         - **objectName** *(required)*: The name of the secret or certificate to fetch from AKV.
+         - **objectType** *(required)*: Set this to `secret` when fetching a secret from AKV.<br> When fetching a certificate, set this to:
+             - `cert` to fetch only the certificate.
+             - `key` to fetch only the public key of the certificate.
+             - `secret` to fetch the certificate *and* the private key.
+         - **objectVersionHistory** *(optional)*: If present and greater than one, this many versions will be fetched from AKV, starting with the latest.
