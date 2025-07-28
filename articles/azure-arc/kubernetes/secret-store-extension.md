@@ -339,18 +339,18 @@ View the secrets synchronized to the cluster by running the following command:
 ```bash
 # View a list of all secrets in the namespace
 kubectl get secrets -n ${KUBERNETES_NAMESPACE}
-
-# View details of all secrets in the namespace
-kubectl get secrets -n ${KUBERNETES_NAMESPACE} -o yaml
 ```
+
+> [!TIP]
+> Add `-o yaml` or `-o json` to change the output format of `kubectl get` and `kubectl describe` commands.
 
 ### View secrets values
 
 To view the synchronized secret values, now stored in the Kubernetes secret store, use the following command:
 
 ```bash
-kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key0}" | base64 -d
-kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key1}" | base64 -d
+kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key0}" | base64 -d && echo
+kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key1}" | base64 -d && echo
 ```
 
 ## Troubleshooting
