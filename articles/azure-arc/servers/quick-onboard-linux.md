@@ -64,7 +64,7 @@ Follow these steps to install the Azure Connected Machine agent by using your di
    - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other flags if desired.
 
       > [!TIP]
-   > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
+      > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
 
 ## Verify the connection with Azure Arc
 
