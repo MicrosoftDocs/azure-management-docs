@@ -10,7 +10,7 @@ ms.date: 07/23/2025
 
 Get started with [Azure Arc-enabled servers](overview.md) to manage and govern your Linux machines hosted across on-premises, edge, and multicloud environments. Once your Linux machine is Arc-enabled, you can use Azure services on your on-premises machine, such as Azure Policy, Azure Monitor, Microsoft Defender, and Azure Update Manager.
 
-In this quickstart, you deploy and configure the Azure Connected Machine agent on a Linux machine hosted outside of Azure. This quickstart provides a manual option to onboard to Arc-enabled servers with your package manager. If you prefer, you can [use an Azure Portal onboarding script](quick-enable-hybrid-vm.md) to automate these steps. The onboarding script configures the Microsoft package repository on your machine, installs the agent using your package manager and onboards the server.
+In this quickstart, you deploy and configure the Azure Connected Machine agent on a Linux machine hosted outside of Azure. This quickstart provides a manual option to onboard to Arc-enabled servers with your package manager. If you prefer, you can [use an Azure portal onboarding script](quick-enable-hybrid-vm.md) to automate these steps. The onboarding script configures the Microsoft package repository on your machine, installs the agent using your package manager and onboards the server.
 
 While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
