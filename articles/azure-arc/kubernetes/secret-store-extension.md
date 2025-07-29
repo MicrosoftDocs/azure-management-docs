@@ -87,25 +87,23 @@ Now configure your cluster to issue Service Account tokens with a new issuer URL
       echo $SERVICE_ACCOUNT_ISSUER
       ```
 
-   - Open the K3s server configuration file.
+   - Open `/etc/rancher/k3s/config.yaml` in a text editor. By default there is no configuration for K3s and a blank file is opened.
 
-      ```console
-      sudo nano /etc/systemd/system/k3s.service
-      ```
+     ```console
+     sudo nano /etc/systemd/system/k3s.service
+     ```
 
-   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the previous output from `echo $SERVICE_ACCOUNT_ISSUER`, remembering to include the trailing forward slash of this URL: 
-   
-      ```console
-      ExecStart=/usr/local/bin/k3s \
-       server --write-kubeconfig-mode=644 \
-          --kube-apiserver-arg="--service-account-issuer=<SERVICE_ACCOUNT_ISSUER>" \
-          --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"
-      ```
+    - Add the following configuration settings, then save and close `nano`.
+       ```yaml
+        kube-apiserver-arg:
+          - 'service-account-issuer=${SERVICE_ACCOUNT_ISSUER}'
+          - 'service-account-max-token-expiration=24h'
+       ```
+      Note: You must replace `${SERVICE_ACCOUNT_ISSUER}` with the output from `echo $SERVICE_ACCOUNT_ISSUER` above. `nano` does not substitute variables automatically.
 
 1. Restart your kube-apiserver.
 
     ```console
-   sudo systemctl daemon-reload
    sudo systemctl restart k3s
    ```
 
