@@ -6,7 +6,7 @@ ms.topic: troubleshooting
 ---
 
 # Troubleshooting
-The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storing secrets in the cluster, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE is configured via `SecretSync` and `SecretProviderClass` resources. In addition to configuration parameters, `SecretSync` classes are updated by the SSE controller with the status of the sync operation, including error messages where appropriate.
+The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storage of secrets in the cluster, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE is configured via `SecretSync` and `SecretProviderClass` resources. In addition to configuration parameters, `SecretSync` classes are updated by the SSE controller with the status of the sync operation, including error messages where appropriate.
 
 ## Checking a SecretSync status
 
@@ -47,6 +47,6 @@ If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-conne
 
 ## Slow or missing updates
 
-Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
+Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3,600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
 
-To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any affect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for an example.
+To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any effect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for an example.
