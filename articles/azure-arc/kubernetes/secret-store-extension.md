@@ -108,9 +108,9 @@ Now configure your cluster to issue Service Account tokens with a new issuer URL
 
 1. (optional) Verify the service account issuer has been configured correctly:
 
-```console
-kubectl cluster-info dump | grep service-account-issuer
-```
+    ```console
+    kubectl cluster-info dump | grep service-account-issuer
+    ```
 
 ### [AKS on Azure Local](#tab/aks-local)
 
