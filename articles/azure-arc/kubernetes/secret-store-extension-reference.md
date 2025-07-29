@@ -67,7 +67,7 @@ Within .spec:
 
 ## SecretProviderClass resources
 
-SecretProviderClass resources configure what and how to fetch from an Azure Key Vault. This reference only covers the fields necessary for the SSE use cases of the SecretProviderClass; 
+SecretProviderClass resources configure what and how to fetch from an Azure Key Vault. This reference only covers the fields necessary for the SSE use cases of the SecretProviderClass.
 
 ### example
 
