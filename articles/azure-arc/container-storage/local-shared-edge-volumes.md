@@ -5,7 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 09/26/2024
+ms.date: 07/18/2025
 # Customer intent: "As a Kubernetes administrator, I want to configure Local Shared Edge Volumes for my clusters, so that I can provide highly available local storage for applications requiring temporary and persistent data without relying on cloud infrastructure."
 ---
 
@@ -98,7 +98,7 @@ The *Local Shared Edge Volumes* feature provides highly available, failover-capa
    kubectl apply -f "deploymentExample.yaml"
    ```
 
-1. Run `kubectl get pods` to find the name of your pod. Copy this name, as it's needed in the next step.
+1. Run `kubectl get pods` to find the name of your pod. Copy this name, so you can use it in the next step.
 
    > [!NOTE]
    > Because `spec::replicas` from `deploymentExample.yaml` was specified as `2`, two pods appear using `kubectl get pods`. You can choose either pod name to use for the next step.
@@ -113,8 +113,8 @@ The *Local Shared Edge Volumes* feature provides highly available, failover-capa
 
 1. As an example, create a file named `file1.txt` and write to it using `echo "Hello World" > file1.txt`.
 
-After you complete the previous steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or third-party monitoring with Prometheus and Grafana.
+After you complete the previous steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or other monitoring tools such as Prometheus or Grafana.
 
 ## Next steps
 
-[Monitor your deployment](monitor-deployment-edge-volumes.md)
+[Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
