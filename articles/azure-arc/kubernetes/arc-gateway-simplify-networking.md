@@ -104,7 +104,7 @@ After the resource is created successfully, the success response will include th
 |`<region>.obo.arc.azure.com`     |Required when [Cluster connect](conceptual-cluster-connect.md) is configured.         |
 |`login.microsoftonline.com`, `<region>.login.microsoft.com`     | Microsoft Entra ID endpoint, used for acquiring identity access tokens.         |
 |`gbl.his.arc.azure.com`, `<region>.his.arc.azure.com`   |The cloud service endpoint for communicating with Arc Agents. Uses short names, for example `eus` for East US.          |
-|`mcr.microsoft.com`, `*.data.mcr.microsoft.com`     |Required to pull container images for Azure Arc agents.         |
+|`mcr.microsoft.com`, `<region>.data.mcr.microsoft.com`     |Required to pull container images for Azure Arc agents.         |
 
 ## Onboard Kubernetes clusters to Azure Arc with your Arc gateway resource
 
