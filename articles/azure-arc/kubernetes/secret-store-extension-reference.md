@@ -1,8 +1,8 @@
 ---
 title: Reference for Azure Key Vault Secret Store Extension
-description: A reference guide for the Azure Key Vault Secret Store Extension, documenting the possibilities allowed in each of SSE's configuration resources.
 ms.date: 08/01/2025
 ms.topic: reference
+description: A reference guide for the Azure Key Vault Secret Store Extension, documenting the possibilities allowed in each of SSE's configuration resources.
 ---
 
 # Azure Key Vault Secret Store extension configuration reference
