@@ -2,19 +2,24 @@
 title: What's new for AKV Secret Store extension
 description: The release notes identify important updates and improvements in the Azure Key Vault Secret Store extension.
 ms.date: 08/01/2025
+ms.topic: release-notes
 ---
 
 # Release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
 ## August 2025
-### 1.0.0
-- First GA release of AKV SSE! 🎉
-- You are CEVing this version.
+### 1.0.2
 - Failure to find the SecretSync resource during a SecretSync reconciliation no longer causes an error.
 - Security updates to internal components
     - Update Go to 1.24.4
-    - 
+
+## July 2025
+### 1.0.0
+- SSE is no longer in preview from this version. 🎉
+- Failure to find the SecretSync resource during a SecretSync reconciliation no longer causes an error.
+- Security updates to internal components
+    - Update Go to 1.24.4
 
 ## May 2025
 ### 0.10.0 [PREVIEW]

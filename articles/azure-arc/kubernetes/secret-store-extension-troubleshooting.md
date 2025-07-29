@@ -2,6 +2,7 @@
 title: Troubleshooting issues with the Secret Store extension
 description: This guide will help you to efficiently diagnose and resolve issues with the Azure Key Vault Secret Store extension.
 ms.date: 08/01/2025
+ms.topic: troubleshooting
 ---
 
 # Troubleshooting
