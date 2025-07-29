@@ -284,7 +284,7 @@ spec:
 EOF
 ```
 
-See [SecretProviderClass reference](secret-store-extension-reference.md#secretproviderclass-resources)) for additional configuration guidance.
+See [SecretProviderClass reference](secret-store-extension-reference.md#secretproviderclass-resources) for additional configuration guidance.
 
 ### Create a `SecretSync` object
 
@@ -315,7 +315,7 @@ EOF
 > [!TIP]
 > Do not include "/0" when referencing a secret from the `SecretProviderClass` where `objectVersionHistory` < 2. The latest version is used implicitly.
 
-See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for additional configuration guidance.
+See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources) for additional configuration guidance.
 
 ### Apply the configuration CRs
 
