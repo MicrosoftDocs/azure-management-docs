@@ -5,7 +5,7 @@ author: asergaz
 ms.author: sergaz
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 08/26/2024
+ms.date: 07/18/2025
 # Customer intent: As a cloud storage administrator, I want to generate blob index and metadata tags using extended attributes, so that I can effectively categorize and manage my files within Cloud Ingest Edge Volumes.
 ---
 
@@ -15,10 +15,10 @@ Cloud Ingest Edge Volumes now supports the ability to generate blob index tags a
 
 ## Blob index tags
 
-To generate a blob index tag, create an extended attribute using the prefix `azindex`, followed by the desired key and its corresponding value for the index tag. Edge Volumes subsequently propagates these values to the blob, appearing as the key matching the value.
+To generate a blob index tag, create an extended attribute using the prefix `azindex`, followed by the desired key and its corresponding value for the index tag. Edge Volumes then propagates these values to the blob, appearing as the key matching the value.
 
 > [!NOTE]
-> Index tags are only supported for non-hierarchical namespace (HNS) accounts.
+> Index tags aren't supported for hierarchical namespace (HNS) accounts.
 
 ### Example 1: index tags
 
@@ -42,13 +42,13 @@ Attribute " azindex.datecreated " set to a 10 byte value for logfile2:
 
 ## Blob metadata tags
 
-To generate a blob metadata tag, create an extended attribute using the prefix `azmeta`, followed by the desired key and its corresponding value for the metadata tag. Edge Volumes subsequently propagates these values to the blob, appearing as the key matching the value.
+To generate a blob metadata tag, create an extended attribute using the prefix `azmeta`, followed by the desired key and its corresponding value for the metadata tag. Edge Volumes then propagates these values to the blob, appearing as the key matching the value.
 
 > [!NOTE]
 > Metadata tags are supported for HNS and non-HNS accounts.
 
 > [!NOTE]
-> HNS blobs also receive `x-ms-meta-is_adls=true` to indicate that the blob was created with Datalake APIs.
+> HNS blobs also receive `x-ms-meta-is_adls=true` to indicate that the blob was created with Data Lake APIs.
 
 ### Example 1: metadata tags
 
@@ -72,4 +72,4 @@ Attribute " azmeta.datecreated " set to a 10 byte value for logfile2:
 
 ## Next steps
 
-[Azure Container Storage enabled by Azure Arc overview](overview.md)
+[What is Azure Container Storage enabled by Azure Arc?](overview.md)
