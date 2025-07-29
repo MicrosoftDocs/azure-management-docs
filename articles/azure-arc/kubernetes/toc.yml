@@ -152,7 +152,7 @@
         href: secret-store-extension-reference.md
       - name: Release notes
         href: secret-store-extension-release-notes.md
-      - name: Online-only secrets access without local copies
+      - name: Access secrets without local copies
         displayName: akv, cert
         href: tutorial-akv-secrets-provider.md
       displayName: secret synchronization, azure secret store, secret store
