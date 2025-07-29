@@ -20,7 +20,7 @@ This article shows you how to install and configure the SSE as an [Azure Arc-ena
 
 ## Prerequisites
 
-- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (the examples throughout this guide use a [K3s](https://k3s.io/) cluster) or a Microsoft-managed [AKS enabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
+- An Arc-enabled cluster. This can be one that you [connected to yourself](quickstart-connect-cluster.md) (this guide assumes a [K3s](https://k3s.io/) cluster, and provides guidance on how to Arc-enable it.) or a Microsoft-managed [AKS enabled by Azure Arc](/azure/aks/hybrid/aks-overview) cluster. The cluster must be running Kubernetes version 1.27 or higher.
 - Ensure you meet the [general prerequisites for cluster extensions](extensions.md#prerequisites), including the latest version of the `k8s-extension` Azure CLI extension.
 - cert-manager is required to support TLS for intracluster log communication. The examples later in this guide direct you though installation. For more information about cert-manager, see [cert-manager.io](https://cert-manager.io/)
 
@@ -37,7 +37,6 @@ export RESOURCE_GROUP="AzureArcTest"
 export CLUSTER_NAME="AzureArcTest1"
 export LOCATION="EastUS"
 export SUBSCRIPTION="$(az account show --query id --output tsv)"
-az account set --subscription "${SUBSCRIPTION}"
 export AZURE_TENANT_ID="$(az account show -s $SUBSCRIPTION --query tenantId --output tsv)"
 export CURRENT_USER="$(az ad signed-in-user show --query userPrincipalName --output tsv)"
 export KEYVAULT_NAME="my-UNIQUE-kv-name"
@@ -106,6 +105,12 @@ Now configure your cluster to issue Service Account tokens with a new issuer URL
     ```console
    sudo systemctl restart k3s
    ```
+
+1. (optional) Verify the service account issuer has been configured correctly:
+
+```console
+kubectl cluster-info dump | grep service-account-issuer
+```
 
 ### [AKS on Azure Local](#tab/aks-local)
 
