@@ -144,7 +144,7 @@
       href: tutorial-arc-enabled-open-service-mesh.md
     - name: Access secrets from Azure Key Vault
       items:
-      - name: Getting started
+      - name: Get started
         href: secret-store-extension.md
       - name: Troubleshooting
         href: secret-store-extension-troubleshooting.md
