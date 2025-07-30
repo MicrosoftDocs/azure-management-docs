@@ -277,7 +277,7 @@ This endpoint will be removed from `azcmagent check` in a future release.
 ### Fixed
 
 - Fixed an issue that could cause a VM extension to disappear in Azure Resource Manager if it's installed with the same settings twice. After upgrading to agent version 1.33 or later, reinstall any missing extensions to restore the information in Azure Resource Manager.
-- You can now set the [agent mode](security-extensions.md#agent-modes) before connecting the agent to Azure.
+- You can now set the [agent mode](security-extensions.md#agent-monitor-mode) before connecting the agent to Azure.
 - The agent now responds to instance metadata service (IMDS) requests even when the connection to Azure is temporarily unavailable.
 
 ## Version 1.32 - July 2023
@@ -379,7 +379,7 @@ Download for [Windows](https://download.microsoft.com/download/8/4/5/845d5e04-bb
 - The extension service now correctly restarts when the Azure Connected Machine agent is upgraded by Update Manager
 - Resolved issues with the hybrid connectivity component that could result in the "himds" service crashing, the server showing as "disconnected" in Azure, and connectivity issues with Windows Admin Center and SSH
 - Improved handling of resource move scenarios that could impact Windows Admin Center and SSH connectivity
-- Improved reliability when changing the [agent configuration mode](security-extensions.md#local-agent-security-controls) from "monitor" mode to "full" mode.
+- Improved reliability when changing the [agent configuration mode](security-extensions.md#agent-monitor-mode) from "monitor" mode to "full" mode.
 - Increased the [resource limits](agent-overview.md#agent-resource-governance) for the Microsoft Sentinel DNS extension to improve log collection reliability
 - Tenant IDs are better validated when connecting the server
 
@@ -538,7 +538,7 @@ Download for [Windows](https://download.microsoft.com/download/2/5/6/25685d0f-28
 
 ### New features
 
-- You can configure the agent to operate in [monitoring mode](security-extensions.md#agent-modes), which simplifies configuration of the agent for scenarios where you only want to use Arc for monitoring and security scenarios. This mode disables other agent functionality and prevents use of extensions that could make changes to the system (for example, the Custom Script Extension).
+- You can configure the agent to operate in [monitoring mode](security-extensions.md#agent-monitor-mode), which simplifies configuration of the agent for scenarios where you only want to use Arc for monitoring and security scenarios. This mode disables other agent functionality and prevents use of extensions that could make changes to the system (for example, the Custom Script Extension).
 - VMs and hosts running on Azure Stack HCI now report the cloud provider as "HCI" when [Azure benefits are enabled](/azure-stack/hci/manage/azure-benefits#enable-azure-benefits).
 
 ### Fixed
