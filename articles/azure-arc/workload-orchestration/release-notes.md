@@ -29,7 +29,7 @@ This article provides the latest and past release notes for workload orchestrati
 - Resolved an issue that enabled deletion of previously deployed versions of solutions.
 - Boosted reliability of solution template creation process by fixing race condition that was leading to occasional random failures.
 
-## June 2025 release
+## June 2025 GA release
 
 Workload orchestration is now generally available (GA) in Azure Arc. This release includes all the features and improvements that were previously in preview, along with additional enhancements.
 
@@ -78,7 +78,7 @@ To migrate your existing workload orchestration target resources to the GA versi
 
 - Fixed issue with bulk deployment where the CLI response only listed one target in the `DeployedTargets` array, even when multiple targets were successfully deployed. The CLI now correctly lists all deployed targets.
 
-## June 2025 release
+## June 2025 preview release
 
 ### New features
 
