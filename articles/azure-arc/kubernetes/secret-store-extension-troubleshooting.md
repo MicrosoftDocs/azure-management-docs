@@ -44,7 +44,7 @@ Azure Arc gateway (preview) does not provide network connectivity to Azure Key V
 
 
 ### Azure Private Link
-If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-connected cluster to reach the Key Vault’s private endpoint. Verify that DNS resolution for the vault name returns the private IP and that the private link IP is routed correctly from your cluster. See [Azure Private Link](/azure/key-vault/general/private-link-diagnostics)
+If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-connected cluster to reach the Key Vault’s private endpoint. Verify that DNS resolution for the vault name returns the private IP and that the private link IP is routed correctly from your cluster. See [Diagnose private link configuration issues on Azure Key Vault](/azure/key-vault/general/private-link-diagnostics).
 
 ## Slow or missing updates
 
