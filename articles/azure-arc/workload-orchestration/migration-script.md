@@ -9,7 +9,7 @@ ms.date: 06/24/2025
 
 # Migrate existing target resources to the general availability 
 
-If you used workload orchestration in preview, you need to run a migration script to update the existing target resources to the general availability (GA) version. For more information about the GA release, see [Release Notes for Workload Orchestration](release-notes.md#june-2025-ga-release).
+If you used workload orchestration in preview, you need to run a migration script to update the existing target resources to the general availability (GA) version. For more information about the GA release, see [Release Notes for Workload Orchestration](release-notes.md).
 
 ## Prerequisites
 
