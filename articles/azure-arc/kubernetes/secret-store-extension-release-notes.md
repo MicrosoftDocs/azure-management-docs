@@ -12,7 +12,8 @@ Important updates and improvements to the Azure Key Vault Secret Store extension
 ### 1.0.2
 - SSE is no longer in preview from this version. 🎉
 - Failure to find the SecretSync resource during a SecretSync reconciliation no longer causes an error.
-- Security updates to internal components
+- Security updates to internal components:
+
     - Update Go to 1.24.4
 
 ## May 2025
