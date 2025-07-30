@@ -308,7 +308,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```bash
-    az workload-orchestration target review --resource-group "$rg" --solution-name "$appName1" --solution-version "$appVersion" --target-name "$childName"
+    az workload-orchestration target review --resource-group "$rg" --target-name "$childName" --solution-template-version-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName1/versions/$appVersion"
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.
@@ -329,7 +329,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
 
     ```powershell
-    az workload-orchestration target review --resource-group $rg --solution-name $appName1 --solution-version $appVersion --target-name $childName
+    az workload-orchestration target review --resource-group $rg --target-name $childName --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$appName1/versions/$appVersion
     ```
 
 1. Publish the generated configuration for deployment. Enter `reviewId` from the previous command response.
