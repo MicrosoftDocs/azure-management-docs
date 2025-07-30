@@ -14,7 +14,8 @@ The SSE can be configured in three places: Configuration setting provided to Arc
 Configuration settings can be set when the SSE Arc extension instance is created, or they can be updated later. Use ```--configuration-settings <setting>=<value>``` with ```az k8s-extension create ...``` or ```az k8s-extension update ...``` to create or update an SSE instance respectively.
 
 
-SSE accepts the following arc extension configuration parameters:
+SSE accepts the following Arc extension configuration parameters:
+
 
    | Parameter name                    | Description                         | Default value                         |
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
