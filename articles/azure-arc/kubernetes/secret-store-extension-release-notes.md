@@ -30,7 +30,8 @@ Important updates and improvements to the Azure Key Vault Secret Store extension
     - Azure Linux 3 is now used as the base for the controller image.
 
 ### 0.9.6 [PREVIEW]
-- Security updates to internal components
+- Security updates to internal components:
+
     - Update Go to 1.24.3
     - Update Kubectl to v1.30.12
     - Update provider to v1.7.0
