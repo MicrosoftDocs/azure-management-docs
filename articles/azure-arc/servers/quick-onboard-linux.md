@@ -46,13 +46,13 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
 1. Install the Connected Machine agent using your package manager: `sudo apt update && sudo apt install azcmagent`
 
-1. Retrieve your Azure tenant ID and subscription ID tby running the following Azure CLI command:
+1. Retrieve your Azure tenant ID and subscription ID by running the following Azure CLI command:
 
    ```azurecli
    az account show --query "{tenantId: tenantId, subscriptionId: id}" --output tsv
    ```
 
-1. Onboard your Linux machine to Azure by using the [azcmagent connect](azcmagent-connect.md) command, using the tenant ID and subscription ID you retrieved in the previous step. You also need to specify the Azure region and resource group in which to create the Arc-enabled server resource. If you need to create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`.
+1. Onboard your Linux machine to Azure by using the [`azcmagent` connect](azcmagent-connect.md) command, using the tenant ID and subscription ID you retrieved in the previous step. You also need to specify the Azure region and resource group in which to create the Arc-enabled server resource. If you need to create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`.
 
    ```sh
    sudo azcmagent connect --resource-group "<resource_group_name>" --tenant-id "<tenant_id>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --tags 'ArcSQLServerExtensionDeployment=Disabled'
