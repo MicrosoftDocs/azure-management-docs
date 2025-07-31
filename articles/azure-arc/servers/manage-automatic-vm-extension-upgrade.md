@@ -2,7 +2,7 @@
 title: Automatic extension upgrade for Azure Arc-enabled servers
 description: Learn how to enable automatic extension upgrades for your Azure Arc-enabled servers.
 ms.topic: concept-article
-ms.date: 06/19/2025
+ms.date: 07/31/2025
 # Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to enable automatic extension upgrades so that I can reduce operational overhead and ensure that my server extensions are always up to date with minimal intervention."
 ---
 
@@ -62,7 +62,8 @@ Many VM extensions support automatic extension upgrade, including the following 
 - Azure Monitor Agent
 - Azure Monitor Dependency agent
 - Azure Key Vault
-- Azure Update Manager 
+- Microsoft Defender for Endpoint
+- Azure Update Manager
 - Azure Automation Hybrid Runbook Worker
 - Network Watcher
 - Boot Integrity Monitoring - Guest Attestation
