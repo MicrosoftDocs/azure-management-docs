@@ -34,11 +34,7 @@ Core Functionality | Azure Management Experience
 **Scripting** | [Run Command](run-command.md) allows administrators to remotely and securely execute scripts for various server management tasks, including application management, security enforcement, and diagnostics:<ul><li>Centralized script management (creation, update, deletion, sequencing, and listing operations for scripts)</li><li>Task automation for installing software, configuring firewall rules, running health checks, and troubleshooting issues</li></ul>Run Command is available for both Azure Arc-enabled servers and Azure VMs.
 **Software Distribution** | [Virtual Machine Apps](/azure/virtual-machines/vm-applications?tabs=ubuntu) (VM Apps) allows administrators to safely package and distribute software to their Azure VMs. You can upload VM Application images to their Azure Compute Gallery and specify the target scope of Azure VMs. Azure Arc-enabled servers don't currently support VM Apps. You can use Run Command scripts and customized Machine Configuration for software distribution.
 
-
-* **Software distribution:** Azure Arc-enabled servers introduce support for Virtual Machine apps, enabling point-and-click software distribution on non-Azure infrastructure.
-* **App patching:** Azure Update Manager introduces support for third-party application patching across Azure VMs and Azure Arc-enabled servers.
-* **Distribution points:** Local caching options provide an alternative to direct download from Azure for key content distribution scenarios (apps, patches, extensions, and updates).
-* **Unified operations:** At-scale onboarding, consumption experiences, and pricing across key Azure management services for modernization from SCCM.
+We continue to enhance Azure Arc-enabled servers with new capabilities for even greater parity and functionality in areas such as software distribution, app patching, and unified operations, and distribution points.
 
 ## Modernization guidance for SCCM customers
 
