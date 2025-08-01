@@ -2,7 +2,7 @@
 title: Quickstart - Connect a Linux machine with Azure Arc-enabled servers (package-based installation)
 description: In this quickstart, you connect and register a Linux machine to Azure Arc using a package-based installation method.
 ms.topic: quickstart
-ms.date: 07/23/2025
+ms.date: 07/31/2025
 # Customer intent: "As an IT administrator, I want to connect and register Linux machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
@@ -39,29 +39,33 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
 1. Configure the [Microsoft package repository](/linux/packages) on your machine.
 
-1. Install the Connected Machine agent using your package manager.
-
    For example, for Ubuntu 24.04, perform the following steps:
 
    1. Download `packages-microsoft-prod.deb`. This is the Debian package that configures your system to use the Microsoft package repository.
    1. Install the package: `sudo dpkg -i packages-microsoft-prod.deb`
-   1. Install the agent: `sudo apt update && sudo apt install azcmagent`
-   
-1. Onboard your Linux machine to Azure by using the [azcmagent connect](azcmagent-connect.md) command:
 
-      ```sh
+1. Install the Connected Machine agent using your package manager: `sudo apt update && sudo apt install azcmagent`
+
+1. Retrieve your Azure tenant ID and subscription ID by running the following Azure CLI command:
+
+   ```azurecli
+   az account show --query "{tenantId: tenantId, subscriptionId: id}" --output tsv
+   ```
+
+1. Onboard your Linux machine to Azure by using the [`azcmagent` connect](azcmagent-connect.md) command, using the tenant ID and subscription ID you retrieved in the previous step. You also need to specify the Azure region and resource group in which to create the Arc-enabled server resource. If you need to create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`.
+
+   ```sh
    sudo azcmagent connect --resource-group "<resource_group_name>" --tenant-id "<tenant_id>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --tags 'ArcSQLServerExtensionDeployment=Disabled'
    ```
 
       Adjust the parameters as needed:
 
-   - `--tenant-id`: an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant. To find your tenant ID, run this Azure CLI command: `az account show --query tenantId --output tsv`
-   - `--subscription-id`: an Azure unique identifier (GUID) assigned to each Azure subscription. To find your subscription ID, run this Azure CLI command: `az account show --query id --output tsv`
-   - `--location`: The Azure region in which to create your Arc-enabled server in Azure. The region should match or be near the actual machine location.
-   - `--resource-group`: An Azure logical container that holds related resources for an Azure solution, created in the same region as your Arc-enabled server resource. To create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`
-      
+   - `--tenant-id`: an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant.
+   - `--subscription-id`: an Azure unique identifier (GUID) assigned to each Azure subscription.
+   - `--location`: The Azure region in which to create your Arc-enabled server resource in Azure. The region should match or be near the actual machine location.
+   - `--resource-group`: The name for a *resource group*, an Azure logical container that holds related resources. Use a resource group created in the same region as the Arc-enabled server resource you're creating.
    - `--cloud`: Keep the default value, `AzureCloud`, unless you're using a [different Azure cloud environment](azcmagent-connect.md#flags).
-   - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other tags if desired. 
+   - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other tags if desired.
 
       > [!TIP]
       > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
