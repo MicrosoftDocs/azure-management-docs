@@ -215,7 +215,7 @@
     href: /security/benchmark/azure/baselines/azure-arc-enabled-servers-security-baseline?toc=/azure/azure-arc/servers/toc.json
   - name: Security controls by Azure Policy
     href: security-controls-policy.md
-- name: Cloud-Native Server Management
+- name: Cloud-native server management
   items:
   - name: Overview
     href: ./cloud-native/overview.md
