@@ -116,16 +116,16 @@
     - name: Run command
       items:
       - name: Overview
-        displayName: run, command
+        displayName: run, command, run command
         href: run-command.md
       - name: REST API
-        displayName: run, command
+        displayName: run, command, run command
         href: run-command-rest.md
       - name: Azure CLI
-        displayName: run, command
+        displayName: run, command, run command
         href: run-command-cli.md
       - name: PowerShell
-        displayName: run, command
+        displayName: run, command, run command
         href: run-command-powershell.md
       - name: Limit access to Run command
         href: run-command-security.md
@@ -215,6 +215,12 @@
     href: /security/benchmark/azure/baselines/azure-arc-enabled-servers-security-baseline?toc=/azure/azure-arc/servers/toc.json
   - name: Security controls by Azure Policy
     href: security-controls-policy.md
+- name: Cloud-Native Server Management
+  items:
+  - name: Overview
+    href: ./cloud-native/overview.md
+  - name: Inventory and resource organization
+    href: ./cloud-native/inventory-resource.md
 - name: Reference
   items:
   - name: azcmagent CLI
