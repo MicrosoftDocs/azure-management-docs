@@ -66,6 +66,10 @@ items:
             href: enable-gpu-aks.md
           - name: Configure driver machine
             href: configure-driver-machine.md
+      - name: Responsible AI
+        items: 
+          - name: Transparency note
+            href: /legal/edge-rag/transparency-note?toc=/azure/azure-arc/edge-rag/TOC.json&bc=/azure/azure-arc/edge-rag/breadcrumb/toc.json 
       - name: Reference
         items:
           - name: Configure NFS server
