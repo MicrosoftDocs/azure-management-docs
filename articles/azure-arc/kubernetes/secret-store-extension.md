@@ -77,7 +77,7 @@ Now configure your cluster to issue Service Account tokens with a new issuer URL
 
 Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
-1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
+1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}", "--kube-apiserver-arg=service-account-max-token-expiration=24h" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
    - Get the service account issuer URL.
 
@@ -86,19 +86,15 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
       echo $SERVICE_ACCOUNT_ISSUER
       ```
 
-   - Open the K3s server configuration file.
+   - Update the API server arguments in the K3s cluster's config file.
 
-      ```console
-      sudo nano /etc/systemd/system/k3s.service
-      ```
-
-   - Edit the server configuration to look like the following example, replacing <SERVICE_ACCOUNT_ISSUER> with the previous output from `echo $SERVICE_ACCOUNT_ISSUER`, remembering to include the trailing forward slash of this URL: 
-   
-      ```console
-      ExecStart=/usr/local/bin/k3s \
-       server --write-kubeconfig-mode=644 \
-          --kube-apiserver-arg="--service-account-issuer=<SERVICE_ACCOUNT_ISSUER>" \
-          --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"
+      ``` yaml
+      cat <<EOF > /etc/rancher/k3s/config.yaml
+      kube-apiserver-arg:
+         - 'service-account-issuer=${SERVICE_ACCOUNT_ISSUER}'
+         - 'service-account-max-token-expiration=24h'
+         - 'enable-admission-plugins=OwnerReferencesPermissionEnforcement'
+      EOF
       ```
 
 1. Restart your kube-apiserver.
