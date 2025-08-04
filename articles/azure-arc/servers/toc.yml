@@ -221,6 +221,8 @@
     href: ./cloud-native/overview.md
   - name: Inventory and resource organization
     href: ./cloud-native/inventory-resource.md
+  - name: Governance and policy
+    href: ./cloud-native/governance-policy.md
 - name: Reference
   items:
   - name: azcmagent CLI
