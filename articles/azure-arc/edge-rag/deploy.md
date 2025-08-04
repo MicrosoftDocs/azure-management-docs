@@ -84,7 +84,7 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
    $sub = "<Subscription GUID>"
    $rg = "<Resource Group name>"
    $k8scluster = "<Azure Kubernetes Service (ASK) Arc cluster name>"
-   $extension "microsoft.arc.rag" # do not change
+   $extension = "microsoft.arc.rag" # do not change
    $n = "arc-rag" # do not change
    ```
 
