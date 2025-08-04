@@ -89,12 +89,13 @@ Optionally, you can also configure limits on the SSE's own permissions as a priv
    - Update the API server arguments in the K3s cluster's config file.
 
       ``` yaml
-      cat <<EOF > /etc/rancher/k3s/config.yaml
+      cat <<EOF > /tmp/k3s-config.yaml
       kube-apiserver-arg:
          - 'service-account-issuer=${SERVICE_ACCOUNT_ISSUER}'
          - 'service-account-max-token-expiration=24h'
          - 'enable-admission-plugins=OwnerReferencesPermissionEnforcement'
       EOF
+      sudo mv /tmp/k3s-config.yaml /etc/rancher/k3s/config.yaml
       ```
 
 1. Restart your kube-apiserver.
