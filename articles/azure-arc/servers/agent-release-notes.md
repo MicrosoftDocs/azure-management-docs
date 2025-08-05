@@ -23,6 +23,18 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.55 - August 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Improved logic to accurately detect whether the server is Azure Local.
+
+- Arc proxy no longer requests tokens from HIMDS unless explicitly enabled.
+
+- [Windows Only] Minor accessibility improvements to the GUI application.
+
 ## Version 1.54 - July 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.54/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
