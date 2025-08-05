@@ -1,6 +1,6 @@
 ---
 title: Cloud-native governance and policy
-description: Cloud-native inventory means all your servers, Azure or not, show up in one consolidated view, and you use Azure's organizational tools to sort and manage them.
+description: Azure Policy lets you audit and enforce critical settings, providing a holistic view of your hybrid environment.
 ms.date: 08/01/2025
 ms.topic: concept-article
 # Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand Azure's approach to governance and enforcing policies across resources, so I can manage my hybrid servers consistently and maintain organizational compliance."
@@ -8,9 +8,9 @@ ms.topic: concept-article
 
 # Cloud-native governance and policy
 
-Cloud-native policy management supplements traditional Active Directory Group Policy Objects (GPOs) with Azure-powered audit and enforcement. In a traditional setup, GPOs in Active Directory enforce configurations, such as password policies and audit settings on your servers. Azure provides similar capabilities through [Azure Policy](/azure/governance/overview), which includes a Guest Configuration feature that can audit and configure settings inside VMs.
+Cloud-native policy management supplements traditional Active Directory Group Policy Objects (GPOs) with Azure-powered audit and enforcement. In a traditional setup, GPOs in Active Directory enforce configurations, such as password policies and audit settings on your servers. Azure provides similar capabilities through [Azure Policy](/azure/governance/policy/overview), which includes a Guest Configuration feature that can audit and configure settings inside VMs.
 
-Azure Policy lets you audit critical settings, with built-in definitions for password policies, encryption, and more, letting you get a holistic view of your environment. Over time, you can enforce configurations so that whether a server is on-premises or in Azure, it meets your standards, delivering "policy as code" across your hybrid environment.
+Azure Policy lets you audit critical settings, with built-in and custom policy definitions, to provide a holistic view of your environment. Over time, you can enforce configurations so that whether a server is on-premises or in Azure, it meets your standards, delivering "policy as code" across your hybrid environment.
 
 Let’s break down how Azure Policy works for servers and how it compares to Group Policy.
 
@@ -32,7 +32,7 @@ For example, if you have a specific registry setting that isn't covered by any M
 
 ## Capability comparison
 
-While both tools can ensure OS settings, such as password policies or firewall rules, Azure Policy governs cloud aspects that Group Policy isn't able to manage. For example, you can use Azure Policy to ensure that VMs have [Azure Backup](/azure/backup/backup-overview) enabled, or to prevent creation of an expensive VM SKU. Azure Policy can also validate that an Arc-connected server is onboarded to Azure services such as [Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), which is beyond Group Policy's scope. 
+While both tools can ensure OS settings, such as password policies or firewall rules, Azure Policy governs cloud aspects that Group Policy isn't able to manage. For example, you can use Azure Policy to ensure that VMs have [Azure Backup](/azure/backup/backup-overview) enabled, or to prevent creation of an expensive VM SKU. Azure Policy can also validate that an Arc-connected server is onboarded to Azure services such as [Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), which is beyond Group Policy's scope.
 
 Microsoft even provides an Azure Policy initiative that maps to the [Windows security baselines](/windows/security/operating-system-security/device-management/windows-security-configuration-framework/windows-security-baselines), covering many of the same settings as the Group Policy security baseline (account policies, audit settings, etc.). This is useful if you want to check all your servers against a known baseline and view compliance percentages.
 
