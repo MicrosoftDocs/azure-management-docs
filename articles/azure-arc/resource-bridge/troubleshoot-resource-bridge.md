@@ -264,7 +264,8 @@ Be sure that the proxy server on your management machine trusts both the SSL cer
 
 When deploying Arc resource bridge, you may receive an error message similar to:
 
-```{ _message_: _Post \_https://eastus.dp.kubernetesconfiguration.azure.com/azure-arc-appliance-k8sagents/GetLatestHelmPackagePath?api-version=2019-11-01-preview\u0026releaseTrain=stable\_: dial tcp: lookup eastus.dp.kubernetesconfiguration.azure.com: no such host_ }
+```
+{ _message_: _Post \_https://eastus.dp.kubernetesconfiguration.azure.com/azure-arc-appliance-k8sagents/GetLatestHelmPackagePath?api-version=2019-11-01-preview\u0026releaseTrain=stable\_: dial tcp: lookup eastus.dp.kubernetesconfiguration.azure.com: no such host_ }
 ```
 
 The error indicates an issue reaching out to the URL indicated in the error message, in this case, `eastus.dp.kubernetesconfiguration.azure.com`. This could be due to a few reasons:
@@ -383,7 +384,7 @@ This error is likely due to a proxy intercepting the request that requires authe
 Recommended Actions:
 1. Confirm whether a proxy is active in the environment.
 1. If so, configure environment variables (HTTPS_PROXY, HTTP_PROXY, and optionally NO_PROXY) with authentication credentials if required. Refer to [Azure Arc resource bridge network requirements](network-requirements.md#ssl-proxy-configuration).
-1. For detailed instructions, refer to the [Azure CLI proxy troubleshooting guide](/cli/azure/use-azure-cli-successfully-troubleshooting?view=azure-cli-latest#work-behind-a-proxy).
+1. You may also need to ensure that Azure CLI is able to work behind a proxy. For detailed instructions, refer to the [Azure CLI proxy troubleshooting guide](/cli/azure/use-azure-cli-successfully-troubleshooting?view=azure-cli-latest#work-behind-a-proxy).
 
 ## Azure Arc-enabled VMware VCenter issues
 
