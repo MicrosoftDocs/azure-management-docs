@@ -57,7 +57,7 @@ Communication between the following ports must be allowed from the management ma
 
 > [!IMPORTANT] 
 > During onboarding, you must provide two IP addresses for the Arc Resource Bridge appliance VMs — either as a range or as two individual IPs. For successful deployment, operations, and upgrades:
-> - Ensure bidirectional communication is allowed between the management machine, appliance VM IPs, and control plane IPs over the required ports listed below.
+> - Ensure communication is allowed between the management machine, appliance VM IPs, and control plane IPs over the required ports as listed below.
 > - Do not route traffic through a proxy for these connections.
 
 |**Service**|**Port**|**IP/machine**|**Direction**|**Notes**|
