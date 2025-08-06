@@ -62,10 +62,10 @@ Communication between the following ports must be allowed from the management ma
 
 |**Service**|**Port**|**IP/machine**|**Direction**|**Notes**|
 |--|--|--|--|--|
-|SSH| 22 | `appliance VM IPs` and `Management machine` | Bidirectional | Used for deploying and maintaining the appliance VM.|
-|Kubernetes API server| 6443 | `appliance VM IPs` and `Management machine` | Bidirectional | Management of the appliance VM.|
+|SSH| 22 | `appliance VM IPs` and `Management machine` | Bidirectional | Management machine connects outbound to the appliance VM IPs. Appliance VM IPs must allow inbound connections.|
+|Kubernetes API server| 6443 | `appliance VM IPs` and `Management machine` | Bidirectional | Management machine connects outbound to the appliance VM IPs. Appliance VM IPs must allow inbound connections.|
 |SSH| 22 | `control plane IP` and `Management machine` | Bidirectional | Used for deploying and maintaining the appliance VM.|
 |Kubernetes API server| 6443 | `control plane IP` and `Management machine` | Bidirectional | Management of the appliance VM.|
 |HTTPS | 443 | `private cloud control plane address` and `Management machine` | Management machine needs outbound connection. | Communication with private cloud (ex: VMware vCenter address and vSphere datastore).|
-|Kubernetes API server| 6443, 2379-2380, 10250, 10257, 10259 | `appliance VM IPs` (to each other) | Bidirectional | Required for appliance VM upgrade. Ensure all appliance VM IPs have outbound connectivity to each other over these ports.|
+|Kubernetes API server| 6443, 2379, 2380, 10250, 10257, 10259 | `appliance VM IPs` (to each other) | Bidirectional | Required for appliance VM upgrade. Ensure all appliance VM IPs have outbound connectivity to each other over these ports.|
 |HTTPS | 443 | `private cloud control plane address` and `appliance VM IPs` | appliance VM IPs need outbound connection. | Communication with private cloud (ex: VMware vCenter address and vSphere datastore).|
