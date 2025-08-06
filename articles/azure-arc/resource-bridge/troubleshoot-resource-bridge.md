@@ -181,6 +181,16 @@ This error occurs from using an older version of the Azure CLI `arcappliance` ex
 az extension add --upgrade --name arcappliance 
    ```
 
+### GLIBC version not found
+You may receive the following error when deploying Arc resource bridge:
+
+```
+"error_message": /lib64/libc.so.6: version `GLIBC_2.34_ not found (required by /root/.azure/cliextensions/arcappliance/azext_arcappliance/pkg/providers/kva//../../binaries/arcsdk.so)
+```
+
+This error message indicates that the Arc Resource Bridge CLI extension (arcappliance) is trying to load a shared library (arcsdk.so) that was compiled against glibc 2.34, but your Linux system has an older version of glibc or doesn't have the required glibc version. This may happen if you are running an old version of Linux. You can check the current glibc version using `- ldd --version`. It is recommended to use a supported Linux distribution with the required glibc version or onboard from a jumpbox or client VM that meets the glibc requirement.
+
+
 
 ## Networking issues
 
@@ -250,9 +260,24 @@ The Arc resource bridge may also be unreachable due to slow disk access. Azure A
 
 Be sure that the proxy server on your management machine trusts both the SSL certificate for your SSL proxy and the SSL certificate of the Microsoft download servers. For more information, see [SSL proxy configuration](network-requirements.md#ssl-proxy-configuration).
 
-### No such host - dp.kubernetesconfiguration.azure.com
+### No such host - `dp.kubernetesconfiguration.azure.com`
 
-An error that contains `dial tcp: lookup westeurope.dp.kubernetesconfiguration.azure.com: no such host` while deploying Arc resource bridge means that the configuration data plane is currently unavailable in the specified region. The service may be temporarily unavailable. Wait for the service to be available, then retry the deployment.
+When deploying Arc resource bridge, you may receive an error message similar to:
+
+```{ _message_: _Post \_https://eastus.dp.kubernetesconfiguration.azure.com/azure-arc-appliance-k8sagents/GetLatestHelmPackagePath?api-version=2019-11-01-preview\u0026releaseTrain=stable\_: dial tcp: lookup eastus.dp.kubernetesconfiguration.azure.com: no such host_ }
+```
+
+The error indicates an issue reaching out to the URL indicated in the error message, in this case, `eastus.dp.kubernetesconfiguration.azure.com`. This could be due to a few reasons:
+
+- The configuration data plane may be temporarily unavailable in the specified region. 
+- DNS resolution issue to the *.dp.kubernetesconfiguration.azure.com endpoint. 
+- Network reachability error to the *.dp.kubernetesconfiguration.azure.com endpoint. 
+
+Recommended Actions:
+- Wait for the service to be available, then retry the deployment.
+- Verify DNS server settings on the host.
+- Confirm outbound internet access to the endpoint is not blocked by firewall or proxy.
+
 
 ### Certificate signed by unknown authority 
 You may encounter the following error when deploying Arc resource bridge:
@@ -346,6 +371,19 @@ To check if the DNS server is able to resolve an address, run this command from 
 
 ```Resolve-DnsName -Name "http://aszhcitest01.company.org:55000" -Server "<dns-server.com>"```
 
+### Authentication required
+
+You may receive the following error when deploying Arc resource bridge:
+
+```
+{ _message_: _Post \_https://westeurope.dp.kubernetesconfiguration.azure.com/azure-arc-appliance-k8sagents/GetLatestHelmPackagePath?api-version=2019-11-01-preview\u0026releaseTrain=stable\_: authenticationrequired_ }
+```
+This error is likely due to a proxy intercepting the request that requires authentication. To successfully run Azure CLI behind such a proxy, ensure proper proxy support.
+
+Recommended Actions:
+1. Confirm whether a proxy is active in the environment.
+1. If so, configure environment variables (HTTPS_PROXY, HTTP_PROXY, and optionally NO_PROXY) with authentication credentials if required. Refer to [Azure Arc resource bridge network requirements](network-requirements.md#ssl-proxy-configuration).
+1. For detailed instructions, refer to the [Azure CLI proxy troubleshooting guide](/cli/azure/use-azure-cli-successfully-troubleshooting?view=azure-cli-latest#work-behind-a-proxy).
 
 ## Azure Arc-enabled VMware VCenter issues
 
