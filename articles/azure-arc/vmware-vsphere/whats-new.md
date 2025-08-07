@@ -4,7 +4,7 @@ title: What's new in Azure Arc-enabled VMware vSphere
 description: This article describes the new features and enhancements supported in Azure Arc-enabled VMware vSphere.
 ms.author: jsuri
 author: jyothisuri
-ms.date: 07/02/2025
+ms.date: 08/07/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
@@ -14,6 +14,10 @@ ms.custom: references_regions
 # What's new in Azure Arc-enabled VMware vSphere
 
 Azure Arc-enabled VMware vSphere receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments, which are common to both on-premises VMware and Azure VMware Solution private clouds. 
+
+## August 2025 
+
+- Rollout to Italy North region.
 
 ## June 2025 
 
@@ -66,7 +70,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## February 2024 
 
-- Rollout in five new regions: 
+- Rollout to five new regions: 
      - East Asia 
      - Japan East 
      - North Central US 
