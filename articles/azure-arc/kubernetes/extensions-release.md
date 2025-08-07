@@ -36,20 +36,15 @@ Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an in
 
 For more information, see [Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters](tutorial-akv-secrets-provider.md).
 
-## Secret Store
+## Azure Key Vault Secret Store
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters that are connected to Azure Arc and running Kubernetes 1.27 or later.
+- **Supported distributions**: Arc-enabled Kubernetes clusters running Kubernetes 1.27 or later, including: AKS on Azure Local, AKS Edge Essentials, OpenShift Kubernetes Distribution, and VMware Tanzu Kubernetes Grid.
 
 The Azure Key Vault Secret Store extension for Kubernetes (Secret Store) automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
 
-We recommend the Secret Store extension for scenarios that require offline access, or if you need secrets synced to the Kubernetes secret store. If you don't need to use these features, we recommend that you instead use the Azure Key Vault Secrets Provider extension.
+We recommend the Secret Store extension for clusters at the edge where internet connectivity cannot be guaranteed, or if you need secrets synced to the Kubernetes secret store. For clusters in Azure cloud that do not require local secret storage, we recommend that you use the Azure Key Vault Secrets Provider extension instead.
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
-
-> [!IMPORTANT]
-> Secret Store is currently in preview.
->
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Microsoft Defender for Containers
 
