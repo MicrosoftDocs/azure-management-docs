@@ -15,6 +15,10 @@ ms.custom: references_regions
 
 Azure Arc-enabled VMware vSphere receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments, which are common to both on-premises VMware and Azure VMware Solution private clouds. 
 
+## August 2025 
+
+- Rollout to Italy North region.
+
 ## June 2025 
 
 - Ability to customize guest operating system settings while creating Windows virtual machines. 
@@ -66,7 +70,7 @@ Azure Arc-enabled VMware vSphere receives new features and enhancements on an on
 
 ## February 2024 
 
-- Rollout in five new regions: 
+- Rollout to five new regions: 
      - East Asia 
      - Japan East 
      - North Central US 

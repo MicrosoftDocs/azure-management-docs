@@ -31,7 +31,7 @@ Azure Arc-enabled VMware vSphere allows you to:
 
 - Build automation and self-service pipelines using Python, Java, JavaScript, Go, and .NET SDKs; Terraform, ARM, and Bicep templates; Azure REST APIs, CLI, and PowerShell.
 
-- Leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, [Extended Security Updates](/azure/azure-arc/vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc) benefits for Windows Server and SQL Server with pay-as-you-go billing for on-premises VMs and free ESUs for AVS VMs.
+- Leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, [Extended Security Updates](/azure/azure-arc/vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc) benefits for Windows Server and SQL Server with pay-as-you-go billing for on-premises VMs and free SQL ESUs for AVS VMs.
 
 ## How does it work?
 
@@ -89,7 +89,6 @@ You have the flexibility to start with either option, and incorporate the other 
 
      > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
 - Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server and SQL Server VMs.
-- Application teams can create and manage Kubernetes clusters on VMware infrastructure using Azure consistent experiences with [Azure Kubernetes Services (AKS) Arc on VMware (Preview)](https://learn.microsoft.com/azure/aks/aksarc/aks-vmware-overview).
 
 ## Supported regions
 
