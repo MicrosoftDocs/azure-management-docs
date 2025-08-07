@@ -4,7 +4,7 @@ title: What's new in Azure Arc-enabled VMware vSphere
 description: This article describes the new features and enhancements supported in Azure Arc-enabled VMware vSphere.
 ms.author: jsuri
 author: jyothisuri
-ms.date: 07/02/2025
+ms.date: 08/07/2025
 ms.topic: article
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
