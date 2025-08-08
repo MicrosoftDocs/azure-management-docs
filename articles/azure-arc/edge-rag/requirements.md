@@ -19,7 +19,7 @@ This article discusses Azure, machine and storage, networking, and other require
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Azure and on-premises requirements
+## Resource requirements
 
 To get started with Edge RAG, you need the following Azure and on-premises resources.
 
@@ -40,7 +40,7 @@ The following on-premises resources are required to deploy Edge RAG in your envi
 
 | **Resource** | **Description** |
 |---|---|
-| Azure Local infrastructure | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version [2411](/azure/azure-local/whats-new). |
+| Azure Local infrastructure | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2411. |
 | AKS Arc cluster on Azure Local | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least three [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
 | Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, this requirement can be skipped. The IP must be accessible from client machines. <br><br>As part of the prerequisites tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Edge RAG Preview enabled by Azure Arc](prepare-networking-observability.md) <br>- [Configure DNS for Edge RAG Preview enabled by Azure Arc](prepare-dns.md). |
 | Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). As part of the prerequisites tasks, see [Verify NFS server access for Edge RAG Preview enabled by Azure Arc](prepare-file-server.md).|
