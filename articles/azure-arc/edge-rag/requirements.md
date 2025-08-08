@@ -19,7 +19,7 @@ This article discusses Azure, machine and storage, networking, and other require
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Requirements
+## Azure and on-premises requirements
 
 To get started with Edge RAG, you need the following Azure and on-premises resources.
 
