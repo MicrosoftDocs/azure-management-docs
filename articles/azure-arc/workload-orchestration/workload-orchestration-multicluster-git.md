@@ -1,12 +1,12 @@
 ---
-title: Workload Orchestration in a Multi-Cluster Environment with Git
-description: Learn how to orchestrate workloads across multiple Kubernetes clusters using GitOps principles and Azure Arc.
+title: Workload Orchestration in a Multi-Cluster Environment with GitHub
+description: Learn how to orchestrate workloads across multiple Kubernetes clusters using Workload Orchestration service and "as-code" paradigm
 author: eedorenko
 ms.date: 2025-08-08
 ms.topic: how-to
 ---
 
-# Workload Orchestration in a Multi-Cluster Environment with Git
+# Workload Orchestration in a Multi-Cluster Environment with GitHub
 
 TODO: regenerate this overview 
 

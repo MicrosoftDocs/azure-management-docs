@@ -78,6 +78,8 @@ items:
         href: external-validation.md
       - name: External validation payloads
         href: external-validation-payload.md
+    - name: Multicluster workload orchestration with GitHub
+      href: multicluster-workload-orchestration.md
   - name: Troubleshoot
     items:
     - name: Troubleshooting guide
