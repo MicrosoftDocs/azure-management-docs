@@ -8,6 +8,8 @@ ms.topic: how-to
 
 # Workload Orchestration in a Multi-Cluster Environment with Git
 
+TODO: regenerate this overview 
+
 This article explains how to orchestrate workloads across multiple Kubernetes clusters using Git as the source of truth, leveraging GitOps principles and Azure Arc. You'll learn the concepts behind multi-cluster orchestration and follow a hands-on tutorial to implement it in your environment.
 
 ## Personas 
@@ -15,7 +17,7 @@ This article explains how to orchestrate workloads across multiple Kubernetes cl
 Most commonly, two key personas are involved in workload orchestration: the Application Team and the Platform Team. In smaller environments or early stages, these roles may overlap, with the same individuals handling both responsibilities. As the environment grows and complexity increases, the distinction between these roles becomes more defined, enabling clearer separation of concerns and more efficient collaboration. 
 
 
-TODO: add a section anout benefits of using git as a source of truth, "as-code" paradigm and same experiemnce for all involved personas.
+TODO: add a section about benefits of using git as a source of truth, "as-code" paradigm and same experience for all involved personas.
 
 
 ## Separation of concerns 
@@ -49,10 +51,35 @@ The software development lifecycle for each application is managed through a sys
 - Application Config repository: Holds environment-specific configuration values for the application. These settings are application-centric, such as logging levels, replica counts, feature flags, and localization options.
 - Application GitOps repository: Contains the composed application configuration values and the rendered application manifests. This enables the application team to review and validate what will be deployed to the target clusters.
 
-TODO: detailed explanation of the flow
+### CI
 
+The `ci` workflow is initiated by a commit to the main branch. It performs standard continuous integration tasks such as linting, security scanning, static code analysis, unit testing, and building and pushing Docker images. Upon successful completion, the `ci` workflow triggers the `prepare-pr` workflow, which begins the continuous delivery (CD) process.
+
+### Prepare PR
+
+The `prepare-pr` workflow retrieves Helm manifest templates from the source repository at the specified commit. It then generates Kubernetes manifests by merging these templates with the composed configuration values from the config repository, using the branch that matches the target environment (for example, `dev`). After generating the manifests, the workflow automatically creates a pull request to the corresponding environment branch in the GitOps repository (such as `dev`).
+
+Manual changes to the GitOps repository are not permitted; all pull requests are created exclusively by automated CI/CD workflows. This approach guarantees that every update is traceable to validated changes in the source and config repositories, ensuring consistency and auditability. 
+
+Each branch in the GitOps repository corresponds to a specific environment (for example, `dev`, `stage`, or `prod`) and is protected with branch policies and required approvals from designated personas. Additionally, all PRs are subject to automated Kubernetes security and compliance scans before merging, ensuring that only validated and secure configurations are deployed.
+
+
+### Notify on PR
+
+The `notify-on-pr` workflow is triggered when a pull request containing the rendered manifests is merged into an environment branch (such as `dev`, `stage`, or `prod`) in the GitOps repository. Upon this event, the workflow sends a notification back to the source repository, which acts as the orchestrator for the continuous delivery (CD) process. This notification triggers the `deploy` workflow, initiating the deployment of the validated manifests to the target Kubernetes clusters.
+
+### Deploy 
+
+The `deploy` workflow interacts with the Workload Orchestration service to create a new solution version, apply the composed configuration values, and deploy the solution to the designated clusters. If any cluster reports a deployment failure, the workflow marks the Git commit status in the source repository as failed, halting the entire promotion process.
+
+After deployment, the workflow determines whether the change that initiated the CD process should be promoted to the next environment (if it originated from the `main` branch) and verifies if the next environment is configured. If so, it triggers the `prepare-pr` workflow for the subsequent environment, continuing the promotion cycle. The process concludes when there are no further environments in the promotion chain.
+
+### Notify on Config Change
+
+The `notify-on-config-change` workflow is activated when a pull request containing configuration value changes is merged into an environment branch in the config repository. This workflow sends a notification to the source repository, prompting it to regenerate the manifests for the affected environment by invoking the `prepare-pr` workflow with the environment name as a parameter. Because these changes are specific to a single environment, they are not promoted to subsequent environments.
 
 ## Platform Team
+
 The platform team operates as a shared service, supporting multiple application teams by managing the underlying Kubernetes clusters and associated infrastructure. Their primary focus is to ensure that clusters are secure, reliable, and properly configured to meet the needs of the applications they host.
 
 Key responsibilities of the platform team include:
@@ -66,8 +93,7 @@ Key responsibilities of the platform team include:
 By maintaining a clear separation of concerns, the platform team enables application teams to focus on delivering business value, while ensuring that the underlying infrastructure remains robust and compliant. 
  
 ![Platform team flow](./media/wo-git-platform-team-flow.png)
-
-The system of GitHub repositories for the platform team is symmetrical to the application repositories setup. There are three repositories: 
+The platform team's GitHub repository structure and associated GitHub Actions workflows mirror the setup used by the application team. This system consists of three main repositories:
 
 - Platform Control Plane repository: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
 - Platform Config repository: Contains environment- and cluster-specific platform configuration values.
@@ -81,4 +107,6 @@ The platform team deploys platform configurations (such as ConfigMaps) and names
 
 This model enables rapid iteration and flexibility for both teams, ensuring that platform updates can be delivered promptly while allowing application teams to adopt changes at their own pace. 
 
- 
+## Next Steps
+
+- Sample Implementation (Coming Soon): A detailed walkthrough of a sample implementation will be provided in a future update. This acceelerator will guide you step-by-step through the process of orchestrating workloads across multiple Kubernetes clusters using Workload Orchstration service and GitHub, helping you understand the practical mechanics and best practices involved.
