@@ -5,8 +5,9 @@ description: "Learn how to deploy Edge RAG with this guide on hardware, software
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 05/13/2025
+ms.date: 08/08/2025
 ms.subservice: edge-rag
+ai-usage: ai-assisted
 ms.custom:
   - build-2025
 # Customer intent: As a system administrator, I want to review the hardware, software, networking, and configuration requirements for deploying Edge RAG, so that I can prepare my infrastructure for a successful deployment and operation.
@@ -18,32 +19,31 @@ This article discusses Azure, machine and storage, networking, and other require
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
-## Requirements
+## Resource requirements
 
-To get started with Edge RAG, you need:
+To get started with Edge RAG, you need the following Azure and on-premises resources.
 
-- Azure resources:
-  - An [Azure subscription](https://azure.microsoft.com/pricing/details/search/).
-  - Permissions to deploy [AKS Arc kubernetes cluster](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).
-  - Permissions to create: 
-    - Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).
-    - Add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application.
-  - For secure deployments:
-    - Transport Layer Security (TLS) termination certificate: 
-      - This certificate must be signed by a company-specific Certificate Authority (CA) or a well-known public CA.
-    - In the absence of a TLS termination certificate, Edge RAG generates a self-signed certificate to ease deployments. We don't recommend continued usage of the self-signed certificate for security conscious deployments.
-- On-premises resources
-  - An instance of [Azure Local](https://techcommunity.microsoft.com/blog/azurearcblog/introducing-azure-local-cloud-infrastructure-for-distributed-locations-enabled-b/4296017) infrastructure
-    - Minimum version: Azure Local release [2411](/azure/azure-local/whats-new).
-  - An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) on the Azure Local instance.
-    - Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance.
-    - When using GPUs, include at least three [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios.
-  - One routable, static IP address.
-    - This IP address is used by [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If you already have MetalLB configured on the target cluster with a routable IP address, you can skip this.
-    - This IP address should be routable from client machines.
-  - A Network File System (NFS) v3.0 or v4.1 containing your on-premises documents or images.
-    - See how to set up NFS on [Windows Server](/windows-server/storage/nfs/deploy-nfs).
-    - See how to set up NFS on [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux).
+### Azure resources
+
+Before deploying Edge RAG, make sure you have the following Azure resources and permissions in place:
+
+| **Resource** | **Description** |
+|---|---|
+| Azure subscription | An [Azure subscription](https://azure.microsoft.com/pricing/details/search/). |
+| Permissions for Azure Kubernetes Service (AKS) enabled by Azure Arc| Permissions to deploy [AKS Arc Kubernetes clusters](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).   As part of the prerequisites tasks, see [Verify contributor role for Edge RAG Preview enabled by Azure Arc](prepare-contributor-permission.md).|
+| Microsoft Entra ID  permissions |- Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).<br>- Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application. <br> <br> As part of the prerequisites tasks, you [configure authentication for Edge RAG Preview enabled by Azure Arc](prepare-authentication.md).|
+| Transport Layer Security (TLS) termination certificate | A certificate signed by a company-specific certification authority (CA) or a well-known public CA for secure deployments. If you don't provide one, Edge RAG generates a self-signed certificate. We don't recommend using a self-signed certificate for production environments. |
+
+### On-premises resources
+
+The following on-premises resources are required to deploy Edge RAG in your environment:
+
+| **Resource** | **Description** |
+|---|---|
+| Azure Local infrastructure | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2411. |
+| AKS Arc cluster on Azure Local | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least three [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
+| Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, this requirement can be skipped. The IP must be accessible from client machines. <br><br>As part of the prerequisites tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Edge RAG Preview enabled by Azure Arc](prepare-networking-observability.md) <br>- [Configure DNS for Edge RAG Preview enabled by Azure Arc](prepare-dns.md). |
+| Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). As part of the prerequisites tasks, see [Verify NFS server access for Edge RAG Preview enabled by Azure Arc](prepare-file-server.md).|
 
 ## Minimum hardware requirements
 
@@ -90,7 +90,7 @@ Edge RAG supports the following capabilities and related file formats:
 | Text extraction | PDF, DOCX, TXT, MHTML, MHT, MD |
 | Image ingestion | JPG, JPEG, PNG |
 
-With a GPU setup each individual file can be up to 30 MB. If you're using a CPU-only setup, each individual file can be up to 5 MB.
+With a GPU setup, each individual file can be up to 30 MB. If you're using a CPU-only setup, each individual file can be up to 5 MB.
 
 Document or image file types not listed, like audio and video files, aren't currently supported.
 
