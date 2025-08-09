@@ -6,7 +6,14 @@ ms.date: 05/22/2024
 
 ### Outbound connectivity requirements
 
-The firewall and proxy URLs below must be allowlisted in order to enable communication from the management machine, Appliance VM, and Control Plane IP to the required Arc resource bridge URLs.
+The firewall and proxy URLs below must be allowlisted in order to enable communication from the management machine, Arc resource bridge VM (initially deployed), Arc resource bridge VM 2 (upgrade creates a new VM using a different VM IP), and Control Plane IP to the required Arc resource bridge URLs.
+
+> [!IMPORTANT] 
+> When onboarding Arc Resource Bridge, you must provide two IP addresses for the appliance VMs. These are specified as either:
+> - A range of IPs
+> - Two individual IPs (one for each VM)
+>   
+> To ensure successful upgrades, all appliance VM IPs must have outbound access to the required URLs. Make sure these URLs are allowlisted in your network.
 
 ### Firewall/Proxy URL allowlist
 
@@ -48,11 +55,17 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 
 Communication between the following ports must be allowed from the management machine, Appliance VM IPs, and Control Plane IPs. Ensure these ports are open and that traffic is not being routed through a proxy to facilitate the deployment and maintenance of Arc resource bridge. 
 
+> [!IMPORTANT] 
+> During onboarding, you must provide two IP addresses for the Arc Resource Bridge appliance VMs — either as a range or as two individual IPs. For successful deployment, operations, and upgrades:
+> - Ensure communication is allowed between the management machine, appliance VM IPs, and control plane IPs over the required ports as listed below.
+> - Do not route traffic through a proxy for these connections.
+
 |**Service**|**Port**|**IP/machine**|**Direction**|**Notes**|
 |--|--|--|--|--|
-|SSH| 22 | `appliance VM IPs` and `Management machine` | Bidirectional | Used for deploying and maintaining the appliance VM.|
-|Kubernetes API server| 6443 | `appliance VM IPs` and `Management machine` | Bidirectional | Management of the appliance VM.|
+|SSH| 22 | `appliance VM IPs` and `Management machine` | Bidirectional | Management machine connects outbound to the appliance VM IPs. Appliance VM IPs must allow inbound connections.|
+|Kubernetes API server| 6443 | `appliance VM IPs` and `Management machine` | Bidirectional | Management machine connects outbound to the appliance VM IPs. Appliance VM IPs must allow inbound connections.|
 |SSH| 22 | `control plane IP` and `Management machine` | Bidirectional | Used for deploying and maintaining the appliance VM.|
 |Kubernetes API server| 6443 | `control plane IP` and `Management machine` | Bidirectional | Management of the appliance VM.|
-|HTTPS | 443 | `private cloud control plane address` and `Management machine` | Management machine needs outbound connection. | Communication with control plane (ex: VMware vCenter address).|
-
+|HTTPS | 443 | `private cloud control plane address` and `Management machine` | Management machine needs outbound connection. | Communication with private cloud (ex: VMware vCenter address and vSphere datastore).|
+|Kubernetes API server| 6443, 2379, 2380, 10250, 10257, 10259 | `appliance VM IPs` (to each other) | Bidirectional | Required for appliance VM upgrade. Ensure all appliance VM IPs have outbound connectivity to each other over these ports.|
+|HTTPS | 443 | `private cloud control plane address` and `appliance VM IPs` | appliance VM IPs need outbound connection. | Communication with private cloud (ex: VMware vCenter address and vSphere datastore).|
