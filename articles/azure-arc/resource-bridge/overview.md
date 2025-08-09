@@ -39,7 +39,7 @@ To deliver this functionality, the resource bridge hosts additional Azure Arc co
 
 - **Custom location** – These define the target infrastructure for deployments. The custom location maps to your private cloud infrastructure. When you create a VM from Azure, you choose a custom location. Azure knows where to route the request and what private cloud location it maps to based on the custom location. For example, for Arc-enabled VMware, the custom location maps to an instance of vCenter. For Azure Local, it maps to an Azure Local instance. For more information about custom location, refer to [Create and manage custom locations](..%5Cplatform%5Cconceptual-custom-locations.md).
 
-- **Cluster extension** – A cluster extension enables private cloud capabilities on the resource bridge. The supported private cloud extensions are VMware, SCVMM and Azure Local.
+- **Cluster extension** – A cluster extension enables capabilities on the resource bridge. The supported extensions are Arc-enabled VMware (microsoft.vmware), Arc-enabled AVS (microsoft.avs), Arc-enabled SCVMM (microsoft.scvmm), Azure Local (microsoft.azstackhci.operator,  microsoft.diagnosis.operator) and AKS Arc (microsoft.hybridaksoperator). 
 
 - **Azure Arc agents** – Power the communication and control layer between Azure and your infrastructure.
 
