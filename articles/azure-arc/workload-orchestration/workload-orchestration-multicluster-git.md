@@ -2,7 +2,7 @@
 title: Workload Orchestration in a Multi-Cluster Environment with GitHub
 description: Learn how to orchestrate workloads across multiple Kubernetes clusters using Workload Orchestration service and "as-code" paradigm
 author: eedorenko
-ms.date: 2025-08-08
+ms.date: 8/11/2025
 ms.topic: how-to
 ---
 
@@ -31,7 +31,7 @@ Platform configurations are defined by the platform team. These settings tailor 
 
 Both the application team and the platform team manage their respective configurations in separate GitHub repositories. Automated GitHub Actions workflows monitor these repositories, and when changes are detected, they trigger deployment processes. Using Azure CLI commands, these workflows interact with the Workload Orchestration service to apply application updates and configuration changes across the targeted Kubernetes clusters. 
 
-![General flow](./media/wo-git-general.png)
+![General flow](./media/workload-orchestration-git-general.png)
 
 ## Application Team
 
@@ -44,7 +44,7 @@ Key responsibilities of the application team are:
  - Maintain and contribute to source, config and manifests repositories of their applications. 
  - Communicate to platform team, requesting configured compute resources for successful SDLC operations 
 
-![Application team flow](./media/wo-git-application-team-flow.png)
+![Application team flow](./media/workload-orchestration-git-application-team-flow.png)
 
 The software development lifecycle for each application is managed through a system of three dedicated GitHub repositories:
 
@@ -93,7 +93,7 @@ Key responsibilities of the platform team include:
 
 By maintaining a clear separation of concerns, the platform team enables application teams to focus on delivering business value, while ensuring that the underlying infrastructure remains robust and compliant. 
  
-![Platform team flow](./media/wo-git-platform-team-flow.png)
+![Platform team flow](./media/workload-orchestration-git-platform-team-flow.png)
 The platform team's GitHub repository structure and associated GitHub Actions workflows mirror the setup used by the application team. This system consists of three main repositories:
 
 - Platform Control Plane repository: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
