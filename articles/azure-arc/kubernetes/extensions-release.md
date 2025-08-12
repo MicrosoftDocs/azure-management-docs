@@ -1,8 +1,8 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 06/13/2025
+ms.date: 08/12/2025
 ms.topic: how-to
-description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
+description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
   - build-2025
 # Customer intent: "As a Kubernetes administrator, I want to explore and install available extensions for Azure Arc-enabled Kubernetes clusters, so that I can enhance cluster management and implement necessary functionalities efficiently."
@@ -167,6 +167,21 @@ The `source-controller` recently updated its dependency on the "`github.com/Mast
 
 **What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
+### 1.17.2 (August 2025)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.2
+- kustomize-controller: v1.6.1
+- helm-controller: v1.3.0
+- notification-controller: v1.6.0
+- image-automation-controller: v0.41.2
+- image-reflector-controller: v0.35.2
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+
 ### 1.16.12 (July 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
@@ -197,21 +212,6 @@ Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 - Fixed an issue in the `delete-fluxconfig` job by adding a toleration to the `delete-fluxconfig` prehook job, allowing it to run on nodes with the `CriticalAddonsOnly` taint.
-
-### 1.16.3 (May 2025)
-
-Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
-
-- source-controller: v1.5.0
-- kustomize-controller: v1.5.1
-- helm-controller: v1.2.0
-- notification-controller: v1.5.0
-- image-automation-controller: v0.40.0
-- image-reflector-controller: v0.34.0
-
-Changes in this version include:
-
-- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 
