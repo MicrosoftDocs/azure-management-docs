@@ -223,6 +223,8 @@
     href: ./cloud-native/inventory-resource.md
   - name: Governance and policy
     href: ./cloud-native/governance-policy.md
+  - name: Licensing and cost management
+    href: ./cloud-native/licensing-cost-management.md
 - name: Reference
   items:
   - name: azcmagent CLI
