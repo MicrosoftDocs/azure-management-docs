@@ -24,11 +24,11 @@ An Azure *subscription* is a billing and resource container within your tenant. 
 
 ### Resource groups
 
-A Resource Group is the closest concept to an organizational unit (OU) for resources. It's a logical container within a subscription that holds related resources such as VMs, Arc-enabled servers, and storage accounts. System administrators can use resource groups to group servers by application, environment, or location, and then assign policies and user roles at that group level. For example, just as you might have an "    "HQ-Servers" OU with delegated admins and certain GPOs, you could have an "HQ-Servers" resource group with specific role assignments and Azure policies. In Azure, a server can only belong to one resource group at a time (similar to OU nesting), but you can reassign it easily if needed.
+A Resource Group is the closest concept to an organizational unit (OU) for resources. It's a logical container within a subscription that holds related resources such as VMs, Arc-enabled servers, and storage accounts. System administrators can use resource groups to group servers by application, environment, or location, and then assign policies and user roles at that group level. For example, just as you might have an    "HQ-Servers" OU with delegated admins and certain GPOs, you could have an "HQ-Servers" resource group with specific role assignments and Azure policies. In Azure, a server can only belong to one resource group at a time (similar to OU nesting), but you can reassign it easily if needed.
 
 ### Tags
 
-In Active Directory or SCCM, you might leverage attributes or create dynamic collections (queries) to group servers together. In Azure, you can achieve this categorization via *tags* – custom key-value metadata you attach to resources. Tags let you flexibly group and filter resources across resource groups or even subscriptions. You can then use Azure Resource Graph queries to list or report on all servers with certain tags, similar to running a query in SCCM for a collection[10][4]. This provides inventory views not bound by a single hierarchy, an advantage over static OU groupings.
+In Active Directory or SCCM, you might leverage attributes or create dynamic collections (queries) to group servers together. In Azure, you can achieve this categorization via *tags* – custom key-value metadata you attach to resources. Tags let you flexibly group and filter resources across resource groups or even subscriptions. You can then use Azure Resource Graph queries to list or report on all servers with certain tags, similar to running a query in SCCM for a collection. This provides inventory views not bound by a single hierarchy, an advantage over static OU groupings.
 
 ### Azure Service Groups
 
