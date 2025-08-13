@@ -10,7 +10,7 @@ ms.topic: concept-article
 
 Cloud-native task automation makes managing servers more like managing code. Central, scriptable control means you spend less time remoting in or writing one-off scripts, instead focusing on orchestration through Azure.
 
-In a traditional environment, you might RDP into a Windows server to run a PowerShell script, or use SSH for a Linux box, or use a tool like SCCM's Run Script feature. Azure brings these capabilities to the cloud platform, letting you run tasks on any server from the Azure portal or the command line, without requiring a direct login. Azure also lets you ensure that only authorized individuals can run these commands through the use of [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). All actions get logged in Azure Activity logs for auditing.
+In a traditional environment, you might use Remote Desktop Protocol (RDP) to connect to a Windows server and run a PowerShell script, or use SSH for a Linux box, or use a tool like the  Run Script feature in System Center Configuration Manager (SCCM). Azure brings these capabilities to the cloud platform, letting you run tasks on any server from the Azure portal or the command line, without requiring a direct login. Azure also lets you ensure that only authorized individuals can run these commands through the use of [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). All actions get logged in Azure Activity logs for auditing.
 
 Let's explore the key tools that can help streamline and automate tasks: Azure Run Command, SSH via Azure Arc, and related automation that works with Arc-enabled servers.
 

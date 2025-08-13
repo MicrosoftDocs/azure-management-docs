@@ -227,6 +227,8 @@
     href: ./cloud-native/licensing-cost-management.md
   - name: Scripting and task automation
     href: ./cloud-native/scripting-task-automation.md
+  - name: Patch management
+    href: ./cloud-native/patch-management.md
 - name: Reference
   items:
   - name: azcmagent CLI
