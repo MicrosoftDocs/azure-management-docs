@@ -98,7 +98,7 @@ The Azure Connected Machine agent for Windows and Linux can be upgraded to the l
 
 Starting with version 1.48 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview.
 
-To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true`. Once you do so, your agents will be upgraded within one version of the latest release, with batches rolled out in order to maintain stability across regions. You can view upgrade status for each machine in the Azure portal.
+To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true`. Once you do so, your agents will be upgraded within one version of the latest release, with batches rolled out in order to maintain stability across regions.
 
 The following example shows how to configure automatic agent upgrades by using Azure PowerShell.
 
