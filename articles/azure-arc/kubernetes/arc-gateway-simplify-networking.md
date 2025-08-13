@@ -1,7 +1,7 @@
 ---
 title: "Simplify network configuration requirements with Azure Arc gateway (preview)"
 ms.custom: devx-track-azurecli
-ms.date: 07/13/2025
+ms.date: 08/13/2025
 ms.topic: how-to
 description: "The Azure Arc gateway (preview) lets you onboard Kubernetes clusters to Azure Arc, requiring access to only seven endpoints."
 # Customer intent: As a network administrator, I want to configure the Azure Arc gateway for my Kubernetes clusters, so that I can simplify network access requirements and manage outbound traffic through enterprise proxies efficiently.
@@ -40,7 +40,6 @@ When the gateway is in place, traffic flows via the following hops: Arc Agents â
 During the public preview, the following limitations apply. Consider these factors when planning your configuration.
 
 - TLS terminating proxies are not supported with the Arc gateway.
-- You can't use ExpressRoute/site-to-site VPN or private endpoints in addition to the Arc gateway.
 - There is a limit of five Arc gateway resources per Azure subscription.
 - The Arc gateway can only be used for connectivity in the Azure public cloud.
 
