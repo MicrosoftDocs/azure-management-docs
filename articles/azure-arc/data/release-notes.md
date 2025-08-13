@@ -7,7 +7,7 @@ ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 05/13/2025
+ms.date: 08/15/2025
 ms.topic: release-notes
 ms.custom: references_regions, ignite-2023
 #Customer intent: As a data professional, I want to understand why my solutions would benefit from running with Azure Arc-enabled data services so that I can leverage the capability of the feature.
@@ -17,6 +17,12 @@ ms.custom: references_regions, ignite-2023
 # Release notes - Azure Arc-enabled data services
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
+
+## August, 2025
+
+Removes Grafana and Opensearch dashboards for Azure Arc-enabled SQL Managed Instance.
+
+For complete release version information, review [Version log](version-log.md#august-2025).
 
 ## July 14, 2025
 
@@ -71,12 +77,6 @@ For complete release version information, review [Version log](version-log.md#se
 **Image tag**: `v1.32.0_2024-08-13`
 
 For complete release version information, review [Version log](version-log.md#august-13-2024). 
-
-## July  9, 2024
-
-**Image tag**: `v1.31.0_2024-07-09`
-
-For complete release version information, review [Version log](version-log.md#july-9-2024). 
 
 ## Related content
 
