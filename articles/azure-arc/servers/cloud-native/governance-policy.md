@@ -1,12 +1,12 @@
 ---
-title: Cloud-native governance and policy
+title: Cloud-native governance and policy with Azure Arc-enabled servers
 description: Azure Policy lets you audit and enforce critical settings, providing a holistic view of your hybrid environment.
 ms.date: 08/01/2025
 ms.topic: concept-article
-# Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand Azure's approach to governance and enforcing policies across resources, so I can manage my hybrid servers consistently and maintain organizational compliance."
+# Customer intent: "As a cloud administrator managing a hybrid environment, I want to understand Azure's approach to governance and enforcing policies across resources, so I can manage my hybrid servers consistently and maintain organizational compliance."
 ---
 
-# Cloud-native governance and policy
+# Cloud-native governance and policy with Azure Arc-enabled servers
 
 Cloud-native policy management supplements traditional Active Directory Group Policy Objects (GPOs) with Azure-powered audit and enforcement. In a traditional setup, GPOs in Active Directory enforce configurations, such as password policies and audit settings on your servers. Azure provides similar capabilities through [Azure Policy](/azure/governance/policy/overview), which includes a Guest Configuration feature that can audit and configure settings inside VMs.
 

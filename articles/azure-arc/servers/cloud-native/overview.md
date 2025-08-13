@@ -1,12 +1,12 @@
 ---
-title: Cloud-native server management
+title: Cloud-native server management with Azure Arc-enabled servers
 description: Azure Arc transforms traditional server management by extending Azure’s control plane to on-premises and multi-cloud servers. 
 ms.date: 08/01/2025
 ms.topic: overview
 # Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand how to extend Azure's management capabilities to my on-premises and multi-cloud servers."
 ---
 
-# Cloud-native server management
+# Cloud-native server management with Azure Arc-enabled servers
 
 With [Azure Arc-enabled servers](../overview.md), your Windows and Linux machines outside Azure (in your datacenter or other clouds) become Azure resources. This means you can manage them just like Azure virtual machines (VMs)—organizing them into resource groups, applying policies, running scripts, and tagging them for search—all from the Azure Portal or CLI. The journey isn't just about moving VMs to Azure; it’s about shifting the entire management experience (inventory, configuration, governance, scripting, patching, identity) into Azure's unified platform.
 
