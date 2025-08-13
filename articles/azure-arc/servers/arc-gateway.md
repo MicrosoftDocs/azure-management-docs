@@ -1,7 +1,7 @@
 ---
 title: How to simplify network configuration requirements with Azure Arc gateway (Public Preview)
 description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
-ms.date: 06/24/2025
+ms.date: 08/13/2025
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
@@ -37,7 +37,6 @@ When the gateway is in place, traffic flows via the following hops: **Arc agents
 During the public preview, the following limitations apply. Consider these factors when planning your configuration.
 
 - TLS Terminating Proxies aren't supported.
-- ExpressRoute/Site-to-Site VPN or private endpoints used with the Arc gateway aren't supported.
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
