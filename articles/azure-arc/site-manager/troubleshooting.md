@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 #customer intent: As a customer, I want to understand how to resolve known issues I experience in site manager.
 
+# Customer intent: As a site manager user, I want to troubleshoot common issues I encounter, so that I can effectively manage resources and maintain seamless operation within Azure Arc.
 ---
 
 # Troubleshooting in Azure Arc site manager public preview

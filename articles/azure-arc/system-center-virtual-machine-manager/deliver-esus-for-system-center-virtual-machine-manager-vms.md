@@ -10,6 +10,7 @@ author: jyothisuri
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom:
   - build-2025
+# Customer intent: "As an IT administrator managing SCVMM VMs, I want to deliver Extended Security Updates through Azure Arc, so that I can ensure compliance and security for my Windows Server 2012/2012 R2 environments without needing key activation."
 ---
 
 # Deliver Extended Security Updates for SCVMM VMs through Arc

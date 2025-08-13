@@ -290,6 +290,6 @@ An outage of Azure Arc will not affect the customer workload itself; only manage
 
 ## Next steps
 
-* To begin evaluating Azure Arc-enabled servers, see [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](learn/quick-enable-hybrid-vm.md).
+* To begin evaluating Azure Arc-enabled servers, see [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](quick-enable-hybrid-vm.md).
 * Before you deploy the Azure Connected Machine agent and integrate with other Azure management and monitoring services, review the [Planning and deployment guide](plan-at-scale-deployment.md).
 * Review troubleshooting information in the [agent connection issues troubleshooting guide](troubleshoot-agent-onboard.md).

@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 05/01/2025
 ms.custom:
   - build-2025
+# Customer intent: As a deployment manager, I want to utilize the workload orchestration portal to deploy, manage, and troubleshoot application solutions, so that I can ensure seamless application operations within my environment.
 ---
 
 # Deploy your solutions with workload orchestration portal

@@ -8,6 +8,7 @@ author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
 ms.date: 06/24/2025
+# Customer intent: As an IT admin, I want to configure and manage workload orchestration resources so that I can effectively deploy applications across my Kubernetes clusters while ensuring streamlined processes and compliance with organizational requirements.
 ---
 
 # Set up workload orchestration

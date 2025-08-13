@@ -9,6 +9,7 @@ ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 07/07/2022
 ms.topic: how-to
+# Customer intent: As a Kubernetes operator, I want to upgrade an indirectly connected Azure Arc-enabled data controller using Kubernetes tools, so that I can ensure my data services remain current without experiencing downtime during the process.
 ---
 
 # Upgrade an indirectly connected Azure Arc-enabled data controller using Kubernetes tools

@@ -10,6 +10,7 @@ ms.date: 04/18/2024
 
 #customer intent: As a site admin, I want to know where to create a alert in Azure for my site so that I can deploy monitoring for resources in my site.
 
+# Customer intent: "As a site administrator, I want to configure alerts for resources using Azure Monitor, so that I can effectively manage and monitor the status of resources within my Azure Arc site."
 ---
 
 # Monitor sites in Azure Arc

@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 06/24/2025
 ms.custom:
   - build-2025
+# Customer intent: As a cloud administrator, I want to configure service groups for workload orchestration, so that I can efficiently organize and manage resources across multiple subscriptions and apply governance effectively.
 ---
 
 # Service groups for workload orchestration

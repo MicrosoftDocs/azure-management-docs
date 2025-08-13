@@ -7,6 +7,7 @@ ms.topic: how-to
 ms.date: 06/24/2025
 ms.custom:
   - build-2025
+# Customer intent: As an IT administrator, I want to delete workload orchestration resources using CLI commands, so that I can manage and free up my cloud environment effectively.
 ---
 
 

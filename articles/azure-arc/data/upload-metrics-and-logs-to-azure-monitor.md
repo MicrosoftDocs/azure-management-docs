@@ -10,6 +10,7 @@ ms.author: twright
 ms.reviewer: mikeray
 ms.date: 04/16/2024
 ms.topic: how-to
+# Customer intent: As an IT administrator, I want to upload resource inventory, usage data, metrics, and logs to Azure so that I can effectively monitor and manage my cloud resources for billing and performance analysis.
 ---
 
 # Upload usage data, metrics, and logs to Azure
