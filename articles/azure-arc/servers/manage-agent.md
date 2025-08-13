@@ -1,7 +1,7 @@
 ---
 title:  Manage and maintain the Azure Connected Machine agent
 description: This article describes the different management tasks that you typically perform during the lifecycle of the Azure Connected Machine agent.
-ms.date: 08/12/2025
+ms.date: 08/13/2025
 ms.topic: how-to
 # Customer intent: As a system administrator, I want to manage the lifecycle of the Azure Connected Machine agent, including installation, upgrades, and configurations, so that I can ensure optimal performance and reliability of my Azure-connected servers.
 ---
@@ -96,7 +96,7 @@ The Azure Connected Machine agent for Windows and Linux can be upgraded to the l
 
 ### Automatic agent upgrade (preview)
 
-Starting with version 1.48 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview.
+Starting with version 1.48 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview and is only available in the Azure public cloud.
 
 To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true`. Once you do so, your agents will be upgraded within one version of the latest release, with batches rolled out in order to maintain stability across regions.
 
