@@ -2,7 +2,7 @@
 title: Archive for What's new with Azure Connected Machine agent
 description: Release notes for Azure Connected Machine agent versions older than six months
 ms.topic: overview
-ms.date: 05/13/2025
+ms.date: 08/12/2025
 ms.custom: references_regions
 # Customer intent: "As an IT administrator managing hybrid environments, I want to access detailed release notes for older versions of the Azure Connected Machine agent, so that I can understand issues about these agent versions, even though they are no longer actively supported."
 ---
@@ -12,13 +12,52 @@ ms.custom: references_regions
 > [!CAUTION]
 > This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
-The primary [What's new in Azure Connected Machine agent?](agent-release-notes.md) article contains updates for the last six months, while this article contains all the older information.
+This article contains information about older releases of the Connected Machine agent. The primary [What's new in Azure Connected Machine agent?](agent-release-notes.md) article contains updates for the last six months. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
-The Azure Connected Machine agent receives improvements on an ongoing basis. This article provides you with information about:
+## Version 1.48 - January 2025
 
-- Previous releases
-- Known issues
-- Bug fixes
+Download for [Windows](https://download.microsoft.com/download/2/8/6/2867a351-6546-4af8-b97f-cc4483ef4192/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Addressed a security issue related to Redirection Guard.
+- Resolved a bug that caused issues during the upgrade of the RunCommand extension.
+- Fixed high port usage in the Azure Arc proxy.
+- Fixed an issue with the Alma Linux install script.
+- Improved handling of disassociated Gateway URLs.
+- Resolved an issue with disk space queries.
+- Improved HIMDS behavior when IMDS data is unavailable.
+
+### New features and enhancements
+
+- Added support for extension telemetry.
+- Updated the OpenSSL library for security enhancements.
+- Improved error reporting for `azcmagent` commands.
+- Increased connectivity check timeout for better reliability.
+- Expanded ARM64 platform support to include RHEL 9.
+- Updated the `mssqldiscovered` property to include the detection for SQL Server Integration, Analysis, and Reporting services (SSIS, SSAS, SSRS and PBIRS).
+- Introduced a scheduled task that checks for agent updates on a daily basis. Currently, the update mechanism is inactive and no changes are made to your server even if a newer agent version is available.
+
+## Version 1.47 - October 2024
+
+Download for [Windows](https://download.microsoft.com/download/2/1/d/21dfb0f5-ed95-46d5-8146-ece13381056a/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Guest Configuration: Fix an issue that caused agent to become unresponsive.
+- Fixed a bug to trim error messages when updating AgentStatus.
+
+### New features and enhancements
+
+- Code enhancement to support cloud specific endpoints in the install script.
+- Addition of architecture detection to system properties.
+- Addition of EndpointConnectivityInfo to AgentData.
+- Expansion of ARM64 platform support for the following distributions:
+  - Ubuntu 20.04, 22.04, 24.04
+  - Azure Linux (CBL-Mariner) 2.0
+  - Amazon Linux 2
+  - Alma Linux 8
+
 
 ## Version 1.46 - September 2024
 

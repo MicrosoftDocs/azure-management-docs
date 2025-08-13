@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Connected Machine agent
 description: This article provides a detailed overview of the Azure Connected Machine agent, which supports monitoring virtual machines hosted in hybrid environments.
-ms.date: 04/22/2025
+ms.date: 08/12/2025
 ms.topic: overview
 # Customer intent: "As a system administrator managing a hybrid cloud environment, I want to deploy and configure the Azure Connected Machine agent on my Windows and Linux servers, so that I can monitor and enforce compliance for those machines effectively."
 ---
@@ -11,7 +11,7 @@ ms.topic: overview
 The Azure Connected Machine agent lets you manage Windows and Linux machines hosted outside of Azure, on your corporate network or other cloud providers.
 
 > [!WARNING]
-> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. Customers should update to an agent version within this window.
+> Only Connected Machine [agent versions](agent-release-notes.md) within the last one year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview).
 
 ## Agent components
 
