@@ -44,10 +44,10 @@ Perform the following steps to configure the hybrid machine with Arc-enabled ser
 
     1. Select the **Subscription** and **Resource group** where you want the server to be managed within Azure.
     1. In the **Region** drop-down list, select the Azure region to store the servers metadata.
-    1. For **Connectivity method**, choose how the Azure Connected Machine agent should connect to the internet: 
-        * **Public endpoint** 
-        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
+    1. For **Connectivity method**:
+        1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
+        1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. Select **Next**.
 
 1. On the **Servers** page, select **Add Servers**, then select the **Subscription** and **Automation account** from the drop-down list that has the Update Management feature enabled and includes the machines you want to onboard to Azure Arc-enabled servers.
@@ -64,9 +64,9 @@ Perform the following steps to configure the hybrid machine with Arc-enabled ser
 
 ## Verify the connection with Azure Arc
 
-After the agent is installed and configured to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
+After the agent is installed and configured to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected.
 
-![A successful server connection](./media/onboard-portal/arc-for-servers-successful-onboard.png)
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
 ## Next steps
 

@@ -2,7 +2,7 @@
 title: Archive for What's new with Azure Connected Machine agent
 description: Release notes for Azure Connected Machine agent versions older than six months
 ms.topic: overview
-ms.date: 05/13/2025
+ms.date: 08/12/2025
 ms.custom: references_regions
 # Customer intent: "As an IT administrator managing hybrid environments, I want to access detailed release notes for older versions of the Azure Connected Machine agent, so that I can understand issues about these agent versions, even though they are no longer actively supported."
 ---
@@ -12,13 +12,52 @@ ms.custom: references_regions
 > [!CAUTION]
 > This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
-The primary [What's new in Azure Connected Machine agent?](agent-release-notes.md) article contains updates for the last six months, while this article contains all the older information.
+This article contains information about older releases of the Connected Machine agent. The primary [What's new in Azure Connected Machine agent?](agent-release-notes.md) article contains updates for the last six months. Microsoft recommends staying up to date with the latest agent version whenever possible.
 
-The Azure Connected Machine agent receives improvements on an ongoing basis. This article provides you with information about:
+## Version 1.48 - January 2025
 
-- Previous releases
-- Known issues
-- Bug fixes
+Download for [Windows](https://download.microsoft.com/download/2/8/6/2867a351-6546-4af8-b97f-cc4483ef4192/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Addressed a security issue related to Redirection Guard.
+- Resolved a bug that caused issues during the upgrade of the RunCommand extension.
+- Fixed high port usage in the Azure Arc proxy.
+- Fixed an issue with the Alma Linux install script.
+- Improved handling of disassociated Gateway URLs.
+- Resolved an issue with disk space queries.
+- Improved HIMDS behavior when IMDS data is unavailable.
+
+### New features and enhancements
+
+- Added support for extension telemetry.
+- Updated the OpenSSL library for security enhancements.
+- Improved error reporting for `azcmagent` commands.
+- Increased connectivity check timeout for better reliability.
+- Expanded ARM64 platform support to include RHEL 9.
+- Updated the `mssqldiscovered` property to include the detection for SQL Server Integration, Analysis, and Reporting services (SSIS, SSAS, SSRS and PBIRS).
+- Introduced a scheduled task that checks for agent updates on a daily basis. Currently, the update mechanism is inactive and no changes are made to your server even if a newer agent version is available.
+
+## Version 1.47 - October 2024
+
+Download for [Windows](https://download.microsoft.com/download/2/1/d/21dfb0f5-ed95-46d5-8146-ece13381056a/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Guest Configuration: Fix an issue that caused agent to become unresponsive.
+- Fixed a bug to trim error messages when updating AgentStatus.
+
+### New features and enhancements
+
+- Code enhancement to support cloud specific endpoints in the install script.
+- Addition of architecture detection to system properties.
+- Addition of EndpointConnectivityInfo to AgentData.
+- Expansion of ARM64 platform support for the following distributions:
+  - Ubuntu 20.04, 22.04, 24.04
+  - Azure Linux (CBL-Mariner) 2.0
+  - Amazon Linux 2
+  - Alma Linux 8
+
 
 ## Version 1.46 - September 2024
 
@@ -277,7 +316,7 @@ This endpoint will be removed from `azcmagent check` in a future release.
 ### Fixed
 
 - Fixed an issue that could cause a VM extension to disappear in Azure Resource Manager if it's installed with the same settings twice. After upgrading to agent version 1.33 or later, reinstall any missing extensions to restore the information in Azure Resource Manager.
-- You can now set the [agent mode](security-extensions.md#agent-modes) before connecting the agent to Azure.
+- You can now set the [agent mode](security-extensions.md#agent-monitor-mode) before connecting the agent to Azure.
 - The agent now responds to instance metadata service (IMDS) requests even when the connection to Azure is temporarily unavailable.
 
 ## Version 1.32 - July 2023
@@ -379,7 +418,7 @@ Download for [Windows](https://download.microsoft.com/download/8/4/5/845d5e04-bb
 - The extension service now correctly restarts when the Azure Connected Machine agent is upgraded by Update Manager
 - Resolved issues with the hybrid connectivity component that could result in the "himds" service crashing, the server showing as "disconnected" in Azure, and connectivity issues with Windows Admin Center and SSH
 - Improved handling of resource move scenarios that could impact Windows Admin Center and SSH connectivity
-- Improved reliability when changing the [agent configuration mode](security-extensions.md#local-agent-security-controls) from "monitor" mode to "full" mode.
+- Improved reliability when changing the [agent configuration mode](security-extensions.md#agent-monitor-mode) from "monitor" mode to "full" mode.
 - Increased the [resource limits](agent-overview.md#agent-resource-governance) for the Microsoft Sentinel DNS extension to improve log collection reliability
 - Tenant IDs are better validated when connecting the server
 
@@ -538,7 +577,7 @@ Download for [Windows](https://download.microsoft.com/download/2/5/6/25685d0f-28
 
 ### New features
 
-- You can configure the agent to operate in [monitoring mode](security-extensions.md#agent-modes), which simplifies configuration of the agent for scenarios where you only want to use Arc for monitoring and security scenarios. This mode disables other agent functionality and prevents use of extensions that could make changes to the system (for example, the Custom Script Extension).
+- You can configure the agent to operate in [monitoring mode](security-extensions.md#agent-monitor-mode), which simplifies configuration of the agent for scenarios where you only want to use Arc for monitoring and security scenarios. This mode disables other agent functionality and prevents use of extensions that could make changes to the system (for example, the Custom Script Extension).
 - VMs and hosts running on Azure Stack HCI now report the cloud provider as "HCI" when [Azure benefits are enabled](/azure-stack/hci/manage/azure-benefits#enable-azure-benefits).
 
 ### Fixed

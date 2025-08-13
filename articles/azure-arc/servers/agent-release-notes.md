@@ -2,7 +2,7 @@
 title: What's new with Azure Connected Machine agent
 description: This article has release notes for Azure Connected Machine agent. For many of the summarized issues, there are links to more details.
 ms.topic: overview
-ms.date: 07/01/2025
+ms.date: 08/12/2025
 ms.custom: references_regions
 # Customer intent: As a system administrator, I want to access the release notes for the Azure Connected Machine agent, so that I can stay informed about updates, fixes, and new features to ensure optimal performance and compliance of my cloud-based infrastructure.
 ---
@@ -21,7 +21,19 @@ The Azure Connected Machine agent receives improvements on an ongoing basis. To 
 This page is updated monthly, so revisit it regularly. If you're looking for items older than six months, you can find them in [archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md).
 
 > [!WARNING]
-> Only Connected Machine agent versions released within the last year are officially supported by the product group. Customers should update to an agent version within this window. Microsoft recommends staying up to date with the latest agent version whenever possible.
+> Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
+
+## Version 1.55 - August 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+### Fixed
+
+- Improved logic to accurately detect whether the server is Azure Local.
+
+- Arc proxy no longer requests tokens from HIMDS unless explicitly enabled.
+
+- [Windows Only] Minor accessibility improvements to the GUI application.
 
 ## Version 1.54 - July 2025
 
@@ -135,50 +147,6 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.49/AzureConnect
 - Windows only:
   - The agent now saves MSI certificates both on disk and in the Windows cert store (only for Windows Servers 2019 (10.0.17763) and newer).
   - Added authentication option to use certificates from the Windows cert store for `azcmagent connect` and `azcmagent disconnect`.
-
-## Version 1.48 - January 2025
-
-Download for [Windows](https://download.microsoft.com/download/2/8/6/2867a351-6546-4af8-b97f-cc4483ef4192/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Addressed a security issue related to Redirection Guard.
-- Resolved a bug that caused issues during the upgrade of the RunCommand extension.
-- Fixed high port usage in the Azure Arc proxy.
-- Fixed an issue with the Alma Linux install script.
-- Improved handling of disassociated Gateway URLs.
-- Resolved an issue with disk space queries.
-- Improved HIMDS behavior when IMDS data is unavailable.
-
-### New features and enhancements
-
-- Added support for extension telemetry.
-- Updated the OpenSSL library for security enhancements.
-- Improved error reporting for `azcmagent` commands.
-- Increased connectivity check timeout for better reliability.
-- Expanded ARM64 platform support to include RHEL 9.
-- Updated the `mssqldiscovered` property to include the detection for SQL Server Integration, Analysis, and Reporting services (SSIS, SSAS, SSRS and PBIRS).
-- Introduced a scheduled task that checks for agent updates on a daily basis. Currently, the update mechanism is inactive and no changes are made to your server even if a newer agent version is available.
-
-## Version 1.47 - October 2024
-
-Download for [Windows](https://download.microsoft.com/download/2/1/d/21dfb0f5-ed95-46d5-8146-ece13381056a/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
-
-### Fixed
-
-- Guest Configuration: Fix an issue that caused agent to become unresponsive.
-- Fixed a bug to trim error messages when updating AgentStatus.
-
-### New features and enhancements
-
-- Code enhancement to support cloud specific endpoints in the install script.
-- Addition of architecture detection to system properties.
-- Addition of EndpointConnectivityInfo to AgentData.
-- Expansion of ARM64 platform support for the following distributions:
-  - Ubuntu 20.04, 22.04, 24.04
-  - Azure Linux (CBL-Mariner) 2.0
-  - Amazon Linux 2
-  - Alma Linux 8
 
 > [!NOTE]
 > This article contains updates covering the past six months. For earlier releases, see [Archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md)

@@ -1,7 +1,7 @@
 ---
 title: VM Extension Management with Azure Arc-Enabled Servers
 description: Azure Arc-enabled servers can manage deployment of virtual machine extensions that provide post-deployment configuration and automation tasks with non-Azure VMs.
-ms.date: 06/19/2025
+ms.date: 07/31/2025
 ms.topic: concept-article
 # Customer intent: "As a system administrator managing hybrid cloud environments, I want to deploy and manage virtual machine extensions on Arc-enabled servers, so that I can automate configuration tasks and enhance performance monitoring."
 ---
@@ -35,7 +35,7 @@ VM extension functionality is available only in the [supported regions](overview
 
 For the regional availabilities of Azure services and VM extensions that are available for Azure Arc-enabled servers, refer to the [Azure Global Product Availability Roadmap](https://global.azure.com/product-availability/roadmap).
 
-You can configure lists of the extensions that you want to allow and block on servers. For more information, see [Extension allowlists and blocklists](/azure/azure-arc/servers/security-overview#extension-allowlists-and-blocklists).
+You can configure lists of the extensions that you want to allow and block on servers. For more information, see [Extensions security for Azure Arc-enabled servers](/azure/azure-arc/servers/security-overview#allowlists-and-blocklists).
 
 ## Extensions
 
@@ -52,6 +52,7 @@ The following table lists some of the key VM extensions that are available for A
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorWindowsAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment.md) |
 |Azure Monitor Dependency agent |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentWindows | [Dependency agent virtual machine extension for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)|
 |Azure Key Vault extension for Windows | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) |
+|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Windows | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |
 |Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally) |
 |Windows Admin Center |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
 |Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
@@ -74,6 +75,7 @@ The following table lists some of the key VM extensions that are available for A
 |Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorLinuxAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment.md) |
 |Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentLinux |[Dependency agent virtual machine extension for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) |
 |Azure Key Vault extension for Linux | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |
+|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Linux | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |
 |Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally)|
 |Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
 |Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|

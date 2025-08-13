@@ -37,10 +37,10 @@ Use the Azure portal to create a script that automates the agent download and in
     1. In the **Project details** section, select the **Subscription** and **Resource group** the machine will be managed from.
     1. In the **Server details** section, select the **Region** to store the servers metadata.
     1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
-    1. In the **Connectivity method** section, choose how the Azure Connected Machine agent should connect to the internet: 
-        * **Public endpoint** 
-        * **Proxy server**—If the machine is communicating through a proxy server, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        * **Private endpoint**—If the machine is communicating through a private endpoint, select an existing private link scope and endpoint or create a new one.
+    1. For **Connectivity method**:
+        1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
+        1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. Select **Next** to go to the Tags page.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards.
@@ -161,9 +161,9 @@ If the agent fails to start after setup is finished, check the logs for detailed
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected..
 
-![A successful server connection](./media/onboard-portal/arc-for-servers-successful-onboard.png)
+:::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
 ## Next steps
 

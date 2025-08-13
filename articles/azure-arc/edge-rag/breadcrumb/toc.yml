@@ -1,0 +1,8 @@
+## Transparency note
+- name: Azure
+  tocHref: /legal/
+  topicHref: /azure/index
+  items: 
+  - name: Azure Arc
+    tocHref: /legal/edge-rag/
+    topicHref: /azure/azure-arc/index

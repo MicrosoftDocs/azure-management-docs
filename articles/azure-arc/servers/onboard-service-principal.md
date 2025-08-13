@@ -103,10 +103,10 @@ Use the Azure portal to create a script that automates the agent download and in
     1. Select the **Subscription** and **Resource group** for the machines.
     1. In the **Region** drop-down list, select the Azure region to store the servers' metadata.
     1. In the **Operating system** drop-down list, select the operating system that the script is configured to run on.
-    1. For **Connectivity method**, choose how the Azure Connected Machine agent should connect to the internet: 
-        * **Public endpoint** 
-        * **Proxy server**—Enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        * **Private endpoint**—Select an existing private link scope and endpoint or create a new one.
+    1. For **Connectivity method**:
+        1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
+        1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. In the **Authentication** section, under the **Service principal** drop-down list, select **Arc-for-servers**.
     1. Select **Next**.
 

@@ -4,7 +4,7 @@ description: Learn how to set ingest policies in Azure Container Storage enabled
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 07/18/2025
 # Customer intent: As a cloud administrator, I want to configure ingest policies for Azure Container Storage, so that I can manage the file ingestion and eviction processes tailored to my storage requirements.
 ---
 
@@ -16,12 +16,12 @@ This article describes how to set ingest policies in Azure Container Storage ena
 
 You can configure the following parameters. The following table also lists the default values if you don't edit the policy:
 
-| Parameter                  | Description                                                                                                                                                                                          | Available values                                                                                                                              | Default            |
-|----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
-| `spec.ingest.order`          | The order in which files written to the subvolume are ingested. This order is a best effort, not a guarantee.                                                                                            | `oldest-first`: the oldest files yet to be ingested are prioritized.<br/><br/> `newest-first`: the newest files yet to be ingested are prioritized.  | `oldest-first`             |
-| `spec.ingest.minDelaySec`    | The minimum number of seconds after the last file handle is closed before the file is eligible for ingest.                                                                                            | Any integer value of seconds between 0 and 31536000 (one year).                                                                                | 60 seconds               |
-| `spec.eviction.order`        | Once a file is ingested successfully, how the system evicts the local copy of that file.                                                                                                    | `unordered`: ingested files are evicted at some point after their `minDelaySec` elapses.<br/><br/>  `never`: ingested files are never evicted.      | `unordered`                |
-| `spec.eviction.minDelaySec`  | The number of seconds after a file is ingested successfully before the system deletes the local copy of that file. This parameter has no effect if `spec.eviction.order` is set to `never`.  | Any integer value of seconds between 0 and 31536000 (one year).                                                                                | 300 seconds (5 minutes)  |
+| Parameter | Description | Available values | Default |
+|---|---|---|---|
+| `spec.ingest.order` | The order in which files written to the subvolume are ingested. This order is a best effort, not a guarantee. | `oldest-first`: the oldest files yet to be ingested are prioritized.<br/><br/> `newest-first`: the newest files yet to be ingested are prioritized.  | `oldest-first` |
+| `spec.ingest.minDelaySec` | The minimum number of seconds after the last file handle is closed before the file is eligible for ingest. | Any integer value of seconds between 0 and 31536000 (one year). | 60 seconds |
+| `spec.eviction.order` | Once a file is ingested successfully, how the system evicts the local copy of that file. | `unordered`: ingested files are evicted at some point after their `minDelaySec` elapses.<br/><br/>  `never`: ingested files are never evicted. | `unordered` |
+| `spec.eviction.minDelaySec`  | The number of seconds after a file is ingested successfully before the system deletes the local copy of that file. This parameter has no effect if `spec.eviction.order` is set to `never`. | Any integer value of seconds between 0 and 31536000 (one year). | 300 seconds (5 minutes) |
 
 ## Change ingest policy
 

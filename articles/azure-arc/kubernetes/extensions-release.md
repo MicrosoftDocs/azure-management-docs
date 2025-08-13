@@ -1,8 +1,8 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 06/13/2025
+ms.date: 08/12/2025
 ms.topic: how-to
-description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View extension release notes."
+description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
   - build-2025
 # Customer intent: "As a Kubernetes administrator, I want to explore and install available extensions for Azure Arc-enabled Kubernetes clusters, so that I can enhance cluster management and implement necessary functionalities efficiently."
@@ -36,20 +36,15 @@ Use the Azure Key Vault Provider for Secrets Store CSI Driver to integrate an in
 
 For more information, see [Use the Azure Key Vault Secrets Provider extension to fetch secrets into Azure Arc-enabled Kubernetes clusters](tutorial-akv-secrets-provider.md).
 
-## Secret Store
+## Azure Key Vault Secret Store
 
-- **Supported distributions**: All CNCF-certified Kubernetes clusters that are connected to Azure Arc and running Kubernetes 1.27 or later.
+- **Supported distributions**: Arc-enabled Kubernetes clusters running Kubernetes 1.27 or later, including: AKS on Azure Local, AKS Edge Essentials, OpenShift Kubernetes Distribution, and VMware Tanzu Kubernetes Grid.
 
 The Azure Key Vault Secret Store extension for Kubernetes (Secret Store) automatically syncs secrets from an instance of Azure Key Vault to a Kubernetes cluster for offline access. You can use Azure Key Vault to store, maintain, and rotate your secrets, even when you run your Kubernetes cluster in a semi-disconnected state.
 
-We recommend the Secret Store extension for scenarios that require offline access, or if you need secrets synced to the Kubernetes secret store. If you don't need to use these features, we recommend that you instead use the Azure Key Vault Secrets Provider extension.
+We recommend the Secret Store extension for clusters at the edge where internet connectivity cannot be guaranteed, or if you need secrets synced to the Kubernetes secret store. For clusters in Azure cloud that do not require local secret storage, we recommend that you use the Azure Key Vault Secrets Provider extension instead.
 
 For more information, see [Use the Secret Store extension to fetch secrets for offline access in Azure Arc-enabled Kubernetes clusters](secret-store-extension.md).
-
-> [!IMPORTANT]
-> Secret Store is currently in preview.
->
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Microsoft Defender for Containers
 
@@ -172,6 +167,36 @@ The `source-controller` recently updated its dependency on the "`github.com/Mast
 
 **What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
+### 1.17.2 (August 2025)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.2
+- kustomize-controller: v1.6.1
+- helm-controller: v1.3.0
+- notification-controller: v1.6.0
+- image-automation-controller: v0.41.2
+- image-reflector-controller: v0.35.2
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
+
+### 1.16.12 (July 2025)
+
+Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
+
+- source-controller: v1.5.0
+- kustomize-controller: v1.5.2
+- helm-controller: v1.2.0
+- notification-controller: v1.5.0
+- image-automation-controller: v0.40.0
+- image-reflector-controller: v0.34.0
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluent-bit-mdm` by updating the Go packages.
+
 ### 1.16.8 (June 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
@@ -187,57 +212,6 @@ Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 - Fixed an issue in the `delete-fluxconfig` job by adding a toleration to the `delete-fluxconfig` prehook job, allowing it to run on nodes with the `CriticalAddonsOnly` taint.
-
-### 1.16.3 (May 2025)
-
-Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
-
-- source-controller: v1.5.0
-- kustomize-controller: v1.5.1
-- helm-controller: v1.2.0
-- notification-controller: v1.5.0
-- image-automation-controller: v0.40.0
-- image-reflector-controller: v0.34.0
-
-Changes in this version include:
-
-- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
-
-### 1.16.2 (March 2025)
-
-Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
-
-- source-controller: v1.5.0
-- kustomize-controller: v1.5.1
-- helm-controller: v1.2.0
-- notification-controller: v1.5.0
-- image-automation-controller: v0.40.0
-- image-reflector-controller: v0.34.0
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in the `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-- Can now specify tenant ID when enabling [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
-- Support for image-automation controller in [workload identity in Arc-enabled Kubernetes clusters and AKS clusters](tutorial-use-gitops-flux2.md#workload-identity-in-arc-enabled-kubernetes-clusters-and-aks-clusters).
-
-Breaking changes:
-
-- Semantic versioning changes in source controller (see note above)
-
-### 1.15.2 (May 2025)
-
-Flux version: [Release v2.4.0](https://github.com/fluxcd/flux2/releases/tag/v2.4.0)
-
-- source-controller: v1.4.1
-- kustomize-controller: v1.4.0
-- helm-controller: v1.1.0
-- notification-controller: v1.4.0
-- image-automation-controller: v0.39.0
-- image-reflector-controller: v0.33.0
-
-Changes in this version include:
-
-- Simplified flux extension's kubelet identity configuration by removing the obsolete `tenant-id`.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 

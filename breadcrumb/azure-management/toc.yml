@@ -28,7 +28,7 @@ items:
     - name: System Center VMM
       tocHref: /azure/azure-arc/system-center-virtual-machine-manager/
       topicHref: /azure/azure-arc/system-center-virtual-machine-manager/
-    - name: Azure Arc-enabled VMWare
+    - name: Azure Arc-enabled VMware vSphere
       tocHref: /azure/azure-arc/vmware-vsphere/
       topicHref: /azure/azure-arc/vmware-vsphere/
   - name: Azure portal documentation

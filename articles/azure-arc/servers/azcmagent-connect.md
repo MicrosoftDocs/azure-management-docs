@@ -2,7 +2,7 @@
 title: azcmagent connect CLI reference
 description: Syntax for the azcmagent connect command line tool
 ms.topic: reference
-ms.date: 06/30/2025
+ms.date: 07/29/2025
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
@@ -115,6 +115,9 @@ Sample value: westeurope
 `--private-link-scope`
 
 Specifies the resource ID of the Azure Arc private link scope to associate with the server. This flag is required if you're using private endpoints to connect the server to Azure.
+
+`--gateway-id`
+Specifies the resource ID of the Azure Arc gateway resource to use for the server connection. This flag is required if you're using [Azure Arc gateway (preview)](arc-gateway.md).
 
 `-g`, `--resource-group`
 
