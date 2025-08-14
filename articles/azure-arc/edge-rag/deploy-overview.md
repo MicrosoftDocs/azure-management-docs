@@ -40,7 +40,7 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 When you deploy Edge RAG, you can set several configuration options to tailor the solution to your environment and requirements.
 
 - **Language model selection:** Choose a Microsoft-provided model (like Phi-3.5 or Mistral-7B), or use your own model (BYOM) endpoint.
-- **SSL and domain configuration:** Set up a TLS certificate and domain so you can securely access the chat endpoint.
+- **SSL and domain configuration:** Set up a Transport Layer Security (TLS) termination certificate and domain so you can securely access the chat endpoint.
 - **Access and authentication:** Set up the Entra app ID and assign roles to users and groups.
 - **Data source configuration:** Make sure your NFS server is reachable and has the required files in supported formats.
 
@@ -62,13 +62,15 @@ After you deploy the extension, check that the Edge RAG extension is installed a
 
 ### 4. Configure chat solution
 
-Before you share the chat solution with your organization, complete these tasks:
+Before making the chat solution available to your organization, configure its data source, user experience, and test the setup to make sure it meets your requirements.
 
 - [Add a data source for Edge RAG](add-data-source.md): Connect your NFS server and ingest documents and images.
 - [Configure the chat solution](build-chat-solution-overview.md): Set up chat parameters, prompts, and user experience.
-- [Test the chat solution](test-end-user-app.md): Use the out-of-the-box chat application for end user testing or for end users to get started quickly. 
+- [Test the chat solution](test-end-user-app.md): Use the out-of-the-box chat application for end user testing or for end users to get started quickly.
 
 ### 5. Monitor and evaluate your deployment
+
+After deploying Edge RAG, it’s important to monitor system health, track performance, and evaluate the quality of your AI solution. Monitoring helps you make sure the deployment is running smoothly, while evaluation tools let you measure how well your models and data sources are meeting your organization’s needs. Use the following resources to observe, assess, and optimize your Edge RAG deployment.
 
 - [Evaluate the Edge RAG system](evaluate-solution.md): Evaluate the system, models, and datasets within Edge RAG.
 - [Monitor Edge RAG](observability.md): Review the monitoring and observability setup to make sure metrics and logs are available. Then use built-in metrics and evaluation tools to monitor performance and quality.
