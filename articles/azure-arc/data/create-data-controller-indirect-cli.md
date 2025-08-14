@@ -4,12 +4,14 @@ description: Create an Azure Arc data controller, on a typical multi-node Kubern
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.custom: devx-track-azurecli
 author: AbdullahMSFT
 ms.author: amamun
 ms.reviewer: mikeray
 ms.date: 11/03/2021
 ms.topic: how-to
+ms.custom:
+  - devx-track-azurecli
+  - sfi-ropc-nochange
 # Customer intent: "As a Kubernetes operator, I want to create an Azure Arc data controller using the CLI, so that I can enable data services across my multi-node Kubernetes cluster."
 ---
 

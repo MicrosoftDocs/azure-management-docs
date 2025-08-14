@@ -5,11 +5,12 @@ ms.topic: how-to
 ms.date: 07/18/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
+ms.author: jsuri
+author: jyothisuri
 ms.custom:
   - devx-track-azurecli
   - build-2025
-ms.author: jsuri
-author: jyothisuri
+  - sfi-image-nochange
 # Customer intent: "As an IT administrator managing VMware machines, I want to link Arc-enabled Server machines to vCenter, so that I can enable additional virtual machine lifecycle and power cycle operations for efficient management."
 ---
 

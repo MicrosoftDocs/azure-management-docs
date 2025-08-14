@@ -9,6 +9,7 @@ ms.author: jsuri
 author: jyothisuri
 ms.custom:
   - build-2025
+  - sfi-ropc-nochange
 # Customer intent: As an IT infrastructure administrator, I want to install Arc agents at scale on VMware VMs, so that I can leverage Azure management capabilities for efficient resource management and operations.
 ---
 

@@ -3,6 +3,7 @@ title: Monitor GitOps (Flux v2) status and activity
 ms.date: 02/26/2025
 ms.topic: how-to
 description: Learn how to monitor status, compliance, resource consumption, and reconciliation activity for GitOps with Flux v2.
+ms.custom: sfi-image-nochange
 # Customer intent: As a DevOps engineer managing Kubernetes clusters, I want to monitor the status and activity of GitOps with Flux v2, so that I can ensure compliance, track resource consumption, and detect reconciliation issues effectively.
 ---
 
