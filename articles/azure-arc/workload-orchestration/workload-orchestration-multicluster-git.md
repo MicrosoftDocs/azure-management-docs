@@ -33,7 +33,7 @@ Both the application team and the platform team manage their respective configur
 
 :::image type="content" source="media/workload-orchestration-git-general.png" alt-text="Diagram showing the general flow of the workload orchestration as code model.":::
 
-## Application Team
+## Application team
 
 The application team oversees the entire software development lifecycle (SDLC) for their applications. They manage and maintain CI/CD pipelines that build container images, generate Kubernetes manifests, and promote deployable artifacts through various environments. Their focus is on delivering application features, ensuring code quality, and enabling smooth deployments, while remaining abstracted from the underlying cluster infrastructure. 
 
