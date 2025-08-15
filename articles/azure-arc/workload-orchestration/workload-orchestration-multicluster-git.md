@@ -96,7 +96,7 @@ By maintaining a clear separation of concerns, the platform team enables applica
 :::image type="content" source="media/workload-orchestration-git-platform-team-flow.png" alt-text="Diagram showing the workflow for the platform team.":::
 The platform team's GitHub repository structure and associated GitHub Actions workflows mirror the setup used by the application team. This system consists of three main repositories:
 
-- Platform Control Plane repository: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
+- **Platform control plane repository**: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
 - Platform Config repository: Contains environment- and cluster-specific platform configuration values.
 - Platform GitOps repository: Holds the composed platform configuration values and the rendered manifests for platform resources. This allows the platform team to review and validate the configurations and resources that will be deployed to each cluster.
 
