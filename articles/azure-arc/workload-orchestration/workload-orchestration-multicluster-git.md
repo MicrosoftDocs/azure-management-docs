@@ -13,7 +13,7 @@ This article explains how to run a GitHub-driven, "as-code" operating model for 
 
 ## Personas 
 
-Most commonly, two key personas are involved in workload orchestration: the Application Team and the Platform Team. In smaller environments or early stages, these roles may overlap, with the same individuals handling both responsibilities. As the environment grows and complexity increases, the distinction between these roles becomes more defined, enabling clearer separation of concerns and more efficient collaboration. 
+Most commonly, two key personas are involved in workload orchestration: the application team and the platform team. In smaller environments or early stages, these roles may overlap, with the same individuals handling both responsibilities. As the environment grows and complexity increases, the distinction between these roles becomes more defined, enabling clearer separation of concerns and more efficient collaboration. 
 
 
 ## Workload orchestration as code 
