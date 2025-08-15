@@ -6,7 +6,7 @@ ms.date: 8/11/2025
 ms.topic: how-to
 ---
 
-# Workload Orchestration in a Multi-Cluster Environment with GitHub
+# Workload orchestration in a multi-cluster environment with GitHub
 
 This article explains how to run a GitHub-driven, "as-code" operating model for deploying and managing applications across many Kubernetes clusters. It introduces the core personas (application vs. platform), the separation of configuration concerns, repository layout, and the automated workflows that promote changes through environments. You’ll learn how this model improves consistency, traceability, velocity, and deployment reliability while preserving clear team boundaries.
 
@@ -33,7 +33,7 @@ Both the application team and the platform team manage their respective configur
 
 :::image type="content" source="media/workload-orchestration-git-general.png" alt-text="Diagram showing the general flow of the workload orchestration as code model.":::
 
-> **Note:** While this article describes the "as code" approach using GitHub repositories and automated workflows, some platform teams may choose to interact directly with the Workload Orchestration service providing configuration values through the portal or Azure CLI commands. The guidance here focuses on the Git-driven model for consistency, traceability, and automation.
+While this article describes the "as code" approach using GitHub repositories and automated workflows, some platform teams may choose to interact directly with the Workload Orchestration service providing configuration values through the portal or Azure CLI commands. The guidance here focuses on the Git-driven model for consistency, traceability, and automation.
 
 ## Application team
 
@@ -44,9 +44,9 @@ Typically, the application team doesn't know the details of the clusters, platfo
 Key responsibilities of the application team are: 
  - Develop, build, deploy, test, promote, release, and support their applications. 
  - Maintain and contribute to source, config and manifests repositories of their applications. 
- - Communicate to platform team, requesting configured compute resources for successful SDLC operations 
+ - Communicate to platform team, requesting configured compute resources for successful SDLC operations.
 
-![Application team flow](./media/workload-orchestration-git-application-team-flow.png)
+:::image type="content" source="media/workload-orchestration-git-application-team-flow.png" alt-text="Diagram showing the workflow for the application team.":::
 
 The software development lifecycle for each application is managed through a system of three dedicated GitHub repositories:
 
@@ -77,11 +77,11 @@ The `deploy` workflow interacts with the Workload Orchestration service to creat
 
 After deployment, the workflow determines whether the change that initiated the CD process should be promoted to the next environment (if it originated from the `main` branch) and verifies if the next environment is configured. If so, it triggers the `prepare-pr` workflow for the subsequent environment, continuing the promotion cycle. The process ends when there are no further environments in the promotion chain.
 
-### Notify on Config Change
+### Notify on config change
 
 The `notify-on-config-change` workflow is activated when a pull request containing configuration value changes is merged into an environment branch in the config repository. This workflow sends a notification to the source repository, prompting it to regenerate the manifests for the affected environment by invoking the `prepare-pr` workflow with the environment name as a parameter. Because these changes are specific to a single environment, they are not promoted to subsequent environments.
 
-## Platform Team
+## Platform team
 
 The platform team operates as a shared service, supporting multiple application teams by managing the underlying Kubernetes clusters and associated infrastructure. Their primary focus is to ensure that clusters are secure, reliable, and properly configured to meet the needs of the applications they host.
 
