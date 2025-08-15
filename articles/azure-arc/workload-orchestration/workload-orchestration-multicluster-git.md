@@ -18,7 +18,7 @@ Most commonly, two key personas are involved in workload orchestration: the appl
 
 ## Workload orchestration as code 
 
-Treating workload orchestration "as code" means every desired state (workloads, platform resources, configuration values) lives in Git as the single, versioned source of truth. This delivers consistent primitives and workflows for both application and platform personas: propose a change with a commit/PR, validate it with automated workflows, review/approve, and let automation reconcile runtime state. Key benefits include: auditable history (who changed what, when, and why), easy rollbacks via revert, deterministic and reproducible deployments, reduced configuration drift, enforceable compliance gates, and a shared operating model that lowers hand‑off friction. Using the same Git‑centric experience for all personas aligns tooling, vocabulary, and automation—accelerating iteration while improving reliability and governance.
+Treating workload orchestration "as code" means storing all desired states, platform resources, and configuration values—in Git as the single source of truth. Both application and platform teams use the same workflow: propose changes with commits or pull requests, validate with automation, review and approve, and let automated processes update the runtime state. This approach provides clear audit trails, easy rollbacks, consistent deployments, reduced configuration drift, and enforceable compliance. Using Git for all personas streamlines tooling and collaboration, making deployments faster and more reliable. 
 
 
 ## Separation of concerns 
@@ -33,11 +33,13 @@ Both the application team and the platform team manage their respective configur
 
 :::image type="content" source="media/workload-orchestration-git-general.png" alt-text="Diagram showing the general flow of the workload orchestration as code model.":::
 
+> **Note:** While this article describes the "as code" approach using GitHub repositories and automated workflows, some platform teams may choose to interact directly with the Workload Orchestration service providing configuration values through the portal or Azure CLI commands. The guidance here focuses on the Git-driven model for consistency, traceability, and automation.
+
 ## Application team
 
 The application team oversees the entire software development lifecycle (SDLC) for their applications. They manage and maintain CI/CD pipelines that build container images, generate Kubernetes manifests, and promote deployable artifacts through various environments. Their focus is on delivering application features, ensuring code quality, and enabling smooth deployments, while remaining abstracted from the underlying cluster infrastructure. 
 
-Typically, the application team doesn't know the details of the multi-cluster environment, platform-specific configurations, or the activities of other teams. Their primary measure of success is the outcome of their CI/CD pipeline stages, which indicate whether application deployments and updates have been successfully executed across the entire environment.
+Typically, the application team doesn't know the details of the clusters, platform-specific configurations, or the activities of other teams. Their primary measure of success is the outcome of their CI/CD pipeline stages, which indicate whether application deployments and updates have been successfully executed across the entire environment.
 
 Key responsibilities of the application team are: 
  - Develop, build, deploy, test, promote, release, and support their applications. 
@@ -71,7 +73,7 @@ The `notify-on-pr` workflow is triggered when a pull request containing the rend
 
 ### Deploy 
 
-The `deploy` workflow interacts with the Workload Orchestration service to create a new solution version, apply the composed configuration values, and deploy the solution to the designated clusters. If any cluster reports a deployment failure, the workflow marks the Git commit status in the source repository as failed, halting the entire promotion process.
+The `deploy` workflow interacts with the Workload Orchestration service to create a new solution version, apply the composed configuration values, and deploy the solution to the deployment targets. Each cluster may host multiple deployment targets. If any cluster reports a deployment failure, the workflow marks the Git commit status in the source repository as failed, halting the entire promotion process.
 
 After deployment, the workflow determines whether the change that initiated the CD process should be promoted to the next environment (if it originated from the `main` branch) and verifies if the next environment is configured. If so, it triggers the `prepare-pr` workflow for the subsequent environment, continuing the promotion cycle. The process ends when there are no further environments in the promotion chain.
 
@@ -107,7 +109,3 @@ The platform team deploys platform configurations (such as ConfigMaps) and names
 - New platform configurations are made available to applications on clusters immediately after deployment. Applications may consume these updated values as needed, depending on their design and environment, without waiting for the next application deployment cycle.
 
 This model enables rapid iteration and flexibility for both teams, ensuring that platform updates can be delivered promptly while allowing application teams to adopt changes at their own pace. 
-
-## Next Steps
-
-- Sample Implementation (Coming Soon): A detailed walkthrough of a sample implementation will be provided in a separate article. This accelerator will guide you step-by-step through the process of orchestrating workloads across multiple Kubernetes clusters using the Workload Orchestration service and GitHub, helping you understand the practical mechanics and best practices involved.
