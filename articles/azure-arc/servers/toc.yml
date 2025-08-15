@@ -231,6 +231,8 @@
     href: ./cloud-native/patch-management.md
   - name: Identity and access management
     href: ./cloud-native/identity-access.md
+  - name: Monitoring and alerts
+    href: ./cloud-native/monitor-alerts.md
 - name: Reference
   items:
   - name: azcmagent CLI
