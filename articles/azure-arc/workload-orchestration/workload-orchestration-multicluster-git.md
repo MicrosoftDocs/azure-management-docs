@@ -31,7 +31,7 @@ Platform configurations are defined by the platform team. These settings tailor 
 
 Both the application team and the platform team manage their respective configurations in separate GitHub repositories. Automated GitHub Actions workflows monitor these repositories, and when changes are detected, they trigger deployment processes. Using Azure CLI commands, these workflows interact with the Workload Orchestration service to apply application updates and configuration changes across the targeted Kubernetes clusters. 
 
-![General flow](./media/workload-orchestration-git-general.png)
+:::image type="content" source="media/workload-orchestration-git-general.png" alt-text="Diagram showing the general flow of the workload orchestration as code model.":::
 
 ## Application Team
 
