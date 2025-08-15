@@ -93,7 +93,7 @@ Key responsibilities of the platform team include:
 
 By maintaining a clear separation of concerns, the platform team enables application teams to focus on delivering business value, while ensuring that the underlying infrastructure remains robust and compliant. 
  
-![Platform team flow](./media/workload-orchestration-git-platform-team-flow.png)
+:::image type="content" source="media/workload-orchestration-git-platform-team-flow.png" alt-text="Diagram showing the workflow for the platform team.":::
 The platform team's GitHub repository structure and associated GitHub Actions workflows mirror the setup used by the application team. This system consists of three main repositories:
 
 - Platform Control Plane repository: Stores Helm chart templates for platform resources such as ConfigMaps, namespace-as-a-service components (including service accounts, quotas, limits, and SecretProviderClass), as well as platform configuration schemas and templates.
