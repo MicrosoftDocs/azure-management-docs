@@ -16,7 +16,7 @@ This article explains how to run a GitHub-driven, "as-code" operating model for 
 Most commonly, two key personas are involved in workload orchestration: the Application Team and the Platform Team. In smaller environments or early stages, these roles may overlap, with the same individuals handling both responsibilities. As the environment grows and complexity increases, the distinction between these roles becomes more defined, enabling clearer separation of concerns and more efficient collaboration. 
 
 
-## Workload Orchestration as Code 
+## Workload orchestration as code 
 
 Treating workload orchestration "as code" means every desired state (workloads, platform resources, configuration values) lives in Git as the single, versioned source of truth. This delivers consistent primitives and workflows for both application and platform personas: propose a change with a commit/PR, validate it with automated workflows, review/approve, and let automation reconcile runtime state. Key benefits include: auditable history (who changed what, when, and why), easy rollbacks via revert, deterministic and reproducible deployments, reduced configuration drift, enforceable compliance gates, and a shared operating model that lowers hand‑off friction. Using the same Git‑centric experience for all personas aligns tooling, vocabulary, and automation—accelerating iteration while improving reliability and governance.
 
