@@ -31,7 +31,7 @@ Explore the articles in this section to learn how typical on-premises system adm
 - [Cloud-native inventory and resource organization](inventory-resource.md)
 - [Cloud-native governance and policy](governance-policy.md)
 - [Cloud-native licensing and cost management](licensing-cost-management.md)
-- [Cloud-native scripting and task automation](scripting-automation.md)
+- [Cloud-native scripting and task automation](scripting-task-automation.md)
 - [Cloud-native patch management](patch-management.md)
 - [Cloud-native identity and access management](identity-access.md)
 - [Cloud-native monitoring and alerts](monitor-alerts.md)
