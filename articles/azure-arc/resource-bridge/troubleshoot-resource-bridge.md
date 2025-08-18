@@ -344,9 +344,14 @@ To resolve the error, one or more network misconfigurations might need to be add
 
    Verify that the DNS server IP used to create the configuration files has internal and external address resolution. 
 
-### Move Arc resource bridge location
+### Moving the Arc Resource Bridge VM is not supported
 
-Resource move of Arc resource bridge isn't currently supported. If you move the ARB VM and attempt an upgrade, you may receive an error, [cannot retrieve resource](#cannot-retrieve-resource---resource-not-found-or-does-not-exist).
+Arc resource bridge and its underlying layers reference the original deployment path. Updating the config YAML file or manually relocating the VM in your management console does not update these internal references. As a result, making these changes can lead to upgrade failures or errors such as [cannot retrieve resource](#cannot-retrieve-resource---resource-not-found-or-does-not-exist).
+
+If you need to change the location of the resource bridge VM, the supported option is to redeploy the resource bridge in the desired location. Follow the recovery guidance for your environment:
+
+- For Arc-enabled VMware, follow the [Arc VMware recovery guide](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). 
+- For Arc-enabled SCVMM, follow the [Arc SCVMM recovery guide](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery).
 
 ## Azure Arc-enabled VMs on Azure Local issues
 
