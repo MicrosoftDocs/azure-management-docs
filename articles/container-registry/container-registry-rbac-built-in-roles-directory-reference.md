@@ -304,7 +304,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags) within repositories in the registry
     - View and list all repositories (image names) in the registry
     - Does not grant permissions to manage or view policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
-    - Manage [artifact streaming](container-registry-artifact-streaming.md) for a specific image
+    - Enable (**but not disable**) [artifact streaming](container-registry-artifact-streaming.md) for a specific image
     - Does not grant permissions to manage or view the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
     - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
     - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
