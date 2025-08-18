@@ -1,5 +1,5 @@
 ---
-title: Work with Azure Load Balancer
+title: Work with Azure Load Balancer using Microsoft Copilot for Azure
 description: Learn how Microsoft Copilot in Azure can help you understand and use Azure Load Balancer.
 ms.date: 04/08/2025
 ms.topic: how-to
@@ -9,7 +9,7 @@ author: JnHs
 # Customer intent: "As an network administrator, I want to get recommendations for the appropriate load balancer type in Azure, so that I can configure the best solution for my networking requirements and ensure future compliance with upcoming changes."
 ---
 
-# Work with Azure Load Balancer
+# Work with Azure Load Balancer using Microsoft Copilot for Azure
 
 Microsoft Copilot in Azure can help you work more effectively with [Azure Load Balancer](/azure/load-balancer/load-balancer-overview). You can ask Copilot in Azure to help you understand what type of load balancer is right for your requirements. You can also get help if you need to upgrade from Basic Load Balancer to Standard Load Balancer.
 
