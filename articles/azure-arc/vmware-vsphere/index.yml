@@ -31,7 +31,7 @@ landingContent:
         - text: Connect VMware vCenter Server to Azure Arc
           url: quick-start-connect-vcenter-to-arc-using-script.md
         - text: Connect Azure VMware Solution to Azure Arc
-          url: deploy-arc-for-azure-vmware-solution.md
+          url: /azure/azure-vmware/deploy-arc-for-azure-vmware-solution?tabs=windows
       - linkListType: tutorial
         links:        
         - text: Terraform and Bicep based VM creation
