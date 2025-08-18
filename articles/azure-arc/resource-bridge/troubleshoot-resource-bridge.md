@@ -346,7 +346,7 @@ To resolve the error, one or more network misconfigurations might need to be add
 
 ### Move Arc resource bridge location
 
-Resource move of Arc resource bridge isn't currently supported. 
+Resource move of Arc resource bridge isn't currently supported. If you move the ARB VM and attempt an upgrade, you may receive an error, [cannot retrieve resource](#cannot-retrieve-resource---resource-not-found-or-does-not-exist).
 
 ## Azure Arc-enabled VMs on Azure Local issues
 
