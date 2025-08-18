@@ -1,17 +1,16 @@
 ---
 title: Identity and access management with Azure Arc-enabled servers
 description: You can use Microsoft Entra with Azure Arc-enabled servers to manage identity and access control in your hybrid environment.
-ms.date: 08/13/2025
+ms.date: 08/18/2025
 ms.topic: concept-article
 # Customer intent: "As a cloud administrator managing a hybrid environment, I want to control access to Azure Arc-enabled servers through Microsoft Entra, so I can use Azure's identity system to control access to resources."
 ---
 
 # Identity and access management with Azure Arc-enabled servers
 
-
 Managing identity for servers traditionally revolved around Active Directory: servers are domain-joined, admins are given domain accounts that are added to local Administrators via domain groups, and Windows settings are managed using Group Policy. In the cloud management model, [Microsoft Entra](/entra/fundamentals/what-is-entra) becomes the cornerstone of identity and access, while Active Directory (AD) can still be used for app authentication and legacy protocols on on-premises Windows machines.
 
-Cloud-native identity in server management is achieved by using Microsoft Entra for authenticating admins and the servers themselves. On-premises AD domain-joined servers can still be accessed by cloud-native Windows (workstation) devices or users on those devices. Through Microsoft Entra, you gain unified credentials, as [Microsoft Entra ID](/entra/fundamentals/whatis) can manage VMs, Arc-enabled servers,  Office 365, and more. Features like multifactor authentication (MFA) and conditional access improve security. Servers in your hybrid environment can use Azure's identity system to access resources securely. These benefits let you reduce time spent maintaining service accounts or granting local admin rights per machine. It's a transition in thinking, but one that aligns with a fully cloud-managed ecosystem.
+Cloud-native identity in server management is achieved by using Microsoft Entra for authenticating admins and the servers themselves. On-premises AD domain-joined servers can still be accessed by cloud-native Windows (workstation) devices or users on those devices. Through Microsoft Entra, you gain unified credentials, as [Microsoft Entra ID](/entra/fundamentals/whatis) can manage virtual machines (VMs), Arc-enabled servers, Office 365, and more. Features like multifactor authentication (MFA) and conditional access improve security. Servers in your hybrid environment can use Azure's identity system to access resources securely. These benefits let you reduce time spent maintaining service accounts or granting local admin rights per machine. It's a transition in thinking, but one that aligns with a fully cloud-managed ecosystem.
 
 Let's look at how a system administrator's world changes with the benefits of Microsoft Entra.
 
@@ -19,13 +18,13 @@ Let's look at how a system administrator's world changes with the benefits of Mi
 
 [Microsoft Entra ID](/entra/fundamentals/whatis) is a cloud-based identity service. Unlike [Active Directory Domain Services (AD DS)](/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview), Microsoft Entra ID isn't structured in Organizational Units and doesn't focus on Kerberos authentication. Instead, Microsoft Entra ID manages user identities, apps, and access to Microsoft resources, including Azure, Microsoft 365, and other applications and operating systems that support Microsoft Entra ID.
 
-Servers themselves don’t "join" Microsoft Entra ID the way that they join a domain. Instead, an Arc-enabled server is joined to an Azure tenant governed by Microsoft Entra ID when it's first connected to Azure. With Microsoft Entra ID, users can be assigned roles to a designated scope (or added to a group with those permissions) by using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). Then, users with the appropriate permissions can use a Remote Desktop connection to access Windows Server machines, or [use SSH to access Linux](../ssh-arc-overview.md).
+Servers themselves don’t "join" Microsoft Entra ID the way that they join a domain. Instead, an Arc-enabled server is joined to an Azure tenant governed by Microsoft Entra ID when it first connects to Azure. With Microsoft Entra ID, users can be assigned roles to a designated scope (or added to a group with those permissions) by using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview). Then, users with the appropriate permissions can use a Remote Desktop connection to access Windows Server machines, or [use SSH to access Linux](../ssh-arc-overview.md).
 
 Your "admin account" is your Microsoft Entra ID identity (or a synced AD account) with appropriate roles in Azure. For example, to manage Arc-enabled servers, a Microsoft Entra ID user might have the Azure built-in role [Virtual Machine Administrator Login](/azure/role-based-access-control/built-in-roles/compute) role, or a custom role assignment you create with appropriate permissions. Rather than having one admin account that allows full access to every server, Microsoft Entra ID lets you scope roles to a specific set of Azure workloads, granting only the permissions required to perform the necessary tasks on Arc-enabled servers and native Azure resources.
 
 ## System-assigned managed identity
 
-Arc-enabled servers require a [system-assigned managed identity](../managed-identity-authentication.md)[2]. This is a type of enterprise application that represents the identity of a machine resource in Azure. Instead of storing credentials, applications running on the server can use the server's managed identity to authenticate to Azure. The Arc agent exposes an endpoint (think of IMDS on an Azure VM) that the app can use to request a token. The app doesn't need to authenticate to the nonroutable web service that provides tokens other than properly formatting the request (including a metadata header), so the expected security boundary is the VM. Your on-premises server can directly access Azure services without requiring hard-coded credentials, because Azure knows the request comes from that server, and authorizes it only based on the role assignments you set.
+Arc-enabled servers require a [system-assigned managed identity](../managed-identity-authentication.md). This is a type of enterprise application that represents the identity of a machine resource in Azure. Instead of storing credentials, applications running on the server can use the server's managed identity to authenticate to Azure. The Azure Arc Connected machine agent exposes an endpoint that the app can use to request a token. The app doesn't need to authenticate to the nonroutable web service that provides tokens other than properly formatting the request (including a metadata header), so the expected security boundary is the VM. Your on-premises server can directly access Azure services without requiring hard-coded credentials, because Azure knows the request comes from that server, and authorizes it only based on the role assignments you set.
 
 For a system administrator, one common scenario might be running an Azure CLI command on the server (which has Azure CLI installed) that calls into Azure Storage to retrieve an artifact used by an automation script. Since the server has an identity authorized access to that storage account, the request is completed without requiring a service account or personal access token (PAT).
 
@@ -43,9 +42,8 @@ Using PIM helps to reduce ongoing admin access and supports the [principle of le
 
 ## Hybrid identity configurations
 
-In practice, many enterprises run Arc-enabled servers that are also domain-joined to AD. These aren’t mutually exclusive; they complement each other. You might log into the server via AD when needed, but perform management tasks in Azure. 
+In practice, many enterprises run Arc-enabled servers that are also domain-joined to AD. These aren’t mutually exclusive; they complement each other. You might log into the server via AD when needed, but perform management tasks in Azure.
 
-On individual servers, you might still manage local accounts via AD, such as using Local Administrator Password Solution (LAPS) to rotate the local admin password). Since Azure Arc doesn't manage local accounts, you may want to keep using that process. You could even use Azure Policy to ensure that LAPS is enabled and storing passwords in Microsoft Entra.
+On individual servers, you might still manage local accounts via AD, such as using Local Administrator Password Solution (LAPS) to rotate the local admin password. Since Azure Arc doesn't manage local accounts, you may want to keep using that process. You could even use Azure Policy to ensure that LAPS is enabled and storing passwords in Microsoft Entra.
 
 There's plenty of flexibility to use the capabilities of Microsoft Entra and Azure, while still maintaining on-premises identity solutions that work for you. Over time, you'll find you need to interact less with maintaining service accounts or granting local admin rights, since you can have options managing identities in the cloud.
-
