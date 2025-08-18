@@ -56,7 +56,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - Configure network access settings ([public network access](container-registry-private-link.md#disable-public-access), [trusted services bypass](allow-access-trusted-services.md), [network firewall rules](container-registry-access-selected-networks.md), [dedicated data endpoints](container-registry-dedicated-data-endpoints.md), and [Virtual Network (VNET) service endpoints](container-registry-vnet.md))
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
-      - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md)).
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to configure quarantine and soft-delete settings for a registry.
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
     - None
@@ -75,6 +76,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement status](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to view quarantine and soft-delete settings for a registry.
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
     - None
@@ -107,9 +109,9 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
   - **Data plane permissions**:
     - Pull images and artifacts within repositories in the registry
-    - View and list OCI referrer artifacts
-    - View and list image and artifact metadata such as tags
-    - View and list repositories (image names) in the registry
+    - View and list OCI referrer artifacts within repositories in the registry
+    - View and list image and artifact metadata such as tags (listing and reading tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
 
 #### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
@@ -128,6 +130,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to configure quarantine and soft-delete settings for a registry.
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
     - None
@@ -146,6 +149,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [registry-wide quarantine enablement status](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to view quarantine and soft-delete settings for a registry.
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
   - **Data plane permissions**:
     - None
@@ -175,9 +179,9 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - Trigger [ACR image imports with `az acr import`](container-registry-import-images.md)
   - **Data plane permissions**:
     - Pull images and artifacts within repositories in the registry
-    - View and list OCI referrer artifacts
-    - View and list image and artifact metadata such as tags
-    - View and list repositories (image names) in the registry
+    - View and list OCI referrer artifacts within repositories in the registry
+    - View and list image and artifact metadata such as tags (listing and reading tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
     - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
 
 ---
@@ -197,11 +201,14 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - Pull images and artifacts within repositories in the registry
-    - View and list OCI referrer artifacts
-    - View and list image and artifact metadata such as tags
-    - View and list repositories (image names) in the registry
-    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
-    - **Doesn't grant repository catalog list permissions.**
+    - View and list OCI referrer artifacts within repositories in the registry
+    - View and list images and artifact metadata such as tags (listing and reading tags) within repositories in the registry
+    - **Doesn't grant repository catalog list permissions (permissions to list repositories in the registry)**
+    - View policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
   - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### Container Registry Repository Writer
@@ -211,11 +218,14 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - Push and pull images and artifacts within repositories in the registry
-    - Create, view, and list OCI referrer artifacts
-    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags)
-    - View and list repositories (image names) in the registry
-    - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling (but not disabling) artifact streaming conversion for specific images)
-    - **Doesn't grant repository catalog list permissions.**
+    - Create, view, and list OCI referrer artifacts within repositories in the registry
+    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags) within repositories in the registry
+    - **Doesn't grant repository catalog list permissions (permissions to list repositories in the registry)**
+    - Manage policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Enabling (**but not disabling**) [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+    - Manage [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
   - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### Container Registry Repository Contributor
@@ -225,11 +235,15 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - Push, pull, and **delete** images and artifacts within repositories in the registry
-    - Create, view, list, and **delete** OCI referrer artifacts
-    - Manage and **delete** image and artifact metadata such as tags (creating, reading, listing, retagging, untagging, and **deleting** tags)
-    - View and list repositories (image names) in the registry
-    - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling/**disabling** artifact streaming conversion for specific images)
-    - **Doesn't grant repository catalog list permissions.**
+    - Create, view, list, and **delete** OCI referrer artifacts within repositories in the registry
+    - Manage and **delete** image and artifact metadata such as tags (creating, reading, listing, retagging, untagging, and **deleting** tags) within repositories in the registry
+    - **Doesn't grant repository catalog list permissions (permissions to list repositories in the registry)**
+    - Manage policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Enabling **and disabling** [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+      - Disable artifact streaming support for a specific image by deleting an image's streaming OCI referrer artifact
+    - Manage [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
   - **ABAC support**: Supports optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
 
 ##### Container Registry Repository Catalog Lister
@@ -239,8 +253,8 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - None
     - **Data plane permissions**:
       - List all repositories (image names) in the registry
-      - Grants permissions to invoke the `{loginServerURL}/acr/v1/_catalog` or `{loginServerURL}/v2/_catalog` registry API endpoints to list all repositories in the registry.
-      - **Doesn't grant permissions to view or list images, artifacts, tags, or OCI referrers within repositories.**
+      - Grants permissions to invoke the `{loginServerURL}/acr/v1/_catalog` or `{loginServerURL}/v2/_catalog` registry API endpoints to list all repositories in the registry
+      - **Doesn't grant permissions to view or list images, artifacts, tags, or OCI referrers within repositories in the registry**
     - **ABAC support**: This role **doesn't support Entra ABAC conditions**. As such, this role assignment will **grant permissions to list all repositories** in the registry.
 
 ##### AcrQuarantineWriter
@@ -263,18 +277,6 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
 
 #### [Registries configured with "RBAC Registry Permissions"](#tab/registries-configured-with-rbac-registry-permissions)
 
-##### AcrPush
-- **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings.
-- **Permissions**: Grants data plane access to push and pull images and artifacts, manage tags, work with OCI referrers, and configure artifact streaming for repositories and images. Doesn't include any control plane permissions.
-  - **Control plane permissions**:
-    - None
-  - **Data plane permissions**:
-    - Push and pull images and artifacts within repositories in the registry
-    - Create, view, list, and delete OCI referrer artifacts
-    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags)
-    - View and list repositories (image names) in the registry
-    - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling (but not disabling) artifact streaming conversion for specific images)
-
 ##### AcrPull
 - **Use case**: Assign to container host nodes, orchestrators, vulnerability scanners, or developers that only need to pull images and read repository metadata—without permissions to push or modify content.
 - **Permissions**: Grants data plane read-only access to pull images and artifacts, view tags, repositories, OCI referrers, and artifact streaming configurations. Doesn't include any control plane or write permissions.
@@ -282,10 +284,30 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - None
   - **Data plane permissions**:
     - Pull images and artifacts within repositories in the registry
-    - View and list OCI referrer artifacts
-    - View and list image and artifact metadata such as tags
-    - View and list repositories (image names) in the registry
-    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
+    - View and list OCI referrer artifacts within repositories in the registry
+    - View and list image and artifact metadata such as tags (listing and reading tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
+    - Does not grant permissions to manage or view policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+    - Does not grant permissions to manage or view the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
+
+##### AcrPush
+- **Use case**: Assign to CI/CD pipelines, automation tools, or developers that need to push and pull container images, manage tags, and work with artifacts—without needing control over registry configuration or settings.
+- **Permissions**: Grants data plane access to push and pull images and artifacts, manage tags, work with OCI referrers, and configure artifact streaming for repositories and images. Doesn't include any control plane permissions.
+  - **Control plane permissions**:
+    - None
+  - **Data plane permissions**:
+    - Push and pull images and artifacts within repositories in the registry
+    - Create, view, list, and delete OCI referrer artifacts within repositories in the registry
+    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
+    - Does not grant permissions to manage or view policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Enable (**but not disable**) [artifact streaming](container-registry-artifact-streaming.md) for a specific image
+    - Does not grant permissions to manage or view the [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
+    - Does not grant permissions to manage, view, and list [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - Does not grant permissions to manage, view, and list [soft-deleted artifacts](container-registry-soft-delete-policy.md)
 
 ##### AcrDelete
 - **Use case**: Assign to identities or services responsible for managing image lifecycle and cleanup.
@@ -293,7 +315,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
   - **Control plane permissions**:
     - None
   - **Data plane permissions**:
-    - Delete images, artifacts, digests, and tags
+    - Delete images, artifacts, digests, and tags within repositories in the registry
     - Disable artifact streaming support for a specific image by deleting an image's streaming OCI referrer artifact
 
 ##### AcrImageSigner
@@ -356,6 +378,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - Configure [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - Configure authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - Configure registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to configure quarantine and soft-delete settings for a registry.
     - Configure registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
@@ -387,6 +410,7 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
       - View and list [private endpoint settings](container-registry-private-link.md) (set up, approve, reject, and list private endpoint connections and private link resources)
       - View and list authentication access settings ([admin user login credentials](container-registry-authentication.md#admin-account), [anonymous pull](anonymous-pull-access.md), [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md), and [Microsoft Entra authentication-as-arm token audience](container-registry-disable-authentication-as-arm.md))
       - View and list registry policies (configure [retention policy](container-registry-retention-policy.md), [quarantine enablement](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md), [soft-delete enablement](container-registry-soft-delete-policy.md), and [data exfiltration export policy](data-loss-prevention.md))
+      - Note: This role does not grant permissions to manage, view, and list quarantined or soft-deleted artifacts, only granting permissions to view quarantine and soft-delete settings for a registry.
     - View and list registry [diagnostics and monitoring settings](monitor-container-registry.md) (diagnostic settings, logs, metrics, [webhooks for registries and geo-replications](container-registry-webhook.md), and [Event Grid](container-registry-event-grid-quickstart.md))
     - View registry usage (storage usage)
   - **Data plane permissions**:
@@ -418,13 +442,14 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View registry usage (storage usage)
   - **Data plane permissions**:
     - Push and pull images and artifacts within repositories in the registry
-    - Create, view, list, and delete OCI referrer artifacts
-    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags)
-    - View and list repositories (image names) in the registry
-    - Configure [artifact streaming](container-registry-artifact-streaming.md) for repositories and images (such as setting repository policies for automatic artifact streaming conversion, and enabling/disabling artifact streaming conversion for specific images)
+    - Create, view, list, and delete OCI referrer artifacts within repositories in the registry
+    - Manage image and artifact metadata such as tags (creating, reading, listing, retagging, and untagging tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
+    - Manage policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Manage [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+    - Manage [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as configuring or viewing repository policies for automatic artifact streaming conversion)
     - Manage [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md) (list and read quarantined artifacts, modify artifact quarantine status)
-    - Manage [soft deleted artifacts](container-registry-soft-delete-policy.md) (list and restore soft deleted artifacts)
-    - Configure policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - Manage [soft-deleted artifacts](container-registry-soft-delete-policy.md) (list and restore soft-deleted artifacts)
     - Sign container images with [Docker Content Trust (DCT)](container-registry-content-trust.md)
 
 ##### Contributor
@@ -457,13 +482,14 @@ The applicable roles and role behavior depends on the registry's "Role assignmen
     - View registry usage (storage usage)
   - **Data plane permissions**:
     - Pull images and artifacts within repositories in the registry
-    - View and list OCI referrer artifacts
-    - View and list image and artifact metadata such as tags
-    - View and list repositories (image names) in the registry
-    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories and images (such as viewing repository policies for automatic artifact streaming conversion, and viewing artifact streaming configuration for an image)
-    - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
-    - View and list (but not manage) [soft deleted artifacts](container-registry-soft-delete-policy.md)
+    - View and list OCI referrer artifacts within repositories in the registry
+    - View and list image and artifact metadata such as tags (reading and listing tags) within repositories in the registry
+    - View and list all repositories (image names) in the registry
     - View policies for repositories and images (including [repository, image, digest, and tag locking](container-registry-image-lock.md))
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for a specific image
+    - View [artifact streaming](container-registry-artifact-streaming.md) configuration for repositories (such as viewing repository policies for automatic artifact streaming conversion)
+    - View and list (but not manage) [quarantined artifacts](https://github.com/Azure/acr/blob/main/docs/preview/quarantine/readme.md)
+    - View and list (but not manage) [soft-deleted artifacts](container-registry-soft-delete-policy.md)
 
 ---
 
