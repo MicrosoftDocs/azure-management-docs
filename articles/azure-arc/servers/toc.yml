@@ -233,6 +233,8 @@
     href: ./cloud-native/identity-access.md
   - name: Monitoring and alerts
     href: ./cloud-native/monitor-alerts.md
+  - name: Next steps
+    href: ./cloud-native/next-steps.md
 - name: Reference
   items:
   - name: azcmagent CLI

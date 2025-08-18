@@ -8,7 +8,7 @@ ms.topic: concept-article
 
 # Cloud-native patch management with Azure Arc-enabled servers
 
-Patching operating systems is a critical (if unglamorous) duty for any system administrators. Traditionally, one might use Windows Software Update Services (WSUS) or System Center Configuration Manager (SCCM) to manage Windows updates and schedule maintenance windows for servers. In the cloud-native approach, [Azure Update Manager](/azure/update-manager/overview) takes on this role, providing a unified patch management solution for Windows and Linux servers, whether they're Azure VMs or Arc-enabled on-premises machines.
+Patching operating systems is a critical (if unglamorous) duty for any system administrators. Traditionally, one might use Windows Server Update Services (WSUS) or System Center Configuration Manager (SCCM) to manage Windows updates and schedule maintenance windows for servers. In the cloud-native approach, [Azure Update Manager](/azure/update-manager/overview) takes on this role, providing a unified patch management solution for Windows and Linux servers, whether they're Azure VMs or Arc-enabled on-premises machines.
 
 Cloud-native OS patching via Azure Update Manager means centralized, policy-driven patching with greater flexibility and insight. You get features like maintenance windows and automation for complex workflows. And thanks to innovations like hotpatch, you can reduce downtime during updates. For a system administrator, this is a familiar job made easier: you set the rules and Azure carries out the patching. You spend less time manually managing updates, and can monitor all your environments via a centralized compliance report.
 
