@@ -14,7 +14,10 @@ Cloud-native OS patching via Azure Update Manager means centralized, policy-driv
 
 For example, suppose you have a large number of servers connected to Azure Arc. After you enable Azure Update Manager across your servers, you can define maintenance configurations. For example, you might create Group A (Dev) to get patched every week, Group B (Prod) to patch monthly with a two-hour window, and so on. You then assign servers (or whole resource groups) to these schedules. You can optionally specify pre or post tasks using Automation runbooks. When patches are delivered, you can monitor progress in the Azure portal, then later check to see if any updates are still outstanding.
 
-Let's take a closer look at the features that enable this modernized approach to patch management for your Arc-enabled servers.
+> [!TIP]
+> For deploying applications to Azure VMs, you can use [Virtual Machine Apps](/azure/virtual-machines/vm-applications) (VM Applications), a modern, flexible approach to managing applications. Application installation is decoupled from base VM images, eliminating the need to rebuild and republish VM images for every application change. Currently, Azure Arc-enabled servers don't support VM Applications, but [Run Command](../run-command.md) scripts and customized Machine Configuration can help deploy applications at scale to your on-premises environment.
+
+Let's take a closer look at the features that enable a modernized approach to patch management for your Arc-enabled servers.
 
 ## Unified patch compliance dashboard
 
