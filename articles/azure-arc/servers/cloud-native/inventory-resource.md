@@ -1,7 +1,7 @@
 ---
 title: Cloud-native inventory and resource organization with Azure Arc-enabled servers
 description: Cloud-native inventory means all your servers, Azure or not, show up in one consolidated view, and you use Azure's organizational tools to sort and manage them.
-ms.date: 08/18/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand Azure's hierarchy for organizing cloud resources and how to use Azure to manage my hybrid server organization."
 ---

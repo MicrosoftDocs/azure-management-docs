@@ -1,7 +1,7 @@
 ---
 title: Cloud-native scripting and task automation with Azure Arc-enabled servers
 description: Azure Arc-enabled servers helps you automate tasks to make managing servers more like managing code.
-ms.date: 08/18/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As an administrator managing a hybrid cloud environment, I want to use Azure Arc-enabled servers' capabilities to automate tasks, so I can manage my hybrid environment more efficiently."
 ---

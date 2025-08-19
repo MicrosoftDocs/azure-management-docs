@@ -1,7 +1,7 @@
 ---
 title: Cloud-native monitoring and alerts with Azure Arc-enabled servers
 description: Azure Monitor is the central service for collecting, analyzing, and acting on telemetry from your Azure and hybrid infrastructure, including Arc-enabled servers. 
-ms.date: 08/15/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As a cloud administrator managing a hybrid environment, I want to understand how Azure Arc lets me use Azure's powerful monitoring solutions, so I can maintain visibility into my entire server landscape."
 ---

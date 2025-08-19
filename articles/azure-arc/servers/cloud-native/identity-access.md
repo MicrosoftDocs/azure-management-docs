@@ -1,7 +1,7 @@
 ---
 title: Identity and access management with Azure Arc-enabled servers
 description: You can use Microsoft Entra with Azure Arc-enabled servers to manage identity and access control in your hybrid environment.
-ms.date: 08/18/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As a cloud administrator managing a hybrid environment, I want to control access to Azure Arc-enabled servers through Microsoft Entra, so I can use Azure's identity system to control access to resources."
 ---

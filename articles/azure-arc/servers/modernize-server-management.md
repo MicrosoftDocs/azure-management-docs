@@ -1,7 +1,7 @@
 ---
 title: How to modernize server management from Configuration Manager to Azure Arc
 description: Learn how to modernize server management from Configuration Manager to Azure Arc.
-ms.date: 08/01/2025
+ms.date: 08/19/2025
 ms.topic: how-to
 # Customer intent: "As a server administrator using Configuration Manager, I want to transition management to Azure Arc, so that I can leverage modern capabilities for OS patching, compliance monitoring, and unified reporting across both Windows and Linux environments."
 ---
@@ -32,7 +32,7 @@ Core Functionality | Azure Management Experience
 **Configuration** | [Azure Machine Configuration](/azure/governance/machine-configuration/) (formerly Azure Policy Guest Configuration) aligns with SCCM's desired state configuration features, enabling:<ul><li>Definition and enforcement of configuration policies for application and operating system settings</li><li>Continuous assessment of machine compliance with out-of-box reporting on compliance status</li><li>Automated remediation of noncompliant settings</li></ul>You can author customized Desired State Configuration for custom policies and configurations. Machine Configuration is available natively for Azure Arc-enabled servers and as a VM extension for Azure VMs.
 **Reporting** | [Azure Change Tracking and Inventory](/azure/automation/change-tracking/overview-monitoring-agent?tabs=win-az-vm) delivers unified reporting of software, registries, applications, and daemons across Azure VMs and Azure Arc-enabled servers, including a history of their changes and out-of-box logging.<br><br>[Azure Resource Graph](/azure/governance/resource-graph/) can be used for custom queries and reporting across a fleet of Azure Arc-enabled servers. The Azure portal offers at-scale and granular visualizations for Azure VMs and Azure Arc-enabled servers.
 **Scripting** | [Run Command](run-command.md) allows administrators to remotely and securely execute scripts for various server management tasks, including application management, security enforcement, and diagnostics:<ul><li>Centralized script management (creation, update, deletion, sequencing, and listing operations for scripts)</li><li>Task automation for installing software, configuring firewall rules, running health checks, and troubleshooting issues</li></ul>Run Command is available for both Azure Arc-enabled servers and Azure VMs.
-**Software Distribution** | [Virtual Machine Apps](/azure/virtual-machines/vm-applications?tabs=ubuntu) (VM Apps) allows administrators to safely package and distribute software to their Azure VMs. You can upload VM Application images to their Azure Compute Gallery and specify the target scope of Azure VMs. Azure Arc-enabled servers don't currently support VM Apps. You can use Run Command scripts and customized Machine Configuration for software distribution.
+**Software Distribution** | [Virtual Machine Applications](/azure/virtual-machines/vm-applications?tabs=ubuntu) (VM Applications) allows administrators to safely package and distribute software to their Azure VMs. You can upload VM Application images to their Azure Compute Gallery and specify the target scope of Azure VMs. Azure Arc-enabled servers don't currently support VM Applications. You can use Run Command scripts and customized Machine Configuration for software distribution.
 
 We continue to enhance Azure Arc-enabled servers with new capabilities for even greater parity and functionality in areas such as software distribution, app patching, and unified operations, and distribution points.
 

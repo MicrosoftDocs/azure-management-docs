@@ -1,7 +1,7 @@
 ---
 title: Cloud-native governance and policy with Azure Arc-enabled servers
 description: Azure Policy lets you audit and enforce critical settings, providing a holistic view of your hybrid environment.
-ms.date: 08/18/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As a cloud administrator managing a hybrid environment, I want to understand Azure's approach to governance and enforcing policies across resources, so I can manage my hybrid servers consistently and maintain organizational compliance."
 ---

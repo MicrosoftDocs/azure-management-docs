@@ -1,7 +1,7 @@
 ---
 title: Cloud-native licensing and cost management with Azure Arc-enabled servers
 description: Cloud-native licensing options for Azure Arc help reduce overhead of license management and ensure your servers have appropriate, up-to-date coverage.
-ms.date: 08/18/2025
+ms.date: 08/19/2025
 ms.topic: concept-article
 # Customer intent: "As an administrator managing a hybrid cloud environment, I want to understand licensing and cost management options for Azure Arc, so I can manage my hybrid server licenses and have visibility into costs."
 ---
@@ -43,8 +43,6 @@ Azure Arc provides flexibility to manage your SQL Server licensing. You can [tra
 By shifting server licensing to Azure subscriptions, you can streamline procurement and improve compliance. Rather than buying licenses once and hoping they're used efficiently, pay-as-you-go means you pay exactly for what's running. If a server is decommissioned, the cost drops automatically. If you deploy an extra SQL Server instance for a week, you pay just for that week.
 
 These processes align with FinOps (Cloud Financial Management) principles: turning software costs into measurable, adjustable cloud spend. It also means no more true-up surprise bills: everything is in your Azure invoice and can be analyzed with [Microsoft Cost Management and Billing](/azure/cost-management-billing/cost-management-billing-overview).
-
-Microsoft also often allows using existing Software Assurance (SA) benefits. For example, if you have Windows Server with SA, you might be eligible to use [Azure Hybrid Benefit](https://azure.microsoft.com/pricing/offers/hybrid-benefit/), which could reduce your costs: [features such as Windows Admin Center and Azure Update Manager are free for those servers](https://azure.microsoft.com/pricing/details/azure-arc/core-control-plane/). Having SA or equivalent might give you discounts or free management add-ons, while pay-as-you-go covers the license itself.
 
 ## Licensing and patching together
 
