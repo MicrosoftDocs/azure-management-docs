@@ -1,7 +1,7 @@
 ---
 title: Next steps for cloud-native server management with Azure Arc-enabled servers
 description: Learn how to transition your server management into a cloud-native model using Azure Arc-enabled servers. 
-ms.date: 08/01/2025
+ms.date: 08/19/2025
 ms.topic: overview
 # Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand how start moving from traditional on-premises management to a cloud-native model by using the management capabilities of Azure Arc-enabled servers."
 ---
@@ -30,7 +30,7 @@ You might even decide that it makes sense to maintain overlapping solutions duri
 
 Look for ways to automate common tasks. For example, you can use Azure Policy to automatically apply tags when your servers meet certain requirements. You can create scripts that automatically onboard new servers to Azure Arc by installing the Connected Machine agent as part of server provisioning. These types of automations reduce manual work and ensure consistency.
 
-Leverage Azure's strengths by treating your Arc-managed servers with the same security rigor available for Azure VMs. By using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/built-in-roles), you can ensure that only the right people can perform actions on your Arc-enabled servers, following the principle of least privilege. Microsoft Defender for Cloud provides recommendations for your Arc-enabled servers to improve your security posture, helping you address issues such as missing updates or vulnerable configurations. Many of these recommendations can be addressed immediatly by applying an Azure Policy or script. Azure Activity logs record actions and provide an audit trail.
+Leverage Azure's strengths by treating your Arc-managed servers with the same security rigor available for Azure VMs. By using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/built-in-roles), you can ensure that only the right people can perform actions on your Arc-enabled servers, following the principle of least privilege. Microsoft Defender for Cloud provides recommendations for your Arc-enabled servers to improve your security posture, helping you address issues such as missing updates or vulnerable configurations. Many of these recommendations can be addressed immediately by applying an Azure Policy or script. Azure Activity logs record actions and provide an audit trail.
 
 To ensure the Azure Connected Machine agent (and dependent agents like Azure Monitor agent) remain healthy on each server, you can create alerts that notify you when an Arc-enabled server is unreachable, or if an extension has failed.
 
@@ -42,7 +42,7 @@ Your team may also need to get familiar with using the Azure portal and Azure CL
 
 ## Community resources
 
-Azure Arc is still evolving, with new capabilities rolled out regularly. Staying informed helps you explore new approaches and try out preview features to optimise your cloud management road map.
+Azure Arc is still evolving, with new capabilities rolled out regularly. Staying informed helps you explore new approaches and try out preview features to optimize your cloud management road map.
 
 Follow the [Azure Arc blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) to stay updated on the latest features and news related to Azure Arc. You can also view [Azure Updates](https://azure.microsoft.com/updates/) to get the latest updates on all Azure products and features.
 

@@ -30,7 +30,7 @@ For a system administrator, one common scenario might be running an Azure CLI co
 
 ## Role-based access control (RBAC)
 
-Azure’s model encourages granular RBAC. Because different built-in roles enable different types of acess, you can assign roles with very limited permissions. For instance, a user could have a role that only grants the ability to use [Run Command](../run-command.md) on Arc-enabled servers, or allows read-only access to a configuration and nothing more.
+Azure’s model encourages granular RBAC. Because different built-in roles enable different types of access, you can assign roles with very limited permissions. For instance, a user could have a role that only grants the ability to use [Run Command](../run-command.md) on Arc-enabled servers, or allows read-only access to a configuration and nothing more.
 
 A common built-in role used with Azure Arc is the [Azure Connected Machine Onboarding role](/azure/role-based-access-control/built-in-roles/management-and-governance). Users with this role can onboard servers to Azure Arc, but can't do most other management tasks unless additional roles are granted. Similarly, you can give application owners roles that allow them to deploy patches on their servers via Azure Automation without giving them actual OS login access. This level of fine-tuning supports "just-enough" administration principles.
 

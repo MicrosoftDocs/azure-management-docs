@@ -1,9 +1,9 @@
 ---
 title: Cloud-native server management with Azure Arc-enabled servers
-description: Azure Arc transforms traditional server management by extending Azure’s control plane to on-premises and multi-cloud servers. 
+description: Azure Arc transforms traditional server management by extending Azure's control plane to your on-premises environment. 
 ms.date: 08/19/2025
 ms.topic: overview
-# Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand how to extend Azure's management capabilities to my on-premises and multi-cloud servers."
+# Customer intent: "As a system architect managing a hybrid cloud environment, I want to understand how to extend Azure's management capabilities to my on-premises servers."
 ---
 
 # Cloud-native server management with Azure Arc-enabled servers
@@ -22,7 +22,7 @@ The following table provides an overview of key Azure services and concepts that
 | **Patching** | [Azure Update Manager](/azure/update-manager/) provides a centralized solution for update assessment and management across Windows and Linux. [Hotpatching](/azure/update-manager/manage-hot-patching-arc-machines) can deliver OS security updates  without requiring a reboot. |
 | **Inventory** | [Azure Resource Manager](/azure/azure-resource-manager/management/overview) provides a management layer for creating, updating, and deleting resources, with features like access control, locks, and tags to secure and organize resources after deployment. [Azure Change Tracking and Inventory](/azure/automation/change-tracking/overview-monitoring-agent) monitors changes and providing detailed inventory logs for servers across Azure, on-premises, and other cloud environments. [Azure Resource Graph](/azure/governance/resource-graph/) can be used for custom queries and reporting across a fleet of servers. |
 | **Scripting** | [Run Command](../run-command.md) allows administrators to remotely and securely execute scripts for various server management tasks, including application management, security enforcement, and diagnostics. [SSH access to Arc-enabled servers](../ssh-arc-overview.md) enables connection without requiring a public IP address or additional open ports. |
-| **Software deployment** | [Virtual Machine Applications](/azure/virtual-machines/vm-applications) (VM Applications) allows administrators to safely package and distribute software to their Azure VMs. While Azure Arc-enabled servers don't currently support VM Applicationss, you can use Run Command scripts and customized Machine Configuration for software distribution. |
+| **Software deployment** | [Virtual Machine Applications](/azure/virtual-machines/vm-applications) (VM Applications) allows administrators to safely package and distribute software to their Azure VMs. While Azure Arc-enabled servers don't currently support VM Applications, you can use Run Command scripts and customized Machine Configuration for software distribution. |
 | **Licensing** | Pay-as-you-go licensing for Windows Server and SQL Server let you pay for only what you use when you use it. Extended Security Updates (ESUs) via Azure Arc simplifies the process of delivering security updates to your on-premises Windows Server 2012 machines. |
 | **Identity** | [Microsoft Entra](/entra/fundamentals/whatis) helps manage user identities, apps, and access to Microsoft resources. [Azure  role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) lets you assign specific roles to follow the principle of least privilege. |
 
