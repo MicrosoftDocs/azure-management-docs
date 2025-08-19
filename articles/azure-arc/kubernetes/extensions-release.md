@@ -167,7 +167,7 @@ The `source-controller` recently updated its dependency on the "`github.com/Mast
 
 **What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
 
-### 1.17.2 (August 2025)
+### `microsoft.flux` version 1.17.2 (August 2025)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
@@ -182,7 +182,7 @@ Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 
-### 1.16.12 (July 2025)
+### `microsoft.flux` version 1.16.12 (July 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
 
@@ -197,7 +197,7 @@ Changes in this version include:
 
 - Addressed security vulnerabilities in `fluent-bit-mdm` by updating the Go packages.
 
-### 1.16.8 (June 2025)
+### `microsoft.flux` version 1.16.8 (June 2025)
 
 Flux version: [Release v2.5.1](https://github.com/fluxcd/flux2/releases/tag/v2.5.1)
 
