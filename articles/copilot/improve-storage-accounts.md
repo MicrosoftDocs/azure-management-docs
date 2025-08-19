@@ -95,7 +95,7 @@ If you see an error code, you can ask Copilot in Azure to help you understand th
 
 You can ask Copilot in Azure to help you manage the costs for your storage accounts. One way to save on storage costs is by tiering blobs that haven't been accessed or modified for some time. In some instances, you may even wish to delete those blobs.
 
-When you ask Copilot in Azure about reducing your storage costs, it provides suggestions and helps you accomplish bulk tiering by automating [lifecycle management rule](/azure/storage/blobs/lifecycle-management-overview#lifecycle-management-rule-definition) authoring.
+When you ask Copilot in Azure about reducing your storage costs, it provides suggestions and helps you accomplish bulk tiering by automating [lifecycle management policy](/azure/storage/blobs/lifecycle-management-overview) authoring.
 
 ### Storage cost reduction sample prompts
 
@@ -105,10 +105,10 @@ When you ask Copilot in Azure about reducing your storage costs, it provides sug
 - "Help me reduce the costs of my storage account"
 - "I want to reduce the amount I am paying in storage"
 - "Help me reduce the amount I’m paying in storage"
-- "Help me write an LCM rule for my storage account"
+- "Help me write a lifecycle management policy for my storage account"
 - "I want to create an LCM rule for my storage account"
-- "Create an LCM rule for my storage account"
-- "Help me create an LCM rule for my storage account."
+- "Create an LCM policy for my storage account"
+- "Help me create a lifecycle management rule for my storage account"
 
 ### Storage cost reduction example
 
