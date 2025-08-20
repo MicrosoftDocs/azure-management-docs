@@ -115,11 +115,11 @@ After the resource is created successfully, the success response will include th
 
 |URL  |Purpose  |
 |---------|---------|
-|`[Your URL Prefix].gw.arc.azure.com`  |Your gateway URL (obtained by running `az arcgateway list` after you create your gateway resource)  |
+|`<Your URL prefix>.gw.arc.azure.com`  |Your gateway URL (obtained by running `az arcgateway list` after you create your gateway resource)  |
 |`management.azure.com`  |Azure Resource Manager endpoint, required for Azure Resource Manager control channel  |
 |`login.microsoftonline.com`, `<region>.login.microsoft.com`  |Microsoft Entra ID endpoint for acquiring identity access tokens  |
 |`gbl.his.arc.azure.com`  |The cloud service endpoint for communicating with Azure Arc agents  |
-|`\<region\>.his.arc.azure.com`  |Used for Arc's core control channel  |
+|`<region>.his.arc.azure.com`  |Used for Arc's core control channel  |
 |`packages.microsoft.com`  |Required to connect Linux servers to Arc  |
 
 ## Onboard new Azure Arc resources with your Arc gateway resource
