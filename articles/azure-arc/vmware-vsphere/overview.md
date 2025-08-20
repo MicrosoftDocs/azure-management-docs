@@ -33,7 +33,7 @@ Azure Arc-enabled VMware vSphere allows you to:
 
 - Leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, [Extended Security Updates](/azure/azure-arc/vmware-vsphere/deliver-extended-security-updates-for-vmware-vms-through-arc) benefits for Windows Server and SQL Server with pay-as-you-go billing for on-premises VMs and free SQL ESUs for AVS VMs.
 
-For the latest information on Azure Arc, see the [Tech Community blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) for Azure Arc.
+For information on Azure Arc, see the [Tech Community blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) for Azure Arc.
 
 ## How does it work?
 
