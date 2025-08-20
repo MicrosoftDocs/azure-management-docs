@@ -17,12 +17,12 @@ This article describes how to set up a zone-redundant replica in an Azure region
 
 [Geo-replication](/azure/reliability/reliability-container-registry#multi-region-support) in the [Premium tier of Azure Container Registry](container-registry-skus.md) replicates your container registry's contents to multiple Azure regions.
 
-When your registry uses geo-replication, your replicas will also be zone redundant when the replica is provisioned in an Availablity Zone enabled region. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region.
+When your registry uses geo-replication, your replicas will also be zone redundant when the replica is provisioned in an Availability Zone enabled region. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region.
 
 Zone redundancy is enabled by default for all Azure Container Registry replicas in regions that support availability zones, making your resources more resilient automatically and at no additional cost. This enhancement to both new and existing replicas in supported regions.
 
 >[!IMPORTANT]
->The Azure portal and CLI may not yet reflect the zone redundancy update accurately. The `zoneRedundancy` property in your replicas’s configuration might still show as false even though zone redundancy is active for all replicas in supported regions. We’re actively updating the portal and API surfaces to reflect this default behavior more transparently. All previously enabled features will continue to function as expected.
+>The Azure portal and CLI may not yet reflect the zone redundancy update accurately. The `zoneRedundancy` property in your replica’s configuration might still show as false even though zone redundancy is active for all replicas in supported regions. We’re actively updating the portal and API surfaces to reflect this default behavior more transparently. All previously enabled features will continue to function as expected.
 
 For more information about availability zone support requirements and features, as well as multi-region deployment options, see [Reliability in Azure Container Registry](/azure/reliability/reliability-container-registry).
 
