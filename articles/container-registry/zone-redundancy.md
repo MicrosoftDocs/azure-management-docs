@@ -15,7 +15,10 @@ ms.service: azure-container-registry
 
 This article describes how to set up a zone-redundant container registry.
 
-Zone redundancy in the [Premium tier of Azure Container Registry](container-registry-skus.md) provides protection against single zone failures. Zone redundancy allows for the distributing of registry data and operations across multiple availability zones within the region.
+Zone redundancy is enabled by default for all Azure Container Registries in regions that support availability zones, making your resources more resilient automatically and at no additional cost. This enhancement applies to all SKUs including Basic and Standard and has been rolled out to both new and existing registries in supported regions.
+
+>[!IMPORTANT]
+>The Azure portal and CLI may not yet reflect the zone redundancy update accurately. The `zoneRedundancy` property in your registry’s configuration might still show as false even though zone redundancy is active for all registries in supported regions. We’re actively updating the portal and API surfaces to reflect this default behavior more transparently. All previously enabled features will continue to function as expected.
 
 For more information about availability zone support requirements and features, as well as multi-region deployment options, see [Reliability in Azure Container Registry](/azure/reliability/reliability-container-registry).
 
@@ -24,8 +27,6 @@ For more information about availability zone support requirements and features, 
 - An [Azure subscription](https://azure.microsoft.com/free/).
 
 - Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
-
-- You must use the [Premium service tier](container-registry-skus.md) to enable zone redundancy in Azure Container Registry.
 
 ## Create a zone-redundant registry
 
