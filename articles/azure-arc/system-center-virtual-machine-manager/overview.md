@@ -1,7 +1,7 @@
 ---
 title:  Overview of the Azure Arc-enabled System Center Virtual Machine Manager 
 description: This article provides a detailed overview of the Azure Arc-enabled System Center Virtual Machine Manager.
-ms.date: 08/20/2025
+ms.date: 08/21/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
@@ -30,7 +30,7 @@ Azure Arc-enabled SCVMM allows you to:
 - Build automation and self-service pipelines using Python, Java, JavaScript, Go, and .NET SDKs; Terraform, ARM, and Bicep templates; Azure REST APIs, CLI, and PowerShell.
 - Leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server and SQL Server VMs. 
 
-For information on Azure Arc, see the [Tech Community blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) for Azure Arc.
+For updates on the capabilities and enhancements of Azure Arc, see the [Tech Community blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) for Azure Arc.
 
 ## How does it work?
 
