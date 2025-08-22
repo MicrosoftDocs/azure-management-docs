@@ -1,7 +1,7 @@
 ---
 title: SSH access to Azure Arc-enabled servers
 description: Use SSH remoting to access and manage Azure Arc-enabled servers.
-ms.date: 06/13/2025
+ms.date: 08/22/2025
 ms.topic: concept-article
 ms.custom: references_regions
 # Customer intent: As an IT administrator, I want to configure SSH access to Azure Arc-enabled servers without public IPs, so that I can securely manage both Linux and Windows machines using existing SSH tools without exposing additional ports.
@@ -42,16 +42,19 @@ Get-WindowsCapability -Online | Where-Object Name -like 'OpenSSH*'
 Get-Service sshd
 ```
 
+> [!TIP]
+> Starting with Windows Server 2025, OpenSSH is installed by default.
+
 ## Microsoft Entra authentication
 
-If you use Microsoft Entra for authentication, you must install `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) on the Arc-enabled server. These packages are installed with the `AADSSHLoginForLinux` VM extension.
+To use Microsoft Entra for authentication, you must install `aadsshlogin` and `aadsshlogin-selinux` (as appropriate) on the Arc-enabled server. These packages are installed when you deploy the `AADSSHLoginForLinux` [virtual machine (VM) extension](manage-vm-extensions.md).
 
-You must also configure role assignments for the virtual machine (VM). Two Azure roles are used to authorize VM login:
+You must also configure role assignments for the VM. Two Azure roles are used to authorize VM login:
 
 - **Virtual Machine Administrator Login**: Users who have this role assigned can log in to an Azure VM with administrator privileges.
 - **Virtual Machine User Login**: Users who have this role assigned can log in to an Azure VM with regular user privileges.
 
-An Azure user with the Owner or Contributor role assigned for a VM doesn't automatically have privileges for Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines.
+An Azure user with the Owner or Contributor role assigned for a VM doesn't automatically have privileges for Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines. Because these roles grant a high level of access, consider using [Microsoft Entra Privileged Identity Management](/entra/id-governance/privileged-identity-management/pim-configure) for auditable just-in-time access.
 
 > [!NOTE]
 > The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
@@ -172,7 +175,7 @@ az connectedmachine extension create --machine-name <arc enabled server name> --
 
 ## Examples
 
-To view examples and more details, view the Az CLI documentation page for [az ssh](/cli/azure/ssh) or the Azure PowerShell documentation page for [Az.Ssh](/powershell/module/az.ssh).
+You can use Azure CLI or Azure PowerShell to access Arc-enabled servers via SSH. For examples and more details, see [az ssh](/cli/azure/ssh#az-ssh) (Azure CLI) or [Az.Ssh](/powershell/module/az.ssh) (Azure PowerShell).
 
 ## Disable SSH to Arc-enabled servers
 
@@ -200,12 +203,19 @@ If you need to remove SSH access to your Arc-enabled servers, follow the steps b
    Invoke-AzRestMethod -Method delete -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default/serviceconfigurations/SSH?api-version=2023-03-15 -Payload '{"properties": {"serviceName": "SSH", "port": "22"}}'
    ```
 
-1. Delete the default connectivity endpoint: 
+1. Delete the default connectivity endpoint:
+
    ```azurepowershell
    Invoke-AzRestMethod -Method delete -Path /subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default?api-version=2023-03-15
    ```
 
 ---
+
+To disable all remote access to your machine, including SSH access, you can run the following `azcmagent config` command on the machine:
+
+```
+azcmagent config set incomingconnections.enabled false
+```
 
 ## Next steps
 

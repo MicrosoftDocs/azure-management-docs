@@ -138,6 +138,12 @@ Append an extension to the extension allowlist.
 azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorWindowsAgent" --add
 ```
 
+Disable all remote access to a machine:
+
+```
+azcmagent config set incomingconnections.enabled false
+```
+
 ### Flags
 
 `-a`, `--add`
