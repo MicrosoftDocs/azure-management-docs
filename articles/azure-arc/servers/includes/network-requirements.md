@@ -1,7 +1,7 @@
 ---
 ms.service: azure-arc
 ms.topic: include
-ms.date: 08/13/2025
+ms.date: 08/22/2025
 # Customer intent: "As a network administrator, I want to configure secure outbound connectivity for the Azure Connected Machine agent, so that I can ensure proper communication with Azure Arc while adhering to my organization's security policies."
 ---
 
@@ -34,6 +34,9 @@ For a list of IP addresses for each service tag/region, see the JSON file [Azure
 If you filter traffic to the AzureArcInfrastructure service tag, you must allow traffic to the full service tag range. The ranges advertised for individual regions, for example AzureArcInfrastructure.AustraliaEast, do not include the IP ranges used by global components of the service. The specific IP address resolved for these endpoints may change over time within the documented ranges, so just using a lookup tool to identify the current IP address for a given endpoint and allowing access to that will not be sufficient to ensure reliable access.
 
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
+
+> [!IMPORTANT]
+> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, use the AzureArcInfrastructure service tag for the Azure public cloud. After September 30, 2025, the AzureArcInfrastructure service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
 
 ### URLs
 
