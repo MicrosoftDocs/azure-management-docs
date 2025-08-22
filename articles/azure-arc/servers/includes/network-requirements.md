@@ -11,32 +11,32 @@ Azure Arc-enabled server endpoints are required for all server based Arc offerin
 
 The Azure Connected Machine agent for Linux and Windows communicates outbound securely to Azure Arc over TCP port 443. By default, the agent uses the default route to the internet to reach Azure services. You can optionally [configure the agent to use a proxy server](../manage-agent.md#update-or-remove-proxy-settings) if your network requires it. Proxy servers don't make the Connected Machine agent more secure because the traffic is already encrypted.
 
-To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc Private Link Scope](../private-link-security.md) .
+To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc Private Link Scope](../private-link-security.md).
 
 > [!NOTE]
 > Azure Arc-enabled servers does not support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateway.
 
-If outbound connectivity is restricted by your firewall or proxy server, make sure the URLs and Service Tags listed below are not blocked.
+If outbound connectivity is restricted by your firewall or proxy server, make sure the URLs and service tags listed below are not blocked.
 
 ### Service tags
 
-Be sure to allow access to the following Service Tags:
+Be sure to allow access to the following service tags:
 
-* AzureActiveDirectory
-* AzureTrafficManager
-* AzureResourceManager
-* AzureArcInfrastructure
-* Storage
-* WindowsAdminCenter (if [using Windows Admin Center to manage Arc-enabled servers](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines))
+* **AzureActiveDirectory**
+* **AzureTrafficManager**
+* **AzureResourceManager**
+* **AzureArcInfrastructure**
+* **Storage**
+* **WindowsAdminCenter** (if [using Windows Admin Center to manage Arc-enabled servers](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines))
 
-For a list of IP addresses for each service tag/region, see the JSON file [Azure IP Ranges and Service Tags – Public Cloud](https://www.microsoft.com/download/details.aspx?id=56519). Microsoft publishes weekly updates containing each Azure Service and the IP ranges it uses. This information in the JSON file is the current point-in-time list of the IP ranges that correspond to each service tag. The IP addresses are subject to change. If IP address ranges are required for your firewall configuration, then the **AzureCloud** Service Tag should be used to allow access to all Azure services. Do not disable security monitoring or inspection of these URLs, allow them as you would other Internet traffic.
+For a list of IP addresses for each service tag/region, see the JSON file [Azure IP Ranges and Service Tags – Public Cloud](https://www.microsoft.com/download/details.aspx?id=56519). Microsoft publishes weekly updates containing each Azure Service and the IP ranges it uses. The information in the JSON file is the current point-in-time list of the IP ranges that correspond to each service tag. The IP addresses are subject to change. If IP address ranges are required for your firewall configuration, then the **AzureCloud** service tag should be used to allow access to all Azure services. Don't disable security monitoring or inspection of these URLs; allow them as you would other Internet traffic.
 
-If you filter traffic to the AzureArcInfrastructure service tag, you must allow traffic to the full service tag range. The ranges advertised for individual regions, for example AzureArcInfrastructure.AustraliaEast, do not include the IP ranges used by global components of the service. The specific IP address resolved for these endpoints may change over time within the documented ranges, so just using a lookup tool to identify the current IP address for a given endpoint and allowing access to that will not be sufficient to ensure reliable access.
+If you filter traffic to the **AzureArcInfrastructure** service tag, you must allow traffic to the full service tag range. The ranges advertised for individual regions, for example **AzureArcInfrastructure.AustraliaEast**, don't include the IP ranges used by global components of the service. The specific IP address resolved for these endpoints may change over time within the documented ranges. Because of this, using a lookup tool to identify the current IP address for a given endpoint and allowing access to just that IP address isn't sufficient to ensure reliable access.
 
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 > [!IMPORTANT]
-> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, use the AzureArcInfrastructure service tag for the Azure public cloud. After September 30, 2025, the AzureArcInfrastructure service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
+> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, use the **AzureArcInfrastructure** service tag for the Azure public cloud. After September 30, 2025, the **AzureArcInfrastructure** service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
 
 ### URLs
 
