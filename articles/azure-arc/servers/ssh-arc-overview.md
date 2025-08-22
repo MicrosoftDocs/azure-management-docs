@@ -57,7 +57,7 @@ You must also configure role assignments for the VM. Two Azure roles are used to
 An Azure user with the Owner or Contributor role assigned for a VM doesn't automatically have privileges for Microsoft Entra login to the VM over SSH. There's an intentional (and audited) separation between the set of people who control virtual machines and the set of people who can access virtual machines. Because these roles grant a high level of access, consider using [Microsoft Entra Privileged Identity Management](/entra/id-governance/privileged-identity-management/pim-configure) for auditable just-in-time access.
 
 > [!NOTE]
-> The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice avoids the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
+> The Virtual Machine Administrator Login and Virtual Machine User Login roles use `dataActions` and can be assigned at the management group, subscription, resource group, or resource scope. We recommend that you assign the roles at the management group, subscription, or resource level and not at the individual VM level. This practice helps avoid the risk of reaching the [Azure role assignments limit](/azure/role-based-access-control/troubleshoot-limits) per subscription.
 
 ### Availability
 
