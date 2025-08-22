@@ -72,13 +72,13 @@ To enable SSH access to Arc-enabled servers, follow the steps in this section.
 > [!NOTE]
 > This is a one-time operation that needs to be performed on each subscription.
 
-Check if the HybridConnectivity resource provider has been registered:
+Check if the HybridConnectivity resource provider is registered:
 
 ```azurecli
 az provider show -n Microsoft.HybridConnectivity -o tsv --query registrationState
 ```
 
-If the resource provider hasn't been registered, run the following command to register it:
+If the resource provider isn't registered, run the following command to register it:
 
 ```azurecli
 az provider register -n Microsoft.HybridConnectivity
@@ -97,7 +97,7 @@ az rest --method put --uri https://management.azure.com/subscriptions/<subscript
 ```
 
 > [!NOTE]
-> If using Azure CLI from PowerShell, the following should be used.
+> If using Azure CLI from PowerShell, the following command should be used.
 
 ```powershell
 az rest --method put --uri https://management.azure.com/subscriptions/<subscription>/resourceGroups/<resourcegroup>/providers/Microsoft.HybridCompute/machines/<arc enabled server name>/providers/Microsoft.HybridConnectivity/endpoints/default?api-version=2023-03-15 --body '{\"properties\":{\"type\":\"default\"}}'
@@ -179,7 +179,7 @@ You can use Azure CLI or Azure PowerShell to access Arc-enabled servers via SSH.
 
 ## Disable SSH to Arc-enabled servers
 
-If you need to remove SSH access to your Arc-enabled servers, follow the steps below.
+To remove SSH access to your Arc-enabled servers, follow these steps.
 
  #### [Azure CLI](#tab/azure-cli)
 
@@ -211,7 +211,7 @@ If you need to remove SSH access to your Arc-enabled servers, follow the steps b
 
 ---
 
-To disable all remote access to your machine, including SSH access, you can run the following `azcmagent config` command on the machine:
+To disable all remote access to your machine, including SSH access, you can run the following [`azcmagent config`](azcmagent-config.md) command on the machine:
 
 ```
 azcmagent config set incomingconnections.enabled false
