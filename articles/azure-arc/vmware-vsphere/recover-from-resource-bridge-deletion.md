@@ -66,10 +66,10 @@ To deploy the new resource bridge, follow these steps:
 1. **This step is only if you are using Arc-enabled AVS. Do not follow this step if you are using Arc-enabled VMware.** Run the following command: `az rest --method delete --url  "https://management.azure.com/subscriptions/ <subId>/resourcegroups/<rgName>/providers/Microsoft.AVS/privateClouds/<pcName>/addons/arc?api-version=2022-05-01"`  
  
 
-1. [Run the onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#run-the-script) again with the `--force` parameter. The script prompts you to enter the resource bridge configuration settings. [Provide the inputs](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) as prompted. You can reuse the same IPs and other configurations from the old resource bridge that already meet your network/firewall/proxy requirements. Otherwise, if you use new IPs, you may have to ensure these IPs meet the networking requirements. You can also specify a new network, storage, or resource pool to use with the new Arc resource bridge.
+1. [Run the onboarding script](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#run-the-script) again with the `-force` parameter. The script prompts you to enter the resource bridge configuration settings. [Provide the inputs](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md#inputs-for-the-script) as prompted. You can reuse the same IPs and other configurations from the old resource bridge that already meet your network/firewall/proxy requirements. Otherwise, if you use new IPs, you may have to ensure these IPs meet the networking requirements. You can also specify a new network, storage, or resource pool to use with the new Arc resource bridge.
 
     ``` powershell-interactive
-   ./resource-bridge-onboarding-script.ps1 --force
+   ./resource-bridge-onboarding-script.ps1 -force
     ```
     
 1. Once the script successfully finishes, the new resource bridge should be deployed and reconnected to all necessary resources like the custom location and Arc extension. The previously disconnected Arc-enabled resources should be manageable in Azure again.
