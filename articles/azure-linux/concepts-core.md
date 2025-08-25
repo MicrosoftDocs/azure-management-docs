@@ -14,6 +14,9 @@ ms.custom: template-concept, linux-related-content
 
 Microsoft Azure Linux is an open-sourced project maintained by Microsoft, which means that Microsoft is responsible for the entire Azure Linux Container Host stack, from the Linux kernel to the Common Vulnerabilities and Exposures (CVEs) infrastructure, support, and end-to-end validation. Microsoft makes it easy for you to create an AKS cluster with Azure Linux, without worrying about details such as verification and critical security vulnerability patches from a third party distribution.
 
+> [!IMPORTANT]
+> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, existing node images will be deleted, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+
 ## CVE infrastructure
 
 One of the responsibilities of Microsoft in maintaining the Azure Linux Container Host is establishing a process for CVEs, such as identifying applicable CVEs and publishing CVE fixes, and adhering to defined Service Level Agreements (SLAs) for package fixes. The Azure Linux team builds and maintains the SLA for package fixes for production purposes. For more information, see the [Azure Linux package repo structure](https://github.com/microsoft/CBL-Mariner/blob/2.0/toolkit/docs/building/building.md#packagesmicrosoftcom-repository-structure). For the packages included in the Azure Linux Container Host, Azure Linux scans for security vulnerabilities twice a day via CVEs in the [National Vulnerability Database (NVD)](https://nvd.nist.gov/).

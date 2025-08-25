@@ -23,6 +23,9 @@ The directory `/etc/pki/ca-trust/source/` contains the CA certificates and trust
 
 For more information on the Azure Linux Container Host for AKS image certifications, see the [GitHub documentation](https://github.com/microsoft/CBL-Mariner/blob/2.0/toolkit/docs/security/ca-certificates.md).
 
+> [!IMPORTANT]
+> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, existing node images will be deleted, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+
 ## Add a certificate in the PEM or DER file format
 
 You can add individual or multiple certificates to your Azure Linux Container Host for AKS image. To add a certificate in the simple PEM or DER file format to the list of CAs trusted on the system, follow these steps:

@@ -14,6 +14,9 @@ ms.date: 08/18/2024
 
 The Azure Linux Container Host for AKS has `dnf-automatic` enabled by default, a systemd service that runs daily and automatically installs any recently published updated packages. This ensures that packages in the Azure Linux Container Host should automatically update when a fix is published. Note, that for some settings of [Node OS Upgrade Channel](/azure/aks/auto-upgrade-node-image), `dnf-automatic` will be disabled by default.
 
+> [!IMPORTANT]
+> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, existing node images will be deleted, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+
 ## Symptoms
 
 However, sometimes the packages in the Azure Linux Container Host fail to receive automatic upgrades, which can lead to the following symptoms:
