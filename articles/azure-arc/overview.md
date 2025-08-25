@@ -94,7 +94,7 @@ For information, see the [Azure pricing page](https://azure.microsoft.com/pricin
 
 ## Azure Arc and the adaptive cloud approach
 
-Azure Arc is a key part of Microsoft’s [adaptive cloud](https://azure.microsoft.com/en-us/solutions/adaptive-cloud) approach. This approach helps organizations run and manage apps and services across many environments, including Azure, other cloud providers, on-premises datacenters, and edge locations. Azure Arc supports this approach by extending Azure’s management, security, and governance tools to resources outside Azure. This ability makes it easier to keep operations consistent and secure, no matter where your workloads run.
+Azure Arc is a key part of Microsoft’s [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. This approach helps organizations run and manage apps and services across many environments, including Azure, other cloud providers, on-premises datacenters, and edge locations. Azure Arc supports this approach by extending Azure’s management, security, and governance tools to resources outside Azure. This ability makes it easier to keep operations consistent and secure, no matter where your workloads run.
 
 ## Next steps
 
