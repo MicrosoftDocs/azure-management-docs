@@ -4,7 +4,7 @@ description: "This tutorial walks through setting up a CI/CD solution using GitO
 author: eedorenko
 ms.author: iefedore
 ms.topic: tutorial
-ms.date: 01/15/2025
+ms.date: 08/25/2025
 ms.custom: template-tutorial, devx-track-azurecli
 # Customer intent: "As a DevOps engineer, I want to implement a CI/CD workflow using GitOps with Flux v2 in Azure Kubernetes Service, so that I can automate the deployment and management of applications across development and staging environments."
 ---
@@ -204,7 +204,7 @@ The CD pipeline manipulates pull requests (PRs) in the GitOps repository, which 
 
    ```console
    cat <<EOF | kubectl apply -f -
-   apiVersion: notification.toolkit.fluxcd.io/v1beta1
+   apiVersion: notification.toolkit.fluxcd.io/v1beta2
    kind: Alert
    metadata:
      name: gitops-connector
@@ -219,7 +219,7 @@ The CD pipeline manipulates pull requests (PRs) in the GitOps repository, which 
      providerRef:
        name: gitops-connector
    ---
-   apiVersion: notification.toolkit.fluxcd.io/v1beta1
+   apiVersion: notification.toolkit.fluxcd.io/v1beta2
    kind: Provider
    metadata:
      name: gitops-connector
@@ -479,7 +479,7 @@ The CI/CD workflow populates the manifest directory with extra manifests to depl
 
    ```console
    cat <<EOF | kubectl apply -f -
-   apiVersion: notification.toolkit.fluxcd.io/v1beta1
+   apiVersion: notification.toolkit.fluxcd.io/v1beta2
    kind: Alert
    metadata:
      name: gitops-connector
@@ -494,7 +494,7 @@ The CI/CD workflow populates the manifest directory with extra manifests to depl
      providerRef:
        name: gitops-connector
    ---
-   apiVersion: notification.toolkit.fluxcd.io/v1beta1
+   apiVersion: notification.toolkit.fluxcd.io/v1beta2
    kind: Provider
    metadata:
      name: gitops-connector
