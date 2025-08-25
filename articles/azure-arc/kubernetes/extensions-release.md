@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 08/12/2025
+ms.date: 08/25/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -148,24 +148,21 @@ The most recent version of the Flux v2 extension and the two previous versions (
 > [!NOTE]
 > When a new version of the `microsoft.flux` extension is released, it might take several days for the new version to become available in all regions.
 
-### Breaking change: Semantic versioning changes in source controller
+### Deprecation and removal notice: Upcoming changes to `microsoft.flux` extension
 
-The `source-controller` recently updated its dependency on the "`github.com/Masterminds/semver/v3`" Go package from version v3.3.0 to v3.3.1. This update changed semantic versioning (semver) validation rules.
+Several upstream Flux APIs that have been retired by the Flux project will be removed in an upcoming release of the `microsoft.flux` extension. These changes align with the Flux community's efforts to streamline and modernize the API surface.
 
-**What changed?** In the latest version (v3.3.1) of the semver package, certain version formats that were previously considered valid are now being rejected. Specifically, version strings with leading zeroes in numeric segments (e.g., 1.0.029903) are no longer accepted as valid semver.
+The following Flux APIs are being deprecated and will be removed:
 
-- GitHub Issue for reference: [Previously supported chart version numbers are now invalid – fluxcd/source-controller #17380](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
-- Package change log: [Comparing v3.3.0...v3.3.1 · Masterminds/semver](https://github.com/Masterminds/semver/compare/v3.3.0...v3.3.1)
+- Deprecated APIs in group `source.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `kustomize.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `helm.toolkit.fluxcd.io/v2beta1`
+- Deprecated APIs in group `notification.toolkit.fluxcd.io/v1beta1`
+- Deprecated APIs in group `image.toolkit.fluxcd.io/v1beta1`
 
-:::image type="content" source="media/flux-breaking-change.png" lightbox="media/flux-breaking-change.png" alt-text="Screenshot with examples of version formats that are now rejected.":::
+For a complete list of deprecated APIs and their replacements, see the PRs linked in <https://github.com/fluxcd/flux2/issues/5474>.
 
-**Impact on users:**
-
-- **Existing deployments are unaffected**. Anything currently deployed will continue to function as expected.
-- **Future deployments or reconciliations may fail** if they rely on chart versions that don’t follow the stricter semver rules.
-- A common error you might see: `invalid chart reference: validation: chart.metadata.version "1.0.029903" is invalid`
-
-**What you should do:** Review your chart versions and ensure they comply with proper semantic versioning. Avoid leading zeroes in version components, and follow the [semver.org](https://semver.org/) specification closely.
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs. Use the supported API versions for all impacted resources. We strongly recommend completing these steps before October 2025 to avoid deployment failures or resource reconciliation issues.
 
 ### `microsoft.flux` version 1.17.2 (August 2025)
 
