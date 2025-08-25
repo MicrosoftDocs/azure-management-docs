@@ -1,7 +1,7 @@
 ---
 title: "Application deployments with GitOps (Flux v2)"
 description: "This article provides a conceptual overview of GitOps in Azure for use in Azure Arc-enabled Kubernetes and Azure Kubernetes Service (AKS) clusters."
-ms.date: 06/16/2025
+ms.date: 08/25/2025
 ms.topic: concept-article
 ms.custom: devx-track-azurecli, references-regions
 # Customer intent: "As a DevOps engineer, I want to implement GitOps with Flux for managing application deployments on Azure Kubernetes clusters, so that I can ensure consistent configurations, streamline operations, and enhance visibility into the status of applications across multiple environments."
@@ -138,7 +138,7 @@ Let’s say you deploy a `fluxConfiguration` to one of our Kubernetes clusters i
 After Flux syncs the repo, it deploys the resources described in the manifests (YAML files). Two of the manifests describe `HelmRelease` and `HelmRepository` objects.
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: nginx
@@ -180,7 +180,7 @@ By default, the Flux extension deploys the `fluxConfigurations` by impersonating
 To work with multi-tenancy, the correct approach is to deploy all Flux objects into the same namespace as the `fluxConfigurations`. This approach avoids the cross-namespace reference issue, and allows the Flux controllers to get the permissions to apply the objects. Thus, for a GitOps configuration created in the `cluster-config` namespace, these example manifests would change as follows:
 
 ```yaml
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: nginx

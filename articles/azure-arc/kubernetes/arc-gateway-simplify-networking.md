@@ -98,7 +98,7 @@ After the resource is created successfully, the success response will include th
 
 |URL  |Purpose  |
 |---------|---------|
-|`[Your URL prefix].gw.arc.azure.com`       | Your gateway URL. This URL can be obtained by running `az arcgateway list` after you create the resource.         |
+|`<Your URL prefix>.gw.arc.azure.com`       | Your gateway URL. This URL can be obtained by running `az arcgateway list` after you create the resource.         |
 |`management.azure.com`    |Azure Resource Manager Endpoint, required for ARM control channel.         |
 |`<region>.obo.arc.azure.com`     |Required when [Cluster connect](conceptual-cluster-connect.md) is configured.         |
 |`login.microsoftonline.com`, `<region>.login.microsoft.com`     | Microsoft Entra ID endpoint, used for acquiring identity access tokens.         |

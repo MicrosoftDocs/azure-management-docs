@@ -34,16 +34,11 @@ Ensure the following before you install Arc agents at scale for VMware VMs:
     - Running a [supported operating system](../servers/prerequisites.md#supported-operating-systems).
     - VMware tools are installed on the machines. If VMware tools aren't installed, enable guest management operation is grayed out in the portal.  
         >[!Note]
-        >You can use the out-of-band method to install Arc agents if VMware tools aren't installed.  
+        >You can use the out-of-band methods to install Arc agents if VMware tools aren't installed.  
     - Able to connect through the firewall to communicate over the internet, and [these URLs](../servers/network-requirements.md#urls) aren't blocked.
 
    > [!NOTE]
    > If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and add `<username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`. <br> <br>If your VM template has these changes incorporated, you won't need to do this for the VM created from that template.
-
-> [!Note]
-> **Automatic connection for SQL Server**:
-> When you connect a Windows or Linux server to Azure Arc that also has Microsoft SQL Server installed, the SQL Server instances will automatically be connected to Azure Arc as well. [SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/overview) provides a detailed inventory and additional management capabilities for your SQL Server instances and databases. As part of the connection process, an extension is deployed to your Azure Arc-enabled server and [new roles](/sql/sql-server/azure-arc/permissions-granted-agent-extension) will be applied to your SQL Server and databases. If you don't want to automatically connect your SQL Servers to Azure Arc, you can opt out by adding a tag to the Windows or Linux server with the name `ArcSQLServerExtensionDeployment` and value `Disabled` when it's connected to Azure Arc.
-> For more information, see [Manage automatic connection for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/manage-autodeploy).
 
 ## Install Arc agents 
 

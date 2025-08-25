@@ -13,16 +13,12 @@ ms.custom: references_regions
 
 In this article, you learn about the *connected registry* feature of [Azure Container Registry](container-registry-intro.md). A connected registry is an on-premises or remote replica that synchronizes container images with your cloud-based Azure container registry. Use a connected registry to help speed-up access to registry artifacts on-premises or remote.
 
-## Billing and Support
-
-The connected registry is a preview feature of the **Premium** container registry service tier, and subject to [limitations](#limitations). For information about registry service tiers and limits, see [Azure Container Registry service tiers](container-registry-skus.md).
-
->[!IMPORTANT]
-> There are **Important upcoming changes** to the connected registry billing starting on July 1, 2025. For any inquiries or assistance with the transition, reach out to the customer support team.
-
 ### Billing
 
-- A monthly price of $10 will apply for each connected registry deployed starting on July 1, 2025.
+>[!IMPORTANT]
+> There are **important recent changes** to the connected registry billing which began on August 1, 2025. The pricing calculator is being updated to reflect this change as well. 
+
+- A monthly price of $10 will apply for each connected registry deployed on or after August 1, 2025.
 - This price represents Microsoft's commitment to deliver high-quality services and product support.
 - This cost applies to the Azure subscription that is associated with the parent registry.
 
@@ -94,6 +90,7 @@ For more information, see [Manage access to a connected registry][overview-conne
 - Number of tokens and scope maps is [limited](container-registry-skus.md) to 20,000 each for a single container registry. This indirectly limits the number of connected registries for a cloud registry, because every Connected registry needs a sync and client token.
 - Number of repository permissions in a scope map is limited to 500.
 - Number of clients for the connected registry is currently limited to 50.
+- Number of connected registries per container registry is currently limited to 50.
 - [Image locking](container-registry-image-lock.md) through repository/manifest/tag metadata isn't currently supported for connected registries.
 - [Repository delete](container-registry-delete.md) isn't supported on the connected registry using ReadOnly mode.
 - [Resource logs](monitor-service-reference.md#resource-logs) for connected registries are currently not supported.

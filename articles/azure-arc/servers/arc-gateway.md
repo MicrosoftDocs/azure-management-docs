@@ -1,7 +1,7 @@
 ---
 title: How to simplify network configuration requirements with Azure Arc gateway (Public Preview)
 description: Learn how to simplify network configuration requirements with Azure Arc gateway (Public Preview).
-ms.date: 08/13/2025
+ms.date: 08/20/2025
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
@@ -110,13 +110,16 @@ On a machine with access to Azure, run the following PowerShell command to creat
 
 After the resource is created successfully, the success response will include the Arc gateway URL. Ensure your Arc gateway URL and all of these URLs are allowed in the environment where your Arc resources live.
 
+> [!IMPORTANT]
+> This list has recently been updated. If you previously enabled access to these URLs, you may need to review the list and update your network configuration to ensure each endpoint is allowed.
+
 |URL  |Purpose  |
 |---------|---------|
-|`[Your URL Prefix].gw.arc.azure.com`  |Your gateway URL (obtained by running `az arcgateway list` after you create your gateway resource)  |
+|`<Your URL prefix>.gw.arc.azure.com`  |Your gateway URL (obtained by running `az arcgateway list` after you create your gateway resource)  |
 |`management.azure.com`  |Azure Resource Manager endpoint, required for Azure Resource Manager control channel  |
-|`login.microsoftonline.com`  |Microsoft Entra ID endpoint for acquiring identity access tokens  |
+|`login.microsoftonline.com`, `<region>.login.microsoft.com`  |Microsoft Entra ID endpoint for acquiring identity access tokens  |
 |`gbl.his.arc.azure.com`  |The cloud service endpoint for communicating with Azure Arc agents  |
-|`\<region\>.his.arc.azure.com`  |Used for Arc's core control channel  |
+|`<region>.his.arc.azure.com`  |Used for Arc's core control channel  |
 |`packages.microsoft.com`  |Required to connect Linux servers to Arc  |
 
 ## Onboard new Azure Arc resources with your Arc gateway resource
