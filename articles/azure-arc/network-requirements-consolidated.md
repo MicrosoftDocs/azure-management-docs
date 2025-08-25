@@ -1,7 +1,7 @@
 ---
 title: Azure Arc network requirements
 description: A consolidated list of network requirements for Azure Arc features and Azure Arc-enabled services. Lists endpoints, ports, and protocols.
-ms.date: 04/15/2025
+ms.date: 08/22/2025
 ms.topic: reference
 # Customer intent: As a network administrator, I want to understand the network requirements for Azure Arc and its services, so that I can ensure proper connectivity and functionality in our cloud infrastructure.
 ---
