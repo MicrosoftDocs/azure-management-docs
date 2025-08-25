@@ -1,7 +1,7 @@
 ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
-ms.date: 06/13/2025
+ms.date: 08/25/2025
 ms.topic: overview
 # Customer intent: As an IT administrator managing a hybrid environment, I want to use Azure Arc to unify the management of my on-premises and cloud resources, so that I can simplify governance and operational processes across diverse infrastructures.
 ---
@@ -91,6 +91,10 @@ For more information on pricing for configurations on top of Azure Arc-enabled K
 ### Azure Arc-enabled data services
 
 For information, see the [Azure pricing page](https://azure.microsoft.com/pricing/).
+
+## Azure Arc and the adaptive cloud approach
+
+Azure Arc is a key part of Microsoft’s [adaptive cloud](https://azure.microsoft.com/en-us/solutions/adaptive-cloud) approach. This approach helps organizations run and manage apps and services across many environments, including Azure, other cloud providers, on-premises datacenters, and edge locations. Azure Arc supports this approach by extending Azure’s management, security, and governance tools to resources outside Azure. This ability makes it easier to keep operations consistent and secure, no matter where your workloads run.
 
 ## Next steps
 
