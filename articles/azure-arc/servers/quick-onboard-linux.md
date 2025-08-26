@@ -46,23 +46,23 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
 1. Install the Connected Machine agent using your package manager: `sudo apt update && sudo apt install azcmagent`
 
-1. Retrieve your Azure tenant ID and subscription ID by running the following Azure CLI command:
+1. You need to know the subscription ID for your Arc server Azure resource. You can check this in Azure portal by searching for Subscriptions, looking for the Subscription name and noting the Subscription ID. You can also view your subscription IDs by running the following Azure CLI command and note the one you'll use for your Arc servers:
 
    ```azurecli
-   az account show --query "{tenantId: tenantId, subscriptionId: id}" --output tsv
+   az account show --query "{subscriptionId: id}" --output tsv
    ```
 
-1. Onboard your Linux machine to Azure by using the [`azcmagent` connect](azcmagent-connect.md) command, using the tenant ID and subscription ID you retrieved in the previous step. You also need to specify the Azure region and resource group in which to create the Arc-enabled server resource. If you need to create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`.
+1. Onboard your Linux machine to Azure by using the [`azcmagent` connect](azcmagent-connect.md) command, using the subscription ID you noted in the previous step. You also need to specify the Azure region and resource group in which to create the Arc-enabled server resource. If you need to create a new resource group, run this Azure CLI command: `az group create --name <rg-name> --location <Azure-region>`.
 
    ```sh
-   sudo azcmagent connect --resource-group "<resource_group_name>" --tenant-id "<tenant_id>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --tags 'ArcSQLServerExtensionDeployment=Disabled'
+   sudo azcmagent connect --resource-group "<resource_group_name>" --location "<azure_region>" --subscription-id "<subscription_id>" --cloud "AzureCloud" --tags 'ArcSQLServerExtensionDeployment=Disabled'
    ```
-
-      Adjust the parameters as needed:
+   
+         Adjust the parameters as needed:
 
    - `--tenant-id`: an Azure globally unique identifier (GUID) assigned to your organization's Azure AD tenant.
    - `--subscription-id`: an Azure unique identifier (GUID) assigned to each Azure subscription.
-   - `--location`: The Azure region in which to create your Arc-enabled server resource in Azure. The region should match or be near the actual machine location.
+   - `--location`: The Azure region in which to create your Arc-enabled server resource in Azure. The region should match or be near the actual machine location. Refer to Arc server [supported regions](overview.md#supported-regions). E.g.: eastus2, westus3
    - `--resource-group`: The name for a *resource group*, an Azure logical container that holds related resources. Use a resource group created in the same region as the Arc-enabled server resource you're creating.
    - `--cloud`: Keep the default value, `AzureCloud`, unless you're using a [different Azure cloud environment](azcmagent-connect.md#flags).
    - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other tags if desired.
