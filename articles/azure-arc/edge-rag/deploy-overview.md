@@ -4,7 +4,7 @@ description: Learn about deploying Edge RAG with Azure Arc, including prerequisi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 08/14/2025
+ms.date: 08/26/2025
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Edge RAG with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -20,7 +20,8 @@ Edge RAG brings generative AI capabilities to your edge and hybrid environments,
 
 The following diagram shows the key components and architecture you have after you prepare your environment and deploy Edge RAG. It includes Azure resources, on-premises infrastructure, and integration points.
 
-:::image type="content" source="media/deploy-overview/deployment-components.png" alt-text="Diagram that shows the Edge RAG deployment architecture, including Azure resources, on-premises infrastructure, and integration points.":::
+<!-- Art Library Source# ConceptArt-0-000-95 -->
+:::image type="content" source="media/deploy-overview/edge_rag_architecture-deployment-components.svg" alt-text="Diagram that shows the Edge RAG deployment architecture, including Azure resources, on-premises infrastructure, and integration points." border="false":::
 
 The resources and components in the diagram form the core infrastructure for Edge RAG:
 
@@ -36,6 +37,8 @@ The resources and components in the diagram form the core infrastructure for Edg
   - AKS node pool
   - Network file share (NFS) server
   - Local host
+
+  Use a local host to access Edge RAG and simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
 This setup lets you run a secure, scalable, AI-powered chat solution that uses your own data at the edge.
 
