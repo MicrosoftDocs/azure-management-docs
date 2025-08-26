@@ -21,7 +21,7 @@ Edge RAG brings generative AI capabilities to your edge and hybrid environments,
 The following diagram shows the key components and architecture you have after you prepare your environment and deploy Edge RAG. It includes Azure resources, on-premises infrastructure, and integration points.
 
 <!-- Art Library Source# ConceptArt-0-000-95 -->
-:::image type="content" source="media/deploy-overview/edge_rag_architecture-deployment-components.svg" alt-text="Diagram that shows the Edge RAG deployment architecture, including Azure resources, on-premises infrastructure, and integration points." border="false":::
+:::image type="content" source="media/deploy-overview/deployment-components.svg" alt-text="Diagram that shows the Edge RAG deployment architecture, including Azure resources, on-premises infrastructure, and integration points." border="false":::
 
 The resources and components in the diagram form the core infrastructure for Edge RAG:
 
