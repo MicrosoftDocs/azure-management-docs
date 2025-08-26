@@ -57,7 +57,7 @@ The following table lists some of the key VM extensions that are available for A
 |Windows Admin Center |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
 |Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
 |Windows Patch extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching) |
-|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentWindows |[Azure Network Watcher overview](/azure/network-watcher/network-watcher-overview) |
+|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentWindows |[Manage Network Watcher Agent virtual machine extension for Windows](/azure/network-watcher/network-watcher-agent-windows) |
 |Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.WindowsAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |
 |Open SSH for Windows | Microsoft.Azure.OpenSSH | WindowsOpenSSH | [Connect using Secure Shell (SSH) and sign on to a VM running Windows](/azure/virtual-machines/windows/connect-ssh)|
 |Azure Site Recovery | Microsoft.SiteRecovery.Dra | Windows | [Configure Azure Site Recovery for Arc-enabled Windows servers](/windows-server/manage/azure-arc/azure-site-recovery-for-windows-server) |
@@ -79,7 +79,7 @@ The following table lists some of the key VM extensions that are available for A
 |Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally)|
 |Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
 |Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|
-|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentLinux |[Azure Network Watcher overview](/azure/network-watcher/network-watcher-overview) |
+|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentLinux |[Manage Network Watcher Agent virtual machine extension for Linux](/azure/network-watcher/network-watcher-agent-linux) |
 |Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.LinuxAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |
 |Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForLinux |[SSH access to Azure Arc-enabled servers](ssh-arc-overview.md#optional-install-microsoft-entra-login-extension) |
 |Azure Extension for SQL Server |Microsoft.AzureData |LinuxAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=linux) (installs the extension automatically) |
