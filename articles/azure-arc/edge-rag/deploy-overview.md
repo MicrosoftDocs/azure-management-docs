@@ -4,7 +4,7 @@ description: Learn about deploying Edge RAG with Azure Arc, including prerequisi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 08/26/2025
+ms.date: 08/27/2025
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Edge RAG with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -38,7 +38,7 @@ The resources and components in the diagram form the core infrastructure for Edg
   - Network file share (NFS) server
   - Local host
 
-  Use a local host to access Edge RAG and simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
+  Use a local host to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Edge RAG](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
 This setup lets you run a secure, scalable, AI-powered chat solution that uses your own data at the edge.
 
@@ -57,7 +57,7 @@ The deployment process for Edge RAG consists of the following high-level steps:
 
 | High-level step  | Description |
 |-----------------|-----------------------------------------------------------|
-| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, if you plan to use your own language model instead of one of the models provided by Microsoft,  [create an endpoint to use for Edge RAG](prepare-model-endpoint.md). |
+| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, if you plan to use your own language model instead of one of the models provided by Microsoft,  [create an endpoint to use for Edge RAG](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Edge RAG. |
 | 2. Deploy the Edge RAG extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Select and configure your preferred language model, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Edge RAG extension](deploy.md). <br><br>As part of the deployment step, if you configured Edge RAG to use your own language model instead of a Microsoft provided model, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).|
 | 3. Validate the deployment               | After you deploy the extension, check that the Edge RAG extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure chat solution               | Before making the chat solution available to your organization, configure its data source, user experience, and test the setup to make sure it meets your requirements. See [Add a data source for Edge RAG](add-data-source.md), [Configure the chat solution](build-chat-solution-overview.md), and [Test the chat solution](test-end-user-app.md). |

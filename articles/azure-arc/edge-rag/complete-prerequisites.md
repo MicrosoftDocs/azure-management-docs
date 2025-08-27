@@ -37,4 +37,5 @@ Use this checklist to prepare your environment before deploying Edge RAG on Azur
 
 ## Related content
 
-[Deploy the Edge RAG extension](deploy.md)
+- [Deploy the Edge RAG extension](deploy.md)
+- [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)
