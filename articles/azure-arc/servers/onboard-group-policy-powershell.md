@@ -1,7 +1,7 @@
 ---
 title: Connect machines at scale using Group Policy with a PowerShell script
 description: In this article, you learn how to create a Group Policy Object to onboard Active Directory-joined Windows machines to Azure Arc-enabled servers.
-ms.date: 08/22/2025
+ms.date: 08/27/2025
 ms.topic: how-to
 ms.custom: template-how-to
 # Customer intent: As an IT administrator, I want to onboard Active Directory-joined Windows machines to Azure Arc-enabled servers using Group Policy and PowerShell scripts, so that I can efficiently manage and scale my server environment within Azure.
@@ -23,7 +23,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 The Group Policy Object, which is used to onboard Azure Arc-enabled servers, requires a remote share with the Connected Machine agent.
 
-1. Prepare a remote share to host the Azure Connected Machine agent package for Windows and the configuration file. You need to be able to add files to the distributed location. The network share should provide Domain Controllers, and Domain Computers with Change permissions, and Domain Admins with Full Control permissions.
+1. Prepare a remote share to host the Azure Connected Machine agent package for Windows and the configuration file. You need to be able to add files to this remote share. The network share must be accessible by domain controllers and the domain machines. Domain computers should have Change permissions, and domain admins should have Full Control permissions.
 
 1. Follow the steps to [create a service principal for onboarding at scale](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
 
@@ -34,7 +34,7 @@ The Group Policy Object, which is used to onboard Azure Arc-enabled servers, req
 
 1. Download the latest version of the [Azure Connected Machine agent Windows Installer package](https://aka.ms/AzureConnectedMachineAgent) from the Microsoft Download Center and save it to the remote share.
 
-1. Execute the deployment script `DeployGPO.ps1`, modifying the run parameters for the DomainFQDN, ReportServerFQDN, ArcRemoteShare, Service Principal secret, Service Principal Client ID, Subscription ID, Resource Group, Region, Tenant, and AgentProxy (if applicable). Details about these values can be found in the script comments.
+1. Execute the deployment script `DeployGPO.ps1` on the domain controller, modifying the run parameters for DomainFQDN, ReportServerFQDN, ArcRemoteShare, Service Principal secret, Service Principal Client ID, Subscription ID, Resource Group, Region, Tenant, and AgentProxy (if applicable). Details about these values can be found in the script comments.
 
    For example, the following command deploys the GPO to the contoso.com domain and copies the onboarding script `EnableAzureArc.ps1` to the remote share `AzureArcOnBoard` in the `Server.contoso.com` server:
 
