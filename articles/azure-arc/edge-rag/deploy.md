@@ -139,3 +139,4 @@ If you added your own language model when you deployed the Edge RAG extension, c
 - [Custom certificate authority in Azure Kubernetes Service (AKS)](/azure/aks/custom-certificate-authority)
 - [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
 - [Add data source for the chat solution in Edge RAG](add-data-source.md)
+- [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)
