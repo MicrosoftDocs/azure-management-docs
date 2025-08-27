@@ -46,7 +46,7 @@ Follow these steps to install the Azure Connected Machine agent by using your di
 
 1. Install the Connected Machine agent using your package manager: `sudo apt update && sudo apt install azcmagent`
 
-1. You need to know the subscription ID for your Arc server Azure resource. You can check this in [Azure portal](https://portal.azure.com/) by searching for Subscriptions, looking for the Subscription name and noting the Subscription ID. You can also view your subscription IDs by running the following [Azure CLI](/azure/install-azure-cli-linux) command and note the one you'll use for your Arc servers:
+1. You need to know the subscription ID for your Arc server Azure resource. You can check this in [Azure portal](https://portal.azure.com/) by searching for Subscriptions, looking for the Subscription name and noting the Subscription ID. You can also view your subscription IDs by running the following [Azure CLI](/cli/azure/install-azure-cli-linux) command and note the one you'll use for your Arc servers:
 
    ```azurecli
    az account show --query "{subscriptionId: id}" --output tsv
