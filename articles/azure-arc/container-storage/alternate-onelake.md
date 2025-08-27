@@ -23,7 +23,7 @@ This article describes an alternate configuration for [Cloud Ingest Edge Volumes
 1. Select **Manage Access**.
    :::image type="content" source="media/onelake-manage-access.png" alt-text="Screenshot showing manage access screen in portal." lightbox="media/onelake-manage-access.png":::
 1. Select **Add people or groups**.
-1. Enter your extension name from your Azure Container Storage enabled by Azure Arc installation. This name must be unique within your tenant.
+1. Enter your extension name from your Azure Container Storage enabled by Azure Arc installation. The extension is called `microsoft.arc.containerstorage` in the Azure portal. This name must be unique within your tenant.
    :::image type="content" source="media/add-extension-name.png" alt-text="Screenshot showing add extension name screen." lightbox="media/add-extension-name.png":::
 1. Change the drop-down for permissions from **Viewer** to **Contributor**.
    :::image type="content" source="media/onelake-set-contributor.png" alt-text="Screenshot showing set contributor screen." lightbox="media/onelake-set-contributor.png":::

@@ -65,3 +65,9 @@ sections:
 
       - question: When using Extension Identity, permissions as a StorageBlobDataOwner role are needed to write data. Is there a reason it needs Owner instead of just Contributor?
         answer: Yes, the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
+
+      - question: Is there a limit to how many files can be in a Local Shared Volume? How about an Ingest subvolume?
+        answer: |
+          The maximum number of files allowed in a Local Shared Volume is tied to the underlying storage limits. The maximum number of files is roughly 65,000 for every 1GB of provisioned storage capacity. Ingest subvolumes are subject to the same storage specific limitations (for example, 65,000 for every 1GB of provisioned storage capacity); however, they also have an upper limit based on metadata storage capacity. This limit is roughly 1.5-1.75 million files total. 
+          
+          It's important to note that this limit only applies to files currently stored in the subvolume. Generally, files are uploaded then purged. Therefore, this limit is mainly of note during disconnected scenarios or for subvolumes with long retention policies. 
