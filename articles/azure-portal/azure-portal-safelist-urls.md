@@ -1,7 +1,7 @@
 ---
 title: Allow the Azure portal URLs on your firewall or proxy server
 description: To optimize connectivity between your network and the Azure portal and its services, we recommend you add these URLs to your allowlist.
-ms.date: 07/01/2025
+ms.date: 08/28/2025
 ms.topic: concept-article
 # Customer intent: "As a network administrator, I want to add Azure portal URLs to our allowlist on the firewall or proxy server, so that I can ensure optimal connectivity and performance for users accessing Azure services."
 ---
@@ -35,12 +35,13 @@ The URL endpoints to allow for the Azure portal are specific to the Azure cloud 
 #### Azure portal authentication
 
 ```
+login.microsoft.com
 login.microsoftonline.com
+login.live.com
 *.aadcdn.msftauth.net
 *.aadcdn.msftauthimages.net
 *.aadcdn.msauthimages.net
 *.logincdn.msftauth.net
-login.live.com
 *.msauth.net
 *.aadcdn.microsoftonline-p.com
 *.microsoftonline-p.com
