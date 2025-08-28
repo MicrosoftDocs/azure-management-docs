@@ -47,8 +47,6 @@
   - name: Programmatically create an Azure dashboard
     href: azure-portal-dashboards-create-programmatically.md
     displayName: Azure CLI, az portal dashboard, az portal
-  - name: Recover a deleted dashboard
-    href: recover-shared-deleted-dashboard.md
 - name: Support requests
   items:
   - name: Create an Azure support request
