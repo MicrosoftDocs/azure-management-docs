@@ -48,3 +48,7 @@ Azure Update Manager manages the Hotpatch cycles, with Hotpatch updates delivere
 ## OS and hybrid support
 
 Azure Update Manager isn't just for Windows. Arc-enabled servers that run Linux are also supported. Update Manager can apply updates from Linux package repositories, and even do reboots if needed. You get unified reporting for your Linux machines alongside Windows. So if you're also responsible for some Ubuntu or RHEL servers, Azure now covers those natively. This broad support underscores the "cloud admin" advantage, with one tool for all OS versions.
+
+## Linux auto-update service
+
+You can also use your Linux distribution’s built-in service to automatically update the installed Azure connected machine agent package. This option allows you to integrate the agent package update seamlessly with your package manager and configured repositories. Since package updates are published to [Microsoft package repository](/linux/packages), you can update the agent using your usual distribution tools, whether that's manual, remotely managed, or on a schedule managed by tools like dnf-automatic for RPM-based distributions and unattended-upgrades for Debian-based distributions.
