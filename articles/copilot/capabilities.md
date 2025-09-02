@@ -73,7 +73,7 @@ In some cases, Copilot in Azure can help resolve the issue. For example, if you 
 
 Another area where Copilot in Azure can be especially helpful is troubleshooting [Azure Native observability solution integrations](/azure/partner-solutions/overview). For example, you can say "Why are metrics not reaching Datadog from my AKS cluster?" or "Dynatrace logs are missing for my App Service." Copilot in Azure executes relevant detectors on the target resource to identify issues, provides remediation solutions, and help you understand more about the problem.
 
-Copilot in Azure can also help explain errors directlyfrom the Notifications pane.
+Copilot in Azure can also help explain errors directly from the Notifications pane.
 
 :::image type="content" source="media/capabilities/help-notifications.png" alt-text="Screenshot of Copilot in Azure providing a link to help troubleshoot an error in the Notifications pane.":::
 
