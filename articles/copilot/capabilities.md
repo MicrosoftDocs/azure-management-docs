@@ -1,7 +1,7 @@
 ---
 title:  Microsoft Copilot in Azure capabilities
 description: Learn about the things you can do with Microsoft Copilot in Azure.
-ms.date: 08/25/2025
+ms.date: 09/02/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.custom:
@@ -70,6 +70,8 @@ Asking questions to understand more can be helpful when troubleshooting problems
 Copilot in Azure also helps you understand more about information presented in Azure. For example, when viewing diagnostic details for a resource, you can say "Give me a summary of this page" or "What's the issue with my app?" You can ask what an error means, or ask what the next steps would be to implement a recommended solution.
 
 In some cases, Copilot in Azure can help resolve the issue. For example, if you say "Help me troubleshoot my Arc server extension," Copilot in Azure prompts you to select the Arc-enabled server and the extension that you are interested in troubleshooting. If the extension needs to be reinstalled, Copilot in Azure offers to help you reinstall it. Similarly, if you experience problems with your Azure Container Instances, you can ask things like "Why did my container restart?" After prompting you to select the container resource, Copilot in Azure provides steps to help resolve the issue.
+
+Another area where Copilot in Azure can be especially helpful is troubleshooting [Azure Native observability solution integrations](/azure/partner-solutions/overview). For example, you can ask "Why are metrics not reaching Datadog from my AKS cluster?" or "Dynatrace logs are missing for my App Service." Copilot in Azure executes relevant detectors on the target resource to identify issues, provides remediation solutions, and help you understand more about the problem.
 
 Copilot in Azure can also help explain errors from the Notifications pane.
 
