@@ -71,7 +71,7 @@ Copilot in Azure also helps you understand more about information presented in A
 
 In some cases, Copilot in Azure can help resolve the issue. For example, if you say "Help me troubleshoot my Arc server extension," Copilot in Azure prompts you to select the Arc-enabled server and the extension that you are interested in troubleshooting. If the extension needs to be reinstalled, Copilot in Azure offers to help you reinstall it. Similarly, if you experience problems with your Azure Container Instances, you can ask things like "Why did my container restart?" After prompting you to select the container resource, Copilot in Azure provides steps to help resolve the issue.
 
-Another area where Copilot in Azure can be especially helpful is troubleshooting [Azure Native observability solution integrations](/azure/partner-solutions/overview). For example, you can say "Why are metrics not reaching Datadog from my AKS cluster?" or "Dynatrace logs are missing for my App Service." Copilot in Azure executes relevant detectors on the target resource to identify issues, provides remediation solutions, and help you understand more about the problem.
+Another area where Copilot in Azure can be especially helpful is troubleshooting [Azure Native observability solution integrations](/azure/partner-solutions/overview). For example, you can say "Why are metrics not reaching Datadog from my AKS cluster?" or "Dynatrace logs are missing for my App Service." Copilot in Azure executes relevant detectors on the target resource to identify issues, provides remediation solutions, and help you understand more about the problem.
 
 Copilot in Azure can also help explain errors directly from the Notifications pane.
 
