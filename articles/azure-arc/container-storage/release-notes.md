@@ -15,6 +15,39 @@ ms.custom:
 
 This article provides information about new features in Azure Container Storage enabled by Azure Arc.
 
+## Version 2.7.1 
+
+Security updates and bug fixes.
+
+## Version 2.7.0 
+
+- Azure Container Storage enabled by Azure Arc storage classes can be marked as default storage class in *EdgeStorageConfiguration*, simplifying day one app deployment workflows.
+- Security updates and bug fixes.
+
+## Version 2.6.0
+
+- Support for Azure Linux 3
+- Availability in two more regions: Australia East and Germany West Central.
+- General bug fixes
+- Security enhancements 
+
+## Version 2.5.3
+
+- Resolved several dependencies (including with Azure IoT Operations).
+- Security updates and bug fixes.
+
+## Version 2.5.2
+
+Security updates and bug fixes.
+
+## Version 2.5.1
+
+Security updates and bug fixes.
+
+## Version 2.4.1
+
+Security updates and bug fixes.
+
 ## Version 2.3.1 
 
 - Removal of OSM dependency
