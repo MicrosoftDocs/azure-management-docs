@@ -1,7 +1,7 @@
 ---
 title: Access Registry Images from ACI
 description: Learn how to provide access to images in your container registry from Azure Container Instances by using a Microsoft Entra service principal.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
 author: rayoef
