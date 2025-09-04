@@ -109,7 +109,7 @@ This error means that the CLI isn't compatible with the currently installed vers
 
 ## NOTARY_COMMAND_ERROR
 
-This error means that Notary client CLI couldn't be found. As a result the notary checks aren't run.
+This error means that Notary client CLI couldn't be found. As a result, the notary checks aren't run.
 
 *Potential solutions*: Install Notary client; add Notary path to the system variables.
 
