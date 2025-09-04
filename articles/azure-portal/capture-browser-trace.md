@@ -23,8 +23,6 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal, using [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47).
-
 1. In the portal, navigate to the step prior to where the issue occurs.
 
 1. Press F12 to launch Microsoft Edge DevTools. You can also launch the tools from the toolbar menu under **More tools** > **Developer tools**.
@@ -64,8 +62,6 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 The following steps show how to use the developer tools in Google Chrome to capture a browser trace. For more information, see [Chrome DevTools](https://developers.chrome.com/docs/devtools).
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
-
-1. Start recording the steps you take in the portal, using [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -157,7 +153,7 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
+1. [How to record the screen on your Mac](https://support.apple.com/102618).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
