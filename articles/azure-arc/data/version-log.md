@@ -23,7 +23,7 @@ This article identifies the component versions with each release of Azure Arc-en
 
 |Component|Value|
 |-----------|-----------|
-|Container images tag |`1.40.0_2025-08-12`|
+|Container images tag |`v1.40.0_2025-08-12`|
 |`activedirectoryconnectors.arcdata.microsoft.com`| v1beta1, v1beta2, v1, v2|
 |`datacontrollers.arcdata.microsoft.com`| v1beta1, v1 through v5|
 |`exporttasks.tasks.arcdata.microsoft.com`| v1beta1, v1, v2|
