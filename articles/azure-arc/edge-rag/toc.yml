@@ -10,10 +10,12 @@ items:
             href: whats-new.md
           - name: Known issues
             href: known-issues.md
-      - name: Plan
+      - name: Plan and evaluate
         items:
           - name: Requirements
             href: Requirements.md
+          - name: Evaluate Edge RAG
+            href: evaluate-edge-rag.md
       - name: Deploy
         items:
           - name: Overview
