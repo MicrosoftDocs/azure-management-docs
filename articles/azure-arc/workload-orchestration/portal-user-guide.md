@@ -4,7 +4,7 @@ description: Learn how to navigate the workload orchestration portal to monitor,
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/18/2025
+ms.date: 09/05/2025
 ---
 
 # User guide for the workload orchestration portal
@@ -88,12 +88,11 @@ Goal: Deploy a solution to a target.
 
 Steps:
 
-1. Go to the [**Deploy tab**](https://portal.digitaloperations.configmanager.azure.com/#/deployment/overview).
-1. Click on the **target name** of the target you want to deploy the solution to.
+1. Under the **Deploy** tab, click on the **target name** to open the details page which lists the applicable solutions and their statuses.
 
     :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
-1. In the details page of the target, choose the solution you want to deploy, which has to be in **Ready to deploy** state, and click on **Deploy Solution**.
+1. In the details page of the target, choose the solution in **Ready to deploy** state and click on **Deploy Solution**.
 
     :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
 
@@ -105,9 +104,17 @@ Steps:
 
     :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
 
-1. Once the deployment finishes, the status of the solution is updated to **Deployed** and the notification panel opens to show the details of the deployment.
+1. To view the detailed status of your deployment, click on respective solution name.
 
-    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing a successful deployment." lightbox="./media/deploy-5.png":::
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
+
+1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+
+    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
+
+1. In case the deployment fails at any step, the pane shows the details on the exact step of failure.
+
+    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing an example failed deployment." lightbox="./media/deploy-7.png":::
 
 ### Other things you can do in the Deploy tab
 

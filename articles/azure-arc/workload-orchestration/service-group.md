@@ -4,7 +4,7 @@ description: Learn about service groups and how to configure them in workload or
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 09/05/2025
 ms.custom:
   - build-2025
 # Customer intent: As a cloud administrator, I want to configure service groups for workload orchestration, so that I can efficiently organize and manage resources across multiple subscriptions and apply governance effectively.
@@ -77,7 +77,7 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites and Site addresses are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[Region, Factory, Line]*, then you create a Site at the region level.
+Sites are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[Region, Factory, Line]*, then you create a Site at the region level.
 
 To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup. 
 
@@ -341,9 +341,9 @@ Service groups can be created for a **two-level** hierarchy organization, such a
 
 The previous sections show how to create a service group for a two-level hierarchy organization, which you can use as a reference to create service groups for a three-level or four-level hierarchy organization.
 
-To ease the process, the following steps show how to create a four-level service group hierarchy organization. You need to consider the following points:
+To ease the process, the following steps show how to create a four-level service group hierarchy organization with levels: country, region, factory, and line. You need to consider the following points:
 
-- **Every level** in the hierarchy must its own **service group** created. For example, for four-level hierarchy organization, you need to create a service group for each level: country, region, factory, and line.
+- **The top three levels** in the hierarchy must each have its own **service group** created. For example, for the four-level hierarchy organization, you need to create a service group for levels country, region, and factory.
 - **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
 - The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
 

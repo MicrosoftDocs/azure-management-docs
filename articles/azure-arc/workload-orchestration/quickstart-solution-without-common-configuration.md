@@ -4,7 +4,7 @@ description: Learn how to create a basic solution without common configurations 
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: quickstart
-ms.date: 05/03/2025
+ms.date: 09/05/2025
 ms.custom:
   - build-2025
 # Customer intent: As a developer, I want to create a basic solution using workload orchestration via CLI without common configurations, so that I can deploy applications efficiently with minimal setup.
@@ -229,19 +229,31 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration configuration show --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
     ```
 
+1. View parameters for a specific template version.
+
+    ```bash
+    az workload-orchestration configuration show --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1" --version "$appVersion"
+    ```
+
 1. Edit parameters at parent level.
 
     ```bash
     az workload-orchestration configuration set --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
     ```
 
-1. View parameters at child level
+1. View parameters at child level.
 
     ```bash
     az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
     ```
 
-1. Edit parameters of child level
+1. View parameters for a specific template version.
+
+    ```bash
+    az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1" --version "$appVersion"
+    ```
+
+1. Edit parameters of child level.
 
     ```bash
     az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
@@ -253,6 +265,12 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```powershell
     az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1
+    ```
+
+1. View parameters for a specific template version.
+
+    ```bash
+    az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1 --version $appVersion
     ```
 
 1. Edit parameters at parent level.
@@ -271,6 +289,12 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```powershell
     az workload-orchestration configuration set --resource-group $rg --target-name $childName --solution-template-name $appName1
+    ```
+
+1. View parameters for a specific template version.
+
+    ```bash
+    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1 --version $appVersion
     ```
 
 ***
@@ -301,6 +325,16 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
+1. In case of multiple versions of a solution deployed, you can list all instances or revisions of a solution deployed on a target.
+
+    ```bash
+    # List all instances
+    az workload-orchestration target solution-instance-list -g "$rg" --target-name "$childName" --solution "$appName1"
+
+    # List all revisions
+    az workload-orchestration target solution-revision-list -g "$rg" --target-name "$childName" --solution "$appName1"
+    ```
+
 ### [PowerShell](#tab/powershell)
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and `name` values. The name displays the new solution template version.
@@ -318,9 +352,20 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 1. Run the `target install` command to deploy the solution.
 
-    ```powershell
+    ```powershell    
     az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
+
+1. In case of multiple versions of a solution deployed, you can list all instances or revisions of a solution deployed on a target.
+
+    ```powershell
+    # List all instances
+    az workload-orchestration target solution-instance-list -g $rg --target-name $childName --solution $appName1
+    
+    # List all revisions
+    az workload-orchestration target solution-revision-list -g $rg --target-name $childName --solution $appName1
+    ```
+
 ***
 
 > [!TIP]
