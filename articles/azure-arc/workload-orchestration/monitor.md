@@ -4,7 +4,7 @@ description: Learn how to navigate the workload orchestration portal to monitor 
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/10/2025
+ms.date: 09/05/2025
 ms.custom:
   - build-2025
 # Customer intent: As a solutions architect, I want to monitor the status and capabilities of my deployed solutions in a centralized portal, so that I can ensure optimal performance and quickly address any deployment issues.
@@ -130,6 +130,23 @@ You can view the detailed revision of a target if it has a solution available.
 
     :::image type="content" source="./media/monitor-target-revision-3.png" alt-text="Screenshot of the new pane showing how to view the detailed revision of a target." lightbox="./media/monitor-target-revision-3.png":::
 
+## Navigate the Event log tab
+
+1. The **Event log** feature offers a detailed, chronological view of all user activities. It allows users to track actions performed across solutions and targets, providing comprehensive visibility into deployment history and associated operations.
+
+    :::image type="content" source="./media/monitor-event-log-1.png" alt-text="Screenshot of the event log tab showing all user activities." lightbox="./media/monitor-event-log-1.png":::
+
+1. The list can be grouped by solution, revision or target name by clicking on **Group by** and selecting the desired option.
+
+    :::image type="content" source="./media/monitor-event-log-2.png" alt-text="Screenshot of the event log tab grouped by solution." lightbox="./media/monitor-event-log-2.png":::
+
+1. You can filter the logs by solution name by directly clicking on the **Solution** filter, and by target and revision by clicking on **Filter** on the top right of the list, selecting the **Column** you want to filter by, and the desired **Operator**.
+
+    :::image type="content" source="./media/monitor-event-log-3.png" alt-text="Screenshot of the event log tab showing filter options." lightbox="./media/monitor-event-log-3.png":::
+
+1. To view the detailed status of any operation, click on the corresponding link under **Event Name** column to open the side pane showing all the intermediate steps of that operation, along with timestamp and the user who initiated it.
+
+    :::image type="content" source="./media/monitor-event-log-4.png" alt-text="Screenshot of the event log tab showing example event details." lightbox="./media/monitor-event-log-4.png":::
 
 ## Monitor solutions with external validation enabled
 

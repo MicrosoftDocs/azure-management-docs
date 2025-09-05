@@ -324,6 +324,16 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration target install --resource-group "$rg" --target-name "$childName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
     ```
 
+1. In case of multiple versions of a solution deployed, you can list all instances or revisions of a solution deployed on a target.
+
+    ```bash
+    # List all instances
+    az workload-orchestration target solution-instance-list -g "$rg" --target-name "$childName" --solution "$appName1"
+
+    # List all revisions
+    az workload-orchestration target solution-revision-list -g "$rg" --target-name "$childName" --solution "$appName1"
+    ```
+
 ### [PowerShell](#tab/powershell)
 
 1. Review the configurations for a particular target. In the CLI output, check `reviewId` and name. The name displays the new solution template version.
@@ -343,6 +353,16 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
     ```powershell
     az workload-orchestration target install --resource-group $rg --target-name $childName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName/solutions/$appName1/versions/$appVersion
+    ```
+
+1. In case of multiple versions of a solution deployed, you can list all instances or revisions of a solution deployed on a target.
+
+    ```powershell
+    # List all instances
+    az workload-orchestration target solution-instance-list -g $rg --target-name $childName --solution $appName1
+    
+    # List all revisions
+    az workload-orchestration target solution-revision-list -g $rg --target-name $childName --solution $appName1
     ```
 
 ***

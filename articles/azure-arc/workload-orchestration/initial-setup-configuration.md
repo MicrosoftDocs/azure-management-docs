@@ -7,7 +7,7 @@ ms.custom:
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 06/24/2025
+ms.date: 09/05/2025
 # Customer intent: As an IT admin, I want to configure and manage workload orchestration resources so that I can effectively deploy applications across my Kubernetes clusters while ensuring streamlined processes and compliance with organizational requirements.
 ---
 
@@ -95,8 +95,20 @@ The following steps show how to configure the resources of workload orchestratio
     You can also use an already existing context by running the `context create` command with the `--context-id` parameter while passing the desired list of capabilities and hierarchies into it. You can add more capabilities, but removing and deleting isn't supported.
     
     ```powershell
-    az workload-orchestration context create --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName" --hierarchies "<hierarchies-list" --capabilities "<capabilities-list>"
-    ``` 
+    az workload-orchestration context create --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName" --hierarchies "<hierarchies-list>" --capabilities "<capabilities-list>"
+    ```
+    
+    You can set the current context to be used or view details about the same.
+
+    ```powershell
+    # Set current context by name and resource group
+    az workload-orchestration context use -n $contextName -g $rg
+    
+    # Set current context using ARM resource ID az workload-orchestration context set --id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
+    
+    # Display current context information
+    az workload-orchestration context current 
+    ```
 
     > [!NOTE]
     > The context name must be between 3 and 61 characters in length and follow the naming pattern defined by the regular expression `^a-zA-Z0-9?(\.a-zA-Z0-9?)*$`. This means:

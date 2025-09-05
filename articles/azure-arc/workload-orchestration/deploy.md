@@ -4,7 +4,7 @@ description: Learn to use workload orchestration portal to deploy your applicati
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/01/2025
+ms.date: 09/05/2025
 ms.custom:
   - build-2025
 # Customer intent: As a deployment manager, I want to utilize the workload orchestration portal to deploy, manage, and troubleshoot application solutions, so that I can ensure seamless application operations within my environment.
@@ -39,7 +39,7 @@ This article describes how to use the workload orchestration portal to deploy, d
 
 You can deploy a solution to a target by following these steps:
 
-1. Click on the **target name** to open the details page which lists the applicable solutions and their statuses.
+1. Under the **Deploy** tab, click on the **target name** to open the details page which lists the applicable solutions and their statuses.
 
     :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
@@ -55,9 +55,17 @@ You can deploy a solution to a target by following these steps:
 
     :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
 
-1. Once the deployment finishes, the status of the solution is updated to **Deployed** and the notification panel opens to show the details of the deployment.
+1. To view the detailed status of your deployment, click on respective solution name.
 
-    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing a successful deployment." lightbox="./media/deploy-5.png":::
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
+
+1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+
+    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
+
+1. In case the deployment fails at any step, the pane shows the details on the exact step of failure.
+
+    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing an example failed deployment." lightbox="./media/deploy-7.png":::
 
     > [!NOTE]
     > All actions and statuses are shown under notifications.
