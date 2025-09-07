@@ -31,6 +31,8 @@ If the `delete-enabled` attribute of an untagged manifest is set to `false`, the
 
 > [!IMPORTANT]
 > The retention policy applies only to untagged manifests with timestamps *after* the policy is enabled. Untagged manifests in the registry with earlier timestamps aren't subject to the policy. For other options to delete image data, see examples in [Delete container images in Azure Container Registry](container-registry-delete.md).
+>
+> Untagged manifests that use the media type `application/vnd.oci.image.index.v1+json` are not supported by ACR Retention Policies. Only v2 manifests are supported.
 
 ## Set a retention policy - CLI
 
