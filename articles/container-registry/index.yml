@@ -172,7 +172,7 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Overview of ensuring integrity and authenticity for container images and OCI artifacts
-            url: overview-sign-verify-oci-artifacts.md
+            url: overview-sign-and-verify-oci-artifacts.md
           - text: Push and pull supply chain artifacts (Preview)
             url: container-registry-manage-artifact.md
           - text: Sign container images with Notation and Trusted Signing (Preview)

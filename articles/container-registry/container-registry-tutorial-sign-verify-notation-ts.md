@@ -5,13 +5,14 @@ author: yizha1
 ms.author: yizha1
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
+ms.topic: how-to
 ms.date: 9/5/2025
 # Customer intent: As a developer, I want to sign and verify container images, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
 # Signing container images with Notation and Trusted Signing (Preview)
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-and-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
 
 This article focuses on signing with Notary Project tooling Notation and [Trusted Signing](/azure/trusted-signing/overview):
 

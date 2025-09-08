@@ -219,7 +219,7 @@
     - name: Signing and verification
       items:
       - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
-        href: overview-sign-verify-oci-artifacts.md
+        href: overview-sign-and-verify-oci-artifacts.md
       - name: Sign container images with Notation and Trusted Signing (Preview)
         href: container-registry-tutorial-sign-verify-notation-ts.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
