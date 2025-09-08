@@ -10,7 +10,7 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 To stay up to date with the most recent developments, this article provides you with information about recent releases of the Arc resource bridge Azure CLI extension, `az arcappliance`.  
 
-The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, whichever is more recent. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, **whichever is more recent**. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
 
 ## Version 1.6.0 (Sept 2025)
 
@@ -55,7 +55,8 @@ The [version support policy](overview.md#supported-versions) for Arc resource br
 
 ## Version 1.4.1 (February 2025)
 
-- Support version: n-2
+- Support version: past 6 months, unsupported
+
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
@@ -70,7 +71,8 @@ The [version support policy](overview.md#supported-versions) for Arc resource br
 
 ## Version 1.4.0 (February 2025)
 
-- Support version: n-3
+- Support version: past 6 months, unsupported
+
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
