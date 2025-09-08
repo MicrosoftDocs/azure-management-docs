@@ -23,6 +23,22 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.56 - September 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**   | **1.29.99.0**   |**1.26.94.0**||
+|Increased timeout when retrieving data from HIMDS on Azure Local servers.| ✓ |✓|Bug Fix|
+|**Azcmagent**|**1.56.03167.2465**|**1.56.03167.593**||
+|Removed requests concerning the Arc gateway feature for ALDO (Azure Local Disconnected Operations).|✓ |✓ |Bug Fix|
+|Increased token acquisition timeout.|✓ |✓ |Bug Fix|
+|HIMDS now reports 'service stop' only after cleanup tasks complete.|✓ ||Bug Fix|
+|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓ ||Bug Fix, Security|
+|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓ |Bug Fix, Security|
+|Added support for ARM64 Debian 12.||✓ |Feature, New Distro Support|
+
 ## Version 1.55 - August 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.55/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
@@ -147,7 +163,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.49/AzureConnect
 - Windows only:
   - The agent now saves MSI certificates both on disk and in the Windows cert store (only for Windows Servers 2019 (10.0.17763) and newer).
   - Added authentication option to use certificates from the Windows cert store for `azcmagent connect` and `azcmagent disconnect`.
-
+    
 > [!NOTE]
 > This article contains updates covering the past six months. For earlier releases, see [Archive for What's new with Azure Connected Machine agent](agent-release-notes-archive.md)
 
