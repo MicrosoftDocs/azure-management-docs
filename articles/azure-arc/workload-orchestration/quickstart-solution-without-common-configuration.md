@@ -269,7 +269,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 1. View parameters for a specific template version.
 
-    ```bash
+    ```powershell
     az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1 --version $appVersion
     ```
 
@@ -285,16 +285,16 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1
     ```
 
+1. View parameters for a specific template version.
+
+    ```powershell
+    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1 --version $appVersion
+    ```
+
 1. Edit parameters at child level.
 
     ```powershell
     az workload-orchestration configuration set --resource-group $rg --target-name $childName --solution-template-name $appName1
-    ```
-
-1. View parameters for a specific template version.
-
-    ```bash
-    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1 --version $appVersion
     ```
 
 ***
