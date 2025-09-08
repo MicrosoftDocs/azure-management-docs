@@ -51,7 +51,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
    :::image type="content" source="media/capture-browser-trace/edge-network-export-har.png" alt-text="Screenshot showing how to Export HAR on the Network tab in Edge.":::
 
-1. Stop recording your screen, and save the file.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -93,7 +93,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
    :::image type="content" source="media/capture-browser-trace/chrome-network-export-har.png" alt-text="Screenshot that shows how to export a HAR file on the Network tab in Chrome.":::
 
-1. Stop recording your screen, and save the file.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -143,7 +143,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
    :::image type="content" source="media/capture-browser-trace/safari-network-export-har.png" alt-text="Screenshot of the Export command in the Network tab on Safari.":::
 
-1. Stop recording your screen, and save the file.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab, and expand the window. Place your cursor at the start of the console output then drag and select the entire contents of the output. Use Command-C to copy the output and save it to a text file.
 
@@ -183,7 +183,7 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
    :::image type="content" source="media/capture-browser-trace/firefox-network-export-har.png" alt-text="Screenshot of the Save All As HAR command on the Network tab in Firefox.":::
 
-1. Stop recording your screen, and save the file.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save All Messages to File**, and save the console output to a text file.
 
