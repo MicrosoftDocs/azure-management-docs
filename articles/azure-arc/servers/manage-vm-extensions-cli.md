@@ -9,7 +9,7 @@ ms.custom:
 # Customer intent: As a system administrator managing hybrid cloud environments, I want to deploy and manage VM extensions using Azure CLI, so that I can efficiently automate tasks and maintain consistency across my Azure Arc-enabled servers.
 ---
 
-# Enable Azure VM extensions by using the Azure CLI
+# Enable Azure VM extensions by using the Azure CLI (Windows and Linux)
 
 This article explains how to deploy, upgrade, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) on Azure Arc-enabled servers by using the Azure CLI (Windows and Linux).
 
