@@ -32,12 +32,12 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnect
 | **Guest Config**   | **1.29.99.0**   |**1.26.94.0**||
 |Increased timeout when retrieving data from HIMDS on Azure Local servers.| ✓ |✓|Bug Fix|
 |**Azcmagent**|**1.56.03167.2465**|**1.56.03167.593**||
+|Added support for ARM64 Debian 12.||✓|New Distro Support|
+|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓|Security, Bug Fix|
+|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓||Security, Bug Fix|
 |Removed requests concerning the Arc gateway feature for ALDO (Azure Local Disconnected Operations).|✓ |✓ |Bug Fix|
 |Increased token acquisition timeout.|✓ |✓ |Bug Fix|
 |HIMDS now reports 'service stop' only after cleanup tasks complete.|✓ ||Bug Fix|
-|Azcmagent commands requiring admin privileges now confirm the pipe owner as HIMDS during IPC.|✓ ||Bug Fix, Security|
-|Declared bundled OpenSSL in the spec file on RPM-based OSes.||✓ |Bug Fix, Security|
-|Added support for ARM64 Debian 12.||✓ |Feature, New Distro Support|
 
 ## Version 1.55 - August 2025
 
