@@ -15,7 +15,7 @@ This article explains how to deploy, upgrade, update, and uninstall [virtual mac
 
 [!INCLUDE [Azure CLI Prepare your environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
-## Install the Azure CLI extension
+## Install the Connected Machine extension in the Azure CLI
 
 The `ConnectedMachine` commands aren't shipped as part of the Azure CLI. Before you use the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the `ConnectedMachine` extension.
 
