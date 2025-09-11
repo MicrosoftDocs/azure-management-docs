@@ -6,17 +6,12 @@ ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
 
-# Simplify network configuration requirements with Azure Arc gateway (preview)
+# Simplify Network Configuration Requirements with Azure Arc gateway
 
 If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven endpoints. With Azure Arc gateway, you can:
 
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
-
-This article explains how to set up and use Arc gateway (preview).
-
-> [!IMPORTANT]
-> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability.
 
 ## How the Azure Arc gateway works
 
@@ -34,15 +29,19 @@ When the gateway is in place, traffic flows via the following hops: **Arc agents
 
 ## Current limitations
 
-During the public preview, the following limitations apply. Consider these factors when planning your configuration.
+Arc gateway GA has the following limitations. Consider these factors when planning your configuration.
 
-- TLS Terminating Proxies aren't supported.
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
 
 > [!IMPORTANT]
-> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may need to enable additional endpoints in order to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios).
+> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may need to manually allow additional endpoints in your environment to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios). Over time, Arc gateway will gradually cover more endpoints, further removing the need for these manual allowances.
+
+## Planning Your Arc gateway Setup
+
+- **Region Choice:** Arc gateway is a global service. Runtime connectivity is delivered through Microsoft’s Azure Front Door global edge network, which automatically routes clients to the nearest point of presence for low‑latency access and seamless failover. The region you select when creating the gateway determines only the control plane (where the gateway resource and management metadata live, and where create/update/delete happens); it does not constrain the gateway’s runtime endpoints or performance. So, picking East US versus West Europe for example, does not change where clients connect at runtime; it only affects management-plane placement and policy/RBAC locality.
+- **Arc-enabled Resources Per Arc gateway Resource:** When planning your Azure Arc deployment with Arc gateway, you must determine how many gateway resources are required for your environment. This depends on the number of resources you plan to manage in each Azure region. For Arc-enabled Servers only, a general rule of thumb is that one Arc gateway resource can handle 2,000 resources per Azure Region. If you are leveraging Arc gateway with any combination of Arc-enabled Servers, Arc-enabled Kubernetes, and Azure Local instances, please refer to our [provided formula](#arc-gateway-resource-planning-for-multiple-resource-types) to calculate the number of Arc gateway resources you need.  
 
 ## Required permissions
 
@@ -54,13 +53,13 @@ To create Arc gateway resources and manage their association with Arc-enabled se
 
 ## Create the Arc gateway resource
 
-You can create an Arc gateway (preview) resource by using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
+You can create an Arc gateway  resource by using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
 
 ### [Portal](#tab/portal)
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway (preview)**, then select **Create**.
+1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway **, then select **Create**.
 
 1. Select the subscription and resource group where you want the Arc gateway resource to be managed within Azure. An Arc gateway resource can be used by any Arc-enabled resource in the same Azure tenant.
 
@@ -141,7 +140,7 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
 
 ### [Portal](#tab/portal)
 
-1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
+1. In the Azure portal, go to **Azure Arc - Azure Arc gateway **.
 
 1. Select the Arc gateway resource to associate with your Arc-enabled server.
 
@@ -217,7 +216,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ### [Portal](#tab/portal)
 
-   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
+   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway **.
 
    1. Select the Arc gateway Resource.
 
@@ -309,6 +308,51 @@ To view Arc proxy logs on Linux:
 
 1. Run `sudo azcmagent logs`.
 1. In the resulting .zip file, the `arcproxy.log` file is located in the `/var/opt/azcmagent/log/` folder.
+
+
+
+
+
+## Arc gateway Resource planning for Multiple Resource Types
+
+To determine how many gateway resources you need per Azure region when you're using multiple Resource types, use the following formula:
+
+  **Score = (Servers ÷ 20) + (K8s Clusters ÷ 10) + (Azure Local Instances ÷ 10)** 
+
+  Where:
+  - **Servers** = Total standalone servers + provisioned VMs (on Azure Local)
+  - **K8s Clusters** = Total standalone Kubernetes clusters + AKS Arc clusters (on Azure Local)
+  - **Azure Local Instances** = Total Azure Local deployments
+
+  If **Score** for each region from which you intend to manage your resources  < 100, one Arc gateway resource is sufficient
+  
+  If **Score** for any region from which you intend to manage your resources  ≥ 100, more than one Arc gateway resource is required for that region
+
+  The following examples have more context on this:
+
+**Example 1:**
+  | Region        | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
+  |---------------|---------|--------------|-----------------------|--------------------------------------------|-------|
+  | East US       | 300     | 20           | 5                     | 300/20 + 20/10 + 5/10                      | 17.5  |
+  | West Europe   | 800     | 50           | 10                    | 800/20 + 50/10 + 10/10                     | 46.0  |
+  | Japan East    | 100     | 5            | 2                     | 100/20 + 5/10 + 2/10                       | 5.7   |
+
+ - Each Region's Score < 100. One Arc gateway resource is sufficient. 
+
+**Example 2:**
+  | Region          | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
+  |-----------------|---------|--------------|-----------------------|--------------------------------------------|-------|
+  | East US         | 6,000   | 300          | 40                    | 6000/20 + 300/10 + 40/10                   | 334.0 |
+  | West Europe     | 2,500   | 120          | 25                    | 2500/20 + 120/10 + 25/10                   | 139.5 |  
+  | Southeast Asia  | 900     | 30           | 8                     | 900/20 + 30/10 + 8/10                      | 48.8  |
+  
+  - East US Score > 100, 3 Arc gateway resources are needed to support the load in this region. 
+  - West Europe's Score > 100, 2 Arc gateway resources are needed to support the load in this region.  
+  - Southeast Asia's Score < 100, 1 Arc gateway resources are needed to support the load in this region.
+
+ Note, this scenario only requires 3 gateway resources total, because calculations are based on the maximum load per region, not the combined load across all regions.
+
+
 
 ## Additional scenarios
 
