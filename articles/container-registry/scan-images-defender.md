@@ -31,6 +31,12 @@ For details, see [Use Microsoft Defender for container registries](/azure/defend
 
 Microsoft Defender for Cloud can scan images in a publicly accessible container registry or one that's protected with network access rules. If network rules are configured (that is, you disable public registry access, configure IP access rules, or create private endpoints), be sure to enable the network setting to [**allow trusted Microsoft services**](allow-access-trusted-services.md) to access the registry. By default, this setting is enabled in a new container registry.
 
+
+> [!NOTE]
+>
+> For Microsoft Defender for Cloud to scan images in ACR, [**Authentication-as-arm**](container-registry-disable-authentication-as-arm.md) should be enabled
+>
+
 ## Next steps
 
 * Learn more about registry access by [trusted services](allow-access-trusted-services.md).
