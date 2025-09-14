@@ -91,13 +91,13 @@ Signing using Notation CLI:
 - [Sign container images with Notation and Trusted Signing (Preview)](container-registry-tutorial-sign-verify-notation-ts)
 
 Signing in GitHub workflow:
-- [Sign container images in GitHub workflow with Notation and Trusted Signing](container-registry-tutorial-gha-sign-notation-ts)
+- [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts)
 
 ### Verfication
 
 Verification in GitHub workflow:
 - [Verify container images in GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
-- [Verify container images in GitHub workflow with Notation and Trusted Signing](container-registry-tutorial-gha-verify-notation-ts)
+- [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts)
 
 Verification on AKS:
 - [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)

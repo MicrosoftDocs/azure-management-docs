@@ -12,7 +12,7 @@ ms.date: 9/5/2025
 
 # Signing container images with Notation and Trusted Signing (Preview)
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-and-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts), which explains why signing matters and various scenarios.
 
 This article focuses on signing with Notary Project tooling, Notation and [Trusted Signing](/azure/trusted-signing/overview):
 
@@ -421,15 +421,20 @@ notation verify $Env:IMAGE
 
 ---
     
-    Example output:
-    
-    ```text
-    Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
-    ```
-    
-    If verification fails, ensure your trust policy and certificates are configured correctly.
+Example output:
+
+```text
+Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
+```
+
+If verification fails, ensure your trust policy and certificates are configured correctly.
 
 
 ## Next steps
 
-- [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+For signing in GitHub workflow, see [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts)
+
+For verification in GitHub workflow, see - [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts)
+
+For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+
