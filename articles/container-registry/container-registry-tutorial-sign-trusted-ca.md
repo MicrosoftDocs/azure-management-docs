@@ -12,7 +12,7 @@ ms.date: 9/5/2024
 
 # Sign container images with Notation and Azure Key Vault using a CA-issued certificate
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-and-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
 
 Signing and verifying container images with a certificate issued by a trusted Certificate Authority (CA) is a valuable security practice. This security measure will help you to responsibly identify, authorize, and validate the identity of both the publisher of the container image and the container image itself. The Trusted Certificate Authorities (CAs) such as GlobalSign, DigiCert, and others play a crucial role in the validation of a user's or organization's identity, maintaining the security of digital certificates, and revoking the certificate immediately upon any risk or misuse.
 

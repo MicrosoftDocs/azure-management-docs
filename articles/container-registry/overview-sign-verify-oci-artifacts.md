@@ -79,8 +79,8 @@ This overview introduces the importance of signing and verifying both container 
 ### Signing with AKV
 
 Signing using Notation CLI:
-- [Sign container images with Notation and Azure Key Vault using a self-signed certificate](container-registry-tutorial-sign-build-push)  
-- [Sign container images with Notation and Azure Key Vault using a CA-issued certificate](container-registry-tutorial-sign-trusted-ca)
+- [Sign container images with Notation and Azure Key Vault using a self-signed certificate](container-registry-tutorial-sign-build-push.md)  
+- [Sign container images with Notation and Azure Key Vault using a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md)
 
 Signing in GitHub workflow:
 - [Sign container images in GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
@@ -88,16 +88,16 @@ Signing in GitHub workflow:
 ### Signing with Trusted Signing
 
 Signing using Notation CLI:
-- [Sign container images with Notation and Trusted Signing (Preview)](container-registry-tutorial-sign-verify-notation-ts)
+- [Sign container images with Notation and Trusted Signing (Preview)](container-registry-tutorial-sign-verify-notation-ts.md)
 
 Signing in GitHub workflow:
-- [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts)
+- [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts.md)
 
 ### Verfication
 
 Verification in GitHub workflow:
 - [Verify container images in GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
-- [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts)
+- [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts.md)
 
 Verification on AKS:
 - [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
