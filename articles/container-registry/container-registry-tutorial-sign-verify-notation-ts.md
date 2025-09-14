@@ -41,41 +41,83 @@ This article focuses on signing with Notary Project tooling, Notation and [Trust
 ## Install Notation CLI and Trusted Signing plugin
 
 >[!NOTE]
->This guide runs commands on Linux amd64 as examples. 
+>This guide runs commands on Linux amd64 and Windows as examples. 
 
 1. **Install Notation CLI v1.3.2**
 
-    ```bash
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
-    # Validate the checksum
-    EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
-    echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
-    # Continue if the sha256sum matches
-    tar xvzf notation.tar.gz
-    cp ./notation /usr/local/bin
-    ```
+# [Linux](#tab/linux)
 
-    For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
+```bash
+curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
+# Validate the checksum
+EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
+echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
+# Continue if the sha256sum matches
+tar xvzf notation.tar.gz
+cp ./notation /usr/local/bin
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+# Download the Windows release
+Invoke-WebRequest -Uri "https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_windows_amd64.zip" -OutFile notation.zip
+# Validate the checksum
+$EXPECTED_SHA256SUM = "014f25a530eee17520c8e1eb7380e4bd02ff6fc04479a07a890954e3b7ddfdc7"
+if ((Get-FileHash notation.zip -Algorithm SHA256).Hash -ne $EXPECTED_SHA256SUM) { Write-Error "Checksum mismatch"; exit 1 }
+# Expand and install
+Expand-Archive notation.zip -DestinationPath .
+# Create install location and move the binary to it
+New-Item -ItemType Directory -Force -Path "$Env:ProgramFiles\Notation" | Out-Null
+Move-Item -Path ".\notation\notation.exe" -Destination "$Env:ProgramFiles\Notation\notation.exe"
+# Add to PATH for current session
+$env:PATH = "${Env:ProgramFiles}\Notation;${Env:PATH}"
+```
+
+---
+
+For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
 
 2. **Install the Trusted Signing plugin**
 
-    ```bash
-    notation plugin install --url https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_linux_amd64.tar.gz --sha256sum 50258aad83e2fbb592ef548bf7ef4abf903590b62fd1f43a4ef4d60c201f0db5
-    ```
-    Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
+# [Linux](#tab/linux)
+
+```bash
+notation plugin install --url https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_linux_amd64.tar.gz --sha256sum 50258aad83e2fbb592ef548bf7ef4abf903590b62fd1f43a4ef4d60c201f0db5
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_windows_amd64.zip" --sha256sum 50258aad83e2fbb592ef548bf7ef4abf903590b62fd1f43a4ef4d60c201f0db5
+```
+
+---
+
+Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
 
 3. **Verify plugin installation**
 
-    ```bash
-    notation plugin ls
-    ```
+# [Linux](#tab/linux)
 
-    Example output:
-    
-    ```text
-    NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
-    azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
-    ```
+```bash
+notation plugin ls
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+notation plugin ls
+```
+
+---
+
+Example output:
+
+```text
+NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
+azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
+```
 
 ## Configure environment variables
 
@@ -89,6 +131,8 @@ Set the following environment variables for use in subsequent commands. Replace 
 > - **Certificate profile information:**  
 >   `Portal > Account name > Objects > Certificate Profiles`  
 
+
+# [Linux](#tab/linux)
 
 ```bash
 # Trusted Signing environment variables
@@ -112,14 +156,51 @@ TAG=<tag>
 IMAGE=$ACR_LOGIN_SERVER/${REPOSITORY}:$TAG
 ```
 
+# [Windows](#tab/windows)
+
+```powershell
+# Trusted Signing environment variables (current session)
+$env:TS_SUB_ID = "<subscription-id>"
+$env:TS_ACCT_RG = "<ts-account-resource-group>"
+$env:TS_ACCT_NAME = "<ts-account-name>"
+$env:TS_ACCT_URL = "<ts-account-url>"
+$env:TS_CERT_PROFILE = "<ts-cert-profile>"
+$env:TS_CERT_SUBJECT = "<ts-cert-subject>"
+$env:TS_SIGNING_ROOT_CERT = "https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
+$env:TS_TSA_URL = "http://timestamp.acs.microsoft.com/"
+$env:TS_TSA_ROOT_CERT = "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
+
+# ACR and image environment variables (current session)
+$env:ACR_SUB_ID = "<acr-subscription-id>"
+$env:ACR_RG = "<acr-resource-group>"
+$env:ACR_NAME = "<registry-name>"
+$env:ACR_LOGIN_SERVER = "$($env:ACR_NAME).azurecr.io"
+$env:REPOSITORY = "<repository>"
+$env:TAG = "<tag>"
+$env:IMAGE = "$($env:ACR_LOGIN_SERVER)/$($env:REPOSITORY):$($env:TAG)"
+```
+
+---
+
 ## Sign in to Azure
 
 Use the Azure CLI to sign in with your **user identity**:
+
+# [Linux](#tab/linux)
 
 ```bash
 az login
 USER_ID=$(az ad signed-in-user show --query id -o tsv)
 ```
+
+# [Windows](#tab/windows)
+
+```powershell
+az login
+$USER_ID = az ad signed-in-user show --query id -o tsv
+```
+
+---
 
 > [!NOTE]
 > This guide demonstrates signing in with a **user account**.  
@@ -135,108 +216,210 @@ Grant your identity the necessary roles to access ACR:
   - `AcrPull`
   - `AcrPush`
 
+# [Linux](#tab/linux)
+
 ```bash
 az role assignment create --role "Container Registry Repository Reader" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
 az role assignment create --role "Container Registry Repository Writer" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
 ```
 
+# [Windows](#tab/windows)
+
+```powershell
+az role assignment create --role "Container Registry Repository Reader" --assignee $USER_ID --scope "/subscriptions/$($env:ACR_SUB_ID)/resourceGroups/$($env:ACR_RG)/providers/Microsoft.ContainerRegistry/registries/$($env:ACR_NAME)"
+az role assignment create --role "Container Registry Repository Writer" --assignee $USER_ID --scope "/subscriptions/$($env:ACR_SUB_ID)/resourceGroups/$($env:ACR_RG)/providers/Microsoft.ContainerRegistry/registries/$($env:ACR_NAME)"
+```
+
+---
+
 Assign the role to `Trusted Signing Certificate Profile Signer` to your identity to sign with Trusted Signing:
+
+# [Linux](#tab/linux)
 
 ```bash
 az role assignment create --assignee $USER_ID --role "Trusted Signing Certificate Profile Signer" --scope "/subscriptions/$TS_SUB_ID/resourceGroups/$TS_ACCT_RG/providers/Microsoft.CodeSigning/codeSigningAccounts/$TS_ACCT_NAME/certificateProfiles/$TS_CERT_PROFILE"
 ```
 
+# [Windows](#tab/windows)
+
+```powershell
+az role assignment create --assignee $USER_ID --role "Trusted Signing Certificate Profile Signer" --scope "/subscriptions/$($env:TS_SUB_ID)/resourceGroups/$($env:TS_ACCT_RG)/providers/Microsoft.CodeSigning/codeSigningAccounts/$($env:TS_ACCT_NAME)/certificateProfiles/$($env:TS_CERT_PROFILE)"
+```
+
+---
+
 ## Sign a container image
 
-1. **Authenticate to ACR**
+# [Linux](#tab/linux)
+
+```bash
+# Authenticate to ACR
+az acr login --name $ACR_NAME
+
+# Download the Timestamping root certificate
+curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
+
+# Sign the image
+notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$TS_ACCT_NAME --plugin-config baseUrl=$TS_ACCT_URL --plugin-config certProfile=$TS_CERT_PROFILE $IMAGE
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+# Authenticate to ACR
+az acr login --name $Env:ACR_NAME
+
+# Download the Timestamping root certificate
+Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
+
+# Sign the image
+notation sign --signature-format cose --timestamp-url $Env:TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $Env:TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$Env:TS_ACCT_NAME --plugin-config baseUrl=$Env:TS_ACCT_URL --plugin-config certProfile=$Env:TS_CERT_PROFILE $Env:IMAGE
+```
+
+---
     
-    ```bash
-    az acr login --name $ACR_NAME
-    ```
+Key flags explained:
+- `--signature-format cose`: Uses COSE format for signatures.
+- `--timestamp-url`: Use the timestamping server that Trusted Signing supports.
+- `--plugin-config`: Passes config to the Trusted Signing plugin.
 
-2. **Download the Timestamping root certificate**
+**List signed images and signatures**
 
-    ```bash
-    curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
-    ```
+# [Linux](#tab/linux)
 
-3. **Sign the image**
-    
-    ```bash
-    notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$TS_ACCT_NAME --plugin-config baseUrl=$TS_ACCT_URL --plugin-config certProfile=$TS_CERT_PROFILE $IMAGE
-    ```
-    
-    Key flags explained:
-    - `--signature-format cose`: Uses COSE format for signatures.
-    - `--timestamp-url`: Use the timestamping server that Trusted Signing supports.
-    - `--plugin-config`: Passes config to the Trusted Signing plugin.
+```bash
+notation ls $IMAGE
+```
 
-4. **List signed images and signatures**
+# [Windows](#tab/windows)
 
-    ```bash
-    notation ls $IMAGE
-    ```
+```powershell
+notation ls $Env:IMAGE
+```
 
-    Example output:
+---
 
-    ```text
-    myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
-    └── application/vnd.cncf.notary.signature
-        └── sha256:d3a4c9fbc17e27b19a0b28e7b6a33f2c0f541dbdf8d2e5e8d0d79a835e8a76f2a
-    ```
+Example output:
+
+```text
+myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
+└── application/vnd.cncf.notary.signature
+    └── sha256:d3a4c9fbc17e27b19a0b28e7b6a33f2c0f541dbdf8d2e5e8d0d79a835e8a76f2a
+```
 
 ## Verify a container image
 
 1. **Download and add root certificates**
 
-    ```bash
-    curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
-    SIGNING_TRUST_STORE="myRootCerts"
-    notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
+# [Linux](#tab/linux)
 
-    curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
-    TSA_TRUST_STORE="myTsaRootCerts"
-    notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
-    notation cert ls
-    ```
+```bash
+curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
+SIGNING_TRUST_STORE="myRootCerts"
+notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
+
+curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
+TSA_TRUST_STORE="myTsaRootCerts"
+notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
+notation cert ls
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+Invoke-WebRequest -Uri $Env:TS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
+$SIGNING_TRUST_STORE = "myRootCerts"
+notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
+
+Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
+$TSA_TRUST_STORE = "myTsaRootCerts"
+notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
+notation cert ls
+```
+
+---
 
 2. **Configure trust policy**
 
     Create a trust policy JSON file:
 
-    ```bash
-    cat <<EOF > trustpolicy.json
-    {
-        "version": "1.0",
-        "trustPolicies": [
-            {
-                "name": "myPolicy",
-                "registryScopes": [ "$ACR_LOGIN_SERVER/$REPOSITORY" ],
-                "signatureVerification": {
-                    "level" : "strict"
-                },
-                "trustStores": [ "ca:$SIGNING_TRUST_STORE", "tsa:$TSA_TRUST_STORE" ],
-                "trustedIdentities": [
-                    "x509.subject: $TS_CERT_SUBJECT"
-                ]
-            }
-        ]
-    }
-    EOF
-    ```
+# [Linux](#tab/linux)
 
-    Import and check the policy:
+```bash
+cat <<EOF > trustpolicy.json
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "myPolicy",
+            "registryScopes": [ "$ACR_LOGIN_SERVER/$REPOSITORY" ],
+            "signatureVerification": {
+                "level" : "strict"
+            },
+            "trustStores": [ "ca:$SIGNING_TRUST_STORE", "tsa:$TSA_TRUST_STORE" ],
+            "trustedIdentities": [
+                "x509.subject: $TS_CERT_SUBJECT"
+            ]
+        }
+    ]
+}
+EOF
+```
 
-    ```bash
-    notation policy import trustpolicy.json
-    notation policy show
-    ```
+Import and check the policy:
+
+```bash
+notation policy import trustpolicy.json
+notation policy show
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+@"
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "myPolicy",
+            "registryScopes": [ "$($env:ACR_LOGIN_SERVER)/$($env:REPOSITORY)" ],
+            "signatureVerification": {
+                "level" : "strict"
+            },
+            "trustStores": [ "ca:$($SIGNING_TRUST_STORE)", "tsa:$($TSA_TRUST_STORE)" ],
+            "trustedIdentities": [
+                "x509.subject: $($env:TS_CERT_SUBJECT)"
+            ]
+        }
+    ]
+}
+"@ | Out-File -FilePath trustpolicy.json -Encoding utf8
+```
+
+Import and check the policy:
+
+```powershell
+notation policy import trustpolicy.json
+notation policy show
+```
+
+---
 
 3. **Verify the image**
-    
-    ```bash
-    notation verify $IMAGE
-    ```
+
+# [Linux](#tab/linux)
+
+```bash
+notation verify $IMAGE
+```
+
+# [Windows](#tab/windows)
+
+```powershell
+notation verify $Env:IMAGE
+```
+
+---
     
     Example output:
     
