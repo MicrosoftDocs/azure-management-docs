@@ -434,7 +434,7 @@ If verification fails, ensure your trust policy and certificates are configured 
 
 For signing in GitHub workflow, see [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts.md)
 
-For verification in GitHub workflow, see - [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts.md)
+For verification in GitHub workflow, see [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts.md)
 
 For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
 
