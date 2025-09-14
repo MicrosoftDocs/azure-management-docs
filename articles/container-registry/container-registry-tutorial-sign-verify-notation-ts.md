@@ -14,7 +14,7 @@ ms.date: 9/5/2025
 
 This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-and-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
 
-This article focuses on signing with Notary Project tooling Notation and [Trusted Signing](/azure/trusted-signing/overview):
+This article focuses on signing with Notary Project tooling, Notation and [Trusted Signing](/azure/trusted-signing/overview):
 
 - What you’ll learn here: How to use Notation CLI to sign artifacts using Microsoft Trusted Signing.
 - Where it fits: Trusted Signing is an alternative to Azure Key Vault (AKV). While AKV gives organizations full control of certificate lifecycle management, Trusted Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
@@ -47,6 +47,10 @@ This article focuses on signing with Notary Project tooling Notation and [Truste
 
     ```bash
     curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
+    # Validate the checksum
+    EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
+    echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
+    # Continue if the sha256sum matches
     tar xvzf notation.tar.gz
     cp ./notation /usr/local/bin
     ```
@@ -56,7 +60,7 @@ This article focuses on signing with Notary Project tooling Notation and [Truste
 2. **Install the Trusted Signing plugin**
 
     ```bash
-    notation plugin install --url https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v0.3.0/notation-azure-trustedsigning_0.3.0_linux_amd64.tar.gz --sha256sum 808b7fa45cfca0a0f400db33958a3d6aca37a73df2e77008fe149314344bfd11
+    notation plugin install --url https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_linux_amd64.tar.gz --sha256sum 50258aad83e2fbb592ef548bf7ef4abf903590b62fd1f43a4ef4d60c201f0db5
     ```
     Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
 
@@ -88,7 +92,7 @@ Set the following environment variables for use in subsequent commands. Replace 
 
 ```bash
 # Trusted Signing environment variables
-TS_SUB_ID=<subscription-id>
+TS_SUB_ID="<subscription-id>"
 TS_ACCT_RG=<ts-account-resource-group>
 TS_ACCT_NAME=<ts-account-name>
 TS_ACCT_URL=<ts-account-url>
@@ -99,7 +103,7 @@ TS_TSA_URL="http://timestamp.acs.microsoft.com/"
 TS_TSA_ROOT_CERT="http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
 # ACR and image environment variables
-ACR_SUB_ID=<acr-subscription-id>
+ACR_SUB_ID="<acr-subscription-id>"
 ACR_RG=<acr-resource-group>
 ACR_NAME=<registry-name>
 ACR_LOGIN_SERVER=$ACR_NAME.azurecr.io
@@ -156,7 +160,7 @@ az role assignment create --assignee $USER_ID --role "Trusted Signing Certificat
     curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
     ```
 
-2. **Sign the image**
+3. **Sign the image**
     
     ```bash
     notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$TS_ACCT_NAME --plugin-config baseUrl=$TS_ACCT_URL --plugin-config certProfile=$TS_CERT_PROFILE $IMAGE
@@ -167,7 +171,7 @@ az role assignment create --assignee $USER_ID --role "Trusted Signing Certificat
     - `--timestamp-url`: Use the timestamping server that Trusted Signing supports.
     - `--plugin-config`: Passes config to the Trusted Signing plugin.
 
-3. **List signed images and signatures**
+4. **List signed images and signatures**
 
     ```bash
     notation ls $IMAGE
