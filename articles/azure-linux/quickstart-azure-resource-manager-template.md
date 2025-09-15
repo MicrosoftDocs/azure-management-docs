@@ -4,9 +4,12 @@ description: Learn how to quickly create an Azure Linux Container Host for AKS c
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: devx-track-arm-template, linux-related-content
 ms.topic: quickstart
 ms.date: 04/18/2023
+ms.custom:
+  - devx-track-arm-template
+  - linux-related-content
+  - sfi-image-nochange
 # Customer intent: "As a cloud engineer, I want to deploy an Azure Linux Container Host for my AKS cluster using an ARM template, so that I can efficiently manage containerized applications within my infrastructure."
 ---
 

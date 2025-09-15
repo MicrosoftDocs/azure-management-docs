@@ -7,6 +7,7 @@ ms.service: azure-container-registry
 ms.topic: quickstart  #Don't change
 ms.date: 05/20/2025
 ai-usage: ai-assisted
+ms.custom: sfi-ropc-blocked
 
 # Customer intent: As a DevOps engineer, I want to deploy the Connected Registry Arc extension using CLI with secure settings, so that I can manage container workloads efficiently and securely in my Kubernetes cluster.
 ---

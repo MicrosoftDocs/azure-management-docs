@@ -4,11 +4,13 @@ description: "Artifact streaming is a feature in Azure Container Registry to enh
 author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
-ms.custom: devx-track-azurecli
 zone_pivot_groups: container-registry-zones
 ms.topic: concept-article #Don't change
 ms.date: 02/26/2024
 ai-usage: ai-assisted
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 # Customer intent: "As a developer, I want to utilize artifact streaming in my container registry so that I can efficiently manage and deploy containerized applications across multiple regions with reduced latency and improved scalability."
 ---
 

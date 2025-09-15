@@ -4,11 +4,12 @@ description: Learn how administrators can manage user access to Microsoft Copilo
 ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
+ms.author: jenhayes
+author: JnHs
 ms.custom:
   - build-2024
   - copilot-learning-hub
-ms.author: jenhayes
-author: JnHs
+  - sfi-ga-nochange
 # Customer intent: "As a Global Administrator, I want to manage user access to Microsoft Copilot in Azure, so that I can control whether users in my organization can use its features."
 ---
 

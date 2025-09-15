@@ -3,7 +3,11 @@ title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
 ms.date: 08/25/2025
 ms.topic: tutorial
-ms.custom: template-tutorial, devx-track-azurecli, references_regions
+ms.custom:
+  - template-tutorial
+  - devx-track-azurecli
+  - references_regions
+  - sfi-image-nochange
 # Customer intent: As a DevOps engineer, I want to implement GitOps workflows using Flux v2 in my Kubernetes clusters, so that I can manage application deployment and configuration through Git repositories efficiently and maintain cluster compliance automatically.
 ---
 

@@ -10,6 +10,7 @@ ms.date: 06/26/2025
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
+  - sfi-ropc-nochange
 # Customer intent: As an IT infrastructure admin, I want to install Arc agents at scale for my SCVMM VMs so that I can leverage Azure management services for securing, patching, and monitoring those virtual machines effectively.
 ---
 

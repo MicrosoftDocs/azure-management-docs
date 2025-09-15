@@ -5,8 +5,10 @@ author: chasedmicrosoft
 ms.topic: how-to
 ms.author: doveychase
 ms.date: 10/31/2023
-ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
+ms.custom:
+  - devx-track-azurecli
+  - sfi-ropc-nochange
 # Customer intent: As a developer, I want to automate the management of public container images in my private registry, so that I can ensure security, maintain functionality, and streamline updates in my application workflows.
 ---
 
