@@ -56,7 +56,7 @@ Make sure that all the available GPUs across all nodes are listed in the output 
 
 ## Configure machine to manage Azure Arc-enabled Kubernetes clusters (optional)
 
-If you want to manage the Kubernetes clusters from a machine outside of the Azure Local host, set up a machine with the following tools:
+If you want to manage the Kubernetes clusters from a machine outside the Azure Local instance, set up a driver machine (local management host) with the following tools:
 
 - Azure CLI
 - Azure CLI extensions aksarc and Kubernetes-extension
