@@ -378,7 +378,7 @@ Proxy settings can be configured using the `azcmagent config` command or system 
 Agent-specific proxy configuration is the preferred way of configuring proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. Using agent-specific proxy configuration helps prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
 
 > [!NOTE]
-> Extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
+> Some extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
 
 To configure the agent to communicate through a proxy server, run the following command:
 

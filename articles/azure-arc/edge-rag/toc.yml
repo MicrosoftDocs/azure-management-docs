@@ -16,6 +16,8 @@ items:
             href: Requirements.md
       - name: Deploy
         items:
+          - name: Overview
+            href: deploy-overview.md
           - name: Complete prerequisites
             items:
               - name: Checklist

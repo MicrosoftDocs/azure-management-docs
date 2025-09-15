@@ -4,7 +4,7 @@ description: Release notes for Workload Orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: release-notes
-ms.date: 06/24/2025
+ms.date: 09/05/2025
 ---
 
 # Release notes for workload orchestration
@@ -13,7 +13,41 @@ This article provides the latest and past release notes for workload orchestrati
 
 [!INCLUDE [cli-version-note](includes/cli-version-note.md)]
 
-## July 2025 release (latest)
+## August 2025 release
+
+### New features
+
+- *Granular visibility of deployment operations*: Users can now view detailed real‑time progress in the workload orchestration portal while deploying solutions. This includes intermediate steps along with timestamps, and the user who initiated the deployment. In case of a failure, users can see the exact stage of operations at which it occurred and the associated error message for troubleshooting.
+
+- *Event Log for improved monitoring*: A new **Event Log** tab under the **Monitor** pane in the portal provides a chronological view of all user‑initiated actions across solutions and targets. Users can filter or group the view based on relevant fields, and further drill down into details of individual executions within an operation. This feature acts as an audit trail and improves transparency in shared environments.
+
+### Improvements in workload orchestration portal
+
+- Eliminated delays between the live status of a user-initiated action displayed on portal and its corresponding notifications, presenting a more accurate and consistent view of operations.
+
+- The portal now has improved accessibility. Details can be found [here](https://www.microsoft.com/accessibility/conformance-reports).
+
+### Improvements in CLI
+
+- **Azure CLI Workload Orchestration Extension 3.0.0** is now available with new capabilities and improvements. To install it, run:
+
+    `az extension add --name workload-orchestration`
+
+    To update your existing installation to the latest version, run:
+
+    `az extension update --name workload-orchestration`
+
+- The extension now provides more robust capabilities for context and solution management, specifically the ability to set and view current context, view all solution instances and revisions within a target, and display parameter values configured for all previous versions of a configuration template
+
+- CLI persistently stores information related to the current context used, allowing automatic fallback to default context in a new session and enhanced context ID validation.
+
+- Improved user experience for context creation and management through enhanced output readability and more actionable error messages.
+
+### Bug fixes
+
+Resolved an issue related to the timestamp not being displayed correctly for few portal notifications.
+ 
+## July 2025 release
 
 ### Improvements
 

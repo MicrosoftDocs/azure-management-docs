@@ -210,9 +210,6 @@ To permanently delete a private or shared dashboard, follow these steps.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-delete-dash.png" alt-text="Screenshot of delete confirmation.":::
 
-> [!TIP]
-> In the global Azure cloud, if you delete a _published_ dashboard in the Azure portal, you can recover that dashboard within 14 days of the delete. For more information, see [Recover a deleted dashboard in the Azure portal](recover-shared-deleted-dashboard.md).
-
 ## Next steps
 
 - [Share Azure dashboards by using Azure role-based access control](azure-portal-dashboard-share-access.md)

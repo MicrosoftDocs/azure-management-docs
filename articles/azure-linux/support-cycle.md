@@ -17,6 +17,9 @@ This article describes the support lifecycle for the Azure Linux Container Host 
 > [!IMPORTANT]
 > Microsoft is committed to meeting this support lifecycle and reserves the right to make changes to the support agreement and new scenarios that require modifications at any time with proper notice to customers and partners.
 
+> [!IMPORTANT]
+> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
+
 ## Image releases
 
 ### Minor releases
@@ -43,7 +46,7 @@ The following table outlines the first and last AKS release supported by each ve
 
 ### AKS LTS Releases
 
-- Azure Linux 2.0 is the default node OS for AKS versions v1.27 to v1.31 during both Standard and Long-Term Support (LTS). However, Azure Linux 2.0 goes End of Life ends during the LTS period of AKS v1.28–v1.31. To maintain support and security updates, customers running Azure Linux 2.0 on AKS v1.27–v1.31 LTS are requested to migrate to Azure Linux 3.0 by November 2025. Before this date, AKS will offer a feature to facilitate the migration from Azure Linux 2.0 to 3.0 via a node pool update command. For feature availability and updates, see [Github issue](https://github.com/Azure/AKS/issues/4987). After November 2025 Azure Linux 2.0 will no longer receive updates, security patches, or support, which may put your systems at risk.
+- Azure Linux 2.0 is the default node OS for AKS versions v1.27 to v1.31 during both Standard and Long-Term Support (LTS). However, Azure Linux 2.0 goes End of Life during the LTS period of AKS v1.28–v1.31. To maintain support and security updates, customers running Azure Linux 2.0 on AKS v1.27–v1.31 LTS are requested to migrate to Azure Linux 3.0 by November 2025. After November 2025, Azure Linux 2.0 will no longer receive updates, security patches, or support, which may put your systems at risk. To migrate existing node pools from Azure Linux 2.0 to 3.0 while remaining on the same Kubernetes version, you can perform an in-place node pool update from `--os-sku AzureLinux` to `--os-sku AzureLinux3`. Your node pool will automatically reimage to the equivalent Azure Linux 3.0 node image. See documentation [here](/azure/aks/upgrade-os-version).
 - Azure Linux 3.0 is the default node OS for AKS version v1.32 and above during both Standard and Long-Term Support (LTS).
 
 | AKS version |  Azure Linux version during AKS Standard Support | Azure Linux version during AKS Long-Term Support  |

@@ -4,7 +4,7 @@ description: Learn how to set up Role-Based Access Control (RBAC) when using wor
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: overview
-ms.date: 05/03/2025
+ms.date: 09/05/2025
 ms.custom:
   - build-2025
 # Customer intent: "As an IT administrator managing workload orchestration, I want to implement Role-Based Access Control (RBAC) using standard and custom roles, so that I can ensure secure and appropriate access for users based on their responsibilities."
@@ -146,7 +146,7 @@ A service group contributor​ is the admin user who creates the service group a
 |Description|Actions|
 |---|---|
 |Create and manage service groups \*| `Microsoft.Management/serviceGroups/read​`, `Microsoft.Management/serviceGroups/write​`, `Microsoft.Management/serviceGroups/delete​`|
-|Create and manage relationships on top of `DeploymentTargets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/write` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/delete` on `DeploymentTarget` + Target service group​|
+|Create and manage relationships on top of `Targets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/write` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/delete` on `DeploymentTarget` + Target service group​|
 |View the resources under the service group|Ensure that the user has READ access to the `DeploymentTarget` resources that are part of the service group. For this, the user can either have access at the resource group/subscription level or directly for the particular `DeploymentTarget` resource.​|
 
 \* User needs to be a registered user on the Tenant. Once a user creates a service group, they automatically create the following permissions on the service group. 
@@ -158,7 +158,7 @@ A service group reader is any user who can view the service groups and sites hie
 |Description|Actions|
 |---|---|
 |View service groups by service group contributor​ | `Microsoft.Management/serviceGroups/read​`|
-|View already existing relationships on top of `DeploymentTargets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​|
+|View already existing relationships on top of `Targets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​|
 |View the resources under the service group|Ensure that the user has READ access to the `DeploymentTarget` resources that are part of the service group. For this, the user can either have access at the resource group/subscription level or directly for the particular `DeploymentTarget` resource.​|
 
 #### Service group admin​
@@ -168,7 +168,7 @@ A service group admin is any user who can view, edit, and delete the service gro
 |Description|Actions|
 |---|---|
 |Create and manage service groups| `Microsoft.Management/serviceGroups/read​`, `Microsoft.Management/serviceGroups/write​`, `Microsoft.Management/serviceGroups/delete​`|
-|Create and manage relationships on top of `DeploymentTargets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/write` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/delete` on `DeploymentTarget` + Target service group​|
+|Create and manage relationships on top of `Targets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/write` on `DeploymentTarget` + Target service group​, `Microsoft.Relationships/serviceGroupMember/delete` on `DeploymentTarget` + Target service group​|
 |View the resources under the service group| Ensure that the user has READ access to the `DeploymentTarget` resources that are part of the service group. For this, the user can either have access at the resource group/subscription level or directly for the particular `DeploymentTarget` resource.​|
 
 

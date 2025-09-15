@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps with Flux v2"
 description: "This tutorial shows how to use GitOps with Flux v2 to manage configuration and application deployment in Azure Arc and AKS clusters."
-ms.date: 03/26/2025
+ms.date: 08/25/2025
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -534,7 +534,7 @@ If your Helm charts are stored in the `GitRepository` source that you configure 
 
 ```yaml
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: somename
@@ -686,7 +686,7 @@ To create Flux configurations in clusters with workload identity enabled, modify
 1. Make sure the custom resource that needs to use workload identity sets `.spec.provider` value to `azure` in the manifest. For example:
 
    ```json
-   apiVersion: source.toolkit.fluxcd.io/v1beta2
+   apiVersion: source.toolkit.fluxcd.io/v1
    kind: HelmRepository
    metadata:
      name: acrrepo
