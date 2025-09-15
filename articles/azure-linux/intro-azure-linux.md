@@ -66,10 +66,11 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 
 - [NVIDIA V100][nvidia-v100]
 - [NVIDIA T4][nvidia-t4]
+- [NVIDIA NC A100 V4][nvidia-nc-a100-v4]
 
 > [!NOTE]
-> Azure Linux doesn't support the NC A100 v4 series. All other VM SKUs that are available on AKS are available with Azure Linux.
->
+> Azure Linux is actively working on adding support for additional GPU series on AKS (NVIDIA H100, H200, etc.). All other VM SKUs that are available on AKS are available with Azure Linux.
+> Azure Linux does not currently support the MIG (Multi-Instance GPU) feature on AKS.
 > If there are any areas you would like to have priority, please file an issue in the [AKS GitHub repository](https://github.com/Azure/AKS/issues).
 
 ## Next steps
@@ -81,6 +82,7 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 <!-- LINKS - internal -->
 [nvidia-v100]: /azure/virtual-machines/ncv3-series
 [nvidia-t4]: /azure/virtual-machines/nct4-v3-series
+[nvidia-nc-a100-v4]: azure/virtual-machines/sizes/gpu-accelerated/nca100v4-series
 [cis-benchmarks]: /azure/aks/cis-azure-linux
 
 <!-- LINKS - external -->
