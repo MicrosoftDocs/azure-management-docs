@@ -7,6 +7,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-site-manager
 ms.topic: quickstart  #Don't change
 ms.date: 04/18/2024
+ms.custom: sfi-image-nochange
 
 #customer intent: As a admin who manages my sites as resource groups in Azure, I want to represent them as Arc sites and so that I can benefit from logical representation and extended functionality in Arc for my resources under my resource groups.
 

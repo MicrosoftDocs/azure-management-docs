@@ -5,8 +5,10 @@ ms.topic: tutorial
 author: chasedmicrosoft
 ms.author: doveychase
 ms.date: 10/31/2023
-ms.custom: mvc
 ms.service: azure-container-registry
+ms.custom:
+  - mvc
+  - sfi-image-nochange
 # Customer intent: "As a developer, I want to create and configure a geo-replicated container registry so that I can efficiently deploy container images to applications across multiple Azure regions."
 ---
 

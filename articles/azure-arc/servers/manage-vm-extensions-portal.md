@@ -5,6 +5,7 @@ ms.date: 06/19/2025
 ms.topic: how-to
 ms.custom:
   - build-2025
+  - sfi-image-nochange
 # Customer intent: "As a system administrator managing hybrid environments, I want to deploy and manage VM extensions on Azure Arc-enabled servers via the Azure portal, so that I can efficiently enhance server functionality without needing command-line tools."
 ---
 

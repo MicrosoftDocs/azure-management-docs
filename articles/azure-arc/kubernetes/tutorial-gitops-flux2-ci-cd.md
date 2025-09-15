@@ -5,7 +5,10 @@ author: eedorenko
 ms.author: iefedore
 ms.topic: tutorial
 ms.date: 08/25/2025
-ms.custom: template-tutorial, devx-track-azurecli
+ms.custom:
+  - template-tutorial
+  - devx-track-azurecli
+  - sfi-ropc-nochange
 # Customer intent: "As a DevOps engineer, I want to implement a CI/CD workflow using GitOps with Flux v2 in Azure Kubernetes Service, so that I can automate the deployment and management of applications across development and staging environments."
 ---
 # Tutorial: Implement CI/CD with GitOps (Flux v2)
