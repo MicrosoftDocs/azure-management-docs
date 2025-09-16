@@ -61,6 +61,7 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Red Hat Enterprise Linux (RHEL)     | 7           | ✅    | ❌    |                                                                                                  |
 | Red Hat Enterprise Linux (RHEL)     | 8           | ✅    | ❌    |                                                                                                  |
 | Red Hat Enterprise Linux (RHEL)     | 9           | ✅    | ❌    |                                                                                                  |
+| Red Hat Enterprise Linux (RHEL)   |10| ✅ | ❌||
 | Rocky Linux                         | 8           | ✅    | ❌    |                                                                                                  |
 | Rocky Linux                         | 9           | ✅    | ❌    |                                                                                                  |
 | SUSE Linux Enterprise Server (SLES) | 12 SP3-SP5  | ✅    | ❌    |                                                                                                  |
