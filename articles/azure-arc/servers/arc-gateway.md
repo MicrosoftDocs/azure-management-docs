@@ -13,7 +13,7 @@ If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway 
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
 
-## How the Azure Arc gateway works
+## How Azure Arc gateway works
 
 Azure Arc gateway consists of two main components:
 
@@ -21,7 +21,7 @@ Azure Arc gateway consists of two main components:
 
 - **Arc proxy:** A new component added to the Azure Arc agents. This component runs within the context of an Arc-enabled resource as a service called "Azure Arc Proxy". It acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for this proxy.
 
-When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**.
+When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**. For more information on Arc gateway's Forwarding Protocol, see [Arc gateway Forwarding Protocol Architecture](#arc-gateway-forwarding-protocol).
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
 
@@ -34,9 +34,10 @@ Arc gateway GA has the following limitations. Consider these factors when planni
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
+- Arc gateway is not receommended to be used in environments where TLS termination / inspection is required. If your environment requires TLS termination / inspection, it is recommended to skip TLS inspection for your Arc gateway endpoint(s). For more information, see [Arc gateway & TLS Inspection](#arc-gateway--tls-inspection).
 
 > [!IMPORTANT]
-> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may need to manually allow additional endpoints in your environment to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios). Over time, Arc gateway will gradually cover more endpoints, further removing the need for these manual allowances.
+> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may still need to manually allow-list additional endpoints in your environment to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios). Over time, Arc gateway will gradually cover more endpoints, further removing the need for these manual allowances.
 
 ## Planning Your Arc gateway Setup
 
@@ -45,11 +46,7 @@ Arc gateway GA has the following limitations. Consider these factors when planni
 
 ## Required permissions
 
-To create Arc gateway resources and manage their association with Arc-enabled servers, the following permissions are required:
-
-- Microsoft.HybridCompute/settings/write
-- Microsoft.hybridcompute/gateways/read
-- Microsoft.hybridcompute/gateways/write
+To create Arc gateway resources and manage their association with Arc-enabled servers, a user must have the **Arc gateway Manager** Role. 
 
 ## Create the Arc gateway resource
 
@@ -128,7 +125,7 @@ After the resource is created successfully, the success response will include th
     Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
 
     > [!IMPORTANT]
-    > When generating the onboarding script, select the **Gateway resource** in the **Connectivity method** section.
+    > When generating the onboarding script, ensure **Public Endpoint** is selected the **Connectivity method** section, and ensure your Arc gateway resources is selected in the **Gateway Resource** dropdown. 
 
 1. Run the installation script to onboard your servers to Azure Arc.
 
@@ -295,7 +292,7 @@ Remove-AzArcGateway
 
 ---
 
-## Monitor traffic
+## Monitoring Arc gateway traffic
 
 You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 
@@ -377,12 +374,12 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 
 - Azure Monitor Agent
 
-  - `\<log-analytics-workspace-id\>.ods.opinsights.azure.com`
-  - `\<data-collection-endpoint\>.\<virtual-machine-region-name\>.ingest.monitor.azure.com`
+  - `<log-analytics-workspace-id>.ods.opinsights.azure.com`
+  - `<data-collection-endpoint>.<virtual-machine-region>.ingest.monitor.azure.com`
 
 - Azure Key Vault Certificate Sync
 
-  - `\<vault-name\>.vault.azure.net`
+  - `<vault-name>.vault.azure.net`
 
 - Azure Automation Hybrid Runbook Worker extension
 
@@ -395,3 +392,19 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 - Microsoft Defender
 
   - Your environment must meet all the [prerequisites](/defender-endpoint/configure-device-connectivity) for Microsoft Defender
+ 
+## Arc gateway Acrhitecture 
+
+### Arc gateway Forwarding Protocol 
+
+<img width="1280" height="720" alt="Arc Gateway Diagrams" src="https://github.com/user-attachments/assets/0d450bb0-b1b1-436e-b30c-581972a7ceee" />
+
+### Arc gateway & TLS Inspection
+
+Arc gateway works by establishing a TLS session between Arc Proxy and Arc gateway in Azure. Within this TLS session, Arc Proxy sends a nested HTTP connect request to the Arc gateway resource, requesting it to forward the connection to the intended target destination. Subsequently, if the target destination itself is on TLS, an inner end-to-end TLS session is established between Arc agent and the target destination. 
+ 
+When using terminating proxies with Arc gateway, the proxy will get to see the nested HTTP connect request. It may allow such a request but it won't be able to intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This is outside the capabilities of standard TLS terminating proxies. Therefore, when using a terminating proxy, the recommendation is for customer to skip TLS inspection for their Arc gateway endpoint. 
+
+### Arc gateway Endpoint List
+
+To understand which endpoints prevents you from having to allow in your environment, please see INSERT ENDPOINT REPO LIST
