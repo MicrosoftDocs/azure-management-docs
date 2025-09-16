@@ -64,7 +64,7 @@ The following table lists some of the key VM extensions that are available for A
 |Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=windows) (installs the extension automatically) |
 |Defender for SQL Servers Advanced Threat Protection | Microsoft.Azure.AzureDefenderForSQL | AdvancedThreatProtection.Windows | [Enable Defender for SQL Servers on Machines](/azure/defender-for-cloud/defender-for-sql-usage) |
 |SQL Server Backup |Microsoft.Azure.RecoveryServices.WorkloadBackup | AzureBackupWindowsWorkload | [About SQL Server Backup in Azure VMs](/azure/backup/backup-azure-sql-database) |
-|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForWindows |[Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID]([https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-windows) |
+|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForWindows |[Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID](https://learn.microsoft.com/entra/identity/devices/howto-vm-sign-in-azure-ad-windows.md?pivots=identity-extension-hybrid) |
 
 ### Linux extensions
 
