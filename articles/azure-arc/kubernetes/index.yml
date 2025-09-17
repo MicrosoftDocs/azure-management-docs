@@ -8,7 +8,7 @@ metadata:
   ms.service: azure-arc
   ms.author: rayoflores
   ms.topic: landing-page
-  ms.date: 03/02/2021
+  ms.date: 09/17/2025
 
 landingContent:
   - title: About Azure Arc-enabled Kubernetes
@@ -38,10 +38,6 @@ landingContent:
         links:
           - text: Connect a cluster to Azure Arc
             url: quickstart-connect-cluster.md
-      - linkListType: learn
-        links:
-          - text: Module - Intro to Azure Arc-enabled Kubernetes
-            url: /training/modules/intro-to-arc-enabled-kubernetes
 
   - title: Deploy applications using GitOps
     linkLists:

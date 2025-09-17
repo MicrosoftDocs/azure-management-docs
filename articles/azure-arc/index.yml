@@ -11,7 +11,7 @@ metadata:
   ms.service: azure-arc
   ms.topic: hub-page
   ms.author: jenhayes
-  ms.date: 06/11/2025
+  ms.date: 09/17/2025
   ms.custom:
     - e2e-hybrid
     - ignite-2023
@@ -133,18 +133,18 @@ conceptualContent:
       # Card
     - title: Training modules
       links:
-        - url: /training/modules/intro-to-azure-arc/
+        - url: /training/intro-to-azure-arc/
           itemType: training
           text: Introduction to Azure Arc
-        - url: /training/modules/intro-to-arc-for-servers/
+        - url: /training/modules/plan-deploy-azure-arc-enabled-servers/
           itemType: training
-          text: Introduction to Azure Arc-enabled servers
-        - url: /training/modules/intro-to-arc-enabled-kubernetes/
+          text: Plan and deploy Azure Arc-enabled servers at scale
+        - url: /training/modules/secure-azure-arc-enabled-servers/
           itemType: training
-          text: Introduction to Azure Arc-enabled Kubernetes
-        - url: /training/modules/intro-to-arc-enabled-data-services/
+          text: Secure hybrid and multicloud machines
+        - url: /training/modules/monitor-azure-arc-enabled-servers/
           itemType: training
-          text: Introduction to Azure Arc-enabled data services
+          text: Monitor hybrid and multicloud machines
 
 additionalContent:
   # Supports up to 4 subsections
