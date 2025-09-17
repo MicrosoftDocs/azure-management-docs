@@ -15,7 +15,7 @@ ms.custom: references_regions
 
 Azure Arc-enabled VMware vSphere receives new features and enhancements on an ongoing basis. This article provides an overview of the recent developments, which are common to both on-premises VMware and Azure VMware Solution private clouds. 
 
-## August 2025 
+## September 2025 
 
 - Retirement notice: Azure Kubernetes Service on VMware (Preview) is retiring on March 16, 2026.
 
