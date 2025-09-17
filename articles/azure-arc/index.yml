@@ -133,7 +133,7 @@ conceptualContent:
       # Card
     - title: Training modules
       links:
-        - url: /training/intro-to-azure-arc/
+        - url: /training/modules/intro-to-azure-arc/
           itemType: training
           text: Introduction to Azure Arc
         - url: /training/modules/plan-deploy-azure-arc-enabled-servers/
