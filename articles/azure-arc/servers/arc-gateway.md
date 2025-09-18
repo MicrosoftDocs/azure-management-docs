@@ -29,7 +29,7 @@ When the gateway is in place, traffic flows via the following hops: **Arc agents
 
 ## Current limitations
 
-Arc gateway GA has the following limitations. Consider these factors when planning your configuration.
+Arc gateway has the following current limitations. Consider these factors when planning your configuration.
 
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
