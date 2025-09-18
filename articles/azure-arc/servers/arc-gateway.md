@@ -6,7 +6,7 @@ ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
 
-# Simplify Network Configuration Requirements with Azure Arc gateway
+# Simplify network configuration requirements with Azure Arc gateway
 
 If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven endpoints. With Azure Arc gateway, you can:
 
