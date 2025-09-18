@@ -2,7 +2,7 @@
 title: What is Azure Arc-enabled VMware vSphere?
 description: Azure Arc-enabled VMware vSphere extends Azure governance and management capabilities to VMware vSphere infrastructure and delivers a consistent management experience across both platforms. 
 ms.topic: overview
-ms.date: 08/21/2025
+ms.date: 09/17/2025
 ms.custom:
   - references_regions
   - build-2025
@@ -91,6 +91,9 @@ You have the flexibility to start with either option, and incorporate the other 
 
      > [!VIDEO https://www.youtube.com/embed/mJnmXBrU1ao]
 - Administrators can install the Azure Connected Machine agent at scale and leverage Azure Arc benefits such as [Windows Server management](/azure/azure-arc/servers/windows-server-management-overview?tabs=portal) for VMs with Software Assurance licenses, and pay-as-you-go billing for [Extended Security Updates](/azure/azure-arc/system-center-virtual-machine-manager/deliver-esus-for-system-center-virtual-machine-manager-vms) for Windows Server and SQL Server VMs.
+
+> [!IMPORTANT]
+> Microsoft is retiring Azure Kubernetes Service on VMware (Preview) on March 16, 2026. We recommend deploying [AKS on Azure Local](/azure/aks/aksarc/aks-whats-new-local) to leverage AKS on-premises. After March 16, 2026, you will no longer be able to deploy or receive support for Azure Kubernetes Service on VMware. If you have additional questions, please contact us through the [AKS enabled by Azure Arc GitHub repository](https://aka.ms/aksarc-github).
 
 ## Supported regions
 

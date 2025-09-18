@@ -4,9 +4,12 @@ description: Learn how to quickly create an Azure Linux Container Host for AKS c
 author: suhuruli
 ms.author: suhuruli
 ms.service: microsoft-linux
-ms.custom: devx-track-arm-template, linux-related-content
 ms.topic: quickstart
 ms.date: 04/18/2023
+ms.custom:
+  - devx-track-arm-template
+  - linux-related-content
+  - sfi-image-nochange
 # Customer intent: "As a cloud engineer, I want to deploy an Azure Linux Container Host for my AKS cluster using an ARM template, so that I can efficiently manage containerized applications within my infrastructure."
 ---
 
@@ -15,6 +18,9 @@ ms.date: 04/18/2023
 Get started with the Azure Linux Container Host by using an Azure Resource Manager (ARM) template to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you'll create a SSH key pair, review the template, deploy the template and validate it, and then deploy an application.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
+
+> [!IMPORTANT]
+> Starting on **30 November 2025**, AKS will no longer support or provide security updates for Azure Linux 2.0. Starting on **31 March 2026**, node images will be removed, and you'll be unable to scale your node pools. Migrate to a supported Azure Linux version by [**upgrading your node pools**](/azure/aks/upgrade-aks-cluster) to a supported Kubernetes version or migrating to [`osSku AzureLinux3`](/azure/aks/upgrade-os-version). For more information, see [[Retirement] Azure Linux 2.0 node pools on AKS](https://github.com/Azure/AKS/issues/4988).
 
 ## Prerequisites 
 

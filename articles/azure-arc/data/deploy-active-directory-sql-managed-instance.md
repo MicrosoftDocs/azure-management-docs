@@ -9,6 +9,7 @@ ms.author: mialmei
 ms.reviewer: mikeray
 ms.date: 10/11/2022
 ms.topic: how-to
+ms.custom: sfi-ropc-nochange
 # Customer intent: "As a database administrator, I want to deploy an Azure SQL Managed Instance with Active Directory authentication using Azure Arc, so that I can manage SQL resources effectively while ensuring secure access for users."
 ---
 

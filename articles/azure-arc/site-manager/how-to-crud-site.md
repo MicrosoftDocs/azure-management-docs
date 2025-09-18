@@ -7,6 +7,7 @@ ms.service: azure-arc
 ms.subservice: azure-arc-site-manager
 ms.topic: how-to #Don't change
 ms.date: 04/18/2024
+ms.custom: sfi-image-nochange
 
 #customer intent: As a site admin, I want to know how to create, delete, and modify sites so that I can manage my site.
 

@@ -8,7 +8,10 @@ ms.service: azure-arc
 ms.subservice: azure-arc-data
 ms.topic: quickstart 
 ms.date: 09/20/2022
-ms.custom: template-quickstart , devx-track-azurecli
+ms.custom:
+  - template-quickstart
+  - devx-track-azurecli
+  - sfi-ropc-nochange
 # Customer intent: As a data engineer, I want to deploy Azure Arc-enabled data services in indirectly connected mode using the Azure CLI, so that I can manage and scale my SQL Managed Instances and other data services across different environments seamlessly.
 ---
 

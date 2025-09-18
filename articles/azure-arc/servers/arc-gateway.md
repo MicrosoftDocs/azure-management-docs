@@ -121,6 +121,7 @@ After the resource is created successfully, the success response will include th
 |`gbl.his.arc.azure.com`  |The cloud service endpoint for communicating with Azure Arc agents  |
 |`<region>.his.arc.azure.com`  |Used for Arc's core control channel  |
 |`packages.microsoft.com`  |Required to connect Linux servers to Arc  |
+|`download.microsoft.com` |Used to download the Windows installation package |
 
 ## Onboard new Azure Arc resources with your Arc gateway resource
 

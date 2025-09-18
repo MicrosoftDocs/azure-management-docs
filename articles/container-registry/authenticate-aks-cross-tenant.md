@@ -6,6 +6,7 @@ author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.date: 02/28/2025
+ms.custom: sfi-image-nochange
 # Customer intent: As a developer, I want to configure cross-tenant authentication for an AKS cluster to access an Azure container registry, so that I can enable seamless pulling of container images across different Microsoft Entra tenants.
 ---
 

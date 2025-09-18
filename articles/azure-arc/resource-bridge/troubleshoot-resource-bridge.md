@@ -109,6 +109,36 @@ When you deploy Arc resource bridge, you might see this error: `Deployment of th
 
 This error indicates that the deployment machine can't contact the control plane IP for Arc resource bridge within the time limit. Common causes of the error are often networking related, such as communication between the deployment machine and control plane IP being routed through a proxy. Traffic from the deployment machine to the control plane and the appliance VM IPs must not pass through proxy. If traffic is being proxied, configure the proxy settings on your network or deployment machine to not proxy traffic between the deployment machine to the control plane IP and appliance VM IPs. Another cause for this error is if a firewall is closing access to port 6443 and port 22 between the deployment machine and control plane IP or the deployment machine and appliance VM IPs.
 
+### Context timed out during phase `WaitingForAdditionalComponents`
+
+When deploying Arc Resource Bridge, you may encounter the following error: `Deployment of the Arc resource bridge appliance VM timed out. Please collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _WaitingForAdditionalComponents_\_\n}_`
+
+This error typically indicates that the deployment process stalled while waiting for critical components, such as the clusterconnect-agent or Helm charts, to initialize. Below are the most common causes and recommended actions:
+
+- Network Bandwidth Limitations: Slow or unstable network connections can delay container image downloads, especially for key components. Ensure that the appliance VM has a stable connection to required endpoints.  The lowest network bandwidth validated for deployment of Arc resource bridge is 100 mbps. Lower speeds may result in deployment failures. 
+
+- Network Misconfiguration: Proxy interference or firewall restrictions may block access to required endpoints (e.g., mcr.microsoft.com, time.windows.com, or Azure APIs). Incorrect proxy settings, such as malformed no_proxy lists (e.g., double commas ,,), can break Helm chart parsing and cause misleading errors. You can review your proxy settings, validate no_proxy entries for syntax errors and ensure critical endpoints are excluded from proxy routing.
+
+- Storage Performance: Suboptimal storage configuration on the appliance VM can prevent successful unpacking and initialization of components. This includes insufficient disk space, inadequate memory, or slow IOPS. To mitigate this, verify that the appliance VM meets the minimum recommended baseline: 200 GB of disk space, 4 vCPUs, and 8 GB of memory, backed by hybrid storage (flash and HDD) or all-flash storage (SSDs or NVMe). Depending on your specific environment and workload, higher specifications may be necessary.
+
+
+### Context timed out during phase `WaitingForProviderSpecifics`
+
+When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Please collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _WaitingForProviderSpecifics_\_\n}_, _errorMetadata_: { _errorCategory_: __, _errorAdditionalInfos_: null } }`
+
+This error indicates that the deployment process is stalled while waiting for provider-specific pods (e.g., vSphere) to become ready and eventually times out. The issue is often related to a variable in the environment or network/storage configuration. In most cases, the required connections are closing, and can’t make progress downloading container images. 
+
+The error can also be caused by slow network speed causing a timeout during the container download. Ensure that the appliance VM has a stable connection to required endpoints.  The lowest network bandwidth validated for deployment of Arc resource bridge is 100 mbps. Lower speeds may result in deployment failures. You can attempt a retry in the event that the slow speed is intermittent.
+
+### Context timed out during phase `WaitingForCluster`
+
+When you deploy Arc resource bridge, you might see this error: `Context timed out during phase 'WaitingForCluster'`
+
+This error indicates that the deployment process stalled while waiting for the Kubernetes cluster components to initialize. It typically occurs during the early stages of appliance setup and is often linked to environmental or configuration issues.
+
+The most frequent cause is the appliance VM’s inability to reach your private cloud endpoint—such as the vSphere or vCenter server. Ensure all networking requirements are met and try the deployment again.
+
+
 ### 403 Forbidden or 404 Site Not Found
 
 When you deploy Arc resource bridge, you might see this error: `{ _errorCode_: _UploadError_, _errorResponse_: _{\n\_message\_: \_Pre-deployment validation of your download/upload connectivity was not successful. {\\n  \\\_code\\\_: \\\_ImageProvisionError\\\_,\\n  \\\_message\\\_: \\\_403 Forbidden` or `{ _errorCode_: _UploadError_, _errorResponse_: _{\n\_message\_: \_Pre-deployment validation of your download/upload connectivity was not successful. {\\n  \\\_code\\\_: \\\_ImageProvisionError\\\_,\\n  \\\_message\\\_: \\\_404 Site Not Found`

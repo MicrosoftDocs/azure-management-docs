@@ -2,8 +2,10 @@
 title: "Azure RBAC on Azure Arc-enabled Kubernetes clusters"
 ms.date: 02/25/2025
 ms.topic: how-to
-ms.custom: devx-track-azurecli
 description: "Use Azure RBAC for authorization checks on Azure Arc-enabled Kubernetes clusters."
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 # Customer intent: As a Kubernetes administrator, I want to implement Azure RBAC on my Azure Arc-enabled clusters, so that I can effectively manage user access and authorizations for Kubernetes objects within my environment.
 ---
 
