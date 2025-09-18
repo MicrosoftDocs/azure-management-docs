@@ -399,7 +399,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 
 <img width="1280" height="720" alt="Arc Gateway Diagrams" src="https://github.com/user-attachments/assets/0d450bb0-b1b1-436e-b30c-581972a7ceee" />
 
-### Arc gateway & TLS Inspection
+### Arc gateway & TLS inspection
 
 Arc gateway works by establishing a TLS session between Arc Proxy and Arc gateway in Azure. Within this TLS session, Arc Proxy sends a nested HTTP connect request to the Arc gateway resource, requesting it to forward the connection to the intended target destination. Subsequently, if the target destination itself is on TLS, an inner end-to-end TLS session is established between Arc agent and the target destination. 
  
