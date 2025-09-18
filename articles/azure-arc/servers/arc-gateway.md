@@ -401,7 +401,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 
 ### Arc gateway & TLS inspection
 
-Arc gateway works by establishing a TLS session between Arc Proxy and Arc gateway in Azure. Within this TLS session, Arc Proxy sends a nested HTTP connect request to the Arc gateway resource, requesting it to forward the connection to the intended target destination. Subsequently, if the target destination itself is on TLS, an inner end-to-end TLS session is established between Arc agent and the target destination. 
+Arc gateway works by establishing a TLS session between Arc proxy and Arc gateway in Azure. Within this TLS session, Arc proxy sends a nested HTTP connect request to the Arc gateway resource, requesting it to forward the connection to the intended target destination. Subsequently, if the target destination itself is on TLS, an inner end-to-end TLS session is established between Arc agent and the target destination. 
  
 When using terminating proxies with Arc gateway, the proxy will get to see the nested HTTP connect request. It may allow such a request but it won't be able to intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This is outside the capabilities of standard TLS terminating proxies. Therefore, when using a terminating proxy, the recommendation is for customer to skip TLS inspection for their Arc gateway endpoint. 
 
