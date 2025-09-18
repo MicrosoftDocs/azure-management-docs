@@ -310,7 +310,7 @@ To view Arc proxy logs on Linux:
 
 
 
-## Arc gateway Resource planning for Multiple Resource Types
+## Arc gateway resource planning for multiple resource types
 
 To determine how many gateway resources you need per Azure region when you're using multiple Resource types, use the following formula:
 
