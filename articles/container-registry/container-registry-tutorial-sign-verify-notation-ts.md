@@ -12,7 +12,7 @@ ms.date: 9/5/2025
 
 # Signing container images with Notation and Trusted Signing (Preview)
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and offers various scenarios.
 
 This article focuses on signing with Notary Project tooling, Notation and [Trusted Signing](/azure/trusted-signing/overview):
 
@@ -21,6 +21,8 @@ This article focuses on signing with Notary Project tooling, Notation and [Trust
 - Why it matters: Trusted Signing simplifies the developer experience while providing strong identity assurance, helping teams reduce operational complexity without compromising security.
 
 ## Prerequisites
+
+Before you can sign and verify container images with Notation and Trusted Signing, you'll need to set up the required Azure resources and install the necessary tools. This section walks you through preparing your Azure Container Registry, configuring Trusted Signing, and setting up your development environment with the Azure CLI.
 
 ### Prepare container images in your Azure Container Registry (ACR)
 
