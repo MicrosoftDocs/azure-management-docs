@@ -292,7 +292,7 @@ Remove-AzArcGateway
 
 ---
 
-## Monitoring Arc gateway traffic
+## Monitor Arc gateway traffic
 
 You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 
