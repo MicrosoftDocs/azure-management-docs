@@ -3,6 +3,7 @@ title: Extensions security for Azure Arc-enabled servers
 description: Learn about security fundamentals for VM extensions used with Azure Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 07/28/2025
+ms.custom: sfi-ga-nochange
 # Customer intent: "As a system administrator, I want to configure and secure VM extensions for Azure Arc-enabled servers, so that I can manage monitoring and security capabilities while restricting unauthorized access and maintaining compliance with security policies."
 ---
 

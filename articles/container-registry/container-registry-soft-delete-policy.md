@@ -6,7 +6,9 @@ ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: how-to #Don't change
 ms.date: 01/22/2024
-ms.custom: devx-track-azurecli
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 # Customer intent: As a cloud administrator, I want to enable the soft delete policy for Azure Container Registry artifacts so that I can recover accidentally deleted items within a specified retention period, ensuring data integrity and minimizing potential data loss.
 ---
 

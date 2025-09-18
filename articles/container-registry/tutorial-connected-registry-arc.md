@@ -6,6 +6,7 @@ ms.author: doveychase
 ms.service: azure-container-registry
 ms.topic: tutorial  #Don't change.
 ms.date: 05/20/2025
+ms.custom: sfi-ropc-nochange
 
 
 # Customer intent: "As a DevOps engineer, I want to securely deploy the connected registry Arc extension with TLS encryption and trust distribution management, so that I can ensure safe and trusted communication between containers and the registry in my Kubernetes cluster."
