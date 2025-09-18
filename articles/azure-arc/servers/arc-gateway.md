@@ -405,6 +405,6 @@ Arc gateway works by establishing a TLS session between Arc proxy and Arc gatewa
  
 When using terminating proxies with Arc gateway, the proxy will see the nested HTTP connect request. It may allow such a request, but it won't be able to intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This is outside the capabilities of standard TLS terminating proxies. Therefore, when using a terminating proxy, the recommendation is to skip TLS inspection for your Arc gateway endpoint. 
 
-### Arc gateway Endpoint List
+### Arc gateway endpoint list
 
 To understand which endpoints prevents you from having to allow in your environment, please see INSERT ENDPOINT REPO LIST
