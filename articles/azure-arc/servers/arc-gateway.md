@@ -396,6 +396,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
   - Your environment must meet all the [prerequisites](/defender-endpoint/configure-device-connectivity) for Microsoft Defender
  
 ## Arc gateway Acrhitecture 
+Review the following information to understand more about the architecture of Arc gateway.
 
 ### Arc gateway forwarding protocol 
 
