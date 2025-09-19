@@ -397,7 +397,7 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
  
 ## Arc gateway Acrhitecture 
 
-### Arc gateway Forwarding Protocol 
+### Arc gateway forwarding protocol 
 
 <img width="1280" height="720" alt="Arc Gateway Diagrams" src="https://github.com/user-attachments/assets/0d450bb0-b1b1-436e-b30c-581972a7ceee" />
 
