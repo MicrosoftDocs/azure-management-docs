@@ -321,7 +321,7 @@ To determine how many gateway resources you need per Azure region for multiple r
   - **K8s Clusters** = Total standalone Kubernetes clusters + AKS Arc clusters (on Azure Local)
   - **Azure Local Instances** = Total Azure Local deployments
 
-  If **Score** for each region from which you intend to manage your resources  < 100, one Arc gateway resource is sufficient
+  If **Score** for each region from which you intend to manage your resources < 100, one Arc gateway resource is sufficient.
   
   If **Score** for any region from which you intend to manage your resources  ≥ 100, more than one Arc gateway resource is required for that region
 
