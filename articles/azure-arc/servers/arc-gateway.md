@@ -329,6 +329,7 @@ To determine how many gateway resources you need per Azure region for multiple r
 
 **Example 1:**
 
+
   | Region        | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
   |---------------|---------|--------------|-----------------------|--------------------------------------------|-------|
   | East US       | 300     | 20           | 5                     | 300/20 + 20/10 + 5/10                      | 17.5  |
@@ -338,6 +339,7 @@ To determine how many gateway resources you need per Azure region for multiple r
  - Each Region's Score < 100. One Arc gateway resource is sufficient. 
 
 **Example 2:**
+
 
   | Region          | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
   |-----------------|---------|--------------|-----------------------|--------------------------------------------|-------|
