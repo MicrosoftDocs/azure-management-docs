@@ -325,7 +325,7 @@ To determine how many gateway resources you need per Azure region for multiple r
   
   If **Score** for any region from which you intend to manage your resources ≥ 100, more than one Arc gateway resource is required for that region.
 
-  The following examples have more context on this:
+ The following examples provide more context:
 
 **Example 1:**
 
