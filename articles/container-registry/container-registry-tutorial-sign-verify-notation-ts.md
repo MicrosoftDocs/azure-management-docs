@@ -22,6 +22,9 @@ This article focuses on signing with Notary Project tooling, Notation and [Trust
 
 ## Prerequisites
 
+> [!NOTE]
+> At this time Trusted Signing is only available to organizations based in the USA and Canada that have a verifiable history of three years or more.
+
 Before you can sign and verify container images with Notation and Trusted Signing, you'll need to set up the required Azure resources and install the necessary tools. This section walks you through preparing your Azure Container Registry, configuring Trusted Signing, and setting up your development environment with the Azure CLI.
 
 ### Prepare container images in your Azure Container Registry (ACR)
