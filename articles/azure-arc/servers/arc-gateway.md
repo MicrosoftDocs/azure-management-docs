@@ -34,7 +34,7 @@ Arc gateway has the following current limitations. Consider these factors when p
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
-- Arc gateway is not receommended to be used in environments where TLS termination / inspection is required. If your environment requires TLS termination / inspection, it is recommended to skip TLS inspection for your Arc gateway endpoint(s). For more information, see [Arc gateway & TLS Inspection](#arc-gateway--tls-inspection).
+- Arc gateway isn't recommended for use in environments where TLS termination/inspection is required. If your environment requires TLS termination/inspection, we recommend skipping TLS inspection for your Arc gateway endpoint (<Your URL prefix>.gw.arc.azure.com). For more information, see [Arc gateway & TLS Inspection](#arc-gateway--tls-inspection).
 
 > [!IMPORTANT]
 > While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may still need to manually allow-list additional endpoints in your environment to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios). Over time, Arc gateway will gradually cover more endpoints, further removing the need for these manual allowances.
@@ -355,7 +355,7 @@ In this scenario, only three gateway resources are required in total, because ca
 
 ## Additional scenarios
 
-During public preview, Arc gateway covers the endpoints required for onboarding a server, plus endpoints to support several additional Arc-enabled scenarios. Based on the scenarios you adopt, you may need to allow additional endpoints in your proxy.
+Arc gateway covers the endpoints required for onboarding a server, plus endpoints to support several additional Arc-enabled scenarios. Based on the scenarios you adopt, you may need to allow additional endpoints in your environment.
 
 ### Scenarios that don’t require additional endpoints
 
