@@ -349,7 +349,7 @@ To determine how many gateway resources you need per Azure region for multiple r
   - West Europe's Score > 100, 2 Arc gateway resources are needed to support the load in this region.  
   - Southeast Asia's Score < 100, 1 Arc gateway resources are needed to support the load in this region.
 
- Note, this scenario only requires 3 gateway resources total, because calculations are based on the maximum load per region, not the combined load across all regions.
+In this scenario, only three gateway resources are required in total, because calculations are based on the maximum load per region, not the combined load across all regions.
 
 
 
