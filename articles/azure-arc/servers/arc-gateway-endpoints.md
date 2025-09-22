@@ -13,7 +13,8 @@ The following list of endpoints are enabled through [Azure Arc gateway for Arc-e
 
 
 > [!IMPORTANT]
-> This list may change over time. Please refer to this page for the most up-to-date list of endpoints.
+> This list may change over time. Refer to this page for the most up-to-date list of endpoints.
+
 
 ```dotnetcli
 *.arc.azure.net
