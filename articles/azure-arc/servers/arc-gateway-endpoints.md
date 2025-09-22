@@ -1,6 +1,7 @@
 ---
 title: Arc gateway endpoint list
-description: Understand which endpoints prevents you from having to allow in your environment
+description: Understand which endpoints are enabled through Azure Arc gateway.
+
 ms.topic: reference
 ms.date: 09/18/2025
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to see the endpoints enabled through Azure Arc gateway, so that I can understand the network requirements for Arc-enabled servers through minimal endpoint access."
