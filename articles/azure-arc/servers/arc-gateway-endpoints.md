@@ -8,7 +8,8 @@ ms.date: 09/18/2025
 
 # Arc gateway endpoint list
 
-The following list of endpoints are enabled through [Azure Arc gateway for Arc-enabled servers](../../../docs/azure-management-docs-pr/articles/azure-arc/servers/arc-gateway.md). When you configure Arc gateway, you don't need to manually unblock these endpoints in your environment.
+The following list of endpoints are enabled through [Azure Arc gateway for Arc-enabled servers](arc-gateway.md). When you configure Arc gateway, you don't need to manually unblock these endpoints in your environment.
+
 
 > [!IMPORTANT]
 > This list may change over time. Please refer to this page for the most up-to-date list of endpoints.
