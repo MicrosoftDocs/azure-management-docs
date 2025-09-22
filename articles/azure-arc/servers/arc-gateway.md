@@ -402,7 +402,7 @@ Review the following information to understand more about the architecture of Ar
 
 ### Arc gateway forwarding protocol 
 
-<img width="1280" height="720" alt="Arc Gateway Diagrams" src="https://github.com/user-attachments/assets/0d450bb0-b1b1-436e-b30c-581972a7ceee" />
+:::image type="content" source="media/arc-gateway/arc-gateway-architecture.png" lightbox="media/arc-gateway/arc-gateway-architecture.png" alt-text="Diagram showing the architecture for Azure Arc gateway with Arc-enabled servers.":::
 
 ### Arc gateway & TLS inspection
 
