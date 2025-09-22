@@ -1,7 +1,7 @@
 ---
 title: View and manage service providers
 description: Customers can view info about Azure Lighthouse service providers, service provider offers, and delegated resources in the Azure portal.
-ms.date: 06/18/2025
+ms.date: 09/22/2025
 ms.topic: how-to
 # Customer intent: As a cloud administrator, I want to view and manage Azure Lighthouse service providers and their offers in the Azure portal, so that I can control access and delegate resources effectively while ensuring compliance with my organization's resource management policies.
 ---
@@ -15,7 +15,7 @@ To access **Service providers** in the Azure portal, enter "Service providers" i
 > [!NOTE]
 > To view **Service providers**, a user in the customer's tenant must have the [Reader built-in role](/azure/role-based-access-control/built-in-roles#reader) (or another built-in role which includes Reader access).
 >
-> To add or update offers, delegate resources, and remove offers, the user must have a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner).
+> To add or update offers, delegate resources, and remove offers, the user must have a role with the `Microsoft.Authorization/roleAssignments/write`, `Microsoft.Authorization/roleAssignments/delete`, and `Microsoft.Authorization/roleAssignments/read` permissions, such as [Owner](/azure/role-based-access-control/built-in-roles#owner).
 
 **Service providers** only shows information about the service providers that have access to the customer's subscriptions or resource groups through Azure Lighthouse. It doesn't show information about any additional service providers who don't use Azure Lighthouse.
 
