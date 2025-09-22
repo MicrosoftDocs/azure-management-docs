@@ -1,7 +1,7 @@
 ---
 title: Onboard a customer to Azure Lighthouse
 description: Learn how to onboard a customer to Azure Lighthouse, allowing their resources to be accessed and managed by users in your tenant.
-ms.date: 06/18/2025
+ms.date: 09/22/2025
 ms.topic: how-to 
 ms.custom: devx-track-azurepowershell, devx-track-azurecli, devx-track-arm-template
 ms.devlang: azurecli
@@ -182,7 +182,7 @@ Once you have created your template, a user in the customer's tenant must deploy
 When onboarding a subscription (or one or more resource groups within a subscription) using the process described here, the **Microsoft.ManagedServices** resource provider will be registered for that subscription.
 
 > [!IMPORTANT]
-> This deployment must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](/azure/role-based-access-control/role-assignments-list-portal#list-owners-of-a-subscription).
+> This deployment must be done by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write`, `Microsoft.Authorization/roleAssignments/delete`, and `Microsoft.Authorization/roleAssignments/read` permissions, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded). To find users who can delegate the subscription, a user in the customer's tenant can select the subscription in the Azure portal, open **Access control (IAM)**, and [view all users with the Owner role](/azure/role-based-access-control/role-assignments-list-portal#list-owners-of-a-subscription).
 >
 > If the subscription was created through the [Cloud Solution Provider (CSP) program](../concepts/cloud-solution-provider.md), any user who has the [Admin Agent](/partner-center/account-settings/permissions-overview#admin-agent-role) role in your service provider tenant can perform the deployment.
 
@@ -190,7 +190,7 @@ The deployment may be done in the Azure portal, by using Azure CLI, or by using 
 
 ### [Azure portal](#tab/azure-portal)
 
-To deploy a template in the Azure portal, follow the process described below. These steps must be done by a user in the customer tenant with the **Owner** role (or another role with the `Microsoft.Authorization/roleAssignments/write` permission).
+To deploy a template in the Azure portal, follow the process described below. These steps must be done by a user in the customer tenant with the **Owner** role (or another role with the `Microsoft.Authorization/roleAssignments/write`, `Microsoft.Authorization/roleAssignments/delete`, and `Microsoft.Authorization/roleAssignments/read` permissions).
 
 1. From the [Service providers](view-manage-service-providers.md) page in the Azure portal, select **Server provider offers**.
 1. Near the top of the screen, select the arrow next to **Add offer**, and then select **Add via template**.

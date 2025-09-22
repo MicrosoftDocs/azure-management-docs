@@ -1,7 +1,7 @@
 ---
 title: Azure Lighthouse architecture
 description: Learn about the relationship between tenants in Azure Lighthouse, and the resources created in the customer's tenant that enable that relationship.
-ms.date: 10/22/2024
+ms.date: 09/22/2025
 ms.topic: concept-article
 # Customer intent: "As a service provider, I want to onboard and manage customer resources through Azure Lighthouse, so that I can efficiently handle multiple tenants without needing separate accounts for each customer."
 ---
@@ -18,7 +18,7 @@ Azure Lighthouse helps service providers simplify customer engagement and onboar
 This topic discusses the relationship between tenants in Azure Lighthouse, and the resources created in the customer's tenant that enable that relationship.
 
 > [!NOTE]
-> Onboarding a customer to Azure Lighthouse requires a deployment by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded).
+> Onboarding a customer to Azure Lighthouse requires a deployment by a non-guest account in the customer's tenant who has a role with the `Microsoft.Authorization/roleAssignments/write`, `Microsoft.Authorization/roleAssignments/delete`, and `Microsoft.Authorization/roleAssignments/read` permissions, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), for the subscription being onboarded (or which contains the resource groups that are being onboarded).
 
 ## Delegation resources created in the customer tenant
 
