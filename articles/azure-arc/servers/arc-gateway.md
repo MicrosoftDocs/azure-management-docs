@@ -412,4 +412,4 @@ When using terminating proxies with Arc gateway, the proxy will see the nested H
 
 ### Arc gateway endpoint list
 
-To understand which endpoints prevents you from having to allow in your environment, please see INSERT ENDPOINT REPO LIST
+For a complete list of endpoints that you no longer have to manually allow in your environment, see [Arc gateway endpoints](arc-gateway-endpoints.md).
