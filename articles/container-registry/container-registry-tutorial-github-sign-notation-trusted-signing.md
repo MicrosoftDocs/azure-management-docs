@@ -12,7 +12,7 @@ ms.service: security
 # Sign container images in GitHub workflows with Notation and Trusted Signing
 
 This article is part of a series on **ensuring integrity and authenticity of container images and OCI artifacts**.  
-For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and outlines the various scenarios.
+For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
 In this article, you'll learn how to create a GitHub Actions workflow to:
 
@@ -287,4 +287,4 @@ On success, the workflow builds the image, pushes it to ACR, and signs it with T
 
 ## Next steps
 
-- [Verify container images in GitHub workflows with Notation and Trusted Signing](container-registry-tutorial-gha-verify-notation-ts.md)
+- [Verify container images in GitHub workflows with Notation and Trusted Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md)

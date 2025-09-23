@@ -12,7 +12,7 @@ ms.date: 9/5/2025
 
 # Signing container images with Notation and Trusted Signing (Preview)
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and offers various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and offers various scenarios.
 
 This article focuses on signing with Notary Project tooling, Notation and [Trusted Signing](/azure/trusted-signing/overview):
 
@@ -437,9 +437,9 @@ If verification fails, ensure your trust policy and certificates are configured 
 
 ## Next steps
 
-For signing in GitHub workflow, see [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-sign-notation-ts.md)
+For signing in GitHub workflow, see [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
-For verification in GitHub workflow, see [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-gha-verify-notation-ts.md)
+For verification in GitHub workflow, see [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
 
 For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
 

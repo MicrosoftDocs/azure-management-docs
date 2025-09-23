@@ -12,12 +12,12 @@ ms.service: security
 # Verify container images in GitHub workflows with Notation and Trusted Signing
 
 This article is part of a series on **ensuring integrity and authenticity of container images and OCI artifacts**.  
-For the complete picture, start with the [overview](overview-sign-verify-oci-artifacts.md), which explains why signing matters and outlines the various scenarios.
+For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
 You can use this guide in two scenarios:
 
 - **Consuming signed images**: Verify container images that have already been signed by other teams or organizations using Notation and Trusted Signing.  
-- **Verifying your own images**: If you publish images yourself, first sign them using a [GitHub workflow](container-registry-tutorial-gha-sign-notation-ts.md) or the [Notation CLI](container-registry-tutorial-sign-verify-notation-ts.md), then follow this guide to verify the signatures.  
+- **Verifying your own images**: If you publish images yourself, first sign them using a [GitHub workflow](container-registry-tutorial-github-sign-notation-trusted-signing.md) or the [Notation CLI](container-registry-tutorial-sign-verify-notation-trusted-signing.md), then follow this guide to verify the signatures.  
 
 In this article, you'll learn how to:
 
