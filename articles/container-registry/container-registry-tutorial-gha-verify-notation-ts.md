@@ -154,7 +154,7 @@ Invoke-WebRequest -Uri "https://www.microsoft.com/pkiops/certs/Microsoft%20Enter
 
 ---
 
-Download the **[Trusted Signing TSA root certificate](http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt)** and store it under the `tsa` directory.
+Download the **[Trusted Signing TSA root certificate](https://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt)** and store it under the `tsa` directory.
 
 # [Linux](#tab/linux)
 

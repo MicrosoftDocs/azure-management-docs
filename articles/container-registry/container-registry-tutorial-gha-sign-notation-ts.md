@@ -154,7 +154,7 @@ az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Truste
 
 ## Store Time Stamping Authority (TSA) root certificate
 
-Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The TSA server URL is http://timestamp.acs.microsoft.com/, as recommended per [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures)
+Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The TSA server URL is available at `http://timestamp.acs.microsoft.com/`, as recommended per [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures)
 
 1. Download the TSA root certificate
 
