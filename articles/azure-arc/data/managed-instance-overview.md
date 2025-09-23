@@ -21,22 +21,13 @@ SQL Managed Instance enabled by Azure Arc is an Azure SQL data service that can 
 
 SQL Managed Instance enabled by Azure Arc has near 100% compatibility with the latest SQL Server database engine, and enables existing SQL Server customers to lift and shift their applications to Azure Arc data services with minimal application and database changes while maintaining data sovereignty. At the same time, SQL Managed Instance includes built-in management capabilities that drastically reduce management overhead. 
 
-To learn more about these capabilities, watch these introductory videos.
-
-### SQL Managed Instance enabled by Azure Arc - indirect connected mode
-
-> [!VIDEO https://learn.microsoft.com/Shows/Inside-Azure-for-IT/Azure-Arcenabled-data-services-in-disconnected-mode/player?format=ny]
-
-### SQL Managed Instance enabled by Azure Arc - direct connected mode
+To learn more about these capabilities, watch this introductory video.
 
 > [!VIDEO https://learn.microsoft.com/Shows/Inside-Azure-for-IT/Azure-Arcenabled-data-services-in-connected-mode/player?format=ny]
 
 ## Related content
 
-Learn more about [Features and Capabilities of SQL Managed Instance enabled by Azure Arc](managed-instance-features.md)
-
-[Azure Arc-enabled Managed Instance high availability](managed-instance-high-availability.md)
-
-[Start by creating a Data Controller](create-data-controller-indirect-cli.md)
-
-Already created a Data Controller? [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md)
+- Learn more about [Features and Capabilities of SQL Managed Instance enabled by Azure Arc](managed-instance-features.md)
+- [Azure Arc-enabled Managed Instance high availability](managed-instance-high-availability.md)
+- [Create Azure Arc data controller in direct connectivity mode using CLI](create-data-controller-direct-cli.md)
+- Already created a Data Controller? [Create a SQL Managed Instance enabled by Azure Arc](create-sql-managed-instance.md)

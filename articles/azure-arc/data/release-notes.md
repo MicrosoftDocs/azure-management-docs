@@ -18,7 +18,11 @@ ms.custom: references_regions, ignite-2023
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
 
-## August, 2025
+## September 2025
+
+Indirect mode is retired for SQL Managed Instance enabled by Azure Arc.
+
+## August 2025
 
 Removes Grafana and Opensearch dashboards for Azure Arc-enabled SQL Managed Instance.
 
@@ -38,7 +42,7 @@ For complete release version information, review [Version log](version-log.md#ma
 
 **Image tag**: `v1.38.0_2025-04-08`
 
-Grafana and OpenSearch dashboards will not be provided for new deployments.
+Grafana and OpenSearch dashboards won't be provided for new deployments.
 
 For complete release version information, review [Version log](version-log.md#april-8-2025).
 
