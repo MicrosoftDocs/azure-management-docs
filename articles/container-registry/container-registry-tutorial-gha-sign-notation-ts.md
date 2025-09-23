@@ -100,7 +100,7 @@ az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpu
 
 ---
 
-    For **ABAC-enabled** registries, assign the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles:
+For **ABAC-enabled** registries, assign the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles:
 
 # [Linux](#tab/linux)
 
