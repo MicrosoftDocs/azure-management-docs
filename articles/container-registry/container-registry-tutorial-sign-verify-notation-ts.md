@@ -88,13 +88,13 @@ For other platforms, see the [Notation installation guide](https://notaryproject
 # [Linux](#tab/linux)
 
 ```bash
-notation plugin install --url https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_linux_amd64.tar.gz --sha256sum 50258aad83e2fbb592ef548bf7ef4abf903590b62fd1f43a4ef4d60c201f0db5
+notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz" --sha256sum 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
 ```
 
 # [Windows](#tab/windows)
 
 ```powershell
-notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta1/notation-azure-trustedsigning_1.0.0-beta1_windows_amd64.zip" --sha256sum 49770d8bf639d6e2886a6e5fe4ac868fdbb799ae9e3cef8806ec680453e8e2d2
+notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
 ```
 
 ---
