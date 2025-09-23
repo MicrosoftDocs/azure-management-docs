@@ -35,6 +35,10 @@ Currently, Azure Arc allows you to manage the following resource types hosted ou
 > [!NOTE]
 > For more information regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](/azure/azure-arc/choose-service).
 
+### Indirectly connected mode
+
+[!INCLUDE [azure-arc-data-indirectly-connected-retired](data/includes/azure-arc-data-indirectly-connected-retired.md)]
+
 ## Key features and benefits
 
 Some of the key scenarios that Azure Arc supports are:
