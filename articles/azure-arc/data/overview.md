@@ -43,10 +43,6 @@ Using familiar tools such as the Azure portal, Azure Data Studio, and the Azure 
 
 [!INCLUDE [use-insider-azure-data-studio](includes/use-insider-azure-data-studio.md)]
 
-## Disconnected scenario support
-
-Many of the services such as self-service provisioning, automated backups/restore, and monitoring can run locally in your infrastructure with or without a direct connection to Azure. Connecting directly to Azure opens up additional options for integration with other Azure services such as Azure Monitor and the ability to use the Azure portal and Azure Resource Manager APIs from anywhere in the world to manage your Azure Arc-enabled data services.
-
 ## Supported regions
 
 To see the regions that currently support Azure Arc-enabled data services, go to [Azure Products by Region - Azure Arc](https://azure.microsoft.com/global-infrastructure/services/?cdn=disable&products=azure-arc).
