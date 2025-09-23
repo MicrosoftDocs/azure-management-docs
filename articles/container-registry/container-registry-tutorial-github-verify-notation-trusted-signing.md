@@ -21,8 +21,8 @@ You can use this guide in two scenarios:
 
 In this article, you'll learn how to:
 
-1. Configure a GitHub workflow.  
-2. Verify container image signed with Trusted signing using Notation GitHub actions
+- Configure a GitHub workflow.  
+- Verify container image signed with Trusted signing using Notation GitHub actions.
 
 ## Prerequisites
 

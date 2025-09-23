@@ -16,9 +16,9 @@ For the complete picture, start with the [overview](overview-sign-verify-oci-art
 
 In this article, you'll learn how to create a GitHub Actions workflow to:
 
-1. Build an image and push it to Azure Container Registry (ACR).  
-2. Sign the image with Notation GitHub actions and Trusted Signing
-3. Automatically store the generated signature in ACR.  
+- Build an image and push it to Azure Container Registry (ACR).  
+- Sign the image with Notation GitHub actions and Trusted Signing.
+- Automatically store the generated signature in ACR.  
 
 ## Prerequisites
 

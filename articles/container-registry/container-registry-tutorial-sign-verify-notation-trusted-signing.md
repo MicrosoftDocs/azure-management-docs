@@ -29,8 +29,8 @@ Before you can sign and verify container images with Notation and Trusted Signin
 
 ### Prepare container images in your Azure Container Registry (ACR)
 
-- Create or use an [Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts and signatures
-- Push or use a container image in your ACR
+- Create or use an [Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts and signatures.
+- Push or use a container image in your ACR.
 
 ### Set up Trusted Signing
 

@@ -219,13 +219,13 @@
     - name: Signing and verification
       items:
       - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
-        href: overview-sign-verify-oci-artifacts.md
+        href: overview-sign-verify-artifacts.md
       - name: Sign container images with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-sign-verify-notation-ts.md
+        href: container-registry-tutorial-sign-verify-notation-trusted-signing.md
       - name: Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-gha-sign-notation-ts.md
+        href: container-registry-tutorial-github-sign-notation-trusted-signing.md
       - name: Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)
-        href: container-registry-tutorial-gha-verify-notation-ts.md
+        href: container-registry-tutorial-github-verify-notation-trusted-signing.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
         href: container-registry-tutorial-sign-build-push.md
       - name: Sign container images with Notation and AKV using a CA issued certificate
