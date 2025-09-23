@@ -1,5 +1,5 @@
 ---
-title: Verify container images in GitHub workflows with Notation and Trusted Signing
+title: Verify Container Images in GitHub Workflows with Notation and Trusted Signing
 description: Learn how to verify container images with Notation and Trusted Signing using a GitHub Actions workflow.
 ms.topic: how-to
 author: yizha1
@@ -9,7 +9,7 @@ ms.service: security
 # Customer intent: As a developer, I want to verify container image signatures in GitHub Actions with Trusted Signing, so I can ensure authenticity and integrity before using them in builds or deployments.
 ---
 
-# Verify container images in GitHub workflows with Notation and Trusted Signing
+# Verify Container Images in GitHub Workflows with Notation and Trusted Signing
 
 This article is part of a series on **ensuring integrity and authenticity of container images and OCI artifacts**.  
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
@@ -56,7 +56,7 @@ az identity create -g <identity-resource-group> -n <identity-name>
 
 ---
 
-2. Get the client ID of your managed identity
+2. Get the client ID of your managed identity.
 
 # [Linux](#tab/linux)
 
@@ -72,7 +72,7 @@ $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --
 
 ---
 
-3. Assign roles to the managed identity for accessing ACR
+3. Assign roles to the managed identity for accessing ACR.
 
     For **non-ABAC** registries, assign `AcrPull` roles:
 
@@ -110,11 +110,11 @@ az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Conta
 
 ---
 
-5. Configure GitHub to trust your identity
+5. Configure GitHub to trust your identity.
 
    Follow [Configure an app to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity) to allow GitHub Actions to exchange OIDC tokens for this identity.
 
-6. Create GitHub Secrets
+6. Create GitHub Secrets.
 
     Follow [creating secrets for a repository](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets#creating-secrets-for-a-repository) to set up GitHub secrets, and map the managed identity values to those secrets:
 
@@ -226,7 +226,7 @@ Once authentication and trust configuration are ready, create the workflow.
 
 1. Create a `.github/workflows` directory in your repo if it doesn’t exist.
 2. Create a new workflow file, for example `verify-with-trusted-signing.yml`.
-3. Copy the following workflow template into your file
+3. Copy the following workflow template into your file.
 
 <details>
 <summary>Click here to see the verification workflow template.</summary>

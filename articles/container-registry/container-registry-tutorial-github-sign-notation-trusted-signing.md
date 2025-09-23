@@ -1,5 +1,5 @@
 ---
-title: Sign container images in GitHub workflows with Notation and Trusted Signing
+title: Sign Container Images in GitHub Workflows with Notation and Trusted Signing
 description: Learn how to use GitHub Actions with Notation and Trusted Signing to build, push, and sign container images in Azure Container Registry.
 ms.topic: how-to
 author: yizha1
@@ -9,7 +9,7 @@ ms.service: security
 # Customer intent: As a developer, I want to sign container images in GitHub Actions with Trusted Signing, so I can ensure their authenticity and integrity in CI/CD pipelines and during deployment.
 ---
 
-# Sign container images in GitHub workflows with Notation and Trusted Signing
+# Sign Container Images in GitHub Workflows with Notation and Trusted Signing
 
 This article is part of a series on **ensuring integrity and authenticity of container images and OCI artifacts**.  
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
@@ -64,7 +64,7 @@ az identity create -g <identity-resource-group> -n <identity-name>
 
 ---
 
-2. Get the client ID of your managed identity
+2. Get the client ID of your managed identity.
 
 # [Linux](#tab/linux)
 
@@ -80,7 +80,7 @@ $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --
 
 ---
 
-3. Assign roles to the managed identity for accessing ACR
+3. Assign roles to the managed identity for accessing ACR.
 
     For **non-ABAC** registries, assign the `AcrPush` and `AcrPull` roles:
 
@@ -118,7 +118,7 @@ az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Conta
 
 ---
 
-4. Assign roles to the managed identity for accessing Trusted Signing
+4. Assign roles to the managed identity for accessing Trusted Signing.
     
     Assign the `Trusted Signing Certificate Profile Signer` role:
 
@@ -138,11 +138,11 @@ az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Truste
 
 ---
 
-5. Configure GitHub to trust your identity
+5. Configure GitHub to trust your identity.
 
    Follow [Configure an app to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity) to allow GitHub Actions to exchange OIDC tokens for this identity.
 
-6. Create GitHub Secrets
+6. Create GitHub Secrets.
 
    Follow [creating secrets for a repository](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets#creating-secrets-for-a-repository) to set up GitHub secrets, and map the managed identity values to those secrets:
 
@@ -156,7 +156,7 @@ az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Truste
 
 Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The TSA server URL is available at `http://timestamp.acs.microsoft.com/`, as recommended per [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures)
 
-1. Download the TSA root certificate
+1. Download the TSA root certificate.
 
 # [Linux](#tab/linux)
 
@@ -178,7 +178,7 @@ Invoke-WebRequest -Uri "http://www.microsoft.com/pkiops/certs/microsoft%20identi
 ## Create the GitHub Actions workflow
 
 1. Create a `.github/workflows` directory in your repository if it doesn’t exist.  
-2. Create a new workflow file, for example `.github/workflows/sign-with-trusted-signing.yml` 
+2. Create a new workflow file, for example `.github/workflows/sign-with-trusted-signing.yml`. 
 3. Copy the signing workflow template below into your file.
 
 <details>
