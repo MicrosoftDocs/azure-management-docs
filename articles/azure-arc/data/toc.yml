@@ -17,8 +17,6 @@ items:
   items:
     - name: Directly connected | Azure portal example
       href: create-complete-managed-instance-directly-connected.md
-    - name: Indirectly connected | Azure CLI example
-      href: create-complete-managed-instance-indirectly-connected.md
 - name: Concepts
   expanded: true
   items:
