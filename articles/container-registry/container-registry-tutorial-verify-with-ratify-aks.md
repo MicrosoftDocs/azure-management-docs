@@ -8,7 +8,7 @@ ms.date: 09/24/2025
 ms.service: security
 ---
 
-# Securing AKS Workloads: Validating Container Image Signatures with Ratify and Azure Policy
+# Securing AKS workloads: validating container image signatures with Ratify and Azure Policy
 
 ## Introduction
 
