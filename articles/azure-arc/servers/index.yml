@@ -8,7 +8,7 @@ metadata:
   ms.service: azure-arc
   ms.author: rayoflores
   ms.topic: landing-page
-  ms.date: 03/24/2022
+  ms.date: 09/24/2025
 
 landingContent:
  # Card
@@ -20,8 +20,8 @@ landingContent:
             url: overview.md
           - text: Azure Connected Machine agent overview
             url: agent-overview.md
-          - text: VMware FAQ
-            url: vmware-faq.md
+          - text: Cloud-native server management
+            url: cloud-native/overview.md
           - text: Security overview
             url: security-overview.md
 
@@ -89,7 +89,7 @@ landingContent:
     linkLists: 
       - linkListType: learn
         links:
-          - text: Learning path
+          - text: Learning path - Bring Azure innovation to your hybrid environments with Azure Arc
             url: /training/paths/manage-hybrid-infrastructure-with-azure-arc         
 
  # Card
@@ -103,7 +103,7 @@ landingContent:
             url: tutorial-enable-vm-insights.md
       - linkListType: how-to-guide
         links:
-          - text: Microsoft Sentinel
+          - text: Onboard servers to Microsoft Sentinel
             url: scenario-onboard-azure-sentinel.md
-          - text: Microsoft Defender for Cloud
+          - text: Onboard servers to Microsoft Defender for Cloud
             url: /azure/defender-for-cloud/quickstart-onboard-machines?bc=/azure/azure-arc/servers/breadcrumb/toc.json&pivots=azure-arc&toc=/azure/azure-arc/servers/toc.json

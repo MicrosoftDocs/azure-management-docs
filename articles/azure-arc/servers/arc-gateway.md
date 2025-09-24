@@ -6,19 +6,14 @@ ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway, so that I can efficiently onboard and control Arc-enabled servers through minimal endpoint access."
 ---
 
-# Simplify network configuration requirements with Azure Arc gateway (preview)
+# Simplify network configuration requirements with Azure Arc gateway
 
 If you use enterprise proxies to manage outbound traffic, the Azure Arc gateway lets you onboard infrastructure to Azure Arc using only seven endpoints. With Azure Arc gateway, you can:
 
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
 - View and audit all traffic an Azure Connected Machine agent sends to Azure via the Arc gateway.
 
-This article explains how to set up and use Arc gateway (preview).
-
-> [!IMPORTANT]
-> The Arc gateway feature for Azure Arc-enabled servers is currently in Public Preview in all regions where Azure Arc-enabled servers is present. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, Public Preview, or otherwise not yet released into general availability.
-
-## How the Azure Arc gateway works
+## How Azure Arc gateway works
 
 Azure Arc gateway consists of two main components:
 
@@ -26,7 +21,7 @@ Azure Arc gateway consists of two main components:
 
 - **Arc proxy:** A new component added to the Azure Arc agents. This component runs within the context of an Arc-enabled resource as a service called "Azure Arc Proxy". It acts as a forward proxy used by the Azure Arc agents and extensions. No configuration is required on your part for this proxy.
 
-When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**.
+When the gateway is in place, traffic flows via the following hops: **Arc agents → Arc proxy → Enterprise proxy → Arc gateway  → Target service**. For more information on Arc gateway's Forwarding Protocol, see [Arc gateway Forwarding Protocol Architecture](#arc-gateway-forwarding-protocol).
 
 :::image type="content" source="media/arc-gateway/arc-gateway-overview.png" alt-text="Diagram showing the route of traffic flow for Azure Arc gateway." lightbox="media/arc-gateway/arc-gateway-overview.png":::
 
@@ -34,33 +29,34 @@ When the gateway is in place, traffic flows via the following hops: **Arc agents
 
 ## Current limitations
 
-During the public preview, the following limitations apply. Consider these factors when planning your configuration.
+Arc gateway has the following current limitations. Consider these factors when planning your configuration.
 
-- TLS Terminating Proxies aren't supported.
 - Proxy bypass isn't supported when Arc gateway is in use; even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic won't bypass the proxy.
 - There's a limit of five (5) Arc gateway resources per Azure subscription.
 - Arc gateway can only be used for connectivity in the Azure public cloud.
+- Arc gateway isn't recommended for use in environments where TLS termination/inspection is required. If your environment requires TLS termination/inspection, we recommend skipping TLS inspection for your Arc gateway endpoint (`<Your URL prefix>.gw.arc.azure.com`). For more information, see [Arc gateway & TLS Inspection](#arc-gateway--tls-inspection).
 
 > [!IMPORTANT]
-> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may need to enable additional endpoints in order to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios).
+> While Azure Arc gateway provides the connectivity required to use Azure Arc-enabled servers, you may still need to manually allow-list additional endpoints in your environment to use some extensions and services with your connected machines. For details, see [Additional scenarios](#additional-scenarios). Over time, Arc gateway will gradually cover more endpoints, further removing the need for these manual allowances.
+
+## Planning your Arc gateway setup
+
+- **Region choice:** Arc gateway is a global service. Runtime connectivity is delivered through Microsoft’s Azure Front Door global edge network, which automatically routes clients to the nearest point of presence for low‑latency access and seamless failover. The region you select when creating the gateway determines only the control plane (where the gateway resource and management metadata live, and where create/update/delete happens); it doesn't constrain the gateway’s runtime endpoints or performance. For example, picking East US versus West Europe doesn't change where clients connect at runtime; it only affects management-plane placement and policy/RBAC locality.
+- **Arc-enabled resources per Arc gateway resource:** When planning your Azure Arc deployment with Arc gateway, you must determine how many gateway resources are required for your environment. This depends on the number of resources you plan to manage in each Azure region. For Arc-enabled servers only, a general rule of thumb is that one Arc gateway resource can handle 2,000 resources per Azure region. If you use Arc gateway with a combination of Arc-enabled servers, Arc-enabled Kubernetes clusters, and Azure Local instances, use our [provided formula](#arc-gateway-resource-planning-for-multiple-resource-types) to calculate the number of Arc gateway resources you need.  
 
 ## Required permissions
 
-To create Arc gateway resources and manage their association with Arc-enabled servers, the following permissions are required:
-
-- Microsoft.HybridCompute/settings/write
-- Microsoft.hybridcompute/gateways/read
-- Microsoft.hybridcompute/gateways/write
+To create Arc gateway resources and manage their association with Arc-enabled servers, a user must have the **Arc gateway Manager** Role. 
 
 ## Create the Arc gateway resource
 
-You can create an Arc gateway (preview) resource by using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
+You can create an Arc gateway  resource by using the Azure portal, Azure CLI, or Azure PowerShell. It generally takes about 10 minutes to create the Arc gateway resource after you complete these steps.
 
 ### [Portal](#tab/portal)
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway (preview)**, then select **Create**.
+1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway**, then select **Create**.
 
 1. Select the subscription and resource group where you want the Arc gateway resource to be managed within Azure. An Arc gateway resource can be used by any Arc-enabled resource in the same Azure tenant.
 
@@ -130,7 +126,7 @@ After the resource is created successfully, the success response will include th
     Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
 
     > [!IMPORTANT]
-    > When generating the onboarding script, select the **Gateway resource** in the **Connectivity method** section.
+    > When generating the onboarding script, ensure **Public Endpoint** is selected in the **Connectivity method** section, and ensure your Arc gateway resource is selected in the **Gateway Resource** dropdown. 
 
 1. Run the installation script to onboard your servers to Azure Arc.
 
@@ -142,7 +138,7 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
 
 ### [Portal](#tab/portal)
 
-1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
+1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
 1. Select the Arc gateway resource to associate with your Arc-enabled server.
 
@@ -218,7 +214,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ### [Portal](#tab/portal)
 
-   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway (preview)**.
+   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
    1. Select the Arc gateway Resource.
 
@@ -297,7 +293,7 @@ Remove-AzArcGateway
 
 ---
 
-## Monitor traffic
+## Monitor Arc gateway traffic
 
 You can audit your Arc gateway’s traffic by viewing the Azure Arc proxy logs.
 
@@ -311,9 +307,58 @@ To view Arc proxy logs on Linux:
 1. Run `sudo azcmagent logs`.
 1. In the resulting .zip file, the `arcproxy.log` file is located in the `/var/opt/azcmagent/log/` folder.
 
+
+
+
+
+## Arc gateway resource planning for multiple resource types
+
+To determine how many gateway resources you need per Azure region for multiple resource types, use the following formula:
+
+  **Score = (Servers ÷ 20) + (K8s Clusters ÷ 10) + (Azure Local Instances ÷ 10)** 
+
+  Where:
+  - **Servers** = Total standalone servers + provisioned VMs (on Azure Local)
+  - **K8s Clusters** = Total standalone Kubernetes clusters + AKS Arc clusters (on Azure Local)
+  - **Azure Local Instances** = Total Azure Local deployments
+
+  If **Score** for each region from which you intend to manage your resources < 100, one Arc gateway resource is sufficient.
+  
+  If **Score** for any region from which you intend to manage your resources ≥ 100, more than one Arc gateway resource is required for that region.
+
+ The following examples provide more context:
+
+**Example 1:**
+
+
+  | Region        | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
+  |---------------|---------|--------------|-----------------------|--------------------------------------------|-------|
+  | East US       | 300     | 20           | 5                     | 300/20 + 20/10 + 5/10                      | 17.5  |
+  | West Europe   | 800     | 50           | 10                    | 800/20 + 50/10 + 10/10                     | 46.0  |
+  | Japan East    | 100     | 5            | 2                     | 100/20 + 5/10 + 2/10                       | 5.7   |
+
+ - Each Region's Score < 100. One Arc gateway resource is sufficient. 
+
+**Example 2:**
+
+
+  | Region          | Servers | K8s Clusters | Azure Local Instances | Score Calculation                          | Score |
+  |-----------------|---------|--------------|-----------------------|--------------------------------------------|-------|
+  | East US         | 6,000   | 300          | 40                    | 6000/20 + 300/10 + 40/10                   | 334.0 |
+  | West Europe     | 2,500   | 120          | 25                    | 2500/20 + 120/10 + 25/10                   | 139.5 |  
+  | Southeast Asia  | 900     | 30           | 8                     | 900/20 + 30/10 + 8/10                      | 48.8  |
+  
+  - East US Score > 100. Three Arc gateway resources are needed to support the load in this region. 
+  - West Europe's Score > 100. Two Arc gateway resources are needed to support the load in this region.  
+  - Southeast Asia's Score < 100.  One Arc gateway resource is needed to support the load in this region.
+
+In this scenario, only three gateway resources are required in total, because calculations are based on the maximum load per region, not the combined load across all regions.
+
+
+
 ## Additional scenarios
 
-During public preview, Arc gateway covers the endpoints required for onboarding a server, plus endpoints to support several additional Arc-enabled scenarios. Based on the scenarios you adopt, you may need to allow additional endpoints in your proxy.
+Arc gateway covers the endpoints required for onboarding a server, plus endpoints to support several additional Arc-enabled scenarios. Based on the scenarios you adopt, you may need to allow additional endpoints in your environment.
 
 ### Scenarios that don’t require additional endpoints
 
@@ -334,12 +379,12 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 
 - Azure Monitor Agent
 
-  - `\<log-analytics-workspace-id\>.ods.opinsights.azure.com`
-  - `\<data-collection-endpoint\>.\<virtual-machine-region-name\>.ingest.monitor.azure.com`
+  - `<log-analytics-workspace-id>.ods.opinsights.azure.com`
+  - `<data-collection-endpoint>.<virtual-machine-region>.ingest.monitor.azure.com`
 
 - Azure Key Vault Certificate Sync
 
-  - `\<vault-name\>.vault.azure.net`
+  - `<vault-name>.vault.azure.net`
 
 - Azure Automation Hybrid Runbook Worker extension
 
@@ -352,3 +397,20 @@ Endpoints listed with the following scenarios must be allowed in your enterprise
 - Microsoft Defender
 
   - Your environment must meet all the [prerequisites](/defender-endpoint/configure-device-connectivity) for Microsoft Defender
+ 
+## Arc gateway architecture 
+Review the following information to understand more about the architecture of Arc gateway.
+
+### Arc gateway forwarding protocol 
+
+:::image type="content" source="media/arc-gateway/arc-gateway-architecture.png" lightbox="media/arc-gateway/arc-gateway-architecture.png" alt-text="Diagram showing the architecture for Azure Arc gateway with Arc-enabled servers.":::
+
+### Arc gateway & TLS inspection
+
+Arc gateway works by establishing a TLS session between Arc proxy and Arc gateway in Azure. Within this TLS session, Arc proxy sends a nested HTTP connect request to the Arc gateway resource, requesting it to forward the connection to the intended target destination. Subsequently, if the target destination itself is on TLS, an inner end-to-end TLS session is established between Arc agent and the target destination. 
+ 
+When using terminating proxies with Arc gateway, the proxy will see the nested HTTP connect request. It may allow such a request, but it won't be able to intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This is outside the capabilities of standard TLS terminating proxies. Therefore, when using a terminating proxy, the recommendation is to skip TLS inspection for your Arc gateway endpoint. 
+
+### Arc gateway endpoint list
+
+For a complete list of endpoints that you no longer have to manually allow in your environment, see [Arc gateway endpoints](arc-gateway-endpoints.md).

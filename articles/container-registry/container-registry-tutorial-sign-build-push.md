@@ -370,6 +370,6 @@ Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
 To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
 - Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
