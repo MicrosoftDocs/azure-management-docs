@@ -12,7 +12,7 @@ ms.service: security
 
 ## Introduction
 
-Container security is crucial in the cloud-native landscape to protect workloads. To address this, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview.md), enhancing security throughout the lifecycle of container images. One of the stages defined in the CSSC framework is the `Deploy` stage, where container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters. Ensuring a secure production environment involves maintaining the integrity and authenticity of container images. This is achieved by signing container images at the Build stage and then verifying them at the Deploy stage, ensuring that only trusted and unaltered images are deployed.
+Container security is crucial in the cloud-native landscape to protect workloads. To improve security posture, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview.md), enhancing security throughout the lifecycle of container images. One of the stages defined in the CSSC framework is the `Deploy` stage, where container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters. Ensuring a secure production environment involves maintaining the integrity and authenticity of container images, which is achieved by signing container images at the Build stage and then verifying them at the Deploy stage, ensuring that only trusted and unaltered images are deployed.
 
 [Ratify](https://ratify.dev/), a [CNCF](https://www.cncf.io/) sandbox project supported by Microsoft, is a robust verification engine that verifies container images security metadata, such as signatures, and only allows the deployment of images that meet your specified policies.
 
@@ -37,7 +37,7 @@ In this scenario, an image producer signs container images in ACR using certific
 
 As the image producer, see the following guides for signing with Trusted Signing:
 
-- [Sign and verify contaienr images with Notation and Trusted Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign and verify container images with Notation and Trusted Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
 - [Sign container images in GitHub workflows with Notation and Trusted Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
 This document will guide you, as the image consumer, through the process of verifying container image signatures with Ratify and Azure policy on AKS clusters.
@@ -57,7 +57,7 @@ Here are the high-level steps for signature verification:
 
 4. **Set up a custom Azure policy**: Create and assign a custom Azure policy with the desired policy effect: `Deny` or `Audit`.
 
-After following these steps, you can start deploying your workloads to observe the results. With the `Deny` effect policy, only images that have passed signature verification are allowed for deployment, while images that are unsigned or signed by untrusted identities are denied. With the `Audit` effect policy, images can be deployed, but your component will be marked as non-compliant for auditing purposes.
+After following these steps, you can start deploying your workloads to observe the results. With the `Deny` effect policy, only images that have passed signature verification are allowed for deployment, while images that are unsigned or signed by untrusted identities are denied. With the `Audit` effect policy, images can be deployed, but your component will be marked as noncompliant for auditing purposes.
 
 ## Prerequisites
 
@@ -134,7 +134,7 @@ Skip this step if you use Trusted Signing for certificate management.
 
 The `Key Vault Secrets User` role is required for your identity to fetch the entire certificate chain from your AKV. Use the following instructions to assign the role:
 
-Set up additional environment variables for the AKV resource:
+Set up extra environment variables for the AKV resource:
 
 ```shell
 export AKV_SUB=<acr-subscription-id>
@@ -192,7 +192,7 @@ By using timestamping for your images, you can ensure that images signed before 
 | notationCerts[0]                                | The filepath to the PEM formatted TSA root certificate file                | "$TSA_ROOT_CERT_FILEPATH"           |
 | notation.trustPolicies[0].trustStores[1]        | Another trust store where the TSA root certificate is stored               | tsa:notationCerts[0]                |
 
-If you have multiple certificates for signature verification, specify additional parameters:
+If you have multiple certificates for signature verification, specify extra parameters:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
@@ -306,7 +306,7 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 ---
 
 > [!IMPORTANT]
-> For images that are not linked to a trust policy, signature validation will fail. For instance, if the images are not within the repository `$REPO_URI`, the signature validation for those images will fail. You can add multiple repositories by specifying additional parameters. For example, to add another repository for the trust policy `notation.trustPolicies[0]`, include the parameter `--set notation.trustPolicies[0].registryScopes[1]="$REPO_URI_1"`.
+> For images that are not linked to a trust policy, signature validation fails. For instance, if the images are not within the repository `$REPO_URI`, the signature validation for those images fails. You can add multiple repositories by specifying additional parameters. For example, to add another repository for the trust policy `notation.trustPolicies[0]`, include the parameter `--set notation.trustPolicies[0].registryScopes[1]="$REPO_URI_1"`.
 
 ## Set up a custom Azure policy
 
@@ -314,13 +314,13 @@ With Ratify successfully installed and configured on your AKS cluster, the final
 
 Azure Policy offers two enforcement modes:
 - **Deny effect**: Blocks deployment of images that fail signature verification, ensuring only trusted images run in your cluster
-- **Audit effect**: Allows all deployments but marks non-compliant resources for monitoring and reporting purposes
+- **Audit effect**: Allows all deployments but marks compliant resources for monitoring and reporting purposes
 
-The Audit effect is particularly useful during initial setup or testing phases, allowing you to validate your configuration without risking service disruptions in production environments.
+The Audit effect is useful during initial setup or testing phases, allowing you to validate your configuration without risking service disruptions in production environments.
 
 ### Assign a new policy to your AKS cluster
 
-Create a custom Azure policy for signature verification. By default, the policy effect is set to `Deny`, meaning images that fail signature validation will be denied deployment. Alternatively, you can configure the policy effect to `Audit`, allowing images that fail signature verification to be deployed while marking the AKS cluster and related workloads as non-compliant. The `Audit` effect is useful for verifying your signature verification configuration without risking outages due to incorrect settings for your production environment.
+Create a custom Azure policy for signature verification. By default, the policy effect is set to `Deny`, meaning images that fail signature validation is denied deployment. Alternatively, you can configure the policy effect to `Audit`, allowing images that fail signature verification to be deployed while marking the AKS cluster and related workloads as compliant. The `Audit` effect is useful for verifying your signature verification configuration without risking outages due to incorrect settings for your production environment.
 
 ```shell
 export CUSTOM_POLICY=$(curl -L https://raw.githubusercontent.com/notaryproject/ratify/refs/tags/v1.4.0/library/default/customazurepolicy.json)
@@ -335,14 +335,14 @@ export POLICY_SCOPE=$(az aks show -g "$AKS_RG" -n "$AKS_NAME" --query id -o tsv)
 az policy assignment create --policy "$DEFINITION_ID" --name "$DEFINITION_NAME" --scope "$POLICY_SCOPE"
 ```
 
-To change the policy effect to `Audit`, you can pass additional parameter to `az policy assignment create` command. For example:
+To change the policy effect to `Audit`, you can pass another parameter to `az policy assignment create` command. For example:
 
 ```shell
 az policy assignment create --policy "$DEFINITION_ID" --name "$DEFINITION_NAME" --scope "$POLICY_SCOPE" -p "{\"effect\": {\"value\":\"Audit\"}}"
 ```
 
 >[!NOTE]
-> It will take around 15 minutes to complete the assignment.
+> It takes around 15 minutes to complete the assignment.
 
 Use the following command to check the custom policy status.
 
@@ -363,16 +363,16 @@ To make a change on an existing assignment, you need to delete the existing assi
 
 Now that you have successfully configured Ratify and assigned the Azure Policy to your AKS cluster, it's time to test the signature validation functionality. This section demonstrates how the policy enforcement works in practice by deploying different types of container images and observing the results.
 
-You'll test three scenarios to validate your setup:
+You test three scenarios to validate your setup:
 - **Signed images with trusted certificates**: Should deploy successfully
-- **Unsigned images**: Should be blocked (with Deny effect) or marked non-compliant (with Audit effect)
-- **Images signed with untrusted certificates**: Should be blocked (with Deny effect) or marked non-compliant (with Audit effect)
+- **Unsigned images**: Should be blocked (with Deny effect) or marked compliant (with Audit effect)
+- **Images signed with untrusted certificates**: Should be blocked (with Deny effect) or marked compliant (with Audit effect)
 
 The behavior you observe will depend on the policy effect you chose during the Azure Policy assignment step. This testing process helps ensure your signature validation is working correctly and provides confidence that only trusted images will be allowed in your production environment.
 
 ### Use Deny policy effect
 
-With the `Deny` policy effect, only images signed with trusted identities are allowed for deployment. You can begin deploying your workloads to observe the effects. In this document, we will use the `kubectl` command to deploy a simple pod. Similarly, you can deploy your workloads using a Helm chart or any templates that trigger Helm installation.
+With the `Deny` policy effect, only images signed with trusted identities are allowed for deployment. You can begin deploying your workloads to observe the effects. In this document, we use the `kubectl` command to deploy a pod. Similarly, you can deploy your workloads using a Helm chart or any templates that trigger Helm installation.
 
 Set up environment variables:
 
@@ -394,7 +394,7 @@ Below is an example of the output for a successful deployment:
 pod/demo-signed created
 ```
 
-`$IMAGE_UNSIGNED` references an image that is not signed. `$IMAGE_SIGNED_UNTRUSTED` references an image that is signed using a different certificate that you will not trust. So, these two images will be denied for deployment. For example, run the following command:
+`$IMAGE_UNSIGNED` references an image that is not signed. `$IMAGE_SIGNED_UNTRUSTED` references an image that is signed using a different certificate that you won't trust. So, these two images are denied for deployment. For example, run the following command:
 
 ```shell
 kubectl run demo-unsigned --image=$IMAGE_UNSIGNED
@@ -414,11 +414,11 @@ kubectl logs <ratify-pod> -n $RATIFY_NAMESPACE
 
 ### Use Audit policy effect
 
-With Audit policy effect, unsigned images or images signed with untrusted identities are allowed for deployment. However, the AKS cluster and related components will be marked as `non-compliant`. For more details on how to view non-compliant resources and understand the reasons, see [Get the Azure policy compliance-data](/azure/governance/policy/how-to/get-compliance-data).
+With Audit policy effect, unsigned images or images signed with untrusted identities are allowed for deployment. However, the AKS cluster and related components are marked as `noncompliant`. For more details on how to view noncompliant resources and understand the reasons, see [Get the Azure policy compliance-data](/azure/governance/policy/how-to/get-compliance-data).
 
-## Cleaning Up
+## Cleaning up
 
-Use the following commands to uninstall Ratify and clean up Ratify CRDs:
+Use the following commands to uninstall Ratify and clean-up Ratify CRDs:
 
 ```shell
 helm delete ratify --namespace $RATIFY_NAMESPACE
@@ -436,7 +436,7 @@ az policy definition delete --name "$DEFINITION_NAME"
 
 ### How can I set up certificates for signature verification if I don't have access to AKV?
 
-In some cases, image consumers may not have access to the certificates used for signature verification. To verify signatures, you will need to download the root CA certificate file in PEM format and specify the related parameters for the Ratify Helm chart installation. Below is an example command similar to the previous installation command, but without any parameters related to AKV certificates. The Notary Project trust store refers to the certificate file that passed in parameter `notationCerts[0]`:
+In some cases, image consumers may not have access to the certificates used for signature verification. To verify signatures, you'll need to download the root CA certificate file in PEM format and specify the related parameters for the Ratify Helm chart installation. Below is an example command similar to the previous installation command, but without any parameters related to AKV certificates. The Notary Project trust store refers to the certificate file that passed in parameter `notationCerts[0]`:
 
 ```shell
 helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --create-namespace --version $CHART_VER --set provider.enableMutation=false --set featureFlags.RATIFY_CERT_ROTATION=true \
@@ -449,7 +449,7 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 ```
 
 > [!NOTE]
-> Since `notationCerts[0]` is used for the root CA certificate, if you have an additional certificate file for timestamping purpose, make sue you use the correct index. For example,
+> Since `notationCerts[0]` is used for the root CA certificate, if you have an extra certificate file for timestamping purpose, make sue you use the correct index. For example,
 > `notationCerts[1]` is used for the TSA root certificate file, then use another trust store `notation.trustPolicies[0].trustStores[1]"` with the value `"tsa:notationCerts[1]"`.
 
 ### What steps should I take if Azure Policy is disabled in my AKS cluster?
@@ -486,6 +486,6 @@ Ratify configurations are [Kubernetes custom resources](https://kubernetes.io/do
 - To update Notary Project trust policies and stores, use the Ratify `Verifier` custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/verifiers).
 - To authenticate and interact with ACR (or other OCI-compliant registries), use the Ratify Store custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/stores).
 
-### What should I do if my container images are not signed using the Notation tool?
+### What should I do if my container images aren't signed using the Notation tool?
 
 This document is applicable for verifying Notary Project signatures independently on any tools that can produce Notary Project-compliant signatures. Ratify also supports verifying other types of signatures. For more information, see the [Ratify user guide](https://ratify.dev/docs/1.2/quickstarts/ratify-on-azure#use-cosign-with-keys-stored-in-akv).
