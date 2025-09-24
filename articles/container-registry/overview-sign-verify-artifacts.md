@@ -41,7 +41,7 @@ If verification fails, consumers can block the artifact from being pulled, used 
 **Notation** is the Notary Project tooling for signing and verifying OCI artifacts. Notation integrates with multiple key providers, including:  
 
 - **Azure Key Vault (AKV):** Users manage their own certificate lifecycle, including issuance, rotation, and expiration. This provides strong control and flexibility for organizations that want to maintain direct management of their certificates.  
-- **Trusted Signing:** Provides **zero-touch certificate management** and issues **short-lived certificates** automatically. This eliminates simplifies the signing experience while maintaining strong security guarantees.  
+- **Trusted Signing:** Provides **zero-touch certificate management** and issues **short-lived certificates** automatically. This simplifies the signing experience while maintaining strong security guarantees.  
 
 Organizations can choose AKV for full control or adopt Trusted Signing for a streamlined experience.  
 
@@ -68,7 +68,7 @@ Before building an application image, developers can configure pipelines (for ex
 ### 4. Verifying other OCI artifacts  
 
 Beyond container images, the same process applies to other artifacts stored in an OCI registry:  
-- **SBOMs**: Verify the signed SBOM of an image before before using it for security analysis.  
+- **SBOMs**: Verify the signed SBOM of an image before using it for security analysis.  
 - **Helm charts**: Verify charts before installing them to Kubernetes clusters.  
 - **Configuration bundles or AI models**: Verify they originate from the intended publisher before integrating into systems.  
 
@@ -93,7 +93,7 @@ Signing using Notation CLI:
 Signing in GitHub workflow:
 - [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
-### Verfication
+### Verification
 
 Verification in GitHub workflow:
 - [Verify container images in GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
