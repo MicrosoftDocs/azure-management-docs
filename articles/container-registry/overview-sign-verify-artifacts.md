@@ -100,4 +100,4 @@ Verification in GitHub workflow:
 - [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
 
 Verification on AKS:
-- [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+- [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
