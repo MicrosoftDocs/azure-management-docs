@@ -231,7 +231,7 @@
       - name: Sign container images with Notation and AKV using a CA issued certificate
         href: container-registry-tutorial-sign-trusted-ca.md
       - name: Validate container image signatures in AKS with Ratify and Azure Policy
-        href: /azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks
+        href: container-registry-tutorial-verify-with-ratify-aks.md
       - name: Content trust
         href: container-registry-content-trust.md
       - name: Transition from Docker Content Trust to the Notary Project
