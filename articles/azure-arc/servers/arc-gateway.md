@@ -56,7 +56,7 @@ You can create an Arc gateway  resource by using the Azure portal, Azure CLI, or
 
 1. From your browser, sign in to the [Azure portal](https://portal.azure.com/).
 
-1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway **, then select **Create**.
+1. Navigate to **Azure Arc**. In the service menu, under **Management**, select **Azure Arc gateway**, then select **Create**.
 
 1. Select the subscription and resource group where you want the Arc gateway resource to be managed within Azure. An Arc gateway resource can be used by any Arc-enabled resource in the same Azure tenant.
 
@@ -137,7 +137,7 @@ You can associate existing Azure Arc resources with an Arc gateway resource by u
 
 ### [Portal](#tab/portal)
 
-1. In the Azure portal, go to **Azure Arc - Azure Arc gateway **.
+1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
 1. Select the Arc gateway resource to associate with your Arc-enabled server.
 
@@ -213,7 +213,7 @@ You can disable Arc gateway and remove the association between the Arc gateway r
 
    ### [Portal](#tab/portal)
 
-   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway **.
+   1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
    1. Select the Arc gateway Resource.
 
