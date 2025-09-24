@@ -12,7 +12,7 @@ ms.service: security
 
 ## Introduction
 
-Container security is crucial in the cloud-native landscape to protect workloads. To address this, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/containers-secure-supply-chain-overview.md), enhancing security throughout the lifecycle of container images. One of the stages defined in the CSSC framework is the `Deploy` stage, where container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters. Ensuring a secure production environment involves maintaining the integrity and authenticity of container images. This is achieved by signing container images at the Build stage and then verifying them at the Deploy stage, ensuring that only trusted and unaltered images are deployed.
+Container security is crucial in the cloud-native landscape to protect workloads. To address this, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview.md), enhancing security throughout the lifecycle of container images. One of the stages defined in the CSSC framework is the `Deploy` stage, where container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters. Ensuring a secure production environment involves maintaining the integrity and authenticity of container images. This is achieved by signing container images at the Build stage and then verifying them at the Deploy stage, ensuring that only trusted and unaltered images are deployed.
 
 [Ratify](https://ratify.dev/), a [CNCF](https://www.cncf.io/) sandbox project supported by Microsoft, is a robust verification engine that verifies container images security metadata, such as signatures, and only allows the deployment of images that meet your specified policies.
 
@@ -28,8 +28,8 @@ As the image producer, follow these documents to sign container images in ACR wi
 
 - For signing using self-signed certificates, see [Sign container images with Notation CLI and AKV using self-signed certificates](container-registry-tutorial-sign-build-push.md)
 - For signing using CA issued certificates, see [Sign container images with Notation CLI and AKV using CA issued certificates](container-registry-tutorial-sign-trusted-ca.md)
-- For signing in Azure DevOps (ADO) pipelines, see [Sign container images in Azure DevOps (ADO) pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign.md)
-- For signing in GitHub workflows, see [Sign container images in GitHub workflows](/azure/security/container-secure-supply-chain/articles/notation-sign-gha.md)
+- For signing in Azure DevOps (ADO) pipelines, see [Sign container images in Azure DevOps (ADO) pipelines](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/notation-ado-task-sign.md)
+- For signing in GitHub workflows, see [Sign container images in GitHub workflows](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/notation-sign-gha.md)
 
 ### Using Trusted Signing for certificate management
 
