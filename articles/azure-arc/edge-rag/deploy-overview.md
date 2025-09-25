@@ -36,9 +36,9 @@ The resources and components in the diagram form the core infrastructure for Edg
   - MetalLB
   - AKS node pool
   - Network file share (NFS) server
-  - Local host
+  - Driver machine (local management host)
 
-  Use a local host to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Edge RAG](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
+  Use a driver machine (local management host) to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Edge RAG](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
 This setup lets you run a secure, scalable, AI-powered chat solution that uses your own data at the edge.
 
