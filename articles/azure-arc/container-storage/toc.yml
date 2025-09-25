@@ -21,23 +21,31 @@ items:
       href: howto-multi-node-cluster-edge-volumes.md
   - name: Install extension
     href: howto-install-edge-volumes.md
-- name: Configure your volumes
+- name: Configure Edge Volumes
   items:
   - name: Volumes and subvolumes overview
     href: volumes-subvolumes.md
-  - name: Local Shared
+  - name: Configure Local Shared volumes
     href: howto-configure-local-shared-edge-volumes.md
-  - name: Cloud Ingest
-    href: howto-configure-cloud-ingest.md
-  - name: Cloud Ingest to OneLake
-    href: howto-configure-cloud-ingest-onelake.md
-  - name: Cloud Mirror
+  - name: Configure Cloud Ingest subvolumes
+    items:
+    - name: Configure Cloud Ingest subvolumes
+      href: howto-configure-cloud-ingest.md
+    - name: Control ingest data flow
+      href: howto-ingest-data-flow.md
+    - name: Generate blob index and metadata tags
+      href: howto-blob-index-metadata-tags.md
+  - name: Configure Cloud Mirror subvolumes
     href: howto-configure-cloud-mirror-subvolumes.md
   - name: Using Edge Volumes together
     href: storage-options.md
-- name: Authentication
+  - name: Path mapping on Edge Volumes
+    href: map-names.md
+- name: Secure deployments
   items:
-  - name: Workload Identity
+  - name: Configure OneLake Identity
+    href: howto-configure-cloud-ingest-onelake.md
+  - name: Configure Workload Identity
     href: howto-configure-workload-identity.md
 - name: Monitor deployments
   items:
@@ -45,20 +53,12 @@ items:
     href: howto-third-party-monitoring.md
   - name: Monitor with Azure Monitor
     href: howto-azure-monitor-kubernetes.md
-- name: Concepts
-  items:
-  - name: Map file to object path names
-    href: map-names.md
-  - name: Ingest data flow
-    href: ingest-data-flow.md
-  - name: Blob index and metadata tags
-    href: blob-index-metadata-tags.md
-  - name: Disconnected operations
-    href: disconnected-operations.md
+- name: Understand disconnected operations
+  href: disconnected-operations.md
 - name: Tutorials
   items:
-  - name: Configure a Local Shared Edge Volume
-    href: tutorial-configure-edge-volume.md
+  - name: Create a Local Shared Edge Volume
+    href: tutorial-create-local-shared-volume.md
 - name: Resources
   items:
   - name: Release notes

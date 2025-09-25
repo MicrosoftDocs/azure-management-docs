@@ -189,6 +189,21 @@
       "source_path": "articles/azure-arc/container-storage/monitor-deployment-edge-volumes.md",
       "redirect_url": "/azure/azure-arc/container-storage/howto-third-party-monitoring",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/ingest-data-flow.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-ingest-data-flow",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/tutorial-configure-edge-volume.md",
+      "redirect_url": "/azure/azure-arc/container-storage/tutorial-create-local-shared-volume",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/blob-index-metadata-tags.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-blob-index-metadata-tags",
+      "redirect_document_id": false
     }
   ]
 }
