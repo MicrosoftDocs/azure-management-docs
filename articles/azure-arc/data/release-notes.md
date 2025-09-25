@@ -20,6 +20,10 @@ This article highlights capabilities, features, and enhancements recently releas
 
 ## September 2025
 
+**Image tag**: `v1.41.0_2025-09-09`
+
+For complete release version information, review [September, 2025](version-log.md#september-2025).
+
 Indirect mode is retired for SQL Managed Instance enabled by Azure Arc.
 
 ## August 2025
