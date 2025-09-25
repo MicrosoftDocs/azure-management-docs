@@ -50,6 +50,14 @@ For general troubleshooting, try the following steps. These steps apply to all V
 
 1. Review the system logs. Check for other operations that could interfere with the extension, such as a long-running installation of another application that requires exclusive package manager access.
 
+## Common extension errors
+
+The following table lists various errors and suggestions on how to troubleshoot and resolve them.
+
+|Error |Probable cause |Solution |
+|--------|---------------|---------|
+|`Extension failed to install. Install of extension failed with error: HandlerManifest.json file does not exist` |The extension was not uninstalled properly |Manually remove the extension from the machine and reinstall |
+
 ## Next steps
 
 If you don't see your problem here or you can't resolve your issue, try one of the following channels for support:
