@@ -2,7 +2,7 @@
 title: Quickstart - Connect a Linux machine with Azure Arc-enabled servers (package-based installation)
 description: In this quickstart, you connect and register a Linux machine to Azure Arc using a package-based installation method.
 ms.topic: quickstart
-ms.date: 07/31/2025
+ms.date: 09/25/2025
 # Customer intent: "As an IT administrator, I want to connect and register Linux machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
@@ -31,7 +31,7 @@ While you can repeat the steps in this article as needed to onboard additional m
   - Your account has the [required Azure built-in roles](prerequisites.md#required-permissions).
   - The machine is in a [supported region](overview.md#supported-regions).
   - The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  - If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked. You can also use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli) to reduce the number of required endpoints.
+  - If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked. You can also use [Azure Arc Gateway](/azure/azure-arc/servers/arc-gateway?tabs=cli) to reduce the number of required endpoints.
 
 ## Deploy the Connected Machine agent using package manager
 
@@ -68,7 +68,7 @@ Follow these steps to install the Azure Connected Machine agent by using your di
    - `--tags`: Used to organize your Azure resources. Keep the tag 'ArcSQLServerExtensionDeployment=Disabled' and add any other tags if desired.
 
       > [!TIP]
-      > You can optionally use [Azure Arc Gateway (preview)](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
+      > You can optionally use [Azure Arc Gateway](/azure/azure-arc/servers/arc-gateway?tabs=cli#create-the-arc-gateway-resource) to reduce the number of required endpoints. If so, include `--gateway-id` and provide the ID of your gateway resource. To find this ID, run this Azure CLI command: `azcmagent gateway show`.
 
 ## Verify the connection with Azure Arc
 

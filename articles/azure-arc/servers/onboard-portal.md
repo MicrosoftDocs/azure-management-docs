@@ -1,7 +1,7 @@
 ---
 title: Connect hybrid machines to Azure using a deployment script
 description: In this article, you learn how to install the agent and connect machines to Azure by using Azure Arc-enabled servers using the deployment script you create in the Azure portal.
-ms.date: 03/13/2025
+ms.date: 09/25/2025
 ms.topic: how-to
 ms.custom: linux-related-content
 # Customer intent: "As a system administrator, I want to automate the installation and onboarding of hybrid machines to Azure using a deployment script, so that I can efficiently manage my servers and ensure their connectivity with Azure Arc."
@@ -40,7 +40,7 @@ Use the Azure portal to create a script that automates the agent download and in
     1. For **Connectivity method**:
         1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
         1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. Select **Next** to go to the Tags page.
 
 1. On the **Tags** page, review the default **Physical location tags** suggested and enter a value, or specify one or more **Custom tags** to support your standards.
