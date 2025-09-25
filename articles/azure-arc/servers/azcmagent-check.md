@@ -2,13 +2,13 @@
 title: azcmagent check CLI reference
 description: Syntax for the azcmagent check command line tool
 ms.topic: reference
-ms.date: 07/29/2025
+ms.date: 9/25/2025
 # Customer intent: As a system administrator, I want to run network connectivity checks using the command line tool, so that I can ensure the agent can communicate with required Azure endpoints accurately.
 ---
 
 # azcmagent check
 
-Run a series of network connectivity checks to see if the agent can successfully communicate with required network endpoints. The command outputs a table showing connectivity test results for each required endpoint, including whether the agent used a private endpoint, proxy server, and/or Arc gateway (preview).
+Run a series of network connectivity checks to see if the agent can successfully communicate with required network endpoints. The command outputs a table showing connectivity test results for each required endpoint, including whether the agent used a private endpoint, proxy server, and/or Arc gateway.
 
 ## Usage
 
