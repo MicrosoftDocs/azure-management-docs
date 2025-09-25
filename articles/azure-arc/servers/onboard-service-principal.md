@@ -15,7 +15,7 @@ You can enable Azure Arc-enabled servers for multiple Windows or Linux machines 
 
 One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.**
 
-1. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 Before you start connecting your machines, review the following requirements:
 
