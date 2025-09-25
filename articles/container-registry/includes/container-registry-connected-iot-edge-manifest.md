@@ -4,6 +4,7 @@ ms.service: azure-container-registry
 ms.topic: include
 ms.date: 09/10/2021
 ms.author: doveychase
+ms.custom: sfi-ropc-nochange
 # Customer intent: As a cloud developer, I want to configure connected registry and API proxy module settings in my IoT Edge deployment, so that I can manage containerized applications and optimize communication between edge devices and the cloud.
 ---
 ### Connected registry module settings

@@ -17,7 +17,9 @@ This article describes how to perform various operations related to the Connecte
 
 ## Install a specific version of the agent
 
-We generally recommend using the [most recent version](agent-release-notes.md) of the Azure Connected Machine agent. However, if you need to run an older version of the agent for any reason, you can follow these instructions to install a specific version of the agent. Only Connected Machine agent versions released within the last year are officially supported by the product group.
+We generally recommend using the [most recent version](agent-release-notes.md) of the Azure Connected Machine agent. However, if you need to run an older version of the agent for any reason, uninstall the current version and then install the target version. If your machine is already connected to Azure Arc, you do not need to disconnect the machine. Only Connected Machine agent versions released within the last year are officially supported by the product group.
+
+Follow these instructions to install a specific version of the Azure Connected Machine agent.
 
 ### [Windows](#tab/windows)
 
@@ -378,7 +380,7 @@ Proxy settings can be configured using the `azcmagent config` command or system 
 Agent-specific proxy configuration is the preferred way of configuring proxy server settings. This method is available starting with version 1.13 of the Azure Connected Machine agent. Using agent-specific proxy configuration helps prevent the proxy settings for the Azure Connected Machine agent from interfering with other applications on your system.
 
 > [!NOTE]
-> Extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
+> Some extensions deployed to Azure Arc-enabled servers don't inherit the agent-specific proxy configuration. For guidance on configuring proxy settings for extensions, see the documentation for each extension you deploy.
 
 To configure the agent to communicate through a proxy server, run the following command:
 

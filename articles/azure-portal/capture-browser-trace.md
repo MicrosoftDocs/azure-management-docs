@@ -1,7 +1,7 @@
 ---
 title: Capture a browser trace for troubleshooting
 description: Capture network information from a browser trace to help troubleshoot issues with the Azure portal.
-ms.date: 01/10/2025
+ms.date: 09/08/2025
 ms.topic: how-to
 # Customer intent: "As an Azure portal user, I want to capture a browser trace for troubleshooting issues in the Azure portal, so that I can provide detailed information to Microsoft support to resolve the problem effectively."
 ---
@@ -23,7 +23,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal, using [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47).
+1. Start recording the steps you take in the portal by using [Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b), [Clipchamp](https://support.microsoft.com/en-us/topic/how-to-make-a-screen-recording-8797f456-7edd-4176-b525-28b954ff5e4d), or another screen recording tool.
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -51,7 +51,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
    :::image type="content" source="media/capture-browser-trace/edge-network-export-har.png" alt-text="Screenshot showing how to Export HAR on the Network tab in Edge.":::
 
-1. Stop the Steps Recorder, and save the recording.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -65,7 +65,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal, using [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47).
+1. Start recording the steps you take in the portal. You can use [Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b) or [Clipchamp](https://support.microsoft.com/en-us/topic/how-to-make-a-screen-recording-8797f456-7edd-4176-b525-28b954ff5e4d) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -93,7 +93,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
    :::image type="content" source="media/capture-browser-trace/chrome-network-export-har.png" alt-text="Screenshot that shows how to export a HAR file on the Network tab in Chrome.":::
 
-1. Stop the Steps Recorder, and save the recording.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save as...**, and save the console output to a text file.
 
@@ -143,7 +143,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
    :::image type="content" source="media/capture-browser-trace/safari-network-export-har.png" alt-text="Screenshot of the Export command in the Network tab on Safari.":::
 
-1. Stop the screen recorder, and save the recording.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab, and expand the window. Place your cursor at the start of the console output then drag and select the entire contents of the output. Use Command-C to copy the output and save it to a text file.
 
@@ -157,7 +157,7 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
 1. Sign in to the [Azure portal](https://portal.azure.com). It's important to sign in _before_ you start the trace so that the trace doesn't contain sensitive information related to your account.
 
-1. Start recording the steps you take in the portal. Use [Steps Recorder](https://support.microsoft.com/windows/record-steps-to-reproduce-a-problem-46582a9b-620f-2e36-00c9-04e25d784e47) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
+1. Start recording the steps you take in the portal. You can use [Snipping Tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b) or [Clipchamp](https://support.microsoft.com/en-us/topic/how-to-make-a-screen-recording-8797f456-7edd-4176-b525-28b954ff5e4d) on Windows, or see [How to record the screen on your Mac](https://support.apple.com/102618).
 
 1. In the portal, navigate to the step prior to where the issue occurs.
 
@@ -183,7 +183,7 @@ The following steps show how to use the developer tools in Firefox. For more inf
 
    :::image type="content" source="media/capture-browser-trace/firefox-network-export-har.png" alt-text="Screenshot of the Save All As HAR command on the Network tab in Firefox.":::
 
-1. Stop the Steps Recorder on Windows or the screen recording on Mac, and save the recording.
+1. Stop recording your screen, and save the video file.
 
 1. Back in the browser developer tools pane, select the **Console** tab. Right-click one of the messages, then select **Save All Messages to File**, and save the console output to a text file.
 

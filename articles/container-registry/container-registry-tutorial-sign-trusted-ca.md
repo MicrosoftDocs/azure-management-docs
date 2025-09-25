@@ -12,6 +12,8 @@ ms.date: 9/5/2024
 
 # Sign container images with Notation and Azure Key Vault using a CA-issued certificate
 
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and offers various scenarios.
+
 Signing and verifying container images with a certificate issued by a trusted Certificate Authority (CA) is a valuable security practice. This security measure will help you to responsibly identify, authorize, and validate the identity of both the publisher of the container image and the container image itself. The Trusted Certificate Authorities (CAs) such as GlobalSign, DigiCert, and others play a crucial role in the validation of a user's or organization's identity, maintaining the security of digital certificates, and revoking the certificate immediately upon any risk or misuse.
 
 Here are some essential components that help you to sign and verify container images with a certificate issued by a trusted CA:
@@ -413,6 +415,6 @@ Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
 To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
 - Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/

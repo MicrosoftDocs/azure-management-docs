@@ -12,6 +12,8 @@ ms.date: 9/3/2024
 
 # Sign container images with Notation and Azure Key Vault using a self-signed certificate
 
+This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and offers various scenarios.
+
 Signing container images is a process that ensures their authenticity and integrity. This is achieved by adding a digital signature to the container image, which can be validated during deployment. The signature helps to verify that the image is from a trusted publisher and has not been modified. [Notation](https://github.com/notaryproject/notation) is an open source supply chain security tool developed by the [Notary Project community](https://notaryproject.dev/) and backed by Microsoft, which supports signing and verifying container images and other artifacts. The Azure Key Vault (AKV) is used to store certificates with signing keys that can be used by Notation with the Notation AKV plugin (azure-kv) to sign and verify container images and other artifacts. The Azure Container Registry (ACR) allows you to attach signatures to container images and other artifacts as well as view those signatures. If you want to sign a container image with `notation` in CI/CD pipelines, follow the guidance of [Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign) or [GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha). 
 
 In this tutorial:
@@ -368,6 +370,6 @@ Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
 To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
 - Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
 
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/

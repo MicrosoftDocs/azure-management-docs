@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2023-copilotinAzure
   - build-2024
+  - sfi-ga-nochange
 # Customer intent: "As an Azure user, I want to use an AI-powered tool to simplify Azure management tasks, so that I can increase productivity, reduce costs, and better leverage the capabilities of my cloud environment."
 ---
 

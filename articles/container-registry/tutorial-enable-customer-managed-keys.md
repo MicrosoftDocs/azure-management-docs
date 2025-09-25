@@ -2,10 +2,12 @@
 title: Enable a Customer-Managed Key for Azure Container Registry
 description: In this tutorial, learn how to encrypt your Premium registry with a customer-managed key stored in Azure Key Vault.
 ms.topic: tutorial
-ms.custom: devx-track-azurecli
 ms.date: 10/31/2023
 ms.author: doveychase
 ms.service: azure-container-registry
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 # Customer intent: "As a DevOps engineer, I want to enable a customer-managed key for an Azure Container Registry, so that I can ensure data security by utilizing my own key for encryption and manage access effectively."
 ---
 

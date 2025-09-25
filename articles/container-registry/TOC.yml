@@ -218,14 +218,24 @@
           href: /azure/service-fabric/service-fabric-tutorial-create-container-images
     - name: Signing and verification
       items:
-      - name: Content trust
-        href: container-registry-content-trust.md
-      - name: Transition from Docker Content Trust to the Notary Project
-        href: container-registry-content-trust-deprecation.md
+      - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
+        href: overview-sign-verify-artifacts.md
+      - name: Sign container images with Notation and Trusted Signing (Preview)
+        href: container-registry-tutorial-sign-verify-notation-trusted-signing.md
+      - name: Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)
+        href: container-registry-tutorial-github-sign-notation-trusted-signing.md
+      - name: Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)
+        href: container-registry-tutorial-github-verify-notation-trusted-signing.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
         href: container-registry-tutorial-sign-build-push.md
       - name: Sign container images with Notation and AKV using a CA issued certificate
         href: container-registry-tutorial-sign-trusted-ca.md
+      - name: Validate container image signatures in AKS with Ratify and Azure Policy
+        href: container-registry-tutorial-verify-with-ratify-aks.md
+      - name: Content trust
+        href: container-registry-content-trust.md
+      - name: Transition from Docker Content Trust to the Notary Project
+        href: container-registry-content-trust-deprecation.md
     - name: Vulnerability management and patching
       items:
       - name: Continuous patching concepts

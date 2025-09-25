@@ -7,7 +7,7 @@ ms.reviewer: mikeray
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 08/15/2025
+ms.date: 09/15/2025
 ms.topic: release-notes
 ms.custom: references_regions, ignite-2023
 #Customer intent: As a data professional, I want to understand why my solutions would benefit from running with Azure Arc-enabled data services so that I can leverage the capability of the feature.
@@ -18,7 +18,15 @@ ms.custom: references_regions, ignite-2023
 
 This article highlights capabilities, features, and enhancements recently released or improved for Azure Arc-enabled data services.
 
-## August, 2025
+## September 2025
+
+**Image tag**: `v1.41.0_2025-09-09`
+
+For complete release version information, review [September, 2025](version-log.md#september-2025).
+
+Indirect mode is retired for SQL Managed Instance enabled by Azure Arc.
+
+## August 2025
 
 Removes Grafana and Opensearch dashboards for Azure Arc-enabled SQL Managed Instance.
 
@@ -38,7 +46,7 @@ For complete release version information, review [Version log](version-log.md#ma
 
 **Image tag**: `v1.38.0_2025-04-08`
 
-Grafana and OpenSearch dashboards will not be provided for new deployments.
+Grafana and OpenSearch dashboards won't be provided for new deployments.
 
 For complete release version information, review [Version log](version-log.md#april-8-2025).
 
@@ -65,18 +73,6 @@ For complete release version information, review [Version log](version-log.md#fe
 **Image tag**: `v1.34.0_2024-10-08`
 
 For complete release version information, review [Version log](version-log.md#october-8-2024).
-
-## September 9, 2024
-
-**Image tag**: `v1.33.0_2024-09-10`
-
-For complete release version information, review [Version log](version-log.md#september-9-2024). 
-
-## August 13, 2024
-
-**Image tag**: `v1.32.0_2024-08-13`
-
-For complete release version information, review [Version log](version-log.md#august-13-2024). 
 
 ## Related content
 

@@ -77,7 +77,7 @@ The following mapping within the collection can help you identify which extensio
 |Azure Monitor for VMs (insights)  |`azure_monitor_for-vms`  |
 |Azure Key Vault virtual machine extension  |`azure_key_vault`  |
 |Azure Monitor agent  |`azure_monitor_agent`  |
-|Azure Automation Hybrid Runbook Worker extension  |`azure_hybrid_rubook`  |
+|Azure Automation Hybrid Runbook Worker extension  |`azure_hybrid_runbook`  |
 
 You need to create templates so that you can enable and disable Azure Arc-enabled server VM extensions, as described in the following sections.
 
@@ -118,8 +118,8 @@ To create the template:
       resource_group: <your_resource_group>
       region: <your_region>
       arc_hosts:
-      <first_arc_host>
-      <second_arc_host>
+        - <first_arc_host>
+        - <second_arc_host>
       extension: microsoft_defender
      ```
 
@@ -156,8 +156,8 @@ This template is responsible for disabling an Azure Arc-enabled server VM extens
       resource_group: <your_resource_group>
       region: <your_region>
       arc_hosts:
-      <first_arc_host>
-      <second_arc_host>
+        - <first_arc_host>
+        - <second_arc_host>
       extension: microsoft_defender
      ```
 

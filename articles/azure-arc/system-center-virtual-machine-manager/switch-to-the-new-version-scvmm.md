@@ -10,6 +10,7 @@ ms.date: 02/25/2025
 keywords: "VMM, Arc, Azure"
 ms.custom:
   - build-2025
+  - sfi-image-nochange
 # Customer intent: As a virtual infrastructure administrator, I want to switch to the new version of Arc-enabled SCVMM, so that I can continue managing my Azure-enabled virtual machines and utilize the latest Azure management capabilities.
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Update a delegation
 description: Learn how to update a delegation for a customer previously onboarded to Azure Lighthouse.
-ms.date: 01/17/2025
+ms.date: 09/22/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 # Customer intent: As a service provider managing customer subscriptions, I want to update delegations using ARM templates or through a new offer in Azure Marketplace, so that I can adjust authorizations or change managing tenants effectively while ensuring proper access and permissions are maintained.
@@ -43,7 +43,7 @@ If you're updating the offer only to adjust authorizations, and keeping the same
 Removing access to the delegation can be done by any user in the managing tenant who was granted the [Managed Services Registration Assignment Delete Role](/azure/role-based-access-control/built-in-roles#managed-services-registration-assignment-delete-role) in the original delegation. If no user in your managing tenant has this role, you can ask the customer to [remove access to the offer in the Azure portal](view-manage-service-providers.md#remove-service-provider-offers).
 
 > [!TIP]
-> If you removed the previous delegation but are unable to deploy the new ARM template, you might need to [remove the previous registration definition completely](/powershell/module/az.managedservices/remove-azmanagedservicesdefinition). This can be done by any user with a role that has the `Microsoft.Authorization/roleAssignments/write` permission, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), in the customer tenant.  
+> If you removed the previous delegation but are unable to deploy the new ARM template, you might need to [remove the previous registration definition completely](/powershell/module/az.managedservices/remove-azmanagedservicesdefinition). This can be done by any user with a role that has the `Microsoft.Authorization/roleAssignments/write`, `Microsoft.Authorization/roleAssignments/delete`, and `Microsoft.Authorization/roleAssignments/read` permissions, such as [Owner](/azure/role-based-access-control/built-in-roles#owner), in the customer tenant.
 
 ## Deploy the ARM template
 
