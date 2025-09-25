@@ -1,129 +1,194 @@
 {
-    "redirections": [
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/how-to-single-node-k3s.md",
-            "redirect_url": "/azure/azure-arc/container-storage/install-cache-volumes",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/install-edge-storage-accelerator.md",
-            "redirect_url": "/azure/azure-arc/container-storage/install-edge-volumes",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/attach-app.md",
-            "redirect_url": "/azure/azure-arc/container-storage/attach-app",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/azure-monitor-kubernetes.md",
-            "redirect_url": "/azure/azure-arc/container-storage/azure-monitor-kubernetes",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/create-pv.md",
-            "redirect_url": "/azure/azure-arc/container-storage/create-persistent-volume",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/create-pvc.md",
-            "redirect_url": "/azure/azure-arc/container-storage/create-persistent-volume-claim",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/index.yml",
-            "redirect_url": "/azure/azure-arc/container-storage/index",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/jumpstart.md",
-            "redirect_url": "/azure/azure-arc/container-storage/jumpstart",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/multi-node-cluster.md",
-            "redirect_url": "/azure/azure-arc/container-storage/multi-node-cluster",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/overview.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/prepare-linux.md",
-            "redirect_url": "/azure/azure-arc/container-storage/prepare-linux",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/release-notes.md",
-            "redirect_url": "/azure/azure-arc/container-storage/release-notes",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/single-node-cluster.md",
-            "redirect_url": "/azure/azure-arc/container-storage/single-node-cluster",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/support-feedback.md",
-            "redirect_url": "/azure/azure-arc/container-storage/support-feedback",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/third-party-monitoring.md",
-            "redirect_url": "/azure/azure-arc/container-storage/third-party-monitoring",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/alternate-key-based.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/attach-app.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/cache-volumes-overview.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume-claim.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/install-cache-volumes.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/monitor-deployment-cache-volumes.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/multi-node-cluster.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/prepare-linux.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        },
-        {
-            "source_path_from_root": "/articles/azure-arc/container-storage/single-node-cluster.md",
-            "redirect_url": "/azure/azure-arc/container-storage/overview",
-            "redirect_document_id": false
-        }
-    ]
+  "redirections": [
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/how-to-single-node-k3s.md",
+      "redirect_url": "/azure/azure-arc/container-storage/install-cache-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/install-edge-storage-accelerator.md",
+      "redirect_url": "/azure/azure-arc/container-storage/install-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/attach-app.md",
+      "redirect_url": "/azure/azure-arc/container-storage/attach-app",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/azure-monitor-kubernetes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/azure-monitor-kubernetes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/create-pv.md",
+      "redirect_url": "/azure/azure-arc/container-storage/create-persistent-volume",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/create-pvc.md",
+      "redirect_url": "/azure/azure-arc/container-storage/create-persistent-volume-claim",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/index.yml",
+      "redirect_url": "/azure/azure-arc/container-storage/index",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/jumpstart.md",
+      "redirect_url": "/azure/azure-arc/container-storage/jumpstart",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/multi-node-cluster.md",
+      "redirect_url": "/azure/azure-arc/container-storage/multi-node-cluster",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/overview.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/prepare-linux.md",
+      "redirect_url": "/azure/azure-arc/container-storage/prepare-linux",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/release-notes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/release-notes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/single-node-cluster.md",
+      "redirect_url": "/azure/azure-arc/container-storage/single-node-cluster",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/support-feedback.md",
+      "redirect_url": "/azure/azure-arc/container-storage/support-feedback",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/edge-storage-accelerator/third-party-monitoring.md",
+      "redirect_url": "/azure/azure-arc/container-storage/third-party-monitoring",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/alternate-key-based.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/attach-app.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/cache-volumes-overview.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume-claim.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/create-persistent-volume.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/install-cache-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/monitor-deployment-cache-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/multi-node-cluster.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/prepare-linux.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/azure-arc/container-storage/single-node-cluster.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/ingest-policies.md",
+      "redirect_url": "/azure/azure-arc/container-storage/overview",
+      "redirect_document_id": false
+    },
+    {
+        "source_path": "articles/azure-arc/container-storage/edge-volumes-overview.md",
+        "redirect_url": "/azure/azure-arc/container-storage/overview",
+        "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/prepare-linux-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-prepare-linux-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/single-node-cluster-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-single-node-cluster-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/multi-node-cluster-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-multi-node-cluster-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/install-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-install-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/local-shared-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-local-shared-edge-volumes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/cloud-ingest-edge-volume-configuration.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/alternate-onelake.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-onelake",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/cloud-ingest-edge-volumes-with-workload-identity.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-workload-identity",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/third-party-monitoring.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-third-party-monitoring",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/azure-monitor-kubernetes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-azure-monitor-kubernetes",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/monitor-deployment-edge-volumes.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-third-party-monitoring",
+      "redirect_document_id": false
+    }
+  ]
 }
