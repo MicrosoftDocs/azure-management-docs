@@ -23,6 +23,8 @@ items:
     href: howto-install-edge-volumes.md
 - name: Configure your volumes
   items:
+  - name: Volumes and subvolumes overview
+    href: volumes-subvolumes.md
   - name: Local Shared
     href: howto-configure-local-shared-edge-volumes.md
   - name: Cloud Ingest
@@ -31,6 +33,8 @@ items:
     href: howto-configure-cloud-ingest-onelake.md
   - name: Cloud Mirror
     href: howto-configure-cloud-mirror-subvolumes.md
+  - name: Using Edge Volumes together
+    href: storage-options.md
 - name: Authentication
   items:
   - name: Workload Identity
@@ -43,12 +47,8 @@ items:
     href: howto-azure-monitor-kubernetes.md
 - name: Concepts
   items:
-  - name: Volumes and subvolumes
-    href: volumes-subvolumes.md
   - name: Map file to object path names
     href: map-names.md
-  - name: Using Edge Volumes together
-    href: storage-options.md
   - name: Ingest data flow
     href: ingest-data-flow.md
   - name: Blob index and metadata tags
