@@ -160,7 +160,7 @@ kubectl exec -it <name of pod> -- bash
 
 6. You should see a directory with the name you specified as your path in Step 2 of the Attach subvolume to Edge Volume section, in this case, `exampleSubDir`. Change to that directory, and run an `ls` to check for any contents mirrored here. If you specified a uuid in the `oneshot` field upon creation, and/or the specified `frequency` requirements have been satisfied, the subvolume should have performed a sync on initial create, and you should see data here mirrored from your specified storage account container. If either of those conditions is not met, this directory should be empty. 
 
-## Check the status of the Cloud to Edge Mirror Volume Synchronization
+## Check the status of the Cloud Mirror subvolume Synchronization
 
 ### Overview
 
