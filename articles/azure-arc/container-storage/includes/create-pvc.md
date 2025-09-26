@@ -26,6 +26,6 @@ storageClassName: cloud-backed-sc
 
 [!INCLUDE [lowercase-note](lowercase-note.md)]
 
-* Edit the `metadata.name` value and create a name for your Persistent Volume Claim. This name is referenced on the last line of **deploymentExample.yaml** in the next step. 
-* Edit the `metadata.namespace` value with your intended consuming pod. If you don't have an intended consuming pod, set it's value to `default`. 
-* The `spec.resources.requests.storage` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs.
+- Edit the `metadata.name` value and create a name for your PVC. This name is referenced on the last line of **deploymentExample.yaml** in the next step. 
+- Edit the `metadata.namespace` value with your intended consuming pod. If you don't have an intended consuming pod, set its value to `default`. 
+- The `spec.resources.requests.storage` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs.

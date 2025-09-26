@@ -41,58 +41,60 @@ Create a file named `cloudMirrorPVC.yaml` with the following content and apply i
     
 ## Attach Mirror subvolume to the Edge Volume
 
-To create a subvolume for Mirror, use the following process:
+To create a subvolume for Mirror, using extension identity to connect to your storage account container, use the following process:
 
 1. Get the name of the Edge Volume you created by running the following command. This will go into `spec.edgevolume` in the following step:
 
     ```bash
     kubectl get edgevolumes
     ```
-1. Create a file named `mirrorSubvolume.yaml` and copy the following contents. These variables must be updated with your information:
+1. Create a file named `mirrorSubvolume.yaml` with the following content:
 
-**Note:** Use only lowercase letters and dashes. For more information, see the Kubernetes object naming documentation.
+    ```yaml
+    apiVersion: "arccontainerstorage.azure.net/v1"
+    kind: MirrorSubvolume
+    metadata:
+      name: <create-a-subvolume-name-here>
+    spec:
+      edgevolume: <your-edge-volume-name-here>
+      path: exampleSubDir # Don't use a preceding slash
+      authentication:
+        authType: MANAGED_IDENTITY
+      blobAccount:
+        accountEndpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
+        containerName: <your-blob-storage-account-container-name>
+        indexTagsMode: NoIndexTags
+      blobFiltering:
+        blobNamePrefix:
+      schedule:
+        frequency: "@hourly"
+        oneshot:
+    ```
+    
+    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-* ```metadata.name```: Create a name for your subvolume.
-* ```spec.edgevolume```: This name was retrieved from the previous step using ```kubectl get edgevolumes```.
-* ```spec.path```: Create your own subdirectory name under the mount path. The following example already contains an example name (```exampleSubDir```). If you change this path name, line 33 in ```deploymentExample.yaml``` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
-* ```spec.authentication.authType```: This should be ```MANAGED_IDENTITY``` or ```WORKLOAD_IDENTITY```, depending on the authentication mechanism chosen.
-* ```spec.blobAccount.accountEndpoint```: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the ```storageaccountendpoint``` link under ```properties.primaryEndpoints.blob```. Copy the entire link; for example, https://mytest.blob.core.windows.net/.
-* ```spec.blobAccount.containerName```: The container name in your storage account.
-* ```spec.blobAccount.indexTagsMode```: ```NoIndexTags``` or ```MirrorIndexTags```. Mode ```MirrorIndexTags``` requires "Storage Blob Data Owner" permissions, and when set, index tags will be translated to corresponding ```azindex.<name> xattrs```. ```NoIndexTags``` only requires "Storage Blob Data Reader" permissions, and when set, it will keep index tag xattrs unset.
-* ```spec.blobFiltering.blobNamePrefix```: Optional prefix to filter blobs. For example, "blobNamePrefix: a" will only mirror blobs with names starting with "a".
-* ```spec.schedule.frequency```: Schedule for when mirroring should run. Options are: ```@annually```, ```@yearly```, ```@monthly```, ```@weekly```, ```@daily```, ```@hourly```, ```"never"```, or cron syntax (5 digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
-* ```spec.schedule.oneshot```: By default, left blank. If at any time a uuid is specified here, will trigger an 'immediate' sync. If a uuid is specified on creation, the subvolume will perform a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume will initially create without a sync, and will sync according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with ```sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml```
+    - `metadata.name`: Create a name for your subvolume.
+    - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
+    - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in **deploymentExample.yaml** must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
+    - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
+    - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the `storageaccountendpoint` link under `properties.primaryEndpoints.blob`. Copy the entire link; for example, `https://mytest.blob.core.windows.net/`.
+    - `spec.blobAccount.containerName`: The container name in your storage account.
+    - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags will be translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it will keep index tag xattrs unset.
+    - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it will only mirror blobs with names starting with "a".
+    - `spec.schedule.frequency`: Schedule for when mirroring should run. Options are: `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, `"never"`, or cron syntax (5 digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
+    - `spec.schedule.oneshot`: By default, left blank. If at any time a uuid is specified here, will trigger an 'immediate' sync. If a uuid is specified on creation, the subvolume will perform a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume will initially create without a sync, and will sync according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with `sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml`
 
-```yaml
-apiVersion: "arccontainerstorage.azure.net/v1"
-kind: MirrorSubvolume
-metadata:
-  name: <create-a-subvolume-name-here>
-spec:
-  edgevolume: <your-edge-volume-name-here>
-  path: mirrorSubDir # Don't use a preceding slash
-  authentication:
-    authType: MANAGED_IDENTITY
-  blobAccount:
-    accountEndpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
-    containerName: <your-blob-storage-account-container-name>
-    indexTagsMode: NoIndexTags
-  blobFiltering:
-    blobNamePrefix:
-  schedule:
-    frequency: "@hourly"
-    oneshot:
-```
 
-3. To apply the ```mirrorSubvolume.yaml```, run:
-```bash
-kubectl apply -f "mirrorSubvolume.yaml"
-```
-
+  1. To apply the `mirrorSubvolume.yaml`, run:
+  
+      ```bash
+      kubectl apply -f "mirrorSubvolume.yaml"
+      ```
+    
 ## Attach your app (Kubernetes native application)
 
-1. To configure a generic single pod (Kubernetes native application) against the PVC to use the Mirror capabilities, create a file named ```deploymentExample.yaml``` as follows. 
-Modify the ```containers.name``` and ```volumes.persistentVolumeClaim.claimName``` values. If you updated the path name from ```cloudMirrorSubvolume.yaml```, ```exampleSubDir``` on line 33 must be updated with your new path name. The ```spec.replicas``` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs:
+1. To configure a generic single pod (Kubernetes native application) against the PVC to use the Mirror capabilities, create a file named `deploymentExample.yaml` as follows. 
+Modify the `containers.name` and `volumes.persistentVolumeClaim.claimName` values. If you updated the path name from `cloudMirrorSubvolume.yaml`, `exampleSubDir` on line 33 must be updated with your new path name. The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs:
 
 **Note:** Use only lowercase letters and dashes. For more information, see the [Kubernetes object naming documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names).
 
@@ -146,23 +148,23 @@ spec:
 ```bash
 kubectl apply -f deploymentexample.yaml
 ```
-3. Use ```bash kubectl get pods``` to find the name of your pod. Copy this name to use in the next step.
+3. Use `bash kubectl get pods` to find the name of your pod. Copy this name to use in the next step.
 
-**Note:** Because ```spec.replicas``` from ```deploymentExample.yaml``` was specified as 2, two pods appear using ```kubectl get pods```. You can choose either pod name to use for the next step.
+**Note:** Because `spec.replicas` from `deploymentExample.yaml` was specified as 2, two pods appear using `kubectl get pods`. You can choose either pod name to use for the next step.
 
 4. Next, you can run the following command to exec into the pod (name copied from the last step): 
 ```bash
 kubectl exec -it <name of pod> -- bash
 ```
-5. Change directories into the ```/data``` mount path as specified from your ```deploymentExample.yaml```
+5. Change directories into the `/data` mount path as specified from your `deploymentExample.yaml`
 
-6. You should see a directory with the name you specified as your path in Step 2 of the Attach subvolume to Edge Volume section, in this case, ```exampleSubDir```. Change to that directory, and run an ```ls``` to check for any contents mirrored here. If you specified a uuid in the ```oneshot``` field upon creation, and/or the specified ```frequency``` requirements have been satisfied, the subvolume should have performed a sync on initial create, and you should see data here mirrored from your specified storage account container. If either of those conditions is not met, this directory should be empty. 
+6. You should see a directory with the name you specified as your path in Step 2 of the Attach subvolume to Edge Volume section, in this case, `exampleSubDir`. Change to that directory, and run an `ls` to check for any contents mirrored here. If you specified a uuid in the `oneshot` field upon creation, and/or the specified `frequency` requirements have been satisfied, the subvolume should have performed a sync on initial create, and you should see data here mirrored from your specified storage account container. If either of those conditions is not met, this directory should be empty. 
 
 ## Check the status of the Cloud to Edge Mirror Volume Synchronization
 
 ### Overview
 
-First, we will check the status of the ```mirrorSubvolume```.
+First, we will check the status of the `mirrorSubvolume`.
 
 Next, we will ensure that we have data in our Storage Account Container in Azure.
 
@@ -181,7 +183,7 @@ If you already have some data in your specified container, you can skip this ste
 
 ### Trigger additional mirror
 
-1. To make sure our new data is mirrored from the cloud to our subvolume, update the ```oneshot``` field in the file ```mirrorSubvolume.yaml``` to a new uuid.
+1. To make sure our new data is mirrored from the cloud to our subvolume, update the `oneshot` field in the file `mirrorSubvolume.yaml` to a new uuid.
 Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with 
 
 ```bash
