@@ -15,7 +15,7 @@ This article describes how to configure *Cloud Ingest Edge Volumes* with Workloa
 
 ## Prerequisites
 
-Before you begin, ensure you read [Cloud Ingest Edge Volumes configuration](cloud-ingest-edge-volume-configuration.md) and meet the prerequisites listed there.
+Before you begin, ensure you read [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest.md) and meet the prerequisites listed there.
 
 ## Configure Kubernetes cluster for Workload Identity
 
@@ -113,9 +113,9 @@ spec:
   storageaccountendpoint: ""
 ```
 
-Continue with the steps in the Cloud Ingest Edge Volumes configuration guide, starting from the [Create a Cloud Ingest Persistent Volume Claim (PVC)](cloud-ingest-edge-volume-configuration.md#create-a-cloud-ingest-persistent-volume-claim-pvc) section and using the example provided here.
+Continue with the steps in the Cloud Ingest Edge Volumes configuration guide, starting from the [Create a Cloud Ingest Persistent Volume Claim (PVC)](howto-configure-cloud-ingest.md#create-a-cloud-ingest-persistent-volume-claim-pvc) section and using the example provided here.
 
 ## Next step
 
-[Monitor your deployment](monitor-deployment-edge-volumes.md)
+[Monitor your deployment](howto-azure-monitor-kubernetes.md)
 

@@ -24,7 +24,7 @@ For example, you can write a file to your cloud ingest PVC, and a process runs a
 
 ## Prerequisites
 
-If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](alternate-onelake.md).
+If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md).
 
 1. Create a storage account [following the instructions here](/azure/storage/common/storage-account-create?tabs=azure-portal).
 
@@ -37,7 +37,7 @@ If your final destination is blob storage or ADLSgen2, continue following the pr
 
 Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing you to upload cloud ingest volumes to these storage systems.
 
-If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](cloud-ingest-edge-volumes-with-workload-identity.md).
+If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](howto-configure-workload-identity.md).
 
 ### Obtain Extension Identity
 
@@ -198,8 +198,6 @@ To create a subvolume using extension identity to connect to your storage accoun
        minDelaySec: <your-min-delay-sec>
    ```
 
-   For more information about these specifications, see [Set ingest policy](ingest-policies.md).
-
 1. To apply `myedgeingest-policy.yaml`, run:
 
    ```bash
@@ -288,4 +286,4 @@ To create a subvolume using extension identity to connect to your storage accoun
 
 After you complete these steps, you can begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring or 3rd-party monitoring with Prometheus and Grafana.
 
-[Monitor your deployment](monitor-deployment-edge-volumes.md)
+[Monitor your deployment](howto-azure-monitor-kubernetes.md)

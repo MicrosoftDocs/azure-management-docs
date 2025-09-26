@@ -53,5 +53,5 @@ If you previously installed a version of Azure Container Storage enabled by Azur
 
 ## Next steps
 
-- [Prepare Linux for Edge Volumes using a single-node or two-node cluster](single-node-cluster-edge-volumes.md)
-- [Prepare Linux for Edge Volumes using a multi-node cluster](multi-node-cluster-edge-volumes.md)
+- [Prepare Linux for Edge Volumes using a single-node or two-node cluster](howto-single-node-cluster-edge-volumes.md)
+- [Prepare Linux for Edge Volumes using a multi-node cluster](howto-multi-node-cluster-edge-volumes.md)

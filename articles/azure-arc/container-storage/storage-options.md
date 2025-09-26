@@ -18,7 +18,7 @@ The first and most basic option is to use a Local Shared Edge Volume. This volum
 
 ## Cloud Edge Volume
 
-The second storage option is a Cloud Edge Volume, with an ingest synchronization policy. This volume/subvolume combination, [as described here](cloud-ingest-edge-volume-configuration.md), gives you access to greater storage capacity by connecting your Kubernetes cluster to all that Azure has to offer. With cloud destinations such as Blob, ADLS generation 2, and OneLake, you can increase your data storage capacity by sending your data to Azure. You input your desired storage account and container information (see [Map file to object path names](map-names.md)), and our application takes care of moving your data to Azure and cleaning out the local copy as desired, and specified in your synchronization policy, to allow for virtually limitless data ingestion.
+The second storage option is a Cloud Edge Volume, with an ingest synchronization policy. This volume/subvolume combination, [as described here](howto-configure-cloud-ingest.md), gives you access to greater storage capacity by connecting your Kubernetes cluster to all that Azure has to offer. With cloud destinations such as Blob, ADLS generation 2, and OneLake, you can increase your data storage capacity by sending your data to Azure. You input your desired storage account and container information (see [Map file to object path names](howto-map-names.md)), and our application takes care of moving your data to Azure and cleaning out the local copy as desired, and specified in your synchronization policy, to allow for virtually limitless data ingestion.
 
 ## Use both storage options
 

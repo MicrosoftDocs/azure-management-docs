@@ -25,7 +25,7 @@ The tutorial covers the following tasks:
 ## Prerequisites
 
 - The tutorial assumes that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
-- You should have already installed the Azure Container Storage extension. If you haven't, see [Install Edge Volumes](install-edge-volumes.md).
+- You should have already installed the Azure Container Storage extension. If you haven't, see [Install Edge Volumes](howto-install-edge-volumes.md).
 
 ## Create a Local Shared Edge Volume PVC
 
@@ -150,4 +150,4 @@ You can now see that the file you wrote is in the directory.
 
 After you complete these steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or third-party monitoring with Prometheus and Grafana.
 
-- [Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
+- [Monitor your Edge Volumes deployment](howto-azure-monitor-kubernetes.md)
