@@ -1,7 +1,7 @@
 ---
 title: Connect hybrid machines to Azure at scale
 description: In this article, you learn how to connect machines to Azure using Azure Arc-enabled servers using a service principal.
-ms.date: 03/17/2025
+ms.date: 09/25/2025
 ms.topic: concept-article
 ms.custom:
   - devx-track-azurepowershell
@@ -15,6 +15,8 @@ You can enable Azure Arc-enabled servers for multiple Windows or Linux machines 
 
 One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.**
 
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+
 Before you start connecting your machines, review the following requirements:
 
 1. Make sure you have administrator permission on the machines you want to onboard.
@@ -27,15 +29,9 @@ Before you start connecting your machines, review the following requirements:
     * Microsoft.HybridConnectivity
     * Microsoft.AzureArcData (if you plan to Arc-enable SQL Server instances)
 
-    See detailed how to here: [Azure resource providers prerequisites](prerequisites.md#azure-resource-providers)
+    For more information, see [Azure resource providers prerequisites](prerequisites.md#azure-resource-providers).
 
     For information about supported regions and other related considerations, see [supported Azure regions](overview.md#supported-regions). Also review our [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as our management and monitoring recommendations.
-
-<!--The installation methods to install and configure the Connected Machine agent requires that the automated method you use has administrator permissions on the machines: on Linux by using the root account, and on Windows as a member of the Local Administrators group.
-
-Before you get started, be sure to review the [prerequisites](prerequisites.md) and verify that your subscription and resources meet the requirements. For information about supported regions and other related considerations, see [supported Azure regions](overview.md#supported-regions). Also review our [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as our management and monitoring recommendations.-->
-
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 [!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
 
@@ -44,7 +40,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 You can create a service principal in the Azure portal or by using Azure PowerShell.
 
 > [!NOTE]
-> To create a service principal, your Microsoft Entra tenant needs to allow users to register applications. If it does not, your account must be a member of the **Application Administrator** or **Cloud Application Administrator** administrative role. See [Delegate app registration permissions in Microsoft Entra ID](/azure/active-directory/roles/delegate-app-roles) for more information about tenant-level requirements. To assign Arc-enabled server roles, your account must be a member of the **Owner** or **User Access Administrator** role in the subscription that you want to use for onboarding.
+> To create a service principal, your Microsoft Entra tenant needs to allow users to register applications. If it doesn't, your account must be a member of the **Application Administrator** or **Cloud Application Administrator** administrative role. See [Delegate app registration permissions in Microsoft Entra ID](/azure/active-directory/roles/delegate-app-roles) for more information about tenant-level requirements. To assign Arc-enabled server roles, your account must be a member of the **Owner** or **User Access Administrator** role in the subscription that you want to use for onboarding.
 
 ### Azure portal
 
@@ -68,17 +64,18 @@ The Azure Arc service in the Azure portal provides a streamlined way to create a
 You can use [Azure PowerShell](/powershell/azure/install-azure-powershell) to create a service principal with the [New-AzADServicePrincipal](/powershell/module/Az.Resources/New-AzADServicePrincipal) cmdlet.
 
 1. Check the context of your Azure PowerShell session to ensure you're working in the correct subscription. Use [Set-AzContext](/powershell/module/az.accounts/set-azcontext) if you need to change the subscription.
-    
+
     ```azurepowershell-interactive
     Get-AzContext
     ```
-    
+ 
 1. Run the following command to create a service principal and assign it the Azure Connected Machine Onboarding role for the selected subscription. After the service principal is created, it will print the application ID and secret. The secret is valid for 1 year, after which you'll need to generate a new secret and update any scripts with the new secret.
-   
+
     ```azurepowershell-interactive
     $sp = New-AzADServicePrincipal -DisplayName "Arc server onboarding account" -Role "Azure Connected Machine Onboarding"
     $sp | Format-Table AppId, @{ Name = "Secret"; Expression = { $_.PasswordCredentials.SecretText }}
     ```
+
     ```output
     AppId                                Secret
     -----                                ------
@@ -86,9 +83,9 @@ You can use [Azure PowerShell](/powershell/azure/install-azure-powershell) to cr
     ```
 
     The values from the following properties are used with parameters passed to the `azcmagent`:
-    
-    - The value from the **AppId** property is used for the `--service-principal-id` parameter value
-    - The value from the **Secret** property is used for the `--service-principal-secret` parameter used to connect the agent.
+
+    * The value from the **AppId** property is used for the `--service-principal-id` parameter value
+    * The value from the **Secret** property is used for the `--service-principal-secret` parameter used to connect the agent.
 
 ## Generate the installation script from the Azure portal
 
@@ -108,7 +105,7 @@ Use the Azure portal to create a script that automates the agent download and in
     1. For **Connectivity method**:
         1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
         1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. In the **Authentication** section, under the **Service principal** drop-down list, select **Arc-for-servers**.
     1. Select **Next**.
 
@@ -126,25 +123,25 @@ Taking the script template created earlier, you can install and configure the Co
 
 The following are the settings that you configure the `azcmagent` command to use for the service principal.
 
-- `service-principal-id` : The unique identifier (GUID) that represents the application ID of the service principal.
-- `service-principal-secret` | The service principal password.
-- `tenant-id` : The unique identifier (GUID) that represents your dedicated instance of Microsoft Entra ID.
-- `subscription-id` : The subscription ID (GUID) of your Azure subscription that you want the machines in.
-- `resource-group` : The resource group name where you want your connected machines to belong to.
-- `location` : See [supported Azure regions](overview.md#supported-regions). This location can be the same or different, as the resource group's location.
-- `resource-name` : (*Optional*) Used for the Azure resource representation of your on-premises machine. If you do not specify this value, the machine hostname is used.
+* `service-principal-id` : The unique identifier (GUID) that represents the application ID of the service principal.
+* `service-principal-secret` | The service principal password.
+* `tenant-id` : The unique identifier (GUID) that represents your dedicated instance of Microsoft Entra ID.
+* `subscription-id` : The subscription ID (GUID) of your Azure subscription that you want the machines in.
+* `resource-group` : The resource group name where you want your connected machines to belong to.
+* `location` : See [supported Azure regions](overview.md#supported-regions). This location can be the same or different, as the resource group's location.
+* `resource-name` : (*Optional*) Used for the Azure resource representation of your on-premises machine. If you do not specify this value, the machine hostname is used.
 
 You can learn more about the `azcmagent` command-line tool by reviewing the [Azcmagent Reference](./manage-agent.md).
 
 >[!NOTE]
->The Windows PowerShell script only supports running from a 64-bit version of Windows PowerShell.
+> The Windows PowerShell script only supports running from a 64-bit version of Windows PowerShell.
 
 After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
 
-![Screenshot showing a successful server connection in the Azure portal.](./media/onboard-portal/arc-for-servers-successful-onboard.png)
+:::image type="content" source="media/onboard-portal/arc-for-servers-successful-onboard.png" alt-text="Screenshot showing a successful server connection in the Azure portal.":::
 
 ## Next steps
 
-- Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
-- Learn how to [troubleshoot agent connection issues](troubleshoot-agent-onboard.md).
-- Learn how to manage your machines using [Azure Policy](/azure/governance/policy/overview) for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verifying that machines are reporting to the expected Log Analytics workspace, monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and more.
+* Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
+* Learn how to [troubleshoot agent connection issues](troubleshoot-agent-onboard.md).
+* Learn how to manage your machines using [Azure Policy](/azure/governance/policy/overview) for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verifying that machines are reporting to the expected Log Analytics workspace, monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and more.

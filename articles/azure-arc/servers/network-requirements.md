@@ -1,7 +1,7 @@
 ---
 title: Connected Machine agent network requirements
 description: Learn about the networking requirements for using the Connected Machine agent for Azure Arc-enabled servers.
-ms.date: 08/22/2025
+ms.date: 09/25/2025
 ms.topic: concept-article 
 # Customer intent: "As a system administrator, I want to understand the networking requirements for deploying the Connected Machine agent, so that I can successfully onboard physical servers or virtual machines to Azure Arc-enabled servers."
 ---
@@ -11,7 +11,7 @@ ms.topic: concept-article
 This topic describes the networking requirements for using the Connected Machine agent to onboard a physical server or virtual machine to Azure Arc-enabled servers.
 
 > [!TIP]
-> For the Azure public cloud, you can reduce the number of required endpoints by using the [Azure Arc gateway (preview)](arc-gateway.md).
+> For the Azure public cloud, you can reduce the number of required endpoints by using [Azure Arc gateway](arc-gateway.md).
 
 ## Details
 
