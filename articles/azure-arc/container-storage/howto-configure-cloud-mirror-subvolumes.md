@@ -29,7 +29,7 @@ Edge Volumes allows the use of a system-assigned extension identity for access t
 
 ## Create a Cloud Mirror Persistent Volume Claim (PVC)
 
-Create a file named `cloudMirrorPVC.yaml` with the following contents:
+Create a file named `cloudMirrorPVC.yaml` with the following content and apply it:
 
 1. [!INCLUDE [create-pvc](includes/create-pvc.md)]
 

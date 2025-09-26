@@ -36,7 +36,9 @@ Edge Volumes allows the use of a system-assigned extension identity for access t
 
 ## Create a Cloud Ingest Persistent Volume Claim (PVC)
 
-1. Create a file named `cloudIngestPVC.yaml` with the following contents. [!INCLUDE [create-pvc](includes/create-pvc.md)]
+Create a file named `cloudIngestPVC.yaml` with the following content and apply it:
+
+1. [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
 1. To apply `cloudIngestPVC.yaml`, run:
 
