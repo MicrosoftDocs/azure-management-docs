@@ -54,7 +54,7 @@ Azure Arc supports Windows and Linux operating systems as listed in the table. x
 | Centos                              | 8           | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 10          | ⚠️    | ❌    | **Limited support**, see [Limited support operating systems](#limited-support-operating-systems) |
 | Debian                              | 11          | ✅    | ❌    |                                                                                                  |
-| Debian                              | 12          | ✅    | ❌    |                                                                                                  |
+| Debian                              | 12          | ✅    | ✅    |                                                                                                  |
 | Oracle Linux                        | 7           | ✅    | ❌    |                                                                                                  |
 | Oracle Linux                        | 8           | ✅    | ❌    |                                                                                                  |
 | Oracle Linux                        | 9           | ✅    | ❌    |                                                                                                  |
