@@ -441,5 +441,5 @@ For signing in GitHub workflow, see [Sign container images in GitHub workflow wi
 
 For verification in GitHub workflow, see [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
 
-For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](/azure/security/container-secure-supply-chain/articles/validating-image-signatures-using-ratify-aks)
+For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
 

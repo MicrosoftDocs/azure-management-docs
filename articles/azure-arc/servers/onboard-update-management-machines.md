@@ -47,20 +47,20 @@ Perform the following steps to configure the hybrid machine with Arc-enabled ser
     1. For **Connectivity method**:
         1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
         1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway](arc-gateway.md), select an existing **Gateway resource** or create a new one.
     1. Select **Next**.
 
 1. On the **Servers** page, select **Add Servers**, then select the **Subscription** and **Automation account** from the drop-down list that has the Update Management feature enabled and includes the machines you want to onboard to Azure Arc-enabled servers.
 
    After specifying the Automation account, the list below returns non-Azure machines managed by Update Management for that Automation account. Both Windows and Linux machines are listed and for each one, select **add**.
 
-   You can review your selection by selecting **Review selection** and if you want to remove a machine select **remove** from under the **Action** column.
+   You can review your selection by selecting **Review selection**. If you want to remove a machine, select **remove** from under the **Action** column.
 
    Once you confirm your selection, select **Next**.
 
 1. On the **Tags** page, specify one or more **Name**/**Value** pairs to support your standards. Select **Next: Review + add**.
 
-1. On the **Review _ add** page, review the summary information, and then select **Add machines**. If you still need to make changes, select **Previous**.
+1. Review the summary information, and then select **Add machines**. If you still need to make changes, select **Previous**.
 
 ## Verify the connection with Azure Arc
 
