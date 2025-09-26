@@ -23,46 +23,32 @@ If your mirror root location is blob storage or ADLSgen2, continue following the
 
 ## Configure Extension Identity
 
+Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing data to be mirrored from these locations to your edge location.
+
 [!INCLUDE [cloud-subvolumes-configure-extension-identity](includes/cloud-subvolumes-configure-extension-identity.md)]
 
 ## Create a Cloud Mirror Persistent Volume Claim (PVC)
 
-1. Create a file named ```cloudMirrorPVC.yaml``` with the following contents. Edit the ```metadata.name``` line and create a name for your Persistent Volume Claim. This name is referenced on the last line of ```deploymentExample.yaml``` in the next step. Also, update the ```metadata.namespace``` value with your intended consuming pod. If you don't have an intended consuming pod, the ```metadata.namespace``` value is ```default```. The ```spec.resources.requests.storage``` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs:
+Create a file named `cloudMirrorPVC.yaml` with the following contents:
 
-**Note:** Use only lowercase letters and dashes. For more information, see the Kubernetes object naming documentation.
+1. [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
-```yaml
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  ### Create a name for your PVC ###
-  name: <create-persistent-volume-claim-name-here>
-  ### Use a namespace that matched your intended consuming pod, or "default" ###
-  namespace: <intended-consuming-pod-or-default-here>
-spec:
-  accessModes:
-    - ReadWriteMany
-  resources:
-    requests:
-      storage: 2Gi
-  storageClassName: cloud-backed-sc
-```
+1. To apply `cloudMirrorPVC.yaml`, run:
 
-2. To apply ```cloudMirrorPVC.yaml```, run:
-```bash
-kubectl apply -f "cloudMirrorPVC.yaml"
-```
-
+    ```bash
+    kubectl apply -f "cloudMirrorPVC.yaml"
+    ```
+    
 ## Attach Mirror subvolume to the Edge Volume
 
-For a reminder on the difference between an Edge Volume and a Subvolume, see [this article](https://learn.microsoft.com/en-us/azure/azure-arc/container-storage/volumes-subvolumes). 
-To create a subvolume for Mirror using extension identity to connect to your storage account container, use the following process:
+To create a subvolume for Mirror, use the following process:
 
-1. Get the name of the Edge Volume you created by running the following command. This will go into ```spec.edgevolume``` in the following step:
-```bash
-kubectl get edgevolumes
-```
-2. Create a file named ```mirrorSubvolume.yaml``` and copy the following contents. These variables must be updated with your information:
+1. Get the name of the Edge Volume you created by running the following command. This will go into `spec.edgevolume` in the following step:
+
+    ```bash
+    kubectl get edgevolumes
+    ```
+1. Create a file named `mirrorSubvolume.yaml` and copy the following contents. These variables must be updated with your information:
 
 **Note:** Use only lowercase letters and dashes. For more information, see the Kubernetes object naming documentation.
 

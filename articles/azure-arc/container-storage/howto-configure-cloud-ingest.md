@@ -30,30 +30,13 @@ If your final destination is blob storage or ADLSgen2, continue following the pr
 
 ## Configure Extension Identity
 
+Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing you to upload Cloud Ingest subvolumes to these storage systems.
+
 [!INCLUDE [cloud-subvolumes-configure-extension-identity](includes/cloud-subvolumes-configure-extension-identity.md)]
 
 ## Create a Cloud Ingest Persistent Volume Claim (PVC)
 
-1. Create a file named `cloudIngestPVC.yaml` with the following contents. Edit the `metadata.name` line and create a name for your Persistent Volume Claim. This name is referenced on the last line of `deploymentExample.yaml` in the next step. Also, update the `metadata.namespace` value with your intended consuming pod. If you don't have an intended consuming pod, the `metadata.namespace` value is `default`. The `spec.resources.requests.storage` parameter determines the size of the persistent volume. It's 2 GB in this example, but can be modified to fit your needs:
-
-   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
-
-   ```yaml
-   kind: PersistentVolumeClaim
-   apiVersion: v1
-   metadata:
-     ### Create a name for your PVC ###
-     name: <create-persistent-volume-claim-name-here>
-     ### Use a namespace that matched your intended consuming pod, or "default" ###
-     namespace: <intended-consuming-pod-or-default-here>
-   spec:
-     accessModes:
-       - ReadWriteMany
-     resources:
-       requests:
-         storage: 2Gi
-     storageClassName: cloud-backed-sc
-   ```
+1. Create a file named `cloudIngestPVC.yaml` with the following contents. [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
 1. To apply `cloudIngestPVC.yaml`, run:
 
@@ -61,7 +44,7 @@ If your final destination is blob storage or ADLSgen2, continue following the pr
     kubectl apply -f "cloudIngestPVC.yaml"
     ```
 
-## Attach subvolume to Edge Volume
+## Attach Ingest subvolume to Edge Volume
 
 To create a subvolume using extension identity to connect to your storage account container, use the following process:
 

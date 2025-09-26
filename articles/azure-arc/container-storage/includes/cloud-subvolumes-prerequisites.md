@@ -12,4 +12,4 @@ ms.author: sergaz
    > [!NOTE]
    > When you create your storage account, it's recommended that you create it under the same resource group and region/location as your Kubernetes cluster.
 
-1. Create a container in the storage account that you created previously, following the instructions in [Azure Blob Storage > Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container).
+1. Create a container in the storage account that you created previously, following the instructions in [Quickstart: Upload, download, and list blobs with the Azure portal > Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container).

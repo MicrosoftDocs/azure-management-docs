@@ -7,9 +7,7 @@ author: asergaz
 ms.author: sergaz
 ---
 
-Edge Volumes allows the use of a system-assigned extension identity for access to blob storage. This section describes how to use the system-assigned extension identity to grant access to your storage account, allowing data to be mirrored from these locations to your edge location.
-
-If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](howto-configure-workload-identity.md).
+If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](../howto-configure-workload-identity.md).
 
 #### [Azure portal](#tab/portal)
 
