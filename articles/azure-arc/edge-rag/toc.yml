@@ -3,6 +3,7 @@ items:
     href: index.yml
     items:
       - name: Overview
+        expanded: true
         items:
           - name: What is Edge RAG?
             href: overview.md
@@ -10,12 +11,12 @@ items:
             href: whats-new.md
           - name: Known issues
             href: known-issues.md
-      - name: Plan and evaluate
+          - name: Quickstart
+            href: quickstart-edge-rag.md
+      - name: Plan
         items:
           - name: Requirements
             href: Requirements.md
-          - name: Evaluate Edge RAG
-            href: evaluate-edge-rag.md
       - name: Deploy
         items:
           - name: Overview
