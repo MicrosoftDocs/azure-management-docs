@@ -28,20 +28,20 @@ items:
   - name: Configure Local Shared volumes
     href: howto-configure-local-shared-edge-volumes.md
   - name: Configure Cloud Ingest subvolumes
-    items:
-    - name: Configure Cloud Ingest subvolumes
-      href: howto-configure-cloud-ingest.md
-    - name: Control ingest data flow
-      href: howto-ingest-data-flow.md
-    - name: Generate blob index and metadata tags
-      href: howto-blob-index-metadata-tags.md
+    href: howto-configure-cloud-ingest.md
   - name: Configure Cloud Mirror subvolumes
     href: howto-configure-cloud-mirror-subvolumes.md
   - name: Using Edge Volumes together
     href: storage-options.md
-  - name: Path mapping on Edge Volumes
-    href: map-names.md
-- name: Secure deployments
+  - name: How to
+    items:
+    - name: Control ingest data flow
+      href: howto-ingest-data-flow.md
+    - name: Generate blob index and metadata tags
+      href: howto-blob-index-metadata-tags.md
+    - name: Map paths on Edge Volumes
+      href: howto-map-names.md
+- name: Set up authentication
   items:
   - name: Configure OneLake Identity
     href: howto-configure-cloud-ingest-onelake.md

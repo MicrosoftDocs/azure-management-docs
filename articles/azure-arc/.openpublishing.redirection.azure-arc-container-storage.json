@@ -204,6 +204,11 @@
       "source_path": "articles/azure-arc/container-storage/blob-index-metadata-tags.md",
       "redirect_url": "/azure/azure-arc/container-storage/howto-blob-index-metadata-tags",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/map-names.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-map-names",
+      "redirect_document_id": false
     }
   ]
 }
