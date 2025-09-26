@@ -2,7 +2,7 @@
 title: Quickstart - Connect a machine to Arc-enabled servers (Windows or Linux install script)
 description: In this quickstart, you connect and register a hybrid machine to Azure Arc using an install script.
 ms.topic: quickstart
-ms.date: 07/23/2025
+ms.date: 09/25/2025
 ms.custom: mode-other
 # Customer intent: "As an IT administrator, I want to connect and register hybrid machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
@@ -63,7 +63,7 @@ Use the Azure portal to create a script that automates the agent download and in
     1. For **Connectivity method**:
         1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
         1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
-        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway (preview)](arc-gateway.md), select an existing **Gateway resource** or create a new one.
+        1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway](arc-gateway.md), select an existing **Gateway resource** or create a new one.
 
     1. Select **Next**.
 

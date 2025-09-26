@@ -1,6 +1,6 @@
 ---
 title: "Azure Arc-enabled Kubernetes validation"
-ms.date: 01/07/2025
+ms.date: 09/26/2025
 ms.topic: how-to
 description: "Describes Arc validation program for Kubernetes distributions"
 # Customer intent: As a DevOps engineer, I want to understand which Kubernetes distributions have passed conformance tests for Azure Arc, so that I can ensure compatibility and successful integration for managing my clusters across cloud environments.
@@ -15,7 +15,7 @@ The Azure Arc team works with key industry Kubernetes offering providers to vali
 
 ## Validated distributions
 
-The following Microsoft-provided Kubernetes distributions and infrastructure providers have successfully passed the conformance tests for Azure Arc-enabled Kubernetes:
+The following Microsoft-provided Kubernetes distributions and infrastructure providers successfully passed the conformance tests for Azure Arc-enabled Kubernetes:
 
 | Distribution and infrastructure provider | Version |
 | ---------------------------------------- | ------- |
@@ -24,9 +24,9 @@ The following Microsoft-provided Kubernetes distributions and infrastructure pro
 | K8s on Azure Stack Edge                  | Release version: Azure Stack Edge 2501 (3.3.2501.1176); Kubernetes version: [1.29.4](https://github.com/kubernetes/kubernetes/releases/tag/v1.29.4) |
 | AKS Edge Essentials                      | Release version [1.10.868.0](https://github.com/Azure/AKS-Edge/releases); Kubernetes version [1.29.9](https://github.com/kubernetes/kubernetes/releases/tag/v1.29.9) |
 
-The following providers and their corresponding Kubernetes distributions have successfully passed the conformance tests for Azure Arc-enabled Kubernetes:
+The following providers and their corresponding Kubernetes distributions successfully passed the conformance tests for Azure Arc-enabled Kubernetes:
 
-| Provider name | Distribution name | Validated Version(s)|
+| Provider name | Distribution name | Validated versions|
 | ------------ | ----------------- | -------------------- |
 | SUSE Rancher | [Rancher Kubernetes Engine (RKE1/RKE2)](https://www.rancher.com/index.php/products/rke) | [v1.33.3-rc2+rke2r1](https://github.com/rancher/rke2/releases)<br>v1.32.7-rc2+rke2r1<br>v1.31.11-rc2+rke2r1 |
 | SUSE Rancher      | [K3s](https://rancher.com/products/k3s/) | [K3S version v1.33.2+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.33.2%2Bk3s1)<br>[K3S version v1.32.3+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.32.3%2Bk3s1)<br> [K3S version v1.31.5+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.31.5%2Bk3s1) |
