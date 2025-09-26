@@ -49,10 +49,10 @@ items:
     href: howto-configure-workload-identity.md
 - name: Monitor deployments
   items:
-  - name: Monitor with Prometheus and Grafana
-    href: howto-third-party-monitoring.md
   - name: Monitor with Azure Monitor
     href: howto-azure-monitor-kubernetes.md
+  - name: Monitor with Prometheus and Grafana
+    href: howto-third-party-monitoring.md
 - name: Understand disconnected operations
   href: disconnected-operations.md
 - name: Tutorials

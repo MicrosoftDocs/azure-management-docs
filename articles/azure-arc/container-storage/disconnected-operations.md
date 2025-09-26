@@ -24,5 +24,5 @@ This ability to continue operation while disconnected is perfect for many custom
 
 ## Next steps
 
-- [Configure your Local Shared Edge volumes](local-shared-edge-volumes.md)
-- [Configure your Cloud Ingest Edge Volumes](cloud-ingest-edge-volume-configuration.md)
+- [Configure your Local Shared Edge volumes](howto-configure-local-shared-edge-volumes.md)
+- [Configure your Cloud Ingest Edge Volumes](howto-configure-cloud-ingest.md)

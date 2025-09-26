@@ -27,7 +27,7 @@ landingContent:
           - text: Storage options
             url: storage-options.md
           - text: Ingest data flow
-            url: ingest-data-flow.md
+            url: howto-ingest-data-flow.md
   - title: Get started
     linkLists:
       - linkListType: quickstart
@@ -37,7 +37,7 @@ landingContent:
       - linkListType: tutorial
         links:
           - text: Configure a Local Shared Edge Volume
-            url: tutorial-configure-edge-volume.md
+            url: tutorial-create-local-shared-volume.md
       - linkListType: training
         links:
           - text: Azure Arc Jumpstart scenarios
@@ -47,13 +47,13 @@ landingContent:
       - linkListType: how-to-guide
         links:
           - text: Install Edge Volumes
-            url: install-edge-volumes.md
+            url: howto-install-edge-volumes.md
           - text: Local shared Edge Volumes
-            url: local-shared-edge-volumes.md
+            url: howto-configure-local-shared-edge-volumes.md
           - text: Cloud Ingest Edge Volumes configuration
-            url: cloud-ingest-edge-volume-configuration.md
+            url: howto-configure-cloud-ingest.md
           - text: Monitor deployment
-            url: monitor-deployment-edge-volumes.md
+            url: howto-azure-monitor-kubernetes.md
   - title: Resources
     linkLists:
       - linkListType: whats-new

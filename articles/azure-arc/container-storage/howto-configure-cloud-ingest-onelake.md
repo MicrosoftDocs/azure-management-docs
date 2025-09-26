@@ -11,7 +11,7 @@ ms.date: 07/18/2025
 
 # Alternate: OneLake configuration for Cloud Ingest Edge Volumes
 
-This article describes an alternate configuration for [Cloud Ingest Edge Volumes](cloud-ingest-edge-volume-configuration.md) (blob upload with local purge) for OneLake lakehouses.
+This article describes an alternate configuration for [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest.md) (blob upload with local purge) for OneLake lakehouses.
 
 ## Configure OneLake for Extension Identity
 
@@ -213,4 +213,4 @@ You can use the following process to create a subvolume using Extension Identity
 
 After you complete these steps, begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring, or 3rd-party monitoring with Prometheus and Grafana.
 
-[Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
+[Monitor your Edge Volumes deployment](howto-azure-monitor-kubernetes.md)

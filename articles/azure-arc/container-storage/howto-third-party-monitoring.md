@@ -19,7 +19,7 @@ This article describes how to monitor your deployment using third-party monitori
 
 This guidance assumes that you previously worked with or configured Prometheus for Kubernetes. For more information about how to enable Prometheus and Grafana, see the [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-and-grafana) section of [Enable monitoring for Kubernetes clusters](/azure/azure-monitor/containers/kubernetes-monitoring-enable).
 
-For more information about the required Prometheus scrape configuration, see the [Metrics configuration](azure-monitor-kubernetes.md#metrics-configuration) section of [Azure Monitor and Kubernetes monitoring](azure-monitor-kubernetes.md). Once you configure Prometheus metrics, you can then deploy [Grafana](/azure/azure-monitor/visualize/grafana-plugin) to monitor and visualize your Azure services and applications.
+For more information about the required Prometheus scrape configuration, see the [Metrics configuration](howto-azure-monitor-kubernetes.md#metrics-configuration) section of [Azure Monitor and Kubernetes monitoring](howto-azure-monitor-kubernetes.md). Once you configure Prometheus metrics, you can then deploy [Grafana](/azure/azure-monitor/visualize/grafana-plugin) to monitor and visualize your Azure services and applications.
 
 ## Logs
 
