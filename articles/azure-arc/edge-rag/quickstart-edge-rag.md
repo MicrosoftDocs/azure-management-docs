@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Install Edge RAG on Azure Kubernetes Service"
-description: "Walkthrough for installing Edge RAG on AKS."
+description: "Learn how to install Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware."
 author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
@@ -9,12 +9,11 @@ ms.date: 09/26/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
-
 ---
 
 # Quickstart: Install Edge RAG Preview enabled by Azure Arc
 
-In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS), and verify the installation. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes without the need for local hardware. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
+In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
 
 If you don't have a service subscription, create a [free Azure account](https://azure.microsoft.com/free/).
 
@@ -32,7 +31,7 @@ Before you begin, make sure you have:
 
 ## Open Azure Cloud Shell or Azure CLI
 
-You can use the Azure Cloud Shell or your local Azure CLI to run the following commands. Make sure you are logged in:
+Open Azure Cloud Shell or your local Azure CLI to run the  commands in this article. Sign in to Azure to get started.
 
 ```azurepowershell-interactive
 az login
@@ -44,7 +43,7 @@ Create a resource group to contain the AKS cluster, node pool, and Edge RAG reso
 
 ```azurepowershell-interactive
 $rg = "edge-rag-aks-rg" `
-$location = "eastus2" `
+$location = "eastus" `
 az group create --name $rg --location $location
 ```
 
@@ -145,7 +144,7 @@ az aks nodepool add `
     --mode User
  ```
 
-If the nodepool creation fails with a **DenyVMsWithoutTrustedLaunchEnabled** policy error, add the following tags to the command and rerun:  
+If the node pool creation fails with a **DenyVMsWithoutTrustedLaunchEnabled** policy error, add the following tags to the command and rerun:  
 
 ```azurepowershell-interactive
 SkipDenyVMsWithoutTrustedLaunchEnabled : true 

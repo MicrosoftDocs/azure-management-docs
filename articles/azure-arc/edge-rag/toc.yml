@@ -11,7 +11,9 @@ items:
             href: whats-new.md
           - name: Known issues
             href: known-issues.md
-          - name: Quickstart
+      - name: Quickstart
+        items:
+          - name: Install Edge RAG
             href: quickstart-edge-rag.md
       - name: Plan
         items:
