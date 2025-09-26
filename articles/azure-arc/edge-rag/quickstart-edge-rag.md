@@ -26,7 +26,7 @@ Before you begin, make sure you have:
 
 - An active Azure subscription
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
-- Azure CLI installed ([Install Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)) locally unless you plan to use Azure Cloud Shell
+- Azure CLI installed ([Install Azure CLI](/cli/azure/install-azure-cli)) locally unless you plan to use Azure Cloud Shell
 
 [!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
 
