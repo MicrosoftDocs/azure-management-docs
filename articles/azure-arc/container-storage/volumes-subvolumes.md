@@ -43,4 +43,7 @@ However, Ingest or Mirror behavior is set at the subvolume level, so those param
 
 ## Next steps
 
-- [Ingest data flow](howto-ingest-data-flow.md)
+- [Configure Local Shared Volumes](howto-configure-local-shared-edge-volumes.md).
+- [Configure Cloud Ingest subvolumes](howto-configure-cloud-ingest-subvolumes.md).
+- [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror-subvolumes.md).
+- [Using Edge Volumes together](storage-options.md).
