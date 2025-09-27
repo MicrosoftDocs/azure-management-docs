@@ -1,26 +1,19 @@
 ---
-title: Cloud Ingest Edge Volumes configuration
-description: Learn about Cloud Ingest Edge Volumes configuration for Edge Volumes.
+title: Configure Cloud Ingest subvolumes
+description: Configure Cloud Ingest subvolumes for Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom:
-  - linux-related-content
-  - build-2025
-ms.date: 03/12/2025
-# Customer intent: "As a Kubernetes administrator, I want to configure Cloud Ingest Edge Volumes for my applications, so that I can efficiently manage data ingestion and ensure local purging of files while maintaining data integrity in disconnected environments."
+ms.date: 09/27/2025
+
+# Customer intent: As a cloud administrator, I want to configure Cloud Ingest subvolumes, so that I can upload files to blob storage and purge them locally.
 ---
 
+# Configure Cloud Ingest subvolumes
 
-# Cloud Ingest Edge Volumes configuration
+This article describes how to configure Cloud Ingest subvolumes (blob upload with local purge) in Azure Container Storage enabled by Azure Arc. A Cloud Ingest subvolume facilitates limitless data ingestion from edge to blob, including ADLSgen2. Files written to this storage type are seamlessly transferred to blob storage and once confirmed uploaded, are then purged locally. This removal ensures space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, which enables local storage and synchronization upon reconnection to the network.
 
-This article describes the configuration for *Cloud Ingest Edge Volumes* (blob upload with local purge).
-
-## What is Cloud Ingest Edge Volumes?
-
-*Cloud Ingest Edge Volumes* facilitates limitless data ingestion from edge to blob, including ADLSgen2. Files written to this storage type are seamlessly transferred to blob storage and once confirmed uploaded, are then purged locally. This removal ensures space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, which enables local storage and synchronization upon reconnection to the network.
-
-For example, you can write a file to your cloud ingest PVC, and a process runs a scan to check for new files every minute. Once identified, the file is sent for uploading to your designated blob destination. Following confirmation of a successful upload, Cloud Ingest Edge Volume waits for five minutes, and then deletes the local version of your file.
+For example, you can write a file to your cloud ingest Persistent Volume Claim (PVC), and a process runs a scan to check for new files every minute. Once identified, the file is sent for uploading to your designated blob destination. Following confirmation of a successful upload, Cloud Ingest subvolume waits for five minutes, and then deletes the local version of your file.
 
 ## Prerequisites
 
