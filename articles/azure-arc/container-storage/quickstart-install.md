@@ -50,7 +50,7 @@ sudo sysctl -p
 Run the following command to install the Azure IoT Operations dependencies:
 
 ```azurecli
-az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager --release-train preview
 ```
 
 ## Step 3: Install the Azure Container Storage enabled by Azure Arc extension

@@ -47,18 +47,6 @@ Key features of Arc-connected clusters running this extension include:
 
 [!INCLUDE [arc-jumpstart-diagram](~/reusable-content/ce-skilling/azure/includes/arc-jumpstart-diagram.md)]
 
-## Supported Azure regions
-
-Azure Container Storage enabled by Azure Arc is available in the following Azure regions:
-
-- East US
-- East US 2
-- West US
-- West US 2
-- West US 3
-- North Europe
-- West Europe
-
 ## Related content
 
 - [Prepare Linux for Edge Volumes](howto-prepare-linux-edge-volumes.md)

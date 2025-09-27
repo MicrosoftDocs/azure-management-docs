@@ -17,7 +17,7 @@ This article describes the steps to install the Azure Container Storage extensio
 Azure Container Storage is dependent upon a `cert-manager` and `trust-manager`. You can bring your own, or these are available as a platform extension that can be installed using the following command:
 
 ```azurecli 
-az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "${NAME}-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "${NAME}-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager --release-train preview
 ```
 
 > [!NOTE]
