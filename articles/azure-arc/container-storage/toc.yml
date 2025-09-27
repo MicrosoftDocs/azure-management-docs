@@ -44,7 +44,7 @@ items:
 - name: Set up authentication
   items:
   - name: Configure OneLake Identity
-    href: howto-configure-cloud-ingest-onelake.md
+    href: howto-configure-onelake-identity
   - name: Configure Workload Identity
     href: howto-configure-workload-identity.md
 - name: Monitor deployments

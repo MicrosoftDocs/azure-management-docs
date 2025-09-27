@@ -19,7 +19,7 @@ This article describes how to configure Cloud Mirror subvolumes (syncing data fr
 
 ## Prerequisites
 
-If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your mirror root location is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md) first.
+If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your mirror root location is OneLake, follow the instructions in [Configure OneLake Identity for Cloud subvolumes](howto-configure-onelake-identity) first.
 
 [!INCLUDE [cloud-subvolumes-prerequisites](includes/cloud-subvolumes-prerequisites.md)]
 
@@ -54,26 +54,26 @@ To create a subvolume for Mirror, using extension identity to connect to your st
   ```
 1. Create a file named `mirrorSubvolume.yaml` with the following content:
 
-  ```yaml
-  apiVersion: "arccontainerstorage.azure.net/v1"
-  kind: MirrorSubvolume
-  metadata:
-    name: <create-a-subvolume-name-here>
-  spec:
-    edgevolume: <your-edge-volume-name-here>
-    path: mirrorSubDir # Don't use a preceding slash
-    authentication:
-    authType: MANAGED_IDENTITY
-    blobAccount:
-    accountEndpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
-    containerName: <your-blob-storage-account-container-name>
-    indexTagsMode: NoIndexTags
-    blobFiltering:
-    blobNamePrefix:
-    schedule:
-    frequency: "@hourly"
-    oneshot:
-  ```
+    ```yaml
+    apiVersion: "arccontainerstorage.azure.net/v1"
+    kind: MirrorSubvolume
+    metadata:
+      name: <create-a-subvolume-name-here>
+    spec:
+      edgevolume: <your-edge-volume-name-here>
+      path: mirrorSubDir # Don't use a preceding slash
+      authentication:
+        authType: MANAGED_IDENTITY
+      blobAccount:
+        accountendpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
+        containerName: <your-blob-storage-account-container-name>
+        indexTagsMode: NoIndexTags
+      blobFiltering:
+        blobNamePrefix:
+      schedule:
+        frequency: "@hourly"
+        oneshot:
+    ```
   
   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 

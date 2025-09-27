@@ -17,7 +17,7 @@ For example, you can write a file to your cloud ingest Persistent Volume Claim (
 
 ## Prerequisites
 
-If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md).
+If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your final destination is OneLake, follow the instructions in [Configure OneLake Identity for Cloud subvolumes](howto-configure-onelake-identity).
 
 [!INCLUDE [cloud-subvolumes-prerequisites](includes/cloud-subvolumes-prerequisites.md)]
 
