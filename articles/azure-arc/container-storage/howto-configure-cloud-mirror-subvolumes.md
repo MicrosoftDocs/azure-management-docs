@@ -11,15 +11,15 @@ ms.date: 09/24/2025
 
 # Configure Cloud Mirror subvolumes (preview)
 
-This article describes how to configure Cloud Mirror subvolumes (syncing data from the cloud to the edge) in Azure Container Storage enabled by Azure Arc. Conceptually, a Cloud Mirror subvolume is a location that will *mirror* data from a cloud destination to the edge as a read only copy. The frequency controls when a mirror sync occurs without direct user intervention, for instance, every hour, or once a day at a certain time. The OneShot functionality allows a user to perform a sync *right now* at a time of their choosing but having the system do a *one off* sync operation, after which it will return to its normal schedule per the frequency.
+This article describes how to configure Cloud Mirror subvolumes (syncing data from the cloud to the edge) in Azure Container Storage enabled by Azure Arc. Conceptually, a Cloud Mirror subvolume is a location that *mirrors* data from a cloud destination to the edge as a read only copy. The frequency controls when a mirror sync occurs without direct user intervention, for instance, every hour, or once a day at a certain time. The OneShot functionality allows a user to perform a sync *right now* at a time of their choosing but having the system do a *one off* sync operation, after which it returns to its normal schedule per the frequency.
 
 > [!IMPORTANT]
-> Cloud Mirror subvolumes are currently in preview. This functionality is not recommended for production workloads. If you have any issues or need help with configuration, or to give feedback, please contact: ACSA@microsoft.com
+> Cloud Mirror subvolumes are currently in preview. This functionality isn't recommended for production workloads. If you have any issues or need help with configuration, or to give feedback, contact: ACSA@microsoft.com
 
 
 ## Prerequisites
 
-If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your mirror root location is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md) first.
+If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your mirror root location is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md) first.
 
 [!INCLUDE [cloud-subvolumes-prerequisites](includes/cloud-subvolumes-prerequisites.md)]
 
@@ -47,7 +47,7 @@ To create a PVC for your Mirror subvolume, use the following process:
 
 To create a subvolume for Mirror, using extension identity to connect to your storage account container, use the following process:
 
-1. Get the name of the Edge Volume you created by running the following command. This will go into `spec.edgevolume` in the following step:
+1. Get the name of the Edge Volume you created by running the following command:
 
   ```bash
   kubectl get edgevolumes
@@ -83,10 +83,10 @@ To create a subvolume for Mirror, using extension identity to connect to your st
   - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
   - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the link under *properties.primaryEndpoints.blob*. Copy the entire link.
   - `spec.blobAccount.containerName`: The container name in your storage account.
-  - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags will be translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it will keep index tag xattrs unset.
-  - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it will only mirror blobs with names starting with "a".
-  - `spec.schedule.frequency`: Schedule for when mirroring should run. Options are: `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, `"never"`, or cron syntax (5 digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
-  - `spec.schedule.oneshot`: By default, left blank. If at any time a uuid is specified here, will trigger an 'immediate' sync. If a uuid is specified on creation, the subvolume will perform a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume will initially create without a sync, and will sync according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with `sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml`
+  - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags are translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it keeps index tag xattrs unset.
+  - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it only mirrors blobs with names starting with *a*.
+  - `spec.schedule.frequency`: Schedule for when mirroring should run. Options are: `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, `"never"`, or cron syntax (five digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
+  - `spec.schedule.oneshot`: By default, left blank. If at any time a uuid is specified here, it triggers an 'immediate' sync. If a uuid is specified on creation, the subvolume performs a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume initially creates without a sync, and then syncs according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with `sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml`
 
 
 1. To apply the **mirrorSubvolume.yaml**, run:
@@ -169,7 +169,7 @@ To configure a generic single pod (Kubernetes native application) against the PV
   ```
 
   > [!NOTE]
-  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods will
+  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
 
 1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 
@@ -183,22 +183,22 @@ To configure a generic single pod (Kubernetes native application) against the PV
     cd /data
     ```
 
-1. You should see a directory that matches the value you set for `spec.path`in **mirrorSubvolume.yaml**. If you used the default value it's name is *mirrorSubDir*. Change to that subdirectory, and check for any contents mirrored there:
+1. You should see a directory that matches the value you set for `spec.path`in **mirrorSubvolume.yaml**. If you used the default value, its name is *mirrorSubDir*. Change to that subdirectory, and check for any contents mirrored there:
 
     ```bash
     cd mirrorSubDir
     ls
     ```
 
-  If you specified a uuid in the `spec.schedule.oneshot` field upon creation, and/or the specified `spec.schedule.frequency` requirements have been satisfied, the subvolume should have performed a sync on initial create, and you should see data here mirrored from your specified storage account container. If either of those conditions is not met, this directory should be empty.
+  If you specified a uuid in the `spec.schedule.oneshot` field upon creation, and/or the specified `spec.schedule.frequency` requirements are satisfied, the subvolume should perform a sync on initial create, and you should see data here mirrored from your specified storage account container. If either of those conditions wasn't met, this directory should be empty.
 
 ## Check the status of the Cloud Mirror subvolume Synchronization
 
-First, check the status of the `mirrorSubvolume`. Next, ensure that you have data in your Storage Account Container in Azure. Finally, check the contents of the Mirror subvolume again to ensure that the data has been properly Mirrored.
+First, check the status of the `mirrorSubvolume`. Next, ensure that you have data in your Storage Account Container in Azure. Finally, check the contents of the Mirror subvolume again to ensure that the data was properly Mirrored.
 
 ### Check Mirror subvolume Status
 
-Check the status of our Mirror subvolume, in particular, check that the **BACKENDCONNECTION** field is *Connected*:
+Check the status of your Mirror subvolume, in particular, check that the **BACKENDCONNECTION** field is *Connected*:
 
   ```bash
   kubectl get mirrorsubvolumes
@@ -208,15 +208,15 @@ Check the status of our Mirror subvolume, in particular, check that the **BACKEN
 
 If you don't already have data in your specified container, use one of the following methods to upload files:
 
-- **Azure Portal:**  
-  [Upload blobs using Azure Portal](https://learn.microsoft.com/azure/storage/blobs/storage-quickstart-blobs-portal)
+- Azure Portal:  
+  [Upload blobs using Azure Portal](/azure/storage/blobs/storage-quickstart-blobs-portal)
 
-- **AZCopy:**  
-  [Upload blobs using AZCopy](https://learn.microsoft.com/azure/storage/common/storage-use-azcopy-blobs#upload-files)
+- AZCopy:  
+  [Upload blobs using AZCopy](/azure/storage/common/storage-use-azcopy-blobs#upload-files)
 
 Add or move files to your blob storage account container so they can be mirrored on your edge cluster.
 
-### Trigger additional mirror
+### Trigger the Mirror sync
 
 1. To make sure the new data is mirrored from the cloud to the subvolume, update the `spec.schedule.oneshot` field in the file **mirrorSubvolume.yaml** to a new uuid. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with the following command:
 
@@ -247,5 +247,5 @@ Add or move files to your blob storage account container so they can be mirrored
 
 ## Next Steps
 
-- To learn how to configure Cloud Ingest subvolumes, see [Configure Cloud Ingest subvolumes](howto-configure-cloud-ingest-subvolumes.md).
+- To learn how to configure Cloud Ingest subvolumes, see [Configure Cloud Ingest subvolumes](howto-configure-cloud-ingest.md).
 - To learn how to use Edge Volumes together, see [Using Edge Volumes together](storage-options.md).

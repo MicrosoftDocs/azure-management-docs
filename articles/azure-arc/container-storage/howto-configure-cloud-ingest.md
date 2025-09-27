@@ -17,7 +17,7 @@ For example, you can write a file to your cloud ingest Persistent Volume Claim (
 
 ## Prerequisites
 
-If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions below. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md).
+If your final destination is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your final destination is OneLake, follow the instructions in [Alternate: OneLake configuration for Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-onelake.md).
 
 [!INCLUDE [cloud-subvolumes-prerequisites](includes/cloud-subvolumes-prerequisites.md)]
 
@@ -45,7 +45,7 @@ To create a PVC for your Ingest subvolume, use the following process:
 
 To create a subvolume for Ingest, using extension identity to connect to your storage account container, use the following process:
 
-1. Get the name of the Edge Volume you created by running the following command. This will go into `spec.edgevolume` in the following step:
+1. Get the name of the Edge Volume you created by running the following command:
 
     ```bash
     kubectl get edgevolumes
@@ -87,9 +87,9 @@ To create a subvolume for Ingest, using extension identity to connect to your st
 
     - `spec.ingest.order`: The order in which dirty files are uploaded. This is a best effort, not a guarantee. Options for order are: `oldest-first` or `newest-first`.
     - `spec.ingest.minDelaySec`: The minimum number of seconds before a dirty file is eligible for ingest. This number can range between 0 and 31536000 (a year in seconds).
-    - `spec.eviction.order`: How files are evicted once they've been uploaded to the cloud. Options for eviction order are: `unordered` or `never`.
+    - `spec.eviction.order`: How files are evicted once they are uploaded to the cloud. Options for eviction order are: `unordered` or `never`.
     - `spec.eviction.minDelaySec`: The number of seconds before a clean file is eligible for eviction. This number can range between 0 and 31536000 (a year in seconds).
-    - `spec.onDelete`: The action to take on this IngestSubVolume if/when it is requested to be deleted. Options are `trigger-immediate-ingest` which will immediately mark all files as eligible for ingest and attempt to ingest them, or `abandon` which will abandon all data in this ingest subvolume and delete the subvolume.
+    - `spec.onDelete`: The action to take on this IngestSubVolume if/when it's requested to be deleted. Options are `trigger-immediate-ingest` which will immediately mark all files as eligible for ingest and attempt to ingest them, or `abandon` which will abandon all data in this ingest subvolume and delete the subvolume.
 
     > [!NOTE]
     > If you choose **abandon** for your `spec.onDelete` value, any dirty data in your subvolume will be lost. Please be careful and mindful before choosing this as an option.
@@ -174,7 +174,7 @@ To configure a generic single pod (Kubernetes native application) against the PV
   ```
 
   > [!NOTE]
-  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods will
+  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
 
 1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 
@@ -188,7 +188,7 @@ To configure a generic single pod (Kubernetes native application) against the PV
     cd /data
     ```
 
-1. You should see a directory that matches the value you set for `spec.path` in **ingestSubvolume.yaml**. If you used the default values it's name is *ingestSubDir*. Change to that subdirectory:
+1. You should see a directory that matches the value you set for `spec.path` in **ingestSubvolume.yaml**. If you used the default values, its name is *ingestSubDir*. Change to that subdirectory:
 
     ```bash
     cd ingestSubDir
@@ -202,9 +202,9 @@ To configure a generic single pod (Kubernetes native application) against the PV
    
    This file will be uploaded to your blob storage account container, and then purged locally after five minutes.
 
-1. In the Azure portal, navigate to your storage account and find the container that matches the value you set for `spec.containerName` in **ingestSubvolume.yaml**. You should find `file1.txt` populated within the container. If the file hasn't appeared yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
+1. In the Azure portal, navigate to your storage account and find the container that matches the value you set for `spec.containerName` in **ingestSubvolume.yaml**. You should find `file1.txt` populated within the container. If the file is not there yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
 
 ## Next steps
 
-- To learn how to configure Cloud Mirror subvolumes, see [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror-subvolumes.md).
+- To learn how to configure Cloud Mirror subvolumes, see [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror.md).
 - To learn how to use Edge Volumes together, see [Using Edge Volumes together](storage-options.md).
