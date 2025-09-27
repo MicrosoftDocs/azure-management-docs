@@ -29,6 +29,8 @@ items:
     href: howto-configure-local-shared-edge-volumes.md
   - name: Configure Cloud Ingest subvolumes
     href: howto-configure-cloud-ingest-subvolumes.md
+  - name: Configure Cloud Mirror subvolumes
+    href: howto-configure-cloud-mirror-subvolumes.md
   - name: Using Edge Volumes together
     href: storage-options.md
   - name: How to
