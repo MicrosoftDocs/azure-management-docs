@@ -247,5 +247,5 @@ Add or move files to your blob storage account container so they can be mirrored
 
 ## Next Steps
 
-- To learn how to configure Cloud Ingest subvolumes, see [Configure Cloud Ingest subvolumes](howto-configure-cloud-ingest.md).
+- To learn how to configure Cloud Ingest subvolumes, see [Configure Cloud Ingest subvolumes](howto-configure-cloud-ingest-subvolumes.md).
 - To learn how to use Edge Volumes together, see [Using Edge Volumes together](storage-options.md).

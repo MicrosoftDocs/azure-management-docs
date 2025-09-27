@@ -206,5 +206,5 @@ To configure a generic single pod (Kubernetes native application) against the PV
 
 ## Next steps
 
-- To learn how to configure Cloud Mirror subvolumes, see [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror.md).
+- To learn how to configure Cloud Mirror subvolumes, see [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror-subvolumes.md).
 - To learn how to use Edge Volumes together, see [Using Edge Volumes together](storage-options.md).

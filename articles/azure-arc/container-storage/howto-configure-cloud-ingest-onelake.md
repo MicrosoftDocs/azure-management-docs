@@ -11,7 +11,7 @@ ms.date: 07/18/2025
 
 # Alternate: OneLake configuration for Cloud Ingest Edge Volumes
 
-This article describes an alternate configuration for [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest.md) (blob upload with local purge) for OneLake lakehouses.
+This article describes an alternate configuration for [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-subvolumes.md) (blob upload with local purge) for OneLake lakehouses.
 
 ## Configure OneLake for Extension Identity
 

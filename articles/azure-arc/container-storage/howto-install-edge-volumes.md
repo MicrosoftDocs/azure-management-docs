@@ -147,4 +147,4 @@ If you run a single-node or multi-node cluster with **Arc-enabled AKS** or **AKS
 ## Next steps
 
 - [Configure your Local Shared Edge volumes](howto-configure-local-shared-edge-volumes.md)
-- [Configure your Cloud Ingest Edge Volumes](howto-configure-cloud-ingest.md)
+- [Configure your Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-subvolumes.md)

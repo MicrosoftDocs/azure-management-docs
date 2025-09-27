@@ -162,7 +162,7 @@
     },
     {
       "source_path": "articles/azure-arc/container-storage/cloud-ingest-edge-volume-configuration.md",
-      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-subvolumes",
       "redirect_document_id": false
     },
     {

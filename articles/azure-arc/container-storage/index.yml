@@ -51,7 +51,7 @@ landingContent:
           - text: Local shared Edge Volumes
             url: howto-configure-local-shared-edge-volumes.md
           - text: Cloud Ingest Edge Volumes configuration
-            url: howto-configure-cloud-ingest.md
+            url: howto-configure-cloud-ingest-subvolumes.md
           - text: Monitor deployment
             url: howto-azure-monitor-kubernetes.md
   - title: Resources

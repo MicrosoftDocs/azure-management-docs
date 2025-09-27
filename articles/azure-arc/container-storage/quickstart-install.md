@@ -90,5 +90,5 @@ kubectl apply -f "edgeConfig.yaml"
 
 ## Next steps
 
-Now that you have the extension installed, you can configure some volumes, either [Local Shared Edge Volumes](howto-configure-local-shared-edge-volumes.md) or [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest.md).
+Now that you have the extension installed, you can configure some volumes, either [Local Shared Edge Volumes](howto-configure-local-shared-edge-volumes.md) or [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-subvolumes.md).
 
