@@ -32,8 +32,13 @@ This article describes an alternate configuration for OneLake lakehouses to be u
 
 When creating a subvolume for [Cloud Ingest](howto-configure-cloud-ingest-subvolumes.md#attach-ingest-subvolume-to-edge-volume) or [Cloud Mirror](howto-configure-cloud-mirror-subvolumes.md#attach-mirror-subvolume-to-the-edge-volume), during the CRD creation process, there are two parameters that need to be set specifically for OneLake:
 
-- `spec.storageaccountendpoint` in **ingestSubvolume.yaml** or `spec.blobAccount.accountendpoint` in **mirrorSubvolume.yaml**: Your storage account endpoint is the prefix of your Power BI web link. For example, if your OneLake page is `https://contoso-motors.powerbi.com/`, then your endpoint is `https://contoso-motors.dfs.fabric.microsoft.com`.
-- `spec.containerName` in **ingestSubvolume.yaml** or `spec.blobAccount.containerName` in **mirrorSubvolume.yaml**: Details of your OneLake lakehouse, for example, `<WORKSPACE>/<DATA_LAKE>.Datalake/Files)`.
+- `spec.storageaccountendpoint` in **ingestSubvolume.yaml** or `spec.blobAccount.accountendpoint` in **mirrorSubvolume.yaml**: 
+    
+    Your storage account endpoint is the prefix of your Power BI web link. For example, if your OneLake page is `https://contoso-motors.powerbi.com/`, then your endpoint is `"https://contoso-motors.dfs.fabric.microsoft.com"`.
+
+- `spec.containerName` in **ingestSubvolume.yaml** or `spec.blobAccount.containerName` in **mirrorSubvolume.yaml**: 
+
+    Details of your OneLake lakehouse, for example, `"<WORKSPACE>/<DATA_LAKE>.Datalake/Files"`.
 
 ## Next Step
 
