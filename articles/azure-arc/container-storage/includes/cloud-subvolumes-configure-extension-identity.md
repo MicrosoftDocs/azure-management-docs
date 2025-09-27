@@ -7,7 +7,7 @@ author: asergaz
 ms.author: sergaz
 ---
 
-If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Cloud Ingest Edge Volumes with Workload Identity](../howto-configure-workload-identity.md).
+If you wish to use Workload Identity with Azure Container Storage Enabled by Azure Arc, follow the instructions in [Configure Workload Identity for Cloud subvolumes](../howto-configure-workload-identity.md).
 
 #### [Azure portal](#tab/portal)
 

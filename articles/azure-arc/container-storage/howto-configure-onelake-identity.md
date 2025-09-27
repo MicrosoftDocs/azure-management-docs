@@ -1,6 +1,6 @@
 ---
 title: Configure OneLake Identity for Cloud subvolumes
-description: Learn about configuring OneLake Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc.
+description: Learn how to configure OneLake Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
@@ -28,13 +28,13 @@ This article describes an alternate configuration for OneLake lakehouses to be u
    :::image type="content" source="media/howto-configure-onelake-identity/onelake-set-contributor.png" alt-text="Screenshot showing set contributor screen." lightbox="media/howto-configure-onelake-identity/onelake-set-contributor.png":::
 1. Select **Add**.
 
-## Attach Ingest subvolume to Edge Volume
+## Attach subvolume to Edge Volume
 
 When creating a subvolume for [Cloud Ingest](howto-configure-cloud-ingest-subvolumes.md#attach-ingest-subvolume-to-edge-volume) or [Cloud Mirror](howto-configure-cloud-mirror-subvolumes.md#attach-mirror-subvolume-to-the-edge-volume), during the CRD creation process, there are two parameters that need to be set specifically for OneLake:
 
 - `spec.storageaccountendpoint` in **ingestSubvolume.yaml** or `spec.blobAccount.accountendpoint` in **mirrorSubvolume.yaml**: Your storage account endpoint is the prefix of your Power BI web link. For example, if your OneLake page is `https://contoso-motors.powerbi.com/`, then your endpoint is `https://contoso-motors.dfs.fabric.microsoft.com`.
 - `spec.containerName` in **ingestSubvolume.yaml** or `spec.blobAccount.containerName` in **mirrorSubvolume.yaml**: Details of your OneLake lakehouse, for example, `<WORKSPACE>/<DATA_LAKE>.Datalake/Files)`.
 
-## Next Steps
+## Next Step
 
-Continue the steps in either [Cloud Ingest](howto-configure-cloud-ingest-subvolumes.md#attach-ingest-subvolume-to-edge-volume) or [Cloud Mirror](howto-configure-cloud-mirror-subvolumes.md#attach-mirror-subvolume-to-the-edge-volume) to complete the configuration.
+Continue the steps in either [Attach Ingest subvolume to Edge Volume](howto-configure-cloud-ingest-subvolumes.md#attach-ingest-subvolume-to-edge-volume) or [Attach Mirror subvolume to the Edge Volume](howto-configure-cloud-mirror-subvolumes.md#attach-mirror-subvolume-to-the-edge-volume) to complete the configuration.
