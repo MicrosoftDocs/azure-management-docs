@@ -14,7 +14,7 @@ ms.date: 09/24/2025
 This article describes how to configure Cloud Mirror subvolumes (syncing data from the cloud to the edge) in Azure Container Storage enabled by Azure Arc. Conceptually, a Cloud Mirror subvolume is a location that *mirrors* data from a cloud destination to the edge as a read only copy. The frequency controls when a mirror sync occurs without direct user intervention, for instance, every hour, or once a day at a certain time. The OneShot functionality allows a user to perform a sync *right now* at a time of their choosing but having the system do a *one off* sync operation, after which it returns to its normal schedule per the frequency.
 
 > [!IMPORTANT]
-> Cloud Mirror subvolumes are currently in preview. This functionality isn't recommended for production workloads. If you have any issues or need help with configuration, or to give feedback, contact: ACSA@microsoft.com
+> Cloud Mirror subvolumes are currently in preview. This functionality isn't recommended for production workloads. If you have any issues or need help with configuration, or to give feedback, [contact our team](mailto:ACSA@microsoft.com).
 
 
 ## Prerequisites
