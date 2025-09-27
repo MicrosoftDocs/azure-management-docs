@@ -32,7 +32,7 @@ When setting up a subvolume, you can choose between two different Custom Resourc
 
 - **Ingest CRD:** For Ingest subvolumes, files written to it are automatically uploaded to a specified cloud container, and then the local copy of that file is evicted. This process makes this policy well-suited for applications that create file-based data at the edge, but don't need to read that data back at the edge--only in the cloud. This mode continues to allow writes when the cluster is disconnected from the cloud, resuming uploads after connectivity is reestablished. Files that are successfully uploaded to the cloud are removed from the local namespace after a user-specified time, after which the cluster can no longer read them.  
 
-- **Mirror CRD:** In a Mirror subvolume (preview), specified cloud data will be presented as a local read-only copy of that cloud file. This allows users to interact with cloud based data, without changing the original file. This is perfect for content distribution from a centralized location to many different geographic sites, or for customers to be able to interact with a cloud file even without an active cloud connection. 
+- **Mirror CRD:** In a Mirror subvolume (preview), specified cloud data is presented as a local read-only copy of that cloud file. This allows users to interact with cloud based data, without changing the original file. This is perfect for content distribution from a centralized location to many different geographic sites, or for customers to be able to interact with a cloud file even without an active cloud connection. 
 
 
 ## Edge Volume Details
