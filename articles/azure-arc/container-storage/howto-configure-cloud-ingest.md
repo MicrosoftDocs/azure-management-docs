@@ -42,7 +42,7 @@ To create a PVC for your Ingest subvolume, use the following process:
 
     [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
-1. To apply `cloudIngestPVC.yaml`, run:
+1. To apply the **cloudIngestPVC.yaml**, run:
 
     ```bash
     kubectl apply -f "cloudIngestPVC.yaml"
@@ -58,75 +58,60 @@ To create a subvolume for Ingest, using extension identity to connect to your st
     kubectl get edgevolumes
     ```
 
-1. Create a file named `edgeSubvolume.yaml` and copy the following contents. These variables must be updated with your information:
+1. Create a file named `ingestSubvolume.yaml` with the following content:
 
     ```yaml
     apiVersion: "arccontainerstorage.azure.net/v1"
-    kind: EdgeSubvolume
+    kind: IngestSubvolume
     metadata:
       name: <create-a-subvolume-name-here>
     spec:
       edgevolume: <your-edge-volume-name-here>
-      path: exampleSubDir # If you change this path, line 33 in deploymentExample.yaml must be updated. Don't use a preceding slash.
-      subvolumeType: INGEST 
-      auth:
+      path: ingestSubDir # Don't use a preceding slash
+      authentication:
         authType: MANAGED_IDENTITY
-      storageaccountendpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
-      container: <your-blob-storage-account-container-name>
-      ingestPolicy: edgeingestpolicy-default # Optional: See the following instructions if you want to update the ingestPolicy with your own configuration
+      storageAccountEndpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
+      containerName: <your-blob-storage-account-container-name>
+      ingest:
+        order: newest-first
+        minDelaySec: 60
+      eviction:
+        order: unordered
+        minDelaySec: 120
+      onDelete: trigger-immediate-ingest
     ```
    
     [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-   - `metadata.name`: Create a name for your subvolume.
-   - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
-   - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`exampleSubDir`). If you change this path name, line 33 in `deploymentExample.yaml` must be updated with the new path name. If you choose to rename the path, don't use a preceding slash.
-   - `spec.container`: The container name in your storage account.
-   - `spec.storageaccountendpoint`: Navigate to your storage account in the Azure portal. On the **Overview** page, near the top right of the screen, select **JSON View**. You can find the `storageaccountendpoint` link under **properties.primaryEndpoints.blob**. Copy the entire link; for example, `https://mytest.blob.core.windows.net/`.
+    - `metadata.name`: Create a name for your subvolume.
+    - `spec.edgevolume`: This name was retrieved from the previous step.
+    - `spec.path`: Create your own subdirectory name under the mount path. The default name is `ingestSubDir`.
+    - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
+    - `spec.storageAccountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the link under *properties.primaryEndpoints.blob*. Copy the entire link.
+    - `spec.containerName`: The container name in your storage account.
+    
+    The following variables have reasonable defaults, but can be changed:
 
-2. To apply `edgeSubvolume.yaml`, run:
+    - `spec.ingest.order`: The order in which dirty files are uploaded. This is a best effort, not a guarantee. Options for order are: `oldest-first` or `newest-first`.
+    - `spec.ingest.minDelaySec`: The minimum number of seconds before a dirty file is eligible for ingest. This number can range between 0 and 31536000 (a year in seconds).
+    - `spec.eviction.order`: How files are evicted once they've been uploaded to the cloud. Options for eviction order are: `unordered` or `never`.
+    - `spec.eviction.minDelaySec`: The number of seconds before a clean file is eligible for eviction. This number can range between 0 and 31536000 (a year in seconds).
+    - `spec.onDelete`: The action to take on this IngestSubVolume if/when it is requested to be deleted. Options are `trigger-immediate-ingest` which will immediately mark all files as eligible for ingest and attempt to ingest them, or `abandon` which will abandon all data in this ingest subvolume and delete the subvolume.
 
-   ```bash
-   kubectl apply -f "edgeSubvolume.yaml"
-   ```
+    > [!NOTE]
+    > If you choose **abandon** for your `spec.onDelete` value, any dirty data in your subvolume will be lost. Please be careful and mindful before choosing this as an option.
 
-### Optional: Modify the `ingestPolicy` from the default
-
-1. If you want to change the `ingestPolicy` from the default `edgeingestpolicy-default`, create a file named `myedgeingest-policy.yaml` with the following contents. The following variables must be updated with your preferences:
-
-   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
-
-   - `metadata.name`: Create a name for your **ingestPolicy**. This name must be updated and referenced in the `spec.ingestPolicy` section of your `edgeSubvolume.yaml`.
-   - `spec.ingest.order`: The order in which dirty files are uploaded. This is best effort, not a guarantee (defaults to **oldest-first**). Options for order are: **oldest-first** or **newest-first**.
-   - `spec.ingest.minDelaySec`: The minimum number of seconds before a dirty file is eligible for ingest (defaults to 60). This number can range between 0 and 31536000.
-   - `spec.eviction.order`: How files are evicted (defaults to **unordered**). Options for eviction order are: **unordered** or **never**.
-   - `spec.eviction.minDelaySec`: The number of seconds before a clean file is eligible for eviction (defaults to 300). This number can range between 0 and 31536000.
-
-   ```yaml
-   apiVersion: arccontainerstorage.azure.net/v1
-   kind: EdgeIngestPolicy
-   metadata:
-     name: <create-a-policy-name-here> # This must be updated and referenced in the spec.ingestPolicy section of the edgeSubvolume.yaml
-   spec:
-     ingest:
-       order: <your-ingest-order>
-       minDelaySec: <your-min-delay-sec>
-     eviction:
-       order: <your-eviction-order>
-       minDelaySec: <your-min-delay-sec>
-   ```
-
-1. To apply `myedgeingest-policy.yaml`, run:
+1. To apply the **ingestSubvolume.yaml**, run:
 
    ```bash
-   kubectl apply -f "myedgeingest-policy.yaml"
+   kubectl apply -f "ingestSubvolume.yaml"
    ```
 
 ## Attach your app (Kubernetes native application)
 
-1. To configure a generic single pod (Kubernetes native application) against the Persistent Volume Claim (PVC), create a file named `deploymentExample.yaml` with the following contents. Modify the `containers.name` and `volumes.persistentVolumeClaim.claimName` values. If you updated the path name from `edgeSubvolume.yaml`, `exampleSubDir` on line 33 must be updated with your new path name. The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs:
+To configure a generic single pod (Kubernetes native application) against the PVC to use the Ingest capabilities, use the following process:
 
-   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
+1. Create a file named `deploymentExample.yaml` with the following content:
 
    ```yaml
    apiVersion: apps/v1
@@ -163,7 +148,7 @@ To create a subvolume for Ingest, using extension identity to connect to your st
              command:
                - "/bin/sh"
                - "-c"
-               - "dd if=/dev/urandom of=/data/exampleSubDir/acsaingesttestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
+               - "dd if=/dev/urandom of=/data/ingestSubDir/acsaingesttestfile count=16 bs=1M && while true; do ls /data &>/dev/null || break; sleep 1; done"
              volumeMounts:
                ### This name must match the volumes.name attribute below ###
                - name: wyvern-volume
@@ -177,33 +162,56 @@ To create a subvolume for Ingest, using extension identity to connect to your st
                claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
    ```
 
-1. To apply `deploymentExample.yaml`, run:
+   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
+
+  - Edit the `containers.name` and `volumes.persistentVolumeClaim.claimName` values.
+  - If you edited the `spec.path` value in **edgeSubvolume.yaml**, the value `ingestSubDir` on this file must be updated with your new path name.
+  - The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs.
+
+1. To apply the **deploymentExample.yaml** and create the pod, run:
 
    ```bash
    kubectl apply -f "deploymentExample.yaml"
    ```
 
-1. Use `kubectl get pods` to find the name of your pod. Copy this name to use in the next step.
+1. Find the name of your pod to use in the next step:
 
-   > [!NOTE]
-   > Because `spec.replicas` from `deploymentExample.yaml` was specified as `2`, two pods appear using `kubectl get pods`. You can choose either pod name to use for the next step.
+  ```bash
+  kubectl get pods
+  ```
 
-1. Run the following command and replace `POD_NAME_HERE` with your copied value from the last step:
+  > [!NOTE]
+  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods will
 
-   ```bash
-   kubectl exec -it POD_NAME_HERE -- sh
-   ```
+1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 
-1. Change directories into the `/data` mount path as specified from your `deploymentExample.yaml`.
+    ```bash
+    kubectl exec -it <name-of-pod> -- sh
+    ```
 
-1. You should see a directory with the name you specified as your `path` in Step 2 of the [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume) section. Change directories into `/YOUR_PATH_NAME_HERE`, replacing the `YOUR_PATH_NAME_HERE` value with your details.
+1. Change directories into the `/data` mount path as specified from your **deploymentExample.yaml** file:
 
-1. As an example, create a file named `file1.txt` and write to it using `echo "Hello World" > file1.txt`.
+    ```bash
+    cd /data
+    ```
 
-1. In the Azure portal, navigate to your storage account and find the container specified from Step 2 of [Attach subvolume to Edge Volume](#attach-subvolume-to-edge-volume). When you select your container, you should find `file1.txt` populated within the container. If the file hasn't appeared yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
+1. You should see a directory that matches the value you set for `spec.path` in **ingestSubvolume.yaml**. If you used the default values it's name is *ingestSubDir*. Change to that subdirectory:
+
+    ```bash
+    cd ingestSubDir
+    ```
+
+1. As an example, create a file named `file1.txt` and write to it:
+
+    ```bash
+    echo "Hello World" > file1.txt
+    ```
+   
+   This file will be uploaded to your blob storage account container, and then purged locally after five minutes.
+
+1. In the Azure portal, navigate to your storage account and find the container that matches the value you set for `spec.containerName` in **ingestSubvolume.yaml**. You should find `file1.txt` populated within the container. If the file hasn't appeared yet, wait approximately 1 minute; Edge Volumes waits a minute before uploading.
 
 ## Next steps
 
-After you complete these steps, you can begin monitoring your deployment using Azure Monitor and Kubernetes Monitoring or 3rd-party monitoring with Prometheus and Grafana.
-
-[Monitor your deployment](howto-azure-monitor-kubernetes.md)
+- To learn how to configure Cloud Mirror subvolumes, see [Configure Cloud Mirror subvolumes](howto-configure-cloud-mirror-subvolumes.md).
+- To learn how to use Edge Volumes together, see [Using Edge Volumes together](storage-options.md).

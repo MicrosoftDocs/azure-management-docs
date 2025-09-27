@@ -79,10 +79,10 @@ To create a subvolume for Mirror, using extension identity to connect to your st
   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
   - `metadata.name`: Create a name for your subvolume.
-  - `spec.edgevolume`: This name was retrieved from the previous step using `kubectl get edgevolumes`.
-  - `spec.path`: Create your own subdirectory name under the mount path. The following example already contains an example name (`mirrorSubDir`).
+  - `spec.edgevolume`: This name was retrieved from the previous step.
+  - `spec.path`: Create your own subdirectory name under the mount path. The default name is `mirrorSubDir`.
   - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
-  - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the `storageaccountendpoint` link under `properties.primaryEndpoints.blob`. Copy the entire link; for example, `https://mytest.blob.core.windows.net/`.
+  - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the link under *properties.primaryEndpoints.blob*. Copy the entire link.
   - `spec.blobAccount.containerName`: The container name in your storage account.
   - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags will be translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it will keep index tag xattrs unset.
   - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it will only mirror blobs with names starting with "a".
@@ -172,10 +172,10 @@ To configure a generic single pod (Kubernetes native application) against the PV
   > [!NOTE]
   > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods will
 
-1. Run the following command to start exec into the pod (replace the name of the pod with your pod name from the previous step):
+1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 
     ```bash
-    kubectl exec -it <name-of-pod> -- bash
+    kubectl exec -it <name-of-pod> -- sh
     ```
 
 1. Change directories into the `/data` mount path as specified from your **deploymentExample.yaml** file:
@@ -184,7 +184,7 @@ To configure a generic single pod (Kubernetes native application) against the PV
     cd /data
     ```
 
-1. You should see a directory with the name you specified `spec.path` value in **mirrorSubvolume.yaml**, if you used the default values it's name is *mirrorSubDir*. Change to that subdirectory, and check for any contents mirrored there:
+1. You should see a directory that matches the value you set for `spec.path`in **mirrorSubvolume.yaml**. If you used the default value it's name is *mirrorSubDir*. Change to that subdirectory, and check for any contents mirrored there:
 
     ```bash
     cd mirrorSubDir
@@ -241,7 +241,7 @@ Add or move files to your blob storage account container so they can be mirrored
 1. Once complete, we can check the contents of our Mirror subvolume. You can do that by connecting to the example pod we created by running:
 
     ```bash
-    kubectl exec -it <name-of-pod> -- bash
+    kubectl exec -it <name-of-pod> -- sh
     ```
 
     You should now see the files from your Cloud Storage Account mirrored into this subvolume.
