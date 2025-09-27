@@ -19,7 +19,7 @@ This article describes how to configure Cloud Mirror subvolumes (syncing data fr
 
 ## Prerequisites
 
-If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your mirror root location is OneLake, follow the instructions in [Configure OneLake Identity for Cloud subvolumes](howto-configure-onelake-identity) first.
+If your mirror root location is blob storage or ADLSgen2, continue following the prerequisites and instructions in this article. If your mirror root location is OneLake, follow the instructions in [Configure OneLake Identity for Cloud subvolumes](howto-configure-onelake-identity.md) first.
 
 [!INCLUDE [cloud-subvolumes-prerequisites](includes/cloud-subvolumes-prerequisites.md)]
 

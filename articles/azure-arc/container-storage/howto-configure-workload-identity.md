@@ -97,5 +97,5 @@ When creating the CRD for Ingest or Mirror subvolumes, set the `spec.authenticat
 
 ## Next step
 
-Continue the steps in either [Create a Cloud Ingest Persistent Volume Claim (PVC)](howto-configure-cloud-ingest-subvolumes.md#create-a-cloud-ingest-persistent-volume-claim-pvc) or [Create a Cloud Mirror Persistent Volume Claim (PVC)](howto-configure-cloud-mirror-subvolumes.md#create-a-cloud-ingest-persistent-volume-claim-pvc) to complete the configuration.
+Continue the steps in either [Create a Cloud Ingest Persistent Volume Claim (PVC)](howto-configure-cloud-ingest-subvolumes.md#create-a-cloud-ingest-persistent-volume-claim-pvc) or [Create a Cloud Mirror Persistent Volume Claim (PVC)](howto-configure-cloud-mirror-subvolumes.md#create-a-cloud-mirror-persistent-volume-claim-pvc) to complete the configuration.
 

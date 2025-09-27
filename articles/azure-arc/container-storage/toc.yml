@@ -44,7 +44,7 @@ items:
 - name: Set up authentication
   items:
   - name: Configure OneLake Identity
-    href: howto-configure-onelake-identity
+    href: howto-configure-onelake-identity.md
   - name: Configure Workload Identity
     href: howto-configure-workload-identity.md
 - name: Monitor deployments
