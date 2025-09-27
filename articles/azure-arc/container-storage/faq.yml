@@ -90,12 +90,10 @@ sections:
       - question: Can ACStor triplication occur on a single physical device?
         answer: No, ACStor triplication isn't designed to operate on a single physical device with three attached hard drives.
 
-      - question: Does Azure Container Storage enabled by Azure Arc support ARM deployments? 
-        answer: No, at this time, Arc itself does not support ARM, so neither does this Arc extension.
+      - question: Is there support for ARM deployments? 
+        answer: No, Azure Container Storage enabled by Azure Arc doesn't support ARM deployments, at this time, Arc itself does not support ARM, so neither does this Arc extension.
 
-  - name: Encryption and security
-    questions:
-      - question: What types of encryption are used by Azure Container Storage enabled by Azure Arc?
+      - question: What types of encryption are used?
         answer: |
           There are three types of encryption that might be interesting for an Azure Container Storage customer:
 
@@ -109,5 +107,5 @@ sections:
       - question: Is data encrypted at REST?
         answer: Data persisted by the Azure Container Storage enabled by Azure Arc extension is encrypted at REST if the underlying platform provides encrypted disks.
 
-      - question: When using Extension Identity, permissions as a StorageBlobDataOwner role are needed to write data. Is there a reason it needs Owner instead of just Contributor?
-        answer: Yes, the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
+      - question: Why Storage Blob Data Owner role?
+        answer: When using Extension Identity, permissions as a StorageBlobDataOwner role are needed to write data. Is there a reason it needs Owner instead of just Contributor? Yes, the `StorageBlobDataOwner` role is required for metadata operations to store extended attributes.
