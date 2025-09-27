@@ -36,9 +36,11 @@ Edge Volumes allows the use of a system-assigned extension identity for access t
 
 ## Create a Cloud Ingest Persistent Volume Claim (PVC)
 
-Create a file named `cloudIngestPVC.yaml` with the following content and apply it:
+To create a PVC for your Ingest subvolume, use the following process:
 
-1. [!INCLUDE [create-pvc](includes/create-pvc.md)]
+1. Create a file named `cloudIngestPVC.yaml` with the following content:
+
+    [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
 1. To apply `cloudIngestPVC.yaml`, run:
 
@@ -130,7 +132,8 @@ To create a subvolume for Ingest, using extension identity to connect to your st
    apiVersion: apps/v1
    kind: Deployment
    metadata:
-     name: cloudingestedgevol-deployment ### This must be unique for each deployment you choose to create.
+     ### This must be unique for each deployment you choose to create. ###
+     name: cloudingestedgesubvol-deployment
    spec:
      replicas: 2
      selector:
@@ -152,9 +155,10 @@ To create a subvolume for Ingest, using extension identity to connect to your st
                    values:
                    - wyvern-testclientdeployment
                topologyKey: kubernetes.io/hostname
+         ### Specify the container in which to launch the busy box. ###
          containers:
-           ### Specify the container in which to launch the busy box. ###
-           - name: <create-a-container-name-here>
+           ### This name can be anything; default name shared here ###
+           - name: ingest-deployment-container
              image: mcr.microsoft.com/azure-cli:2.57.0@sha256:c7c8a97f2dec87539983f9ded34cd40397986dcbed23ddbb5964a18edae9cd09
              command:
                - "/bin/sh"
@@ -166,10 +170,10 @@ To create a subvolume for Ingest, using extension identity to connect to your st
                  ### This mountPath is where the PVC is attached to the pod's filesystem ###
                  mountPath: "/data"
          volumes:
-            ### User-defined 'name' that's used to link the volumeMounts. This name must match volumeMounts.name as previously specified. ###
+            ### User-defined 'name' that's used to link the volumeMounts ###
            - name: wyvern-volume
              persistentVolumeClaim:
-               ### This claimName must refer to your PVC metadata.name (Line 5)
+               ### This claimName must refer to your PVC metadata.name (Line 5 in cloudIngestPVC.yaml) ###
                claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
    ```
 
