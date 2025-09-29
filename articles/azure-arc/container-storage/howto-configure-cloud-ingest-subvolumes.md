@@ -155,11 +155,11 @@ To configure a generic single pod (Kubernetes native application) against the PV
                claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
    ```
 
-   [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
-
-  - Edit the `containers.name` and `volumes.persistentVolumeClaim.claimName` values.
-  - If you edited the `spec.path` value in **edgeSubvolume.yaml**, the value `ingestSubDir` on this file must be updated with your new path name.
-  - The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs.
+    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
+    
+    - Edit the `containers.name` and `volumes.persistentVolumeClaim.claimName` values.
+    - If you edited the `spec.path` value in **edgeSubvolume.yaml**, the value `ingestSubDir` on this file must be updated with your new path name.
+    - The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs.
 
 1. To apply the **deploymentExample.yaml** and create the pod, run:
 
@@ -169,12 +169,12 @@ To configure a generic single pod (Kubernetes native application) against the PV
 
 1. Find the name of your pod to use in the next step:
 
-  ```bash
-  kubectl get pods
-  ```
-
-  > [!NOTE]
-  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
+    ```bash
+    kubectl get pods
+    ```
+    
+    > [!NOTE]
+    > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
 
 1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 

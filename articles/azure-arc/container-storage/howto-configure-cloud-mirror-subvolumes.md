@@ -35,13 +35,13 @@ To create a PVC for your Mirror subvolume, use the following process:
 
 1. Create a file named `cloudMirrorPVC.yaml` with the following content:
 
-  [!INCLUDE [create-pvc](includes/create-pvc.md)]
+    [!INCLUDE [create-pvc](includes/create-pvc.md)]
 
 1. To apply the **cloudMirrorPVC.yaml**, run:
 
-  ```bash
-  kubectl apply -f "cloudMirrorPVC.yaml"
-  ```
+    ```bash
+    kubectl apply -f "cloudMirrorPVC.yaml"
+    ```
   
 ## Attach Mirror subvolume to the Edge Volume
 
@@ -75,25 +75,25 @@ To create a subvolume for Mirror, using extension identity to connect to your st
         oneshot:
     ```
   
-  [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
+    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
 
-  - `metadata.name`: Create a name for your subvolume.
-  - `spec.edgevolume`: This name was retrieved from the previous step.
-  - `spec.path`: Create your own subdirectory name under the mount path. The default name is `mirrorSubDir`.
-  - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
-  - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the link under *properties.primaryEndpoints.blob*. Copy the entire link.
-  - `spec.blobAccount.containerName`: The container name in your storage account.
-  - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags are translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it keeps index tag xattrs unset.
-  - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it only mirrors blobs with names starting with *a*.
-  - `spec.schedule.frequency`: Schedule for when mirroring should run. Options are: `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, `"never"`, or cron syntax (five digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
-  - `spec.schedule.oneshot`: By default, left blank. If at any time a uuid is specified here, it triggers an 'immediate' sync. If a uuid is specified on creation, the subvolume performs a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume initially creates without a sync, and then syncs according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with `sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml`
+    - `metadata.name`: Create a name for your subvolume.
+    - `spec.edgevolume`: This name was retrieved from the previous step.
+    - `spec.path`: Create your own subdirectory name under the mount path. The default name is `mirrorSubDir`.
+    - `spec.authentication.authType`: This should be `MANAGED_IDENTITY` or `WORKLOAD_IDENTITY`, depending on the authentication mechanism chosen.
+    - `spec.blobAccount.accountEndpoint`: Navigate to your storage account in the Azure portal. On the Overview page, near the top right of the screen, select JSON View. You can find the link under *properties.primaryEndpoints.blob*. Copy the entire link.
+    - `spec.blobAccount.containerName`: The container name in your storage account.
+    - `spec.blobAccount.indexTagsMode`: `NoIndexTags` or `MirrorIndexTags`. `MirrorIndexTags` requires "Storage Blob Data Owner" permissions, and when set, index tags are translated to corresponding `azindex.<name> xattrs`. `NoIndexTags` only requires "Storage Blob Data Reader" permissions, and when set, it keeps index tag xattrs unset.
+    - `spec.blobFiltering.blobNamePrefix`: Optional prefix to filter blobs. For example, if the value is `blobNamePrefix: a` it only mirrors blobs with names starting with *a*.
+    - `spec.schedule.frequency`: Schedule for when mirroring should run. Options are: `@annually`, `@yearly`, `@monthly`, `@weekly`, `@daily`, `@hourly`, `"never"`, or cron syntax (five digits, first is minutes (0-59), second is hours (0-23), third is day (1-31), fourth is month (1-12), fifth is day of the week (0-6))
+    - `spec.schedule.oneshot`: By default, left blank. If at any time a uuid is specified here, it triggers an 'immediate' sync. If a uuid is specified on creation, the subvolume performs a sync on initial create, and thereafter according to the frequency. If this parameter is empty on creation, the subvolume initially creates without a sync, and then syncs according to the frequency. Uuids can be generated at [uuidgenerator.net](https://www.uuidgenerator.net/version4) or with `sed -i "s/oneshot: .*/oneshot: $(uuidgen)/" mirrorSubvolume.yaml`
 
 
 1. To apply the **mirrorSubvolume.yaml**, run:
-
-  ```bash
-  kubectl apply -f "mirrorSubvolume.yaml"
-  ```
+    
+    ```bash
+    kubectl apply -f "mirrorSubvolume.yaml"
+    ```
   
 ## Attach your app (Kubernetes native application)
 
@@ -101,76 +101,76 @@ To configure a generic single pod (Kubernetes native application) against the PV
 
 1. Create a file named `deploymentExample.yaml` with the following content:
 
-  ```yaml
-  apiVersion: apps/v1
-  kind: Deployment
-  metadata:
-    ### This must be unique for each deployment you choose to create. ###
-    name: cloudmirrorsubvol-deployment
-  spec:
-    replicas: 2
-    selector:
-    matchLabels:
-      name: acsa-testclientdeployment
-    template:
+    ```yaml
+    apiVersion: apps/v1
+    kind: Deployment
     metadata:
-      name: acsa-testclientdeployment
-      labels:
-      name: acsa-testclientdeployment
+      ### This must be unique for each deployment you choose to create. ###
+      name: cloudmirrorsubvol-deployment
     spec:
-      affinity:
-      podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-          matchExpressions:
-          - key: app
-          operator: In
-          values:
-          - acsa-testclientdeployment
-        topologyKey: kubernetes.io/hostname
-      ### Specify the container in which to launch the busy box ###
-      containers:
-      ### This name can be anything; default name shared here ###
-      - name: mirror-deployment-container
-        image: mcr.microsoft.com/azure-cli:2.57.0@sha256:c7c8a97f2dec87539983f9ded34cd40397986dcbed23ddbb5964a18edae9cd09
-        command:
-        - "/bin/sh"
-        - "-c"
-        - "while true; do ls /data/mirrorSubDir &>/dev/null || break; sleep 1; done"
-        volumeMounts:
-        ### This name must match the volumes.name attribute below ###
+      replicas: 2
+      selector:
+      matchLabels:
+        name: acsa-testclientdeployment
+      template:
+      metadata:
+        name: acsa-testclientdeployment
+        labels:
+        name: acsa-testclientdeployment
+      spec:
+        affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+            matchExpressions:
+            - key: app
+            operator: In
+            values:
+            - acsa-testclientdeployment
+          topologyKey: kubernetes.io/hostname
+        ### Specify the container in which to launch the busy box ###
+        containers:
+        ### This name can be anything; default name shared here ###
+        - name: mirror-deployment-container
+          image: mcr.microsoft.com/azure-cli:2.57.0@sha256:c7c8a97f2dec87539983f9ded34cd40397986dcbed23ddbb5964a18edae9cd09
+          command:
+          - "/bin/sh"
+          - "-c"
+          - "while true; do ls /data/mirrorSubDir &>/dev/null || break; sleep 1; done"
+          volumeMounts:
+          ### This name must match the volumes.name attribute below ###
+          - name: acsa-volume
+            ### This mountPath is where the PVC is attached to the pod's filesystem ###
+            mountPath: "/data"
+        volumes:
+        ### User-defined 'name' that's used to link the volumeMounts ###
         - name: acsa-volume
-          ### This mountPath is where the PVC is attached to the pod's filesystem ###
-          mountPath: "/data"
-      volumes:
-      ### User-defined 'name' that's used to link the volumeMounts ###
-      - name: acsa-volume
-        persistentVolumeClaim:
-        ### This claimName must refer to your PVC metadata.name (line 5 in cloudMirrorPVC.yaml) ###
-        claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
-  ```
+          persistentVolumeClaim:
+          ### This claimName must refer to your PVC metadata.name (line 5 in cloudMirrorPVC.yaml) ###
+          claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
+    ```
 
-  [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
-
-  - Edit the `containers.name` and `volumes.persistentVolumeClaim.claimName` values.
-  - If you edited the `spec.path` value in **mirrorSubvolume.yaml**, the value `mirrorSubDir` on this file must be updated with your new path name.
-  - The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs.
+    [!INCLUDE [lowercase-note](includes/lowercase-note.md)]
+    
+    - Edit the `containers.name` and `volumes.persistentVolumeClaim.claimName` values.
+    - If you edited the `spec.path` value in **mirrorSubvolume.yaml**, the value `mirrorSubDir` on this file must be updated with your new path name.
+    - The `spec.replicas` parameter determines the number of replica pods to create. It's 2 in this example, but can be modified to fit your needs.
 
 1. To apply the **deploymentExample.yaml** and create the pod, run:
-
-  ```bash
-  kubectl apply -f "deploymentExample.yaml"
-  ```
+    
+    ```bash
+    kubectl apply -f "deploymentExample.yaml"
+    ```
 
 1. Find the name of your pod to use in the next step:
 
-  ```bash
-  kubectl get pods
-  ```
+    ```bash
+    kubectl get pods
+    ```
 
-  > [!NOTE]
-  > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
-
+    > [!NOTE]
+    > Because `spec.replicas` from **deploymentExample.yaml** was specified with 2, two pods are created. You can use either pod name for the next step.
+    
 1. Run the following command to start exec into the pod. Replace `<name-of-pod>` with your pod name from the previous step:
 
     ```bash
@@ -200,9 +200,9 @@ First, check the status of the `mirrorSubvolume`. Next, ensure that you have dat
 
 Check the status of your Mirror subvolume, in particular, check that the **BACKENDCONNECTION** field is *Connected*:
 
-  ```bash
-  kubectl get mirrorsubvolumes
-  ```
+    ```bash
+    kubectl get mirrorsubvolumes
+    ```
 
 ### Add data to your Storage Account Container
 
