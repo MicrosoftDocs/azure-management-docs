@@ -1,25 +1,21 @@
 ---
-title: Cloud Ingest Edge Volumes with Workload Identity  
-description: Learn how to configure Cloud Ingest Edge Volumes with Workload Identity.
+title: Configure Workload Identity for Cloud subvolumes
+description: Learn how to configure Workload Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.date: 06/25/2025
+ms.date: 09/27/2025
 
 #CustomerIntent: As a Kubernetes administrator, I want to configure Cloud Ingest Edge Volumes with Workload Identity.
 ---
 
-# Cloud Ingest Edge Volumes with Workload Identity
+# Configure Workload Identity for Cloud subvolumes
 
-This article describes how to configure *Cloud Ingest Edge Volumes* with Workload Identity.
-
-## Prerequisites
-
-Before you begin, ensure you read [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest.md) and meet the prerequisites listed there.
+This article describes how to configure Workload Identity to be used for a subvolume configuration. This applies to either Cloud Ingest subvolumes or Cloud Mirror subvolumes.
 
 ## Configure Kubernetes cluster for Workload Identity
 
-In order to use Workload Identity with Azure Container Storage enabled by Azure Arc, you must first enable the features for your Azure Arc Connected Kubernetes Cluster. Enable the  OpenID Connect (OIDC) issuer and workload identity by running the following command:
+In order to use Workload Identity with Azure Container Storage enabled by Azure Arc, you must first enable the features for your Azure Arc Connected Kubernetes Cluster. Enable the OpenID Connect (OIDC) issuer and workload identity by running the following command:
 
 ```azurecli
 az connectedk8s update --resource-group <RESOURCE_GROUP> --name <CLUSTER_NAME> --enable-oidc-issuer --enable-workload-identity
@@ -95,27 +91,11 @@ This command returns a client ID that you use later to federate the credential a
     az role assignment create --assignee <USER_ASSIGNED_IDENTITY_ID> --role "Storage Blob Data Owner" --scope "/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.Storage/storageAccounts/<STORAGEACCOUNT>"
     ```
 
-## Create a Cloud Ingest Persistent Volume Claim (PVC) with Workload Identity
+## Create a Persistent Volume Claim (PVC) with Workload Identity
 
-To create a Cloud Ingest Persistent Volume Claim (PVC) with Workload Identity, you can use the following example YAML file:
-
-```yaml
-apiVersion: "arccontainerstorage.azure.net/v1"
-kind: EdgeSubvolume
-metadata:
-  name: acsa-pvc
-spec:
-  edgevolume: acsa-pvc
-  path: exampleSubDir # If you change this path, line 33 in deploymentExample.yaml must be updated. Don't use a preceding slash.
-  subvolumeType: INGEST
-  auth:
-    authType: WORKLOAD_IDENTITY
-  storageaccountendpoint: ""
-```
-
-Continue with the steps in the Cloud Ingest Edge Volumes configuration guide, starting from the [Create a Cloud Ingest Persistent Volume Claim (PVC)](howto-configure-cloud-ingest.md#create-a-cloud-ingest-persistent-volume-claim-pvc) section and using the example provided here.
+When creating the CRD for Ingest or Mirror subvolumes, set the `spec.authentication.authType` parameter to be `WORKLOAD_IDENTITY`.
 
 ## Next step
 
-[Monitor your deployment](howto-azure-monitor-kubernetes.md)
+Continue the steps in either [Create a Cloud Ingest Persistent Volume Claim (PVC)](howto-configure-cloud-ingest-subvolumes.md#create-a-cloud-ingest-persistent-volume-claim-pvc) or [Create a Cloud Mirror Persistent Volume Claim (PVC)](howto-configure-cloud-mirror-subvolumes.md#create-a-cloud-mirror-persistent-volume-claim-pvc) to complete the configuration.
 

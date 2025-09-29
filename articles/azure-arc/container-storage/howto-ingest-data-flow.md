@@ -18,7 +18,7 @@ One way to control data flow is by offering the ability to choose which data is 
 
 Another control option is the ability to "throttle" data upload from an Ingest Edge Volume by limiting the number of active concurrent blob uploads. This throttling is accomplished by following these instructions:
 
-1. Create an Edge Volume by following the instructions in [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest.md).
+1. Create an Edge Volume by following the instructions in [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest-subvolumes.md).
 1. Run `kubectl get edgevolume` to find the name of the Edge Volume you created in the previous step.
 1. Run `kubectl edit edgevolume <insert name from step 2>` to edit the Edge Volume.
 1. Decide what you want your blob concurrency count to be; valid values are from 1 to 256.
@@ -33,4 +33,4 @@ When you update this information, any in-progress operations are disrupted, so w
 
 ## Next steps
 
-- [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest.md)
+- [Cloud Ingest Edge Volumes configuration](howto-configure-cloud-ingest-subvolumes.md)

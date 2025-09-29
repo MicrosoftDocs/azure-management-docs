@@ -162,12 +162,12 @@
     },
     {
       "source_path": "articles/azure-arc/container-storage/cloud-ingest-edge-volume-configuration.md",
-      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-subvolumes",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/azure-arc/container-storage/alternate-onelake.md",
-      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-onelake",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-onelake-identity",
       "redirect_document_id": false
     },
     {
@@ -208,6 +208,11 @@
     {
       "source_path": "articles/azure-arc/container-storage/map-names.md",
       "redirect_url": "/azure/azure-arc/container-storage/howto-map-names",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/howto-configure-cloud-ingest.md",
+      "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-subvolumes",
       "redirect_document_id": false
     }
   ]

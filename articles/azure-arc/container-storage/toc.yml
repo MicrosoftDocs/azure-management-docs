@@ -28,7 +28,9 @@ items:
   - name: Configure Local Shared volumes
     href: howto-configure-local-shared-edge-volumes.md
   - name: Configure Cloud Ingest subvolumes
-    href: howto-configure-cloud-ingest.md
+    href: howto-configure-cloud-ingest-subvolumes.md
+  - name: Configure Cloud Mirror subvolumes
+    href: howto-configure-cloud-mirror-subvolumes.md
   - name: Using Edge Volumes together
     href: storage-options.md
   - name: How to
@@ -42,7 +44,7 @@ items:
 - name: Set up authentication
   items:
   - name: Configure OneLake Identity
-    href: howto-configure-cloud-ingest-onelake.md
+    href: howto-configure-onelake-identity.md
   - name: Configure Workload Identity
     href: howto-configure-workload-identity.md
 - name: Monitor deployments
@@ -67,3 +69,5 @@ items:
     href: jumpstart.md
   - name: Support and feedback
     href: support-feedback.md
+  - name: Previous versions
+    href: previous-versions.md
