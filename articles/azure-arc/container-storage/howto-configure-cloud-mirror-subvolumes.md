@@ -200,9 +200,9 @@ First, check the status of the `mirrorSubvolume`. Next, ensure that you have dat
 
 Check the status of your Mirror subvolume, in particular, check that the **BACKENDCONNECTION** field is *Connected*:
 
-    ```bash
-    kubectl get mirrorsubvolumes
-    ```
+  ```bash
+  kubectl get mirrorsubvolumes
+  ```
 
 ### Add data to your Storage Account Container
 
