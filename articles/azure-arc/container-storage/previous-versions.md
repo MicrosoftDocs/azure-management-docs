@@ -91,3 +91,7 @@ To create a subvolume using extension identity to connect to your storage accoun
    kubectl apply -f "myedgeingest-policy.yaml"
    ```
 
+## Next steps
+
+- [Overview of volumes and subvolumes](volumes-subvolumes.md)
+- [Using Edge Volumes together](storage-options.md)
