@@ -50,7 +50,7 @@ sudo sysctl -p
 Run the following command to install the Azure IoT Operations dependencies:
 
 ```azurecli
-az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager
+az k8s-extension create --cluster-name "${YOUR-CLUSTER-NAME}" --name "aio-certmgr" --resource-group "${YOUR-RESOURCE-GROUP}" --cluster-type connectedClusters --extension-type microsoft.iotoperations.platform --scope cluster --release-namespace cert-manager --release-train preview
 ```
 
 ## Step 3: Install the Azure Container Storage enabled by Azure Arc extension
@@ -90,5 +90,5 @@ kubectl apply -f "edgeConfig.yaml"
 
 ## Next steps
 
-Now that you have the extension installed, you can configure some volumes, either [Local Shared Edge Volumes](local-shared-edge-volumes.md) or [Cloud Ingest Edge Volumes](cloud-ingest-edge-volume-configuration.md).
+Now that you have the extension installed, you can configure some volumes, either [Local Shared Edge Volumes](howto-configure-local-shared-edge-volumes.md) or [Cloud Ingest Edge Volumes](howto-configure-cloud-ingest-subvolumes.md).
 
