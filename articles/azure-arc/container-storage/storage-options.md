@@ -36,7 +36,7 @@ In this case, we have an application that generates data. We want to send some o
 
 Because you can now save data locally (Local Shared), send it from the edge to the cloud (Ingest), store data in the cloud (Azure storage), and send data from the cloud to the edge (Mirror), the full cycle of data portability is enabled.
 
-This is just one example of a potential data flow. If you have comments or questions, or want to talk through the best way to set up your data flow, you can [contact our team](mailto:ACSA@microsoft.com).
+This is just one example of a potential data flow. If you have comments or questions, or want to talk through the best way to set up your data flow, you can [contact our team](support-feedback.md).
 
 ## Flexibility
 
