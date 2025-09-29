@@ -14,9 +14,9 @@ The Azure Connected Machine agent for Linux and Windows communicates outbound se
 To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc Private Link Scope](../private-link-security.md).
 
 > [!NOTE]
-> Azure Arc-enabled servers does not support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateway.
+> Azure Arc-enabled servers doesn't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateway.
 
-If outbound connectivity is restricted by your firewall or proxy server, make sure the URLs and service tags listed below are not blocked.
+If outbound connectivity is restricted by your firewall or proxy server, make sure the URLs and service tags listed here aren't blocked.
 
 ### Service tags
 
@@ -36,11 +36,11 @@ If you filter traffic to the **AzureArcInfrastructure** service tag, you must al
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 > [!IMPORTANT]
-> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, be sure to add the IP addresses from the **AzureArcInfrastructure** service tag for the Azure public cloud, in addition to using the **AzureArcInfrastructure** service tag for your cloud. After October 28, 2025, adding the **AzureArcInfrastructure** service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
+> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21Vianet, be sure to add the IP addresses from the **AzureArcInfrastructure** service tag for the Azure public cloud, in addition to using the **AzureArcInfrastructure** service tag for your cloud. After October 28, 2025, adding the **AzureArcInfrastructure** service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21Vianet will no longer be supported.
 
 ### URLs
 
-The table below lists the URLs that must be available in order to install and use the Connected Machine agent.
+This table lists the URLs that must be available in order to install and use the Connected Machine agent.
 
 #### [Azure Cloud](#tab/azure-cloud)
 
@@ -65,7 +65,7 @@ The table below lists the URLs that must be available in order to install and us
 |`dc.services.visualstudio.com`|Agent telemetry|Optional, not used in agent versions 1.24+| Public |
 | `*.<region>.arcdataservices.com` <sup>2</sup> | For Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | Always | Public |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
-|`dls.microsoft.com`| Used by Arc machines to perform license validation | Required when using Hotpatching, Windows Server Azure Benefits or Windows Server PayGo on Arc enabled machines | Public |
+|`dls.microsoft.com`| Used by Arc machines to perform license validation | Required when using Hotpatching, Windows Server Azure Benefits, or Windows Server PayGo on Arc enabled machines | Public |
 
 
 <sup>1</sup> Access to this URL also needed when performing updates automatically.
@@ -126,10 +126,10 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 
 To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**. 
 
-The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint is not supported for Windows Server 2012 or Windows Server 2012 R2.
+The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
 |Platform/Language | Support | More Information |
 | --- | --- | --- |
 |Linux | Linux distributions tend to rely on [OpenSSL](https://www.openssl.org) for TLS 1.2 support. | Check the [OpenSSL Changelog](https://www.openssl.org/news/changelog.html) to confirm your version of OpenSSL is supported.|
-| Windows Server 2012 R2 and higher | Supported, and enabled by default. | To confirm that you are still using the [default settings](/windows-server/security/tls/tls-registry-settings).|
-| Windows Server 2012 | Partially supported. **Not recommended.**|  Some endpoints as noted above will work, but some endpoints require TLS 1.2 or higher which is not available on Windows Server 2012.|
+| Windows Server 2012 R2 and higher | Supported, and enabled by default. | Confirm that you are still using the [default settings](/windows-server/security/tls/tls-registry-settings).|
+| Windows Server 2012 | Partially supported. **Not recommended.**|  Some endpoints still work, but other endpoints require TLS 1.2 or higher, which isn't available on Windows Server 2012.|
