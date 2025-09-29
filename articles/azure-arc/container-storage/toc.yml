@@ -16,7 +16,7 @@ items:
 - name: Edge Volumes
   items:
   - name: Edge Volumes overview
-    href: edge-volumes-overview.md 
+    href: edge-volumes-overview.md
   - name: How-to
     items:
     - name: Prepare Linux
@@ -35,11 +35,7 @@ items:
         href: local-shared-edge-volumes.md
       - name: Cloud Ingest Edge Volumes
         items:
-        - name: Cloud Ingest Edge Volumes configuration
-          href: cloud-ingest-edge-volume-configuration.md
-        - name: Alternative OneLake configuration
-          href: alternate-onelake.md
-        - name: Cloud Ingest Edge Volumes with Workload Identity  
+        - name: Cloud Ingest Edge Volumes with Workload Identity
           href: cloud-ingest-edge-volumes-with-workload-identity.md
     - name: Monitor deployment
       items:
@@ -57,8 +53,6 @@ items:
       href: map-names.md
     - name: Storage options
       href: storage-options.md
-    - name: Set ingest policy
-      href: ingest-policies.md
     - name: Ingest data flow
       href: ingest-data-flow.md
     - name: Blob index and metadata tags
