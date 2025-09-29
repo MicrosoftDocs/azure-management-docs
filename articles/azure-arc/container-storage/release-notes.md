@@ -23,6 +23,9 @@ This article provides information about new features in Azure Container Storage 
 - Performance improvements
 - Security updates and bug fixes
 
+> [!NOTE]
+> In releases 2.7 and earlier, there was an edgeSubvolume CRD. Documentation for that configuration can be found in the [Previous versions](previous-versions.md) article.
+
 ## Version 2.7.1 
 
 Security updates and bug fixes.
