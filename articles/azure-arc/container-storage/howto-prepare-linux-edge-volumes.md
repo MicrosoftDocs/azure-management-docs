@@ -1,16 +1,31 @@
 ---
-ms.service: azure-arc
-ms.subservice: azure-arc-container-storage
-ms.topic: include
-ms.date: 03/12/2025
+title: Prepare Linux for Edge Volumes
+description: Learn how to prepare Linux in Azure Container Storage enabled by Azure Arc Edge Volumes using Azure Kubernetes Service enabled by Azure Arc, Edge Essentials, or Ubuntu.
 author: asergaz
 ms.author: sergaz
-# Customer intent: "As a cloud administrator, I want to understand the differences between single-node and multi-node Kubernetes clusters, so that I can choose the appropriate setup for my development or production environment based on resource constraints and performance requirements."
+ms.topic: how-to
 ms.custom:
+  - linux-related-content
+  - references_regions
   - build-2025
+ms.date: 07/18/2025
+
+# Customer intent: As a cloud developer, I want to prepare my Linux environment for Edge Volumes in Azure Container Storage, so that I can effectively manage and deploy workloads using Azure Kubernetes Service (AKS) enabled by Azure Arc.
 ---
 
-### Arc-enabled Kubernetes cluster
+# Prepare Linux for Edge Volumes
+
+The article describes how to prepare Linux for Edge Volumes using Azure Kubernetes Service (AKS) enabled by Azure Arc, Edge Essentials, or Ubuntu.
+
+> [!NOTE]
+> The minimum supported Linux kernel version is 5.1. At this time, there are known issues with 6.4 and 6.2.
+
+## Prerequisites
+
+> [!NOTE]
+> Azure Container Storage enabled by Azure Arc is only available in the following regions: East US, East US 2, West US, West US 2, West US 3, North Europe, West Europe.
+
+## Arc-enabled Kubernetes cluster
 
 These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
 
@@ -24,7 +39,7 @@ However, single-node clusters come with limitations, mostly in the form of missi
 
 A multi-node Kubernetes configuration is typically used for production, staging, or large-scale scenarios because of features such as high availability, fault tolerance, scalability, and performance. A multi-node cluster also introduces challenges and trade-offs, including complexity, overhead, cost, and efficiency considerations. For example, setting up and maintaining a multi-node cluster requires extra knowledge, skills, tools, and resources (network, storage, compute). The cluster must handle coordination and communication among nodes, leading to potential latency and errors. Additionally, running a multi-node cluster is more resource-intensive and is costlier than a single-node cluster. Optimization of resource usage among nodes is crucial for maintaining cluster and application efficiency and performance.
 
-In summary, a [single-node Kubernetes cluster](../single-node-cluster-edge-volumes.md) might be suitable for development, testing, and resource-constrained environments. A [multi-node cluster](../multi-node-cluster-edge-volumes.md) is more appropriate for production deployments, high availability, scalability, and scenarios in which distributed applications are a requirement. This choice ultimately depends on your specific needs and goals for your deployment.
+In summary, a [single-node Kubernetes cluster](howto-single-node-cluster-edge-volumes.md) might be suitable for development, testing, and resource-constrained environments. A [multi-node cluster](howto-multi-node-cluster-edge-volumes.md) is more appropriate for production deployments, high availability, scalability, and scenarios in which distributed applications are a requirement. This choice ultimately depends on your specific needs and goals for your deployment.
 
 ## Minimum hardware requirements
 
@@ -55,3 +70,8 @@ The storage pool is configured to use 3-way replication to ensure fault toleranc
 For example, in a 3-node cluster with 20 GB of disk space per node, the cluster has a storage pool of 60 GB. However, due to replication, it has an effective storage size of 20 GB.
 
 When an Edge Volume is provisioned with a requested size of 10 GB, it allocates a reserved system volume (statically sized to 1 GB) and a data volume (sized to the requested volume size, for example 10 GB). The reserved system volume consumes 3 GB (3 x 1 GB) of disk space in the storage pool, and the data volume consumes 30 GB (3 x 10 GB) of disk space in the storage pool, for a total of 33 GB.
+
+## Next steps
+
+- [Prepare Linux for Edge Volumes using a single-node or two-node cluster](howto-single-node-cluster-edge-volumes.md)
+- [Prepare Linux for Edge Volumes using a multi-node cluster](howto-multi-node-cluster-edge-volumes.md)
