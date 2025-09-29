@@ -36,7 +36,7 @@ If you filter traffic to the **AzureArcInfrastructure** service tag, you must al
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 > [!IMPORTANT]
-> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, be sure to add the IP addresses from the **AzureArcInfrastructure** service tag for the Azure public cloud, in addition to using the **AzureArcInfrastructure** service tag for your cloud. After October 25, 2025, adding the **AzureArcInfrastructure** service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
+> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21 Vianet, be sure to add the IP addresses from the **AzureArcInfrastructure** service tag for the Azure public cloud, in addition to using the **AzureArcInfrastructure** service tag for your cloud. After October 28, 2025, adding the **AzureArcInfrastructure** service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21 Vianet will no longer be supported.
 
 ### URLs
 
