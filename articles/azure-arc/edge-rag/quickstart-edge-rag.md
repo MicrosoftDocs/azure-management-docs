@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 09/26/2025
+ms.date: 09/29/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -26,8 +26,7 @@ Before you begin, make sure you have:
 - An active Azure subscription
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI installed ([Install Azure CLI](/cli/azure/install-azure-cli)) locally unless you plan to use Azure Cloud Shell
-
-[!INCLUDE [cloud-shell-try-it.md](~/reusable-content/ce-skilling/azure/includes/cloud-shell-try-it.md)]
+- Edge Rag registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -41,7 +40,7 @@ az login
 
 Create a resource group to contain the AKS cluster, node pool, and Edge RAG resources.
 
-```azurepowershell-interactive
+```azurepowershell
 $rg = "edge-rag-aks-rg" `
 $location = "eastus" `
 az group create --name $rg --location $location
@@ -53,14 +52,14 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Create an AKS cluster:
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    $k8scluster =  "edge-rag-aks"  
    az aks create --resource-group $rg --name $k8scluster --node-count 3 --generate-ssh-keys
    ```
 
 1. Set the rest of the following values as needed and then run the command:
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    # Azure variables
    $sub = "your_subscription"   
    $tenantid = "your_tenantID" 
@@ -79,14 +78,14 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Connect to Azure and AKS. 
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    az login --scope https://management.core.windows.net//.default --tenant $tenantId `   
    az aks get-credentials --resource-group $rg --name $cluster --overwrite-existing 
    ``` 
 
 1. Install the NVIDIA GPU operator on the cluster.
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    helm repo add nvidia https://helm.ngc.nvidia.com/nvidia 
    helm repo update   
    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.2 
@@ -94,13 +93,13 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
  
 1. Connect the AKS cluster to Azure Arc.
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    az connectedk8s connect --resource-group $rg --location $location --name $k8scluster  
    ```
 
 1. Install the Kubernetes-native certificate management controller by running the following command.
  
-   ```azurepowershell-interactive
+   ```azurepowershell
    az k8s-extension create `   
       -g $rg `    
       -c $k8scluster `   
@@ -117,7 +116,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG. Run the following command:
 
-```azurepowershell-interactive
+```azurepowershell
 # GPU nodepool 
 az aks nodepool add ` 
     --resource-group $rg ` 
@@ -146,7 +145,7 @@ az aks nodepool add `
 
 If the node pool creation fails with a **DenyVMsWithoutTrustedLaunchEnabled** policy error, add the following tags to the command and rerun:  
 
-```azurepowershell-interactive
+```azurepowershell
 SkipDenyVMsWithoutTrustedLaunchEnabled : true 
 azsecpack : nonprod 
 ```
@@ -157,7 +156,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 
 1. Deploy the Edge RAG extension by running the following command.
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    az k8s-extension create `    
        --cluster-type connectedClusters `   
        --cluster-name $k8scluster `    
@@ -178,7 +177,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 
 1. Get the load balancer VIP by running the following command:
 
-   ```azurepowershell-interactive
+   ```azurepowershell
    kubectl get service ingress-nginx-controller -n arc-rag -o yaml 
    ```
 
@@ -207,7 +206,7 @@ Update your host file on your local machine to connect to the developer portal f
 
 To remove the resources created in this quickstart, run:
 
-```azurepowershell-interactive
+```azurepowershell
 az group delete --name $rg--yes --no-wait
 ```
 
