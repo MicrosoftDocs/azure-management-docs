@@ -138,7 +138,7 @@ Starting from agent version 1.56 (Windows only), the following cipher suites mus
   * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
   * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)   ECDH secp256r1 (eq. 3072 bits RSA)   FS
 
-For more information, see [Windows TLS configuration issues](troubleshoot-networking.md).
+For more information, see [Windows TLS configuration issues](../troubleshoot-networking.md#windows-tls-configuration-issues).
 
 The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
