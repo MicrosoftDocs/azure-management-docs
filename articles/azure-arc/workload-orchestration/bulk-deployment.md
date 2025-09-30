@@ -39,7 +39,7 @@ You need to provide a *targets.json* file that contains the list of targets that
 ]
 ```
 
-The *configuration.yaml* file is used to set the configuration values for a target or multiple targets. For example, you can set the temperature and errorThreshold parameters for a target:
+The *configuration.yaml* file is used to set the configuration values for a target or multiple targets. For example, you can set the `temperature` and `errorThreshold` parameters for a target:
 
 ```yaml
 temperature: 100
