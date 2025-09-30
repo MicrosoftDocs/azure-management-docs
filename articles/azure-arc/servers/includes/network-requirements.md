@@ -126,7 +126,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 
 To ensure the security of data in transit to Azure, we strongly encourage you to configure machines to use Transport Layer Security (TLS) 1.2 and 1.3. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable, and while they still currently work to allow backwards compatibility, they are **not recommended**.
 
-Starting from agent version 1.56 (Windows only), the following cipher suites must be configured for at least one of the recommended TLS versions:
+Starting from version 1.56 of the Connected Machine agent (Windows only), the following cipher suites must be configured for at least one of the recommended TLS versions:
 
 * TLS 1.3 (suites in server-preferred order):
 

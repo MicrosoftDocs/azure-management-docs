@@ -16,7 +16,7 @@ When troubleshooting connectivity issues, be sure that your environment meets al
 
 ## Windows TLS configuration issues
 
-For Azure Connected Machine agent version 1.56 and newer on Windows, if the agent fails to reach Azure endpoints even after the endpoints are allowed in the environment, ensure the following cipher suites are enabled for at least one of the recommended TLS versions:
+Starting from version 1.56 of the Connected Machine agent (Windows only), if the agent fails to reach Azure endpoints even after the endpoints are allowed in the environment, ensure the following cipher suites are enabled for at least one of the recommended TLS versions:
 
 - TLS 1.3 (suites in server-preferred order):
   - TLS_AES_256_GCM_SHA384 (0x1302)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
@@ -28,7 +28,7 @@ For Azure Connected Machine agent version 1.56 and newer on Windows, if the agen
 You can check the cipher suites on a machine with the following PowerShell command:
 
 ```powershell
-Get-TlsCipherSuite | format-list name
+Get-TlsCipherSuite | Format-List Name
 ```
 
 To enable cipher suites, you can use one of the following methods:
