@@ -52,12 +52,12 @@ For general troubleshooting, try the following steps. These steps apply to all V
 
 ## Known issues
 
-### HandlerManifest.json does not exist
+### HandlerManifest.json file does not exist for extension
 
 The extension is stuck in a `Deleting` state. In the extension service log (`gc_ext.log`), you see the following error:
 
 ```
-HandlerManifest.json does not exist
+HandlerManifest.json file does not exist for extension
 ```
 
 **Analysis**
