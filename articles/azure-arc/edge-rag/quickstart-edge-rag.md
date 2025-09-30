@@ -30,11 +30,20 @@ Before you begin, make sure you have:
 
 ## Open Azure Cloud Shell or Azure CLI
 
-Open Azure Cloud Shell or your local Azure CLI to run the  commands in this article. Sign in to Azure to get started.
+Open Azure Cloud Shell or your local Azure CLI to run the commands in this article.
 
-```azurepowershell-interactive
-az login
-```
+1. Sign in to Azure to get started:
+
+   ```azurepowershell-interactive
+   az login
+   ```
+
+1. If you have multiple subscriptions, replace the placeholder "subscription name" with your subscription and run the following command:
+
+   ```azurepowershell
+   $sub = <subscription name> 
+   az account set --subscription  $sub
+   ```
 
 ## Create resource group
 
@@ -55,7 +64,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 1. Create an AKS cluster:
 
    ```azurepowershell
-   $k8scluster =  "edge-rag-aks"  
+   $k8scluster = "edge-rag-aks"  
    az aks create `
       --resource-group $rg `
       --name $k8scluster `
@@ -67,18 +76,18 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 1. Set the rest of the following values as needed and then run the command:
 
    ```azurepowershell
-   # Azure variables
-   $sub = "your_subscription"   
-   $tenantid = "your_tenantID" 
     
-   # Edge RAG extension variables   
+   # Set Edge RAG extension values
    $modelName = "microsoft/Phi-3.5"    
    $gpu_enabled = "true" # set to false if no GPU nodes 
    $localextname = "edgeragdemo"  
    $autoUpgrade = "false" 
-   $domainName = "arcrag.contoso.com"  # tied to your EntraID app registration    
-   $entraTenantId = "your_entra_tenant_id" #  tied to your EntraID app registration    
-   $entraClientId = "your_entra_app_id"  # tied to your EntraID app registration 
+
+   # Set Entra ID app registration values
+   $domainName = "arcrag.contoso.com" # Edit to match the domain used in your registration  
+   $entraClientId(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
+   $tenantId(az account show --query tenantId --output tsv)    
+
    $extension = "microsoft.arc.rag" # do not change    
    $n = "arc-rag" # do not change
    ```
@@ -177,7 +186,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --configuration-settings gpu_enabled=$gpu_enabled ` 
        --configuration-settings AgentOperationTimeoutInMinutes=30 ` 
        --configuration-settings model=$modelName ` 
-       --configuration-settings auth.tenantId=$entraTenantId ` 
+       --configuration-settings auth.tenantId=$tenantId ` 
        --configuration-settings auth.clientId=$entraClientId ` 
        --configuration-settings ingress.domainname=$domainName ` 
        --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
