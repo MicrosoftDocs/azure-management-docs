@@ -54,7 +54,7 @@ Enable-TlsCipherSuite -Name "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384"
 Enable-TlsCipherSuite -Name "TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256"
 ```
 
-### Enable cipher suites with manual Registry edit
+### Enable cipher suites with manual registry edit
 
 1. Navigate to the registry key: `HKLM\SYSTEM\CurrentControlSet\Control\Cryptography\Configuration\Local\SSL\00010002`.
 1. Edit the 'Functions' `REG_MULTI_SZ` value to add the required cipher suites to the list (with each cipher suite on its own line).
