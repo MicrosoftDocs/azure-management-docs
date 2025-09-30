@@ -82,14 +82,14 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    $gpu_enabled = "true" # set to false if no GPU nodes 
    $localextname = "edgeragdemo"  
    $autoUpgrade = "false" 
+   $extension = "microsoft.arc.rag" # do not change    
+   $n = "arc-rag" # do not change
 
    # Set Entra ID app registration values
    $domainName = "arcrag.contoso.com" # Edit to match the domain used in your registration  
-   $entraClientId(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
-   $tenantId(az account show --query tenantId --output tsv)    
+   $entraAppId = $(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
+   $tenantId = $(az account show --query tenantId --output tsv)    
 
-   $extension = "microsoft.arc.rag" # do not change    
-   $n = "arc-rag" # do not change
    ```
 
 1. Connect to Azure and AKS:
@@ -100,7 +100,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --tenant $tenantId    
    az aks get-credentials `
       --resource-group $rg `
-      --name $cluster `
+      --name $k8scluster `
       --overwrite-existing 
    ``` 
 
@@ -187,7 +187,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --configuration-settings AgentOperationTimeoutInMinutes=30 ` 
        --configuration-settings model=$modelName ` 
        --configuration-settings auth.tenantId=$tenantId ` 
-       --configuration-settings auth.clientId=$entraClientId ` 
+       --configuration-settings auth.clientId=$entraAppId ` 
        --configuration-settings ingress.domainname=$domainName ` 
        --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
    ```
