@@ -76,7 +76,7 @@ The extension is missing the HandlerManifest.json file. This can happen if the e
     - Navigate to `/var/lib/waagent/`
     - Delete the folder corresponding to the extension
 
-1. Uninstall the extension from Azure and then reinstall it.
+2. Uninstall the extension from Azure and then reinstall it.
 
 ## Next steps
 
