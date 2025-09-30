@@ -14,7 +14,7 @@ The Azure Connected Machine agent for Linux and Windows communicates outbound se
 To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc Private Link Scope](../private-link-security.md).
 
 > [!NOTE]
-> Azure Arc-enabled servers doesn't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateway.
+> Azure Arc-enabled servers don't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateway.
 
 If outbound connectivity is restricted by your firewall or proxy server, make sure the URLs and service tags listed here aren't blocked.
 
@@ -122,11 +122,25 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 
 ---
 
-### Transport Layer Security 1.2 protocol
+### Cryptographic protocols
 
-To ensure the security of data in transit to Azure, we strongly encourage you to configure machine to use Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable and while they still currently work to allow backwards compatibility, they are **not recommended**. 
+To ensure the security of data in transit to Azure, we strongly encourage you to configure machines to use Transport Layer Security (TLS) 1.2 and 1.3. Older versions of TLS/Secure Sockets Layer (SSL) have been found to be vulnerable, and while they still currently work to allow backwards compatibility, they are **not recommended**.
 
-The SQL Server enabled by Azure Arc endpoints located at *.\<region\>.arcdataservices.com only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
+Starting from version 1.56 of the Connected Machine agent (Windows only), the following cipher suites must be configured for at least one of the recommended TLS versions:
+
+* TLS 1.3 (suites in server-preferred order):
+
+  * TLS_AES_256_GCM_SHA384 (0x1302)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
+  * TLS_AES_128_GCM_SHA256 (0x1301)   ECDH secp256r1 (eq. 3072 bits RSA)   FS
+
+* TLS 1.2 (suites in server-preferred order):
+
+  * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
+  * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)   ECDH secp256r1 (eq. 3072 bits RSA)   FS
+
+For more information, see [Windows TLS configuration issues](../troubleshoot-networking.md#windows-tls-configuration-issues).
+
+The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` only support TLS 1.2 and 1.3. Only Windows Server 2012 R2 and higher have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
 |Platform/Language | Support | More Information |
 | --- | --- | --- |
