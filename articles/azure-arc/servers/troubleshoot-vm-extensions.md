@@ -71,7 +71,7 @@ The extension is missing the HandlerManifest.json file. This can happen if the e
     For Windows machines:
     - Navigate to `C:\Packages\Plugins\`
     - Delete the folder corresponding to the extension
-   
+    
     For Linux machines:
     - Navigate to `/var/lib/waagent/`
     - Delete the folder corresponding to the extension
