@@ -235,6 +235,8 @@ If the bulk deployment isn't successful, there are two types of failures: comple
 The script `bulk_deployment.ps1` enables you to deploy an application to multiple targets in a single step, eliminating the need to run multiple commands for bulk review, publishing, and deployment. 
 
 To use the script, provide the following details in an *input.json* file:
+
+```json
 {
     "resourceGroup": "$rg",
     "subscriptionId": "$subId",
@@ -256,6 +258,7 @@ To use the script, provide the following details in an *input.json* file:
     "solutionConfiguration": "<configuration for all targets>.yaml"    
     "skipReview": true
 }
+```
 
 The `skipReview` flag can be used to bypass the review process and publish the solution directly. In case this parameter is set to `false`, the script executes the review command and downloads the reviewed targets to a file. This allows inspecting the targets before proceeding further.
 
