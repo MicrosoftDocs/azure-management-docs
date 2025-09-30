@@ -7,11 +7,11 @@ ms.topic: overview
 ms.date: 09/30/2025
 ---
 
-# Workload Orchestration SDK Overview
+# Workload orchestration SDK overview
 
 The Azure workload orchestration SDK provides programmatic access to workload orchestration capabilities, enabling you to automate tasks like schema creation, target configuration, solution deployment, and context management, using familiar programming languages. This SDK is designed to simplify integration with orchestration workflows and improve developer productivity across environments.
 
-## Supported Languages
+## Supported languages
 
 The SDK is available in the following languages:
 
@@ -29,7 +29,7 @@ Each implementation includes language-specific examples and utilities to help yo
 - Support for asynchronous operations and automatic retries
 - Comprehensive logging for enhanced observability
 
-## Getting started 
+## Get started 
 
 To begin using the workload orchestration SDK:
 
