@@ -50,6 +50,34 @@ For general troubleshooting, try the following steps. These steps apply to all V
 
 1. Review the system logs. Check for other operations that could interfere with the extension, such as a long-running installation of another application that requires exclusive package manager access.
 
+## Known issues
+
+### HandlerManifest.json does not exist
+
+The extension is stuck in a `Deleting` state. In the extension service log (`gc_ext.log`), you see the following error:
+
+```
+HandlerManifest.json does not exist
+```
+
+**Analysis**
+
+The extension is missing the HandlerManifest.json file. This can happen if the extension was not uninstalled properly.
+
+**Solution**
+
+1. Manually remove the extension from the machine. Some extensions may require additional cleanup steps. Refer to extension-specific documentation in the [extensions table](manage-vm-extensions.md#extensions) for further guidance.
+
+    For Windows machines:
+    - Navigate to `C:\Packages\Plugins\`
+    - Delete the folder corresponding to the extension
+   
+    For Linux machines:
+    - Navigate to `/var/lib/waagent/`
+    - Delete the folder corresponding to the extension
+
+1. Uninstall the extension from Azure and then reinstall it.
+
 ## Next steps
 
 If you don't see your problem here or you can't resolve your issue, try one of the following channels for support:
