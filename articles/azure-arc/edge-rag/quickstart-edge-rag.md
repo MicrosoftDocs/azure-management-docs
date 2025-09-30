@@ -25,7 +25,7 @@ Before you begin, make sure you have:
 
 - An active Azure subscription
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
-- Azure CLI installed ([Install Azure CLI](/cli/azure/install-azure-cli)) locally unless you plan to use Azure Cloud Shell
+- [Azure CLI installed](/cli/azure/install-azure-cli) locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli)
 - Edge Rag registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
 
 ## Open Azure Cloud Shell or Azure CLI
@@ -41,9 +41,11 @@ az login
 Create a resource group to contain the AKS cluster, node pool, and Edge RAG resources.
 
 ```azurepowershell
-$rg = "edge-rag-aks-rg" `
-$location = "eastus" `
-az group create --name $rg --location $location
+$rg = "edge-rag-aks-rg" 
+$location = "eastus"
+az group create `
+     --name $rg `
+     --location $location
 ```
 
 ## Create and configure an AKS cluster
@@ -54,7 +56,12 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
    ```azurepowershell
    $k8scluster =  "edge-rag-aks"  
-   az aks create --resource-group $rg --name $k8scluster --node-count 3 --generate-ssh-keys
+   az aks create `
+      --resource-group $rg `
+      --name $k8scluster `
+      --node-vm-size Standard_NC8_A16 `
+      --node-count 3 `
+      --generate-ssh-keys
    ```
 
 1. Set the rest of the following values as needed and then run the command:
@@ -76,14 +83,19 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    $n = "arc-rag" # do not change
    ```
 
-1. Connect to Azure and AKS. 
+1. Connect to Azure and AKS:
 
    ```azurepowershell
-   az login --scope https://management.core.windows.net//.default --tenant $tenantId `   
-   az aks get-credentials --resource-group $rg --name $cluster --overwrite-existing 
+   az login `
+      --scope https://management.core.windows.net//.default `
+      --tenant $tenantId    
+   az aks get-credentials `
+      --resource-group $rg `
+      --name $cluster `
+      --overwrite-existing 
    ``` 
 
-1. Install the NVIDIA GPU operator on the cluster.
+1. Install the NVIDIA GPU operator on the cluster:
 
    ```azurepowershell
    helm repo add nvidia https://helm.ngc.nvidia.com/nvidia 
@@ -91,13 +103,16 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.2 
    ```
  
-1. Connect the AKS cluster to Azure Arc.
+1. Connect the AKS cluster to Azure Arc:
 
    ```azurepowershell
-   az connectedk8s connect --resource-group $rg --location $location --name $k8scluster  
+   az connectedk8s connect `
+      --resource-group $rg ` 
+      --location $location ` 
+      --name $k8scluster  
    ```
 
-1. Install the Kubernetes-native certificate management controller by running the following command.
+1. Install the Kubernetes-native certificate management controller by running the following command:
  
    ```azurepowershell
    az k8s-extension create `   
@@ -106,7 +121,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       -t connectedClusters `    
       --scope cluster `
       --name cert-manager `    
-      --release-namespace cert-manager    
+      --release-namespace cert-manager `    
       --release-train preview `   
       --extension-type Microsoft.iotoperations.platform `    
       --debug 
@@ -143,18 +158,11 @@ az aks nodepool add `
     --mode User
  ```
 
-If the node pool creation fails with a **DenyVMsWithoutTrustedLaunchEnabled** policy error, add the following tags to the command and rerun:  
-
-```azurepowershell
-SkipDenyVMsWithoutTrustedLaunchEnabled : true 
-azsecpack : nonprod 
-```
-
 ## Deploy Edge RAG on AKS
 
 Complete the following steps to deploy the Edge RAG extension onto your AKS cluster.
 
-1. Deploy the Edge RAG extension by running the following command.
+1. Deploy the Edge RAG extension by running the following command:
 
    ```azurepowershell
    az k8s-extension create `    
@@ -172,7 +180,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --configuration-settings auth.tenantId=$entraTenantId ` 
        --configuration-settings auth.clientId=$entraClientId ` 
        --configuration-settings ingress.domainname=$domainName ` 
-       --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz ` 
+       --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
    ```
 
 1. Get the load balancer VIP by running the following command:
@@ -184,11 +192,12 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
    Look for:
    ```markdown
    status:    
-   loadBalancer:   
-      ingress:    
-      - ip: <load_balancer_ip>    
+     loadBalancer:   
+       ingress:    
+        - ip: <load_balancer_ip>    
       ipMode: VIP 
    ```
+
 ## Connect to the developer portal
 
 Update your host file on your local machine to connect to the developer portal for Edge RAG.
@@ -196,7 +205,7 @@ Update your host file on your local machine to connect to the developer portal f
 1. On your local machine, open Notepad in Administrator mode. 
 1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the hosts file, set extension type to **All files**.
 
-   Add this line at the end of the file where you replace `load_balancer_ip` with the load balancer IP and save. 
+   Add this following line at the end of the file where you replace `load_balancer_ip` with the load balancer IP and save the file:
 
    `<load_balancer_ip> arcrag.contoso.com` 
 
@@ -207,7 +216,10 @@ Update your host file on your local machine to connect to the developer portal f
 To remove the resources created in this quickstart, run:
 
 ```azurepowershell
-az group delete --name $rg--yes --no-wait
+az group delete `
+   --name $rg `
+   --yes `
+   --no-wait
 ```
 
 ## Next step
