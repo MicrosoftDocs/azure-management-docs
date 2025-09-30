@@ -4,14 +4,38 @@ description: Release notes for Workload Orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: release-notes
-ms.date: 09/05/2025
+ms.date: 09/30/2025
 ---
 
 # Release notes for workload orchestration
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
-[!INCLUDE [cli-version-note](includes/cli-version-note.md)]
+## September 2025 release
+
+### New features
+
+- [Bulk configuration and review](bulk-deployment.md): You can set configurations for multiple targets and review all at once through CLI, with the flexibility of applying the same configuration to all or individual configurations per target. Upon command execution, the output lists the completion status for each target, along with detailed error logs for troubleshooting.
+- [Workload Orchestration SDK](workload-orchestration-sdk.md): The Azure Workload Orchestration SDK is now available in 4 languages - Python, Java, JavaScript and Golang, enabling developers to automate tasks programmatically. Key capabilities include:
+    - Creation and management of context, targets, schema and solution templates
+    - Configuration, publishing and deployment of solutions
+    - Support for asynchronous operations and automatic retries
+    - Comprehensive logging for enhanced observability
+
+### Improvements in CLI
+
+- The Azure CLI Workload Orchestration extension has been updated to version **4.0.0**, introducing bulk capabilities for review and configuration tasks, along with additional flexibility for bulk publishing operations. It also utilizes the latest API version 2025-08-01. To update to the latest version of extension, simply run:
+
+```bash
+az extension update --name workload-orchestration
+```
+
+- The existing bulk publish CLI functionality is upgraded to allow users to bypass the review step and achieve configuration and publishing of a solution to multiple targets in a single command. The list of targets can include a mix of those that have been already reviewed and those for which they intend to bypass the review process.
+
+### Bug fixes
+
+- Updated the Workload Orchestration portal to appropriately mask site details from users having access to child targets but not the respective parent site.
+- Improved configuration status accuracy across portal views.
 
 ## August 2025 release
 
