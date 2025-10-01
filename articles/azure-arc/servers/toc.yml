@@ -191,10 +191,16 @@
     items:
     - name: Agent connection issues
       href: troubleshoot-agent-onboard.md
+      displayName: troubleshoot
     - name: VM Extension issues
       href: troubleshoot-vm-extensions.md
+      displayName: troubleshoot
     - name: Connectivity loss
       href: troubleshoot-connectivity.md
+      displayName: troubleshoot, disconnected, offline
+    - name: Networking issues
+      href: troubleshoot-networking.md
+      displayName: troubleshoot
 - name: Security
   items:
   - name: Security overview
