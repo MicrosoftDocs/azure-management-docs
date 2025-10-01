@@ -1,68 +1,66 @@
 ---
-title: Signing container images with Notation and Trusted Signing (Preview)
-description: Learn how to sign and verify container images and OCI artifacts in Azure Container Registry using Notary Project tooling Notation and Trusted Signing for enhanced security and compliance.
+title: Sign Container Images with Notation and Trusted Signing (Preview)
+description: Learn how to sign and verify container images and OCI artifacts in Azure Container Registry by using Notary Project tooling, Notation, and Trusted Signing.
 author: yizha1
 ms.author: yizha1
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/5/2025
-# Customer intent: As a developer, I want to sign and verify container images, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
+# Customer intent: As a developer, I want to sign and verify container images so that I can ensure the authenticity and integrity of those images throughout their lifecycle.
 ---
 
-# Signing container images with Notation and Trusted Signing (Preview)
+# Sign container images with Notation and Trusted Signing (preview)
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and offers various scenarios.
+This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-This article focuses on signing with Notary Project tooling, Notation and [Trusted Signing](/azure/trusted-signing/overview):
+This article focuses on signing with Notary Project tooling, Notation, and [Trusted Signing](/azure/trusted-signing/overview):
 
-- What you'll learn here: How to use Notation CLI to sign artifacts using Microsoft Trusted Signing.
-- Where it fits: Trusted Signing is an alternative to Azure Key Vault (AKV). While AKV gives organizations full control of certificate lifecycle management, Trusted Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
-- Why it matters: Trusted Signing simplifies the developer experience while providing strong identity assurance, helping teams reduce operational complexity without compromising security.
+- **What you'll learn here**: How to use the Notation command-line interface (CLI) to sign artifacts by using Trusted Signing.
+- **Where it fits**: Trusted Signing is an alternative to Azure Key Vault. Although Key Vault gives organizations full control of certificate lifecycle management, Trusted Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
+- **Why it matters**: Trusted Signing simplifies the developer experience while providing strong identity assurance. It helps teams reduce operational complexity without compromising security.
 
 ## Prerequisites
 
+Before you can sign and verify container images with Notation and Trusted Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Trusted Signing, and setting up your development environment with the Azure CLI.
+
 > [!NOTE]
-> At this time Trusted Signing is only available to organizations based in the USA and Canada that have a verifiable history of three years or more.
+> At this time, Trusted Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
 
-Before you can sign and verify container images with Notation and Trusted Signing, you'll need to set up the required Azure resources and install the necessary tools. This section walks you through preparing your Azure Container Registry, configuring Trusted Signing, and setting up your development environment with the Azure CLI.
+### Prepare container images in Azure Container Registry
 
-### Prepare container images in your Azure Container Registry (ACR)
-
-- Create or use an [Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts and signatures.
-- Push or use a container image in your ACR.
+1. Create or use a [container registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts, and signatures.
+1. Push or use a container image in your container registry.
 
 ### Set up Trusted Signing
 
-- Set up [Trusted Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription
+Set up a [Trusted Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription.
 
-> [!IMPORTANT]
-> Your certificate profile must include **country (C)**, **state or province (ST or S)**, and **organization (O)** in the certificate subject, as required by the [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints).
+Your certificate profile must include **country (C)**, **state or province (ST or S)**, and **organization (O)** in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
-### Set up Azure CLI
+### Set up the Azure CLI
 
-- Install [Azure CLI](/cli/azure/install-azure-cli), or use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/)
+Install the [Azure CLI](/cli/azure/install-azure-cli), or use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
 
-## Install Notation CLI and Trusted Signing plugin
+## Install the Notation CLI and Trusted Signing plugin
 
-> [!NOTE]
-> This guide runs commands on Linux amd64 and Windows as examples.
+This guide runs commands on Linux AMD64 and Windows as examples.
 
-1. **Install Notation CLI v1.3.2**
+1. Install Notation CLI v1.3.2:
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
     # Validate the checksum
     EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
     echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
-    # Continue if the sha256sum matches
+    # Continue if sha256sum matches
     tar xvzf notation.tar.gz
     cp ./notation /usr/local/bin
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     # Download the Windows release
@@ -72,26 +70,26 @@ Before you can sign and verify container images with Notation and Trusted Signin
     if ((Get-FileHash notation.zip -Algorithm SHA256).Hash -ne $EXPECTED_SHA256SUM) { Write-Error "Checksum mismatch"; exit 1 }
     # Expand and install
     Expand-Archive notation.zip -DestinationPath .
-    # Create install location and move the binary to it
+    # Create the installation location and move the binary to it
     New-Item -ItemType Directory -Force -Path "$Env:ProgramFiles\Notation" | Out-Null
     Move-Item -Path ".\notation\notation.exe" -Destination "$Env:ProgramFiles\Notation\notation.exe"
-    # Add to PATH for current session
+    # Add to PATH for the current session
     $env:PATH = "${Env:ProgramFiles}\Notation;${Env:PATH}"
     ```
 
-    ---
+   ---
 
     For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
 
-2. **Install the Trusted Signing plugin**
+2. Install the Trusted Signing plugin:
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz" --sha256sum 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
@@ -101,15 +99,15 @@ Before you can sign and verify container images with Notation and Trusted Signin
 
     Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
 
-3. **Verify plugin installation**
+3. Verify plugin installation:
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     notation plugin ls
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     notation plugin ls
@@ -128,13 +126,10 @@ Before you can sign and verify container images with Notation and Trusted Signin
 
 Set the following environment variables for use in subsequent commands. Replace placeholders with your actual values.
 
-> [!NOTE]
-> When setting up **Trusted Signing environment variables**, you can find the required values in the Azure portal:
->
-> - **Trusted Signing account information:**
-> `Portal > Account name > Overview`
-> - **Certificate profile information:**
-> `Portal > Account name > Objects > Certificate Profiles`
+You can find the required values in the Azure portal:
+
+- For Trusted Signing account information, go to your account, and then select **Overview**.
+- For certificate profile information, go to your account, and then select **Objects** > **Certificate Profiles**.
 
 # [Linux](#tab/linux)
 
@@ -150,7 +145,7 @@ TS_SIGNING_ROOT_CERT="https://www.microsoft.com/pkiops/certs/Microsoft%20Enterpr
 TS_TSA_URL="http://timestamp.acs.microsoft.com/"
 TS_TSA_ROOT_CERT="http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
-# ACR and image environment variables
+# Azure Container Registry and image environment variables
 ACR_SUB_ID="<acr-subscription-id>"
 ACR_RG=<acr-resource-group>
 ACR_NAME=<registry-name>
@@ -174,7 +169,7 @@ $env:TS_SIGNING_ROOT_CERT = "https://www.microsoft.com/pkiops/certs/Microsoft%20
 $env:TS_TSA_URL = "http://timestamp.acs.microsoft.com/"
 $env:TS_TSA_ROOT_CERT = "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
-# ACR and image environment variables (current session)
+# Azure Container Registry and image environment variables (current session)
 $env:ACR_SUB_ID = "<acr-subscription-id>"
 $env:ACR_RG = "<acr-resource-group>"
 $env:ACR_NAME = "<registry-name>"
@@ -188,7 +183,7 @@ $env:IMAGE = "$($env:ACR_LOGIN_SERVER)/$($env:REPOSITORY):$($env:TAG)"
 
 ## Sign in to Azure
 
-Use the Azure CLI to sign in with your **user identity**:
+Use the Azure CLI to sign in with your user identity:
 
 # [Linux](#tab/linux)
 
@@ -207,17 +202,16 @@ $USER_ID = az ad signed-in-user show --query id -o tsv
 ---
 
 > [!NOTE]
-> This guide demonstrates signing in with a user account.  
-> For other identity options, including managed identity, see [Authenticate with the Azure CLI](/cli/azure/authenticate-azure-cli).
+> This guide demonstrates signing in with a user account. For other identity options, including a managed identity, see [Authenticate to Azure by using the Azure CLI](/cli/azure/authenticate-azure-cli).
 
-## Assign permissions for ACR and Trusted Signing
+## Assign permissions for Azure Container Registry and Trusted Signing
 
-Grant your identity the necessary roles to access ACR:
+Grant your identity the necessary roles to access Azure Container Registry:
 
-- For **ABAC-enabled** registries, assign:
+- For registries enabled with attribute-based access control (ABAC), assign:
   - `Container Registry Repository Reader`
   - `Container Registry Repository Writer`
-- For **non-ABAC** registries, assign:
+- For non-ABAC registries, assign:
   - `AcrPull`
   - `AcrPush`
 
@@ -237,7 +231,7 @@ az role assignment create --role "Container Registry Repository Writer" --assign
 
 ---
 
-Assign the role to `Trusted Signing Certificate Profile Signer` to your identity to sign with Trusted Signing:
+Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign with Trusted Signing:
 
 # [Linux](#tab/linux)
 
@@ -258,10 +252,10 @@ az role assignment create --assignee $USER_ID --role "Trusted Signing Certificat
 # [Linux](#tab/linux)
 
 ```bash
-# Authenticate to ACR
+# Authenticate to Azure Container Registry
 az acr login --name $ACR_NAME
 
-# Download the Timestamping root certificate
+# Download the time-stamping root certificate
 curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
 
 # Sign the image
@@ -271,10 +265,10 @@ notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-ro
 # [Windows](#tab/windows)
 
 ```powershell
-# Authenticate to ACR
+# Authenticate to Azure Container Registry
 az acr login --name $Env:ACR_NAME
 
-# Download the Timestamping root certificate
+# Download the time-stamping root certificate
 Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
 
 # Sign the image
@@ -285,9 +279,9 @@ notation sign --signature-format cose --timestamp-url $Env:TS_TSA_URL --timestam
 
 Key flags explained:
 
-- `--signature-format cose`: Uses COSE format for signatures.
-- `--timestamp-url`: Use the timestamping server that Trusted Signing supports.
-- `--plugin-config`: Passes config to the Trusted Signing plugin.
+- `--signature-format cose`: Uses CBOR Object Signing and Encryption (COSE) format for signatures.
+- `--timestamp-url`: Uses the time-stamping server that Trusted Signing supports.
+- `--plugin-config`: Passes configuration to the Trusted Signing plugin.
 
 List signed images and signatures:
 
@@ -315,9 +309,9 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
 ## Verify a container image
 
-1. **Download and add root certificates**
+1. Download and add root certificates:
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
@@ -330,7 +324,7 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
     notation cert ls
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     Invoke-WebRequest -Uri $Env:TS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
@@ -345,11 +339,9 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
     ---
 
-2. **Configure trust policy**
+2. Create a trust policy JSON file:
 
-    Create a trust policy JSON file:
-
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     cat <<EOF > trustpolicy.json
@@ -372,14 +364,14 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
     EOF
     ```
 
-    Import and check the policy:
+   Import and check the policy:
 
     ```bash
     notation policy import trustpolicy.json
     notation policy show
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     @"
@@ -402,24 +394,24 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
     "@ | Out-File -FilePath trustpolicy.json -Encoding utf8
     ```
 
-    Import and check the policy:
+   Import and check the policy:
 
     ```powershell
     notation policy import trustpolicy.json
     notation policy show
     ```
 
-    ---
+   ---
 
-3. **Verify the image**
+3. Verify the image:
 
-    # [Linux](#tab/linux)
+   # [Linux](#tab/linux)
 
     ```bash
     notation verify $IMAGE
     ```
 
-    # [Windows](#tab/windows)
+   # [Windows](#tab/windows)
 
     ```powershell
     notation verify $Env:IMAGE
@@ -427,16 +419,16 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
     ---
 
-    Example output:
+   Example output:
 
     ```text
     Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
     ```
 
-    If verification fails, ensure your trust policy and certificates are configured correctly.
+   If verification fails, ensure that your trust policy and certificates are configured correctly.
 
 ## Related content
 
-- For signing in GitHub workflow, see [Sign container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
-- For verification in GitHub workflow, see [Verify container images in GitHub workflow with Notation and Trusted Signing (Preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
-- For verification on AKS, see [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
+- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
+- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
+- For verification on Azure Kubernetes Service (AKS), see [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
