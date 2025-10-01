@@ -1,19 +1,4 @@
 {
   "redirections": [
-    {
-      "source_path": "articles/azure-arc/container-storage/ingest-policies.md",
-      "redirect_url": "/previous-versions/azure/azure-arc/container-storage/ingest-policies",
-      "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/azure-arc/container-storage/cloud-ingest-edge-volume-configuration.md",
-      "redirect_url": "/previous-versions/azure/azure-arc/container-storage/cloud-ingest-edge-volume-configuration",
-      "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/azure-arc/container-storage/alternate-onelake.md",
-      "redirect_url": "/previous-versions/azure/azure-arc/container-storage/alternate-onelake",
-      "redirect_document_id": false
-    }
   ]
 }
