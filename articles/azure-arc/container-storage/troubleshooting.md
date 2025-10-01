@@ -33,7 +33,7 @@ Error: [ InnerError: [Helm installation failed :  : InnerError [release azure-ar
 ```
 
 This error typically indicates that one or more Kubernetes nodes do not meet the system requirements.
-Please review [prerequisites](prerequisites.md).
+Please review [Prepare Linux for Edge Volumes](howto-prepare-linux-edge-volumes.md).
 
 ## Getting help
 
