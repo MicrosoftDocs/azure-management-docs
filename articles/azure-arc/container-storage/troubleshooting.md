@@ -46,6 +46,5 @@ If you continue to experience issues:
 
 ## See also
 
-- [Monitor your deployment](monitor-deployment-edge-volumes.md)
 - [Configure volumes and subvolumes](volumes-subvolumes.md)
 - [Review best practices](storage-options.md)
