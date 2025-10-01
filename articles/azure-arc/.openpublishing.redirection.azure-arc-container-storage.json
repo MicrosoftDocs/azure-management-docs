@@ -214,6 +214,11 @@
       "source_path": "articles/azure-arc/container-storage/howto-configure-cloud-ingest.md",
       "redirect_url": "/azure/azure-arc/container-storage/howto-configure-cloud-ingest-subvolumes",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-arc/container-storage/previous-versions.md",
+      "redirect_url": "/azure/azure-arc/container-storage/release-notes",
+      "redirect_document_id": false
     }
   ]
 }
