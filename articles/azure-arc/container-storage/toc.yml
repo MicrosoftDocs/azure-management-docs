@@ -9,69 +9,63 @@ items:
   items:
   - name: Install Container Storage on a single-node Ubuntu cluster
     href: quickstart-install.md
+- name: Install the Extension
+  items:
+  - name: Prepare Linux
+    items:
+    - name: Linux prerequisites
+      href: howto-prepare-linux-edge-volumes.md
+    - name: Single-node cluster
+      href: howto-single-node-cluster-edge-volumes.md
+    - name: Multi-node cluster
+      href: howto-multi-node-cluster-edge-volumes.md
+  - name: Install extension
+    href: howto-install-edge-volumes.md
+- name: Configure Edge Volumes
+  items:
+  - name: Volumes and subvolumes overview
+    href: volumes-subvolumes.md
+  - name: Configure Local Shared volumes
+    href: howto-configure-local-shared-edge-volumes.md
+  - name: Configure Cloud Ingest subvolumes
+    href: howto-configure-cloud-ingest-subvolumes.md
+  - name: Configure Cloud Mirror subvolumes
+    href: howto-configure-cloud-mirror-subvolumes.md
+  - name: Using Edge Volumes together
+    href: storage-options.md
+  - name: How to
+    items:
+    - name: Control ingest data flow
+      href: howto-ingest-data-flow.md
+    - name: Generate blob index and metadata tags
+      href: howto-blob-index-metadata-tags.md
+    - name: Map paths on Edge Volumes
+      href: howto-map-names.md
+- name: Set up authentication
+  items:
+  - name: Configure OneLake Identity
+    href: howto-configure-onelake-identity.md
+  - name: Configure Workload Identity
+    href: howto-configure-workload-identity.md
+- name: Monitor deployments
+  items:
+  - name: Monitor with Azure Monitor
+    href: howto-azure-monitor-kubernetes.md
+  - name: Monitor with Prometheus and Grafana
+    href: howto-third-party-monitoring.md
+- name: Understand disconnected operations
+  href: disconnected-operations.md
 - name: Tutorials
   items:
-  - name: Configure a Local Shared Edge Volume
-    href: tutorial-configure-edge-volume.md
-- name: Edge Volumes
-  items:
-  - name: Edge Volumes overview
-    href: edge-volumes-overview.md 
-  - name: How-to
-    items:
-    - name: Prepare Linux
-      items:
-      - name: Prepare Linux prerequisites
-        href: prepare-linux-edge-volumes.md
-      - name: Prepare Linux using a single-node cluster
-        href: single-node-cluster-edge-volumes.md
-      - name: Prepare Linux using a multi-node cluster
-        href: multi-node-cluster-edge-volumes.md
-    - name: Install extension
-      href: install-edge-volumes.md
-    - name: Configure your volumes
-      items:
-      - name: Local Shared Edge Volumes
-        href: local-shared-edge-volumes.md
-      - name: Cloud Ingest Edge Volumes
-        items:
-        - name: Cloud Ingest Edge Volumes configuration
-          href: cloud-ingest-edge-volume-configuration.md
-        - name: Alternative OneLake configuration
-          href: alternate-onelake.md
-        - name: Cloud Ingest Edge Volumes with Workload Identity  
-          href: cloud-ingest-edge-volumes-with-workload-identity.md
-    - name: Monitor deployment
-      items:
-      - name: Monitor Edge Volumes deployment
-        href: monitor-deployment-edge-volumes.md
-      - name: Non-Microsoft monitoring with Prometheus and Grafana
-        href: third-party-monitoring.md
-      - name: Azure Monitor and Kubernetes monitoring
-        href: azure-monitor-kubernetes.md
-  - name: Conceptual
-    items:
-    - name: Volumes and subvolumes
-      href: volumes-subvolumes.md
-    - name: Map file to object path names
-      href: map-names.md
-    - name: Storage options
-      href: storage-options.md
-    - name: Set ingest policy
-      href: ingest-policies.md
-    - name: Ingest data flow
-      href: ingest-data-flow.md
-    - name: Blob index and metadata tags
-      href: blob-index-metadata-tags.md
-    - name: Disconnected operations
-      href: disconnected-operations.md
+  - name: Create a Local Shared Edge Volume
+    href: tutorial-create-local-shared-volume.md
 - name: Resources
   items:
-  - name: Azure Arc Jumpstart scenarios
-    href: jumpstart.md
   - name: Release notes
     href: release-notes.md
   - name: FAQ
     href: faq.yml
+  - name: Azure Arc Jumpstart scenarios
+    href: jumpstart.md
   - name: Support and feedback
     href: support-feedback.md

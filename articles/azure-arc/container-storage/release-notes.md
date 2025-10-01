@@ -15,6 +15,17 @@ ms.custom:
 
 This article provides information about new features in Azure Container Storage enabled by Azure Arc.
 
+## Version 2.8.2
+
+- Public Preview of Mirror subvolumes
+- New CRD for Mirror subvolumes
+- New CRD for Ingest subvolumes
+- Performance improvements
+- Security updates and bug fixes
+
+> [!NOTE]
+> In releases 2.7 and earlier, there was an **edgeSubvolume** CRD. To view the edgeSubvolume CRD documentation, see [Cloud Ingest Edge Volumes configuration](/previous-versions/azure/azure-arc/container-storage/cloud-ingest-edge-volume-configuration) on the previous versions site.
+
 ## Version 2.7.1 
 
 Security updates and bug fixes.
