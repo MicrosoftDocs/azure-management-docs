@@ -1,21 +1,16 @@
 ---
-title: Local Shared Edge Volume configuration for Edge Volumes
-description: Learn about Local Shared Edge Volume configuration for Edge Volumes.
+title: Configure Local Shared volumes
+description: Configure Local Shared volumes for Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
 ms.topic: how-to
-ms.custom: linux-related-content
-ms.date: 07/18/2025
+ms.date: 09/27/2025
 # Customer intent: "As a Kubernetes administrator, I want to configure Local Shared Edge Volumes for my clusters, so that I can provide highly available local storage for applications requiring temporary and persistent data without relying on cloud infrastructure."
 ---
 
-# Local Shared Edge Volumes
+# Configure Local Shared volumes
 
-This article describes the configuration for Local Shared Edge Volumes (highly available, durable local storage).
-
-## What is a Local Shared Edge Volume?
-
-The *Local Shared Edge Volumes* feature provides highly available, failover-capable storage, local to your Kubernetes cluster. This shared storage type remains independent of cloud infrastructure, making it ideal for scratch space, temporary storage, and locally persistent data that might be unsuitable for cloud destinations.
+This article describes how to configure Local Shared Edge Volumes (highly available, durable local storage) in Azure Container Storage enabled by Azure Arc.
 
 ## Create a Local Shared Edge Volumes Persistent Volume Claim (PVC) and configure a pod against the PVC
 
@@ -117,4 +112,4 @@ After you complete the previous steps, begin monitoring your deployment using Az
 
 ## Next steps
 
-[Monitor your Edge Volumes deployment](monitor-deployment-edge-volumes.md)
+[Monitor your Edge Volumes deployment](howto-azure-monitor-kubernetes.md)

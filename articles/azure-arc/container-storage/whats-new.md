@@ -21,9 +21,9 @@ This article is updated regularly with blog posts, videos, and case studies feat
 
 |Month  | News  |
 |---------|---------|
+|September | Public Preview of Mirror subvolumes, introducing cloud to edge data synchronization capabilities.       |
 |May     | Sample: [Jumpstart Drop | Azure Container Storage enabled by Azure Arc: Cloud Ingest Edge Volume on a Single Node Ubuntu K3s Cluster with an SFTP Front End](https://jumpstart.azure.com/azure_jumpstart_drops?drop=Azure%20Container%20Storage%20enabled%20by%20Azure%20Arc%20SFTP&fs=true)       |
 |February     |  Video: [Azure Device Registry and Storage | But can it HA?](https://www.youtube.com/watch?app=desktop&v=NceN83tjaL4&ab_channel=ArcJumpstart)       |
-
 
 ## 2024
 

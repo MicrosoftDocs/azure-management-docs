@@ -12,7 +12,7 @@ zone_pivot_groups: platform-select-with-other
 
 # Prepare Linux for Edge Volumes using a single-node or two-node cluster
 
-This article describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](prepare-linux-edge-volumes.md#prerequisites).
+This article describes how to prepare Linux using a single-node or two-node cluster, and assumes you [fulfilled the prerequisites](howto-prepare-linux-edge-volumes.md#prerequisites).
 
 ::: zone pivot="aks-other"
 ## Prepare Linux with AKS enabled by Azure Arc
@@ -58,4 +58,4 @@ The available platform options are production-like environments that Microsoft v
 
 ## Next steps
 
-[Install Azure Container Storage enabled by Azure Arc Edge Volumes](install-edge-volumes.md)
+[Install Azure Container Storage enabled by Azure Arc Edge Volumes](howto-install-edge-volumes.md)
