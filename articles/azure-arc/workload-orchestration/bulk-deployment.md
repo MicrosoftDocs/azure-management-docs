@@ -232,7 +232,7 @@ If the bulk deployment isn't successful, there are two types of failures: comple
 
 ### Bulk deployment script
 
-The script `bulk_deployment.ps1` enables you to deploy an application to multiple targets in a single step, eliminating the need to run multiple commands for bulk review, publishing, and deployment. 
+The script [bulk_deployment.ps1](https://github.com/Azure/workload-orchestration/blob/main/bulk_deployment.ps1) enables you to deploy an application to multiple targets in a single step, eliminating the need to run multiple commands for bulk review, publishing, and deployment. 
 
 To use the script, provide the following details in an *input.json* file:
 

@@ -15,8 +15,6 @@ items:
       href: service-group.md
     - name: Onboard using scripts
       href: onboarding-scripts.md
-    - name: Workload orchestration SDK
-      href: workload-orchestration-sdk.md
     expanded: true
   - name: Concepts
     items:
@@ -32,6 +30,8 @@ items:
       href: quickstart-solution-without-common-configuration.md
     - name: Create solution with common configurations
       href: quickstart-solution-with-common-configuration.md
+    - name: Workload orchestration SDK
+      href: workload-orchestration-sdk.md
   - name: Create solutions with dependencies
     items:
     - name: Create a solution with shared adapter dependency
