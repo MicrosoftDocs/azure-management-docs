@@ -32,8 +32,8 @@ From the driver machine, install and configure MetalLB for the Azure Arc Azure K
 	$sub = "<Subscription GUID>"
 	$rg = "<Resource Group name>"
 	$k8scluster = "<AKS Arc cluster name>"
-	az extension add -n k8s-runtime --upgrade 
 	$resourceuri = "subscriptions/$sub/resourceGroups/$rg/providers/Microsoft.Kubernetes/connectedClusters/$k8scluster"
+	az extension add -n k8s-runtime --upgrade
 	az k8s-runtime load-balancer enable --resource-uri $resourceuri
 	az k8s-runtime load-balancer create --load-balancer-name $lbName --resource-uri $resourceuri --addresses $ipRange --advertise-mode "ARP"
 	```

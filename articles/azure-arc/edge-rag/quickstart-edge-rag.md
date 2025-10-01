@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 09/29/2025
+ms.date: 09/30/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -23,10 +23,11 @@ If you don't have a service subscription, create a [free Azure account](https://
 
 Before you begin, make sure you have:
 
-- An active Azure subscription
+- An active Azure subscription.
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
-- [Azure CLI installed](/cli/azure/install-azure-cli) locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli)
+- Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge Rag registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
+- Application (client) ID and the directory or tenant ID. To get these values after registering Edge RAG, search for "app registration" in the [Azure portal](https://portal.azure.com/).
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -87,8 +88,8 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
    # Set Entra ID app registration values
    $domainName = "arcrag.contoso.com" # Edit to match the domain used in your registration  
-   $entraAppId = $(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
-   $tenantId = $(az account show --query tenantId --output tsv)    
+   $entraAppId = "<application ID>"  # Add the ID for your registered app   
+   $tenantId = "<tenant ID>" # Add the ID for your directory or tenant      
 
    ```
 
@@ -192,6 +193,8 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
    ```
 
+   Wait several minutes for the deployment to complete.
+
 1. Get the load balancer VIP by running the following command:
 
    ```azurepowershell
@@ -199,6 +202,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
    ```
 
    Look for:
+
    ```markdown
    status:    
      loadBalancer:   
@@ -212,17 +216,26 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 Update your host file on your local machine to connect to the developer portal for Edge RAG.
 
 1. On your local machine, open Notepad in Administrator mode. 
-1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the hosts file, set extension type to **All files**.
+1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the hosts file, set the extension type to **All files**.
 
-   Add this following line at the end of the file where you replace `load_balancer_ip` with the load balancer IP and save the file:
+1. Add the following line at the end of the file where you replace `load_balancer_ip` with the load balancer IP, and edit the domain to match the app registration:
 
    `<load_balancer_ip> arcrag.contoso.com` 
 
+   For example:
+
+   ```markdown
+   # Edge RAG developer portal
+   172.16.0.0 arcrag.contoso.com
+   ```
+
+1. Save the file.
 1. Go to the developer portal for Edge RAG at `https://arcrag.contoso.com`.
+1. Select **Get started**.
 
 ## Clean up resources
 
-To remove the resources created in this quickstart, run:
+If you're done trying out Edge RAG, remove the resources created in this quickstart by running the following command:
 
 ```azurepowershell
 az group delete `
@@ -235,5 +248,3 @@ az group delete `
 
 > [!div class="nextstepaction"]
 > [Add Data Source for Edge RAG](add-data-source.md)
-
----
