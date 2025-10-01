@@ -67,6 +67,8 @@ items:
     href: faq.yml
   - name: Azure Arc Jumpstart scenarios
     href: jumpstart.md
+  - name: Troubleshooting
+    href: troubleshooting.md
   - name: Support and feedback
     href: support-feedback.md
   - name: Previous versions
