@@ -17,51 +17,54 @@ ms.date: 07/18/2025
 
 The article describes how to prepare Linux for Edge Volumes using Azure Kubernetes Service (AKS) enabled by Azure Arc, Edge Essentials, or Ubuntu.
 
-> [!NOTE]
-> The minimum supported Linux kernel version is 5.1. At this time, there are known issues with 6.4 and 6.2.
-
-## Prerequisites
-
-> [!NOTE]
-> Azure Container Storage enabled by Azure Arc is only available in the following regions: East US, East US 2, West US, West US 2, West US 3, North Europe, West Europe.
-
-## Arc-enabled Kubernetes cluster
-
 These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
 
 If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
 
-## Single-node and multi-node clusters
+You must also [install a cert-manager](quickstart-install.md#step-2-install-azure-iot-operations-dependencies).
+
+## Prerequisites
+
+The following table lists the prerequisites for Azure Container Storage enabled by Azure Arc:
+
+| Requirement | Single-node/Two-node cluster | Multi-node cluster |
+|-------------|------------------------------|-------------------|
+| **Operating System** | | |
+| Kernel version | 5.15 and above (minimum supported) | 5.15 and above (minimum supported) |
+| NFSv4.2 support | Enabled in the kernel | Enabled in the kernel |
+| **Hardware Requirements** | | |
+| CPU | 4 CPUs minimum | 8 CPUs minimum |
+| RAM | 16 GB minimum | 32 GB recommended (16 GB minimum) |
+| VM recommendation | Standard_D8ds_v5 or equivalent | Standard_D8as_v5 or equivalent |
+| **Storage Requirements** | | |
+| Storage provisioner | Local-path storage class required | Uses 3-way replication for fault tolerance |
+| Effective storage | Full disk space available | 1/3 of total disk space due to replication |
+| Reserved system volume | 1 GB per Edge Volume | 1 GB per Edge Volume (uses 3 GB with replication) |
+| **System Configuration** | | |
+| sysctl configuration | `fs.inotify.max_user_instances >= 1024` | `fs.inotify.max_user_instances >= 1024` |
+| NVME over TCP kernel module | Not required | Required |
+| Hugepages configuration | Not required | Set to 512 |
+
+## Additional considerations
+
+- **Kernel compatibility**: Known issues exist with kernel versions 6.4 and 6.2.
+- **Regional availability**: Azure Container Storage enabled by Azure Arc is only available in: East US, East US 2, West US, West US 2, West US 3, North Europe, West Europe
+- Ensure that the required disk storage is available and properly mounted
+- For multi-node clusters, 32 GB RAM serves as a buffer; however, 16 GB RAM should suffice. Edge Essentials configurations require 8 CPUs with 10 GB RAM per node, making 16 GB RAM the minimum requirement.
+
+## Single-node clusters
 
 A single-node cluster is commonly used for development or testing purposes due to its simplicity in setup and minimal resource requirements. These clusters offer a lightweight and straightforward environment for developers to experiment with Kubernetes without the complexity of a multi-node setup. Additionally, in situations where resources such as CPU, memory, and storage are limited, a single-node cluster is more practical. Its ease of setup and minimal resource requirements make it a suitable choice in resource-constrained environments.
 
 However, single-node clusters come with limitations, mostly in the form of missing features, including their lack of high availability, fault tolerance, scalability, and performance.
 
+## Multi-node clusters
+
 A multi-node Kubernetes configuration is typically used for production, staging, or large-scale scenarios because of features such as high availability, fault tolerance, scalability, and performance. A multi-node cluster also introduces challenges and trade-offs, including complexity, overhead, cost, and efficiency considerations. For example, setting up and maintaining a multi-node cluster requires extra knowledge, skills, tools, and resources (network, storage, compute). The cluster must handle coordination and communication among nodes, leading to potential latency and errors. Additionally, running a multi-node cluster is more resource-intensive and is costlier than a single-node cluster. Optimization of resource usage among nodes is crucial for maintaining cluster and application efficiency and performance.
 
 In summary, a [single-node Kubernetes cluster](howto-single-node-cluster-edge-volumes.md) might be suitable for development, testing, and resource-constrained environments. A [multi-node cluster](howto-multi-node-cluster-edge-volumes.md) is more appropriate for production deployments, high availability, scalability, and scenarios in which distributed applications are a requirement. This choice ultimately depends on your specific needs and goals for your deployment.
 
-## Minimum hardware requirements
-
-### Single-node or two-node cluster
-
-- Standard_D8ds_v5 VM recommended
-- Equivalent specifications per node:
-  - 4 CPUs
-  - 16 GB RAM
-
-### Multi-node cluster
-
-- Standard_D8as_v5 VM recommended
-- Equivalent specifications per node:
-  - 8 CPUs
-  - 32 GB RAM
-
-32 GB RAM serves as a buffer; however, 16 GB RAM should suffice. Edge Essentials configurations require 8 CPUs with 10 GB RAM per node, making 16 GB RAM the minimum requirement.
-
-## Minimum storage requirements
-
-### Edge Volumes requirements
+### Minimum storage requirements
 
 When you use the fault tolerant storage option, Edge Volumes allocates disk space out of a fault tolerant storage pool, which is made up of the storage exported by each node in the cluster.
 
