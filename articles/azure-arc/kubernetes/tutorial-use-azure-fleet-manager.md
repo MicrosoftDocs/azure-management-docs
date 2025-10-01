@@ -16,9 +16,9 @@ To deploy applications using Azure Fleet Manager, you need to have a Fleet, and 
 
 * An Azure Arc-enabled Kubernetes connected cluster that's up and running.
 
-  [Learn how to connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md). If you need to connect through an outbound proxy, then assure you [install the Arc agents with proxy settings](./quickstart-connect-cluster.md?tabs=azure-cli#connect-using-an-outbound-proxy-server).
+  [Learn how to connect a Kubernetes cluster to Azure Arc](./quickstart-connect-cluster.md). If you need to connect through an outbound proxy, then assure you [install the Arc agents with proxy settings](./quickstart-connect-cluster.md?tabs=azure-cli#connect-using-an-outbound-proxy-server). Note that Azure Fleet Manager has specific [capability restrictions](#preview-limitations-and-capability-restrictions) when Arc-Enabled clusters are utilizing a proxy.
 
-#### Azure Fleet Manager & Joined Member(s)
+### Azure Fleet Manager & Joined Member(s)
 
 * An Azure Fleet Manager with Hub Cluster.
   
@@ -26,21 +26,21 @@ To deploy applications using Azure Fleet Manager, you need to have a Fleet, and 
   - Ensure your Fleet is Hubful, or [upgrade if needed](https://docs.azure.cn/en-us/kubernetes-fleet/upgrade-hub-cluster-type).
   - [Join the Arc-Enable Kubernetes cluster as a member](https://docs.azure.cn/en-us/kubernetes-fleet/quickstart-create-fleet-and-members?tabs=without-hub-cluster#join-member-clusters) to your Fleet.
 
-#### Network requirements
+### Preview limitations and capability restrictions
 
-The Arc-Enabled Kubernetes cluster must have a networking topology which allows for egress traffic from services within the cluster to its Fleet hub cluster.
-Depending upon your enterprise networking configuration, e.g., network proxy, you may experience issues. Please review Fleet's support 
+> [!IMPORTANT]
+> Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes is currently in public preview. During preview, certain capabilities are not available for Arc-enabled clusters. Arc-enabled Kubernetes clusters have specific capability restrictions when used with Azure Fleet Manager. For a complete list of supported and unsupported features, see [Member cluster types and capability matrix](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types-and-capability-matrix).
 
-## Deploy applications using Azure Fleet Manager
+### Deploy applications using Azure Fleet Manager
 
-Follow Azure Fleet Manager's [guide on creating a Multi-Cluster Resource Placement](https://docs.azure.cn/en-us/kubernetes-fleet/quickstart-resource-propagation?tabs=azure-cli) to deploy your application (workloads) to the member clusters.
+Follow Azure Fleet Manager's [guide on creating a Multi-Cluster Resource Placement](https://docs.azure.cn/en-us/kubernetes-fleet/quickstart-resource-propagation?tabs=azure-cli) to deploy your workloads (applications) to the member clusters.
 
 ## Delete the extension
 
-Simply unjoin the cluster from the Fleet, and any applications (workloads) created and managed by the Fleet will be garbage collected automatically.
+To remove the extension from your Arc-Enabled Kubernetes cluster simply unjoin the cluster from the Fleet, and any workloads (applications) created and managed by the Fleet Manager will be garbage collected automatically.
 
 ```azurecli
-az  k8s-extension delete -g <resource-group> -c <cluster-name> -n argocd -t managedClusters --yes
+az fleet member delete -f <fleet-name> -g <member-resource-group> -n <member-name>
 ```
 
 ---
