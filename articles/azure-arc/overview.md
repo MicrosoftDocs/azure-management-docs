@@ -1,4 +1,4 @@
----
+    ---
 title: Azure Arc overview
 description: Learn about what Azure Arc is and how it helps customers enable management and governance of their hybrid resources with other Azure services and features.
 ms.date: 08/26/2025
@@ -60,6 +60,8 @@ Some of the key scenarios that Azure Arc supports are:
 * Perform virtual machine lifecycle and management operations on [Azure Local](/azure/azure-local/manage/azure-arc-vm-management-overview) and on-premises environments managed by [VMware vCenter](./vmware-vsphere/overview.md) and [System Center Virtual Machine Manager (SCVMM)](./system-center-virtual-machine-manager/overview.md) through interactive and non-interactive methods. Empower developers and application teams to self-serve VM operations on-demand using Azure role-based access control (RBAC).
 
 * A unified experience viewing your Azure Arc-enabled resources, whether you are using the Azure portal, the Azure CLI, Azure PowerShell, or Azure REST API.
+
+* Utilize [Azure Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/overview), and its Arc-Enabled Kubernetes cluster extension to enable your enterprise to tackle hybrid and multi-cloud Kubernetes management challenges at scale. Use Fleet Manager to orchestrate applications (workloads) across multiple clusters from a single source.
 
 ## Pricing
 
