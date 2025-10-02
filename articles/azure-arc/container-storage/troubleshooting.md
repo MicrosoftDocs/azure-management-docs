@@ -20,7 +20,7 @@ This article helps you diagnose and resolve common issues when deploying and usi
 The extension operation failed with the following error: Error occurred while creating custom resources needed by system extensions : InnerError [Custom resource azure-arc-containerstorage is in a failed state]
 ```
 
-This error may indicate a cert-manager is not deployed.
+This error may indicate a cert-manager isn't deployed.
 ACSA dependencies require a cert-manager is present prior to installation.
 [Install cert-manager](quickstart-install.md#step-2-install-azure-iot-operations-dependencies)
 
@@ -34,7 +34,7 @@ Error: [ InnerError: [Helm installation failed :  : InnerError [release azure-ar
 	* job azure-arc-containerstorage-ensure-config-objects-job failed: BackoffLimitExceeded
 ```
 
-This error typically indicates that one or more Kubernetes nodes do not meet the system requirements.
+This error typically indicates that one or more Kubernetes nodes don't meet the system requirements.
 Please review [Prepare Linux for Edge Volumes](howto-prepare-linux-edge-volumes.md).
 
 ## Get help
