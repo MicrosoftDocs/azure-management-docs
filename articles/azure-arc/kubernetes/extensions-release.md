@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 09/16/2025
+ms.date: 10/02/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -163,6 +163,26 @@ The following Flux APIs are being deprecated and will be removed:
 For a complete list of deprecated APIs and their replacements, see the PRs linked in <https://github.com/fluxcd/flux2/issues/5474>.
 
 **Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs. Use the supported API versions for all impacted resources. We strongly recommend completing these steps before October 2025 to avoid deployment failures or resource reconciliation issues.
+
+Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
+
+-	`Kustomization` to `kustomize.toolkit.fluxcd.io/v1`
+-	`HelmRelease` to `helm.toolkit.fluxcd.io/v2`
+-	`Bucket` to `source.toolkit.fluxcd.io/v1`
+-	`GitRepository` to `source.toolkit.fluxcd.io/v1`
+-	`HelmChart` to `source.toolkit.fluxcd.io/v1`
+-	`HelmRepository` to `source.toolkit.fluxcd.io/v1`
+-	`OCIRepository` to `source.toolkit.fluxcd.io/v1`
+-	`Receiver` to `notification.toolkit.fluxcd.io/v1`
+-	`Alert` to `notification.toolkit.fluxcd.io/v1beta3`
+-	`Provider` to `notification.toolkit.fluxcd.io/v1beta3`
+-	`ImageRepository` to `image.toolkit.fluxcd.io/v1beta2`
+-	`ImagePolicy` to `image.toolkit.fluxcd.io/v1beta2`
+-	`ImageUpdateAutomation` to `image.toolkit.fluxcd.io/v1beta2`
+
+Note that the `ImageUpdateAutomation` commit template should use the fields `.Changed.FileChanges`, `.Changed.Objects` and `.Changed.Changes` instead of the deprecated `.Updated` and `.Changed.ImageResult` fields.
+
+Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
 ### `microsoft.flux` version 1.17.3 (September 2025)
 
