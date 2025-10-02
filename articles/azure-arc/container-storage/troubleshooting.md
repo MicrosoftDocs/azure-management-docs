@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Azure Container Storage enabled by Azure Arc
+title: Troubleshoot Azure Container Storage Enabled by Azure Arc
 description: Learn how to diagnose and resolve common issues with Azure Container Storage enabled by Azure Arc.
 author: asergaz
 ms.author: sergaz
@@ -37,14 +37,14 @@ Error: [ InnerError: [Helm installation failed :  : InnerError [release azure-ar
 This error typically indicates that one or more Kubernetes nodes do not meet the system requirements.
 Please review [Prepare Linux for Edge Volumes](howto-prepare-linux-edge-volumes.md).
 
-## Getting help
+## Get help
 
 If you continue to experience issues:
 
-1. Review the [FAQ](faq.yml) for additional common questions
-2. Check [release notes](release-notes.md) for known issues
-3. Visit [support and feedback](support-feedback.md) for assistance options
-4. For general Kubernetes extensions troubleshooting, visit: https://aka.ms/k8s-extensions-TSG
+- Review the [FAQ](faq.yml) for additional common questions
+- Check [release notes](release-notes.md) for known issues
+- Visit [support and feedback](support-feedback.md) for assistance options
+- For general Kubernetes extensions troubleshooting, visit: https://aka.ms/k8s-extensions-TSG
 
 ## Related content
 
