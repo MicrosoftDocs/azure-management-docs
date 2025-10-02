@@ -48,6 +48,8 @@
       href: get-monitoring-information.md
     - name: Work smarter with Azure Local
       href: work-smarter-edge.md
+    - name: Discover
+      href: discover-storage-estate-insights.md
     - name: Manage storage accounts
       href: improve-storage-accounts.md
     - name: Troubleshoot disk performance
