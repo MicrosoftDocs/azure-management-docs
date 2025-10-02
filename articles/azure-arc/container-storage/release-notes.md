@@ -24,7 +24,7 @@ This article provides information about new features in Azure Container Storage 
 - Security updates and bug fixes
 
 > [!NOTE]
-> In releases 2.7 and earlier, there was an edgeSubvolume CRD. Documentation for that configuration can be found in the [Previous versions](previous-versions.md) article.
+> In releases 2.7 and earlier, there was an **edgeSubvolume** CRD. To view the edgeSubvolume CRD documentation, see [Cloud Ingest Edge Volumes configuration](/previous-versions/azure/azure-arc/container-storage/cloud-ingest-edge-volume-configuration) on the previous versions site.
 
 ## Version 2.7.1 
 
