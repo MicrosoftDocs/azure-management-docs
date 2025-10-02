@@ -21,7 +21,7 @@ These instructions assume that you already have an Arc-enabled Kubernetes cluste
 
 If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
 
-You must also [install a cert-manager](quickstart-install.md#step-2-install-azure-iot-operations-dependencies).
+You must also install a cert-manager as described in [Install Edge Volumes](howto-install-edge-volumes.md#install-certificate-and-trust-managers).
 
 ## Prerequisites
 
