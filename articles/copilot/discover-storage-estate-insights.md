@@ -32,17 +32,17 @@ Cost optimization is often the first concern when managing a large storage estat
 
 **Analyze storage growth trends:** Ask Copilot in Azure about how your stored data is trending over time. For example: "**How is the storage size trending over the past month by region?**" Copilot in Azure returns a line chart plotting the total data size in your storage accounts over the last month, broken down by region. This visualization helps you see which regions are contributing most to growth or if any region’s usage is flattening or spiking.
 
-![Storage trend chart](media/discover-storage-estate-insights/storage-discovery-copilot-trend.png)
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-trend.png" alt-text="Screenshot of Copilot in Azure showing a storage trend chart.":::
 <!-- Source document: Page 3 -->
 
 **Find under-utilized storage (cold data):** Storing much data in a hot tier that isn’t being accessed could waste money. You can have Copilot identify storage accounts with large capacity but low activity. For example: "**Provide a table of storage accounts that have the least transactions and are above 1 TiB in size.**" This prompt asks for a list of large storage accounts with minimal access. Copilot returns a table with storage accounts meeting those conditions. The result table includes columns like the account name, data size, and the number of transactions. You can immediately spot accounts that each hold over 1 TiB of data but handle few transactions. Such accounts might be good candidates to move to a cooler access tier (like Cool or Archive) to save costs.
 
-![Cold data table](media/discover-storage-estate-insights/storage-discovery-copilot-cold-table.png)
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-cold-table.png" alt-text="Screenshot of Copilot in Azure showing a table of storage accounts and their transaction counts.":::
 <!-- Source document: Page 4 -->
 
 **View data distribution by access tier:** To act on cold data, you might want to know how your data is currently distributed across access tiers (Hot, Cool, Cold, Archive). You can ask a question like: "**Show me a distribution of blob count by blob access tier.**" In response, Copilot can provide a bar chart (or pie chart) breaking down how many blobs are in each access tier across your estate. You might discover that a large number of blobs are in the Hot access tier even though they're rarely accessed. This insight is an opportunity to use [lifecycle management policies](/azure/storage/blobs/lifecycle-management-policy-configure) or [Azure Storage Actions](/azure/storage-actions/overview) to move data automatically to cheaper tiers over time.
 
-![Access tier chart](media/discover-storage-estate-insights/storage-discovery-copilot-tier-chart.png)
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-tier-chart.png" alt-text="Screenshot of Copilot in Azure showing a bar chart with blob counts per access tier.":::
 <!-- Source document: Page 5 -->
 
 Using Copilot in this way can quickly surface where your storage costs are coming from. It turns what could be a complex query (combining capacity and transaction data across many accounts) into an easy question and answer. The visual results make it straightforward to decide on next steps, such as enabling rules to tier down infrequently used data and reduce costs.
@@ -53,7 +53,7 @@ Another key value of Storage Discovery is surfacing potential security risks or 
 
 **Detect usage of shared access keys:** Microsoft recommends using Microsoft Entra ID with managed identities for Azure Storage authentication whenever possible, rather than shared keys. To ensure compliance, you can ask Copilot something like: "**How many of my storage accounts have `shared access keys` enabled?**" Copilot might respond with a simple count or a list. You can refine the question to get a regional breakdown: "**Show me a pie chart of my storage accounts with shared key enabled, by region.**" Copilot produces a pie chart where each slice represents a region, showing what portion of accounts in that region still allows shared key authentication. 
 
-![Shared key pie chart](media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png)
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png" alt-text="Screenshot of Copilot in Azure showing a pie chart with storage account counts per region that have the shared access key setting enabled.":::
 <!-- Source document: Page 6 -->
 
 This insight is useful when one region has a large slice, which means many accounts there still use shared keys. You might prioritize those regions for rolling out Entra ID authentication. The Copilot result helps focus your efforts on the biggest problem areas first.
@@ -66,7 +66,7 @@ Azure Storage offers several redundancy options (LRS, ZRS, GRS, etc.). Storage D
 
 **View redundancy distribution:** You might ask Copilot: "**Show me a distribution of my storage account count by redundancy option.**" Copilot returns a chart (for instance a bar chart) with each redundancy level on the X-axis and the number of storage accounts on the Y-axis. This representation quickly tells you how many accounts use Locally Redundant Storage (LRS) vs Zone Redundant (ZRS) vs Geo-Redundant (GRS), etc.
 
-![Redundancy bar chart](media/discover-storage-estate-insights/storage-discovery-copilot-redundancy-bar.png)
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-redundancy-bar.png" alt-text="Screenshot of Copilot in Azure showing a bar chart with storage account counts per redundancy type.":::
 <!-- Source document: Page 7 -->
 
 Suppose the chart reveals that, 80% of accounts are LRS and only a few use ZRS. In case these accounts support critical workloads then they all benefit from ZRS redundancy. This insight lets you verify if those resources are configured correctly. Alternatively, if many accounts are using ZRS but don’t actually need that level of resiliency, you might consider downgrading some to LRS to save costs. Copilot’s visualization highlights potential misalignments between your redundancy choices and your resiliency needs.
