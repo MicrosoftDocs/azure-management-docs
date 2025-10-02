@@ -44,7 +44,7 @@ If you continue to experience issues:
 3. Visit [support and feedback](support-feedback.md) for assistance options
 4. For general Kubernetes extensions troubleshooting, visit: https://aka.ms/k8s-extensions-TSG
 
-## See also
+## Related content
 
 - [Configure volumes and subvolumes](volumes-subvolumes.md)
 - [Review best practices](storage-options.md)
