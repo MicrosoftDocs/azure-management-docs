@@ -53,7 +53,7 @@ Another key value of Storage Discovery is surfacing potential security risks or 
 
 **Detect usage of shared access keys:** Microsoft recommends using Microsoft Entra ID with managed identities for Azure Storage authentication whenever possible, rather than shared keys. To ensure compliance, you can ask Copilot something like: "**How many of my storage accounts have `shared access keys` enabled?**" Copilot might respond with a simple count or a list. You can refine the question to get a regional breakdown: "**Show me a pie chart of my storage accounts with shared key enabled, by region.**" Copilot produces a pie chart where each slice represents a region, showing what portion of accounts in that region still allows shared key authentication. 
 
-:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png" alt-text="Screenshot of Copilot in Azure showing a pie chart with storage account counts per region that have the shared access key setting enabled.":::
+:::image type="content" source="media/discover-storage-estate-insights/storage-discovery-copilot-shared-key-pie.png" alt-text="Screenshot of Copilot in Azure showing a pie chart with shared access key enabled storage account counts per region.":::
 <!-- Source document: Page 6 -->
 
 This insight is useful when one region has a large slice, which means many accounts there still use shared keys. You might prioritize those regions for rolling out Entra ID authentication. The Copilot result helps focus your efforts on the biggest problem areas first.
