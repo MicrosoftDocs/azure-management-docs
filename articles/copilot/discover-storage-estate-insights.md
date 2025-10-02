@@ -13,13 +13,13 @@ author: fauhse
 
 # Discover insights about your Azure Storage estate with Azure Storage Discovery and the Azure Copilot
 
-[Azure Storage Discovery](https://aka.ms/StorageDiscovery) is a managed service that gives you **enterprise-wide visibility** into your Azure Blob Storage data estate. It helps you track how your data is growing, uncover opportunities for **cost optimization**, and check if your storage configurations follow **security best practices**. With Azure Storage Discovery, you can analyze thousands of storage accounts across subscriptions and regions from one place, using prebuilt reports and interactive dashboards. 
+[Azure Storage Discovery](/azure/storage-discovery/overview) is a managed service that gives you **enterprise-wide visibility** into your Azure Blob Storage data estate. It helps you track how your data is growing, uncover opportunities for **cost optimization**, and check if your storage configurations follow **security best practices**. With Azure Storage Discovery, you can analyze thousands of storage accounts across subscriptions and regions from one place, using prebuilt reports and interactive dashboards. 
 
 **Azure Copilot integration takes Storage Discovery a step further** by letting you ask questions about your storage data in natural language and get instant, visual answers. Instead of writing Kusto queries or combing through logs, you can chat with Azure Copilot to explore your storage insights. Copilot understands your questions, retrieves the relevant aggregated data from Storage Discovery, and presents results as dynamic charts or tables directly in the Azure portal. This conversational approach makes it easier for anyone – from IT managers to storage admins – to gain insights and make data-driven decisions.
 
 ## Interacting with Azure Copilot in Storage Discovery
 
-Retrieving storage insights with the Azure Copilot requires a deployment of the [Storage Discovery service](https://aka.ms/StorageDiscovery/plan). Deploying the service means [creating a Discovery workspace resource](https://aka.ms/StorageDiscovery/deploy). Having a workspace starts the data aggregation required to answer certain storage-insights related questions to the Azure Copilot.
+Retrieving storage insights with the Azure Copilot requires a deployment of the [Storage Discovery service](/azure/storage-discovery/deployment-planning). Deploying the service means [creating a Discovery workspace resource](/azure/storage-discovery/create-workspace) Having a workspace starts the data aggregation required to answer certain storage-insights related questions to the Azure Copilot.
 
 To start using Copilot, navigate to your Azure Storage Discovery workspace in the Azure portal. On the workspace overview or insights page, look for the **Copilot** icon. Open the Copilot chat interface.
 
@@ -37,7 +37,7 @@ Cost optimization is often the first concern when managing a large storage estat
 ![Storage trend chart](media/discover-storage-estate-insights/storage-discovery-copilot-trend.png)
 <!-- Source document: Page 3 -->
 
-**Find under-utilized storage (cold data):** Storing much data in a hot tier that isn’t being accessed could waste money. You can have Copilot identify storage accounts with large capacity but low activity. For example: "*Provide a table of storage accounts that have the least transactions and are above 1TiB in size.*" This prompt asks for a list of large storage accounts with minimal access. Copilot returns a table with storage accounts meeting those conditions. The result table includes columns like the account name, data size, and the number of transactions. You can immediately spot accounts that each hold over 1TiB of data but handle few transactions. Such accounts might be good candidates to move to a cooler access tier (like Cool or Archive) to save costs.
+**Find under-utilized storage (cold data):** Storing much data in a hot tier that isn’t being accessed could waste money. You can have Copilot identify storage accounts with large capacity but low activity. For example: "*Provide a table of storage accounts that have the least transactions and are above 1 TiB in size.*" This prompt asks for a list of large storage accounts with minimal access. Copilot returns a table with storage accounts meeting those conditions. The result table includes columns like the account name, data size, and the number of transactions. You can immediately spot accounts that each hold over 1 TiB of data but handle few transactions. Such accounts might be good candidates to move to a cooler access tier (like Cool or Archive) to save costs.
 
 ![Cold data table](media/discover-storage-estate-insights/storage-discovery-copilot-cold-table.png)
 <!-- Source document: Page 4 -->
@@ -100,6 +100,6 @@ In summary, Azure Copilot makes Azure Storage Discovery more **powerful and user
 
 After understanding the great opportunities with Storage Discovery in the Azure Copilot, it's a good idea to get more familiar with the Storage Discovery service.
 
-- [Get an overview of the Discovery service](https://aka.ms/StorageDiscovery)
-- [Plan your Storage Discovery deployment](https://aka.ms/StorageDiscovery/plan)
-- [Create a Storage Discovery workspace](https://aka.ms/StorageDiscovery/deploy)
+- [Get an overview of the Discovery service](/azure/storage-discovery/overview)
+- [Plan your Storage Discovery deployment](/azure/storage-discovery/deployment-planning)
+- [Create a Storage Discovery workspace](/azure/storage-discovery/create-workspace)
