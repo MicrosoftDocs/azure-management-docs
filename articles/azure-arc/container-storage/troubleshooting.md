@@ -1,7 +1,9 @@
 ---
 title: Troubleshoot Azure Container Storage enabled by Azure Arc
 description: Learn how to diagnose and resolve common issues with Azure Container Storage enabled by Azure Arc.
-ms.topic: troubleshooting
+author: asergaz
+ms.author: sergaz
+ms.topic: troubleshooting-general
 ms.date: 09/25/2025
 ---
 
