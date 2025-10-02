@@ -18,7 +18,7 @@ In this article, you learn how to create a GitHub Actions workflow to:
 
 - Build an image and push it to Azure Container Registry.
 - Sign the image with Notation GitHub actions and Trusted Signing.
-- Automatically store the generated signature in Azure Container Registry.
+- Automatically store the generated signature in Container Registry.
 
 ## Prerequisites
 
@@ -146,7 +146,7 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
 ## Store the TSA root certificate
 
-Time-stamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so time-stamping is critical. The Time Stamping Authority (TSA) server URL is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures).
+Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The Time Stamping Authority (TSA) server URL is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures).
 
 1. Download the TSA root certificate:
 
@@ -192,7 +192,7 @@ env:
   PLUGIN_NAME: azure-trustedsigning                     # name of Notation Trusted Signing plugin; do not change
   PLUGIN_DOWNLOAD_URL: <plugin-download-url>            # example: "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz"
   PLUGIN_CHECKSUM: <plugin-package-checksum>            # example: 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
-  TSA_URL: "http://timestamp.acs.microsoft.com/"        # time-stamping server URL
+  TSA_URL: "http://timestamp.acs.microsoft.com/"        # timestamping server URL
   TSA_ROOT_CERT: <root-cert-file-path>                  # example: .github/certs/msft-identity-verification-root-cert-authority-2020.crt
   TS_ACCOUNT_NAME: <trusted-signing-account-name>       # Trusted Signing account name
   TS_CERT_PROFILE: <trusted-signing-cert-profile-name>  # Trusted Signing certificate profile name 
@@ -218,7 +218,7 @@ jobs:
       #  uses: Azure/login@v1
       #  with:
       #    creds: ${{ secrets.AZURE_CREDENTIALS }}
-      # If you are using OIDC and federated credentials, make sure to replace the preceding step with the following:
+      # If you're using OIDC and federated credentials, make sure to replace the preceding step with the following:
       - name: Azure login
         uses: Azure/login@v2
         with:

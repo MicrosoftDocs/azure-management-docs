@@ -9,7 +9,7 @@ ms.service: security
 # Customer intent: As a developer, I want to verify container image signatures in GitHub Actions with Trusted Signing, so that I can ensure authenticity and integrity before using them in builds or deployments.
 ---
 
-# Verify container images in GitHub Workflows with Notation and Trusted Signing
+# Verify container images in GitHub workflows with Notation and Trusted Signing
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
@@ -21,11 +21,11 @@ You can use this guide in two scenarios:
 In this article, you learn how to:
 
 - Configure a GitHub workflow.
-- Verify that container images were signed with Trusted Signing by using GitHub actions for Notation.
+- Verify that container images were signed with Trusted Signing by using GitHub Actions for Notation.
 
 ## Prerequisites
 
-- An [container registry](/azure/container-registry/container-registry-get-started-azure-cli) that contains signed images.
+- A [container registry](/azure/container-registry/container-registry-get-started-azure-cli) that contains signed images.
 - A GitHub repository to store your workflow file, trust policy, and trust store.
 
 ## Authenticate from Azure to GitHub
@@ -249,7 +249,7 @@ When authentication and trust configuration are ready, create the workflow:
           #  uses: Azure/login@v1
           #  with:
           #    creds: ${{ secrets.AZURE_CREDENTIALS }}
-          # If you are using OIDC and federated credentials, make sure to replace the preceding step with the following:
+          # If you're using OIDC and federated credentials, make sure to replace the preceding step with the following:
           - name: Azure login
             uses: Azure/login@v2
             with:
@@ -284,4 +284,4 @@ When authentication and trust configuration are ready, create the workflow:
 
 A push triggers the sample workflow. To start the job, commit the workflow file to your repository.
 
-On success, you can view the workflow logs to confirm that the trust policy is imported successfully, certificates from the trust store are loaded, and successful signature verification.
+You can view the workflow logs to confirm that the job finished successfully. For example, check that the trust policy is imported, certificates from the trust store are loaded, and the signature is verified.

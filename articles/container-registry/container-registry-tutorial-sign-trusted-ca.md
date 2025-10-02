@@ -1,50 +1,54 @@
 ---
-title: Sign Container Images with Notation and a CA-issued certificate Azure Key Vault
-description: Learn to create a CA-issued certificate in Azure Key Vault, sign a container image in Azure Container Registry with Notation and AKV, and verify it.
+title: Sign Container Images with Notation and Azure Key Vault by Using a CA-Issued Certificate
+description: Learn how to create a CA-issued certificate in Azure Key Vault, sign a container image in Azure Container Registry with Notation and Key Vault, and verify the image.
 author: chasedmicrosoft
 ms.author: doveychase
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 9/5/2024
-# Customer intent: "As a developer, I want to sign and verify container images using a CA-issued certificate stored in a secure vault, so that I can ensure their integrity and authenticity throughout the deployment process."
+# Customer intent: "As a developer, I want to sign and verify container images by using a CA-issued certificate stored in a secure vault, so that I can ensure their integrity and authenticity throughout the deployment process."
 ---
 
-# Sign container images with Notation and Azure Key Vault using a CA-issued certificate
+# Sign container images with Notation and Azure Key Vault by using a CA-issued certificate
 
-This article is part of a series on ensuring integrity and authenticity of container images and OCI artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and offers various scenarios.
+This article is part of a series on ensuring integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
+For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-Signing and verifying container images with a certificate issued by a trusted Certificate Authority (CA) is a valuable security practice. This security measure will help you to responsibly identify, authorize, and validate the identity of both the publisher of the container image and the container image itself. The Trusted Certificate Authorities (CAs) such as GlobalSign, DigiCert, and others play a crucial role in the validation of a user's or organization's identity, maintaining the security of digital certificates, and revoking the certificate immediately upon any risk or misuse.
+Signing and verifying container images with a certificate from a trusted certificate authority (CA) is a valuable security practice. It helps you responsibly identify, authorize, and validate the identity of both the publisher of a container image and the container image itself. Trusted CAs such as GlobalSign, DigiCert, and others play a crucial role in:
 
-Here are some essential components that help you to sign and verify container images with a certificate issued by a trusted CA:
+- Validating a user's or organization's identity.
+- Maintaining the security of digital certificates.
+- Revoking certificates immediately upon any risk or misuse.
 
-* The [Notation](https://github.com/notaryproject/notation) is an open-source supply chain security tool developed by [Notary Project community](https://notaryproject.dev/) and backed by Microsoft, which supports signing and verifying container images and other artifacts.
-* The Azure Key Vault (AKV), a cloud-based service for managing cryptographic keys, secrets, and certificates will help you ensure to securely store and manage a certificate with a signing key.
-* The [Notation AKV plugin azure-kv](https://github.com/Azure/notation-azure-kv), the extension of Notation uses the keys stored in Azure Key Vault for signing and verifying the digital signatures of container images and artifacts.
-* The Azure Container Registry (ACR) allows you to attach these signatures to the signed image and helps you to store and manage these container images.
+Here are some essential components that help you to sign and verify container images with a certificate from a trusted CA:
 
-When you verify the image, the signature is used to validate the integrity of the image and the identity of the signer. This helps to ensure that the container images are not tampered with and are from a trusted source.
+- [Notation](https://github.com/notaryproject/notation) is an open-source supply-chain security tool developed by the [Notary Project community](https://notaryproject.dev/) and backed by Microsoft. It supports signing and verifying container images and other artifacts.
+- Azure Key Vault is a cloud-based service for managing cryptographic keys, secrets, and certificates. It helps you securely store and manage a certificate with a signing key.
+- The [Key Vault plugin (`notation-azure-kv`)](https://github.com/Azure/notation-azure-kv) is an extension of Notation. It uses the keys stored in Azure Key Vault for signing and verifying the digital signatures of container images and artifacts.
+- Azure Container Registry is a private registry that you can use to attach signatures to container images, along with storing and managing these images.
+
+When you verify an image, the signature is used to validate the integrity of the image and the identity of the signer. This validation helps ensure that container images aren't tampered with and are from a trusted source.
 
 In this article:
 
-> [!div class="checklist"]
-> * Install the notation CLI and AKV plugin
-> * Create or import a certificate issued by a CA in AKV
-> * Build and push a container image with ACR task
-> * Sign a container image with Notation CLI and AKV plugin 
-> * Verify a container image signature with Notation CLI
-> * Timestamping
+- Install the notation CLI and Key Vault plugin
+- Create or import a certificate issued by a CA in Key Vault
+- Build and push a container image with a Container Registry task
+- Sign a container image with Notation CLI and Key Vault plugin
+- Verify a container image signature with Notation CLI
+- Timestamping
 
 ## Prerequisites
 
-* Create or use an [Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md) for storing container images and signatures
-* Create or use an [Azure Key Vault.](/azure/key-vault/general/quick-create-cli)
-* Install and configure the latest [Azure CLI](/cli/azure/install-azure-cli), or run commands in the [Azure Cloud Shell](https://portal.azure.com/#cloudshell/)
+- Create or use an [Azure Container Registry](../container-registry/container-registry-get-started-azure-cli.md) for storing container images and signatures.
+- Create or use an [Azure Key Vault](/azure/key-vault/general/quick-create-cli).
+- Install and configure the latest [Azure CLI](/cli/azure/install-azure-cli), or run commands in the [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
 
 > [!NOTE]
 > We recommend creating a new Azure Key Vault for storing certificates only.
 
-## Install the notation CLI and AKV plugin
+## Install the notation CLI and Key Vault plugin
 
 1. Install Notation v1.3.2 on a Linux amd64 environment. Follow the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/) to download the package for other environments.
 
@@ -57,7 +61,7 @@ In this article:
     cp ./notation /usr/local/bin
     ```
 
-2. Install the Notation Azure Key Vault plugin `azure-kv` v1.2.1 on a Linux amd64 environment.
+2. Install the Notation Azure Key Vault plugin `notation-azure-kv` v1.2.1 on a Linux amd64 environment.
 
     > [!NOTE]
     > The URL and SHA256 checksum for the Notation Azure Key Vault plugin can be found on the plugin's [release page](https://github.com/Azure/notation-azure-kv/releases).
@@ -66,41 +70,41 @@ In this article:
     notation plugin install --url https://github.com/Azure/notation-azure-kv/releases/download/v1.2.1/notation-azure-kv_1.2.1_linux_amd64.tar.gz --sha256sum 67c5ccaaf28dd44d2b6572684d84e344a02c2258af1d65ead3910b3156d3eaf5
     ```
 
-3. List the available plugins and confirm that the `azure-kv` plugin with version `1.2.1` is included in the list. 
+3. List the available plugins and confirm that the `notation-azure-kv` plugin with version `1.2.1` is included in the list.
 
     ```bash
     notation plugin ls
     ```
 
-## Configure environment variables 
+## Configure environment variables
 
 > [!NOTE]
-> This guide uses environment variables for convenience when configuring the AKV and ACR. Update the values of these environment variables for your specific resources.
+> This guide uses environment variables for convenience when configuring Key Vault and Container Registry. Update the values of these environment variables for your specific resources.
 
-1. Configure environment variables for AKV and certificates
+1. Configure environment variables for Key Vault and certificates
 
     ```bash
     AKV_SUB_ID=myAkvSubscriptionId
     AKV_RG=myAkvResourceGroup
     AKV_NAME=myakv 
     
-    # Name of the certificate created or imported in AKV 
+    # Name of the certificate created or imported in Key Vault 
     CERT_NAME=wabbit-networks-io 
     
     # X.509 certificate subject
     CERT_SUBJECT="CN=wabbit-networks.io,O=Notation,L=Seattle,ST=WA,C=US"
     ```
 
-2. Configure environment variables for ACR and images. 
-    
+2. Configure environment variables for Container Registry and images.
+
     ```bash
     ACR_SUB_ID=myAcrSubscriptionId
     ACR_RG=myAcrResourceGroup
     # Name of the existing registry example: myregistry.azurecr.io 
     ACR_NAME=myregistry 
-    # Existing full domain of the ACR 
+    # Existing full domain of the container registry 
     REGISTRY=$ACR_NAME.azurecr.io 
-    # Container name inside ACR where image will be stored 
+    # Container name inside the container registry where image will be stored 
     REPO=net-monitor 
     TAG=v1 
     # Source code directory containing Dockerfile to build 
@@ -115,20 +119,21 @@ az login
 
 To learn more about Azure CLI and how to sign in with it, see [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 
-
-## Create or import a certificate issued by a CA in AKV
+## Create or import a certificate issued by a CA in Key Vault
 
 ### Certificate requirements
 
-When creating certificates for signing and verification, the certificates must meet the [Notary Project certificate requirement](https://github.com/notaryproject/specifications/blob/v1.0.0/specs/signature-specification.md#certificate-requirements). 
+When creating certificates for signing and verification, the certificates must meet the [Notary Project certificate requirement](https://github.com/notaryproject/specifications/blob/v1.0.0/specs/signature-specification.md#certificate-requirements).
 
 Here are the requirements for root and intermediate certificates:
+
 - The `basicConstraints` extension must be present and marked as critical. The `CA` field must be set `true`.
-- The `keyUsage` extension must be present and marked `critical`. Bit positions for `keyCertSign` MUST be set. 
+- The `keyUsage` extension must be present and marked `critical`. Bit positions for `keyCertSign` MUST be set.
 
 Here are the requirements for certificates issued by a CA:
+
 - X.509 certificate properties:
-  - Subject must contain common name (`CN`), country (`C`), state or province (`ST`), and organization (`O`). In this tutorial, `$CERT_SUBJECT` is used as the subject.
+  - Subject must contain common name (`CN`), country (`C`), state or province (`ST`), and organization (`O`). In this article, `$CERT_SUBJECT` is used as the subject.
   - X.509 key usage flag must be `DigitalSignature` only.
   - Extended Key Usages (EKUs) must be empty or `1.3.6.1.5.5.7.3.3` (for Codesigning).
 - Key properties:
@@ -139,7 +144,7 @@ Here are the requirements for certificates issued by a CA:
 > To ensure successful integration with [Image Integrity](/azure/aks/image-integrity), the content type of certificate should be set to PEM.
 
 > [!NOTE]
-> This guide uses version 1.0.1 of the AKV plugin. Prior versions of the plugin had a limitation that required a specific certificate order in a certificate chain. Version 1.0.1 of the plugin does not have this limitation so it is recommended that you use version 1.0.1 or later.
+> This guide uses version 1.0.1 of the Key Vault plugin. Prior versions of the plugin had a limitation that required a specific certificate order in a certificate chain. Version 1.0.1 of the plugin does not have this limitation so it is recommended that you use version 1.0.1 or later.
 
 ### Create a certificate issued by a CA
 
@@ -148,7 +153,7 @@ Create a certificate signing request (CSR) by following the instructions in [cre
 > [!IMPORTANT]
 > When merging the CSR, make sure you merge the entire chain that brought back from the CA vendor.
 
-### Import the certificate in AKV
+### Import the certificate in Key Vault
 
 To import the certificate:
 
@@ -158,19 +163,19 @@ To import the certificate:
 > [!NOTE]
 > If the certificate does not contain a certificate chain after creation or importing, you can obtain the intermediate and root certificates from your CA vendor. You can ask your vendor to provide you with a PEM file that contains the intermediate certificates (if any) and root certificate. This file can then be used at step 5 of [signing container images](#sign-a-container-image-with-notation-cli-and-akv-plugin).
 
-## Sign a container image with Notation CLI and AKV plugin
+## Sign a container image with Notation CLI and Key Vault plugin
 
-When working with ACR and AKV, it’s essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this tutorial, the access is authorized to a signed-in Azure user.
+When working with Container Registry and Key Vault, it's essential to grant the appropriate permissions to ensure secure and controlled access. You can authorize access for different entities, such as user principals, service principals, or managed identities, depending on your specific scenarios. In this article, the access is authorized to a signed-in Azure user.
 
-### Authoring access to ACR
+### Authoring access to Container Registry
 
-For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in ACR.
+For registries enabled for Microsoft Entra attribute-based access control (ABAC), the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles are required for building and signing container images in Container Registry.
 
 For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
 
 For more information on Microsoft Entra ABAC, see [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
-1. Set the subscription that contains the ACR resource
+1. Set the subscription that contains the Container Registry resource
 
     ```bash
     az account set --subscription $ACR_SUB_ID
@@ -185,35 +190,35 @@ For more information on Microsoft Entra ABAC, see [Microsoft Entra-based reposit
     az role assignment create --role "$ROLE1" --role "$ROLE2" --assignee $USER_ID --scope "/subscriptions/$ACR_SUB_ID/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME"
     ```
 
-### Build and push container images to ACR
+### Build and push container images to Container Registry
 
-1. Authenticate to your ACR by using your individual Azure identity.
+1. Authenticate to your conainer registry by using your individual Azure identity.
 
     ```bash
     az acr login --name $ACR_NAME
     ```
 
     > [!IMPORTANT]
-    > If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your ACR, your credentials are already stored and available to notation. In this case, you don’t need to run `notation login` again to authenticate to your ACR. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
+    > If you have Docker installed on your system and used `az acr login` or `docker login` to authenticate to your container regisry, your credentials are already stored and available to notation. In this case, you don't need to run `notation login` again to authenticate to your container registry. To learn more about authentication options for notation, see [Authenticate with OCI-compliant registries](https://notaryproject.dev/docs/user-guides/how-to/registry-authentication/).
 
-1. Build and push a new image with ACR Tasks. Always use `digest` to identify the image for signing, since tags are mutable and can be overwritten.
+1. Build and push a new image with Container Registry tasks. Always use `digest` to identify the image for signing, since tags are mutable and can be overwritten.
 
     ```bash
     DIGEST=$(az acr build -r $ACR_NAME -t $REGISTRY/${REPO}:$TAG $IMAGE_SOURCE --no-logs --query "outputImages[0].digest" -o tsv)
     IMAGE=$REGISTRY/${REPO}@$DIGEST
     ```
 
-In this tutorial, if the image has already been built and is stored in the registry, the tag serves as an identifier for that image for convenience.
+In this article, if the image has already been built and is stored in the registry, the tag serves as an identifier for that image for convenience.
 
 ```bash
 IMAGE=$REGISTRY/${REPO}@$TAG
 ```
 
-### Authoring access to AKV
+### Authoring access to Key Vault
 
-#### Use Azure RBAC (Recommended)
+#### Use Azure RBAC (recommended)
 
-1. Set the subscription that contains the AKV resource
+1. Set the subscription that contains the Key Vault resource
 
     ```bash
     az account set --subscription $AKV_SUB_ID
@@ -221,7 +226,7 @@ IMAGE=$REGISTRY/${REPO}@$TAG
 
 1. Assign the roles
 
-    If the certificate contains the entire certificate chain, the principal must be assigned with the following roles: 
+    If the certificate contains the entire certificate chain, the principal must be assigned with the following roles:
     - `Key Vault Secrets User` for reading secrets
     - `Key Vault Certificates User`for reading certificates
     - `Key Vault Crypto User` for signing operations
@@ -243,8 +248,8 @@ IMAGE=$REGISTRY/${REPO}@$TAG
 To learn more about Key Vault access with Azure RBAC, see [Use an Azure RBAC for managing access](/azure/key-vault/general/rbac-guide).
 
 #### Use access policy (Legacy)
-    
-To set the subscription that contains the AKV resources, run the following command:
+
+To set the subscription that contains the Key Vault resources, run the following command:
 
 ```bash
 az account set --subscription $AKV_SUB_ID
@@ -264,17 +269,17 @@ USER_ID=$(az ad signed-in-user show --query id -o tsv)
 az keyvault set-policy -n $AKV_NAME --key-permissions sign --certificate-permissions get --object-id $USER_ID
 ```
 
-To learn more about assigning policy to a principal, see [Assign Access Policy](/azure/key-vault/general/assign-access-policy). 
+To learn more about assigning policy to a principal, see [Assign Access Policy](/azure/key-vault/general/assign-access-policy).
 
-### Sign container images using the certificate in AKV
+### Sign container images using the certificate in Key Vault
 
-1. Get the Key ID for a certificate. A certificate in AKV can have multiple versions, the following command gets the Key ID for the latest version of the `$CERT_NAME` certificate.
+1. Get the Key ID for a certificate. A certificate in Key Vault can have multiple versions, the following command gets the Key ID for the latest version of the `$CERT_NAME` certificate.
 
    ```bash
    KEY_ID=$(az keyvault certificate show -n $CERT_NAME --vault-name $AKV_NAME --query 'kid' -o tsv) 
    ```
 
-1. Sign the container image with the COSE signature format using the Key ID. 
+1. Sign the container image with the COSE signature format using the Key ID.
 
    If the certificate contains the entire certificate chain, run the following command:
 
@@ -282,20 +287,20 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
    notation sign --signature-format cose $IMAGE --id $KEY_ID --plugin azure-kv 
    ```
 
-   If the certificate does not contain the chain, use the `--plugin-config ca_certs=<ca_bundle_file>` parameter to pass the CA certificates in a PEM file to AKV plugin, run the following command:
+   If the certificate does not contain the chain, use the `--plugin-config ca_certs=<ca_bundle_file>` parameter to pass the CA certificates in a PEM file to Key Vault plugin, run the following command:
 
    ```bash
    notation sign --signature-format cose $IMAGE --id $KEY_ID --plugin azure-kv --plugin-config ca_certs=<ca_bundle_file> 
    ```
 
-   To authenticate with AKV, by default, the following credential types if enabled will be tried in order:
+   To authenticate with Key Vault, by default, the following credential types if enabled will be tried in order:
    - [Environment credential](/dotnet/api/azure.identity.environmentcredential)
    - [Workload identity credential](/dotnet/api/azure.identity.workloadidentitycredential)
    - [Managed identity credential](/dotnet/api/azure.identity.managedidentitycredential)
    - [Azure CLI credential](/dotnet/api/azure.identity.azureclicredential)
-    
+
    If you want to specify a credential type, use an additional plugin configuration called `credential_type`. For example, you can explicitly set `credential_type` to `azurecli` for using Azure CLI credential, as demonstrated below:
-    
+
    ```bash
    notation sign --signature-format cose --id $KEY_ID --plugin azure-kv --plugin-config credential_type=azurecli $IMAGE
    ```
@@ -309,7 +314,7 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
    | Managed identity credential  | `managedid`                |
    | Azure CLI credential         | `azurecli`                 |
 
-1. View the graph of signed images and associated signatures. 
+1. View the graph of signed images and associated signatures.
 
     ```bash
     notation ls $IMAGE
@@ -324,11 +329,11 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
     ```
 
 > [!NOTE]
- > Since `notation` v1.2.0, `notation` uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in ACR by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the ACR features except the CMK-encrypted registry.
+> Since `notation` v1.2.0, `notation` uses [OCI Referrers Tag Schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in Container Registry by default. You can also enable [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false` if needed. The OCI Referrers API is supported by most of the Container Registry features except the CMK-encrypted registry.
 
-## Verify a container image with Notation CLI 
+## Verify a container image with Notation CLI
 
-1. Add the root certificate to a named trust store for signature verification. If you do not have the root certificate, you can obtain it from your CA. The following example adds the root certificate `$ROOT_CERT` to the `$STORE_NAME` trust store. 
+1. Add the root certificate to a named trust store for signature verification. If you do not have the root certificate, you can obtain it from your CA. The following example adds the root certificate `$ROOT_CERT` to the `$STORE_NAME` trust store.
 
     ```bash
     STORE_TYPE="ca" 
@@ -369,7 +374,7 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
 
     The above `trustpolicy.json` file defines one trust policy named `wabbit-networks-images`. This trust policy applies to all the artifacts stored in the `$REGISTRY/$REPO` repositories. The named trust store `$STORE_NAME` of type `$STORE_TYPE` contains the root certificates. It also assumes that the user trusts a specific identity with the X.509 subject `$CERT_SUBJECT`. For more details, see [Trust store and trust policy specification](https://github.com/notaryproject/notaryproject/blob/v1.0.0/specs/trust-store-trust-policy.md).
 
-4. Use `notation policy` to import the trust policy configuration from `trustpolicy.json`. 
+4. Use `notation policy` to import the trust policy configuration from `trustpolicy.json`.
 
     ```bash
     notation policy import ./trustpolicy.json
@@ -380,8 +385,8 @@ To learn more about assigning policy to a principal, see [Assign Access Policy](
     ```bash
     notation policy show
     ```
-    
-5. Use `notation verify` to verify the integrity of the image:
+
+6. Use `notation verify` to verify the integrity of the image:
 
     ```bash
     notation verify $IMAGE
@@ -405,16 +410,15 @@ Since Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-edit
   
   If your certificate is revoked, it invalidates the signature. This can happen for several reasons, such as the private key being compromised or changes in the certificate holder's affiliation. To resolve this issue, you should first ensure your source code and build environment are up-to-date and secure. Then, build container images from the source code, obtain a new certificate from a trusted CA vendor along with a new private key, and sign new container images with the new certificate by following this guide.
 
-## Next steps
+## Related content
 
 Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
-- To sign and verify container images in ADO pipelines, see [Sign and verify a container image with Notation in Azure Pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
-- To sign container images using GitHub Actions, see [Sign a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
-- To verify container images using GitHub Actions, see [Verify a container image with Notation using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha)
+- To sign and verify container images in Azure Pipelines, see [Sign and verify a container image with Notation in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- To sign container images by using GitHub Actions, see [Sign a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
+- To verify container images by using GitHub Actions, see [Verify a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha).
 
-To ensure only trusted container images are deployed on Azure Kubernetes Service (AKS):
-- Use Azure Policy Image Integrity (Preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service (AKS) clusters (Preview)](/azure/aks/image-integrity?tabs=azure-cli)
-- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: Validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
+To ensure that only trusted container images are deployed on Azure Kubernetes Service (AKS):
 
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
+- Use Azure Policy Image Integrity (preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service clusters (preview)](/azure/aks/image-integrity?tabs=azure-cli).
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).

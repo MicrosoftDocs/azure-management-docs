@@ -206,7 +206,7 @@ $USER_ID = az ad signed-in-user show --query id -o tsv
 
 ## Assign permissions for Azure Container Registry and Trusted Signing
 
-Grant your identity the necessary roles to access Azure Container Registry:
+Grant your identity the necessary roles to access Container Registry:
 
 - For registries enabled with attribute-based access control (ABAC), assign:
   - `Container Registry Repository Reader`
@@ -255,7 +255,7 @@ az role assignment create --assignee $USER_ID --role "Trusted Signing Certificat
 # Authenticate to Azure Container Registry
 az acr login --name $ACR_NAME
 
-# Download the time-stamping root certificate
+# Download the timestamping root certificate
 curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
 
 # Sign the image
@@ -268,7 +268,7 @@ notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-ro
 # Authenticate to Azure Container Registry
 az acr login --name $Env:ACR_NAME
 
-# Download the time-stamping root certificate
+# Download the timestamping root certificate
 Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
 
 # Sign the image
@@ -280,7 +280,7 @@ notation sign --signature-format cose --timestamp-url $Env:TS_TSA_URL --timestam
 Key flags explained:
 
 - `--signature-format cose`: Uses CBOR Object Signing and Encryption (COSE) format for signatures.
-- `--timestamp-url`: Uses the time-stamping server that Trusted Signing supports.
+- `--timestamp-url`: Uses the timestamping server that Trusted Signing supports.
 - `--plugin-config`: Passes configuration to the Trusted Signing plugin.
 
 List signed images and signatures:
