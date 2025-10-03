@@ -34,13 +34,13 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
 
 1. Sign in to Azure to get started:
 
-   ```azurepowershell-interactive
+   ```azurecli-interactive
    az login
    ```
 
 1. If you have multiple subscriptions, replace the placeholder "subscription name" with your subscription and run the following command:
 
-   ```azurepowershell
+   ```azurecli
    $sub = <subscription name> 
    az account set --subscription  $sub
    ```
@@ -49,7 +49,7 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
 
 Create a resource group to contain the AKS cluster, node pool, and Edge RAG resources.
 
-```azurepowershell
+```azurecli
 $rg = "edge-rag-aks-rg" 
 $location = "eastus2"
 az group create `
@@ -63,7 +63,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Create an AKS cluster:
 
-   ```azurepowershell
+   ```azurecli
    $k8scluster = "edge-rag-aks"  
    az aks create `
       --resource-group $rg `
@@ -74,7 +74,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Set the rest of the following values as needed and then run the command:
 
-   ```azurepowershell
+   ```azurecli
     
    # Set Edge RAG extension values
    $modelName = "microsoft/Phi-3.5"    
@@ -93,7 +93,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Connect to Azure and AKS:
 
-   ```azurepowershell
+   ```azurecli
    az login `
       --scope https://management.core.windows.net//.default `
       --tenant $tenantId    
@@ -107,7 +107,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
 1. Install the NVIDIA GPU operator on the cluster:
 
-   ```azurepowershell
+   ```azurecli
    helm repo add nvidia https://helm.ngc.nvidia.com/nvidia 
    helm repo update   
    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.2 
@@ -115,7 +115,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
  
 1. Connect the AKS cluster to Azure Arc:
 
-   ```azurepowershell
+   ```azurecli
    az connectedk8s connect `
       --resource-group $rg ` 
       --location $location ` 
@@ -124,7 +124,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    If prompted, select **y** to install the extension connectedk8s.
 1. Install the required certificate and trust manager:
 
-   ```azurepowershell
+   ```azurecli
 
     kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml --wait  
     helm repo add jetstack https://charts.jetstack.io --force-update  
@@ -140,7 +140,7 @@ If you get an error message when you try to create the node pools, you might nee
 
 Run the following command to create GPU and CPU node pools with 3 nodes each:
 
-```azurepowershell
+```azurecli
 # GPU nodepool 
 az aks nodepool add ` 
     --resource-group $rg ` 
@@ -173,7 +173,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 
 1. Deploy the Edge RAG extension by running the following command:
 
-   ```azurepowershell
+   ```azurecli
    az k8s-extension create `    
        --cluster-type connectedClusters `   
        --cluster-name $k8scluster `    
@@ -196,7 +196,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 
 1. Get the load balancer VIP by running the following command:
 
-   ```azurepowershell
+   ```azurecli
    kubectl get service ingress-nginx-controller -n arc-rag -o yaml 
    ```
 
@@ -236,7 +236,7 @@ Update your host file on your local machine to connect to the developer portal f
 
 If you're done trying out Edge RAG, remove the resources created in this quickstart by running the following command:
 
-```azurepowershell
+```azurecli
 az group delete `
    --name $rg `
    --yes `
