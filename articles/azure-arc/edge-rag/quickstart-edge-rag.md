@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 09/30/2025
+ms.date: 10/03/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -27,7 +27,6 @@ Before you begin, make sure you have:
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge Rag registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
-- Application (client) ID and the directory or tenant ID. To get these values after registering Edge RAG, search for "app registration" in the [Azure portal](https://portal.azure.com/).
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -52,7 +51,7 @@ Create a resource group to contain the AKS cluster, node pool, and Edge RAG reso
 
 ```azurepowershell
 $rg = "edge-rag-aks-rg" 
-$location = "eastus"
+$location = "eastus2"
 az group create `
      --name $rg `
      --location $location
@@ -69,8 +68,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    az aks create `
       --resource-group $rg `
       --name $k8scluster `
-      --node-vm-size Standard_NC8_A16 `
-      --node-count 3 `
+      --node-count 2 `
       --generate-ssh-keys
    ```
 
@@ -88,8 +86,8 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
    # Set Entra ID app registration values
    $domainName = "arcrag.contoso.com" # Edit to match the domain used in your registration  
-   $entraAppId = "<application ID>"  # Add the ID for your registered app   
-   $tenantId = "<tenant ID>" # Add the ID for your directory or tenant      
+   $entraAppId = $(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
+   $tenantId = $(az account show --query tenantId --output tsv) # Directory or tenant ID     
 
    ```
 
@@ -104,6 +102,8 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --name $k8scluster `
       --overwrite-existing 
    ``` 
+
+   Follow the prompts in the command line to sign in and select the subscription.
 
 1. Install the NVIDIA GPU operator on the cluster:
 
@@ -121,25 +121,24 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --location $location ` 
       --name $k8scluster  
    ```
+   If prompted, select **y** to install the extension connectedk8s.
+1. Install the required certificate and trust manager:
 
-1. Install the Kubernetes-native certificate management controller by running the following command:
- 
    ```azurepowershell
-   az k8s-extension create `   
-      -g $rg `    
-      -c $k8scluster `   
-      -t connectedClusters `    
-      --scope cluster `
-      --name cert-manager `    
-      --release-namespace cert-manager `    
-      --release-train preview `   
-      --extension-type Microsoft.iotoperations.platform `    
-      --debug 
+
+    kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.15.3/cert-manager.yaml --wait  
+    helm repo add jetstack https://charts.jetstack.io --force-update  
+    start-sleep -Seconds 20 
+    helm upgrade trust-manager jetstack/trust-manager --install --namespace cert-manager --wait 
    ```
 
 ## Create node pools
 
-Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG. Run the following command:
+Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG.
+
+If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
+
+Run the following command to create GPU and CPU node pools with 3 nodes each:
 
 ```azurepowershell
 # GPU nodepool 
@@ -148,7 +147,7 @@ az aks nodepool add `
     --cluster-name $k8scluster ` 
     --name "gpunodepool" ` 
     --node-count 3 ` 
-    --node-vm-size "Standard_NC8as_T4_v3" `
+    --node-vm-size "Standard_NC8_A2" `
     --enable-cluster-autoscaler `
     --min-count 3 ` 
     --max-count 3 ` 
@@ -161,7 +160,7 @@ az aks nodepool add `
     --cluster-name $k8scluster ` 
     --name "cpunodepool" ` 
     --node-count 3 ` 
-    --node-vm-size "Standard_D4s_v3" ` 
+    --node-vm-size "Standard_D8s_v3" ` 
     --enable-cluster-autoscaler ` 
     --min-count 3 ` 
     --max-count 3 ` 
@@ -216,7 +215,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
 Update your host file on your local machine to connect to the developer portal for Edge RAG.
 
 1. On your local machine, open Notepad in Administrator mode. 
-1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the hosts file, set the extension type to **All files**.
+1. Go to **File** > **Open** > **C:\windows\System32\drivers\etc** > **hosts**. If you can't see the "hosts" file, set the extension type to **All files**.
 
 1. Add the following line at the end of the file where you replace `load_balancer_ip` with the load balancer IP, and edit the domain to match the app registration:
 
@@ -230,7 +229,7 @@ Update your host file on your local machine to connect to the developer portal f
    ```
 
 1. Save the file.
-1. Go to the developer portal for Edge RAG at `https://arcrag.contoso.com`.
+1. Go to the developer portal for Edge RAG by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
 1. Select **Get started**.
 
 ## Clean up resources
