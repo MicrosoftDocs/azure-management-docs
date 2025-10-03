@@ -17,9 +17,9 @@ ms.date: 07/18/2025
 
 The article describes how to prepare Linux for Edge Volumes using Azure Kubernetes Service (AKS) enabled by Azure Arc, Edge Essentials, or Ubuntu.
 
-These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).  
+These instructions assume that you already have an Arc-enabled Kubernetes cluster. To connect an existing Kubernetes cluster to Azure Arc, [see these instructions](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli).
 
-If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/get-started/quickstart-deploy?tabs=linux).
+If you want to use Azure Container Storage enabled by Azure Arc with Azure IoT Operations, follow the [instructions to create a cluster for Azure IoT Operations](/azure/iot-operations/deploy-iot-ops/howto-prepare-cluster?tabs=ubuntu).
 
 You must also install a cert-manager as described in [Install Edge Volumes](howto-install-edge-volumes.md#install-certificate-and-trust-managers).
 
