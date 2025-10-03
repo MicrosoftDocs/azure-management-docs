@@ -28,7 +28,7 @@ Example: You might ask "Show me the trend of my storage usage over time." Copilo
 
 ## Identify cost optimization opportunities
 
-Cost optimization is often the first concern when managing a large storage estate. Azure Storage Discovery’s reports already show you metrics like total capacity and data growth trends. With Copilot in Azure, you can dig deeper or customize these insights with simple questions.
+Cost optimization is often the first concern when managing a large storage estate. Azure Storage Discovery’s reports already show you metrics like total capacity and data growth trends. With Copilot in Azure, you can dig deeper or customize these insights.
 
 **Analyze storage growth trends:** Ask Copilot in Azure about how your stored data is trending over time. For example: "**How is the storage size trending over the past month by region?**" Copilot in Azure returns a line chart plotting the total data size in your storage accounts over the last month, broken down by region. This visualization helps you see which regions are contributing most to growth or if any region’s usage is flattening or spiking.
 
@@ -77,13 +77,13 @@ By querying redundancy information on-demand, you ensure your storage accounts�
 
 ## Tips for getting the best results with storage insight queries
 
-**Be specific in your prompts:** While Copilot in Azure can handle natural language, phrasing your question clearly yields better answers. Include what insight you want and any filter (time range, region, tier, etc.) in your question. For example: "How is storage usage changing?" is okay, but "How is storage size trending over the past 30 days by region?" is more likely to produce the detailed chart you want.
+**Be specific in your prompts:** While Copilot in Azure can handle natural language, phrasing your question clearly yields better answers. Include what insight you want and any filter (time range, region, tier, etc.) in your question. For example: "How is storage usage changing?" is okay, but "How is storage size trending over the past 30 days by region?" is more likely to produce the detailed chart you want. The [write effective prompts](write-effective-prompts.md) article has additional tips and tricks.
 
 **Request a visualization if helpful:** Copilot in Azure decides the format of the answer, such as a table, chart, or just text. You can guide it by specifying a format. For instance, adding "**show me a pie chart of…**" or "**provide a table of…**" to your prompt usually influences Copilot in Azure to return an answer in that format.
 
-**Use follow-up questions:** Copilot in Azure remembers the context within the session. You can ask a broad question first, then follow up with a more specific one without restating everything. For example: "**How many storage accounts do we have?**" The response might be "200 accounts across 5 regions." Then you ask: "**How many are in North Europe?**" Copilot in Azure knows you’re still talking about storage account count, and filters the response to answer in that context.
+**Use follow-up questions:** Copilot in Azure remembers the context within the session. You can ask a broad question first, then follow up with a more specific one without restating everything. For example: "**How many storage accounts do we have?**" The response might be "200 accounts across five regions." Then you ask: "**How many are in North Europe?**" Copilot in Azure knows you’re still talking about storage account count, and filters the response to answer in that context.
 
-**Understand limitations:** The Storage Discovery features of Copilot in Azure focuses on analytics reporting, not operational tasks. You can't use Copilot in Azure to create storage resources or change resource configuration.
+**Understand limitations:** The Storage Discovery extension of the Copilot in Azure focuses on analytics reporting, not operational tasks. You can't use Copilot in Azure to create storage resources or change resource configuration.
 
 ## How Copilot in Azure enhances the Storage Discovery experience
 
@@ -93,7 +93,7 @@ Copilot in Azure democratizes access to insights. Team members who are less fami
 
 The interactive nature of Copilot in Azure encourages exploration. You might start with one question and, seeing the result, ask a follow-up or drill-down question. This conversational analysis can lead to findings you might skip if you had to write complex queries each time.
 
-Copilot in Azure answers are based on the same underlying data you see in the Azure portal. You can cross-verify any Copilot answer with the relevant report in the Storage Discovery workspace.
+Answers from Copilot in Azure are based on the same underlying data you see in the Azure portal. You can cross-verify any Copilot answer with the relevant report in the Storage Discovery workspace.
 
 In summary, Copilot in Azure provides a powerful, user-friendly way to access Azure Storage Discovery. It brings your data to your fingertips, whether you’re investigating cost spikes, tightening security, or planning backup strategies. By using natural language and AI-driven visualizations, you can derive more value from your storage insights with less effort.
 
