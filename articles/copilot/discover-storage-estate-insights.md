@@ -1,5 +1,5 @@
 ---
-title: Discover insights about your Azure Storage estate with Azure Storage Discovery using Microsoft Copilot in Azure
+title: Discover Insights About Your Azure Storage Estate with Azure Storage Discovery Using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure, in combination with Azure Storage Discovery, uncovers insights about your storage estate not available anywhere else.
 ms.date: 10/01/2025
 ms.topic: how-to
