@@ -148,7 +148,7 @@ To configure a generic single pod (Kubernetes native application) against the PV
                  ### This mountPath is where the PVC is attached to the pod's filesystem ###
                  mountPath: "/data"
          volumes:
-            ### User-defined 'name' that's used to link the volumeMounts ###
+           ### User-defined 'name' that's used to link the volumeMounts ###
            - name: wyvern-volume
              persistentVolumeClaim:
                ### This claimName must refer to your PVC metadata.name (Line 5 in cloudIngestPVC.yaml) ###
