@@ -26,6 +26,20 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.57 - October 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.57/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature | Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config**   | **1.29.100.0**   |||
+| Fixed GC worker crashes on Windows Server 2012 Standard machines. | ✓ ||Bug Fix|
+|**Azcmagent**|**1.57.03197.2516**|**1.57.03197.640**||
+|Connectivity check now marks regional GAS endpoint required|✓ |✓ |Feature|
+|Fixed duplicate heartbeat requests that were causing HTTP 429 (Too Many Requests) responses from HIS.|✓|✓|Bug Fix|
+|Fixed MSI installer incorrectly removing Arc services during installation.|✓||Bug Fix|
+|||✓|Bug Fix|
+
 ## Version 1.56 - September 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.56/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
