@@ -1,6 +1,6 @@
 ---
-title: "Securing AKS Workloads: Validating Container Image Signatures with Ratify and Azure Policy"
-description: Learn how to set up Ratify and Azure policies on Azure Kubernetes Service (AKS) clusters to validate container image signatures during deployment, ensuring the integrity and authenticity of your workloads. 
+title: Validate Container Image Signatures with Ratify and Azure Policy
+description: Learn how to set up Ratify and Azure policies on Azure Kubernetes Service (AKS) clusters to validate container image signatures during deployment.
 ms.topic: how-to
 author: yizha1
 ms.author: yizha1
@@ -8,81 +8,94 @@ ms.date: 09/24/2025
 ms.service: security
 ---
 
-# Securing AKS workloads: validating container image signatures with Ratify and Azure Policy
+# Validating container image signatures by using Ratify and Azure Policy
 
+Container security is crucial in the cloud-native landscape to help protect workloads. To enhance security throughout the lifecycle of container images, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview). In the Deploy stage of the framework, container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters.
 
-Container security is crucial in the cloud-native landscape to protect workloads. To improve security posture, Microsoft introduced the [Containers Secure Supply Chain (CSSC) framework](/azure/security/container-secure-supply-chain/articles/container-secure-supply-chain-implementation/containers-secure-supply-chain-overview), enhancing security throughout the lifecycle of container images. One of the stages defined in the CSSC framework is the `Deploy` stage, where container images are deployed to production environments, such as Azure Kubernetes Service (AKS) clusters. Ensuring a secure production environment involves maintaining the integrity and authenticity of container images, which is achieved by signing container images at the Build stage and then verifying them at the Deploy stage, ensuring that only trusted and unaltered images are deployed.
+Ensuring a secure production environment involves maintaining the integrity and authenticity of container images. Signing container images at the Build stage and then verifying them at the Deploy stage helps to ensure that only trusted and unaltered images are deployed.
 
-[Ratify](https://ratify.dev/), a [CNCF](https://www.cncf.io/) sandbox project supported by Microsoft, is a robust verification engine that verifies container images security metadata, such as signatures, and only allows the deployment of images that meet your specified policies.
+[Ratify](https://ratify.dev/) is a [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) sandbox project that Microsoft supports. It's a robust verification engine that verifies the security metadata of container images, such as signatures. It allows only the deployment of images that meet your specified policies.
 
 ## Scenarios
 
-This section covers two primary scenarios for implementing container image signature validation with Ratify on AKS. The scenarios differ based on how you manage certificates for signing and verification: using Azure Key Vault (AKV) for traditional certificate management or using Microsoft's Trusted Signing service for zero-touch certificate lifecycle management. Choose the scenario that aligns with your current certificate management approach and security requirements.
+This article covers two primary scenarios for implementing container image signature verification by using Ratify on AKS. The scenarios differ based on how you manage certificates for signing and verification: using Azure Key Vault for traditional certificate management or using the Microsoft Trusted Signing service for zero-touch certificate lifecycle management. Choose the scenario that aligns with your current certificate management approach and security requirements.
 
-### Using AKV for certificate management
+### Use Key Vault for certificate management
 
-An image producer builds and pushes container images to the Azure Container Registry (ACR) within CI/CD pipelines. These images are intended for deploying and running cloud-native workloads on AKS clusters by image consumers. The image producer signs container images in ACR using [Notary Project](https://notaryproject.dev) tooling, specifically Notation, within the CI/CD pipelines. The keys and certificates for signing are securely stored in Azure Key Vault (AKV). Once signed, Notary Project signatures are created and stored in ACR, referencing the corresponding images. An image consumer sets up Ratify and policies on the AKS cluster to validate the Notary Project signatures of images during deployment. Images that fail signature validation will be denied from deployment if the policy effect is set to deny effect. This ensures that only trusted and unaltered images are deployed to the AKS cluster.
+An image producer builds and pushes container images to Azure Container Registry within continuous integration and continuous delivery (CI/CD) pipelines. These images are intended for image consumers to deploy and run cloud-native workloads on AKS clusters.
 
-As the image producer, follow these documents to sign container images in ACR with AKV:
+The image producer signs container images in Container Registry by using [Notary Project](https://notaryproject.dev) tooling, specifically Notation, within the CI/CD pipelines. The keys and certificates for signing are securely stored in Key Vault.
 
-- For signing using self-signed certificates, see [Sign container images with Notation CLI and AKV using self-signed certificates](container-registry-tutorial-sign-build-push.md)
-- For signing using CA issued certificates, see [Sign container images with Notation CLI and AKV using CA issued certificates](container-registry-tutorial-sign-trusted-ca.md)
-- For signing in Azure DevOps (ADO) pipelines, see [Sign container images in Azure DevOps (ADO) pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign)
-- For signing in GitHub workflows, see [Sign container images in GitHub workflows](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+Notary Project signatures are created and stored in Container Registry, where they reference the corresponding images. An image consumer sets up Ratify and policies on the AKS cluster to validate the Notary Project signatures of images during deployment. Images that fail signature verification are denied from deployment if the policy effect is set to `Deny`. This system ensures that only trusted and unaltered images are deployed to the AKS cluster.
 
-### Using Trusted Signing for certificate management
+As the image producer, you can follow these articles to sign container images in Container Registry by using Key Vault:
 
-In this scenario, an image producer signs container images in ACR using certificates managed by Trusted Signing rather than AKV. Because Trusted Signing provides zero-touch certificate lifecycle management, producers no longer need to handle certificate issuance, rotation, or expiration. On the consumer side, while Trusted Signing produces short-lived certificates, image consumers configure timestamping during verification to maintain trust after certificates expire. Additionally, Ratify and cluster policies are configured on AKS to validate signatures at deployment time, and any image that fails validation is blocked if the policy effect is set to deny, ensuring that only trusted and unaltered images are deployed.
+- For signing via self-signed certificates, see [Sign container images by using Notation, Azure Key Vault, and a self-signed certificate](container-registry-tutorial-sign-build-push.md).
+- For signing via certificates issued by a certificate authority (CA), see [Sign container images by using Notation, Azure Key Vault, and a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md).
+- For signing in Azure Pipelines, see [Sign container images in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- For signing in GitHub workflows, see [Sign container images in GitHub workflows](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
 
-As the image producer, see the following guides for signing with Trusted Signing:
+### Use Trusted Signing for certificate management
 
-- [Sign and verify container images with Notation and Trusted Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
-- [Sign container images in GitHub workflows with Notation and Trusted Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+In this scenario, an image producer signs container images in Container Registry by using certificates managed by Trusted Signing rather than Key Vault. Because Trusted Signing provides zero-touch certificate lifecycle management, producers no longer need to handle certificate issuance, rotation, or expiration.
 
-This document will guide you, as the image consumer, through the process of verifying container image signatures with Ratify and Azure policy on AKS clusters.
+On the consumer side, Trusted Signing produces short-lived certificates. Image consumers configure timestamping during verification to maintain trust after certificates expire.
+
+Additionally, Ratify and cluster policies are configured on AKS to validate signatures at deployment time. Any image that fails validation is blocked if the policy effect is set to `Deny`. The blocking ensures that only trusted and unaltered images are deployed.
+
+As the image producer, you can follow these articles for signing container images by using Trusted Signing:
+
+- [Sign container images by using Notation and Trusted Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign container images in GitHub workflows by using Notation and Trusted Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+
+This article will guide you, as the image consumer, through the process of verifying container image signatures by using Ratify and Azure Policy on AKS clusters.
 
 > [!IMPORTANT]
-> If you prefer using a managed experience over using open-source Ratify directly, you can opt for the [AKS image integrity policy (public preview)](/azure/aks/image-integrity) to ensure image integrity on your AKS clusters instead.
+> If you prefer using a managed experience over using open-source Ratify directly, you can instead opt for the [AKS image integrity policy (preview)](/azure/aks/image-integrity) to ensure image integrity on your AKS clusters.
 
-## Signature validation overview
+## Signature verification overview
 
 Here are the high-level steps for signature verification:
 
-1. **Set up identity and access controls for ACR**: Configure the identity used by Ratify to access ACR with the necessary roles.
+1. **Set up identity and access controls for Container Registry**: Configure the identity that Ratify uses to access Container Registry with the necessary roles.
 
-2. **Set up identity and access controls for AKV**: Configure the identity used by Ratify to access AKV with the necessary roles. Skip this step if images are signed with Trusted Signing.
+2. **Set up identity and access controls for Key Vault**: Configure the identity that Ratify usues to access Key Vault with the necessary roles. Skip this step if images are signed via Trusted Signing.
 
-3. **Set up Ratify on your AKS cluster**: Set up Ratify using Helm chart installation as a standard Kubernetes service.
+3. **Set up Ratify on your AKS cluster**: Set up Ratify by using Helm chart installation as a standard Kubernetes service.
 
 4. **Set up a custom Azure policy**: Create and assign a custom Azure policy with the desired policy effect: `Deny` or `Audit`.
 
-After following these steps, you can start deploying your workloads to observe the results. With the `Deny` effect policy, only images that have passed signature verification are allowed for deployment, while images that are unsigned or signed by untrusted identities are denied. With the `Audit` effect policy, images can be deployed, but your component will be marked as noncompliant for auditing purposes.
+After you follow these steps, you can start deploying your workloads to observe the results:
+
+- With the `Deny` policy effect, only images that have passed signature verification are allowed for deployment. Images that are unsigned or signed by untrusted identities are denied.
+- With the `Audit` policy effect, images can be deployed, but your component are marked as noncompliant for auditing purposes.
 
 ## Prerequisites
 
-* Install and configure the latest [Azure CLI](/cli/azure/install-azure-cli), or run commands in the [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
-* Install [helm](https://helm.sh/docs/intro/install/) for Ratify installation and [kubectl](https://kubernetes.io/docs/reference/kubectl/) for troubleshooting and status checking.
-* Create or use an AKS cluster enabled with an OIDC Issuer by following the steps in [Configure an AKS cluster with an OpenID Connect (OIDC) issuer](/azure/aks/use-oidc-issuer). This AKS cluster is where your container images will be deployed, Ratify will be installed, and custom Azure policies will be applied.
-* Connect the ACR to the AKS cluster if not already connected by following the steps in [Authenticate with ACR from AKS](/azure/aks/cluster-container-registry-integration). The ACR is where your container images are stored for deployment to your AKS cluster.
-* Enable the Azure Policy add-on. To verify that the add-on is installed, or to install it if it is not already, follow the steps in [Azure Policy add-on for AKS](/azure/governance/policy/concepts/policy-for-kubernetes#install-azure-policy-add-on-for-aks).
+- Install and configure the latest [Azure CLI](/cli/azure/install-azure-cli) version, or run commands in [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
+- Install [Helm](https://helm.sh/docs/intro/install/) for Ratify installation and [kubectl](https://kubernetes.io/docs/reference/kubectl/) for troubleshooting and status checking.
+- Create or use an AKS cluster enabled with an OpenID Connect (OIDC) issuer by following the steps in [Create an OpenID Connect provider on Azure Kubernetes Service](/azure/aks/use-oidc-issuer). This AKS cluster is where your container images are deployed, Ratify is installed, and custom Azure policies are applied.
+- Connect Container Registry to the AKS cluster (if it's not already connected) by following the steps in [Authenticate with Azure Container Registry from Azure Kubernetes Service](/azure/aks/cluster-container-registry-integration). Container Registry is where your container images are stored for deployment to your AKS cluster.
+- Enable the Azure Policy add-on. To verify that the add-on is installed, or to install it if it isn't already, follow the steps in [Azure Policy add-on for AKS](/azure/governance/policy/concepts/policy-for-kubernetes#install-azure-policy-add-on-for-aks).
 
 ## Set up identity and access controls
 
-Before installing Ratify on your AKS cluster, you need to establish the proper identity and access controls. Ratify requires access to your ACR to pull container images and signatures, and when using Azure Key Vault for certificate management, it also needs access to retrieve certificates for signature verification. This section guides you through creating a user-assigned managed identity and configuring the necessary permissions for Ratify to operate securely within your Azure environment.
+Before you install Ratify on your AKS cluster, you need to establish the proper identity and access controls. Ratify requires access to your container registry to pull container images and signatures. When you use Key Vault for certificate management, Ratify also needs access to retrieve certificates for signature verification.
 
 The identity configuration involves:
-- Creating or using an existing user-assigned managed identity
-- Setting up federated identity credentials to enable workload identity authentication
-- Granting appropriate role assignments for ACR access
-- Configuring AKV access permissions (when using AKV for certificate management)
+
+- Creating a user-assigned managed identity, or using an existing one.
+- Setting up federated identity credentials to enable workload identity authentication.
+- Granting appropriate role assignments for Container Registry access.
+- Configuring Key Vault access permissions (if you're using Key Vault for certificate management).
 
 ### Create or use a user-assigned managed identity
 
-If you don't already have a user-assigned managed identity, follow this [document](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azcli#create-a-user-assigned-managed-identity-1) to create one. This identity will be used by Ratify to access Azure resources, such as ACR and when applicable, AKV for certificate management.
+If you don't already have a user-assigned managed identity, see [Create a user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azcli#create-a-user-assigned-managed-identity) to create one. Ratify uses this identity to access Azure resources, such as Container Registry and (when applicable) Key Vault for certificate management.
 
 ### Create a federated identity credential for your identity
 
-Set up environment variables:
+Set up environment variables by using the following code. Update the values of the variables `RATIFY_NAMESPACE` and `RATIFY_SA_NAME` if you're not using the default values. Be sure to use the same values during installation of the Ratify Helm chart.
 
 ```shell
 export AKS_RG=<aks-resource-group-name>
@@ -98,10 +111,7 @@ export RATIFY_NAMESPACE="gatekeeper-system"
 export RATIFY_SA_NAME="ratify-admin"
 ```
 
-> [!NOTE]
-> Update the values of the variables `RATIFY_NAMESPACE` and `RATIFY_SA_NAME` if you are not using the default values. Make sure you use the same values during Ratify helm chart installation.
-
-The following command creates a federated credential for your managed identity, allowing it to authenticate using tokens issued by an OIDC issuer, specifically for a Kubernetes service account `RATIFY_SA_NAME` in the namespace `RATIFY_NAMESPACE`.
+The following command creates a federated credential for your managed identity. The credential allows the managed identity to authenticate by using tokens issued by an OIDC issuer, specifically for a Kubernetes service account `RATIFY_SA_NAME` in the namespace `RATIFY_NAMESPACE`.
 
 ```shell
 az identity federated-credential create \
@@ -112,9 +122,9 @@ az identity federated-credential create \
 --subject system:serviceaccount:"$RATIFY_NAMESPACE":"$RATIFY_SA_NAME"
 ```
 
-### Configure access to ACR
+### Configure access to Container Registry
 
-The `AcrPull` role is required for your identity to pull signatures and other container image metadata. Use the following instructions to assign the role:
+The `AcrPull` role is required for your identity to pull signatures and other metadata for container images. Use the following code to assign the role:
 
 ```shell
 export ACR_SUB=<acr-subscription-id>
@@ -127,13 +137,11 @@ az role assignment create \
 --scope subscriptions/${ACR_SUB}/resourceGroups/${ACR_RG}/providers/Microsoft.ContainerRegistry/registries/${ACR_NAME}
 ```
 
-### Configure access to AKV
+### Configure access to Key Vault
 
 Skip this step if you use Trusted Signing for certificate management.
 
-The `Key Vault Secrets User` role is required for your identity to fetch the entire certificate chain from your AKV. Use the following instructions to assign the role:
-
-Set up extra environment variables for the AKV resource:
+The `Key Vault Secrets User` role is required for your identity to fetch the entire certificate chain from your key vault. Use the following code to assign the role:
 
 ```shell
 export AKV_SUB=<acr-subscription-id>
@@ -148,92 +156,91 @@ az role assignment create \
 
 ## Set up Ratify on your AKS cluster with Azure Policy enabled
 
-With the identity and access controls properly configured, you can now install Ratify on your AKS cluster. Ratify operates as a verification engine that integrates with Azure Policy to enforce signature validation policies. The installation process involves deploying Ratify using Helm charts with specific configuration parameters that define how it should verify container image signatures.
+With the identity and access controls properly configured, you can now install Ratify on your AKS cluster. Ratify integrates with Azure Policy to enforce signature verification policies. The installation process involves deploying Ratify by using Helm charts with specific configuration parameters that define how it should verify container image signatures.
 
-This section covers two key aspects of the Ratify setup:
-- Understanding the Helm chart parameters required for your certificate management approach (AKV or Trusted Signing)
+The following sections cover two key aspects of the Ratify setup:
+
+- Understanding the Helm chart parameters required for your certificate management approach (Key Vault or Trusted Signing)
 - Installing Ratify with the appropriate configuration to enable signature verification
 
-The configuration parameters will vary depending on whether you're using AKV or Trusted Signing for certificate management, so ensure you follow the instructions that match your chosen scenario.
+The configuration parameters vary depending on whether you're using Key Vault or Trusted Signing for certificate management. Be sure to follow the instructions that match your chosen scenario.
 
-### Know your helm chart parameters
+### Know your Helm chart parameters
 
-When installing the Helm chart for Ratify, you need to pass values to parameters using the `--set` flag or by providing a custom values file. Those values will be used to configure Ratify for signature verification. For a comprehensive list of parameters, refer to the [Ratify Helm chart documentation](https://github.com/notaryproject/ratify/tree/v1.4.0/charts/ratify). 
+When you're installing the Helm chart for Ratify, you need to pass values to parameters by using the `--set` flag or by providing a custom values file. Those values are used to configure Ratify for signature verification. For a comprehensive list of parameters, refer to the [Ratify Helm chart documentation](https://github.com/notaryproject/ratify/tree/v1.4.0/charts/ratify).
 
-Configuration differs depending on whether you use **AKV** or **Trusted Signing** for certificate management.
-
-#### [Azure Key Vault (AKV)](#tab/akv)
+#### [Key Vault](#tab/akv)
 
 You need to configure:
 
-- The identity set up previously for accessing ACR and AKV.  
-- The certificate stored in AKV for signature verification.  
-- A Notary Project trust policy for signature verification, including `registryScopes`, `trustStores`, and `trustedIdentities`.  
+- The identity that you set up previously for accessing Container Registry and Key Vault.
+- The certificate stored in Key Vault for signature verification.
+- A Notary Project trust policy for signature verification, including `registryScopes`, `trustStores`, and `trustedIdentities`.
 
-See the parameter table below for details:
+This table provides details about the parameters:
 
 | Parameter                                       | Description                                                                                        | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| azureWorkloadIdentity.clientId                  | Specifies the client ID of the Azure Workload Identity                                             | "$IDENTITY_CLIENT_ID"               |
-| oras.authProviders.azureWorkloadIdentityEnabled | Enable/disable Azure Workload Identity for ACR authentication                                      | true                                |
-| azurekeyvault.enabled                           | Enable/disable fetching certificates from AKV                                                      | true                                |
-| azurekeyvault.vaultURI                          | The URI of the AKV resource                                                                        | "https://$AKV_NAME.vault.azure.net" |
-| azurekeyvault.tenantId                          | The tenant ID of the AKV resource                                                                  | "$AKV_TENANT_ID"                    |
-| azurekeyvault.certificates[0].name              | Name of the certificate                                                                            | "$CERT_NAME"                        |
-| notation.trustPolicies[0].registryScopes[0]     | A repository URI that the policy applies to                                                        | "$REPO_URI"                         |
-| notation.trustPolicies[0].trustStores[0]        | Trust stores where certificates of type `ca` or `tsa` are stored                                   | ca:azurekeyvault                    |                    
-| notation.trustPolicies[0].trustedIdentities[0]  | The subject field of the signing certificate with prefix `x509.subject:` indicating who you trust  | "x509.subject: $SUBJECT"            |
+| `azureWorkloadIdentity.clientId`                  | Client ID of the Azure workload identity                                             | `"$IDENTITY_CLIENT_ID"`               |
+| `oras.authProviders.azureWorkloadIdentityEnabled` | Azure workload identity for Container Registry authentication (enable or disable)                                     | `true`                                |
+| `azurekeyvault.enabled`                           | Fetching certificates from Key Vault (enable or disable)                                                     | `true`                                |
+| `azurekeyvault.vaultURI`                          | URI of the Key Vault resource                                                                        | `"https://$AKV_NAME.vault.azure.net"` |
+| `azurekeyvault.tenantId`                          | Tenant ID of the key vault resource                                                                  | `"$AKV_TENANT_ID"`                    |
+| `azurekeyvault.certificates[0].name`              | Name of the certificate                                                                            | `"$CERT_NAME"`                        |
+| `notation.trustPolicies[0].registryScopes[0]`     | Repository URI that the policy applies to                                                        | `"$REPO_URI"`                         |
+| `notation.trustPolicies[0].trustStores[0]`        | Trust stores where certificates of type `ca` or `tsa` are stored                                   | `ca:azurekeyvault`                    |
+| `notation.trustPolicies[0].trustedIdentities[0]`  | Subject field of the signing certificate, with prefix `x509.subject:` indicating what you trust  | `"x509.subject: $SUBJECT"`            |
 
-By using timestamping for your images, you can ensure that images signed before the certificate expires can still be verified successfully. Add the following parameters for TSA configuration:
+By using timestamping for your images, you can ensure that images signed before the certificate expires can still be verified successfully. Add the following parameters for Time Stamping Authority (TSA) configuration:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
-| notationCerts[0]                                | The filepath to the PEM formatted TSA root certificate file                | "$TSA_ROOT_CERT_FILEPATH"           |
-| notation.trustPolicies[0].trustStores[1]        | Another trust store where the TSA root certificate is stored               | tsa:notationCerts[0]                |
+| `notationCerts[0]`                                | File path to the PEM-formatted TSA root certificate file                | `"$TSA_ROOT_CERT_FILEPATH"`           |
+| `notation.trustPolicies[0].trustStores[1]`        | Another trust store where the TSA root certificate is stored               | `tsa:notationCerts[0]`                |
 
 If you have multiple certificates for signature verification, specify extra parameters:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
-| azurekeyvault.certificates[1].name              | Name of the certificate                                                    | "$CERT_NAME_2"                      |
-| notation.trustPolicies[0].trustedIdentities[1]  | Another subject field of the signing certificate indicating who you trust  | "x509.subject: $SUBJECT_2"          |
+| `azurekeyvault.certificates[1].name`              | Name of the certificate                                                    | `"$CERT_NAME_2"`                      |
+| `notation.trustPolicies[0].trustedIdentities[1]`  | Another subject field of the signing certificate, indicating what you trust  | `"x509.subject: $SUBJECT_2"`          |
 
 #### [Trusted Signing](#tab/trusted-signing)
 
 You need to configure:
 
-- The identity set up previously for accessing ACR.  
-- A Notary Project trust policy for signature verification, including `registryScopes`, `trustStores`, and `trustedIdentities`.  
-- A timestamping configuration, since Trusted Signing issues short-lived certificates.  
+- The identity that you set up previously for accessing Container Registry.
+- A Notary Project trust policy for signature verification, including `registryScopes`, `trustStores`, and `trustedIdentities`.
+- A timestamping configuration, because Trusted Signing issues short-lived certificates.
 
-See the parameter table below for details:
+This table provides details about the parameters:
 
 | Parameter                                       | Description                                                                                        | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| azureWorkloadIdentity.clientId                  | Specifies the client ID of the Azure Workload Identity                                             | "$IDENTITY_CLIENT_ID"               |
-| oras.authProviders.azureWorkloadIdentityEnabled | Enable/disable Azure Workload Identity for ACR authentication                                      | true                                |
-| notationCerts[0]                                | The filepath to the PEM formatted Trusted Signing root certificate file                            | "$TS_ROOT_CERT_FILEPATH"               |
-| notationCerts[1]                                | The filepath to the PEM formatted TSA root certificate file                                        | "$TSA_ROOT_CERT_FILEPATH"           |
-| notation.trustPolicies[0].registryScopes[0]     | A repository URI that the policy applies to                                                        | "$REPO_URI"                         |
-| notation.trustPolicies[0].trustStores[0]        | Trust stores where the Trusted Signing root certificate is stored                                  | ca:notationCerts[0]                 |
-| notation.trustPolicies[0].trustStores[1]        | Trust stores where the TSA root certificate is stored                                              | tsa:notationCerts[1]                |
-| notation.trustPolicies[0].trustedIdentities[0]  | The subject field of the Trusted Signing certificate with prefix `x509.subject:` indicating trust  | "x509.subject: $SUBJECT"            |
+| `azureWorkloadIdentity.clientId`                  | Client ID of the Azure workload identity                                             | `"$IDENTITY_CLIENT_ID"`               |
+| `oras.authProviders.azureWorkloadIdentityEnabled` | Azure workload identity for Container Registry authentication (enable or disable)                                      | `true`                                |
+| `notationCerts[0]`                                | File path to the PEM-formatted Trusted Signing root certificate file                            | `"$TS_ROOT_CERT_FILEPATH"`               |
+| `notationCerts[1]`                                | File path to the PEM-formatted TSA root certificate file                                        | `"$TSA_ROOT_CERT_FILEPATH"`           |
+| `notation.trustPolicies[0].registryScopes[0]`     | Repository URI that the policy applies to                                                        | `"$REPO_URI"`                         |
+| `notation.trustPolicies[0].trustStores[0]`        | Trust stores where the Trusted Signing root certificate is stored                                  | `ca:notationCerts`[0]                 |
+| `notation.trustPolicies[0].trustStores[1]`        | Trust stores where the TSA root certificate is stored                                              | `tsa:notationCerts[1]`                |
+| `notation.trustPolicies[0].trustedIdentities[0]`  | Subject field of the Trusted Signing certificate, with prefix `x509.subject:` indicating what you trust  | `"x509.subject: $SUBJECT"`            |
 
 If you have multiple Trusted Signing certificate profiles, you can add additional trusted identities:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |
-| notation.trustPolicies[0].trustedIdentities[1]  | Another subject field of the certificate profile indicating who you trust  | "x509.subject: $SUBJECT_2"          |
+| `notation.trustPolicies[0].trustedIdentities[1]`  | Another subject field of the certificate profile, indicating what you trust  | `"x509.subject: $SUBJECT_2"`          |
 
 ---
 
-### Install Ratify helm chart with desired parameters and values
+### Install a Ratify Helm chart with desired parameters and values
 
-Ensure that the Ratify Helm chart version is at least `1.15.0`, which will install Ratify version `1.4.0` or higher. In this example, helm chart version `1.15.0` is used.
+Ensure that the Ratify Helm chart version is at least `1.15.0`, which will install Ratify version `1.4.0` or later. The following example uses Helm chart version `1.15.0`.
 
 Set up additional environment variables for installation:
 
-#### [Azure Key Vault (AKV)](#tab/akv)
+#### [Key Vault](#tab/akv)
 
 ```shell
 export CHART_VER="1.15.0"
@@ -261,8 +268,7 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 
 #### [Trusted Signing](#tab/trusted-signing)
 
-By default, the Trusted Signing root certificate and TSA root certificate are provided in `.crt` format.
-Before passing them to the Helm installation, you must convert them to **PEM** format.  
+By default, the Trusted Signing root certificate and TSA root certificate are provided in `.crt` format. Before passing them to the Helm installation, you must convert them to **PEM** format.
 
 On Linux, you can use the following commands to download and convert the certificates:
 
@@ -305,21 +311,22 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 ---
 
 > [!IMPORTANT]
-> For images that are not linked to a trust policy, signature validation fails. For instance, if the images are not within the repository `$REPO_URI`, the signature validation for those images fails. You can add multiple repositories by specifying additional parameters. For example, to add another repository for the trust policy `notation.trustPolicies[0]`, include the parameter `--set notation.trustPolicies[0].registryScopes[1]="$REPO_URI_1"`.
+> For images that are not linked to a trust policy, signature verification fails. For instance, if the images are not within the repository `$REPO_URI`, the signature verification for those images fails. You can add multiple repositories by specifying additional parameters. For example, to add another repository for the trust policy `notation.trustPolicies[0]`, include the parameter `--set notation.trustPolicies[0].registryScopes[1]="$REPO_URI_1"`.
 
 ## Set up a custom Azure policy
 
-With Ratify successfully installed and configured on your AKS cluster, the final step is to create and assign an Azure Policy that will enforce signature validation during container deployments. This policy acts as the enforcement mechanism that instructs the cluster to use Ratify for verifying container image signatures before allowing deployments.
+With Ratify successfully installed and configured on your AKS cluster, the final step is to create and assign an Azure Policy that will enforce signature verification during container deployments. This policy acts as the enforcement mechanism that instructs the cluster to use Ratify for verifying container image signatures before allowing deployments.
 
 Azure Policy offers two enforcement modes:
-- **Deny effect**: Blocks deployment of images that fail signature verification, ensuring only trusted images run in your cluster
-- **Audit effect**: Allows all deployments but marks compliant resources for monitoring and reporting purposes
 
-The Audit effect is useful during initial setup or testing phases, allowing you to validate your configuration without risking service disruptions in production environments.
+- `Deny`: Blocks deployment of images that fail signature verification, ensuring only trusted images run in your cluster
+- `Audit`: Allows all deployments but marks compliant resources for monitoring and reporting purposes
+
+The `Audit` effect is useful during initial setup or testing phases, allowing you to validate your configuration without risking service disruptions in production environments.
 
 ### Assign a new policy to your AKS cluster
 
-Create a custom Azure policy for signature verification. By default, the policy effect is set to `Deny`, meaning images that fail signature validation is denied deployment. Alternatively, you can configure the policy effect to `Audit`, allowing images that fail signature verification to be deployed while marking the AKS cluster and related workloads as compliant. The `Audit` effect is useful for verifying your signature verification configuration without risking outages due to incorrect settings for your production environment.
+Create a custom Azure policy for signature verification. By default, the policy effect is set to `Deny`, meaning images that fail signature verification is denied deployment. Alternatively, you can configure the policy effect to `Audit`, allowing images that fail signature verification to be deployed while marking the AKS cluster and related workloads as compliant. The `Audit` effect is useful for verifying your signature verification configuration without risking outages due to incorrect settings for your production environment.
 
 ```shell
 export CUSTOM_POLICY=$(curl -L https://raw.githubusercontent.com/notaryproject/ratify/refs/tags/v1.4.0/library/default/customazurepolicy.json)
@@ -360,14 +367,15 @@ To make a change on an existing assignment, you need to delete the existing assi
 
 ## Deploy your images and check the policy effects
 
-Now that you have successfully configured Ratify and assigned the Azure Policy to your AKS cluster, it's time to test the signature validation functionality. This section demonstrates how the policy enforcement works in practice by deploying different types of container images and observing the results.
+Now that you have successfully configured Ratify and assigned the Azure Policy to your AKS cluster, it's time to test the signature verification functionality. This section demonstrates how the policy enforcement works in practice by deploying different types of container images and observing the results.
 
 You test three scenarios to validate your setup:
-- **Signed images with trusted certificates**: Should deploy successfully
-- **Unsigned images**: Should be blocked (with Deny effect) or marked compliant (with Audit effect)
-- **Images signed with untrusted certificates**: Should be blocked (with Deny effect) or marked compliant (with Audit effect)
 
-The behavior you observe will depend on the policy effect you chose during the Azure Policy assignment step. This testing process helps ensure your signature validation is working correctly and provides confidence that only trusted images will be allowed in your production environment.
+- **Signed images with trusted certificates**: Should deploy successfully
+- **Unsigned images**: Should be blocked (with `Deny` effect) or marked compliant (with `Audit` effect)
+- **Images signed with untrusted certificates**: Should be blocked (with `Deny` effect) or marked compliant (with `Audit` effect)
+
+The behavior you observe will depend on the policy effect you chose during the Azure Policy assignment step. This testing process helps ensure your signature verification is working correctly and provides confidence that only trusted images will be allowed in your production environment.
 
 ### Use Deny policy effect
 
@@ -433,9 +441,9 @@ az policy definition delete --name "$DEFINITION_NAME"
 
 ## FAQ
 
-### How can I set up certificates for signature verification if I don't have access to AKV?
+### How can I set up certificates for signature verification if I don't have access to Key Vault?
 
-In some cases, image consumers may not have access to the certificates used for signature verification. To verify signatures, you'll need to download the root CA certificate file in PEM format and specify the related parameters for the Ratify Helm chart installation. Below is an example command similar to the previous installation command, but without any parameters related to AKV certificates. The Notary Project trust store refers to the certificate file that passed in parameter `notationCerts[0]`:
+In some cases, image consumers may not have access to the certificates used for signature verification. To verify signatures, you'll need to download the root CA certificate file in PEM format and specify the related parameters for the Ratify Helm chart installation. Below is an example command similar to the previous installation command, but without any parameters related to Key Vault certificates. The Notary Project trust store refers to the certificate file that passed in parameter `notationCerts[0]`:
 
 ```shell
 helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --create-namespace --version $CHART_VER --set provider.enableMutation=false --set featureFlags.RATIFY_CERT_ROTATION=true \
@@ -453,7 +461,7 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 
 ### What steps should I take if Azure Policy is disabled in my AKS cluster?
 
-If Azure Policy is disabled on your AKS cluster, you must install [OPA Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/) as the policy controller before installing Ratify. 
+If Azure Policy is disabled on your AKS cluster, you must install [OPA Gatekeeper](https://open-policy-agent.github.io/gatekeeper/website/) as the policy controller before installing Ratify.
 
 > [!NOTE]
 > Azure Policy should remain disabled, as Gatekeeper conflicts with the Azure Policy add-on on AKS clusters. If you want to enable Azure Policy later on, you need to uninstall Gatekeeper and Ratify, and then follow this document to set up Ratify with Azure Policy enabled.
@@ -481,9 +489,9 @@ kubectl apply -f https://notaryproject.github.io/ratify/library/default/samples/
 
 Ratify configurations are [Kubernetes custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/), allowing you to update these resources without reinstalling Ratify.
 
-- To update AKV related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Trusted Signing related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
+- To update Key Vault related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Trusted Signing related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
 - To update Notary Project trust policies and stores, use the Ratify `Verifier` custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/verifiers).
-- To authenticate and interact with ACR (or other OCI-compliant registries), use the Ratify Store custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/stores).
+- To authenticate and interact with Container Registry (or other OCI-compliant registries), use the Ratify Store custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/stores).
 
 ### What should I do if my container images aren't signed using the Notation tool?
 

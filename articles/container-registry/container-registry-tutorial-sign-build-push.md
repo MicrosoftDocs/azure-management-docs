@@ -1,5 +1,5 @@
 ---
-title: Sign Container Images with Notation and Azure Key Vault
+title: Sign Container Images with Notation and Azure Key Vault by Using a Self-Signed Certificate
 description: Learn how to create a self-signed certificate in Azure Key Vault, build and sign a container image in Azure Container Registry, and verify it by using Notation.
 author: chasedmicrosoft
 ms.author: doveychase
@@ -10,7 +10,7 @@ ms.date: 9/3/2024
 # Customer intent: As a developer, I want to sign and verify container images by using a self-signed certificate and secure storage solutions, so that I can ensure the authenticity and integrity of my container images throughout their lifecycle.
 ---
 
-# Sign container images with Notation and Azure Key Vault by using a self-signed certificate
+# Sign container images by using Notation, Azure Key Vault, and a self-signed certificate
 
 This article is part of a series on ensuring integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
@@ -70,9 +70,9 @@ In this article, you learn how to:
 
 ## Configure environment variables
 
-For easy execution of commands in this article, provide values for the Azure resources to match the existing Container Registry and Key Vault resources:
+For easy execution of commands in this article, provide values for the Azure resources to match the existing Container Registry and Key Vault resources.
 
-1. Configure Azure Key Vault resource names:
+1. Configure Key Vault resource names:
 
     ```bash
     AKV_SUB_ID=myAkvSubscriptionId
@@ -85,7 +85,7 @@ For easy execution of commands in this article, provide values for the Azure res
     CERT_PATH=./${CERT_NAME}.pem
     ```
 
-2. Configure Azure Container Registry and image resource names:
+2. Configure Container Registry and image resource names:
 
     ```bash
     ACR_SUB_ID=myAcrSubscriptionId
@@ -102,7 +102,7 @@ For easy execution of commands in this article, provide values for the Azure res
     IMAGE_SOURCE=https://github.com/wabbit-networks/net-monitor.git#main
     ```
 
-## Sign in with the Azure CLI
+## Sign in by using the Azure CLI
 
 ```bash
 az login
@@ -196,7 +196,7 @@ The following steps show how to create a self-signed certificate for testing pur
 
 1. Create a certificate policy file.
 
-    After the certificate policy file is executed via the following code, it creates a valid certificate compatible with the [Notary Project certificate requirement](https://github.com/notaryproject/specifications/blob/v1.0.0/specs/signature-specification.md#certificate-requirements) in Key Vault. The value for `ekus` is for code signing, but isn't required for notation to sign artifacts. The subject is used later as a trusted identity during verification.
+    After the certificate policy file is executed via the following code, it creates a valid certificate compatible with the [Notary Project certificate requirements](https://github.com/notaryproject/specifications/blob/v1.0.0/specs/signature-specification.md#certificate-requirements) in Key Vault. The value for `ekus` is for code signing, but isn't required for notation to sign artifacts. The subject is used later as a trusted identity during verification.
 
     ```bash
     cat <<EOF > ./my_policy.json
@@ -234,7 +234,7 @@ The following steps show how to create a self-signed certificate for testing pur
     az keyvault certificate create -n $CERT_NAME --vault-name $AKV_NAME -p @my_policy.json
     ```
 
-## Sign a container image with the Notation CLI and Key Vault plugin
+## Sign a container image by using the Notation CLI and Key Vault plugin
 
 1. Authenticate to your container registry by using your individual Azure identity:
 
@@ -301,7 +301,7 @@ The following steps show how to create a self-signed certificate for testing pur
    notation ls $IMAGE
    ```
 
-## Verify a container image with the Notation CLI
+## Verify a container image by using the Notation CLI
 
 To verify the container image, add the root certificate that signs the leaf certificate to the trust store, and create trust policies for verification. For the self-signed certificate used in this article, the root certificate is the self-signed certificate itself.
 
@@ -363,11 +363,11 @@ To verify the container image, add the root certificate that signs the leaf cert
     notation verify $IMAGE
     ```
 
-   Upon successful verification of the image through the trust policy, the SHA256 digest of the verified image is returned in a successful output message.
+   Upon successful verification of the image via the trust policy, the SHA256 digest of the verified image is returned in a successful output message.
 
-## Timestamping
+## Use timestamping
 
-Since Notation v1.2.0, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)-compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Time Stamping Authority (TSA). This trust enables successful signature verification even after the certificates expire.
+Since the Notation v1.2.0 release, Notation supports [RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)-compliant timestamping. This enhancement extends the trust of signatures created within the certificate's validity period by trusting a Time Stamping Authority (TSA). This trust enables successful signature verification even after the certificates expire.
 
 As an image signer, you should ensure that you sign container images with time stamps that a trusted TSA generated. As an image verifier, you should ensure that you trust both the image signer and the associated TSA, and establish trust through trust stores and trust policies.
 

@@ -10,11 +10,11 @@ ms.date: 9/5/2025
 # Customer intent: As a developer, I want to sign and verify container images so that I can ensure the authenticity and integrity of those images throughout their lifecycle.
 ---
 
-# Sign container images with Notation and Trusted Signing (preview)
+# Sign container images by using Notation and Trusted Signing (preview)
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-This article focuses on signing with Notary Project tooling, Notation, and [Trusted Signing](/azure/trusted-signing/overview):
+This article focuses on signing by using Notary Project tooling, Notation, and [Trusted Signing](/azure/trusted-signing/overview):
 
 - **What you'll learn here**: How to use the Notation command-line interface (CLI) to sign artifacts by using Trusted Signing.
 - **Where it fits**: Trusted Signing is an alternative to Azure Key Vault. Although Key Vault gives organizations full control of certificate lifecycle management, Trusted Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.

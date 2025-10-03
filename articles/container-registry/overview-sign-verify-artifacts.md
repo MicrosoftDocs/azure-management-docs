@@ -85,30 +85,30 @@ This overview introduces the importance of signing and verifying container image
 
 Signing via the Notation CLI:
 
-- [Sign container images with Notation and Azure Key Vault by using a self-signed certificate](container-registry-tutorial-sign-build-push.md)
-- [Sign container images with Notation and Azure Key Vault by using a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md)
+- [Sign container images by using Notation, Azure Key Vault, and a self-signed certificate](container-registry-tutorial-sign-build-push.md)
+- [Sign container images by using Notation, Azure Key Vault, and a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md)
 
 Signing in a GitHub workflow:
 
-- [Sign container images in GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+- [Sign an image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
 
 ### Signing with Trusted Signing
 
 Signing via the Notation CLI:
 
-- [Sign container images with Notation and Trusted Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign container images by using Notation and Trusted Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
 
 Signing in a GitHub workflow:
 
-- [Sign container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+- [Sign container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
 ### Verification
 
 Verification in a GitHub workflow:
 
-- [Verify container images in a GitHub workflow with Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
-- [Verify container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
+- [Verify container images in a GitHub workflow by using Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
+- [Verify container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
 
 Verification on AKS:
 
-- [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
+- [Validate container image signatures in AKS by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)

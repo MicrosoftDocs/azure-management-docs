@@ -6,10 +6,10 @@ author: yizha1
 ms.author: yizha1
 ms.date: 09/08/2025
 ms.service: security
-# Customer intent: As a developer, I want to verify container image signatures in GitHub Actions with Trusted Signing, so that I can ensure authenticity and integrity before using them in builds or deployments.
+# Customer intent: As a developer, I want to verify container image signatures in GitHub Actions by using Trusted Signing, so that I can ensure authenticity and integrity before using them in builds or deployments.
 ---
 
-# Verify container images in GitHub workflows with Notation and Trusted Signing
+# Verify container images in GitHub workflows by using Notation and Trusted Signing
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 

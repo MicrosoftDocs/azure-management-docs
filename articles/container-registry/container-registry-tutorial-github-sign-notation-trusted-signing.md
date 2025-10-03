@@ -6,10 +6,10 @@ author: yizha1
 ms.author: yizha1
 ms.date: 09/07/2025
 ms.service: security
-# Customer intent: As a developer, I want to sign container images in GitHub Actions with Trusted Signing, so that I can ensure their authenticity and integrity in CI/CD pipelines and during deployment.
+# Customer intent: As a developer, I want to sign container images in GitHub Actions by using Trusted Signing, so that I can ensure their authenticity and integrity in CI/CD pipelines and during deployment.
 ---
 
-# Sign container images in GitHub workflows with Notation and Trusted Signing
+# Sign container images in GitHub workflows by using Notation and Trusted Signing
 
 This article is part of a series on ensuring integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
@@ -17,7 +17,7 @@ For the complete picture, start with the [overview](overview-sign-verify-artifac
 In this article, you learn how to create a GitHub Actions workflow to:
 
 - Build an image and push it to Azure Container Registry.
-- Sign the image with Notation GitHub actions and Trusted Signing.
+- Sign the image by using Notation GitHub actions and Trusted Signing.
 - Automatically store the generated signature in Container Registry.
 
 ## Prerequisites
