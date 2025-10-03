@@ -77,6 +77,9 @@ conceptualContent:
             - url: ./work-aks-clusters.md
               itemType: get-started
               text: Work with AKS clusters efficiently
+            - url: ./discover-storage-estate-insights.md
+              itemType: get-started
+              text: Discover insights about your Azure Storage estate
             - url: ./improve-storage-accounts.md
               itemType: get-started
               text: Manage and troubleshoot storage accounts
