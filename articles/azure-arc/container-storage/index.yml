@@ -20,6 +20,8 @@ landingContent:
         links:
           - text: What is Azure Container Storage enabled by Azure Arc?
             url: overview.md
+          - text: Prepare Linux for Edge Volumes
+            url: howto-prepare-linux-edge-volumes.md
       - linkListType: concept
         links:
           - text: Volumes and subvolumes
@@ -60,5 +62,9 @@ landingContent:
         links:
           - text: FAQ and release notes
             url: release-notes.md
+      - linkListType: how-to-guide
+        links:
+          - text: Troubleshooting common issues
+            url: troubleshooting.md
           - text: Support and feedback
             url: support-feedback.md
