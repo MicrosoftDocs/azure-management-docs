@@ -1,6 +1,6 @@
 ---
-title: Manage Signed Images with Content Trust in ACR
-description: Learn how to enable content trust for your Azure container registry, and push and pull signed images. Content trust implements Docker content trust and is a feature of the Premium service tier.
+title: Manage Signed Images with Docker Content Trust in Azure Container Registry
+description: Learn how to enable Docker Content Trust for your Azure container registry, and how to push and pull signed images.
 ms.topic: how-to
 author: chasedmicrosoft
 ms.author: doveychase
@@ -8,116 +8,117 @@ ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: subject-rbac-steps, devx-track-azurecli 
 ms.devlang: azurecli
-# Customer intent: As a DevOps engineer, I want to enable content trust for my container registry, so that I can ensure the security and integrity of the images I publish and consume by verifying their authenticity.
+# Customer intent: As a DevOps engineer, I want to enable Docker Content Trust for my container registry so that I can ensure the security and integrity of the images that I publish and consume by verifying their authenticity.
 ---
-# Content trust in Azure Container Registry
+# Manage signed images by using Docker Content Trust in Azure Container Registry
 
-Azure Container Registry implements Docker's [content trust][docker-content-trust] model, enabling pushing and pulling of signed images. This article gets you started enabling content trust in your container registries.
+Azure Container Registry implements the [Docker Content Trust (DCT)][docker-content-trust] model to enable pushing and pulling signed images. This article gets you started with enabling DCT in your container registries. DCT is a feature of the [Premium service tier](container-registry-skus.md) of Container Registry.
 
 > [!IMPORTANT]
-> Docker Content Trust will be deprecated and completely removed on March 31, 2028. Refer to [Transition from Docker Content Trust to the Notary Project](./container-registry-content-trust-deprecation.md) for details and transition guidance.
-
-> [!NOTE]
-> Content trust is a feature of the [Premium service tier](container-registry-skus.md) of Azure Container Registry.
+> DCT will be deprecated and completely removed on March 31, 2028. For details and transition guidance, refer to [Transition from Docker Content Trust to the Notary Project](./container-registry-content-trust-deprecation.md).
 
 ## Limitations
-- Token with repository-scoped permissions does not currently support docker push and pull of signed images.
 
-## How content trust works
+A token that has repository-scoped permissions doesn't currently support Docker push and pull of signed images.
 
-Important to any distributed system designed with security in mind is verifying both the *source* and the *integrity* of data entering the system. Consumers of the data need to be able to verify both the publisher (source) of the data, as well as ensure it's not been modified after it was published (integrity). 
+## How DCT works
 
-As an image publisher, content trust allows you to **sign** the images you push to your registry. Consumers of your images (people or systems pulling images from your registry) can configure their clients to pull *only* signed images. When an image consumer pulls a signed image, their Docker client verifies the integrity of the image. In this model, consumers are assured that the signed images in your registry were indeed published by you, and that they've not been modified since being published.
+Important to any distributed system that's designed with security in mind is verifying both the *source* and the *integrity* of data entering the system. Consumers of the data need to be able to verify the publisher (source) of the data and ensure that the data wasn't modified after it was published (integrity).
+
+As an image publisher, you can use DCT to sign the images that you push to your registry. Consumers of your images (people or systems pulling images from your registry) can configure their clients to pull only signed images. When an image consumer pulls a signed image, their Docker client verifies the integrity of the image. In this model, consumers are assured that you published the signed images in your registry, and that the images weren't modified after publication.
 
 > [!NOTE]
-> Azure Container Registry (ACR) does not support `acr import` to import images signed with Docker Content Trust (DCT). By design, the signatures are not visible after the import, and the notary v2 stores these signatures as artifacts.
+> Container Registry does not support `acr import` to import images signed with DCT. By design, the signatures aren't visible after the import. Notary v2 stores these signatures as artifacts.
 
 ### Trusted images
 
-Content trust works with the **tags** in a repository. Image repositories can contain images with both signed and unsigned tags. For example, you might sign only the `myimage:stable` and `myimage:latest` images, but not `myimage:dev`.
+DCT works with the tags in a repository. Image repositories can contain images that have both signed and unsigned tags. For example, you might sign only the `myimage:stable` and `myimage:latest` images, but not `myimage:dev`.
 
 ### Signing keys
 
-Content trust is managed through the use of a set of cryptographic signing keys. These keys are associated with a specific repository in a registry. There are several types of signing keys that Docker clients and your registry use in managing trust for the tags in a repository. When you enable content trust and integrate it into your container publishing and consumption pipeline, you must manage these keys carefully. For more information, see [Key management](#key-management) later in this article and [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
+DCT is managed through the use of a set of cryptographic signing keys. These keys are associated with a specific repository in a registry.
 
-> [!TIP]
-> This was a very high-level overview of Docker's content trust model. For an in-depth discussion of content trust, see [Content trust in Docker][docker-content-trust].
+There are several types of signing keys that Docker clients and your registry use in managing trust for the tags in a repository. When you enable DCT and integrate it into your container publishing and consumption pipeline, you must manage these keys carefully. For more information, see [Key management](#key-management) later in this article and [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
-## Enable registry content trust
+## Enable DCT for the registry
 
-Your first step is to enable content trust at the registry level. Once you enable content trust, clients (users or services) can push signed images to your registry. Enabling content trust on your registry does not restrict registry usage only to consumers with content trust enabled. Consumers without content trust enabled can continue to use your registry as normal. Consumers who have enabled content trust in their clients, however, will be able to see *only* signed images in your registry.
+Your first step is to enable DCT at the registry level. After you enable DCT, clients (users or services) can push signed images to your registry.
 
-To enable content trust for your registry, first navigate to the registry in the Azure portal. Under **Policies**, select **Content Trust** > **Enabled** > **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
+Enabling DCT for your registry doesn't restrict registry usage to only consumers who have DCT enabled. Consumers who don't have DCT enabled can continue to use your registry as normal. Consumers who enabled DCT in their clients, however, can see *only* signed images in your registry.
 
-![Screenshot shows enabling content trust for a registry in the Azure portal.][content-trust-01-portal]
+To enable DCT for your registry by using the Azure portal, go to the registry. Under **Policies**, select **Content trust** > **Enabled** > **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
 
-## Enable client content trust
+:::image type="content" source="./media/container-registry-content-trust/content-trust-01-portal.png" alt-text="Screenshot that shows the toggle for enabling Docker Content Trust for a registry in the Azure portal.":::
 
-To work with trusted images, both image publishers and consumers need to enable content trust for their Docker clients. As a publisher, you can sign the images you push to a content trust-enabled registry. As a consumer, enabling content trust limits your view of a registry to signed images only. Content trust is disabled by default in Docker clients, but you can enable it per shell session or per command.
+## Enable DCT for the client
 
-To enable content trust for a shell session, set the `DOCKER_CONTENT_TRUST` environment variable to **1**. For example, in the Bash shell:
+To work with trusted images, both image publishers and consumers need to enable DCT for their Docker clients. As a publisher, you can sign the images that you push to a DCT-enabled registry. As a consumer, enabling DCT limits your view of a registry to signed images only. DCT is disabled by default in Docker clients, but you can enable it per shell session or per command.
+
+To enable DCT for a shell session, set the `DOCKER_CONTENT_TRUST` environment variable to `1`. For example, in the Bash shell, use this code:
 
 ```bash
-# Enable content trust for shell session
+# Enable DCT for a shell session
 export DOCKER_CONTENT_TRUST=1
 ```
 
-If instead you'd like to enable or disable content trust for a single command, several Docker commands support the `--disable-content-trust` argument. To enable content trust for a single command:
+If you want to enable or disable DCT for a single command, several Docker commands support the `--disable-content-trust` argument.
+
+To enable DCT for a single command, use this code:
 
 ```bash
-# Enable content trust for single command
+# Enable DCT for a single command
 docker build --disable-content-trust=false -t myacr.azurecr.io/myimage:v1 .
 ```
 
-If you've enabled content trust for your shell session and want to disable it for a single command:
+If you enabled DCT for your shell session and want to disable it for a single command, use this code:
 
 ```bash
-# Disable content trust for single command
+# Disable DCT for a single command
 docker build --disable-content-trust -t myacr.azurecr.io/myimage:v1 .
 ```
 
 ## Grant image signing permissions
 
-Only the users or systems you've granted permission can push trusted images to your registry. To grant trusted image push permission to a user (or a system using a service principal), grant their Microsoft Entra identities the `AcrImageSigner` role. This is in addition to the `AcrPush` (or equivalent) role required for pushing images to the registry. For details, see [Azure Container Registry Entra permissions and roles overview](container-registry-rbac-built-in-roles-overview.md).
+Only the users or systems to which you grant permission can push trusted images to your registry. To grant this push permission to a user (or a system by using a service principal), assign the `AcrImageSigner` role to the user's Microsoft Entra identity. This permission is in addition to the `AcrPush` (or equivalent) role that's required for pushing images to the registry. For more information, see [Azure Container Registry permissions and role assignments overview](container-registry-rbac-built-in-roles-overview.md).
 
 > [!IMPORTANT]
-> You can't grant trusted image push permission to the following administrative accounts: 
-> * the [admin account](container-registry-authentication.md#admin-account) of an Azure container registry
-> * a user account in Microsoft Entra ID with the [classic system administrator role](/azure/role-based-access-control/rbac-and-directory-admin-roles#classic-subscription-administrator-roles).
+> You can't grant this push permission to the following administrative accounts:
+>
+> - The [admin account](container-registry-authentication.md#admin-account) of an Azure container registry
+> - A user account in Microsoft Entra ID with the [classic system administrator role](/azure/role-based-access-control/rbac-and-directory-admin-roles#classic-subscription-administrator-roles)
 
-> [!NOTE]
-> Starting July 2021, the `AcrImageSigner` role includes both the         `Microsoft.ContainerRegistry/registries/sign/write` action and the `Microsoft.ContainerRegistry/registries/trustedCollections/write` data action.
-
-Details for granting the `AcrImageSigner` role in the Azure portal and the Azure CLI follow.
+As of July 2021, the `AcrImageSigner` role includes both the `Microsoft.ContainerRegistry/registries/sign/write` action and the `Microsoft.ContainerRegistry/registries/trustedCollections/write` data action.
 
 ### Azure portal
 
+To grant the `AcrImageSigner` role by using the Azure portal:
+
 1. Select **Access control (IAM)**.
 
-1. Select **Add** > **Add role assignment** to open the Add role assignment page.
+1. Select **Add** > **Add role assignment** to open the **Add role assignment** pane.
 
-1. Assign the following role. In this example, the role is assigned to an individual user. For detailed steps, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
-    
+1. Assign the following role. In this example, the role is assigned to an individual user. For detailed steps, see [Assign Azure roles by using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
     | Setting | Value |
     | --- | --- |
-    | Role | AcrImageSigner |
-    | Assign access to | User |
-    | Members | Alain |
+    | **Role** | **AcrImageSigner** |
+    | **Assign access to** | **User** |
+    | **Members** | **Alain** |
 
-    ![Add role assignment page in Azure portal.](~/reusable-content/ce-skilling/azure/media/role-based-access-control/add-role-assignment-page.png)
+    :::image type="content" source="~/reusable-content/ce-skilling/azure/media/role-based-access-control/add-role-assignment-page.png" alt-text="Screenshot of the pane for adding a role assignment in the Azure portal.":::
 
 ### Azure CLI
 
-To grant signing permissions to a user with the Azure CLI, assign the `AcrImageSigner` role to the user, scoped to your registry. The format of the command is:
+To grant signing permissions to a user by using the Azure CLI, assign the `AcrImageSigner` role to the user, scoped to your registry. The format of the command is:
 
 ```azurecli
 az role assignment create --scope <registry ID> --role AcrImageSigner --assignee <user name>
 ```
 
-For example, to grant a non-administrative user the role, you can run the following commands in an authenticated Azure CLI session. Modify the `REGISTRY` value to reflect the name of your Azure container registry.
+For example, to assign the role to a non-administrative user, you can run the following commands in an authenticated Azure CLI session. Modify the `REGISTRY` value to reflect the name of your Azure container registry.
 
 ```bash
-# Grant signing permissions to authenticated Azure CLI user
+# Grant signing permissions to an authenticated Azure CLI user
 REGISTRY=myregistry
 REGISTRY_ID=$(az acr show --name $REGISTRY --query id --output tsv)
 ```
@@ -126,20 +127,20 @@ REGISTRY_ID=$(az acr show --name $REGISTRY --query id --output tsv)
 az role assignment create --scope $REGISTRY_ID --role AcrImageSigner --assignee azureuser@contoso.com
 ```
 
-You can also grant a [service principal](container-registry-auth-service-principal.md) the rights to push trusted images to your registry. Using a service principal is useful for build systems and other unattended systems that need to push trusted images to your registry. The format is similar to granting a user permission, but specify a service principal ID for the `--assignee` value.
+You can also grant a [service principal](container-registry-auth-service-principal.md) the rights to push trusted images to your registry. Using a service principal is useful for build systems and other unattended systems that need to push trusted images to your registry. The format is similar to granting a user permission, but you specify a service principal ID for the `--assignee` value:
 
 ```azurecli
 az role assignment create --scope $REGISTRY_ID --role AcrImageSigner --assignee <service principal ID>
 ```
 
-The `<service principal ID>` can be the service principal's **appId**, **objectId**, or one of its **servicePrincipalNames**. For more information about working with service principals and Azure Container Registry, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
+The `<service principal ID>` value can be the service principal's `appId` value, its `objectId` value, or one of its `servicePrincipalNames` values. For more information about working with service principals and Azure Container Registry, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
 > [!IMPORTANT]
-> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Add or remove Azure role assignments using Azure CLI](/azure/role-based-access-control/role-assignments-cli) and [Troubleshoot Azure RBAC](/azure/role-based-access-control/troubleshooting).
+> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Add or remove Azure role assignments by using the Azure CLI](/azure/role-based-access-control/role-assignments-cli) and [Troubleshoot Azure RBAC](/azure/role-based-access-control/troubleshooting).
 
 ## Push a trusted image
 
-To push a trusted image tag to your container registry, enable content trust and push the image with `docker push`. After push with a signed tag completes the first time, you're asked to create a passphrase for both a root signing key and a repository signing key. Both the root and repository keys are generated and stored locally on your machine.
+To push a trusted image tag to your container registry, enable DCT and use `docker push`. After pushing with a signed tag finishes the first time, you're asked to create a passphrase for both a root signing key and a repository signing key. Both the root and repository keys are generated and stored locally on your machine.
 
 ```console
 $ docker push myregistry.azurecr.io/myimage:v1
@@ -162,11 +163,11 @@ Finished initializing "myregistry.azurecr.io/myimage"
 Successfully signed myregistry.azurecr.io/myimage:v1
 ```
 
-After your first `docker push` with content trust enabled, the Docker client uses the same root key for subsequent pushes. On each subsequent push to the same repository, you're asked only for the repository key. Each time you push a trusted image to a new repository, you're asked to supply a passphrase for a new repository key.
+After your first `docker push` action with DCT enabled, the Docker client uses the same root key for subsequent pushes. On each subsequent push to the same repository, you're asked only for the repository key. Each time you push a trusted image to a new repository, you're asked to supply a passphrase for a new repository key.
 
 ## Pull a trusted image
 
-To pull a trusted image, enable content trust and run the `docker pull` command as normal. To pull trusted images, the `AcrPull` role is enough for normal users. No additional roles like an `AcrImageSigner` role are required. Consumers with content trust enabled can pull only images with signed tags. Here's an example of pulling a signed tag:
+To pull a trusted image, enable DCT and run the `docker pull` command as normal. To pull trusted images, the `AcrPull` role is enough for normal users. No additional roles (like an `AcrImageSigner` role) are required. Consumers who have DCT enabled can pull only images that have signed tags. Here's an example of pulling a signed tag:
 
 ```console
 $ docker pull myregistry.azurecr.io/myimage:signed
@@ -178,7 +179,7 @@ Status: Downloaded newer image for myregistry.azurecr.io/myimage@sha256:0800d17e
 Tagging myregistry.azurecr.io/myimage@sha256:0800d17e37fb4f8194495b1a188f121e5b54efb52b5d93dc9e0ed97fce49564b as myregistry.azurecr.io/myimage:signed
 ```
 
-If a client with content trust enabled tries to pull an unsigned tag, the operation fails with an error similar to the following:
+If a client that has DCT enabled tries to pull an unsigned tag, the operation fails with an error similar to the following example:
 
 ```console
 $ docker pull myregistry.azurecr.io/myimage:unsigned
@@ -187,10 +188,10 @@ Error: remote trust data does not exist
 
 ### Behind the scenes
 
-When you run `docker pull`, the Docker client uses the same library as in the [Notary CLI][docker-notary-cli] to request the tag-to-SHA-256 digest mapping for the tag you're pulling. After validating the signatures on the trust data, the client instructs Docker Engine to do a "pull by digest." During the pull, the Engine uses the SHA-256 checksum as a content address to request and validate the image manifest from the Azure container registry.
+When you run `docker pull`, the Docker client uses the same library as in the [Notary CLI][docker-notary-cli] to request the tag-to-SHA-256 digest mapping for the tag that you're pulling. After the client validates the signatures on the trust data, it instructs Docker Engine to do a "pull by digest." During the pull, the engine uses the SHA-256 checksum as a content address to request and validate the image manifest from the Azure container registry.
 
 > [!NOTE]
-> Azure Container Registry does not officially support the Notary CLI but is compatible with the Notary Server API, which is included with Docker Desktop. Currently Notary version **0.6.0** is recommended.
+> Azure Container Registry doesn't officially support the Notary CLI but is compatible with the Notary Server API, which is included with Docker Desktop. Currently, we recommend Notary version 0.6.0.
 
 ## Key management
 
@@ -200,44 +201,34 @@ As stated in the `docker push` output when you push your first trusted image, th
 ~/.docker/trust/private
 ```
 
-Back up your root and repository keys by compressing them in an archive and storing it in a secure location. For example, in Bash:
+Back up your root and repository keys by compressing them in an archive and storing the archive in a secure location. For example, use this command in Bash:
 
 ```bash
 umask 077; tar -zcvf docker_private_keys_backup.tar.gz ~/.docker/trust/private; umask 022
 ```
 
-Along with the locally generated root and repository keys, several others are generated and stored by Azure Container Registry when you push a trusted image. For a detailed discussion of the various keys in Docker's content trust implementation, including additional management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
+Along with the locally generated root and repository keys, Container Registry generates and stores several other keys when you push a trusted image. For a detailed discussion of the various keys in the DCT implementation, including additional management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
 ### Lost root key
 
-If you lose access to your root key, you lose access to the signed tags in any repository whose tags were signed with that key. Azure Container Registry cannot restore access to image tags signed with a lost root key. To remove all trust data (signatures) for your registry, first disable, then re-enable content trust for the registry.
+If you lose access to your root key, you lose access to the signed tags in any repository whose tags that key signed. Container Registry can't restore access to image tags signed with a lost root key. To remove all trust data (signatures) for your registry, disable and then re-enable DCT for the registry.
 
 > [!WARNING]
-> Disabling and re-enabling content trust in your registry **deletes all trust data for all signed tags in every repository in your registry**. This action is irreversible--Azure Container Registry cannot recover deleted trust data. Disabling content trust does not delete the images themselves.
+> Disabling and re-enabling DCT in your registry *deletes all trust data for all signed tags in every repository in your registry*. This action is irreversible. Container Registry can't recover deleted trust data. Disabling DCT does not delete the images themselves.
 
-To disable content trust for your registry, navigate to the registry in the Azure portal. Under **Policies**, select **Content Trust** > **Disabled** > **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
+To disable DCT for your registry, go to the registry in the Azure portal. Under **Policies**, select **Content Trust** > **Disabled** > **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
 
-![Disabling content trust for a registry in the Azure portal][content-trust-03-portal]
+:::image type="content" source="./media/container-registry-content-trust/content-trust-03-portal.png" alt-text="Screenshot of the confirmation message about disabling Docker Content Trust for a registry in the Azure portal.":::
 
-## Next steps
+## Related content
 
-* See [Content trust in Docker][docker-content-trust] for additional information about content trust, including [docker trust](https://docs.docker.com/engine/reference/commandline/trust/) commands and [trust delegations](https://docs.docker.com/engine/security/trust/trust_delegation/). While several key points were touched on in this article, content trust is an extensive topic and is covered more in-depth in the Docker documentation.
-
-* See the [Azure Pipelines](/azure/devops/pipelines/build/content-trust) documentation for an example of using content trust when you build and push a Docker image.
-
-<!-- IMAGES> -->
-[content-trust-01-portal]: ./media/container-registry-content-trust/content-trust-01-portal.png
-[content-trust-02-portal]: ./media/container-registry-content-trust/content-trust-02-portal.png
-[content-trust-03-portal]: ./media/container-registry-content-trust/content-trust-03-portal.png
+- For more information about DCT, including [`docker trust`](https://docs.docker.com/engine/reference/commandline/trust/) commands and [trust delegations](https://docs.docker.com/engine/security/trust/trust_delegation/), see [Content trust in Docker][docker-content-trust].
+- For an example of using DCT when you build and push a Docker image, see the [Azure Pipelines](/azure/devops/pipelines/build/content-trust) documentation.
 
 <!-- LINKS - external -->
 [docker-content-trust]: https://docs.docker.com/engine/security/trust/content_trust
 [docker-manage-keys]: https://docs.docker.com/engine/security/trust/trust_key_mng/
 [docker-notary-cli]: https://docs.docker.com/notary/getting_started/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
 
 <!-- LINKS - internal -->
-[azure-cli]: /cli/azure/install-azure-cli
 [az-acr-config-content-trust-update]: /cli/azure/acr/config/content-trust#az_acr_config_content_trust_update

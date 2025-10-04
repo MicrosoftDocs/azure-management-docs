@@ -111,4 +111,4 @@ Verification in a GitHub workflow:
 
 Verification on AKS:
 
-- [Validate container image signatures in AKS by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)
+- [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md)

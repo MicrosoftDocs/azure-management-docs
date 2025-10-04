@@ -124,7 +124,7 @@ Verification requires a [Notary Project trust store and trust policy](https://gi
 
 ### Create the trust store
 
-The trust store (`.github/truststore/`) contains the certificate authority (CA) certificates and Time Stamping Authority (TSA) root certificates required for validation.
+The trust store (`.github/truststore/`) contains the certificate authority (CA) certificates and Time Stamping Authority (TSA) root certificates required for verification.
 
 Download the [Trusted Signing root certificate](https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt) and store it in the `ca` directory.
 

@@ -123,8 +123,8 @@ When you're creating certificates for signing and verification, the certificates
 
 Here are the requirements for root and intermediate certificates:
 
-- The `basicConstraints` extension must be present and marked `critical`. The `CA` field must be set to `true`.
-- The `keyUsage` extension must be present and marked `critical`. Bit positions for `keyCertSign` must be set.
+- The `basicConstraints` extension must be present and marked as `critical`. The `CA` field must be set to `true`.
+- The `keyUsage` extension must be present and marked as `critical`. Bit positions for `keyCertSign` must be set.
 
 Here are the requirements for certificates that a CA issues:
 
@@ -416,7 +416,7 @@ Timestamping reduces costs by eliminating the need to periodically re-sign image
 
 ## Related content
 
-Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
+Notation provides continuous integration and continuous delivery (CI/CD) solutions on Azure Pipelines and GitHub Actions:
 
 - To sign and verify container images in Azure Pipelines, see [Sign and verify a container image with Notation in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
 - To sign container images by using GitHub Actions, see [Sign a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).

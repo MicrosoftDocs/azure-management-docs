@@ -429,6 +429,6 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
 ## Related content
 
-- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
-- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow with Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
-- For verification on Azure Kubernetes Service (AKS), see [Validate container image signatures in AKS with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
+- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
+- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
+- For verification on Azure Kubernetes Service (AKS), see [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).

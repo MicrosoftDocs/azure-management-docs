@@ -15,7 +15,7 @@ ms.date: 9/3/2024
 This article is part of a series on ensuring integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-Signing container images is a process that helps ensure their authenticity and integrity. A digital signature that's added to a container image is validated during deployment. The signature helps to verify that the image is from a trusted publisher and isn't modified.
+Signing container images is a process that helps ensure their authenticity and integrity. A digital signature that's added to a container image is verified during deployment. The signature helps to verify that the image is from a trusted publisher and isn't modified.
 
 This article discusses the following tools involved in the signing process:
 
@@ -377,11 +377,11 @@ Timestamping reduces costs by eliminating the need to periodically re-sign image
 
 Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
-- To sign and verify container images in Azure Pipelines, see [Sign and verify a container image with Notation in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- To sign and verify container images in Azure Pipelines, see [Sign and verify a container image by using Notation in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
 - To sign container images by using GitHub Actions, see [Sign a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
-- To verify container images by using GitHub Actions, see [Verify a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha).
+- To verify container images by using GitHub Actions, see [Verify a container image by Notation and GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha).
 
 To ensure that only trusted container images are deployed on Azure Kubernetes Service (AKS):
 
 - Use Azure Policy Image Integrity (preview) by following the guide [Use Image Integrity to validate signed images before deploying them to your Azure Kubernetes Service clusters (preview)](/azure/aks/image-integrity?tabs=azure-cli).
-- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Securing AKS workloads: validating container image signatures with Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
+- Use [Ratify](https://ratify.dev/) and Azure Policy by following the guide [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
