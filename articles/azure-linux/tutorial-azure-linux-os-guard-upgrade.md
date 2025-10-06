@@ -1,16 +1,16 @@
 ---
-title: Azure Linux Container Host for AKS tutorial - Upgrade Azure Linux Container Host nodes
-description: In this Azure Linux Container Host for AKS tutorial, you learn how to upgrade Azure Linux Container Host nodes.
-author: suhuruli
-ms.author: suhuruli
+title: Azure Linux with OS Guard for AKS tutorial - Upgrade Azure Linux with OS Guard nodes
+description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to upgrade Azure Linux with OS Guard nodes.
+author: florataagen
+ms.author: florataagen
 ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
-ms.date: 04/06/2025
+ms.date: 10/06/2025
 # Customer intent: "As a cloud administrator, I want to upgrade the Azure Linux with OS Guard nodes in my AKS cluster, so that I can ensure the environment is secure and up-to-date with the latest features and security patches."
 ---
 
-# Tutorial: Upgrade Azure Linux Container Host nodes
+# Tutorial: Upgrade Azure Linux with OS Guard nodes
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321846)

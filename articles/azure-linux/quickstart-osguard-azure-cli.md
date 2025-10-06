@@ -10,7 +10,7 @@ ms.date: 09/23/2025
 # Customer intent: "As a cloud developer, I want to deploy an Azure Linux with OS Guard AKS cluster using the Azure CLI, so that I can manage and run multi-container applications efficiently in a Kubernetes environment."
 ---
 
-# Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using the Azure CLI
+# Quickstart: Deploy an Azure Linux with OS Guard AKS cluster by using the Azure CLI
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://go.microsoft.com/fwlink/?linkid=2303214)
 

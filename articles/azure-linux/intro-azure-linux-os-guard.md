@@ -1,8 +1,8 @@
 ---
 title: About Azure Linux with OS Guard (preview) for AKS
 description: Learn about Azure Linux with OS Guard 
-author: flora-taagen
-ms.author: flora-taagen
+author: florataagen
+ms.author: florataagen
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
