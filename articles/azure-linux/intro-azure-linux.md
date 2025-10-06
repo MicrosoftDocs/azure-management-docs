@@ -72,8 +72,8 @@ For information on Azure Linux 2.0 and Azure Linux 3.0 support lifecycles, see [
 ## Next steps
 
 - Learn more about [Azure Linux Container Host core concepts](./concepts-core.md).
-- Follow our tutorial to [Deploy, manage, and update applications](./tutorial-azure-linux-create-cluster.md).
 - Get started by [Creating an Azure Linux Container Host for AKS cluster using Azure CLI](./quickstart-azure-cli.md).
+- Follow our tutorial to [Deploy, manage, and update applications](./tutorial-azure-linux-create-cluster.md).
 
 <!-- LINKS - internal -->
 [nvidia-v100]: /azure/virtual-machines/ncv3-series
