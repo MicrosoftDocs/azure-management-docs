@@ -15,7 +15,7 @@ ms.devlang: azurecli
 Azure Container Registry implements the [Docker Content Trust (DCT)][docker-content-trust] model to enable pushing and pulling signed images. This article gets you started with enabling DCT in your container registries. DCT is a feature of the [Premium service tier](container-registry-skus.md) of Container Registry.
 
 > [!IMPORTANT]
-> DCT will be deprecated and completely removed on March 31, 2028. For details and transition guidance, refer to [Transition from Docker Content Trust to the Notary Project](./container-registry-content-trust-deprecation.md).
+> DCT will be deprecated and completely removed on March 31, 2028. For details and transition guidance, refer to [Transition from Docker Content Trust to Notary Project](./container-registry-content-trust-deprecation.md).
 
 ## Limitations
 

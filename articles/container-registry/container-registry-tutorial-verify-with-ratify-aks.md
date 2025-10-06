@@ -32,8 +32,8 @@ As the image producer, you can follow these articles to sign container images in
 
 - For signing via self-signed certificates, see [Sign container images by using Notation, Azure Key Vault, and a self-signed certificate](container-registry-tutorial-sign-build-push.md).
 - For signing via certificates issued by a certificate authority (CA), see [Sign container images by using Notation, Azure Key Vault, and a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md).
-- For signing in Azure Pipelines, see [Sign container images in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
-- For signing in GitHub workflows, see [Sign container images in GitHub workflows](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
+- For signing in Azure DevOps pipelines, see [Sign and verify a container image by using Notation in an Azure pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- For signing in GitHub workflows, see [Sign a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
 
 ### Use Trusted Signing for certificate management
 

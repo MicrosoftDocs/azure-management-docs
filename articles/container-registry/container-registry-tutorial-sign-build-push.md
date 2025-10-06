@@ -377,9 +377,9 @@ Timestamping reduces costs by eliminating the need to periodically re-sign image
 
 Notation provides CI/CD solutions on Azure Pipelines and GitHub Actions:
 
-- To sign and verify container images in Azure Pipelines, see [Sign and verify a container image by using Notation in Azure Pipelines](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
-- To sign container images by using GitHub Actions, see [Sign a container image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
-- To verify container images by using GitHub Actions, see [Verify a container image by Notation and GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha).
+- To sign and verify container images in Azure DevOps pipelines, see [Sign and verify a container image by using Notation in an Azure pipeline](/azure/security/container-secure-supply-chain/articles/notation-ado-task-sign).
+- To sign container images by using GitHub Actions, see [Sign a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha).
+- To verify container images by using GitHub Actions, see [Verify a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/verify-gha).
 
 To ensure that only trusted container images are deployed on Azure Kubernetes Service (AKS):
 
