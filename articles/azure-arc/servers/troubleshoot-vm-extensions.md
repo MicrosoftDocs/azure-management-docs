@@ -66,7 +66,9 @@ The extension is missing the HandlerManifest.json file. This can happen if the e
 
 **Solution**
 
-1. Manually remove the extension from the machine. Some extensions may require additional cleanup steps. Refer to extension-specific documentation in the [extensions table](manage-vm-extensions.md#extensions) for further guidance.
+1. To remove the extension, use [`az connectedmachine extension delete`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
+
+2. If the extension is still in the same state, attempt to manually remove the extension from the machine. Some extensions may require additional cleanup steps. Refer to extension-specific documentation in the [extensions table](manage-vm-extensions.md#extensions) for further guidance.
 
     For Windows machines:
     - Navigate to `C:\Packages\Plugins\`
@@ -76,7 +78,7 @@ The extension is missing the HandlerManifest.json file. This can happen if the e
     - Navigate to `/var/lib/waagent/`
     - Delete the folder corresponding to the extension
 
-2. Uninstall the extension from Azure and then reinstall it.
+3. Uninstall the extension from Azure and then reinstall it.
 
 ## Next steps
 
