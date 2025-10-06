@@ -94,25 +94,25 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
    ```
 
-   ---
-
-    For ABAC-enabled registries, assign the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles:
-
-    # [Linux](#tab/linux)
-
-    ```bash
-    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
-
-    # [Windows](#tab/windows)
-
-    ```powershell
-    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
-
     ---
+
+   For ABAC-enabled registries, assign the `Container Registry Repository Reader` and `Container Registry Repository Writer` roles:
+
+   # [Linux](#tab/linux)
+
+   ```bash
+   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
+
+   # [Windows](#tab/windows)
+
+   ```powershell
+   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
+
+   ---
 
 4. Assign the `Trusted Signing Certificate Profile Signer` role to the managed identity for accessing Trusted Signing:
 
