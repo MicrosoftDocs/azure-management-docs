@@ -15,7 +15,7 @@ Azure Container Registry will retire [Docker Content Trust (DCT)](./container-re
 
 ## DCT deprecation
 
-DCT allows image publishers to sign their images and allows image consumers to verify that the images they pull are signed. With advancements in technology, DCT no longer meets the requirements of modern supply chain security for containers. As a result, deprecation of DCT started on March 31, 2025. DCT will be completely removed from Azure Container Registry on March 31, 2028.
+DCT allows image publishers to sign their images and allows image consumers to verify that the images they pull are signed. With advancements in technology, DCT no longer meets the requirements of modern supply-chain security for containers. As a result, deprecation of DCT started on March 31, 2025. DCT will be completely removed from Azure Container Registry on March 31, 2028.
 
 As an alternative to DCT, Microsoft offers signing and verification solutions based on Notary Project. [Notary Project](https://notaryproject.dev/) is a set of specifications and tools that provide a cross-industry standard for securing software supply chains by using authentic container images and other Open Container Initiative (OCI) artifacts.
 

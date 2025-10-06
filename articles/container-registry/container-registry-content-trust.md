@@ -38,7 +38,7 @@ DCT works with the tags in a repository. Image repositories can contain images t
 
 You manage DCT by using a set of cryptographic signing keys. These keys are associated with a specific repository in a registry.
 
-There are several types of signing keys that Docker clients and your registry use in managing trust for the tags in a repository. When you enable DCT and integrate it into your container publishing and consumption pipeline, you must manage these keys carefully. For more information, see [Key management](#key-management) later in this article and [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
+There are several types of signing keys that Docker clients and your registry use in managing trust for the tags in a repository. When you enable DCT and integrate it into your pipeline for container publishing and consumption, you must manage these keys carefully. For more information, see [Manage keys](#manage-keys) later in this article and [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
 ## Enable DCT for the registry
 
@@ -136,7 +136,7 @@ az role assignment create --scope $REGISTRY_ID --role AcrImageSigner --assignee 
 The `<service principal ID>` value can be the service principal's `appId` value, its `objectId` value, or one of its `servicePrincipalNames` values. For more information about working with service principals and Azure Container Registry, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md).
 
 > [!IMPORTANT]
-> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Add or remove Azure role assignments by using the Azure CLI](/azure/role-based-access-control/role-assignments-cli) and [Troubleshoot Azure RBAC](/azure/role-based-access-control/troubleshooting).
+> After any role changes, run `az acr login` to refresh the local identity token for the Azure CLI so that the new roles can take effect. For information about verifying roles for an identity, see [Assign Azure roles by using the Azure CLI](/azure/role-based-access-control/role-assignments-cli) and [Troubleshoot Azure RBAC](/azure/role-based-access-control/troubleshooting).
 
 ## Push a trusted image
 
@@ -191,11 +191,11 @@ Error: remote trust data does not exist
 When you run `docker pull`, the Docker client uses the same library as in the [Notary CLI][docker-notary-cli] to request the tag-to-SHA-256 digest mapping for the tag that you're pulling. After the client validates the signatures on the trust data, it instructs Docker Engine to do a "pull by digest." During the pull, the engine uses the SHA-256 checksum as a content address to request and validate the image manifest from the Azure container registry.
 
 > [!NOTE]
-> Azure Container Registry doesn't officially support the Notary CLI but is compatible with the Notary Server API, which is included with Docker Desktop. Currently, we recommend Notary version 0.6.0.
+> Azure Container Registry doesn't officially support the Notary CLI but is compatible with the Notary Server API. The Notary Server API is included with Docker Desktop. Currently, we recommend Notary version 0.6.0.
 
-## Key management
+## Manage keys
 
-As stated in the `docker push` output when you push your first trusted image, the root key is the most sensitive. Be sure to back up your root key and store it in a secure location. By default, the Docker client stores signing keys in the following directory:
+As stated in the `docker push` output when you push your first trusted image, the root key is the most sensitive. By default, the Docker client stores signing keys in the following directory:
 
 ```sh
 ~/.docker/trust/private
@@ -207,7 +207,7 @@ Back up your root and repository keys by compressing them in an archive and stor
 umask 077; tar -zcvf docker_private_keys_backup.tar.gz ~/.docker/trust/private; umask 022
 ```
 
-Along with the locally generated root and repository keys, Container Registry generates and stores several other keys when you push a trusted image. For a detailed discussion of the various keys in the DCT implementation, including more management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
+Along with the locally generated root and repository keys, Container Registry generates and stores several other keys when you push a trusted image. For a detailed discussion of the various keys in the DCT implementation, including management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
 ### Lost root key
 

@@ -191,7 +191,7 @@ This table provides details about the parameters:
 | `notation.trustPolicies[0].trustStores[0]`        | Trust stores where certificates of type `ca` or `tsa` are stored                                   | `ca:azurekeyvault`                    |
 | `notation.trustPolicies[0].trustedIdentities[0]`  | Subject field of the signing certificate, with prefix `x509.subject:` indicating what you trust  | `"x509.subject: $SUBJECT"`            |
 
-By using timestamping for your images, you can ensure that images signed before the certificate expires can still be verified successfully. Add the following parameters for Time Stamping Authority (TSA) configuration:
+By using timestamping for your images, you can ensure that images signed before the certificate expires can still be verified successfully. Add the following parameters for time stamp authority (TSA) configuration:
 
 | Parameter                                       | Description                                                                | Value                               |
 | ----------------------------------------------- | -------------------------------------------------------------------------- | ----------------------------------- |

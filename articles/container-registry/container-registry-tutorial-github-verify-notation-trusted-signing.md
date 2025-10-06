@@ -16,12 +16,12 @@ This article is part of a series on ensuring the integrity and authenticity of c
 You can use this guide in two scenarios:
 
 - **Consuming signed images**: Verify container images that other teams or organizations already signed by using Notation and Trusted Signing.
-- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-trusted-signing.md) or the [Notation CLI](container-registry-tutorial-sign-verify-notation-trusted-signing.md). Then follow this guide to verify the signatures.
+- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-trusted-signing.md) or the [Notation command-line interface (CLI)](container-registry-tutorial-sign-verify-notation-trusted-signing.md). Then follow this guide to verify the signatures.
 
 In this article, you learn how to:
 
 - Configure a GitHub workflow.
-- Verify that container images were signed with Trusted Signing by using GitHub Actions for Notation.
+- Verify that container images were signed by using Trusted Signing and GitHub Actions for Notation.
 
 ## Prerequisites
 
@@ -124,9 +124,9 @@ Verification requires a [Notary Project trust store and trust policy](https://gi
 
 ### Create the trust store
 
-The trust store (`.github/truststore/`) contains the certificate authority (CA) certificates and Time Stamping Authority (TSA) root certificates required for verification.
+The trust store (`.github/truststore/`) contains the certificate authority (CA) certificates and the time stamp authority (TSA) root certificates that are required for verification.
 
-Download the [Trusted Signing root certificate](https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt) and store it in the `ca` directory.
+Download the [Trusted Signing root certificate](https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt) and store it in the `ca` directory:
 
 # [Linux](#tab/linux)
 
@@ -148,7 +148,7 @@ Invoke-WebRequest -Uri "https://www.microsoft.com/pkiops/certs/Microsoft%20Enter
 
 ---
 
-Download the [Trusted Signing TSA root certificate](https://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt) and store it in the `tsa` directory.
+Download the [Trusted Signing TSA root certificate](https://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt) and store it in the `tsa` directory:
 
 # [Linux](#tab/linux)
 

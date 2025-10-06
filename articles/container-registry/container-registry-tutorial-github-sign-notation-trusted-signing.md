@@ -11,7 +11,7 @@ ms.service: security
 
 # Sign container images in GitHub workflows by using Notation and Trusted Signing
 
-This article is part of a series on ensuring integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
+This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts.
 For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
 In this article, you learn how to create a GitHub Actions workflow to:
@@ -146,7 +146,7 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
 ## Store the TSA root certificate
 
-Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The Time Stamping Authority (TSA) server URL is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures).
+Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Trusted Signing uses short-lived certificates, so timestamping is critical. The server URL for the time stamp authority (TSA) is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures).
 
 1. Download the TSA root certificate:
 
@@ -189,7 +189,7 @@ env:
   ACR_LOGIN_SERVER: <registry-login-server>             # example: myregistry.azurecr.io
   ACR_REPO_NAME: <repository-name>                      # example: myrepo
   IMAGE_TAG: <image-tag>                                # example: v1
-  PLUGIN_NAME: azure-trustedsigning                     # name of Notation Trusted Signing plugin; do not change
+  PLUGIN_NAME: azure-trustedsigning                     # name of Notation Trusted Signing plug-in; do not change
   PLUGIN_DOWNLOAD_URL: <plugin-download-url>            # example: "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz"
   PLUGIN_CHECKSUM: <plugin-package-checksum>            # example: 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
   TSA_URL: "http://timestamp.acs.microsoft.com/"        # timestamping server URL
@@ -270,7 +270,7 @@ jobs:
 Notes on environment variables:
 
 - `PLUGIN_NAME`: Always use `azure-trustedsigning`.
-- `PLUGIN_DOWNLOAD_URL`: Get the URL from the [Trusted Signing plugin release page](https://github.com/Azure/trustedsigning-notation-plugin/releases/).
+- `PLUGIN_DOWNLOAD_URL`: Get the URL from the [Trusted Signing plug-in release page](https://github.com/Azure/trustedsigning-notation-plugin/releases/).
 - `PLUGIN_CHECKSUM`: Use the checksum file on the release page; for example, `notation-azure-trustedsigning_<version>_checksums.txt`.
 - `TS_ACCOUNT_URI`: Use the endpoint for your Trusted Signing account, specific to its region; for example, `https://eus.codesigning.azure.net/`.
 
@@ -278,10 +278,10 @@ Notes on environment variables:
 
 The `on:push` syntax triggers the sample workflow. Committing changes starts the workflow. Under your GitHub repository name, select **Actions** to view the workflow logs.
 
-On success, the workflow builds the image, pushes it to Azure Container Registry, and signs it with Trusted Signing. You can view the workflow logs to confirm that the `azure-trustedsigning` plugin was installed and the image was successfully signed.
+On success, the workflow builds the image, pushes it to Azure Container Registry, and signs it by using Trusted Signing. You can view the workflow logs to confirm that the `azure-trustedsigning` plug-in was installed and the image was successfully signed.
 
 Additionally, you can open your container registry in the Azure portal. Go to **Repositories**, go to your image, and then select **Referrers**. Confirm that artifacts (signatures) of type `application/vnd.cncf.notary.signature` are listed.
 
 ## Related content
 
-- [Verify container images in GitHub workflows with Notation and Trusted Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md)
+- [Verify container images in GitHub workflows by using Notation and Trusted Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md)

@@ -22,7 +22,7 @@ This article focuses on signing by using Notary Project tooling, Notation, and [
 
 ## Prerequisites
 
-Before you can sign and verify container images with Notation and Trusted Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Trusted Signing, and setting up your development environment with the Azure CLI.
+Before you can sign and verify container images by using Notation and Trusted Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Trusted Signing, and setting up the Azure CLI as your development environment.
 
 > [!NOTE]
 > At this time, Trusted Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
@@ -42,7 +42,7 @@ Your certificate profile must include country/region (`C`), state or province (`
 
 Install the [Azure CLI](/cli/azure/install-azure-cli), or use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
 
-## Install the Notation CLI and Trusted Signing plugin
+## Install the Notation CLI and Trusted Signing plug-in
 
 This guide runs commands on Linux AMD64 and Windows as examples.
 
@@ -77,11 +77,11 @@ This guide runs commands on Linux AMD64 and Windows as examples.
    $env:PATH = "${Env:ProgramFiles}\Notation;${Env:PATH}"
    ```
 
-   ---
+    ---
 
-   For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
+    For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
 
-2. Install the Trusted Signing plugin:
+2. Install the Trusted Signing plug-in:
 
    # [Linux](#tab/linux)
 
@@ -95,11 +95,11 @@ This guide runs commands on Linux AMD64 and Windows as examples.
    notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
    ```
 
-   ---
+    ---
 
-   Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
+    Find the latest plug-in URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
 
-3. Verify plugin installation:
+3. Verify plug-in installation:
 
    # [Linux](#tab/linux)
 
@@ -113,14 +113,14 @@ This guide runs commands on Linux AMD64 and Windows as examples.
    notation plugin ls
    ```
 
-   ---
+    ---
 
-   Example output:
+    Example output:
 
-   ```text
-   NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
-   azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
-   ```
+    ```text
+    NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
+    azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
+    ```
 
 ## Configure environment variables
 
@@ -281,7 +281,7 @@ Key flags explained:
 
 - `--signature-format cose`: Uses CBOR Object Signing and Encryption (COSE) format for signatures.
 - `--timestamp-url`: Uses the timestamping server that Trusted Signing supports.
-- `--plugin-config`: Passes configuration to the Trusted Signing plugin.
+- `--plugin-config`: Passes configuration to the Trusted Signing plug-in.
 
 List signed images and signatures:
 
