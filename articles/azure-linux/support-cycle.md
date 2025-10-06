@@ -43,7 +43,11 @@ The following table outlines the first and last AKS release supported by each ve
 
 ### AKS LTS Releases
 
+<<<<<<< HEAD
 - Azure Linux 2.0 is the default node OS for AKS versions v1.27 to v1.31 during both Standard and Long-Term Support (LTS). However, Azure Linux 2.0 goes End of Life ends during the LTS period of AKS v1.28–v1.31. To maintain support and security updates, customers running Azure Linux 2.0 on AKS v1.27–v1.31 LTS are requested to migrate to Azure Linux 3.0 by November 2025. After November 2025 Azure Linux 2.0 will no longer receive updates, security patches, or support, which may put your systems at risk. To migrate existing node pools from Azure Linux 2.0 to 3.0 while remaining on the same k8s version You can perform an in-place node pool update from `--os-sku AzureLinux` to `--os-sku AzureLinux3`. Your node pool will automatically reimage to the equivalent Azure Linux 3.0 node image. See documentation [here](azure/aks/upgrade-os-version). 
+=======
+- Azure Linux 2.0 is the default node OS for AKS versions v1.27 to v1.31 during both Standard and Long-Term Support (LTS). However, Azure Linux 2.0 goes End of Life during the LTS period of AKS v1.28–v1.31. To maintain support and security updates, customers running Azure Linux 2.0 on AKS v1.27–v1.31 LTS are requested to migrate to Azure Linux 3.0 by November 2025. After November 2025, Azure Linux 2.0 will no longer receive updates, security patches, or support, which may put your systems at risk. To migrate existing node pools from Azure Linux 2.0 to 3.0 while remaining on the same Kubernetes version, you can perform an in-place node pool update from `--os-sku AzureLinux` to `--os-sku AzureLinux3`. Your node pool will automatically reimage to the equivalent Azure Linux 3.0 node image. See documentation [here](/azure/aks/upgrade-os-version).
+>>>>>>> cbc79b1e0d5c3f5c6bbef794cb1cc8211bc2d247
 - Azure Linux 3.0 is the default node OS for AKS version v1.32 and above during both Standard and Long-Term Support (LTS).
 
 | AKS version |  Azure Linux version during AKS Standard Support | Azure Linux version during AKS Long-Term Support  |
