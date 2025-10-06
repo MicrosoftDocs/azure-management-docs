@@ -15,10 +15,10 @@ The Azure workload orchestration SDK provides programmatic access to workload or
 
 The SDK is available in the following languages:
 
-- [Python](pypi.org/project/azure-mgmt-workloadorchestration)
-- [Java](search.maven.org/artifact/com.azure.resourcemanager/azure-resourcemanager-workloadorchestration)
-- [JavaScript (Node.js)](npmjs.com/package/@azure/arm-workloadorchestration)
-- [Go](pkg.go.dev/github.com/Azure/azure-sdk-for-go/.../armworkloadorchestration)
+- [Python](https://pypi.org/project/azure-mgmt-workloadorchestration/)
+- [Java](https://central.sonatype.com/artifact/com.azure.resourcemanager/azure-resourcemanager-workloadorchestration?smo=true)
+- [JavaScript (Node.js)](https://www.npmjs.com/package/@azure/arm-workloadorchestration)
+- [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/resourcemanager/workloadorchestration/armworkloadorchestration)
 
 Each implementation includes language-specific examples and utilities to help you get started quickly.
 
