@@ -32,6 +32,8 @@
     href: manage-filter-resource-views.md
   - name: Find subscription and tenant IDs
     href: get-subscription-tenant-id.md
+  - name: Set admin policies for the Azure portal
+    href: admin-policies.md
 - name: Dashboards
   items:
   - name: Create and manage dashboards in Dashboard hub
