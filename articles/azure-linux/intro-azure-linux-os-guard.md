@@ -38,10 +38,12 @@ Use OS Guard when you need elevated assurances about your container host and wor
 
 Azure Linux with OS Guard is built on Azure Linux and therefore benefits from the same supply-chain protections and signed images. Both OS variants can be appropriate depending on your security, compliance, and operational requirements:
 
-
-| Azure Linux with OS Guard | Azure Linux Container Host |
-|---:|---:|
-| Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the security benefits mentioned above. | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from AWS Bottlerocket, Google CoS or other container optimized distributions. | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers. Customers who are born in the cloud or who are looking to modernize. | Option to enable Apparmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
+| Container Host Option | Azure Linux Container Host | Azure Linux with OS Guard |
+|---|---|---|
+| **Security benefits** | Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the additional security benefits mentioned above. |
+| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from AWS Bottlerocket, Google CoS or other container optimized distributions. |
+| **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers. Customers who are born in the cloud or who are looking to modernize. |
+| **Security controls** | Option to enable Apparmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
 
 
 
