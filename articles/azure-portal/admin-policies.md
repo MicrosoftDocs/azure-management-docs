@@ -20,7 +20,7 @@ Once your access is elevated, open [Feedback Policy Controls](https://portal.azu
 
 :::image type="content" source="media/admin-policies/feedback-policy-controls.png" alt-text="Screenshot of the Feedback Policy Controls option in the Azure portal.":::
 
-You can then check **Select all** to allow all feedback options, or check individual boxes to allow any of the following options:
+You can **Select all** to allow all feedback options, or check individual boxes to allow any of the following options:
 
 - **Initiate and submit feedback to Microsoft**: Allows users to send feedback to Microsoft in the Azure portal, such as by using the feedback option in the page header.
 - **Receive and respond to in-product surveys from Microsoft**: Allows users to receive surveys from Microsoft while using the Azure portal and provide responses to survey questions.
