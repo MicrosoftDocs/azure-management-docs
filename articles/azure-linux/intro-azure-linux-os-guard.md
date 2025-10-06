@@ -18,21 +18,21 @@ Azure Linux with OS Guard is a hardened, immutable variant of Azure Linux. It pr
 
 Use OS Guard when you need elevated assurances about your container host and workload runtime. Key features include:
 
-- Immutability: The /usr directory is mounted as a read-only volume protected by dm-verity. At runtime, the kernel validates a signed root hash to detect and block tampering.
-- Code Integrity: OS Guard integrates the Integrity Policy Enforcement (IPE) Linux Security Module to ensure that only binaries from trusted, signed volumes are allowed to execute. This helps prevent tampered or untrusted code from executing, including within container images.
-- Mandatory access control: SELinux operates in permissive mode to limit which processes can access sensitive resources in the system.
-- Measured boot and Trusted Launch: OS Guard supports measured boot and integrates with Trusted Launch to provide cryptographic measurements of boot components stored in a virtual TPM (vTPM).
-- Verified Container Layers: Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering.
-- Sovereign Supply Chain Security: OS Guard inherits Azure Linux’s secure build pipelines, signed Unified Kernel Images (UKIs), and Software Bill of Materials (SBOMs).
+- **Immutability**: The /usr directory is mounted as a read-only volume protected by dm-verity. At runtime, the kernel validates a signed root hash to detect and block tampering.
+- **Code Integrity**: OS Guard integrates the Integrity Policy Enforcement (IPE) Linux Security Module to ensure that only binaries from trusted, signed volumes are allowed to execute. This helps prevent tampered or untrusted code from executing, including within container images.
+- **Mandatory access control**: SELinux operates in permissive mode to limit which processes can access sensitive resources in the system.
+- **Measured boot and Trusted Launch**: OS Guard supports measured boot and integrates with Trusted Launch to provide cryptographic measurements of boot components stored in a virtual TPM (vTPM).
+- **Verified Container Layers**: Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering.
+- **Sovereign Supply Chain Security**: OS Guard inherits Azure Linux’s secure build pipelines, signed Unified Kernel Images (UKIs), and Software Bill of Materials (SBOMs).
 
 ## Key advantages of Azure Linux with OS Guard
 
-- Strong runtime integrity guarantees: Kernel-enforced immutability and IPE prevent execution of tampered or untrusted code.
-- Reduced attack surface: A read-only userland and SELinux policy enforcement limit opportunities for an attacker to install persistent backdoors or alter system binaries.
-- Supply-chain trust: Builds on Azure Linux’s signed images and supply-chain processes, delivering clear provenance for system components.
-- Integration with Azure security features: Native support for Trusted Launch and Secure Boot provides measured boot protections and attestation.
-- Open-source transparency: Many of the underlying technologies (dm-verity, SELinux, IPE) are upstreamed or open source; Microsoft has published tooling and contributions to support these features.
-- Compliance inheritence: OS Guard inherits compliance properties from Azure Linux (for example, cryptographic modules and certifications available to Azure Linux), making it easier to adopt in regulated environments.
+- **Strong runtime integrity guarantees**: Kernel-enforced immutability and IPE prevent execution of tampered or untrusted code.
+- **Reduced attack surface**: A read-only userland and SELinux policy enforcement limit opportunities for an attacker to install persistent backdoors or alter system binaries.
+- **Supply-chain trust**: Builds on Azure Linux’s signed images and supply-chain processes, delivering clear provenance for system components.
+- **Integration with Azure security features**: Native support for Trusted Launch and Secure Boot provides measured boot protections and attestation.
+-** Open-source transparency**: Many of the underlying technologies (dm-verity, SELinux, IPE) are upstreamed or open source; Microsoft has published tooling and contributions to support these features.
+- **Compliance inheritence**: OS Guard inherits compliance properties from Azure Linux (for example, cryptographic modules and certifications available to Azure Linux), making it easier to adopt in regulated environments.
 
 ## Choosing an Azure Linux container host option
 
