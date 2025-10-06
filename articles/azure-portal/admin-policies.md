@@ -1,9 +1,8 @@
 ---
 title: Set Azure portal administrator policies
-description: You can use the Azure portal on all modern devices and with the latest browser versions.
-ms.topic: concept-article
+description: Azure portal administrators can set options and policies for users in their organization.
+ms.topic: how-to
 ms.date: 10/6/2025
-ms.custom: accessibility
 # Customer intent: As an Azure portal administrator, I want to understand how to set options for the users in my tenant, so that I can maintain standards and manage options effectively.
 ---
 
