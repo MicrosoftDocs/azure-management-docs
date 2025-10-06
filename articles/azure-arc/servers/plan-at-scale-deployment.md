@@ -31,11 +31,11 @@ To learn more about our at-scale deployment recommendations, you can also refer 
 
 Consider the following basic requirements when you plan your deployment:
 
-* To support your deployment, your machines must run a [supported operating system](prerequisites.md#supported-operating-systems) for the Connected Machine agent.
+* To support your deployment, your machines must run a [supported operating system](prerequisites.md#supported-operating-systems) for the Azure Connected Machine agent.
 * To connect your deployment, your machines must have connectivity from your on-premises network or other cloud environment to resources in Azure, either directly or through a proxy server.
-* To install and configure the Azure Connected Machine agent, you must have an account with elevated privileges (that is, an administrator or as root) on the machines.
-* To onboard machines, you must have the Azure Connected Machine Onboarding Azure built-in role.
-* To read, modify, and delete a machine, you must have the Azure Connected Machine Resource Administrator Azure built-in role.
+* To install and configure the Connected Machine agent, you must have an account with elevated privileges (that is, an administrator or as root) on the machines.
+* To onboard machines, you must have the Azure Connected Machine Onboarding built-in role.
+* To read, modify, and delete a machine, you must have the Azure Connected Machine Resource Administrator built-in role.
 
 For more information, see the [prerequisites](prerequisites.md) and [network requirements](network-requirements.md) for installing the Connected Machine agent.
 
@@ -75,7 +75,7 @@ In this phase, system engineers or administrators enable the core features in th
 
 ## Phase 2: Deploy Azure Arc-enabled servers
 
-Next, we add to the foundation laid in Phase 1 by preparing for and [deploying the Azure Connected Machine agent](deployment-options.md).
+Next, we add to the foundation laid in Phase 1 by preparing for and [deploying the Connected Machine agent](deployment-options.md).
 
 |Task |Detail |Estimated duration |
 |-----|-------|---------|
@@ -90,7 +90,7 @@ Phase 3 is when administrators or system engineers can enable automation of manu
 |Task |Detail |Estimated duration |
 |-----|-------|---------|
 |Create a Resource Health alert. |If a server stops sending heartbeats to Azure for longer than 15 minutes, it can mean that the server is offline, the network connection is blocked, or the agent isn't running. Develop a plan for how to respond and investigate these incidents and use [Resource Health alerts](/azure/service-health/resource-health-alert-monitor-guide) to get notified when they start.<br><br> Specify the following items when you configure the alert:<br> **Resource type** = **Azure Arc-enabled servers**<br> **Current resource status** = **Unavailable**<br> **Previous resource status** = **Available** | One hour |
-|Create an Azure Advisor alert. | For the best experience and most recent security and bug fixes, we recommend that you keep the Azure Connected Machine agent up to date. Out-of-date agents are identified with an [Azure Advisor alert](/azure/advisor/advisor-alerts-portal).<br><br> Specify the following items when you configure the alert:<br> **Recommendation type** = **Upgrade to the latest version of the Azure Connected Machine agent** | One hour |
+|Create an Azure Advisor alert. | For the best experience and most recent security and bug fixes, we recommend that you keep the Connected Machine agent up to date. Out-of-date agents are identified with an [Azure Advisor alert](/azure/advisor/advisor-alerts-portal).<br><br> Specify the following items when you configure the alert:<br> **Recommendation type** = **Upgrade to the latest version of the Azure Connected Machine agent** | One hour |
 |[Assign Azure policies](/azure/governance/policy/assign-policy-portal) to your subscription or resource group scope. |Assign the **Enable Azure Monitor for VMs** [policy](/azure/azure-monitor/vm/vminsights-enable-policy) (and others that meet your needs) to the subscription or resource group scope. With Azure Policy, you can assign policy definitions that install the required agents for VM insights across your environment.| Varies |
 |Enable [Azure Update Manager](/azure/update-manager/) for your Azure Arc-enabled servers. |Configure Azure Update Manager on your Azure Arc-enabled servers to manage system updates for your Windows and Linux VMs. You can choose to [deploy updates on-demand](/azure/update-manager/deploy-updates?tabs=install-single-overview%2Cinstall-scale-overview) or [apply updates by using a custom schedule](/azure/update-manager/scheduled-patching?tabs=schedule-updates-single-machine%2Cschedule-updates-scale-overview%2Cwindows-maintenance). | 5 minutes |
 
