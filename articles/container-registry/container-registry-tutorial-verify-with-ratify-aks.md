@@ -61,19 +61,19 @@ Here are the high-level steps for signature verification:
 
 2. **Set up identity and access controls for Key Vault**: Configure the identity that Ratify uses to access Key Vault with the necessary roles. Skip this step if images are signed via Trusted Signing.
 
-3. **Set up Ratify on your AKS cluster**: Set up Ratify by using Helm chart installation as a standard Kubernetes service.
+3. **Set up Ratify on your AKS cluster**: Set up Ratify by using a Helm chart installation as a standard Kubernetes service.
 
 4. **Set up a custom Azure policy**: Create and assign a custom Azure policy with the desired policy effect: `Deny` or `Audit`.
 
 After you follow these steps, you can start deploying your workloads to observe the results:
 
-- With the `Deny` policy effect, only images that pass signature verification are allowed for deployment. Images that are unsigned or signed by untrusted identities are denied.
+- With the `Deny` policy effect, only images that pass signature verification are allowed for deployment. Images that are unsigned, or signed by untrusted identities, are denied.
 - With the `Audit` policy effect, images can be deployed, but your components are marked as noncompliant for auditing purposes.
 
 ## Prerequisites
 
 - Install and configure the latest [Azure CLI](/cli/azure/install-azure-cli) version, or run commands in [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
-- Install [Helm](https://helm.sh/docs/intro/install/) for Ratify installation and [kubectl](https://kubernetes.io/docs/reference/kubectl/) for troubleshooting and status checking.
+- Install [Helm](https://helm.sh/docs/intro/install/) for Ratify installation, and install [kubectl](https://kubernetes.io/docs/reference/kubectl/) for troubleshooting and status checking.
 - Create or use an AKS cluster enabled with an OpenID Connect (OIDC) issuer by following the steps in [Create an OpenID Connect provider on Azure Kubernetes Service](/azure/aks/use-oidc-issuer). This AKS cluster is where your container images are deployed, Ratify is installed, and custom Azure policies are applied.
 - Connect Container Registry to the AKS cluster (if it's not already connected) by following the steps in [Authenticate with Azure Container Registry from Azure Kubernetes Service](/azure/aks/cluster-container-registry-integration). Container Registry is where your container images are stored for deployment to your AKS cluster.
 - Enable the Azure Policy add-on. To verify that the add-on is installed, or to install it if it isn't already, follow the steps in [Azure Policy add-on for AKS](/azure/governance/policy/concepts/policy-for-kubernetes#install-azure-policy-add-on-for-aks).
@@ -185,7 +185,7 @@ This table provides details about the parameters:
 | `oras.authProviders.azureWorkloadIdentityEnabled` | Azure workload identity for Container Registry authentication (enable or disable)                                     | `true`                                |
 | `azurekeyvault.enabled`                           | Fetching certificates from Key Vault (enable or disable)                                                     | `true`                                |
 | `azurekeyvault.vaultURI`                          | URI of the Key Vault resource                                                                        | `"https://$AKV_NAME.vault.azure.net"` |
-| `azurekeyvault.tenantId`                          | Tenant ID of the key vault resource                                                                  | `"$AKV_TENANT_ID"`                    |
+| `azurekeyvault.tenantId`                          | Tenant ID of the Key Vault resource                                                                  | `"$AKV_TENANT_ID"`                    |
 | `azurekeyvault.certificates[0].name`              | Name of the certificate                                                                            | `"$CERT_NAME"`                        |
 | `notation.trustPolicies[0].registryScopes[0]`     | Repository URI that the policy applies to                                                        | `"$REPO_URI"`                         |
 | `notation.trustPolicies[0].trustStores[0]`        | Trust stores where certificates of type `ca` or `tsa` are stored                                   | `ca:azurekeyvault`                    |
@@ -236,7 +236,7 @@ If you have multiple Trusted Signing certificate profiles, you can add other tru
 
 ### Install a Ratify Helm chart with desired parameters and values
 
-Ensure that the Ratify Helm chart version is at least `1.15.0`, which will install Ratify version `1.4.0` or later. The following example uses Helm chart version `1.15.0`.
+Ensure that the Ratify Helm chart version is at least `1.15.0`, which installs Ratify version `1.4.0` or later. The following example uses Helm chart version `1.15.0`.
 
 Set up additional environment variables for installation:
 
@@ -335,16 +335,16 @@ export DEFINITION_ID=$(az policy definition create --name "$DEFINITION_NAME" --r
 
 By default, the policy effect is set to `Deny`. With this policy effect, images that fail signature verification are denied deployment.
 
-Alternatively, you can configure the policy effect to `Audit`. This policy effect allows images that fail signature verification to be deployed, while marking the AKS cluster and related workloads as compliant.
+Alternatively, you can set the policy effect to `Audit`. This policy effect allows images that fail signature verification to be deployed, while marking the AKS cluster and related workloads as compliant.
 
-Assign the policy to your AKS cluster with the default effect `Deny`:
+Assign the policy to your AKS cluster with the default effect of `Deny`:
 
 ```shell
 export POLICY_SCOPE=$(az aks show -g "$AKS_RG" -n "$AKS_NAME" --query id -o tsv)
 az policy assignment create --policy "$DEFINITION_ID" --name "$DEFINITION_NAME" --scope "$POLICY_SCOPE"
 ```
 
-To change the policy effect to `Audit`, you can pass another parameter to `az policy assignment create` command. For example:
+To change the policy effect to `Audit`, you can pass another parameter to the `az policy assignment create` command. For example:
 
 ```shell
 az policy assignment create --policy "$DEFINITION_ID" --name "$DEFINITION_NAME" --scope "$POLICY_SCOPE" -p "{\"effect\": {\"value\":\"Audit\"}}"
@@ -376,7 +376,7 @@ You test three scenarios to validate your setup:
 
 - **Signed images with trusted certificates**: Should deploy successfully.
 - **Unsigned images**: Should be blocked (with the `Deny` effect) or marked as compliant (with the `Audit` effect).
-- **Images signed with untrusted certificates**: Should be blocked (with `Deny` effect) or marked as compliant (with the `Audit` effect).
+- **Images signed with untrusted certificates**: Should be blocked (with the `Deny` effect) or marked as compliant (with the `Audit` effect).
 
 The behavior that you observe depends on the policy effect that you chose when you assigned an Azure policy. This testing process helps ensure that your signature verification is working correctly and provides confidence that only trusted images are allowed in your production environment.
 
@@ -446,7 +446,7 @@ az policy definition delete --name "$DEFINITION_NAME"
 
 ### How can I set up certificates for signature verification if I don't have access to Key Vault?
 
-In some cases, image consumers might not have access to the certificates used for signature verification. To verify signatures, you need to download the root CA certificate file in PEM format and specify the related parameters for the Ratify Helm chart installation.
+In some cases, image consumers might not have access to the certificates used for signature verification. To verify signatures, you need to download the root CA certificate file in PEM format and specify the related parameters for installation of the Ratify Helm chart.
 
 The following example command is similar to the previous installation command, but without any parameters related to Key Vault certificates. The Notary Project trust store refers to the certificate file that passed in the parameter `notationCerts[0]`.
 
@@ -492,7 +492,7 @@ kubectl apply -f https://notaryproject.github.io/ratify/library/default/samples/
 
 Ratify configurations are [Kubernetes custom resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/). You can update these resources without reinstalling Ratify:
 
-- To update Key Vault-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Trusted Signing related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
+- To update Key Vault-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `azurekeyvault`. To update Trusted Signing-related configurations, use the Ratify `KeyManagementProvider` custom resource with the type `inline`. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/key-management-providers).
 - To update Notary Project trust policies and stores, use the Ratify `Verifier` custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/verifiers).
 - To authenticate and interact with Container Registry (or other OCI-compliant registries), use the Ratify Store custom resource. Follow the [documentation](https://ratify.dev/docs/reference/custom%20resources/stores).
 

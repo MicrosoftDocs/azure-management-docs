@@ -88,23 +88,23 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    ---
 
-   For ABAC-enabled registries, assign the `Container Registry Repository Reader` role:
+    For ABAC-enabled registries, assign the `Container Registry Repository Reader` role:
 
-   # [Linux](#tab/linux)
+    # [Linux](#tab/linux)
 
-   ```bash
-   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-   ```
+    ```bash
+    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+    ```
 
-   # [Windows](#tab/windows)
+    # [Windows](#tab/windows)
 
-   ```powershell
-   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-   ```
+    ```powershell
+    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+    ```
 
-   ---
+    ---
 
 4. Configure GitHub to trust your identity. Follow [Configure a user-assigned managed identity to trust an external identity provider](/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity).
 

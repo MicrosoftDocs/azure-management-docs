@@ -231,7 +231,7 @@ az role assignment create --role "Container Registry Repository Writer" --assign
 
 ---
 
-Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign with Trusted Signing:
+Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign by using Trusted Signing:
 
 # [Linux](#tab/linux)
 
@@ -417,15 +417,15 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
    notation verify $Env:IMAGE
    ```
 
-   ---
+    ---
 
-   Example output:
+    Example output:
 
-   ```text
-   Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
-   ```
+    ```text
+    Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
+    ```
 
-   If verification fails, ensure that your trust policy and certificates are configured correctly.
+    If verification fails, ensure that your trust policy and certificates are configured correctly.
 
 ## Related content
 
