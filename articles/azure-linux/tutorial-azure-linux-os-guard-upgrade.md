@@ -7,7 +7,7 @@ ms.service: microsoft-linux
 ms.custom: linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 04/06/2025
-# Customer intent: "As a cloud administrator, I want to upgrade the Azure Linux Container Host nodes in my AKS cluster, so that I can ensure the environment is secure and up-to-date with the latest features and security patches."
+# Customer intent: "As a cloud administrator, I want to upgrade the Azure Linux with OS Guard nodes in my AKS cluster, so that I can ensure the environment is secure and up-to-date with the latest features and security patches."
 ---
 
 # Tutorial: Upgrade Azure Linux Container Host nodes
@@ -15,24 +15,24 @@ ms.date: 04/06/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321846)
 
-The Azure Linux Container Host ships updates through two mechanisms: updated Azure Linux node images and automatic package updates.
+Azure Linux with OS Guard ships updates through two mechanisms: updated node images and automatic package updates.
 
-As part of the application and cluster lifecycle, we recommend keeping your clusters up to date and secured by enabling upgrades for your cluster. You can enable automatic node-image upgrades to ensure your clusters use the latest Azure Linux Container Host image when it scales up. You can also manually upgrade the node-image on a cluster.
+As part of the application and cluster lifecycle, we recommend keeping your clusters up to date and secured by enabling upgrades for your cluster. You can enable automatic node-image upgrades to ensure your clusters use the latest Azure Linux with OS Guard image when it scales up. You can also manually upgrade the node-image on a cluster.
 
 In this tutorial, part five of five, you learn how to:
 
 > [!div class="checklist"]
 >
 > * Manually upgrade the node-image on a cluster.
-> * Automatically upgrade an Azure Linux Container Host cluster.
-> * Deploy Kured in an Azure Linux Container Host cluster.
+> * Automatically upgrade an Azure Linux with OS Guard cluster.
+> * Deploy Kured in an Azure Linux with OS Guard cluster. 
 
 > [!NOTE]
 > Any upgrade operation, whether performed manually or automatically, upgrades the node image version if not already on the latest. The latest version is contingent on a full AKS release, and can be determined by visiting the [AKS release tracker](/azure/aks/release-tracker).
 
 ## Prerequisites
 
-* In previous tutorials, you created and deployed an Azure Linux Container Host cluster. To complete this tutorial, you need an existing cluster. If you haven't done this step and would like to follow along, start with [Tutorial 1: Create a cluster with the Azure Linux Container Host for AKS](./tutorial-azure-linux-create-cluster.md).
+* In previous tutorials, you created and deployed an Azure Linux with OS Guard cluster. To complete this tutorial, you need an existing cluster. If you haven't done this step and would like to follow along, start with [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
 * You need the latest version of Azure CLI. Find the version using the `az --version` command. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
 
 ## Manually upgrade your cluster
@@ -40,12 +40,12 @@ In this tutorial, part five of five, you learn how to:
 To manually upgrade the node-image on a cluster, run the following command for your OS Guard node pool:
 
 ```azurecli
-az aks nodepool upgrade --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --name $NODEPOOL_NAME
+az aks nodepool upgrade --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODEPOOL_NAME
 ```
 
 ## Automatically upgrade your cluster
 
-Auto-upgrade provides a set once and forget mechanism that yields tangible time and operational cost benefits. By enabling auto-upgrade, you can ensure your clusters are up to date and don't miss the latest Azure Linux Container Host features or patches from AKS and upstream Kubernetes.
+Auto-upgrade provides a set once and forget mechanism that yields tangible time and operational cost benefits. By enabling auto-upgrade, you can ensure your clusters are up to date and don't miss the latest Azure Linux with OS Guard features or patches from AKS and upstream Kubernetes.
 
 Automatically completed upgrades are functionally the same as manual upgrades. The selected channel determines the timing of upgrades. When making changes to auto-upgrade, allow 24 hours for the changes to take effect.
 
@@ -97,8 +97,6 @@ az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --node-os-u
 
 To protect your clusters, security updates are automatically applied to Azure Linux nodes. These updates include OS security fixes, kernel updates, and package upgrades. Some of these updates require a node reboot to complete the process. AKS doesn't automatically reboot these nodes to complete the update process.
 
-We recommend enabling an automatic reboot daemon, such as [Kured](https://kured.dev/docs/), so that your cluster can reboot nodes that have taken kernel updates. To deploy the Kured DaemonSet in an Azure Linux Container Host cluster, see [Deploy Kured in an AKS cluster](/azure/aks/node-updates-kured#deploy-kured-in-an-aks-cluster).
-
 ## Clean up resources
 
 As this tutorial is the last part of the series, you may want to delete your Azure Linux Container Host cluster. The Kubernetes nodes run on Azure virtual machines and continue incurring charges even if you don't use the cluster. 
@@ -113,4 +111,4 @@ In this tutorial, you upgraded your Azure Linux Container Host cluster. You lear
 > * Automatically upgrade an Azure Linux Container Host cluster.
 > * Deploy kured in an Azure Linux Container Host cluster.
 
-For more information on the Azure Linux Container Host, see the [Azure Linux Container Host overview](./intro-azure-linux.md).
+For more information on Azure Linux with OS Guard, see the [Azure Linux with OS Guard overview](./intro-azure-linux-os-guard.md).
