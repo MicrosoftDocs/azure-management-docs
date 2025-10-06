@@ -67,7 +67,7 @@ Here are the high-level steps for signature verification:
 
 After you follow these steps, you can start deploying your workloads to observe the results:
 
-- With the `Deny` policy effect, only images that have passed signature verification are allowed for deployment. Images that are unsigned or signed by untrusted identities are denied.
+- With the `Deny` policy effect, only images that pass signature verification are allowed for deployment. Images that are unsigned or signed by untrusted identities are denied.
 - With the `Audit` policy effect, images can be deployed, but your components are marked as noncompliant for auditing purposes.
 
 ## Prerequisites
@@ -424,7 +424,7 @@ kubectl logs <ratify-pod> -n $RATIFY_NAMESPACE
 
 ### Use the Audit policy effect
 
-With the `Audit` policy effect, unsigned images or images signed with untrusted identities are allowed for deployment. However, the AKS cluster and related components are marked as `noncompliant`. For more details on how to view noncompliant resources and understand the reasons, see [Get compliance data of Azure resources](/azure/governance/policy/how-to/get-compliance-data).
+With the `Audit` policy effect, unsigned images or images signed with untrusted identities are allowed for deployment. However, the AKS cluster and related components are marked as `noncompliant`. For more information on how to view noncompliant resources and understand the reasons, see [Get compliance data of Azure resources](/azure/governance/policy/how-to/get-compliance-data).
 
 ## Clean up
 

@@ -36,7 +36,7 @@ Before you can sign and verify container images with Notation and Trusted Signin
 
 Set up a [Trusted Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription.
 
-Your certificate profile must include **country (C)**, **state or province (ST or S)**, and **organization (O)** in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
+Your certificate profile must include country/region (`C`), state or province (`ST` or `S`), and organization (`O`) in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
 ### Set up the Azure CLI
 
@@ -50,77 +50,77 @@ This guide runs commands on Linux AMD64 and Windows as examples.
 
    # [Linux](#tab/linux)
 
-    ```bash
-    curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
-    # Validate the checksum
-    EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
-    echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
-    # Continue if sha256sum matches
-    tar xvzf notation.tar.gz
-    cp ./notation /usr/local/bin
-    ```
+   ```bash
+   curl -Lo notation.tar.gz https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_linux_amd64.tar.gz
+   # Validate the checksum
+   EXPECTED_SHA256SUM="e1a0f060308086bf8020b2d31defb7c5348f133ca0dba6a1a7820ef3cbb6dfe5"
+   echo "$EXPECTED_SHA256SUM  notation.tar.gz" | sha256sum -c -
+   # Continue if sha256sum matches
+   tar xvzf notation.tar.gz
+   cp ./notation /usr/local/bin
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    # Download the Windows release
-    Invoke-WebRequest -Uri "https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_windows_amd64.zip" -OutFile notation.zip
-    # Validate the checksum
-    $EXPECTED_SHA256SUM = "014f25a530eee17520c8e1eb7380e4bd02ff6fc04479a07a890954e3b7ddfdc7"
-    if ((Get-FileHash notation.zip -Algorithm SHA256).Hash -ne $EXPECTED_SHA256SUM) { Write-Error "Checksum mismatch"; exit 1 }
-    # Expand and install
-    Expand-Archive notation.zip -DestinationPath .
-    # Create the installation location and move the binary to it
-    New-Item -ItemType Directory -Force -Path "$Env:ProgramFiles\Notation" | Out-Null
-    Move-Item -Path ".\notation\notation.exe" -Destination "$Env:ProgramFiles\Notation\notation.exe"
-    # Add to PATH for the current session
-    $env:PATH = "${Env:ProgramFiles}\Notation;${Env:PATH}"
-    ```
+   ```powershell
+   # Download the Windows release
+   Invoke-WebRequest -Uri "https://github.com/notaryproject/notation/releases/download/v1.3.2/notation_1.3.2_windows_amd64.zip" -OutFile notation.zip
+   # Validate the checksum
+   $EXPECTED_SHA256SUM = "014f25a530eee17520c8e1eb7380e4bd02ff6fc04479a07a890954e3b7ddfdc7"
+   if ((Get-FileHash notation.zip -Algorithm SHA256).Hash -ne $EXPECTED_SHA256SUM) { Write-Error "Checksum mismatch"; exit 1 }
+   # Expand and install
+   Expand-Archive notation.zip -DestinationPath .
+   # Create the installation location and move the binary to it
+   New-Item -ItemType Directory -Force -Path "$Env:ProgramFiles\Notation" | Out-Null
+   Move-Item -Path ".\notation\notation.exe" -Destination "$Env:ProgramFiles\Notation\notation.exe"
+   # Add to PATH for the current session
+   $env:PATH = "${Env:ProgramFiles}\Notation;${Env:PATH}"
+   ```
 
    ---
 
-    For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
+   For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
 
 2. Install the Trusted Signing plugin:
 
    # [Linux](#tab/linux)
 
-    ```bash
-    notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz" --sha256sum 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
-    ```
+   ```bash
+   notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz" --sha256sum 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
-    ```
+   ```powershell
+   notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
+   ```
 
-    ---
+   ---
 
-    Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
+   Find the latest plugin URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
 
 3. Verify plugin installation:
 
    # [Linux](#tab/linux)
 
-    ```bash
-    notation plugin ls
-    ```
+   ```bash
+   notation plugin ls
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    notation plugin ls
-    ```
+   ```powershell
+   notation plugin ls
+   ```
 
-    ---
+   ---
 
-    Example output:
+   Example output:
 
-    ```text
-    NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
-    azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
-    ```
+   ```text
+   NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
+   azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
+   ```
 
 ## Configure environment variables
 
@@ -313,93 +313,93 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
    # [Linux](#tab/linux)
 
-    ```bash
-    curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
-    SIGNING_TRUST_STORE="myRootCerts"
-    notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
+   ```bash
+   curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
+   SIGNING_TRUST_STORE="myRootCerts"
+   notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
     
-    curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
-    TSA_TRUST_STORE="myTsaRootCerts"
-    notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
-    notation cert ls
-    ```
+   curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
+   TSA_TRUST_STORE="myTsaRootCerts"
+   notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
+   notation cert ls
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    Invoke-WebRequest -Uri $Env:TS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
-    $SIGNING_TRUST_STORE = "myRootCerts"
-    notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
+   ```powershell
+   Invoke-WebRequest -Uri $Env:TS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
+   $SIGNING_TRUST_STORE = "myRootCerts"
+   notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
     
-    Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
-    $TSA_TRUST_STORE = "myTsaRootCerts"
-    notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
-    notation cert ls
-    ```
+   Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
+   $TSA_TRUST_STORE = "myTsaRootCerts"
+   notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
+   notation cert ls
+   ```
 
-    ---
+   ---
 
 2. Create a trust policy JSON file:
 
    # [Linux](#tab/linux)
 
-    ```bash
-    cat <<EOF > trustpolicy.json
-    {
-        "version": "1.0",
-        "trustPolicies": [
-            {
-                "name": "myPolicy",
-                "registryScopes": [ "$ACR_LOGIN_SERVER/$REPOSITORY" ],
-                "signatureVerification": {
-                    "level" : "strict"
-                },
-                "trustStores": [ "ca:$SIGNING_TRUST_STORE", "tsa:$TSA_TRUST_STORE" ],
-                "trustedIdentities": [
-                    "x509.subject: $TS_CERT_SUBJECT"
-                ]
-            }
-        ]
-    }
-    EOF
-    ```
+   ```bash
+   cat <<EOF > trustpolicy.json
+   {
+       "version": "1.0",
+       "trustPolicies": [
+           {
+               "name": "myPolicy",
+               "registryScopes": [ "$ACR_LOGIN_SERVER/$REPOSITORY" ],
+               "signatureVerification": {
+                   "level" : "strict"
+               },
+               "trustStores": [ "ca:$SIGNING_TRUST_STORE", "tsa:$TSA_TRUST_STORE" ],
+               "trustedIdentities": [
+                   "x509.subject: $TS_CERT_SUBJECT"
+               ]
+           }
+       ]
+   }
+   EOF
+   ```
 
    Import and check the policy:
 
-    ```bash
-    notation policy import trustpolicy.json
-    notation policy show
-    ```
+   ```bash
+   notation policy import trustpolicy.json
+   notation policy show
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    @"
-    {
-        "version": "1.0",
-        "trustPolicies": [
-            {
-                "name": "myPolicy",
-                "registryScopes": [ "$($env:ACR_LOGIN_SERVER)/$($env:REPOSITORY)" ],
-                "signatureVerification": {
-                    "level" : "strict"
-                },
-                "trustStores": [ "ca:$($SIGNING_TRUST_STORE)", "tsa:$($TSA_TRUST_STORE)" ],
-                "trustedIdentities": [
-                    "x509.subject: $($env:TS_CERT_SUBJECT)"
-                ]
-            }
-        ]
-    }
-    "@ | Out-File -FilePath trustpolicy.json -Encoding utf8
-    ```
+   ```powershell
+   @"
+   {
+       "version": "1.0",
+       "trustPolicies": [
+           {
+               "name": "myPolicy",
+               "registryScopes": [ "$($env:ACR_LOGIN_SERVER)/$($env:REPOSITORY)" ],
+               "signatureVerification": {
+                   "level" : "strict"
+               },
+               "trustStores": [ "ca:$($SIGNING_TRUST_STORE)", "tsa:$($TSA_TRUST_STORE)" ],
+               "trustedIdentities": [
+                   "x509.subject: $($env:TS_CERT_SUBJECT)"
+               ]
+           }
+       ]
+   }
+   "@ | Out-File -FilePath trustpolicy.json -Encoding utf8
+   ```
 
    Import and check the policy:
 
-    ```powershell
-    notation policy import trustpolicy.json
-    notation policy show
-    ```
+   ```powershell
+   notation policy import trustpolicy.json
+   notation policy show
+   ```
 
    ---
 
@@ -407,23 +407,23 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
    # [Linux](#tab/linux)
 
-    ```bash
-    notation verify $IMAGE
-    ```
+   ```bash
+   notation verify $IMAGE
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    notation verify $Env:IMAGE
-    ```
+   ```powershell
+   notation verify $Env:IMAGE
+   ```
 
-    ---
+   ---
 
    Example output:
 
-    ```text
-    Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
-    ```
+   ```text
+   Successfully verified signature for myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423b196e482df8af23b5d55
+   ```
 
    If verification fails, ensure that your trust policy and certificates are configured correctly.
 

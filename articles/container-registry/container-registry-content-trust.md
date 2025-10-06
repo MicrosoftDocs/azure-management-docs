@@ -36,7 +36,7 @@ DCT works with the tags in a repository. Image repositories can contain images t
 
 ### Signing keys
 
-DCT is managed through the use of a set of cryptographic signing keys. These keys are associated with a specific repository in a registry.
+You manage DCT by using a set of cryptographic signing keys. These keys are associated with a specific repository in a registry.
 
 There are several types of signing keys that Docker clients and your registry use in managing trust for the tags in a repository. When you enable DCT and integrate it into your container publishing and consumption pipeline, you must manage these keys carefully. For more information, see [Key management](#key-management) later in this article and [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
@@ -207,7 +207,7 @@ Back up your root and repository keys by compressing them in an archive and stor
 umask 077; tar -zcvf docker_private_keys_backup.tar.gz ~/.docker/trust/private; umask 022
 ```
 
-Along with the locally generated root and repository keys, Container Registry generates and stores several other keys when you push a trusted image. For a detailed discussion of the various keys in the DCT implementation, including additional management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
+Along with the locally generated root and repository keys, Container Registry generates and stores several other keys when you push a trusted image. For a detailed discussion of the various keys in the DCT implementation, including more management guidance, see [Manage keys for content trust][docker-manage-keys] in the Docker documentation.
 
 ### Lost root key
 

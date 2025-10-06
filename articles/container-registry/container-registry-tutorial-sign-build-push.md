@@ -149,7 +149,7 @@ The following roles are required for signing by using self-signed certificates:
 - `Key Vault Certificates User` for reading existing certificates
 - `Key Vault Crypto User` for signing operations
 
-To learn more about Key Vault access with Azure RBAC, see [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide).
+To learn more about Key Vault access with Azure role-based access control (RBAC), see [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide).
 
 1. Set the subscription that contains the Key Vault resource:
 
@@ -293,7 +293,7 @@ The following steps show how to create a self-signed certificate for testing pur
     | Azure CLI credential         | `azurecli`                 |
 
     > [!NOTE]
-    > Since Notation v1.2.0, Notation uses the [OCI referrers tag schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in Container Registry by default. You can also enable the [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false`, if necessary. Container Registry features support the OCI Referrers API, with the exception of the registry encrypted via customer-managed keys (CMKs).
+    > Since Notation v1.2.0, Notation uses the [OCI referrers tag schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in Container Registry by default. You can also enable the [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false`, if necessary. Container Registry features support the OCI Referrers API, except for the registry encrypted via customer-managed keys (CMKs).
 
 5. View the graph of signed images and associated signatures:
 
@@ -327,7 +327,7 @@ To verify the container image, add the root certificate that signs the leaf cert
 
 4. Configure a trust policy before verification.
 
-   Trust policies enable users to specify fine-tuned verification policies. The following example configures a trust policy named `wabbit-networks-images`. This policy applies to all artifacts in `$REGISTRY/$REPO` and uses the named trust store `$STORE_NAME` of type `$STORE_TYPE`. It also assumes that the user trusts a specific identity with the X.509 subject `$CERT_SUBJECT`. For more details, see [Trust store and trust policy specification](https://github.com/notaryproject/notaryproject/blob/v1.0.0/specs/trust-store-trust-policy.md).
+   Trust policies enable users to specify fine-tuned verification policies. The following example configures a trust policy named `wabbit-networks-images`. This policy applies to all artifacts in `$REGISTRY/$REPO` and uses the named trust store `$STORE_NAME` of type `$STORE_TYPE`. It also assumes that the user trusts a specific identity with the X.509 subject `$CERT_SUBJECT`. For more information, see [Trust store and trust policy specification](https://github.com/notaryproject/notaryproject/blob/v1.0.0/specs/trust-store-trust-policy.md).
 
     ```bash
     cat <<EOF > ./trustpolicy.json

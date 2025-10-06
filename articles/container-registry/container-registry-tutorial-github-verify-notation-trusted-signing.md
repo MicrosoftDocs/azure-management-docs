@@ -38,17 +38,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    az login
-    az identity create -g <identity-resource-group> -n <identity-name>
-    ```
+   ```bash
+   az login
+   az identity create -g <identity-resource-group> -n <identity-name>
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    az login
-    az identity create -g <identity-resource-group> -n <identity-name>
-    ```
+   ```powershell
+   az login
+   az identity create -g <identity-resource-group> -n <identity-name>
+   ```
 
    ---
 
@@ -56,15 +56,15 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    CLIENT_ID=$(az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv)
-    ```
+   ```bash
+   CLIENT_ID=$(az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv)
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv
-    ```
+   ```powershell
+   $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv
+   ```
 
    ---
 
@@ -74,17 +74,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
-    ```
+   ```bash
+   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
-    ```
+   ```powershell
+   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   ```
 
    ---
 
@@ -92,17 +92,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
+   ```bash
+   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
+   ```powershell
+   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
 
    ---
 

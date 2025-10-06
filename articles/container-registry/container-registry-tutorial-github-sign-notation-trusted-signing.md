@@ -23,9 +23,9 @@ In this article, you learn how to create a GitHub Actions workflow to:
 ## Prerequisites
 
 - Set up a [Trusted Signing account and certificate profile](/azure/trusted-signing/quickstart). Your Trusted Signing certificate profile must include the following attributes in its subject:
-  - **Country (C)**
-  - **State or province (ST or S)**
-  - **Organization (O)**
+  - Country/region (`C`)
+  - State or province (`ST` or `S`)
+  - Organization (`O`)
 
   The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
@@ -46,17 +46,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    az login
-    az identity create -g <identity-resource-group> -n <identity-name>
-    ```
+   ```bash
+   az login
+   az identity create -g <identity-resource-group> -n <identity-name>
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    az login
-    az identity create -g <identity-resource-group> -n <identity-name>
-    ```
+   ```powershell
+   az login
+   az identity create -g <identity-resource-group> -n <identity-name>
+   ```
 
    ---
 
@@ -64,15 +64,15 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    CLIENT_ID=$(az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv)
-    ```
+   ```bash
+   CLIENT_ID=$(az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv)
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv
-    ```
+   ```powershell
+   $CLIENT_ID = az identity show -g <identity-resource-group> -n <identity-name> --query clientId -o tsv
+   ```
 
    ---
 
@@ -82,17 +82,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
-    ```
+   ```bash
+   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
-    ```
+   ```powershell
+   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "acrpush" --role "acrpull"
+   ```
 
    ---
 
@@ -100,17 +100,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
+   ```bash
+   ACR_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
-    az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
-    ```
+   ```powershell
+   $ACR_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<acr-resource-group>"
+   az role assignment create --assignee $CLIENT_ID --scope $ACR_SCOPE --role "Container Registry Repository Reader" --role "Container Registry Repository Writer"
+   ```
 
    ---
 
@@ -118,17 +118,17 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    # [Linux](#tab/linux)
 
-    ```bash
-    TS_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>
-    az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
-    ```
+   ```bash
+   TS_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>
+   az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    $TS_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>"
-    az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
-    ```
+   ```powershell
+   $TS_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>"
+   az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
+   ```
 
    ---
 
@@ -152,16 +152,16 @@ Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust 
 
    # [Linux](#tab/linux)
 
-    ```bash
-    curl -o msft-tsa-root-certificate-authority-2020.crt "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
-    ```
+   ```bash
+   curl -o msft-tsa-root-certificate-authority-2020.crt "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
+   ```
 
    # [Windows](#tab/windows)
 
-    ```powershell
-    Invoke-WebRequest -Uri "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt" `
-        -OutFile "msft-tsa-root-certificate-authority-2020.crt"
-    ```
+   ```powershell
+   Invoke-WebRequest -Uri "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt" `
+       -OutFile "msft-tsa-root-certificate-authority-2020.crt"
+   ```
 
    ---
 

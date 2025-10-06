@@ -129,7 +129,7 @@ Here are the requirements for root and intermediate certificates:
 Here are the requirements for certificates that a CA issues:
 
 - X.509 certificate properties:
-  - Subject must contain common name (`CN`), country (`C`), state or province (`ST`), and organization (`O`). This article uses `$CERT_SUBJECT` as the subject.
+  - Subject must contain common name (`CN`), country/region (`C`), state or province (`ST`), and organization (`O`). This article uses `$CERT_SUBJECT` as the subject.
   - X.509 key usage flag must be `DigitalSignature` only.
   - Extended Key Usages (EKUs) must be empty or `1.3.6.1.5.5.7.3.3` (for code signing).
 - Key properties:
@@ -242,7 +242,7 @@ This section explores two options for authorizing access to Key Vault.
     az role assignment create --role "Key Vault Certificates User" --role "Key Vault Crypto User" --assignee $USER_ID --scope "/subscriptions/$AKV_SUB_ID/resourceGroups/$AKV_RG/providers/Microsoft.KeyVault/vaults/$AKV_NAME"
     ```
 
-To learn more about Key Vault access with Azure RBAC, see [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide).
+To learn more about Key Vault access with Azure role-based access control (RBAC), see [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide).
 
 #### Use an access policy (legacy)
 
@@ -327,7 +327,7 @@ To learn more about assigning a policy to a principal, see [Assign a Key Vault a
     ```
 
 > [!NOTE]
-> Since Notation v1.2.0, Notation uses the [OCI referrers tag schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in Container Registry by default. You can also enable the [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false`, if necessary. Container Registry features support the OCI Referrers API, with the exception of the registry encrypted via customer-managed keys (CMKs).
+> Since Notation v1.2.0, Notation uses the [OCI referrers tag schema](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#referrers-tag-schema) to store the signature in Container Registry by default. You can also enable the [OCI Referrers API](https://github.com/opencontainers/distribution-spec/blob/main/spec.md#listing-referrers) by using the flag `--force-referrers-tag false`, if necessary. Container Registry features support the OCI Referrers API, except for the registry encrypted via customer-managed keys (CMKs).
 
 ## Verify a container image by using the Notation CLI
 
@@ -368,7 +368,7 @@ To learn more about assigning a policy to a principal, see [Assign a Key Vault a
     EOF
     ```
 
-    The preceding `trustpolicy.json` file defines one trust policy named `wabbit-networks-images`. This trust policy applies to all the artifacts stored in the `$REGISTRY/$REPO` repositories. The named trust store `$STORE_NAME` of type `$STORE_TYPE` contains the root certificates. This policy also assumes that the user trusts a specific identity with the X.509 subject `$CERT_SUBJECT`. For more details, see [Trust store and trust policy specification](https://github.com/notaryproject/notaryproject/blob/v1.0.0/specs/trust-store-trust-policy.md).
+    The preceding `trustpolicy.json` file defines one trust policy named `wabbit-networks-images`. This trust policy applies to all the artifacts stored in the `$REGISTRY/$REPO` repositories. The named trust store `$STORE_NAME` of type `$STORE_TYPE` contains the root certificates. This policy also assumes that the user trusts a specific identity with the X.509 subject `$CERT_SUBJECT`. For more information, see [Trust store and trust policy specification](https://github.com/notaryproject/notaryproject/blob/v1.0.0/specs/trust-store-trust-policy.md).
 
 4. Use `notation policy` to import the trust policy configuration from `trustpolicy.json`:
 
