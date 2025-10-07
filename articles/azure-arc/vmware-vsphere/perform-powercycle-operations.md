@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 07/18/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ---
 
 # Perform powercycle operations on VMware vCenter managed virtual machines in Azure 
