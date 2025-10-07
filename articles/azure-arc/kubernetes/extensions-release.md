@@ -128,9 +128,9 @@ For more information, see [Introduction to the Kubernetes compute target in Azur
 
 Azure Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to an Azure Fleet. Get started by understanding the following:
 
-1. Key concepts of [Azure Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-fleet).
-2. Key concepts of Azure Fleet Manager's [Multi-Cluster workload management](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
-3. [Azure Fleet Manager's member cluster types](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types).
+1. Key concepts of [Azure Fleet Manager](/azure/kubernetes-fleet/concepts-fleet).
+2. Key concepts of Azure Fleet Manager's [Multi-Cluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
+3. [Azure Fleet Manager's member cluster types](../../kubernetes-fleet/concepts-member-cluster-types).
 
 > [!IMPORTANT]
 > Azure Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.

@@ -30,7 +30,7 @@ By extending Azure Kubernetes Fleet Manager capabilities to Arc-enabled clusters
 
 ## Preview limitations and capability restrictions
 
-Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes is currently in public preview. During preview, certain capabilities are not available for Arc-enabled clusters. For a complete list of requirements and limitations, see [Member cluster types](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types).
+Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes is currently in public preview. During preview, certain capabilities are not available for Arc-enabled clusters. For a complete list of requirements and limitations, see [Member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 ## Key capabilities
 
@@ -43,7 +43,7 @@ The Azure Kubernetes Fleet Manager extension brings several powerful capabilitie
 
 ## Architecture and comprehensive details
 
-For complete information about Azure Kubernetes Fleet Manager's architecture, scheduling mechanisms, resource propagation, and detailed implementation guidance, see [Azure Kubernetes Fleet Manager resource management across multiple clusters using hub cluster as the control plane](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
+For complete information about Azure Kubernetes Fleet Manager's architecture, scheduling mechanisms, resource propagation, and detailed implementation guidance, see [Azure Kubernetes Fleet Manager resource management across multiple clusters using hub cluster as the control plane](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
 
 This comprehensive guide covers:
 
@@ -55,4 +55,4 @@ This comprehensive guide covers:
 
 ## Next steps
 
-- Get started with [Azure Kubernetes Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/overview)
+- Get started with [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/overview)

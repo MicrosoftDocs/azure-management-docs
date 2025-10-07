@@ -13,10 +13,10 @@ ms.custom:
 
 # Tutorial: Deploy applications using Azure Fleet Manager
 
-This tutorial shows how to use [Azure Fleet Manager](https://learn.microsoft.com/azure/kubernetes-fleet/overview) to deploy applications across multiple clusters including hybrid / multi-cloud clusters, including Azure Arc-enabled Kubernetes clusters.
+This tutorial shows how to use [Azure Fleet Manager](/azure/kubernetes-fleet/overview) to deploy applications across multiple clusters including hybrid / multi-cloud clusters, including Azure Arc-enabled Kubernetes clusters.
 
 > [!NOTE]
-> Azure Arc-Enabled Kubernetes clusters for Azure Fleet Manager is in public preview. For a complete list of requirements and limitations, see [Member cluster types](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types). 
+> Azure Arc-Enabled Kubernetes clusters for Azure Fleet Manager is in public preview. For a complete list of requirements and limitations, see [Member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types). 
 
 ## Prerequisites
 
@@ -33,14 +33,14 @@ To deploy applications using Azure Fleet Manager, you need to have a Fleet, and 
 
 * An Azure Fleet Manager with Hub Cluster.
   
-  - Read the [official Azure Fleet Manager guides](https://docs.azure.cn/en-us/kubernetes-fleet/overview) to create your Azure Fleet Manager.
-  - Ensure your Fleet is Hubful, or [upgrade if needed](https://docs.azure.cn/en-us/kubernetes-fleet/upgrade-hub-cluster-type).
-  - [Join the Arc-Enable Kubernetes cluster as a member](https://docs.azure.cn/en-us/kubernetes-fleet/quickstart-create-fleet-and-members?tabs=without-hub-cluster#join-member-clusters) to your Fleet.
+  - Read the [official Azure Fleet Manager guides](/azure/kubernetes-fleet/overview) to create your Azure Fleet Manager.
+  - Ensure your Fleet is Hubful, or [upgrade if needed](/azure/kubernetes-fleet/upgrade-hub-cluster-type).
+  - [Join the Arc-Enable Kubernetes cluster as a member](/azure/kubernetes-fleet/quickstart-create-fleet-and-members?tabs=without-hub-cluster#join-member-clusters) to your Fleet.
 
 
 ### Deploy applications using Azure Fleet Manager
 
-Follow Azure Fleet Manager's [guide on creating a Multi-Cluster Resource Placement](https://docs.azure.cn/en-us/kubernetes-fleet/quickstart-resource-propagation?tabs=azure-cli) to deploy your workloads (applications) to the member clusters.
+Follow Azure Fleet Manager's [guide on creating a Multi-Cluster Resource Placement](/azure/kubernetes-fleet/quickstart-resource-propagation) to deploy your workloads (applications) to the member clusters.
 
 ## Delete the extension
 
