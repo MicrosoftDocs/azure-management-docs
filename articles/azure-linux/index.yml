@@ -8,9 +8,9 @@ metadata:
   description: Learn about Azure Linux Container Host to use the container-optimized OS in your AKS clusters.
   ms.service: microsoft-linux
   ms.topic: landing-page
-  author: suhuruli
-  ms.author: suhuruli
-  ms.date: 05/10/2023
+  author: suhuruli, florataagen
+  ms.author: suhuruli, florataagen
+  ms.date: 10/07/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
 
@@ -40,6 +40,21 @@ landingContent:
           #  url: concepts-certs.md
           #- text: Azure Linux versions
            # url: azure-linux-supported-versions.md
+
+  # Card 
+  - title: About Azure Linux with OS Guard (Preview) for AKS
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Azure Linux with OS Guard for AKS?
+            url: intro-azure-linux-os-guard.md
+      - linkListType: quickstart
+        links:
+          - text: Azure CLI
+            url: quickstart-osguard-azure-cli.md
+          - text: ARM template
+            url: quickstart-osguard-azure-resource-manager-template.md
+
 
   # Card 
   - title: Create an Azure Linux cluster in 5 minutes
