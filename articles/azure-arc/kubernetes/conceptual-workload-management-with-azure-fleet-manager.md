@@ -30,22 +30,16 @@ By extending Azure Kubernetes Fleet Manager capabilities to Arc-enabled clusters
 
 ## Preview limitations and capability restrictions
 
-> [!IMPORTANT]
-> Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes is currently in public preview. During preview, certain capabilities are not available for Arc-enabled clusters, including multi-cluster update orchestration features.
-
-Arc-enabled Kubernetes clusters have specific capability restrictions when used with Azure Fleet Manager. For a complete list of supported and unsupported features, see [Member cluster types and capability matrix](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types-and-capability-matrix).
+Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes is currently in public preview. During preview, certain capabilities are not available for Arc-enabled clusters. For a complete list of requirements and limitations, see [Member cluster types](https://learn.microsoft.com/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 ## Key capabilities
 
 The Azure Kubernetes Fleet Manager extension brings several powerful capabilities to Azure Arc-enabled Kubernetes clusters:
 
-- **Declarative workload placement**: Define where workloads should run based on cluster characteristics, geographic requirements, or resource availability
+- **Declarative workload placement**: Define where workloads should run based on cluster characteristics.
 - **Resource propagation**: Deploy Kubernetes resources consistently across multiple clusters in different environments.
-- **Centralized observability**: Monitor workload health and deployment status across all clusters from a single Azure control plane
-- **Consistent resource management**: Apply uniform configuration and policy management across hybrid and multi-cloud environments
+- **Centralized observability**: Monitor workload health and deployment status across all clusters from a single Azure control plane.
 
-> [!NOTE]
-> Multi-cluster update orchestration features are not supported for Arc-enabled clusters during the preview period.
 
 ## Architecture and comprehensive details
 
