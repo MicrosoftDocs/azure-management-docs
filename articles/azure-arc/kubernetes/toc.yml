@@ -17,6 +17,9 @@
     href: quickstart-connect-cluster.md
 - name: Tutorials
   items:
+  - name: Deploy applications using Azure Kubernetes Fleet Manager
+    displayName: Azure Kubernetes Fleet Manager, tutorial
+    href: tutorial-use-azure-kubernetes-fleet-manager.md
   - name: Deploy applications using GitOps (ArgoCD)
     displayName: argocd, tutorial
     href: tutorial-use-gitops-argocd.md

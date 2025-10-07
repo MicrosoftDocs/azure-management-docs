@@ -122,18 +122,18 @@ Use the Azure Machine Learning extension to deploy and run Azure Machine Learnin
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
-## Azure Fleet Manager
+## Azure Kubernetes Fleet Manager
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-Azure Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to an Azure Fleet. Get started by understanding the following:
+Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet. Get started by understanding the following:
 
-1. Key concepts of [Azure Fleet Manager](/azure/kubernetes-fleet/concepts-fleet).
-2. Key concepts of Azure Fleet Manager's [Multi-Cluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
-3. [Azure Fleet Manager's member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
+1. Key concepts of [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/concepts-fleet).
+2. Key concepts of Azure Kubernetes Fleet Manager's [Multi-Cluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
+3. [Azure Kubernetes Fleet Manager's member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 > [!IMPORTANT]
-> Azure Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.
+> Azure Kubernetes Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 

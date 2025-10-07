@@ -47,7 +47,7 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
   * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
   * [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
 
-* Utilize [Azure Fleet Manager](/azure/kubernetes-fleet/overview), and its Arc-Enabled Kubernetes cluster extension to enable your enterprise to tackle hybrid and multi-cloud Kubernetes management challenges at scale.
+* Utilize [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/overview), and its Arc-Enabled Kubernetes cluster extension to enable your enterprise to tackle hybrid and multi-cloud Kubernetes management challenges at scale.
 
 [!INCLUDE [azure-lighthouse-supported-service](~/reusable-content/ce-skilling/azure/includes/azure-lighthouse-supported-service.md)]
 
