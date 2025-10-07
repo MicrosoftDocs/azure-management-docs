@@ -1,5 +1,5 @@
 ---
-title: "Multi-cluster workload management with Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes"
+title: "Multi-cluster workload management with Azure Kubernetes Fleet Manager"
 description: "This article provides a conceptual overview of multi-cluster workload management using the Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes clusters."
 ms.date: 10/01/2025
 ms.topic: concept-article
@@ -8,7 +8,7 @@ ms.author: sehobbs
 # Customer intent: "As a DevOps engineer managing multiple Azure Arc-enabled Kubernetes clusters, I want to use Azure Kubernetes Fleet Manager to automate workload scheduling and deployment across clusters, so that I can efficiently manage applications at scale with centralized control and observability."
 ---
 
-# Multi-cluster workload management with Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes
+# Multi-cluster workload management with Azure Kubernetes Fleet Manager
 
 Managing Kubernetes workloads across multiple Azure Arc-enabled clusters presents unique challenges for organizations operating in hybrid environments. The Azure Kubernetes Fleet Manager extension for Azure Arc-enabled Kubernetes (currently in public preview) provides a solution that extends Azure's native fleet management capabilities to clusters running outside of Azure, enabling centralized multi-cluster workload management regardless of where your clusters are located.
 
