@@ -59,7 +59,7 @@ A container image publisher builds an image and signs it as part of the GitHub A
 
 When an organization deploys workloads to Azure Kubernetes Service (AKS), a cluster policy can enforce that only signed and verified images are allowed to run. This process:
 
-- Prevents the deployment of unauthorized or tampered-with images.
+- Helps prevent the deployment of unauthorized or tampered-with images.
 - Helps ensure that runtime workloads originate from trusted publishers.
 
 ### Image consumer verifies base images in CI/CD pipelines
@@ -83,14 +83,14 @@ This overview introduces the importance of signing and verifying container image
 
 ### Signing with Key Vault
 
-Signing via the Notation CLI:
+Signing via the Notation command-line interface (CLI):
 
 - [Sign container images by using Notation, Azure Key Vault, and a self-signed certificate](container-registry-tutorial-sign-build-push.md)
 - [Sign container images by using Notation, Azure Key Vault, and a CA-issued certificate](container-registry-tutorial-sign-trusted-ca.md)
 
 Signing in a GitHub workflow:
 
-- [Sign an image with Notation by using GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
+- [Sign a container image by using Notation in GitHub Actions](/azure/security/container-secure-supply-chain/articles/notation-sign-gha)
 
 ### Signing with Trusted Signing
 
