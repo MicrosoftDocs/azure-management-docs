@@ -4,8 +4,8 @@ description: Learn about the support matrix for Arc-enabled System Center Virtua
 ms.topic: how-to 
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.date: 04/10/2025
 keywords: "VMM, Arc, Azure"
 

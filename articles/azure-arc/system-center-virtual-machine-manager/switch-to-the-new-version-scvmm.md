@@ -3,8 +3,8 @@ title: Switch to the new version of Arc-enabled SCVMM
 description: Learn how to switch to the new version and use its capabilities.
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.topic: how-to 
 ms.date: 02/25/2025
 keywords: "VMM, Arc, Azure"
