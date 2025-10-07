@@ -3,8 +3,8 @@ title: Set up and manage self-service access to SCVMM resources
 description: This article describes how to use built-in roles to manage granular access to SCVMM resources through Azure Role-based Access Control (RBAC).
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.topic: how-to 
 ms.date: 10/21/2024
 keywords: "VMM, Arc, Azure"

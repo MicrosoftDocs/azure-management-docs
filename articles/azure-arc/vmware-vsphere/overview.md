@@ -8,8 +8,8 @@ ms.custom:
   - build-2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 # Customer intent: As a hybrid IT administrator, I want to integrate VMware vSphere with Azure management capabilities, so that I can streamline governance, enhance security, and enable self-service operations for development teams across both environments.
 ---
 

@@ -5,8 +5,8 @@ ms.date: 08/21/2025
 ms.topic: overview
 ms.services: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 keywords: "VMM, Arc, Azure, System Center"
 ms.custom:
   - references_regions

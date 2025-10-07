@@ -4,8 +4,8 @@ description: This article describes how to create custom roles using the Azure p
 ms.topic: how-to
 ms.date: 06/25/2025
 ms.service: azure-arc
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.subservice: azure-arc-vmware-vsphere
 ---
 

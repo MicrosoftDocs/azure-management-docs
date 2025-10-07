@@ -8,8 +8,8 @@ ms.subservice: azure-arc-scvmm
 ms.custom:
   - devx-track-azurecli
   - build-2025
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 # Customer intent: "As a system administrator managing Azure Arc-enabled SCVMM, I want to perform maintenance and update account credentials for the Arc resource bridge, so that I can ensure secure and reliable connectivity between on-premises servers and Azure services."
 ---
 

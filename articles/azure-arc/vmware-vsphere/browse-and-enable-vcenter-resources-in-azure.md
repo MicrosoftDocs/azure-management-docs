@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 10/24/2024
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.custom:
   - build-2025
   - sfi-image-nochange

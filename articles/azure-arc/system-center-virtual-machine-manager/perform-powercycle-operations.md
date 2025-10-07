@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 05/28/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ---
 
 # Perform powercycle operations on SCVMM managed virtual machines in Azure

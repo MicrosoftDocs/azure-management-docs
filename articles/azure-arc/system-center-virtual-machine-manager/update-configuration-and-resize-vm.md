@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 06/05/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ---
 
 # Update configuration and resize a SCVMM managed virtual machine in Azure

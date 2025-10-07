@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 07/18/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ---
 
 # Apply Azure tags to VMware vCenter resources through Azure Arc-enabled VMware vSphere
