@@ -122,6 +122,21 @@ Use the Azure Machine Learning extension to deploy and run Azure Machine Learnin
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
+## Azure Fleet Manager
+
+- **Supported distributions**: All CNCF-certified Kubernetes clusters.
+
+Azure Fleet Manager is a comprehensive multi-cluster orchestration product that simplifies the process of multi-cluster workload (application) orchestration across hybrid clusters. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet. Get started by understanding the following:
+
+1. Key concepts of [Azure Fleet Manager](https://docs.azure.cn/en-us/kubernetes-fleet/concepts-fleet).
+2. Key concepts of Azure Fleet Manager's [Multi-Cluster workload management](https://docs.azure.cn/en-us/kubernetes-fleet/concepts-multi-cluster-workload-management).
+3. [Azure Fleet Manager's member cluster types and capability matrix](https://docs.azure.cn/en-us/kubernetes-fleet/concepts-member-cluster-types-and-capability-matrix).
+
+> [!IMPORTANT]
+> Azure Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 ## ArgoCD (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
