@@ -1,8 +1,8 @@
 ---
 title: Remove your SCVMM environment from Azure Arc
 description: This article explains the steps to cleanly remove your SCVMM environment from Azure Arc and delete related Azure Arc resources from Azure.
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.topic: how-to
 ms.date: 02/25/2025
 ms.service: azure-arc

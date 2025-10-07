@@ -34,7 +34,7 @@ The illustration below labels the basic elements of the Azure portal, each of wh
 |2|**Breadcrumb**. Use the breadcrumb links to move back a level in your workflow.|
 |3|**Page header**. Appears at the top of every portal page and holds global elements.|
 |4|**Global search**. Use the search bar in the page header to quickly find a specific resource, a service, or documentation.|
-|5|**Copilot**. Provides quick access to [Microsoft Copilot in Azure (preview)](/azure/copilot/).|
+|5|**Copilot**. Provides quick access to [Microsoft Copilot in Azure](/azure/copilot/).|
 |6|**Global controls**. These controls for common tasks persist in the page header: Cloud Shell, Notifications, Settings, Support + Troubleshooting, and Feedback.|
 |7|**Your account**. View information about your account, switch directories, sign out, or sign in with a different account.|
 |8|**Command bar**. A group of controls that are contextual to your current focus.|

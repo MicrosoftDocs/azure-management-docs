@@ -5,8 +5,8 @@ ms.topic: how-to
 ms.date: 06/04/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ---
 
 # Delete a SCVMM-managed VM in Azure through Azure Arc-enabled SCVMM

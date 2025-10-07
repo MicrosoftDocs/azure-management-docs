@@ -4,8 +4,8 @@ description: This article lists the Azure built-in roles for Azure Arc-enabled V
 ms.services: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.topic: reference
-author: jyothisuri
-ms.author: jsuri
+author: Jeronika-MS
+ms.author: v-gajeronika
 ms.date: 07/15/2025
 ---
 

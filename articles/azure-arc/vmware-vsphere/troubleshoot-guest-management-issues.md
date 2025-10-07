@@ -8,8 +8,8 @@ ms.subservice: azure-arc-vmware-vsphere
 ms.custom:
   - linux-related-content
   - build-2025
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 # Customer intent: As a VI admin, I want to understand the troubleshooting process for guest management issues.
 ---
 # Troubleshoot Guest Management for Linux VMs
