@@ -130,7 +130,7 @@ Azure Fleet Manager is a comprehensive multi-cluster management solution that si
 
 1. Key concepts of [Azure Fleet Manager](/azure/kubernetes-fleet/concepts-fleet).
 2. Key concepts of Azure Fleet Manager's [Multi-Cluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
-3. [Azure Fleet Manager's member cluster types](../../kubernetes-fleet/concepts-member-cluster-types).
+3. [Azure Fleet Manager's member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 > [!IMPORTANT]
 > Azure Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.
