@@ -2,8 +2,8 @@
 ms.assetid:
 title: What's new in Azure Arc-enabled VMware vSphere
 description: This article describes the new features and enhancements supported in Azure Arc-enabled VMware vSphere.
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.date: 09/17/2025
 ms.topic: article
 ms.service: azure-arc

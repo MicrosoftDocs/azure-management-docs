@@ -5,8 +5,8 @@ ms.topic: concept-article
 ms.date: 01/23/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 ms.custom:
   - build-2025
 # Customer intent: As a cloud administrator, I want to understand the architecture and components of the Azure Connected Machine agent, so that I can effectively manage VMs on-premises or across different cloud providers.

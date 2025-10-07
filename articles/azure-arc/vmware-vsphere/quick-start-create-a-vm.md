@@ -6,8 +6,8 @@ ms.date: 07/22/2025
 ms.service: azure-arc
 zone_pivot_groups: vmware-bicep-terraform
 ms.subservice: azure-arc-vmware-vsphere
-ms.author: jsuri
-author: jyothisuri
+ms.author: v-gajeronika
+author: Jeronika-MS
 # Customer intent: As a self-service user, I want to provision a VM using vCenter resources through Azure so that I can deploy my code
 ms.custom:
   - build-2025
