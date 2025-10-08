@@ -26,7 +26,7 @@ Before you begin, make sure you have:
 - An active Azure subscription.
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
-- Edge Rag registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
+- Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
 
 ## Open Azure Cloud Shell or Azure CLI
 
