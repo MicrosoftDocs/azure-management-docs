@@ -28,6 +28,8 @@ GitOps on Azure Arc-enabled Kubernetes or Azure Kubernetes Service uses [Flux](h
 
 Flux is deployed directly on the cluster, and each cluster's control plane is logically separated. This makes it scale well to hundreds and thousands of clusters. Flux enables pure pull-based GitOps application deployments. No access to clusters is needed by the source repo or by any other cluster.
 
+There are no charges for Flux deployments on Azure Kubernetes Service (AKS), AKS Edge Essentials, or AKS enabled by Azure Arc on Azure Local. For Azure Arc-enabled Kubernetes clusters, there are no charges for Flux deployments on the first six vCPUs in your subscription. For more information, see [Azure Arc pricing](https://azure.microsoft.com/pricing/details/azure-arc/).
+
 ## Flux cluster extension
 
 GitOps is enabled in an Azure Arc-enabled Kubernetes or AKS cluster as a `Microsoft.KubernetesConfiguration/extensions/microsoft.flux` [cluster extension](./conceptual-extensions.md) resource.  The `microsoft.flux` extension must be installed in the cluster before one or more `fluxConfigurations` can be created. The extension is installed automatically when you create the first `Microsoft.KubernetesConfiguration/fluxConfigurations` in a cluster, or you can install it manually using the portal, the Azure CLI (`az k8s-extension create --extensionType=microsoft.flux`), ARM template, or REST API.
