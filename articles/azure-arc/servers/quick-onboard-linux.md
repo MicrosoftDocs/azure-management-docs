@@ -19,7 +19,7 @@ While you can repeat the steps in this article as needed to onboard additional m
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Root permissions on the Linux machine to install and configure the Connected Machine agent.
 - Review the [Connected Machine agent prerequisites](prerequisites.md) and verify the following requirements:
   - These [resource providers are registered](prerequisites.md#azure-resource-providers) on your subscription:

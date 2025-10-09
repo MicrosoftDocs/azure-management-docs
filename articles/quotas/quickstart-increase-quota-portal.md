@@ -16,7 +16,7 @@ For more information about quotas, see [Quotas overview](quotas-overview.md).
 
 An Azure account with the Contributor role (or another role that includes Contributor access).
 
-If you don't have an Azure account, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin. However, to adjust quota you will need to upgrade to a paid subscription. For more information on the limitations, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits#managing-limits). 
+If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. However, to adjust quota you will need to upgrade to a paid subscription. For more information on the limitations, see [Azure subscription and service limits, quotas, and constraints](/azure/azure-resource-manager/management/azure-subscription-service-limits#managing-limits). 
 
 ## Request a quota increase
 

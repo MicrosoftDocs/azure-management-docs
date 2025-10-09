@@ -20,7 +20,7 @@ This article walks you through an example scenario of the workload deployment an
 
 In order to successfully deploy the sample, you need:
 
-- An Azure subscription. If you don't already have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- An Azure subscription. If you don't already have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - [Azure CLI](/cli/azure/install-azure-cli)
 - [GitHub CLI](https://cli.github.com)
 - [Helm](https://helm.sh/docs/helm/helm_install/)

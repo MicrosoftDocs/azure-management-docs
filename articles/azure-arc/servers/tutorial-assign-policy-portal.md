@@ -21,7 +21,7 @@ In this tutorial, you'll learn how to:
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/) account
+If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) account
 before you begin.
 
 ## Create a policy assignment

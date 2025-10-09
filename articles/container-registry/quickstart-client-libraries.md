@@ -29,7 +29,7 @@ Azure Container Registry also has a management library for control-plane operati
 
 ## Prerequisites
 
-* You need an [Azure subscription](https://azure.microsoft.com/free/) and an Azure container registry to use this library.
+* You need an [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and an Azure container registry to use this library.
 
     To create a new Azure container registry, you can use the [Azure portal](container-registry-get-started-portal.md), [Azure PowerShell](container-registry-get-started-powershell.md), or the [Azure CLI](container-registry-get-started-azure-cli.md). Here's an example using the Azure CLI:
 

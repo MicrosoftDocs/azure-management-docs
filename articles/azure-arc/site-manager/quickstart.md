@@ -20,7 +20,7 @@ In this quickstart, you will create an Azure Arc site for resources grouped with
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Azure portal access
 * Internet connectivity
 * At least one supported resource in your Azure subscription or a resource group. For more information, see [Supported resource types](./overview.md#supported-resource-types).
