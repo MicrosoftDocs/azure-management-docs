@@ -38,7 +38,15 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.57/AzureConnect
 |Connectivity check now marks regional GAS endpoint required|✓ |✓ |Feature|
 |Fixed duplicate heartbeat requests that were causing HTTP 429 (Too Many Requests) responses from HIS.|✓|✓|Bug Fix|
 |Fixed MSI installer incorrectly removing Arc services during installation.|✓||Bug Fix|
-|||✓|Bug Fix|
+|Fixed RPM installer to install GC and EXT services before starting HIMDS.||✓|Bug Fix|
+
+### Known Issues
+
+If the Windows installer is launched by double-clicking (followed by the UAC prompt), it may fail to configure the Arc services properly. To ensure successful installation, please use one of the following methods:
+
+- **Right-click** the installer and select **Run as administrator**, or
+
+- Execute the installer using `msiexec` from an **elevated PowerShell or Command Prompt**.
 
 ## Version 1.56 - September 2025
 
