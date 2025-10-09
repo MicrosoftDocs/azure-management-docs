@@ -72,10 +72,11 @@ An administrator can install agents for multiple machines from the Azure portal 
 >- If you're using a Linux VM, the account must not prompt for login on sudo commands. To override the prompt, from a terminal, run `sudo visudo`, and `add <username> ALL=(ALL) NOPASSWD:ALL` at the end of the file. Ensure you replace `<username>`.
 >- If your VM template has these changes incorporated, you won't need to do this for the VM created from that template.
 
-1. Sign in to the target VM as an administrator.
-2. Install and run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
-3. Sign in to your Azure account in Azure CLI using `az login --use-device-code`
-4. Run the downloaded script *[arcscvmm-enable-guest-management.ps1](https://download.microsoft.com/download/7/1/6/7164490e-6d8c-450c-8511-f8191f6ec110/arcscvmm-enable-guest-management.ps1)* or *[arcscvmm-enable-guest-management.sh](https://download.microsoft.com/download/0/9/b/09bd9ef4-a7af-49e5-ad5f-9e8f85fae75b/arcscvmm-enable-guest-management.sh)*, as applicable, using the following commands. The `vmmServerId` parameter should denote your VMM Server’s ARM ID.
+1. If the target VM is a Windows machine, download the [Windows manual installation script](https://download.microsoft.com/download/7/1/6/7164490e-6d8c-450c-8511-f8191f6ec110/arcscvmm-enable-guest-management.ps1). If the target VM is a Linux machine, download the [Linux manual installation script](https://download.microsoft.com/download/0/9/b/09bd9ef4-a7af-49e5-ad5f-9e8f85fae75b/arcscvmm-enable-guest-management.sh). 
+2. Sign in to the target VM as an administrator.
+3. Install and run the Azure CLI with the `az` command from either Windows Command Prompt or PowerShell.
+4. Sign in to your Azure account in Azure CLI using `az login --use-device-code`
+5. Run the downloaded script *arcscvmm-enable-guest-management.ps1* or *arcscvmm-enable-guest-management.sh*, as applicable, using the following commands. The `vmmServerId` parameter should denote your VMM Server’s ARM ID.
 
     **For a Windows VM:**
 
