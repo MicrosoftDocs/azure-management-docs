@@ -101,6 +101,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for ESUs (note: uses HTTP/TCP 80 and HTTPS/TCP 443) | If using ESUs enabled by Azure Arc. Required always for automatic updates, or temporarily if downloading certificates manually. | Public |
 
 <sup>1</sup> Access to this URL also needed when performing updates automatically.
+
 <sup>2</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
 
 
