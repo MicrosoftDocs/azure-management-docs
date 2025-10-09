@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/03/2025
+ms.date: 10/09/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -87,7 +87,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    # Set Entra ID app registration values
    $domainName = "arcrag.contoso.com" # Edit to match the domain used in your registration  
    $entraAppId = $(az ad app list --display-name "EdgeRAG" --query "[].appId" --output tsv)  # Display name is the application name in your registration   
-   $tenantId = $(az account show --query tenantId --output tsv) # Directory or tenant ID     
+   $entraTenantId = $(az account show --query tenantId --output tsv) # Directory or tenant ID     
 
    ```
 
@@ -96,7 +96,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    ```azurecli
    az login `
       --scope https://management.core.windows.net//.default `
-      --tenant $tenantId    
+      --tenant $entraTenantId    
    az aks get-credentials `
       --resource-group $rg `
       --name $k8scluster `
@@ -112,7 +112,13 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    helm repo update   
    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.2 
    ```
- 
+
+1. Register the Microsoft.Kubernetes provider by running the following command:
+
+   ```azurecli
+   az provider register -n Microsoft.Kubernetes
+   ```
+
 1. Connect the AKS cluster to Azure Arc:
 
    ```azurecli
@@ -121,7 +127,9 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --location $location ` 
       --name $k8scluster  
    ```
-   If prompted, select **y** to install the extension connectedk8s.
+
+   If prompted, select **y** to install the extension "connectedk8s".
+
 1. Install the required certificate and trust manager:
 
    ```azurecli
@@ -138,34 +146,35 @@ Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG.
 
 If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
 
-Run the following command to create GPU and CPU node pools with 3 nodes each:
+1. Run the following command to create a GPU node pool with 3 nodes:
 
-```azurecli
-# GPU nodepool 
-az aks nodepool add ` 
-    --resource-group $rg ` 
-    --cluster-name $k8scluster ` 
-    --name "gpunodepool" ` 
-    --node-count 3 ` 
-    --node-vm-size "Standard_NC8_A2" `
-    --enable-cluster-autoscaler `
-    --min-count 3 ` 
-    --max-count 3 ` 
-    --mode User 
+   ```azurecli
+   az aks nodepool add ` 
+       --resource-group $rg ` 
+       --cluster-name $k8scluster ` 
+       --name "gpunodepool" ` 
+       --node-count 3 ` 
+       --node-vm-size "Standard_NC8_A2" `
+       --enable-cluster-autoscaler `
+       --min-count 3 ` 
+       --max-count 3 ` 
+       --mode User 
+   ```
 
-# CPU nodepool 
+1. Run the following command to create a CPU node pool with 3 nodes:
 
-az aks nodepool add ` 
-    --resource-group $rg ` 
-    --cluster-name $k8scluster ` 
-    --name "cpunodepool" ` 
-    --node-count 3 ` 
-    --node-vm-size "Standard_D8s_v3" ` 
-    --enable-cluster-autoscaler ` 
-    --min-count 3 ` 
-    --max-count 3 ` 
-    --mode User
- ```
+   ```azurecli
+   az aks nodepool add ` 
+       --resource-group $rg ` 
+       --cluster-name $k8scluster ` 
+       --name "cpunodepool" ` 
+       --node-count 3 ` 
+       --node-vm-size "Standard_D8s_v3" ` 
+       --enable-cluster-autoscaler ` 
+       --min-count 3 ` 
+       --max-count 3 ` 
+       --mode User
+    ```
 
 ## Deploy Edge RAG on AKS
 
@@ -186,7 +195,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --configuration-settings gpu_enabled=$gpu_enabled ` 
        --configuration-settings AgentOperationTimeoutInMinutes=30 ` 
        --configuration-settings model=$modelName ` 
-       --configuration-settings auth.tenantId=$tenantId ` 
+       --configuration-settings auth.tenantId=$entraTenantId ` 
        --configuration-settings auth.clientId=$entraAppId ` 
        --configuration-settings ingress.domainname=$domainName ` 
        --configuration-settings ingress-nginx.controller.service.annotations.service\.beta\.kubernetes\.io/azure-load-balancer-health-probe-request-path=/healthz 
