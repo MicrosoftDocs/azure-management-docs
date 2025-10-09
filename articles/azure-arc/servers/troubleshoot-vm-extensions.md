@@ -50,6 +50,36 @@ For general troubleshooting, try the following steps. These steps apply to all V
 
 1. Review the system logs. Check for other operations that could interfere with the extension, such as a long-running installation of another application that requires exclusive package manager access.
 
+## Known issues
+
+### HandlerManifest.json file does not exist for extension
+
+The extension is stuck in a `Deleting` state. In the extension service log (`gc_ext.log`), you see the following error:
+
+```
+HandlerManifest.json file does not exist for extension
+```
+
+**Analysis**
+
+The extension is missing the HandlerManifest.json file. This can happen if the extension was not uninstalled properly.
+
+**Solution**
+
+1. To remove the extension, use [`az connectedmachine extension delete`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-delete) with the `--extension-name`, `--machine-name`, and `--resource-group` parameters.
+
+2. If the extension is still in the same state, attempt to manually remove the extension from the machine. Some extensions may require additional cleanup steps. Refer to extension-specific documentation in the [extensions table](manage-vm-extensions.md#extensions) for further guidance.
+
+    For Windows machines:
+    - Navigate to `C:\Packages\Plugins\`
+    - Delete the folder corresponding to the extension
+    
+    For Linux machines:
+    - Navigate to `/var/lib/waagent/`
+    - Delete the folder corresponding to the extension
+
+3. Uninstall the extension from Azure and then reinstall it.
+
 ## Next steps
 
 If you don't see your problem here or you can't resolve your issue, try one of the following channels for support:

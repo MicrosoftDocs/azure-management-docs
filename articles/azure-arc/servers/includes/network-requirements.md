@@ -61,9 +61,10 @@ This table lists the URLs that must be available to install and use the Connecte
 |`azgn*.servicebus.windows.net` or `*.servicebus.windows.net`|Notification service for extension and connectivity scenarios.|Always.| Public. |
 |`*.servicebus.windows.net`|For Windows Admin Center and Secure Shell (SSH) scenarios.|If you use SSH or Windows Admin Center from Azure.|Public.|
 |`*.waconazure.com`|For Windows Admin Center connectivity.|If you use Windows Admin Center.|Public.|
-|`*.blob.core.windows.net`|Download source for Azure Arc-enabled servers extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
-|`dc.services.visualstudio.com`|Agent telemetry.|Optional, not used in agent versions 1.24+.| Public. |
-| `*.<region>.arcdataservices.com` <sup>2</sup> | For Azure Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows Transport Layer Security (TLS) 1.2 or 1.3 only. | Always. | Public. |
+|`*.blob.core.windows.net`|Download source for Azure Arc-enabled server extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
+|`dc.services.visualstudio.com`|Agent telemetry.|Optional. Not used in agent versions 1.24+.| Public. |
+| `*.<region>.arcdataservices.com`<sup>2</sup> | For Azure Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | If you use Azure Arc SQL Server. | Public. |
+| `https://<azure-keyvault-name>.vault.azure.net/`, `https://graph.microsoft.com/`<sup>2</sup>| For Microsoft Entra authentication with Azure Arc SQL Server. | If you use Azure Arc SQL Server. | Public. |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
 |`dls.microsoft.com`| Used by Azure Arc machines to perform license validation. | Required when you use hotpatching, Windows Server Azure Benefits, or Windows Server pay-as-you-go billing on Azure Arc-enabled machines. | Public. |
 
@@ -85,7 +86,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 
 | Agent resource | Description | When required| Endpoint used with private link |
 |---------|---------|--------|---------|
-|`download.microsoft.com`|Used to download the Windows installation package.|Only at installation time .<sup>1</sup> | Public. |
+|`download.microsoft.com`|Used to download the Windows installation package.|Only at installation time.<sup>1</sup> | Public. |
 |`packages.microsoft.com`|Used to download the Linux installation package.|Only at installation time.<sup>1</sup> | Public. |
 |`login.microsoftonline.us`|Microsoft Entra ID.|Always.| Public. |
 |`pasff.usgovcloudapi.net`|Microsoft Entra ID.|Always.| Public. |
@@ -93,10 +94,14 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 |`*.his.arc.azure.us`|Metadata and hybrid identity services.|Always.| Private. |
 |`*.guestconfiguration.azure.us`| Extension management and guest configuration services. |Always.| Private. |
 |`*.blob.core.usgovcloudapi.net`|Download source for Azure Arc-enabled servers extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
-|`dc.applicationinsights.us`|Agent telemetry.|Optional, not used in agent versions 1.24+.| Public. |
-|`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
+|`dc.applicationinsights.us`|Agent telemetry.|Optional. Not used in agent versions 1.24+.| Public. |
+| `*.<region>.arcdataservices.azure.us`<sup>2</sup> | For Azure Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | If you use Azure Arc SQL Server. | Public. |
+|`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates ( uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
 
 <sup>1</sup> Access to this URL is also needed when updates are performed automatically.
+
+<sup>2</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
+
 
 #### [Microsoft Azure operated by 21Vianet](#tab/azure-china)
 
@@ -114,7 +119,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 |`azgn*.servicebus.chinacloudapi.cn`|Notification service for extension and connectivity scenarios.|Always.|
 |`*.servicebus.chinacloudapi.cn`|For Windows Admin Center and SSH scenarios.|If you use SSH or Windows Admin Center from Azure.|
 |`*.blob.core.chinacloudapi.cn`|Download source for Azure Arc-enabled servers extensions.|Always, except when you use private endpoints.|
-|`dc.applicationinsights.azure.cn`|Agent telemetry.|Optional, not used in agent versions 1.24+.|
+|`dc.applicationinsights.azure.cn`|Agent telemetry.|Optional. Not used in agent versions 1.24+.|
 
 <sup>1</sup> Access to this URL is also needed when updates are preformed automatically.
 
