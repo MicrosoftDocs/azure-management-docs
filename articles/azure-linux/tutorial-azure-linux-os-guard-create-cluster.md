@@ -15,9 +15,6 @@ ms.date: 09/24/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321737)
 
-To create a cluster with Azure Linux with OS Guard, you use:
-1. Azure resource groups, a logical container into which Azure resources are deployed and managed.
-1. [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes), a hosted Kubernetes service that allows you to quickly create a production ready Kubernetes cluster.
 
 In this tutorial, part one of five, you learn how to:
 
