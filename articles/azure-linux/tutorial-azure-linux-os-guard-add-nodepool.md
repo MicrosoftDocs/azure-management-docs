@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 # Customer intent: As a DevOps engineer, I want to add an Azure Linux with OS Guard node pool to my existing AKS cluster, so that I can accommodate varying compute and security needs for my applications.
 ---
 
-# Tutorial: Add an Azure Linux with OS Guard node pool to your existing AKS cluster
+# Tutorial: Add an Azure Linux with OS Guard node pool to an existing Azure Kubernetes Service (AKS) cluster
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
