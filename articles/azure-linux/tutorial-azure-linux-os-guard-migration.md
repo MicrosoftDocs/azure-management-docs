@@ -24,7 +24,7 @@ If you don't have any existing nodes to migrate, skip to the [next tutorial](./t
 
 ## Prerequisites
 
-- In previous tutorials, you created and deployed an Azure Linux with OS Guard for AKS cluster. To complete this tutorial, you need an AKS cluster with an Azure Linux with OS Guard node pool. If you haven't completed this step and want to follow along, see [Tutorial 2: Add an Azure Linux with OS Guard node pool to your existing AKS cluster](./tutorial-azure-linux-os-guard-add-nodepool.md).
+- In previous tutorials, you created and deployed an Azure Linux with OS Guard for AKS cluster. To complete this tutorial, you need an AKS cluster with an Azure Linux with OS Guard node pool. If you haven't completed this step and want to follow along, see [Tutorial 2: Add an Azure Linux with OS Guard node pool to your existing AKS cluster](./tutorial-azure-linux-os-guard-add-node-pool.md).
 
     > [!NOTE]
     > When adding a new Azure Linux with OS Guard node pool, you need to add at least one as `--mode System`. Otherwise, AKS won't allow you to delete your existing node pool.
@@ -78,7 +78,7 @@ There are several settings that can block the OS SKU migration request. To ensur
 ### Prerequisites
 
 - An existing AKS cluster with at least one Azure Linux node pool.
-- We recommend that you ensure your workloads configure and run successfully on the Azure Linux with OS Guard container host before attempting to use the OS SKU migration feature by [deploying an Azure Linux with OS Guard cluster](./quickstart-osguard-azure-cli.md) in dev/prod and verifying your service remains healthy.
+- We recommend that you ensure your workloads configure and run successfully on the Azure Linux with OS Guard container host before attempting to use the OS SKU migration feature by [deploying an Azure Linux with OS Guard cluster](./quickstart-os-guard-azure-cli.md) in dev/prod and verifying your service remains healthy.
 - Ensure the migration feature is working for you in test/dev before using the process on a production cluster.
 - Ensure that your pods have enough [Pod Disruption Budget](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
 - You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
