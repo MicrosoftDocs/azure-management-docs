@@ -88,13 +88,14 @@ Before you begin, review the following considerations and limitations for Azure 
 
 ## Create a resource group
 
-When creating a resource group, it is required to specify a location. This location is: 
+An Azure resource group is a logical group in which Azure resources are deployed and managed. When creating a resource group, it's required to specify a location. This location is:
+
 - The storage location of your resource group metadata.
 - Where your resources run in Azure if you don't specify another region when creating a resource.
 
-Before running the command, environment variables are declared to ensure unique resource names for each deployment.
+Create a resource group using the [`az group create`](/cli/azure/group#az-group-create) command. Before running the command, environment variables are declared to ensure unique resource names for each deployment.
 
-```bash
+```azurecli-interactive
 export REGION="EastUS2"
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 ```
