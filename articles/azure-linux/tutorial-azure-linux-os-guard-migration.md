@@ -256,12 +256,7 @@ If you experience issues during the OS SKU migration, you can roll back to your 
 
 ## Next steps
 
-In this tutorial, you migrated existing nodes to Azure Linux with OS Guard using one of the following methods:
-
-* Remove existing node pools and add new Azure Linux node pools.
-* In-place OS SKU migration.
-
-In the next tutorial, you learn how to enable telemetry to monitor your clusters.
+In this tutorial, you migrated existing nodes to Azure Linux with OS Guard. In the next tutorial, you learn how to enable telemetry to monitor your clusters.
 
 > [!div class="nextstepaction"]
 > [Enable telemetry and monitoring](./tutorial-azure-linux-os-guard-telemetry-monitor.md)
