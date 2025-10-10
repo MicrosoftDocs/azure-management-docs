@@ -15,14 +15,14 @@ ms.date: 09/24/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
 
-In AKS, nodes with the same configurations are grouped together into node pools. Each pool contains the VMs that run your applications. In the previous tutorial, you created an Azure Linux with OS Guard cluster with a single node pool. To meet the varying compute, storage, or security requirements of your applications, you can create additional user node pools.
+In Azure Kubernetes Service (AKS), nodes with the same configurations are grouped together into node pools. Each pool contains the virtual machines (VMs) that run your applications. In the previous tutorial, you created an Azure Linux with OS Guard cluster with a single node pool. To meet the varying compute, storage, or security requirements of your applications, you can create additional user node pools.
 
 In this tutorial, part two of five, you learn how to:
 
 > [!div class="checklist"]
 >
-> * Add an Azure Linux with OS Guard node pool.
-> * Check the status of your node pools.
+> - Add an Azure Linux with OS Guard node pool to an existing cluster.
+> - Check the status of your node pools.
 
 In later tutorials, you learn how to migrate nodes to Azure Linux with OS Guard and enable telemetry to monitor your clusters.
 
