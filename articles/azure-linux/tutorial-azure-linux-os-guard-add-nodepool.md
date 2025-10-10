@@ -70,7 +70,7 @@ Example output:
 
 ## Check the node pool status
 
-To see the status of your node pools, use the `az aks nodepool list` command and specify your resource group and cluster name. The same environment variable values declared earlier are used here.
+Check the status of your node pools using the [`az aks nodepool list`](/cli/azure/aks/nodepool#az-aks-nodepool-list) command and specify your resource group and cluster name.
 
 ```azurecli-interactive
 az aks nodepool list --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME
