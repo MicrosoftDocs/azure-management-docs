@@ -42,7 +42,7 @@ export NODE_POOL_NAME="np$RANDOM_SUFFIX"
 az aks nodepool add --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --mode System --os-sku AzureLinuxOSGuard
 ```
 
-Results:
+Example output:
 
 <!-- expected_similarity=0.3 -->
 
