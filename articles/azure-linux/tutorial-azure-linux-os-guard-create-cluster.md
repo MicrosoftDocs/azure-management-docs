@@ -19,12 +19,12 @@ ms.date: 09/24/2025
 In this tutorial, part one of five, you learn how to:
 
 > [!div class="checklist"]
-> * Install the Kubernetes CLI, `kubectl`.
-> * Install the aks-preview Azure CLI extension
-> * Register the `AzureLinuxOSGuardPreview` feature flag
-> * Create an Azure resource group.
-> * Create and deploy an Azure Linux with OS Guard cluster.
-> * Configure `kubectl` to connect to your Azure Linux with OS Guard cluster.
+> - Install the Kubernetes CLI, `kubectl`.
+> - Install the `aks-preview` Azure CLI extension.
+> - Register the `AzureLinuxOSGuardPreview` feature flag.
+> - Create an Azure resource group.
+> - Create and deploy an Azure Linux with OS Guard cluster.
+> - Configure `kubectl` to connect to your Azure Linux with OS Guard cluster.
 
 In later tutorials, you learn how to add an Azure Linux with OS Guard node pool to an existing cluster and migrate existing nodes to Azure Linux with OS Guard.
 
