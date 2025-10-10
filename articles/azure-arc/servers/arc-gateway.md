@@ -150,7 +150,7 @@ You can associate existing Azure Arc resources with an Azure Arc Gateway resourc
 
 ### [CLI](#tab/cli)
 
-1. On a machine with access to Azure, run the following commands:
+On a machine with access to Azure, run the following commands:
 
      ```azurecli
     az arcgateway settings update `
@@ -164,7 +164,7 @@ You can associate existing Azure Arc resources with an Azure Arc Gateway resourc
 
 ### [PowerShell](#tab/powershell)
 
-1. On a machine with access to Azure, run the following commands:
+On a machine with access to Azure, run the following commands:
 
     ```powershell
     Update-AzArcSetting `
@@ -209,7 +209,7 @@ This operation applies to the Azure Arc Gateway on Azure Arc-enabled servers onl
 
 1. Detach the Azure Arc Gateway resource from the machine:
 
-   ### [Portal](#tab/portal)
+  ### [Portal](#tab/portal)
 
    1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
@@ -329,7 +329,7 @@ To determine how many gateway resources you need per Azure region for multiple r
   | West Europe   | 800     | 50           | 10                    | 800/20 + 50/10 + 10/10                     | 46.0  |
   | Japan East    | 100     | 5            | 2                     | 100/20 + 5/10 + 2/10                       | 5.7   |
 
- - Each region's score is <100. One Azure Arc Gateway resource is sufficient.
+ Each region's score is <100. One Azure Arc Gateway resource is sufficient.
 
 #### Example 2
 

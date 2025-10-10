@@ -17,7 +17,7 @@ For the deployment to proceed smoothly, your plan should establish a clear under
 * The skill set and training required to enable successful deployment and ongoing management.
 * Acceptance criteria and how you track its success.
 * Tools or methods to be used to automate the deployments.
-* Identified risks and mitigation plans to avoid delays, disruptions, etc.
+* Identified risks and mitigation plans to avoid delays and disruptions.
 * A plan to avoid disruption during deployment.
 * The escalation path when a significant issue occurs.
 
@@ -71,7 +71,7 @@ In this phase, system engineers or administrators enable the core features in th
 | Design and deploy [Azure Monitor Logs](/azure/azure-monitor/logs/data-platform-logs). | Evaluate [design and deployment considerations](/azure/azure-monitor/logs/workspace-design) to determine if your organization should use an existing Log Analytics workspace or implement another workspace to store collected log data from hybrid servers and machines. | One day |
 | [Develop an Azure Policy](/azure/governance/policy/overview) governance plan. | Determine how you plan to implement governance of hybrid servers and machines at the subscription or resource group scope with Azure Policy. | One day |
 | Configure [role-based access control](/azure/role-based-access-control/overview). | Develop an access plan to control who has access to manage Azure Arc-enabled servers and the ability to view their data from other Azure services and solutions. | One day |
-| Identify machines with Azure Monitor Agent already installed. | Run the following log query in [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview) to support conversion of existing Azure Monitor Agent deployments to extension-managed agent:<br> Heartbeat <br> &#124; summarize arg_max(TimeGenerated, OSType, ResourceId, ComputerEnvironment) by Computer <br> &#124; where ComputerEnvironment == "Non-Azure" and isempty(ResourceId) <br> &#124; project Computer, OSType | One hour |
+| Identify machines with Azure Monitor Agent already installed. | Run the following log query in [Log Analytics](/azure/azure-monitor/logs/log-analytics-overview) to support conversion of existing Azure Monitor Agent deployments to extension-managed agent:<br> `Heartbeat <br> &#124; summarize arg_max(TimeGenerated, OSType, ResourceId, ComputerEnvironment) by Computer <br> &#124; where ComputerEnvironment == "Non-Azure" and isempty(ResourceId) <br> &#124; project Computer, OSType` | One hour |
 
 ## Phase 2: Deploy Azure Arc-enabled servers
 
@@ -79,9 +79,9 @@ Next, we add to the foundation laid in Phase 1 by preparing for and [deploying t
 
 |Task |Detail |Estimated duration |
 |-----|-------|---------|
-| Download the predefined installation script. | Review and customize the predefined installation script for at-scale deployment of the Connected Machine agent to support your automated deployment requirements.<br><br> Sample at-scale onboarding resources:<br><br> <ul><li> [At-scale basic deployment script](onboard-service-principal.md)</ul></li> <ul><li>At-scale onboarding VMware vSphere Windows Server VMs</ul></li> <ul><li>At-scale onboarding VMware vSphere Linux VMs</ul></li> <ul><li>At-scale onboarding AWS EC2 instances by using Ansible</ul></li> | One or more days depending on requirements, organizational processes (for example, Change and Release Management), and automation method used |
-| [Create service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale). |Create a service principal to connect machines noninteractively by using Azure PowerShell or from the portal.| One hour |
-| Deploy the Connected Machine agent to your target servers and machines. |Use your automation tool to deploy the scripts to your servers and connect them to Azure.| One or more days depending on your release plan and if following a phased rollout |
+| Download the predefined installation script. | Review and customize the predefined installation script for at-scale deployment of the Connected Machine agent to support your automated deployment requirements.<br><br> Sample at-scale onboarding resources:<br><br> <ul><li> [At-scale basic deployment script](onboard-service-principal.md)</ul></li> <ul><li>At-scale onboarding VMware vSphere Windows Server VMs</ul></li> <ul><li>At-scale onboarding VMware vSphere Linux VMs</ul></li> <ul><li>At-scale onboarding AWS EC2 instances by using Ansible</ul></li> | One or more days depending on the requirements, organizational processes (for example, Change and Release Management), and automation method used. |
+| [Create service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale). |Create a service principal to connect machines noninteractively by using Azure PowerShell or from the portal.| One hour. |
+| Deploy the Connected Machine agent to your target servers and machines. |Use your automation tool to deploy the scripts to your servers and connect them to Azure.| One or more days depending on your release plan and if following a phased rollout. |
 
 ## Phase 3: Manage and operate
 

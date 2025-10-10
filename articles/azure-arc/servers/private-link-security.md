@@ -32,7 +32,7 @@ For more information, see [Key benefits of Azure Private Link](/azure/private-li
 Azure Arc Private Link Scope connects private endpoints (and the virtual networks where they're contained) to an Azure resource. In this case, they're Azure Arc-enabled servers. When you enable any one of the supported VM extensions for Azure Arc-enabled servers, such as Azure Monitor, those resources connect other Azure resources. Such as:
 
 - Log Analytics workspace, which is required for Azure Automation Change Tracking and Inventory, Azure Monitor VM insights, and Azure Monitor log collection with Azure Monitor Agent.
-- Azure Key Vault
+- Azure Key Vault.
 - Azure Blob Storage, which is required for Custom Script Extension.
 
 :::image type="content" source="./media/private-link-security/private-link-topology.png" alt-text="Diagram that shows basic resource topology." border="true" lightbox="./media/private-link-security/private-link-topology.png":::
@@ -102,7 +102,7 @@ There are two ways to allow access:
     |Destination port ranges |443 |443 |
     |Protocol |TCP |TCP |
     |Action |Allow |Allow |
-    |Priority |150 (Must be lower than any rules that block internet access) |151 (Must be lower than any rules that block internet access) |
+    |Priority |150 (Must be lower than any rules that block internet access.) |151 (Must be lower than any rules that block internet access.) |
     |Name |`AllowAADOutboundAccess` |`AllowAzOutboundAccess` |
 
 - Configure the firewall on your local network to allow outbound TCP 443 (HTTPS) access to Microsoft Entra ID and Azure by using the downloadable service tag files. The [JSON file](https://www.microsoft.com/en-us/download/details.aspx?id=56519) contains all the public IP address ranges used by Microsoft Entra ID and Azure and is updated monthly to reflect any changes. The Microsoft Entra ID service tag is `AzureActiveDirectory`. The Azure service tag is `AzureResourceManager`. Consult with your network administrator and network firewall vendor to learn how to configure your firewall rules.
