@@ -80,6 +80,7 @@ To set the node-os upgrade channel on an existing cluster, update the --node-os-
 az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --node-os-upgrade-channel Unmanaged
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```json
 {
