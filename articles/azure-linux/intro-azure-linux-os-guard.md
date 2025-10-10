@@ -1,5 +1,5 @@
 ---
-title: About Azure Linux with OS Guard (preview) for AKS
+title: Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS) Overview
 description: Learn about Azure Linux with OS Guard 
 author: florataagen
 ms.author: florataagen
