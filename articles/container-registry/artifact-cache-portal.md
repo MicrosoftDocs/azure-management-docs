@@ -1,8 +1,8 @@
 ---
 title: "Enable artifact cache in your Azure Container Registry with Azure portal"
 description: "Learn how to use the Azure portal to cache container images in Azure Container Registry, improving performance and efficiency."
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.date: 04/29/2025

@@ -4,8 +4,8 @@ description: Provide access to images in your private container registry by usin
 ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 # Customer intent: As a DevOps engineer, I want to configure a service principal for Azure Container Registry access, so that I can securely manage permissions and automate image push and pull tasks for my applications without sharing credentials.
 ---

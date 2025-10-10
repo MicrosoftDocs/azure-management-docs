@@ -4,8 +4,8 @@ description: Learn how to provide access to images in your container registry fr
 ms.topic: concept-article
 ms.custom: devx-track-azurecli
 ms.service: azure-container-registry
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 # Customer intent: "As a cloud developer, I want to authenticate Azure Container Instances with a service principal for my private container registry, so that I can automate the deployment of containerized applications securely without manual intervention."
 ---

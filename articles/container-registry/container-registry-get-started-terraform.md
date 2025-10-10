@@ -5,8 +5,8 @@ ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: devx-track-terraform
 ms.service: azure-container-registry
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 content_well_notification: 
   - AI-contribution
 # Customer intent: As a Terraform user, I want to create an Azure container registry and resource group, so that I can manage and deploy private Docker container images in my Azure environment.

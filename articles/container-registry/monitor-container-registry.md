@@ -3,8 +3,8 @@ title: Monitor Azure Container Registry
 description: Start here to learn how you can use the features of Azure Monitor to analyze and alert data in Azure Container Registry.
 ms.date: 06/17/2024
 ms.topic: concept-article
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom:
   - horz-monitor

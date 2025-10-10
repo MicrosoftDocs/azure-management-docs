@@ -1,10 +1,10 @@
 ---
-author: chasedmicrosoft
+author: rayoef
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 05/20/2025
-ms.author: doveychase
+ms.author: rayoflores
 # Customer intent: "As a cloud administrator, I want to import container images into my cloud registry using command-line tools, so that I can efficiently manage my container resources and streamline my deployment process."
 ---
 ## Import images to your cloud registry

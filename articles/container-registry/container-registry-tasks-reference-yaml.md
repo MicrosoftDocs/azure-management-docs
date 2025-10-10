@@ -3,8 +3,8 @@ title: YAML Reference for Azure Container Registry (ACR) Tasks
 description: Guide to defining tasks in YAML for Azure Container Registry (ACR) Tasks, covering task properties, step types, and built-in variables.
 ms.topic: reference
 ms.custom: devx-track-azurecli
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 # Customer intent: As a DevOps engineer, I want to define and execute multi-step tasks using YAML for container registry operations, so that I can automate the build, test, and deployment processes in a consistent and efficient manner.
