@@ -100,6 +100,7 @@ export REGION="EastUS2"
 az group create --name $RESOURCE_GROUP_NAME --location $REGION
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```JSON
 {
