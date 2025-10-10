@@ -2,8 +2,8 @@
 title: Quickstart - Create Registry - Azure CLI
 description: Learn how to create a private Docker container registry using the Azure CLI, push a container image, and pull and run the image from the registry.
 ms.topic: quickstart
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: H1Hack27Feb2017, mvc, devx-track-azurecli, mode-api

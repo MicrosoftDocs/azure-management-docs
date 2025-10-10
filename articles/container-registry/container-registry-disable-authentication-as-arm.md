@@ -1,7 +1,7 @@
 ---
 title: Disable Authentication as ARM
 description: Disabling azureADAuthenticationAsArmPolicy forces the registry to only recognize ACR audience Microsoft Entra tokens, enhancing the security of your container registries.
-ms.author: doveychase
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.custom: devx-track-arm-template, devx-track-azurecli
 ms.topic: tutorial  #Don't change.

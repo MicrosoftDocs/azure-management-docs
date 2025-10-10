@@ -2,8 +2,8 @@
 title: Cross-Tenant Authentication from AKS to ACR
 description: Configure an AKS cluster's service principal with permissions to access your Azure container registry in a different Microsoft Entra tenant.
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 02/28/2025
 ms.custom: sfi-image-nochange

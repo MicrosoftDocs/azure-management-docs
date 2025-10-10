@@ -2,8 +2,8 @@
 title: Enable Unauthenticated Anonymous Pull Access in Azure Container Registry
 description: Optionally enable unauthenticated anonymous pull access to make content in your Azure container registry publicly available
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 02/28/2025
 # Customer intent: As a cloud administrator, I want to enable unauthenticated anonymous pull access in Azure Container Registry so that I can distribute public container images without requiring user authentication.
