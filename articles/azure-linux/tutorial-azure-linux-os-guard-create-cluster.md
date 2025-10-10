@@ -44,7 +44,9 @@ Before you begin, review the following considerations and limitations for Azure 
 
 ## Prerequisites
 
-- You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+- You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
+- [Install the `aks-preview` Azure CLI extension](#install-the-aks-preview-azure-cli-extension).
+- [Register the `AzureLinuxOSGuardPreview` feature flag](#register-the-azure-linux-os-guard-preview-feature-flag).
 
 ## Install the aks-preview Azure CLI extension
 
