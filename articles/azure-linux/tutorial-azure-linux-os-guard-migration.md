@@ -17,8 +17,8 @@ ms.date: 09/24/2025
 
 In this tutorial, part three of five, you migrate your existing nodes to Azure Linux with OS Guard. You can migrate your existing nodes using one of the following methods:
 
-* Remove existing node pools and add new Azure Linux with OS Guard node pools.
-* In-place OS SKU migration.
+- Remove existing node pools and add new Azure Linux with OS Guard node pools.
+- In-place OS SKU migration.
 
 If you don't have any existing nodes to migrate, skip to the [next tutorial](./tutorial-azure-linux-os-guard-telemetry-monitor.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade Azure Linux with OS Guard nodes.
 
