@@ -167,4 +167,4 @@ aks-nodepool1-00000000-1       Ready    agent   10m     v1.20.7
 In this tutorial, you created and deployed an Azure Linux with OS Guard cluster. In the next tutorial, you learn how to add an Azure Linux with OS Guard node pool to an existing cluster.
 
 > [!div class="nextstepaction"]
-> [Add an Azure Linux with OS Guard node pool](./tutorial-azure-linux-os-guard-add-nodepool.md)
+> [Add an Azure Linux with OS Guard node pool](./tutorial-azure-linux-os-guard-add-node-pool.md)

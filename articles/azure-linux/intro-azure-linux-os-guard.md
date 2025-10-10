@@ -55,6 +55,6 @@ Azure Linux with OS Guard is built on Azure Linux and benefits from the same sup
 
 To get started with Azure Linux OS Guard for AKS, see the following resources:
 
-- [Create an Azure Linux with OS Guard for AKS cluster using the Azure CLI](./quickstart-osguard-azure-cli.md)
+- [Create an Azure Linux with OS Guard for AKS cluster using the Azure CLI](./quickstart-os-guard-azure-cli.md)
 - [Deploy, manage, and update applications with Azure Linux with OS Guard](./tutorial-azure-linux-os-guard-create-cluster.md)
 

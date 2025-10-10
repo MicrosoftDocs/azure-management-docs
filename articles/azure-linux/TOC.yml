@@ -29,7 +29,7 @@
         - name: Use the Azure CLI
           href: quickstart-os-guard-azure-cli.md
         - name: Use the ARM template
-          href: quickstart-os-guard-azure-resource-manager-template.md
+          href: quickstart-os-guard-arm-template.md
 
 - name: Tutorials
   items:
@@ -38,7 +38,7 @@
       - name: 1 - Create a cluster with Azure Linux
         href: tutorial-azure-linux-create-cluster.md
       - name: 2 - Add an Azure Linux node pool to your existing cluster
-        href: tutorial-azure-linux-add-node-pool.md
+        href: tutorial-azure-linux-add-nodepool.md
       - name: 3 - Migrating to Azure Linux
         href: tutorial-azure-linux-migration.md
       - name: 4 - Enable telemetry and monitoring
@@ -50,7 +50,7 @@
       - name: 1 - Create a cluster with Azure Linux with OS Guard
         href: tutorial-azure-linux-os-guard-create-cluster.md
       - name: 2 - Add an Azure Linux with OS Guard node pool to your existing cluster
-        href: tutorial-azure-linux-os-guard-add-nodepool.md
+        href: tutorial-azure-linux-os-guard-add-node-pool.md
       - name: 3 - Migrating to Azure Linux with OS Guard
         href: tutorial-azure-linux-os-guard-migration.md
       - name: 4 - Enable telemetry and monitoring
