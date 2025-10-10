@@ -103,12 +103,6 @@ As this tutorial is the last part of the series, you may want to delete your Azu
 
 ## Next steps
 
-In this tutorial, you upgraded your Azure Linux Container Host cluster. You learned how to: 
-
-> [!div class="checklist"]
->
-> * Manually upgrade the node-image on a cluster.
-> * Automatically upgrade an Azure Linux Container Host cluster.
-> * Deploy kured in an Azure Linux Container Host cluster.
+In this tutorial, you upgraded your Azure Linux Container Host cluster.
 
 For more information on Azure Linux with OS Guard, see the [Azure Linux with OS Guard overview](./intro-azure-linux-os-guard.md).
