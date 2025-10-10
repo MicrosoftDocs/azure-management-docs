@@ -72,11 +72,11 @@ For more information on upgrade channels, see [Using cluster auto-upgrade](/azur
 
 ## Enable automatic package upgrades
 
-Similar to setting your clusters to auto-upgrade, you can use the same set once and forget mechanism for package upgrades by enabling the node-os upgrade channel. If automatic package upgrades are enabled, the dnf-automatic systemd service runs daily and installs any updated packages that have been published.
+You can also configure automatic upgrades for package upgrades by enabling the node OS upgrade channel. If automatic package upgrades are enabled, the `dnf-automatic systemd` service runs daily and installs any updated packages that have been published.
 
-To set the node-os upgrade channel on an existing cluster, update the --node-os-upgrade-channel parameter:
+Set the node OS upgrade channel on an existing cluster using the [`az aks update`](/cli/azure/aks#az-aks-update) command with the `--node-os-upgrade-channel` parameter.
 
-```bash
+```azurecli-interactive
 az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --node-os-upgrade-channel Unmanaged
 ```
 
