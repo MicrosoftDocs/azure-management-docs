@@ -51,9 +51,9 @@ landingContent:
       - linkListType: quickstart
         links:
           - text: Azure CLI
-            url: quickstart-osguard-azure-cli.md
+            url: quickstart-os-guard-azure-cli.md
           - text: ARM template
-            url: quickstart-osguard-azure-resource-manager-template.md
+            url: quickstart-os-guard-arm-template.md
 
 
   # Card 
