@@ -1,6 +1,6 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Add an Azure Linux with OS Guard node pool to your existing AKS cluster
-description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to add an Azure Linux with OS Guard node pool to your existing cluster.
+title: Azure Linux with OS Guard for AKS Tutorial - Add an Azure Linux with OS Guard Node Pool to an Existing Azure Kubernetes Service (AKS) Cluster
+description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to add an Azure Linux with OS Guard node pool to your existing AKS cluster.
 author: florataagen
 ms.author: florataagen
 ms.service: microsoft-linux
