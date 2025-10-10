@@ -128,7 +128,7 @@ Now that Copilot in Azure has all of the necessary information, it creates the l
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a customized lifecycle management rule for a storage account." lightbox="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png":::
 
-## Update redundancy type of storage account
+## Update storage account redundancy type
 
 You can ask Copilot in Azure to help you change the redundancy type of your storage account. Based on your prompts, Copilot in Azure analyzes your storage account's configuration, checks for compatibility, and provides step-by-step guidance to help you complete the conversion successfully.
 
