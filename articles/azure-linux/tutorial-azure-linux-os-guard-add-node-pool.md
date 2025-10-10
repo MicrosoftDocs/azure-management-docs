@@ -31,6 +31,8 @@ In later tutorials, you learn how to migrate nodes to Azure Linux with OS Guard 
 - In the previous tutorial, you created and deployed an Azure Linux with OS Guard cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
 - You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
+[!INCLUDE [preview features callout](./includes/preview/preview-callout.md)]
+
 ## Add an Azure Linux with OS Guard node pool
 
 Add an Azure Linux with OS Guard node pool into your existing cluster using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command and specify `--os-sku AzureLinuxOSGuard`. The following example creates a node pool named _osgNodepool_ that runs three nodes in the _testAzureLinuxOSGuardCluster_ cluster in the _testAzureLinuxOSGuardResourceGroup_ resource group. Environment variables are declared and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
