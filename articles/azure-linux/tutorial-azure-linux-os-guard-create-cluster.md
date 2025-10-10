@@ -142,9 +142,9 @@ After a few minutes, the command completes and returns JSON-formatted informatio
 
 ## Connect to the cluster using kubectl
 
-To configure `kubectl` to connect to your Kubernetes cluster, use the `az aks get-credentials` command. The following example gets credentials for the Azure Linux Container Host cluster using the resource group and cluster name created earlier:
+Configure `kubectl` to connect to your Kubernetes cluster using the [`az aks get-credentials`](/cli/azure/aks#az-aks-get-credentials) command. The following example gets credentials for the Azure Linux Container Host cluster using the resource group and cluster name created earlier:
 
-```azurecli
+```azurecli-interactive
 az aks get-credentials --resource-group $RESOURCE_GROUP_NAME --name $CLUSTER_NAME
 ```
 
