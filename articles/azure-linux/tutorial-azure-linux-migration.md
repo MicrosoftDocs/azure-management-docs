@@ -71,6 +71,8 @@ There are several settings that can block the OS SKU migration request. To ensur
 * The OS SKU migration feature isn't available through PowerShell or the Azure portal.
 * The OS SKU migration feature isn't able to rename existing node pools.
 * Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
+* Trusted launch is required by default for Azure Linux with OS Guard, customers need to have trusted launch enabled to be able to migrate to Azure Linux with OS Guard. Since Trusted Launch cannot be enabled on existing node pools, this may require new node pool creation. 
+* Customers using Gen 1 only vm sizes will not be able to migrate to Azure Linux with OS Guard since there is no supported Gen 1 image. They will need to create new node pools with a vm size that supports gen 2.
 * An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
 * An Ubuntu OS SKU with CVM 20.04 enabled can't perform an OS SKU migration.
 * Node pools with Kata enabled can't perform an OS SKU migration.
