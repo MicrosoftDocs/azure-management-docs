@@ -58,28 +58,28 @@ Results:
 
 ## In-place OS SKU migration
 
-You can now migrate your existing Ubuntu or Azure Linux node pools to Azure Linux with OS Guard by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools.
+You can migrate your existing Ubuntu or Azure Linux node pools to Azure Linux with OS Guard by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools.
 
 ### Limitations
 
 There are several settings that can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
 
-* The OS SKU migration feature isn't available through PowerShell or the Azure portal.
-* The OS SKU migration feature isn't able to rename existing node pools.
-* Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
-* An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
-* An Ubuntu OS SKU with CVM 20.04 enabled can't perform an OS SKU migration.
-* Node pools with Kata enabled can't perform an OS SKU migration.
-* Windows OS SKU migration isn't supported.
-* OS SKU migration from Mariner to Azure Linux is supported, but rolling back to Mariner is not supported.
+- The OS SKU migration feature isn't available through PowerShell or the Azure portal.
+- The OS SKU migration feature doesn't support renaming existing node pools.
+- Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
+- An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
+- An Ubuntu OS SKU with CVM 20.04 enabled can't perform an OS SKU migration.
+- Node pools with Kata enabled can't perform an OS SKU migration.
+- Windows OS SKU migration isn't supported.
+- OS SKU migration from Mariner to Azure Linux is supported, but rolling back to Mariner isn't supported.
 
 ### Prerequisites
 
-* An existing AKS cluster with at least one Azure Linux node pool.
-* We recommend that you ensure your workloads configure and run successfully on the Azure Linux with OS Guard container host before attempting to use the OS SKU migration feature by [deploying an Azure Linux with OS Guard cluster](./quickstart-osguard-azure-cli.md) in dev/prod and verifying your service remains healthy.
-* Ensure the migration feature is working for you in test/dev before using the process on a production cluster.
-* Ensure that your pods have enough [Pod Disruption Budget](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
-* You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+- An existing AKS cluster with at least one Azure Linux node pool.
+- We recommend that you ensure your workloads configure and run successfully on the Azure Linux with OS Guard container host before attempting to use the OS SKU migration feature by [deploying an Azure Linux with OS Guard cluster](./quickstart-osguard-azure-cli.md) in dev/prod and verifying your service remains healthy.
+- Ensure the migration feature is working for you in test/dev before using the process on a production cluster.
+- Ensure that your pods have enough [Pod Disruption Budget](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
+- You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
 ### [Azure CLI](#tab/azure-cli)
 
