@@ -137,14 +137,7 @@ Example output:
 
 ## Next steps
 
-In this tutorial, you added an Azure Linux with OS Guard node pool to your existing cluster. You learned how to:
-
-> [!div class="checklist"]
->
-> * Add an Azure Linux with OS Guard node pool.
-> * Check the status of your node pools.
-
-In the next tutorial, you learn how to migrate existing nodes to Azure Linux with OS Guard.
+In this tutorial, you added an Azure Linux with OS Guard node pool to your existing cluster. In the next tutorial, you learn how to migrate existing nodes to Azure Linux with OS Guard.
 
 > [!div class="nextstepaction"]
-> [Migrating to Azure Linux with OS Guard](./tutorial-azure-linux-os-guard-migration.md)
+> [Migrate to Azure Linux with OS Guard](./tutorial-azure-linux-os-guard-migration.md)
