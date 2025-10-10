@@ -33,7 +33,7 @@ If you don't have any existing nodes to migrate, skip to the [next tutorial](./t
 
 ## Add Azure Linux with OS Guard node pools and remove existing node pools
 
-1. Add a new Azure Linux with OS Guard node pool using the `az aks nodepool add` command. This command adds a new node pool to your cluster with the `--mode System` flag, which makes it a system node pool. System node pools are required for Azure Linux with OS Guard clusters.
+Add a new Azure Linux with OS Guard node pool using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command. This command adds a new node pool to your cluster with the `--mode System` flag, which makes it a system node pool. System node pools are required for Azure Linux with OS Guard clusters.
 
 ```azurecli-interactive
 # Declare environment variables with a random suffix for uniqueness
