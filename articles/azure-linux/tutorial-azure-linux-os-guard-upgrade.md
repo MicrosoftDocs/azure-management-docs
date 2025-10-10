@@ -55,6 +55,7 @@ To set the auto-upgrade channel on an existing cluster, update the --auto-upgrad
 az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --auto-upgrade-channel stable
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```json
 {
