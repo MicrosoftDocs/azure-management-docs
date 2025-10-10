@@ -164,17 +164,7 @@ aks-nodepool1-00000000-1       Ready    agent   10m     v1.20.7
 
 ## Next steps
 
-In this tutorial, you created and deployed an Azure Linux with OS Guard cluster. You learned how to: 
-
-> [!div class="checklist"]
-> * Install the Kubernetes CLI, `kubectl`.
-> * Install the aks-preview Azure CLI extension
-> * Register the `AzureLinuxOSGuardPreview` feature flag
-> * Create an Azure resource group.
-> * Create and deploy an Azure Linux Container Host cluster.
-> * Configure `kubectl` to connect to your Azure Linux Container Host cluster.
-
-In the next tutorial, you'll learn how to add an Azure Linux with OS Guard node pool to an existing cluster.
+In this tutorial, you created and deployed an Azure Linux with OS Guard cluster. In the next tutorial, you learn how to add an Azure Linux with OS Guard node pool to an existing cluster.
 
 > [!div class="nextstepaction"]
 > [Add an Azure Linux with OS Guard node pool](./tutorial-azure-linux-os-guard-add-nodepool.md)
