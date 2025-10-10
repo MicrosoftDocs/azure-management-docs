@@ -37,9 +37,9 @@ In this tutorial, part five of five, you learn how to:
 
 ## Manually upgrade your cluster
 
-To manually upgrade the node-image on a cluster, run the following command for your OS Guard node pool:
+Manually upgrade the node image on a cluster using the [`az aks nodepool upgrade`](/cli/azure/aks/nodepool#az-aks-nodepool-upgrade) command.
 
-```azurecli
+```azurecli-interactive
 az aks nodepool upgrade --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --name $NODEPOOL_NAME
 ```
 
