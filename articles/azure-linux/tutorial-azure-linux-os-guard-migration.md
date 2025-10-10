@@ -85,7 +85,7 @@ There are several settings that can block the OS SKU migration request. To ensur
 
 #### Migrate the OS SKU of your Azure Linux Container Host node pool
 
-* Migrate the OS SKU of your node pool to Azure Linux with OS Guard using the `az aks nodepool update` command. This command updates the OS SKU for your node pool from Azure Linux to Azure Linux with OS Guard. The OS SKU change triggers an immediate upgrade operation, which takes several minutes to complete.
+- Migrate the OS SKU of your node pool to Azure Linux with OS Guard using the [`az aks nodepool update`](/cli/azure/aks/nodepool#az-aks-nodepool-update) command. This command updates the OS SKU for your node pool from Azure Linux to Azure Linux with OS Guard. The OS SKU change triggers an immediate upgrade operation, which takes several minutes to complete.
 
 ```azurecli-interactive
 az aks nodepool update --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --os-sku AzureLinuxOSGuard
