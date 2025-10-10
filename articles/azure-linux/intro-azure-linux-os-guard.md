@@ -45,8 +45,10 @@ Azure Linux with OS Guard is built on Azure Linux and benefits from the same sup
 | **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers who are born in the cloud or who are looking to modernize. |
 | **Security controls** | Option to enable AppArmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
 
-## Get started and learn more
+## Next steps
 
-- Get started by [Creating an Azure Linux with OS Guard for AKS cluster using Azure CLI](./quickstart-osguard-azure-cli.md)
-- Follow our tutorial to [Deploy, manage, and update applications](./tutorial-azure-linux-os-guard-create-cluster.md) with OS Guard
+To get started with Azure Linux OS Guard for AKS, see the following resources:
+
+- [Create an Azure Linux with OS Guard for AKS cluster using the Azure CLI](./quickstart-osguard-azure-cli.md)
+- [Deploy, manage, and update applications with Azure Linux with OS Guard](./tutorial-azure-linux-os-guard-create-cluster.md)
 
