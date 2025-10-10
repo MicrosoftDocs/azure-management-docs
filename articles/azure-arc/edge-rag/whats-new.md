@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 07/01/2025
+ms.date: 10/10/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -17,6 +17,12 @@ ms.custom:
 This article lists the various features and improvements that are available in Edge RAG.
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
+
+## October 2025
+
+### New article: Quickstart Install Edge RAG
+
+To try Edge RAG in an evaluation or development environment without the need for local hardware, see [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
 
 ## July 2025
 

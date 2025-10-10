@@ -15,6 +15,8 @@ ms.custom:
 
 After you complete the prerequisites steps, complete the steps in this article to deploy Edge RAG extension.
 
+To try Edge RAG without the need for local hardware, see [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
+
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Prerequisites

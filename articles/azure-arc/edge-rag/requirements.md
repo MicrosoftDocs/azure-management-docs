@@ -104,11 +104,10 @@ Edge RAG supports Network File System (NFS) v3.0  and v4.1 with AUTH_SYS authent
 Edge RAG is supported in the following regions:
 
 - westeurope
-- eastus2euap
+- eastus2
 - eastus
 - westus2
 - australiaeast
-- eastus2
 - japaneast
 - canadacentral
 - uksouth
@@ -117,4 +116,6 @@ Edge RAG is supported in the following regions:
 
 ## Related content
 
-[Complete Edge RAG deployment prerequisites](complete-prerequisites.md)
+- [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md)
+- [Complete Edge RAG deployment prerequisites](complete-prerequisites.md)
+- [Deployment overview for Edge RAG](deploy-overview.md)

@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/09/2025
+ms.date: 10/10/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -27,6 +27,7 @@ Before you begin, make sure you have:
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
+- Application (client) ID and the directory (tenant) ID. To get these values after registering Edge RAG, search for "app registration" in the [Azure portal](https://portal.azure.com/).
 
 ## Open Azure Cloud Shell or Azure CLI
 
@@ -91,6 +92,8 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
    ```
 
+   If you get a warning when setting `$entraAppId` or `$entraTenantId`, set the values by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
+
 1. Connect to Azure and AKS:
 
    ```azurecli
@@ -113,7 +116,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
    helm install --wait --generate-name -n gpu-operator --create-namespace nvidia/gpu-operator --version=v24.9.2 
    ```
 
-1. Register the Microsoft.Kubernetes provider by running the following command:
+1. Register the `Microsoft.Kubernetes` provider by running the following command:
 
    ```azurecli
    az provider register -n Microsoft.Kubernetes
@@ -146,7 +149,7 @@ Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG.
 
 If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
 
-1. Run the following command to create a GPU node pool with 3 nodes:
+1. Run the following command to create a GPU node pool with three nodes:
 
    ```azurecli
    az aks nodepool add ` 
@@ -161,7 +164,7 @@ If you get an error message when you try to create the node pools, you might nee
        --mode User 
    ```
 
-1. Run the following command to create a CPU node pool with 3 nodes:
+1. Run the following command to create a CPU node pool with three nodes:
 
    ```azurecli
    az aks nodepool add ` 
