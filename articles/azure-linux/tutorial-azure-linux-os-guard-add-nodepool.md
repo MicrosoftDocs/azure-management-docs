@@ -51,6 +51,7 @@ az aks nodepool add \
     --enable-vtpm
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```JSON
 {
