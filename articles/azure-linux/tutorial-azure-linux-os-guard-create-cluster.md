@@ -1,6 +1,6 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Create a cluster
-description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to create an AKS cluster with Azure Linux with OS Guard.
+title: Azure Linux with OS Guard for Azure Kubernetes Service (AKS) Tutorial - Create a Cluster
+description: In this tutorial, you learn how to create an AKS cluster with Azure Linux with OS Guard.
 author: florataagen
 ms.author: florataagen
 ms.service: microsoft-linux
