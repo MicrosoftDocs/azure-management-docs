@@ -34,18 +34,16 @@ Use OS Guard when you need elevated assurances about your container host and wor
 -** Open-source transparency**: Many of the underlying technologies (dm-verity, SELinux, IPE) are upstreamed or open source; Microsoft has published tooling and contributions to support these features.
 - **Compliance inheritence**: OS Guard inherits compliance properties from Azure Linux (for example, cryptographic modules and certifications available to Azure Linux), making it easier to adopt in regulated environments.
 
-## Choosing an Azure Linux container host option
+## How to choose an Azure Linux container host option
 
-Azure Linux with OS Guard is built on Azure Linux and therefore benefits from the same supply-chain protections and signed images. Both OS variants can be appropriate depending on your security, compliance, and operational requirements:
+Azure Linux with OS Guard is built on Azure Linux and benefits from the same supply-chain protections and signed images. Both OS variants can be appropriate depending on your security, compliance, and operational requirements:
 
-| Container Host Option | Azure Linux Container Host | Azure Linux with OS Guard |
-|---|---|---|
-| **Security benefits** | Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the additional security benefits mentioned above. |
-| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from AWS Bottlerocket, Google CoS or other container optimized distributions. |
-| **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers. Customers who are born in the cloud or who are looking to modernize. |
-| **Security controls** | Option to enable Apparmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
-
-
+| Container host option | Azure Linux Container Host | Azure Linux with OS Guard |
+|--------------------------|-------------------------------|-------------------------------|
+| **Security benefits** | Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the extra security benefits mentioned above. |
+| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from AWS Bottlerocket, Google CoS, or other container optimized distributions. |
+| **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers who are born in the cloud or who are looking to modernize. |
+| **Security controls** | Option to enable AppArmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
 
 ## Get started and learn more
 
