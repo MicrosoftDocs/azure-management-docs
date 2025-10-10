@@ -152,29 +152,29 @@ You can associate existing Azure Arc resources with an Azure Arc Gateway resourc
 
 On a machine with access to Azure, run the following commands:
 
-     ```azurecli
-    az arcgateway settings update `
-        --resource-group <resource_group> `
-        --subscription <subscription_name> `
-        --base-provider Microsoft.HybridCompute `
-        --base-resource-type machines `
-        --base-resource-name <server_name> `
-        --gateway-resource-id <gateway_resource_id>
-    ```
+   ```azurecli
+  az arcgateway settings update `
+      --resource-group <resource_group> `
+      --subscription <subscription_name> `
+      --base-provider Microsoft.HybridCompute `
+      --base-resource-type machines `
+      --base-resource-name <server_name> `
+      --gateway-resource-id <gateway_resource_id>
+  ```
 
 ### [PowerShell](#tab/powershell)
 
 On a machine with access to Azure, run the following commands:
 
-    ```powershell
-    Update-AzArcSetting `
-        -ResourceGroupName <Resource Group> `
-        -SubscriptionId <Subscription ID> `
-        -BaseProvider Microsoft.HybridCompute `
-        -BaseResourceType machine `
-        -BaseResourceName <Server Name> `
-        -GatewayResourceId <resource ID>
-    ```
+  ```powershell
+  Update-AzArcSetting `
+      -ResourceGroupName <Resource Group> `
+      -SubscriptionId <Subscription ID> `
+      -BaseProvider Microsoft.HybridCompute `
+      -BaseResourceType machine `
+      -BaseResourceName <Server Name> `
+      -GatewayResourceId <resource ID>
+  ```
 
 ---
 
