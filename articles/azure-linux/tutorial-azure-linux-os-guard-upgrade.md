@@ -15,25 +15,23 @@ ms.date: 10/06/2025
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321846)
 
-Azure Linux with OS Guard ships updates through two mechanisms: updated node images and automatic package updates.
-
-As part of the application and cluster lifecycle, we recommend keeping your clusters up to date and secured by enabling upgrades for your cluster. You can enable automatic node-image upgrades to ensure your clusters use the latest Azure Linux with OS Guard image when it scales up. You can also manually upgrade the node-image on a cluster.
+Azure Linux with OS Guard ships updates through updated node images and automatic package updates. As part of the application and cluster lifecycle, we recommend keeping your clusters up to date and secured by enabling upgrades for your cluster. You can enable automatic node image upgrades to ensure your clusters use the latest Azure Linux with OS Guard image when it scales up. You can also manually upgrade the node image on a cluster.
 
 In this tutorial, part five of five, you learn how to:
 
 > [!div class="checklist"]
 >
-> * Manually upgrade the node-image on a cluster.
-> * Automatically upgrade an Azure Linux with OS Guard cluster.
-> * Deploy Kured in an Azure Linux with OS Guard cluster. 
+> - Manually upgrade the node image on a cluster.
+> - Automatically upgrade an Azure Linux with OS Guard cluster.
+> - Deploy Kured in an Azure Linux with OS Guard cluster. 
 
 > [!NOTE]
-> Any upgrade operation, whether performed manually or automatically, upgrades the node image version if not already on the latest. The latest version is contingent on a full AKS release, and can be determined by visiting the [AKS release tracker](/azure/aks/release-tracker).
+> Any upgrade operation, whether performed manually or automatically, upgrades the node image version if it's not already on the latest version. The latest version is contingent on a full AKS release, and you can determine it by visiting the [AKS release tracker](/azure/aks/release-tracker).
 
 ## Prerequisites
 
-* In previous tutorials, you created and deployed an Azure Linux with OS Guard cluster. To complete this tutorial, you need an existing cluster. If you haven't done this step and would like to follow along, start with [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
-* You need the latest version of Azure CLI. Find the version using the `az --version` command. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+- In previous tutorials, you created and deployed an Azure Linux with OS Guard cluster. To complete this tutorial, you need an existing cluster. If you haven't completed this step and want to follow along, see [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
+- You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
 ## Manually upgrade your cluster
 
