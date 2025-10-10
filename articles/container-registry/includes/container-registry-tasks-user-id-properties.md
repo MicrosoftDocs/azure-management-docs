@@ -2,12 +2,12 @@
 title: include file
 description: include file
 services: container-registry
-author: chasedmicrosoft
+author: rayoef
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/12/2019
-ms.author: doveychase
+ms.author: rayoflores
 ms.custom: include file
 # Customer intent: "As a cloud administrator, I want to configure a User Assigned identity in my container registry tasks, so that I can securely manage access and authentication for my applications."
 ---

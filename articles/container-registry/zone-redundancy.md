@@ -2,8 +2,8 @@
 title: Create a zone-redundant registry in Azure Container Registry
 description: Learn how to create a zone-redundant registry in Azure Container Registry
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 07/24/2025
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry

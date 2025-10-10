@@ -1,7 +1,7 @@
 ---
 title: "Troubleshoot Continuous Patching in Azure Container Registry"
 description: "Learn how to troubleshoot continuous patching in Azure Container Registry."
-ms.author: doveychase
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: troubleshooting-general #Don't change.
 ms.date: 03/27/2025

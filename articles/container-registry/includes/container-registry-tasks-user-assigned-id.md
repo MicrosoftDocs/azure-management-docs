@@ -2,12 +2,12 @@
 title: include file
 description: include file
 services: container-registry
-author: chasedmicrosoft
+author: rayoef
 
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 07/12/2019
-ms.author: doveychase
+ms.author: rayoflores
 ms.custom: include file, devx-track-azurecli
 # Customer intent: As a cloud administrator, I want to create a user-assigned identity using CLI commands, so that I can manage access and permissions for my Azure Container Registry effectively.
 ---

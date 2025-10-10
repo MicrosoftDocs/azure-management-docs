@@ -1,7 +1,7 @@
 ---
 title: Connected Registry in Azure Container Registry
 description: Discover the connected registry feature in Azure Container Registry. Learn about its benefits and practical use cases for container management.
-ms.author: doveychase
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: overview
 ms.date: 05/20/2025

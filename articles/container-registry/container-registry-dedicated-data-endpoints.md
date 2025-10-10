@@ -2,8 +2,8 @@
 title: Mitigate Data Exfiltration with Dedicated Data Endpoints
 description: Azure Container Registry is introducing dedicated data endpoints available to mitigate data-exfiltration concerns.
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 # Customer intent: As a security specialist, I want to implement dedicated data endpoints in Azure Container Registry, so that I can minimize data exfiltration risks and ensure secure access to storage resources.
