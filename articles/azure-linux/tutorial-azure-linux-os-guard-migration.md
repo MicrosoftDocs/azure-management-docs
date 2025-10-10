@@ -91,7 +91,7 @@ There are several settings that can block the OS SKU migration request. To ensur
 az aks nodepool update --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --os-sku AzureLinuxOSGuard
 ```
 
-Results:
+Example output:
 
 <!-- expected_similarity=0.3 -->
 
