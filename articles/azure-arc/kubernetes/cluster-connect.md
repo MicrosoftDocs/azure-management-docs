@@ -20,7 +20,7 @@ Before you begin, review the [conceptual overview of the cluster connect feature
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An existing Azure Arc-enabled Kubernetes connected cluster.
   - If you haven't connected a cluster yet, use our [quickstart](quickstart-connect-cluster.md).

@@ -21,7 +21,7 @@ For a conceptual look at connecting clusters to Azure Arc, see [Azure Arc-enable
 
 ### [Azure CLI](#tab/azure-cli)
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A basic understanding of [Kubernetes core concepts](/azure/aks/concepts-clusters-workloads).
 * An [identity (user or service principal)](system-requirements.md#azure-ad-identity-requirements) which can be used to [log in to Azure CLI](/cli/azure/authenticate-azure-cli) and connect your cluster to Azure Arc.
 * The latest version of [Azure CLI](/cli/azure/install-azure-cli).
@@ -44,7 +44,7 @@ For a conceptual look at connecting clusters to Azure Arc, see [Azure Arc-enable
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A basic understanding of [Kubernetes core concepts](/azure/aks/concepts-clusters-workloads).
 * An [identity (user or service principal)](system-requirements.md#azure-ad-identity-requirements) which can be used to [log in to Azure PowerShell](/powershell/azure/authenticate-azureps)  and connect your cluster to Azure Arc.
 * [Azure PowerShell version 6.6.0 or later](/powershell/azure/install-azure-powershell)
