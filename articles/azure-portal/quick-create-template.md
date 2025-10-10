@@ -22,7 +22,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - A virtual machine. The dashboard you create in the next part of this quickstart requires an existing VM called `myVM1` located in a resource group called `SimpleWinVmResourceGroup`. You can create this example VM by following these steps:
 

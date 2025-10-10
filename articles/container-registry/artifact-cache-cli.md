@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to use Azure CLI to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) with or without authentication.
 
-In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 
