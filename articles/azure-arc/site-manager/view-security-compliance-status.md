@@ -21,7 +21,7 @@ This article details how to view the security baseline status for an Azure Arc s
 
 ### Prerequisites 
 
-- An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure portal access
 - Internet connectivity
 - A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](/azure/azure-arc/site-manager/overview).
@@ -77,7 +77,7 @@ If you aren’t familiar with Azure Arc security baselines, learn more about the
 
 ### Prerequisites 
 
-- An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Azure portal access
 - Internet connectivity
 - A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](/azure/azure-arc/site-manager/overview).

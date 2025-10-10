@@ -22,7 +22,7 @@ While you can repeat the steps in this article as needed to onboard additional m
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Administrator permissions to install and configure the Connected Machine agent. 
   * Linux—Use the root account. 
   * Windows—Use an account that's a member of the Local Administrators group.

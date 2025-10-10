@@ -24,7 +24,7 @@ For more information about availability zone support requirements and features, 
 
 ## Prerequisites
 
-- An [Azure subscription](https://azure.microsoft.com/free/).
+- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
 

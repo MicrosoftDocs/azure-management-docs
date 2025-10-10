@@ -21,7 +21,7 @@ The [workload orchestration portal](https://portal.digitaloperations.configmanag
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Each tab provides different functionalities and access levels based on the Role Based Access Control (RBAC) assigned to the user. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
 ## Configure your solutions
