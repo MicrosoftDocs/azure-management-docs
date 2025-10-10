@@ -6,7 +6,7 @@ ms.author: florataagen
 ms.service: microsoft-linux
 ms.custom: linux-related-content
 ms.topic: overview
-ms.date: 08/26/2025
+ms.date: 10/10/2025
 # Customer intent: As a cloud architect, I want to understand the Azure Linux with OS Guard for AKS, so that I can determine its benefits and compatibility for securing my container workloads in the Azure environment.
 ---
 
