@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 # Customer intent: "As a cloud engineer, I want to create an Azure Kubernetes Service (AKS) cluster with Azure Linux with OS Guard, so that I can deploy and manage containerized applications effectively in a production-ready environment."
 ---
 
-# Tutorial: Create a cluster with the Azure Linux with OS Guard for AKS
+# Tutorial: Create a cluster with the Azure Linux with OS Guard for Azure Kubernetes Service (AKS)
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321737)
