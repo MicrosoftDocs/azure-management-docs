@@ -207,25 +207,25 @@ Example output:
 
 #### Deploy a test cluster
 
-1. Create a resource group for the test cluster using the `az group create` command.
+1. Create a resource group for the test cluster using the [`az group create`](/cli/azure/group#az-group-create) command.
 
     ```azurecli-interactive
     az group create --name testRG --location eastus
     ```
 
-2. Deploy a baseline Azure Linux OS SKU cluster with three nodes using the `az deployment group create` command and the [0base.json example ARM template](#0basejson).
+1. Deploy a baseline Azure Linux OS SKU cluster with three nodes using the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command and the [0base.json example ARM template](#0basejson).
 
     ```azurecli-interactive
     az deployment group create --resource-group testRG --template-file 0base.json
     ```
 
-3. Migrate the OS SKU of your system node pool to Azure Linux with OS Guard using the `az deployment group create` command.
+1. Migrate the OS SKU of your system node pool to Azure Linux with OS Guard using the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
 
     ```azurecli-interactive
     az deployment group create --resource-group testRG --template-file 1mcupdate.json
     ```
 
-4. Migrate the OS SKU of your system node pool back to Azure Linux using the `az deployment group create` command.
+1. Migrate the OS SKU of your system node pool back to Azure Linux using the [`az deployment group create`](/cli/azure/deployment/group#az-deployment-group-create) command.
 
     ```azurecli-interactive
     az deployment group create --resource-group testRG --template-file 2apupdate.json
