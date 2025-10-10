@@ -151,9 +151,9 @@ If your desired conversion path is unsupported (for example, ZRS to GRS), Copilo
 
 If no blockers are found, Copilot in Azure confirms that your account is ready for conversion and offers instructions for completing the change using the Azure portal.
 
-:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming the target replication for a storage account.":::
+:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming the target replication for a storage account." lightbox="media/improve-storage-accounts/storage-account-redundancy-type.png":::
 
-:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-steps.png" alt-text="Screenshot of Microsoft Copilot in Azure providing conversion steps for a storage account.":::
+:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-steps.png" lightbox="media/improve-storage-accounts/storage-account-redundancy-steps.png" alt-text="Screenshot of Microsoft Copilot in Azure providing conversion steps for a storage account.":::
 
 ## Next steps
 
