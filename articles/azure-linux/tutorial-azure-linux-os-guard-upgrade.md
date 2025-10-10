@@ -45,13 +45,13 @@ az aks nodepool upgrade --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER
 
 ## Automatically upgrade your cluster
 
-Auto-upgrade provides a set once and forget mechanism that yields tangible time and operational cost benefits. By enabling auto-upgrade, you can ensure your clusters are up to date and don't miss the latest Azure Linux with OS Guard features or patches from AKS and upstream Kubernetes.
+Auto-upgrades provides a "set once and forget" that yields time and operational cost benefits, ensuring your clusters are up to date and don't miss the latest Azure Linux with OS Guard features or patches from AKS and upstream Kubernetes.
 
-Automatically completed upgrades are functionally the same as manual upgrades. The selected channel determines the timing of upgrades. When making changes to auto-upgrade, allow 24 hours for the changes to take effect.
+Automatic upgrades are functionally the same as manual upgrades. The selected channel determines the timing of upgrades. When making changes to auto-upgrade, allow 24 hours for the changes to take effect.
 
-To set the auto-upgrade channel on an existing cluster, update the --auto-upgrade-channel parameter:
+Set the auto-upgrade channel on an existing cluster using the [`az aks update`](/cli/azure/aks#az-aks-update) command with the `--auto-upgrade-channel` parameter.
 
-```bash
+```azurecli-interactive
 az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --auto-upgrade-channel stable
 ```
 
