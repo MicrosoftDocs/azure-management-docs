@@ -154,6 +154,7 @@ Verify the connection to your cluster using the [`kubectl get nodes`](https://ku
 kubectl get nodes
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```text
 NAME                           STATUS   ROLES   AGE     VERSION
