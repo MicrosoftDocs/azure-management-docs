@@ -1,5 +1,5 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Migrating to Azure Linux with OS Guard
+title: Azure Linux with OS Guard for Azure Kubernetes Service (AKS) Tutorial - Migrate to Azure Linux with OS Guard
 description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to migrate your nodes to Azure Linux with OS Guard nodes.
 author: florataagen
 ms.author: florataagen
