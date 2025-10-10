@@ -24,12 +24,12 @@ If you don't have any existing nodes to migrate, skip to the [next tutorial](./t
 
 ## Prerequisites
 
-* In previous tutorials, you created and deployed an Azure Linux with OS Guard for AKS cluster. To complete this tutorial, you need to add an Azure Linux with OS Guard node pool to your existing cluster. If you haven't done this step and would like to follow along, start with [Tutorial 2: Add an Azure Linux with OS Guard node pool to your existing AKS cluster](./tutorial-azure-linux-os-guard-add-nodepool.md).
+- In previous tutorials, you created and deployed an Azure Linux with OS Guard for AKS cluster. To complete this tutorial, you need an AKS cluster with an Azure Linux with OS Guard node pool. If you haven't completed this step and want to follow along, see [Tutorial 2: Add an Azure Linux with OS Guard node pool to your existing AKS cluster](./tutorial-azure-linux-os-guard-add-nodepool.md).
 
     > [!NOTE]
     > When adding a new Azure Linux with OS Guard node pool, you need to add at least one as `--mode System`. Otherwise, AKS won't allow you to delete your existing node pool.
 
-* You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+- You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
 ## Add Azure Linux with OS Guard node pools and remove existing node pools
 
