@@ -31,7 +31,7 @@ Before you begin, make sure you have:
 
 ## Open Azure Cloud Shell or Azure CLI
 
-Open Azure Cloud Shell or your local Azure CLI to run the commands in this article.
+Open Azure Cloud Shell or your local Azure CLI to run the commands in this article. In Azure Cloud Shell, you might need to select **Switch to PowerShell**.
 
 1. Sign in to Azure to get started:
 
@@ -39,7 +39,13 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
    az login
    ```
 
-1. If you have multiple subscriptions, replace the placeholder "subscription name" with your subscription and run the following command:
+1. If you have multiple subscriptions, run the following command to get a list of your subscriptions and then set the context of your session to the appropriate subscription name:
+
+   ```azurecli
+   az account list --output table
+   ```
+
+   Replace the placeholder "subscription name" with your subscription and run the following command:
 
    ```azurecli
    $sub = <subscription name> 
