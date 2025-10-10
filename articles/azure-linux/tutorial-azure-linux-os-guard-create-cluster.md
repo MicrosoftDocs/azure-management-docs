@@ -48,40 +48,43 @@ Before you begin, review the following considerations and limitations for Azure 
 - [Install the `aks-preview` Azure CLI extension](#install-the-aks-preview-azure-cli-extension).
 - [Register the `AzureLinuxOSGuardPreview` feature flag](#register-the-azure-linux-os-guard-preview-feature-flag).
 
-## Install the aks-preview Azure CLI extension
-
+### Install the aks-preview Azure CLI extension
+	
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
-To install the aks-preview extension, run the following command:
+- Install the `aks-preview` extension using the [`az extension add`](/cli/azure/extension#az-extension-add) command.
 
-```azurecli-interactive
-az extension add --name aks-preview
-```
-
-Run the following command to update to the latest version of the extension released:
-
-```azurecli-interactive
-az extension update --name aks-preview
-```
-## Register the AzureLinuxOSGuardPreview feature flag
-
-Register the `AzureLinuxOSGuardPreview` feature flag by using the [az feature register][az-feature-register] command, as shown in the following example:
-
-```azurecli-interactive
-az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
-```
-
-It takes a few minutes for the status to show *Registered*. Verify the registration status by using the [az feature show][az-feature-show] command:
-
-```azurecli-interactive
-az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
-```
-
-When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register][az-provider-register] command:
-
-```azurecli-interactive
-az provider register --namespace "Microsoft.ContainerService"
-```
+    ```azurecli-interactive
+    az extension add --name aks-preview
+    ```
+	
+- Update to the latest version of the extension using the [`az extension update`](/cli/azure/extension#az-extension-update) command.
+	
+    ```azurecli-interactive
+    az extension update --name aks-preview
+    ```
+	
+### Register the Azure Linux OS Guard Preview feature flag
+	
+1. Register the `AzureLinuxOSGuardPreview` feature flag using the [`az feature register`](/cli/azure/feature#az-feature-register) command.
+	
+    ```azurecli-interactive
+    az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
+	
+    It takes a few minutes for the status to show _Registered_.
+	
+1. Verify the registration status using the [`az feature show`](/cli/azure/feature#az-feature-show) command.
+	
+    ```azurecli-interactive
+    az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
+	
+1. When the status reflects _Registered_, refresh the registration of the `Microsoft.ContainerService` resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
+	
+    ```azurecli-interactive
+    az provider register --namespace "Microsoft.ContainerService"
+    ```
 
 ## Create a resource group
 
