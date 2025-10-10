@@ -28,8 +28,8 @@ In later tutorials, you learn how to migrate nodes to Azure Linux with OS Guard 
 
 ## Prerequisites
 
-* In the previous tutorial, you created and deployed an Azure Linux with OS Guard cluster. If you haven't done these steps and would like to follow along, start with [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
-* You need the latest version of Azure CLI. Run `az --version` to find the version. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli).
+- In the previous tutorial, you created and deployed an Azure Linux with OS Guard cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
+- You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
 ## Add an Azure Linux with OS Guard node pool
 
