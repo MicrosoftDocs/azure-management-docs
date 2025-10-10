@@ -1,7 +1,7 @@
 ---
 title: Manage and troubleshoot storage accounts using Microsoft Copilot in Azure
 description: Learn how Microsoft Copilot in Azure can improve the security posture and data resiliency of storage accounts.
-ms.date: 04/21/2025
+ms.date: 10/10/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -127,6 +127,33 @@ Finally, Copilot in Azure asks you whether you want the rule to run on the entir
 Now that Copilot in Azure has all of the necessary information, it creates the lifecycle management rule. You can copy and paste the rule yourself, or have Copilot in Azure create and apply the rule for you.
 
 :::image type="content" source="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png" alt-text="Screenshot of Microsoft Copilot in Azure providing a customized lifecycle management rule for a storage account." lightbox="media/improve-storage-accounts/storage-costs-lifecycle-management-rule.png":::
+
+## Update redundancy type of storage account
+
+You can ask Copilot in Azure to help you change the redundancy type of your storage account. Based on your prompts, Copilot in Azure analyzes your storage account's configuration, checks for compatibility, and provides step-by-step guidance to help you complete the conversion successfully.
+
+### Redundancy configuration sample prompts
+
+Here are a few examples of the kinds of prompts you can use to manage redundancy changes. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific configurations.
+
+- "Help me convert my storage account from LRS to ZRS."
+- "Why can’t I migrate my storage account from ZRS to GRS?"
+- "Upgrade the replication setting of my storage account to RA-GZRS."
+- "Check what factors are preventing my storage account from converting to RA-GRS."
+
+### Redundancy configuration example
+
+You can ask, “**Help me convert my storage account from LRS to ZRS.**” If you're already working with a storage account, Copilot will use that context to run compatibility checks. If the account isn’t specified, you’ll be prompted to select one and define the target redundancy type.
+
+Copilot in Azure analyzes your account's configuration. It checks for any blockers, such as enabled features like point-in-time restore, archive data, or boot diagnostics, that may prevent the conversion. If blockers are found, you receive a detailed list along with resolution steps, such as disabling specific features or performing a manual migration.
+
+If your desired conversion path is unsupported (for example, ZRS to GRS), Copilot in Azure guides you through the required two-step process (such as ZRS → LRS → GRS or ZRS → GZRS → GRS), including all necessary checks and resolution steps if applicable.
+
+If no blockers are found, Copilot in Azure confirms that your account is ready for conversion and offers instructions for completing the change using the Azure portal.
+
+:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming the target replication for a storage account.":::
+
+:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-steps.png" alt-text="Screenshot of Microsoft Copilot in Azure providing conversion steps for a storage account.":::
 
 ## Next steps
 
