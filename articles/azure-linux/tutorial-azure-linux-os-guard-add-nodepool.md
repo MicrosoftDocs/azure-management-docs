@@ -76,6 +76,7 @@ Check the status of your node pools using the [`az aks nodepool list`](/cli/azur
 az aks nodepool list --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME
 ```
 
+Example output:
 <!-- expected_similarity=0.3 -->
 ```output
 [
