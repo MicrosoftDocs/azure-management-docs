@@ -15,7 +15,7 @@ First, you set up a remote share that hosts the Connected Machine agent, and the
 
 Before you get started, ensure your environment meets the [Connected Machine Agent prerequisites](prerequisites.md) and the [networking requirements for deploying Azure Arc-enabled servers](network-requirements.md). For information about supported regions and other related considerations, see [supported Azure regions](overview.md#supported-regions). To understand more about design and deployment criteria, review our [at-scale planning guide](plan-at-scale-deployment.md).
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 [!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
 

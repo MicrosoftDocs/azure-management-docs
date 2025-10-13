@@ -2,8 +2,8 @@
 title: Quickstart - Create Geo-Replicated Registry - ARM Template
 description: Learn how to create a geo-replicated Azure container registry by using an Azure Resource Manager template.
 services: azure-resource-manager
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.topic: quickstart
 ms.service: azure-container-registry
@@ -26,7 +26,7 @@ If your environment meets the prerequisites and you're familiar with using ARM t
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/) account before you begin.
+If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) account before you begin.
 
 ## Review the template
 

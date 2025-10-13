@@ -5,8 +5,8 @@ ms.topic: quickstart
 ms.date: 11/19/2024
 ms.custom: devx-track-terraform
 ms.service: azure-container-registry
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 content_well_notification: 
   - AI-contribution
 # Customer intent: As a Terraform user, I want to create an Azure container registry and resource group, so that I can manage and deploy private Docker container images in my Azure environment.
@@ -32,7 +32,7 @@ In this quickstart, you create an Azure container registry and a resource group 
 
 ## Prerequisites
 
-- Create an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- Create an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 

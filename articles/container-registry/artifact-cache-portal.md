@@ -1,8 +1,8 @@
 ---
 title: "Enable artifact cache in your Azure Container Registry with Azure portal"
 description: "Learn how to use the Azure portal to cache container images in Azure Container Registry, improving performance and efficiency."
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.date: 04/29/2025
@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to use the Azure portal to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR).
 
-In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 

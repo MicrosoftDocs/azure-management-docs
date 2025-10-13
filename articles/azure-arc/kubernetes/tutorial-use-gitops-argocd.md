@@ -1,7 +1,7 @@
 ---
 title: "Tutorial: Deploy applications using GitOps"
 description: "This tutorial shows how to use GitOps with ArgoCD in Azure Arc and AKS clusters."
-ms.date: 04/06/2025
+ms.date: 10/06/2025
 ms.topic: tutorial
 ms.custom:
   - template-tutorial
@@ -141,9 +141,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --cluster-type managedClusters \
 --name argocd \
 --extension-type Microsoft.ArgoCD \
---auto-upgrade false \
 --release-train preview \
---version 0.0.7-preview \
 --config deployWithHightAvailability=false \
 --config namespaceInstall=false \
 --config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
@@ -202,9 +200,7 @@ resource extension 'Microsoft.KubernetesConfiguration/extensions@2023-05-01' = {
   scope: cluster
   properties: {
     extensionType: 'Microsoft.ArgoCD'
-    autoUpgradeMinorVersion: false
     releaseTrain: 'preview'
-    version: '0.0.7-preview'
     configurationSettings: {
       'workloadIdentity.enable': 'true'
       'workloadIdentity.clientId': workloadIdentityClientId

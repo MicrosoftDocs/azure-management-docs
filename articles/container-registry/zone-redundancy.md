@@ -2,8 +2,8 @@
 title: Create a zone-redundant registry in Azure Container Registry
 description: Learn how to create a zone-redundant registry in Azure Container Registry
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 07/24/2025
 ms.custom: references_regions, devx-track-azurecli
 ms.service: azure-container-registry
@@ -24,7 +24,7 @@ For more information about availability zone support requirements and features, 
 
 ## Prerequisites
 
-- An [Azure subscription](https://azure.microsoft.com/free/).
+- An [Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - Select a region that [supports availability zones](/azure/reliability/regions-list), such as *eastus*.
 

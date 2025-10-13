@@ -3,8 +3,8 @@ title: Transition from Docker Content Trust to Notary Project
 description: Learn how to transition from Docker Content Trust to Notary Project to sign and verify container images.
 ms.topic: how-to 
 ms.date: 02/07/2024 
-ms.author: doveychase
-author: chasedmicrosoft
+ms.author: rayoflores
+author: rayoef
 ms.service: azure-container-registry
 # Customer intent: As a container image publisher, I want to transition from Docker Content Trust to Notary Project so that I can ensure the integrity and authenticity of my container images in a secure and standardized manner.
 --- 

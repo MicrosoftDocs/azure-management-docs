@@ -2,8 +2,8 @@
 title: Quickstart - Create Registry - Bicep
 description: Learn how to create an Azure container registry by using a Bicep file.
 services: azure-resource-manager
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.topic: quickstart
 ms.service: azure-container-registry
@@ -20,7 +20,7 @@ This quickstart shows how to create an Azure Container Registry instance by usin
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/free/) account before you begin.
+If you don't have an Azure subscription, create a [free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) account before you begin.
 
 ## Review the Bicep file
 

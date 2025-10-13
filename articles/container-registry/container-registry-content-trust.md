@@ -2,8 +2,8 @@
 title: Manage Signed Images with Docker Content Trust in Azure Container Registry
 description: Learn how to enable Docker Content Trust for your Azure container registry, and how to push and pull signed images.
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: subject-rbac-steps, devx-track-azurecli 

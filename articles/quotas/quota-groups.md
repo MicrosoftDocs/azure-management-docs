@@ -4,7 +4,7 @@ description: Learn how to share quota across Azure subscriptions with Azure Quot
 author: yaya-5
 ms.author: yaalanis
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 10/07/2025
 ---
 
 # Azure Quota Groups
@@ -77,7 +77,7 @@ Certain permissions are required to create Quota Groups and to add subscriptions
  
 ## Quota Group APIs
 
-Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/quota/resource-manager/Microsoft.Quota/stable/2025-03-01/groupquota.json) to do the following supported Quota Group operations:  
+Use [Quota Group APIs](https://github.com/Azure/azure-rest-api-specs/tree/main/specification/quota/resource-manager/Microsoft.Quota/Quota/stable) to do the following supported Quota Group operations:  
 - Create or delete a Quota Group.
 - Add or remove subscriptions from a Quota Group.
 - Transfer or deallocate unused quota from subscriptions to a Quota Group. 

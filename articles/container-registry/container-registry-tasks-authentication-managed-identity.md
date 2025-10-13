@@ -5,8 +5,8 @@ services: container-registry
 ms.service: azure-container-registry
 ms.custom: devx-track-azurecli
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 # Customer intent: As a cloud developer, I want to configure managed identities in Azure Container Registry tasks, so that I can securely access other Azure resources without managing credentials.
 ---

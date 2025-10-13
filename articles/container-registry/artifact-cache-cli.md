@@ -1,8 +1,8 @@
 ---
 title: "Enable artifact cache in your Azure Container Registry with Azure CLI"
 description: "Learn how to use Azure CLI to cache container images in Azure Container Registry, improving performance and efficiency."
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: how-to
 ms.custom: devx-track-azurecli
@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 In this article, you learn how to use Azure CLI to enable the [artifact cache feature](artifact-cache-overview.md) in your Azure Container Registry (ACR) with or without authentication.
 
-In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+In addition to the prerequisites listed here, you need an Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Prerequisites
 

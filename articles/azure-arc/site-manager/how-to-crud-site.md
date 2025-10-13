@@ -20,7 +20,7 @@ This article guides you through how to create, modify, and delete a site using A
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Azure portal access
 * Internet connectivity
 * A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
