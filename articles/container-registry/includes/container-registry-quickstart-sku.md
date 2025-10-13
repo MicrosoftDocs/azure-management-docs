@@ -1,9 +1,9 @@
 ---
-author: chasedmicrosoft
+author: rayoef
 ms.service: azure-container-registry
 ms.topic: include
 ms.date: 06/23/2021
-ms.author: doveychase
+ms.author: rayoflores
 # Customer intent: "As a cloud architect, I want to choose the appropriate service tier for my container registry, so that I can optimize storage, image throughput, and access capabilities based on my project's requirements."
 ---
 > [!TIP]

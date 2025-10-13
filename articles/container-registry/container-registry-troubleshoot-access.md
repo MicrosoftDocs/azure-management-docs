@@ -2,8 +2,8 @@
 title: Troubleshooting Network Issues with ACR
 description: Identify and resolve common network issues when accessing Azure Container Registry in a virtual network or behind a firewall. 
 ms.topic: troubleshooting
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 # Customer intent: As a cloud administrator, I want to troubleshoot network issues with Azure Container Registry, so that I can ensure seamless access and operations for pushing and pulling images in a secure environment.

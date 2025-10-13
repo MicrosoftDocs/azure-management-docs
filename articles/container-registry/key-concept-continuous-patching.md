@@ -1,7 +1,7 @@
 ---
 title: "Continuous Patching in Azure Container Registry Key Concepts"
 description: "Learn about Key Concepts for continuous patching in Azure Container Registry."
-ms.author: doveychase
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.topic: concept-article
 ms.date: 03/27/2025

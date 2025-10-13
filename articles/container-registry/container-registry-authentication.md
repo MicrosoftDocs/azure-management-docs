@@ -2,8 +2,8 @@
 title: Azure Container Registry Authentication Options Explained
 description: Authentication options for a private Azure container registry, including signing in with a Microsoft Entra identity, using service principals, and using optional admin credentials.
 ms.topic: concept-article
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 # Customer intent: As a cloud engineer, I want to understand the different authentication methods for Azure container registries, so that I can choose the most suitable option for my application's deployment and integration requirements.

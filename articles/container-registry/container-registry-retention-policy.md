@@ -3,8 +3,8 @@ title: Policy to Retain Untagged Manifests
 description: Learn how to enable a retention policy in your Premium Azure container registry, for automatic deletion of untagged manifests after a defined period.
 ms.topic: concept-article
 ms.custom: devx-track-azurecli
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 # Customer intent: As a DevOps engineer, I want to set retention policies for untagged image manifests in a container registry, so that I can manage storage efficiently and avoid unnecessary costs.

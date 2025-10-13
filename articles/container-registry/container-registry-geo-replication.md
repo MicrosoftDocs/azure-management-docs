@@ -1,9 +1,9 @@
 ---
 title: Geo-replicate Azure Container Registry to Multiple Regions
 description: Learn how to create and manage a geo-replicated Azure container registry to serve multiple regions efficiently with the Premium service tier.
-author: chasedmicrosoft
+author: rayoef
 ms.topic: how-to
-ms.author: doveychase
+ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 10/31/2023
 # Customer intent: "As a DevOps engineer, I want to configure geo-replication for my container registry, so that I can efficiently serve multiple Azure regions with reduced latency and improved performance while managing a single registry across all regions."

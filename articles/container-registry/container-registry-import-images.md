@@ -2,8 +2,8 @@
 title: Import Container Images to ACR using Azure APIs
 description: Import container images to an Azure container registry by using Azure APIs, without needing to run Docker commands.
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 ms.custom: devx-track-azurepowershell, devx-track-azurecli

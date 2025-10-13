@@ -2,8 +2,8 @@
 title: Multi-Step Task to Build, Test & Patch Image
 description: Introduction to multi-step tasks in ACR Tasks, providing workflows for building, testing, and patching container images in the cloud.
 ms.topic: how-to
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 # Customer intent: As a cloud developer, I want to automate the building, testing, and patching of container images using multi-step tasks, so that I can streamline my development workflow and efficiently manage resources in the cloud.

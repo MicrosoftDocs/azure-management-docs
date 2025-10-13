@@ -2,8 +2,8 @@
 title: Azure Container Registry Entra permissions and role assignments overview
 description: Use Microsoft Entra role-based access control to manage permissions for an Azure Container Registry.
 ms.topic: concept-article
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 04/24/2025
 ms.service: azure-container-registry
 # Customer intent: "As an IT administrator, I want to manage role assignments and permissions for an Azure Container Registry, so that I can ensure appropriate access control and security for containers and related resources."

@@ -2,8 +2,8 @@
 title: Troubleshooting Azure Container Registry Performance Issues
 description: Identify and resolve common performance issues with Azure Container Registry. Learn about symptoms, causes, and solutions to enhance performance.
 ms.topic: troubleshooting
-author: chasedmicrosoft
-ms.author: doveychase
+author: rayoef
+ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
 # Customer intent: "As a cloud engineer, I want to troubleshoot Azure Container Registry performance issues, so that I can ensure efficient image pulling and pushing operations for my containerized applications."
