@@ -1,5 +1,5 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Add an Azure Linux with OS Guard (preview) node pool to an existing Azure Kubernetes Service (AKS) cluster
+title: Azure Linux with OS Guard (preview) for AKS tutorial - Add an Azure Linux with OS Guard (preview) node pool to an existing Azure Kubernetes Service (AKS) cluster
 description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to add an Azure Linux with OS Guard node pool to your existing AKS cluster.
 author: florataagen
 ms.author: florataagen
@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 # Customer intent: As a DevOps engineer, I want to add an Azure Linux with OS Guard node pool to my existing AKS cluster, so that I can accommodate varying compute and security needs for my applications.
 ---
 
-# Tutorial: Add an Azure Linux with OS Guard node pool to an existing Azure Kubernetes Service (AKS) cluster
+# Tutorial: Add an Azure Linux with OS Guard (preview) node pool to an existing Azure Kubernetes Service (AKS) cluster
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321935)
@@ -26,10 +26,62 @@ In this tutorial, part two of five, you learn how to:
 
 In later tutorials, you learn how to migrate nodes to Azure Linux with OS Guard and enable telemetry to monitor your clusters.
 
+## Considerations and limitations
+	
+Before you begin, review the following considerations and limitations for Azure Linux with OS Guard (preview):
+	
+- Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
+- All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
+- Azure CLI and ARM templates are the only supported deployment methods for Azure Linux with OS Guard on AKS in preview. PowerShell and Terraform aren't supported.
+- [Arm64](/azure/aks/use-arm64-vms) images aren't supported with Azure Linux with OS Guard on AKS in preview.
+- `NodeImage` and `None` are the only supported [OS Upgrade channels](/azure/aks/auto-upgrade-node-os-image) for Azure Linux with OS Guard on AKS. `Unmanaged` and `SecurityPatch` are incompatible with Azure Linux with OS Guard due to the immutable /usr directory.
+- [Artifact Streaming](/azure/aks/artifact-streaming) isn't supported.
+- [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
+- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
+- [Gen 1 virtual machines (VMs)](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
+
 ## Prerequisites
 
 - In the previous tutorial, you created and deployed an Azure Linux with OS Guard cluster. If you haven't completed these steps and want to follow along, see [Tutorial 1: Create a cluster with Azure Linux with OS Guard for AKS](./tutorial-azure-linux-os-guard-create-cluster.md).
 - You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
+
+### Install the aks-preview Azure CLI extension
+	
+[!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
+
+- Install the `aks-preview` extension using the [`az extension add`](/cli/azure/extension#az-extension-add) command.
+
+    ```azurecli-interactive
+    az extension add --name aks-preview
+    ```
+	
+- Update to the latest version of the extension using the [`az extension update`](/cli/azure/extension#az-extension-update) command.
+	
+    ```azurecli-interactive
+    az extension update --name aks-preview
+    ```
+
+### Register the Azure Linux OS Guard Preview feature flag
+	
+1. Register the `AzureLinuxOSGuardPreview` feature flag using the [`az feature register`](/cli/azure/feature#az-feature-register) command.
+	
+    ```azurecli-interactive
+    az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
+	
+    It takes a few minutes for the status to show _Registered_.
+	
+1. Verify the registration status using the [`az feature show`](/cli/azure/feature#az-feature-show) command.
+	
+    ```azurecli-interactive
+    az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
+    ```
+	
+1. When the status reflects _Registered_, refresh the registration of the `Microsoft.ContainerService` resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
+	
+    ```azurecli-interactive
+    az provider register --namespace "Microsoft.ContainerService"
+    ```
 
 ## Add an Azure Linux with OS Guard node pool
 

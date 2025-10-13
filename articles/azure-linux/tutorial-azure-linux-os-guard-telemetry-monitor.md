@@ -1,5 +1,5 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Enable telemetry and monitoring for Azure Linux with OS Guard
+title: Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS) tutorial - Enable telemetry and monitoring for Azure Linux with OS Guard (preview)
 description: In this Azure Linux with OS Guard for AKS tutorial, you'll learn how to enable telemetry and monitoring for Azure Linux with OS Guard.
 author: florataagen
 ms.author: florataagen
@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 # Customer intent: "As a cloud administrator, I want to enable telemetry and monitoring for my Azure Linux with OS Guard cluster, so that I can ensure optimal performance and gain insights into the cluster's health."
 ---
 
-# Tutorial: Enable telemetry and monitoring for your Azure Linux with OS Guard cluster
+# Tutorial: Enable telemetry and monitoring for your Azure Linux with OS Guard (preview)cluster
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321847)

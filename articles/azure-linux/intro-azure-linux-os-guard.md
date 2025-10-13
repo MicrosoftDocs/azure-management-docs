@@ -40,6 +40,20 @@ The following table outlines key advantages of using Azure Linux with OS Guard:
 | **Open-source transparency** | Many of the underlying technologies (dm-verity, SELinux, IPE) are upstream or open source, and Microsoft has tooling and contributions to support these features. |
 | **Compliance inheritance** | OS Guard inherits compliance properties from Azure Linux (for example, cryptographic modules and certifications available to Azure Linux), making it easier to adopt in regulated environments. |
 
+## Considerations and limitations
+	
+It's imporant to be aware of the following considerations and limitations for Azure Linux with OS Guard:
+	
+- Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
+- All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
+- Azure CLI and ARM templates are the only supported deployment methods for Azure Linux with OS Guard on AKS in preview. PowerShell and Terraform aren't supported.
+- [Arm64](/azure/aks/use-arm64-vms) images aren't supported with Azure Linux with OS Guard on AKS in preview.
+- `NodeImage` and `None` are the only supported [OS Upgrade channels](/azure/aks/auto-upgrade-node-os-image) for Azure Linux with OS Guard on AKS. `Unmanaged` and `SecurityPatch` are incompatible with Azure Linux with OS Guard due to the immutable /usr directory.
+- [Artifact Streaming](/azure/aks/artifact-streaming) isn't supported.
+- [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
+- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
+- [Gen 1 virtual machines (VMs)](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
+
 ## How to choose an Azure Linux container host option
 
 Azure Linux with OS Guard is built on Azure Linux and benefits from the same supply-chain protections and signed images. Both OS variants can be appropriate depending on your security, compliance, and operational requirements:

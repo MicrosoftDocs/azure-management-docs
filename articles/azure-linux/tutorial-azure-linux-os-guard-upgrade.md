@@ -1,5 +1,5 @@
 ---
-title: Azure Linux with OS Guard for AKS tutorial - Upgrade Azure Linux with OS Guard nodes
+title: Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS) tutorial - Upgrade Azure Linux with OS Guard (preview) nodes
 description: In this Azure Linux with OS Guard for AKS tutorial, you learn how to upgrade Azure Linux with OS Guard nodes.
 author: florataagen
 ms.author: florataagen
@@ -10,7 +10,7 @@ ms.date: 10/06/2025
 # Customer intent: "As a cloud administrator, I want to upgrade the Azure Linux with OS Guard nodes in my AKS cluster, so that I can ensure the environment is secure and up-to-date with the latest features and security patches."
 ---
 
-# Tutorial: Upgrade Azure Linux with OS Guard nodes
+# Tutorial: Upgrade Azure Linux with OS Guard (preview) nodes
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321846)
@@ -50,7 +50,7 @@ Automatic upgrades are functionally the same as manual upgrades. The selected ch
 Set the auto-upgrade channel on an existing cluster using the [`az aks update`](/cli/azure/aks#az-aks-update) command with the `--auto-upgrade-channel` parameter.
 
 ```azurecli-interactive
-az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --auto-upgrade-channel stable
+az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --auto-upgrade-channel stable
 ```
 
 Example output:
@@ -76,7 +76,7 @@ You can also configure automatic upgrades for package upgrades by enabling the n
 Set the node OS upgrade channel on an existing cluster using the [`az aks update`](/cli/azure/aks#az-aks-update) command with the `--node-os-upgrade-channel` parameter.
 
 ```azurecli-interactive
-az aks update --resource-group $AZ_LINUX_RG --name $AZ_LINUX_CLUSTER --node-os-upgrade-channel Unmanaged
+az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-os-upgrade-channel Unmanaged
 ```
 
 Example output:
@@ -93,13 +93,13 @@ Example output:
 }
 ```
 
-## Enable an automatic reboot daemon
-
-To protect your clusters, security updates are automatically applied to Azure Linux nodes. These updates include OS security fixes, kernel updates, and package upgrades. Some of these updates require a node reboot to complete the process. AKS doesn't automatically reboot these nodes to complete the update process.
-
 ## Clean up resources
 
 As this tutorial is the last part of the series, you may want to delete your Azure Linux Container Host cluster. The Kubernetes nodes run on Azure virtual machines and continue incurring charges even if you don't use the cluster. 
+
+```azurecli-interactive
+az aks delete --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
+```
 
 ## Next steps
 
