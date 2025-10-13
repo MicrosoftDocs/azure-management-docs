@@ -14,9 +14,9 @@ The Azure Connected Machine agent for Linux and Windows communicates outbound se
 To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc private link scope](../private-link-security.md).
 
 > [!NOTE]
-> Azure Arc-enabled servers don't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateways.
+> Azure Arc-enabled servers doesn't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateways.
 
-If your firewall or proxy server restrict outbound connectivity, make sure that the URLs and service tags listed here aren't blocked.
+If your firewall or proxy server restricts outbound connectivity, make sure that the URLs and service tags listed here aren't blocked.
 
 ### Service tags
 
@@ -27,16 +27,16 @@ Be sure to allow access to the following service tags:
 * `AzureResourceManager`
 * `AzureArcInfrastructure`
 * `Storage`
-* `WindowsAdminCenter` (if [you use the Windows Admin Center to manage Azure Arc-enabled servers](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines))
+* `WindowsAdminCenter` (if [you use Windows Admin Center to manage Azure Arc-enabled servers](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines))
 
-For a list of IP addresses for each service tag/region, see the JSON file [Azure IP ranges and service tags: Public cloud](https://www.microsoft.com/download/details.aspx?id=56519). Microsoft publishes weekly updates that contain each Azure service and the IP ranges it uses. The information in the JSON file is the current point-in-time list of the IP ranges that correspond to each service tag. The IP addresses are subject to change. If IP address ranges are required for your firewall configuration, use the `AzureCloud` service tag to allow access to all Azure services. Don't disable security monitoring or inspection of these URLs. Allow them as you would other internet traffic.
+For a list of IP addresses for each service tag/region, see the JSON file [Azure IP Ranges and Service Tags - Public Cloud](https://www.microsoft.com/download/details.aspx?id=56519). Microsoft publishes weekly updates that contain each Azure service and the IP ranges it uses. The information in the JSON file is the current point-in-time list of the IP ranges that correspond to each service tag. The IP addresses are subject to change. If IP address ranges are required for your firewall configuration, use the `AzureCloud` service tag to allow access to all Azure services. Don't disable security monitoring or inspection of these URLs. Allow them as you would other internet traffic.
 
 If you filter traffic to the `AzureArcInfrastructure` service tag, you must allow traffic to the full service tag range. The ranges advertised for individual regions, for example, `AzureArcInfrastructure.AustraliaEast`, don't include the IP ranges that are used by global components of the service. The specific IP address resolved for these endpoints might change over time within the documented ranges. For this reason, using a lookup tool to identify the current IP address for a specific endpoint and allowing access to only that IP address isn't sufficient to ensure reliable access.
 
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 > [!IMPORTANT]
-> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21Vianet, add the IP addresses from the `AzureArcInfrastructure` service tag for the Azure public cloud platform. You also need to use the `AzureArcInfrastructure` service tag for your cloud. After October 28, 2025, you're required to add the `AzureArcInfrastructure` service tag for the Azure public cloud platform. After that date, the service tags for Azure Government and Microsoft Azure operated by 21Vianet are no longer supported.
+> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21Vianet, be sure to add the IP addresses from the `AzureArcInfrastructure` service tag for the Azure public cloud, in addition to using the `AzureArcInfrastructure` service tag for your cloud. After October 28, 2025, adding the `AzureArcInfrastructure` service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21Vianet will no longer be supported.
 
 ### URLs
 
@@ -63,7 +63,7 @@ This table lists the URLs that must be available to install and use the Connecte
 |`*.waconazure.com`|For Windows Admin Center connectivity.|If you use Windows Admin Center.|Public.|
 |`*.blob.core.windows.net`|Download source for Azure Arc-enabled server extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
 |`dc.services.visualstudio.com`|Agent telemetry.|Optional. Not used in agent versions 1.24+.| Public. |
-| `*.<region>.arcdataservices.com`<sup>2</sup> | For Azure Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | If you use Azure Arc SQL Server. | Public. |
+| `*.<region>.arcdataservices.com`<sup>2</sup> | For Azure Arc SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows Transport Layer Security (TLS) 1.2 or 1.3 only. | If you use Azure Arc SQL Server. | Public. |
 | `https://<azure-keyvault-name>.vault.azure.net/`, `https://graph.microsoft.com/`<sup>2</sup>| For Microsoft Entra authentication with Azure Arc SQL Server. | If you use Azure Arc SQL Server. | Public. |
 |`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
 |`dls.microsoft.com`| Used by Azure Arc machines to perform license validation. | Required when you use hotpatching, Windows Server Azure Benefits, or Windows Server pay-as-you-go billing on Azure Arc-enabled machines. | Public. |
@@ -133,17 +133,17 @@ Starting from version 1.56 of the Connected Machine agent (Windows only), the fo
 
 * TLS 1.3 (suites in server-preferred order):
 
-  * TLS_AES_256_GCM_SHA384 (0x1302)   ECDH secp521r1 (eq. 15,360 bits RSA)   FS
-  * TLS_AES_128_GCM_SHA256 (0x1301)   ECDH secp256r1 (eq. 3,072 bits RSA)   FS
+  * TLS_AES_256_GCM_SHA384 (0x1302)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
+  * TLS_AES_128_GCM_SHA256 (0x1301)   ECDH secp256r1 (eq. 3072 bits RSA)   FS
 
 * TLS 1.2 (suites in server-preferred order):
 
-  * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)   ECDH secp521r1 (eq. 15,360 bits RSA)   FS
-  * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)   ECDH secp256r1 (eq. 3,072 bits RSA)   FS
+  * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384 (0xc030)   ECDH secp521r1 (eq. 15360 bits RSA)   FS
+  * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f)   ECDH secp256r1 (eq. 3072 bits RSA)   FS
 
 For more information, see [Windows TLS configuration issues](../troubleshoot-networking.md#windows-tls-configuration-issues).
 
-The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` supports only TLS 1.2 and 1.3. Only Windows Server 2012 R2 and later have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
+The SQL Server enabled by Azure Arc endpoints located at `*.\<region\>.arcdataservices.com` support only TLS 1.2 and 1.3. Only Windows Server 2012 R2 and later have support for TLS 1.2. SQL Server enabled by Azure Arc telemetry endpoint isn't supported for Windows Server 2012 or Windows Server 2012 R2.
 
 |Platform/Language | Support | More information |
 | --- | --- | --- |

@@ -1,5 +1,5 @@
 ---
-title: Azure Connected Machine agent deployment options
+title: Azure Connected Machine Agent Deployment Options
 description: Learn about the different options to onboard machines to Azure Arc-enabled servers.
 ms.date: 03/19/2025
 ms.topic: how-to 
@@ -12,12 +12,12 @@ You can connect machines in your hybrid environment directly with Azure by using
 
 ## Onboarding methods
 
-The following table highlights each method so that you can determine which one works best for your deployment. For detailed information, follow the links to view the steps for each subject.
+The following table highlights each method so that you can determine which one works best for your deployment. For detailed information, follow the links to view the steps for each method.
 
 | Method | Description |
 |--------|-------------|
 | Interactively | Manually install the agent on a single or small number of machines to [connect machines by using a deployment script](onboard-portal.md).<br> From the Azure portal, you can generate a script and run it on the machine to automate the installation and configuration steps of the agent.|
-| Interactively | [Connect machines from the Windows Admin Center](onboard-windows-admin-center.md). |
+| Interactively | [Connect machines from Windows Admin Center](onboard-windows-admin-center.md). |
 | Interactively | [Connect Windows Server machines to Azure through Azure Arc setup](onboard-windows-server.md). |
 | Interactively or at scale | [Connect machines by using PowerShell](onboard-powershell.md). |
 | At scale | [Connect machines at scale by using Ansible playbooks](onboard-ansible-playbooks.md) to create a service principal for onboarding Ansible-managed nodes to Azure Arc-enabled servers at scale by using Ansible playbooks. |
@@ -28,7 +28,7 @@ The following table highlights each method so that you can determine which one w
 | At scale | [Connect machines from Azure Automation Update Management](onboard-update-management-machines.md) to create a service principal that installs and configures the agent for multiple machines managed with Azure Automation Update Management to connect machines noninteractively. |
 | At scale | [Install the Azure Arc agent on VMware virtual machines (VMs) at scale by using Azure Arc-enabled VMware vSphere](../vmware-vsphere/enable-guest-management-at-scale.md). With Azure Arc-enabled VMware vSphere, you can [connect your VMware vCenter server to Azure](../vmware-vsphere/quick-start-connect-vcenter-to-arc-using-script.md), automatically discover your VMware VMs, and install the Azure Arc agent on them. Requires VMware tools on VMs.|
 | At scale | [Install the Azure Arc agent on System Center Virtual Machine Manager (SCVMM) VMs at scale by using Azure Arc-enabled SCVMM](../system-center-virtual-machine-manager/enable-guest-management-at-scale.md). With Azure Arc-enabled SCVMM, you can [connect your SCVMM management server to Azure](../system-center-virtual-machine-manager/quickstart-connect-system-center-virtual-machine-manager-to-arc.md), automatically discover your SCVMM VMs, and install the Azure Arc agent on them. |
-| At scale | [Connect your AWS cloud through the multicloud connector enabled by Azure Arc](../multicloud-connector/connect-to-aws.md) and [enable the ](../multicloud-connector/onboard-multicloud-vms-arc.md) [Azure Arc onboarding](../multicloud-connector/onboard-multicloud-vms-arc.md) [solution](../multicloud-connector/onboard-multicloud-vms-arc.md) to autodiscover and onboard EC2 VMs. |
+| At scale | [Connect your AWS cloud through the multicloud connector enabled by Azure Arc](../multicloud-connector/connect-to-aws.md) and [enable the ](../multicloud-connector/onboard-multicloud-vms-arc.md) [Arc onboarding](../multicloud-connector/onboard-multicloud-vms-arc.md) [solution](../multicloud-connector/onboard-multicloud-vms-arc.md) to autodiscover and onboard EC2 VMs. |
 
 > [!IMPORTANT]
 > You can't install the Connected Machine agent on an Azure VM. The installation script warns you and rolls back if it detects that the server is running in Azure.
@@ -42,4 +42,4 @@ Be sure to review the basic [prerequisites](prerequisites.md) and [network confi
 * Learn about the Azure Connected Machine agent [prerequisites](prerequisites.md) and [network requirements](network-requirements.md).
 * Review the [Planning and deployment guide for Azure Arc-enabled servers](plan-at-scale-deployment.md).
 * Learn about [reconfiguring, upgrading, and removing the Connected Machine agent](manage-agent.md).
-* Try out Azure Arc-enabled servers by using the [Azure Arc jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
+* Try out Azure Arc-enabled servers by using [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).

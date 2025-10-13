@@ -11,7 +11,7 @@ ms.topic: concept-article
 This article describes the networking requirements for using the Azure Connected Machine agent to onboard a physical server or virtual machine to Azure Arc-enabled servers.
 
 > [!TIP]
-> For the Azure public cloud platform, you can reduce the number of required endpoints by using the [Azure Arc gateway](arc-gateway.md).
+> For the Azure public cloud platform, you can reduce the number of required endpoints by using [Azure Arc gateway](arc-gateway.md).
 
 ## Details
 
