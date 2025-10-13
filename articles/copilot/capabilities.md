@@ -46,7 +46,7 @@ Use Microsoft Copilot in Azure to perform many basic tasks. There are many thing
   - [Work with AKS clusters efficiently](work-aks-clusters.md)
   - [Get information about Azure Monitor metrics and logs](get-monitoring-information.md)
   - [Work smarter with Azure Local](work-smarter-edge.md)
-  - [Manage and troubleshoot storage accounts](improve-storage-accounts.md)
+  - [Manage and migrate storage accounts](improve-storage-accounts.md)
   - [Troubleshoot disk performance](troubleshoot-disk-performance.md)
   - [Design, troubleshoot, and secure networks](network-management.md)
   - [Improve Azure SQL Database-driven applications](/azure/azure-sql/copilot/copilot-azure-sql-overview#microsoft-copilot-for-azure-enhanced-scenarios)
