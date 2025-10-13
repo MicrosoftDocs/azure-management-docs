@@ -118,7 +118,7 @@ Example output:
 
 ## Create an Azure Linux with OS Guard (preview) cluster
 
-Create an AKS cluster using the [`az aks create`](/cli/azure/aks#az-aks-create) command with the `--os-sku AzureLinuxOSGuard` parameter to provision the Azure Linux Container Host with an Azure Linux image. The following example creates an Azure Linux with OS Guard cluster:
+Create an AKS cluster using the [`az aks create`](/cli/azure/aks#az-aks-create) command with the `--os-sku AzureLinuxOSGuard` parameter to provision an Azure Linux with OS Guard cluster. Enabling [FIPS](/azure/aks/enable-fips-nodes), [secure boot](/azure/aks/use-trusted-launch), and [vtpm](/azure/aks/use-trusted-launch) are required to use Azure Linux with OS Guard. The following example creates an Azure Linux with OS Guard cluster:
 
 ```azurecli-interactive
 az aks create --name $MY_AZ_CLUSTER_NAME --resource-group $MY_RESOURCE_GROUP_NAME --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm

@@ -85,7 +85,7 @@ Before you begin, review the following considerations and limitations for Azure 
 
 ## Add an Azure Linux with OS Guard node pool
 
-Add an Azure Linux with OS Guard node pool into your existing cluster using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command and specify `--os-sku AzureLinuxOSGuard`. The following example creates a node pool named _osgNodepool_ that runs three nodes in the _testAzureLinuxOSGuardCluster_ cluster in the _testAzureLinuxOSGuardResourceGroup_ resource group. Environment variables are declared and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
+Add an Azure Linux with OS Guard node pool into your existing cluster using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command and specify `--os-sku AzureLinuxOSGuard`. Enabling [FIPS](/azure/aks/enable-fips-nodes), [secure boot](/azure/aks/use-trusted-launch), and [vtpm](/azure/aks/use-trusted-launch) are also required to use Azure Linux with OS Guard. The following example creates a node pool named _osgNodepool_ that runs three nodes in the _testAzureLinuxOSGuardCluster_ cluster in the _testAzureLinuxOSGuardResourceGroup_ resource group. Environment variables are declared and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
 
 ```azurecli-interactive
 export RANDOM_SUFFIX=$(openssl rand -hex 3)
@@ -135,20 +135,20 @@ Example output:
   {
     "agentPoolType": "VirtualMachineScaleSets",
     "availabilityZones": null,
-    "count": 1,
+    "count": 3,
     "enableAutoScaling": false,
     "enableEncryptionAtHost": false,
     "enableFips": false,
     "enableNodePublicIp": false,
-    "id": "/subscriptions/REDACTED/resourcegroups/myAKSResourceGroupxxxxx/providers/Microsoft.ContainerService/managedClusters/myAKSClusterxxxxx/agentPools/nodepoolx",
+    "id": "/subscriptions/REDACTED/resourcegroups/myAKSResourceGroupxxxxx/providers/Microsoft.ContainerService/managedClusters/myAKSClusterxxxxx/agentPools/npxxxxxx",
     "maxPods": 110,
-    "mode": "System",
-    "name": "nodepoolx",
-    "nodeImageVersion": "AKSUbuntu-1804gen2containerd-2023.06.06",
-    "orchestratorVersion": "1.25.6",
+    "mode": "User",
+    "name": "npxxxxxx",
+    "nodeImageVersion": "AzureLinuxContainerHost-2025.10.03",
+    "orchestratorVersion": "1.32.6",
     "osDiskSizeGb": 128,
     "osDiskType": "Managed",
-    "osSku": "Ubuntu",
+    "osSku": "AzureLinux",
     "osType": "Linux",
     "powerState": {
       "code": "Running"
@@ -170,11 +170,11 @@ Example output:
     "maxPods": 110,
     "mode": "User",
     "name": "npxxxxxx",
-    "nodeImageVersion": "AzureLinuxContainerHost-2023.06.06",
-    "orchestratorVersion": "1.25.6",
+    "nodeImageVersion": "AzureLinuxOSGuard-2025.10.03",
+    "orchestratorVersion": "1.32.6",
     "osDiskSizeGb": 128,
     "osDiskType": "Managed",
-    "osSku": "AzureLinux",
+    "osSku": "AzureLinuxOSGuard",
     "osType": "Linux",
     "powerState": {
       "code": "Running"
