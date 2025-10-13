@@ -521,7 +521,7 @@ When a new pod is created in a namespace that's monitored by the add-on, OSM inj
 
 ## Azure Kubernetes Fleet Manager
 
-Depending upon your cluster configuration, and or environment, you may experience connection issues between the Azure Kubernetes Fleet Manager's dataplane components (agents) and the Fleet's hub cluster. Review Azure Kubernetes Fleet Manager's [important considerations for Arc-Enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations) for a complete list of requirements and considerations.
+Depending on your environment and configuration, certain limitations may apply when connecting an Arc-enabled Kubernetes cluster to an Azure Kubernetes Fleet Manager hub. Review Azure Kubernetes Fleet Manager's [important considerations for Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations) for a complete list of requirements and considerations.
 
 ## Related content
 

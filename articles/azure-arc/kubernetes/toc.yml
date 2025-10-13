@@ -19,7 +19,7 @@
   items:
   - name: Deploy applications using Azure Kubernetes Fleet Manager
     displayName: Azure Kubernetes Fleet Manager, tutorial
-    href: tutorial-use-azure-kubernetes-fleet-manager.md
+    href: /azure/kubernetes-fleet/quickstart-resource-propagation.md
   - name: Deploy applications using GitOps (ArgoCD)
     displayName: argocd, tutorial
     href: tutorial-use-gitops-argocd.md
@@ -85,6 +85,9 @@
       - name: CI/CD workflow using GitOps
         displayName: flux, pipeline
         href: conceptual-gitops-flux2-ci-cd.md
+      - name: Multi-cluster workload management with Azure Kubernetes Fleet Manager
+        displayName: azure kubernetes fleet manager, multicluster
+        href: /azure/kubernetes-fleet/concepts-multi-cluster-workload-management.md
       - name: Multi-cluster workload management with GitOps
         displayName: multicluster
         href: conceptual-workload-management.md

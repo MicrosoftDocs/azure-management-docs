@@ -126,14 +126,12 @@ For more information, see [Introduction to the Kubernetes compute target in Azur
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.
 
-Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet. Get started by understanding the following:
+Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet.
 
-1. Key concepts of [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/concepts-fleet).
-2. Key concepts of Azure Kubernetes Fleet Manager's [Multi-Cluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management).
-3. [Azure Kubernetes Fleet Manager's member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
+For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/concepts-fleet), and its [multicluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management), and supported [member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
 
 > [!IMPORTANT]
-> Azure Kubernetes Fleet Manager's extension for Arc-Enabled Kubernetes clusters is in public preview.
+> Azure Kubernetes Fleet Manager's extension for Arc-enabled Kubernetes clusters is in public preview. See **[important considerations for Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations)** for a complete list of requirements and considerations.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
