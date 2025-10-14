@@ -5,7 +5,7 @@ description: "Learn how to deploy Edge RAG with this guide on hardware, software
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 08/27/2025
+ms.date: 10/14/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -99,20 +99,12 @@ Document or image file types not listed, like audio and video files, aren't curr
 
 Edge RAG supports Network File System (NFS) v3.0  and v4.1 with AUTH_SYS authentication as a data source. Kerberos isn't supported.
 
+
 ## Supported regions
 
-Edge RAG is supported in the following regions:
+If you plan to use the [quickstart](quickstart-edge-rag.md) for evaluation or  development purposes, deploy Azure resources for Edge RAG in any region supported by Azure Arc enabled Kubernetes. For production deployments, deploy Edge RAG and required resources in any region supported by Azure Local.
 
-- westeurope
-- eastus2
-- eastus
-- westus2
-- australiaeast
-- japaneast
-- canadacentral
-- uksouth
-- centralindia
-- koreacentral
+For the most up-to-date list of supported regions by service, see the [Azure products by region table](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table).
 
 ## Related content
 
