@@ -1,6 +1,6 @@
 ---
-title: Manage and troubleshoot storage accounts using Microsoft Copilot in Azure
-description: Learn how Microsoft Copilot in Azure can improve the security posture and data resiliency of storage accounts.
+title: Manage and migrate storage accounts using Microsoft Copilot in Azure
+description: Learn how Microsoft Copilot in Azure can improve the security posture and data resiliency of storage accounts and help with storage migration solutions
 ms.date: 10/10/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
 ms.author: jenhayes
 author: JnHs
-# Customer intent: "As a cloud administrator, I want to utilize an AI assistant to improve the security posture, enhance data resiliency, troubleshoot issues, and reduce costs of storage accounts, so that I can efficiently manage and optimize our cloud storage resources."
+# Customer intent: "As a cloud administrator, I want to utilize an AI assistant to migrate data to Azure and effectively manage and improve storage accounts, so that I can efficiently manage and optimize our cloud storage resources."
 ---
 
 # Manage and migrate storage accounts using Microsoft Copilot in Azure
