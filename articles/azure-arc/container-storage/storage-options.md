@@ -1,8 +1,8 @@
 ---
 title: Using Edge Volumes together
 description: Learn about Edge Volumes in Azure Container Storage enabled by Azure Arc and how can you use them together.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: concept-article
 ms.date: 09/27/2025
 # Customer intent: As a cloud architect, I want to understand the different storage options available in Azure Container Storage enabled by Azure Arc, so that I can design flexible data flow architectures for my applications at the edge and in the cloud.

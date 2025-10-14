@@ -1,8 +1,8 @@
 ---
 title: Azure Container Storage enabled by Azure Arc using Azure Arc Jumpstart
 description: Learn about Azure Arc Jumpstart and Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: overview
 ms.date: 03/12/2025
 

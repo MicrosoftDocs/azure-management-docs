@@ -1,8 +1,8 @@
 ---
 title: Configure Cloud Ingest subvolumes
 description: Configure Cloud Ingest subvolumes for Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/27/2025
 

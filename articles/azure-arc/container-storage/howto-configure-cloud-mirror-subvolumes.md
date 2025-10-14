@@ -1,8 +1,8 @@
 ---
 title: Configure Cloud Mirror subvolumes (preview)
 description: Configure Cloud Mirror subvolumes for Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/24/2025
 

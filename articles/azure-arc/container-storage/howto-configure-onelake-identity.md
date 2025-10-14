@@ -1,8 +1,8 @@
 ---
 title: Configure OneLake Identity for Cloud subvolumes
 description: Learn how to configure OneLake Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/27/2025
 # Customer intent: "As a cloud administrator, I want to configure OneLake Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc."

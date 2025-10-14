@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 08/16/2024
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 # Customer intent: "As a Kubernetes administrator, I want to ensure I use the correct naming conventions for objects, so that I can maintain compatibility and avoid issues within the Kubernetes ecosystem."
 ---
 
