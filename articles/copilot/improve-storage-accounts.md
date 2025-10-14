@@ -75,9 +75,9 @@ Here are a few examples of the kinds of prompts you can use to get recommendatio
 - "What solution should I use to migrate my data into Azure?"
 - "Help me decide what migration service I should use to move my data into Azure"
 - "How can I migrate data from an SMB share or NFS volume to Azure?"
-- "I'm moving data from AWS S3 or Google Cloud Storage to Azure—how can I do this transfer?"
-- "What’s the best tool to migrate large-scale unstructured data from on-prem to Azure?"
-- "I need to migrate data from my on-prem file shares (like SMB or NFS) to Azure Storage (Blob, Files, Disks). How can I do that?"
+- "I'm moving data from AWS S3 or Google Cloud Storage to Azure, how can I do this transfer?"
+- "What’s the best tool to migrate large-scale unstructured data from on-premises to Azure?"
+- "I need to migrate data from my on-premises file shares (like SMB or NFS) to Azure Storage (Blob, Files, Disks). How can I do that?"
 
 ### Discover storage migration solution example
 
