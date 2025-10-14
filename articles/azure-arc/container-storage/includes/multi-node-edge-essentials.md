@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 03/12/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 # Customer intent: As a system administrator managing a multi-node cluster, I want to configure Linux with HugePages and NVME modules, so that I can optimize performance for AKS Edge Essentials.
 ---
 

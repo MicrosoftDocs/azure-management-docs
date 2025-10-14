@@ -3,8 +3,8 @@ title: Configure a Local Shared Edge Volume
 description: In this tutorial, you learn how to configure a Local Shared Edge Volume.
 ms.topic: tutorial
 ms.date: 11/11/2024
-ms.author: sergaz 
-author: asergaz
+ms.author: sethm 
+author: sethmanheim
 
 
 # Customer intent: "As a Kubernetes administrator, I want to configure a Local Shared Edge Volume so that I can manage read-write-many storage effectively for applications running in edge environments."

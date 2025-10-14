@@ -1,8 +1,8 @@
 ---
 title: Disconnected operations
 description: Learn about disconnected operations in Azure Container Storage enabled by Azure Arc, including their benefits and use cases.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: concept-article
 ms.date: 06/25/2025
 

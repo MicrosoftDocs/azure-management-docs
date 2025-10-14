@@ -1,8 +1,8 @@
 ---
 title: What's new in Azure Container Storage enabled by Azure Arc?
 description: What's new in Azure Container Storage enabled by Azure Arc?
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: whats-new
 ms.date: 05/13/2025
 

@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 03/12/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 # Customer intent: "As a system administrator, I want to configure Linux with Ubuntu for a cluster setup, so that I can ensure adequate file monitoring capabilities are in place."
 ---
 

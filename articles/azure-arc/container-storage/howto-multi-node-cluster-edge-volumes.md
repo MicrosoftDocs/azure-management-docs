@@ -1,8 +1,8 @@
 ---
 title: Prepare Linux for Edge Volumes using a multi-node cluster
 description: Learn how to prepare Linux for Edge Volumes with a multi-node cluster using AKS enabled by Azure Arc, Edge Essentials, or Ubuntu.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.custom:
   - linux-related-content

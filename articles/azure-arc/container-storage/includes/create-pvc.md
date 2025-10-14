@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 09/26/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ---
      
 ```yaml

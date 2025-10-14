@@ -1,8 +1,8 @@
 ---
 title: Prepare Linux for Edge Volumes
 description: Learn how to prepare Linux in Azure Container Storage enabled by Azure Arc Edge Volumes using Azure Kubernetes Service enabled by Azure Arc, Edge Essentials, or Ubuntu.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.custom:
   - linux-related-content
