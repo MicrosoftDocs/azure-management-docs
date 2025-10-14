@@ -1,8 +1,8 @@
 ---
 title: Configure Workload Identity for Cloud subvolumes
 description: Learn how to configure Workload Identity for Cloud subvolumes in Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/27/2025
 

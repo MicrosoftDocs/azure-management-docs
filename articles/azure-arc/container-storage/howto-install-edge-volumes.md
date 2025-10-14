@@ -1,8 +1,8 @@
 ---
 title: Install Edge Volumes
 description: Learn how to install the Edge Volumes offering from Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 03/12/2025
 # Customer intent: "As a cloud administrator, I want to install and configure the Azure Container Storage extension with Edge Volumes in Kubernetes, so that I can efficiently manage storage solutions across my containerized applications in a hybrid cloud environment."

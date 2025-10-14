@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 09/26/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ---
 
 1. Create a storage account following the instructions in [Create an Azure storage account](/azure/storage/common/storage-account-create).

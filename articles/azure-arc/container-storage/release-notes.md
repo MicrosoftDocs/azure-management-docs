@@ -1,8 +1,8 @@
 ---
 title: Release notes for Azure Container Storage enabled by Azure Arc
 description: Learn about new features in Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: release-notes
 ms.date: 05/13/2025
 
