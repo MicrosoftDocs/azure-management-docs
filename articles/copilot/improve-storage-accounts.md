@@ -13,9 +13,9 @@ author: JnHs
 # Customer intent: "As a cloud administrator, I want to utilize an AI assistant to improve the security posture, enhance data resiliency, troubleshoot issues, and reduce costs of storage accounts, so that I can efficiently manage and optimize our cloud storage resources."
 ---
 
-# Manage and improve storage accounts using Microsoft Copilot in Azure
+# Manage and migrate storage accounts using Microsoft Copilot in Azure
 
-Microsoft Copilot in Azure can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). It can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
+Microsoft Copilot in Azure can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). When [migrating data to Azure](#discover-storage-migration-solutions), you can get help finding the right solution. Copilot in Azure can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
 
 Responses are dynamic and based on your specific storage account and settings. Based on your prompts, Microsoft Copilot in Azure provides specific recommendations to improve your storage account or resolve issues.
 
@@ -60,36 +60,42 @@ You can say things like "**Prevent this storage account from data loss during a 
 
 :::image type="content" source="media/improve-storage-accounts/storage-account-data-resiliency.png" alt-text="Screenshot showing Microsoft Copilot in Azure providing suggestions to improve storage account data resiliency.":::
 
-## Troubleshoot and resolve Azure File Sync issues
+## Discover storage migration solutions
 
-If you use [Azure File Sync](/azure/storage/file-sync/file-sync-introduction), Copilot in Azure can help you quickly troubleshoot and resolve common issues. It analyzes your environment to identify potential root causes, such as network issues, incorrect permissions, or missing file shares. After that, Copilot in Azure provides actionable recommendations.
+Selecting the appropriate tool for migrating data to Azure can be challenging. Various solutions are available, both online and offline, with some solutions providing features like repeatable sync, merge, and hybrid deployment options. Often, these tools bring overlapping technical capabilities, and multiple tools could appear to be suitable for similar use cases. Rather than evaluating a multitude of solutions, you can chat with Copilot in Azure to explore your migration solution recommendations. This conversational approach makes it easier for anyone – from IT managers to storage admins – to gain insights and make data-driven decisions.
 
-### Azure File Sync sample prompts
+When you ask Copilot in Azure for migration help, it asks questions to understand your scenario. Once Copilot in Azure has the necessary information, it reviews native Azure services as well as partner and independent software vendor (ISV) solutions, then guides you to a recommended approach.
 
-Here are a few examples of the kinds of prompts you can use to help diagnose and fix your Azure File Sync environment. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific areas.
+### Discover storage migration solution sample prompts
 
-Troubleshooting specific error codes:
+Here are a few examples of the kinds of prompts you can use to get recommendations for migration solutions. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific areas.
 
-- "Help me troubleshoot error code 0x80C8305F."
-- "Help me troubleshoot error code 0x80C83096."
+- "How can I migrate my data into Azure?"
+- "How can I migrate on-premises data into Azure?"
+- "What solution should I use to migrate my data into Azure?"
+- "Help me decide what migration service I should use to move my data into Azure"
+- "How can I migrate data from an SMB share or NFS volume to Azure?"
+- "I'm moving data from AWS S3 or Google Cloud Storage to Azure, how can I do this transfer?"
+- "What’s the best tool to migrate large-scale unstructured data from on-premises to Azure?"
+- "I need to migrate data from my on-premises file shares (like SMB or NFS) to Azure Storage (Blob, Files, Disks). How can I do that?"
 
-Permissions and network configuration:
+### Discover storage migration solution example
 
-- "Do I have correct permissions to access the file share?"
-- "Is my network configured correctly to access the file share?"
+You can start getting help by saying "**How can I migrate my data into Azure?**" Copilot in Azure starts by asking about the source of your data.
 
-General troubleshooting:
+:::image type="content" source="media/improve-storage-accounts/storage-migration.png" alt-text="Screenshot of Copilot in Azure responding to a question about migrating data to Azure.":::
 
-- "How do I fix my Azure File Sync environment that stopped syncing?"
-- "Help me fix sync errors in my AFS environment."
-- "How do I fix a server that has a state of 'appears offline'?"
-- "Help me diagnose issues with my Azure File Sync environment."
+Copilot in Azure asks more questions to better understand your scenario, such as the data source, current protocols, and the target storage destination in Azure.
 
-### Azure File Sync example
+:::image type="content" source="media/improve-storage-accounts/storage-migration-questions.png" alt-text="Screenshot of Copilot in Azure asking follow-up questions about a data migration scenario.":::
 
-If you see an error code, you can ask Copilot in Azure to help you understand the problem and how to fix it. When you say "**Help me troubleshoot this error**", Copilot in Azure provides information about the error and the things that Copilot in Azure can check to help resolve the issue. In some cases, Copilot in Azure can even help fix the issue.
+Next, Copilot in Azure asks about your network and data requirements, such as the amount of data to be migrated, the available bandwidth, and the data transfer direction.
 
-:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png" alt-text="Screenshot showing Microsoft Copilot in Azure troubleshooting an Azure File Sync error." lightbox="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png":::
+:::image type="content" source="media/improve-storage-accounts/storage-migration-network.png" alt-text="Screenshot of Copilot in Azure asking about network and data requirements for a migration scenario.":::
+
+Finally, Copilot in Azure provides a recommended migration solution based on your responses. In this example, the recommendation is to use Azure Storage Mover. Copilot in Azure provides a link to learn more about this solution, along with an option to start the Storage Mover creation process. You can also refine your answers to get a different recommendation.
+
+:::image type="content" source="media/improve-storage-accounts/storage-migration-recommendation.png" alt-text="Screenshot of Copilot in Azure providing a migration recommendation.":::
 
 ## Reduce storage costs
 
@@ -98,6 +104,8 @@ You can ask Copilot in Azure to help you manage the costs for your storage accou
 When you ask Copilot in Azure about reducing your storage costs, it provides suggestions and helps you accomplish bulk tiering by automating [lifecycle management policy](/azure/storage/blobs/lifecycle-management-overview) authoring.
 
 ### Storage cost reduction sample prompts
+
+Here are a few examples of the kinds of prompts you can use to reduce costs for your storage account. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific areas.
 
 - "How can I save costs on my storage?"
 - "Help me save costs on my storage"
@@ -154,6 +162,37 @@ If no blockers are found, Copilot in Azure confirms that your account is ready f
 :::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Microsoft Copilot in Azure confirming the target replication for a storage account." lightbox="media/improve-storage-accounts/storage-account-redundancy-type.png":::
 
 :::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-steps.png" lightbox="media/improve-storage-accounts/storage-account-redundancy-steps.png" alt-text="Screenshot of Microsoft Copilot in Azure providing conversion steps for a storage account.":::
+
+## Troubleshoot and resolve Azure File Sync issues
+
+If you use [Azure File Sync](/azure/storage/file-sync/file-sync-introduction), Copilot in Azure can help you quickly troubleshoot and resolve common issues. It analyzes your environment to identify potential root causes, such as network issues, incorrect permissions, or missing file shares. After that, Copilot in Azure provides actionable recommendations.
+
+### Azure File Sync sample prompts
+
+Here are a few examples of the kinds of prompts you can use to help diagnose and fix your Azure File Sync environment. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific areas.
+
+Troubleshooting specific error codes:
+
+- "Help me troubleshoot error code 0x80C8305F."
+- "Help me troubleshoot error code 0x80C83096."
+
+Permissions and network configuration:
+
+- "Do I have correct permissions to access the file share?"
+- "Is my network configured correctly to access the file share?"
+
+General troubleshooting:
+
+- "How do I fix my Azure File Sync environment that stopped syncing?"
+- "Help me fix sync errors in my AFS environment."
+- "How do I fix a server that has a state of 'appears offline'?"
+- "Help me diagnose issues with my Azure File Sync environment."
+
+### Azure File Sync example
+
+If you see an error code, you can ask Copilot in Azure to help you understand the problem and how to fix it. When you say "**Help me troubleshoot this error**", Copilot in Azure provides information about the error and the things that Copilot in Azure can check to help resolve the issue. In some cases, Copilot in Azure can even help fix the issue.
+
+:::image type="content" source="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png" alt-text="Screenshot showing Microsoft Copilot in Azure troubleshooting an Azure File Sync error." lightbox="media/improve-storage-accounts/storage-file-sync-error-troubleshoot.png":::
 
 ## Next steps
 
