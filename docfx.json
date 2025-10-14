@@ -197,7 +197,9 @@
         "articles/lighthouse/**/*.md": "rayoflores",
         "articles/lighthouse/**/*.yml": "rayoflores",
         "articles/quotas/**/*.md": "akashdubey",
-        "articles/quotas/**/*.yml": "akashdubey"
+        "articles/quotas/**/*.yml": "akashdubey",
+        "articles/azure-arc/container-storage/**/*.md": "lizross",
+        "articles/azure-arc/container-storage/**/*.yml": "lizross"
       },
       "ms.reviewer": {
         "articles/azure-arc/*.md": "jenhayes",
