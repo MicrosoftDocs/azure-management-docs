@@ -48,7 +48,7 @@ To use your own model with Edge RAG, you can deploy a language model and create 
 
 For more information, see the following articles:
 
-- [Deployment types for Azure AI Foundry Models](/azure/ai-services/openai/how-to/deployment-types)
+- [Deployment types for Azure AI Foundry Models](/azure/ai-foundry/foundry-models/concepts/deployment-types)
 - [Quickstart: Create your first AI Foundry resource](/azure/ai-services/multi-service-resource?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&pivots=azportal)
 
 ## KAITO
