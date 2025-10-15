@@ -149,6 +149,28 @@ Manually retrieve the custom location OID by following these steps.
 az customlocation show -n <customLocationName> -g <resourceGroupName>
 ```
 
+
+## Check usage of a custom location
+
+To determine whether a custom location is actively being used by other Azure resources, you can list the resource types that are enabled for it using the Azure CLI.
+
+```azurecli
+az customlocation list-enabled-resource-types -n <customLocationName> -g <resourceGroupName>                                              
+```
+This command returns a list of Azure resource types that are configured to use the specified custom location. If the list is not empty, it indicates that the custom location is currently being used by those resource types.
+
+**Example output:**
+```
+[
+  {
+    "resourceType": "Microsoft.App/containerApps"
+  },
+  {
+    "resourceType": "Microsoft.Data/sqlManagedInstances"
+  }
+]
+```
+
 ## Show details of a custom location
 
 To show the details of a custom location, use the following command:
