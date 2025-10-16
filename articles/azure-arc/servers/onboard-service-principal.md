@@ -13,7 +13,7 @@ ms.custom:
 
 You can enable Azure Arc-enabled servers for multiple Windows or Linux machines in your environment with several flexible options depending on your requirements. Using the template script we provide, you can automate every step of the installation, including establishing the connection to Azure Arc. However, you are required to execute this script manually with an account that has elevated permissions on the target machine and in Azure.
 
-One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.**
+One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.** You can create the service principal with Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
@@ -37,10 +37,47 @@ Before you start connecting your machines, review the following requirements:
 
 ## Create a service principal for onboarding at scale
 
-You can create a service principal in the Azure portal or by using Azure PowerShell.
+You can create the service principal with Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
 
 > [!NOTE]
 > To create a service principal, your Microsoft Entra tenant needs to allow users to register applications. If it doesn't, your account must be a member of the **Application Administrator** or **Cloud Application Administrator** administrative role. See [Delegate app registration permissions in Microsoft Entra ID](/azure/active-directory/roles/delegate-app-roles) for more information about tenant-level requirements. To assign Arc-enabled server roles, your account must be a member of the **Owner** or **User Access Administrator** role in the subscription that you want to use for onboarding.
+
+### Azure CLI
+
+You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to create a service principal with the [az ad sp create-for-rbac](/cli/azure/ad) command.
+
+1. Log in to Azure.
+
+    ```azurecli
+    az login
+    ```
+
+1. Run the following command to create a service principal and assign it the Azure Connected Machine Onboarding role for the selected subscription. After the service principal is created, it will print the application ID and secret. The secret is valid for 1 year, after which you'll need to generate a new secret and update any scripts with the new secret.
+
+    ```azurecli
+    az ad sp create-for-rbac --name "Arc server onboarding account"  --role "Azure Connected Machine Onboarding"  --scopes "/subscriptions/<subscription-id>"
+    ```
+
+**Parameters:**
+- --name: Display name for the service principal. 
+- --role: Assigns the Azure Connected Machine Onboarding role. 
+- --scopes: Scope for the role assignment (subscription level in this case).
+- Replace subscription-id with your subscription ID.
+
+**Output example:**
+```azurecli
+{
+  "appId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "displayName": " Arc server onboarding account",
+  "password": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+  "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+Take note of these values that are used with parameters passed to the azcmagent later in the section: **Install the agent and connect to Azure**:
+- The value from the **appId** property is used for the **--service-principal-id** parameter value.
+- The value from the **password** property is used for the **--service-principal-secret** parameter used to connect the agent.
+
 
 ### Azure portal
 
@@ -139,6 +176,13 @@ You can learn more about the `azcmagent` command-line tool by reviewing the [Azc
 After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
 
 :::image type="content" source="media/onboard-portal/arc-for-servers-successful-onboard.png" alt-text="Screenshot showing a successful server connection in the Azure portal.":::
+
+## Troubleshooting
+If you see the following error, then you may need to be added as a member of the Application Administrator or Cloud Application Administrator administrative role.
+
+```
+ServiceManagementReference field is required for Create, but is missing in the request. Refer to the TSG `https://aka.ms/service-management-reference-error` for resolving the error.
+```
 
 ## Next steps
 
