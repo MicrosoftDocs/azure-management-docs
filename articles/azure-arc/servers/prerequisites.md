@@ -48,7 +48,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | Amazon Linux                        | 2           | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 2.0         | ⚠️    | ❌    |                                                                                                  |
-| Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
+| Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
 | Azure Local                         |             |        |       |                                                                                                  |
 | Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Debian                              | 12          | ✅    | ✅    |                                                                                                  |
@@ -99,7 +99,7 @@ Not all features, virtual machine extensions, and services are supported on Arm6
 
 ## Limited support operating systems
 
-The following operating system versions have **limited support**. In each case, newer agent versions won't support these operating systems. The last agent version that supports the operating system is listed, and newer agent releases won't be made available for that system.
+The operating system versions listed in this section currently have **limited support**. Newer agent versions won't support these operating systems. The last agent version that supports the operating system is listed, and newer agent releases won't be made available for that system.
 
 The listed version is supported on the specified agent version until the **End of Arc support date**. If critical security issues are identified that affect these agent versions, the fixes can be backported to the last supported version. However, those versions won't be updated with new functionality or other bug fixes.
 
