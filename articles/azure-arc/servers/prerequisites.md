@@ -47,7 +47,7 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
 | Amazon Linux                        | 2           | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |
-| Azure Linux (CBL-Mariner)           | 2.0         | ⚠️    | ❌    |                                                                                                  |
+| Azure Linux (CBL-Mariner)           | 2.0         | ✅    | ❌    |                                                                                                  |
 | Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |                                                                                                  |
 | Azure Local                         |             |        |       |                                                                                                  |
 | Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
