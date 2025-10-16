@@ -44,7 +44,7 @@ You can create the service principal with Azure CLI ([Win](/cli/azure/install-az
 
 ### Azure CLI
 
-You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to create a service principal with the [az ad sp create-for-rbac](/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac) command.
+You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to create a service principal with the [az ad sp create-for-rbac](/cli/azure/ad) command.
 
 1. Log in to Azure.
 
@@ -62,7 +62,7 @@ You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/c
 - --name: Display name for the service principal. 
 - --role: Assigns the Azure Connected Machine Onboarding role. 
 - --scopes: Scope for the role assignment (subscription level in this case).
-- Replace <subscription-id> with your subscription ID.
+- Replace subscription-id with your subscription ID.
 
 **Output Example:**
 ```azurecli
