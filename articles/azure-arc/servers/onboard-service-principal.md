@@ -64,7 +64,7 @@ You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/c
 - --scopes: Scope for the role assignment (subscription level in this case).
 - Replace subscription-id with your subscription ID.
 
-**Output Example:**
+**Output example:**
 ```azurecli
 {
   "appId": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
