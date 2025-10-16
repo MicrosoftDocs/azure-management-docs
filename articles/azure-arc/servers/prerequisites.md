@@ -47,8 +47,8 @@ x86-64 (64-bit) architecture is fully supported, while [only some features may b
 | AlmaLinux                           | 9           | ✅    | ❌    |                                                                                                  |
 | Amazon Linux                        | 2           | ✅    | ✅    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Amazon Linux                        | 2023        | ✅    | ✅    |                                                                                                  |
-| Azure Linux (CBL-Mariner)           | 2.0         | ⚠️    | ❌    | [Limited support](#limited-support-operating-systems)                                            |
-| Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    |  Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                 |
+| Azure Linux (CBL-Mariner)           | 2.0         | ⚠️    | ❌    |                                                                                                  |
+| Azure Linux (CBL-Mariner)           | 3.0         | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Azure Local                         |             |        |       |                                                                                                  |
 | Debian                              | 11          | ✅    | ❌    | Expected [limited support](#limited-support-operating-systems) date: 07/03/2026                  |
 | Debian                              | 12          | ✅    | ✅    |                                                                                                  |
@@ -105,8 +105,7 @@ The listed version is supported on the specified agent version until the **End o
 
 | Operating system | Last supported agent version | End of Arc support date | Notes |
 |--|--|--|--|
-| Azure Linux (CBL-Mariner) 2.0 | TBD  | 07/03/2026 |  |
-| ASUSE Linux Enterprise Server (SLES) 15 SP3 | TBD  | 07/03/2026 |  |
+| SUSE Linux Enterprise Server (SLES) 15 SP3 | 1.58  | 07/03/2026 |  |
 
 ### Connect new limited support servers
 
