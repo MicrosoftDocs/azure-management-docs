@@ -178,7 +178,7 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 :::image type="content" source="media/onboard-portal/arc-for-servers-successful-onboard.png" alt-text="Screenshot showing a successful server connection in the Azure portal.":::
 
 ## Troubleshooting
-If you get the error below, then you may need to be added as a member of the Application Administrator or Cloud Application Administrator administrative role.
+If you see the following error, then you may need to be added as a member of the Application Administrator or Cloud Application Administrator administrative role.
 
 ```
 ServiceManagementReference field is required for Create, but is missing in the request. Refer to the TSG `https://aka.ms/service-management-reference-error` for resolving the error.
