@@ -112,7 +112,7 @@ az aks nodepool delete --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_
 
 You can migrate your existing Ubuntu or Azure Linux node pools to Azure Linux with OS Guard by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools; instead, your existing node pools will automatically reimage.
 
-### Limitations
+### Limitations for in-place OS SKU migration
 
 There are several settings that can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
 

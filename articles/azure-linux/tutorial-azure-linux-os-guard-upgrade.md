@@ -69,14 +69,16 @@ Example output:
 
 For more information on upgrade channels, see [Using cluster auto-upgrade](/azure/aks/auto-upgrade-cluster).
 
-## Enable automatic package upgrades
+## Automatically upgrade your node OS image
 
-You can also configure automatic upgrades for package upgrades by enabling the node OS upgrade channel. If automatic package upgrades are enabled, the `dnf-automatic systemd` service runs daily and installs any updated packages that have been published.
+AKS also provides multiple autoupgrade channels dedicated to timely node-level OS security updates. This channel is different from cluster-level Kubernetes version upgrades and supersedes it.
+
+Please note, `NodeImage` and `None` are the only supported [OS Upgrade channels](/azure/aks/auto-upgrade-node-os-image) for Azure Linux with OS Guard on AKS. `Unmanaged` and `SecurityPatch` are incompatible with Azure Linux with OS Guard due to the immutable /usr directory.
 
 Set the node OS upgrade channel on an existing cluster using the [`az aks update`](/cli/azure/aks#az-aks-update) command with the `--node-os-upgrade-channel` parameter.
 
 ```azurecli-interactive
-az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-os-upgrade-channel Unmanaged
+az aks update --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME --node-os-upgrade-channel NodeImage
 ```
 
 Example output:
@@ -87,11 +89,12 @@ Example output:
   "location": "WestUS2",
   "name": "testAzureLinuxCluster",
   "properties": {
-    "nodeOsUpgradeChannel": "Unmanaged",
+    "nodeOsUpgradeChannel": "NodeImage",
     "provisioningState": "Succeeded"
   }
 }
 ```
+For more information on node upgrade channels, see [Using node OS auto-upgrade](/azure/aks/auto-upgrade-node-os-image).
 
 ## Clean up resources
 

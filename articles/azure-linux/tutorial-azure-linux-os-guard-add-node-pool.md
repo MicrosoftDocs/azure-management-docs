@@ -85,7 +85,7 @@ Before you begin, review the following considerations and limitations for Azure 
 
 ## Add an Azure Linux with OS Guard node pool
 
-Add an Azure Linux with OS Guard node pool into your existing cluster using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command and specify `--os-sku AzureLinuxOSGuard`. Enabling [FIPS](/azure/aks/enable-fips-nodes), [secure boot](/azure/aks/use-trusted-launch), and [vtpm](/azure/aks/use-trusted-launch) are also required to use Azure Linux with OS Guard. The following example creates a node pool named _osgNodepool_ that runs three nodes in the _testAzureLinuxOSGuardCluster_ cluster in the _testAzureLinuxOSGuardResourceGroup_ resource group. Environment variables are declared and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
+Add an Azure Linux with OS Guard node pool into your existing cluster using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command and specify `--os-sku AzureLinuxOSGuard`. Enabling [FIPS](/azure/aks/enable-fips-nodes), [secure boot](/azure/aks/use-trusted-launch), and [vtpm](/azure/aks/use-trusted-launch) are also required to use Azure Linux with OS Guard. The following example creates a node pool named _osgNodepool_ that adds three nodes in the _testAzureLinuxOSGuardCluster_ cluster in the _testAzureLinuxOSGuardResourceGroup_ resource group. Environment variables are declared and a random suffix is appended to the resource group and cluster names to ensure uniqueness.
 
 ```azurecli-interactive
 export RANDOM_SUFFIX=$(openssl rand -hex 3)
