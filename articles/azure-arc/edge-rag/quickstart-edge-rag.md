@@ -15,7 +15,6 @@ ms.subservice: edge-rag
 
 In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
 
-If you don't have a service subscription, create a [free Azure account](https://azure.microsoft.com/free/).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -23,7 +22,7 @@ If you don't have a service subscription, create a [free Azure account](https://
 
 Before you begin, make sure you have:
 
-- An active Azure subscription. If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- An active Azure subscription. If you don't have a service subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
