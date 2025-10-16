@@ -124,7 +124,7 @@ For more information, see [Introduction to the Kubernetes compute target in Azur
 
 ## Azure Kubernetes Fleet Manager
 
-- **Supported distributions**: Azure Kubernetes Service (AKS), K3s (Lightweight Kubernetes), Red Hat OpenShift Container Platform (OCP), Amazon Elastic Kubernetes Service (EKS), and Google Kubernetes Engine (GKE).
+- **Supported distributions**: AKS (Azure Kubernetes Service), K3s (Lightweight Kubernetes), OCP (Red Hat OpenShift), EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), and Rancher (RKE).
 
 Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet.
 
