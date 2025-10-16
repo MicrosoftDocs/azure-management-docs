@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/10/2025
+ms.date: 10/16/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -13,7 +13,7 @@ ms.subservice: edge-rag
 
 # Quickstart: Install Edge RAG Preview enabled by Azure Arc
 
-In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
+In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) without the need for local hardware like Azure Local. This quickstart is intended to get you started with Edge RAG for evaluation or development purposes. To deploy Edge RAG for a production environment, see [Deployment overview](deploy-overview.md).
 
 If you don't have a service subscription, create a [free Azure account](https://azure.microsoft.com/free/).
 
@@ -23,7 +23,7 @@ If you don't have a service subscription, create a [free Azure account](https://
 
 Before you begin, make sure you have:
 
-- An active Azure subscription.
+- An active Azure subscription. If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
 - Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
@@ -79,7 +79,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
       --generate-ssh-keys
    ```
 
-1. Set the rest of the following values as needed and then run the command:
+1. Set the rest of the following values as needed and then run the command. If you created the application registration for Edge RAG in a different tenant from the AKS cluster, set the values for `$entraAppId` and `$entraTenantId` by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
 
    ```azurecli
     
@@ -98,7 +98,7 @@ In this section, you create an AKS cluster and configure it for Edge RAG deploym
 
    ```
 
-   If you get a warning when setting `$entraAppId` or `$entraTenantId`, set the values by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
+   If you get a warning when setting `$entraAppId` or `$entraTenantId` by using the queries, set the values by using the **Application (client) ID** and **Directory (tenant) ID** on the **EdgeRAG** app registration page in the Azure portal.
 
 1. Connect to Azure and AKS:
 
@@ -202,7 +202,7 @@ Complete the following steps to deploy the Edge RAG extension onto your AKS clus
        --auto-upgrade $autoUpgrade ` 
        --configuration-settings isManagedIdentityRequired=true ` 
        --configuration-settings gpu_enabled=$gpu_enabled ` 
-       --configuration-settings AgentOperationTimeoutInMinutes=30 ` 
+       --configuration-settings AgentOperationTimeoutInMinutes=60 ` 
        --configuration-settings model=$modelName ` 
        --configuration-settings auth.tenantId=$entraTenantId ` 
        --configuration-settings auth.clientId=$entraAppId ` 
@@ -248,9 +248,9 @@ Update your host file on your local machine to connect to the developer portal f
 
 1. Save the file.
 1. Go to the developer portal for Edge RAG by using the domain URL you added to the local "hosts" file. For example: `https://arcrag.contoso.com`.
-1. Select **Get started**.
+1. Select **Get started**. Then, follow the next steps at the end of this article to add a data source and set up the data query.
 
-## Clean up resources
+## (Optional) Clean up resources 
 
 If you're done trying out Edge RAG, remove the resources created in this quickstart by running the following command:
 
