@@ -74,10 +74,9 @@ You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/c
 }
 ```
 
-Take note of these values that are used with parameters passed to the azcmagent later:
-- The value from the **appId** property is used for the --service-principal-id parameter value.
-
-- The value from the **password** property is used for the --service-principal-secret parameter used to connect the agent.
+Take note of these values that are used with parameters passed to the azcmagent later in the section: **Install the agent and connect to Azure**:
+- The value from the **appId** property is used for the **--service-principal-id** parameter value.
+- The value from the **password** property is used for the **--service-principal-secret** parameter used to connect the agent.
 
 
 ### Azure portal
