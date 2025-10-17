@@ -52,17 +52,17 @@ You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/c
     az login
     ```
 
-1. Run the following command to create a service principal and assign it the Azure Connected Machine Onboarding role for the selected subscription. After the service principal is created, it will print the application ID and secret. The secret is valid for 1 year, after which you'll need to generate a new secret and update any scripts with the new secret.
+1. Run the following command to create a service principal and assign it the Azure Connected Machine Onboarding role for the selected subscription. After the service principal is created, it will print the application ID and secret. The secret is valid for 1 year, after which you'll need to generate a new secret and update any scripts with the new secret. 
 
     ```azurecli
     az ad sp create-for-rbac --name "Arc server onboarding account"  --role "Azure Connected Machine Onboarding"  --scopes "/subscriptions/<subscription-id>"
     ```
 
 **Parameters:**
-- --name: Display name for the service principal. 
-- --role: Assigns the Azure Connected Machine Onboarding role. 
-- --scopes: Scope for the role assignment (subscription level in this case).
-- Replace subscription-id with your subscription ID.
+  --name: Display name for the service principal. 
+  --role: Assigns the Azure Connected Machine Onboarding role. 
+  --scopes: Scope for the role assignment (subscription level in this case).
+  Replace subscription-id with your subscription ID.
 
 **Output example:**
 ```azurecli
@@ -73,10 +73,10 @@ You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/c
   "tenant": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
-
-Take note of these values that are used with parameters passed to the azcmagent later in the section: **Install the agent and connect to Azure**:
-- The value from the **appId** property is used for the **--service-principal-id** parameter value.
-- The value from the **password** property is used for the **--service-principal-secret** parameter used to connect the agent.
+> [!NOTE]
+> Take note of these values that are used with parameters passed to the azcmagent later in the section: **Install the agent and connect to Azure**
+> - The value from the **appId** property is used for the **--service-principal-id** parameter value.
+> - The value from the **password** property is used for the **--service-principal-secret** parameter used to connect the agent.
 
 
 ### Azure portal
