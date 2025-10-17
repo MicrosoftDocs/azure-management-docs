@@ -3,8 +3,8 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 03/12/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 # Customer intent: "As a Kubernetes administrator, I want to configure system settings for my cluster nodes, so that I can optimize performance and ensure compatibility with NVME over TCP storage."
 ---
 

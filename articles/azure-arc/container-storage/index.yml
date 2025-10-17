@@ -7,10 +7,10 @@ metadata:
   title: Azure Container Storage enabled by Azure Arc
   description: A first-party storage system designed for Arc-connected Kubernetes clusters.
   ms.topic: landing-page
-  author: asergaz
+  author: sethmanheim
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
-  ms.author: sergaz 
+  ms.author: sethm
   ms.date: 03/12/2025
 
 landingContent:

@@ -1,8 +1,8 @@
 ---
 title: What is Azure Container Storage enabled by Azure Arc?
 description: Learn about Azure Container Storage enabled by Azure Arc, a first-party storage system designed for Arc-connected Kubernetes clusters.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: overview
 ms.date: 09/27/2025
 

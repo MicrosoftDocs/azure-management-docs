@@ -1,8 +1,8 @@
 ---
 title: Configure Cloud Mirror subvolumes (preview)
 description: Configure Cloud Mirror subvolumes for Azure Container Storage enabled by Azure Arc.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: how-to
 ms.date: 09/24/2025
 
@@ -65,7 +65,7 @@ To create a subvolume for Mirror, using extension identity to connect to your st
       authentication:
         authType: MANAGED_IDENTITY
       blobAccount:
-        accountendpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
+        accountEndpoint: "https://<STORAGE ACCOUNT NAME>.blob.core.windows.net/"
         containerName: <your-blob-storage-account-container-name>
         indexTagsMode: NoIndexTags
       blobFiltering:
@@ -105,49 +105,47 @@ To configure a generic single pod (Kubernetes native application) against the PV
     apiVersion: apps/v1
     kind: Deployment
     metadata:
-      ### This must be unique for each deployment you choose to create. ###
-      name: cloudmirrorsubvol-deployment
+      name: cloudmirrorsubvol-deployment ### This must be unique for each deployment you choose to create.
     spec:
       replicas: 2
       selector:
-      matchLabels:
-        name: acsa-testclientdeployment
+        matchLabels:
+          name: acsa-testclientdeployment
       template:
-      metadata:
-        name: acsa-testclientdeployment
-        labels:
-        name: acsa-testclientdeployment
-      spec:
-        affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-            matchExpressions:
-            - key: app
-            operator: In
-            values:
-            - acsa-testclientdeployment
-          topologyKey: kubernetes.io/hostname
-        ### Specify the container in which to launch the busy box ###
-        containers:
-        ### This name can be anything; default name shared here ###
-        - name: mirror-deployment-container
-          image: mcr.microsoft.com/azure-cli:2.57.0@sha256:c7c8a97f2dec87539983f9ded34cd40397986dcbed23ddbb5964a18edae9cd09
-          command:
-          - "/bin/sh"
-          - "-c"
-          - "while true; do ls /data/mirrorSubDir &>/dev/null || break; sleep 1; done"
-          volumeMounts:
-          ### This name must match the volumes.name attribute below ###
-          - name: acsa-volume
-            ### This mountPath is where the PVC is attached to the pod's filesystem ###
-            mountPath: "/data"
-        volumes:
-        ### User-defined 'name' that's used to link the volumeMounts ###
-        - name: acsa-volume
-          persistentVolumeClaim:
-          ### This claimName must refer to your PVC metadata.name (line 5 in cloudMirrorPVC.yaml) ###
-          claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
+        metadata:
+          name: acsa-testclientdeployment
+          labels:
+            name: acsa-testclientdeployment
+        spec:
+          affinity:
+            podAntiAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - acsa-testclientdeployment
+                topologyKey: kubernetes.io/hostname
+          containers:
+            ### Specify the container in which to launch the busy box. ###
+            - name: mirror-deployment-container
+              image: mcr.microsoft.com/azure-cli:2.57.0@sha256:c7c8a97f2dec87539983f9ded34cd40397986dcbed23ddbb5964a18edae9cd09
+              command:
+                - "/bin/sh"
+                - "-c"
+                - "while true; do ls /data/mirrorSubDir &>/dev/null || break; sleep 1; done"
+              volumeMounts:
+                ### This name must match the volumes.name attribute below ###
+                - name: acsa-volume
+                  ### This mountPath is where the PVC is attached to the pod's filesystem ###
+                  mountPath: "/data"
+          volumes:
+             ### User-defined 'name' that's used to link the volumeMounts. This name must match volumeMounts.name as previously specified. ###
+            - name: acsa-volume
+              persistentVolumeClaim:
+                ### This claimName must refer to your PVC metadata.name (Line 5)
+                claimName: <your-pvc-metadata-name-from-line-5-of-pvc-yaml>
     ```
 
     [!INCLUDE [lowercase-note](includes/lowercase-note.md)]

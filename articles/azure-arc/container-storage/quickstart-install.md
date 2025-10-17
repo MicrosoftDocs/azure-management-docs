@@ -1,8 +1,8 @@
 ---
 title: Install Container Storage on a single-node Ubuntu cluster
 description: Learn how to quickly install Container Storage on a single-node Ubuntu cluster.
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ms.topic: quickstart
 ms.date: 03/12/2025
 

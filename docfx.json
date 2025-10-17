@@ -197,7 +197,9 @@
         "articles/lighthouse/**/*.md": "rayoflores",
         "articles/lighthouse/**/*.yml": "rayoflores",
         "articles/quotas/**/*.md": "akashdubey",
-        "articles/quotas/**/*.yml": "akashdubey"
+        "articles/quotas/**/*.yml": "akashdubey",
+        "articles/azure-arc/container-storage/**/*.md": "lizross",
+        "articles/azure-arc/container-storage/**/*.yml": "lizross"
       },
       "ms.reviewer": {
         "articles/azure-arc/*.md": "jenhayes",
@@ -281,7 +283,9 @@
         "articles/container-registry/**/*.md": "Azure Container Registry",
         "articles/lighthouse/**/*.md": "Azure Lighthouse",
         "articles/quotas/**/*.md": "Azure Quotas",
-        "articles/quotas/**/*.yml": "Azure Quotas"
+        "articles/quotas/**/*.yml": "Azure Quotas",
+        "articles/azure-arc/container-storage/**/*.md": "Azure Container Storage enabled by Azure Arc",
+        "articles/azure-arc/container-storage/**/*.yml": "Azure Container Storage enabled by Azure Arc"
       }
     },
     "overwrite": [],

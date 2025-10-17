@@ -3,25 +3,25 @@ ms.service: azure-arc
 ms.subservice: azure-arc-container-storage
 ms.topic: include
 ms.date: 09/26/2025
-author: asergaz
-ms.author: sergaz
+author: sethmanheim
+ms.author: sethm
 ---
      
 ```yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-### Create a name for your PVC ###
-name: <create-persistent-volume-claim-name-here>
-### Use a namespace that matched your intended consuming pod, or "default" ###
-namespace: <intended-consuming-pod-or-default-here>
+  ### Create a name for your PVC ###
+  name: <create-persistent-volume-claim-name-here>
+  ### Use a namespace that matched your intended consuming pod, or "default" ###
+  namespace: <intended-consuming-pod-or-default-here>
 spec:
-accessModes:
-   - ReadWriteMany
-resources:
-   requests:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
       storage: 2Gi
-storageClassName: cloud-backed-sc
+  storageClassName: cloud-backed-sc
 ```
 
 [!INCLUDE [lowercase-note](lowercase-note.md)]
