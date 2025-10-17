@@ -13,7 +13,7 @@ ms.custom:
 
 You can enable Azure Arc-enabled servers for multiple Windows or Linux machines in your environment with several flexible options depending on your requirements. Using the template script we provide, you can automate every step of the installation, including establishing the connection to Azure Arc. However, you are required to execute this script manually with an account that has elevated permissions on the target machine and in Azure.
 
-One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.** You can create the service principal with Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
+One method to connect the machines to Azure Arc-enabled servers is to use a Microsoft Entra [service principal](/azure/active-directory/develop/app-objects-and-service-principals). This service principal method can be used instead of your privileged identity to [interactively connect the machine](onboard-portal.md). This service principal is a special limited management identity that has only the minimum permission necessary to connect machines to Azure using the `azcmagent` command. This method is safer than using a higher privileged account like a Tenant Administrator and follows our access control security best practices. **The service principal is used only during onboarding; it is not used for any other purpose.** You can create the service principal with Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
 
 If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
@@ -37,14 +37,14 @@ Before you start connecting your machines, review the following requirements:
 
 ## Create a service principal for onboarding at scale
 
-You can create the service principal with Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
+You can create the service principal with Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)), PowerShell or in the Azure portal.
 
 > [!NOTE]
 > To create a service principal, your Microsoft Entra tenant needs to allow users to register applications. If it doesn't, your account must be a member of the **Application Administrator** or **Cloud Application Administrator** administrative role. See [Delegate app registration permissions in Microsoft Entra ID](/azure/active-directory/roles/delegate-app-roles) for more information about tenant-level requirements. To assign Arc-enabled server roles, your account must be a member of the **Owner** or **User Access Administrator** role in the subscription that you want to use for onboarding.
 
 ### Azure CLI
 
-You can use Azure CLI ([Win](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to create a service principal with the [az ad sp create-for-rbac](/cli/azure/ad) command.
+You can use Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to create a service principal with the [az ad sp create-for-rbac](/cli/azure/ad) command.
 
 1. Log in to Azure.
 
