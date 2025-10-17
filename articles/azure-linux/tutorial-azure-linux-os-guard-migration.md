@@ -7,6 +7,7 @@ ms.service: microsoft-linux
 ms.custom: devx-track-azurecli, linux-related-content, innovation-engine
 ms.topic: tutorial
 ms.date: 09/24/2025
+zone_pivot_groups: tutorial-azure-linux-os-guard-migration
 # Customer intent: As a cloud administrator, I want to migrate existing AKS node pools to Azure Linux with OS Guard, so that I can take advantage of advanced security features and ensure optimal performance for my containerized applications.
 ---
 
@@ -22,10 +23,12 @@ In this tutorial, part three of five, you migrate your existing nodes to Azure L
 
 If you don't have any existing nodes to migrate, skip to the [next tutorial](./tutorial-azure-linux-os-guard-telemetry-monitor.md). In later tutorials, you learn how to enable telemetry and monitoring in your clusters and upgrade Azure Linux with OS Guard nodes.
 
+:::zone pivot="remove-existing-add-new"
+
 ## Considerations and limitations
-    
+
 Before you begin, review the following considerations and limitations for Azure Linux with OS Guard (preview):
-    
+
 - Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
 - All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
 - Azure CLI and ARM templates are the only supported deployment methods for Azure Linux with OS Guard on AKS in preview. PowerShell and Terraform aren't supported.
@@ -42,7 +45,7 @@ Before you begin, review the following considerations and limitations for Azure 
 - You need the latest version of Azure CLI. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
 ### Install the aks-preview Azure CLI extension
-    
+
 [!INCLUDE [preview features callout](~/reusable-content/ce-skilling/azure/includes/aks/includes/preview/preview-callout.md)]
 
 - Install the `aks-preview` extension using the [`az extension add`](/cli/azure/extension#az-extension-add) command.
@@ -50,31 +53,31 @@ Before you begin, review the following considerations and limitations for Azure 
     ```azurecli-interactive
     az extension add --name aks-preview
     ```
-    
+
 - Update to the latest version of the extension using the [`az extension update`](/cli/azure/extension#az-extension-update) command.
-    
+
     ```azurecli-interactive
     az extension update --name aks-preview
     ```
 
 ### Register the Azure Linux OS Guard Preview feature flag
-    
+
 1. Register the `AzureLinuxOSGuardPreview` feature flag using the [`az feature register`](/cli/azure/feature#az-feature-register) command.
-    
+
     ```azurecli-interactive
     az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
     ```
-    
+
     It takes a few minutes for the status to show _Registered_.
-    
+
 1. Verify the registration status using the [`az feature show`](/cli/azure/feature#az-feature-show) command.
-    
+
     ```azurecli-interactive
     az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
     ```
-    
+
 1. When the status reflects _Registered_, refresh the registration of the `Microsoft.ContainerService` resource provider using the [`az provider register`](/cli/azure/provider#az-provider-register) command.
-    
+
     ```azurecli-interactive
     az provider register --namespace "Microsoft.ContainerService"
     ```
@@ -83,52 +86,52 @@ Before you begin, review the following considerations and limitations for Azure 
 
 1. Add a new Azure Linux with OS Guard node pool using the [`az aks nodepool add`](/cli/azure/aks/nodepool#az-aks-nodepool-add) command. This command adds a new node pool to your cluster with the `--mode System` flag, which makes it a system node pool. System node pools are required for Azure Linux with OS Guard clusters.
 
-```azurecli-interactive
-# Declare environment variables with a random suffix for uniqueness
-export RANDOM_SUFFIX=$(openssl rand -hex 3)
-export NODE_POOL_NAME="np$RANDOM_SUFFIX"
-az aks nodepool add --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --mode System --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm
-```
+    ```azurecli-interactive
+    # Declare environment variables with a random suffix for uniqueness
+    export RANDOM_SUFFIX=$(openssl rand -hex 3)
+    export NODE_POOL_NAME="np$RANDOM_SUFFIX"
+    az aks nodepool add --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --mode System --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm
+    ```
 
-Example output:
+    Example output:
 
-<!-- expected_similarity=0.3 -->
+    <!-- expected_similarity=0.3 -->
 
-```JSON
-{
-  "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/systempool",
-  "name": "systempool",
-  "provisioningState": "Succeeded"
-}
-```
+    ```JSON
+    {
+      "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/systempool",
+      "name": "systempool",
+      "provisioningState": "Succeeded"
+    }
+    ```
 
-2. Remove your existing nodes using the [`az aks nodepool delete`](/cli/azure/aks/nodepool#az-aks-nodepool-delete) command.
+1. Remove your existing nodes using the [`az aks nodepool delete`](/cli/azure/aks/nodepool#az-aks-nodepool-delete) command.
 
-```azurecli-interactive
-az aks nodepool delete --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME 
-```
+    ```azurecli-interactive
+    az aks nodepool delete --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME 
+    ```
 
-## In-place OS SKU migration
+:::zone-end
 
-You can migrate your existing Ubuntu or Azure Linux node pools to Azure Linux with OS Guard by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools; instead, your existing node pools will automatically reimage.
+:::zone pivot="in-place"
 
-### Limitations for in-place OS SKU migration
+## Limitations for in-place OS SKU migration
 
 There are several settings that can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
 
 - The OS SKU migration feature isn't available through PowerShell or the Azure portal.
 - The OS SKU migration feature doesn't support renaming existing node pools.
 - Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
-- Trusted launch is required by default for Azure Linux with OS Guard, customers need to have trusted launch enabled to be able to migrate to Azure Linux with OS Guard. Since Trusted Launch cannot be enabled on existing node pools, this may require new node pool creation. 
-- FIPS is required when enabling Azure Linux with OS guard. If you are not currently using a FIPS image, you can include --enable-fips in your node pool update command.
-- Customers using Gen 1 only vm sizes will not be able to migrate to Azure Linux with OS Guard since there is no supported Gen 1 image. They will need to create new node pools with a vm size that supports gen 2.
+- Trusted Launch is required by default for Azure Linux with OS Guard. You need to have Trusted Launch enabled to migrate to Azure Linux with OS Guard. This might require creating new node pools.
+- FIPS is required when enabling Azure Linux with OS Guard. If you're not currently using a FIPS image, you can include `--enable-fips` in your node pool update command.
+- [Gen 1 virtual machines (VMs)](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
 - An Ubuntu OS SKU with `UseGPUDedicatedVHD` enabled can't perform an OS SKU migration.
-- Node pools with CVM enabled can't perform an OS SKU migration.
-- Node pools with Pod Sandboxing enabled can't perform an OS SKU migration.
+- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
+- [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
 - Windows OS SKU migration isn't supported.
 - OS SKU migration from Mariner to Azure Linux is supported, but rolling back to Mariner isn't supported.
 
-### Prerequisites
+## Prerequisites for in-place OS SKU migration
 
 - An existing AKS cluster with at least one Azure Linux node pool.
 - We recommend that you ensure your workloads configure and run successfully on the Azure Linux with OS Guard container host before attempting to use the OS SKU migration feature by [deploying an Azure Linux with OS Guard cluster](./quickstart-os-guard-azure-cli.md) in dev/prod and verifying your service remains healthy.
@@ -136,28 +139,32 @@ There are several settings that can block the OS SKU migration request. To ensur
 - Ensure that your pods have enough [Pod Disruption Budget](/azure/aks/operator-best-practices-scheduler#plan-for-availability-using-pod-disruption-budgets) to allow AKS to move pods between VMs during the upgrade.
 - You need Azure CLI version [2.61.0](/cli/azure/release-notes-azure-cli#may-21-2024) or higher. Use the [`az version`](/cli/azure/reference-index?#az-version) command to find the version. To upgrade to the latest version, use the [`az upgrade`](/cli/azure/reference-index?#az-upgrade) command.
 
+## Perform an in-place OS SKU migration
+
+You can migrate your existing Ubuntu or Azure Linux node pools to Azure Linux with OS Guard by changing the OS SKU of the node pool, which rolls the cluster through the standard node image upgrade process. This new feature doesn't require the creation of new node pools; instead, your existing node pools automatically reimage.
+
 ### [Azure CLI](#tab/azure-cli)
 
 #### Migrate the OS SKU of your Azure Linux Container Host node pool to Azure Linux with OS Guard
 
 - Migrate the OS SKU of your node pool to Azure Linux with OS Guard using the [`az aks nodepool update`](/cli/azure/aks/nodepool#az-aks-nodepool-update) command. This command triggers a reimage of your node pool, updating the OS SKU of your node pool from Azure Linux to Azure Linux with OS Guard. The OS SKU change triggers an immediate upgrade operation, which takes several minutes to complete.
 
-```azurecli-interactive
-az aks nodepool update --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm
-```
+    ```azurecli-interactive
+    az aks nodepool update --resource-group $RESOURCE_GROUP --cluster-name $CLUSTER_NAME --name $NODE_POOL_NAME --os-sku AzureLinuxOSGuard --node-osdisk-type Managed --enable-fips-image --enable-secure-boot --enable-vtpm
+    ```
 
-Example output:
+    Example output:
 
-<!-- expected_similarity=0.3 -->
+    <!-- expected_similarity=0.3 -->
 
-```JSON
-{
-  "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/nodepool1",
-  "name": "nodepool1",
-  "osSku": "AzureLinuxOSGuard",
-  "provisioningState": "Succeeded"
-}
-```
+    ```JSON
+    {
+      "id": "/subscriptions/xxxxx/resourceGroups/myResourceGroupxxx/providers/Microsoft.ContainerService/managedClusters/myAKSCluster/nodePools/nodepool1",
+      "name": "nodepool1",
+      "osSku": "AzureLinuxOSGuard",
+      "provisioningState": "Succeeded"
+    }
+    ```
 
 > [!NOTE]
 > If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#rollback).
@@ -288,7 +295,7 @@ Example output:
 
 ---
 
-### Verify the OS SKU migration
+## Verify the OS SKU migration
 
 Once the migration is complete on your test clusters, you should verify the following to ensure a successful migration:
 
@@ -299,7 +306,7 @@ Once the migration is complete on your test clusters, you should verify the foll
 > [!TIP]
 > We recommend monitoring the health of your service for a couple weeks before migrating your production clusters.
 
-### Rollback
+## Roll back to your previous OS SKU
 
 If you experience issues during the OS SKU migration, you can roll back to your previous OS SKU. To do this, you need to change the OS SKU field in your template and resubmit the deployment, which triggers another upgrade operation and reimages the node pool to its previous OS SKU.
 
@@ -307,6 +314,8 @@ If you experience issues during the OS SKU migration, you can roll back to your 
  > OS SKU migration doesn't support rolling back to OS SKU Mariner.
 
 - Roll back to your previous OS SKU using the [`az aks nodepool update`](/cli/azure/aks/nodepool#az-aks-nodepool-update) command. This command updates the OS SKU for your node pool from Azure Linux with OS Guard back to Azure Linux.
+
+:::zone-end
 
 ## Next steps
 
