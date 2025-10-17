@@ -98,11 +98,24 @@ The Azure Connected Machine agent for Windows and Linux can be upgraded to the l
 
 ### Automatic agent upgrade (preview)
 
-Starting with version 1.48 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview and is only available in the Azure public cloud.
+Starting with version 1.48 of the Azure Connected Machine agent, you can configure the agent to automatically upgrade itself to the latest version. This feature is currently in public preview and is only available in the Azure public cloud. To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true`. Once you do so, your agent will be upgraded within one version of the latest release, with batches rolled out in order to maintain stability across regions. You can configure automatic agent upgrades with Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) or PowerShell.
 
-To enable automatic upgrades, set the `enableAutomaticUpgrade` property to `true`. Once you do so, your agents will be upgraded within one version of the latest release, with batches rolled out in order to maintain stability across regions.
+The following example shows how to configure automatic agent upgrades with Azure CLI.
 
-The following example shows how to configure automatic agent upgrades by using Azure PowerShell.
+```azurecli
+# Set your target subscription
+az account set --subscription "YOUR SUBSCRIPTION"
+
+# Enable automatic upgrades on a single Arc-enabled server
+az rest 
+--method PATCH 
+--url "https://management.azure.com/subscriptions/<SUB_ID>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.HybridCompute/machines/<MACHINE_NAME>?api-version=2024-05-20-preview" 
+--headers "Content-Type=application/json" 
+--body '{"properties":{"agentUpgrade":{"enableAutomaticUpgrade":true}}}'
+```
+
+
+The following example shows how to configure automatic agent upgrades by using PowerShell.
 
 ```azurepowershell
 Set-AzContext -Subscription "YOUR SUBSCRIPTION"
