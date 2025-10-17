@@ -167,7 +167,7 @@ You can migrate your existing Ubuntu or Azure Linux node pools to Azure Linux wi
     ```
 
 > [!NOTE]
-> If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#rollback).
+> If you experience issues during the OS SKU migration, you can [roll back to your previous OS SKU](#roll-back-to-your-previous-os-sku).
 
 ### [ARM template](#tab/arm-template)
 
