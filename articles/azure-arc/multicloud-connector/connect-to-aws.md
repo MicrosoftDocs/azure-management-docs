@@ -57,7 +57,7 @@ If this is the first time you're using the service, you need to [register these 
 To add your AWS public cloud to Azure, use the Azure portal to enter details and generate a CloudFormation template.
 
 1. In the Azure portal, navigate to **Azure Arc**.
-1. Under **Management**, select **Multicloud connectors (preview)**.
+1. Under **Management**, select **Multicloud connectors**.
 1. In the **Connectors** pane, select **Create**.
 1. On the **Basics** page:
 
