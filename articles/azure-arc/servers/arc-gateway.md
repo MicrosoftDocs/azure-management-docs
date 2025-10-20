@@ -31,7 +31,7 @@ When the gateway is in place, traffic flows via **Azure Arc agents** > **Azure A
 Azure Arc gateway has the following current limitations. Consider these factors when you plan your configuration:
 
 - Proxy bypass isn't supported when Azure Arc gateway is in use. Even if you attempt to use the feature by running `azcmagent config set proxy.bypass`, traffic can't bypass the proxy.
-- Each Azure subscription has a limit of five (5) Azure Arc gateway resources.
+- Each Azure subscription has a limit of five Azure Arc gateway resources.
 - Azure Arc gateway is used only for connectivity in the Azure public cloud platform.
 - Azure Arc gateway isn't recommended for use in environments where Transport Layer Security (TLS) termination or inspection is required. If your environment requires TLS termination or inspection, we recommend that you skip TLS inspection for your Azure Arc gateway endpoint (`<Your URL prefix>.gw.arc.azure.com`). For more information, see [Azure Arc gateway and TLS inspection](#azure-arc-gateway-and-tls-inspection).
 
@@ -72,7 +72,7 @@ You can create an Azure Arc gateway resource by using the Azure portal, the Azur
 
 ### [CLI](#tab/cli)
 
-1. Add the Azure Arc gateway extension to your Azure CLI:
+1. Add the Azure Arc gateway extension to the Azure CLI:
 
     `az extension add -n arcgateway`
 
@@ -124,7 +124,7 @@ After you successfully create the resource, the success response includes the Az
     Follow the instructions at [Quickstart: Connect hybrid machines with Azure Arc-enabled servers](quick-enable-hybrid-vm.md) to create a script that automates the downloading and installation of the Azure Connected Machine agent and establishes the connection with Azure Arc.
 
     > [!IMPORTANT]
-    > When you generate the onboarding script, ensure that **Public Endpoint** is selected in the **Connectivity method** section. Also make sure that your Azure Arc gateway resource is selected in the **Gateway Resource** dropdown.
+    > When you generate the onboarding script, ensure that **Public Endpoint** is selected in the **Connectivity method** section. Also make sure that your Azure Arc gateway resource is selected in the **Gateway Resource** dropdown list.
 
 1. Run the installation script to onboard your servers to Azure Arc.
 
@@ -209,7 +209,7 @@ This operation applies to Azure Arc gateway on Azure Arc-enabled servers only, n
 
 1. Detach the Azure Arc gateway resource from the machine:
 
-  ### [Portal](#tab/portal)
+   ### [Portal](#tab/portal)
 
    1. In the Azure portal, go to **Azure Arc - Azure Arc gateway**.
 
@@ -235,7 +235,7 @@ This operation applies to Azure Arc gateway on Azure Arc-enabled servers only, n
         --gateway-resource-id <gateway_resource_id>
    ```
 
-  If you're running this Azure CLI command within Windows PowerShell, set `--gateway-resource-id` to null.
+   If you're running this Azure CLI command within Windows PowerShell, set `--gateway-resource-id` to null.
 
    ### [PowerShell](#tab/powershell)
 
