@@ -47,7 +47,7 @@ Open Azure Cloud Shell or your local Azure CLI to run the commands in this artic
    Replace the placeholder "subscription name" with your subscription and run the following command:
 
    ```azurecli
-   $sub = <subscription name> 
+   $sub = "<subscription name>" 
    az account set --subscription  $sub
    ```
 
