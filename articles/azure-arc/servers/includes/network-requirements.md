@@ -36,13 +36,13 @@ If you filter traffic to the `AzureArcInfrastructure` service tag, you must allo
 For more information, see [Virtual network service tags](/azure/virtual-network/service-tags-overview).
 
 > [!IMPORTANT]
-> To filter traffic by IP addresses in Azure Government or Microsoft Azure operated by 21Vianet, be sure to add the IP addresses from the `AzureArcInfrastructure` service tag for the Azure public cloud, in addition to using the `AzureArcInfrastructure` service tag for your cloud. After October 28, 2025, adding the `AzureArcInfrastructure` service tag for Azure public cloud will be required, and the service tags for Azure Government and Microsoft Azure operated by 21Vianet will no longer be supported.
+> To filter traffic by IP addresses in Azure Government or Azure operated by 21Vianet, be sure to add the IP addresses from the `AzureArcInfrastructure` service tag for the Azure public cloud, in addition to using the `AzureArcInfrastructure` service tag for your cloud. After October 28, 2025, adding the `AzureArcInfrastructure` service tag for Azure public cloud will be required, and the service tags for Azure Government and Azure operated by 21Vianet will no longer be supported.
 
 ### URLs
 
 This table lists the URLs that must be available to install and use the Connected Machine agent.
 
-#### [Azure Cloud](#tab/azure-cloud)
+#### [Azure cloud platform](#tab/azure-cloud)
 
 > [!NOTE]
 > When you configure the Connected Machine agent to communicate with Azure through a private link, some endpoints must still be accessed through the internet. The **Private link capable** column in the following table shows the endpoints that you can configure with a private endpoint. If the column shows *Public* for an endpoint, you must still allow access to that endpoint through your organization's firewall and/or proxy server for the agent to function. Network traffic is routed through private endpoints if a private link scope is assigned.
@@ -103,7 +103,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 <sup>2</sup> For details about what information is collected and sent, review [Data collection and reporting for SQL Server enabled by Azure Arc](/sql/sql-server/azure-arc/data-collection).
 
 
-#### [Microsoft Azure operated by 21Vianet](#tab/azure-china)
+#### [Azure operated by 21Vianet](#tab/azure-china)
 
 | Agent resource | Description | When required|
 |---------|---------|--------|
