@@ -34,7 +34,7 @@ The following table outlines key advantages of using Azure Linux with OS Guard:
 | Advantage | Description |
 |-------------|--------------|
 | **Strong runtime integrity guarantee** | Kernel-enforced immutability and IPE prevent execution of tampered or untrusted code. |
-| **Reduced attack surface** | A read-only userland and SELinux policy enforcement limit opportunities for an attacker to install persistent backdoors or alter system binaries. |
+| **Reduced attack surface** | A read-only /usr directory, reduced package count, and SELinux policies limit opportunities for an attacker to install persistent backdoors or alter system binaries. |
 | **Supply-chain trust** | Builds on Azure Linux’s signed images and supply-chain processes, delivering clear provenance for system components. |
 | **Integration with Azure security features** | Native support for [Trusted Launch](/azure/aks/use-trusted-launch) and Secure Boot provides measured boot protections and attestation. |
 | **Open-source transparency** | Many of the underlying technologies (dm-verity, SELinux, IPE) are upstream or open source, and Microsoft has tooling and contributions to support these features. |
