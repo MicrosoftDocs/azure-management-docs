@@ -12,7 +12,7 @@ If you use Azure Arc-enabled servers only for Extended Security Updates for eith
 
 You can enable the following subset of endpoints.
 
-#### [Azure Cloud](#tab/azure-cloud)
+#### [Azure cloud platform](#tab/azure-cloud)
 
 | Agent resource | Description | When required| Endpoint used with private link |
 |---------|---------|--------|---------|
@@ -43,7 +43,7 @@ You can enable the following subset of endpoints.
 
 <sup>1</sup> Access to this URL is also needed when you perform updates automatically.
 
-#### [Microsoft Azure operated by 21Vianet](#tab/azure-china)
+#### [Azure operated by 21Vianet](#tab/azure-china)
 
 > [!NOTE]
 > Azure Arc-enabled servers used for Extended Security Updates for Windows Server 2012 aren't available in Microsoft Azure operated by 21Vianet regions at this time.
