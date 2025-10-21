@@ -21,10 +21,10 @@ The following table outlines key features of Azure Linux with OS Guard:
 | Feature | Description |
 |----------|--------------|
 | **Immutability** | The /usr directory is mounted as a read-only volume protected by dm-verity. At runtime, the kernel validates a signed root hash to detect and block tampering. |
-| **Code integrity** | OS Guard integrates the [Integrity Policy Enforcement (IPE) Linux Security Module](https://docs.kernel.org/next/admin-guide/LSM/ipe.html) to ensure that only binaries from trusted, signed volumes are allowed to execute. This helps prevent tampered or untrusted code from executing, including within container images. |
-| **Mandatory access control** | SELinux operates in permissive mode to limit which processes can access sensitive resources in the system. |
-| **Measured boot and Trusted Launch** | OS Guard supports measured boot and integrates with [Trusted Launch](/azure/aks/use-trusted-launch) to provide cryptographic measurements of boot components stored in a virtual TPM (vTPM). |
-| **Verified container layers** | Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering. |
+| **Code integrity** | OS Guard integrates the [Integrity Policy Enforcement (IPE) Linux Security Module](https://docs.kernel.org/next/admin-guide/LSM/ipe.html) to ensure that only binaries from trusted, signed volumes are allowed to execute. This helps prevent tampered or untrusted code from executing, including within container images. *Note: IPE is running in audit mode during Public Preview.* |
+| **Mandatory access control** | OS Guard integrates SELinux to limit which processes can access sensitive resources in the system. *Note: SELinux is operating in permissive mode during Public Preview.* |
+| **Measured boot and Trusted Launch** | OS Guard supports measured boot and integrates with [Trusted Launch](/azure/aks/use-trusted-launch) to provide cryptographic measurements of boot components stored in a virtual TPM (vTPM). This is achieved using a Unified Kernel Image (UKI), which bundles the kernel, initramfs, and kernel command line into a single signed artifact. During boot, the UKI is measured and recorded in the vTPM, ensuring integrity from the earliest stage. |
+| **Verified container layers** | Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering. IPE also extends within container images, ensuring that only binaries matching a trusted signature can be executed, even if they exist in a verified layer. *Note: IPE is running in audit mode during Public Preview.* |
 | **Sovereign Supply Chain Security** | OS Guard inherits Azure Linux’s secure build pipelines, signed Unified Kernel Images (UKIs), and Software Bill of Materials (SBOMs). |
 
 ## Key advantages
@@ -61,7 +61,7 @@ Azure Linux with OS Guard is built on Azure Linux and benefits from the same sup
 | Container host option | Azure Linux Container Host | Azure Linux with OS Guard |
 |--------------------------|-------------------------------|-------------------------------|
 | **Security benefits** | Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the extra security benefits mentioned above. |
-| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from AWS Bottlerocket, Google CoS, or other container optimized distributions. |
+| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from other container optimized distributions. |
 | **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers who are born in the cloud or who are looking to modernize. |
 | **Security controls** | Option to enable AppArmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
 
