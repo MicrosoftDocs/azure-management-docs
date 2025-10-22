@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/16/2025
+ms.date: 10/22/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -23,10 +23,9 @@ In this quickstart, you deploy Edge RAG on Azure Kubernetes Service (AKS) withou
 Before you begin, make sure you have:
 
 - An active Azure subscription. If you don't have a service subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- Permissions to create and manage Azure Kubernetes Service (AKS) clusters and install extensions.
-- Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). See [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
+- Azure CLI, Helm, kubectl, and the extensions aksarc and Kubernetes-extension installed locally unless you plan to use [Azure Cloud Shell](/azure/cloud-shell/get-started/ephemeral?tabs=azurecli). If you're not using Azure Cloud Shell, see [Script to configure machine to manage Azure Arc-enabled Kubernetes cluster](configure-driver-machine.md).
 - Edge RAG registered as an application, and app roles and an assigned user created in Microsoft Entra ID. See [Configure authentication for Edge RAG](prepare-authentication.md).
-- Application (client) ID and the directory (tenant) ID. To get these values after registering Edge RAG, search for "app registration" in the [Azure portal](https://portal.azure.com/).
+- Application (client) ID and the directory (tenant) ID. To get these values after registering Edge RAG, search for "app registration" in the [Azure portal](https://portal.azure.com/) and select the Edge RAG registration.
 
 ## Open Azure Cloud Shell or Azure CLI
 
