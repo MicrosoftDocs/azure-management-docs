@@ -99,7 +99,7 @@ Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you 
 
 If you plan to use the [quickstart](quickstart-edge-rag.md) or want to deploy Edge RAG by using the command line, get the application ID for the registration you created and the tenant ID.
 
-1. In the Azure portal, search for **app registration**.
+1. In the [Azure portal](https://portal.azure.com/), search for **app registration**.
 1. Select the Edge RAG registration you created.
 1. Copy the **Application (client) ID** and **Directory (tenant) ID**.
 1. Paste the values to an app like Windows Notepad to use later.
