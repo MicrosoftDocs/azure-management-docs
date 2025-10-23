@@ -63,8 +63,8 @@ items:
   items:
   - name: Troubleshoot common issues
     href: troubleshooting.md
-  - name: Blobs not uploading when using Managed Identity
-    href: blobs-not-uploading.md
+  - name: Blobs not uploaded or mirrored when using Managed Identity
+    href: blobs-not-uploaded.md
 - name: Resources
   items:
   - name: Release notes

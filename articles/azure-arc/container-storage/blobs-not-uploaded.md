@@ -23,7 +23,7 @@ To resolve issues with blob uploads or mirroring when using Managed Identity, fo
 
 ### Step 1: check the logs
 
-Using the name of the edge volume:
+Use the name of the edge volume:
 
 ```bash
 $ kubectl get edgevolumes.arccontainerstorage.azure.net 
