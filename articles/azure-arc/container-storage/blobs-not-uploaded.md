@@ -1,5 +1,5 @@
 ---
-title: Blobs not uploading or mirroring when using Managed Identity
+title: Blobs not uploaded or mirrored when using Managed Identity
 description: Learn how to troubleshoot an issue in which blobs aren't uploaded or mirrored when using Managed Identity.
 author: sethmanheim
 ms.author: sethm
@@ -9,7 +9,7 @@ ms.reviewer: stevenpepin
 ms.lastreviewed: 10/23/2025
 ---
 
-# Blobs not uploading or mirroring when using Managed Identity
+# Blobs not uploaded or mirrored when using Managed Identity
 
 When using Managed Identity for authentication, you might encounter issues where blobs fail to upload or mirror as expected. This article helps you identify and resolve common causes of blob upload and mirroring failures when using Managed Identity authentication.
 
