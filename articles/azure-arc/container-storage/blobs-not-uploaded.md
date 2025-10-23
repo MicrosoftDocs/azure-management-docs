@@ -13,6 +13,8 @@ ms.lastreviewed: 10/23/2025
 
 When using Managed Identity for authentication, you might encounter issues where blobs fail to upload or mirror as expected. This article helps you identify and resolve common causes of blob upload and mirroring failures when using Managed Identity authentication.
 
+Microsoft is aware of this issue and is actively working on a fix. In the meantime, please follow the mitigation steps in this article.
+
 ## Symptoms
 
 When you enable **MANAGED_IDENTITY** for an Azure Container Storage sub-volume, an MSI adapter sidecar is created within the **ACSA** pod. This sidecar service can sometimes become unhealthy, which stops the ACSA pod from uploading or downloading any data to Azure.
