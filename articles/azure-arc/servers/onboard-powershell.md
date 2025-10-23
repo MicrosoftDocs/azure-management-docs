@@ -1,6 +1,6 @@
 ---
 title: Connect hybrid machines to Azure by using PowerShell
-description: In this article, you'll learn how to use PowerShell to connect a machine to Azure through Azure Arc-enabled servers.
+description: In this article, you learn how to use PowerShell to connect a machine to Azure through Azure Arc-enabled servers.
 ms.date: 12/04/2024
 ms.topic: how-to
 ms.custom: devx-track-azurepowershell
@@ -21,7 +21,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
 ## Prerequisites
 
-- Windows or Linux machine you want to connect to Azure Arc using Powershell. The `Az.ConnectedMachine` module supports managing both Windows and Linux machines.
+- Windows or Linux machine you want to connect to Azure Arc using PowerShell. The `Az.ConnectedMachine` module supports managing both Windows and Linux machines.
 
 - Administrator permissions on the machine to install and configure the agent. On Linux, by using the root account, and on Windows, you're a member of the Local Administrators group. 
 
@@ -61,7 +61,7 @@ If the agent fails to start after setup is finished, check the logs for detailed
 
 ## Install and connect using PowerShell remoting
 
-Complete the following steps to use Powershell remoting to install the agent on remote systems. 
+Complete the following steps to use PowerShell remoting to install the agent on remote systems. 
 
 > [!NOTE]
 > To configure Windows servers from an Azure Arc–enabled machine, enable PowerShell remoting on each target server by running the `Enable-PSRemoting` cmdlet.
