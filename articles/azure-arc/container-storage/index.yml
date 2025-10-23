@@ -60,11 +60,7 @@ landingContent:
     linkLists:
       - linkListType: whats-new
         links:
-          - text: FAQ and release notes
+          - text: FAQ
+            url: faq.yml
+          - text: Release notes
             url: release-notes.md
-      - linkListType: how-to-guide
-        links:
-          - text: Troubleshooting common issues
-            url: troubleshooting.md
-          - text: Support and feedback
-            url: support-feedback.md
