@@ -61,6 +61,6 @@ landingContent:
       - linkListType: whats-new
         links:
           - text: FAQ
-            url: faq.md
+            url: faq.yml
           - text: Release notes
             url: release-notes.md
