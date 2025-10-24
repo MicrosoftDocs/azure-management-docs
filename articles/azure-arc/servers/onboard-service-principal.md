@@ -59,10 +59,10 @@ You can use Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux
     ```
 
 **Parameters:**
-  --name: Display name for the service principal. 
-  --role: Assigns the Azure Connected Machine Onboarding role. 
-  --scopes: Scope for the role assignment (subscription level in this case).
-  Replace subscription-id with your subscription ID.
+-   --name: Display name for the service principal. 
+-   --role: Assigns the Azure Connected Machine Onboarding role. 
+-   --scopes: Scope for the role assignment (subscription level in this case).
+- Replace subscription-id with your subscription ID.
 
 **Output example:**
 ```azurecli
