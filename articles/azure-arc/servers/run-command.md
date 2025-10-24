@@ -15,8 +15,8 @@ Because you don't have to log into each VM individually, Run command lowers the 
 
 One key use case is using Run command to enhance your security posture. You can use Run command to remotely apply security patches, enforce compliance policies, or remediate vulnerabilities on your Arc-enabled servers. You can also automate common security tasks, such as rotating passwords, encrypting data, or auditing logs. Through Azure Arc, you can perform these tasks consistently across your hybrid, multicloud, and edge environments, helping reduce operational overhead and response time.
 
-> [!NOTE] 
-> Although there are some differences, the Run command on Azure Arc-enabled servers is similar to the [Run command functionality you can use on Azure VMs](/azure/virtual-machines/run-command-overview). As an example of the differences, the Run command on Azure Arc-enabled servers isn't currently available on the Portal.
+> [!NOTE]
+> Although there are some differences, the Run command on Azure Arc-enabled servers is similar to the [Run command functionality you can use on Azure VMs](/azure/virtual-machines/run-command-overview) - including the restrictions outlined. As an example of the differences, the Run command on Azure Arc-enabled servers isn't currently available on the Portal.
 
 ## How it works
 
