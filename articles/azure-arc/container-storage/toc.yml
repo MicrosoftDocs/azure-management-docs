@@ -59,6 +59,12 @@ items:
   items:
   - name: Create a Local Shared Edge Volume
     href: tutorial-create-local-shared-volume.md
+- name: Troubleshooting
+  items:
+  - name: Troubleshoot common issues
+    href: troubleshooting.md
+  - name: Blobs not uploaded or mirrored when using Managed Identity
+    href: blobs-not-uploaded.md
 - name: Resources
   items:
   - name: Release notes
@@ -67,7 +73,5 @@ items:
     href: faq.yml
   - name: Azure Arc Jumpstart scenarios
     href: jumpstart.md
-  - name: Troubleshooting
-    href: troubleshooting.md
   - name: Support and feedback
     href: support-feedback.md
