@@ -4,7 +4,7 @@ description: Learn how to navigate the workload orchestration portal to monitor,
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 09/05/2025
+ms.date: 10/27/2025
 ---
 
 # User guide for the workload orchestration portal
@@ -92,7 +92,7 @@ Steps:
 
     :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
-1. In the details page of the target, choose the solution in **Ready to deploy** state and click on **Deploy Solution**.
+1. In the details page of the target, choose the solution in **Published Completed** state and click on **Deploy Solution**.
 
     :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
 
@@ -104,11 +104,11 @@ Steps:
 
     :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
 
-1. To view the detailed status of your deployment, click on respective solution name.
+1. To view the detailed status of your deployment, click on **Status**.
 
     :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
 
-1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane. The steps currently in progress are highlighted in bold.
 
     :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
 

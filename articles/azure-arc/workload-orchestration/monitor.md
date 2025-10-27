@@ -4,7 +4,7 @@ description: Learn how to navigate the workload orchestration portal to monitor 
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 09/05/2025
+ms.date: 10/27/2025
 ms.custom:
   - build-2025
 # Customer intent: As a solutions architect, I want to monitor the status and capabilities of my deployed solutions in a centralized portal, so that I can ensure optimal performance and quickly address any deployment issues.
@@ -35,7 +35,7 @@ The Monitor tab provides two sub-tabs: **Solutions** and **Targets**. The Soluti
 
     :::image type="content" source="./media/monitor-group-by.png" alt-text="Screenshot of the Monitor tab showing how to group the solutions." lightbox="./media/monitor-group-by.png":::
 
-1. The Solutions tab includes **status tiles** on the top of the page that show the total number of solutions and the number of solutions in each state, which are *Configuration pending*, *Ready to deploy*, *Deployed (Update available)*, *Deployed (Updating)* *Deploying*, *Deployed*, *Deployment failure*, and *Previously deployed*. You can select any of the status tiles to filter the list of solutions by that status.
+1. The Solutions tab includes **status tiles** on the top of the page that show the total number of solutions and the number of solutions in each state, which are *Configuration pending*, *Publish Completed*, *Deployment Completed*, *Deployment Failed*, etc. You can select any of the status tiles to filter the list of solutions by that status.
 
      :::image type="content" source="./media/monitor-filter-by-status.png" alt-text="Screenshot of the Monitor tab showing how to filter the solutions by status." lightbox="./media/monitor-filter-by-status.png":::
 
@@ -43,9 +43,21 @@ The Monitor tab provides two sub-tabs: **Solutions** and **Targets**. The Soluti
 
     :::image type="content" source="./media/monitor-keyword.png" alt-text="Screenshot of the Monitor tab showing how to search by keyword." lightbox="./media/monitor-keyword.png":::
 
-1. You can apply filters to the list of solution. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by, for example *Name*. Then select  an **Operator**, for example, *Equals*, and enter the **Value** you want to filter by. The list of solutions will be filtered to show only those that match the selected column and value.
+1. You can apply filters to the list of solutions. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by, for example *Name*. Then select  an **Operator**, for example, *Equals*, and enter the **Value** you want to filter by. The list of solutions is filtered to show only those that match the selected column and value.
 
     :::image type="content" source="./media/monitor-apply-filters.png" alt-text="Screenshot of the Monitor tab showing how to apply filters." lightbox="./media/monitor-apply-filters.png":::
+
+1. Select the solution name to view all its instances and revisions deployed.
+
+    :::image type="content" source="./media/monitor-solution-instances.png" alt-text="Screenshot of the Monitor tab showing the instances and revisions of a solution." lightbox="./media/monitor-solution-instances.png":::
+
+1. Select a revision name under **Name** to view the details of a particular revision and list of final configurations.        
+
+    :::image type="content" source="./media/monitor-solution-revision.png" alt-text="Screenshot of the Monitor tab showing how to view the details of a particular revision." lightbox="./media/monitor-solution-revision.png":::
+
+1. You can also select **Deployment Status** to view all the operations performed for that revision.
+
+    :::image type="content" source="./media/monitor-solution-deployment-status.png" alt-text="Screenshot of the Monitor tab showing how to view the deployment status of a particular revision." lightbox="./media/monitor-solution-deployment-status.png":::
 
 ### View the details of a deployment failure
 
@@ -77,29 +89,13 @@ If the deployment of a solution fails, the status column shows **Deployment fail
 
     :::image type="content" source="./media/monitor-capabilities-2.png" alt-text="Screenshot of the new pane showing how to view the capabilities of each solution." lightbox="./media/monitor-capabilities-2.png":::
 
-### View the details of a solution
-
-You can view the detailed revision of a solution  if the solution state is either Deployed, ReadyToDeploy, or Stopped.
-
-1. Click on **Solution name** from the list view. 
-
-    :::image type="content" source="./media/monitor-revision.png" alt-text="Screenshot of the Monitor tab showing how to view the detailed revision of a solution." lightbox="./media/monitor-revision.png":::
-
-1. In the details view of the solution, click on the **Solution name** for the particular target to see the revision.
-
-    :::image type="content" source="./media/monitor-revision-2.png" alt-text="Screenshot of the Monitor tab showing how to choose a particular target to view the detailed solution." lightbox="./media/monitor-revision-2.png":::
-
-1. The new pane displays details of revision and list of final configurations.
-
-    :::image type="content" source="./media/monitor-revision-3.png" alt-text="Screenshot of the new pane showing how to view the detailed revision of a solution." lightbox="./media/monitor-revision-3.png":::
-
 ## Navigate the Targets tab
 
 1. On the **Monitor** tab, select the **Targets** sub-tab, which lists all solutions including their name, version, status, and other details.
 
     :::image type="content" source="./media/monitor-targets.png" alt-text="Screenshot of the Targets tab in the Monitor tab portal." lightbox="./media/monitor-targets.png":::
 
-1. The Targets tab includes **status tiles** on the top of the page that show the total number of targets and the number of targets in each state, which are *Ready to deploy*, *Deployed (Update available)*, *Deployed (Updating)* *Deploying*, *Deployed*, *Deployment failure*, *Previously deployed*, and *No solution available*. You can select any of the status tiles to filter the list of targets by that status.
+1. The Targets tab includes **status tiles** on the top of the page that show the total number of targets and the number of targets in each state, which are *Configuration Pending*, *Publish Completed*, *Deployment Completed*, *Deployment Failed*, etc. You can select any of the status tiles to filter the list of targets by that status.
 1. All capabilities are selected by default. You can select or deselect the capabilities to filter the list of targets by that capability.
 
     :::image type="content" source="./media/monitor-target-capabilities.png" alt-text="Screenshot of the Targets tab showing how to filter the targets by capabilities." lightbox="./media/monitor-target-capabilities.png":::
@@ -110,7 +106,7 @@ You can view the detailed revision of a solution  if the solution state is eithe
 
 1. You can filter the list of targets by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of targets will be filtered to show only those that match the keyword.
 
-1. You can apply filters to the list of target. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by, for example *Hierarchy Level*. Then select  an **Operator**, for example, *Equals*, and enter the **Value** you want to filter by. The list of solutions will be filtered to show only those that match the selected column and value.
+1. You can apply filters to the list of targets. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by, for example *Hierarchy Level*. Then select  an **Operator**, for example, *Equals*, and enter the **Value** you want to filter by. The list of solutions is filtered to show only those that match the selected column and value.
 
     :::image type="content" source="./media/monitor-target-apply-filters.png" alt-text="Screenshot of the Target tab showing how to apply filters." lightbox="./media/monitor-target-apply-filters.png":::
 

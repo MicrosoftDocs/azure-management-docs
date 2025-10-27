@@ -4,7 +4,7 @@ description: Learn to use workload orchestration portal to deploy your applicati
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 09/05/2025
+ms.date: 10/27/2025
 ms.custom:
   - build-2025
 # Customer intent: As a deployment manager, I want to utilize the workload orchestration portal to deploy, manage, and troubleshoot application solutions, so that I can ensure seamless application operations within my environment.
@@ -43,7 +43,7 @@ You can deploy a solution to a target by following these steps:
 
     :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
-1. In the details page of the target, choose the solution in **Ready to deploy** state and click on **Deploy Solution**.
+1. In the details page of the target, choose the solution in **Publish Completed** state and click on **Deploy Solution**.
 
     :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
 
@@ -55,11 +55,11 @@ You can deploy a solution to a target by following these steps:
 
     :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
 
-1. To view the detailed status of your deployment, click on respective solution name.
+1. To view the detailed status of your deployment, click on **Status**.
 
     :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
 
-1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane. The steps currently in progress are highlighted in bold. 
 
     :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
 
@@ -72,9 +72,9 @@ You can deploy a solution to a target by following these steps:
 
 ## Roll back a solution
 
-If a deployment fails, you can roll back to a previous version of the solution. To do this, follow these steps:
+You can undo a deployment and roll back a solution to a previous version. To do this, follow these steps:
 
-1. Choose the solution in **Deployment failure** state and click on **Rollback**.
+1. Select a solution and click on **Rollback**.
 
     :::image type="content" source="./media/deploy-rollback-1.png" alt-text="Screenshot of the Deploy tab showing how to roll back a solution." lightbox="./media/deploy-rollback-1.png":::
 
@@ -82,7 +82,7 @@ If a deployment fails, you can roll back to a previous version of the solution. 
 
     :::image type="content" source="./media/deploy-rollback-2.png" alt-text="Screenshot of the Deploy tab showing how to roll back to a specific version." lightbox="./media/deploy-rollback-2.png":::
 
-1. Once the deployment finishes, the status of the solution is updated to **Deployed**.
+1. Once the deployment finishes, the status of the solution is updated to **Deployment Completed**.
 
 
 ## Retry a failed deployment
@@ -108,9 +108,9 @@ You can stop a deployed solution. This action is useful if you want to stop the 
 
 ## Delete a solution
 
-You can delete a solution before it's deployed, that is, if its status is *Stopped*, *Ready to deploy*, or *Deployment failure*. To delete a solution, follow these steps:
+You can delete a solution before it's deployed, that is, if its status is *Stopped*, *Publish Completed*, *Uninstallation Completed*, or *Deployment failure*. To delete a solution, follow these steps:
 
-1. Choose the solution version with status **Stopped/Ready to deploy/Deployment failure** and click on **Delete**.
+1. Choose the solution version with status **Stopped/Publish Completed/Uninstallation Completed/Deployment failure** and click on **Delete**.
 
     :::image type="content" source="./media/deploy-delete.png" alt-text="Screenshot of the Deploy tab showing how to delete a solution before it's deployed." lightbox="./media/deploy-delete.png":::
 
