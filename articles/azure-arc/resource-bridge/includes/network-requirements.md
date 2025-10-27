@@ -45,7 +45,7 @@ The firewall and proxy URLs below must be allowlisted in order to enable communi
 |Diagnostic data | 443 | `*.prod.hot.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Diagnostic data | 443 | `*.prod.warm.ingest.monitor.core.windows.net` | Appliance VM IPs need outbound connection. | Periodically sends Microsoft required diagnostic data. |
 |Azure portal | 443 | `*.arc.azure.net`| Appliance VM IPs need outbound connection. | Manage cluster from Azure portal.|
-|Azure service bus | 443 | `*.servicebus.windows.net`| Appliance VM IPs need outbound connection. | Enables secure control channel.|
+|Azure service bus | 443 | `*.servicebus.windows.net`| Appliance VM IPs need outbound connection. Outbound WebSocket (wss://) connections must be allowed. | Enables secure control channel.|
 |Azure CLI | 443 | `*.blob.core.windows.net`| Management machine needs outbound connection. | Download Azure CLI Installer. |
 |Arc Extension | 443 | `*.web.core.windows.net`| Management machine needs outbound connection. | Download Arc resource bridge extension. |
 |Azure Arc Agent| 443 | `*.dp.kubernetesconfiguration.azure.com`| Management machine needs outbound connection. | Dataplane used for Arc agent.|

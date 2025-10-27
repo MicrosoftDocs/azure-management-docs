@@ -4,7 +4,7 @@ description: Learn how to use the workload orchestration portal to configure you
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: how-to
-ms.date: 05/01/2025
+ms.date: 10/27/2025
 ms.custom:
   - build-2025
 # Customer intent: "As a solution administrator, I want to configure and publish solution parameters via the workload orchestration portal, so that I can effectively manage deployment settings across multiple targets."
@@ -220,13 +220,19 @@ The **Published Solutions** sub-tab shows the list of solutions which were autho
 
     :::image type="content" source="./media/configure-published-1.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to view the details of a solution." lightbox="./media/configure-published-1.png":::
 
-1. The view displays the final configurations, its' values and other details. You can click on **Download YAML** to export final configurations of the solution.
+1. The view displays the final configurations, its values and other details. You can click on **Download YAML** to export final configurations of the solution.
 
     :::image type="content" source="./media/configure-published-2.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to download the YAML file of a solution." lightbox="./media/configure-published-2.png":::
 
 1. You can delete a solution revision if this isn't yet deployed. **Select** the solution revision and click on **Delete**.
 
     :::image type="content" source="./media/configure-delete.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to delete a solution before deploy it." lightbox="./media/configure-delete.png":::
+
+1. To show details of all operations performed during the publishing process, click on **Status** of a solution.
+
+    :::image type="content" source="./media/configure-published-status-1.png" alt-text="Screenshot of the published solutions tab in workload orchestration portal showing how to view the status details of a solution." lightbox="./media/configure-published-status-1.png":::
+
+1. The new pane displays the list of operations with their status, start time, and end time.
 
 1. If staging is enabled for a solution, you can see the **Staging status**. For more information, see [View staged resources](how-to-stage.md#view-staged-resources).
 
