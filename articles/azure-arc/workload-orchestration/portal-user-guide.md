@@ -169,5 +169,4 @@ In the Monitor tab, you can also:
 |Link|Action	|
 |---------------------|------------------|
 |[View the capabilities of a solution](monitor.md#view-the-capabilities-of-a-solution)|View the features and functionalities of a solution.|
-|[View the details of a solution](monitor.md#view-the-details-of-a-solution)|View the detailed revision of a solution which is either Deployed, ReadyToDeploy, or Stopped.|
 |[View the details of a target](monitor.md#view-the-details-of-a-target)|View the detailed revision of a target if it has a solution available.|
