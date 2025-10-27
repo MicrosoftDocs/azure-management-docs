@@ -5,7 +5,7 @@ description: "Learn how to deploy Edge RAG with this guide on hardware, software
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 10/14/2025
+ms.date: 10/27/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -52,7 +52,7 @@ The following table lists the minimum hardware requirements for the virtual mach
 
 | **Mode** | **VM specs & suggested minimum sizes** |
 |---|---|
-| **GPU** | 3 x GPU-enabled VMs </br>Recommended sizes (choose one based on GPU):</br>- Standard_NC8_A2<br>- Standard_NC8_A16<br>3 x CPU VMs<br> - Minimum spec: 8 vCPUs, 32 GB<br>- Recommended size: Standard_D8s_v3|
+| **GPU** | 3 x GPU-enabled VMs </br>Recommended size:<br>- Standard_NC24ads_A100_v4<br>3 x CPU VMs<br> - Minimum spec: 8 vCPUs, 32 GB<br>- Recommended size: Standard_D8s_v3|
 
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 

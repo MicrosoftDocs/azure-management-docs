@@ -5,7 +5,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.service: azure-arc
 ms.topic: quickstart
-ms.date: 10/22/2025
+ms.date: 10/27/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #customer intent: As a user, I want to install Edge RAG on Azure Kubernetes Service so that I can assess the solution.
@@ -161,7 +161,7 @@ If you get an error message when you try to create the node pools, you might nee
        --cluster-name $k8scluster ` 
        --name "gpunodepool" ` 
        --node-count 3 ` 
-       --node-vm-size "Standard_NC8_A2" `
+       --node-vm-size "Standard_NC24ads_A100_v4" `
        --enable-cluster-autoscaler `
        --min-count 3 ` 
        --max-count 3 ` 
