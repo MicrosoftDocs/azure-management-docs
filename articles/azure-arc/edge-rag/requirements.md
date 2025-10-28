@@ -5,7 +5,7 @@ description: "Learn how to deploy Edge RAG with this guide on hardware, software
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 10/27/2025
+ms.date: 10/28/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -60,8 +60,8 @@ The following table lists the hardware recommendations for each language model a
 
 | **Model Name**                        | **GPU Support** | **Minimum VM SKUs**      |
 |----------------------------------------|-----------------|--------------------------|
-| [Microsoft/Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)| Nvidia A2<br>Nvidia A16       | Standard_NC8_A2 <br>Standard_NC8_A16         |
-| [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)     | Nvidia A2<br>Nvidia A16      | Standard_NC8_A2 <br>Standard_NC8_A16         |
+| [Microsoft/Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)| Nvidia A100       | Standard_NC24ads_A100_v4         |
+| [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)     | Nvidia A100    | Standard_NC24ads_A100_v4        |
 
 
 If you plan to use a CPU-only setup, review the files size and chunking limitations. See:
