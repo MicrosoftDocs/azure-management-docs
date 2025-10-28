@@ -40,7 +40,7 @@ Azure RBAC supports [conditional access](azure-rbac.md#use-conditional-access-wi
 
 Azure RBAC also supports a [direct mode of communication](azure-rbac.md#use-a-shared-kubeconfig-file), using Microsoft Entra identities to access connected clusters directly from within the datacenter, rather than requiring all connections to go through Azure.
 
-Azure RBAC on Arc-enabled Kubernetes is currently in public preview. For more information, see  [Use Azure RBAC on Azure Arc-enabled Kubernetes clusters](azure-rbac.md).
+For more information, see  [Use Azure RBAC on Azure Arc-enabled Kubernetes clusters](azure-rbac.md).
 
 ## Authentication options
 

@@ -4,7 +4,7 @@ description: "Learn how to complete deployment prerequisites for Edge RAG to ens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 06/21/2025
+ms.date: 10/10/2025
 ai-usage: ai-generated
 ms.subservice: edge-rag
 ms.custom:
@@ -14,7 +14,9 @@ ms.custom:
 
 # Deployment prerequisites checklist for Edge RAG Preview enabled by Azure Arc
 
-Complete the following steps to prepare for your Edge RAG deployment.
+Complete the following steps to prepare for your Edge RAG deployment. 
+
+To try Edge RAG without the need for local hardware, see [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
@@ -37,5 +39,6 @@ Use this checklist to prepare your environment before deploying Edge RAG on Azur
 
 ## Related content
 
+- [Deployment overview for Edge RAG](deploy-overview.md)
 - [Deploy the Edge RAG extension](deploy.md)
 - [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc)

@@ -3,6 +3,7 @@ items:
     href: index.yml
     items:
       - name: Overview
+        expanded: true
         items:
           - name: What is Edge RAG?
             href: overview.md
@@ -10,6 +11,10 @@ items:
             href: whats-new.md
           - name: Known issues
             href: known-issues.md
+      - name: Quickstart
+        items:
+          - name: Install Edge RAG
+            href: quickstart-edge-rag.md
       - name: Plan
         items:
           - name: Requirements
