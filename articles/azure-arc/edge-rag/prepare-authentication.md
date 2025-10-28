@@ -4,7 +4,7 @@ description: "Learn how to configure authentication for Edge RAG deployment in A
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 10/28/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to prepare and configure authentication for Edge RAG so that I can securely connect to and manage the chat solution.
