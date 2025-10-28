@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 10/10/2025
+ms.date: 10/28/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
