@@ -41,7 +41,7 @@ The following on-premises resources are required to deploy Edge RAG in your envi
 | **Resource** | **Description** |
 |---|---|
 | Azure Local infrastructure | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2411. |
-| AKS Arc cluster on Azure Local | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least three [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
+| AKS Arc cluster on Azure Local | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least four [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
 | Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, this requirement can be skipped. The IP must be accessible from client machines. <br><br>As part of the prerequisites tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Edge RAG Preview enabled by Azure Arc](prepare-networking-observability.md) <br>- [Configure DNS for Edge RAG Preview enabled by Azure Arc](prepare-dns.md). |
 | Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). As part of the prerequisites tasks, see [Verify NFS server access for Edge RAG Preview enabled by Azure Arc](prepare-file-server.md).|
 |Windows machine (optional)| Ease the management of the Azure Arc-enabled Kubernetes cluster on Azure Local by configuring a driver machine (local management host).<br><br>As part of the prerequisites tasks, install tools like Azure CLI, kubectl, and Helm to prepare the driver machine. For more information, see: <br><br>- [Prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md)<br>- [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).|
@@ -52,7 +52,7 @@ The following table lists the minimum hardware requirements for the virtual mach
 
 | **Mode** | **VM specs & suggested minimum sizes** |
 |---|---|
-| **GPU** | 3 x GPU-enabled VMs </br>Recommended size:<br>- Standard_NC24ads_A100_v4<br>3 x CPU VMs<br> - Minimum spec: 8 vCPUs, 32 GB<br>- Recommended size: Standard_D8s_v3|
+| **GPU** | 4 x GPU-enabled VMs </br>Recommended sizes (choose one based on GPU):</br>- Standard_NC8_A2<br>- Standard_NC8_A16<br>4 x CPU VMs<br> - Minimum spec: 8 vCPUs, 32 GB<br>- Recommended size: Standard_D8s_v3|
 
 For more information, see [Resource limits, VM sizes, and regions for AKS on Windows Server](/azure/aks/hybrid/concepts-support).
 
@@ -60,9 +60,8 @@ The following table lists the hardware recommendations for each language model a
 
 | **Model Name**                        | **GPU Support** | **Minimum VM SKUs**      |
 |----------------------------------------|-----------------|--------------------------|
-| [Microsoft/Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)| Nvidia A100       | Standard_NC24ads_A100_v4         |
-| [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)     | Nvidia A100    | Standard_NC24ads_A100_v4        |
-
+| [Microsoft/Phi-3.5-mini-instruct](https://huggingface.co/microsoft/Phi-3.5-mini-instruct)| Nvidia A2<br>Nvidia A16       | Standard_NC8_A2 <br>Standard_NC8_A16         |
+| [mistralai/Mistral-7B-Instruct-v0.2](https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.2)     | Nvidia A2<br>Nvidia A16      | Standard_NC8_A2 <br>Standard_NC8_A16         |
 
 If you plan to use a CPU-only setup, review the files size and chunking limitations. See:
 - [Supported document formats and size](#supported-document-formats-and-size)
