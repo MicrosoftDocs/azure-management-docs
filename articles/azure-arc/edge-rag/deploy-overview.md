@@ -14,6 +14,8 @@ ai-usage: ai-generated
 
 Edge RAG brings generative AI capabilities to your edge and hybrid environments, letting you deploy a secure, scalable, and intelligent chat solution that uses your own data. This article gives an overview of the deployment process, key components, and workflow to deploy Edge RAG with Azure Arc.
 
+To try Edge RAG without the need for local hardware, see [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
+
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
 ## Edge RAG architecture and components
