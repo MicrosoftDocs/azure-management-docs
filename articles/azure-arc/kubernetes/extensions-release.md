@@ -122,6 +122,19 @@ Use the Azure Machine Learning extension to deploy and run Azure Machine Learnin
 
 For more information, see [Introduction to the Kubernetes compute target in Azure Machine Learning](/azure/machine-learning/how-to-attach-kubernetes-anywhere) and [Deploy the Azure Machine Learning extension on an AKS or Arc Kubernetes cluster](/azure/machine-learning/how-to-deploy-kubernetes-extension).
 
+## Azure Kubernetes Fleet Manager
+
+- **Supported distributions**: AKS (Azure Kubernetes Service), K3s (Lightweight Kubernetes), OCP (Red Hat OpenShift), EKS (Amazon Elastic Kubernetes Service), GKE (Google Kubernetes Engine), and Rancher (RKE).
+
+Azure Kubernetes Fleet Manager is a comprehensive multi-cluster management solution that simplifies the process of managing clusters at scale and across hybrid environments. The extension is automatically installed when you join an Arc-enabled Kubernetes cluster to a Fleet.
+
+For more information, see key concepts of [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/concepts-fleet), and its [multicluster workload management](/azure/kubernetes-fleet/concepts-multi-cluster-workload-management), and supported [member cluster types](/azure/kubernetes-fleet/concepts-member-cluster-types).
+
+> [!IMPORTANT]
+> Azure Kubernetes Fleet Manager's extension for Arc-enabled Kubernetes clusters is in public preview. See **[important considerations for Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations)** for a complete list of requirements and considerations.
+>
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
 ## ArgoCD (GitOps)
 
 - **Supported distributions**: All CNCF-certified Kubernetes clusters.

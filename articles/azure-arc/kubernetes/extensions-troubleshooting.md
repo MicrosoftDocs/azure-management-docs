@@ -519,6 +519,10 @@ For information on how OSM issues and manages certificates to Envoy proxies runn
 
 When a new pod is created in a namespace that's monitored by the add-on, OSM injects an [Envoy proxy sidecar](https://docs.openservicemesh.io/docs/guides/app_onboarding/sidecar_injection/) in that pod. If the Envoy version needs to be updated, follow the steps in the [Upgrade Guide](https://docs.openservicemesh.io/docs/guides/upgrade/#envoy) in the OSM documentation.
 
+## Azure Kubernetes Fleet Manager
+
+Depending on your environment and configuration, certain limitations may apply when connecting an Arc-enabled Kubernetes cluster to an Azure Kubernetes Fleet Manager hub. Review Azure Kubernetes Fleet Manager's [important considerations for Arc-enabled Kubernetes cluster members](/azure/kubernetes-fleet/concepts-member-cluster-types#arc-enabled-kubernetes-clusters-important-considerations) for a complete list of requirements and considerations.
+
 ## Related content
 
 - Learn more about [cluster extensions](conceptual-extensions.md).
