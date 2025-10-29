@@ -31,7 +31,7 @@ items:
                 href: prepare-contributor-permission.md
               - name: Choose language model
                 href: prepare-language-model.md
-              - name: Create model endpoint (optional)
+              - name: Create your model endpoint (optional)
                 href: prepare-model-endpoint.md
               - name: Verify NFS server
                 href: prepare-file-server.md
@@ -45,7 +45,7 @@ items:
                 href: prepare-dns.md
           - name: Deploy Edge RAG
             href: deploy.md
-          - name: Configure model endpoint (optional)
+          - name: Configure authentication for your model (optional)
             href: configure-endpoint-authentication.md
       - name: Configure chat solution
         items:
