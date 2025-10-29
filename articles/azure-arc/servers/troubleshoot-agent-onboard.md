@@ -53,49 +53,33 @@ Use the following table to identify and resolve issues when configuring the Azur
 | AZCM0157 | Unable to download repo metadata for the Microsoft Linux software repository | Check if a firewall is blocking access to `packages.microsoft.com` and try again. |
 
 
-## Agent Exit Codes
+## Agent exit codes
 
-When running Azure Connected Machine Agent commands, the process may terminate with an **exit code**. These codes indicate the outcome of the operation and help diagnose issues. Unlike error codes, exit codes are returned by the operating system when the agent process exits.
+When running Azure Connected Machine Agent (azcmagent) commands, the process may terminate with an exit code. These codes indicate the outcome of the operation and help diagnose issues. Unlike error codes, exit codes are returned by the operating system when the agent process exits.
 
-### Internal exit codes
 | Exit Code | Description | Suggested Remediation |
 |-----------|-------------|------------------------|
 | **0** | No error occurred. | No action required. |
 | **1** | Default error | Ensure prerequisites are met, check agent logs and retry. |
 | **2** | Internal error in the agent. | Restart the agent service. |
 | **3** | Operation not supported. | Verify the command is valid for your OS and agent version. |
-| **4** | Arc proxy service is not running. | Ensure `himds` service is running. |
+| **4** | Arc proxy service is not running. | Ensure `Hybrid Instance Metadata Service (himds)` service is running. |
 | **5** | File logger unavailable. | Check disk space and permissions for log directory. |
 | **6** | Initialization failed. | Check prerequisites (network, permissions). Re-run `azcmagent connect` after fixing issues. |
-
-
-### User exit codes
-| Exit Code | Description | Suggested Remediation |
-|-----------|-------------|------------------------|
 | **11** | Operation interrupted by user (Ctrl+C). | Re-run the command without interruption. |
 | **12** | Invalid access token provided. | Refresh your Azure credentials using `az login` or provide a valid token. |
-| **18** | Administrative privileges required. | Run the command with elevated privileges (`sudo`). |
+| **18** | Administrative privileges required. | Run the command with elevated privileges (`sudo` or elevated command prompt). |
 | **19** | Configuration file not found. | Verify the config file path or regenerate using `azcmagent config`. |
-| **20** | Unknown region specified. | Check region spelling and ensure it’s supported. |
+| **20** | Unknown region specified. | Check region spelling and ensure the region is supported. |
 | **23** | Invalid arguments supplied. | Review command syntax using `azcmagent --help`. |
 | **26** | Network error occurred. | Validate connectivity to Azure endpoints. Check firewall and proxy settings. |
-| **27** | Configuration conflict detected. | Remove conflicting settings in `/etc/azcmagent/config.json` and retry. |
-
-
-### Azure Resource Manager exit codes
-| Exit Code | Description | Suggested Remediation |
-|-----------|-------------|------------------------|
+| **27** | Configuration conflict detected. | Remove conflicting settings in `/etc/azcmagent/config.json` or `%ProgramData%\AzureConnectedMachineAgent\Config\localconfig.json` and retry. |
 | **41** | Failed to obtain access token. | Ensure `az login` is successful and MSI is enabled if applicable. |
 | **42** | Failed to create Azure resource. | Check subscription permissions and resource quota. |
 | **43** | Failed to delete Azure resource. | Verify resource exists and you have delete permissions. |
 | **44** | Resource already exists. | Use `azcmagent reconnect` instead of `connect`. |
 | **45** | Failed to update reconnect public key. | Retry after verifying network connectivity and agent logs. |
-
-
-### Agent exit codes
-| Exit Code | Description | Suggested Remediation |
-|-----------|-------------|------------------------|
-| **61** | Agent communication error. | Restart the agent and proxy services. |
+| **61** | Agent communication error. | Restart the himds service. |
 | **62** | Failed to connect machine to Azure. | Check network connectivity and subscription permissions. |
 | **63** | Failed to disconnect machine from Azure. | Retry after ensuring the machine is online and agent is healthy. |
 | **64** | Unable to obtain establish communication with HIMDS server. | Restart `himds` service and verify logs. |
@@ -112,18 +96,8 @@ When running Azure Connected Machine Agent commands, the process may terminate w
 | **76** | Failed to open TPM device. | Verify TPM availability and permissions. |
 | **77** | Failed to process TPM keys. | Check TPM health and retry. |
 | **78** | Failed to connect using TPM-based authentication. | Validate TPM configuration and retry. |
-
-
-### Hybrid Identity Service exit codes
-| Exit Code | Description | Suggested Remediation |
-|-----------|-------------|------------------------|
 | **81** | Failed to get MSI certificate from HIS. | Ensure HIS service is running and retry. |
 | **82** | Failed to get MSI certificate from HIS using TPM. | Validate TPM configuration and HIS connectivity. |
-
-
-### System exit codes
-| Exit Code | Description | Suggested Remediation |
-|-----------|-------------|------------------------|
 | **101** | Command execution error. | Validate command syntax and check logs for details. |
 | **102** | Unable to generate resource name. | Ensure hostname meets Azure naming requirements. |
 | **103** | Failed to process RSA keys. | Check TPM availability and permissions. |
