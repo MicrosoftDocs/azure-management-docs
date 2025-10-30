@@ -166,7 +166,7 @@ For registries enabled for Microsoft Entra attribute-based access control (ABAC)
 
 For registries not enabled for ABAC, the `AcrPull` and `AcrPush` roles are required.
 
-For more information on ABAC, see [Microsoft Entra attribute-based access control for repository permissions (preview)](container-registry-rbac-abac-repository-permissions.md).
+For more information on ABAC, see [Microsoft Entra attribute-based access control for repository permissions](container-registry-rbac-abac-repository-permissions.md).
 
 1. Set the subscription that contains the Container Registry resource:
 

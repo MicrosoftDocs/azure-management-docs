@@ -9,7 +9,7 @@ ms.service: azure-container-registry
 # Customer intent: As a container registry administrator, I want to configure attribute-based access control (ABAC) with role assignments in Azure Container Registry so that I can manage repository permissions more granularly and enhance security for my organization's container images.
 ---
 
-# Microsoft Entra attribute-based access control (ABAC) for repository permissions (Preview)
+# Microsoft Entra attribute-based access control (ABAC) for repository permissions
 
 Azure Container Registry (ACR) supports [Microsoft Entra attribute-based access control (ABAC)](/azure/role-based-access-control/conditions-overview) for managing repository permissions.
 This feature enhances security by enabling more granular permissions management to container registry repositories.
