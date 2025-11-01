@@ -45,55 +45,58 @@ Many VM extensions are supported with Azure Arc-enabled servers. While the lists
 
 The following table lists some of the key VM extensions that are available for Azure Arc-enabled servers running Windows. For more information about usage and support, see the "additional information" links.
 
-|Extension |Publisher |Type |Additional information |
-|----------|----------|-----|-----------------------|
-|Microsoft Antimalware extension |Microsoft.Azure.Security |IaaSAntimalware |[Microsoft Antimalware extension for Windows](/azure/virtual-machines/extensions/iaas-antimalware-windows) |
-|Custom Script extension |Microsoft.Compute | CustomScriptExtension |[Windows Custom Script Extension](/azure/virtual-machines/extensions/custom-script-windows)|
-|Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorWindowsAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment.md) |
-|Azure Monitor Dependency agent |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentWindows | [Dependency agent virtual machine extension for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)|
-|Azure Key Vault extension for Windows | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) |
-|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Windows | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |
-|Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally) |
-|Windows Admin Center |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |
-|Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |
-|Windows Patch extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching) |
-|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentWindows |[Manage Network Watcher Agent virtual machine extension for Windows](/azure/network-watcher/network-watcher-agent-windows) |
-|Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.WindowsAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |
-|Open SSH for Windows | Microsoft.Azure.OpenSSH | WindowsOpenSSH | [Connect using Secure Shell (SSH) and sign on to a VM running Windows](/azure/virtual-machines/windows/connect-ssh)|
-|Azure Site Recovery | Microsoft.SiteRecovery.Dra | Windows | [Configure Azure Site Recovery for Arc-enabled Windows servers](/windows-server/manage/azure-arc/azure-site-recovery-for-windows-server) |
-|Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=windows) (installs the extension automatically) |
-|Defender for SQL Servers Advanced Threat Protection | Microsoft.Azure.AzureDefenderForSQL | AdvancedThreatProtection.Windows | [Enable Defender for SQL Servers on Machines](/azure/defender-for-cloud/defender-for-sql-usage) |
-|SQL Server Backup |Microsoft.Azure.RecoveryServices.WorkloadBackup | AzureBackupWindowsWorkload | [About SQL Server Backup in Azure VMs](/azure/backup/backup-azure-sql-database) |
-|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForWindows |[Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows?pivots=identity-extension-hybrid) |
+|Extension |Publisher |Type |Additional information |Supported OS |
+|----------|----------|-----|-----------------------|-------------|
+|Microsoft Antimalware extension |Microsoft.Azure.Security |IaaSAntimalware |[Microsoft Antimalware extension for Windows](/azure/virtual-machines/extensions/iaas-antimalware-windows) | [Supported OS link](/azure/virtual-machines/extensions/iaas-antimalware-windows#operating-system) |
+|Custom Script extension |Microsoft.Compute | CustomScriptExtension |[Windows Custom Script Extension](/azure/virtual-machines/extensions/custom-script-windows)| [Supported OS link](/azure/virtual-machines/extensions/custom-script-windows#supported-windows-operating-systems) |
+|Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorWindowsAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment) | [Supported OS link](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems#windows-operating-systems) |
+|Azure Monitor Dependency agent |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentWindows | [Dependency agent virtual machine extension for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)|  [Supported OS link](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems#windows-operating-systems) |  [Supported OS link](/azure/virtual-machines/extensions/agent-dependency-windows#operating-system) |
+|Azure Key Vault extension for Windows | Microsoft.Azure.Key.Vault |KeyVaultForWindows | [Key Vault virtual machine extension for Windows](/azure/virtual-machines/extensions/key-vault-windows) | [Supported OS link](/azure/virtual-machines/extensions/key-vault-windows#operating-systems) |
+|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Windows | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |  [Supported OS link](/azure/defender-for-cloud/enable-defender-for-endpoint#prerequisites) |
+|Azure Automation Hybrid Runbook Worker extension |Microsoft.Compute |HybridWorkerForWindows |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally) |  [Supported OS link](/azure/automation/extension-based-hybrid-runbook-worker-install#supported-operating-systems) |
+|Windows Admin Center |Microsoft.AdminCenter |AdminCenter |[Manage Azure Arc-enabled servers by using Windows Admin Center in Azure](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines) |  [Supported OS link](/windows-server/manage/windows-admin-center/azure/manage-arc-hybrid-machines#hybrid-machine-requirements) |
+|Windows OS Update Extension |Microsoft.SoftwareUpdateManagement |WindowsOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms) |  [Supported OS link](/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images) |
+|Windows Patch extension |Microsoft.CPlat.Core |WindowsPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching) |  [Supported OS link](/azure/virtual-machines/automatic-vm-guest-patching#supported-os-images) |
+|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentWindows |[Manage Network Watcher Agent virtual machine extension for Windows](/azure/network-watcher/network-watcher-agent-windows) |  [Supported OS link](/azure/network-watcher/network-watcher-agent-windows#supported-operating-systems) |
+|Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.WindowsAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |  [Supported OS link](/azure/virtual-machines/trusted-launch#operating-systems-supported) |
+|Open SSH for Windows | Microsoft.Azure.OpenSSH | WindowsOpenSSH | [Connect using Secure Shell (SSH) and sign on to a VM running Windows](/azure/virtual-machines/windows/connect-ssh)|  [Supported OS link](/windows-server/administration/openssh/openssh_overview) |
+|Azure Site Recovery | Microsoft.SiteRecovery.Dra | Windows | [Configure Azure Site Recovery for Arc-enabled Windows servers](/windows-server/manage/azure-arc/azure-site-recovery-for-windows-server) |  [Supported OS link](/windows-server/manage/azure-arc/azure-site-recovery-for-windows-server#prerequisites) |
+|Azure Extension for SQL Server |Microsoft.AzureData |WindowsAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=windows) (installs the extension automatically) |  [Supported OS link](/sql/sql-server/azure-arc/prerequisites?view=sql-server-ver17&tabs=azure#supported-sql-server-versions-and-environments) |
+|Defender for SQL Servers Advanced Threat Protection | Microsoft.Azure.AzureDefenderForSQL | AdvancedThreatProtection.Windows | [Enable Defender for SQL Servers on Machines](/azure/defender-for-cloud/defender-for-sql-usage) |  [Supported OS link](/azure/defender-for-cloud/defender-for-sql-usage#prerequisites) |
+|SQL Server Backup |Microsoft.Azure.RecoveryServices.WorkloadBackup | AzureBackupWindowsWorkload | [About SQL Server Backup in Azure VMs](/azure/backup/backup-azure-sql-database) |  [Supported OS link](/azure/backup/sql-support-matrix) |
+|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForWindows |[Sign in to a Windows virtual machine in Azure by using Microsoft Entra ID](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows?pivots=identity-extension-hybrid) |  [Supported OS link](/entra/identity/devices/howto-vm-sign-in-azure-ad-windows?pivots=identity-extension-vm#requirements) |
+
 
 ### Linux extensions
 
 The following table lists some of the key VM extensions that are available for Azure Arc-enabled servers running Linux. For more information about usage and support, see the "additional information" links.
 
-|Extension |Publisher |Type |Additional information |
-|----------|----------|-----|-----------------------|
-|Custom Script extension |Microsoft.Azure.Extensions |CustomScript |[Linux Custom Script Extension version 2](/azure/virtual-machines/extensions/custom-script-linux) |
-|Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorLinuxAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment.md) |
-|Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentLinux |[Dependency agent virtual machine extension for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) |
-|Azure Key Vault extension for Linux | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |
-|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Linux | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |
-|Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally)|
-|Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|
-|Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|
-|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentLinux |[Manage Network Watcher Agent virtual machine extension for Linux](/azure/network-watcher/network-watcher-agent-linux) |
-|Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.LinuxAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |
-|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForLinux |[SSH access to Azure Arc-enabled servers](ssh-arc-overview.md#optional-install-microsoft-entra-login-extension) |
-|Azure Extension for SQL Server |Microsoft.AzureData |LinuxAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=linux) (installs the extension automatically) |
+|Extension |Publisher |Type |Additional information |Supported OS |
+|----------|----------|-----|-----------------------|-------------|
+|Custom Script extension |Microsoft.Azure.Extensions |CustomScript |[Linux Custom Script Extension version 2](/azure/virtual-machines/extensions/custom-script-linux) |  [Supported OS link](/azure/virtual-machines/extensions/custom-script-linux#supported-linux-distributions) |
+|Azure Monitor agent |Microsoft.Azure.Monitor |AzureMonitorLinuxAgent |[Deployment options for Azure Monitor agent on Azure Arc-enabled servers](azure-monitor-agent-deployment) |  [Supported OS link](/azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems#linux-operating-systems) |
+|Azure Monitor for VMs (insights) |Microsoft.Azure.Monitoring.DependencyAgent |DependencyAgentLinux |[Dependency agent virtual machine extension for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) |  [Supported OS link](/azure/azure-monitor/vm/vminsights-dependency-agent#supported-operating-systems) |
+|Azure Key Vault extension for Linux | Microsoft.Azure.Key.Vault |KeyVaultForLinux | [Key Vault virtual machine extension for Linux](/azure/virtual-machines/extensions/key-vault-linux) |  [Supported OS link](/azure/virtual-machines/extensions/key-vault-linux#operating-system) |
+|Microsoft Defender for Endpoint |  Microsoft.Azure.AzureDefenderForServers | MDE.Linux | [Enable Defender for Endpoint integration](/azure/defender-for-cloud/enable-defender-for-endpoint) |  [Supported OS link](/defender-endpoint/mde-linux-prerequisites#supported-linux-distributions) |
+|Azure Automation Hybrid Runbook Worker extension  |Microsoft.Compute |HybridWorkerForLinux |[Deploy an extension-based user Hybrid Runbook Worker](/azure/automation/extension-based-hybrid-runbook-worker-install) (to execute runbooks locally)|  [Supported OS link](/azure/automation/extension-based-hybrid-runbook-worker-install?tabs=windows#supported-operating-systems) |
+|Linux OS Update Extension  |Microsoft.SoftwareUpdateManagement |LinuxOsUpdateExtension |[Overview of Azure Update Manager](/azure/update-manager/overview?tabs=azure-vms)|  [Supported OS link](/azure/update-manager/support-matrix-updates?tabs=mpir-winos%2Cci-win&pivots=azure-arc-enabled-servers) |
+|Linux Patch Extension  |Microsoft.CPlat.Core |LinuxPatchExtension |[Automatic guest patching for Azure virtual machines and scale sets](/azure/virtual-machines/automatic-vm-guest-patching)|  [Supported OS link](/azure/virtual-machines/automatic-vm-guest-patching#supported-linux-images) |
+|Network Watcher agent | Microsoft.Azure.NetworkWatcher |NetworkWatcherAgentLinux |[Manage Network Watcher Agent virtual machine extension for Linux](/azure/network-watcher/network-watcher-agent-linux) |  [Supported OS link](/azure/network-watcher/network-watcher-agent-linux#supported-operating-systems) |
+|Boot Integrity Monitoring - Guest Attestation | Microsoft.Azure.Security.LinuxAttestation |GuestAttestation |[Boot integrity monitoring overview](/azure/virtual-machines/boot-integrity-monitoring-overview) |  [Supported OS link](/azure/virtual-machines/trusted-launch#operating-systems-supported) |
+|Microsoft Entra login extension |Microsoft.Azure.ActiveDirectory |AADSSHLoginForLinux |[SSH access to Azure Arc-enabled servers](ssh-arc-overview#optional-install-microsoft-entra-login-extension) |  [Supported OS link](/entra/identity/devices/howto-vm-sign-in-azure-ad-linux#supported-linux-distributions-and-azure-regions) |
+|Azure Extension for SQL Server |Microsoft.AzureData |LinuxAgent.SqlServer |[Connect your SQL Server to Azure Arc](/sql/sql-server/azure-arc/connect?tabs=linux) (installs the extension automatically) |  [Supported OS link](/sql/sql-server/azure-arc/prerequisites?view=sql-server-ver17&tabs=azure#supported-sql-server-versions-and-environments) |
+
 
 ### Extensions from partner publishers
 
 Several extensions from partner publishers are supported on Azure Arc-enabled servers. The extensions listed here are available for both Windows and Linux.
 
-|Extension |Publisher |Type |Additional information |
-|----------|----------|-----|-----------------------|
-|Datadog Agent |Datadog.Agent |DatadogWindowsAgent<br>DatadogLinuxAgent |[Introducing Azure monitoring with one-click Datadog deployment](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/)|
-|Dynatrace OneAgent |Dynatrace.Ruxit |OneAgentWindows<br>OneAgentLinux|[What is Azure Native Dynatrace Service?](/azure/partner-solutions/dynatrace/overview) |
-|New Relic |NewRelic.Infrastructure.Extensions|newrelic-infra-windows<br>newrelic-infra |[What is Azure Native New Relic Service?](/azure/partner-solutions/new-relic/overview)  |
+|Extension |Publisher |Type |Additional information |Supported OS |
+|----------|----------|-----|-----------------------|-------------|
+|Datadog Agent |Datadog.Agent |DatadogWindowsAgent<br>DatadogLinuxAgent |[Introducing Azure monitoring with one-click Datadog deployment](https://www.datadoghq.com/blog/introducing-azure-monitoring-with-one-click-datadog-deployment/) | [Supported OS link](https://docs.datadoghq.com/agent/supported_platforms/) |
+|Dynatrace OneAgent |Dynatrace.Ruxit |OneAgentWindows<br>OneAgentLinux |[What is Azure Native Dynatrace Service?](https://learn.microsoft.com/en-us/azure/partner-solutions/dynatrace/overview) | [Supported OS link](https://docs.dynatrace.com/docs/ingest-from/technology-support/oneagent-platform-and-capability-support-matrix?utm_source=chatgpt.com) |
+|New Relic |NewRelic.Infrastructure.Extensions |newrelic-infra-windows<br>newrelic-infra |[What is Azure Native New Relic Service?](https://learn.microsoft.com/en-us/azure/partner-solutions/new-relic/overview) | [Supported OS link](https://docs.newrelic.com/docs/infrastructure/infrastructure-agent/requirements-infrastructure-agent/) |
+
 
 > [!NOTE]
 > The Desired State Configuration VM extension is no longer available for Azure Arc-enabled servers. We recommend that you [migrate to machine configuration](/azure/governance/machine-configuration/migrate-from-azure-automation) or use the Custom Script Extension to manage the post-deployment configuration of your server.
