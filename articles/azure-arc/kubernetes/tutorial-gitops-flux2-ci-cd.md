@@ -107,7 +107,7 @@ Learn more about [importing Git repositories](/azure/devops/repos/git/import-git
 
 ### Connect the GitOps repository
 
-To continuously deploy your app, connect the application repository to your cluster using GitOps. Your **arc-cicd-demo-gitops** GitOps repository contains the basic resources to get your app up and running on your **arc-cicd-cluster** cluster.
+To continuously deploy your app, connect the GitOps repository to your cluster using GitOps. Your **arc-cicd-demo-gitops** GitOps repository contains the basic resources to get your app up and running on your **arc-cicd-cluster** cluster.
 
 The initial GitOps repository contains only a [manifest](https://github.com/Azure/arc-cicd-demo-gitops/blob/master/arc-cicd-cluster/manifests/namespaces.yml) that creates the **dev** and **stage** namespaces corresponding to the deployment environments.
 
