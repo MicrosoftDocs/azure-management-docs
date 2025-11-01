@@ -15,9 +15,9 @@ This article describes how Arc resource bridge is upgraded, and the two ways upg
 Private cloud providers have different support policies and upgrade procedures for Arc resource bridge. Review the sections below to learn how to upgrade your Arc resource bridge for your private cloud.
 
 ### Arc-enabled VMware vSphere
-For **Arc-enabled VMware vSphere**, you must upgrade your Azure Arc resource bridge to a version released within the past 6 months. We recommend performing manual upgrades every 6 months to stay current and comply with the [supported version policy](overview.md#supported-versions). To find your appliance version and its release date, see the [Arc resource bridge release notes](release-notes.md). Microsoft may offer cloud-managed upgrades, but you still need to perform regular manual upgrades. 
+For **Arc-enabled VMware vSphere**, you must manual upgrade your Azure Arc resource bridge to a version released within the past 6 months. We recommend performing manual upgrades every 6 months to refresh critical certificates within the appliance and comply with the [supported version policy](overview.md#supported-versions). If these certificates expire or the appliance is offline for longer than 45 days, your resource bridge may need to be [manually recovered](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). To find your appliance version and its release date, see the [Arc resource bridge release notes](release-notes.md). Microsoft may offer supplemental cloud-managed upgrades as limited assistance, but you are primarily responsible for ensuring your appliance is on a supported version with regular manual upgrades. 
 
-If your appliance is version 1.0.15 or higher, it is automatically opted in to cloud-managed upgrades. Microsoft may upgrade your Arc resource bridge if your appliance is close to being unsupported (n-3). Cloud-managed upgrades may not succeed due to disruptions or errors. If your appliance is nearing the end of its supported version, perform a manual upgrade to avoid service disruptions.
+If your appliance is version 1.0.15 or higher, it is automatically opted into supplemental cloud-managed upgrades. Microsoft may upgrade your Arc resource bridge if your appliance is close to being unsupported (n-3). Supplemental cloud-managed upgrades may not succeed due to disruptions or errors. If your appliance is nearing the end of its supported version, perform a manual upgrade to avoid service disruptions.
 
 ### Azure Local
 For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is available only on Azure Local build 23H2. In this version, use the built-in LCM tool to manage upgrades for Azure Local, Arc resource bridge, and extensions as a single package. Remove any preview version of Arc resource bridge before updating from 22H2 to 23H2. Do not upgrade Arc resource bridge separately from other Azure Local components, as this can cause severe issues. For details, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
@@ -40,10 +40,6 @@ The upgrade process consists of the following actions:
 
 The upgrade usually takes at least 30 minutes, depending on network speed. Expect a brief downtime during the transition from the old resource bridge to the new one. More downtime may occur if prerequisites are not met or if there are network issues.
 
-You can upgrade Arc resource bridge in two ways:
-
-- Cloud-managed upgrade (offered by Microsoft)
-- Manual upgrade (recommended)
 
 ## Prerequisites
 
@@ -68,13 +64,13 @@ To check the appliance version of your Arc resource bridge, you can check the Az
 
 If the appliance status or provisioningState is “UpgradeFailed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
 
-## Cloud-managed upgrade
+## Supplemental cloud-managed upgrade for Arc-enabled VMware
 
-Microsoft may offer cloud-managed upgrades as a supplementary service, but this does not replace the need for manual upgrades every 6 months. With cloud-managed upgrade, Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work. While Microsoft offers cloud-managed upgrade, you’re responsible for maintaining your Arc resource bridge. Disruptions or errors could cause cloud-managed upgrades to fail. If your Arc resource bridge is close to being out of support, we recommend a manual upgrade to make sure you maintain a supported version.
+Microsoft may offer cloud-managed upgrades as a supplementary service for Arc-enabled VMware, but you still need to ensure your appliance is on a supported version and perform manual upgrades every 6 months. Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work.
 
 To check the status and version of your resource bridge, run `az arcappliance show` from your management machine, or view the Azure resource for your Arc resource bridge. Make sure the status is "Running." If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
 
-Cloud-managed upgrades are handled through Azure. A notification is pushed to Azure to reflect the state of the appliance VM as it upgrades. As the resource bridge progresses through the upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
+Cloud-managed upgrades are handled through Azure. As the resource bridge progresses through an upgrade, its status might switch back and forth between different upgrade steps. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
 
 To check the status of a cloud-managed upgrade, run the following Azure CLI command from the management machine:  
 
