@@ -45,7 +45,7 @@ Many VM extensions are supported with Azure Arc-enabled servers. While the lists
 
 The following table lists some of the key VM extensions that are available for Azure Arc-enabled servers running Windows. For more information about usage and support, see the "additional information" links.
 
-|Extension |Publisher |Type |Additional information |Supported OS|
+|Extension |Publisher |Type |Additional information |Supported OS |
 |----------|----------|-----|-----------------------|-------------|
 |Microsoft Antimalware extension |Microsoft.Azure.Security |IaaSAntimalware |[Microsoft Antimalware extension for Windows](/azure/virtual-machines/extensions/iaas-antimalware-windows) | [Supported OS link](/azure/virtual-machines/extensions/iaas-antimalware-windows#operating-system) |
 |Custom Script extension |Microsoft.Compute | CustomScriptExtension |[Windows Custom Script Extension](/azure/virtual-machines/extensions/custom-script-windows)| [Supported OS link](/azure/virtual-machines/extensions/custom-script-windows#supported-windows-operating-systems) |
