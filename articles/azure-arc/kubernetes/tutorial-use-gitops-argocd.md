@@ -142,7 +142,7 @@ az k8s-extension create --resource-group <resource-group> --cluster-name <cluste
 --name argocd \
 --extension-type Microsoft.ArgoCD \
 --release-train preview \
---config deployWithHightAvailability=false \
+--config deployWithHighAvailability=false \
 --config namespaceInstall=false \
 --config "config-maps.argocd-cmd-params-cm.data.application\.namespaces=namespace1,namespace2"
 ```
