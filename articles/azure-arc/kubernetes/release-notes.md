@@ -14,6 +14,15 @@ When any of the Arc-enabled Kubernetes agents are updated, all of the agents in 
 
 We generally recommend using the most recent versions of the agents. The [version support policy](agent-upgrade.md#version-support-policy) covers the most recent version and the two previous versions (N-2).
 
+## Version 1.31.2 (November 2025)
+
+- Security enhancements
+- Improved handling of cases where the Kubernetes API server is temporarily unavailable during extension reconciliation, providing clearer status and automatic recovery when connectivity returns.
+
+## Version 1.31.0 (October 2025)
+
+- Security vulnerability fixes
+
 ## Version 1.30.1 (September 2025)
 
 - Security vulnerability fixes
