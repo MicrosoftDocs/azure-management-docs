@@ -79,9 +79,13 @@ Next, we add to the foundation laid in Phase 1 by preparing for and [deploying t
 
 |Task |Detail |Estimated duration |
 |-----|-------|---------|
-| Download the predefined installation script. | Review and customize the predefined installation script for at-scale deployment of the Connected Machine agent to support your automated deployment requirements.<br><br> Sample at-scale onboarding resources:<br><br> <ul><li> [At-scale basic deployment script](onboard-service-principal.md)</ul></li> <ul><li>At-scale onboarding VMware vSphere Windows Server VMs</ul></li> <ul><li>At-scale onboarding VMware vSphere Linux VMs</ul></li> <ul><li>At-scale onboarding AWS EC2 instances by using Ansible</ul></li> | One or more days depending on the requirements, organizational processes (for example, Change and Release Management), and automation method used. |
-| [Create service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale). |Create a service principal to connect machines noninteractively by using Azure PowerShell or from the portal.| One hour. |
+| Download the predefined installation script. | Review and customize the predefined installation script for at-scale deployment of the Connected Machine agent to support your automated deployment requirements.<br><br> Sample at-scale onboarding resources:<br><br> <ul><li> [At-scale onboarding script via service principal for Linux and Windows](onboard-service-principal.md)</ul></li> <ul><li>[At-scale onboarding for Linux and Windows via the Azure portal](onboard-portal.md)</ul></li> <ul><li>[At-scale onboarding AWS](../multicloud-connector/onboard-multicloud-vms-arc.md) Linux and Windows machines by using [the multicloud connector](../multicloud-connector/connect-to-aws.md)</ul></li> | One or more days depending on the requirements, organizational processes (for example, Change and Release Management), and automation method used. |
+| [Create service principal](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale). |Create a service principal to connect machines noninteractively by using Azure PowerShell or from the Azure portal.| One hour. |
 | Deploy the Connected Machine agent to your target servers and machines. |Use your automation tool to deploy the scripts to your servers and connect them to Azure.| One or more days depending on your release plan and if following a phased rollout. |
+
+> [!NOTE] 
+> You can view all available deployment options at [Azure Connected Machine agent deployment options](deployment-options.md).
+
 
 ## Phase 3: Manage and operate
 
