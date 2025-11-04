@@ -19,7 +19,7 @@
   items:
   - name: Deploy applications using Azure Kubernetes Fleet Manager
     displayName: Azure Kubernetes Fleet Manager, tutorial
-    href: /azure/kubernetes-fleet/quickstart-resource-propagation.md
+    href: /azure/kubernetes-fleet/quickstart-resource-propagation
   - name: Deploy applications using GitOps (ArgoCD)
     displayName: argocd, tutorial
     href: tutorial-use-gitops-argocd.md
