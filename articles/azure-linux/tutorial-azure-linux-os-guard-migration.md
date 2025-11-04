@@ -119,7 +119,7 @@ Before you begin, review the following considerations and limitations for Azure 
 
 There are several settings that can block the OS SKU migration request. To ensure a successful migration, review the following guidelines and limitations:
 
-- The OS SKU migration feature isn't available through PowerShell or the Azure portal.
+- The OS SKU migration feature isn't available through PowerShell or the Azure portal. When using the OS SKU migration feature with Azure Linux with OS Guard (Preview) it isn't available through Terraform, PowerShell, or the Azure portal.
 - The OS SKU migration feature doesn't support renaming existing node pools.
 - Ubuntu, Azure Linux, and Azure Linux with OS Guard are the only supported Linux OS SKU migration targets.
 - Trusted Launch is required by default for Azure Linux with OS Guard. You need to have Trusted Launch enabled to migrate to Azure Linux with OS Guard. This might require creating new node pools.
