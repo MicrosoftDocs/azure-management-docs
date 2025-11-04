@@ -41,7 +41,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.58/AzureConnect
 |Removed Preview flag from connection.type configuration property as the Arc gateway feature has been promoted to General Availability.|✓|✓|Bug Fix|
 |Fixed metadata synchronization: machine FQDN.|✓|✓|Bug Fix|
 |Fixed Windows installer service configuration issues when launched via double-click instead of elevated execution.|✓||Bug Fix|
-|Fixed security validation to recognize Built-in Administrator account during named pipe ownership verification.|||Bug Fix|
+|Fixed security validation to recognize Built-in Administrator account during named pipe ownership verification.|✓||Bug Fix|
 
 ## Version 1.57 - October 2025
 
