@@ -71,3 +71,12 @@ groups:
     title: Python
   - id: programming-language-go
     title: Go
+# Owner: schaffererin
+- id: tutorial-azure-linux-os-guard-migration
+  title: Migrate to Azure Linux with OS Guard
+  prompt: Choose a migration method
+  pivots:
+  - id: remove-existing-add-new
+    title: Remove existing node pools and create Azure Linux with OS Guard node pools
+  - id: in-place
+    title: In-place OS SKU migration

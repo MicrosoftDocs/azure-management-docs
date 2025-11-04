@@ -1,0 +1,74 @@
+---
+title: Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS) overview
+description: Learn about Azure Linux with OS Guard for AKS.
+author: florataagen
+ms.author: florataagen
+ms.service: microsoft-linux
+ms.custom: linux-related-content
+ms.topic: overview
+ms.date: 10/10/2025
+# Customer intent: As a cloud architect, I want to understand the Azure Linux with OS Guard for AKS, so that I can determine its benefits and compatibility for securing my container workloads in the Azure environment.
+---
+
+# What is Azure Linux with OS Guard (preview) for Azure Kubernetes Service (AKS)?
+
+In this article, we provide an overview of Azure Linux with OS Guard, which is a hardened, immutable variant of Azure Linux. It provides strong runtime integrity, tamper resistance, and enterprise-grade security for container hosts on AKS. Built on Azure Linux, OS Guard adds kernel and runtime features that enforce code integrity, protect the root file system from unauthorized changes, and apply mandatory access controls. Use OS Guard when you need elevated assurances about your container host and workload runtime.
+
+## Key features
+
+The following table outlines key features of Azure Linux with OS Guard:
+
+| Feature | Description |
+|----------|--------------|
+| **Immutability** | The /usr directory is mounted as a read-only volume protected by dm-verity. At runtime, the kernel validates a signed root hash to detect and block tampering. |
+| **Code integrity** | OS Guard integrates the [Integrity Policy Enforcement (IPE) Linux Security Module](https://docs.kernel.org/next/admin-guide/LSM/ipe.html) to ensure that only binaries from trusted, signed volumes are allowed to execute. This helps prevent tampered or untrusted code from executing, including within container images. *Note: IPE is running in audit mode during Public Preview.* |
+| **Mandatory access control** | OS Guard integrates SELinux to limit which processes can access sensitive resources in the system. *Note: SELinux is operating in permissive mode during Public Preview.* |
+| **Measured boot and Trusted Launch** | OS Guard supports measured boot and integrates with [Trusted Launch](/azure/aks/use-trusted-launch) to provide cryptographic measurements of boot components stored in a virtual TPM (vTPM). This is achieved using a Unified Kernel Image (UKI), which bundles the kernel, initramfs, and kernel command line into a single signed artifact. During boot, the UKI is measured and recorded in the vTPM, ensuring integrity from the earliest stage. |
+| **Verified container layers** | Container images and layers are validated using signed dm-verity hashes. This ensures that only verified layers are used at runtime, reducing the risk of container escape or tampering. IPE also extends within container images, ensuring that only binaries matching a trusted signature can be executed, even if they exist in a verified layer. *Note: IPE is running in audit mode during Public Preview.* |
+| **Sovereign Supply Chain Security** | OS Guard inherits Azure Linux’s secure build pipelines, signed Unified Kernel Images (UKIs), and Software Bill of Materials (SBOMs). |
+
+## Key advantages
+
+The following table outlines key advantages of using Azure Linux with OS Guard:
+
+| Advantage | Description |
+|-------------|--------------|
+| **Strong runtime integrity guarantee** | Kernel-enforced immutability and IPE prevent execution of tampered or untrusted code. |
+| **Reduced attack surface** | A read-only /usr directory, reduced package count, and SELinux policies limit opportunities for an attacker to install persistent backdoors or alter system binaries. |
+| **Supply-chain trust** | Builds on Azure Linux’s signed images and supply-chain processes, delivering clear provenance for system components. |
+| **Integration with Azure security features** | Native support for [Trusted Launch](/azure/aks/use-trusted-launch) and Secure Boot provides measured boot protections and attestation. |
+| **Open-source transparency** | Many of the underlying technologies (dm-verity, SELinux, IPE) are upstream or open source, and Microsoft has tooling and contributions to support these features. |
+| **Compliance inheritance** | OS Guard inherits compliance properties from Azure Linux (for example, cryptographic modules and certifications available to Azure Linux), making it easier to adopt in regulated environments. |
+
+## Considerations and limitations
+	
+It's important to be aware of the following considerations and limitations for Azure Linux with OS Guard:
+	
+- Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
+- All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
+- Azure CLI and ARM templates are the only supported deployment methods for Azure Linux with OS Guard on AKS in preview. PowerShell and Terraform aren't supported.
+- [Arm64](/azure/aks/use-arm64-vms) images aren't supported with Azure Linux with OS Guard on AKS in preview.
+- `NodeImage` and `None` are the only supported [OS Upgrade channels](/azure/aks/auto-upgrade-node-os-image) for Azure Linux with OS Guard on AKS. `Unmanaged` and `SecurityPatch` are incompatible with Azure Linux with OS Guard due to the immutable /usr directory.
+- [Artifact Streaming](/azure/aks/artifact-streaming) isn't supported.
+- [Pod Sandboxing](/azure/aks/use-pod-sandboxing) isn't supported.
+- [Confidential Virtual Machines (CVMs)](/azure/aks/confidential-containers-overview) aren't supported.
+- [Gen 1 virtual machines (VMs)](/azure/aks/aks-virtual-machine-sizes#vm-support-on-aks) aren't supported.
+
+## How to choose an Azure Linux container host option
+
+Azure Linux with OS Guard is built on Azure Linux and benefits from the same supply-chain protections and signed images. Both OS variants can be appropriate depending on your security, compliance, and operational requirements:
+
+| Container host option | Azure Linux Container Host | Azure Linux with OS Guard |
+|--------------------------|-------------------------------|-------------------------------|
+| **Security benefits** | Azure Linux provides the security benefits Microsoft views as critical for AKS workloads. | All the benefits of Azure Linux plus the extra security benefits mentioned above. |
+| **User familiarity** | Familiar to customers coming from other Linux distributions like Ubuntu. Operations and tools customers use will feel familiar. | Familiar to customers coming from other container optimized distributions. |
+| **Target audience** | Targeted for customers doing lift and shifts, migrations and coming from other Linux distributions. | Targeted for cloud-native customers who are born in the cloud or who are looking to modernize. |
+| **Security controls** | Option to enable AppArmor if necessary for security minded customers. | Security toggles like SELinux and IPE are permissive by default. |
+
+## Next steps
+
+To get started with Azure Linux OS Guard for AKS, see the following resources:
+
+- [Create an Azure Linux with OS Guard for AKS cluster using the Azure CLI](./quickstart-os-guard-azure-cli.md)
+- [Deploy, manage, and update applications with Azure Linux with OS Guard](./tutorial-azure-linux-os-guard-create-cluster.md)
+
