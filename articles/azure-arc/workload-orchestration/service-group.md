@@ -107,6 +107,40 @@ az rest \
   --resource https://management.azure.com
 ```
 
+1. Create configuration.
+
+  ```bash
+  configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+  az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$location'}"
+  ```
+
+1. Create the configuration reference.
+
+  ```bash
+  # For service group-based sites
+  az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
+
+  # For resource group-based sites
+  az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
+  ```
+
+1. Create the schema.
+
+  ```bash
+  schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$name"
+  az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{'location':'$location'}"
+  ```
+
+1. Create the schema reference.
+
+  ```bash
+  # For service group-based sites
+  az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+
+  # For resource group-based sites
+  az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+  ```
+
 #### [PowerShell](#tab/powershell)
 
 To tag the Site correctly, you can use the following commands, ensuring that the Site is tagged according to its respective hierarchy level:
@@ -131,21 +165,55 @@ az rest `
   --resource https://management.azure.com
 ```
 
+1. Create configuration.
+
+    ```powershell
+    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    az rest --method put --url "$configId`?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
+
+1. Create the configuration reference.
+
+    ```powershell
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    ```
+
+1. Create the schema.
+
+    ```powershell
+    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$name"
+    az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
+
+1. Create the schema reference.
+
+    ```powershell
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+    ```
+
 ***
 
 ## Set up a service group hierarchy for workload orchestration
 
 #### [Bash](#tab/bash)
 
-1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Contributor` role. 
+1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Reader` role. 
 
     ```bash
-    # Assign the Service Group Contributor role
+    # Assign the Service Group Reader role
     providerAppId="cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
     providerOid=$(az ad sp show --id "$providerAppId" --query "id" --output "tsv")
 
     az role assignment create --assignee "$providerOid" \
-      --role "Service Group Contributor" \
+      --role "Service Group Reader" \
       --scope "/providers/Microsoft.Management/serviceGroups/$sg"
     ```
 
@@ -238,15 +306,15 @@ az rest `
 
 #### [PowerShell](#tab/powershell)
 
-1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Contributor` role. 
+1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Reader` role. 
 
     ```powershell
-    # Assign the Service Group Contributor role
+    # Assign the Service Group Reader role
     $providerAppId = "cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
     $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
     
     az role assignment create --assignee "$providerOid" `
-        --role "Service Group Contributor" `
+        --role "Service Group Reader" `
         --scope "/providers/Microsoft.Management/serviceGroups/$sg"
     ```
 
@@ -388,14 +456,14 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$level3Name/providers/Microsoft.Edge/sites/$level3Name?api-version=2025-03-01-preview" --body "{'properties':{'displayName':'$level3Name','description': '$level3Name','labels': {'level': 'Factory'}}}" --resource https://management.azure.com
     ```
 
-1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Contributor` role to the workload orchestration provider app ID.
+1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
 
     ```bash
     providerAppId="cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
     providerOid=$(az ad sp show --id "$providerAppId" --query "id" --output "tsv")
 
     az role assignment create --assignee "$providerOid" \
-      --role "Service Group Contributor" \
+      --role "Service Group Reader" \
       --scope "/providers/Microsoft.Management/serviceGroups/$level1Name"
     ```
 
@@ -494,14 +562,14 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$level3Name/providers/Microsoft.Edge/sites/$resourcePrefix-SGFactory?api-version=2025-03-01-preview --body "{'properties':{'displayName':'$level3Name','description': '$resourcePrefix-SGFactory','labels': {'level': 'Factory'}}}" --resource https://management.azure.com      
     ```
 
-1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Contributor` role to the workload orchestration provider app ID.
+1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
 
     ```powershell
     $providerAppId = "cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
     $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
     
     az role assignment create --assignee "$providerOid" `
-        --role "Service Group Contributor" `
+        --role "Service Group Reader" `
         --scope "/providers/Microsoft.Management/serviceGroups/$level1Name"
     ```
 

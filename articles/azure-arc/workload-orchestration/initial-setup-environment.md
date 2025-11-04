@@ -148,8 +148,6 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
 The workload orchestration CLI extension is required to run the commands for workload orchestration. The extension is available in the Azure CLI extension index.
 
-[!INCLUDE [cli-version-note](includes/cli-version-note.md)]
-
 ### [Bash](#tab/bash)
 
 ```bash
@@ -339,7 +337,7 @@ The following steps are required to run workload orchestration service component
     > [!NOTE]
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
-1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide contributor access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. 
+1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide reader access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal.
 
 ### [PowerShell](#tab/powershell)
 
@@ -482,6 +480,40 @@ To use a resource group, run the following commands:
     az rest --method PUT --uri "$siteUri" --body "@$siteJson"
     ```
 
+1. Create configuration.
+
+    ```bash
+    configId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/configurations/$name"
+    az rest --method put --url "$configId?api-version=2025-08-01" --body "{\"location\":\"$l\"}"
+    ```
+
+1. Create the configuration reference.
+
+    ```bash
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
+
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
+    ```
+
+1. Create the schema.
+
+    ```bash
+    schemaId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/schemas/$name"
+    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{\"location\":\"$l\"}"
+    ```
+
+1. Create the schema reference.
+
+    ```bash
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
+
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
+    ```
+
 ### [PowerShell](#tab/powershell)
 
 1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
@@ -522,6 +554,40 @@ To use a resource group, run the following commands:
 
     ```powershell
     az rest --method PUT --uri $siteUri --body "@$siteJson"
+    ```
+
+1. Create configuration.
+
+    ```powershell
+    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    az rest --method put --url "$configId`?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
+
+1. Create the configuration reference.
+
+    ```powershell
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
+    ```
+
+1. Create the schema.
+
+    ```powershell
+    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$name"
+    az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
+
+1. Create the schema reference.
+
+    ```powershell
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
     ```
 
 ***

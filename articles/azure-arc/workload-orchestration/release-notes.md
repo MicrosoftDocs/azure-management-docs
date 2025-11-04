@@ -4,12 +4,19 @@ description: Release notes for Workload Orchestration.
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: release-notes
-ms.date: 09/30/2025
+ms.date: 11/04/2025
 ---
 
 # Release notes for workload orchestration
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
+
+## October 2025 release
+
+### New features
+
+- The status of solutions and targets shown to users in the workload orchestration portal, related to completion of configuration, publishing and deployment, are standardized across all screens. The distinct number of statuses are reduced for simplification and enhanced readability. Users can click on the status of any item to open a context pane showing details of all operations performed on it so far, along with timestamp and name of user who performed the action.
+- The first party app **EdgeConfigurationManagerApp** access requirement is reduced from **Contributor** to **Reader** role.
 
 ## September 2025 release
 
