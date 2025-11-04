@@ -10,7 +10,7 @@ ms.date: 09/24/2025
 # Customer intent: "As a cloud administrator, I want to enable telemetry and monitoring for my Azure Linux with OS Guard cluster, so that I can ensure optimal performance and gain insights into the cluster's health."
 ---
 
-# Tutorial: Enable telemetry and monitoring for your Azure Linux with OS Guard (preview)cluster
+# Tutorial: Enable telemetry and monitoring for your Azure Linux with OS Guard (preview) cluster
 
 > [!div class="nextstepaction"]
 > [Deploy and Explore](https://go.microsoft.com/fwlink/?linkid=2321847)
@@ -40,7 +40,7 @@ az aks get-credentials --resource-group $RESOURCE_GROUP --name $CLUSTER_NAME
 
 ## Enable monitoring
 
-### Use a default Log Analytics workspace
+### Option 1: Use a default Log Analytics workspace
 
 The following step enables monitoring for your Azure Linux with OS Guard cluster using Azure CLI. In this example, you aren't required to specify an existing workspace. The [`az aks enable-addons`](/cli/azure/aks#az-aks-enable-addons) command simplifies the process for you by creating a default workspace in the default resource group of the AKS cluster subscription. If one doesn't already exist in the region, the default workspace created will resemble the format `DefaultWorkspace-< GUID >-< Region >`. 
 

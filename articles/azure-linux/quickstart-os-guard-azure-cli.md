@@ -60,19 +60,19 @@ az extension update --name aks-preview
 ```
 ## Register the AzureLinuxOSGuardPreview feature flag
 
-Register the `AzureLinuxOSGuardPreview` feature flag by using the [az feature register][az-feature-register] command, as shown in the following example:
+Register the `AzureLinuxOSGuardPreview` feature flag by using the [az feature register](/cli/azure/feature#az-feature-register) command, as shown in the following example:
 
 ```azurecli-interactive
 az feature register --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
 ```
 
-It takes a few minutes for the status to show *Registered*. Verify the registration status by using the [az feature show][az-feature-show] command:
+It takes a few minutes for the status to show *Registered*. Verify the registration status by using the [az feature show](/cli/azure/feature#az-feature-show) command:
 
 ```azurecli-interactive
 az feature show --namespace "Microsoft.ContainerService" --name "AzureLinuxOSGuardPreview"
 ```
 
-When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register][az-provider-register] command:
+When the status reflects *Registered*, refresh the registration of the *Microsoft.ContainerService* resource provider by using the [az provider register](/cli/azure/provider#az-provider-register) command:
 
 ```azurecli-interactive
 az provider register --namespace "Microsoft.ContainerService"
@@ -151,7 +151,7 @@ To deploy the application, you use a manifest file to create all the objects req
 - **Rabbit MQ**: Message queue for an order queue.
 
 > [!NOTE]
-> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure CosmosDB or Azure Service Bus.
+> We don't recommend running stateful containers, such as Rabbit MQ, without persistent storage for production. These are used here for simplicity, but we recommend using managed services, such as Azure Cosmos DB or Azure Service Bus.
 
 1. Create a file named `aks-store-quickstart.yaml` and copy in the following manifest:
 

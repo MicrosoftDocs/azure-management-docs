@@ -12,7 +12,7 @@ ms.date: 04/18/2023
 
 # Quickstart: Deploy an Azure Linux Container Host for AKS cluster by using an ARM template
 
-Get started with the Azure Linux Container Host by using an Azure Resource Manager (ARM) template to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you'll create a SSH key pair, review the template, deploy the template and validate it, and then deploy an application.
+Get started with the Azure Linux Container Host by using an Azure Resource Manager (ARM) template to deploy an Azure Linux Container Host cluster. After installing the prerequisites, you'll create an SSH key pair, review the template, deploy the template and validate it, and then deploy an application.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 

@@ -42,7 +42,7 @@ The following table outlines key advantages of using Azure Linux with OS Guard:
 
 ## Considerations and limitations
 	
-It's imporant to be aware of the following considerations and limitations for Azure Linux with OS Guard:
+It's important to be aware of the following considerations and limitations for Azure Linux with OS Guard:
 	
 - Kubernetes version 1.32.0 or higher is required for Azure Linux with OS Guard.
 - All Azure Linux with OS Guard images have [Federal Information Process Standard (FIPS)](/azure/aks/enable-fips-nodes) and [Trusted Launch](/azure/aks/use-trusted-launch) enabled.
