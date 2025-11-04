@@ -139,9 +139,9 @@ The following table describes some of the user scenarios and the associated cust
 
 The following table shows recommended actions for different user roles when using a custom-defined role at a service group level. For more information about service groups, see [Service groups for workload orchestration](service-group.md).
 
-#### Service group contributor​
+#### Service group reader​
 
-A service group contributor​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
+A Service group reader​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
 
 |Description|Actions|
 |---|---|
@@ -157,13 +157,13 @@ A service group reader is any user who can view the service groups and sites hie
 
 |Description|Actions|
 |---|---|
-|View service groups by service group contributor​ | `Microsoft.Management/serviceGroups/read​`|
+|View service groups by Service group reader​ | `Microsoft.Management/serviceGroups/read​`|
 |View already existing relationships on top of `Targets`| `Microsoft.Relationships/serviceGroupMember/read` on `DeploymentTarget` + Target service group​|
 |View the resources under the service group|Ensure that the user has READ access to the `DeploymentTarget` resources that are part of the service group. For this, the user can either have access at the resource group/subscription level or directly for the particular `DeploymentTarget` resource.​|
 
 #### Service group admin​
 
-A service group admin is any user who can view, edit, and delete the service groups created by the service group contributor​​.
+A service group admin is any user who can view, edit, and delete the service groups created by the Service group reader​​.
 
 |Description|Actions|
 |---|---|
