@@ -166,7 +166,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.51/AzureConnect
 
 - Enabled Arc proxy to run by default
 
-- Added detection for SCCM and SCOM
+- Added detection for Microsoft System Center Configuration Manager and Microsoft System Center Operations Manager
 
 - Enhanced logging with security annotations in `azcmagent` and `himds` logs.
 
