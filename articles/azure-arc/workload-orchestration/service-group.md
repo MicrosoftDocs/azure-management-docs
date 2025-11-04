@@ -85,27 +85,27 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 
 #### [Bash](#tab/bash)
 
-To tag the Site correctly, you can use the following commands, ensuring that the site is tagged according to its respective hierarchy level:
+1. To tag the Site correctly, you can use the following commands, ensuring that the site is tagged according to its respective hierarchy level:
 
-```bash
-# Tag a site
-az rest \
-  --method put \
-  --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" \
-  --body "{'properties':{'displayName':'$sg','description': '$sg','labels': {'level': 'Factory'}}}" \
-  --resource https://management.azure.com
-```
+    ```bash
+    # Tag a site
+    az rest \
+      --method put \
+      --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" \
+      --body "{'properties':{'displayName':'$sg','description': '$sg','labels': {'level': 'Factory'}}}" \
+      --resource https://management.azure.com
+    ```
 
-If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+1. If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
 
-```bash
-# Patch a site with correct labels
-az rest \
-  --method patch \
-  --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" \
-  --body "{'properties':{'labels': {'<label-key>': '<label-value>'}}}" \
-  --resource https://management.azure.com
-```
+    ```bash
+    # Patch a site with correct labels
+    az rest \
+      --method patch \
+      --url "https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName?api-version=2025-03-01-preview" \
+      --body "{'properties':{'labels': {'<label-key>': '<label-value>'}}}" \
+      --resource https://management.azure.com
+    ```
 
 1. Create configuration.
 
@@ -143,27 +143,27 @@ az rest \
 
 #### [PowerShell](#tab/powershell)
 
-To tag the Site correctly, you can use the following commands, ensuring that the Site is tagged according to its respective hierarchy level:
+1. To tag the Site correctly, you can use the following commands, ensuring that the Site is tagged according to its respective hierarchy level:
 
-```bash
-# Tag a site
-az rest `
-  --method put `
-  --url https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName`?api-version=2025-03-01-preview `
-  --body "{'properties':{'displayName':'$sg','description': '$sg','labels': {'level': 'Factory'}}}" `
-  --resource https://management.azure.com
-```
+    ```powershell
+    # Tag a site
+    az rest `
+      --method put `
+      --url https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName`?api-version=2025-03-01-preview `
+      --body "{'properties':{'displayName':'$sg','description': '$sg','labels': {'level': 'Factory'}}}" `
+      --resource https://management.azure.com
+    ```
 
-If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
-
-```bash
-# Patch a site with correct labels
-az rest `
-  --method patch `
-  --url https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName`?api-version=2025-03-01-preview `
-  --body "{'properties':{'labels': {'level': 'factory'}}}" `
-  --resource https://management.azure.com
-```
+1. If you have a Site previously created, to view the same on the workload orchestration portal, you need to patch the Site with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup.
+    
+    ```powershell
+    # Patch a site with correct labels
+    az rest `
+      --method patch `
+      --url https://management.azure.com/providers/Microsoft.Management/serviceGroups/$sg/providers/Microsoft.Edge/sites/$siteName`?api-version=2025-03-01-preview `
+      --body "{'properties':{'labels': {'level': 'factory'}}}" `
+      --resource https://management.azure.com
+    ```
 
 1. Create configuration.
 

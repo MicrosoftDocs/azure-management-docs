@@ -7,7 +7,7 @@ ms.custom:
 author: SoniaLopezBravo
 ms.author: sonialopez
 ms.topic: install-set-up-deploy
-ms.date: 06/24/2025
+ms.date: 11/04/2025
 # Customer intent: "As an IT admin, I want to prepare the environment for workload orchestration, so that I can ensure the appropriate Azure resources and configurations are in place for managing workloads effectively."
 ---
 
@@ -337,7 +337,7 @@ The following steps are required to run workload orchestration service component
     > [!NOTE]
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
 
-1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide reader access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal.
+1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide reader access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. This action finds the isolated service principal of your tenant mapped to this application ID and assigns that service principal reader permission to the workload orchestration service.
 
 ### [PowerShell](#tab/powershell)
 
