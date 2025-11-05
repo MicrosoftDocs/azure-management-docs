@@ -26,6 +26,23 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.58 - November 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.58/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature| Windows|Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config** 	|**1.29.101.0**|**1.26.101.0**||
+|Updated OpenSSL library to version 3.6.0 (Windows) and 3.4.3 (Linux) for enhanced security and performance.|✓|✓|Improvement|
+|Use "systemctl daemon-reload" instead of "systemctl daemon-reexec" for better stability and compatibility.||✓|Improvement|
+|Added customization support for Linux CIS Baseline and ASB security policies.|✓|✓|Improvement|
+|**Azcmagent**|**1.58.03224.2567**|**1.58.03224.693**||
+|Enhanced log security by escaping newline characters to prevent log injection attacks.|✓|✓|Bug Fix|
+|Removed Preview flag from connection.type configuration property as the Arc gateway feature has been promoted to General Availability.|✓|✓|Bug Fix|
+|Fixed metadata synchronization: machine FQDN.|✓|✓|Bug Fix|
+|Fixed Windows installer service configuration issues when launched via double-click instead of elevated execution.|✓||Bug Fix|
+|Fixed security validation to recognize Built-in Administrator account during named pipe ownership verification.|✓||Bug Fix|
+
 ## Version 1.57 - October 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.57/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
@@ -149,7 +166,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.51/AzureConnect
 
 - Enabled Arc proxy to run by default
 
-- Added detection for SCCM and SCOM
+- Added detection for Microsoft System Center Configuration Manager and Microsoft System Center Operations Manager
 
 - Enhanced logging with security annotations in `azcmagent` and `himds` logs.
 
