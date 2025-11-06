@@ -226,7 +226,7 @@ Metadata information about a connected machine is collected after the Connected 
 * Hardware manufacturer
 * Hardware model
 * CPU family, socket, physical core and logical core counts
-* Total physical memory
+* Total physical memory (for Linux systems this holds the MemTotal value from /proc/meminfo, which is the Total usable RAM rather than the Total physical memory) 
 * Serial number
 * SMBIOS asset tag
 * Network interface information
