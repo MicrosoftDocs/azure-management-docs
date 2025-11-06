@@ -28,20 +28,20 @@ For more information, see [Service groups at different hierarchy levels in workl
 
 ## Define the scenario
 
-The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of region, city, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
 
 :::image type="content" source="./media/scenario-multiple-solutions-dependency.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-multiple-solutions-dependency.png":::
 
-The sites references are created at each level of the hierarchy, being the Service Group Country (SGCountry) at the country level, Service Group Region (SGRegion) at the region level, Service Group Factory (SGFactory) at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
+The sites references are created at each level of the hierarchy, being the Service Group Region (SGRegion) at the region level, Service Group City (SGCity) at the city level, Service Group Factory (SGFactory) at the factory level. A target is created at each level, being RegionTarget at the region level, CityTarget at the city level, FactoryTarget at the factory level, and LineTarget at the line level.
 
 A solution is deployed at each target as follows:
 
 - Line App is a solution at line level.
 - Factory App is a solution at factory level.
-- Region App is a solution at region level.
-- Global Adapter is a solution at country level. Line App, Factory App, and Region App are dependent on Global Adapter, which means that during deployment, the Region App, Factory App, and Line App configurations are inherited from the Global Adapter configuration.
+- City App is a solution at city level.
+- Global Adapter is a solution at region level. Line App, Factory App, and City App are dependent on Global Adapter, which means that during deployment, the City App, Factory App, and Line App configurations are inherited from the Global Adapter configuration.
 
-All the instances of Line App, Factory App, Region App, and Global Adapter are deployed in the same Azure Arc-enabled Kubernetes cluster. 
+All the instances of Line App, Factory App, City App, and Global Adapter are deployed in the same Azure Arc-enabled Kubernetes cluster. 
 
 ## Create targets
 
@@ -51,24 +51,10 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
 
     ```bash
     solution_scope="n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    countryTarget="Italy"
+    regionTarget="Italy"
     regionTarget="Naples"
     factoryTarget="Contoso"
     lineTarget="Line01"
-
-    # Create target at country level
-    az workload-orchestration target create \
-      --resource-group "$rg" \
-      --location "$l" \
-      --name "$countryTarget" \
-      --display-name "$countryTarget" \
-      --hierarchy-level "country" \
-      --capabilities "Use for soap production" \
-      --description "This is Country Target" \
-      --solution-scope "$solution_scope" \
-      --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -83,6 +69,20 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
       --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName"
+
+    # Create target at city level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$regionTarget" \
+      --display-name "$regionTarget" \
+      --hierarchy-level "city" \
+      --capabilities "Use for soap production" \
+      --description "This is City Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCityName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -119,19 +119,19 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
     lineTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$lineTarget" --query id --output tsv)
     factoryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$factoryTarget" --query id --output tsv)
     regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
-    countryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$countryTarget" --query id --output tsv)
+    regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
     ```
 
 1. Link the target IDs to their respective service groups.
 
     ```bash
-    # Link to country service group
+    # Link to region service group
     az rest \
       --method put \
-      --uri "${countryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
 
-    # Link to region service group
+    # Link to city service group
     az rest \
       --method put \
       --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
@@ -153,12 +153,12 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
 
     ```bash
-    # Update country target
+    # Update region target
     az workload-orchestration target update \
       --resource-group "$rg" \
-      --name "$countryTarget"
+      --name "$regionTarget"
 
-    # Update region target
+    # Update city target
     az workload-orchestration target update \
       --resource-group "$rg" \
       --name "$regionTarget"
@@ -180,24 +180,10 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
 
     ```powershell
     $solution_scope = "n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    $countryTarget = "Italy"
+    $regionTarget = "Italy"
     $regionTarget = "Naples"
     $factoryTarget = "Contoso"
     $lineTarget = "Line01"
-    
-    # Create target at country level
-    az workload-orchestration target create `
-      --resource-group $rg `
-      --location $l `
-      --name $countryTarget `
-      --display-name $countryTarget `
-      --hierarchy-level "country" `
-      --capabilities "Use for soap production" `
-      --description "This is Country Target" `
-      --solution-scope $solution_scope `
-      --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
@@ -212,6 +198,20 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
       --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName
+    
+    # Create target at city level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name $regionTarget `
+      --display-name $regionTarget `
+      --hierarchy-level "city" `
+      --capabilities "Use for soap production" `
+      --description "This is City Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCityName
     
     # Create target at factory level
     az workload-orchestration target create `
@@ -248,19 +248,19 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
     $lineTargetId = $(az workload-orchestration target show --resource-group $rg --name "$lineTarget" --query id --output tsv)
     $factoryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$factoryTarget" --query id --output tsv)
     $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
-    $countryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$countryTarget" --query id --output tsv)
+    $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
     ```
 
 1. Link the target IDs to their respective service groups. 
 
     ```powershell
-    #Link to country service group
+    #Link to region service group
     az rest `
       --method put `
-      --uri $countryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
     
-    #Link to region service group
+    #Link to city service group
     az rest `
       --method put `
       --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
@@ -282,12 +282,12 @@ All the instances of Line App, Factory App, Region App, and Global Adapter are d
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
 
     ```powershell
-    #Update country target
+    #Update region target
     az workload-orchestration target update `
       --resource-group $rg `
-      --name $countryTarget 
+      --name $regionTarget 
     
-    #Update region target
+    #Update city target
     az workload-orchestration target update `
       --resource-group $rg `
       --name $regionTarget 
@@ -359,7 +359,7 @@ To create the solution schema and solution template files, you can use *common-s
     ```
 ***
 
-### Solution template for Region App
+### Solution template for City App
 
 #### [Bash](#tab/bash)
 
@@ -379,7 +379,7 @@ To create the solution schema and solution template files, you can use *common-s
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is Region App Solution" \
+        --description "This is City App Solution" \
         --config-template-file ./rapp-config-template.yaml \
         --specification "@rapp-specs.json" \
         --version "$rappversion"
@@ -403,7 +403,7 @@ To create the solution schema and solution template files, you can use *common-s
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is Region App Solution" `
+        --description "This is City App Solution" `
         --config-template-file .\rapp-config-template.yaml `
         --specification "@rapp-specs.json" `
         --version $rappversion
@@ -522,7 +522,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "$level1Name"
     ```
 
-1. Set the configuration for Region App solution.
+1. Set the configuration for City App solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level1Name"
@@ -559,7 +559,7 @@ To create the solution schema and solution template files, you can use *common-s
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $level1Name
     ```
-1. Set the configuration for Region App solution.
+1. Set the configuration for City App solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level1Name
@@ -598,25 +598,25 @@ Review the configuration for Global Adapter solution with "ga-instance-a" instan
 ### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion  --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion  --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ga-instance-a"
 ```
 
 ### [PowerShell](#tab/powershell)
 
 
 ```powershell
-az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion --resource-group $rg --target-name $countryTarget --solution-instance-name "ga-instance-a"
+az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$ganame/versions/$gaversion --resource-group $rg --target-name $regionTarget --solution-instance-name "ga-instance-a"
 ```
 
 ***
 
 In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
-## Review, publish, and deploy Region App solution
+## Review, publish, and deploy City App solution
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration for Region App solution with dependency on Global Adapter solution.
+1. Review the configuration for City App solution with dependency on Global Adapter solution.
 
     ```bash
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
@@ -629,13 +629,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     rappSolutionVersion="<name>"
     ```
 
-1. Publish the Region App solution.
+1. Publish the City App solution.
 
     ```bash
     az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
-1. Deploy the Region App solution.
+1. Deploy the City App solution.
 
     ```bash
     az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
@@ -644,7 +644,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration for Region App solution with dependency on Global Adapter solution.
+1. Review the configuration for City App solution with dependency on Global Adapter solution.
 
     ```powershell
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
@@ -657,13 +657,13 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
     $rappSolutionVersion = "<name>"
     ```
 
-1. Publish the Region App solution.
+1. Publish the City App solution.
 
     ```powershell
     az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
     ```
 
-1. Deploy the Region App solution.
+1. Deploy the City App solution.
 
     ```powershell
     az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion

@@ -112,7 +112,7 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
     ```bash
     rg="<RESOURCE_GROUP_NAME>"
-    l="<LOCATION>"
+    l="<LORATION>"
     clusterName="<CLUSTER_NAME>"
     siteName="<SITE_NAME>"
     ```
@@ -137,7 +137,7 @@ Set-Location -Path "<enter folder path e.g. 'C:\path\to\cm\workspace'>"
 
     ```powershell
     $rg = "<RESOURCE_GROUP_NAME>"
-    $l = "<LOCATION>"
+    $l = "<LORATION>"
     $clusterName = "<CLUSTER_NAME>"
     $siteName = "<SITE_NAME>"
     ```

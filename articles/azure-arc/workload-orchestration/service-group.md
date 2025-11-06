@@ -77,7 +77,7 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[Region, Factory, Line]*, then you create a Site at the region level.
+Sites are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[City, Factory, Line]*, then you create a Site at the region level.
 
 To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup. 
 
@@ -405,15 +405,15 @@ Once the setup is completed, you can proceed with the solution authoring steps i
 
 ## Service groups at different hierarchy levels
 
-Service groups can be created for a **two-level** hierarchy organization, such as a factory and line, a **three-level** hierarchy organization, such as a region, factory, and line, and a maximum of **four-level** hierarchy organization, such as a country, region, factory, and line. The hierarchy names can be customized to match your organizational structure.
+Service groups can be created for a **two-level** hierarchy organization, such as a factory and line, a **three-level** hierarchy organization, such as a region, factory, and line, and a maximum of **four-level** hierarchy organization, such as a region, city, factory, and line. The hierarchy names can be customized to match your organizational structure.
 
 The previous sections show how to create a service group for a two-level hierarchy organization, which you can use as a reference to create service groups for a three-level or four-level hierarchy organization.
 
-To ease the process, the following steps show how to create a four-level service group hierarchy organization with levels: country, region, factory, and line. You need to consider the following points:
+To ease the process, the following steps show how to create a four-level service group hierarchy organization with levels: region, city, factory, and line. You need to consider the following points:
 
-- **The top three levels** in the hierarchy must each have its own **service group** created. For example, for the four-level hierarchy organization, you need to create a service group for levels country, region, and factory.
-- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: region, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
-- The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the country, region, and factory levels. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
+- **The top three levels** in the hierarchy must each have its own **service group** created. For example, for the four-level hierarchy organization, you need to create a service group for levels region, city, and factory.
+- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: city, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
+- The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the region, city, and factory levels. If the solution is to be deployed at city level, then the `editable_at` field in the schema accepts only region and city levels.
 
 ### [Bash](#tab/bash)
 
@@ -423,9 +423,9 @@ To ease the process, the following steps show how to create a four-level service
     # Enter resource group name
     rg="<resource-group-name>"
     tenantId="<tenant-id>"
-    # Enter name for the group representing the first hierarchy level. In this case, it is a country
+    # Enter name for the group representing the first hierarchy level. In this case, it is a region
     level1Name="Italy"
-    # Enter name for the group representing the second hierarchy level. In this case, it is a region
+    # Enter name for the group representing the second hierarchy level. In this case, it is a city
     level2Name="Naples"
     # Enter name for the group representing the third hierarchy level. In this case, it is a factory
     level3Name="ContosoLtd"
@@ -434,37 +434,16 @@ To ease the process, the following steps show how to create a four-level service
 1. Define the service group names and hierarchy levels. 
 
     ```bash
-    ## Level 1 / Country
-    # Create Top / Level 1 Service Group $resourcePrefix-SGCountry to link resources to:
-    az rest \
-      --method put \
-      --headers "Content-Type=application/json" \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" \
-      --resource https://management.azure.com
-
-    # Create Top / Level 1 Site $resourcePrefix-SGCountry to visualize & store configuration onto:
-    az rest \
-      --method put \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/Microsoft.Edge/sites/$resourcePrefix-SGCountry?api-version=2025-03-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','description': '$resourcePrefix-SGCountry','labels': {'level': 'Country'}}}" \
-      --resource https://management.azure.com
-
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCountryConfig?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCountrySchema?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCountryConfig'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCountrySchema'}}"
-
-    ## Level 2 / Region
-    # Create Level 2 Service Group $resourcePrefix-SGRegion to link resources to:
+    ## Level 1 / Region
+    # Create Top / Level 1 Service Group $resourcePrefix-SGRegion to link resources to:
     az rest \
       --method put \
       --headers "Content-Type=application/json" \
       --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}}" \
+      --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" \
       --resource https://management.azure.com
 
-    # Create Level 2 Site $resourcePrefix-SGRegion to visualize & store configuration onto:
+    # Create Top / Level 1 Site $resourcePrefix-SGRegion to visualize & store configuration onto:
     az rest \
       --method put \
       --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview" \
@@ -476,13 +455,34 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGRegionConfig'}}"
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGRegionSchema'}}"
 
+    ## Level 2 / City
+    # Create Level 2 Service Group $resourcePrefix-SGCity to link resources to:
+    az rest \
+      --method put \
+      --headers "Content-Type=application/json" \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity?api-version=2024-02-01-preview" \
+      --body "{'properties':{'displayName':'$resourcePrefix-SGCity','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" \
+      --resource https://management.azure.com
+
+    # Create Level 2 Site $resourcePrefix-SGCity to visualize & store configuration onto:
+    az rest \
+      --method put \
+      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/Microsoft.Edge/sites/$resourcePrefix-SGCity?api-version=2025-03-01-preview" \
+      --body "{'properties':{'displayName':'$resourcePrefix-SGCity','description': '$resourcePrefix-SGCity','labels': {'level': 'City'}}}" \
+      --resource https://management.azure.com
+
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCityConfig?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCitySchema?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCityConfig'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCitySchema'}}"
+
     ## Level 3 / Factory
     # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
     az rest \
       --method put \
       --headers "Content-Type=application/json" \
       --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" \
+      --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity'}}}" \
       --resource https://management.azure.com
 
     # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store configuration onto:
@@ -516,7 +516,7 @@ To ease the process, the following steps show how to create a four-level service
     contextRG="<resource group used to create the context for the first time>"
     # Enter the name of the context used during creation
     contextName="Contoso-Context"
-    siteReference="Country-SG"
+    siteReference="Region-SG"
     # Enter your specific region
     l="eastus"
 
@@ -529,7 +529,7 @@ To ease the process, the following steps show how to create a four-level service
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
-1. Create a new context or use an already existing one. The example uses country, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
+1. Create a new context or use an already existing one. The example uses region, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
 
     ```bash
     # Only one context can exist per tenant.
@@ -560,7 +560,7 @@ To ease the process, the following steps show how to create a four-level service
       --location "$l" \
       --name "$contextName" \
       --capabilities "@context-capabilities.json" \
-      --hierarchies "[0].name=country" "[0].description=Country" "[1].name=region" "[1].description=Region" "[2].name=factory" "[2].description=Factory" "[3].name=line" "[3].description=Line"
+      --hierarchies "[0].name=region" "[0].description=Region" "[1].name=region" "[1].description=City" "[2].name=factory" "[2].description=Factory" "[3].name=line" "[3].description=Line"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -571,7 +571,7 @@ To ease the process, the following steps show how to create a four-level service
     #Enter resource group name
     $rg = "<resource-group-name>"
     $tenantId = "<tenant-id>"
-    #Enter name for the group representing the first hierarchy level. In this case, it is a country
+    #Enter name for the group representing the first hierarchy level. In this case, it is a region
     $level1Name = "Italy"
     #Enter name for the group representing the second hierarchy level. In this case, it is a region
     $level2Name = "Naples"
@@ -582,37 +582,16 @@ To ease the process, the following steps show how to create a four-level service
 1. Define the service group names and hierarchy levels. 
 
     ```powershell
-    ## Level 1 / Country
-    # Create Top / Level 1 Service Group $resourcePrefix-SGCountry to link resources to:
-    az rest `
-        --method put `
-        --header Content-Type=application/json `
-        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry?api-version=2024-02-01-preview `
-        --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" `
-        --resource https://management.azure.com
-    
-    # Create Top / Level 1 Site $resourcePrefix-SGCountry to visualize & store congiguration onto:
-    az rest `
-      --method put `
-      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/Microsoft.Edge/sites/$resourcePrefix-SGCountry?api-version=2025-03-01-preview `
-      --body "{'properties':{'displayName':'$resourcePrefix-SGCountry','description': '$resourcePrefix-SGCountry','labels': {'level': 'Country'}}}" `
-      --resource https://management.azure.com
-    
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCountry".Substring(0, 18) + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCountry".Substring(0, 18) + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCountry".Substring(0, 18) + "Config")'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCountry".Substring(0, 18) + "Schema")'}}"
-    
-    ## Level 2 / Region
-    # Create Level 2 Service Group $resourcePrefix-SGRegion to link resources to:
+    ## Level 1 / Region
+    # Create Top / Level 1 Service Group $resourcePrefix-SGRegion to link resources to:
     az rest `
         --method put `
         --header Content-Type=application/json `
         --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview `
-        --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCountry'}}}" `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" `
         --resource https://management.azure.com
     
-    # Create Level 2 Site $resourcePrefix-SGRegion to visualize & store congiguration onto:
+    # Create Top / Level 1 Site $resourcePrefix-SGRegion to visualize & store congiguration onto:
     az rest `
       --method put `
       --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview `
@@ -624,13 +603,34 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Config")'}}"
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Schema")'}}"
     
+    ## Level 2 / City
+    # Create Level 2 Service Group $resourcePrefix-SGCity to link resources to:
+    az rest `
+        --method put `
+        --header Content-Type=application/json `
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity?api-version=2024-02-01-preview `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGCity','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" `
+        --resource https://management.azure.com
+    
+    # Create Level 2 Site $resourcePrefix-SGCity to visualize & store congiguration onto:
+    az rest `
+      --method put `
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/Microsoft.Edge/sites/$resourcePrefix-SGCity?api-version=2025-03-01-preview `
+      --body "{'properties':{'displayName':'$resourcePrefix-SGCity','description': '$resourcePrefix-SGCity','labels': {'level': 'City'}}}" `
+      --resource https://management.azure.com
+    
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCity".Substring(0, 18) + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCity".Substring(0, 18) + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCity".Substring(0, 18) + "Config")'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCity".Substring(0, 18) + "Schema")'}}"
+    
     ## Level 3 / Factory
     # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
     az rest `
         --method put `
         --header Content-Type=application/json `
         --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory?api-version=2024-02-01-preview `
-        --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" `
+        --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity'}}}" `
         --resource https://management.azure.com
     
     # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store congiguration onto:
@@ -664,7 +664,7 @@ To ease the process, the following steps show how to create a four-level service
     $contextRG = "<resource group used to create the context for the first time>"
     #Enter the name of the context used during creation
     $contextName = "Contoso-Context"
-    $siteReference = "Country-SG"
+    $siteReference = "Region-SG"
     #Enter your specific region
     $l = "eastus"
     
@@ -673,7 +673,7 @@ To ease the process, the following steps show how to create a four-level service
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
-1. Create a new context or use an already existing one. The example uses country, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
+1. Create a new context or use an already existing one. The example uses region, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
 
     ```powershell
     #Context can only exist one per tenant.
@@ -691,7 +691,7 @@ To ease the process, the following steps show how to create a four-level service
     $context.properties.capabilities = $context.properties.capabilities | Select-Object -Property name, description -Unique
     $context.properties.capabilities | ConvertTo-JSON -Compress | Set-Content context-capabilities.json
     
-    az workload-orchestration context create --subscription $contextSubscriptionId --resource-group $contextRG --location $l --name $contextName --capabilities "@context-capabilities.json" --hierarchies [0].name=country [0].description=Country [1].name=region [1].description=Region [2].name=factory [2].description=Factory [3].name=line [3].description=Line
+    az workload-orchestration context create --subscription $contextSubscriptionId --resource-group $contextRG --location $l --name $contextName --capabilities "@context-capabilities.json" --hierarchies [0].name=region [0].description=Region [1].name=region [1].description=City [2].name=factory [2].description=Factory [3].name=line [3].description=Line
     ```
 ***
 
