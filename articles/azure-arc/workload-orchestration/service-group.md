@@ -77,7 +77,7 @@ az rest `
 
 ## Create and tag Sites 
 
-Sites are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[City, Factory, Line]*, then you create a Site at the region level.
+Sites are used to identify the physical hierarchy such as plant, factory, and store. Sites can be created on top of subscriptions and resource groups. Site references are defined only for the **highest hierarchy level**. For example, if your hierarchy is *[Factory, Line]*, then you create a Site at the factory level. If your hierarchy is *[City, Factory, Line]*, then you create a Site at the city level.
 
 To ensure that Sites appear appropriately in the Azure portal, make sure to tag the Sites with the correct labels. The labels should be set according to the Site’s hierarchy level, as defined in your workload orchestration setup. 
 
@@ -405,14 +405,14 @@ Once the setup is completed, you can proceed with the solution authoring steps i
 
 ## Service groups at different hierarchy levels
 
-Service groups can be created for a **two-level** hierarchy organization, such as a factory and line, a **three-level** hierarchy organization, such as a region, factory, and line, and a maximum of **four-level** hierarchy organization, such as a region, city, factory, and line. The hierarchy names can be customized to match your organizational structure.
+Service groups can be created for a **two-level** hierarchy organization, such as a factory and line, a **three-level** hierarchy organization, such as a city, factory, and line, and a maximum of **four-level** hierarchy organization, such as a region, city, factory, and line. The hierarchy names can be customized to match your organizational structure.
 
 The previous sections show how to create a service group for a two-level hierarchy organization, which you can use as a reference to create service groups for a three-level or four-level hierarchy organization.
 
 To ease the process, the following steps show how to create a four-level service group hierarchy organization with levels: region, city, factory, and line. You need to consider the following points:
 
 - **The top three levels** in the hierarchy must each have its own **service group** created. For example, for the four-level hierarchy organization, you need to create a service group for levels region, city, and factory.
-- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at region level, then the particular site will have only 3 levels: city, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
+- **Site reference** is defined at the **highest level**. Although the context has 4 levels, if the site reference is defined at city level, then the particular site will have only 3 levels: city, factory, and line.  If the site reference is at factory level, then the particular site will have only 2 levels: factory and line. 
 - The **`editable_at`** field in the [configuration schema](configuring-schema.md) only **accepts the parent levels** in addition to target level. For example, if the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the region, city, and factory levels. If the solution is to be deployed at city level, then the `editable_at` field in the schema accepts only region and city levels.
 
 ### [Bash](#tab/bash)
@@ -529,7 +529,7 @@ To ease the process, the following steps show how to create a four-level service
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
-1. Create a new context or use an already existing one. The example uses region, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
+1. Create a new context or use an already existing one. The example uses region, city, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
 
     ```bash
     # Only one context can exist per tenant.
@@ -560,7 +560,7 @@ To ease the process, the following steps show how to create a four-level service
       --location "$l" \
       --name "$contextName" \
       --capabilities "@context-capabilities.json" \
-      --hierarchies "[0].name=region" "[0].description=Region" "[1].name=region" "[1].description=City" "[2].name=factory" "[2].description=Factory" "[3].name=line" "[3].description=Line"
+      --hierarchies "[0].name=region" "[0].description=Region" "[1].name=city" "[1].description=City" "[2].name=factory" "[2].description=Factory" "[3].name=line" "[3].description=Line"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -573,7 +573,7 @@ To ease the process, the following steps show how to create a four-level service
     $tenantId = "<tenant-id>"
     #Enter name for the group representing the first hierarchy level. In this case, it is a region
     $level1Name = "Italy"
-    #Enter name for the group representing the second hierarchy level. In this case, it is a region
+    #Enter name for the group representing the second hierarchy level. In this case, it is a city
     $level2Name = "Naples"
     #Enter name for the group representing the third hierarchy level. In this case, it is a factory
     $level31Name = "ContosoLtd"
@@ -673,7 +673,7 @@ To ease the process, the following steps show how to create a four-level service
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
-1. Create a new context or use an already existing one. The example uses region, region, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
+1. Create a new context or use an already existing one. The example uses region, city, factory, and line as hierarchies. Make sure to replace the placeholders and the hierarchy values with your actual values.
 
     ```powershell
     #Context can only exist one per tenant.
@@ -691,7 +691,7 @@ To ease the process, the following steps show how to create a four-level service
     $context.properties.capabilities = $context.properties.capabilities | Select-Object -Property name, description -Unique
     $context.properties.capabilities | ConvertTo-JSON -Compress | Set-Content context-capabilities.json
     
-    az workload-orchestration context create --subscription $contextSubscriptionId --resource-group $contextRG --location $l --name $contextName --capabilities "@context-capabilities.json" --hierarchies [0].name=region [0].description=Region [1].name=region [1].description=City [2].name=factory [2].description=Factory [3].name=line [3].description=Line
+    az workload-orchestration context create --subscription $contextSubscriptionId --resource-group $contextRG --location $l --name $contextName --capabilities "@context-capabilities.json" --hierarchies [0].name=region [0].description=Region [1].name=city [1].description=City [2].name=factory [2].description=Factory [3].name=line [3].description=Line
     ```
 ***
 

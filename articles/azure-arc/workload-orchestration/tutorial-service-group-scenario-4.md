@@ -52,7 +52,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     ```bash
     solution_scope="n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
     regionTarget="Italy"
-    regionTarget="Naples"
+    cityTarget="Naples"
     factoryTarget="Contoso"
     lineTarget="Line01"
 
@@ -74,8 +74,8 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     az workload-orchestration target create \
       --resource-group "$rg" \
       --location "$l" \
-      --name "$regionTarget" \
-      --display-name "$regionTarget" \
+      --name "$cityTarget" \
+      --display-name "$cityTarget" \
       --hierarchy-level "city" \
       --capabilities "Use for soap production" \
       --description "This is City Target" \
@@ -118,7 +118,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     ```bash
     lineTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$lineTarget" --query id --output tsv)
     factoryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$factoryTarget" --query id --output tsv)
-    regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
+    cityTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$cityTarget" --query id --output tsv)
     regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
     ```
 
@@ -134,7 +134,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     # Link to city service group
     az rest \
       --method put \
-      --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --uri "${cityTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
 
     # Link to factory service group
@@ -161,7 +161,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     # Update city target
     az workload-orchestration target update \
       --resource-group "$rg" \
-      --name "$regionTarget"
+      --name "$cityTarget"
 
     # Update factory target
     az workload-orchestration target update \
@@ -181,7 +181,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     ```powershell
     $solution_scope = "n-to-one-app"  # if you want to change the name, make sure it follows the K8s object naming convention
     $regionTarget = "Italy"
-    $regionTarget = "Naples"
+    $cityTarget = "Naples"
     $factoryTarget = "Contoso"
     $lineTarget = "Line01"
     
@@ -203,8 +203,8 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name $regionTarget `
-      --display-name $regionTarget `
+      --name $cityTarget `
+      --display-name $cityTarget `
       --hierarchy-level "city" `
       --capabilities "Use for soap production" `
       --description "This is City Target" `
@@ -247,7 +247,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     ```powershell
     $lineTargetId = $(az workload-orchestration target show --resource-group $rg --name "$lineTarget" --query id --output tsv)
     $factoryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$factoryTarget" --query id --output tsv)
-    $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
+    $cityTargetId = $(az workload-orchestration target show --resource-group $rg --name "$cityTarget" --query id --output tsv)
     $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
     ```
 
@@ -263,7 +263,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     #Link to city service group
     az rest `
       --method put `
-      --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --uri $cityTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
     
     #Link to factory service group
@@ -290,7 +290,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
     #Update city target
     az workload-orchestration target update `
       --resource-group $rg `
-      --name $regionTarget 
+      --name $cityTarget 
     
     #Update factory target
     az workload-orchestration target update `
@@ -366,23 +366,23 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "rapp-schema" --schema-file ./rapp-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "capp-schema" --schema-file ./capp-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file
 
     ```bash
-    rappversion="1.0.0"
-    rappname="${resourcePrefix}-rapp"
+    cappversion="1.0.0"
+    cappname="${resourcePrefix}-capp"
     az workload-orchestration solution-template create \
-        --solution-template-name "$rappname" \
+        --solution-template-name "$cappname" \
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is City App Solution" \
-        --config-template-file ./rapp-config-template.yaml \
-        --specification "@rapp-specs.json" \
-        --version "$rappversion"
+        --config-template-file ./capp-config-template.yaml \
+        --specification "@capp-specs.json" \
+        --version "$cappversion"
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -390,23 +390,23 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file.
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "rapp-schema" --schema-file .\rapp-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "capp-schema" --schema-file .\capp-schema.yaml -l $l
     ```
 
 1. Create the solution template file
 
     ```powershell
-    $rappversion = "1.0.0"
-    $rappname = "$resourcePrefix-rapp" 
+    $cappversion = "1.0.0"
+    $cappname = "$resourcePrefix-capp" 
     az workload-orchestration solution-template create `
-        --solution-template-name "$rappname" `
+        --solution-template-name "$cappname" `
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is City App Solution" `
         --config-template-file .\rapp-config-template.yaml `
-        --specification "@rapp-specs.json" `
-        --version $rappversion
+        --specification "@capp-specs.json" `
+        --version $cappversion
     ```
 ***
 
@@ -525,9 +525,9 @@ To create the solution schema and solution template files, you can use *common-s
 1. Set the configuration for City App solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level1Name"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$cappname" --target-name "$level1Name"
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$rappname" --target-name "$level2Name"
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$cappname" --target-name "$level2Name"
     ```
 
 1. Set the configuration for Factory App solution.
@@ -562,9 +562,9 @@ To create the solution schema and solution template files, you can use *common-s
 1. Set the configuration for City App solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level1Name
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $cappname --target-name $level1Name
     
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $rappname --target-name $level2Name
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $cappname --target-name $level2Name
     ```    
 1. Set the configuration for Factory App solution.
 
@@ -619,26 +619,26 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for City App solution with dependency on Global Adapter solution.
 
     ```bash
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group "$rg" --target-name "$regionTarget" --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$cappname/versions/$cappversion  --resource-group "$rg" --target-name "$cityTarget" --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
 
     ```bash
-    rappReviewId="<reviewId>"
-    rappSolutionVersion="<name>"
+    cappReviewId="<reviewId>"
+    cappSolutionVersion="<name>"
     ```
 
 1. Publish the City App solution.
 
     ```bash
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$cityTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget/solutions/$cappname/versions/$cappSolutionVersion
     ```
 
 1. Deploy the City App solution.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$regionTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$cityTarget" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget/solutions/$cappname/versions/$cappSolutionVersion
     ```
 
 
@@ -647,26 +647,26 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 1. Review the configuration for City App solution with dependency on Global Adapter solution.
 
     ```powershell
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$rappname/versions/$rappversion  --resource-group $rg --target-name $regionTarget --solution-dependencies "@dependencies.json"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$cappname/versions/$cappversion  --resource-group $rg --target-name $cityTarget --solution-dependencies "@dependencies.json"
     ```
 
 1. Copy the `reviewId` from the output of the previous command.
 
     ```powershell
-    $rappReviewId = "<reviewId>"
-    $rappSolutionVersion = "<name>"
+    $cappReviewId = "<reviewId>"
+    $cappSolutionVersion = "<name>"
     ```
 
 1. Publish the City App solution.
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $cityTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget/solutions/$cappname/versions/$cappSolutionVersion
     ```
 
 1. Deploy the City App solution.
 
     ```powershell
-    az workload-orchestration target install --resource-group $rg --target-name $regionTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget/solutions/$rappname/versions/$rappSolutionVersion
+    az workload-orchestration target install --resource-group $rg --target-name $cityTarget --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget/solutions/$cappname/versions/$cappSolutionVersion
     ```
 ***
 

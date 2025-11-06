@@ -135,7 +135,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./regionHub-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file. 
@@ -149,7 +149,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is CityHub Solution" \
-        --config-template-file ./regionHub-config-template.yaml \
+        --config-template-file ./cityHub-config-template.yaml \
         --specification "@specs.json" \
         --version "1.0.0"
     ```
@@ -159,7 +159,7 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./regionHub-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l $l
     ```
 
 1. Create the solution template file. 
@@ -173,7 +173,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is CityHub Solution" `
-        --config-template-file ./regionHub-config-template.yaml `
+        --config-template-file ./cityHub-config-template.yaml `
         --specification '@specs.json' `
         --version "1.0.0"
     ```
