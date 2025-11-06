@@ -177,14 +177,9 @@ For example, import the `aci-helloworld:latest` image from a source registry *my
 
 ### [Azure CLI](#tab/azure-cli)
 
-```azurecli
-az acr import \
-  --name myregistry \
-  --source mysourceregistry.azurecr.io/aci-helloworld:latest \
-  --image aci-helloworld:latest
-```
-
 The following example imports the `aci-helloworld:latest` image to *myregistry* from a source registry *mysourceregistry* in which access to the registry's public endpoint is disabled. Supply the resource ID of the source registry with the `--registry` parameter. Notice that the `--source` parameter specifies only the source repository and tag, not the registry login server name.
+
+Note that the `--registry <source-registry-resource-id>` flag is needed to utilize Entra identity authentication to the source registry.
 
 ```azurecli
 az acr import \
@@ -194,30 +189,14 @@ az acr import \
   --registry /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sourceResourceGroup/providers/Microsoft.ContainerRegistry/registries/mysourceregistry
 ```
 
-The following example imports an image by manifest digest (SHA-256 hash, represented as `sha256:...`) instead of by tag:
-
-```azurecli
-az acr import \
-  --name myregistry \
-  --source mysourceregistry.azurecr.io/aci-helloworld@sha256:123456abcdefg
-```
-
 ### [Azure PowerShell](#tab/azure-powershell)
 
-```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mysourceregistry.azurecr.io -SourceImage aci-helloworld:latest
-```
+The following example imports the `aci-helloworld:latest` image to *myregistry* from a source registry *mysourceregistry* in which access to the registry's public endpoint is disabled. Supply the resource ID of the source registry with the `-SourceRegistryResourceId` parameter. Notice that the `-SourceImage` parameter specifies only the source repository and tag, not the registry login server name.
 
-The following example imports the `aci-helloworld:latest` image to *myregistry* from a source registry *mysourceregistry* in which access to the registry's public endpoint is disabled. Supply the resource ID of the source registry with the `--registry` parameter. Notice that the `--source` parameter specifies only the source repository and tag, not the registry login server name.
+Note that the `-SourceRegistryResourceId <source-registry-resource-id>` flag is needed to utilize Entra identity authentication to the source registry.
 
 ```azurepowershell
 Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryResourceId '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/sourceResourceGroup/providers/Microsoft.ContainerRegistry/registries/mysourceregistry' -SourceImage aci-helloworld:latest
-```
-
-The following example imports an image by manifest digest (SHA-256 hash, represented as `sha256:...`) instead of by tag:
-
-```azurepowershell
-Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myResourceGroup -SourceRegistryUri mysourceregistry.azurecr.io -SourceImage aci-helloworld@sha256:123456abcdefg
 ```
 
 ---
