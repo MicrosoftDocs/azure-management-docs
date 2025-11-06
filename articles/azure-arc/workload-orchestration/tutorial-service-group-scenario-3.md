@@ -356,7 +356,7 @@ To create the solution schema and solution template files, you can use *common-s
         --description "This is RA Solution" `
         --config-template-file .\ra-config-template.yaml `
         --specification "@ra-specs.json" `
-        --version $caversion
+        --version $raversion
     ```
 ***
 
