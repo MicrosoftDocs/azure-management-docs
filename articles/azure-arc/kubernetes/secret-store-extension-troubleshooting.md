@@ -89,7 +89,7 @@ To find an appropriate `jitterSeconds` for your deployment, first chose the colu
 
 ### [Calculation](#tab/calculation)
 
-Calculating a sensible jitter value requires some statistical work. We want to find the shortest time such that if the clusters' fetches from AKV are uniformly distributed, the chance of overwhelming AKV in any given second is lower than our acceptable threshold.
+Calculating a reasonable jitter value requires some statistical work. We want to find the shortest time such that if the clusters' fetches from AKV are uniformly distributed, the chance of overwhelming AKV in any given second is lower than our acceptable threshold.
 
 Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
 
