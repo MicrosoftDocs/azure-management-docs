@@ -8,6 +8,14 @@ ms.topic: release-notes
 # Release notes
 Important updates and improvements to the Azure Key Vault Secret Store extension are listed here.
 
+## November 2025
+### 1.1.5
+- `jitterSeconds` extension setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)) added to help large deployments avoid overwhelming Azure Key Vault.
+- Security updates to internal components:
+
+    - Update Go to 1.25.1.
+    - Updated kubectl container image to v1.33.5-3.
+
 ## August 2025
 ### 1.0.2
 - SSE is generally available.

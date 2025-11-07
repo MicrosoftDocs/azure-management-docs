@@ -78,7 +78,7 @@ For very large deployments you should double check that the chosen jitter is rea
 
 The following table provides `jitterSeconds` values that will give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
 
-The columns are the number of clusters in the deployment, and the rows are the number of secrets per cluster. Chose the column with the smallest number of clusters that's larger than your deployment, then chose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
+To find an appropriate `jitterSeconds` for your deployment, first chose the column with the smallest number of clusters that's larger than your deployment, then chose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
 
 | Secrets needed   | 10 clusters | 20 clusters | 50 clusters | 100 clusters | 200 clusters | 500 clusters | 1,000 clusters | 2,000 clusters  | 5,000 clusters  | 10,000 clusters |
 | -- | -- | -- | -- | --- | --- | --- | ---- | ----- | ----- | ----- |
@@ -86,8 +86,6 @@ The columns are the number of clusters in the deployment, and the rows are the n
 | **10 secrets** | 0  | 1  | 2  | 5   | 10  | 24  | 49   | 97    | 240   | 490   |
 | **20 secrets** | 1  | 3  | 7  | 14  | 27  | 68  | 140  | 270   | 680   | 1,400 |
 | **50 secrets** | 8  | 15 | 38 | 76  | 150 | 380 | 760  | 1,500 | 3,800 | 7,600 |
-
-Other approaches to reduce the likelihood of overwhelming AKV include:
 
 ### [Calculation](#tab/calculation)
 
@@ -120,6 +118,8 @@ Optionally, you can verify your previous calculations by calculating the chance 
 ```
 
 Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
+
+## Other options to reduce likelihood of AKV throttling
 
 ### Decreasing the poll frequency
 
