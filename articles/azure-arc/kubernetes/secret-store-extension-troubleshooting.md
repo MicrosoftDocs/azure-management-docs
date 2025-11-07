@@ -6,7 +6,7 @@ ms.topic: troubleshooting
 ---
 
 # Troubleshooting
-The SSE is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storage of secrets in the cluster, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE is configured via `SecretSync` and `SecretProviderClass` resources. In addition to configuration parameters, `SecretSync` classes are updated by the SSE controller with the status of the sync operation, including error messages where appropriate.
+The Secret Store Extension (SSE) is a Kubernetes deployment that contains a pod with two containers: the controller, which manages storage of secrets in the cluster, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE is configured via `SecretSync` and `SecretProviderClass` resources. In addition to configuration parameters, `SecretSync` classes are updated by the SSE controller with the status of the sync operation, including error messages where appropriate.
 
 ## Checking a SecretSync status
 
@@ -54,9 +54,9 @@ To force the SSE to update a secret immediately, update any part of the `spec` f
 
 ## Azure Key Vault Rate Limiting
 
-Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to clusters' SecretSync resources at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
+Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to many clusters' SecretSync resources at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
 
-Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other loading on the same key vault, and the number of secrets being fetched.
+Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other uses of the same key vault, and the number of secrets being fetched.
 
 However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
 
@@ -94,7 +94,7 @@ Calculating a reasonable jitter value requires some statistical work. We want to
 Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
 
 Using Excel as our calculation tool, follow these steps:
-1. Put your number of clusters, secrets for each cluster and acceptable risk overwhelming AKV into cells `A1`, `A2`, `A3` respectively.
+1. Put your number of clusters, secrets for each cluster, and acceptable risk overwhelming AKV into cells `A1`, `A2`, `A3` respectively.
 1. Calculate the Z-score for your chosen probability. Put this into cell `A4`.
     ```Excel
     =ABS(NORM.S.INV(A3))
