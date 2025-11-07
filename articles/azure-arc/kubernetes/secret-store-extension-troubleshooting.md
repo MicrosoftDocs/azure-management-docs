@@ -54,7 +54,7 @@ To force the SSE to update a secret immediately, update any part of the `spec` f
 
 ## Azure Key Vault Rate Limiting
 
-Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](https://learn.microsoft.com/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to clusters' SecretSync resources at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
+Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to clusters' SecretSync resources at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
 
 Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other loading on the same key vault, and the number of secrets being fetched.
 
@@ -62,9 +62,9 @@ However, with a larger deployments, such as 2,000 clusters each fetching 20 secr
 
 Choosing an appropriate `jitterSeconds`:
 
-### [Easiest](#tab/easist-jitter)
+### [Basic](#tab/basic-jitter)
 
-The easiest but pessimistic way to set `jitterSeconds` is to to use the longest acceptable time.
+The easiest way to set `jitterSeconds` is to to use the longest acceptable time.
 
 1. Decide what is the maximum acceptable time between refreshing secrets for your application. Two hours (7,200 seconds) is a reasonable starting point.
 1. Set `rotationPollIntervalInSeconds` to the minimum time between refreshes, or keep the default one hour (3,600 seconds).
@@ -80,18 +80,18 @@ The following table provides `jitterSeconds` values that will give a (much) less
 
 The columns are the number of clusters in the deployment, and the rows are the number of secrets per cluster. Chose the column with the smallest number of clusters that's larger than your deployment, then chose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
 
-|    | 10 | 20 | 50 | 100 | 200 | 500 | 1,000 | 2,000  | 5,000  | 10,000 |
+| Secrets needed   | 10 clusters | 20 clusters | 50 clusters | 100 clusters | 200 clusters | 500 clusters | 1,000 clusters | 2,000 clusters  | 5,000 clusters  | 10,000 clusters |
 | -- | -- | -- | -- | --- | --- | --- | ---- | ----- | ----- | ----- |
-| 5  | 0  | 0  | 1  | 2   | 4   | 10  | 20   | 39    | 98    | 200   |
-| 10 | 0  | 1  | 2  | 5   | 10  | 24  | 49   | 97    | 240   | 490   |
-| 20 | 1  | 3  | 7  | 14  | 27  | 68  | 140  | 270   | 680   | 1,400 |
-| 50 | 8  | 15 | 38 | 76  | 150 | 380 | 760  | 1,500 | 3,800 | 7,600 |
+| **5 secrets** | 0  | 0  | 1  | 2   | 4   | 10  | 20   | 39    | 98    | 200   |
+| **10 secrets** | 0  | 1  | 2  | 5   | 10  | 24  | 49   | 97    | 240   | 490   |
+| **20 secrets** | 1  | 3  | 7  | 14  | 27  | 68  | 140  | 270   | 680   | 1,400 |
+| **50 secrets** | 8  | 15 | 38 | 76  | 150 | 380 | 760  | 1,500 | 3,800 | 7,600 |
 
 Other approaches to reduce the likelihood of overwhelming AKV include:
 
 ### [Calculation](#tab/calculation)
 
-Calculating a sensible jitter value is straightforward but requires some statistics. We want to find the shortest time such that if the clusters' secrets fetches from AKV are uniformly distributed, the chance of overwhelming AKV in any given second is lower than our acceptable threshold.
+Calculating a sensible jitter value requires some statistical work. We want to find the shortest time such that if the clusters' fetches from AKV are uniformly distributed, the chance of overwhelming AKV in any given second is lower than our acceptable threshold.
 
 Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
 
@@ -105,7 +105,7 @@ Using Excel as our calulation tool, follow these steps:
     ```Excel
     =400/A2
     ```
-1. Calculate the mean number of clusters we would like to fetch from AKV each second. Put this expression into cell `A6`. (This is the poisson lambda value. We use a Wilson-Hilferty approximation because a normal approximation is not accurate enough as our small threshold values.) 
+1. Calculate the mean number of clusters we would like to fetch from AKV each second. Put this expression into cell `A6`. (This is the poisson lambda value. We use a Wilson-Hilferty approximation because a normal approximation is not accurate enough as our threshold values can be small.) 
     ```Excel
     =A5 * (1 - (1/(9*A5)) - (A4/(3*SQRT(A5))))^3
     ```
@@ -115,9 +115,9 @@ Using Excel as our calulation tool, follow these steps:
     ```
 
 Optionally, you can verify your previous calculations by calculating the chance that your jitter will overwhelm AKV. Add this expression to cell `A8`:
-    ```Excel
-    =1-POISSON.DIST(A5,A1/A7,TRUE)
-    ```
+```Excel
+=1-POISSON.DIST(A5,A1/A7,TRUE)
+```
 
 Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
 
@@ -127,4 +127,4 @@ Checking AKV for updated secrets counts towards the rate limits in the same way 
 
 ### Add additional key vaults
 
-Additional key vault instances can be added to increase the possible number of secret fetches per second, but beware that an Azure subscription has an overall limit of five times a single AKV limit, shared across all key vaults. See [Azure Key Vault service limits](https://learn.microsoft.com/azure/key-vault/general/service-limits). 
+Additional key vault instances can be added to increase the possible number of secret fetches per second, but beware that an Azure subscription has an overall limit of five times a single AKV limit, shared across all key vaults. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). 
