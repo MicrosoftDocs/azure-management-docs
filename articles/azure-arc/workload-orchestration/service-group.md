@@ -110,7 +110,8 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create configuration.
 
     ```bash
-    configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    configName="<configuration name>"
+    configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$configName"
     az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 
@@ -127,7 +128,8 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the schema.
 
     ```bash
-    schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$name"
+    schemaName="<schema name>"
+    schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$schemaName"
     az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 
@@ -168,7 +170,8 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create configuration.
 
     ```powershell
-    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    $configName="<configuration name>"
+    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$configName"
     az rest --method put --url "$configId`?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 
@@ -185,7 +188,8 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 1. Create the schema.
 
     ```powershell
-    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$name"
+    $schemaName="<schema name>"
+    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$schemaName"
     az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 

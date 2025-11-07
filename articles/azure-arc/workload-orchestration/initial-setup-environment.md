@@ -483,8 +483,9 @@ To use a resource group, run the following commands:
 1. Create configuration.
 
     ```bash
-    configId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/configurations/$name"
-    az rest --method put --url "$configId?api-version=2025-08-01" --body "{\"location\":\"$l\"}"
+    configName="<configuration name>"
+    configId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/configurations/$configName"
+    az rest --method put --url "$configId?api-version=2025-08-01" --body "{\"location\":\"$location\"}"
     ```
 
 1. Create the configuration reference.
@@ -500,8 +501,9 @@ To use a resource group, run the following commands:
 1. Create the schema.
 
     ```bash
-    schemaId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/schemas/$name"
-    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{\"location\":\"$l\"}"
+    schemaName="<schema name>"
+    schemaId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/schemas/$schemaName"
+    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{\"location\":\"$location\"}"
     ```
 
 1. Create the schema reference.
@@ -559,7 +561,8 @@ To use a resource group, run the following commands:
 1. Create configuration.
 
     ```powershell
-    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    $configName="<configuration name>"
+    $configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$configName"
     az rest --method put --url "$configId`?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 
@@ -576,7 +579,8 @@ To use a resource group, run the following commands:
 1. Create the schema.
 
     ```powershell
-    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$name"
+    $schemaName="<schema name>"
+    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$schemaName"
     az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
     ```
 
