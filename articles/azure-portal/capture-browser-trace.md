@@ -15,7 +15,18 @@ If you're troubleshooting an issue with the Azure portal, and you need to contac
 >
 > In certain cases, such as when investigating issues related to signing in to Azure, Microsoft support may request a trace file that includes this sensitive information. Microsoft support uses these traces for troubleshooting purposes only.
 
-You can capture a browser trace in any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
+You can capture a browser trace in any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): [Microsoft Edge](#microsoft-edge), [Google Chrome](#google-chrome), [Safari (on Mac)](#safari), or [Firefox](#firefox).
+
+## Capture your Azure portal session ID and diagnostic data
+
+When reporting issues with the Azure portal, including your session ID and diagnostic information can help the support team investigate more effectively. You can collect this information directly from your active portal session by generating a PortalDiagnostics.json file. This file contains your portal session ID and other relevant diagnostic metadata that can help the Azure portal team analyze issues more efficiently.
+
+To capture your portal session ID and related diagnostic data:
+
+1. In your active Azure portal session, press **Ctrl + Alt + A**. This action automatically generates a file named PortalDiagnostics.json.
+1. Save the PortalDiagnostics.json file to your local machine.
+
+You can then [include the PortalDiagnostics.json file in your support request](supportability/how-to-manage-azure-support-request.md#upload-files), along with your browser trace and any other relevant diagnostic files.
 
 ## Microsoft Edge
 
