@@ -109,37 +109,37 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
 
 1. Create configuration.
 
-  ```bash
-  configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
-  az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$location'}"
-  ```
+    ```bash
+    configId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/configurations/$name"
+    az rest --method put --url "$configId?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
 
 1. Create the configuration reference.
 
-  ```bash
-  # For service group-based sites
-  az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-
-  # For resource group-based sites
-  az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
-  ```
+    ```bash
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
+    ```
 
 1. Create the schema.
 
-  ```bash
-  schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$name"
-  az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{'location':'$location'}"
-  ```
+    ```bash
+    schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$name"
+    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{'location':'$location'}"
+    ```
 
 1. Create the schema reference.
 
-  ```bash
-  # For service group-based sites
-  az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-
-  # For resource group-based sites
-  az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-  ```
+    ```bash
+    # For service group-based sites
+    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+    
+    # For resource group-based sites
+    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
+    ```
 
 #### [PowerShell](#tab/powershell)
 
@@ -420,15 +420,11 @@ To ease the process, the following steps show how to create a four-level service
 1. Define the global variables.
 
     ```bash
-    # Enter resource group name
     rg="<resource-group-name>"
     tenantId="<tenant-id>"
-    # Enter name for the group representing the first hierarchy level. In this case, it is a region
-    level1Name="Italy"
-    # Enter name for the group representing the second hierarchy level. In this case, it is a city
-    level2Name="Naples"
-    # Enter name for the group representing the third hierarchy level. In this case, it is a factory
-    level3Name="ContosoLtd"
+    l="<Azure region>"
+    subscriptionId="<subscription ID>"
+    resourcePrefix="<prefix for resource name>"
     ```
 
 1. Define the service group names and hierarchy levels. 
@@ -437,65 +433,71 @@ To ease the process, the following steps show how to create a four-level service
     ## Level 1 / Region
     # Create Top / Level 1 Service Group $resourcePrefix-SGRegion to link resources to:
     az rest \
-      --method put \
-      --headers "Content-Type=application/json" \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" \
-      --resource https://management.azure.com
+        --method put \
+        --header Content-Type=application/json \
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview \
+        --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" \
+        --resource https://management.azure.com
 
     # Create Top / Level 1 Site $resourcePrefix-SGRegion to visualize & store configuration onto:
     az rest \
       --method put \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview" \
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview \
       --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','description': '$resourcePrefix-SGRegion','labels': {'level': 'Region'}}}" \
       --resource https://management.azure.com
-
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGRegionConfig?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGRegionSchema?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGRegionConfig'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGRegionSchema'}}"
-
+    
+    siteName="$resourcePrefix-SGRegion"
+    siteName="${siteName:0:18}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema'}}"
+    
     ## Level 2 / City
     # Create Level 2 Service Group $resourcePrefix-SGCity to link resources to:
     az rest \
-      --method put \
-      --headers "Content-Type=application/json" \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGCity','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" \
-      --resource https://management.azure.com
-
+        --method put \
+        --header Content-Type=application/json \
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity?api-version=2024-02-01-preview \
+        --body "{'properties':{'displayName':'$resourcePrefix-SGCity','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" \
+        --resource https://management.azure.com
+    
     # Create Level 2 Site $resourcePrefix-SGCity to visualize & store configuration onto:
     az rest \
       --method put \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/Microsoft.Edge/sites/$resourcePrefix-SGCity?api-version=2025-03-01-preview" \
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/Microsoft.Edge/sites/$resourcePrefix-SGCity?api-version=2025-03-01-preview \
       --body "{'properties':{'displayName':'$resourcePrefix-SGCity','description': '$resourcePrefix-SGCity','labels': {'level': 'City'}}}" \
       --resource https://management.azure.com
-
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCityConfig?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCitySchema?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGCityConfig'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGCitySchema'}}"
-
+    
+    siteName="$resourcePrefix-SGCity"
+    siteName="${siteName:0:18}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema'}}"
+    
     ## Level 3 / Factory
     # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
     az rest \
-      --method put \
-      --headers "Content-Type=application/json" \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory?api-version=2024-02-01-preview" \
-      --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity'}}}" \
-      --resource https://management.azure.com
-
+        --method put \
+        --header Content-Type=application/json \
+        --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory?api-version=2024-02-01-preview \
+        --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity'}}}" \
+        --resource https://management.azure.com
+    
     # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store configuration onto:
     az rest \
       --method put \
-      --url "https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/Microsoft.Edge/sites/$resourcePrefix-SGFactory?api-version=2025-03-01-preview" \
+      --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/Microsoft.Edge/sites/$resourcePrefix-SGFactory?api-version=2025-03-01-preview \
       --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','description': '$resourcePrefix-SGFactory','labels': {'level': 'Factory'}}}" \
-      --resource https://management.azure.com
-
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGFactoryConfig?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGFactorySchema?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${resourcePrefix}-SGFactoryConfig'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${resourcePrefix}-SGFactorySchema'}}"
+      --resource https://management.azure.com        
+    
+    siteName="$resourcePrefix-SGFactory"
+    siteName="${siteName:0:18}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/${siteName}Config'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema'}}"
     ```
 
 1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
@@ -568,15 +570,11 @@ To ease the process, the following steps show how to create a four-level service
 1. Define the global variables.
 
     ```powershell
-    #Enter resource group name
-    $rg = "<resource-group-name>"
-    $tenantId = "<tenant-id>"
-    #Enter name for the group representing the first hierarchy level. In this case, it is a region
-    $level1Name = "Italy"
-    #Enter name for the group representing the second hierarchy level. In this case, it is a city
-    $level2Name = "Naples"
-    #Enter name for the group representing the third hierarchy level. In this case, it is a factory
-    $level31Name = "ContosoLtd"
+    $rg="<resource-group-name>"
+    $tenantId="<tenant-id>"
+    $l="<Azure region>"
+    $subscriptionId="<subscription ID>"
+    $resourcePrefix="<prefix for resource name>"
     ```
 
 1. Define the service group names and hierarchy levels. 
@@ -590,19 +588,21 @@ To ease the process, the following steps show how to create a four-level service
         --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion?api-version=2024-02-01-preview `
         --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$tenantId'}}}" `
         --resource https://management.azure.com
-    
-    # Create Top / Level 1 Site $resourcePrefix-SGRegion to visualize & store congiguration onto:
+
+    # Create Top / Level 1 Site $resourcePrefix-SGRegion to visualize & store configuration onto:
     az rest `
       --method put `
       --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$resourcePrefix-SGRegion?api-version=2025-03-01-preview `
       --body "{'properties':{'displayName':'$resourcePrefix-SGRegion','description': '$resourcePrefix-SGRegion','labels': {'level': 'Region'}}}" `
       --resource https://management.azure.com
-    
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Config")'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGRegion".Substring(0, 18) + "Schema")'}}"
-    
+
+    $siteName = "$resourcePrefix-SGRegion"
+    $siteName = $siteName.Substring(0, [math]::Min(18, $siteName.Length))
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")'}}"
+
     ## Level 2 / City
     # Create Level 2 Service Group $resourcePrefix-SGCity to link resources to:
     az rest `
@@ -611,19 +611,21 @@ To ease the process, the following steps show how to create a four-level service
         --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity?api-version=2024-02-01-preview `
         --body "{'properties':{'displayName':'$resourcePrefix-SGCity','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion'}}}" `
         --resource https://management.azure.com
-    
-    # Create Level 2 Site $resourcePrefix-SGCity to visualize & store congiguration onto:
+
+    # Create Level 2 Site $resourcePrefix-SGCity to visualize & store configuration onto:
     az rest `
       --method put `
       --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/Microsoft.Edge/sites/$resourcePrefix-SGCity?api-version=2025-03-01-preview `
       --body "{'properties':{'displayName':'$resourcePrefix-SGCity','description': '$resourcePrefix-SGCity','labels': {'level': 'City'}}}" `
       --resource https://management.azure.com
-    
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCity".Substring(0, 18) + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCity".Substring(0, 18) + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGCity".Substring(0, 18) + "Config")'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGCity".Substring(0, 18) + "Schema")'}}"
-    
+
+    $siteName = "$resourcePrefix-SGCity"
+    $siteName = $siteName.Substring(0, [math]::Min(18, $siteName.Length))
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")'}}"
+
     ## Level 3 / Factory
     # Create Level 3 Service Group $resourcePrefix-SGFactory to link resources to:
     az rest `
@@ -633,17 +635,19 @@ To ease the process, the following steps show how to create a four-level service
         --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','parent': { 'resourceId': '/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGCity'}}}" `
         --resource https://management.azure.com
     
-    # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store congiguration onto:
+    # Create Level 3 / Factory Site $resourcePrefix-SGFactory to visualize & store configuration onto:
     az rest `
       --method put `
       --url https://eastus2euap.management.azure.com/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/Microsoft.Edge/sites/$resourcePrefix-SGFactory?api-version=2025-03-01-preview `
       --body "{'properties':{'displayName':'$resourcePrefix-SGFactory','description': '$resourcePrefix-SGFactory','labels': {'level': 'Factory'}}}" `
       --resource https://management.azure.com        
     
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGFactory".Substring(0, 18) + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGFactory".Substring(0, 18) + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$("$resourcePrefix-SGFactory".Substring(0, 18) + "Config")'}}"
-    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$("$resourcePrefix-SGFactory".Substring(0, 18) + "Schema")'}}"
+    $siteName = "$resourcePrefix-SGFactory"
+    $siteName = $siteName.Substring(0, [math]::Min(18, $siteName.Length))
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")'}}"
+    az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")'}}"
     ```
 
 1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
