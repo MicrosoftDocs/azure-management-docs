@@ -58,13 +58,13 @@ Azure Key Vault has hard limits on the rate of transactions it can service befor
 
 Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other loading on the same key vault, and the number of secrets being fetched.
 
-However, with a larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be can be reduced to effectively zero.
+However, with a larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
 
 Choosing an appropriate `jitterSeconds`:
 
 ### [Basic](#tab/basic-jitter)
 
-The easiest way to set `jitterSeconds` is to to use the longest acceptable time.
+The easiest way to set `jitterSeconds` is to use the longest acceptable time.
 
 1. Decide what is the maximum acceptable time between refreshing secrets for your application. Two hours (7,200 seconds) is a reasonable starting point.
 1. Set `rotationPollIntervalInSeconds` to the minimum time between refreshes, or keep the default one hour (3,600 seconds).
@@ -93,7 +93,7 @@ Calculating a sensible jitter value requires some statistical work. We want to f
 
 Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
 
-Using Excel as our calulation tool, follow these steps:
+Using Excel as our calculation tool, follow these steps:
 1. Put your number of clusters, secrets for each cluster and acceptable risk overwhelming AKV into cells `A1`, `A2`, `A3` respectively.
 1. Calculate the Z-score for your chosen probability. Put this into cell `A4`.
     ```Excel
