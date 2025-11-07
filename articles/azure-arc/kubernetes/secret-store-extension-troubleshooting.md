@@ -99,7 +99,7 @@ Using Excel as our calulation tool, follow these steps:
     ```Excel
     =ABS(NORM.S.INV(A3))
     ```
-2. Calculate maximum number of clusters that can update in a second before causing AKV to throttle. This is our 'threshold', T, value. Put this in cell `A5`.
+2. Calculate maximum number of clusters that can update in a second before causing AKV to throttle. This is our 'threshold', value. Put this in cell `A5`.
     ```Excel
     =400/A2
     ```
