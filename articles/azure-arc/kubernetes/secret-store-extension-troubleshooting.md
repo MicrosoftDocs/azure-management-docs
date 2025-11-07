@@ -50,7 +50,7 @@ If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-conne
 
 Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3,600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
 
-To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any effect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for an example.
+To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any effect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources) for an example.
 
 ## Azure Key Vault Rate Limiting
 
@@ -58,7 +58,7 @@ Azure Key Vault has hard limits on the rate of transactions it can service befor
 
 Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other loading on the same key vault, and the number of secrets being fetched.
 
-However, with a larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
+However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
 
 Choosing an appropriate `jitterSeconds`:
 
@@ -78,7 +78,7 @@ For very large deployments you should double check that the chosen jitter is rea
 
 The following table provides `jitterSeconds` values that will give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
 
-To find an appropriate `jitterSeconds` for your deployment, first chose the column with the smallest number of clusters that's larger than your deployment, then chose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
+To find an appropriate `jitterSeconds` for your deployment, first choose the column with the smallest number of clusters that's larger than your deployment, then choose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
 
 | Secrets needed   | 10 clusters | 20 clusters | 50 clusters | 100 clusters | 200 clusters | 500 clusters | 1,000 clusters | 2,000 clusters  | 5,000 clusters  | 10,000 clusters |
 | -- | -- | -- | -- | --- | --- | --- | ---- | ----- | ----- | ----- |
