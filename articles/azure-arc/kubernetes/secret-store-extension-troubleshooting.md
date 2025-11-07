@@ -51,3 +51,80 @@ If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-conne
 Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3,600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
 
 To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any effect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources)) for an example.
+
+## Azure Key Vault Rate Limiting
+
+Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](https://learn.microsoft.com/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to clusters' SecretSync resources at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
+
+Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10x20 is much less than 4,000. If throttling is encountered in this situation, double check other loading on the same key vault, and the number of secrets being fetched.
+
+However, with a larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be can be reduced to effectively zero.
+
+Choosing an appropriate `jitterSeconds`:
+
+### [Easiest](#tab/easist-jitter)
+
+The easiest but pessimistic way to set `jitterSeconds` is to to use the longest acceptable time.
+
+1. Decide what is the maximum acceptable time between refreshing secrets for your application. Two hours (7,200 seconds) is a reasonable starting point.
+1. Set `rotationPollIntervalInSeconds` to the minimum time between refreshes, or keep the default one hour (3,600 seconds).
+1. Subtract `rotationPollIntervalInSeconds` from your maximum acceptable refresh time in seconds to calculate your `jitterSeconds` value.
+
+In this example, `jitterSeconds` would be set to 3,600 seconds. Secrets would then be fetched from AKV at a random time between one and two hours after the last fetch.
+
+For very large deployments you should double check that the chosen jitter is realistic: the number of clusters multiplied by the number of secrets fetched per cluster must be much lower than the total number of secrets AKV can provide in your `jitterSeconds` interval.
+
+### [Lookup from a table](#tab/table-lookup)
+
+The following table provides `jitterSeconds` values that will give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
+
+The columns are the number of clusters in the deployment, and the rows are the number of secrets per cluster. Chose the column with the smallest number of clusters that's larger than your deployment, then chose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
+
+|    | 10 | 20 | 50 | 100 | 200 | 500 | 1,000 | 2,000  | 5,000  | 10,000 |
+| -- | -- | -- | -- | --- | --- | --- | ---- | ----- | ----- | ----- |
+| 5  | 0  | 0  | 1  | 2   | 4   | 10  | 20   | 39    | 98    | 200   |
+| 10 | 0  | 1  | 2  | 5   | 10  | 24  | 49   | 97    | 240   | 490   |
+| 20 | 1  | 3  | 7  | 14  | 27  | 68  | 140  | 270   | 680   | 1,400 |
+| 50 | 8  | 15 | 38 | 76  | 150 | 380 | 760  | 1,500 | 3,800 | 7,600 |
+
+Other approaches to reduce the likelihood of overwhelming AKV include:
+
+### [Calculation](#tab/calculation)
+
+Calculating a sensible jitter value is straightforward but requires some statistics. We want to find the shortest time such that if the clusters' secrets fetches from AKV are uniformly distributed, the chance of overwhelming AKV in any given second is lower than our acceptable threshold.
+
+Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
+
+Using Excel as our calulation tool, follow these steps:
+1. Put your number of clusters, secrets for each cluster and acceptable risk overwhelming AKV into cells `A1`, `A2`, `A3` respectively.
+1. Calculate the Z-score for your chosen probability. Put this into cell `A4`.
+    ```Excel
+    =ABS(NORM.S.INV(A3))
+    ```
+2. Calculate maximum number of clusters that can update in a second before causing AKV to throttle. This is our 'threshold', T, value. Put this in cell `A5`.
+    ```Excel
+    =400/A2
+    ```
+1. Calculate the mean number of clusters we would like to fetch from AKV each second. Put this expression into cell `A6`. (This is the poisson lambda value. We use a Wilson-Hilferty approximation because a normal approximation is not accurate enough as our small threshold values.) 
+    ```Excel
+    =A5 * (1 - (1/(9*A5)) - (A4/(3*SQRT(A5))))^3
+    ```
+1. Finally, calculate the jitter value in seconds by dividing the number of clusters by the mean number we would like to fetch per second. Put this expression in cell `A7`
+    ```Excel
+    =A1/A6
+    ```
+
+Optionally, you can verify your previous calculations by calculating the chance that your jitter will overwhelm AKV. Add this expression to cell `A8`:
+    ```Excel
+    =1-POISSON.DIST(A5,A1/A7,TRUE)
+    ```
+
+Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
+
+### Decreasing the poll frequency
+
+Checking AKV for updated secrets counts towards the rate limits in the same way as fetching secrets for the first time. Increasing `rotationPollIntervalInSeconds` (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)) can reduce the aggregate demand on AKV. 
+
+### Add additional key vaults
+
+Additional key vault instances can be added to increase the possible number of secret fetches per second, but beware that an Azure subscription has an overall limit of five times a single AKV limit, shared across all key vaults. See [Azure Key Vault service limits](https://learn.microsoft.com/azure/key-vault/general/service-limits). 

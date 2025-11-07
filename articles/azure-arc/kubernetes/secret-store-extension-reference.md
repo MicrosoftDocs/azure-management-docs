@@ -21,6 +21,8 @@ SSE accepts the following Arc extension configuration parameters:
    |---------------------------------|-------------------------------------------------------------------------------|----------------------------------------------|
    | `rotationPollIntervalInSeconds`          | Specifies how quickly the SSE checks or updates the secret it's managing.       | `3600` (1 hour)                                             |
    | `enablePartialSecretSync` | When set to `false` a secret is only updated if every contained item could be fetched from Azure Key Vault (AKV) successfully. When `true` each item in a secret is updated if it was fetched successfully, without regard to the success of other items in the secret. | `true` |
+   | `jitterSeconds` | Specifies the maximum additional SecretSync jitter. SSE will wait a random time between 0 and `jitterSeconds` each time it considers a SecretSync resource, this will happen every time a SecretSync is updated or after `rotationPollIntervalInSeconds` has elapsed. See  | `0` (no jitter) |
+
 
 ## SecretSync resources
 
