@@ -119,7 +119,9 @@ Optionally, you can verify your previous calculations by calculating the chance 
 
 Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
 
-## Other options to reduce likelihood of AKV throttling
+---
+
+Other options to reduce likelihood of AKV throttling include:
 
 ### Decreasing the poll frequency
 
