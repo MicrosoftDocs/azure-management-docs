@@ -11,13 +11,24 @@ ms.topic: how-to
 If you're troubleshooting an issue with the Azure portal, and you need to contact Microsoft support, you may want to first capture some additional information. For example, it can be helpful to share a browser trace, a step recording, and console output. This information can provide important details about what exactly is happening in the portal when your issue occurs.
 
 > [!WARNING]
-> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. We generally recommend ensuring that sensitive information is not included in any trace files that you share.
+> Browser traces often contain sensitive information and might include authentication tokens linked to your identity. We generally recommend ensuring that sensitive information isn't included in any trace files that you share.
 >
 > In certain cases, such as when investigating issues related to signing in to Azure, Microsoft support may request a trace file that includes this sensitive information. Microsoft support uses these traces for troubleshooting purposes only.
 
-You can capture a browser trace in any [supported browser](azure-portal-supported-browsers-devices.md#recommended-browsers): Microsoft Edge, Google Chrome, Safari (on Mac), or Firefox. Steps for each browser are shown below.
+You can capture a browser trace in any supported browser: [Microsoft Edge](#capture-an-azure-portal-browser-trace-in-microsoft-edge), [Google Chrome](#capture-an-azure-portal-browser-trace-in-google-chrome), [Safari (on Mac)](#capture-an-azure-portal-browser-trace-in-safari), or [Firefox](#capture-an-azure-portal-browser-trace-in-firefox).
 
-## Microsoft Edge
+## Capture your Azure portal session ID and diagnostic data
+
+When reporting issues with the Azure portal, including your session ID and diagnostic information can help the support team investigate more effectively. You can collect this information directly from your active portal session by generating a PortalDiagnostics.json file. This file contains your portal session ID and other relevant diagnostic metadata that can help the Azure portal team analyze issues more efficiently.
+
+To capture your portal session ID and related diagnostic data:
+
+1. In your active Azure portal session, press **Ctrl + Alt + A**. This action automatically generates a file named PortalDiagnostics.json.
+1. Save the PortalDiagnostics.json file to your local machine.
+
+You can then [include the PortalDiagnostics.json file in your support request](supportability/how-to-manage-azure-support-request.md#upload-files), along with your browser trace and any other relevant diagnostic files.
+
+## Capture an Azure portal browser trace in Microsoft Edge
 
 The following steps show how to use the developer tools in Microsoft Edge to capture a browser trace. For more information, see [Microsoft Edge DevTools](/microsoft-edge/devtools-guide-chromium/overview).
 
@@ -59,7 +70,7 @@ The following steps show how to use the developer tools in Microsoft Edge to cap
 
 1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
 
-## Google Chrome
+## Capture an Azure portal browser trace in Google Chrome
 
 The following steps show how to use the developer tools in Google Chrome to capture a browser trace. For more information, see [Chrome DevTools](https://developers.chrome.com/docs/devtools).
 
@@ -101,7 +112,7 @@ The following steps show how to use the developer tools in Google Chrome to capt
 
 1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
 
-## Safari
+## Capture an Azure portal browser trace in Safari
 
 The following steps show how to use the developer tools in Apple Safari on Mac. For more information, see [Safari Developer Tools](https://developer.apple.com/safari/tools/).
 
@@ -151,7 +162,7 @@ The following steps show how to use the developer tools in Apple Safari on Mac. 
 
 1. Share the compressed file with Microsoft support by [using the **File upload** option in your support request](supportability/how-to-manage-azure-support-request.md#upload-files).
 
-## Firefox
+## Capture an Azure portal browser trace in Firefox
 
 The following steps show how to use the developer tools in Firefox. For more information, see [Firefox DevTools User Docs](https://firefox-source-docs.mozilla.org/devtools-user/index.html).
 
