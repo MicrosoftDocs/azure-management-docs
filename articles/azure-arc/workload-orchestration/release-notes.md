@@ -147,7 +147,7 @@ To migrate your existing workload orchestration target resources to the GA versi
 
 ### New features
 
-- [Four-level hierarchy support:](service-group.md#service-groups-at-different-hierarchy-levels) You can now create a hierarchy of up to four levels, which allows you to organize your resources such as country, region, factory, and line. 
+- [Four-level hierarchy support:](service-group.md#service-groups-at-different-hierarchy-levels) You can now create a hierarchy of up to four levels, which allows you to organize your resources such as region, city, factory, and line. 
 - [Predeployment staging:](how-to-stage.md) Staging is introduced as a predeployment step to allow container images to be downloaded and synced to edge devices in advance, ensuring reliable deployments within limited maintenance windows.
 - [Bulk deployment:](bulk-deployment.md) You can now deploy a solution to multiple targets within the same Kubernetes cluster. 
 - [Diagnostic of K8 errors:](diagnose-problems.md) Diagnostic logs are now available for workload orchestration, which allows you to diagnose edge-related errors including container issues and telemetry logs. 

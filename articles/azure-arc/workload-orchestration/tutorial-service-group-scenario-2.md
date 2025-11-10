@@ -9,7 +9,7 @@ ms.date: 06/01/2025
 
 # Tutorial: Create a solution with a non-leaf target using service groups
 
-In this tutorial, you create and configure a target at the region level, which is the third level in a four-level service group hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
+In this tutorial, you create and configure a target at the city level, which is the third level in a four-level service group hierarchy. You use service groups to orchestrate workloads across different levels of the hierarchy.
 
 For more information, see [Service groups at different hierarchy levels in workload orchestration](service-group.md#service-groups-at-different-hierarchy-levels).
 
@@ -28,31 +28,31 @@ For more information, see [Service groups at different hierarchy levels in workl
 
 ## Define the scenario
 
-The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of region, city, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
 
-:::image type="content" source="./media/scenario-non-leaf-target.png" alt-text="Diagram of the four-level hierarchy and target at region level." lightbox="./media/scenario-non-leaf-target.png":::
+:::image type="content" source="./media/scenario-non-leaf-target.png" alt-text="Diagram of the four-level hierarchy and target at city level." lightbox="./media/scenario-non-leaf-target.png":::
 
-The sites references are created at only at country and region level, being SGCountry at the country level, SGRegion at the region level. The target is created at the region level, which isn't the lowest level in the hierarchy, so it's referred to as a non-leaf target.
+The sites references are created at only at region and city level, being SGRegion at the region level, SGCity at the city level. The target is created at the city level, which isn't the lowest level in the hierarchy, so it's referred to as a non-leaf target.
 
-The solution is named RegionHub (RH) and is deployed at the target, which means that the solution is specific to the regional level. 
+The solution is named CityHub and is deployed at the target, which means that the solution is specific to the regional level. 
 
 ## Create a non-leaf target
 
 ### [Bash](#tab/bash)
 
-1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific region in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `city` level. The target is named City01, which represents a specific city in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```bash
-    RegionName="Region01"
+    CityName="City01"
 
     az workload-orchestration target create \
       --resource-group "$rg" \
       --location "$l" \
-      --name "$RegionName" \
-      --display-name "$RegionName" \
-      --hierarchy-level "region" \
+      --name "$CityName" \
+      --display-name "$CityName" \
+      --hierarchy-level "city" \
       --capabilities "Use for soap soap" \
-      --description "This is Region01 Target" \
+      --description "This is City01 Target" \
       --solution-scope "new" \
       --target-specification @targetspecs.json \
       --extended-location @custom-location.json \
@@ -62,10 +62,10 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```bash
-    targetId=$(az workload-orchestration target show --resource-group $rg --name "$RegionName" --query id --output tsv)
+    targetId=$(az workload-orchestration target show --resource-group $rg --name "$CityName" --query id --output tsv)
     ```
 
-1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
+1. Link the target ID to the city service group. Make sure to replace `$level2Name` with the name of your city service group.
 
     ```bash
     az rest \
@@ -77,24 +77,24 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```bash
-    az workload-orchestration target update --resource-group "$rg" --name "$RegionName"
+    az workload-orchestration target update --resource-group "$rg" --name "$CityName"
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Create a target and set `--hierarchy-level` to `region` level. The target is named Region01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
+1. Create a target and set `--hierarchy-level` to `city` level. The target is named City01, which represents a specific line in the factory. Update *custom-location.json* file with the custom location of your cluster.
 
     ```powershell
-    $RegionName = "Region01"
+    $CityName = "City01"
 
     az workload-orchestration target create `
       --resource-group $rg `
       --location $l `
-      --name $RegionName`
-      --display-name $RegionName `
-      --hierarchy-level "region" `
+      --name $CityName`
+      --display-name $CityName `
+      --hierarchy-level "city" `
       --capabilities "Use for soap production" `
-      --description "This is Region01 Target" `
+      --description "This is City01 Target" `
       --solution-scope "new" `
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
@@ -104,10 +104,10 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Get the target ID of the created target.
 
     ```powershell
-    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$RegionName" --query id --output tsv)
+    $targetId = $(az workload-orchestration target show --resource-group $rg --name "$CityName" --query id --output tsv)
     ```
 
-1. Link the target ID to the region service group. Make sure to replace `$level2Name` with the name of your region service group.
+1. Link the target ID to the city service group. Make sure to replace `$level2Name` with the name of your city service group.
 
     ```powershell
     az rest `
@@ -119,7 +119,7 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 1. Update the target after connecting it to the service group to make sure the hierarchy configuration is updated. This step is optional but recommended.
 
     ```powershell
-    az workload-orchestration target update --resource-group $rg --name $RegionName
+    az workload-orchestration target update --resource-group $rg --name $CityName
     ```
 ***
 
@@ -128,28 +128,28 @@ The solution is named RegionHub (RH) and is deployed at the target, which means 
 To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
 
 > [!IMPORTANT]
-> If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is country, region, and factory. If the solution is to be deployed at region level, then the `editable_at` field in the schema accepts only country and region levels.
+> If the solution is to be deployed at factory level, then the `editable_at` field in the schema only accepts the parent levels in addition to target level, that is region, city, and factory. If the solution is to be deployed at city level, then the `editable_at` field in the schema accepts only region and city levels.
 
 ### [Bash](#tab/bash)
 
 1. Create the solution schema file.
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$RegionName-schema" --schema-file ./regionHub-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l "$l"
     ```
 
 1. Create the solution template file. 
 
     ```bash
-    solutionName="RegionHub Solution"    
+    solutionName="CityHub Solution"    
 
     az workload-orchestration solution-template create \
         --solution-template-name "$solutionName" \
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
-        --description "This is RegionHub Solution" \
-        --config-template-file ./regionHub-config-template.yaml \
+        --description "This is CityHub Solution" \
+        --config-template-file ./cityHub-config-template.yaml \
         --specification "@specs.json" \
         --version "1.0.0"
     ```
@@ -159,21 +159,21 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$RegionName-schema" --schema-file ./regionHub-schema.yaml -l $l
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$CityName-schema" --schema-file ./cityHub-schema.yaml -l $l
     ```
 
 1. Create the solution template file. 
 
     ```powershell
-    $solutionName = "RegionHub Solution"    
+    $solutionName = "CityHub Solution"    
 
     az workload-orchestration solution-template create `
         --solution-template-name $solutionName `
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
-        --description "This is RegionHub Solution" `
-        --config-template-file ./regionHub-config-template.yaml `
+        --description "This is CityHub Solution" `
+        --config-template-file ./cityHub-config-template.yaml `
         --specification '@specs.json' `
         --version "1.0.0"
     ```
@@ -183,13 +183,13 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for country service group.
+1. Set the configuration for region service group.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level1Name"
     ```
 
-1. Set the configuration for region service group.
+1. Set the configuration for city service group.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level2Name"
@@ -197,13 +197,13 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for country service group.
+1. Set the configuration for region service group.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level1Name
     ```
 
-1. Set the configuration for region service group.
+1. Set the configuration for city service group.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level2Name
@@ -220,7 +220,7 @@ To create the solution schema and solution template files, you can use *common-s
     solutionVersion="<solution-version>"
     subId="<subscription-id>"
 
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$RegionName"
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0 --resource-group "$rg" --target-name "$CityName"
     ```
 
 1. Publish the configuration. Replace `<SolutionVersion>` with the value of `properties.name`, and `<ReviewID>` with the value of `properties.properties.reviewId` returned from the previous command.
@@ -228,13 +228,13 @@ To create the solution schema and solution template files, you can use *common-s
     ```bash
     solutionVersion="<SolutionVersion>" 
 
-    az workload-orchestration target publish --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group "$rg" --target-name "$CityName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. Replace `<SolutionVersion>` with the same value you used in the previous command.
 
     ```bash
-    az workload-orchestration target install --resource-group "$rg" --target-name "$RegionName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target install --resource-group "$rg" --target-name "$CityName" --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -244,19 +244,19 @@ To create the solution schema and solution template files, you can use *common-s
     ```powershell
     $solutionVersion = "<solution-version>"
     $subId = "<subscription-id>"
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0--resource-group $rg --target-name $RegionName
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/1.0.0--resource-group $rg --target-name $CityName
     ```
 
 1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $CityName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --resource-group $rg --target-name $RegionName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$RegionName/solutions/$solutionName/versions/$solutionVersion
+   az workload-orchestration target install --resource-group $rg --target-name $CityName --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 
