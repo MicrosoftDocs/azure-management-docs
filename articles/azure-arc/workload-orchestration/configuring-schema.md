@@ -62,7 +62,7 @@ The following constraints apply to the rules defined in the configuration schema
 - The `disallowedValues` property is applicable only for `string`, `int`, and `float` types.
 - The `defaultValue` property is not applicable for the `object` type.
 - The `editableBy` property accepts either IT, OT or both values. If IT is set, this parameter isn't shown on the workload orchestration portal and has to be configured via CLI. If OT is set, this parameter is visible on the workload orchestration portal and can be set via CLI also.
-- The `editableAt` parameter accepts any hierarchy level value as defined during context creation, for example, `Line`, `Factory`, or `Region`.
+- The `editableAt` parameter accepts any hierarchy level value as defined during context creation, for example, `Line`, `Factory`, or `City`.
 
 ## Including and referencing rules from another schema
 
