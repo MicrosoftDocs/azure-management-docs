@@ -94,5 +94,5 @@ azcmagent config set incomingconnections.enabled false
 
 azcmagent config set guestconfiguration.enabled false
 
-azcmagent config set extensions.allowlist “Microsoft.Azure.Monitor/AzureMonitorWindowsAgent,Microsoft.Azure.AzureDefenderForServers/MDE.Windows”
+azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorWindowsAgent,Microsoft.Azure.AzureDefenderForServers/MDE.Windows"
 ```

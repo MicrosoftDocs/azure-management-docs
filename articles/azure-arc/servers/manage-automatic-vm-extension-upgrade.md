@@ -2,7 +2,7 @@
 title: Automatic extension upgrade for Azure Arc-enabled servers
 description: Learn how to enable automatic extension upgrades for your Azure Arc-enabled servers.
 ms.topic: concept-article
-ms.date: 07/31/2025
+ms.date: 11/11/2025
 # Customer intent: "As an IT administrator managing Azure Arc-enabled servers, I want to enable automatic extension upgrades so that I can reduce operational overhead and ensure that my server extensions are always up to date with minimal intervention."
 ---
 
@@ -62,7 +62,6 @@ Many VM extensions support automatic extension upgrade, including the following 
 - Azure Monitor Agent
 - Azure Monitor Dependency agent
 - Azure Key Vault
-- Microsoft Defender for Endpoint
 - Azure Update Manager
 - Azure Automation Hybrid Runbook Worker
 - Network Watcher
@@ -149,7 +148,7 @@ To view automatic extension upgrade history, search for the **Activity Log** in 
 
 :::image type="content" source="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" lightbox="media/manage-automatic-vm-extension-upgrade/azure-activity-log-extension-upgrade.png" alt-text="Screenshot of the Azure Activity Log showing history of automatic extension upgrade attempts on Azure Arc-enabled servers." border="true":::
 
-## Next steps
+## Related content
 
 - Learn how to deploy, manage, and remove VM extensions using the [Azure CLI](manage-vm-extensions-cli.md), [PowerShell](manage-vm-extensions-powershell.md), or [Azure Resource Manager templates](manage-vm-extensions-template.md).
 - Review the [Troubleshoot VM extensions guide](troubleshoot-vm-extensions.md).
