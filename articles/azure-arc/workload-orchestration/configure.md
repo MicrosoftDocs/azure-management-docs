@@ -28,7 +28,7 @@ This article describes how to use the workload orchestration portal to add confi
 1. The Configure tab provides more sub-tabs: **Factory**, **Line**, **Solutions**, and **Published Solutions**. The Factory tab shows the status of all solutions deployed in your environment at the factory level, while the Line tab shows the status of all solutions deployed in your environment at the line level. The Solutions tab shows the status of all solutions deployed in your environment, while the Published Solutions tab shows the status of all published solutions.
 
     > [!IMPORTANT]
-    > Hierarchical levels are custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements, for example, country, region, factory, and line levels. In that case, you see the name of the custom-defined levels in the Configure tab, together with the Solutions and Published Solutions tabs.
+    > Hierarchical levels are custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements, for example, region, city, factory, and line levels. In that case, you see the name of the custom-defined levels in the Configure tab, together with the Solutions and Published Solutions tabs.
 
 1. In any of the sub-tabs, you can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of solutions will be filtered to show only those that match the keyword.
 

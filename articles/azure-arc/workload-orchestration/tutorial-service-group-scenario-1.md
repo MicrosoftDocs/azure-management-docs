@@ -27,11 +27,11 @@ For more information, see [Service groups at different hierarchy levels in workl
 
 ## Define the scenario
 
-The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of region, city, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
 
 :::image type="content" source="./media/scenario-leaf-target.png" alt-text="Diagram of the four-level hierarchy and target at line level." lightbox="./media/scenario-leaf-target.png":::
 
-The sites references are created at each level of the hierarchy, being SGCountry at the country level, SGRegion at the region level, SGFactory at the factory level. The target is created at the line level, which is the lowest level in the hierarchy, so it's referred to as a leaf target. 
+The sites references are created at each level of the hierarchy, being SGRegion at the region level, SGCity at the city level, SGFactory at the factory level. The target is created at the line level, which is the lowest level in the hierarchy, so it's referred to as a leaf target. 
 
 The solution is named EdgeLink (EL) and is deployed at the target, which means that the solution is specific to the line level. 
 
@@ -180,13 +180,13 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for country service group.
+1. Set the configuration for region service group.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level1Name"
     ```
 
-1. Set the configuration for region service group.
+1. Set the configuration for city service group.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level2Name"
@@ -206,13 +206,13 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for country service group.
+1. Set the configuration for region service group.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level1Name
     ```
 
-1. Set the configuration for region service group.
+1. Set the configuration for city service group.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level2Name

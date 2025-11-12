@@ -28,20 +28,20 @@ For more information, see [Service groups at different hierarchy levels in workl
 
 ## Define the scenario
 
-The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of country, region, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
+The organization has a four-level hierarchy, which is represented in the following diagram. The hierarchy consists of region, city, factory, and line levels. These levels represent a top-down structure where each level narrows the scope of orchestration. 
 
 :::image type="content" source="./media/scenario-single-solution-dependencies.png" alt-text="Diagram of the four-level hierarchy and target at each level, where line level solution is dependent on the other solution." lightbox="./media/scenario-single-solution-dependencies.png":::
 
-The sites references are created at each level of the hierarchy, being SGCountry at the country level, SGRegion at the region level, SGFactory at the factory level. A target is created at each level, being CountryTarget at the country level, RegionTarget at the region level, FactoryTarget at the factory level, and LineTarget at the line level.
+The sites references are created at each level of the hierarchy, being SGRegion at the region level, SGCity at the city level, SGFactory at the factory level. A target is created at each level, being RegionTarget at the region level, CityTarget at the city level, FactoryTarget at the factory level, and LineTarget at the line level.
 
 A solution is deployed at each target as follows:
 
-- Country Adapter (CA) is a solution at country level.
 - Region Adapter (RA) is a solution at region level.
+- City Adapter (CA) is a solution at city level.
 - Factory Adapter (FA) is a solution at factory level.
 - Line Event Tracker (LET) is a solution at line level. LET is dependent on FA, RA, and CA, which means that during the deployment, LET configuration will be updated with the information from the other solutions.
 
-All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enabled Kubernetes cluster.
+All the instances of RA, CA, FA, and LET are deployed in the same Azure Arc-enabled Kubernetes cluster.
 
 ## Create targets
 
@@ -51,24 +51,10 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
 
     ```bash
     solution_scope="one-to-n-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    countryTarget="Italy"
-    regionTarget="Naples"
+    regionTarget="Italy"
+    cityTarget="Naples"
     factoryTarget="Contoso"
     lineTarget="Line01"
-
-    # Create target at country level
-    az workload-orchestration target create \
-      --resource-group "$rg" \
-      --location "$l" \
-      --name "$countryTarget" \
-      --display-name "$countryTarget" \
-      --hierarchy-level "country" \
-      --capabilities "Use for soap production" \
-      --description "This is Country Target" \
-      --solution-scope "$solution_scope" \
-      --target-specification "@targetspecs.json" \
-      --extended-location "@custom-location.json" \
-      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName"
 
     # Create target at region level
     az workload-orchestration target create \
@@ -83,6 +69,20 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --target-specification "@targetspecs.json" \
       --extended-location "@custom-location.json" \
       --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName"
+
+    # Create target at city level
+    az workload-orchestration target create \
+      --resource-group "$rg" \
+      --location "$l" \
+      --name "$cityTarget" \
+      --display-name "$cityTarget" \
+      --hierarchy-level "city" \
+      --capabilities "Use for soap production" \
+      --description "This is City Target" \
+      --solution-scope "$solution_scope" \
+      --target-specification "@targetspecs.json" \
+      --extended-location "@custom-location.json" \
+      --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCityName"
 
     # Create target at factory level
     az workload-orchestration target create \
@@ -118,23 +118,23 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
     ```bash
     lineTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$lineTarget" --query id --output tsv)
     factoryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$factoryTarget" --query id --output tsv)
+    cityTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$cityTarget" --query id --output tsv)
     regionTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$regionTarget" --query id --output tsv)
-    countryTargetId=$(az workload-orchestration target show --resource-group "$rg" --name "$countryTarget" --query id --output tsv)
     ```
 
 1. Link the target IDs to their respective service groups. Make sure to replace the service group names with the ones you created.
 
     ```bash
-    # Link to country service group
-    az rest \
-      --method put \
-      --uri "${countryTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
-
     # Link to region service group
     az rest \
       --method put \
       --uri "${regionTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
+
+    # Link to city service group
+    az rest \
+      --method put \
+      --uri "${cityTargetId}/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview" \
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
 
     # Link to factory service group
@@ -153,15 +153,15 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
 
     ```bash
-    # Update country target
-    az workload-orchestration target update \
-      --resource-group "$rg" \
-      --name "$countryTarget"
-
     # Update region target
     az workload-orchestration target update \
       --resource-group "$rg" \
       --name "$regionTarget"
+
+    # Update city target
+    az workload-orchestration target update \
+      --resource-group "$rg" \
+      --name "$cityTarget"
 
     # Update factory target
     az workload-orchestration target update \
@@ -180,24 +180,10 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
 
     ```powershell
     $solution_scope = "one-to-n-app"  # if you want to change the name, make sure it follows the K8s object naming convention
-    $countryTarget = "Italy"
-    $regionTarget = "Naples"
+    $regionTarget = "Italy"
+    $cityTarget = "Naples"
     $factoryTarget = "ContosoLtd"
     $lineTarget = "Line01"
-    
-    # Create target at country level
-    az workload-orchestration target create `
-      --resource-group $rg `
-      --location $l `
-      --name $countryTarget `
-      --display-name $countryTarget `
-      --hierarchy-level "country" `
-      --capabilities "Use for soap production" `
-      --description "This is Country Target" `
-      --solution-scope $solution_scope `
-      --target-specification '@targetspecs.json' `
-      --extended-location '@custom-location.json' `
-      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCountryName
     
     # Create target at region level
     az workload-orchestration target create `
@@ -212,6 +198,20 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
       --target-specification '@targetspecs.json' `
       --extended-location '@custom-location.json' `
       --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextRegionName
+    
+    # Create target at city level
+    az workload-orchestration target create `
+      --resource-group $rg `
+      --location $l `
+      --name $cityTarget `
+      --display-name $cityTarget `
+      --hierarchy-level "city" `
+      --capabilities "Use for soap production" `
+      --description "This is City Target" `
+      --solution-scope $solution_scope `
+      --target-specification '@targetspecs.json' `
+      --extended-location '@custom-location.json' `
+      --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextCityName
     
     # Create target at factory level
     az workload-orchestration target create `
@@ -247,23 +247,23 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
     ```powershell
     $lineTargetId = $(az workload-orchestration target show --resource-group $rg --name "$lineTarget" --query id --output tsv)
     $factoryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$factoryTarget" --query id --output tsv)
+    $cityTargetId = $(az workload-orchestration target show --resource-group $rg --name "$cityTarget" --query id --output tsv)
     $regionTargetId = $(az workload-orchestration target show --resource-group $rg --name "$regionTarget" --query id --output tsv)
-    $countryTargetId = $(az workload-orchestration target show --resource-group $rg --name "$countryTarget" --query id --output tsv)
     ```
 
 1. Link the target IDs to their respective service groups. Make sure to replace the service group names with the ones you created.
 
     ```powershell
-    #Link to country service group
-    az rest `
-      --method put `
-      --uri $countryTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
-      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
-    
     #Link to region service group
     az rest `
       --method put `
       --uri $regionTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
+      --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level1Name'}}"
+    
+    #Link to city service group
+    az rest `
+      --method put `
+      --uri $cityTargetId/providers/Microsoft.Relationships/serviceGroupMember/SGRelation?api-version=2023-09-01-preview `
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$level2Name'}}"
     
     #Link to factory service group
@@ -282,15 +282,15 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
 1. Update the targets after connecting them to the service groups to make sure the hierarchy configurations are updated. This step is optional but recommended.
 
     ```powershell
-    #Update country target
-    az workload-orchestration target update `
-      --resource-group $rg `
-      --name $countryTarget 
-    
     #Update region target
     az workload-orchestration target update `
       --resource-group $rg `
       --name $regionTarget 
+    
+    #Update city target
+    az workload-orchestration target update `
+      --resource-group $rg `
+      --name $cityTarget 
     
     #Update factory target
     az workload-orchestration target update `
@@ -308,58 +308,6 @@ All the instances of CA, RA, FA, and LET are deployed in the same Azure Arc-enab
 
 To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
 
-### Solution template for CA
-
-#### [Bash](#tab/bash)
-
-1. Create the solution schema file.
-
-    ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "ca-schema" --schema-file ./ca-schema.yaml -l "$l"
-    ```
-
-1. Create the solution template file
-
-    ```bash
-    caversion="1.0.0"
-    caname="ca-template"
-
-    az workload-orchestration solution-template create \
-        --solution-template-name "$caname" \
-        -g "$rg" \
-        -l "$l" \
-        --capabilities "Use for soap production" \
-        --description "This is CA Solution" \
-        --config-template-file ./ca-config-template.yaml \
-        --specification "@ca-specs.json" \
-        --version "$caversion"
-    ```
-
-#### [PowerShell](#tab/powershell)
-
-1. Create the solution schema file.
-
-    ```powershell
-    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "ca-schema" --schema-file .\ca-schema.yaml -l $l
-    ```
-
-1. Create the solution template file
-
-    ````powershell
-    $caversion = "1.0.0"
-    $caname = "ca-template" 
-    az workload-orchestration solution-template create `
-        --solution-template-name "$caname" `
-        -g $rg `
-        -l $l `
-        --capabilities "Use for soap production" `
-        --description "This is CA Solution" `
-        --config-template-file .\ca-config-template.yaml `
-        --specification "@ca-specs.json" `
-        --version $caversion
-    ```
-***
-
 ### Solution template for RA
 
 #### [Bash](#tab/bash)
@@ -375,6 +323,7 @@ To create the solution schema and solution template files, you can use *common-s
     ```bash
     raversion="1.0.0"
     raname="ra-template"
+
     az workload-orchestration solution-template create \
         --solution-template-name "$raname" \
         -g "$rg" \
@@ -408,6 +357,57 @@ To create the solution schema and solution template files, you can use *common-s
         --config-template-file .\ra-config-template.yaml `
         --specification "@ra-specs.json" `
         --version $raversion
+    ```
+***
+
+### Solution template for CA
+
+#### [Bash](#tab/bash)
+
+1. Create the solution schema file.
+
+    ```bash
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "ca-schema" --schema-file ./ca-schema.yaml -l "$l"
+    ```
+
+1. Create the solution template file
+
+    ```bash
+    caversion="1.0.0"
+    caname="ca-template"
+    az workload-orchestration solution-template create \
+        --solution-template-name "$caname" \
+        -g "$rg" \
+        -l "$l" \
+        --capabilities "Use for soap production" \
+        --description "This is CA Solution" \
+        --config-template-file ./ca-config-template.yaml \
+        --specification "@ca-specs.json" \
+        --version "$caversion"
+    ```
+
+#### [PowerShell](#tab/powershell)
+
+1. Create the solution schema file.
+
+    ```powershell
+    az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "ca-schema" --schema-file .\ca-schema.yaml -l $l
+    ```
+
+1. Create the solution template file
+
+    ````powershell
+    $caversion = "1.0.0"
+    $caname = "ca-template" 
+    az workload-orchestration solution-template create `
+        --solution-template-name "$caname" `
+        -g $rg `
+        -l $l `
+        --capabilities "Use for soap production" `
+        --description "This is CA Solution" `
+        --config-template-file .\ca-config-template.yaml `
+        --specification "@ca-specs.json" `
+        --version $caversion
     ```
 ***
 
@@ -517,18 +517,18 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for CA solution.
-
-    ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level1Name"
-    ```
-
 1. Set the configuration for RA solution.
 
     ```bash
     az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "$level1Name"
+    ```
 
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "$level2Name"
+1. Set the configuration for CA solution.
+
+    ```bash
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level1Name"
+
+    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level2Name"
     ```
 
 1. Set the configuration for FA solution.
@@ -555,17 +555,17 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for CA solution.
-
-    ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level1Name
-    ```
 1. Set the configuration for RA solution.
 
     ```powershell
     az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $level1Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $level2Name
+    ```
+1. Set the configuration for CA solution.
+
+    ```powershell
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level1Name
+
+    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level2Name
     ```    
 1. Set the configuration for FA solution.
 
@@ -596,16 +596,16 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [Bash](#tab/bash)
 
-1. Review the configuration for CA solution with "ca-instance-a" instance.
-
-    ```bash
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group "$rg" --target-name "$countryTarget" --solution-instance-name "ca-instance-a"
-    ```
-
 1. Review the configuration for RA solution with "ra-instance-a" instance.
 
     ```bash
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$raname/versions/$raversion  --resource-group "$rg" --target-name "$regionTarget" --solution-instance-name "ra-instance-a"
+    ```
+
+1. Review the configuration for CA solution with "ca-instance-a" instance.
+
+    ```bash
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group "$rg" --target-name "$cityTarget" --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for FA solution with "fa-instance-a" instance.
@@ -614,7 +614,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$faname/versions/$faversion  --resource-group "$rg" --target-name "$factoryTarget" --solution-instance-name "fa-instance-a"
     ```
 
-1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+1. Review the configuration for LET solution with dependencies on RA, CA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```bash
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$letname/versions/$letversion  --resource-group "$rg" --target-name "$lineTarget" --solution-dependencies "@dependencies.json"
@@ -629,16 +629,16 @@ To create the solution schema and solution template files, you can use *common-s
 
 ### [PowerShell](#tab/powershell)
 
-1. Review the configuration for CA solution with "ca-instance-a" instance.
-
-    ```powershell
-    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group $rg --target-name $countryTarget --solution-instance-name "ca-instance-a"
-    ```
-
 1. Review the configuration for RA solution with "ra-instance-a" instance.
 
     ```powershell
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$raname/versions/$raversion  --resource-group $rg --target-name $regionTarget --solution-instance-name "ra-instance-a"
+    ```
+
+1. Review the configuration for CA solution with "ca-instance-a" instance.
+
+    ```powershell
+    az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$caname/versions/$caversion  --resource-group $rg --target-name $cityTarget --solution-instance-name "ca-instance-a"
     ```
 
 1. Review the configuration for FA solution with "fa-instance-a" instance.
@@ -647,7 +647,7 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$faname/versions/$faversion  --resource-group $rg --target-name $factoryTarget --solution-instance-name "fa-instance-a"
     ```
 
-1. Review the configuration for LET solution with dependencies on CA, RA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
+1. Review the configuration for LET solution with dependencies on RA, CA, and FA solutions. In the *dependencies.json* file, replace `solutionVersionId` with the ID from the output of the previous commands.
 
     ```powershell
     az workload-orchestration target review --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$letname/versions/$letversion --resource-group $rg --target-name $lineTarget --solution-dependencies "@dependencies.json"
