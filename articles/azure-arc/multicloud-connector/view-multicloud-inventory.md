@@ -2,21 +2,28 @@
 title: View multicloud inventory with the multicloud connector enabled by Azure Arc
 description: View multicloud inventory with the multicloud connector enabled by Azure Arc
 ms.topic: how-to
-ms.date: 06/11/2024
+ms.date: 10/22/2025
 # Customer intent: "As a cloud architect, I want to view my AWS resources within Azure, so that I can maintain an organized and unified multicloud inventory for efficient resource governance."
 ---
 
 # View multicloud inventory with the multicloud connector enabled by Azure Arc
 
-The **Inventory** solution of the multicloud connector shows an up-to-date view of your resources from other public clouds in Azure, providing you with a single place to see all your cloud resources. Currently, AWS public cloud environments are supported.
+The **Inventory** solution of the multicloud connector shows an up-to-date view of your resources from other public clouds in Azure, providing you with a single place to see all your cloud resources.
 
-After you enable the **Inventory** solution, metadata from the assets in the source cloud is included with the asset representations in Azure. You can also apply Azure tags or Azure policies to these resources. This solution allows you to query for all your cloud resources through Azure Resource Graph, such as querying to find all Azure and AWS resources with a specific tag.
+Currently, the multicloud connector provides support for connecting resources from these public clouds:
 
-The **Inventory** solution scans your source cloud regularly to update the view represented in Azure. You can specify the interval to query when you [connect your public cloud](connect-to-aws.md) and configure the **Inventory** solution.
+- Amazon Web Services (AWS)
+- Google Cloud Platform (GCP) (preview)
 
-## Supported AWS services
+After you enable the **Inventory** solution, metadata from the assets in the source cloud is included with the asset representations in Azure. You can also apply Azure tags or Azure policies to these resources. This solution allows you to query for all your cloud resources through Azure Resource Graph, such as querying to find all Azure, AWS, and GCP resources with a specific tag.
 
-Today, resources associated with the following AWS services are scanned and represented in Azure. When you [create the **Inventory** solution](connect-to-aws.md#add-your-public-cloud-in-the-azure-portal), all available services are selected by default, but you can optionally include any services.
+The **Inventory** solution scans your source cloud regularly to update the view represented in Azure. You can specify the interval to query when you [connect your public cloud](add-public-cloud.md) and configure the **Inventory** solution.
+
+## Supported services
+
+Today, resources associated with the following AWS and GCP services are scanned and represented in Azure. When you [create the **Inventory** solution](add-public-cloud.md#add-your-public-cloud-in-the-azure-portal), all available services are selected by default, but you can optionally include any services.
+
+### [AWS](#tab/aws)
 
 The following table shows the AWS services that are scanned, the resource types associated with each service, and the Azure namespace that corresponds to each resource type.
 
@@ -134,26 +141,41 @@ The following table shows the AWS services that are scanned, the resource types 
 | WAF   | `wafWebACLSummaries` | `Microsoft.AwsConnector/wafWebACLSummaries`|
 | WAFv2   | `wafv2LoggingConfigurations` | `Microsoft.AwsConnector/wafv2LoggingConfigurations`|
 
-## AWS resource representation in Azure
+### [GCP](#tab/gcp)
 
-After you connect your AWS cloud and enable the **Inventory** solution, the multicloud connector creates a new resource group using the naming convention `aws_yourAwsAccountId`. Azure representations of your AWS resources are created in this resource group, using the `AwsConnector` namespace values described in the previous section. You can apply Azure tags and policies to these resources.
+The following table shows the GCP services that are scanned, the resource types associated with each service, and the Azure namespace that corresponds to each resource type.
 
-Resources that are discovered in AWS and projected in Azure are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping).
+| GCP service | GCP resource type | Azure namespace |
+|-------------|-------------------|-----------------|
+| BigQuery | `bigQueryDatasets` | `Microsoft.GcpConnector/bigQueryDatasets` |
+| CloudFunctions | `cloudFunctions` | `Microsoft.GcpConnector/cloudFunctions` |
+| Compute | `computeInstances` | `Microsoft.GcpConnector/computeInstances` |
+| Container | `containerclusters` | `Microsoft.GcpConnector/containerclusters` |
+| Storage | `storageBuckets` | `Microsoft.GcpConnector/storageBuckets` |
+| SQL Admin | `sqlAdminInstances` | `Microsoft.GcpConnector/sqlAdminInstances` |
+
+---
+
+## Resource representation in Azure
+
+After you connect your cloud and enable the **Inventory** solution, the multicloud connector creates a new resource group using the naming convention `<PublicCloud>_<AccountID>`. Azure representations of your resources are created in this resource group, using the `AwsConnector` or `GcpConnector` namespace values described in the previous section. You can apply Azure tags and policies to these resources.
+
+Resources that are discovered and projected in Azure are placed in Azure regions, using a [standard mapping scheme](resource-representation.md#region-mapping).
 
 > [!NOTE]
-> If you have EC2 instances that have already been [connected to Azure Arc](/azure/azure-arc/servers/deployment-options), the connector will create the EC2 Inventory resource as child resource of the Microsoft.HybridCompute/machines if the [prerequisites](connect-to-aws.md#azure-prerequisites) have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created. 
+> If you have EC2 instances or GCP VMs that have previously been [connected to Azure Arc](/azure/azure-arc/servers/deployment-options), the connector will create the related inventory resource as child resource of the Microsoft.HybridCompute/machines if the [prerequisites](add-public-cloud.md#azure-prerequisites) have been met in the subscription where the Arc machine resides. Otherwise, the Inventory resource will not be created.
 
 ## Permission options
 
-1. **Global Read**: Provides read only access to all resources in the AWS account. When new services are introduced, the connector can scan for those resources without requiring an updated CloudFormation template.
+1. **Global Read**: Provides read only access to all resources in the AWS account or the GCP Organization/Project. When new services are introduced, the connector can scan for those resources without requiring an updated CloudFormation template in AWS or Terraform template in GCP.
 
-  1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, a new CloudFormation template will need to be uploaded.
+1. **Least Privilege Access**: Provides read access to only the resources under the selected services. If you choose to scan for more resources in the future, you must upload a new template.
 
 ## Periodic sync options
 
-The periodic sync time that you select when configuring the **Inventory** solution determines how often your AWS account is scanned and synced to Azure. By enabling periodic sync, changes to your AWS resources are reflected in Azure. For instance, if a resource is deleted in AWS, that resource is also deleted in Azure.
+The periodic sync time that you select when configuring the **Inventory** solution determines how often your source cloud (AWS or GCP) is scanned and synced to Azure. By enabling periodic sync, changes to your source cloud resources are reflected in Azure. For instance, if a resource is deleted in your source cloud, that resource is also deleted in Azure.
 
-If you prefer, you can turn periodic sync off when configuring this solution. If you do so, your Azure representation may become out of sync with your AWS resources, as Azure won't be able to rescan and detect any changes.
+If you prefer, you can turn periodic sync off when configuring this solution. If you do so, your Azure representation may become out of sync with your source cloud resources, as Azure won't be able to rescan and detect any changes.
 
 ## Querying for resources in Azure Resource Graph
 

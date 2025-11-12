@@ -10,8 +10,8 @@
     href: resource-representation.md
 - name: How-to guides
   items:
-  - name: Connect to AWS
-    href: connect-to-aws.md
+  - name: Add a public cloud
+    href: add-public-cloud.md
   - name: View multicloud inventory
     href: view-multicloud-inventory.md
   - name: Onboard VMs to Azure Arc
