@@ -245,7 +245,45 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
 
 ## Configure the SSE
 
-Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/). You create two types of custom resources:
+Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/). 
+
+
+SSE can configured with a single simplified resource designed to suit most use cases, or the SSE internal components can be configured directly via two resources. The simplified configuration is a preview feature and may benefit from minor changes in upcoming versions. The direct configuration style will remain available for all deployments.
+
+### [Simplified (preview)](#tab/simplified-configuration)
+
+The easiest way to configure SSE is to create an `AKVSync` custom resource. This resource captures details about your AKV instance, which secrets to fetch, and where to put them in Kubernetes' secret store.
+
+``` yaml
+cat <<EOF > akvsync.yaml
+kind: AKVSync
+apiVersion: secret-sync.x-k8s.io/v1alpha1
+metadata:
+  name: my-akv-secrets
+  namespace: ${KUBERNETES_NAMESPACE}
+spec:
+  keyvaultName: ${KEYVAULT_NAME}
+  clientID: "${USER_ASSIGNED_CLIENT_ID}"
+  tenantID: "${AZURE_TENANT_ID}"
+  serviceAccountName: ${SERVICE_ACCOUNT_NAME}
+  objects:
+    - secretInAKV: ${KEYVAULT_SECRET_NAME}
+EOF
+```
+
+See [AKVSync reference](secret-store-extension-reference.md#akvsync-resources) for additional configuration guidance.
+
+### Apply the configuration CRs
+
+Apply the configuration custom resource (CR) using the `kubectl apply` command:
+
+``` bash
+kubectl apply -f ./akvsync.yaml
+```
+
+### [Direct](#tab/direct-configuration)
+
+To configure SSE directly, you create two types of custom resources:
 
 - A `SecretProviderClass` object to define the connection to the Key Vault.
 - A `SecretSync` object for each secret to be synchronized.
@@ -322,6 +360,8 @@ kubectl apply -f ./spc.yaml
 kubectl apply -f ./ss.yaml
 ```
 
+---
+
 The SSE automatically looks for the secrets and begins syncing them to the cluster.
 
 ## Observe secrets synchronizing to the cluster
@@ -344,10 +384,13 @@ kubectl get secrets -n ${KUBERNETES_NAMESPACE}
 
 To view the synchronized secret values, now stored in the Kubernetes secret store, use the following command:
 
+
 ```bash
-kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key0}" | base64 -d && echo
-kubectl get secret secret-sync-name -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key1}" | base64 -d && echo
+kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key0}" | base64 -d && echo
+kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key1}" | base64 -d && echo
 ```
+
+`<NAME>` is `${KEYVAULT_SECRET_NAME}"` if using the simplified configuration example, or `secret-sync-name` if using the direct configuration example.
 
 ## Troubleshooting
 
@@ -361,9 +404,9 @@ To remove the SSE and stop synchronizing secrets, uninstall it with the `az k8s-
 az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --resource-group $RESOURCE_GROUP  --cluster-type connectedClusters    
 ```
 
-Uninstalling the extension doesn't remove secrets, `SecretSync` objects, or CRDs from the cluster. These objects must be removed directly with `kubectl`.
+Uninstalling the extension doesn't remove secrets or CRDs (`AKVSync`, `SecretSync`, or `SecretProviderClass`) from the cluster. These objects must be removed directly with `kubectl`.
 
-Deleting the SecretSync CRD removes all `SecretSync` objects, and by default removes all owned secrets, but secrets may persist if:
+Deleting the `SecretSync` or `AKVSync` CRDs removes all `AKVSync` or `SecretSync` objects respectively, and by default removes all owned secrets, but secrets may persist if:
 
 - You modified ownership of any of the secrets.
 - You changed the [garbage collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/) settings in your cluster, including setting different [finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/).
