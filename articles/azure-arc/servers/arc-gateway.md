@@ -1,7 +1,7 @@
 ---
 title: Simplify Network Configuration Requirements with Azure Arc Gateway
 description: Learn how to simplify network configuration requirements with Azure Arc gateway.
-ms.date: 09/25/2025
+ms.date: 11/12/2025
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway so that I can efficiently onboard and control Azure Arc-enabled servers through minimal endpoint access."
 ---
@@ -401,6 +401,8 @@ Azure Arc gateway works by establishing a TLS session between Azure Arc proxy an
 
 When you use terminating proxies with Azure Arc gateway, the proxy sees the nested HTTP connect request. It might allow such a request, but it can't intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This behavior is outside the capabilities of standard TLS terminating proxies. When you use a terminating proxy, we recommend that you skip TLS inspection for your Azure Arc gateway endpoint.
 
-### Azure Arc gateway endpoint list
+### Endpoints accessible through Azure Arc gateway
 
-For a complete list of endpoints that you no longer have to manually allow in your environment, see [Azure Arc gateway endpoints](arc-gateway-endpoints.md).
+Arc Gateway uses a set of endpoints to enable all Arc features to function seamlessly. Currently, this includes over 200 endpoints, which represent the cumulative requirements for all supported capabilities. For the full list, see [Azure Arc gateway endpoints](arc-gateway-endpoints.md).
+
+Some endpoints are wildcarded to simplify connectivity and ensure feature coverage. We recommend reviewing these with your network security team to confirm they align with your organization’s policies. These endpoints are essential for secure and reliable operation of Arc services.
