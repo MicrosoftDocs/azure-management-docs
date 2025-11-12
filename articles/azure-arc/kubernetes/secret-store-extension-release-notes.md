@@ -10,6 +10,7 @@ Important updates and improvements to the Azure Key Vault Secret Store extension
 
 ## November 2025
 ### 1.1.5
+- (Preview feature) Simplified configurations are added via `AKVSync` resources. See the getting started and reference guides.
 - `jitterSeconds` extension setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)) added to help large deployments avoid overwhelming Azure Key Vault.
 - Security updates to internal components:
 
