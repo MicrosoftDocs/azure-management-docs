@@ -248,7 +248,7 @@ The SSE is available as an Azure Arc extension. An [Azure Arc-enabled Kubernetes
 Configure the installed extension with information about your Azure Key Vault and which secrets to synchronize to your cluster by defining instances of Kubernetes [custom resources](https://Kubernetes.io/docs/concepts/extend-Kubernetes/api-extension/custom-resources/). 
 
 
-SSE can configured with a single simplified resource designed to suit most use cases, or the SSE internal components can be configured directly via two resources. The simplified configuration is a preview feature and may benefit from minor changes in upcoming versions. The direct configuration style will remain available for all deployments.
+SSE can be configured with a single simplified resource designed to suit most use cases, or the SSE internal components can be configured directly via two resources. The simplified configuration is a preview feature and may benefit from minor changes in upcoming versions. The direct configuration style will remain available for all deployments.
 
 ### [Simplified (preview)](#tab/simplified-configuration)
 
@@ -342,9 +342,9 @@ spec:
     type: Opaque
     data:
     - sourcePath: ${KEYVAULT_SECRET_NAME}/0                # Name of the secret in Azure Key Vault with an optional version number (defaults to latest)
-      targetKey: ${KEYVAULT_SECRET_NAME}-data-key0         # Target name of the secret in the Kubernetes secret store (must be unique)
+      targetKey: v0         # Target name of the secret in the Kubernetes secret store (must be unique)
     - sourcePath: ${KEYVAULT_SECRET_NAME}/1                # [optional] Next version of the AKV secret. Note that versions of the secret must match the configured objectVersionHistory in the secrets provider class 
-      targetKey: ${KEYVAULT_SECRET_NAME}-data-key1         # [optional] Next target name of the secret in the K8s secret store
+      targetKey: v1         # [optional] Next target name of the secret in the K8s secret store
 EOF
 ```
 
@@ -386,13 +386,11 @@ kubectl get secrets -n ${KUBERNETES_NAMESPACE}
 
 To view the synchronized secret values, now stored in the Kubernetes secret store, use the following command:
 
-
 ```bash
-kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key0}" | base64 -d && echo
-kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.${KEYVAULT_SECRET_NAME}-data-key1}" | base64 -d && echo
+kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.v0}" | base64 -d && echo
 ```
 
-`<NAME>` is `${KEYVAULT_SECRET_NAME}"` if using the simplified configuration example, or `secret-sync-name` if using the direct configuration example.
+`<NAME>` is `${KEYVAULT_SECRET_NAME}` if using the simplified configuration example, or `secret-sync-name` if using the direct configuration example.
 
 ## Troubleshooting
 
