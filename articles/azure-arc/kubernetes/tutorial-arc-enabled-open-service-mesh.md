@@ -464,7 +464,6 @@ The OSM extension doesn't install add-ons like [Jaeger](https://www.jaegertracin
 - [BYO-Jaeger instance](https://docs.openservicemesh.io/docs/guides/observability/tracing/#byo-bring-your-own)
 - [BYO-Prometheus instance](https://docs.openservicemesh.io/docs/guides/observability/metrics/#prometheus)
 - [BYO-Grafana dashboard](https://docs.openservicemesh.io/docs/guides/observability/metrics/#grafana)
-- [OSM Progressive Delivery with Flagger](https://docs.flagger.app/tutorials/osm-progressive-delivery)
 
 > [!NOTE]
 > Use the commands provided in the OSM GitHub documentation with caution. Ensure that you use the correct namespace name `arc-osm-system` when making changes to `osm-mesh-config`.
