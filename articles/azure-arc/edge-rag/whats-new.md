@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 10/28/2025
+ms.date: 11/10/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -18,49 +18,38 @@ This article lists the various features and improvements that are available in E
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
+## November 2025
+
+### Release of extension version `0.8.0`
+
+This release of Edge RAG introduces several new features, enhancements, and improvements designed to expand capabilities, improve performance, and streamline the user experience.
+
+**Deep search**  
+Find the most relevant information with the new deep search model. Deep search uses production-class [LazyGraph RAG](https://www.microsoft.com/research/blog/lazygraphrag-setting-a-new-standard-for-quality-and-cost/?msockid=322913564b6d68c00e1d07c14a0269f0) with industry-leading RAG inferencing quality. Edge RAG now explores and connects data across sources at query time, so you get comprehensive answers without heavy upfront processing. For more information, see [Search types in Edge RAG](search-types.md).
+
+**High-fidelity parsing**  
+Choose between basic text extraction or advanced parsing to capture tables, images, and more. With advanced parsing, Edge RAG offers OCR-enabled support for documents, tables, and images. Tailor data ingestion to your needs for more accurate results. For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md#planning-data-ingestion) and  [Advanced data parsing for Edge RAG](advanced-data-parsing.md).
+
+**Performance and scale**  
+Experience up to 5× faster query performance for hybrid search and 100× faster ingestion of live-streamed images from the previous Edge RAG extension version `0.1.5`.
+
+**Advanced search and chat experience**  
+
+Edge RAG now offers a more powerful and flexible search and chat experience, making it easier to find information and interact with your data through new capabilities and interface improvements.
+
+- Use hybrid multimodal search to retrieve images and deliver responses with rich visual content. For more information, see [Search types in Edge RAG](search-types.md).
+- Enjoy markdown-formatted responses that support images and rich text for responses that are easier to read and interpret.
+- Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md#data-query).
+
+**Preview support for disconnected scenarios**
+
+Edge RAG is supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
+
 ## October 2025
 
 ### New article: Quickstart Install Edge RAG
 
 To try Edge RAG in an evaluation or development environment without the need for local hardware, see [Quickstart: Install Edge RAG Preview enabled by Azure Arc](quickstart-edge-rag.md).
-
-## July 2025
-
-### Release of extension version `0.1.5`
-
-The newly released Edge RAG extension version `0.1.5` includes the following changes:
-
-- Resolved an authentication issue for endpoints created by Azure AI Foundry for bring your own model (BYOM) deployments.
-- Disabled chat history temporarily while performance improvements are being made for a future release. Each question is answered based on retrieved content only and doesn't include the context of the chat history. Treat each question as a new chat.
-- Improved security.
-
-## June 2025
-
-### New article: Create an endpoint to use for Edge RAG deployment
-
-If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint to use with Edge RAG. For more information, see [Create an endpoint to use for Edge RAG deployment](prepare-model-endpoint.md).
-
-### Prerequisites for deployment reorganized into a checklist
-
-To prepare for your deployment of Edge RAG, complete the steps listed in the new checklist:
-[Deployment prerequisites checklist for Edge RAG Preview enabled by Azure Arc](complete-prerequisites.md). To improve the documentation quality and experience, each deployment prerequisite is now in a separate article.
-
-## May 2025
-
-### Edge RAG in public preview
-
-**Extension version**: `0.1.3`
-
-Edge RAG is now available as a public preview. To learn more, see the following documentation:
-
-- [What is Edge Retrieval Augmented Generation (RAG)?](overview.md)
-- [What you need for Edge RAG](requirements.md)
-
-See the related blog posts:
-
-- [Transforming On-Premises Data with RAG Capabilities on Azure Local](https://techcommunity.microsoft.com/blog/azurearcblog/transforming-on-premises-data-with-rag-capabilities-on-azure-local/4415217)
-- [Empowering the Physical World with AI - Unlocking AI at the Edge with Azure Arc](https://techcommunity.microsoft.com/blog/azurearcblog/empowering-the-physical-world-with-ai/4415204)
-- [Unlocking AI Apps Across Boundaries with Azure](https://techcommunity.microsoft.com/blog/AzureArcBlog/unlocking-ai-apps-across-boundaries-with-azure/4410457)
 
 ## Related content
 

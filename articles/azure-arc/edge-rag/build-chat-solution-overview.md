@@ -4,7 +4,7 @@ description: "Learn about configuring the chat solution in Edge RAG, including i
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 06/05/2025
+ms.date: 11/11/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or IT professional, I want to understand how to configure data ingestion, optimize chunk and model settings, and integrate the chat endpoint in Edge RAG so that I can enable effective, secure, and contextually relevant chat experiences for end users in my organization.
@@ -25,23 +25,32 @@ As part of the Edge RAG solution, a local developer portal is deployed on the Az
 - **Data ingestion**: Provide the on-premises data source and customize settings of the RAG pipeline.
 - **Data query**: Provide a custom system prompt, modify model parameters, and evaluate the efficacy of the chat solution by using the chat playground.
 
-Access the portal via the redirect URI (for example, [https://](#)arcrag.contoso.com) that was provided at the time of extension deployment (or the redirect URI provided during app registration.
+Access the portal via the redirect URI (for example, `https://arcrag.contoso.com`) that was provided at the time of extension deployment or the redirect URI provided during app registration.
 
 To authenticate and authorize your access to the portal, make sure you have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Data ingestion
 
-Data ingestion refers to a set of user activities around providing on-premises data and configuring the related settings to make the data searchable. So, when a query comes in, the right context can be retrieved and provided as context to the language model.
+Data ingestion means you add your on-premises data and set up options so the data is easy to search. This way, when someone asks a question, the system can find the right information and give it to the language model as context.
 
 ### Planning data ingestion
 
 Before you start configuring your chat solution, complete the following steps:
 
-- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources). Make sure all your private data is in a network file system (NFS) share that's' accessible from Edge RAG. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
+- **Prepare the data**. Review [supported data sources](requirements.md#supported-data-sources).  Make sure all your private data is in a network file system (NFS) share that's accessible from Edge RAG. For data ingestion, you need the NFS share path, NFS user ID, and NFS group ID.
 
   Make sure that the files aren't password protected or otherwise encrypted for the Edge RAG application to be able to access the data.
 
-- **Choose the right settings for data ingestion**. Before you add a data source in Edge RAG, we recommend you choose the appropriate chunk settings and sync frequency.
+- **Choose the right settings for data ingestion**. Before you add a data source in Edge RAG, we recommend you choose the appropriate ingestion type, chunk settings, and sync frequency.
+
+### Ingestion type
+
+When you’re working with documents that include tables and charts, it’s important to choose the right parsing approach during ingestion. Edge RAG gives you two options for ingestion:
+
+- **Basic**: Quickly extracts free-form text from your documents. This is the default option that's relatively fast and efficient, but it might not capture the structure of tables, charts, or images.
+- **Advanced**: Goes deeper by extracting text structure, tables, images, and other elements. It’s slower than basic parsing, but you get higher accuracy and fidelity, especially for complex documents.
+
+Pick the option that best matches your needs. If you’re after speed, use basic. If you need detailed, structured data, use advanced parsing. For more information, see [Advanced data parsing for Edge RAG](advanced-data-parsing.md).
 
 ### Chunk settings
 
@@ -69,6 +78,7 @@ When it comes to chunking data, think about these factors:
 
 - **Large Language Models (LLM) have performance guidelines for chunk size**. you need to set a chunk size that works best for all of the models you're using. For instance, if you use models for summarization and embeddings, choose an optimal chunk size that works for both.
 
+
 ### Data ingestion by using REST APIs
 
 You can also perform data ingestion programmatically by using the  REST APIs.
@@ -78,25 +88,23 @@ You can also perform data ingestion programmatically by using the  REST APIs.
 
 ## Data query
 
-In the context of Edge RAG, setting up the data query refers to a set of user activities that include:
-- Providing a system prompt. 
-- Configuring the model settings to customize the solution to specific user requirements.
-- Evaluating the solution to ensure requirements are being met.
+In Edge RAG, setting up a data query means you create a system prompt, adjust model settings for your needs, and check that the solution works as expected.
 
 ### Choosing the right prompt and model parameters
 
-A critical part of prompt engineering is providing the right system prompt and model parameters according to your data and use case. To choose the right system prompt, see [AI Services - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
+A critical part of prompt engineering is providing the right system prompt and model parameters according to your data and use case. 
 
-To choose the model parameters, here's directional guidance:
+- To choose the right system prompt, see [AI Services - safety system messages](/azure/ai-services/openai/concepts/system-message) for high-level guidance.
+- For information and guidance about choosing model and search parameters, see [Search type parameters](search-types.md#search-type-parameters).
 
-| **Name** | **Description** |
-|---|---|
-| **Temperature** | Controls randomness. Lowering the temperature means that the model produces more repetitive and deterministic responses. Increasing the temperature results in more unexpected or creative responses. Try adjusting temperature or Top P but not both. |
-| **Top-N** | Refers to number of most relevant chunks given to the language model. Choosing *N* depends on the application's needs:<br> <br>- For broad coverage, use a larger *N*. For example, 10-20. <br>- For precision-critical tasks, use a smaller *N*. For example, 3-5.<br><br> Experiment with *N* values to balance retrieval accuracy and downstream model performance. Bigger the *value of N*, the longer the inference time. |
-| **Top-P** | Similar to temperature, this controls randomness but uses a different method. Lowering Top P narrows the model's token selection to likelier tokens. Increasing Top P lets the model choose from tokens with both high and low likelihood. Try adjusting temperature or Top P but not both. |
-| **Past Messages Included** | Determines how many messages from the conversation history (previous user and assistant messages) are included in the current inference request. |
-| **Text strictness** | Controls how strictly the RAG system filters and ranks retrieved text documents before passing them to the generation model.<br><br>- **Low strictness**: More documents are considered relevant, even if they're only loosely related to the query.<br>- **High strictness**: Only documents that closely match the query are used. |
-| **Image strictness** | Similar to text strictness but applies to retrieved image data if the RAG system supports multimodal retrieval.<br><br>- **Low strictness**: The system might retrieve a broader range of images.<br>- **High strictness**: Only images that are very closely aligned with the query are retrieved. |
+### Chatting with Edge RAG
+
+Edge RAG offers two chat experiences:
+
+- **Knowledge-based chat**: Chat with the model using your own ingested data as context. This means the model’s answers are based on your organization’s documents and data sources, so you get responses that are relevant and grounded in your latest information.
+- **Model chat**: Chat directly to the language model, without using your ingested data as context. This is helpful when you want to ask general questions, test the model’s raw capabilities, or just see how it responds without any extra information.
+
+Switch between knowledge-based chat and model chat depending on what you need.
 
 ### Data querying by using REST APIs
 

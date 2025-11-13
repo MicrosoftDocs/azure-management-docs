@@ -4,7 +4,7 @@ description: "Learn how to complete deployment prerequisites for Edge RAG to ens
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 10/10/2025
+ms.date: 11/10/2025
 ai-usage: ai-generated
 ms.subservice: edge-rag
 ms.custom:
@@ -29,9 +29,9 @@ Use this checklist to prepare your environment before deploying Edge RAG on Azur
 |------|------|-------------|
 |1 |[Verify your environment meets requirements](requirements.md)|Before you begin, review [What you need for Edge RAG](requirements.md).|
 | 2 | [Verify you have the Contributor role](prepare-contributor-permission.md) | Verify that you have the **Contributor** role at the subscription level. This role is required to register providers and enable features. |
-| 3 | [Choose a language model](prepare-language-model.md) | Decide whether to use a Microsoft-hosted model or your own. This choice is final after you deploy the Edge RAG extension. |
-| 4 | [(Optional) Create a model endpoint](prepare-model-endpoint.md) | If using your own model, set up an OpenAI API compatible endpoint to use with Edge RAG. |
-| 5 | [Verify network file system (NFS) Server](prepare-file-server.md) | Make sure your documents and images are hosted on a supported and reachable NFS server. |
+| 3 | [Choose a language model](prepare-language-model.md) | Decide whether to use an Edge RAG-hosted model or bring your own model. This choice is final after you deploy the Edge RAG extension. |
+| 4 | [(Optional) Create a model endpoint](prepare-model-endpoint.md) | If bringing your own model, set up an OpenAI API compatible endpoint to use with Edge RAG. |
+| 5 | [Verify file share access](prepare-file-server.md) | Make sure your documents and images are hosted on a supported and reachable NFS server. |
 | 6 | [Prepare AKS cluster on Azure Local](prepare-aks-cluster.md) | Create an AKS Arc cluster on your Azure Local instance with a node pool that meets minimum requirements. |
 | 7 | [Configure authentication](prepare-authentication.md) | Configure access to the Edge RAG for AI application developers and for end users of the chat endpoint. |
 | 8 | [Install networking and observability components](prepare-networking-observability.md) | Deploy required components for network routing, monitoring, and logging. |

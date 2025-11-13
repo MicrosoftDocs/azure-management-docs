@@ -4,7 +4,7 @@ description: "Learn how to test the end user experience of the Edge RAG chat sol
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 07/01/2025
+ms.date: 10/16/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
@@ -29,7 +29,7 @@ To try the chat for end users, start from to the local chat portal.
 1. Sign in with the end user credentials that has the "EdgeRAGEndUser" role assigned. If you have the right access configured, you're automatically redirected to the chat portal.
 1. Start using the simple chat interface by entering a query.
 
-    Be aware that with Edge RAG extension version `0.1.5` each question is answered based on retrieved content only and doesn't include the context of the chat history. Chat history is not saved between questions. Treat each question as a new chat.
+    Be aware that with Edge RAG extension version `0.1.5` and later each question is answered based on retrieved content only. The answer doesn't include the context of the chat history. Chat history isn't saved between questions. Treat each question as a new chat.
 1. (Optional) To share feedback to Microsoft, select thumbs up or thumbs down.
 
 ## Related content

@@ -4,7 +4,7 @@ description: "Learn about the Azure Arc-enabled Kubernetes extension Edge RAG us
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: overview #Don't change
-ms.date: 05/20/2025
+ms.date: 10/30/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -18,13 +18,13 @@ Edge RAG Preview is an [Azure Arc-enabled Kubernetes extension](/azure/azure-arc
 Edge RAG Preview, enabled by Azure Arc is a turnkey solution that packages everything that's necessary to allow customers to build custom chat assistants and derive insights from their private data, including:
 
 - A choice of Generative AI (GenAI) language models running locally with support for both CPU and GPU hardware.
-- A turnkey data ingestion and RAG pipeline that keeps all data local, with Azure role-based access controls (RBAC) to prevent unauthorized access.  
+- A turnkey data ingestion and RAG pipeline that keeps all data local, with Azure role-based access controls (Azure RBAC) to prevent unauthorized access.  
 - An out-of-the-box prompt engineering and evaluation tool to find build, evaluate, and deploy custom chat solutions.
 - Azure-equivalent APIs to integrate into business applications, and a prepackaged UI to get started quickly.
 
 Although Edge RAG is capable of ingesting and retrieving relevant images to be used as contextual references alongside text, it's important to note that it isn't a visual language model (VLM).
 
-Edge RAG is supported on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure. 
+Edge RAG is supported and validated on Azure Arc-enabled Kubernetes on Azure Local (formerly Azure Stack HCI) infrastructure and as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
 
 For more information, see [Azure Arc](/azure/azure-arc/overview), [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/), and [Azure Arc extensions](/azure/azure-arc/kubernetes/conceptual-extensions). 
 
@@ -69,23 +69,17 @@ Review the following key concepts for Edge RAG:
 
 - **Language models** are AI systems trained to understand, generate, and manipulate human language. They predict text based on input, enabling tasks like text generation, translation, summarization, and question answering. Examples include GPT, Phi, and Mistral.
 
-- **Model parameters** in language models define how the model behaves during text generation. Top-p, top-N, and temperature are key inference parameters that influence the randomness, diversity, and coherence of generated text.
-  - Top-p: Top-p controls the diversity of generated text by considering the cumulative probability of token choices. A smaller "p" restricts the output to high-probability tokens, leading to safer but less diverse results. Increasing the top-p value allows for more creativity and randomness.
-  - Top-N: Top-N, in the context of Edge RAG, is used during retrieval. When a vector search is performed with a user's query, we use "N" document chunks that are provided as the context to the language model.
-  - Temperature: Temperature adjusts the randomness in token selection by scaling token probabilities. Higher temperatures increase randomness, making the output more diverse but potentially incoherent.
-  
-  There are some additional model parameters like past messages included, text strictness, and image strictness described in [Choosing the right prompt and model parameters](build-chat-solution-overview.md#choosing-the-right-prompt-and-model-parameters).
+- **Model parameters** control how the language model generates text, such as the creativity, diversity, and focus of responses. Common parameters include Temperature, and Top-p. Model parameters don't affect which documents are retrieved, only how the model generates its response. For more information, see [Search type parameters in Edge RAG](search-types.md#search-type-parameters).
 
 - **Query** is the input provided to a language model to elicit a response or perform a specific task. It can be a question, a prompt, or a set of instructions, depending on the use case.
 
 - **Retrieval Augmented Generation (RAG)** combines a retrieval system with a generative language model to produce responses enriched by external knowledge. It retrieves relevant context from a database or document store to augment the model's generation capabilities, ensuring accurate and up-to-date information.
 
-- **Search models**:
-  - **Full text search** is a search method that scans and matches the entire body of text in documents, by using keywords, phrases, or boolean queries to find relevant chunks in the supplied documents.
-  - **Hybrid search** combines both full-text search (keyword-based) and vector search (semantic similarity) to retrieve the most relevant documents. It uses the precision of keyword matching and the depth of semantic understanding for improved retrieval accuracy.
-  - **Vector search** is a search method that finds relevant documents by comparing the semantic similarity between vector embeddings of the user's query and precomputed embeddings of documents, typically using cosine similarity or other distance metrics in a vector space.
+- **Search parameters** are settings that control how Edge RAG retrieves, filters, and ranks documents from your indexed data before passing them to the language model. These parameters help you fine-tune the relevance, precision, and scope of the information used to answer user queries. For more information, see [Search type parameters in Edge RAG](search-types.md#search-type-parameters).
 
-- **System prompt** are predefined instructions or messages provided to a language model at the start of a conversation or task to influence its behavior. These prompts define the model's role, tone, or task-specific context. For example, "You're a helpful assistant" or "Provide concise technical explanations". By shaping the initial context, system prompts ensure that the model generates responses aligned with the desired objective or persona.
+- **Search type**: A search type is the method Edge RAG uses to find and rank information from your indexed data. It determines how the system retrieves relevant content to answer user questions, such as by matching keywords, using semantic similarity, or combining multiple approaches. Edge RAG supports several search methods for retrieving information, including deep search, full text search, hybrid search, hybrid multimodal search, and vector search. For more information, see [Types of search in Edge RAG](search-types.md).
+
+- **System prompt** are predefined instructions or messages provided to a language model at the start of a conversation or task to influence its behavior. These prompts define the model's role, tone, or task-specific context. For example, "You're a helpful assistant" or "Provide concise technical explanations." By shaping the initial context, system prompts ensure that the model generates responses aligned with the desired objective or persona.
 
 - **Vector database** is a specialized database to store vector embeddings. It's designed to handle high-dimensional vectors and enables fast and scalable similarity searches.
 
@@ -109,7 +103,7 @@ The Edge RAG solution has three distinct user roles:
 
 - **Lifecycle management of the extension**: Users are responsible for managing the lifecycle of the Edge RAG Arc extension. This includes tasks such as setting up the necessary infrastructure, deploying the extension, performing updates, monitoring its performance, and handling its eventual deletion. Typically, these responsibilities fall to an IT administrator with access to the underlying Azure Local and Azure Kubernetes (AKS) on Azure Local infrastructure.
 - **Development and evaluation of chat endpoint**: The user responsibilities in this workflow include providing the data source, customizing the RAG pipeline settings, providing custom system prompts, evaluating, monitoring, and updating the chat solution. This role is typically carried out by a prompt engineer or an AI application developer.
-- **Consuming the endpoint to query the on-premises data**: The user responsibilities in this workflow can include integration of the chat endpoint into line-of-business applications and using a chat interface, custom or the one provided out-of-the-box, to query on-premises data.
+- **Consuming the endpoint to query the on-premises data**: The user responsibilities in this workflow can include integration of the chat endpoint into line-of-business applications and using a chat interface, custom, or the one provided out-of-the-box, to query on-premises data.
 
 ## Related content
 

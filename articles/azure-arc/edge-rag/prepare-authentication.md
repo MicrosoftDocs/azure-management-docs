@@ -49,7 +49,7 @@ Create and configure an application registration for Edge RAG in your Microsoft 
 
 1. Select **Add a platform** > **Single-page application**.
 
-1. Specify your domain name appended with */authorizing* (for example, `https://arcrag.contoso.com/authorizing`)  as the **Redirect URIs**.
+1. Specify your domain name (for example, `https://arcrag.contoso.com/`)  as the **Redirect URIs**.
 
 	:::image type="content" source="media/prepare-authentication/configure-application.png" alt-text="Screenshot that shows the single-page application page where you configure redirect URLs and more." lightbox="media/prepare-authentication/configure-application.png":::
 

@@ -4,7 +4,7 @@ description: "Learn how to configure API-key based authentication for Edge RAG t
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/18/2025
+ms.date: 10/29/2025
 ms.subservice: edge-rag
 ms.custom:
   - build-2025
@@ -13,7 +13,7 @@ ms.custom:
 
 # Configure "BYOM" endpoint authentication for Edge RAG Preview enabled by Azure Arc
 
-This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  If you configured Edge RAG to use your own language model instead of a Microsoft provided model, complete the steps in this article. 
+This article shows you how to configure API-key based authentication for any local or cloud-based LLM endpoints that need it.  If you configured Edge RAG to use your own language model instead of an Edge RAG-provided model, complete the steps in this article. 
 
 [!INCLUDE [preview-notice](includes/preview-notice.md)]
 
