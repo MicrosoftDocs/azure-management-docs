@@ -271,7 +271,7 @@ spec:
 EOF
 ```
 
-See [AKVSync reference](secret-store-extension-reference.md#akvsync-resources) for additional configuration guidance.
+See [AKVSync reference](secret-store-extension-reference.md#akvsync-resources-preview) for additional configuration guidance.
 
 ### Apply the configuration
 
