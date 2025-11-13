@@ -6,13 +6,13 @@ ms.topic: troubleshooting
 ---
 
 # Troubleshooting
-The Secret Store Extension (SSE) creates a Kubernetes deployment that contains a pod with two containers: the controller, which manages storage of secrets in the cluster, handles scheduling and configurations, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE can be directly configured via `SecretSync` and `SecretProviderClass` resources, and it can also be configured via consolidated `AKVSync` resources, which aim to be easier for humans to understand. In addition to configuration parameters, `SecretSync` and `AKVSync` classes are updated by the SSE controller with the status of the sync operations, including error messages where appropriate.
+The Secret Store Extension (SSE) creates a Kubernetes deployment that contains a pod with two containers: the controller, which manages storage of secrets in the cluster, handles scheduling and configurations, and the provider, which accesses secrets from Azure Key Vault (AKV). SSE can be directly configured via `SecretSync` and `SecretProviderClass` resources, and it can also be configured via consolidated `AKVSync` resources, which aim to be easier for humans to understand. In addition to configuration parameters, the SSE controller updates `SecretSync` and `AKVSync` resources with the status of the sync operations, including error messages where appropriate.
 
 ## Checking the status of synchronizations
 
 The most common issues with the SSE can be investigated by checking the status of the related `SecretSync` or `AKVSync` object. Use a `kubectl describe ...` command to view the status of a sync object. In addition to the overall configuration, the output includes the secret creation timestamp, the versions of the secret, and detailed status messages for each synchronization event. This output can be used to diagnose connection or configuration errors and to observe when the secret value changes.
 
-If you have used an `AKVSync` style configuration, SSE will automatically generate equivalent `SecretSync` resources. It is not necessary to inspect these resources directly; the statuses of all derived `SecretSync` resources are visible when inspecting the `AKVSync` resource that generated them.
+If you used a simplified (`AKVSync`) style configuration, SSE automatically generates equivalent `SecretSync` resources. It is not necessary to inspect these resources directly; the statuses of all derived `SecretSync` resources are visible when inspecting the `AKVSync` resource that generated them.
 
 For simplified configurations using `AKVSync` resources:
 ```bash
@@ -31,14 +31,14 @@ The following table lists common status reasons, their meanings, and potential t
 | SecretSync Status Reason     | Details      | Steps to fix/investigate further    |
 |------------|--------------|-------------------------------------|
 | `UpdateNoValueChangeSucceeded` | The secret in Kubernetes was fully up-to-date with the AKV version at the last check. No change was needed during the latest check. | n/a |
-| `UpdateValueChangeOrForceUpdateSucceeded` | The whole secret in Kubernetes was successfully updated with the AKV version(s) included during the latest check. | n/a |
+| `UpdateValueChangeOrForceUpdateSucceeded` | The whole secret in Kubernetes was successfully updated with the necessary AKV versions included during the latest check. | n/a |
 | `PartialSync` | Some items in the secret could not be updated. | Investigate further by looking at the `status.conditions.message` field of the `SecretSync` object. This field contains a stringified json summary of the success or failure for each item in the secret. |
 | `ProviderError` | Secret creation failed due to some issue with the provider (connection to Azure Key Vault). This failure could be due to internet connectivity, insufficient permissions for the identity syncing secrets, misconfiguration of the `SecretProviderClass`, or other issues. | Investigate first as with `PartialSync`, next look at the logs of the provider using the following commands: <br>```kubectl get pods -n azure-secret-store``` <br>```kubectl logs <secret-sync-controller-pod-name> -n azure-secret-store --container='provider-azure-installer'``` |
 | `InvalidClusterSecretLabelError`<br>`InvalidClusterSecretAnnotationError` | SSE could not create the Kubernetes secret because an existing non-SSE secret exists with the same name. | Remove the secret to allow the SSE to recreate the secret: ```kubectl delete secret <secret-name> -n <namespace>``` <br>To force the SSE to recreate the secret faster than the configured rotation poll interval, delete the `SecretSync` object (```kubectl delete secretsync <secret-name> -n <namespace>```) and reapply the secret sync resource (```kubectl apply -f <path_to_secret_sync> -n <namespace>```). |
 | `UserInputValidationFailed` | Secret update failed because the `SecretSync` resource was configured incorrectly (such as an invalid secret type). | Review the secret sync resource definition and correct any errors. Then, delete the secret sync resource (```kubectl delete -f <path_to_secret_sync>```), and reapply the secret sync resource (```kubectl apply -f <path_to_secret_sync>```). |
 | `ControllerSpcError` | Secret update failed because the SSE failed to get the provider class or the provider class is misconfigured. | Review the provider class and correct any errors. Then, delete the `SecretSync` object (```kubectl delete secretsync <secret-name>```), delete the provider class (```kubectl delete -f <path_to_provider>```), and reapply the provider class (```kubectl apply -f <path_to_provider>```). |
 | `ControllerInternalError`<br>`ValidatingAdmissionPolicyCheckFailed`<br>`ControllerSyncFailed`  | Secret update failed due to an internal error in the SSE. | Check the SSE logs or the events for more information: <br>```kubectl logs -n secrets-store-sync-controller-system deployment/secrets-store-sync-controller-manager -f``` |
-| `UnknownError`| Secret update failed during patching the Kubernetes secret value. This failure might occur if someone other than the SSE modifies the secret, or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the `SecretSync` object: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>```<br>If this does not help, follow the steps to inspect the logs as with a  `ControllerInternalError`. |
+| `UnknownError`| Secret update failed during patching the Kubernetes secret value. This failure might occur if someone other than the SSE modifies the secret, or if there were issues during an update of the SSE. | Try deleting the secret and `SecretSync` object, then let the SSE recreate the secret by reapplying the `SecretSync` object: <br>```kubectl delete secret <secret-name>``` <br>```kubectl delete secretsync <secret-name>```  <br>```kubectl apply -f <path_to_secret_sync>```<br>If this step does not help, follow the steps to inspect the logs as with a  `ControllerInternalError`. |
 
 ## Network access issues
 
@@ -56,17 +56,17 @@ If using Azure Arc Private Link: Ensure your DNS and network allow the Arc-conne
 
 ## Slow or missing updates
 
-Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3,600 seconds), this is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
+Secret Store Extension waits a set interval between checking Azure Key Vault for updates. When a secret is updated in AKV, it is only downloaded to the cluster when the interval expires and SSE checks again. The default interval is one hour (3,600 seconds), which is set via the configuration setting `rotationPollIntervalInSeconds`. See [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings).
 
 To force the SSE to update a secret immediately, update any part of the `spec` field within the `SecretSync` resource. A special field `forceSynchronization` can be set within a `spec` that does not have any effect on the configuration; SSE updates the secret immediately if the value of `forceSynchronization` is modified. See [SecretSync reference](secret-store-extension-reference.md#secretsync-resources) for an example.
 
 ## Azure Key Vault rate limiting
 
-Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to many clusters' SSE configurations at once, by default all affected clusters will attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
+Azure Key Vault has hard limits on the rate of transactions it can service before it throttles requests. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). All authenticated requests to AKV count towards throttling limits even if they are unsuccessful. This policy means that AKV can be kept in a throttling state for an indefinite time if clusters continue to make requests. It becomes increasingly likely for AKV to throttle if there are factors that would cause multiple clusters to fetch from AKV simultaneously. For example, if a CI/CD pipeline pushes out an update to many clusters' SSE configurations at once, then by default all affected clusters attempt to refetch immediately. The aggregate demand for secrets must be substantially below AKV's maximum capacity to avoid throttling. 
 
 Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10×20 is much less than 4,000. If throttling is encountered in this situation, double check other uses of the same key vault, and the number of secrets being fetched.
 
-However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled, the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
+However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled, the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV is not overwhelmed, the probability can be reduced to practically zero.
 
 Choosing an appropriate `jitterSeconds`:
 
@@ -76,7 +76,7 @@ The easiest way to set `jitterSeconds` is to use the longest acceptable time.
 
 1. Decide what is the maximum acceptable time between refreshing secrets for your application. Two hours (7,200 seconds) is a reasonable starting point.
 1. Set `rotationPollIntervalInSeconds` to the minimum time between refreshes, or keep the default one hour (3,600 seconds).
-1. Subtract `rotationPollIntervalInSeconds` from your maximum acceptable refresh time in seconds to calculate your `jitterSeconds` value.
+1. Calculate your `jitterSeconds` value by subtracting `rotationPollIntervalInSeconds` from your maximum acceptable refresh time in seconds.
 
 In this example, `jitterSeconds` would be set to 3,600 seconds. Secrets would then be fetched from AKV at a random time between one and two hours after the last fetch.
 
@@ -84,9 +84,9 @@ For very large deployments you should double-check that the chosen jitter is rea
 
 ### [Lookup from a table](#tab/table-lookup)
 
-The following table provides `jitterSeconds` values that will give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
+The following table provides `jitterSeconds` values that give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
 
-To find an appropriate `jitterSeconds` for your deployment, first choose the column with the smallest number of clusters that's larger than your deployment, then choose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
+To find an appropriate `jitterSeconds` for your deployment, first choose the column with the smallest number of clusters that's larger than your deployment, then choose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example, the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
 
 | Secrets needed   | 10 clusters | 20 clusters | 50 clusters | 100 clusters | 200 clusters | 500 clusters | 1,000 clusters | 2,000 clusters  | 5,000 clusters  | 10,000 clusters |
 | -- | -- | -- | -- | --- | --- | --- | ---- | ----- | ----- | ----- |
@@ -103,11 +103,11 @@ Three inputs are needed to calculate the jitter for your deployment: Number of c
 
 Using Excel as our calculation tool, follow these steps:
 1. Put your number of clusters, secrets for each cluster, and acceptable risk exceeding AKV's per-second limit into cells `A1`, `A2`, `A3` respectively.
-1. Calculate the Z-score for your chosen probability. Put this into cell `A4`.
+1. Calculate the Z-score for your chosen probability. Put this expression into cell `A4`.
     ```Excel
     =ABS(NORM.S.INV(A3))
     ```
-2. Calculate maximum number of clusters that can update in a second before exceeding AKV's per-second limit. This is our 'threshold' value. Put this in cell `A5`.
+2. Calculate maximum number of clusters that can update in a second before exceeding AKV's per-second limit. This is our 'threshold' value. Put this expression in cell `A5`.
     ```Excel
     =400/A2
     ```
@@ -120,14 +120,14 @@ Using Excel as our calculation tool, follow these steps:
     =A1/A6
     ```
 
-Optionally, you can verify your previous calculations by calculating the chance that your jitter will exceed AKV's per-second limit. Add this expression to cell `A8`:
+Optionally, you can verify your previous calculations by calculating the chance that your deployment exceeds AKV's per-second limit. Add this expression to cell `A8`:
 ```Excel
 =1-POISSON.DIST(A5,A1/A7,TRUE)
 ```
 
 Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
 
-The jitter calculated by this approach will be pessimistic; a larger jitterSeconds will be calculated than is necessary. This is because the calculation is an approximation not an exact value, and also because AKV is tolerant of bursts that exceed the per-second limit. The actual chance of AKV throttling will be significantly lower than the chance of exceeding the per-second limit.
+The jitter calculated by this approach is pessimistic; we calculate a larger jitterSeconds than necessary. The pessimism is caused by the calculation is an approximation not an exact value, and also because AKV is tolerant of bursts that exceed the per-second limit. The actual chance of AKV throttling is significantly lower than the chance of exceeding the per-second limit.
 
 ---
 
@@ -139,4 +139,4 @@ Checking AKV for updated secrets counts towards the rate limits in the same way 
 
 ### Add additional key vaults
 
-Additional key vault instances can be added to increase the possible number of secret fetches per second, but beware that an Azure subscription has an overall limit of five times a single AKV limit, shared across all key vaults. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). 
+Additional AKV instances can be added to increase the possible number of secret fetches per second. Be aware that an Azure subscription has an overall limit of five times a single AKV limit, shared across all key vaults. See [Azure Key Vault service limits](/azure/key-vault/general/service-limits). 
