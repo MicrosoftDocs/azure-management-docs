@@ -12,7 +12,7 @@ The Secret Store Extension (SSE) creates a Kubernetes deployment that contains a
 
 The most common issues with the SSE can be investigated by checking the status of the related `SecretSync` or `AKVSync` object. Use a `kubectl describe ...` command to view the status of a sync object. In addition to the overall configuration, the output includes the secret creation timestamp, the versions of the secret, and detailed status messages for each synchronization event. This output can be used to diagnose connection or configuration errors and to observe when the secret value changes.
 
-When using an `AKVSync` style configuration, SSE will automatically generate equivalent `SecretSync` resources. It is not necessary to inspect these resources directly; the status of all derived `SecretSync` resources are visible when inspecting the `AKVSync` resource that generated them.
+If you have used an `AKVSync` style configuration, SSE will automatically generate equivalent `SecretSync` resources. It is not necessary to inspect these resources directly; the statuses of all derived `SecretSync` resources are visible when inspecting the `AKVSync` resource that generated them.
 
 For simplified configurations using `AKVSync` resources:
 ```bash
@@ -66,7 +66,7 @@ Azure Key Vault has hard limits on the rate of transactions it can service befor
 
 Some deployments are unlikely to cause AKV to throttle. If the number of clusters multiplied by the number of secrets fetched per cluster is much lower than AKV's ten-second transaction limit (4,000), then throttling is unlikely. For example, A 20 cluster deployment with 10 secrets per cluster is very unlikely to encounter AKV throttling, as 10×20 is much less than 4,000. If throttling is encountered in this situation, double check other uses of the same key vault, and the number of secrets being fetched.
 
-However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
+However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled, the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV will not be overwhelmed, the probability can be reduced to practically zero.
 
 Choosing an appropriate `jitterSeconds`:
 
@@ -102,16 +102,16 @@ Calculating a reasonable jitter value requires some statistical work. We want to
 Three inputs are needed to calculate the jitter for your deployment: Number of clusters, number of secrets required by each cluster, and the acceptable chance of overwhelming AKV.
 
 Using Excel as our calculation tool, follow these steps:
-1. Put your number of clusters, secrets for each cluster, and acceptable risk overwhelming AKV into cells `A1`, `A2`, `A3` respectively.
+1. Put your number of clusters, secrets for each cluster, and acceptable risk exceeding AKV's per-second limit into cells `A1`, `A2`, `A3` respectively.
 1. Calculate the Z-score for your chosen probability. Put this into cell `A4`.
     ```Excel
     =ABS(NORM.S.INV(A3))
     ```
-2. Calculate maximum number of clusters that can update in a second before causing AKV to throttle. This is our 'threshold' value. Put this in cell `A5`.
+2. Calculate maximum number of clusters that can update in a second before exceeding AKV's per-second limit. This is our 'threshold' value. Put this in cell `A5`.
     ```Excel
     =400/A2
     ```
-1. Calculate the mean number of clusters we would like to fetch from AKV each second. Put this expression into cell `A6`. (This is the poisson lambda value. We use a Wilson-Hilferty approximation because a normal approximation is not accurate enough as our threshold values can be small.) 
+1. Calculate the mean number of clusters we would like to fetch from AKV each second. Put this expression into cell `A6`. (This is the Poisson lambda value. We use a Wilson-Hilferty approximation because a normal approximation is not accurate enough as our threshold values can be small.) 
     ```Excel
     =A5 * (1 - (1/(9*A5)) - (A4/(3*SQRT(A5))))^3
     ```
@@ -120,12 +120,14 @@ Using Excel as our calculation tool, follow these steps:
     =A1/A6
     ```
 
-Optionally, you can verify your previous calculations by calculating the chance that your jitter will overwhelm AKV. Add this expression to cell `A8`:
+Optionally, you can verify your previous calculations by calculating the chance that your jitter will exceed AKV's per-second limit. Add this expression to cell `A8`:
 ```Excel
 =1-POISSON.DIST(A5,A1/A7,TRUE)
 ```
 
 Example: For a deployment with 700 clusters, 30 secrets per cluster, and a 0.01% acceptable chance to overwhelm AKV, the calculated jitter is 190 seconds. The actual chance to overwhelm AKV is 0.0034%.
+
+The jitter calculated by this approach will be pessimistic; a larger jitterSeconds will be calculated than is necessary. This is because the calculation is an approximation not an exact value, and also because AKV is tolerant of bursts that exceed the per-second limit. The actual chance of AKV throttling will be significantly lower than the chance of exceeding the per-second limit.
 
 ---
 
