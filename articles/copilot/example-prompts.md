@@ -1,6 +1,6 @@
 ---
-title: Example prompts for Microsoft Copilot in Azure
-description: View example prompts that you can try out with Microsoft Copilot in Azure.
+title: Example prompts for Azure Copilot
+description: View example prompts that you can try out with Azure Copilot.
 ms.date: 04/08/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
@@ -9,17 +9,17 @@ author: JnHs
 # Customer intent: "As an Azure user, I want to experiment with prompts for Copilot so that I can effectively manage and optimize my Azure environment."
 ---
 
-# Example prompts for Microsoft Copilot in Azure
+# Example prompts for Azure Copilot
 
-Prompts are how you can interact with Microsoft Copilot in Azure to get help working with your Azure environment. This article shows a list of skills and example prompts that you can try out to see how Copilot in Azure can help with different scenarios and Azure services.
+Prompts are how you can interact with Azure Copilot to get help working with your Azure environment. This article shows a list of skills and example prompts that you can try out to see how Azure Copilot can help with different scenarios and Azure services.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-To learn more about the ways that you can use Copilot for Azure, see [Capabilities of Microsoft Copilot for Azure](capabilities.md). For tips on creating your own prompts, see [Write effective prompts for Microsoft Copilot in Azure](write-effective-prompts.md).
+To learn more about the ways that you can use Azure Copilot, see [Capabilities of Azure Copilot](capabilities.md). For tips on creating your own prompts, see [Write effective prompts for Azure Copilot](write-effective-prompts.md).
 
 ## Prompt library
 
-To get started with Copilot for Azure, try a few prompts from this list. Feel free to experiment and make changes, or create your own prompts based on your current tasks and interests.
+To get started with Azure Copilot, try a few prompts from this list. Feel free to experiment and make changes, or create your own prompts based on your current tasks and interests.
 
 | Scenario | Outcome | Example prompt to try |
 |----------|-------------------|-----------------------|
@@ -80,6 +80,6 @@ To get started with Copilot for Azure, try a few prompts from this list. Feel fr
 
 ## Next steps
 
-- Learn more about [things you can do with Copilot in Azure](capabilities.md).
-- Get tips on [writing effective prompts](write-effective-prompts.md) for Copilot in Azure.
-- Review our [Responsible AI FAQ for Microsoft Copilot in Azure](responsible-ai-faq.md).
+- Learn more about [things you can do with Azure Copilot](capabilities.md).
+- Get tips on [writing effective prompts](write-effective-prompts.md) for Azure Copilot.
+- Review our [Responsible AI FAQ for Azure Copilot](responsible-ai-faq.md).

@@ -34,8 +34,8 @@ Azure portal administrators can change the directory timeout setting for their t
 
 For more information, see [Change the directory timeout setting](set-preferences.md#change-the-directory-timeout-setting-admin).
 
-## Manage access to Microsoft Copilot in Azure
+## Manage access to Azure Copilot
 
-Azure portal administrators can manage access to Copilot in Azure for users in their tenant, including limiting access to specific Microsoft Entra users or groups.
+Azure portal administrators can manage access to Azure Copilot for users in their tenant, including limiting access to specific Microsoft Entra users or groups.
 
-For more information, see [Manage access to Microsoft Copilot in Azure](/azure/copilot/manage-access).
+For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access).

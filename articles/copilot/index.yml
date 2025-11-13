@@ -1,11 +1,11 @@
 ### YamlMime:Hub
 
-title: Microsoft Copilot in Azure documentation
+title: Azure Copilot documentation
 summary: Manage operations from cloud to edge with an AI assistant.
 brand: azure
 
 metadata:
-  title: Microsoft Copilot in Azure
+  title: Azure Copilot
   description: Manage operations from cloud to edge with an AI assistant.
   ms.service: copilot-for-azure
   ms.author: rayoflores
@@ -16,12 +16,12 @@ metadata:
     - copilot-learning-hub
     - ignite-2024
   ms.topic: hub-page
-  ms.date: 04/08/2025
+  ms.date: 11/18/2025
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | tutorial | overview | quickstart | reference | sample | tutorial | video | whats-new
   items:
     # Card
-    - title: What is Microsoft Copilot in Azure?
+    - title: What is Azure Copilot?
       itemType: overview
       url: ./overview.md
     # Card
@@ -29,20 +29,28 @@ highlightedContent:
       itemType: concept
       url: ./capabilities.md
     # Card
-    - title: Manage access
-      itemType: deploy
-      url: ./manage-access.md
+    - title: Agents (preview) in Azure Copilot
+      itemType: whats-new
+      url: ./agents-preview.md
     # Card
     - title: Write effective prompts
       itemType: how-to-guide
       url: ./write-effective-prompts.md
+    # Card
+    - title: Prompt library
+      itemType: reference
+      url: ./example-prompts.md
+    # Card
+    - title: Manage access
+      itemType: deploy
+      url: ./manage-access.md
 
 conceptualContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | training | overview | quickstart | reference | sample | tutorial | video | whats-new
   # Supports up to 3 subsections
   sections:
     - title: Enhanced scenarios
-      summary: Learn about some of the ways that Microsoft Copilot in Azure can help you be more effective.
+      summary: Learn about some of the ways that Azure Copilot can help you be more effective.
       items:
         # Card
         - title: Understand your Azure environment
@@ -135,10 +143,10 @@ additionalContent:
           summary: Get started on your Copilot learning journey.
           url: /copilot/
         # Card
-        - title: Copilot in Azure with AI Shell
-          summary: Access Copilot in Azure from your CLI.
+        - title: Azure Copilot with AI Shell
+          summary: Access Azure Copilot from your CLI.
           url: ./ai-shell-overview.md
         # Card
-        - title: Copilot in Azure with the Azure mobile app
-          summary: Use Copilot in Azure from within the app.
+        - title: Azure Copilot with the Azure mobile app
+          summary: Use Azure Copilot on your mobile device.
           url: /azure/azure-portal/mobile-app/microsoft-copilot-in-azure

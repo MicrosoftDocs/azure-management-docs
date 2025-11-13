@@ -1,7 +1,25 @@
-- name: Microsoft Copilot in Azure documentation
+- name: Azure Copilot documentation
   href: index.yml
 - name: Overview
   href: overview.md
+- name: Agents (preview) in Azure Copilot
+  items:
+  - name: Overview
+    href: agents-preview.md
+  - name: Agents
+    items:
+    - name: Deployment
+      href: deployment-agent.md
+    - name: Observability
+      href: observability-agent.md
+    - name: Optimization
+      href: optimization-agent.md
+    - name: Resiliency
+      href: resiliency-agent.md
+    - name: Troubleshooting
+      href: troubleshooting-agent.md
+  - name: Manage preview access
+    href: manage-agents-preview.md
 - name: Concepts
   items:
   - name: Capabilities
@@ -14,9 +32,11 @@
   items:
   - name: Manage access
     href: manage-access.md
+  - name: Manage conversation storage 
+    href: bring-your-own-storage.md
   - name: Write effective prompts
     href: write-effective-prompts.md
-  - name: Use Copilot in Azure with AI Shell
+  - name: Use Azure Copilot with AI Shell
     href: ai-shell-overview.md
 - name: Enhanced scenarios
   items:
