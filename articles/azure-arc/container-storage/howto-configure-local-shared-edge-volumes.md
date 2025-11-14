@@ -1,6 +1,6 @@
 ---
-title: Configure Local Shared volumes
-description: Configure Local Shared volumes for Azure Container Storage enabled by Azure Arc.
+title: Configure Local Shared volumes (preview)
+description: Learn how to configure Local Shared volumes for Azure Container Storage enabled by Azure Arc (preview).
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
@@ -8,7 +8,7 @@ ms.date: 09/27/2025
 # Customer intent: "As a Kubernetes administrator, I want to configure Local Shared Edge Volumes for my clusters, so that I can provide highly available local storage for applications requiring temporary and persistent data without relying on cloud infrastructure."
 ---
 
-# Configure Local Shared volumes
+# Configure Local Shared volumes (preview)
 
 This article describes how to configure Local Shared Edge Volumes (highly available, durable local storage) in Azure Container Storage enabled by Azure Arc.
 

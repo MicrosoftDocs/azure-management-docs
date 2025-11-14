@@ -1,6 +1,6 @@
 ---
-title: What's new in Azure Container Storage enabled by Azure Arc?
-description: What's new in Azure Container Storage enabled by Azure Arc?
+title: What's new in Azure Container Storage enabled by Azure Arc (preview)?
+description: Learn about new features and updates in Azure Container Storage enabled by Azure Arc (preview).
 author: sethmanheim
 ms.author: sethm
 ms.topic: whats-new
@@ -8,12 +8,12 @@ ms.date: 05/13/2025
 
 #customer intent: As a user, I want to know about the new features and updates in Azure Container Storage enabled by Azure Arc.
 
-# Customer intent: As a systems administrator, I want to stay updated on the latest features and enhancements of Azure Container Storage enabled by Azure Arc, so that I can optimize my container management and ensure I’m leveraging the best available capabilities for my cloud infrastructure.
+# Customer intent: As a systems administrator, I want to stay updated on the latest features and enhancements of Azure Container Storage enabled by Azure Arc, so that I can optimize my container management and ensure I'm leveraging the best available capabilities for my cloud infrastructure.
 ms.custom:
   - build-2025
 ---
 
-# What's new in Azure Container Storage enabled by Azure Arc?
+# What's new in Azure Container Storage enabled by Azure Arc (preview)?
 
 This article is updated regularly with blog posts, videos, and case studies featuring Azure Container Storage enabled by Azure Arc. If you're looking for the release notes, see [Release notes for Azure Container Storage enabled by Azure Arc](release-notes.md).
 
