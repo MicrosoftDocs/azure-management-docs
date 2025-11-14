@@ -16,7 +16,7 @@ The Azure Arc gateway (preview) lets you:
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names (FQDNs).
 - View and audit all traffic that the Arc agents send to Azure via the Arc gateway.
 
-> [!IMPORTANT]
+> [!NOTE]
 > Azure Arc gateway is currently in preview.
 >
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
