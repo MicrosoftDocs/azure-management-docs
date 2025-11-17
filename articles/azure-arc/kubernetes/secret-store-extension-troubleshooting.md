@@ -85,7 +85,8 @@ For very large deployments, double-check that the chosen jitter is realistic: th
 
 ### [Lookup from a table](#tab/table-lookup)
 
-The following table provides `jitterSeconds` values that give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly leaving no visible impact on secret fetching.
+The following table provides `jitterSeconds` values that give a (much) less than 0.01% chance of causing AKV to throttle each time your whole deployment refreshes. Even if AKV does throttle, it is highly likely to recover quickly, leaving no visible impact on secret fetching.
+
 
 To find an appropriate `jitterSeconds` for your deployment, first choose the column with the smallest number of clusters that's larger than your deployment, then choose the row with the smallest number of secrets that's larger than the number of secrets used by each of your clusters. For example, for a 700 cluster deployment with 30 secrets each, lookup the value in the '1000' column and the '50' row, giving the suggested value of 760 seconds for `jitterSeconds`. In this example, the real chance of overwhelming AKV is 0.00000000015%; extremely unlikely.
 
