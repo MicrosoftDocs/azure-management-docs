@@ -80,7 +80,8 @@ Within .spec:
       - **labels** *(optional)*: A list of key-value pairs of additional labels to apply to the secret object.
       - **annotations** *(optional)*: A list of key-value pairs of additional annotations to apply to the secret object.
       - **versionHistory** *(optional)*: Defaults to 1. SSE will download this many versions of the secret from AKV. The versions will be stored in the Kubernetes secret in keys named "v0", "v1", "v2" etc. "v0" is the latest version.
-    - **kubernetesSecretName** *(optional)*: Define the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** cannot be used in this situation, if multiple versions are needed, they must be explicitly enumerated. **labels** and **annotations** can also be specified as above.
+    - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **labels** and **annotations**.
+
       - **mapping** *(required)*: A list of data keys and their AKV sources. There are no default keys.
         - **dataKey** *(required)*: The name of the data key within the Kubernetes secret that will hold the secret fetched from AKV.
         - **secretInAKV** *(required)*: The name of a secret that should be fetched from AKV and stored in the nominated data key.
