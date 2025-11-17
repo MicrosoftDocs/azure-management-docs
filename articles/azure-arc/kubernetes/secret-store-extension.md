@@ -75,11 +75,11 @@ If your cluster is already connected to Azure Arc, enable workload identity usin
 az connectedk8s update --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --enable-oidc-issuer
 ```
 
-Now configure your cluster to issue Service Account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set earlier.
+Now configure your cluster to issue service account tokens with a new issuer URL (`service-account-issuer`) that enables Microsoft Entra ID to find the public keys necessary for it to validate these tokens. These public keys are for the cluster's own service account token issuer, and they were obtained and cloud-hosted at this URL as a result of the `--enable-oidc-issuer` option that you set earlier.
 
 Optionally, you can also configure limits on the SSE's own permissions as a privileged resource running in the control plane by configuring [`OwnerReferencesPermissionEnforcement`](https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#ownerreferencespermissionenforcement) [admission controller](https://Kubernetes.io/docs/reference/access-authn-authz/admission-controllers/#how-do-i-turn-on-an-admission-controller). This admission controller constrains how much the SSE can change other objects in the cluster.
 
-1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}", "--kube-apiserver-arg=service-account-max-token-expiration=24h" and --kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
+1. Configure your [kube-apiserver](https://Kubernetes.io/docs/reference/command-line-tools-reference/kube-apiserver/) with the issuer URL field and permissions enforcement. The following example is for a k3s cluster. Your cluster may have different means for changing API server arguments: `--kube-apiserver-arg="--service-account-issuer=${SERVICE_ACCOUNT_ISSUER}"`, `--kube-apiserver-arg=service-account-max-token-expiration=24h` and `--kube-apiserver-arg="--enable-admission-plugins=OwnerReferencesPermissionEnforcement"`.
 
    - Get the service account issuer URL.
 
@@ -187,9 +187,9 @@ Next, create a user-assigned managed identity and give it permissions to access 
 
 ### Create a federated identity credential
 
-Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes Service Account.
+Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes service sccount.
 
-1. Create a Kubernetes Service Account that will be federated to the managed identity. Annotate it with details of the associated user-assigned managed identity.
+1. Create a Kubernetes service account that will be federated to the managed identity. Annotate it with details of the associated user-assigned managed identity.
 
    ``` console
    kubectl create ns ${KUBERNETES_NAMESPACE}
@@ -342,9 +342,9 @@ spec:
     type: Opaque
     data:
     - sourcePath: ${KEYVAULT_SECRET_NAME}/0                # Name of the secret in Azure Key Vault with an optional version number (defaults to latest)
-      targetKey: v0         # Target name of the secret in the Kubernetes secret store (must be unique)
-    - sourcePath: ${KEYVAULT_SECRET_NAME}/1                # [optional] Next version of the AKV secret. Note that versions of the secret must match the configured objectVersionHistory in the secrets provider class 
-      targetKey: v1         # [optional] Next target name of the secret in the K8s secret store
+      targetKey: v0         # Target data key within this secret (must be unique within the secret)
+    - sourcePath: ${KEYVAULT_SECRET_NAME}/1                # [optional] Next version of the AKV secret. Note that objectVersionHistory in the secrets provider class must be configured to reference historic versions.
+      targetKey: v1         # [optional] Next target data key within this secret
 EOF
 ```
 
@@ -382,9 +382,9 @@ kubectl get secrets -n ${KUBERNETES_NAMESPACE}
 > [!TIP]
 > Add `-o yaml` or `-o json` to change the output format of `kubectl get` and `kubectl describe` commands.
 
-### View secrets values
+### View secret value
 
-To view the synchronized secret values, now stored in the Kubernetes secret store, use the following command:
+To view the synchronized secret value, now stored in the Kubernetes secret store, use the following command:
 
 ```bash
 kubectl get secret <NAME> -n ${KUBERNETES_NAMESPACE} -o jsonpath="{.data.v0}" | base64 -d && echo
@@ -406,7 +406,7 @@ az k8s-extension delete --name ssarcextension --cluster-name $CLUSTER_NAME  --re
 
 Uninstalling the extension doesn't remove secrets or CRDs (`AKVSync`, `SecretSync`, or `SecretProviderClass`) from the cluster. These objects must be removed directly with `kubectl`.
 
-Deleting the `SecretSync` or `AKVSync` CRDs removes all `AKVSync` or `SecretSync` objects respectively, and by default removes all owned secrets, but secrets may persist if:
+By default, deleting `SecretSync` or `AKVSync` resource removes all secrets defined within them, but secrets may persist if:
 
 - You modified ownership of any of the secrets.
 - You changed the [garbage collection](https://kubernetes.io/docs/concepts/architecture/garbage-collection/) settings in your cluster, including setting different [finalizers](https://kubernetes.io/docs/concepts/overview/working-with-objects/finalizers/).
