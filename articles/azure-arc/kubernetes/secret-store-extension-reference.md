@@ -76,7 +76,7 @@ Within .spec:
 
  - **objects** *(required)*: A list of items (**secretInAKV** or **kubernetesSecretName**). Items can be secrets to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
     - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV.
-      - **kubernetesSecretName** *(optional)*: The name of the Kubernetes secret that will be created.
+      - **kubernetesSecretName** *(optional)*: The name of the new Kubernetes secret.
       - **labels** *(optional)*: A list of key-value pairs of additional labels to apply to the secret object.
       - **annotations** *(optional)*: A list of key-value pairs of additional annotations to apply to the secret object.
       - **versionHistory** *(optional)*: Defaults to 1. SSE downloads this many versions of the secret from AKV. The versions are stored in the Kubernetes secret in keys named "v0", "v1", "v2" etc. "v0" is the latest version.
