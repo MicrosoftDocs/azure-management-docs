@@ -72,7 +72,8 @@ Within .spec:
  - **serviceAccountName** *(required)*: The Kubernetes service account used to access the Kubernetes secret store. This service account should be federated with the managed identity with access to the secrets in Azure Key Vault.
  - **clientID** *(required)*: The clientID for the managed identity with access to the required secrets. This managed identity must have a federated credential associated with the named service account.
  - **tenantID** *(required)*: The ID of the Azure tenant containing the AKV instance.
- - **keyvaultName** *(required)*: The name of the keyvault.
+ - **keyvaultName** *(required)*: The name of the key vault.
+
  - **objects** *(required)*: A list of items (**secretInAKV** or **kubernetesSecretName**). Items can be secrets to fetch from AKV, or more complex 'compound secrets' that may contain many items from AKV.
     - **secretInAKV** *(optional)*: The name of a secret that should be fetched from AKV.
       - **kubernetesSecretName** *(optional)*: The name of the Kubernetes secret that will be created.
