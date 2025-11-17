@@ -84,7 +84,8 @@ Within .spec:
     - **kubernetesSecretName** *(optional)*: Defines the name for a compound secret in Kubernetes, which can have any number of items. **versionHistory** can't be used in this situation. If multiple versions are needed, they must be explicitly enumerated. You can optionally specify **labels** and **annotations**.
 
       - **mapping** *(required)*: A list of data keys and their AKV sources. There are no default keys.
-        - **dataKey** *(required)*: The name of the data key within the Kubernetes secret that will hold the secret fetched from AKV.
+        - **dataKey** *(required)*: The name of the data key within the Kubernetes secret that holds the secret fetched from AKV.
+
         - **secretInAKV** *(required)*: The name of a secret that should be fetched from AKV and stored in the nominated data key.
         - **version** *(optional)*: The version of the secret to fetch from AKV. 0 is the latest version, 1 is the second latest, etc.
 
