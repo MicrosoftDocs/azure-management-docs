@@ -187,7 +187,7 @@ Next, create a user-assigned managed identity and give it permissions to access 
 
 ### Create a federated identity credential
 
-Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes service sccount.
+Create a Kubernetes service account for the workload that needs access to secrets. Then, create a [federated identity credential](https://azure.github.io/azure-workload-identity/docs/topics/federated-identity-credential.html) to link between the managed identity, the OIDC service account issuer, and the Kubernetes service account.
 
 1. Create a Kubernetes service account that will be federated to the managed identity. Annotate it with details of the associated user-assigned managed identity.
 
