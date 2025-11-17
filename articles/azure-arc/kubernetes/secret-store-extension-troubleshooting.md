@@ -80,7 +80,8 @@ The easiest way to set `jitterSeconds` is to use the longest acceptable time.
 
 In this example, `jitterSeconds` would be set to 3,600 seconds. Secrets would then be fetched from AKV at a random time between one and two hours after the last fetch.
 
-For very large deployments you should double-check that the chosen jitter is realistic: the number of clusters multiplied by the number of secrets fetched per cluster must be much lower than the total number of secrets AKV can provide in your `jitterSeconds` interval.
+For very large deployments, double-check that the chosen jitter is realistic: the number of clusters multiplied by the number of secrets fetched per cluster must be much lower than the total number of secrets AKV can provide in your `jitterSeconds` interval.
+
 
 ### [Lookup from a table](#tab/table-lookup)
 
