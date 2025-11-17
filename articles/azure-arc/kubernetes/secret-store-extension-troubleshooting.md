@@ -68,7 +68,7 @@ Some deployments are unlikely to cause AKV to throttle. If the number of cluster
 
 However, with larger deployments, such as 2,000 clusters each fetching 20 secrets, AKV is very likely to throttle from time to time. In this situation, consider enabling the `jitterSeconds` setting (see [configuration reference](secret-store-extension-reference.md#arc-extension-configuration-settings)). The `jitterSeconds` setting adds a randomized delay before fetching secrets from a SecretSync resource, spreading the deployment's load on AKV over time. When `jitterSeconds` is enabled, the worst-case time to attempt a refresh for a secret from AKV is `rotationPollIntervalInSeconds`+`jitterSeconds`. Although `jitterSeconds` cannot _guarantee_ AKV is not overwhelmed, the probability can be reduced to practically zero.
 
-Choosing an appropriate `jitterSeconds`:
+There are different ways you can choose an appropriate `jitterSeconds` value, depending on how precise you want the value to be. While the basic approach can work well for many cases, we also provide a table of suggested values for various deployment scenarios. If you need a greater degree of precision, follow the provided steps to calculate your own value.
 
 ### [Basic](#tab/basic-jitter)
 
