@@ -33,7 +33,7 @@ Access to Agents (preview) in Azure Copilot is subject to Microsoft's sole discr
 If your access request is approved, all users in the tenant who can access Azure Copilot will also have access to Agents (preview) in Azure Copilot. As new agent capabilities become available, they automatically become available to your users. Administrators can continue to [limit Azure Copilot access to specific Microsoft Entra users or groups](manage-access.md#manage-user-access-to-azure-copilot).
 
 > [!TIP]
-> Want earlier access to Azure Copilot? [Fill out this form](https://aka.ms/azurecopilot/agents/earlyadopters) to help us prioritize your organization as we expand capacity. Submission does not guarantee access and still requires administrator tenant enablement.
+> Want earlier access to Azure Copilot? [Fill out this form](https://aka.ms/azurecopilot/agents/feedbackprogram) to help us prioritize your organization as we expand capacity. Submission does not guarantee access and still requires administrator tenant enablement.
 
 ## Use agent capabilities
 
