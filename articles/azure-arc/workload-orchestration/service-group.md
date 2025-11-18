@@ -512,7 +512,7 @@ To ease the process, the following steps show how to create a four-level service
 
     az role assignment create --assignee "$providerOid" \
       --role "Service Group Reader" \
-      --scope "/providers/Microsoft.Management/serviceGroups/$level1Name"
+      --scope "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion"
     ```
 
 1. To connect a service group site to a context, you need to create a site reference.
@@ -531,7 +531,7 @@ To ease the process, the following steps show how to create a four-level service
       --resource-group "$contextRG" \
       --context-name "$contextName" \
       --name "$siteReference" \
-      --site-id "/providers/Microsoft.Management/serviceGroups/$level1Name/providers/Microsoft.Edge/sites/$level1Name"
+      --site-id "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$level1Name"
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
@@ -662,7 +662,7 @@ To ease the process, the following steps show how to create a four-level service
     
     az role assignment create --assignee "$providerOid" `
         --role "Service Group Reader" `
-        --scope "/providers/Microsoft.Management/serviceGroups/$level1Name"
+        --scope "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion"
     ```
 
 1. To connect a service group site to a context, you need to create a site reference.
@@ -677,7 +677,7 @@ To ease the process, the following steps show how to create a four-level service
     $l = "eastus"
     
     
-    az workload-orchestration context site-reference create --subscription $contextSubscriptionId --resource-group $contextRG --context-name $contextName --name $siteReference --site-id "/providers/Microsoft.Management/serviceGroups/$level1Name/providers/Microsoft.Edge/sites/$level1Name"
+    az workload-orchestration context site-reference create --subscription $contextSubscriptionId --resource-group $contextRG --context-name $contextName --name $siteReference --site-id "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion/providers/Microsoft.Edge/sites/$level1Name"
     ```
 
 1. Update *context-capabilities.json* file with the target capabilities you want to add to the context.
