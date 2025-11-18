@@ -4,7 +4,7 @@ description: Learn about the latest new features and announcement from the past 
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 11/10/2025
+ms.date: 11/17/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -20,7 +20,7 @@ This article lists the various features and improvements that are available in E
 
 ## November 2025
 
-### Release of extension version `0.8.0`
+### Release of extension version `0.8.2`
 
 This release of Edge RAG introduces several new features, enhancements, and improvements designed to expand capabilities, improve performance, and streamline the user experience.
 
@@ -39,11 +39,17 @@ Edge RAG now offers a more powerful and flexible search and chat experience, mak
 
 - Use hybrid multimodal search to retrieve images and deliver responses with rich visual content. For more information, see [Search types in Edge RAG](search-types.md).
 - Enjoy markdown-formatted responses that support images and rich text for responses that are easier to read and interpret.
-- Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md#data-query).
+- Chat directly with the language model, without using your organization’s data as context. Use the model only option to ask general questions, test the model’s capabilities, or get responses that aren’t influenced by your ingested data. Switch between knowledge-based chat and model-only chat to fit your needs. For more information, see [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md#data-query).
 
 **Preview support for disconnected scenarios**
 
 Edge RAG is supported as part of a preview for [disconnected operations for Azure Local](/azure/azure-local/manage/disconnected-operations-overview).
+
+**Related content**
+
+For more information about this release, see:
+
+- Blog: [Transforming City Operations: How Villa Park and DataON Deliver Real-Time Decisions and Resilience with Edge RAG]( https://aka.ms/EdgeAI/EdgeRAG/IgniteBlog2025)
 
 ## October 2025
 

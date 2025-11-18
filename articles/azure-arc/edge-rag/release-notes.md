@@ -6,7 +6,7 @@ author: cwatson-cat
 ms.author: cwatson
 ms.subservice: edge-rag
 ms.topic: "release-notes"  
-ms.date: 11/10/2025
+ms.date: 11/17/2025
 ai-usage: ai-assisted
 
 #customer intent: As an IT admin, I want to understand the new features in the latest Edge RAG release so that I can plan updates for my organization.
@@ -21,7 +21,7 @@ Release notes are updated with each new version.
 
 ## November 2025
 
-**Extension version**: `0.8.0` [Preview]
+**Extension version**: `0.8.2` [Preview]
 
 The following table summarizes the updates included in this release.
 

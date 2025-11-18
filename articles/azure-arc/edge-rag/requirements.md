@@ -5,7 +5,7 @@ description: "Learn how to deploy Edge RAG with this guide on hardware, software
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article #Don't change
-ms.date: 10/28/2025
+ms.date: 11/17/2025
 ms.subservice: edge-rag
 ai-usage: ai-assisted
 ms.custom:
@@ -30,8 +30,8 @@ Before deploying Edge RAG, make sure you have the following Azure resources and 
 | **Resource** | **Description** |
 |---|---|
 | Azure subscription | An [Azure subscription](https://azure.microsoft.com/pricing/details/search/). |
-| Permissions for Azure Kubernetes Service (AKS) enabled by Azure Arc| Permissions to deploy [AKS Arc Kubernetes clusters](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).   As part of the prerequisites tasks, see [Verify contributor role for Edge RAG Preview enabled by Azure Arc](prepare-contributor-permission.md).|
 | Microsoft Entra ID  permissions |- Permissions to create a Microsoft Enterprise Entra [application](/entra/identity/enterprise-apps/add-application-portal).<br>- Ability to add new or existing Microsoft Entra [users and groups](/entra/identity/enterprise-apps/add-application-portal-assign-users) to the application. <br> <br> As part of the prerequisites tasks, you [configure authentication for Edge RAG Preview enabled by Azure Arc](prepare-authentication.md).|
+| Permissions for AKS enabled by Azure Arc| Permissions to deploy [AKS Arc Kubernetes clusters](/azure/aks/hybrid/aks-create-clusters-portal), create [node pools](/azure/aks/hybrid/manage-node-pools), and install [extensions](/azure/azure-arc/kubernetes/extensions-release).   As part of the prerequisites tasks, see [Verify contributor role for Edge RAG Preview enabled by Azure Arc](prepare-contributor-permission.md).|
 | Transport Layer Security (TLS) termination certificate | A certificate signed by a company-specific certification authority (CA) or a well-known public CA for secure deployments. If you don't provide one, Edge RAG generates a self-signed certificate. We don't recommend using a self-signed certificate for production environments. |
 
 ### On-premises resources
