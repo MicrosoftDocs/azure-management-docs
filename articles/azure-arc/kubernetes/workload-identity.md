@@ -183,7 +183,7 @@ To configure workload identity settings on the various Kubernetes distributions,
 
 ### K3s clusters
 
-1. Create k3s config file.
+1. Create your k3s config file.
 1. Edit `/etc/rancher/k3s/config.yaml` to add these settings:
 
    ```yml
@@ -203,21 +203,19 @@ To configure workload identity settings on the various Kubernetes distributions,
 
    1. Open the authentication configuration for the cluster:
 
-     ```shell
-     kubectl edit authentications cluster
-     ```
+      ```shell
+      kubectl edit authentications cluster
+      ```
 
    1. Locate the section for the issuer value and update it.
    1. Save the file and exit the editor.
 
-1. Restart the relevant deployments:
+1. Restart the relevant deployments in the required namespaces:  
 
-   1. Restart deployments in the required namespaces:  
-
-    ```shell
-    kubectl rollout restart deployment -n azure-arc
-    kubectl rollout restart deployment -n arc-workload-identity
-    ```
+   ```shell
+   kubectl rollout restart deployment -n azure-arc
+   kubectl rollout restart deployment -n arc-workload-identity
+   ```
 
 1. Alternatively, apply changes via a patch command to update the issuer value without manual editing:  
 
@@ -232,16 +230,16 @@ To configure workload identity settings on the various Kubernetes distributions,
 
    1. Verify the issuer value:
 
-   ```shell
-   kubectl get authentications cluster
-   ```
+      ```shell
+      kubectl get authentications cluster
+      ```
 
    1. Check the status of restarted deployments:  
 
-   ```shell
-   kubectl get pods -n azure-arc
-   kubectl get pods -n arc-workload-identity 
-   ```
+      ```shell
+      kubectl get pods -n azure-arc
+      kubectl get pods -n arc-workload-identity 
+      ```
 
 ### VMware Tanzu TKGm clusters
 
@@ -254,9 +252,9 @@ To configure workload identity settings on the various Kubernetes distributions,
 
    1. Switch context to the management cluster:
 
-     ```shell
-     kubectl config use-context mgmt-cluster-admin@mgmt-cluster 
-     ```
+      ```shell
+      kubectl config use-context mgmt-cluster-admin@mgmt-cluster 
+      ```
 
    1. View the cluster:
 
@@ -277,17 +275,17 @@ To configure workload identity settings on the various Kubernetes distributions,
 
 1. Switch context back to the workload cluster:
 
-     ```shell
-     kubectl config use-context <WORKLOAD_CLUSTER_CONTEXT>
-     ```
+    ```shell
+    kubectl config use-context <WORKLOAD_CLUSTER_CONTEXT>
+    ```
 
 1. Create service account and test token:
 
    1. Create a token for the service account:
 
-    ```shell
-    kubectl create token <SERVICE_ACCOUNT_NAME> -n <NAMESPACE>
-    ```
+      ```shell
+      kubectl create token <SERVICE_ACCOUNT_NAME> -n <NAMESPACE>
+      ```
 
    1. Verify that the token issuer matches the expected OIDC URL.
 
