@@ -14,7 +14,7 @@ ms.topic: concept-article
 
 By default, Azure Copilot [conversation data is managed by Microsoft](responsible-ai-faq.md). However, organizations can choose to store Azure Copilot conversation history in their own [Azure Cosmos DB](/azure/cosmos-db/introduction) instance.
 
-The **Bring your own storage** option lets tenant administrators retain all Copilot in Azure conversations in a Cosmos DB instance selected and managed by the tenant. Organizations maintain an audit trail of all Azure Copilot conversations across all tenant users, including the user-submitted prompts and all Azure Copilot responses. By retaining conversation history within your own environment, you have more flexibility to meet data retention, compliance, and governance requirements.
+The **Bring your own storage** option lets tenant administrators retain all Azure Copilot conversations in a Cosmos DB instance selected and managed by the tenant. Organizations maintain an audit trail of all Azure Copilot conversations across all tenant users, including the user-submitted prompts and all Azure Copilot responses. By retaining conversation history within your own environment, you have more flexibility to meet data retention, compliance, and governance requirements.
 
 ## Considerations
 
