@@ -44,7 +44,7 @@ If the output lists all the GPUs available on the Azure Local cluster, you can m
 
 We recommend using the script in the [Enabling GPU on AKS on Azure ARC - sample](enable-gpu-aks.md) to enable GPUs for use by Edge RAG.
 
-Alternately, you can follow the instructions in [Use GPUs for compute-intensive workloads](/azure/aks/hybrid/deploy-gpu-node-pool) and ensure you meet the [minimum hardware requirements](requirements.md#minimum-hardware-requirements) for the GPU mode. If you follow these instructions, you need to run the following command on each Hyper-V host in the Azure Local cluster:
+Alternately, you can follow the instructions in [Use GPUs for compute-intensive workloads](/azure/aks/hybrid/deploy-gpu-node-pool) and ensure you meet the [minimum VM hardware requirements](requirements.md#minimum-vm-hardware-requirements) for the GPU mode. If you follow these instructions, you need to run the following command on each Hyper-V host in the Azure Local cluster:
 
 ```powershell
 Restart-Service wssdagent -Force -Verbose 

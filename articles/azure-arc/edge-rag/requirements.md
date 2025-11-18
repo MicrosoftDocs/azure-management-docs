@@ -36,17 +36,19 @@ Before deploying Edge RAG, make sure you have the following Azure resources and 
 
 ### On-premises resources
 
-The following on-premises resources are required to deploy Edge RAG in your environment:
+An Edge RAG deployment is supported where you have the following on-premises resources in your environment:
 
 | **Resource** | **Description** |
 |---|---|
-| Azure Local infrastructure | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2411. |
-| AKS Arc cluster on Azure Local | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least four [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
+| Azure Local infrastructure* | An instance of [Azure Local](/azure/azure-local/overview) infrastructure, minimum version 2504. |
+| AKS Arc cluster on Azure Local* | An [AKS Arc cluster](/azure/aks/hybrid/aks-create-clusters-portal) running on the Azure Local instance. Use [GPUs](/azure/aks/hybrid/deploy-gpu-node-pool) for better performance; include at least four [GPU-enabled VMs](/azure/azure-local/manage/gpu-preparation) in the node pool for image and text scenarios. As part of the prerequisites tasks, you [prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md). |
 | Routable, static IP address | One routable, static IP address for the [MetalLB](/azure/aks/hybrid/deploy-load-balancer-portal) load balancer. If MetalLB is already configured with a routable IP, this requirement can be skipped. The IP must be accessible from client machines. <br><br>As part of the prerequisites tasks, setting up MetalLB is included in the following articles:<br><br>- [Install networking and observability components for Edge RAG Preview enabled by Azure Arc](prepare-networking-observability.md) <br>- [Configure DNS for Edge RAG Preview enabled by Azure Arc](prepare-dns.md). |
-| Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux). As part of the prerequisites tasks, see [Verify NFS server access for Edge RAG Preview enabled by Azure Arc](prepare-file-server.md).|
-|Windows machine (optional)| Ease the management of the Azure Arc-enabled Kubernetes cluster on Azure Local by configuring a driver machine (local management host).<br><br>As part of the prerequisites tasks, install tools like Azure CLI, kubectl, and Helm to prepare the driver machine. For more information, see: <br><br>- [Prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md)<br>- [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).|
+| Network File System (NFS) | An NFS v3.0 or v4.1 containing your on-premises documents or images. Only AUTH_SYS authentication method is supported. Kerberos authentication isn't supported. Requires share path, NFS user ID, and group ID. See setup guides for [Windows Server](/windows-server/storage/nfs/deploy-nfs) and [Linux](https://linuxconfig.org/how-to-configure-nfs-on-linux).|
+|Windows machine (optional)| Ease the management of the Azure Arc-enabled Kubernetes cluster on Azure Local by configuring a driver machine or local management host.<br><br>As part of the prerequisites tasks, install tools like Azure CLI, kubectl, and Helm to prepare the driver machine. For more information, see: <br><br>- [Prepare AKS cluster on Azure Local for Edge RAG Preview enabled by Azure Arc](prepare-aks-cluster.md)<br>- [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).|
 
-## Minimum hardware requirements
+\* Edge RAG is validated on Azure Local.
+
+## Minimum VM hardware requirements
 
 The following table lists the minimum hardware requirements for the virtual machines. 
 
@@ -69,13 +71,15 @@ If you plan to use a CPU-only setup, review the files size and chunking limitati
 
 ## Minimum software requirements
 
-The following table lists the minimum software requirements for Edge RAG.
+The following table lists the supported minimum software requirements for Edge RAG.
 
 | **Component** | **Minimum requirements** |
 |---|---|
 | **VM Operating System** |Linux|
-| **Azure Local version** | Azure Local [2411](/azure/azure-local/whats-new) release |
+| **Azure Local version*** | Azure Local [2504](/azure/azure-local/whats-new) release |
 | **Azure CLI** | As shipped with Azure Local. Don't update to the latest version of Azure CLI, and use the one that was originally shipped with Azure Local. |
+
+\* Edge RAG is validated on Azure Local.
 
 ## Network requirements
 
@@ -96,8 +100,7 @@ Document or image file types not listed, like audio and video files, aren't curr
 
 ## Supported data sources
 
-Edge RAG supports Network File System (NFS) v3.0  and v4.1 with AUTH_SYS authentication as a data source. Kerberos isn't supported.
-
+Edge RAG supports Network File System (NFS) v3.0  and v4.1 with AUTH_SYS authentication as a data source. Kerberos authentication isn't supported.
 
 ## Supported regions
 

@@ -29,7 +29,7 @@ landingContent:
       - linkListType: deploy
         links:
           - text: Connect a public cloud to Azure
-            url: connect-to-aws.md
+            url: add-public-cloud.md
           - text: Resource representation in Azure
             url: resource-representation.md
 
@@ -41,3 +41,5 @@ landingContent:
             url: view-multicloud-inventory.md
           - text: Onboard VMs to Azure Arc
             url: onboard-multicloud-vms-arc.md
+          - text: Storage - Data management
+            url: /azure/storage-mover/cloud-to-cloud-migration?toc=/azure/azure-arc/multicloud-connector/toc.json

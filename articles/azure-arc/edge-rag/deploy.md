@@ -25,7 +25,7 @@ Before you begin, [complete the deployment prerequisites for Edge RAG Preview](c
 
 ## Deploy the extension
 
-Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft supplied language model or add your own language model.
+Deploy Edge RAG by using either the Azure portal or Azure CLI with an Edge RAG supplied language model or use your own language model.
 
 #### [Azure portal](#tab/azure-portal)
 
@@ -52,9 +52,9 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
    |-----------------|-------------------------------------------------------------------------------------------------|
    | Deployment mode | Select GPU mode or CPU mode depending on your available hardware.                               |
    |**Model**| The information you enter in this section  depend on the language model you select.|
-   |Language model          | Select the language model that you want to deploy. Choose either Microsoft provided or your own language model.                                              |
-   |Microsoft language model|If you chose Microsoft provided, select one of the Microsoft provided language models.|
-   |**Add your own language model**|If you chose to provide your own language model, enter the following information.|
+   |Language model source         | Select the language model that you want to deploy. Choose either an Edge RAG-provided language model or bring own language model (BYOM).                                              |
+   |Language model name|If you chose to use a provided model, select one of the Edge RAG-provided language models.|
+   |**Add your own language model**|If you chose to bring your own language model, enter the following information.|
    |Model name|Enter the name of your language model.|
    |LLM endpoint|Enter the name of your large language model (LLM) endpoint in the format `http://some-endpoint` or `https://some-endpoint`. For example, `https://<Endpoint_Name>.openai.azure.com/openai/deployments/<model_name> /chat/completions?api-version=<API_VERSION>`. |
    |Max token (k)|Enter a number range between 4K to 2048 K for your language model.|
@@ -67,7 +67,7 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
 
     :::image type="content" source="media/deploy/install-extension-configurations.png" alt-text="Screenshot of the configuration tab where you select the model type and other configurations.":::
 
-1. Select **Next: Review + create**.
+1. Select **Review + create**.
 1. Review and validate the parameters you provided.
 1. Select **Create** to complete the Edge RAG deployment.
 1. When the deployment is complete, under **Extensions**, validate that the extension types **microsoft.arc.rag** and **microsoft.extensiondiagnostics** are listed.
@@ -90,8 +90,8 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
    $n = "arc-rag" # do not change
    ```
 
-1. Set the values needed for either the Microsoft provided language model or your own language model.
-   - Microsoft supplied language model option: Edit the following command as appropriate and run the command.
+1. Set the values needed for either the Edge RAG-provided language model or your own language model.
+   - Edge-RAG supplied language model option: Edit the following command as appropriate and run the command.
 
      ```powershell
      $modelName = "microsoft/Phi-3.5" # If you want to switch to Mistral 7B, change this variable to "mistralAI/Mistral-7B" 
@@ -105,9 +105,9 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
       $maxTokensInK = <Max Tokens In K (e.g. 10, 20 etc.)> 
      ```
 
-1. After you populate the parameter values, deploy the Azure Arc extension by running the command for either the Microsoft supplied language model or your own language model:
+1. After you populate the parameter values, deploy the Azure Arc extension by running the command for either the  supplied language model or your own language model:
 
-   - Microsoft supplied language model option: Run the following command.
+   - Edge RAG supplied language model option: Run the following command.
 
      ```powershell
      az provider register --namespace Microsoft.KubernetesConfiguration
@@ -131,7 +131,7 @@ Deploy Edge RAG by using either the Azure portal or Azure CLI with a Microsoft s
 
 The Edge RAG extension deployment typically takes about 30 minutes but can take longer depending on your connectivity.
 
-## Add your own language model
+## Bring your own language model
 
 If you added your own language model when you deployed the Edge RAG extension, complete the steps in [Configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).
 

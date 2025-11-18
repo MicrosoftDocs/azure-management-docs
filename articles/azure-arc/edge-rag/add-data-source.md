@@ -4,7 +4,7 @@ description: "Learn how to add and manage data sources for Edge RAG chat solutio
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 06/05/2025
+ms.date: 11/11/2025
 ms.subservice: edge-rag
 #CustomerIntent: As a developer or data scientist, I want to add a data source to Azure AI Search so that I can enable intelligent search capabilities across my hybrid and multiloud environments.
 ms.custom:
@@ -19,9 +19,11 @@ Add and configure a data source for your Edge RAG chat solution by using the dev
 ## Prerequisites
 
 Before you begin:
- 
-- Review [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md) to plan for data ingestion and choose the right prompt and model parameters. 
-- Review [supported data sources](requirements.md#supported-data-sources).
+
+- Review the following articles:
+  - [Configuring the chat solution for Edge RAG](build-chat-solution-overview.md)
+  - [Supported data sources](requirements.md#supported-data-sources)
+  - [Advanced data parsing for Edge RAG](advanced-data-parsing.md)
 - To access to the developer portal, you must have both the "EdgeRAGDeveloper" and "EdgeRAGEndUser" roles in Microsoft Entra.
 
 ## Set up data ingestion
@@ -38,10 +40,13 @@ To get started, create a data source by using the local developer portal.
     | Field | Value |
     |---|---|
     | Name | Name for the data ingestion |
+    | Ingestion type|Basic or advanced document parsing|
     | Data source (read only) | Network share |
     | Network File Share | Path to your network file server (NFS) share |
     | User ID | NFS user ID |
     | Group ID | NFS group ID |
+
+   :::image type="content" source="media/add-data-source/source-data.png" alt-text="Screenshot of the source data tab where you define the ingestion type and data source.":::
 
 1. Select **Next**.
 1. On the **Vector index** tab, provide the following information:

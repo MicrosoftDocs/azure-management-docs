@@ -9,6 +9,8 @@ items:
             href: overview.md
           - name: What's new
             href: whats-new.md
+          - name: Release notes
+            href: release-notes.md
           - name: Known issues
             href: known-issues.md
       - name: Quickstart
@@ -51,8 +53,12 @@ items:
         items:
           - name: Overview
             href: build-chat-solution-overview.md
+          - name: Advanced data parsing
+            href: advanced-data-parsing.md
           - name: Add data source
             href: add-data-source.md
+          - name: Search types
+            href: search-types.md
           - name: Set up the data query
             href: set-up-data-query.md
           - name: Test end user app

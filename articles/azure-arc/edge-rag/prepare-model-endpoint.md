@@ -1,18 +1,20 @@
 ---
-title: Create Endpoint for Your Model for Edge RAG Preview Enabled by Azure Arc
+title: Create "BYOM" Endpoint for Your Model for Edge RAG Preview Enabled by Azure Arc
 description: "Learn how to set up an endpoint for the model you plan to use with Edge RAG by using Azure AI Foundry, KAITO, Foundry Local, or Ollama."
 author: cwatson-cat
 ms.topic: how-to
-ms.date: 06/20/2025
+ms.date: 10/29/2025
 ms.author: cwatson
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 #CustomerIntent: As a cloud administrator, I want to create an OpenAI API-compatible endpoint for my own language model so that I can use it with an Edge RAG deployment.
 ---
 
-# Create an endpoint to use for Edge RAG Preview enabled by Azure Arc
+# Create a "BYOM" endpoint to use for Edge RAG Preview enabled by Azure Arc
 
-If you plan to use your own language model instead of one of the models provided by Microsoft, you must set up an OpenAI API compatible endpoint for your Edge RAG deployment. Choose one of the following methods included in this article to create your endpoint. 
+If you plan to bring your own language model (BYOM) instead of one of the models included in Edge RAG, you must set up an OpenAI API compatible endpoint for your Edge RAG deployment. Choose one of the following methods included in this article to create your endpoint.
+
+By bringing your own model, you can enable advanced search types, like hybrid multimodal and deep search, that aren’t available with Edge RAG-provided models. For deep search, we recommend OpenAI [GPT-4o](https://github.com/marketplace/models/azure-openai/gpt-4o), [GPT-4.1-mini](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini) or a later version.
 
 After you create your endpoint, use the endpoint when you [deploy the extension for Edge RAG](deploy.md) and choose to add your own language model.
 
@@ -224,4 +226,4 @@ curl http://ollama-llm.default.svc.cluster.local:11434/v1/chat/completions \
 ## Next step
 
 > [!div class="nextstepaction"]
-> [Verify NFS server access](prepare-file-server.md)
+> [Verify file share access](prepare-file-server.md)

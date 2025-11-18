@@ -37,7 +37,7 @@ items:
   - name: Container Registry
     tocHref: /azure/container-registry/
     topicHref: /azure/container-registry/
-  - name: Microsoft Copilot in Azure
+  - name: Azure Copilot
     tocHref: /azure/copilot/
     topicHref: /azure/copilot/
   - name: Azure Lighthouse

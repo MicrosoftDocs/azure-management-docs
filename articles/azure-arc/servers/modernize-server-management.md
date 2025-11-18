@@ -19,7 +19,7 @@ Azure Arc offers key modernization advantages across pricing, Linux support, and
 
 * **Pricing:** Azure Arc-enabled server customers with Windows Server Software Assurance, Windows Server Pay-as-you-go licensing, or those running workloads on Azure VMs benefit from these management services at no additional cost (excluding associated log data ingestion). Other servers connected to Azure Arc use pay-as-you-go pricing plans.
 * **Linux Support:** Unlike SCCM and MECM, Azure server management natively supports Linux (including Red Hat Enterprise Linux, Ubuntu, Oracle Linux, and Debian), allowing for consistent management of Windows and Linux servers.
-* **Copilot in Azure:** Integrated natively across key management and operational scenarios, [Copilot in Azure](/azure/copilot/overview) delivers an AI-enhanced server management experience for querying and remediating across Azure VMs and Azure Arc-enabled servers.
+* **Azure Copilot:** Integrated natively across key management and operational scenarios, [Azure Copilot](/azure/copilot/overview) delivers an AI-enhanced server management experience for querying and remediating across Azure VMs and Azure Arc-enabled servers.
 * **Migration:** Azure Arc offers assessment capabilities that ease customer migration and modernization to Azure. You can use the same Azure management capabilities across Azure Arc and Azure VMs, reducing operational overhead.
 
 ## Functionality mapping
