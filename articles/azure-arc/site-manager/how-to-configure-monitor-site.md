@@ -24,7 +24,7 @@ If you aren't familiar with Azure Monitor, learn more about how to [monitor Azur
 * An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Azure portal access
 * Internet connectivity
-* A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
+* A resource group or subscription or service group in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
 
 ## Configure alerts for sites in Azure Arc
 
@@ -48,7 +48,7 @@ To configure alerts for sites in Azure Arc, follow the below steps.
 
    :::image type="content" source="./media/how-to-configure-monitor-site/create-alert-monitor.png" alt-text="Screenshot that shows the Create and Alert rules actions on the Alerts page.":::
 
-By having either existing alert rules or creating a new alert rule, once the rule is in place for resources supported by Azure Arc site monitor, any alerts that are trigger on that resource will be visible on the sites overview tab.
+By having either existing alert rules or creating a new alert rule, once the rule is in place for resources supported by Azure Arc site monitor, any alerts that are triggered on that resource will be visible on the sites overview tab.
 
 ## Next steps
 
