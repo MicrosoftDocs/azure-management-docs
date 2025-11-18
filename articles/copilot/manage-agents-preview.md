@@ -27,7 +27,7 @@ After **Request access to Agents (preview)** is selected, you see a notice that 
 For most Azure tenants, the request to access Agents (preview) is automatically made on your behalf. However, access will be rolled out gradually over time.
 
 > [!TIP]
-> Want earlier access to Azure Copilot? [Fill out this form](https://aka.ms/azurecopilot/agents/earlyadopters) to help us prioritize your organization as we expand capacity. Submission does not guarantee access and still requires that **Request access to Agents (preview)** is selected.
+> Want earlier access to Azure Copilot? [Fill out this form](https://aka.ms/azurecopilot/agents/feedbackprogram) to help us prioritize your organization as we expand capacity. Submission does not guarantee access and still requires that **Request access to Agents (preview)** is selected.
 
 ## Disable access to Agents (preview)
 
