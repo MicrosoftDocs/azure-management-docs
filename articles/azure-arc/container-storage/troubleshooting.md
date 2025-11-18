@@ -1,5 +1,5 @@
 ---
-title: Troubleshoot Azure Container Storage Enabled by Azure Arc
+title: Troubleshoot Azure Container Storage Enabled by Azure Arc (preview)
 description: Learn how to diagnose and resolve common issues with Azure Container Storage enabled by Azure Arc.
 author: sethmanheim
 ms.author: sethm
@@ -7,7 +7,7 @@ ms.topic: troubleshooting-general
 ms.date: 09/25/2025
 ---
 
-# Troubleshoot Azure Container Storage enabled by Azure Arc
+# Troubleshoot Azure Container Storage enabled by Azure Arc (preview)
 
 This article helps you diagnose and resolve common issues when deploying and using Azure Container Storage enabled by Azure Arc.
 
@@ -31,7 +31,7 @@ After installing cert-manager, re-run the ACSA install operation.
 **Error message:**
 ```
 Error: [ InnerError: [Helm installation failed :  : InnerError [release azure-arc-containerstorage failed, and has been uninstalled due to atomic being set: failed post-install: 1 error occurred:
-	* job azure-arc-containerstorage-ensure-config-objects-job failed: BackoffLimitExceeded
+    * job azure-arc-containerstorage-ensure-config-objects-job failed: BackoffLimitExceeded
 ```
 
 This error typically indicates that one or more Kubernetes nodes don't meet the system requirements.

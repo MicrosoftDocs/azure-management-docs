@@ -1,7 +1,7 @@
 ### YamlMime:FAQ
 metadata:
-  title: Azure Container Storage enabled by Azure Arc frequently asked questions
-  description: This article provides a list of frequently asked questions (FAQ) for Azure Container Storage enabled by Azure Arc and their answers. 
+  title: Azure Container Storage enabled by Azure Arc (preview) frequently asked questions
+  description: This article provides a list of frequently asked questions (FAQ) for Azure Container Storage enabled by Azure Arc (preview) and their answers. 
   author: sethmanheim
   ms.author: sethm
   ms.topic: faq
@@ -10,9 +10,9 @@ metadata:
   ms.date: 09/29/2025
   ms.custom: references-regions
 
-title: Azure Container Storage enabled by Azure Arc FAQ
+title: Azure Container Storage enabled by Azure Arc (preview) FAQ
 summary: |
-  This article provides a list of frequently asked questions (FAQ) for Azure Container Storage enabled by Azure Arc and their answers. 
+  This article provides a list of frequently asked questions (FAQ) for Azure Container Storage enabled by Azure Arc (preview) and their answers. 
 
 sections:
   - name: General
