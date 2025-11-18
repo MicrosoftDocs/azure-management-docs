@@ -1,7 +1,7 @@
 ---
 title: Simplify Network Configuration Requirements with Azure Arc Gateway
 description: Learn how to simplify network configuration requirements with Azure Arc gateway.
-ms.date: 09/25/2025
+ms.date: 11/12/2025
 ms.topic: how-to
 # Customer intent: "As an IT administrator managing hybrid infrastructure, I want to simplify network configuration with Azure Arc gateway so that I can efficiently onboard and control Azure Arc-enabled servers through minimal endpoint access."
 ---
@@ -39,7 +39,7 @@ Although Azure Arc gateway provides the connectivity required to use Azure Arc-e
 
 ## Plan your Azure Arc gateway setup
 
-- **Region choice**: Azure Arc gateway is a global service. Runtime connectivity is delivered through the Azure Front Door global edge network, which automatically routes clients to the nearest point of presence for low‑latency access and seamless failover. The region that you select when you create the gateway determines only the control plane. It's where the gateway resource and management metadata live and where create, update, and delete happen. It doesn't constrain the gateway's runtime endpoints or performance. For example, picking East US versus West Europe doesn't change where clients connect at runtime. It affects only management-plane placement and policy or role-based access control locality.
+- **Region choice**: Azure Arc gateway is a global service. Runtime connectivity is delivered through the Azure Front Door global edge network, which automatically routes clients to the nearest point of presence for low‑latency access and seamless failover. The region that you select when you create the gateway determines only the control plane. This is the region where the gateway resource and management metadata live and where create, update, and delete actions happen. The region you choose doesn't constrain the gateway's runtime endpoints or performance. For example, picking East US versus West Europe doesn't change where clients connect at runtime. It affects only management-plane placement and policy or role-based access control locality.
 - **Azure Arc-enabled resources per Azure Arc gateway resource**: When you plan your Azure Arc deployment with Azure Arc gateway, you must determine how many gateway resources are required for your environment. This amount depends on the number of resources that you plan to manage in each Azure region. For Azure Arc-enabled servers only, a general rule is that one Azure Arc gateway resource can handle 2,000 resources per Azure region. You might use Azure Arc gateway with a combination of Azure Arc-enabled servers, Azure Arc-enabled Kubernetes clusters, and Azure Local instances. [The formula we provide](#azure-arc-gateway-resource-planning-for-multiple-resource-types) can help you calculate the number of Azure Arc gateway resources that you need.
 
 ## Required permissions
@@ -401,6 +401,8 @@ Azure Arc gateway works by establishing a TLS session between Azure Arc proxy an
 
 When you use terminating proxies with Azure Arc gateway, the proxy sees the nested HTTP connect request. It might allow such a request, but it can't intercept TLS encrypted traffic to the target destination unless it does nested TLS termination. This behavior is outside the capabilities of standard TLS terminating proxies. When you use a terminating proxy, we recommend that you skip TLS inspection for your Azure Arc gateway endpoint.
 
-### Azure Arc gateway endpoint list
+### Endpoints accessible through Azure Arc gateway
 
-For a complete list of endpoints that you no longer have to manually allow in your environment, see [Azure Arc gateway endpoints](arc-gateway-endpoints.md).
+Arc Gateway uses a set of endpoints to enable all Arc features to function seamlessly. Currently, this set includes over 200 endpoints, which represent the cumulative requirements for all supported capabilities. For the full list, see [Azure Arc gateway endpoints](arc-gateway-endpoints.md).
+
+Some endpoints use wildcards to simplify connectivity and ensure feature coverage. We recommend reviewing these endpoints with your network security team to confirm they align with your organization's policies. These endpoints are essential for secure and reliable operation of Arc services.
