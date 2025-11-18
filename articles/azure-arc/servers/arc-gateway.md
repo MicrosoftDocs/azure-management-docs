@@ -13,6 +13,9 @@ If you use enterprise proxies to manage outbound traffic, Azure Arc gateway lets
 - Connect to Azure Arc by opening public network access to only seven fully qualified domain names.
 - View and audit all traffic that an Azure Connected Machine agent sends to Azure via Azure Arc gateway.
 
+> [!NOTE]
+> Arc gateway creation is currently impacted by temporary Azure Front Door changes. Resource creation may take up to two 2 hours and can time out, causing failures. If resource creation fails, please try Arc gateway resource creation again.
+
 ## How Azure Arc gateway works
 
 Azure Arc gateway consists of two main components:
