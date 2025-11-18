@@ -33,7 +33,7 @@ For an overview of this feature, see [Workload identity federation in Azure Arc-
 - Workload identity for Azure Arc-enabled Kubernetes clusters (preview) is supported on the following Kubernetes distributions:
   - Ubuntu Linux cluster running K3s
   - AKS enabled by Azure Arc
-  - Red Hat Openshift
+  - Red Hat OpenShift
   - VMware Tanzu TKGm
   - AKS on Edge Essentials
 
@@ -291,7 +291,7 @@ To configure workload identity settings on the various Kubernetes distributions,
 
    1. Verify that the token issuer matches the expected OIDC URL.
 
-1. Restart deployment for to apply your changes:
+1. Restart deployment to apply your changes:
 
    ```shell
    kubectl rollout restart deployment -n azure-arc
