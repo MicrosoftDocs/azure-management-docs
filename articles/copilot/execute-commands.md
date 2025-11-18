@@ -1,7 +1,7 @@
 ---
 title: Execute commands using Azure Copilot
 description: Learn about scenarios where Azure Copilot can help you perform tasks.
-ms.date: 04/08/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -40,11 +40,7 @@ If you say **"Find the VMs running right now and stop them"**, Azure Copilot fir
 
 :::image type="content" source="media/execute-commands/stop-running-vms.png" alt-text="Screenshot showing Azure Copilot responding to a request to stop running VMs.":::
 
-Similarly, if you say **"Delete my VMs in West US 2"**, Azure Copilot runs a query and then asks you to confirm before running the delete command.
-
-:::image type="content" source="media/execute-commands/delete-vms.png" alt-text="Screenshot of Azure Copilot responding to a request to delete VMs." lightbox="media/execute-commands/delete-vms.png":::
-
-You can also specify the resource name in your prompt. When you say things like **"Restart my VM named server1**", Azure Copilot looks for that resource, then prompts you to confirm the operation.
+You can also specify the resource name in your prompt. When you say things like **"Restart my VM named SIMPLEVM**", Azure Copilot looks for that resource, then prompts you to confirm the operation.
 
 :::image type="content" source="media/execute-commands/restart-vm.png" alt-text="Screenshot of Azure Copilot responding to a request to restart a VM.":::
 
