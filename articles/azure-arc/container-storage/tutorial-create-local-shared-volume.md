@@ -1,6 +1,6 @@
 ---
-title: Configure a Local Shared Edge Volume
-description: In this tutorial, you learn how to configure a Local Shared Edge Volume.
+title: Configure a Local Shared Edge Volume (preview)
+description: In this tutorial, you learn how to configure a Local Shared Edge Volume (preview).
 ms.topic: tutorial
 ms.date: 11/11/2024
 ms.author: sethm 
@@ -10,7 +10,7 @@ author: sethmanheim
 # Customer intent: "As a Kubernetes administrator, I want to configure a Local Shared Edge Volume so that I can manage read-write-many storage effectively for applications running in edge environments."
 ---
 
-# Tutorial: Configure a Local Shared Edge Volume
+# Tutorial: Configure a Local Shared Edge Volume (preview)
 
 In this tutorial, you learn how to configure a Local Shared Edge Volume. This volume type offers read-write-many storage, local to your Kubernetes cluster. This shared storage type remains independent of cloud infrastructure, making it ideal for scratch space, temporary storage, and locally persistent data unsuitable for cloud destinations. It's also a good destination for data that's actively being worked on, changed, or processed at the edge.
 

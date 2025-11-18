@@ -8,15 +8,11 @@ description: "Learn how workload identity federation can be used with Azure Arc-
 # Customer intent: As a Kubernetes administrator, I want to implement workload identity federation in Azure Arc-enabled Kubernetes clusters, so that I can securely manage identities without the risk of credential leakage or expiration, thereby enhancing the security and stability of my applications.
 ---
 
-# Workload identity federation in Azure Arc-enabled Kubernetes (preview)
+# Workload identity federation in Azure Arc-enabled Kubernetes
 
 Software workloads running on Kubernetes clusters need an identity in order to authenticate and access resources or communicate with other services. For a software workload running outside of Azure, you need to use application credentials, such as a secret or certificate, to access resources that are protected by Microsoft Entra (such as Azure Key Vault or Azure Blob storage). These credentials pose a security risk and have to be stored securely and rotated regularly. You also run the risk of service downtime if the credentials expire.
 
 Workload identity federation lets you configure a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) or [app registration](/entra/identity-platform/app-objects-and-service-principals) in Microsoft Entra ID to trust tokens from an external identity provider (IdP), such as Kubernetes. The user-assigned managed identity or app registration in Microsoft Entra ID becomes an identity for software workloads running on Arc-enabled Kubernetes clusters. Once that trust relationship is created, your workload can exchange trusted tokens from the Arc-enabled Kubernetes clusters for access tokens from Microsoft identity platform. Your software workload uses that access token to access the resources protected by Microsoft Entra. With workload identity federation, you can thus eliminate the maintenance burden of manually managing credentials, and eliminate the risk of leaking secrets or having certificates expire.
-
-> [!IMPORTANT]
-> The Azure Arc workload identity federation feature is currently in PREVIEW.
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## How workload identity works with Azure Arc-enabled Kubernetes clusters
 

@@ -1,6 +1,6 @@
 ---
-title: Configure Cloud Ingest subvolumes
-description: Configure Cloud Ingest subvolumes for Azure Container Storage enabled by Azure Arc.
+title: Configure Cloud Ingest subvolumes (preview)
+description: Learn how to configure Cloud Ingest subvolumes for Azure Container Storage enabled by Azure Arc (preview).
 author: sethmanheim
 ms.author: sethm
 ms.topic: how-to
@@ -9,7 +9,7 @@ ms.date: 09/27/2025
 # Customer intent: As a cloud administrator, I want to configure Cloud Ingest subvolumes, so that I can upload files to blob storage and purge them locally.
 ---
 
-# Configure Cloud Ingest subvolumes
+# Configure Cloud Ingest subvolumes (preview)
 
 This article describes how to configure Cloud Ingest subvolumes (blob upload with local purge) in Azure Container Storage enabled by Azure Arc. A Cloud Ingest subvolume facilitates limitless data ingestion from edge to blob, including ADLSgen2. Files written to this storage type are seamlessly transferred to blob storage and once confirmed uploaded, are then purged locally. This removal ensures space availability for new data. Moreover, this storage option supports data integrity in disconnected environments, which enables local storage and synchronization upon reconnection to the network.
 

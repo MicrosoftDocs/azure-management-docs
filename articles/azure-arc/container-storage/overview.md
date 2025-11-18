@@ -1,5 +1,5 @@
 ---
-title: What is Azure Container Storage enabled by Azure Arc?
+title: What is Azure Container Storage enabled by Azure Arc (preview)?
 description: Learn about Azure Container Storage enabled by Azure Arc, a first-party storage system designed for Arc-connected Kubernetes clusters.
 author: sethmanheim
 ms.author: sethm
@@ -10,9 +10,13 @@ ms.date: 09/27/2025
 # Customer intent: As a cloud architect, I want to understand how Azure Container Storage enabled by Azure Arc functions, so that I can evaluate its suitability for providing persistent storage in Arc-connected Kubernetes clusters.
 ---
 
-# What is Azure Container Storage enabled by Azure Arc?
+# What is Azure Container Storage enabled by Azure Arc (preview)?
 
-Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters. This Arc extension can be deployed to write files to a *ReadWriteMany* persistent volume claim (PVC) where they can be stored locally, transferred to Azure Blob Storage destinations in the cloud, or mirrored from those cloud destinations. 
+Azure Container Storage enabled by Azure Arc is a first-party storage system designed for Arc-connected Kubernetes clusters. This Arc extension can be deployed to write files to a *ReadWriteMany* persistent volume claim (PVC) where they can be stored locally, transferred to Azure Blob Storage destinations in the cloud, or mirrored from those cloud destinations.
+
+> [!IMPORTANT]
+> Azure Container Storage enabled by Azure Arc is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability. 
 
 Azure Container Storage offers a range of features to support various workloads, such as AI and ML training models, Azure IoT Operations, and other Arc services. With high availability and fault-tolerance options available, this Arc extension is ready for production workloads. 
 

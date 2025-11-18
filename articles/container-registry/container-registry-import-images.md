@@ -161,10 +161,8 @@ Import-AzContainerRegistryImage -RegistryName myregistry -ResourceGroupName myRe
 
 You can import an image from an Azure container registry in the same AD tenant using integrated Microsoft Entra permissions.
 
-* Your identity must have permissions to view and pull images, tags, and OCI referrers from the source registry.
-  * For [ABAC-enabled source registries](container-registry-rbac-abac-repository-permissions.md), you must have both the `Container Registry Repository Reader` and the `Container Registry Repository Catalog Lister` roles on the source registry.
-  * For [non-ABAC source registries](container-registry-rbac-built-in-roles-overview.md), you must have the `AcrPull` role on the source registry.
-* Your identity must also have permissions to both read images and trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role).
+* Your identity must have permissions to view and pull images, tags, and OCI referrers from the source registry (`Container Registry Data Importer and Data Reader` role assigned on the source registry).
+* Your identity must also have permissions to both read images and trigger imports on the target registry (`Container Registry Data Importer and Data Reader` role assigned on the target registry).
 * The registry can be in the same or a different Azure subscription in the same Active Directory tenant.
 
 * [Public access](container-registry-access-selected-networks.md#disable-public-network-access) to the source registry is disabled. If public access is disabled, specify the source registry by resource ID instead of by registry login server name.
