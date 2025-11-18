@@ -64,9 +64,9 @@ The periodic sync time that you select when configuring the **Arc onboarding** s
 
 If you prefer, you can turn periodic sync off when configuring this solution. If you do so, new EC2 instances and GCP VMs aren't automatically onboarded to Azure Arc, because Azure doesn't scan for new instances.
 
-## EC2 filter options
+## Filter options
 
-You can choose to filter to scan for EC2 instances based on:
+You can choose to filter to scan for EC2 instances or GCP VMs based on:
 
 - EC2 instances based on AWS regions or AWS tags.
 - GCP VMs based on GCP regions or GCP labels.
