@@ -1,7 +1,7 @@
 ---
 title: Deploy and manage virtual machines effectively using Azure Copilot
 description: Learn how Azure Copilot can help you deploy cost-efficient VMs.
-ms.date: 07/13/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -151,7 +151,7 @@ If you see an error message in the Azure portal, you can ask "**Can you explain 
 
 If your VM has connectivity problems due to network security groups blocking traffic, Azure Copilot can help you understand the issue. When applicable, Azure Copilot can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
 
-To get help with security rules, start from the virtual machine you want to troubleshoot. After testing network security gropus, you may see that connections are blocked due to security rules. If so, open Azure Copilot and ask for help resolving the issue.
+To get help with security rules, start from the virtual machine you want to troubleshoot. After testing network security groups, you may see that connections are blocked due to security rules. If so, open Azure Copilot and ask for help resolving the issue.
 
 ## Next steps
 
