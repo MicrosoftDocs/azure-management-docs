@@ -1,6 +1,6 @@
 ---
-title: Discover and deploy workload templates from Microsoft Copilot in Azure
-description: Learn how Microsoft Copilot in Azure can provide workload templates for your scenario.
+title: Discover and deploy workload templates from Azure Copilot
+description: Learn how Azure Copilot can provide workload templates for your scenario.
 ms.date: 04/08/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
@@ -10,9 +10,9 @@ author: JnHs
 # Customer intent: "As a cloud developer, I want to discover and deploy workload templates using an AI assistant, so that I can quickly implement solutions following industry best practices without extensive manual setup."
 ---
 
-# Discover and deploy workload templates from Microsoft Copilot in Azure
+# Discover and deploy workload templates from Azure Copilot
 
-Microsoft Copilot in Azure can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
+Azure Copilot can help you find workload deployment templates that suit your needs by quickly searching through extensive repositories to identify the best matches. It provides recommendations based on the latest best practices and industry standards, helping you effectively deploy your workloads.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
@@ -35,16 +35,16 @@ Here are a few examples of the kinds of prompts you can use to discover and depl
 
 ## Examples
 
-To create an e-commerce website using Django framework, you can say **"I want to create an e-commerce website using Django framework."** Copilot in Azure shows a recommendation with a link to the GitHub repository that you can use to run the Azure Development CLI (`azd`) template.
+To create an e-commerce website using Django framework, you can say **"I want to create an e-commerce website using Django framework."** Azure Copilot shows a recommendation with a link to the GitHub repository that you can use to run the Azure Development CLI (`azd`) template.
 
 > [!TIP]
 > For information on using `azd` templates, see [What is the Azure Developer CLI?](/azure/developer/azure-developer-cli/overview?tabs=windows)
 
-:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Screenshot of example of a template recommendation from Microsoft Copilot in Azure.":::
+:::image type="content" source="media/deploy-workload-templates/example-workload-template.png" alt-text="Screenshot of example of a template recommendation from Azure Copilot.":::
 
-:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Screenshot of example of a GitHub repository for the workload suggested by Microsoft Copilot in Azure. ":::
+:::image type="content" source="media/deploy-workload-templates/example-github-repository.png" lightbox="media/deploy-workload-templates/example-github-repository.png" alt-text="Screenshot of example of a GitHub repository for the workload suggested by Azure Copilot. ":::
 
 ## Next steps
 
-- Explore [capabilities](capabilities.md) of Microsoft Copilot in Azure.
-- Learn how to [deploy virtual machines effectively using Microsoft Copilot in Azure](deploy-vms-effectively.md).
+- Explore [capabilities](capabilities.md) of Azure Copilot.
+- Learn how to [deploy virtual machines effectively using Azure Copilot](deploy-vms-effectively.md).

@@ -12,4 +12,4 @@ ms.date: 04/08/2025
 
 > [!TIP]
 >
->The tasks and sample prompts listed here show a few of the areas where Microsoft Copilot in Azure can be especially helpful. However, this isn't a complete list of all the things you can do. We encourage you to experiment with your own prompts and see how Microsoft Copilot in Azure can help you manage your Azure resources and environment.
+>The tasks and sample prompts listed here show a few of the areas where Azure Copilot can be especially helpful. However, this isn't a complete list of all the things you can do. We encourage you to experiment with your own prompts and see how Azure Copilot can help you manage your Azure resources and environment.

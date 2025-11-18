@@ -4,7 +4,7 @@ description: Learn about deploying Edge RAG with Azure Arc, including prerequisi
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: concept-article
-ms.date: 08/27/2025
+ms.date: 10/29/2025
 ms.subservice: edge-rag
 ai-usage: ai-generated
 #CustomerIntent: As an IT administrator or cloud architect, I want to learn about deploying and configuring Edge RAG with Azure Arc so that I can enable a secure, scalable AI-powered chat solution using my organization's data at the edge.
@@ -33,12 +33,14 @@ The resources and components in the diagram form the core infrastructure for Edg
 - **On-premises infrastructure:**
   These components provide the compute, networking, load balancing, and storage that you need to run the Edge RAG extension and to access Edge RAG locally:
 
-  - Azure Local
-  - Azure Kubernetes (AKS) cluster on Azure Local
+  - Azure Local*
+  - Azure Kubernetes (AKS) cluster on Azure Local*
   - MetalLB
   - AKS node pool
   - Network file share (NFS) server
   - Driver machine (local management host)
+  
+  \* Edge RAG is validated on Azure Local.
 
   Use a driver machine (local management host) to simplify management of the Azure Arc-enabled Kubernetes cluster on Azure Local. For more information, see  [Prepare AKS cluster on Azure Local for Edge RAG](prepare-aks-cluster.md) and [Configure machine to manage Azure Arc-Enabled Kubernetes cluster](configure-driver-machine.md).
 
@@ -48,10 +50,10 @@ This setup lets you run a secure, scalable, AI-powered chat solution that uses y
 
 When you deploy Edge RAG, you can set several configuration options to tailor the solution to your environment and requirements.
 
-- **Language model selection:** Choose a Microsoft-provided model (like Phi-3.5 or Mistral-7B), or use your own model (BYOM) endpoint.
+- **Language model selection:** Choose an Edge RAG-provided model (like Phi-3.5 or Mistral-7B), or bring your own model (BYOM) endpoint. If you bring your own model, you can enable advanced search options like deep search. For the best results with deep search, we recommend using a language model like penAI [GPT-4o](https://github.com/marketplace/models/azure-openai/gpt-4o), [GPT-4.1-mini](https://github.com/marketplace/models/azure-openai/gpt-4-1-mini) or a later version. For more information, see [Search types in Edge RAG](search-types.md).
 - **SSL and domain configuration:** Set up a Transport Layer Security (TLS) termination certificate and domain so you can securely access the chat endpoint.
 - **Access and authentication:** Set up the Entra app ID and assign roles to users and groups.
-- **Data source configuration:** Make sure your NFS server is reachable and has the required files in supported formats.
+- **Data source configuration:** Make sure your data source, an NFS share, is reachable and contains the required files in supported formats.
 
 ## Deployment process for Edge RAG
 
@@ -59,8 +61,8 @@ The deployment process for Edge RAG consists of the following high-level steps:
 
 | High-level step  | Description |
 |-----------------|-----------------------------------------------------------|
-| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, if you plan to use your own language model instead of one of the models provided by Microsoft,  [create an endpoint to use for Edge RAG](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Edge RAG. |
-| 2. Deploy the Edge RAG extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Select and configure your preferred language model, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Edge RAG extension](deploy.md). <br><br>As part of the deployment step, if you configured Edge RAG to use your own language model instead of a Microsoft provided model, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).|
+| 1. Prepare the environment               | Set up the required Azure and on-premises infrastructure, configure your AKS Arc cluster and node pools, establish networking and storage, and set up authentication and user roles. Review the [requirements](requirements.md) and complete the [prerequisites checklist](complete-prerequisites.md). <br><br>As part of the prerequisites, if you plan to bring your own language model instead of one of the models provided by Edge RAG,  [create an endpoint to use for Edge RAG](prepare-model-endpoint.md). <br><br>If you're using [Microsoft Azure Government](/azure/azure-government/documentation-government-welcome), see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#edge-rag-preview-enabled-by-azure-arc) for the deployment variations with Edge RAG. |
+| 2. Deploy the Edge RAG extension         | Use the Azure portal or CLI to install the extension on your AKS Arc cluster. Select and configure your preferred language model, set up security and access parameters, and connect the extension to your Microsoft Entra ID for authentication. See [Deploy the Edge RAG extension](deploy.md). <br><br>As part of the deployment step, if you configured Edge RAG to use your own language model instead of an Edge RAG-provided model, [configure "BYOM" endpoint authentication for Edge RAG](configure-endpoint-authentication.md).|
 | 3. Validate the deployment               | After you deploy the extension, check that the Edge RAG extension is installed and running on your cluster and that you have connectivity to the chat endpoint.                                                                |
 | 4. Configure chat solution               | Before making the chat solution available to your organization, configure its data source, user experience, and test the setup to make sure it meets your requirements. See [Add a data source for Edge RAG](add-data-source.md), [Configure the chat solution](build-chat-solution-overview.md), and [Test the chat solution](test-end-user-app.md). |
 | 5. Monitor and evaluate your deployment  | After deploying Edge RAG, monitor system health, track performance, and evaluate the quality of your AI solution. Use built-in metrics and evaluation tools to observe, assess, and optimize your deployment. See [Evaluate the Edge RAG system](evaluate-solution.md) and [Monitor Edge RAG](observability.md). |

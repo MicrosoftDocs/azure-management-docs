@@ -51,7 +51,7 @@ The Azure mobile app provides several areas that allow you to navigate to differ
 
 On the top navigation bar, you'll find the hamburger button to open the hamburger menu, the search magnifying glass to explore your services and resources, the edit button to change the layout of the Azure mobile app **Home**, and the filter button to filter what content currently appears.
 
-If available in your tenant, you can also access [Microsoft Copilot in Azure](microsoft-copilot-in-azure.md) by selecting the **Copilot** icon from the top navigation bar.
+If available in your tenant, you can also access [Azure Copilot](microsoft-copilot-in-azure.md) by selecting the **Copilot** icon.
 
 ## Download the Azure mobile app
 

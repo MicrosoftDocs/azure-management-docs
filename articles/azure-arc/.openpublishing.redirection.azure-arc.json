@@ -4,6 +4,11 @@
             "source_path_from_root": "/articles/azure-arc/arc-overview.md",
             "redirect_url": "/azure/azure-arc/overview",
             "redirect_document_id": false
+        },
+                {
+            "source_path_from_root": "/articles/azure-arc/multicloud-connector/connect-to-aws.md",
+            "redirect_url": "/azure/azure-arc/multicloud-connector/add-public-cloud",
+            "redirect_document_id": false
         }
     ]
 }
