@@ -1,8 +1,8 @@
 ---
 title: Service Groups for Workload Orchestration
 description: Learn about service groups and how to configure them in workload orchestration.
-author: SoniaLopezBravo
-ms.author: sonialopez
+author: dominicbetts
+ms.author: dobett
 ms.topic: how-to
 ms.date: 11/05/2025
 ms.custom:
