@@ -321,6 +321,7 @@ The following steps are required to run workload orchestration service component
     > 1. Select the `microsoft.workloadorchestration` Arc extension and enter your namespace.
 
 1. Set up Azure Container Registry (ACR) Image Pull for the cluster. If you're using an AKS cluster, follow the instructions in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration). If you're using a different type of cluster, follow the instructions in [Pull images from an Azure container registry to a Kubernetes cluster using a pull secret](/azure/container-registry/container-registry-auth-kubernetes).
+
 1. Set up ACR Helm Chart Pull (any Arc connected cluster). Verify that the extension has a system managed identity. Run the following command:
 
     ```bash
@@ -336,8 +337,6 @@ The following steps are required to run workload orchestration service component
 
     > [!NOTE]
     > If you don't have the ACR resource ID, run the steps in [Authenticate with Azure Container Registry (ACR) from Azure Kubernetes Service (AKS)](/azure/aks/cluster-container-registry-integration#create-a-new-acr) to create a new ACR.
-
-1. Assign access to workload orchestration service. On the resource group where all workload orchestration resources are placed, provide reader access to the Azure AD application “EdgeConfigurationManagerApp (cba491bc-48c0-44a6-a6c7-23362a7f54a9)” from Azure portal. This action finds the isolated service principal of your tenant mapped to this application ID and assigns that service principal reader permission to the workload orchestration service.
 
 ### [PowerShell](#tab/powershell)
 
