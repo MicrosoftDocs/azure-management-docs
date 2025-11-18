@@ -19,7 +19,7 @@ You can enable the [workload identity feature](conceptual-workload-identity.md) 
 1. Configure workload identity settings on the Kubernetes cluster.
 1. Disable workload identity on the cluster.
 
-For an overview of this feature, see [Workload identity federation in Azure Arc-enabled Kubernetes (preview)](conceptual-workload-identity.md).
+For an overview of this feature, see [Workload identity federation in Azure Arc-enabled Kubernetes](conceptual-workload-identity.md).
 
 > [!TIP]
 > This article describes the steps required to deploy and configure workload identity on an Arc-enabled Kubernetes cluster. To learn how to enable workload identity on other types of clusters, see the following articles:
@@ -30,7 +30,7 @@ For an overview of this feature, see [Workload identity federation in Azure Arc-
 
 ## Prerequisites
 
-- Workload identity for Azure Arc-enabled Kubernetes clusters (preview) is supported on the following Kubernetes distributions:
+- Workload identity for Azure Arc-enabled Kubernetes clusters is supported on the following Kubernetes distributions:
   - Ubuntu Linux cluster running K3s
   - AKS enabled by Azure Arc
   - Red Hat OpenShift
@@ -272,6 +272,7 @@ To configure workload identity settings on the various Kubernetes distributions,
       name: apiServerExtraArgs
       value:
         - 'service-account-issuer=<OIDC_ISSUER_URL>'
+      ```
 
 1. Switch context back to the workload cluster:
 
