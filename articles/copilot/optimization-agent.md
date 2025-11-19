@@ -37,8 +37,8 @@ Currently, Agents (preview) in Azure Copilot supports optimization recommendatio
 You can get started with optimization recommendations in several ways:
 
 - From the Azure Copilot chat pane, ask for optimization recommendations for your subscription or specific resources. For the best results, specify the subscription GUID or ARM Resource URI in your prompt, rather than the resource names, unless the resource is clear from the current context. Be sure to enable agent mode by selecting the icon in the chat window.
-- In operations center (preview), top recommendations for your subscriptions are shown. Select **Optimize with Copilot** next to a recommendation to explore further.
-- From the [Azure Advisor cost recommendations page](/azure/advisor/advisor-reference-cost-recommendations) or operations center (preview) recommendations page, select **Optimize** next to an impacted VM or VMSS resource.
+- In [operations center (preview)](/azure/operations/overview), top recommendations for your subscriptions are shown. Select **Optimize with Copilot** next to a recommendation to explore further.
+- From the [Azure Advisor cost recommendations page](/azure/advisor/advisor-reference-cost-recommendations) or [operations center (preview)](/azure/operations/overview)recommendations page, select **Optimize** next to an impacted VM or VMSS resource.
 
 ## Optimization sample prompts
 
