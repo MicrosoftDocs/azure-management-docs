@@ -41,9 +41,7 @@ When you're working with a resource, you can say "**Show me available metrics fo
 
 :::image type="content" source="media/get-monitoring-information/monitor-available-metrics.png" alt-text="Screenshot of Azure Copilot listing which metrics are available for a resource.":::
 
-You can then follow up by asking to see a particular metric for a set period of time.
-
-:::image type="content" source="media/get-monitoring-information/monitor-show-metric.png" alt-text="Screenshot of Azure Copilot showing request metrics for a resource.":::
+You can then follow up by asking to see a particular metric for a set period of time. For example, you can say "**Show me requests in 6 hour windows over the last week**" to see a graph of that metric.
 
 ## Answer questions about Azure Monitor logs
 
@@ -63,7 +61,7 @@ Here are a few examples of the kinds of prompts you can use to get information a
 
 ## Answer questions about Azure Monitor alerts
 
-Use Azure Copilot to ask questions about your Azure Monitor alerts. When asked about alerts, Azure Copilot summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page. 
+Use Azure Copilot to ask questions about your Azure Monitor alerts. When asked about alerts, Azure Copilot summarizes the list of alerts, their severity, and allows you to further explore the data in the alerts page.
 
 ### Alerts sample prompts
 
@@ -81,9 +79,7 @@ You can say "**Catch me up on alerts** to get an overview of active alerts acros
 
 :::image type="content" source="media/get-monitoring-information/monitor-active-alerts.png" alt-text="Screenshot of Azure Copilot summarizing all active alerts.":::
 
-To narrow it down, you can say "**Show me all alerts triggered during the last 24 hours**."
-
-:::image type="content" source="media/get-monitoring-information/monitor-recent-alerts.png" alt-text="Screenshot of Azure Copilot summarizing active alerts in the past 24 hours.":::
+You can narrow the results down to a smaller time range. For example, you can say "**Show me all alerts triggered during the last 24 hours**" to see only recent alerts.
 
 ## Next steps
 
