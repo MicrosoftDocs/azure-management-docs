@@ -1,12 +1,12 @@
 ---
-title: azcmagent connect CLI reference
-description: Syntax for the azcmagent connect command line tool
+title: CLI reference for `azcmagent connect`
+description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
 ms.date: 11/18/2025
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
-# azcmagent connect
+# `azcmagent connect`
 
 Connects the server to Azure Arc by creating a metadata representation of the server in Azure and associating the Azure connected machine agent with it. The command requires information about the tenant, subscription, and resource group where you want to represent the server in Azure and valid credentials with permissions to create Azure Arc-enabled server resources in that location.
 
@@ -52,7 +52,7 @@ No flag is required to use the interactive browser login.
 
 ### Device code login
 
-This option generates a code that you can use to log in on a web browser on another device. This is the default option on Windows Server core editions and all Linux distributions. When you execute the connect command, you have 5 minutes to open the specified login URL on an internet-connected device and complete the login flow.
+This option generates a code that you can use to log in on a web browser on another device. This option is the default on Windows Server core editions and all Linux distributions. When you execute the connect command, you have 5 minutes to open the specified login URL on an internet-connected device and complete the login flow.
 
 To authenticate with a device code, use the `--use-device-code` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
 
@@ -72,7 +72,7 @@ For more information, see [create a service principal for RBAC with certificate-
 
 ### Access token
 
-Access tokens can also be used for non-interactive authentication, but are short-lived and typically used by automation solutions onboarding several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
+Access tokens can also be used for non-interactive authentication, but they're short-lived. Access tokens are typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
 
 To authenticate with an access token, use the `--access-token [token]` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
 

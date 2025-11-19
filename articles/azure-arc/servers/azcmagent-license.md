@@ -1,12 +1,12 @@
 ---
-title: azcmagent license CLI reference
-description: Syntax for the azcmagent license command line tool
+title: CLI reference for `azcmagent license`
+description: Syntax for the `azcmagent license` command line tool
 ms.topic: reference
 ms.date: 11/19/2025
 # Customer intent: "As a system administrator, I want to view the license agreement for the Azure Connected Machine agent using the command line, so that I can ensure compliance with licensing terms."
 ---
 
-# azcmagent license
+# `azcmagent license`
 
 Show the license agreement for the Azure Connected Machine agent.
 

@@ -1,12 +1,12 @@
 ---
-title: azcmagent extension CLI reference
-description: Syntax for the azcmagent extension command line tool
+title: CLI reference for `azcmagent extension`
+description: Syntax for the `azcmagent extension` command line tool
 ms.topic: reference
 ms.date: 11/19/2025
 # Customer intent: "As a system administrator managing Azure Arc extensions, I want to use the command-line interface to list and uninstall extensions on my machine, so that I can efficiently control the installed extensions even in a disconnected state."
 ---
 
-# azcmagent extension
+# `azcmagent extension`
 
 Local management of Azure Arc extensions installed on the machine. These commands can be run even when a machine is in a disconnected state.
 
@@ -19,7 +19,7 @@ The extension manager must be stopped before running any of these commands. Stop
 | [azcmagent extension list](#azcmagent-extension-list) | Lists extensions installed on the machine |
 | [azcmagent extension remove](#azcmagent-extension-remove) | Uninstalls extensions on the machine |
 
-## azcmagent extension list
+## `azcmagent extension list`
 
 Lists extensions installed on the machine.
 
@@ -41,7 +41,7 @@ azcmagent extension list
 
 This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
-## azcmagent extension remove
+## `azcmagent extension remove`
 
 Uninstalls extensions on the machine.
 

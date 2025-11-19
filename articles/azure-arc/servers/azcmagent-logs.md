@@ -1,12 +1,12 @@
 ---
-title: azcmagent logs CLI reference
-description: Syntax for the azcmagent logs command line tool
+title: CLI reference for `azcmagent logs`
+description: Syntax for the `azcmagent logs` command line tool
 ms.topic: reference
 ms.date: 11/19/2025
 # Customer intent: "As a system administrator, I want to collect log files from the Azure connected machine agent into a ZIP archive, so that I can efficiently troubleshoot and analyze issues related to the system's performance."
 ---
 
-# azcmagent logs
+# `azcmagent logs`
 
 Collects log files for the Azure connected machine agent and extensions into a ZIP archive.
 

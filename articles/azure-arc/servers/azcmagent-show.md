@@ -1,17 +1,17 @@
 ---
-title: azcmagent show CLI reference
-description: Syntax for the azcmagent show command line tool
+title: CLI reference for `azcmagent show`
+description: Syntax for the `azcmagent show` command line tool
 ms.topic: reference
 ms.date: 11/19/2025
 # Customer intent: As a system administrator, I want to use the command line to check the status of the Azure Connected Machine agent, so that I can ensure proper connectivity and monitor the health of the services.
 ---
 
-# azcmagent show
+# `azcmagent show`
 
 Displays the current state of the Azure Connected Machine agent, including whether or not it's connected to Azure, the Azure resource information, and the status of dependent services.
 
 > [!NOTE]
-> You don't need administrator privileges to run **azcmagent show**.
+> You don't need administrator privileges to run `azcmagent show`.
 
 ## Usage
 
