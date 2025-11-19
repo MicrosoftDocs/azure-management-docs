@@ -14,6 +14,8 @@ The Azure Connected Machine agent command line tool, azcmagent, helps you config
 
 Unless otherwise specified, the command syntax and flags represent available options in the most recent release of the Azure Connected Machine agent. For more information, see [What's new with the Azure Connected Machine agent](agent-release-notes.md).
 
+To get details about the individual commands available in the azcmagent CLI, run `azcmagent help` or see the following reference pages:
+
 ## Commands
 
 | Command | Purpose |
