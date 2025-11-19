@@ -1,7 +1,7 @@
 ---
 title: Analyze, estimate and optimize cloud costs using Azure Copilot
 description: Learn about scenarios where Azure Copilot can use Microsoft Cost Management to help you manage your costs.
-ms.date: 04/08/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -46,7 +46,7 @@ You can follow up with questions to get more granular details, such as "**What w
 
 :::image type="content" source="media/analyze-cost-management/cost-management-vm-costs.png" alt-text="Screenshot of Azure Copilot providing details about VM costs.":::
 
-Next, you can ask "**How can we reduce our costs?**" Azure Copilot provides a list of recommendations you can take, including an estimate of the potential savings you might see. You can select speific resources, or get general recommendations across your account.
+Next, you can ask "**How can we reduce our costs?**" Azure Copilot provides a list of recommendations you can take, including an estimate of the potential savings you might see. You can select specific resources, or get general recommendations across your account.
 
 :::image type="content" source="media/analyze-cost-management/cost-management-reduce.png" alt-text="Screenshot of Azure Copilot providing a list of recommendations to reduce costs.":::
 

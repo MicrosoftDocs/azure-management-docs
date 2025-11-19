@@ -1,7 +1,7 @@
 ---
 title: Deploy and manage virtual machines effectively using Azure Copilot
 description: Learn how Azure Copilot can help you deploy cost-efficient VMs.
-ms.date: 07/13/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -89,13 +89,9 @@ While familiarity with the size options can be beneficial, Azure Copilot is desi
 
 ### VM size examples
 
-Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Azure Copilot asks for some more information to help it determine the best options.
+Ask "**Help me choose a size for my VM,**", or select the **Help me choose the right VM size for my workload** button near the top of the pane. Azure Copilot asks for some more information to help it determine the best options, then provides size recommendations based on your inputs and your subscription quotas.
 
 :::image type="content" source="media/deploy-vms-effectively/vm-choose-size.png" alt-text="Screenshot showing Azure Copilot asking for details to help determine the appropriate VM size.":::
-
-After that, Azure Copilot presents some options and lets you choose which of the recommended sizes to use for your VM.
-
-:::image type="content" source="media/deploy-vms-effectively/vm-choose-size-options.png" alt-text="Screenshot showing Azure Copilot providing size recommendations for a VM.":::
 
 ## Copy VMs into any region
 
@@ -118,12 +114,6 @@ While familiarity with the pricing information of different VM configurations ca
 - "Help me copy this VM in the same region"
 - "Help me copy this VM to East US"
 - "Help me copy this VM to any region"
-
-### Copy VM example
-
-You can say **"Help me copy VMs in any region."** Azure Copilot prompts you to select a region and a name for the new VM, then begins the create experience.
-
-:::image type="content" source="media/deploy-vms-effectively/vm-copy-region.png" lightbox="media/deploy-vms-effectively/vm-copy-region.png"alt-text="Screenshot of Azure Copilot responding to a request to copy a VM.":::
 
 ## Troubleshoot VM deployment failures
 
@@ -155,15 +145,13 @@ Azure Copilot offers analysis and guidance for troubleshooting VM errors caused 
 
 If you see an error message in the Azure portal, you can ask "**Can you explain the OSProvisioningTimedOut error on my VM?**" Azure Copilot analyzes the error and explains the problem, along with suggesting possible resolutions.
 
-:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-error.png" lightbox="media/deploy-vms-effectively/vm-troubleshoot-error.png" alt-text="Screenshot of Azure Copilot explaining a VM error and how to resolve it.":::
+:::image type="content" source="media/deploy-vms-effectively/vm-troubleshoot-error.png" alt-text="Screenshot of Azure Copilot explaining a VM error and how to resolve it.":::
 
 ## Troubleshoot VM network security issues
 
 If your VM has connectivity problems due to network security groups blocking traffic, Azure Copilot can help you understand the issue. When applicable, Azure Copilot can guide you through the process of creating a new security rule in your network security group to open the necessary ports.
 
-To get help with security rules, start from the virtual machine you want to troubleshoot and select **Connect**. Under **Troubleshoot**, select **Test network security groups**. After running a test, you may see that connections are blocked due to security rules. If so, open Azure Copilot and use one of the provided prompts to get assistance.
-
-:::image type="content" source="media/deploy-vms-effectively/vm-network-security-rule.png" lightbox="media/deploy-vms-effectively/vm-network-security-rule.png" alt-text="Screenshot of Azure Copilot providing assistance with network security issues.":::
+To get help with security rules, start from the virtual machine you want to troubleshoot. After testing network security groups, you may see that connections are blocked due to security rules. If so, open Azure Copilot and ask for help resolving the issue.
 
 ## Next steps
 
