@@ -30,7 +30,7 @@ To get details about the individual commands available in the `azcmagent` CLI, r
 | [`azcmagent logs`](azcmagent-logs.md) | Collect logs to troubleshoot agent issues. |
 | [`azcmagent show`](azcmagent-show.md) | Display the agent status. |
 | [`azcmagent version`](azcmagent-version.md) | Display the agent version. |
-| [`azcmagent partnerconfig`](azcmagent-partnerconfig.md) | Reserved for internal use. |
+| `azcmagent partnerconfig` | Reserved for internal use. |
 
 ## Common flags
 
