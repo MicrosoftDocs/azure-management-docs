@@ -1,7 +1,7 @@
 ---
 title:  Work with AKS clusters efficiently using Azure Copilot
 description: Learn how Azure Copilot can help you be more efficient when working with Azure Kubernetes Service (AKS).
-ms.date: 04/08/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -167,7 +167,7 @@ The [AKS Periscope tool](https://github.com/Azure/aks-periscope) helps you diagn
 
 #### Periscope example
 
-You can say **"Help me deploy periscope to my AKS cluster."** If you're not already in the context of a cluster, Azure Copilot prompts you to select one. Once you make the selection, Azure Copilot asks you to confirm details, then deploys Periscope to your cluster.
+You can say **"Help me deploy Periscope to my AKS cluster."** If you're not already in the context of a cluster, Azure Copilot prompts you to select one. Once you make the selection, Azure Copilot may prompt you to confirm details, then deploys Periscope to your cluster.
 
 :::image type="content" source="media/work-aks-clusters/aks-periscope-confirm.png" alt-text="Screenshot of Azure Copilot prompting to confirm before deploying Periscope to a cluster.":::
 
@@ -197,8 +197,6 @@ Next, you're prompted to select an Azure Container Registry to pull from. After 
 
 After the deployment completes, you're prompted to navigate to the **Run Command** pane, where you can view CanIPull logs and check for issues.
 
-:::image type="content" source="media/work-aks-clusters/aks-canipull-run-command.png" alt-text="Screenshot showing Azure Copilot prompting to open the Run Command pane.":::
-
 :::image type="content" source="media/work-aks-clusters/aks-canipull-run-command-logs.png" alt-text="Screenshot showing log information in the Run Command pane.":::
 
 ## Troubleshoot cluster issues
@@ -224,11 +222,7 @@ If you say "**diagnose my AKS cluster node health**", Azure Copilot asks you to 
 
 :::image type="content" source="media/work-aks-clusters/aks-diagnose-cluster-health.png" alt-text="Screenshot of Azure Copilot checking the health of an AKS cluster.":::
 
-You can select a link to view details about the issue, along with suggested solutions.
-
-:::image type="content" source="media/work-aks-clusters/aks-health-detected-problem.png" alt-text="Screenshot of Azure Copilot providing more details about a problem with CPU pressure.":::
-
-:::image type="content" source="media/work-aks-clusters/aks-other-problem.png" alt-text="Screenshot of Azure Copilot providing more details about a problem with the Kubernetes version.":::
+You can select a problem to run deep analysis. When you do so, you see more details about the problem, along with suggested solutions. In some cases, specific commands are shown, which you can select and run. You can also select the title of any check to see more details about it.
 
 ## Get VM size recommendations
 
@@ -246,7 +240,7 @@ While familiarity with VM size options can be beneficial, Azure Copilot is desig
 
 ### VM size example
 
-You can say "**Recommend VM size for creating AKS cluster for my workload**. Azure Copilot prompts you for more information about your environment and workload requirements. In some cases, Copilot may ask follow-up questions to better understand your scenario.
+You can say "**Recommend VM size for creating AKS cluster for my workload**. Azure Copilot prompts you for information about your workload requirements.
 
 :::image type="content" source="media/work-aks-clusters/aks-size-recommend.png" alt-text="Screenshot of Azure Copilot asking for information in order to recommend a VM size for an AKS cluster.":::
 
@@ -255,8 +249,6 @@ Based on the details you provide, Azure Copilot presents some recommended  lets 
 :::image type="content" source="media/work-aks-clusters/aks-size-recommendations.png" alt-text="Screenshot of Azure Copilot providing recommendations for appropriate VM sizes for a new AKS cluster.":::
 
 After you choose one of the recommended sizes, select **Create AKS cluster with selection** to proceed to the cluster creation experience.
-
-:::image type="content" source="media/work-aks-clusters/aks-size-create.png" alt-text="Screenshot of Azure Copilot providing a link to create a cluster with the selected VM size.":::
 
 ## Update AKS pricing tier
 
