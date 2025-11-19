@@ -2,7 +2,7 @@
 title: azcmagent disconnect CLI reference
 description: Syntax for the azcmagent disconnect command line tool
 ms.topic: reference
-ms.date: 01/16/2025
+ms.date: 11/18/2025
 # Customer intent: As a system administrator, I want to disconnect an Azure Arc-enabled server using the command line, so that I can manage the server's configuration and remove it from the cloud effectively without affecting local resources.
 ---
 
@@ -11,7 +11,7 @@ ms.date: 01/16/2025
 Deletes the Azure Arc-enabled server resource in the cloud and resets the configuration of the local agent. For detailed information on removing extensions and disconnecting and uninstalling the agent, see [uninstall the agent](manage-agent.md#uninstall-the-agent).
 
 > [!CAUTION]
-> When disconnecting the agent from Arc-enabled VMs running on Azure Local, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `–force-local-only` flag can cause your Arc VM on Azure Local to be deleted both from Azure and on-premises.
+> When disconnecting the agent from Azure Local VMs enabled by Azure Arc, use only the `azcmagent disconnect --force-local-only` command. Using the command without the `–force-local-only` flag can cause your Azure Local VM to be deleted both from Azure and on-premises.
 
 ## Usage
 
@@ -21,19 +21,19 @@ azcmagent disconnect [authentication] [flags]
 
 ## Examples
 
-Disconnect a server using the default login method (interactive browser or device code).
+Disconnect a server using the default login method (interactive browser or device code):
 
 ```
 azcmagent disconnect
 ```
 
-Disconnect a server using a service principal.
+Disconnect a server using a service principal:
 
 ```
 azcmagent disconnect --service-principal-id "ID" --service-principal-secret "SECRET"
 ```
 
-Disconnect a server if the corresponding resource in Azure has already been deleted.
+Disconnect a server when the corresponding resource in Azure has already been deleted:
 
 ```
 azcmagent disconnect --force-local-only
@@ -46,7 +46,7 @@ There are four ways to provide authentication credentials to the Azure connected
 > [!NOTE]
 > The account used to disconnect a server must be from the same tenant as the subscription where the server is registered.
 
-### Interactive browser login (Windows-only)
+### Interactive browser login (Windows only)
 
 This option is the default on Windows operating systems with a desktop experience. The login page opens in your default web browser. This option might be required if your organization configured conditional access policies that require you to log in from trusted machines.
 
@@ -74,11 +74,13 @@ For more information, see [create a service principal for RBAC with certificate-
 
 ### Access token
 
-Access tokens can also be used for non-interactive authentication, but are short-lived and typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [Get-AzAccessToken](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
+Access tokens can also be used for non-interactive authentication, but are short-lived and typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
 
 To authenticate with an access token, use the `--access-token [token]` flag.
 
 ## Flags
+
+This command supports the flags described in [Common flags](azcmagent.md#common-flags) and the flags listed in this section.
 
 `--access-token`
 
@@ -106,6 +108,4 @@ Generate a Microsoft Entra device login code that can be entered in a web browse
 
 `--user-tenant-id`
 
-The tenant ID for the account used to connect the server to Azure. This field is required when the tenant of the onboarding account isn't the same as the desired tenant for the Azure Arc-enabled server resource.
-
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+The tenant ID for the account used to connect the server to Azure. This field is required when the tenant of the onboarding account isn't the same as the desired tenant for the Azure Arc-enabled server resource, such as when using guest accounts or [Azure Lighthouse](/azure/lighthouse)

@@ -2,7 +2,7 @@
 title: azcmagent check CLI reference
 description: Syntax for the azcmagent check command line tool
 ms.topic: reference
-ms.date: 10/14/2025
+ms.date: 11/19/2025
 # Customer intent: As a system administrator, I want to run network connectivity checks using the command line tool, so that I can ensure the agent can communicate with required Azure endpoints accurately.
 ---
 
@@ -18,13 +18,13 @@ azcmagent check [flags]
 
 ## Examples
 
-Check connectivity with the agent's configured cloud and region.
+Check connectivity with the agent's configured cloud and region:
 
 ```
 azcmagent check
 ```
 
-Check connectivity with the East US region using public endpoints.
+Check connectivity with the East US region using public endpoints:
 
 ```
 azcmagent check --location "eastus"
@@ -37,7 +37,7 @@ azcmagent check --extensions all
 ```
 
 
-Check connectivity with the Central India region using private endpoints.
+Check connectivity with the Central India region using private endpoints:
 
 ```
 azcmagent check --location "centralindia" --enable-pls-check
@@ -45,15 +45,17 @@ azcmagent check --location "centralindia" --enable-pls-check
 
 ## Flags
 
+This command supports the flags described in [Common flags](azcmagent.md#common-flags) and the flags listed in this section.
+
 `--cloud`
 
-Specifies the Azure cloud instance. Must be used with the `--location` flag. If the machine is already connected to Azure Arc, the default value is the cloud to which the agent is already connected. Otherwise, the default value is AzureCloud.
+Specifies the Azure cloud instance. Must be used with the `--location` flag. If the machine is already connected to Azure Arc, the default value is the cloud to which the agent is already connected. Otherwise, the default value is `AzureCloud`.
 
 Supported values:
 
-* AzureCloud (public regions)
-* AzureUSGovernment (Azure US Government regions)
-* AzureChinaCloud (Microsoft Azure operated by 21Vianet regions)
+* `AzureCloud` (public regions)
+* `AzureUSGovernment` (Azure US Government regions)
+* `AzureChinaCloud` (Microsoft Azure operated by 21Vianet regions)
 
 `-e`, `--extensions`
 
@@ -61,8 +63,8 @@ Includes extra checks for extension endpoints to help validate end-to-end scenar
 
 Supported values:
 
-* all (checks all supported extension endpoints)
-* sql (SQL Server enabled by Azure Arc)
+* `all` (checks all supported extension endpoints)
+* `sql` (SQL Server enabled by Azure Arc)
 
 `--include-all`
 
@@ -72,10 +74,8 @@ Includes connectivity checks for all extended use cases, such as [Windows Server
 
 The Azure region to check connectivity with. If the machine is already connected to Azure Arc, the current region is selected as the default.
 
-Sample value: westeurope
+Sample value: `westeurope`
 
 `-p`, `--enable-pls-check`
 
 Checks if supported Azure Arc endpoints resolve to private IP addresses. This flag should be used when you intend to connect the server to Azure using an Azure Arc private link scope.
-
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]

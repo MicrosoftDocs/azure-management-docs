@@ -1,4 +1,4 @@
-**Common flags available for all commands**
+The following flags are supported by all `azcmagent` commands. Some commands support additional flags; check their reference page for details.
 
 `--config`
 

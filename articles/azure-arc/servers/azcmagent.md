@@ -2,7 +2,7 @@
 title: azcmagent CLI reference
 description: Reference documentation for the Azure Connected Machine agent command line tool
 ms.topic: reference
-ms.date: 04/20/2023
+ms.date: 11/19/2025
 ms.custom:
   - build-2025
 # Customer intent: As a systems administrator, I want to use the azcmagent CLI to configure and manage the Azure Connected Machine agent, so that I can ensure proper connectivity and performance of my servers with Azure Arc.
@@ -19,28 +19,34 @@ Unless otherwise specified, the command syntax and flags represent available opt
 | Command | Purpose |
 | ------- | ------- |
 | [azcmagent check](azcmagent-check.md) | Run network connectivity checks for Azure Arc endpoints |
-| [azcmagent config](azcmagent-config.md) | Manage agent settings |
-| [azcmagent connect](azcmagent-connect.md) | Connect the server to Azure Arc |
-| [azcmagent disconnect](azcmagent-disconnect.md) | Disconnect the server from Azure Arc |
-| [azcmagent genkey](azcmagent-genkey.md) | Generate a public-private key pair for asynchronous onboarding |
-| [azcmagent help](azcmagent-help.md) | Get help for commands |
-| [azcmagent license](azcmagent-license.md) | Display the end-user license agreement |
-| [azcmagent logs](azcmagent-logs.md) | Collect logs to troubleshoot agent issues |
-| [azcmagent show](azcmagent-show.md) | Display the agent status |
-| [azcmagent version](azcmagent-version.md) | Display the agent version |
+| [azcmagent config](azcmagent-config.md) | Manage agent settings. |
+| [azcmagent connect](azcmagent-connect.md) | Connect the server to Azure Arc. |
+| [azcmagent disconnect](azcmagent-disconnect.md) | Disconnect the server from Azure Arc. |
+| [azcmagent genkey](azcmagent-genkey.md) | Generate a public-private key pair for asynchronous onboarding. |
+| [azcmagent help](azcmagent-help.md) | Get help for commands. |
+| [azcmagent license](azcmagent-license.md) | Display the end-user license agreement. |
+| [azcmagent logs](azcmagent-logs.md) | Collect logs to troubleshoot agent issues. |
+| [azcmagent show](azcmagent-show.md) | Display the agent status. |
+| [azcmagent version](azcmagent-version.md) | Display the agent version. |
 | azcmagent partnerconfig | Reserved for internal use. |
+
+## Common flags
+
+The following flags are supported by all azcmagent commands. Some commands support additional flags, as listed on their reference page.
+
+[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
 
 ## Frequently asked questions
 
 ### How can I install the azcmagent CLI?
 
-The azcmagent CLI is bundled with the Azure Connected Machine agent. Review your [deployment options](deployment-options.md) for Azure Arc to learn how to install and configure the agent.
+The azcmagent CLI is bundled with the Azure Connected Machine agent. To learn about methods to install and configure the agent, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 ### Where is the CLI installed?
 
 On Windows operating systems, the CLI is installed at `%PROGRAMFILES%\AzureConnectedMachineAgent\azcmagent.exe`. This path is automatically added to the system PATH variable during the installation process. You may need to close and reopen your console to refresh the PATH variable and be able to run `azcmagent` without specifying the full path.
 
-On Linux operating systems, the CLI is installed at `/opt/azcmagent/bin/azcmagent`
+On Linux operating systems, the CLI is installed at `/opt/azcmagent/bin/azcmagent`.
 
 ### What's the difference between the azcmagent CLI and the Azure CLI for Azure Arc-enabled servers?
 

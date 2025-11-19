@@ -32,7 +32,7 @@ azcmagent config clear [property] [flags]
 
 ### Examples
 
-Clear the proxy server URL property.
+Clear the proxy server URL property:
 
 ```
 azcmagent config clear proxy.url
@@ -40,7 +40,7 @@ azcmagent config clear proxy.url
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
 ## azcmagent config get
 
@@ -54,7 +54,7 @@ azcmagent config get [property] [flags]
 
 ### Examples
 
-Get the agent mode.
+Get the agent mode:
 
 ```
 azcmagent config get config.mode
@@ -62,7 +62,7 @@ azcmagent config get config.mode
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags)
 
 ## azcmagent config info
 
@@ -76,13 +76,13 @@ azcmagent config info [property] [flags]
 
 ### Examples
 
-Describe all available configuration properties and supported values.
+Describe all available configuration properties and supported values:
 
 ```
 azcmagent config info
 ```
 
-Learn more about the extensions allowlist property and its supported values.
+Learn more about the extensions allowlist property and its supported values:
 
 ```
 azcmagent config info extensions.allowlist
@@ -90,7 +90,7 @@ azcmagent config info extensions.allowlist
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
 ## azcmagent config list
 
@@ -104,7 +104,7 @@ azcmagent config list [flags]
 
 ### Examples
 
-List the current agent configuration.
+List the current agent configuration:
 
 ```
 azcmagent config list
@@ -112,7 +112,7 @@ azcmagent config list
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
 ## azcmagent config set
 
@@ -126,13 +126,13 @@ azcmagent config set [property] [value] [flags]
 
 ### Examples
 
-Configure the agent to use a proxy server.
+Configure the agent to use a proxy server:
 
 ```
 azcmagent config set proxy.url "http://proxy.contoso.corp:8080"
 ```
 
-Append an extension to the extension allowlist.
+Append an extension to the extension allowlist:
 
 ```
 azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorWindowsAgent" --add
@@ -146,6 +146,8 @@ azcmagent config set incomingconnections.enabled false
 
 ### Flags
 
+This command supports the flags described in [Common flags](azcmagent.md#common-flags), and the flags listed in this section.
+
 `-a`, `--add`
 
 Append the value to the list of existing values. If not specified, the default behavior is to replace the list of existing values. This flag is only supported for configuration properties that support more than one value. Can't be used with the `--remove` flag.
@@ -153,5 +155,3 @@ Append the value to the list of existing values. If not specified, the default b
 `-r`, `--remove`
 
 Remove the specified value from the list, retaining all other values. If not specified, the default behavior is to replace the list of existing values. This flag is only supported for configuration properties that support more than one value. Can't be used in conjunction with the `--add` flag.
-
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
