@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot disk performance using Azure Copilot
 description: Learn how to use Azure Copilot to help troubleshoot issues with disk performance.
-ms.date: 04/08/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -27,8 +27,6 @@ To diagnose performance issues when your application requires higher performance
 - VM Cached and Uncached Bandwidth Percentage
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
-
-
 
 ## Sample prompts
 
@@ -58,7 +56,7 @@ Azure Copilot then shows you the VM and disks you selected and the metrics to be
 
 If Azure Copilot detects a performance issue with your VM-Disk configuration due to hitting IOPS or throughput limits, it provides you with a summary of the analysis, a primary recommendation based on the least downtime to your application, and other recommendation options. You can also view metric details from the analysis metrics by selecting **Show additional details**. This option provides more information such as the VM IOPS/MBPS limits, total time period when limits were hit, and the top three time intervals when disk limits were hit. If your VM has caching enabled, the VM IOPS/MBPS limits shown here reflect your cached limits.
 
-If you choose to enact any of the recommendation options provided by Azure Copilot, you're directed to the location in the Azure portal where you can implement the recommendation. If you're dissatisfied with the recommendation, you can choose to submit a support request to get more assistance.
+If you choose to enact any of the recommendation options provided by Azure Copilot, you're directed to the location in the Azure portal where you can implement the recommendation. If you're dissatisfied with the recommendations, but still need help, you can choose to submit a support request to get more assistance.
 
 ## Next steps
 
