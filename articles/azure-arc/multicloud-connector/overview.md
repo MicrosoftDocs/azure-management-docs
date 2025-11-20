@@ -34,11 +34,11 @@ The multicloud connector isn't available in national clouds (Azure Government, M
 
 In AWS, we scan for resources in the following regions:
 
-- us-east-1, us-east-2, us-west-1, us-west-2, ca-central-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-3, eu-west-1, eu-west-2, eu-central-1, eu-north-1, sa-east-1, ap-south
+- us-east-1, us-east-2, us-west-1, us-west-2, ca-central-1, ap-southeast-1, ap-southeast-2, ap-northeast-1, ap-northeast-3, eu-west-1, eu-west-2, eu-central-1, eu-north-1, sa-east-1, ap-south1
 
 In GCP, we scan for resources in the following regions:
 
-- USEast1, USEast4, USCentral1, USWest1, USWest2, EuropeWest1, EuropeWest2, EuropeWest3, EuropeNorth2, NorthAmericaNorthEast1, SouthAmericaEast1, AustraliaSouthEast1
+- us-east1, us-east4, us-central1, us-west1, us-west2, europe-west1, europe-west2, europe-west3, europe-north2, northamerica-northeast1, southamerica-east1, australia-southeast1
 
 Scanned resources are automatically [mapped to corresponding Azure regions](resource-representation.md#region-mapping).
 
