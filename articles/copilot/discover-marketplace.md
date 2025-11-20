@@ -13,7 +13,7 @@ author: JnHs
 
 Azure Copilot enables you to find the right Azure Marketplace solutions using natural language queries. Instead of relying on filters or knowing specific product names, you can describe your needs in your own words and get tailored suggestions.
 
-When you ask a question about tools and offers, Azure Copilot determines your intent, then enriches your query with context and inferred filters. Next, it searches the Azure Marketplace using intelligent APIs and returns a list of the top relevant offers, services, or follow-ups. The results shown vary,depending on the current offerings in Azure Marketplace. Where applicable, an **"Explore Marketplace"** button is provided to navigate directly to the Azure Marketplace so you can explore and implement the suggested solutions. Copilot may also provide follow-up questions or related prompts to refine your search or explore other solutions.
+When you ask a question about tools and offers, Azure Copilot determines your intent, then enriches your query with context and inferred filters. Next, it searches the Azure Marketplace using intelligent APIs and returns a list of the top relevant offers, services, or follow-ups. You'll see live results based on the current offerings in Azure Marketplace. Where applicable, an **"Explore Marketplace"** button is provided to navigate directly to the Azure Marketplace so you can explore and implement the suggested solutions. Copilot may also provide follow-up questions or related prompts to refine your search or explore other solutions.
 
 ## Sample prompts
 
