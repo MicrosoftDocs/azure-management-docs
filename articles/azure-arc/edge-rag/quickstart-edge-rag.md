@@ -153,7 +153,7 @@ Add dedicated GPU and CPU node pools to your AKS cluster to support Edge RAG.
 
 If you get an error message when you try to create the node pools, you might need to request a quota increase for your Azure subscription, try a different virtual machine size, or create the Azure Kubernetes cluster and node pools in a different [Azure region](/azure/reliability/regions-list). For more information, see [Limits for resources, SKUs, and regions in Azure Kubernetes Service (AKS)](/azure/aks/quotas-skus-regions).
 
-1. Run the following command to create a GPU node pool with three nodes:
+1. Run the following command to create a GPU node pool with nodes:
 
    ```azurecli
    az aks nodepool add ` 
@@ -168,7 +168,7 @@ If you get an error message when you try to create the node pools, you might nee
        --mode User 
    ```
 
-1. Run the following command to create a CPU node pool with three nodes:
+1. Run the following command to create a CPU node pool with nodes:
 
    ```azurecli
    az aks nodepool add ` 
