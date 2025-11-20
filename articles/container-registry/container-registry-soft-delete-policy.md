@@ -46,7 +46,7 @@ This feature is available in all the service tiers (also known as SKUs). For inf
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 * ACR currently doesn't support manually purging soft deleted artifacts. 
-* The soft delete policy doesn't support registries configured for zone redundancy, geo-replication, artifact cache yet.
+* The soft delete policy doesn't support registries configured for zone redundancy, geo-replication, or artifact cache yet.
 
 * ACR doesn't allow enabling both the retention policy and the soft delete policy. See [retention policy for untagged manifests.](container-registry-retention-policy.md)
 
