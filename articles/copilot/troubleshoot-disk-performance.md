@@ -48,7 +48,7 @@ After you select a VM, you're prompted to select one or more disks for Azure Cop
 
 :::image type="content" source="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.png" lightbox="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.png"alt-text="Screenshot of Azure Copilot prompting to select disks to analyze.":::
 
-Next, tell Azure Copilot when the issues began. enter an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
+Next, tell Azure Copilot when the issues began by entering an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
 
 Azure Copilot then shows you the VM and disks you selected and the metrics to be analyzed. After you confirm, Azure Copilot runs the analysis to determine if your application performance is being capped due to requesting more IOPS or throughput than what is allotted for the virtual machines or attached disks.
 
