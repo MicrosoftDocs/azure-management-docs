@@ -160,7 +160,7 @@ If your desired conversion path is unsupported (for example, ZRS to GRS), Azure 
 
 If no blockers are found, Azure Copilot confirms that your account is ready for conversion and offers instructions for completing the change using the Azure portal.
 
-:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Azure Copilot confirming the target replication for a storage account." lightbox="media/improve-storage-accounts/storage-account-redundancy-type.png":::
+:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Azure Copilot confirming the target replication for a storage account.":::
 
 ## Troubleshoot and resolve Azure File Sync issues
 
