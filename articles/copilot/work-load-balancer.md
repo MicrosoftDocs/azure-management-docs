@@ -39,7 +39,7 @@ When you say "**Which type of load balancer should I use**", Azure Copilot asks 
 
 As of September 30, 2025, Basic Load Balancer [is retired](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). If you still use Basic Load Balancer, Azure Copilot can help you understand [how to migrate from Basic to Standard](/azure/load-balancer/load-balancer-basic-upgrade-guidance) so that you can upgrade as soon as possible.
 
-To get help upgrading to Standard Load Balancer, navigate to your Basic Load Balancer, then select the banner that appears near the top of the pane. Select one of the provided prompts to get assistance from Azure Copilot. You can also enter prompts directly, such as "**What are the benefits of a Standard SKU Load Balancer?**" or "**Help me upgrade to a Standard SKU Load Balancer**"
+To get help upgrading to Standard Load Balancer, navigate to your Basic Load Balancer, then select the banner that appears near the top of the pane. Select one of the provided prompts to get assistance from Azure Copilot. You can also enter prompts directly, such as "**What are the benefits of a Standard SKU Load Balancer?**" or "**Help me upgrade to a Standard SKU Load Balancer**."
 
 ## Next steps
 
