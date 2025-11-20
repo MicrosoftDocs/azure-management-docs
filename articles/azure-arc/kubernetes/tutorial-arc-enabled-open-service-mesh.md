@@ -2,12 +2,15 @@
 title: Azure Arc-enabled Open Service Mesh
 description: Deploy the Open Service Mesh (OSM) extension on Azure Arc-enabled Kubernetes cluster
 ms.custom: devx-track-azurecli, devx-track-arm-template
-ms.date: 02/26/2025
+ms.date: 11/20/2025
 ms.topic: tutorial
 # Customer intent: As a cloud architect, I want to install and configure Azure Arc-enabled Open Service Mesh on Kubernetes, so that I can manage, secure, and enhance observability for microservices across my cloud environments.
 ---
 
 # Azure Arc-enabled Open Service Mesh
+
+> [!IMPORTANT]
+> Microsoft has announced the retirement of the [Open Service Mesh (OSM) add-on for AKS](https://azure.microsoft.com/updates?id=open-service-mesh-add-on-for-aks-will-be-retired-on-september-30-2027) on September 30, 2027. The upstream OSM project has also been retired by the [Cloud Native Computing Foundation (CNCF)](https://docs.openservicemesh.io/). Identify any existing OSM configurations and migrate them to equivalent OSS Istio configurations.
 
 [Open Service Mesh (OSM)](https://docs.openservicemesh.io/) is a lightweight, extensible, Cloud Native service mesh that allows users to uniformly manage, secure, and get out-of-the-box observability features for highly dynamic microservice environments.
 
@@ -27,8 +30,7 @@ Azure Arc-enabled Open Service Mesh can be deployed through Azure portal, Azure 
 ### Current support limitations
 
 - Only one instance of Open Service Mesh can be deployed on an Azure Arc-connected Kubernetes cluster.
-- Support is available for the two most recently released minor versions of Arc-enabled Open Service Mesh. Find the latest version [here](https://github.com/Azure/osm-azure/releases). Supported release versions are appended with notes. Ignore the tags associated with intermediate releases.
-- The following Kubernetes distributions are currently supported:
+- Support is available for the [two most recently released minor versions of Arc-enabled Open Service Mesh](https://github.com/Azure/osm-azure/releases).
   - AKS (Azure Kubernetes Service) Engine
   - AKS clusters on Azure Local
   - AKS enabled by Azure Arc
@@ -446,7 +448,6 @@ osm namespace add <namespace_name>
 ```
 
 To onboard a namespace in the Azure portal, select **Add** from the cluster's Open Service Mesh pane and selecting the desired namespace.
-
 
 For more information about onboarding services, see the [Open Service Mesh documentation](https://docs.openservicemesh.io/docs/guides/app_onboarding/#onboard-services).
 
