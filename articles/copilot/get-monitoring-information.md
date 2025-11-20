@@ -1,7 +1,7 @@
 ---
 title: Get information about Azure Monitor metrics and logs using Azure Copilot
 description: Learn about scenarios where Azure Copilot can provide information about Azure Monitor metrics and logs.
-ms.date: 04/14/2025
+ms.date: 11/19/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:

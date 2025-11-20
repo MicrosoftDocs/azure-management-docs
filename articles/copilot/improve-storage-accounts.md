@@ -2,7 +2,7 @@
 
 title: Manage and migrate storage accounts using Azure Copilot
 description: Learn how Azure Copilot can improve the security posture and data resiliency of storage accounts and help with storage migration solutions
-ms.date: 10/10/2025
+ms.date: 11/19/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -161,8 +161,6 @@ If your desired conversion path is unsupported (for example, ZRS to GRS), Azure 
 If no blockers are found, Azure Copilot confirms that your account is ready for conversion and offers instructions for completing the change using the Azure portal.
 
 :::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-type.png" alt-text="Screenshot of Azure Copilot confirming the target replication for a storage account." lightbox="media/improve-storage-accounts/storage-account-redundancy-type.png":::
-
-:::image type="content" source="media/improve-storage-accounts/storage-account-redundancy-steps.png" lightbox="media/improve-storage-accounts/storage-account-redundancy-steps.png" alt-text="Screenshot of Azure Copilot providing conversion steps for a storage account.":::
 
 ## Troubleshoot and resolve Azure File Sync issues
 
