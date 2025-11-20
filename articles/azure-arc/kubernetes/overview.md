@@ -45,7 +45,6 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
   * [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json)
   * [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview)
   * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
-  * [Open Service Mesh](tutorial-arc-enabled-open-service-mesh.md)
 
 * Use [Azure Kubernetes Fleet Manager](/azure/kubernetes-fleet/overview), and its Arc-enabled Kubernetes cluster extension to enable your enterprise to tackle hybrid and multi-cloud Kubernetes management challenges at scale.
 

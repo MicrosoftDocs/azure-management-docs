@@ -1,6 +1,6 @@
 ---
 title: "Troubleshoot extension issues for Azure Arc-enabled Kubernetes clusters"
-ms.date: 05/13/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.custom:
   - devx-track-azurecli
@@ -141,6 +141,9 @@ To fix this problem, you must explicitly load the `iptables_nat` module on each 
 ## Azure Arc-enabled Open Service Mesh
 
 This section demonstrates commands you can use to validate and troubleshoot the deployment of [Open Service Mesh (OSM)](tutorial-arc-enabled-open-service-mesh.md) extension components on your cluster.
+
+> [!IMPORTANT]
+> Microsoft has announced the retirement of the [Open Service Mesh (OSM) add-on for AKS](https://azure.microsoft.com/updates?id=open-service-mesh-add-on-for-aks-will-be-retired-on-september-30-2027) on September 30, 2027. The upstream OSM project has also been retired by the [Cloud Native Computing Foundation (CNCF)](https://docs.openservicemesh.io/).
 
 ### Check the OSM controller deployment
 
