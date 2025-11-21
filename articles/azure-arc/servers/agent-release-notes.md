@@ -26,6 +26,23 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.59 - December 2025
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+|Feature |Windows |Linux|Change Type|
+| -------- | -------- | -------- | -------- |
+|**Guest Config**   |**1.26.102.0** |**1.29.102.0**||
+|Increased unzipped extension package size limit from 400 MB to 1GB |✓|✓|Improvement|
+|Changed behavior on extension install when extension files already exist. Now, install will continue after attempting cleanup instead of failing.|✓|✓|Improvement|
+|Updated bundled PowerShell version from 7.4.7 to 7.4.13.|✓|✓|Improvement|
+|Updated Azure Storage API version from 2019-02-02 to 2025-11-05.|✓|✓|Improvement|
+|**Azcmagent**|**1.59**|**1.59**||
+|Improved error handling for regional identity service network check.|✓|✓|Bug Fix|
+|Add new authentication method for azcmagent to use Azure cli credentials for azcmagent connect and disconnect.|✓|✓|Improvement|
+|Fixed crashes caused by concurrent access of the agent's local config.|✓|✓|Bug Fix|
+|Updated Configuration UI to talk to Azure Resource Graph API to allow access on subscriptions with inherited permissions.|✓||Improvement|
+
 ## Version 1.58 - November 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.58/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
