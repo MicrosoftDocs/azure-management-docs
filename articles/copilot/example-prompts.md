@@ -1,7 +1,7 @@
 ---
 title: Example prompts for Azure Copilot
 description: View example prompts that you can try out with Azure Copilot.
-ms.date: 04/08/2025
+ms.date: 11/21/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -43,8 +43,8 @@ To get started with Azure Copilot, try a few prompts from this list. Feel free t
 | [PowerShell](generate-powershell-scripts.md) | Create resources with PowerShell. | "How can I create a new resource group using PowerShell?" |
 | [PowerShell](generate-powershell-scripts.md) | Deploy multiple resources with PowerShell. | "Help me write a PS script where after creating VM, deploy an AKS cluster on it." |
 | [PowerShell](generate-powershell-scripts.md) | Manage resources with PowerShell. | "How to back up an Azure SQL single database to an Azure storage container using Azure PowerShell?" |
-| [Interactive deployments](use-guided-deployments.md) | Provides a detailed guide on deploying an AKS cluster on Azure. | "Provide me with a detailed guide on deploying an AKS cluster on Azure." |
-| [Interactive deployments](use-guided-deployments.md) | Explains steps to create a Linux VM on Azure and SSH into it. | "What are the steps to create a Linux VM on Azure and how do I SSH into it?" |
+| [Deploy workload templates](deploy-workload-templates.md) | Provides a detailed guide on deploying an AKS cluster on Azure. | "Provide me with a detailed guide on deploying an AKS cluster on Azure." |
+| [Deploy workload templates](deploy-workload-templates.md) | Explains steps to create a Linux VM on Azure and SSH into it. | "What are the steps to create a Linux VM on Azure and how do I SSH into it?" |
 | [Azure Monitor](get-monitoring-information.md) | Detects anomalies in a specific resource. | "Is there any anomaly in my AKS resource?" |
 | [Azure Monitor](get-monitoring-information.md) | Performs root cause analysis. | "Why is this resource not working properly?" |
 | [Azure Monitor](get-monitoring-information.md) | Provides charts on platform metrics for a specific resource. | "Give me a chart of OS disk latency statistics for the last week." |
