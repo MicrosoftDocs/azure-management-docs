@@ -44,6 +44,11 @@
       "source_path_from_root": "/articles/copilot/discovery-plugin-marketplace.md",
       "redirect_url": "/azure/copilot/discover-marketplace",
       "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/copilot/network-management.md",
+      "redirect_url": "/azure/copilot/copilot-networking",
+      "redirect_document_id": false
     }    
   ]
 }
