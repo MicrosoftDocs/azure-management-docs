@@ -31,10 +31,10 @@ To get started with Azure Copilot, try a few prompts from this list. Feel free t
 | [Learn](capabilities.md#get-information) | Creates guides from multiple documentation sources. | "I want to use Azure functions to build an OpenAI application." |
 | [Azure Resource Graph](get-information-resource-graph.md) | Lists the number of critical alerts. | "How many critical alerts do I have?" |
 | [Azure Resource Graph](get-information-resource-graph.md) | Retrieves live resource information. | "Which VMs are running right now? Please restart them." |
-| [Azure Resource Graph](get-information-resource-graph.md) | Identifies states of resources. | "Which resources are non-compliant?" |
+| [Azure Resource Graph](get-information-resource-graph.md) | Identifies states of resources. | "Which resources are noncompliant?" |
 | [Azure Resource Graph](get-information-resource-graph.md) | Lists resources created or modified in the last 24 hours. | "List resources that have been created or modified in the last 24 hours." |
 | [Cost Management](analyze-cost-management.md) | Compares the current month's cost to the previous month's cost. | "How does our cost this month compare to last month's." |
-| [Cost Management](analyze-cost-management.md) | Forecasts cost for the next 3 months. | "Forecast my cost for the next 3 months." |
+| [Cost Management](analyze-cost-management.md) | Forecasts cost for the next three months. | "Forecast my cost for the next three months." |
 | [Cost Management](analyze-cost-management.md) | Shows Azure credits balance. | "What's our Azure credits balance?" |
 | [Azure CLI](generate-cli-scripts.md) | Generates a cheatsheet for managing resources with CLI. | "Generate a cheatsheet for managing VMs with CLI." |
 | [Azure CLI](generate-cli-scripts.md) | Lists all resources of a certain kind using Azure CLI. | "How do I list all my VMs using Azure CLI?" |
@@ -55,7 +55,7 @@ To get started with Azure Copilot, try a few prompts from this list. Feel free t
 | [Azure Networking](network-management.md) | Network planning and troubleshooting connectivity issues |"Why can't my VM connect to the internet?" |
 | [Azure App Service](troubleshoot-app-service.md) | Analyzes performance issues with an app. | "Troubleshoot performance issues with my app." |
 | [Azure App Service](troubleshoot-app-service.md) | Diagnoses high CPU usage issues. | "It seems like there's a high CPU issue with my web app." |
-| [Azure App Service](troubleshoot-app-service.md) | Enables auto-heal for web apps. | "Enable auto heal on my web app." |
+| [Azure App Service](troubleshoot-app-service.md) | Enables auto heal for web apps. | "Enable auto heal on my web app." |
 | [Azure App Service](troubleshoot-app-service.md) | Explains an error related to deployed web apps. | "What does this error mean for my Azure web app?" |
 | [Azure App Service](troubleshoot-app-service.md) | Provides assistance with slow-running app code. | "Why is my web app slow?" |
 | [Azure App Service](troubleshoot-app-service.md) | Summarizes diagnostics. | "Give me a summary of these diagnostics." |
