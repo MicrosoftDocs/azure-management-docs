@@ -1,7 +1,7 @@
 ---
 title: Generate Azure CLI scripts using Azure Copilot
 description: Learn about scenarios where Azure Copilot can generate Azure CLI scripts for you to customize and use.
-ms.date: 04/08/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom: ignite-2023, ignite-2023-copilotinAzure, devx-track-azurecli, build-2024
@@ -39,11 +39,11 @@ Here are a few examples of the kinds of prompts you can use to generate Azure CL
 
 ## Examples
 
-In this example, the prompt "**I want to use Azure CLI to create a new storage account**" provides an example command.
+In this example, the prompt "**I want to use Azure CLI to create a new storage account**" provides an example command, along with a brief explanation of the parameters that you need to update. Alternately, you can specify these values directly in your prompt to get a more customized command.
 
 :::image type="content" source="media/generate-cli-scripts/cli-create-storage-account.png" alt-text="Screenshot of Azure Copilot providing Azure CLI commands to create a storage account.":::
 
-For tasks that require multiple commands, Azure Copilot can provide a script that you can copy and paste. For example, when you say "**I want to create a function app with a named storage account connection using Azure CLI**", Azure Copilot provides a full script with comments for each section, along with a brief explanation of what the script does.
+For tasks that require multiple commands, Azure Copilot can provide a script that you can copy and paste. For example, you can say "**Give me an Azure CLI script to create a function app with a named storage account connection.**" Azure Copilot provides a full script with comments for each section, along with a brief explanation of what the script does.
 
 :::image type="content" source="media/generate-cli-scripts/cli-create-function-app.png" alt-text="Screenshot of Azure Copilot providing an Azure CLI script to create a function app with a connected storage account.":::
 
