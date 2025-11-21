@@ -27,6 +27,7 @@ When you tell Azure Copilot about a task you want to perform by using PowerShell
 Here are a few examples of the kinds of prompts you can use to generate PowerShell scripts. Some prompts return a single cmdlet, while others provide multiple steps walking through the full scenario. Modify these prompts based on your real-life scenarios, or try additional prompts to create different kinds of queries.
 
 - "How do I list the VMs I have running in Azure using PowerShell?"
+- "How can I create a new resource group using PowerShell?"
 - "Create a storage account using PowerShell."
 - "How do I get all quota limits for a subscription using Azure PowerShell?"
 - "Can you show me how to stop all virtual machines in a specific resource group using PowerShell?"
@@ -37,11 +38,7 @@ In this example, the prompt "**How do I list all my resource groups using PowerS
 
 :::image type="content" source="media/generate-powershell-scripts/powershell-list-resource-groups.png" alt-text="Screenshot of Azure Copilot providing the PowerShell cmdlet to list resource groups.":::
 
-Similarly, if you ask "**How can I create a new resource group using PowerShell?**", you see an example cmdlet that you can customize as needed.
-
-:::image type="content" source="media/generate-powershell-scripts/powershell-create-resource-group.png" alt-text="Screenshot of Azure Copilot providing the PowerShell cmdlet to create a new resource group.":::
-
-You can also ask Azure Copilot for a script with multiple cmdlets. For example, you could say "**Can you help me write a script for Azure PowerShell that can be run directly, and after creating a VM, deploy an AKS cluster on it.**" Azure Copilot provides a code block that you can copy, letting you know which values to replace.
+You can also ask Azure Copilot for a script with multiple cmdlets. For example, you could say "**Write a script for Azure PowerShell that can be run directly to create a VM and then deploy an AKS cluster on it.**" Azure Copilot provides a code block that you can copy and customize.
 
 :::image type="content" source="media/generate-powershell-scripts/powershell-script.png" alt-text="Screenshot of Azure Copilot providing a PowerShell script that creates a VM and deploys an AKS cluster.":::
 
