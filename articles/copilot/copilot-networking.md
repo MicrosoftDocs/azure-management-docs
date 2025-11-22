@@ -1,5 +1,5 @@
 ---
-title: Microsoft Copilot in Azure for networking
+title: Azure Copilot for networking
 description: Learn how Azure Copilot can assist you in planning, designing, operating, and troubleshooting your Azure network with ease and efficiency.
 author: JnHs
 ms.author: jenhayes
@@ -15,21 +15,21 @@ ms.custom:
 #customer intent: As a network administrator, I want to utilize an intelligent assistant to design, troubleshoot, and secure my Azure network, so that I can enhance operational efficiency and effectively resolve connectivity issues.
 ---
 
-# Microsoft Copilot in Azure for networking
+# Azure Copilot for networking
 
-Microsoft Copilot in Azure for networking is an AI-powered assistant that helps you design, migrate, monitor, optimize, and troubleshoot your Azure network infrastructure. It provides intelligent assistance for Azure networking services, offering contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your specific Azure environment.
+Azure Copilot for networking is an AI-powered assistant that helps you design, migrate, monitor, optimize, and troubleshoot your Azure network infrastructure. It provides intelligent assistance for Azure networking services, offering contextual responses and actionable insights based on Microsoft's extensive networking knowledge and your specific Azure environment.
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-## How Copilot works in Azure networking
+## How Azure Copilot works for networking
 
-Copilot in Azure for networking integrates directly into the Azure portal, providing natural language interaction to help you manage your network resources. When you ask Copilot a networking question, it analyzes your Azure environment, accesses Microsoft's networking documentation and best practices, and provides contextual guidance specific to your infrastructure.
+Azure Copilot for networking integrates directly into the Azure portal, providing natural language interaction to help you manage your network resources. When you ask Copilot a networking question, it analyzes your Azure environment, accesses Microsoft's networking documentation and best practices, and provides contextual guidance specific to your infrastructure.
 
 Copilot leverages your existing Azure role-based access control (RBAC) permissions, ensuring it has the same access to resources as you do. This means Copilot can help you troubleshoot and manage only the resources you have permission to access.
 
-## Features of Copilot in Azure networking
+## Features of Azure Copilot for networking
 
-Copilot in Azure for networking provides capabilities across multiple scenarios:
+Azure Copilot for networking provides capabilities across multiple scenarios:
 
 ### Design, plan, and migrate
 
