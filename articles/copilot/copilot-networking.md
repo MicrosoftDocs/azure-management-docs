@@ -167,12 +167,12 @@ Copilot in Azure for networking has the following limitations:
 - For organizations with large or complex networks, queries might take longer than usual to process
 - Copilot has the same access permissions as you do through Azure RBAC, so it can only help with resources you have permission to access
 - Product selection guidance is currently limited to Azure Load Balancer and Azure Firewall
-- Resiliency queries support a specific set of networking services (see the [Features](#features-of-copilot-in-azure-networking) section for the complete list)
+- Resiliency queries support a specific set of networking services (see the [Features](#features-of-azure-copilot-for-networking) section for the complete list)
 
 For information about general limitations of Azure Copilot, see [Current limitations](capabilities.md#current-limitations).
 
 ## Related content
 
-- [Capabilities of Microsoft Copilot in Azure](capabilities.md)
+- [Capabilities of Azure Copilot](capabilities.md)
 - [Azure Networking overview](/azure/networking/fundamentals/networking-overview)
 - [Copilot for Azure Firewall](/azure/firewall/firewall-copilot)
