@@ -1,7 +1,7 @@
 ---
 title: Generate Terraform and Bicep configurations using Azure Copilot
 description: Learn about how Azure Copilot can generate Terraform and Bicep configurations for you to use.
-ms.date: 04/08/2025
+ms.date: 11/21/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -33,7 +33,7 @@ Here are a few examples of the kinds of prompts you can use to generate Terrafor
 - "What is the Terraform code for a Databricks workspace in Azure with name 'myworkspace' and a premium SKU. The workspace should be created in the West US region."
 - "Create an OpenAI deployment with gpt-3.5-turbo model using Terraform template. Set the version of the model to 0613."
 
-:::image type="content" source="media/generate-terraform-bicep/generate-terraform.png" alt-text="Screenshot of Azure Copilot generating a Terraform configuration to create a web app.":::
+:::image type="content" source="media/generate-terraform-bicep/generate-terraform.png" alt-text="Screenshot of Azure Copilot generating a Terraform configuration to create a web app." lightbox="media/generate-terraform-bicep/generate-terraform.png" :::
 
 ## Bicep sample prompts
 
