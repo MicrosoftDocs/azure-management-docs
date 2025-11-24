@@ -35,11 +35,11 @@ Here are a few examples of the kinds of prompts you can use to get help authorin
 
 When creating an API Management policy, you can say "**Can you show me how to write a policy expression to filter API responses based on user roles in Azure API Management?**" Azure Copilot generates a policy and explains how it works.
 
-:::image type="content" source="media/author-api-management-policies/api-management-filter-responses.png" alt-text="Screenshot of Azure Copilot generating a policy to filter API responses.":::
+:::image type="content" source="media/author-api-management-policies/api-management-filter-responses.png" alt-text="Screenshot of Azure Copilot generating a policy to filter API responses." lightboxe="media/author-api-management-policies/api-management-filter-responses.png":::
 
 When you have questions about policy elements, you can get more information by selecting a section of the policy, right-clicking, and selecting **Explain**.
 
-:::image type="content" source="media/author-api-management-policies/api-management-policy-explain.png" lightbox="media/author-api-management-policies/api-management-policy-explain.png" alt-text="Screenshot of right-clicking a section of an API Management policy to get an explanation from Azure Copilot .":::
+:::image type="content" source="media/author-api-management-policies/api-management-policy-explain.png" alt-text="Screenshot of right-clicking a section of an API Management policy to get an explanation from Azure Copilot .":::
 
 Azure Copilot explains how the code works, breaking down each specific section and providing links to learn more.
 
