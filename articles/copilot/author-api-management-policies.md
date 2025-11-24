@@ -1,7 +1,7 @@
 ---
 title: Author API Management policies using Azure Copilot
 description: Learn about how Azure Copilot can generate Azure API Management policies based on your requirements.
-ms.date: 04/08/2025
+ms.date: 11/21/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
