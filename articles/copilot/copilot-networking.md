@@ -58,7 +58,7 @@ And resiliency related queries are limited to the following networking services:
 
 [**Network resource inventory, topology, traffic path queries**](#inventory) - Azure Copilot can discover customer network resources, network topology, and traffic paths from source to destination. Currently, Azure Copilot can respond to questions about network topology and traffic paths with topology maps and network connectivity graphs.
 
-[**Network connectivity troubleshooting and service diagnostics queries**](#troubleshoot) - Azure Copilot can perform customer network troubleshooting across various connectivity, configuration, and environmental issues across your network data and control plane. Troubleshooting is supported at the network level and individual network service level. Azure Copilot supports RBAC (Role-base access control) and has the same access to resources as you do.
+[**Network connectivity troubleshooting and service diagnostics queries**](#troubleshoot) - Azure Copilot can perform customer network troubleshooting across various connectivity, configuration, and environmental issues across your network data and control plane. Troubleshooting is supported at the network level and individual network service level. Azure Copilot supports RBAC (role-based access control) and has the same access to resources as you do.
 
 ## Example prompts
 
