@@ -197,6 +197,21 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
+### `microsoft.flux` version 1.18.4 (November 2025)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4
+- kustomize-controller: v1.6.1
+- helm-controller: v1.3.2
+- notification-controller: v1.6.0
+- image-automation-controller: v0.41.2
+- image-reflector-controller: v0.35.2
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages and base images.
+
 ### `microsoft.flux` version 1.18.2 (October 2025)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
@@ -213,21 +228,6 @@ Changes in this version include:
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages.
 
 ### `microsoft.flux` version 1.17.3 (September 2025)
-
-Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
-
-- source-controller: v1.6.2
-- kustomize-controller: v1.6.1
-- helm-controller: v1.3.0
-- notification-controller: v1.6.0
-- image-automation-controller: v0.41.2
-- image-reflector-controller: v0.35.2
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-
-### `microsoft.flux` version 1.17.2 (August 2025)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
 
