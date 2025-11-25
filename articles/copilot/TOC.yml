@@ -74,7 +74,7 @@
       href: improve-storage-accounts.md
     - name: Troubleshoot disk performance
       href: troubleshoot-disk-performance.md
-    - name: Microsoft Copilot in Azure for networking
+    - name: Azure Copilot for networking
       href: copilot-networking.md
     - name: Work with Azure Load Balancer
       href: work-load-balancer.md
