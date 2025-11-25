@@ -24,7 +24,7 @@ While a high level of accuracy is typical, we strongly advise you to review the 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 >[!Note]
->If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to get resource information](/azure/developer/github-copilot-azure/learn-examples) and more.
+>If you prefer to perform these prompts in your development environment, you can do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to get resource information](/azure/developer/github-copilot-azure/learn-examples) and more.
 
 ## Sample prompts
 

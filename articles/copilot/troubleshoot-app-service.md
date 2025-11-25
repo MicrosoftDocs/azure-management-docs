@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot your apps faster with App Service using Azure Copilot
 description: Learn how Azure Copilot can help you troubleshoot your web apps hosted with App Service.
-ms.date: 04/08/2025
+ms.date: 11/24/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -24,7 +24,7 @@ When you ask Azure Copilot for troubleshooting help, it automatically pulls cont
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
 >[!Note]
->If you prefer to perform these prompts in your development environment, you can now do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to troubleshoot your application in Azure](/azure/developer/github-copilot-azure/troubleshoot-examples) and more.
+>If you prefer to perform these prompts in your development environment, you can do so using [GitHub Copilot for Azure (Preview)](/azure/developer/github-copilot-azure/introduction), an extension for Visual Studio Code. Specifically, you can [write prompts to troubleshoot your application in Azure](/azure/developer/github-copilot-azure/troubleshoot-examples) and more.
 
 ## Sample prompts
 
