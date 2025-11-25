@@ -1,7 +1,7 @@
 ---
 title: Generate PowerShell scripts using Azure Copilot
 description: Learn about scenarios where Azure Copilot can generate PowerShell scripts for you to customize and use.
-ms.date: 04/08/2025
+ms.date: 11/24/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
