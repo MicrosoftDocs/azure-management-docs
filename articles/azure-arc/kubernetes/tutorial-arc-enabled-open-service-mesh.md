@@ -2,14 +2,14 @@
 title: Azure Arc-enabled Open Service Mesh
 description: Deploy the Open Service Mesh (OSM) extension on Azure Arc-enabled Kubernetes cluster
 ms.custom: devx-track-azurecli, devx-track-arm-template
-ms.date: 11/20/2025
+ms.date: 11/25/2025
 ms.topic: tutorial
 # Customer intent: As a cloud architect, I want to install and configure Azure Arc-enabled Open Service Mesh on Kubernetes, so that I can manage, secure, and enhance observability for microservices across my cloud environments.
 ---
 
 # Azure Arc-enabled Open Service Mesh
 
-> [!IMPORTANT]
+> [!WARNING]
 > Microsoft has announced the retirement of the [Open Service Mesh (OSM) add-on for AKS](https://azure.microsoft.com/updates?id=open-service-mesh-add-on-for-aks-will-be-retired-on-september-30-2027) on September 30, 2027. The upstream OSM project has also been retired by the [Cloud Native Computing Foundation (CNCF)](https://docs.openservicemesh.io/). Identify any existing OSM configurations and migrate them to equivalent OSS Istio configurations.
 
 [Open Service Mesh (OSM)](https://docs.openservicemesh.io/) is a lightweight, extensible, Cloud Native service mesh that allows users to uniformly manage, secure, and get out-of-the-box observability features for highly dynamic microservice environments.
