@@ -43,7 +43,7 @@ You can use Azure CLI or the Azure portal to perform these tasks.
 To discover Kubernetes applications in the Azure Marketplace from within the Azure portal:
 
 1. In the Azure portal, search for **Marketplace**. In the results, under **Services**, select **Marketplace**.
-1. From **Marketplace**, you can search for an offer or publisher by name, or you can browse all offers. To find Kubernetes application offers, select **Infrastructure Services** from the **Categories** section in the left menu, then scroll down until you see the **Containers & Kubernetes Apps** category.
+1. From **Marketplace**, you can search by name or keyword, or you can browse all offers. To find Kubernetes application offers, select **Infrastructure Services** from the **Categories** section in the left menu, then scroll down until you see the **Containers & Kubernetes Apps** category.
 
    > [!IMPORTANT]
    > The **Containers & Kubernetes Apps** category includes both Kubernetes apps and standalone container images. Select only **Kubernetes Apps** offers when following these steps. Container images have a different deployment process, and generally can't be deployed on Arc-enabled Kubernetes clusters.
@@ -53,8 +53,6 @@ To discover Kubernetes applications in the Azure Marketplace from within the Azu
    :::image type="content" source="media/deploy-marketplace/marketplace-see-more.png" alt-text="Screenshot showing the See more link for the Containers category in Azure Marketplace.":::
 
 1. Alternately, you can search for a specific `publisherId` to view that publisher's Kubernetes applications in Azure Marketplace. For details on how to find publisher IDs, see the Azure CLI tab for this article.
-
-   :::image type="content" source="media/deploy-marketplace/marketplace-search-by-publisher.png" alt-text="Screenshot showing the option to search by publisher in Azure Marketplace.":::
 
 Once you find an application that you want to deploy, move on to the next section.
 
