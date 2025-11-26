@@ -2,7 +2,7 @@
 title: azcmagent disconnect CLI reference
 description: Syntax for the azcmagent disconnect command line tool
 ms.topic: reference
-ms.date: 01/16/2025
+ms.date: 11/26/2025
 # Customer intent: As a system administrator, I want to disconnect an Azure Arc-enabled server using the command line, so that I can manage the server's configuration and remove it from the cloud effectively without affecting local resources.
 ---
 
@@ -33,6 +33,12 @@ Disconnect a server using a service principal.
 azcmagent disconnect --service-principal-id "ID" --service-principal-secret "SECRET"
 ```
 
+Disconnect a server using Azure CLI credentials.
+
+```
+azcmagent disconnect --use-azcli
+```
+
 Disconnect a server if the corresponding resource in Azure has already been deleted.
 
 ```
@@ -41,7 +47,7 @@ azcmagent disconnect --force-local-only
 
 ## Authentication options
 
-There are four ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
+There are five ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
 
 > [!NOTE]
 > The account used to disconnect a server must be from the same tenant as the subscription where the server is registered.
@@ -78,6 +84,18 @@ Access tokens can also be used for non-interactive authentication, but are short
 
 To authenticate with an access token, use the `--access-token [token]` flag.
 
+### Azure CLI credentials
+
+This option uses the credentials from an existing Azure CLI session on the machine. This is useful when you're already authenticated with Azure CLI and want to use the same identity for Azure Arc operations without re-entering credentials.
+
+Before using this method, ensure you're logged in with Azure CLI by running:
+
+```bash
+az login
+```
+
+To authenticate with Azure CLI credentials, use the `--use-azcli` flag.
+
 ## Flags
 
 `--access-token`
@@ -103,6 +121,10 @@ Specifies the service principal secret. Must be used with the `--service-princip
 `--use-device-code`
 
 Generate a Microsoft Entra device login code that can be entered in a web browser on another computer to authenticate the agent with Azure. For more information, see [authentication options](#authentication-options).
+
+`--use-azcli`
+
+Use the credentials from the current Azure CLI session to authenticate with Azure. Requires an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
 
 `--user-tenant-id`
 
