@@ -67,8 +67,8 @@ Installing the Connected Machine agent for Window applies the following system-w
     | Service name | Display name | Process name | Description |
     |--------------|--------------|--------------|-------------|
     | himds | Azure Hybrid Instance Metadata Service | `himds.exe` | Synchronizes metadata with Azure and hosts a local REST API for extensions and applications to access the metadata and request Microsoft Entra managed identity tokens |
-    | GCArcService | Machine configuration Arc Service | `gc_arc_service.exe` (gc_service.exe earlier than version 1.36) | Audits and enforces Azure machine configuration policies on the machine. |
-    | ExtensionService | Machine configuration Extension Service | `gc_extension_service.exe` (gc_service.exe earlier than version 1.36) | Installs, updates, and manages extensions on the machine. |
+    | GCArcService | Guest Configuration Arc Service | `gc_arc_service.exe` (gc_service.exe earlier than version 1.36) | Audits and enforces Azure machine configuration policies on the machine. |
+    | ExtensionService | Guest Configuration Extension Service | `gc_extension_service.exe` (gc_service.exe earlier than version 1.36) | Installs, updates, and manages extensions on the machine. |
 
 * Agent installation creates the following virtual service account.
 
