@@ -69,16 +69,15 @@ Artifact cache currently supports the following upstream registries.
 
 ### Authentication method for Google Artifact Registry
 
-To set up Artifact Cache from your private Google Artifact Registry (GAR), we recommend using a Service Account Key (created in Google Cloud's Console) to authenticate with GAR. You can define a custom expiry date for the Service Account key (e.g. 3 months) and persist the key in Azure Key Vault.
+To set up Artifact Cache from your private Google Artifact Registry (GAR), we recommend using a Service Account Key (created in Google Cloud's Console) to authenticate with GAR. You can define a custom expiry date for the Service Account key (for example, 3 months) and persist the key in Azure Key Vault.
 
-Although you could use an access token (generated from gcloud CLI) to authenticate, it is not recommended for using with Artifact Cache as the access token expires after 1 hour.
+Although you could use an access token (generated from gcloud CLI) to authenticate, it is not recommended for use with Artifact Cache, because the access token expires after 1 hour.
 
-See [Authenticate with Google Artifact Registry](https://docs.cloud.google.com/artifact-registry/docs/docker/authentication#json-key) for how to create a
-Service Account Key. Once you have the Service Account Key save it as a Secret in Azure Key Vault, then point your credential set's password to this secret. The username should be set to:
+For more information about how to create a Service Account Key, see [Authenticate with Google Artifact Registry](https://docs.cloud.google.com/artifact-registry/docs/docker/authentication#json-key). After you have the Service Account Key, save it as a secret in Azure Key Vault. Then point your credential set's password to this secret. The username should be set to:
   - `_json_key` if you are using the service account key in JSON format as it was provided when you created the file.
-  - `_json_key_base64` if you base64-encoded the all contents of the account key file.
+  - `_json_key_base64` if you base64-encoded all of the contents of the account key file.
 
-Follow the links below for more information on how to create a credential set.
+For more information about how to create a credential set, follow the links in the next section.
 
 ## Next steps
 
