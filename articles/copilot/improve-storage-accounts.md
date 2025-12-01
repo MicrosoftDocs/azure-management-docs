@@ -61,7 +61,7 @@ You can say things like "**Prevent this storage account from data loss during a 
 
 :::image type="content" source="media/improve-storage-accounts/storage-account-data-resiliency.png" alt-text="Screenshot showing Azure Copilot providing suggestions to improve storage account data resiliency.":::
 
-## Storage migration solutions advisor
+## Use storage migration solutions advisor
 
 Selecting the appropriate tool for migrating data to Azure can be challenging. Various solutions are available, both online and offline, with some solutions providing features like repeatable sync, merge, and hybrid deployment options. Often, these tools bring overlapping technical capabilities, and multiple tools could appear to be suitable for similar use cases. Rather than evaluating a multitude of solutions, you can chat with Azure Copilot to explore your migration solution recommendations. This conversational approach makes it easier for anyone – from IT managers to storage admins – to gain insights and make data-driven decisions.
 
