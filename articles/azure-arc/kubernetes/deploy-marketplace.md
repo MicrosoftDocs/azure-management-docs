@@ -134,11 +134,11 @@ az vm image terms accept --offer <offerID> --plan <planId> --publisher <publishe
 ```
 
 > [!NOTE]
-> Although this command is for VMs, it also works for containers, including Arc-enabled Kubernetes clusters. For more information, see the [az vm image terms](/cli/azure/vm/image/terms) reference.
+> Although this command is for VMs, it also works for terms related to containers, including Arc-enabled Kubernetes clusters. For more information about this command, see the [az vm image terms](/cli/azure/vm/image/terms) reference.
 
 #### Deploy the application
 
-To deploy the application (extension) through Azure CLI, follow the steps outlined in [Deploy and manage Azure Arc-enabled Kubernetes cluster extensions](extensions.md). An example command might look like this:
+To deploy the application (extension) through Azure CLI, follow the steps outlined in [Deploy and manage Azure Arc-enabled Kubernetes cluster extensions](extensions.md), including the `planId`, `publisherId`, `offerID`, and `extensionType` of the application you want to deploy. To find these values, see the [Discover Kubernetes applications](#discover-kubernetes-applications-that-support-azure-arc-enabled-clusters) section. An example command might look like this:
 
 ```azurecli-interactive
 az k8s-extension create --name <offerID> --extension-type <extensionType> --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters --plan-name <planId> --plan-product <offerID> --plan-publisher <publisherId>  
@@ -168,7 +168,7 @@ Verify the deployment by using the following command to list the extensions that
 az k8s-extension list --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
 ```
 
-If the deployment was successful, `provisioningState` is `Succeeded`. If the deployment is still in progress, `provisioningState` is `Creating`. Wait a few minutes then check again.
+Find the application you just deployed and check the value for `provisioningState`. When the deployment is successfully completed, `provisioningState` is `Succeeded`. If the deployment is still in progress, `provisioningState` is `Creating`; wait a few minutes and then check again.
 
 If `provisioningState` is `Failed`, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
@@ -200,7 +200,7 @@ To delete the extension instance in the Azure portal, navigate to the cluster on
 
 ### [Azure CLI](#tab/azure-cli)
 
-The following command deletes an extension from the cluster:
+To delete an extension from a cluster, use the following command:
 
 ```azurecli-interactive
 az k8s-extension delete --name <extension-name> --cluster-name <clusterName> --resource-group <resourceGroupName> --cluster-type connectedClusters
