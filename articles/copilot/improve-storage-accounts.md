@@ -16,7 +16,7 @@ author: JnHs
 
 # Manage and migrate storage accounts using Azure Copilot
 
-Azure Copilot can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). When [migrating data to Azure](#discover-storage-migration-solutions), you can get help finding the right solution. Azure Copilot can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
+Azure Copilot can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). When [migrating data to Azure](#use-storage-migration-solutions-advisor), you can get help finding the right solution. Azure Copilot can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
 
 Responses are dynamic and based on your specific storage account and settings. Based on your prompts, Azure Copilot provides specific recommendations to improve your storage account or resolve issues.
 
