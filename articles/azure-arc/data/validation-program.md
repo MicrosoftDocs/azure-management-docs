@@ -3,7 +3,7 @@ title: "Azure Arc-enabled data services validation"
 services: azure-arc
 ms.service: azure-arc
 ms.subservice: azure-arc-data
-ms.date: 06/14/2022
+ms.date: 11/30/2025
 ms.topic: concept-article
 author: MikeRayMSFT
 ms.author: mikeray
