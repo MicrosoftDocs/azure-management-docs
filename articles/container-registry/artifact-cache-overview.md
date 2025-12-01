@@ -56,16 +56,28 @@ Artifact cache currently supports the following upstream registries.
 >
 > Some public Docker Hub images are mapped to the publicly accessed namespace `library`. In this case, if you don't include the `library` path, artifact cache will automatically include it for you.
 
-| Upstream registry                            | Support                                                  | Availability             |
-|----------------------------------------------|----------------------------------------------------------|--------------------------|
-| Docker Hub                                   | Supports authenticated pulls only.                       | Azure CLI, Azure portal  |
-| Microsoft Artifact Registry                  | Supports unauthenticated pulls only.                     | Azure CLI, Azure portal  |
-| AWS Elastic Container Registry (ECR) Public Gallery | Supports unauthenticated pulls only.              | Azure CLI, Azure portal  |
-| GitHub Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI, Azure portal  |
-| Quay                                         | Supports both authenticated and unauthenticated pulls.   | Azure CLI, Azure portal  |
-| `registry.k8s.io`                            | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
-| Google Container Registry                    | Supports both authenticated and unauthenticated pulls.   | Azure CLI                |
+| Upstream registry                                       | Support                                                | Availability             |
+|---------------------------------------------------------|--------------------------------------------------------|--------------------------|
+| Docker Hub                                              | Supports authenticated pulls only.                     | Azure CLI, Azure portal  |
+| Microsoft Artifact Registry                             | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
+| AWS Elastic Container Registry (ECR) Public Gallery     | Supports unauthenticated pulls only.                   | Azure CLI, Azure portal  |
+| GitHub Container Registry                               | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
+| Quay                                                    | Supports both authenticated and unauthenticated pulls. | Azure CLI, Azure portal  |
+| Kubernetes Container Image Registry (`registry.k8s.io`) | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
+| Google Artifact Registry (`*.pkg.dev`)                  | Supports authenticated pulls only.                     | Azure CLI                |
+| Legacy Google Container Registry (`gcr.io`)             | Supports both authenticated and unauthenticated pulls. | Azure CLI                |
 
+### Authentication method for Google Artifact Registry
+
+To set up Artifact Cache from your private Google Artifact Registry (GAR), we recommend using a Service Account Key (created in Google Cloud's Console) to authenticate with GAR. You can define a custom expiry date for the Service Account key (for example, 3 months) and persist the key in Azure Key Vault.
+
+Although you could use an access token (generated from gcloud CLI) to authenticate, it is not recommended for use with Artifact Cache, because the access token expires after 1 hour.
+
+For more information about how to create a Service Account Key, see [Authenticate with Google Artifact Registry](https://docs.cloud.google.com/artifact-registry/docs/docker/authentication#json-key). After you have the Service Account Key, save it as a secret in Azure Key Vault. Then point your credential set's password to this secret. The username should be set to:
+  - `_json_key` if you are using the service account key in JSON format as it was provided when you created the file.
+  - `_json_key_base64` if you base64-encoded all of the contents of the account key file.
+
+For more information about how to create a credential set, follow the links in the next section.
 
 ## Next steps
 
