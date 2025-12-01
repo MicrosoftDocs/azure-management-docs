@@ -34,7 +34,7 @@ To get details about the individual commands available in the `azcmagent` CLI, r
 
 ## Common flags
 
-All `azcmagent` commands support the following flags. Some commands support additional flags, as listed on their reference pages.
+All `azcmagent` commands support the following flags. To see if a command supports other flags, check its reference page.
 
 `--config`
 
