@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent disconnect`
 description: Syntax for the `azcmagent disconnect` command line tool
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 12/01/2025
 # Customer intent: As a system administrator, I want to disconnect an Azure Arc-enabled server using the command line, so that I can manage the server's configuration and remove it from the cloud effectively without affecting local resources.
 ---
 

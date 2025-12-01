@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent help`
 description: Syntax for the `azcmagent help` command line tool
 ms.topic: reference
-ms.date: 11/19/2025
+ms.date: 12/01/2025
 # Customer intent: "As a cloud administrator, I want to access the usage information for the Connected Machine agent CLI, so that I can effectively utilize its commands for managing connected machines."
 ---
 

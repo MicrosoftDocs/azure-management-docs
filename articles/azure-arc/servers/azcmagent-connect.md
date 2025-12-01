@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent connect`
 description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 11/18/2025
+ms.date: 12/01/2025
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 

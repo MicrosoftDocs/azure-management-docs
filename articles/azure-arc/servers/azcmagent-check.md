@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent check`
 description: Syntax for the `azcmagent check` command line tool
 ms.topic: reference
-ms.date: 11/19/2025
+ms.date: 12/01/2025
 # Customer intent: As a system administrator, I want to run network connectivity checks using the command line tool, so that I can ensure the agent can communicate with required Azure endpoints accurately.
 ---
 
@@ -35,7 +35,6 @@ Check connectivity for supported extensions (SQL Server enabled by Azure Arc) us
 ```
 azcmagent check --extensions all
 ```
-
 
 Check connectivity with the Central India region using private endpoints:
 

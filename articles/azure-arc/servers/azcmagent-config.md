@@ -2,7 +2,7 @@
 title: CLI reference for `azcmagent config`
 description: Syntax for the `azcmagent config` command line tool
 ms.topic: reference
-ms.date: 04/20/2023
+ms.date: 12/01/2025
 # Customer intent: As an IT administrator managing the Azure connected machine agent, I want to configure and retrieve various agent settings via a command line tool, so that I can optimize the agent's performance and tailor it to my infrastructure needs.
 ---
 
@@ -19,6 +19,7 @@ Configure settings for the Azure connected machine agent. Configurations are sto
 | [`azcmagent config info`](#azcmagent-config-info) | Describes all available configuration properties and supported values |
 | [`azcmagent config list`](#azcmagent-config-list) | Lists all configuration properties and values |
 | [`azcmagent config set`](#azcmagent-config-set) | Set a value for a configuration property |
+
 ## `azcmagent config clear`
 
 Clear a configuration property's value and reset it to its default state.
@@ -61,7 +62,7 @@ azcmagent config get config.mode
 
 ### Flags
 
-This command supports the flags described in [Common flags](azcmagent.md#common-flags)
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
 ## `azcmagent config info`
 
