@@ -2,7 +2,7 @@
 title: azcmagent CLI reference
 description: Reference documentation for the Azure Connected Machine agent command line tool
 ms.topic: reference
-ms.date: 04/20/2023
+ms.date: 12/01/2025
 ms.custom:
   - build-2025
 # Customer intent: As a systems administrator, I want to use the azcmagent CLI to configure and manage the Azure Connected Machine agent, so that I can ensure proper connectivity and performance of my servers with Azure Arc.
@@ -10,40 +10,78 @@ ms.custom:
 
 # azcmagent CLI reference
 
-The Azure Connected Machine agent command line tool, azcmagent, helps you configure, manage, and troubleshoot a server's connection with Azure Arc. The azcmagent CLI is installed with the Azure Connected Machine agent and controls actions specific to the server where it's running. Once the server is connected to Azure Arc, you can use the [Azure CLI](/cli/azure/connectedmachine) or [Azure PowerShell](/powershell/module/az.connectedmachine/) module to enable extensions, manage tags, and perform other operations on the server resource.
+The Azure Connected Machine agent command line tool, `azcmagent`, helps you configure, manage, and troubleshoot a server's connection with Azure Arc. The `azcmagent` CLI is installed with the Azure Connected Machine agent and controls actions specific to the server where it's running. Once the server is connected to Azure Arc, you can use the [Azure CLI](/cli/azure/connectedmachine) or [Azure PowerShell](/powershell/module/az.connectedmachine/) module to enable extensions, manage tags, and perform other operations on the server resource.
 
 Unless otherwise specified, the command syntax and flags represent available options in the most recent release of the Azure Connected Machine agent. For more information, see [What's new with the Azure Connected Machine agent](agent-release-notes.md).
+
+To get details about the individual commands available in the `azcmagent` CLI, run `azcmagent COMMANDNAME --help` or see the following reference pages:
 
 ## Commands
 
 | Command | Purpose |
 | ------- | ------- |
-| [azcmagent check](azcmagent-check.md) | Run network connectivity checks for Azure Arc endpoints |
-| [azcmagent config](azcmagent-config.md) | Manage agent settings |
-| [azcmagent connect](azcmagent-connect.md) | Connect the server to Azure Arc |
-| [azcmagent disconnect](azcmagent-disconnect.md) | Disconnect the server from Azure Arc |
-| [azcmagent genkey](azcmagent-genkey.md) | Generate a public-private key pair for asynchronous onboarding |
-| [azcmagent help](azcmagent-help.md) | Get help for commands |
-| [azcmagent license](azcmagent-license.md) | Display the end-user license agreement |
-| [azcmagent logs](azcmagent-logs.md) | Collect logs to troubleshoot agent issues |
-| [azcmagent show](azcmagent-show.md) | Display the agent status |
-| [azcmagent version](azcmagent-version.md) | Display the agent version |
-| azcmagent partnerconfig | Reserved for internal use. |
+| [`azcmagent check`](azcmagent-check.md) | Run network connectivity checks for Azure Arc endpoints |
+| [`azcmagent config`](azcmagent-config.md) | Manage agent settings. |
+| [`azcmagent connect`](azcmagent-connect.md) | Connect the server to Azure Arc. |
+| [`azcmagent disconnect`](azcmagent-disconnect.md) | Disconnect the server from Azure Arc. |
+| [`azcmagent genkey`](azcmagent-genkey.md) | Generate a public-private key pair for asynchronous onboarding. |
+| [`azcmagent help`](azcmagent-help.md) | Get help for commands. |
+| [`azcmagent license`](azcmagent-license.md) | Display the end-user license agreement. |
+| [`azcmagent logs`](azcmagent-logs.md) | Collect logs to troubleshoot agent issues. |
+| [`azcmagent show`](azcmagent-show.md) | Display the agent status. |
+| [`azcmagent version`](azcmagent-version.md) | Display the agent version. |
+| `azcmagent partnerconfig` | Reserved for internal use. |
+
+## Common flags
+
+All `azcmagent` commands support the following flags. To see if a command supports other flags, check its reference page.
+
+`--config`
+
+Takes in a path to a JSON or YAML file containing inputs to the command. The configuration file should contain a series of key-value pairs where the key matches an available command line option. For example, to pass in the `--verbose` flag, the configuration file would look like:
+
+```json
+{
+    "verbose": true
+}
+```
+
+If a command line option is found in both the command invocation and a configuration file, the value specified on the command line will take precedence.
+
+`-h`, `--help`
+
+Get help for the current command, including its syntax and command line options.
+
+`-j`, `--json`
+
+Output the command result in the JSON format.
+
+`--log-stderr`
+
+Redirect error and verbose messages to the standard error (stderr) stream. By default, all output is sent to the standard output (stdout) stream.
+
+`--no-color`
+
+Disable color output for terminals that do not support ANSI colors.
+
+`-v`, `--verbose`
+
+Show more detailed logging information while the command executes. Useful for troubleshooting issues when running a command.
 
 ## Frequently asked questions
 
 ### How can I install the azcmagent CLI?
 
-The azcmagent CLI is bundled with the Azure Connected Machine agent. Review your [deployment options](deployment-options.md) for Azure Arc to learn how to install and configure the agent.
+The `azcmagent` CLI is bundled with the Azure Connected Machine agent. To learn about methods to install and configure the agent, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 ### Where is the CLI installed?
 
 On Windows operating systems, the CLI is installed at `%PROGRAMFILES%\AzureConnectedMachineAgent\azcmagent.exe`. This path is automatically added to the system PATH variable during the installation process. You may need to close and reopen your console to refresh the PATH variable and be able to run `azcmagent` without specifying the full path.
 
-On Linux operating systems, the CLI is installed at `/opt/azcmagent/bin/azcmagent`
+On Linux operating systems, the CLI is installed at `/opt/azcmagent/bin/azcmagent`.
 
-### What's the difference between the azcmagent CLI and the Azure CLI for Azure Arc-enabled servers?
+### What's the difference between the `azcmagent` CLI and the Azure CLI for Azure Arc-enabled servers?
 
-The azcmagent CLI is used to configure the local agent. It's responsible for connecting the agent to Azure, disconnecting it, and configuring local settings like proxy URLs and security features.
+The `azcmagent` CLI is used to configure the local agent. It's responsible for connecting the agent to Azure, disconnecting it, and configuring local settings like proxy URLs and security features.
 
 The Azure CLI and other management experiences are used to interact with the Azure Arc resource in Azure once the agent is connected. These tools help you manage extensions, move the resource to another subscription or resource group, and change certain settings of the Arc server remotely.
