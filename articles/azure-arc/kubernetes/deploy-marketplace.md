@@ -210,7 +210,7 @@ az k8s-extension delete --name <extension-name> --cluster-name <clusterName> --r
 
 ## Troubleshooting
 
-For help resolving issues, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
+For help with resolving issues, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
 ## Next steps
 
