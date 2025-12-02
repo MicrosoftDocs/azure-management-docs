@@ -105,7 +105,7 @@ When you find an application that you want to deploy, note the following values 
 
 Once you identify an offer you want to deploy, select it and follow these steps:
 
-1. In the **Plans + Pricing** tab, review the options. If there are multiple plans available, find the one that meets your needs. Review the terms on the page to make sure they're acceptable, and then select **Create**.
+1. In the **Plans + Pricing** tab, review the options. If there are multiple plans available, find the one that meets your needs. Review the terms on the page to make sure they're acceptable, and then select one of the **Create** options.
 
    :::image type="content" source="media/deploy-marketplace/marketplace-plans-pricing.png" alt-text="Screenshot of the Plans + Pricing page for a Kubernetes offer in Azure Marketplace.":::
 
@@ -113,7 +113,7 @@ Once you identify an offer you want to deploy, select it and follow these steps:
 
 1. Complete all pages of the deployment wizard to specify all configuration options that the application requires. These options will vary depending on the offer.
 
-1. When you're finished, select **Review + Create**, then select **Create** to deploy the offer.
+1. When you're finished, select **Review + create**. Review the terms and make sure you agree, then select **Create** to deploy the offer.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -154,9 +154,11 @@ Deploying an offer from Azure Marketplace creates a new extension instance on yo
 
 Navigate to the cluster on which you installed the extension. In the service menu, under **Settings**, select **Extensions**.
 
+Find the application you just deployed and check the value for **Status**. When the deployment is successfully completed, the **Status** is **Succeeded**.
+
 :::image type="content" source="media/deploy-marketplace/extension-status.png" alt-text="Screenshot showing the status of deployed extensions in the Azure portal.":::
 
-If the deployment was successful, the **Status** for the extension is **Succeeded**. While the deployment is still in progress, the status is **Creating**. Wait a few minutes, then check again.
+If the deployment is still in progress, the status is **Creating**; wait a few minutes and then then check again.
 
 If the status is **Failed**, see [Troubleshoot the failed deployment of a Kubernetes application offer](/troubleshoot/azure/azure-kubernetes/troubleshoot-failed-kubernetes-deployment-offer).
 
