@@ -1,12 +1,12 @@
 ---
-title: azcmagent connect CLI reference
-description: Syntax for the azcmagent connect command line tool
+title: CLI reference for `azcmagent connect`
+description: Syntax for the `azcmagent connect` command line tool
 ms.topic: reference
-ms.date: 11/26/2025
+ms.date: 12/01/2025
 # Customer intent: "As a system administrator, I want to connect my server to Azure Arc using the command line, so that I can manage my resources consistently across cloud and on-premises environments."
 ---
 
-# azcmagent connect
+# `azcmagent connect`
 
 Connects the server to Azure Arc by creating a metadata representation of the server in Azure and associating the Azure connected machine agent with it. The command requires information about the tenant, subscription, and resource group where you want to represent the server in Azure and valid credentials with permissions to create Azure Arc-enabled server resources in that location.
 
@@ -18,7 +18,7 @@ azcmagent connect [authentication] --subscription-id [subscription] --resource-g
 
 ## Examples
 
-Connect a server using the default login method (interactive browser or device code).
+Connect a server using the default login method (interactive browser or device code):
 
 ```
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus"
@@ -28,13 +28,13 @@ azcmagent connect --subscription-id "Production" --resource-group "HybridServers
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --use-device-code
 ```
 
-Connect a server using a service principal.
+Connect a server using a service principal:
 
 ```
 azcmagent connect --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --resource-group "HybridServers" --location "australiaeast" --service-principal-id "ID" --service-principal-secret "SECRET" --tenant-id "TENANT"
 ```
 
-Connect a server using a private endpoint and device code login method.
+Connect a server using a private endpoint and device code login method:
 
 ```
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "koreacentral" --use-device-code --private-link-scope "/subscriptions/.../Microsoft.HybridCompute/privateLinkScopes/ScopeName"
@@ -54,21 +54,21 @@ azcmagent connect --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --res
 
 There are five ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
 
-### Interactive browser login (Windows-only)
+### Interactive browser login (Windows only)
 
-This option is the default on Windows operating systems with a desktop experience. It login page opens in your default web browser. This option might be required if your organization configured conditional access policies that require you to log in from trusted machines.
+This option is the default on Windows operating systems with a desktop experience. Its login page opens in your default web browser. This option might be required if your organization configured conditional access policies that require you to log in from trusted machines.
 
 No flag is required to use the interactive browser login.
 
 ### Device code login
 
-This option generates a code that you can use to log in on a web browser on another device. This is the default option on Windows Server core editions and all Linux distributions. When you execute the connect command, you have 5 minutes to open the specified login URL on an internet-connected device and complete the login flow.
+This option generates a code that you can use to log in on a web browser on another device. This option is the default on Windows Server core editions and all Linux distributions. When you execute the connect command, you have 5 minutes to open the specified login URL on an internet-connected device and complete the login flow.
 
 To authenticate with a device code, use the `--use-device-code` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
 
 ### Service principal with secret
 
-Service principals allow you to authenticate non-interactively and are often used for at-scale deployments where the same script is run across multiple servers. Microsoft recommends providing service principal information via a configuration file (see `--config`) to avoid exposing the secret in any console logs. The service principal should also be dedicated for Arc onboarding and have as few permissions as possible, to limit the impact of a stolen credential.
+Service principals allow you to authenticate noninteractively and are often used for at-scale deployments where the same script is run across multiple servers. Microsoft recommends providing service principal information via a configuration file (see `--config`) to avoid exposing the secret in any console logs. The service principal should also be dedicated for Arc onboarding and have as few permissions as possible, to limit the impact of a stolen credential.
 
 To authenticate with a service principal using a secret, provide the service principal's application ID, secret, and tenant ID: `--service-principal-id [appid] --service-principal-secret [secret] --tenant-id [tenantid]`
 
@@ -82,7 +82,7 @@ For more information, see [create a service principal for RBAC with certificate-
 
 ### Access token
 
-Access tokens can also be used for non-interactive authentication, but are short-lived and typically used by automation solutions onboarding several servers over a short period of time. You can get an access token with [Get-AzAccessToken](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
+Access tokens can also be used for non-interactive authentication, but they're short-lived. Access tokens are typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
 
 To authenticate with an access token, use the `--access-token [token]` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
 
@@ -100,6 +100,8 @@ To authenticate with Azure CLI credentials, use the `--use-azcli` flag. If the a
 
 ## Flags
 
+This command supports the flags described in [Common flags](azcmagent.md#common-flags) and the flags listed in this section.
+
 `--access-token`
 
 Specifies the Microsoft Entra access token used to create the Azure Arc-enabled server resource in Azure. For more information, see [authentication options](#authentication-options).
@@ -108,17 +110,17 @@ Specifies the Microsoft Entra access token used to create the Azure Arc-enabled 
 
 Resource ID of an Azure Automanage best practices profile that will be applied to the server once it's connected to Azure.
 
-Sample value: /providers/Microsoft.Automanage/bestPractices/AzureBestPracticesProduction
+Sample value: `/providers/Microsoft.Automanage/bestPractices/AzureBestPracticesProduction`
 
 `--cloud`
 
-Specifies the Azure cloud instance. Must be used with the `--location` flag. If the machine is already connected to Azure Arc, the default value is the cloud to which the agent is already connected. Otherwise, the default value is "AzureCloud".
+Specifies the Azure cloud instance. Must be used with the `--location` flag. If the machine is already connected to Azure Arc, the default value is the cloud to which the agent is already connected. Otherwise, the default value is `AzureCloud`.
 
 Supported values:
 
-* AzureCloud (public regions)
-* AzureUSGovernment (Azure US Government regions)
-* AzureChinaCloud (Microsoft Azure operated by 21Vianet regions)
+* `AzureCloud` (public regions)
+* `AzureUSGovernment` (Azure US Government regions)
+* `AzureChinaCloud` (Microsoft Azure operated by 21Vianet regions)
 
 `--correlation-id`
 
@@ -145,7 +147,7 @@ Specifies the resource ID of the Azure Arc gateway resource to use for the serve
 
 Name of the Azure resource group where you want to create the Azure Arc-enabled server resource.
 
-Sample value: HybridServers
+Sample value: `HybridServers`
 
 `-n`, `--resource-name`
 
@@ -154,11 +156,11 @@ Name for the Azure Arc-enabled server resource. By default, the resource name is
 * The AWS instance ID, if the server is on AWS
 * The hostname for all other machines
 
-You can override the default name with a name of your own choosing to avoid naming conflicts. Once chosen, the name of the Azure resource can't be changed without disconnecting and re-connecting the agent.
+You can override the default name with a name of your own choosing to avoid naming conflicts. Once chosen, the name of the Azure resource can't be changed without disconnecting and reconnecting the agent.
 
 If you want to force AWS servers to use the hostname instead of the instance ID, pass in `$(hostname)` to have the shell evaluate the current hostname and pass that in as the new resource name.
 
-Sample value: FileServer01
+Sample value: `FileServer01`
 
 `-i`, `--service-principal-id`
 
@@ -176,17 +178,17 @@ Specifies the service principal secret. Must be used with the `--service-princip
 
 The subscription name or ID where you want to create the Azure Arc-enabled server resource.
 
-Sample values: Production, aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+Sample values: `Production`, `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`
 
 `--tags`
 
-Comma-delimited list of tags to apply to the Azure Arc-enabled server resource. Each tag should be specified in the format: TagName=TagValue. If the tag name or value contains a space, use single quotes around the name or value.
+Comma-delimited list of tags to apply to the Azure Arc-enabled server resource. Each tag should be specified in the format: `TagName=TagValue`. If the tag name or value contains a space, use single quotes around the name or value.
 
-Sample value: Datacenter=NY3,Application=SharePoint,Owner='Shared Infrastructure Services'
+Sample value: `Datacenter=NY3,Application=SharePoint,Owner='Shared Infrastructure Services'`
 
 `-t`, `--tenant-id`
 
-The tenant ID for the subscription where you want to create the Azure Arc-enabled server resource. This flag is required when authenticating with a service principal. For all other authentication methods, the home tenant of the account used to authenticate with Azure is used for the resource as well. If the tenants for the account and subscription are different (guest accounts, Lighthouse), you must specify the tenant ID to clarify the tenant where the subscription is located.
+The tenant ID for the subscription where you want to create the Azure Arc-enabled server resource. This flag is required when authenticating with a service principal. For all other authentication methods, the home tenant of the account used to authenticate with Azure is used for the resource as well. If the tenants for the account and subscription are different (such as when using guest accounts or [Azure Lighthouse](/azure/lighthouse)), you must specify the tenant ID to clarify the tenant where the subscription is located.
 
 `--use-device-code`
 
@@ -199,5 +201,3 @@ Use the credentials from the current Azure CLI session to authenticate with Azur
 `--user-tenant-id`
 
 The tenant ID for the account used to connect the server to Azure. This field is required when the tenant of the onboarding account isn't the same as the desired tenant for the Azure Arc-enabled server resource.
-
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
