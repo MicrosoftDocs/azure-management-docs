@@ -109,7 +109,7 @@ Once you identify an offer you want to deploy, select it and follow these steps:
 
    :::image type="content" source="media/deploy-marketplace/marketplace-plans-pricing.png" alt-text="Screenshot of the Plans + Pricing page for a Kubernetes offer in Azure Marketplace.":::
 
-1. Select the subscription, resource group, and Arc-enabled cluster to which you want to deploy the application.
+1. Select the subscription, resource group, and Arc-enabled cluster to which you want to deploy the application, along with any other required information.
 
 1. Complete all pages of the deployment wizard to specify all configuration options that the application requires. These options will vary depending on the offer.
 
@@ -197,8 +197,6 @@ You can delete a purchased plan for a Kubernetes offer by deleting the extension
 ### [Azure portal](#tab/azure-portal)
 
 To delete the extension instance in the Azure portal, navigate to the cluster on which you installed the extension. In the service menu, under **Settings**, select **Extensions**. Select the application you want to remove, then select **Uninstall**.
-
-:::image type="content" source="media/deploy-marketplace/extension-delete.png" alt-text="Screenshot of the Extensions page for a cluster, showing the option to delete an extension.":::
 
 ### [Azure CLI](#tab/azure-cli)
 
