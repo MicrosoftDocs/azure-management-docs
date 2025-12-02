@@ -16,7 +16,7 @@ author: JnHs
 
 # Manage and migrate storage accounts using Azure Copilot
 
-Azure Copilot can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). When [migrating data to Azure](#discover-storage-migration-solutions), you can get help finding the right solution. Azure Copilot can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
+Azure Copilot can provide contextual and dynamic responses to harden the security posture and enhance data resiliency of [storage accounts](/azure/storage/common/storage-account-overview). When [migrating data to Azure](#use-storage-migration-solutions-advisor), you can get help finding the right solution. Azure Copilot can also help you troubleshoot and resolve common [Azure File Sync](/azure/storage/file-sync/file-sync-introduction) issues related to your stored data.
 
 Responses are dynamic and based on your specific storage account and settings. Based on your prompts, Azure Copilot provides specific recommendations to improve your storage account or resolve issues.
 
@@ -61,13 +61,13 @@ You can say things like "**Prevent this storage account from data loss during a 
 
 :::image type="content" source="media/improve-storage-accounts/storage-account-data-resiliency.png" alt-text="Screenshot showing Azure Copilot providing suggestions to improve storage account data resiliency.":::
 
-## Discover storage migration solutions
+## Use storage migration solutions advisor
 
 Selecting the appropriate tool for migrating data to Azure can be challenging. Various solutions are available, both online and offline, with some solutions providing features like repeatable sync, merge, and hybrid deployment options. Often, these tools bring overlapping technical capabilities, and multiple tools could appear to be suitable for similar use cases. Rather than evaluating a multitude of solutions, you can chat with Azure Copilot to explore your migration solution recommendations. This conversational approach makes it easier for anyone – from IT managers to storage admins – to gain insights and make data-driven decisions.
 
 When you ask Azure Copilot for migration help, it asks questions to understand your scenario. Once Azure Copilot has the necessary information, it reviews native Azure services as well as partner and independent software vendor (ISV) solutions, then guides you to a recommended approach.
 
-### Discover storage migration solution sample prompts
+### Storage migration solution advisor sample prompts
 
 Here are a few examples of the kinds of prompts you can use to get recommendations for migration solutions. Modify these prompts based on your real-life scenarios, or try additional prompts to get advice on specific areas.
 
@@ -80,7 +80,7 @@ Here are a few examples of the kinds of prompts you can use to get recommendatio
 - "What’s the best tool to migrate large-scale unstructured data from on-premises to Azure?"
 - "I need to migrate data from my on-premises file shares (like SMB or NFS) to Azure Storage (Blob, Files, Disks). How can I do that?"
 
-### Discover storage migration solution example
+### Storage migration solution advisor example
 
 You can start getting help by saying "**How can I migrate my data into Azure?**" Azure Copilot starts by asking about the source of your data.
 
