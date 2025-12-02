@@ -148,7 +148,7 @@ version: v1.1.0
 
 steps:
 - build: -t {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-amd64 -f dockerfile.arm64 . 
-- build: -t {{.Run.Registry}}/multi-arch-samples/myyimage:{{.Run.ID}}-arm64 -f dockerfile.amd64 . 
+- build: -t {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-arm64 -f dockerfile.amd64 . 
 - push: 
     - {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-arm64
     - {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-amd64
