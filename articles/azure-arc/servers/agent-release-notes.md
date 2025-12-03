@@ -39,7 +39,7 @@ Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnect
 |Updated Azure Storage API version from 2019-02-02 to 2025-11-05.|✓|✓|Improvement|
 |**Azcmagent**|**1.59**|**1.59**||
 |Improved error handling for regional identity service network check.|✓|✓|Bug Fix|
-|Add new authentication method for azcmagent to use Azure cli credentials for azcmagent connect and disconnect.|✓|✓|Improvement|
+|Added new authentication method for azcmagent to use Azure CLI credentials for azcmagent connect and disconnect.|✓|✓|Improvement|
 |Fixed crashes caused by concurrent access of the agent's local config.|✓|✓|Bug Fix|
 |Updated Configuration UI to talk to Azure Resource Graph API to allow access on subscriptions with inherited permissions.|✓||Improvement|
 
