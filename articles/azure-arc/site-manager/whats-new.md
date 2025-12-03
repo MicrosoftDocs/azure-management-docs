@@ -14,9 +14,14 @@ ms.subservice: azure-arc-site-manager
 ---
 
 
-# What's new with Site Manager
+
+# What's new with Site Manager
 
 Azure Arc Site Manager is continually evolving to enhance performance and reliability for hybrid management scenarios. This article outlines what’s new, improved, or changed in these updates.
+
+## November 2025
+
+Site Manager Public Preview Refresh v2 leverages Azure Service Groups to enable flexibility of resource selection for a site and multi-level hierarchical representation of an infrastructure organization. The Site scope for Azure Service Group allows organizations to logically group resources across multiple resource groups and subscriptions, such that they reflect real-world operations, making it easier to manage distributed environments.
 
 ## June 2025
 Site Manager 2.0 public preview refresh with significant performance improvements.
