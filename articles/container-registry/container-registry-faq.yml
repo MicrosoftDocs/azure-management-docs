@@ -431,7 +431,7 @@ sections:
           * Classic registries are no longer supported. Upgrade to a supported [service tier](./container-registry-skus.md) using [az acr update](/cli/azure/acr#az-acr-update) or the Azure portal.
           * The image or repository maybe locked so that it can't be deleted or updated. You can use the [az acr repository show](./container-registry-image-lock.md) command to view current attributes.
           * Some operations are disallowed if the image is in quarantine. Learn more about [quarantine](https://github.com/Azure/acr/tree/master/docs/preview/quarantine).
-          * Your registry may have reached its [storage limit](container-registry-skus.md#service-tier-features-and-limits).
+          * Your registry may have reached its [storage limit](container-registry-skus.md#sku-features-and-limits).
           
       - question:  |
           Repository format is invalid or unsupported

@@ -41,7 +41,7 @@ Azure Cloud Shell does not include the Docker components required to complete ev
 For this tutorial, you need an Azure container registry in the Premium service tier. To create a new Azure container registry, follow the steps in this section.
 
 > [!TIP]
-> If you previously created a registry and need to upgrade, see [Changing tiers](container-registry-skus.md#changing-tiers). 
+> If you previously created a registry and need to upgrade, see [Changing SKUs](container-registry-skus.md#changing-skus). 
 
 Sign in to the [Azure portal](https://portal.azure.com).
 
