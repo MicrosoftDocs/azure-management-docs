@@ -19,10 +19,10 @@ Azure Container Registry (ACR) is available in multiple SKUs. These SKUs provide
 | **Standard** | Standard registries offer the same capabilities as Basic, with increased included storage and image throughput. Standard registries should satisfy the needs of most production scenarios. |
 | **Premium** | Premium registries provide the highest amount of included storage and concurrent operations, enabling high-volume scenarios. In addition to higher image throughput, Premium adds features such as high availability and resiliency through [geo-replication][container-registry-geo-replication] for managing a single registry across multiple regions, [private link with private endpoints](container-registry-private-link.md) to restrict access to the registry, as well as higher API concurrency and bandwidth throughput for large-scale concurrent deployments. |
 
-The Basic, Standard, and Premium SKUs all provide the same programmatic capabilities and data plane APIs. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure. Choosing a higher-level SKU provides more performance and scale. Azure Container Registry recommends the Premium SKU for most scenarios to take advantage of the additional features and higher limits.
+The Basic, Standard, and Premium SKUs all provide the same programmatic capabilities and data plane APIs. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure. Azure Container Registry recommends the Premium SKU for most scenarios to take advantage of the additional features and higher limits.
 
 > [!NOTE]
-> Some limits listed in this table can be increased by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). See the [Request a quota increase](#request-a-quota-increase) section for details on the various limits that can be increased.
+> Some limits listed in this table can be increased by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). See the [Request a limit increase](#request-a-limit-increase) section for details on the various limits that can be increased.
 
 ## SKU features and limits
 
@@ -98,7 +98,7 @@ Registry storage is managed entirely by Azure and varies by SKU. Each SKU includ
 
 ## Show registry usage
 
-Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command in the Azure CLI, [Get-AzContainerRegistryUsage](/powershell/module/az.containerregistry/get-azcontainerregistryusage) in Azure PowerShell, or the [List Usages](/rest/api/containerregistry/registries/list-usages) REST API, to get a snapshot of your registry's current consumption of storage and other resources, compared with the limits for that registry's SKU. Storage usage also appears on the registry's **Overview** page in the portal.
+Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command in the Azure CLI, [Get-AzContainerRegistryUsage](/powershell/module/az.containerregistry/get-azcontainerregistryusage) in Azure PowerShell, or the [Registries - List Usages](/rest/api/containerregistry/) REST API, to get a snapshot of your registry's current consumption of storage and other resources, compared with the limits for that registry's SKU. Storage usage also appears on the registry's **Overview** page in the portal.
 
 Usage information helps you make decisions about [changing the SKU](#changing-skus) when your registry nears a limit. This information also helps you [manage consumption](container-registry-best-practices.md#manage-registry-size).
 
