@@ -67,9 +67,7 @@ az network nsg rule create -n ports_30777 --nsg-name azurearcvmNSG --priority 60
 ## Related content
 - Try [Upload metrics and logs to Azure Monitor](upload-metrics-and-logs-to-azure-monitor.md)
 - Read about Grafana:
-   - [Getting started](https://grafana.com/docs/grafana/latest/getting-started/getting-started)
-   - [Grafana fundamentals](https://grafana.com/tutorials/grafana-fundamentals/#1)
-   - [Grafana tutorials](https://grafana.com/tutorials/grafana-fundamentals/#1)
+   - [Grafana tutorials - Getting started and fundamentals](https://grafana.com/tutorials/grafana-fundamentals/#1)
 - Read about Kibana
    - [Introduction](https://www.elastic.co/webinars/getting-started-kibana?baymax=default&elektra=docs&storm=top-video)
    - [Kibana guide](https://www.elastic.co/guide/en/kibana/current/index.html)
