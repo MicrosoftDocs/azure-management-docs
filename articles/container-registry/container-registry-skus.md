@@ -9,9 +9,9 @@ ms.service: azure-container-registry
 # Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."
 ---
 
-# Azure Container Registry SKU Features and Limits
+# Azure Container Registry SKU features and limits
 
-Azure Container Registry (ACR) is available in multiple SKUs. These SKUs provide predictable pricing and several options for aligning to the capacity and usage patterns of your private container registry in Azure.
+Azure Container Registry is available in multiple SKUs. These SKUs provide predictable pricing and several options for aligning to the capacity and usage patterns of your private container registry in Azure.
 
 | SKU | Description |
 | --- | ----------- |
@@ -88,13 +88,7 @@ During periods of high request volume, you may experience throttling with an HTT
 
 ## Registry storage limits
 
-Registry storage is managed entirely by Azure and varies by SKU. Each SKU includes a specific amount of storage, with additional storage available at a per-GB rate.
-
-### Example
-
-- A Basic SKU registry includes 10 GB of storage at $0.167 per day (prices in US dollars)
-- If a Basic SKU registry uses 25 GB storage, the cost is $0.167 + ($0.003/day × 15 GB) = $0.212 per day
-- Additional charges may apply for networking, builds, and other operations according to [Container Registry pricing](https://azure.microsoft.com/pricing/details/container-registry/)
+Azure fully manages registry storage, which varies by SKU. Each SKU includes a specific amount of free storage, with additional storage available at a per-GB rate. Each SKU also has a different maximum storage limit.
 
 ## Show registry usage
 
@@ -162,7 +156,7 @@ If you need to increase limits for your registry, contact [Azure Support](https:
 
 **Azure Container Registry Roadmap**
 
-Visit the [ACR Roadmap][acr-roadmap] on GitHub to find information about upcoming features in the service.
+Visit the [Roadmap][acr-roadmap] on GitHub to find information about upcoming features in the service.
 
 <!-- IMAGES -->
 [update-registry-sku]: ./media/container-registry-skus/update-registry-sku.png
