@@ -11,6 +11,24 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
+## November 2025 release
+
+### New features
+
+- **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multi-cloud environments.
+- Schemas will no longer support the **editableAt** property for application parameters, that was used to specify the hierarchy level at which those parameters need to be configured. Configuration templates referring to them will now need to be explicitly linked to a hierarchy level, and all solution templates will be automatically linked to the target where the corresponding solution is deployed. This enforces stricter control over configuration changes, avoiding ambiguity and reducing accidental edits at unintended levels.
+- Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
+
+### Improvements in Portal
+
+- The **Configure** tab that enabled operations related to configuration and publishing of solutions and targets, has now been split into **Configure hierarchy** and **Configure solutions**, which offers clear segregation between hierarchy and leaf targets, and solutions.
+- Users can now filter and group targets by their parent site, in addition to existing parameters, in the **Monitor**, **Configure hierarchy** and **Deploy** tabs of portal.
+
+### Improvements in CLI
+
+- The time taken for target and solution template creation has been significantly reduced, resulting in faster response time and enhanced CLI experience.
+- Users can now view the schema validation rules while configuring solution parameters for a target.
+
 ## October 2025 release
 
 ### New features
