@@ -80,4 +80,3 @@ groups:
     title: Remove existing node pools and create Azure Linux with OS Guard node pools
   - id: in-place
     title: In-place OS SKU migration
-    
