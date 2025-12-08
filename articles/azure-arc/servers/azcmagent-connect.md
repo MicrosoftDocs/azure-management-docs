@@ -40,7 +40,7 @@ Connect a server using a private endpoint and device code login method:
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "koreacentral" --use-device-code --private-link-scope "/subscriptions/.../Microsoft.HybridCompute/privateLinkScopes/ScopeName"
 ```
 
-Connect a server using Azure CLI credentials.
+Connect a server using Azure CLI credentials (requires Azure Connected Machine agent version 1.59 or later):
 
 ```
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --use-azcli
@@ -198,7 +198,7 @@ Generate a Microsoft Entra device login code that can be entered in a web browse
 
 `--use-azcli`
 
-Use the credentials from the current Azure CLI session to authenticate with Azure. Requires an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
+Use the credentials from the current Azure CLI session to authenticate with Azure. Requires Azure Connected Machine agent version 1.59 or later and an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
 
 `--user-tenant-id`
 
