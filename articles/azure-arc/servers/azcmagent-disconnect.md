@@ -39,7 +39,7 @@ Disconnect a server using Azure CLI credentials:
 azcmagent disconnect --use-azcli
 ```
 
-Disconnect a server when the corresponding resource in Azure has already been deleted:
+Disconnect a server if the corresponding resource in Azure has already been deleted.
 
 ```
 azcmagent disconnect --force-local-only
@@ -88,6 +88,8 @@ To authenticate with an access token, use the `--access-token [token]` flag.
 
 This option uses the credentials from an existing Azure CLI session on the machine. This is useful when you're already authenticated with Azure CLI and want to use the same identity for Azure Arc operations without re-entering credentials.
 
+To use Azure CLI credentials for authentication, your machine must have Azure Connected Machine agent version 1.59 or later.
+
 Before using this method, ensure you're logged in with Azure CLI by running:
 
 ```bash
@@ -131,4 +133,3 @@ Use the credentials from the current Azure CLI session to authenticate with Azur
 `--user-tenant-id`
 
 The tenant ID for the account used to connect the server to Azure. This field is required when the tenant of the onboarding account isn't the same as the desired tenant for the Azure Arc-enabled server resource, such as when using guest accounts or [Azure Lighthouse](/azure/lighthouse)
-
