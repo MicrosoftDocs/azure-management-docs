@@ -30,7 +30,7 @@ Before you begin:
 
 Build a chart with metrics for Edge RAG in the Azure portal or by using Azure Managed Grafana.
 
-#### [Azure portal](#tab/azure-portal)
+:::zone pivot="azure-monitor"
 
 1. Go to the Extensions blade in the Azure portal: **AKS cluster on Azure Local** > **Settings** > **Extensions**.
 
@@ -50,7 +50,9 @@ Build a chart with metrics for Edge RAG in the Azure portal or by using Azure Ma
 
 1. Interact with the chart by selecting **Add filter** or **Apply splitting**. For more information, see [Use dimension filters and splitting](/azure/azure-monitor/metrics/analyze-metrics#use-dimension-filters-and-splitting).
 
-#### [Azure Managed Grafana](#tab/azure-managed-grafana)
+:::zone-end
+
+:::zone pivot="azure-managed-grafana"
 
 When [creating a new visualization](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/create-dashboard/) panel, configure as follows:
 
@@ -82,7 +84,7 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
 
    :::image type="content" source="media/observability/grafana-chart-example.png" alt-text="Screenshot showing an example Grafana chart displaying metrics data with multiple lines representing different metrics over time." lightbox="media/observability/grafana-chart-example.png" :::
 
-----
+:::zone-end
 
 ## Configure Infrastructure Monitoring
 
