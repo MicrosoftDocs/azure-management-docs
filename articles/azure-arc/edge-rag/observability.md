@@ -7,7 +7,7 @@ ms.topic: how-to #Don't change
 ms.date: 12/08/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
-zone_pivot_groups: observability-methods
+zone_pivot_groups: observability-method
 ms.custom:
   - build-2025
 # Customer intent: As a cloud administrator or DevOps engineer, I want to monitor Edge RAG metrics using Azure Monitor and Azure Managed Grafana so that I can obtain insights into the performance and health of my edge deployment for better operational management.
