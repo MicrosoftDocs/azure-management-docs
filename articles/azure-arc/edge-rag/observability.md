@@ -62,13 +62,19 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
 
    :::image type="content" source="media/observability/grafana-select-resource.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the 'Select a resource' drop-down menu expanded, displaying available Azure Arc resources grouped by subscription and resource group.":::  
 
-1. Change the **Namespace** to: **Microsoft.KubernetesConfiguration/extensions**  
-1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of the Edge RAG extension. Find the extension name in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.  <br>
-  `<Current Resource Name>/Microsoft.KubernetesConfiguration/<Extension Name>`
-
+1. Change the **Namespace** to: **Microsoft.KubernetesConfiguration/extensions**.
    For example:  
 
-      :::image type="content" source="media/observability/grafana-namespace-resource-name.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the Namespace field set to 'Microsoft.KubernetesConfiguration/extensions' and the Resource Name field populated with a specific resource path.":::  
+      :::image type="content" source="media/observability/grafana-namespace-resource-name.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the Namespace field set to 'Microsoft.KubernetesConfiguration/extensions' and the Resource Name field populated with a specific resource path.":::
+
+1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of the Edge RAG extension:
+
+   `<Current Resource Name>/Microsoft.KubernetesConfiguration/<Extension Name>`
+
+   For example, `contoso-arc-cluster/Microsoft.KubernetesConfiguration/edgeragdemo`
+
+   If you don't know the Edge RAG extension name, find it in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.
+
 1. Select **Apply**  
 1. Select a metric from the **"Metric"** drop-down.  
 1. Adjust the query as needed. Example:  
