@@ -4,7 +4,7 @@ description: "Learn how to monitor Edge RAG metrics using Azure Monitor, Azure M
 author: cwatson-cat
 ms.author: cwatson
 ms.topic: how-to #Don't change
-ms.date: 12/01/2025
+ms.date: 12/08/2025
 ai-usage: ai-assisted
 ms.subservice: edge-rag
 ms.custom:
@@ -63,7 +63,7 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
    :::image type="content" source="media/observability/grafana-select-resource.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the 'Select a resource' drop-down menu expanded, displaying available Azure Arc resources grouped by subscription and resource group.":::  
 
 1. Change the **Namespace** to: **Microsoft.KubernetesConfiguration/extensions**  
-1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of Edge RAG extension. Find the extension name in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.  
+1. Update the **Resource Name** by adding the following value where you replace the `Extension Name` with the name of the Edge RAG extension. Find the extension name in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.  <br>
   `<Current Resource Name>/Microsoft.KubernetesConfiguration/<Extension Name>`
 
    For example:  
