@@ -33,7 +33,7 @@ Disconnect a server using a service principal:
 azcmagent disconnect --service-principal-id "ID" --service-principal-secret "SECRET"
 ```
 
-Disconnect a server using Azure CLI credentials:
+Disconnect a server using Azure CLI credentials (requires Azure Connected Machine agent version 1.59 or later):
 
 ```
 azcmagent disconnect --use-azcli
@@ -128,7 +128,7 @@ Generate a Microsoft Entra device login code that can be entered in a web browse
 
 `--use-azcli`
 
-Use the credentials from the current Azure CLI session to authenticate with Azure. Requires an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
+Use the credentials from the current Azure CLI session to authenticate with Azure. Requires Azure Connected Machine agent version 1.59 or later and an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
 
 `--user-tenant-id`
 
