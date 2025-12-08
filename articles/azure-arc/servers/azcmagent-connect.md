@@ -40,10 +40,14 @@ Connect a server using a private endpoint and device code login method:
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "koreacentral" --use-device-code --private-link-scope "/subscriptions/.../Microsoft.HybridCompute/privateLinkScopes/ScopeName"
 ```
 
-Connect a server using Azure CLI credentials:
+Connect a server using Azure CLI credentials.
 
 ```
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --use-azcli
+```
+
+```
+azcmagent connect --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --resource-group "HybridServers" --location "eastus" --use-azcli --tenant-id "bbbbbbbb-cccc-dddd-eeee-ffffffffffff"
 ```
 
 ## Authentication options
@@ -85,6 +89,8 @@ To authenticate with an access token, use the `--access-token [token]` flag. If 
 ### Azure CLI credentials
 
 This option uses the credentials from an existing Azure CLI session on the machine. This is useful when you're already authenticated with Azure CLI and want to use the same identity for Azure Arc enrollment without re-entering credentials.
+
+To use Azure CLI credentials for authentication, your machine must have Azure Connected Machine agent version 1.59 or later.
 
 Before using this method, ensure you're logged in with Azure CLI by running:
 
