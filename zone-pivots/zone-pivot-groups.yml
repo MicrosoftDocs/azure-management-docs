@@ -80,3 +80,12 @@ groups:
     title: Remove existing node pools and create Azure Linux with OS Guard node pools
   - id: in-place
     title: In-place OS SKU migration
+# Owner: cwatson
+- id: observability-method
+  title: Observability method
+  prompt: Choose an observability method
+  pivots:
+  - id: azure-monitor
+    title: Azure Monitor
+  - id: azure-managed-grafana
+    title: Azure Managed Grafana
