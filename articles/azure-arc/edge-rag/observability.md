@@ -57,14 +57,13 @@ When [creating a new visualization](https://grafana.com/docs/grafana/latest/dash
  
    :::image type="content" source="media/observability/grafana-data-source.png" alt-text="Screenshot showing the Azure Monitor data source configuration in Azure Managed Grafana.":::  
 1. Select **Select a resource**.  
-1. In the drop-down menu, go to your Azure Arc resource:  
-   **Subscription > Resource Group > Azure Arc Resource**.
+1. Search for and select the **Kubernetes - Azure Arc** resource where Edge RAG is installed.
 1. Open **Advanced**.  
 
    :::image type="content" source="media/observability/grafana-select-resource.png" alt-text="Screenshot showing the Azure Managed Grafana interface with the 'Select a resource' drop-down menu expanded, displaying available Azure Arc resources grouped by subscription and resource group.":::  
 
 1. Change the **Namespace** to: **Microsoft.KubernetesConfiguration/extensions**  
-1. Add the following to the resource name:  
+1. Update the **Resource Name** to add the name of the Edge RAG extension. Add the following value to the resource name where you replace the `Extension Name` with the name of Edge RAG extension. Find the name in the Azure portal by going to your **Kubernetes - Azure Arc** resource > **Settings** > **Extensions**. Look for the **Name** where **Type** is **microsoft.arc.rag**.  
   `<Current Resource Name>/Microsoft.KubernetesConfiguration/<Extension Name>`
 
    For example:  
