@@ -99,7 +99,7 @@ The command returns `Login Succeeded` once completed.
 
 ## List container images
 
-To list the images in your registry, navigate to your registry in the portal and select **Repositories**, then select the  **hello-world** repository you created with `docker push`.
+To list the images in your registry, navigate to your registry in the portal. Under **Services**, select **Repositories**, then select the  **hello-world** repository you created with `docker push`.
 
 :::image type="content" source="media/container-registry-get-started-portal/qs-portal-09.png" alt-text="List container images in the portal":::
 
@@ -109,9 +109,7 @@ By selecting the **hello-world** repository, you see the `v1`-tagged image under
 
 ## Clean up resources
 
-To clean up your resources, navigate to the **myResourceGroup** resource group in the portal. Once the resource group is loaded, click on **Delete resource group** to remove the resource group, the container registry, and the container images stored there.
-
-:::image type="content" source="media/container-registry-get-started-portal/qs-portal-08.png" alt-text="Delete resource group in the portal":::
+To remove the resources you created, navigate to the **myResourceGroup** resource group in the Azure portal. Select **Delete resource group** to remove the resource group, the container registry, and the container images.
 
 ## Configure Domain Name Label (DNL) option
 
