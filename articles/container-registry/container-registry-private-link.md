@@ -68,6 +68,7 @@ Set up a private endpoint when you create a registry, or add a private endpoint 
     |Integrate with private DNS zone |Select **Yes**. |
     |Private DNS Zone |Select *(New) privatelink.azurecr.io* |
     |||
+
 1. Configure the remaining registry settings, and then select **Review + create**.
   
 :::image type="content" source="media/container-registry-private-link/private-link-create-portal.png" alt-text="Create registry with private endpoint":::
@@ -498,31 +499,15 @@ Requests to token server over private endpoint connection doesn't require the da
 
 * If you need to deploy Azure Container Instances that can pull images from an ACR through a private endpoint, see [Deploy to Azure Container Instances from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi).
 
-<!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
 
 <!-- LINKS - Internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-show]: /cli/azure/acr#az_acr_show
-[az-acr-repository-show]: /cli/azure/acr/repository#az_acr_repository_show
-[az-acr-repository-list]: /cli/azure/acr/repository#az_acr_repository_list
 [az-acr-login]: /cli/azure/acr#az_acr_login
 [az-acr-private-endpoint-connection]: /cli/azure/acr/private-endpoint-connection
 [az-acr-private-endpoint-connection-list]: /cli/azure/acr/private-endpoint-connection#az_acr_private-endpoint-connection-list
 [az-acr-private-endpoint-connection-approve]: /cli/azure/acr/private-endpoint-connection#az_acr_private_endpoint_connection_approve
 [az-acr-update]: /cli/azure/acr#az_acr_update
-[az-group-create]: /cli/azure/group
-[az-role-assignment-create]: /cli/azure/role/assignment#az_role_assignment_create
-[az-vm-create]: /cli/azure/vm#az_vm_create
-[az-network-vnet-subnet-show]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_show
 [az-network-vnet-subnet-update]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_update
-[az-network-vnet-list]: /cli/azure/network/vnet/#az_network_vnet_list
 [az-network-private-endpoint-create]: /cli/azure/network/private-endpoint#az_network_private_endpoint_create
 [az-network-private-endpoint-show]: /cli/azure/network/private-endpoint#az_network_private_endpoint_show
 [az-network-private-dns-zone-create]: /cli/azure/network/private-dns/zone#az_network_private_dns_zone_create

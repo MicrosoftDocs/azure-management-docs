@@ -88,12 +88,9 @@ In this quickstart, you created an Azure Container Registry instance using the A
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
 <!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
+[docker-install]: https://docs.docker.com/engine/install
+[docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
+[docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- Links - internal -->
 [Connect-AzAccount]: /powershell/module/az.accounts/connect-azaccount

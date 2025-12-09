@@ -184,41 +184,15 @@ az group delete --name myResourceGroup
 * To restrict access to a registry using a private endpoint in a virtual network, see [Configure Azure Private Link for an Azure container registry](container-registry-private-link.md).
 * If you need to set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
 
-
-<!-- IMAGES -->
-
-[acr-subnet-service-endpoint]: ./media/container-registry-vnet/acr-subnet-service-endpoint.png
-
-
-<!-- LINKS - External -->
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-[kubectl]: https://kubernetes.io/docs/user-guide/kubectl/
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
-
 <!-- LINKS - Internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-show]: /cli/azure/acr#az_acr_show
-[az-acr-repository-show]: /cli/azure/acr/repository#az_acr_repository_show
-[az-acr-repository-list]: /cli/azure/acr/repository#az_acr_repository_list
 [az-acr-login]: /cli/azure/acr#az_acr_login
 [az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az_acr_network_rule_add
 [az-acr-network-rule-remove]: /cli/azure/acr/network-rule/#az_acr_network_rule_remove
 [az-acr-network-rule-list]: /cli/azure/acr/network-rule/#az_acr_network_rule_list
-[az-acr-run]: /cli/azure/acr#az_acr_run
 [az-acr-update]: /cli/azure/acr#az_acr_update
-[az-ad-sp-create-for-rbac]: /cli/azure/ad/sp#az_ad_sp_create_for_rbac
-[az-group-create]: /cli/azure/group
-[az-role-assignment-create]: /cli/azure/role/assignment#az_role_assignment_create
-[az-vm-create]: /cli/azure/vm#az_vm_create
 [az-network-vnet-subnet-show]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_show
 [az-network-vnet-subnet-update]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_update
-[az-network-vnet-subnet-show]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_show
 [az-network-vnet-list]: /cli/azure/network/vnet/#az_network_vnet_list
 [quickstart-portal]: container-registry-get-started-portal.md
 [quickstart-cli]: container-registry-get-started-azure-cli.md

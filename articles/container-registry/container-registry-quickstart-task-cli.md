@@ -194,16 +194,6 @@ In this quickstart, you used features of ACR Tasks to quickly build, push, and r
 > [!div class="nextstepaction"]
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
-<!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
-[docker-rmi]: https://docs.docker.com/engine/reference/commandline/rmi/
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
-[azure-account]: https://azure.microsoft.com/free/
 
 <!-- LINKS - internal -->
 [az-acr-create]: /cli/azure/acr#az_acr_create
@@ -211,9 +201,8 @@ In this quickstart, you used features of ACR Tasks to quickly build, push, and r
 [az-acr-run]: /cli/azure/acr#az_acr_run
 [az-group-create]: /cli/azure/group#az_group_create
 [az-group-delete]: /cli/azure/group#az_group_delete
-[azure-cli]: /cli/azure/install-azure-cli
 [container-registry-tasks-overview]: container-registry-tasks-overview.md
 [container-registry-tasks-multi-step]: container-registry-tasks-multi-step.md
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
 [container-registry-skus]: container-registry-skus.md
-[azure-cli-install]: /cli/azure/install-azure-cli
+

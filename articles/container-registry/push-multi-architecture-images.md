@@ -167,6 +167,6 @@ steps:
 * Learn about building multi-platform images using the experimental Docker [buildx](https://docs.docker.com/buildx/working-with-buildx/) plug-in.
 
 <!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
+[docker-linux]: https://docs.docker.com/engine/install
+[docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
+[docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/

@@ -32,7 +32,7 @@ This tutorial requires a local installation of the Azure CLI (version 2.0.31 or 
 
 You should be familiar with core Docker concepts such as containers, container images, and basic Docker CLI commands. For a primer on container basics, see [Get started with Docker]( https://docs.docker.com/get-started/).
 
-To complete this tutorial, you need a local Docker installation. Docker provides installation instructions for [macOS](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/), and [Linux](https://docs.docker.com/engine/installation/#supported-platforms) systems.
+To complete this tutorial, you need a local Docker installation. Docker provides installation instructions for [macOS](https://docs.docker.com/desktop/setup/install/mac-install/), [Windows](https://docs.docker.com/desktop/setup/install/windows-install/), and [Linux](https://docs.docker.com/engine/install) systems.
 
 Azure Cloud Shell does not include the Docker components required to complete every step this tutorial. Therefore, we recommend a local installation of the Azure CLI and Docker development environment.
 

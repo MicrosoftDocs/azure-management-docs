@@ -463,11 +463,10 @@ In this article, you learned about using managed identities with Azure Container
 * Learn how to [deploy a container image from Azure Container Registry using a managed identity](/azure/container-instances/using-azure-container-registry-mi).
 
 <!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-login]: https://docs.docker.com/engine/reference/commandline/login/
-[docker-mac]: https://docs.docker.com/docker-for-mac/
+[docker-linux]: https://docs.docker.com/engine/install
+[docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
 [docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
+[docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - Internal -->
 [az-login]: /cli/azure/reference-index#az_login
