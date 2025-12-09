@@ -167,14 +167,9 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
 <!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-rmi]: https://docs.docker.com/engine/reference/commandline/rmi/
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
+[docker-linux]: https://docs.docker.com/engine/install
+[docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
+[docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - internal -->
 [container-registry-tutorial-prepare-registry]: container-registry-tutorial-prepare-registry.md
@@ -183,6 +178,6 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 [azure-powershell-install]: /powershell/azure/install-az-ps
 [get-started-with-azure-cli]: /cli/azure/get-started-with-azure-cli
 [get-started-with-azure-powershell]: /powershell/azure/get-started-azureps
-[az-acr-login]: /cli/azure/acr#az_acr_login
+[az-acr-login]: /cli/azure/acr#az-acr-login
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md

@@ -68,7 +68,4 @@ Continue to  the following article to learn about specific scenarios where conne
 > [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
-[az-acr-connected-registry-update]: /cli/azure/acr/connected-registry#az_acr_connected_registry_update
-[az-acr-connected-registry-install-renew-credentials]: /cli/azure/acr/connected-registry/install#az_acr_connected_registry_install_renew_credentials
 [quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
-[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md

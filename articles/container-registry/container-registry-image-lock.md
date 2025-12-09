@@ -208,7 +208,7 @@ For details about delete operations, see [Delete container images in Azure Conta
 
 <!-- LINKS - Internal -->
 [az-acr-manifest-list-metadata]: /cli/azure/acr/manifest#az-acr-manifest-list-metadata
-[az-acr-repository-update]: /cli/azure/acr/repository#az_acr_repository_update
-[az-acr-repository-show]: /cli/azure/acr/repository#az_acr_repository_show
+[az-acr-repository-update]: /cli/azure/acr/repository#az-acr-repository-update
+[az-acr-repository-show]: /cli/azure/acr/repository#az-acr-repository-show
 [azure-cli]: /cli/azure/install-azure-cli
 [container-registry-delete]: container-registry-delete.md

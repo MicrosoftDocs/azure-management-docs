@@ -497,25 +497,18 @@ In the portal, select the token in the **Tokens** screen, and select **Discard**
 * See the [authentication overview](container-registry-authentication.md) for other options to authenticate with an Azure container registry, including using a Microsoft Entra identity, a service principal, or an admin account.
 * Learn about [connected registries](intro-connected-registry.md) and using tokens for [access](overview-connected-registry-access.md).
 
-<!-- LINKS - External -->
-
-
 <!-- LINKS - Internal -->
-[az-acr-login]: /cli/azure/acr#az_acr_login
 [az-acr-manifest-list-metadata]: /cli/azure/acr/manifest#az-acr-manifest-list-metadata
-[az-acr-repository]: /cli/azure/acr/repository/
-[az-acr-repository-show-tags]: /cli/azure/acr/repository/#az_acr_repository_show_tags
-[az-acr-repository-delete]: /cli/azure/acr/repository/#az_acr_repository_delete
+[az-acr-repository-show-tags]: /cli/azure/acr/repository/#az-acr-repository-show-tags
+[az-acr-repository-delete]: /cli/azure/acr/repository/#az-acr-repository-delete
 [az-acr-scope-map]: /cli/azure/acr/scope-map/
-[az-acr-scope-map-create]: /cli/azure/acr/scope-map/#az_acr_scope_map_create
-[az-acr-scope-map-list]: /cli/azure/acr/scope-map/#az_acr_scope_map_show
-[az-acr-scope-map-show]: /cli/azure/acr/scope-map/#az_acr_scope_map_list
-[az-acr-scope-map-update]: /cli/azure/acr/scope-map/#az_acr_scope_map_update
-[az-acr-scope-map-list]: /cli/azure/acr/scope-map/#az_acr_scope_map_list
+[az-acr-scope-map-create]: /cli/azure/acr/scope-map/#az-acr-scope-map-create
+[az-acr-scope-map-list]: /cli/azure/acr/scope-map/#az-acr-scope-map-show
+[az-acr-scope-map-update]: /cli/azure/acr/scope-map/#az-acr-scope-map-update
 [az-acr-token]: /cli/azure/acr/token/
-[az-acr-token-show]: /cli/azure/acr/token/#az_acr_token_show
-[az-acr-token-list]: /cli/azure/acr/token/#az_acr_token_list
-[az-acr-token-delete]: /cli/azure/acr/token/#az_acr_token_delete
-[az-acr-token-create]: /cli/azure/acr/token/#az_acr_token_create
-[az-acr-token-update]: /cli/azure/acr/token/#az_acr_token_update
-[az-acr-token-credential-generate]: /cli/azure/acr/token/credential/#az_acr_token_credential_generate
+[az-acr-token-show]: /cli/azure/acr/token/#az-acr-token-show
+[az-acr-token-list]: /cli/azure/acr/token/#az-acr-token-list
+[az-acr-token-delete]: /cli/azure/acr/token/#az-acr-token-delete
+[az-acr-token-create]: /cli/azure/acr/token/#az-acr-token-create
+[az-acr-token-update]: /cli/azure/acr/token/#az-acr-token-update
+[az-acr-token-credential-generate]: /cli/azure/acr/token/credential/#az-acr-token-credential-generate

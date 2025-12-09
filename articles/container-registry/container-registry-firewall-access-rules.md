@@ -191,21 +191,12 @@ If you need to access Microsoft Container Registry (MCR) from behind a firewall,
 
 ## Next steps
 
-* Learn about [Azure best practices for network security](/azure/security/fundamentals/network-best-practices)
-
-* Learn more about [security groups](/azure/virtual-network/network-security-groups-overview) in an Azure virtual network
-
-* Learn more about setting up [Private Link](container-registry-private-link.md) for a container registry
-
-* Learn more about [dedicated data endpoints](https://azure.microsoft.com/blog/azure-container-registry-mitigating-data-exfiltration-with-dedicated-data-endpoints/) for Azure Container Registry
-
-
-
-<!-- IMAGES -->
-
-<!-- LINKS - External -->
+* Learn about [Azure best practices for network security](/azure/security/fundamentals/network-best-practices).
+* Learn more about [security groups](/azure/virtual-network/network-security-groups-overview) in an Azure virtual network.
+* Learn more about setting up [Private Link](container-registry-private-link.md) for a container registry.
+* Learn more about [dedicated data endpoints](https://azure.microsoft.com/blog/azure-container-registry-mitigating-data-exfiltration-with-dedicated-data-endpoints/) for Azure Container Registry.
 
 <!-- LINKS - Internal -->
 
-[az-acr-update]: /cli/azure/acr#az_acr_update
-[az-acr-show-endpoints]: /cli/azure/acr#az_acr_show_endpoints
+[az-acr-update]: /cli/azure/acr#az-acr-update
+[az-acr-show-endpoints]: /cli/azure/acr#az-acr-show-endpoints

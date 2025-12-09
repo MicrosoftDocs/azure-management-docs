@@ -99,11 +99,10 @@ After you build and push a container image with `az acr pack build`, you can dep
 
 For more information about ACR Tasks features, see [Automate container image builds and maintenance with ACR Tasks](container-registry-tasks-overview.md).
 
-
 <!-- LINKS - External -->
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
 
 <!-- LINKS - Internal -->
 [azure-cli-install]: /cli/azure/install-azure-cli
 [az-acr-build]: /cli/azure/acr/task
-[az-acr-pack-build]: /cli/azure/acr/pack#az_acr_pack_build
+[az-acr-pack-build]: /cli/azure/acr/pack#az-acr-pack-build
