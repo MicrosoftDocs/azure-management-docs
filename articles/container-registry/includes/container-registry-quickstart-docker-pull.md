@@ -3,10 +3,9 @@ title: include file
 description: include file
 services: container-registry
 author: rayoef
-
 ms.service: azure-container-registry
 ms.topic: include
-ms.date: 08/04/2020
+ms.date: 12/09/2025
 ms.author: rayoflores
 ms.custom: include file
 # Customer intent: As a developer, I want to pull and run container images from my container registry, so that I can quickly verify the functionality of my applications during the development process.
