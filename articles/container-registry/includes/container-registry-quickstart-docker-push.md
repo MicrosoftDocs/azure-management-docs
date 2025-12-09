@@ -25,9 +25,7 @@ Before you can push an image to your registry, you must tag it by using the [doc
 
 For example, if you create a registry with the `Tenant Reuse` DNL scope, the login server might look like `mycontainerregistry-abc123.azurecr.io` with a hash in the DNS name. If you create a registry with the `Unsecure` DNL option, the login server looks like `mycontainerregistry.azurecr.io`, without the hash.
 
-### Example: Tagging an image before push
-
-Tag the image by using the [docker tag][docker-tag] command with your registry's login server.
+Tag the image by using the [docker tag][docker-tag] command with your registry's login server. For this quickstart, tag the `hello-world` image with `v1`.
 
 Example command to tag an image for a DNL-protected registry:
 
@@ -57,7 +55,6 @@ docker rmi <login-server>/hello-world:v1
 [docker-push]: https://docs.docker.com/engine/reference/commandline/push/
 [docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
 [docker-rmi]: https://docs.docker.com/engine/reference/commandline/rmi/
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/
 [docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
 
 <!-- LINKS - Internal -->

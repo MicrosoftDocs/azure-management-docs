@@ -13,7 +13,7 @@ ms.custom: include file
 
 ## Run image from registry
 
-Now, you can pull and run the `hello-world:v1` container image from your container registry by using [docker run][docker-run]:
+Now, you can pull and run the `hello-world:v1` container image from your container registry by using [docker run](https://docs.docker.com/engine/reference/commandline/run/):
 
 ```
 docker run <login-server>/hello-world:v1  
@@ -32,6 +32,3 @@ This message shows that your installation appears to be working correctly.
 
 [...]
 ```
-
-<!-- LINKS - External -->
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/

@@ -83,7 +83,10 @@ The command returns `Login Succeeded` when it completes.
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
-Before pushing and pulling container images, you must sign in to the registry instance. [Sign in to Azure PowerShell][get-started-with-azure-powershell] on your local machine, then run the [Connect-AzContainerRegistry][connect-azcontainerregistry] cmdlet. Specify only the registry resource name when signing in with Azure PowerShell. Don't use the fully qualified login server name.
+Before pushing and pulling container images, you must sign in to the registry instance. [Sign in to Azure PowerShell][get-started-with-azure-powershell] on your local machine, then run the [Connect-AzContainerRegistry][connect-azcontainerregistry] cmdlet.
+
+Specify only the registry resource name when signing in with Azure PowerShell. Don't use the fully qualified login server name, such as `registryname.azurecr.io` or `registryname-hash.azurecr.io` (for DNL-enabled registries).
+
 
 ```azurepowershell
 Connect-AzContainerRegistry -Name <registry-name>
@@ -149,11 +152,6 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 <!-- LINKS - external -->
 [docker-linux]: https://docs.docker.com/engine/install
 [docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
-[docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-rmi]: https://docs.docker.com/engine/reference/commandline/rmi/
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
 [docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - internal -->
