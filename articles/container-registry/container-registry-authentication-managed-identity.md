@@ -469,15 +469,15 @@ In this article, you learned about using managed identities with Azure Container
 [docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - Internal -->
-[az-login]: /cli/azure/reference-index#az_login
+[az-login]: /cli/azure/reference-index#az-login
 [connect-azaccount]: /powershell/module/az.accounts/connect-azaccount
-[az-acr-login]: /cli/azure/acr#az_acr_login
+[az-acr-login]: /cli/azure/acr#az-acr-login
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry
-[az-acr-show]: /cli/azure/acr#az_acr_show
+[az-acr-show]: /cli/azure/acr#az-acr-show
 [get-azcontainerregistry]: /powershell/module/az.containerregistry/get-azcontainerregistry
-[az-vm-create]: /cli/azure/vm#az_vm_create
+[az-vm-create]: /cli/azure/vm#az-vm-create
 [new-azvm]: /powershell/module/az.compute/new-azvm
-[az-vm-show]: /cli/azure/vm#az_vm_show
+[az-vm-show]: /cli/azure/vm#az-vm-show
 [get-azvm]: /powershell/module/az.compute/get-azvm
 [az-identity-create]: /cli/azure/identity#az_identity_create
 [new-azuserassignedidentity]: /powershell/module/az.managedserviceidentity/new-azuserassignedidentity
@@ -485,7 +485,7 @@ In this article, you learned about using managed identities with Azure Container
 [update-azvm]: /powershell/module/az.compute/update-azvm
 [az-role-assignment-create]: /cli/azure/role/assignment#az_role_assignment_create
 [new-azroleassignment]: /powershell/module/az.resources/new-azroleassignment
-[az-identity-show]: /cli/azure/identity#az_identity_show
+[az-identity-show]: /cli/azure/identity#az-identity-show
 [get-azuserassignedidentity]: /powershell/module/az.managedserviceidentity/get-azuserassignedidentity
 [azure-cli-install]: /cli/azure/install-azure-cli
 [azure-powershell-install]: /powershell/azure/install-az-ps

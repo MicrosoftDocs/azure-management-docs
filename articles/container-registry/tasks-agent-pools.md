@@ -215,19 +215,17 @@ az acr agentpool show \
 
 For more examples of container image builds and maintenance in the cloud, check out the [ACR Tasks tutorial series](container-registry-tutorial-quick-task.md).
 
-
-
 [acr-tasks]:           container-registry-tasks-overview.md
 [acr-tiers]:           container-registry-skus.md
 [azure-cli]:           /cli/azure/install-azure-cli
 [open-support-ticket]: https://aka.ms/acr/support/create-ticket
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-[az-config]: /cli/azure#az_config
-[az-acr-agentpool-create]: /cli/azure/acr/agentpool#az_acr_agentpool_create
-[az-acr-agentpool-update]: /cli/azure/acr/agentpool#az_acr_agentpool_update
-[az-acr-agentpool-show]: /cli/azure/acr/agentpool#az_acr_agentpool_show
-[az-acr-build]: /cli/azure/acr#az_acr_build
-[az-acr-task-create]: /cli/azure/acr/task#az_acr_task_create
-[az-acr-task-run]: /cli/azure/acr/task#az_acr_task_run
+[az-config]: /cli/azure#az-config
+[az-acr-agentpool-create]: /cli/azure/acr/agentpool#az-acr-agentpool-create
+[az-acr-agentpool-update]: /cli/azure/acr/agentpool#az-acr-agentpool-update
+[az-acr-agentpool-show]: /cli/azure/acr/agentpool#az-acr-agentpool-show
+[az-acr-build]: /cli/azure/acr#az-acr-build
+[az-acr-task-create]: /cli/azure/acr/task#az-acr-task-create
+[az-acr-task-run]: /cli/azure/acr/task#az-acr-task-run
 [create-reg-cli]: container-registry-get-started-azure-cli.md
 [az-vnet-svc-ep]: /azure/virtual-network/virtual-network-service-endpoints-overview#secure-azure-services-to-virtual-networks

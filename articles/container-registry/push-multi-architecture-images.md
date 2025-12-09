@@ -166,7 +166,3 @@ steps:
 * Use [Azure Pipelines](/azure/devops/pipelines/get-started/what-is-azure-pipelines) to build container images for different architectures.
 * Learn about building multi-platform images using the experimental Docker [buildx](https://docs.docker.com/buildx/working-with-buildx/) plug-in.
 
-<!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/install
-[docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
-[docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/

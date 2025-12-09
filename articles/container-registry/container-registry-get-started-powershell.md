@@ -88,17 +88,15 @@ In this quickstart, you created an Azure Container Registry instance using the A
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
 <!-- LINKS - external -->
-[docker-install]: https://docs.docker.com/engine/install
+[docker-linux]: https://docs.docker.com/engine/install
 [docker-mac]: https://docs.docker.com/desktop/setup/install/mac-install/
 [docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- Links - internal -->
 [Connect-AzAccount]: /powershell/module/az.accounts/connect-azaccount
-[Get-Module]: /powershell/module/microsoft.powershell.core/get-module
 [New-AzContainerRegistry]: /powershell/module/az.containerregistry/New-AzContainerRegistry
 [New-AzResourceGroup]: /powershell/module/az.resources/new-azresourcegroup
 [Remove-AzResourceGroup]: /powershell/module/az.resources/remove-azresourcegroup
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
-[container-registry-skus]: container-registry-skus.md
 [container-registry-tutorial-prepare-registry]: container-registry-tutorial-prepare-registry.md
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry

@@ -194,15 +194,13 @@ In this quickstart, you used features of ACR Tasks to quickly build, push, and r
 > [!div class="nextstepaction"]
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
-
 <!-- LINKS - internal -->
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-build]: /cli/azure/acr#az_acr_build
-[az-acr-run]: /cli/azure/acr#az_acr_run
-[az-group-create]: /cli/azure/group#az_group_create
-[az-group-delete]: /cli/azure/group#az_group_delete
+[az-acr-create]: /cli/azure/acr#az-acrcreate
+[az-acr-build]: /cli/azure/acr#az-acrbuild
+[az-acr-run]: /cli/azure/acr#azacrrun
+[az-group-create]: /cli/azure/group#azgroupcreate
+[az-group-delete]: /cli/azure/group#azgroupdelete
 [container-registry-tasks-overview]: container-registry-tasks-overview.md
 [container-registry-tasks-multi-step]: container-registry-tasks-multi-step.md
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
 [container-registry-skus]: container-registry-skus.md
-

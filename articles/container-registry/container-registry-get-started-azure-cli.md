@@ -180,10 +180,10 @@ In this quickstart, you created an Azure Container Registry with the Azure CLI, 
 [docker-windows]: https://docs.docker.com/desktop/setup/install/windows-install/
 
 <!-- LINKS - internal -->
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-login]: /cli/azure/acr#az_acr_login
-[az-group-create]: /cli/azure/group#az_group_create
-[az-group-delete]: /cli/azure/group#az_group_delete
+[az-acr-create]: /cli/azure/acr#az-acr-create
+[az-acr-login]: /cli/azure/acr#az-acr-login
+[az-group-create]: /cli/azure/group#az-group-create
+[az-group-delete]: /cli/azure/group#az-group-delete
 [azure-cli]: /cli/azure/install-azure-cli
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
 [container-registry-skus]: container-registry-skus.md

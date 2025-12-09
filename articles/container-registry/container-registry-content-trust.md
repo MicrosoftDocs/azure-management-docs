@@ -231,4 +231,4 @@ To disable DCT for your registry, go to the registry in the Azure portal. Under 
 [docker-notary-cli]: https://docs.docker.com/notary/getting_started/
 
 <!-- LINKS - internal -->
-[az-acr-config-content-trust-update]: /cli/azure/acr/config/content-trust#az_acr_config_content_trust_update
+[az-acr-config-content-trust-update]: /cli/azure/acr/config/content-trust#az-acr-config-content-trust-update

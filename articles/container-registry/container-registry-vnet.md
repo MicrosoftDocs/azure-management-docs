@@ -186,13 +186,13 @@ az group delete --name myResourceGroup
 
 <!-- LINKS - Internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-acr-login]: /cli/azure/acr#az_acr_login
-[az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az_acr_network_rule_add
-[az-acr-network-rule-remove]: /cli/azure/acr/network-rule/#az_acr_network_rule_remove
-[az-acr-network-rule-list]: /cli/azure/acr/network-rule/#az_acr_network_rule_list
-[az-acr-update]: /cli/azure/acr#az_acr_update
-[az-network-vnet-subnet-show]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_show
-[az-network-vnet-subnet-update]: /cli/azure/network/vnet/subnet/#az_network_vnet_subnet_update
-[az-network-vnet-list]: /cli/azure/network/vnet/#az_network_vnet_list
+[az-acr-login]: /cli/azure/acr#az-acr-login
+[az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az-acr-network-rule-add
+[az-acr-network-rule-remove]: /cli/azure/acr/network-rule/#az-acr-network-rule-remove
+[az-acr-network-rule-list]: /cli/azure/acr/network-rule/#az-acr-network-rule-list
+[az-acr-update]: /cli/azure/acr#az-acr-update
+[az-network-vnet-subnet-show]: /cli/azure/network/vnet/subnet/#az-network-vnet-subnet-show
+[az-network-vnet-subnet-update]: /cli/azure/network/vnet/subnet/#az-network-vnet-subnet-update
+[az-network-vnet-list]: /cli/azure/network/vnet/#az-network-vnet-list
 [quickstart-portal]: container-registry-get-started-portal.md
 [quickstart-cli]: container-registry-get-started-azure-cli.md
