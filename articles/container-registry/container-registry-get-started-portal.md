@@ -163,6 +163,6 @@ In this quickstart, you created an Azure Container Registry with the Azure porta
 [azure-powershell-install]: /powershell/azure/install-az-ps
 [get-started-with-azure-cli]: /cli/azure/get-started-with-azure-cli
 [get-started-with-azure-powershell]: /powershell/azure/get-started-azureps
-[az-acr-login]: /cli/azure/acr#az_acr_login
+[az-acr-login]: /cli/azure/acr#az-acr-login
 [connect-azcontainerregistry]: /powershell/module/az.containerregistry/connect-azcontainerregistry
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
