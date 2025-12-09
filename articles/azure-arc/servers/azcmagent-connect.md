@@ -40,9 +40,19 @@ Connect a server using a private endpoint and device code login method:
 azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "koreacentral" --use-device-code --private-link-scope "/subscriptions/.../Microsoft.HybridCompute/privateLinkScopes/ScopeName"
 ```
 
+Connect a server using Azure CLI credentials (requires Azure Connected Machine agent version 1.59 or later):
+
+```
+azcmagent connect --subscription-id "Production" --resource-group "HybridServers" --location "eastus" --use-azcli
+```
+
+```
+azcmagent connect --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --resource-group "HybridServers" --location "eastus" --use-azcli --tenant-id "bbbbbbbb-cccc-dddd-eeee-ffffffffffff"
+```
+
 ## Authentication options
 
-There are four ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
+There are five ways to provide authentication credentials to the Azure connected machine agent. Choose one authentication option and replace the `[authentication]` section in the usage syntax with the recommended flags.
 
 ### Interactive browser login (Windows only)
 
@@ -75,6 +85,20 @@ For more information, see [create a service principal for RBAC with certificate-
 Access tokens can also be used for non-interactive authentication, but they're short-lived. Access tokens are typically used by automation solutions operating on several servers over a short period of time. You can get an access token with [`Get-AzAccessToken`](/powershell/module/az.accounts/get-azaccesstoken) or any other Microsoft Entra client.
 
 To authenticate with an access token, use the `--access-token [token]` flag. If the account you're logging in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
+
+### Azure CLI credentials
+
+This option uses the credentials from an existing Azure CLI session on the machine. This is useful when you're already authenticated with Azure CLI and want to use the same identity for Azure Arc enrollment without re-entering credentials.
+
+To use Azure CLI credentials for authentication, your machine must have Azure Connected Machine agent version 1.59 or later.
+
+Before using this method, ensure you're logged in with Azure CLI by running:
+
+```bash
+az login
+```
+
+To authenticate with Azure CLI credentials, use the `--use-azcli` flag. If the account you're logged in with and the subscription where you're registering the server aren't in the same tenant, you must also provide the tenant ID for the subscription with `--tenant-id [tenant]`.
 
 ## Flags
 
@@ -171,6 +195,10 @@ The tenant ID for the subscription where you want to create the Azure Arc-enable
 `--use-device-code`
 
 Generate a Microsoft Entra device login code that can be entered in a web browser on another computer to authenticate the agent with Azure. For more information, see [authentication options](#authentication-options).
+
+`--use-azcli`
+
+Use the credentials from the current Azure CLI session to authenticate with Azure. Requires Azure Connected Machine agent version 1.59 or later and an active Azure CLI login session. Run `az login` before using this flag if you haven't already authenticated with Azure CLI. For more information, see [authentication options](#authentication-options).
 
 `--user-tenant-id`
 
