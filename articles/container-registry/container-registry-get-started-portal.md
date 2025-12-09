@@ -47,7 +47,7 @@ You must also have Docker installed locally with the daemon running. Docker prov
 1. For **Domain name label scope**, select **Tenant Reuse**, or choose another option as described in the [Configure Domain Name Label (DNL) option](#configure-domain-name-label-dnl-option) section.
 1. For **Role assignment permissions mode**, select **RBAC Registry + ABAC Repository Permissions** to retain standard Microsoft Entra role-based access control (RBAC) role assignments, while optionally applying [Microsoft Entra attribute-based access control (ABAC) conditions](container-registry-rbac-abac-repository-permissions.md) for fine‑grained, repository‑level access control.
 
-  :::image type="content" source="media/container-registry-get-started-portal/configure-container-registry-options.png" alt-text="Screenshot showing the container registry creation settings in the portal":::
+   :::image type="content" source="media/container-registry-get-started-portal/configure-container-registry-options.png" alt-text="Screenshot showing the container registry creation settings in the portal":::
 
 1. Leave the other options set to their default values, and select **Review + create**. After reviewing the settings, select **Create**.
 
