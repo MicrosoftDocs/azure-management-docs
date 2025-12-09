@@ -479,11 +479,11 @@ In this article, you learned about using managed identities with Azure Container
 [new-azvm]: /powershell/module/az.compute/new-azvm
 [az-vm-show]: /cli/azure/vm#az-vm-show
 [get-azvm]: /powershell/module/az.compute/get-azvm
-[az-identity-create]: /cli/azure/identity#az_identity_create
+[az-identity-create]: /cli/azure/identity#az-identity-create
 [new-azuserassignedidentity]: /powershell/module/az.managedserviceidentity/new-azuserassignedidentity
-[az-vm-identity-assign]: /cli/azure/vm/identity#az_vm_identity_assign
+[az-vm-identity-assign]: /cli/azure/vm/identity#az-vm-identity-assign
 [update-azvm]: /powershell/module/az.compute/update-azvm
-[az-role-assignment-create]: /cli/azure/role/assignment#az_role_assignment_create
+[az-role-assignment-create]: /cli/azure/role/assignment#az-role-assignment-create
 [new-azroleassignment]: /powershell/module/az.resources/new-azroleassignment
 [az-identity-show]: /cli/azure/identity#az-identity-show
 [get-azuserassignedidentity]: /powershell/module/az.managedserviceidentity/get-azuserassignedidentity

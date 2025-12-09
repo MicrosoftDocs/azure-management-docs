@@ -97,18 +97,3 @@ You can also save local log files to Azure Storage. For example, use the [Azure 
 
 * Learn more about [Azure Container Registry Tasks](container-registry-tasks-overview.md)
 
-
-<!-- LINKS - Internal -->
-[azure-cli]: /cli/azure/install-azure-cli
-[az-acr-build]: /cli/azure/acr#az-acr-build
-[az-acr-pack-build]: /cli/azure/acr/pack#az-acr-pack-build
-[az-acr-task]: /cli/azure/acr/task
-[az-acr-task-create]: /cli/azure/acr/task#az-acr-task-create
-[az-acr-task-run]: /cli/azure/acr/task#az-acr-task-run
-[az-acr-task-update]: /cli/azure/acr/task#az-acr-task-update
-[az-login]: /cli/azure/reference-index#az-login
-[az-login-service-principal]: /cli/azure/authenticate-azure-cli
-
-<!-- IMAGES -->
-[quick-build-01-fork]: ./media/container-registry-tutorial-quick-build/quick-build-01-fork.png
-[quick-build-02-browser]: ./media/container-registry-tutorial-quick-build/quick-build-02-browser.png

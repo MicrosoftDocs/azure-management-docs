@@ -744,29 +744,20 @@ az group delete -n $ACI_RG --no-wait -y
 
 In this article, you used ACR tasks to create an automated gating workflow to introduce updated base images to your environment. See related information to manage images in Azure Container Registry.
 
-
 * [Recommendations for tagging and versioning container images](container-registry-image-tag-version.md)
 * [Lock a container image in an Azure container registry](container-registry-image-lock.md)
 
 [install-cli]:                  /cli/azure/install-azure-cli
 [acr]:                          https://aka.ms/acr
-[acr-entra-repo-permissions]:     ./container-registry-rbac-abac-repository-permissions.md
-[acr-non-entra-repo-permissions]:         ./container-registry-token-based-repository-permissions.md
 [acr-task]:                     ./container-registry-tasks-overview.md
 [acr-task-triggers]:            container-registry-tasks-overview.md#task-scenarios
 [acr-task-credentials]:       container-registry-tasks-authentication-managed-identity.md#4-optional-add-credentials-to-the-task
 [acr-non-entra-tokens]:                   ./container-registry-token-based-repository-permissions.md
-[aci]:                          https://aka.ms/aci
-[alpine-public-image]:          https://hub.docker.com/_/alpine
 [docker-hub]:                   https://hub.docker.com
 [docker-hub-tokens]:            https://hub.docker.com/settings/security
 [git-token]:                    https://github.com/settings/tokens
 [gcr]:                          https://cloud.google.com/container-registry
 [ghcr]:                         https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry
-[helm-charts]:                  https://helm.sh
 [mcr]:                          https://aka.ms/mcr
-[nginx-public-image]:           https://hub.docker.com/_/nginx
-[oci-artifacts]:                ./container-registry-oci-artifacts.md
 [oci-consuming-public-content]: https://opencontainers.org/posts/blog/2020-10-30-consuming-public-content/
-[opa]:                          https://www.openpolicyagent.org/
 [quay]:                         https://quay.io

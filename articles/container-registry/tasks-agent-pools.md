@@ -215,9 +215,9 @@ az acr agentpool show \
 
 For more examples of container image builds and maintenance in the cloud, check out the [ACR Tasks tutorial series](container-registry-tutorial-quick-task.md).
 
-[acr-tasks]:           container-registry-tasks-overview.md
-[acr-tiers]:           container-registry-skus.md
-[azure-cli]:           /cli/azure/install-azure-cli
+[acr-tasks]: container-registry-tasks-overview.md
+[acr-tiers]: container-registry-skus.md
+[azure-cli]: /cli/azure/install-azure-cli
 [open-support-ticket]: https://aka.ms/acr/support/create-ticket
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
 [az-config]: /cli/azure#az-config

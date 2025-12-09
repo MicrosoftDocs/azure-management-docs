@@ -444,7 +444,7 @@ sections:
           #### Prerequisites
 
           - Enable [decrypting HTTPS in Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)
-          - Enable Docker to [use a proxy](https://docs.docker.com/docker-for-windows/#proxies) via the Docker UI.
+          - Enable Docker to [use a proxy](https://docs.docker.com/desktop/features/networking/#using-docker-desktop-with-a-proxy) via the Docker UI.
           - Be sure to revert when complete. Docker doesn't work with this enabled and Fiddler not running.
           
           #### Windows containers
