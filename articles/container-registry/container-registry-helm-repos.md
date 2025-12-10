@@ -387,14 +387,11 @@ helm repo remove $ACR_NAME
 
 <!-- LINKS - internal -->
 [azure-cli-install]: /cli/azure/install-azure-cli
-[aks-quickstart]: ../aks/kubernetes-walkthrough.md
-[acr-bestpractices]: container-registry-best-practices.md
-[az-acr-login]: /cli/azure/acr#az_acr_login
 [az-acr-helm]: /cli/azure/acr/helm
 [az-acr-repository]: /cli/azure/acr/repository
-[az-acr-repository-show]: /cli/azure/acr/repository#az_acr_repository_show
-[az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
+[az-acr-repository-show]: /cli/azure/acr/repository#az-acr-repository-show
+[az-acr-repository-delete]: /cli/azure/acr/repository#az-acr-repository-delete
 [az-acr-manifest-list-metadata]: /cli/azure/acr/manifest#az-acr-manifest-list-metadata
 [acr-tasks]: container-registry-tasks-overview.md
-[az-acr-helm-push]:/cli/azure/acr/helm/#az_acr_helm_push
-[az-acr-helm-list]:/cli/azure/acr/helm/#az_acr_helm_list
+[az-acr-helm-push]:/cli/azure/acr/helm/#az-acr-helm-push
+[az-acr-helm-list]:/cli/azure/acr/helm/#az-acr-helm-list

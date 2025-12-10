@@ -71,5 +71,5 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 Exit the SSH connection.
 
 [azure-cli]: /cli/azure/install-azure-cli
-[az-vm-create]: /cli/azure/vm#az_vm_create
+[az-vm-create]: /cli/azure/vm#az-vm-create
 [az-group-create]: /cli/azure/group

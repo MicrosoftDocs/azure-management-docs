@@ -44,5 +44,5 @@ clientID=$(az identity show \
 ```
 
 <!-- LINKS - Internal -->
-[az-identity-create]: /cli/azure/identity#az_identity_create
-[az-identity-show]: /cli/azure/identity#az_identity_show
+[az-identity-create]: /cli/azure/identity#az-identity-create
+[az-identity-show]: /cli/azure/identity#az-identity-show

@@ -17,7 +17,7 @@ ms.custom:
 Azure Container Registry (ACR) allows you to enable the *soft delete policy* to recover any accidentally deleted artifacts for a set retention period. 
 
 
-:::image type="content" source="./media/container-registry-delete/02-soft-delete.png" alt-text="Diagram of soft delete artifacts lifecycle.":::
+:::image type="content" source="./media/container-registry-soft-delete/02-soft-delete.png" alt-text="Diagram of soft delete artifacts lifecycle.":::
 
 
 ## Aspects of soft delete policy
@@ -145,21 +145,11 @@ You can also enable a registry's soft delete policy in the [Azure portal](https:
 2. In the **Overview tab**, verify the status of the **Soft Delete** (Preview).
 3. If the **Status** is **Disabled**, Select **Update**.
 
-
-
-:::image type="content" source="./media/container-registry-soft-delete/01-soft-delete-disable.png" alt-text="Screenshot to view the soft delete policy.":::
-
-
+   :::image type="content" source="./media/container-registry-soft-delete/01-soft-delete-disable.png" alt-text="Screenshot to view the soft delete policy.":::
 
 4. Select the checkbox to **Enable Soft Delete**.
 5. Select the number of days between `0` and `90` days for retaining the soft deleted artifacts.
 6.  Select **Save** to save your changes.
-
-
-
-:::image type="content" source="./media/container-registry-soft-delete/02-soft-delete-policy.png" alt-text="Screenshot to enable soft delete policy.":::
-
-
 
 ### Restore the soft deleted artifacts - Portal
 

@@ -379,10 +379,8 @@ In this article, you learned about importing container images to an Azure contai
 
 * [Disable artifact export](data-loss-prevention.md) from a network-restricted container registry.
 
-
 <!-- LINKS - Internal -->
-[az-login]: /cli/azure/reference-index#az_login
-[az-acr-import]: /cli/azure/acr#az_acr_import
+[az-acr-import]: /cli/azure/acr#az-acr-import
 [azure-cli]: /cli/azure/install-azure-cli
 [install-the-azure-az-powershell-module]: /powershell/azure/install-az-ps
 [import-azcontainerregistryimage]: /powershell/module/az.containerregistry/import-azcontainerregistryimage

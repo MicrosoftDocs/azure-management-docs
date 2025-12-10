@@ -783,7 +783,6 @@ In this quickstart, you learned about using the Azure Container Registry client 
 [dotnet_samples]: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/containerregistry/Azure.Containers.ContainerRegistry/samples
 [dotnet_docs]: /dotnet/api/azure.containers.containerregistry
 [rest_docs]: /rest/api/containerregistry/
-[product_docs]:  container-registry-intro.md
 [nuget]: https://www.nuget.org/
 [dotnet_identity]: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity/README.md
 [javascript_identity]: https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/README.md

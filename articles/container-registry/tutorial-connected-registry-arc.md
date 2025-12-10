@@ -228,17 +228,11 @@ By deleting the Connected registry extension and the Connected registry, you rem
 - [Glossary of terms](connected-registry-glossary.md)
 
 <!-- LINKS - internal -->
-[create-acr]: container-registry-get-started-azure-cli.md
-[dedicated data endpoints]: container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints
-[Install Azure CLI]: /cli/azure/install-azure-cli
-[k8s-extension]: /cli/azure/k8s-extension
-[azure-resource-provider-requirements]: /azure/azure-arc/kubernetes/system-requirements#azure-resource-provider-requirements
-[quickstart-connect-cluster]: /azure/azure-arc/kubernetes/quickstart-connect-cluster
-[tutorial-aks-cluster]: /azure/aks/tutorial-kubernetes-deploy-cluster?tabs=azure-cli
 [quickstart]: quickstart-connected-registry-arc-cli.md
 [Arc-enabled Kubernetes]: /azure/azure-arc/kubernetes/overview
 [cert-manager]: https://cert-manager.io/
 [Kubernetes secret]: https://kubernetes.io/docs/concepts/configuration/secret/
+
 <!-- LINKS - external -->
 [az-k8s-extension-create]: /cli/azure/k8s-extension#az-k8s-extension-create
 [az-k8s-extension-delete]: /cli/azure/k8s-extension#az-k8s-extension-delete

@@ -304,21 +304,14 @@ Now that you've tested your inner loop with a quick task, configure a **build ta
 > [!div class="nextstepaction"]
 > [Trigger automatic builds with tasks](container-registry-tutorial-build-task.md)
 
-<!-- LINKS - External -->
-[sample-archive]: https://github.com/Azure-Samples/acr-build-helloworld-node/archive/master.zip
-
 <!-- LINKS - Internal -->
-[azure-cli]: /cli/azure/install-azure-cli
 [az-acr-build]: /cli/azure/acr#az-acr-build
 [az-ad-sp-create-for-rbac]: /cli/azure/ad/sp#az-ad-sp-create-for-rbac
 [az-container-attach]: /cli/azure/container#az-container-attach
 [az-container-create]: /cli/azure/container#az-container-create
 [az-container-delete]: /cli/azure/container#az-container-delete
-[az-keyvault-create]: /cli/azure/keyvault/secret#az-keyvault-create
 [az-keyvault-secret-set]: /cli/azure/keyvault/secret#az-keyvault-secret-set
-[az-login]: /cli/azure/reference-index#az-login
 [service-principal-auth]: container-registry-auth-service-principal.md
 
 <!-- IMAGES -->
 [quick-build-01-fork]: ~/reusable-content/ce-skilling/azure/media/container-registry/quick-build-01-fork.png
-[quick-build-02-browser]: ./media/container-registry-tutorial-quick-build/quick-build-02-browser.png
