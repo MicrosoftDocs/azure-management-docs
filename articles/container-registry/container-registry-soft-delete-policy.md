@@ -56,7 +56,11 @@ This feature is available in all the service tiers (also known as SKUs). For inf
 
 * If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
-## Enable soft delete policy for registry - CLI
+## Enable soft delete policy 
+
+### [Azure CLI](#tab/azure-cli)
+
+### Enable soft delete policy for registry
 
 1. Update the soft delete policy for a given `MyRegistry` ACR with a retention period set between 1 to 90 days.
 
@@ -70,7 +74,24 @@ This feature is available in all the service tiers (also known as SKUs). For inf
     az acr config soft-delete show -r MyRegistry 
     ```
 
-### List the soft-deleted artifacts- CLI
+### [Azure portal](#tab/azure-portal)
+
+1. Go to your Azure Container Registry in the Azure portal.
+1. In **Overview**, check the status of **Soft delete (Preview)**.
+1. If the **Status** is **Disabled**, select **Disabled** to open the **Properties** pane.
+1. Select the **Soft delete** checkbox.
+1. Enter a number of days between 1 and 90 to retain deleted artifacts.
+1. Select **Save**.
+
+When soft delete is enabled, and you perform actions such as untagging a manifest or deleting an artifact, you can view these tags and artifacts by selecting **Managed deleted artifacts** before the retention period expires, as described in the next section.
+
+---
+
+## View and restore soft-deleted artifacts
+
+### [Azure CLI](#tab/azure-cli)
+
+### List soft-deleted artifacts
 
 The [`az acr repository list-deleted`](/cli/azure/acr/repository#az-acr-repository-list-deleted) command enables fetching and listing of soft-deleted repositories. Use one or more of the following options to list soft-deleted artifacts.
 
@@ -98,7 +119,7 @@ Filter the soft-deleted tags of the `hello-world` repository to match tag `lates
 az acr manifest list-deleted-tags -r MyRegistry -n hello-world:latest
 ```
 
-### Restore the soft-deleted artifacts - CLI
+### Restore soft-deleted artifacts
 
 The [`az acr manifest restore`](/cli/azure/acr/manifest#az-acr-manifest-restore) command restores a single deleted image by tag and digest. Use one or more of the following options to restore     soft-deleted artifacts.
 
@@ -127,20 +148,9 @@ az acr manifest restore -r MyRegistry -n hello-world:latest -d sha256:abc123 -f
 >
 > If you're restoring soft-deleted [ORAS artifacts](container-registry-manage-artifact.md), then restoring a subject doesn't recursively restore the referrer chain. Also, the subject has to be restored first, only then a referrer manifest is allowed to restore. Otherwise it throws an error.
 
-## Enable soft delete policy for registry - Portal
+### [Azure Portal](#tab/azure-portal)
 
-You can also enable a registry's soft delete policy in the [Azure portal](https://portal.azure.com).
-
-1. Go to your Azure Container Registry in the Azure portal.
-1. In **Overview**, check the status of **Soft delete (Preview)**.
-1. If the **Status** is **Disabled**, select **Disabled** to open the **Properties** pane.
-1. Select the **Soft delete** checkbox.
-1. Enter the number of days between 0 and 90 for retaining deleted artifacts.
-1. Select **Save**.
-
-When soft delete is enabled, and you perform actions such as untagging a manifest or deleting an artifact, you can view these tags and artifacts by selecting **Managed deleted artifacts** before the retention period expires, as described in the next section.
-
-### Restore soft-deleted artifacts - Portal
+### Restore soft-deleted artifacts
 
 1. Go to your Azure Container Registry in the Azure portal.
 1. In the service menu, under **Services**, select **Repositories**.
@@ -153,7 +163,7 @@ When soft delete is enabled, and you perform actions such as untagging a manifes
 1. In the **Restore Artifact** pane, select the tag to restore. You can only select one tag with which to restore your artifact. To recover additional tags, you must restore them separately.
 1. Select **Restore**.
 
-### Restore soft-deleted repositories - Portal
+### Restore soft-deleted repositories
 
 1. Go to your Azure Container Registry in the Azure portal.
 1. In the service menu, under **Services**, select **Repositories**.
@@ -163,10 +173,14 @@ When soft delete is enabled, and you perform actions such as untagging a manifes
 1. In the **Restore Artifact** pane, select the tag to restore. You can only select one tag with which to restore your repository. To recover additional tags, you must restore them separately.
 1. Select **Restore**.
 
+---
+
 > [!IMPORTANT]
->  Importing a soft-deleted image at both source and target resources is blocked.
->  Pushing an image to the soft-deleted repository restores the soft-deleted repository.
->  Pushing an image that shares the same manifest digest with the soft-deleted image isn't allowed. Instead, restore the soft-deleted image.
+> Keep in mind the following considerations:
+>
+> * Importing a soft-deleted image at both source and target resources is blocked.
+> * Pushing an image to the soft-deleted repository restores the soft-deleted repository.
+> * Pushing an image that shares the same manifest digest with the soft-deleted image isn't allowed. Instead, restore the soft-deleted image.
 
 ## Next steps
 
