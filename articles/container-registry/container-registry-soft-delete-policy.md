@@ -113,7 +113,7 @@ You can view and restore soft-deleted artifacts during the current retention per
 1. Go to your Azure Container Registry in the Azure portal.
 1. In the service menu, under **Services**, select **Repositories**.
 1. In **Repositories**, select a repository.
-1. Select **Manage Deleted Respositories**.
+1. Select **Manage Deleted Repositories**.
 1. In the row for the deleted repository that you want to restore, select **Restore**.
 1. In the **Restore Artifact** pane, select the tag to restore. You can only select one tag with which to restore your repository. To recover additional tags, you must restore them separately.
 1. Select **Restore**
@@ -158,7 +158,7 @@ Restore the `hello-world` repository image by tag `latest` and digest `sha256:ab
 az acr manifest restore -r MyRegistry -n hello-world:latest -d sha256:abc123
 ```
 
-Restore the most recently deleted manifest of tje `hello-world` repository by tag `latest` in the `MyRegistry` repository:
+Restore the most recently deleted manifest of the `hello-world` repository by tag `latest` in the `MyRegistry` repository:
 
 ```azurecli-interactive
 az acr manifest restore -r MyRegistry -n hello-world:latest
