@@ -474,7 +474,7 @@ sections:
           ```
           
       - question:  |
-          How do I include the `.git`` folder in `az acr build` command?
+          How do I include the `.git` folder in `az acr build` command?
         answer: |
           If you pass a local source folder to the `az acr build` command, the `.git` folder is excluded from the uploaded package by default. You can create a `.dockerignore` file with the following setting. It tells the command to restore all files under `.git` in the uploaded package. 
           
