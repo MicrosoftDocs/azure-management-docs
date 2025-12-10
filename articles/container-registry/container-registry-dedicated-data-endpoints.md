@@ -76,6 +76,7 @@ With dedicated data endpoints, the bad actor is blocked from writing to other st
 
 > [!NOTE]
 > Switching to dedicated data-endpoints will impact clients that have configured firewall access to the existing `*.blob.core.windows.net` endpoints, causing pull failures. To assure clients have consistent access, add the new data-endpoints to the client firewall rules. Once completed, existing registries can enable dedicated data-endpoints through the `az cli`.
+> During image pulls, if dedicated data endpoints are enabled, ACR gives the client a temporary download link each time it needs to fetch an image layer. This link points to the dedicated data endpoint and is valid for 20 minutes, providing a secure, short-lived URL for downloading the layer. After 20 minutes, the link expires, and the client simply requests a new one if it needs to download another layer when pulling images.
 
 To use the Azure CLI steps in this article, Azure CLI version 2.4.0 or later is required. If you need to install or upgrade, see [Install Azure CLI](/cli/azure/install-azure-cli) or run in [Azure Cloud Shell](/azure/cloud-shell/quickstart).
 
