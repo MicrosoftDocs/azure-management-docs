@@ -18,7 +18,7 @@ Azure Container Registry (ACR) allows you to enable the *soft delete policy* tha
 
 :::image type="content" source="./media/container-registry-soft-delete/02-soft-delete.png" alt-text="Diagram of soft delete artifacts lifecycle.":::
 
-You can enable or disable the soft delete policy at any time. When you enable the soft delete policy in ACR, the registry treats any deleted artifacts as soft-deleted artifacts with a set retention period. Within the retention period, you can list, filter, and restore all deleted artifacts. After the retention period expires, the soft-deleted artifacts are permanently deleted and can't be restored.
+You can enable or disable the soft delete policy at any time in the Azure portal or by using Azure CLI. When you enable the soft delete policy in ACR, the registry treats any deleted artifacts as soft-deleted artifacts with a set retention period. Within the retention period, you can list, filter, and restore all deleted artifacts. After the retention period expires, the soft-deleted artifacts are permanently deleted and can't be restored.
 
 ### Retention period
 
@@ -31,7 +31,7 @@ The autopurge runs every 24 hours and always considers the current value of rete
 This feature is available in all the service tiers (also known as SKUs). For information about registry service tiers, see [Azure Container Registry service tiers](container-registry-skus.md).
 
 > [!NOTE]
-> soft-deleted artifacts are billed as per active SKU pricing for storage.
+> Soft-deleted artifacts are billed as per active SKU pricing for storage.
 
 ## Current limitations
 
@@ -39,24 +39,28 @@ This feature is available in all the service tiers (also known as SKUs). For inf
 > The soft delete policy is currently in PREVIEW.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
+Keep in mind the following limitations:
+
 * Azure Container Registry currently doesn't support manually purging soft-deleted artifacts.
 * The soft delete policy doesn't support registries configured for zone redundancy or geo-replication.
 * Azure Container Registry doesn't allow enabling both the [retention policy](container-registry-retention-policy.md) and the soft delete policy.
 
 ## Prerequisites
 
+* If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+
 * To perform soft delete operations, a user requires the following permissions at the container registry level:
 
-| Permission                                                    | Description                   |
-| ------------------------------------------------------------- | ----------------------------- |
-| `Microsoft.ContainerRegistry/registries/deleted/read`           | List soft-deleted artifacts   |
-| `Microsoft.ContainerRegistry/registries/deleted/restore/action` | Restore soft-deleted artifact |
+  | Permission                                                      | Description                   |
+  | --------------------------------------------------------------- | ----------------------------- |
+  | `Microsoft.ContainerRegistry/registries/deleted/read`           | List soft-deleted artifacts   |
+  | `Microsoft.ContainerRegistry/registries/deleted/restore/action` | Restore soft-deleted artifact |
 
 * You can use the Azure Cloud Shell or a local installation of the Azure CLI to run the command examples in this article. If you want to use it locally, version 2.0.74 or later is required; we recommend using the most recent version. If you need to install or upgrade, see [How to install the Azure CLI](/cli/azure/install-azure-cli).
 
-* If you don't have an Azure account, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+## Enable soft delete policy
 
-## Enable soft delete policy 
+You can enable the soft delete policy for your Azure Container Registry in the Azure portal or by using Azure CLI.
 
 ### [Azure CLI](#tab/azure-cli)
 
