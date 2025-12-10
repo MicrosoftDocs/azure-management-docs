@@ -33,8 +33,6 @@ This preview feature is available in all [service tiers](container-registry-skus
 > [!NOTE]
 > Soft-deleted artifacts are billed as per active SKU pricing for storage.
 
-## Current limitations
-
 Keep in mind the following current limitations:
 
 * Azure Container Registry currently doesn't support manually purging soft-deleted artifacts.
