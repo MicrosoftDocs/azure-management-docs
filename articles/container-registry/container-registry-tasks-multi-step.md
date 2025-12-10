@@ -155,14 +155,9 @@ You can find multi-step task reference and examples here:
 * [Task examples](container-registry-tasks-samples.md) - Example `task.yaml` and Docker files for several scenarios, simple to complex.
 * [Cmd repo](https://github.com/AzureCR/cmd) - A collection of containers as commands for ACR tasks.
 
-<!-- IMAGES -->
-
 <!-- LINKS - External -->
 [pricing]: https://azure.microsoft.com/pricing/details/container-registry/
-[task-examples]: https://github.com/Azure-Samples/acr-tasks
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
 
 <!-- LINKS - Internal -->
-[az-acr-task-create]: /cli/azure/acr/task#az_acr_task_create
-[az-acr-run]: /cli/azure/acr#az_acr_run
+[az-acr-run]: /cli/azure/acr#az-acr-run
 [az-acr-task]: /cli/azure/acr/task
