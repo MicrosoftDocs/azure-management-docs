@@ -53,7 +53,7 @@ You can enable Azure ABAC by using the Azure portal or the Azure CLI.
 
 When creating a [new registry through Azure portal](container-registry-get-started-portal.md), select **RBAC Registry + ABAC Repository Permissions** for **Role assignment permissions mode**.
 
-:::image type="content" source="media/container-registry-get-started-portal/configure-container-registry-options.png" alt-text="Screenshot showing the container registry creation settings in the portal":::
+:::image type="content" source="media/container-registry-get-started-portal/configure-container-registry-options.png" alt-text="Screenshot showing the container registry creation settings in the portal.":::
 
 #### [Azure CLI](#tab/azure-cli)
 
