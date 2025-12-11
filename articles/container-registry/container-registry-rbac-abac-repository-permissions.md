@@ -1,56 +1,47 @@
 ---
-title: Microsoft Entra repository permissions in Azure Container Registry
-description: Use Microsoft Entra attribute-based access control (ABAC) to manage repository permissions for an Azure Container Registry.
-ms.topic: concept-article
+title: Azure attribute-based access control (Azure ABAC) repository permissions in Azure Container Registry
+description: Use Azure ABAC to manage repository permissions for an Azure Container Registry.
+ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
-ms.date: 05/01/2025
+ms.date: 12/11/2025
 ms.service: azure-container-registry
 # Customer intent: As a container registry administrator, I want to configure attribute-based access control (ABAC) with role assignments in Azure Container Registry so that I can manage repository permissions more granularly and enhance security for my organization's container images.
 ---
 
-# Microsoft Entra attribute-based access control (ABAC) for repository permissions
+# Azure attribute-based access control (Azure ABAC) repository permissions in Azure Container Registry
 
-Azure Container Registry (ACR) supports [Microsoft Entra attribute-based access control (ABAC)](/azure/role-based-access-control/conditions-overview) for managing repository permissions.
-This feature enhances security by enabling more granular permissions management to container registry repositories.
-ABAC builds upon Microsoft Entra role-based access control (RBAC) by introducing repository-specific conditions in role assignments.
+Azure Container Registry (ACR) supports [Azure attribute-based access control (Azure ABAC)](/azure/role-based-access-control/conditions-overview) for managing repository permissions. This feature enhances security by enabling more granular permissions management to container registry repositories. 
 
-ABAC is designed for managing repository permissions with Microsoft Entra role-based access control (RBAC), Microsoft Entra role assignments, and Microsoft Entra identities.
-For managing repository permissions without Microsoft Entra, use [non-Microsoft Entra token-based repository permissions](container-registry-token-based-repository-permissions.md) instead.
+Azure ABAC builds upon Azure role-based access control (Azure RBAC) by introducing repository-specific conditions in role assignments. With Azure ABAC, you can grant a security principal access to a repository resource based on attributes.
 
-## Configure registry role assignment permissions mode
+This article describes how to enable Azure ABAC for repository permissions in your container registry, and how to assign role assignments with ABAC conditions to scope permissions to specific repositories.
 
-To use Microsoft Entra ABAC to manage repository permissions, ensure the registry role assignment permissions mode is set to "RBAC Registry + ABAC Repository Permissions."
-This mode allows you to use RBAC role assignments (using [ACR built-in roles](container-registry-rbac-built-in-roles-overview.md)) with optional ABAC conditions to scope role assignments to specific repositories.
+## Configure role assignment permissions mode setting
 
-You can configure a registry's role assignment permissions mode either during registry creation or by updating an existing registry.
-This role assignment can be done either through the Azure portal or Azure CLI.
-You can enable ABAC for any registry, regardless of its SKU.
+To use Azure ABAC to manage repository permissions, set the **Role assignment permissions mode** for your registry to **RBAC Registry + ABAC Repository Permissions**. This mode allows you to use optional ABAC conditions to scope role assignments to specific repositories, in addition to RBAC role assignments using [ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
+
+You can configure the **Role assignment permissions mode** when creating your registry, or you can update the setting on any existing registry. This configuration can be done either through the [Azure portal](container-registry-get-started-portal.md#create-a-container-registry) or the [Azure CLI](container-registry-get-started-azure-cli.md#configure-role-assignment-permissions-mode).
+
+If you change the setting for an existing registry, be sure to understand the effects on existing role assignments and tasks as described in the following sections.
 
 > [!NOTE]
-> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`.
-> Additionally, if you have previously participated in the private preview of this feature, you may have installed a custom private preview extension to manage ACR ABAC.
-> This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
+> Ensure that you have the latest version of the Azure CLI installed by running the Azure CLI command `az upgrade`. Additionally, if you have previously participated in the private preview of this feature, you may have installed a custom private preview extension to manage ACR ABAC. This custom extension is no longer needed and should be uninstalled (to avoid conflicts) by running the Azure CLI command `az extension remove --name acrabac`.
 
 ### Effect on existing role assignments
 
-> [!IMPORTANT]
-> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," some existing role assignments aren't honored or will have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
+If you configure a registry to use **RBAC Registry + ABAC Repository Permissions**, be aware that some existing role assignments aren't honored, or have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
 
 For example, the `AcrPull`, `AcrPush`, and `AcrDelete` roles aren't honored in an ABAC-enabled registry.
 Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
 
-Additionally, privileged roles such as `Owner`, `Contributor`, and `Reader` will have different effects on an ABAC-enabled registry.
-They will only grant control plane permissions to create, update, and delete the registry itself.
-These privileged roles won't grant any data plane permissions to the repositories and images in the registry.
+Additionally, privileged roles such as `Owner`, `Contributor`, and `Reader` will have different effects in an ABAC-enabled registry. In these repositories, these privileged roles grant only control plane permissions to create, update, and delete the registry itself, without granting data plane permissions to the repositories and images in the registry.
 
-For more information on the role based on your scenario and registry role assignment permissions mode, see [scenarios for ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
-Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
+For more information on these roles based on your scenario and registry role assignment permissions mode, see [Azure Container Registry  permissions and role assignments overview](container-registry-rbac-built-in-roles-overview.md). Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
 
 ### Effect on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs
 
-> [!IMPORTANT]
-> If you configure a registry to use "RBAC Registry + ABAC Repository Permissions," new and existing ACR Tasks, as well as Quick Tasks, Quick Builds, and Quick Runs, will be affected. They will no longer have default data plane access to an ABAC-enabled source registry and its content.
+If you configure a registry to use **RBAC Registry + ABAC Repository Permissions**, new and existing ACR Tasks, as well as Quick Tasks, Quick Builds, and Quick Runs, will be affected. They will no longer have default data plane access to an ABAC-enabled source registry and its content.
 
 To understand the effects of this change—and how to grant data plane access for ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs in ABAC-enabled source registries—see [Appendix: Effects of Enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
@@ -58,20 +49,13 @@ To understand the effects of this change—and how to grant data plane access fo
 
 #### [Azure portal](#tab/azure-portal)
 
-When creating a [new registry through Azure portal](container-registry-get-started-portal.md), select the "RBAC Registry + ABAC Repository Permissions" option in the "Role assignment permissions mode" dropdown.
+When creating a [new registry through Azure portal](container-registry-get-started-portal.md), select **RBAC Registry + ABAC Repository Permissions** for **Role assignment permissions mode**.
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-01-create-registry.png" alt-text="Screenshot of creating a new container registry with ABAC enabled." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-01-create-registry.png":::
-
-Continue to fill out the rest of the registry creation form, and then click "Create" to create the registry.
-For more information on creating a registry, see [Create an Azure Container Registry using the Azure portal](container-registry-get-started-portal.md).
+:::image type="content" source="media/container-registry-get-started-portal/configure-container-registry-options.png" alt-text="Screenshot showing the container registry creation settings in the portal":::
 
 #### [Azure CLI](#tab/azure-cli)
 
-When running `az acr create`, use the `--role-assignment-mode` parameter to set the registry role assignment permissions mode.
-* You can specify `rbac-abac` to create a registry with the new "RBAC Registry + ABAC Repository Permissions" mode, which allows you to use RBAC role assignments with optional Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
-* You can also specify `rbac` to create a registry with the older "RBAC Registry Permissions" mode, which only supports RBAC role assignments without ABAC conditions.
-
-To create an ABAC-enabled registry with "RBAC Registry + ABAC Repository Permissions," run the following command:
+When running `az acr create`, use the `--role-assignment-mode` parameter to [set the role assignment permissions mode](container-registry-get-started-azure-cli.md#configure-role-assignment-permissions-mode). Specify `rbac-abac` to create a registry with Azure ABAC enabled:
 
 ```azurecli
 az acr create --name <registry-name> --resource-group <resource-group> --sku <sku> --role-assignment-mode 'rbac-abac' --location <location>
@@ -81,20 +65,18 @@ az acr create --name <registry-name> --resource-group <resource-group> --sku <sk
 
 ### Update an existing registry to enable ABAC
 
+> [!IMPORTANT]
+> Changing the role assignment permissions mode of an existing registry can affect existing role assignments and tasks, as described in the previous sections. Be sure to review these effects before changing the setting.
+
 #### [Azure portal](#tab/azure-portal)
 
-To view the existing role assignment permissions mode of a registry, navigate to the registry's "Properties" blade.
-The current role assignment permissions mode is displayed in the "Role assignment permissions mode" field.
+To view the existing role assignment permissions mode of a registry, go to the registry in the Azure portal. In the service menu, under **Settings**, select **Properties**, then check the **Role assignment permissions mode** setting.
 
-To update the "Role assignment permissions mode" of an existing registry, select "RBAC Registry + ABAC Repository Permissions" and click "Save" to update the registry.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-02-update-registry.png" alt-text="Screenshot of updating an existing container registry to enable ABAC." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-02-update-registry.png":::
+To enable Azure RBAC, select **RBAC Registry + ABAC Repository Permissions**, then select **Save.**
 
 #### [Azure CLI](#tab/azure-cli)
 
-When running `az acr update`, use the `--role-assignment-mode` parameter to set the registry role assignment permissions mode.
-* You can specify `rbac-abac` to update a registry to the new "RBAC Registry + ABAC Repository Permissions" permissions mode, which allows you to use RBAC role assignments with optional ABAC conditions to scope role assignments to specific repositories.
-* You can also specify `rbac` to update a registry back to the older "RBAC Registry Permissions" mode, which only supports RBAC role assignments without ABAC conditions.
+When running `az acr update`, use the `--role-assignment-mode` parameter to set the registry role assignment permissions mode. Specify `rbac-abac` to create a registry with **RBAC Registry + ABAC Repository Permissions** enabled.
 
 To show the current role assignment permissions mode of a registry, run the following command:
 
@@ -102,7 +84,7 @@ To show the current role assignment permissions mode of a registry, run the foll
 az acr show --name <registry-name> --resource-group <resource-group> --query "roleAssignmentMode"
 ```
 
-To update an existing registry to "RBAC Registry + ABAC Repository Permissions," run the following command:
+To update an existing registry to enable Azure ABAC, run the following command:
 
 ```azurecli
 az acr update --name <registry-name> --resource-group <resource-group> --role-assignment-mode 'rbac-abac'
