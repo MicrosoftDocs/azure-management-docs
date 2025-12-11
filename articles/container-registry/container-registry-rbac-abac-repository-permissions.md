@@ -333,7 +333,7 @@ By adding ABAC conditions, this role assignment lets the identity pull images, v
 
 ### [Azure portal](#tab/azure-portal)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment before you create a new one. You can delete the assignment in **Access control (IAM)** by selecting **Role assignments**, selecting the role assignment, and then selecting **Delete**.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository prefix, delete that role assignment before you create a new one. You can delete the assignment in **Access control (IAM)** by selecting **Role assignments**, selecting the role assignment, and then selecting **Delete**.
 
 1. Follow the same steps as in the [first example](#scope-role-assignment-to-a-specific-repository) to perform a role assignment with ABAC conditions.
 1. In the step to add an expression for the ABAC condition, configure two expressions to scope the role assignment to multiple repositories under two prefixes: `backend/` and `frontend/js/` (multiple wildcards). Include the trailing slash `/` in each prefix.
@@ -354,14 +354,14 @@ If you followed the previous example to assign the `Container Registry Repositor
    * **Operator**: `StringStartsWithIgnoreCase`
    * **Value**: `frontend/js/`
 
-   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-multiple-prefix-code.png" alt-text="Screenshot showing an example of configuring an ABAC condition with multiple repository prefixes.":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-multiple-prefix-code.png" alt-text="Screenshot showing an example of configuring an ABAC condition with multiple repository prefixes." lightbox="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-multiple-prefix-code.png":::
 
 1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition.
 1. Select **Review + assign** to finalize the role assignment.
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment (by using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)) before creating a new one with an ABAC condition scoped to a repository prefix.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository prefix, delete that role assignment (by using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)) before creating a new one with an ABAC condition scoped to a repository prefix.
 
 To add a role assignment with an ABAC condition scoped to multiple repositories under a prefix, use [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
 
@@ -452,11 +452,11 @@ To explicitly prevent an ACR Task from authenticating by using an ABAC-enabled s
 
 When you configure a registry with **"RBAC Registry + ABAC Repository Permissions"**, new Quick Tasks such as [Quick Builds](/cli/azure/acr#az-acr-build) and [Quick Runs](/cli/azure/acr#az-acr-run) no longer have default data plane access to the source registry, including its images and artifacts within repositories. For Quick Tasks, you must use the caller's identity to authenticate the Quick Task to the source registry. The caller's identity must have the appropriate ACR built-in role to enable authentication and access to registry repositories.
 
-#### Running a Quick Task with the caller identity for source registry access
+#### Run a Quick Task with the caller identity for source registry access
 
 For ABAC-enabled source registries, use `az acr build` or `az acr run` with the `--source-acr-auth-id [caller]` option to specify the caller's identity as the identity the Quick Task uses to authenticate to the source registry. Before running the Quick Task, ensure that the caller's identity has the appropriate ACR built-in role to enable authentication and access to the source registry and its repositories.
 
-#### Running a Quick Task without source registry access
+#### Run a Quick Task without source registry access
 
 To run a Quick Task without any source registry access, use `az acr build` or `az acr run` with the `--source-acr-auth-id none` option. This setting disables the Quick Task's ability to perform any operations on the source registry and content within it.
 
