@@ -541,13 +541,13 @@ Specify the service IP address that you assigned to the connected registry servi
 #### [Bash](#tab/bash)
 
 ```bash
-az workload-orchestration configuration set -g "$rg" --solution-template-name "$solutionTemplateName" --target-name "$targetName"
+az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName" --template-name "$solutionTemplateName" --version $appVersion --solution
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
-az workload-orchestration configuration set -g $rg --solution-template-name $solutionTemplateName --target-name $targetName
+az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$targetName" --template-name "$solutionTemplateName" --version $appVersion --solution
 ```
 ***
 

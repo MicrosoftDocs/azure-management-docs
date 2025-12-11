@@ -30,6 +30,19 @@ Create the template and schema files by referring to *common-config.yaml*, *comm
 ### [Bash](#tab/bash)
 
 ```bash
+# Set environment variables
+subId="<SUBSCRIPTION_ID>"
+rg="<RESOURCE_GROUP_NAME>"
+l="<LOCATION>"
+# Enter name of context
+contextName="redmondInstance"
+# Enter id of context
+contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
+# Enter name of site
+siteName="Site01"
+# Enter id of the site
+siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+
 # Create variables for schema
 # Enter schema name
 schemaName="Common schema"
@@ -45,12 +58,6 @@ configFile="common-config.yaml"
 configVersion="1.0.0"
 
 # Create variables for application/solution
-# Change version number if you have tried multiple times
-
-# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
-#  SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
-#  LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
-
 # Enter name of application
 appName1="PriceDetector"
 # Enter value in x.x.x format
@@ -66,6 +73,21 @@ appConfig="app-config-template.yaml"
 ### [PowerShell](#tab/powershell)
 
 ```powershell
+# Set environment variables
+$subId="<SUBSCRIPTION_ID>"
+$rg="<RESOURCE_GROUP_NAME>"
+$l="<LOCATION>"
+# Enter name of context
+$contextName="redmondInstance"
+# Enter id of context
+$contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
+# Enter name of site
+$siteName="Site01"
+# Enter id of the site
+$siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+# Enter name of target
+$childName="Line01"
+
 # Create variables for schema
 # Enter schema name
 $schemaName = "Common schema"
@@ -81,12 +103,6 @@ $configFile = "common-config.yaml"
 $configVersion = "1.0.0"
 
 # Create variables for application/solution
-# Change version number if you have tried multiple times
-
-# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
-#  SqlServerEndpoint: $config(CommonConfig/version1,SqlServerEndpoint)
-#  LineHealthEndpoint: $config(CommonConfig/version1,LineHealthEndpoint)
-
 # Enter name of application
 $appName1 = "PriceDetector"
 # Enter value in x.x.x format
@@ -171,18 +187,26 @@ The name field is introduced for user to identify the resource name and its vers
 
 ### Create the configuration
 
-Create the configuration template. The following command takes version input from CLI argument:
+Create the configuration template and link it to the Site of the desired hierarchy level, that is factory in this case. The following command takes version input from CLI argument:
 
 #### [Bash](#tab/bash)
 
 ```bash
 az workload-orchestration config-template create --resource-group "$rg" --location "$l" --config-template-name "$configName" --version "$configVersion" --configuration-template-file "$configFile" --description "<description>"
+# Link configuration template to factory level of hierarchy
+az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $siteId --context-id $contextId
+# You can also view the linked hierarchies
+az workload-orchestration config-template hierarchy show -g "$rg" -n "$configName"
 ```
 
 #### [PowerShell](#tab/powershell)
 
 ```powershell
 az workload-orchestration config-template create --resource-group $rg --location $l --config-template-name $configName --version $configVersion --configuration-template-file $configFile --description "<description>"
+# Link configuration template to factory level of hierarchy
+az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $siteId --context-id $contextId
+# You can also view the linked hierarchies
+az workload-orchestration config-template hierarchy show -g "$rg" -n "$configName"
 ```
 
 ***
@@ -222,22 +246,22 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
-        ```
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
+    ```
 
-        Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
+    Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
 
-        ```yaml
-        metadata:
-            name: <name> [optional]
-            version: <version> [optional]
-        ```
+    ```yaml
+    metadata:
+        name: <name> [optional]
+        version: <version> [optional]
+    ```
 
-        Run the same CLI command without the `--version` argument. The service will take the version input from the file.
+    Run the same CLI command without the `--version` argument. The service will take the version input from the file.
 
-        ```powershell
-        az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
-        ```
+    ```powershell
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
+    ```
 
 ***
 
@@ -249,51 +273,51 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. View parameters at the parent level, for example, Contoso factory:
 
     ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
+    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. Edit parameters at the parent level:
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
+    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. View parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
+    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. Edit parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
+    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 #### [PowerShell](#tab/powershell)
 
 1. View parameters at the parent level, for example, Contoso factory:
 
-    ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1
+    ```bash
+    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. Edit parameters at the parent level:
 
-    ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $parentName --solution-template-name $appName1
+    ```bash
+    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. View parameters at the child level:
 
-    ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1
+    ```bash
+    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. Edit parameters at the child level:
 
-    ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $childName --solution-template-name $appName1
+    ```bash
+    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 ***
