@@ -128,7 +128,7 @@ This example assigns the `Container Registry Repository Reader` role to grant pu
 1. Ensure **Visual** is selected for **Editor type**.
 1. Under **Condition #1**, select the actions (permissions) belonging to this role that you want to grant in this repository-scoped role assignment. In most cases, select all actions to limit all actions performed by identities with this role to the repository scope. Choose **Select** to save your changes.
 
-   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-actions.png" alt-text="Screenshot of selecting actions and permissions to grant for an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-actions.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-actions.png" alt-text="Screenshot of selecting actions and permissions to grant for an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-actions.png":::
 
 1. Next, under **Build expression**, select **Add expression**. Configure the following options for the expression to scope the ABAC condition to a specific repository:
 
@@ -137,11 +137,11 @@ This example assigns the `Container Registry Repository Reader` role to grant pu
    * **Operator**: `StringEqualsIgnoreCase`
    * **Value**: `<repository-name>` - the full name of the repository
 
-   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png" alt-text="Screenshot of building an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-expression.png" alt-text="Screenshot of building an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-expression.png":::
 
 1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition. This code can be used to perform the same role assignment with the same ABAC condition using the Azure CLI.
 
-   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression-code.png" alt-text="Screenshot of reviewing the code for an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression-code.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-expression-code.png" alt-text="Screenshot of reviewing the code for an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-attribute-based-access-control-repository-permissions/abac-role-assignment-expression-code.png":::
 
 1. Select **Review + assign** to finalize the role assignment.
 
@@ -244,7 +244,7 @@ To update or delete the role assignment, you can use [`az role assignment update
 
 ---
 
-## Scope role assignment to multiple repositories using repository prefix (wildcard)
+### Scope role assignment to multiple repositories using repository prefix (wildcard)
 
 In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to multiple repositories with a common prefix (wildcard). By adding ABAC conditions, this role assignment lets the identity pull images, view tags, and read metadata only from the repositories with a common prefix, while preventing access to other repositories in the registry.
 
@@ -288,7 +288,7 @@ To create the expression for the ABAC condition, we recommend [using the visual 
 )
 ```
 
-Follow the steps described in the previous section to store this ABAC condition into a shell variable named `condition` and querying the registry resoource ID for the `--scope` parameter. Then perform the role assignment by running the following command:
+Follow the steps [described in the first section](#create-a-registry-with-abac-enabled) to store this ABAC condition into a shell variable named `condition` and querying the registry resoource ID for the `--scope` parameter. Then perform the role assignment by running the following command:
 
 ```azurecli
 az role assignment create \
@@ -321,68 +321,46 @@ The following shows an example of the output:
 
 ---
 
-## Scope role assignment to multiple repositories using multiple repository prefixes (multiple wildcards)
+### Scope role assignment to multiple repositories using multiple repository prefixes (multiple wildcards)
 
 In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to multiple repositories under two different prefixes (multiple wildcards).
 By adding ABAC conditions, this role assignment lets the identity pull images, view tags, and read metadata only from the specified repository, preventing access to other repositories in the registry.
 
 ### [Azure portal](#tab/azure-portal)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, you must delete that role assignment (by navigating to the "Access control (IAM)" blade and selecting the "Role assignments" tab), before creating a new one with an ABAC condition scoped to a repository prefix.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment before you create a new one. You can do so in the **Access control (IAM)** by selecting **Role assignments**, selecting the role assignment, and then selecting **Delete**.
 
-Follow the same steps as in the [previous example](#scope-role-assignment-to-a-specific-repository) to perform a role assignment with ABAC conditions.
+1. Follow the same steps as in the [first example](#scope-role-assignment-to-a-specific-repository) to perform a role assignment with ABAC conditions.
+1. In the step to add an expression for the ABAC condition, configure two expressions to scope the role assignment to multiple repositories under two prefixes: `backend/` and `frontend/js/` (multiple wildcards). Be sure to include the trailing slash `/` in each prefix.
 
-In the step to add an expression for the ABAC condition, configure two expressions to scope the role assignment to multiple repositories under two prefixes: `backend/` and `frontend/js/` (multiple wildcards).
+   For the first expression, configure the following options:
 
-For the first expression, configure the following options:
-  * Attribute source: `Request`
-  * Attribute: `Repository name`
-  * Operator: `StringStartsWithIgnoreCase`
-  * Value: `<repository-prefix>` - the prefix of the repositories, including the trailing slash `/`.
-    * For example, to grant permissions to all repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`, enter `backend/`.
-    * To grant permissions to all repositories with the prefix `frontend/js/`, such as `frontend/js/react` and `frontend/js/vue`, enter `frontend/js/`.
+   * **Attribute source**: `Request`
+   * **Attribute**: `Repository name`
+   * **Operator**: `StringStartsWithIgnoreCase`
+   * **Value**: `backend/`
 
-Click "Add expression."
-**Ensure that the boolean operator is set to "Or"**.
-You can optionally select "Group" to group expressions together and control the order of evaluation.
-The visual editor also supports multiple boolean operators including "And," "Or," hierarchical grouping, and negation.
+1. Select **Add expression**. The visual editor also supports multiple boolean operators including **And**, **Or**, hierarchical grouping, and negation. For this example, ensure that the boolean operator is set to **Or**.
 
-For the second expression, configure the following options:
-  * Attribute source: `Request`
-  * Attribute: `Repository name`
-  * Operator: `StringStartsWithIgnoreCase`
-  * Value: `<repository-prefix>` - the prefix of the repositories, including the trailing slash `/`.
-    * For example, to grant permissions to all repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`, enter `backend/`.
-    * To grant permissions to all repositories with the prefix `frontend/js/`, such as `frontend/js/react` and `frontend/js/vue`, enter `frontend/js/`.
+1. For the second expression, configure the following options:
 
-> [!IMPORTANT]
-> The trailing slash `/` is required in the `Value` field for the expression of the ABAC condition.
-> If you don't include the trailing slash `/`, you may unintentionally grant permissions to other repositories that don't match the prefix.
-> For example, if you enter `backend` without the trailing slash `/`, the role assignment grants permissions to all repositories with the prefix `backend`, such as `backend/nginx`, `backend/redis`, `backend-infra/k8s`, `backend-backup/store`, `backend`, and `backendsvc/containers`.
+   * **Attribute source**: `Request`
+   * **Attribute**: `Repository name`
+   * **Operator**: `StringStartsWithIgnoreCase`
+   * **Value**: `frontend/js/`
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-13-expression-multiple-repository-prefixes.png" alt-text="Screenshot of configuring expression to scope the ABAC condition to multiple repository prefixes." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-13-expression-multiple-repository-prefixes.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/attribute-based-access-control-role-assignment-multiple-prefix-code.png" alt-text="Screenshot showing an example of configuring an ABAC condition with multiple repository prefixes.":::
 
-Click "Save" to save the ABAC condition.
-
-Review the role assignment ABAC condition.
-The review page includes a code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-14-finished-condition-multiple-prefixes.png" alt-text="Screenshot of reviewing ABAC condition to scope to multiple repository prefixes." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-14-finished-condition-multiple-prefixes.png":::
-
-Perform the role assignment by clicking "Review + assign."
-
-Once the role assignment is created, you can view, edit, or delete the role assignment.
-Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
+1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition.
+1. Select **Review + assign** to finalize the role assignment.
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, you must delete that role assignment (using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)), before creating a new one with an ABAC condition scoped to a repository prefix.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment (using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)) before creating a new one with an ABAC condition scoped to a repository prefix.
 
-To add a role assignment with an ABAC condition scoped to multiple repositories under multiple prefixes, use [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create).
+To add a role assignment with an ABAC condition scoped to multiple repositories under a prefix, use [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
 
-The ACR team recommends using the visual editor in the Azure portal role assignment experience to create the expression for the ABAC condition.
-
-Use the following expression for the ABAC condition to restrict the role assignment to the repository `nginx`:
+To create the expression for the ABAC condition, we recommend [using the visual editor in the Azure portal role assignment experience](/azure/container-registry/container-registry-rbac-abac-repository-permissions?tabs=azure-portal#assigning-microsoft-entra-abac-repository-permissions) to create the expression for the ABAC condition. For this example, use the following expression for the ABAC condition to restrict the role assignment to repositories with either the prefix `backend/` or `frontend/js/`:
 
 ```
 (
@@ -400,43 +378,7 @@ Use the following expression for the ABAC condition to restrict the role assignm
 )
 ```
 
-You can use store this ABAC condition into a shell variable named `condition` for use in the `az role assignment create` command.
-
-```azurecli
-condition=$(cat <<'EOF' | tr -d '\n'
-(
- (
-  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/content/read'})
-  AND
-  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/metadata/read'})
- )
- OR 
- (
-  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringStartsWithIgnoreCase 'backend/'
-  OR
-  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringStartsWithIgnoreCase 'frontend/js/'
- )
-)
-EOF
-)
-```
-
-You can inspect the `condition` variable to verify that it's correct.
-Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
-
-```azurecli
-echo "$condition"
-```
-
-Before performing the role assignment, you must also query the registry resource ID which for the `--scope` parameter.
-The `--scope` parameter should always be the registry resource ID (without the repository name), even for role assignments scoped to multiple repository prefixes.
-You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription.
-
-```azurecli
-scope=$(az acr show --name <registry-name> --resource-group <resource-group> --query "id" -o tsv)
-```
-
-Finally, to perform the role assignment, run the following command:
+Follow the steps [described in the first section](#create-a-registry-with-abac-enabled) to store this ABAC condition into a shell variable named `condition` and querying the registry resoource ID for the `--scope` parameter. Then perform the role assignment by running the following command:
 
 ```azurecli
 az role assignment create \
@@ -466,8 +408,6 @@ The following shows an example of the output:
     "type": "Microsoft.Authorization/roleAssignments"
 }
 ```
-
-To update or delete the role assignment, you can use [`az role assignment update`](/cli/azure/role/assignment#az-role-assignment-update) or [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete).
 
 ---
 
