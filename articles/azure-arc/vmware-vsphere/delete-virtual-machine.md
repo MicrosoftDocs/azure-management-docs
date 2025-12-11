@@ -51,7 +51,7 @@ To remove a VM from Azure only, follow these steps:
 
    When prompted, confirm that you want to remove the Azure representation of the VM.
 
-You can track the progress of the Azure operations from the Azure [activity log](https://ms.portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade).
+You can track the progress of the Azure operations from the Azure [activity log](https://portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade).
 
 ## Next step
 

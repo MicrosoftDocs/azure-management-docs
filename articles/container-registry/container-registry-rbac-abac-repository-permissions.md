@@ -612,7 +612,7 @@ To explicitly prevent an ACR Task from authenticating with an ABAC-enabled sourc
 ### Effect on Quick Tasks, Quick Builds, and Quick Runs
 
 > [!IMPORTANT]
-> When a registry is configured with **"RBAC Registry + ABAC Repository Permissions"**, new Quick Tasks such as [Quick Builds](/cli/azure/acr#az_acr_build) and [Quick Runs](/cli/azure/acr#az_acr_run) will no longer have default data plane access to the source registry, including its images and artifacts within repositories. For Quick Tasks, you must use the caller's identity to authenticate the Quick Task to the source registry. The caller's identity must have the appropriate ACR built-in role to enable authentication and access to registry repositories.
+> When a registry is configured with **"RBAC Registry + ABAC Repository Permissions"**, new Quick Tasks such as [Quick Builds](/cli/azure/acr#az-acr-build) and [Quick Runs](/cli/azure/acr#az-acr-run) will no longer have default data plane access to the source registry, including its images and artifacts within repositories. For Quick Tasks, you must use the caller's identity to authenticate the Quick Task to the source registry. The caller's identity must have the appropriate ACR built-in role to enable authentication and access to registry repositories.
 
 #### Running a Quick Task with the Caller Identity for Source Registry Access
 

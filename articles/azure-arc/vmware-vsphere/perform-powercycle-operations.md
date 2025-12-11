@@ -39,4 +39,4 @@ To perform power cycle operations, follow these steps:
     
    :::image type="content" source="media/perform-powercycle-operations/power-cycle-operations.png" alt-text="Screenshot showing power cycle operations screen." lightbox="media/perform-powercycle-operations/power-cycle-operations.png":::
 
-You can track the progress of the Azure operations from the Azure [activity log](https://ms.portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade). 
+You can track the progress of the Azure operations from the Azure [activity log](https://portal.azure.com/#view/Microsoft_Azure_ActivityLog/ActivityLogBlade). 

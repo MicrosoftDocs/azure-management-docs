@@ -493,7 +493,6 @@ In this article, you learned how to use Azure Container Registry to store, manag
 * Learn more about [the ORAS Project](https://oras.land/), including how to configure a manifest for an artifact.
 * Visit the [OCI Artifacts](https://github.com/opencontainers/artifacts) repo for reference information about new artifact types.
 
-
 <!-- LINKS - external -->
 [docker-install]:           https://www.docker.com/get-started/
 [oci-image-manifest]:    https://github.com/opencontainers/image-spec/blob/v1.1.1/manifest.md
@@ -505,12 +504,10 @@ In this article, you learned how to use Azure Container Registry to store, manag
 [oras-cli]:                 https://oras.land/docs/category/oras-commands/
 [oras-push-multifiles]:     https://oras.land/docs/how_to_guides/pushing_and_pulling#pushing-artifacts-with-multiple-files
 
-
 <!-- LINKS - internal -->
 [acr-authentication]:       ./container-registry-authentication.md?tabs=azure-cli
 [az-acr-create]:            ./container-registry-get-started-azure-cli.md
-[az-acr-build]:             /cli/azure/acr#az_acr_build
-[az-acr-manifest-metadata]: /cli/azure/acr/manifest/metadata#az_acr_manifest_list_metadata
+[az-acr-build]:             /cli/azure/acr#az-acr-build
 [azure-cli-install]:        /cli/azure/install-azure-cli
 [iana-mediatypes]:          https://www.rfc-editor.org/rfc/rfc6838
 [acr-landing]:              https://aka.ms/acr

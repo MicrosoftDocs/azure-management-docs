@@ -61,9 +61,3 @@ Locking a deployed image still allows you to remove other, undeployed images fro
 For a more detailed discussion of the concepts in this article, see the blog post [Docker Tagging: Best practices for tagging and versioning docker images](https://stevelasker.blog/2018/03/01/docker-tagging-best-practices-for-tagging-and-versioning-docker-images/).
 
 To help maximize the performance and cost-effective use of your Azure container registry, see [Best practices for Azure Container Registry](container-registry-best-practices.md).
-
-<!-- IMAGES -->
-
-
-<!-- LINKS - Internal -->
-

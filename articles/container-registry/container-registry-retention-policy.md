@@ -103,19 +103,13 @@ You can also set a registry's retention policy in the [Azure portal](https://por
 
 ## Next steps
 
-* Learn more about options to [delete images and repositories](container-registry-delete.md) in Azure Container Registry
-
-* Learn how to [automatically purge](container-registry-auto-purge.md) selected images and manifests from a registry
-
-* Learn more about options to [lock images and manifests](container-registry-image-lock.md) in a registry
-
-<!-- LINKS - external -->
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-
+* Learn more about options to [delete images and repositories](container-registry-delete.md) in Azure Container Registry.
+* Learn how to [automatically purge](container-registry-auto-purge.md) selected images and manifests from a registry.
+* Learn more about options to [lock images and manifests](container-registry-image-lock.md) in a registry.
 
 <!-- LINKS - internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-acr-config-retention-update]: /cli/azure/acr/config/retention#az_acr_config_retention_update
-[az-acr-config-retention-show]: /cli/azure/acr/config/retention#az_acr_config_retention_show
+[az-acr-config-retention-update]: /cli/azure/acr/config/retention#az-acr-config-retention-update
+[az-acr-config-retention-show]: /cli/azure/acr/config/retention#az-acr-config-retention-show
 [az-acr-manifest-list-metadata]: /cli/azure/acr/manifest#az-acr-manifest-list-metadata
-[az-acr-repository-untag]: /cli/azure/acr/repository#az_acr_repository_untag
+[az-acr-repository-untag]: /cli/azure/acr/repository#az-acr-repository-untag

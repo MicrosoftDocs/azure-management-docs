@@ -240,20 +240,7 @@ View [ACR Transfer Troubleshooting](container-registry-transfer-troubleshooting.
 
 * Learn how to [block creation of export pipelines](data-loss-prevention.md) from a network-restricted container registry.
 
-<!-- LINKS - External -->
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-
 <!-- LINKS - Internal -->
-[azure-cli]: /cli/azure/install-azure-cli
-[az-login]: /cli/azure/reference-index#az-login
-[az-keyvault-secret-set]: /cli/azure/keyvault/secret#az-keyvault-secret-set
-[az-keyvault-secret-show]: /cli/azure/keyvault/secret#az-keyvault-secret-show
-[az-keyvault-set-policy]: /cli/azure/keyvault#az-keyvault-set-policy
-[az-storage-container-generate-sas]: /cli/azure/storage/container#az-storage-container-generate-sas
 [az-storage-blob-list]: /cli/azure/storage/blob#az-storage-blob-list
-[az-deployment-group-create]: /cli/azure/deployment/group#az-deployment-group-create
-[az-deployment-group-delete]: /cli/azure/deployment/group#az-deployment-group-delete
-[az-deployment-group-show]: /cli/azure/deployment/group#az-deployment-group-show
-[az-acr-repository-show-tags]: /cli/azure/acr/repository##az_acr_repository_show_tags
-[az-acr-import]: /cli/azure/acr#az-acr-import
-[az-resource-delete]: /cli/azure/resource#az-resource-delete
+[az-acr-repository-show-tags]: /cli/azure/acr/repository##az-acr-repository-show-tags
+

@@ -134,15 +134,8 @@ To allow the AKS cluster to access the registry, use one of these options:
 * To set up registry access rules from behind a client firewall, see [Configure rules to access an Azure container registry behind a firewall](container-registry-firewall-access-rules.md).
 * For more troubleshooting guidance, see [Troubleshoot network issues with registry](container-registry-troubleshoot-access.md).
 
-[az-acr-login]: /cli/azure/acr#az_acr_login
-[az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az_acr_network_rule_add
-[az-acr-network-rule-remove]: /cli/azure/acr/network-rule/#az_acr_network_rule_remove
-[az-acr-network-rule-list]: /cli/azure/acr/network-rule/#az_acr_network_rule_list
-[az-acr-run]: /cli/azure/acr#az_acr_run
-[az-acr-update]: /cli/azure/acr#az_acr_update
-[quickstart-portal]: container-registry-get-started-portal.md
-[quickstart-cli]: container-registry-get-started-azure-cli.md
-
+[az-acr-network-rule-add]: /cli/azure/acr/network-rule/#az-acr-network-rule-add
+[az-acr-update]: /cli/azure/acr#az-acr-update
 [acr-access-selected-networks]: ./media/container-registry-access-selected-networks/acr-access-selected-networks.png
 [acr-access-disabled]: ./media/container-registry-access-selected-networks/acr-access-disabled.png
 [acr-access-all-networks]: ./media/container-registry-access-selected-networks/acr-access-all-networks.png

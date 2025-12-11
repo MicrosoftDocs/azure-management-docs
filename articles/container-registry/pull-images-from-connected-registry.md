@@ -84,9 +84,7 @@ docker pull <IP_address_or_FQDN_of_connected_registry>:<port>/hello-world
 * Learn more about [accessing a connected registry](overview-connected-registry-access.md).
 
 <!-- LINKS - internal -->
-[az-acr-scope-map-create]: /cli/azure/acr/token/#az_acr_token_create
-[az-acr-token-create]: /cli/azure/acr/token/#az_acr_token_create
-[az-acr-token-credential-generate]: /cli/azure/acr/token/credential#az_acr_token_credential_generate
-[az-acr-connected-registry-update]: ./quickstart-connected-registry-cli.md#az_acr_connected_registry_update] 
-[container-registry-intro]: container-registry-intro.md
+[az-acr-scope-map-create]: /cli/azure/acr/token/#az-acr-token-create
+[az-acr-token-create]: /cli/azure/acr/token/#az-acr-token-create
+[az-acr-token-credential-generate]: /cli/azure/acr/token/credential#az-acr-token-credential-generate
 [quickstart-connected-registry-cli]: quickstart-connected-registry-cli.md

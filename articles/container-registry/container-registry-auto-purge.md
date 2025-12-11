@@ -176,10 +176,6 @@ Learn about other options to [delete image data](container-registry-delete.md) i
 
 For more information about image storage, see [Container image storage in Azure Container Registry](container-registry-storage.md).
 
-<!-- LINKS - External -->
-
-[terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-
 <!-- LINKS - Internal -->
 [azure-cli-install]: /cli/azure/install-azure-cli
 [az-acr-run]: /cli/azure/acr#az-acr-run

@@ -95,10 +95,6 @@ For details about error codes returned by the [az acr check-health][az-acr-check
 
 See the [FAQ](container-registry-faq.yml) for frequently asked questions and other known issues about Azure Container Registry.
 
-
-
-
-
 <!-- LINKS - internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-acr-check-health]: /cli/azure/acr#az_acr_check_health
+[az-acr-check-health]: /cli/azure/acr#az-acr-check-health

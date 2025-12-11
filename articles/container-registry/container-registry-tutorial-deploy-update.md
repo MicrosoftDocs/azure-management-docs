@@ -137,7 +137,6 @@ In addition to geo-replication, ACR Build is another feature of Azure Container 
 <!-- IMAGES -->
 [deployed-app-eastus-modified]: ./media/container-registry-tutorial-deploy-update/deployed-app-eastus-modified.png
 [deployed-app-westus-modified]: ./media/container-registry-tutorial-deploy-update/deployed-app-westus-modified.png
-[local-container-01]: ./media/container-registry-tutorial-deploy-update/local-container-01.png
 [tutorial-portal-01]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-01.png
 [tutorial-portal-02]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-02.png
 [tutorial-portal-03]: ./media/container-registry-tutorial-deploy-update/tutorial-portal-03.png

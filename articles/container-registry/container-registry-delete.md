@@ -225,13 +225,6 @@ Azure Container Registry provides the following automated methods to remove tags
 
 For more information about image storage in Azure Container Registry, see [Container image storage in Azure Container Registry](container-registry-storage.md).
 
-<!-- IMAGES -->
-[manifest-digest]: ./media/container-registry-delete/01-manifest-digest.png
-
-<!-- LINKS - External -->
-[docker-manifest-inspect]: https://docs.docker.com/edge/engine/reference/commandline/manifest/#manifest-inspect
-
 <!-- LINKS - Internal -->
-[az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
-[az-acr-repository-show-manifests]: /cli/azure/acr/repository#az_acr_repository_show_manifests
-[az-acr-repository-untag]: /cli/azure/acr/repository#az_acr_repository_untag
+[az-acr-repository-delete]: /cli/azure/acr/repository#az-acr-repository-delete
+[az-acr-repository-untag]: /cli/azure/acr/repository#az-acr-repository-untag
