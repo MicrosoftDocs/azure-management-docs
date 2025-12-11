@@ -137,31 +137,32 @@ This example assigns the `Container Registry Repository Reader` role to grant pu
    * **Operator**: `StringEqualsIgnoreCase`
    * **Value**: `<repository-name>` - the full name of the repository
 
-   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png" alt-text="Screenshot of building an expression for an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png" alt-text="Screenshot of building an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png":::
 
 1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition. This code can be used to perform the same role assignment with the same ABAC condition using the Azure CLI.
+
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression-code.png" alt-text="Screenshot of reviewing the code for an expression in an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression-code.png":::
+
 1. Select **Review + assign** to finalize the role assignment.
 
 After the role assignment is created, you can view, edit, or delete the role assignment in the **Access control (IAM)** page for your registry and selecting **Role assignments**.
 
 ### [Azure CLI](#tab/azure-cli)
 
-To add a role assignment with an ABAC condition scoped to a specific repository, use [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create).
-The [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create) command includes the following parameters related to ABAC conditions.
+To add a role assignment with an ABAC condition scoped to a specific repository, use [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
+This command includes the following parameters related to ABAC conditions:
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `role` | String | The name of ID of the role to assign, for example `Container Registry Repository Reader`. |
 | `scope` | String | The full resource ID of the registry. This parameter should be the registry resource ID (without the repository name), even for role assignments scoped to a specific repository, with the format `/subscriptions/{subscription-id}/resourceGroups/{resource-group-name}/providers/Microsoft.ContainerRegistry/registries/{registry-name}`. You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription. |
-| `assignee` | String | The email address or object ID of the Microsoft Entra identity to assign the role to. For example, you can specify `user@contoso.com` for a user assignee. You can also specify the object ID of the identity. |
+| `assignee` | String | The email address or object ID of the identity to assign the role to. For example, you can specify `user@contoso.com` for a user assignee. You can also specify the object ID of the identity. |
 | `assignee-object-id` | String | Use this parameter instead of '--assignee' to bypass Graph API invocation if there's insufficient privileges. This parameter only works with object IDs for users, groups, service principals, and managed identities. For managed identities, use the principal ID. For service principals, use the object ID and not the application ID. |
 | `description` | String | A description for the role assignment to help identify the purpose of the role assignment. This parameter is optional. |
 | `condition` | String | A code expression which defines the ABAC condition for the role assignment. |
 | `condition-version` | String | Version of the condition syntax. If `--condition` is specified without `--condition-version`, the version is set to the default value of `2.0`. |
 
-The ACR team recommends using the visual editor in the Azure portal role assignment experience to create the expression for the ABAC condition.
-
-Use the following expression for the ABAC condition to restrict the role assignment to the repository `nginx`:
+To create the expression for the ABAC condition, we recommend [using the visual editor in the Azure portal role assignment experience](/azure/container-registry/container-registry-rbac-abac-repository-permissions?tabs=azure-portal#assigning-microsoft-entra-abac-repository-permissions) to create the expression for the ABAC condition. For this example, use the following expression for the ABAC condition to restrict the role assignment to the repository `hello-world`:
 
 ```
 (
@@ -172,12 +173,12 @@ Use the following expression for the ABAC condition to restrict the role assignm
  )
  OR 
  (
-  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'nginx'
+  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'hello-world'
  )
 )
 ```
 
-You can use store this ABAC condition into a shell variable named `condition` for use in the `az role assignment create` command.
+You can store this ABAC condition into a shell variable named `condition` for use in the `az role assignment create` command:
 
 ```azurecli
 condition=$(cat <<'EOF' | tr -d '\n'
@@ -189,23 +190,20 @@ condition=$(cat <<'EOF' | tr -d '\n'
  )
  OR 
  (
-  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'nginx'
+  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'hello-world'
  )
 )
 EOF
 )
 ```
 
-You can inspect the `condition` variable to verify that it's correct.
-Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
+Inspect the `condition` variable carefully to verify that it's correct. Be sure to use double quotes (`"`) whenever you use the `condition` variable.
 
 ```azurecli
 echo "$condition"
 ```
 
-Before performing the role assignment, you must also query the registry resource ID for the `--scope` parameter.
-The `--scope` parameter should always be the registry resource ID (without the repository name), even for role assignments scoped to a specific repository.
-You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription.
+Before performing the role assignment, you must also query the registry resource ID for the `--scope` parameter. The `--scope` parameter should always be the registry resource ID (without the repository name), even for role assignments scoped to a specific repository. You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription.
 
 ```azurecli
 scope=$(az acr show --name <registry-name> --resource-group <resource-group> --query "id" -o tsv)
@@ -228,7 +226,7 @@ The following shows an example of the output:
 ```json
 {
     "canDelegate": null,
-    "condition": "( (  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/content/read'})  AND  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/metadata/read'}) ) OR  (  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'nginx' ))",
+    "condition": "( (  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/content/read'})  AND  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/metadata/read'}) ) OR  (  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringEqualsIgnoreCase 'hello-world' ))",
     "conditionVersion": "2.0",
     "description": "{description}",
     "id": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Authorization/roleAssignments/{roleAssignmentId}",
@@ -248,52 +246,33 @@ To update or delete the role assignment, you can use [`az role assignment update
 
 ## Scope role assignment to multiple repositories using repository prefix (wildcard)
 
-In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to multiple repositories with a common prefix (wildcard).
-By adding ABAC conditions, this role assignment lets the identity pull images, view tags, and read metadata only from the repositories with a common prefix, preventing access to other repositories in the registry.
+In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to multiple repositories with a common prefix (wildcard). By adding ABAC conditions, this role assignment lets the identity pull images, view tags, and read metadata only from the repositories with a common prefix, while preventing access to other repositories in the registry.
 
 ### [Azure portal](#tab/azure-portal)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, you must delete that role assignment (by navigating to the "Access control (IAM)" blade and selecting the "Role assignments" tab), before creating a new one with an ABAC condition scoped to a repository prefix.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment before you create a new one. You can do so in the **Access control (IAM)** by selecting **Role assignments**, selecting the role assignment, and then selecting **Delete**.
 
-Follow the same steps as in the [previous example](#scope-role-assignment-to-a-specific-repository) to perform a role assignment with ABAC conditions.
+1. Follow the same steps as in the [previous example](#scope-role-assignment-to-a-specific-repository) to perform a role assignment with ABAC conditions.
+1. In the step to add an expression for the ABAC condition, configure an expression for an ABAC condition to scope the role assignment to multiple repositories with a common prefix (wildcard). Configure the following options:
 
-In the step to add an expression for the ABAC condition, configure an expression for an ABAC condition to scope the role assignment to multiple repositories with a common prefix (wildcard).
-Configure the following options:
-  * Attribute source: `Request`
-  * Attribute: `Repository name`
-  * Operator: `StringStartsWithIgnoreCase`
-  * Value: `<repository-prefix>` - the prefix of the repositories, including the trailing slash `/`.
-    * For example, to grant permissions to all repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`, enter `backend/`.
-    * To grant permissions to all repositories with the prefix `frontend/js/`, such as `frontend/js/react` and `frontend/js/vue`, enter `frontend/js/`.
+   * **Attribute source**: `Request`
+   * **Attribute**: `Repository name`
+   * **Operator**: `StringStartsWithIgnoreCase`
+   * **Value**: `<repository-prefix>` - the prefix of the repositories, including the trailing slash `/`. For example, to grant permissions to all repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`, enter `backend/`. To grant permissions to all repositories with the prefix `frontend/js/`, such as `frontend/js/react` and `frontend/js/vue`, enter `frontend/js/`.
 
-> [!IMPORTANT]
-> The trailing slash `/` is required in the `Value` field for the expression of the ABAC condition.
-> If you don't include the trailing slash `/`, you may unintentionally grant permissions to other repositories that don't match the prefix.
-> For example, if you enter `backend` without the trailing slash `/`, the role assignment grants permissions to all repositories with the prefix `backend`, such as `backend/nginx`, `backend/redis`, `backend-infra/k8s`, `backend-backup/store`, `backend`, and `backendsvc/containers`.
+     > [!IMPORTANT]
+     > The trailing slash `/` is required in the `Value` field for the expression of the ABAC condition. > If you don't include the trailing slash `/`, you may unintentionally grant permissions to other repositories that don't match the prefix. For example, if you enter `backend` without the trailing slash `/`, the role assignment grants permissions to all repositories with the prefix `backend`, such as `backend/nginx`, `backend/redis`, `backend-infra/k8s`, `backend-backup/store`, `backend`, and `backendsvc/containers`.
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-11-expression-repository-prefix.png" alt-text="Screenshot of configuring expression to scope the ABAC condition to a repository prefix." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-11-expression-repository-prefix.png":::
-
-Click "Save" to save the ABAC condition.
-
-Review the role assignment ABAC condition.
-The review page includes a code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-12-finished-condition-repository-prefix.png" alt-text="Screenshot of reviewing ABAC condition to scope to a repository prefix." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-12-finished-condition-repository-prefix.png":::
-
-Perform the role assignment by clicking "Review + assign."
-
-Once the role assignment is created, you can view, edit, or delete the role assignment.
-Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
+1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition.
+1. Select **Review + assign** to finalize the role assignment.
 
 ### [Azure CLI](#tab/azure-cli)
 
-If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, you must delete that role assignment (using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)), before creating a new one with an ABAC condition scoped to a repository prefix.
+If you followed the previous example to assign the `Container Registry Repository Reader` role to a specific repository, delete that role assignment (using [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete)) before creating a new one with an ABAC condition scoped to a repository prefix.
 
-To add a role assignment with an ABAC condition scoped to multiple repositories under a prefix, use [az role assignment create](/cli/azure/role/assignment#az-role-assignment-create).
+To add a role assignment with an ABAC condition scoped to multiple repositories under a prefix, use [`az role assignment create`](/cli/azure/role/assignment#az-role-assignment-create).
 
-The ACR team recommends using the visual editor in the Azure portal role assignment experience to create the expression for the ABAC condition.
-
-Use the following expression for the ABAC condition to restrict the role assignment to the repository `nginx`:
+To create the expression for the ABAC condition, we recommend [using the visual editor in the Azure portal role assignment experience](/azure/container-registry/container-registry-rbac-abac-repository-permissions?tabs=azure-portal#assigning-microsoft-entra-abac-repository-permissions) to create the expression for the ABAC condition. For this example, use the following expression for the ABAC condition to restrict the role assignment to  repositories with the prefix `backend/`, such as `backend/nginx` and `backend/redis`:
 
 ```
 (
@@ -309,41 +288,7 @@ Use the following expression for the ABAC condition to restrict the role assignm
 )
 ```
 
-You can use store this ABAC condition into a shell variable named `condition` for use in the `az role assignment create` command.
-
-```azurecli
-condition=$(cat <<'EOF' | tr -d '\n'
-(
- (
-  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/content/read'})
-  AND
-  !(ActionMatches{'Microsoft.ContainerRegistry/registries/repositories/metadata/read'})
- )
- OR 
- (
-  @Request[Microsoft.ContainerRegistry/registries/repositories:name] StringStartsWithIgnoreCase 'backend/'
- )
-)
-EOF
-)
-```
-
-You can inspect the `condition` variable to verify that it's correct.
-Ensure that you use double quotes (`"`) whenever you use the `condition` variable.
-
-```azurecli
-echo "$condition"
-```
-
-Before performing the role assignment, you must also query the registry resource ID for the `--scope` parameter.
-The `--scope` parameter should always be the registry resource ID (without the repository name), even for role assignments scoped to a repository prefix.
-You can also specify the resource group or subscription scope to perform this role assignment across all registries in the resource group or subscription.
-
-```azurecli
-scope=$(az acr show --name <registry-name> --resource-group <resource-group> --query "id" -o tsv)
-```
-
-Finally, to perform the role assignment, run the following command:
+Follow the steps described in the previous section to store this ABAC condition into a shell variable named `condition` and querying the registry resoource ID for the `--scope` parameter. Then perform the role assignment by running the following command:
 
 ```azurecli
 az role assignment create \
@@ -373,8 +318,6 @@ The following shows an example of the output:
     "type": "Microsoft.Authorization/roleAssignments"
 }
 ```
-
-To update or delete the role assignment, you can use [`az role assignment update`](/cli/azure/role/assignment#az-role-assignment-update) or [`az role assignment delete`](/cli/azure/role/assignment#az-role-assignment-delete).
 
 ---
 
