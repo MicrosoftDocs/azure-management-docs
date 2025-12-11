@@ -15,7 +15,7 @@ Azure Container Registry (ACR) supports [Azure attribute-based access control (A
 
 Azure ABAC builds upon Azure role-based access control (Azure RBAC) by introducing repository-specific conditions in role assignments. With Azure ABAC, you can grant a security principal access to a repository resource based on attributes.
 
-This article describes how to enable Azure ABAC for repository permissions in your container registry, and how to assign role assignments with ABAC conditions to scope permissions to specific repositories.
+This article describes how to enable Azure ABAC for repository permissions in your container registry, the effects of changing the role assignment permissions mode, and how to configure role assignments with ABAC conditions.
 
 ## Configure role assignment permissions mode setting
 
@@ -37,7 +37,7 @@ Instead, in ABAC-enabled registries, use the `Container Registry Repository Read
 
 Additionally, privileged roles such as `Owner`, `Contributor`, and `Reader` will have different effects in an ABAC-enabled registry. In these repositories, these privileged roles grant only control plane permissions to create, update, and delete the registry itself, without granting data plane permissions to the repositories and images in the registry.
 
-For more information on these roles based on your scenario and registry role assignment permissions mode, see [Azure Container Registry  permissions and role assignments overview](container-registry-rbac-built-in-roles-overview.md). Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
+For more information on these roles, see [Azure Container Registry  permissions and role assignments overview](container-registry-rbac-built-in-roles-overview.md). Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
 
 ### Effect on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs
 
@@ -92,87 +92,57 @@ az acr update --name <registry-name> --resource-group <resource-group> --role-as
 
 ---
 
-## Assigning Microsoft Entra ABAC repository permissions
+## Configure Azure ABAC repository permissions
 
-You can use either the Azure portal or Azure CLI to assign Microsoft Entra ABAC conditions to scope role assignments to specific repositories.
+You can use either the Azure portal or Azure CLI to assign Azure ABAC conditions to scope role assignments to specific repositories.
+
 This section provides examples of how to add ABAC conditions for a specific repository, a repository prefix (wildcard), or multiple repository prefixes (multiple wildcards).
 
 ### ABAC-enabled built-in roles
 
-The following ACR built-in roles are ABAC-enabled roles.
-You can specify optional ABAC conditions to the following roles to optionally scope role assignments to specific repositories.
+The following ACR built-in roles are ABAC-enabled roles. You can specify optional ABAC conditions to the following roles to scope the role assignments to specific repositories.
 
 * `Container Registry Repository Reader` - ABAC-enabled role that grants permissions to **read** images, tags, and metadata within repositories in a registry.
 * `Container Registry Repository Writer` - ABAC-enabled role that grants permissions to **read, write, and update** images, tags, and metadata within repositories in a registry.
 * `Container Registry Repository Contributor` - ABAC-enabled role that grants permissions to **read, write, update, and delete** images, tags, and metadata within repositories in a registry.
 
-Take note that these roles **don't support catalog listing permissions to list repositories** in a registry.
-To list all repositories in a registry (without granting permissions to read repository content), you must additionally assign the `Container Registry Repository Catalog Lister` role.
-This separate role **does not support ABAC conditions** and will always have permissions to **list all repositories** in a registry.
+These roles don't support catalog listing permissions to list repositories in a registry.
+To list all repositories in a registry (without granting permissions to read repository content), you must also assign the `Container Registry Repository Catalog Lister` role. This separate role doesn't support ABAC conditions, so it always has permissions to list all repositories in a registry.
 
 > [!IMPORTANT]
-> **If you assign an ABAC-enabled role without ABAC conditions, the role assignment won't be scoped to repositories**.
-> This means that a role assignment without ABAC conditions will be treated as a registry-wide role assignment, granting permissions to all repositories in the registry.
-> **To scope a role assignment to specific repositories, you must include ABAC conditions when assigning an ABAC-enabled role**.
+> **If you assign an ABAC-enabled role without ABAC conditions, the role assignment won't be scoped to repositories**. This means that a role assignment without ABAC conditions will be treated as a registry-wide role assignment, granting permissions to all repositories in the registry. **To scope a role assignment to specific repositories, you must include ABAC conditions when assigning an ABAC-enabled role**.
 
-For more information on the role based on your scenario and registry role assignment permissions mode, see [scenarios for ACR built-in roles](container-registry-rbac-built-in-roles-overview.md).
-Alternatively, consult the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md) for an in-depth description of each role.
+For more information on these roles, see [Azure Container Registry  permissions and role assignments overview](container-registry-rbac-built-in-roles-overview.md) and the [ACR built-in roles reference](container-registry-rbac-built-in-roles-directory-reference.md).
 
-## Scope role assignment to a specific repository
+### Scope role assignment to a specific repository
 
-In this example, we assign the `Container Registry Repository Reader` role to grant pull permissions to a single repository.
-By adding ABAC conditions, this role assignment lets the identity pull images, view tags, and read metadata only from the specified repository, preventing access to other repositories in the registry.
+This example assigns the `Container Registry Repository Reader` role to grant pull permissions to a single repository. By adding ABAC conditions, the role assignment lets the identity pull images, view tags, and read metadata only from the specified repository, preventing access to other repositories in the registry.
 
 ### [Azure portal](#tab/azure-portal)
 
-Navigate to the registry's "Access control (IAM)" blade. Click "Add" and select "Add role assignment."
+1. Go to the regisry in the Azure portal. In the service menu, select **Access control (IAM)**.
+1. Select **Add**, then select **Add role assignment**.
+1. Search for `Container Registry Repository Reader`. Select that role, then select **Next**.
+1. In the **Members** tab, specify the identiy who should be assigned this role, then select **Next**.
+1. In the **Conditions** tab, select **Add condition**.
+1. Ensure **Visual** is selected for **Editor type**.
+1. Under **Condition #1**, select the actions (permissions) belonging to this role that you want to grant in this repository-scoped role assignment. In most cases, select all actions to limit all actions performed by identities with this role to the repository scope. Choose **Select** to save your changes.
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-03-add-role-assignment.png" alt-text="Screenshot of adding a role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-03-add-role-assignment.png":::
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-actions.png" alt-text="Screenshot of selecting actions and permissions to grant for an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-actions.png":::
 
-Select `Container Registry Repository Reader` as the role.
+1. Next, under **Build expression**, select **Add expression**. Configure the following options for the expression to scope the ABAC condition to a specific repository:
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-04-select-role.png" alt-text="Screenshot of selecting a role to assign." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-04-select-role.png":::
+   * **Attribute source**: `Request`
+   * **Attribute**: `Repository name`
+   * **Operator**: `StringEqualsIgnoreCase`
+   * **Value**: `<repository-name>` - the full name of the repository
 
-Continue by selecting the identity to assign the role to.
+   :::image type="content" source="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png" alt-text="Screenshot of building an expression for an Azure ABAC role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/abac-role-assignment-expression.png":::
 
-Afterwards, continue to the "Conditions" tab. Select the "Add condition" button to add a new ABAC condition to restrict the role assignment scope.
+1. Select **Save** to save the ABAC condition, then review the code expression of the ABAC condition. This code can be used to perform the same role assignment with the same ABAC condition using the Azure CLI.
+1. Select **Review + assign** to finalize the role assignment.
 
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-05-add-conditions-tab.png" alt-text="Screenshot of adding conditions for role assignment." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-05-add-conditions-tab.png":::
-
-Select the "Visual" editor option in the ABAC condition builder.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-06-add-condition-detail.png" alt-text="Screenshot of selecting Visual editor option." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-06-add-condition-detail.png":::
-
-Select the actions (permissions) to grant in this repository-scoped role assignment.
-For most use cases, select all actions (permissions) belonging to the role you selected earlier, ensuring that identities can only perform these actions within the repository scope.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-07-select-actions.png" alt-text="Screenshot of selecting actions and permissions to grant." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-07-select-actions.png":::
-
-Add an expression for the ABAC condition to restrict the role assignment to a specific repository.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-08-build-expression.png" alt-text="Screenshot of adding expression for the ABAC condition." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-08-build-expression.png":::
-
-Configure the following options for the expression to scope the ABAC condition to a specific repository:
-  * Attribute source: `Request`
-  * Attribute: `Repository name`
-  * Operator: `StringEqualsIgnoreCase`
-  * Value: `<repository-name>` - the full name of the repository.
-    * For example, if the full repository name is `nginx`, enter `nginx`.
-    * If the full repository name is `backend/nginx`, enter `backend/nginx`.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-09-expression-specific-repository.png" alt-text="Screenshot of configuring expression to scope the ABAC condition to a specific repository." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-09-expression-specific-repository.png":::
-
-Click "Save" to save the ABAC condition.
-
-Review the role assignment ABAC condition.
-The review page includes a code expression of the ABAC condition, which can be used to perform the same role assignment with the same ABAC condition using Azure CLI.
-
-:::image type="content" source="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-10-finished-condition-specific-repository.png" alt-text="Screenshot of reviewing ABAC condition to scope to a specific repository." lightbox="media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-10-finished-condition-specific-repository.png":::
-
-Perform the role assignment by clicking "Review + assign."
-
-Once the role assignment is created, you can view, edit, or delete the role assignment.
-Navigate to the registry's "Access control (IAM)" and select the "Role assignments" tab to view the list of existing role assignments that apply to the registry.
+After the role assignment is created, you can view, edit, or delete the role assignment in the **Access control (IAM)** page for your registry and selecting **Role assignments**.
 
 ### [Azure CLI](#tab/azure-cli)
 
