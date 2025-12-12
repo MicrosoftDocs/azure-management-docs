@@ -110,7 +110,7 @@ You can also view all conversations when using fullscreen mode.
 
 ## Add context to a conversation
 
-Share more context in your prompts by selecting the **Add* icon in the chat pane. Select one or more resources, subscriptions, service groups, or resource groups related to your request to help Azure Copilot provide more relevant responses.
+Share more context in your prompts by selecting the **Add** icon in the chat pane. Select one or more resources, subscriptions, service groups, or resource groups related to your request to help Azure Copilot provide more relevant responses.
 
 :::image type="content" source="media/capabilities/add-entities-icon.png" alt-text="Screenshot showing the option to add entities to an Azure Copilot chat.":::
 
