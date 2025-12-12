@@ -60,7 +60,7 @@ The HIMDS log file contains all log data from the HIMDS service. This data inclu
 
 ### azcmagent CLI log
 
-The azcmagent log file contains a history of commands run using the local “azcmagent” command line interface. This log provides the parameters used when connecting, disconnecting, or modifying the configuration of the Azure Connected Machine agent.
+The azcmagent log file contains a history of commands run using the local azcmagent command line interface. This log provides the parameters used when connecting, disconnecting, or modifying the configuration of the Azure Connected Machine agent.
 
 |OS  |Log location  |
 |---------|---------|
