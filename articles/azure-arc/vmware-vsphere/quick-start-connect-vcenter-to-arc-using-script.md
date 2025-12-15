@@ -5,7 +5,7 @@ ms.topic: quickstart
 ms.custom:
   - references_regions
   - build-2025
-ms.date: 04/08/2025
+ms.date: 12/12/2025
 ms.service: azure-arc
 ms.subservice: azure-arc-vmware-vsphere
 ms.author: v-gajeronika
@@ -88,15 +88,14 @@ You need a Windows or Linux machine that can access both your vCenter Server ins
 9. Provide a name for **Custom location**. This is the name that you'll see when you deploy virtual machines. Name it for the datacenter or the physical location of your datacenter. For example: *contoso-nyc-dc.*
 10. Leave the option **Use the same subscription and resource group as your resource bridge** selected.
 11. Provide a name for your vCenter Server instance in Azure. For example: **contoso-nyc-vcenter**.
-12. You can choose to **Enable Kubernetes Service on VMware [Preview]**. If you choose to do so, ensure you update the namespace of your custom location to "default" in the onboarding script: $customLocationNamespace = ("default".ToLower() -replace '[^a-z0-9-]', ''). For more information about this update, refer the [known issues from AKS on VMware (preview)](/azure/aks/hybrid/aks-vmware-known-issues)
-13. Select **Next: Tags >**.
-14. Assign Azure tags to your resources in **Value** under **Physical location tags**. You can add additional tags to help you organize your resources to facilitate administrative tasks using custom tags.
-15. Select **Next: Download and run script**.
-16. If your subscription isn't registered with all the required resource providers, a **Register** button will appear. Select the button before you proceed to the next step.
+12. Select **Next: Tags >**.
+13. Assign Azure tags to your resources in **Value** under **Physical location tags**. You can add additional tags to help you organize your resources to facilitate administrative tasks using custom tags.
+14. Select **Next: Download and run script**.
+15. If your subscription isn't registered with all the required resource providers, a **Register** button will appear. Select the button before you proceed to the next step.
 
     :::image type="content" source="media/quick-start-connect-vcenter-to-arc-using-script/register-arc-vmware-providers.png" alt-text="Screenshot that shows the button to register required resource providers during vCenter onboarding to Azure Arc.":::
 
-17. Based on the operating system of your workstation, download the PowerShell or Bash script and copy it to the [workstation](#prerequisites).
+16. Based on the operating system of your workstation, download the PowerShell or Bash script and copy it to the [workstation](#prerequisites).
 
 ## Run the script
 
@@ -139,7 +138,7 @@ A typical onboarding that uses the script takes 30 to 60 minutes. During the pro
 | --- | --- |
 | **Azure login** | When you're prompted, go to the [device sign-in page](https://www.microsoft.com/devicelogin), enter the authorization code shown in the terminal, and sign in to Azure. |
 | **vCenter FQDN/Address** | Enter the fully qualified domain name for the vCenter Server instance (or an IP address). For example: **10.160.0.1** or **nyc-vcenter.contoso.com**. |
-| **vCenter Username** | Enter the username for the vSphere account. The required permissions for the account are listed in the [prerequisites](#prerequisites). |
+| **vCenter Username** | Enter the username for the vSphere account. The required permissions for the account are listed in the [prerequisites](#prerequisites). You can scope the VMware vCenter resources that you would like to be discovered by Azure by customizing the scope of this account. |
 | **vCenter password** | Enter the password for the vSphere account. |
 | **Data center selection** | Select the name of the datacenter (as shown in the vSphere client) where the Azure Arc resource bridge VM should be deployed. |
 | **Network selection** | Select the name of the virtual network or segment to which the Azure Arc resource bridge VM must be connected. This network should allow the appliance to communicate with vCenter Server and the Azure endpoints (or internet). |
