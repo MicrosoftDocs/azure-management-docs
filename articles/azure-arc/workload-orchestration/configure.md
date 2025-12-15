@@ -37,7 +37,7 @@ This article describes how to use the workload orchestration portal to add confi
 
 ## Configure Hierarchy and Targets
 
-You can set common configuration parameters for a target or any hierarchy level (for example, country, factory, etc.) from the **Configure Hierarchy** tab. The following example demonstrates the process for a factory:
+You can set common configuration parameters for a target or any hierarchy level (for example, region, factory, etc.) from the **Configure Hierarchy** tab. The following example demonstrates the process for a factory:
 
 1. Select the name of the factory you want to configure and click on **Configure**. 
 

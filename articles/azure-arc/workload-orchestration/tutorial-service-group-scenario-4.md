@@ -306,7 +306,7 @@ All the instances of Line App, Factory App, City App, and Global Adapter are dep
 
 ## Prepare the solution templates
 
-To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
+To create the solution schema, configuration templates and solution template, you can use the sample files provided in **Service Groups/Scenario4_NApp1Dependency** within [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference.
 
 ### Solution template for Global Adapter
 
@@ -329,7 +329,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is Global Adapter Solution" \
-        --config-template-file ./ga-config-template.yaml \
+        --configuration-template-file ./ga-config-template.yaml \
         --specification "@ga-specs.json" \
         --version "$gaversion"
     ```
@@ -353,7 +353,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is Global Adapter Solution" `
-        --config-template-file .\ga-config-template.yaml `
+        --configuration-template-file .\ga-config-template.yaml `
         --specification "@ga-specs.json" `
         --version $gaversion
     ```
@@ -380,7 +380,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is City App Solution" \
-        --config-template-file ./capp-config-template.yaml \
+        --configuration-template-file ./capp-config-template.yaml \
         --specification "@capp-specs.json" \
         --version "$cappversion"
     ```
@@ -404,7 +404,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is City App Solution" `
-        --config-template-file .\rapp-config-template.yaml `
+        --configuration-template-file .\rapp-config-template.yaml `
         --specification "@capp-specs.json" `
         --version $cappversion
     ```
@@ -431,7 +431,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is Factory App Solution" \
-        --config-template-file ./fapp-config-template.yaml \
+        --configuration-template-file ./fapp-config-template.yaml \
         --specification "@fapp-specs.json" \
         --version "$fappversion"
     ```
@@ -455,7 +455,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is Factory App Solution" `
-        --config-template-file .\fapp-config-template.yaml `
+        --configuration-template-file .\fapp-config-template.yaml `
         --specification "@fapp-specs.json" `
         --version $fappversion
     ```
@@ -482,7 +482,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is Line App Solution" \
-        --config-template-file ./lapp-config-template.yaml \
+        --configuration-template-file ./lapp-config-template.yaml \
         --specification "@lapp-specs.json" \
         --version "$lappversion"
     ```
@@ -506,7 +506,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is Line App Solution" `
-        --config-template-file .\lapp-config-template.yaml `
+        --configuration-template-file .\lapp-config-template.yaml `
         --specification "@lapp-specs.json" `
         --version $lappversion
     ```
@@ -519,37 +519,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Set the configuration for Global Adapter solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$ganame" --target-name "$level1Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$ganame" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget" --solution
     ```
 
 1. Set the configuration for City App solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$cappname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$cappname" --target-name "$level2Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$cappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget" --solution
     ```
 
 1. Set the configuration for Factory App solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level2Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$fappname" --target-name "$level3Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$fappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget" --solution
     ```
 
 1. Set the configuration for Line App solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level2Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$lappname" --target-name "$level3Name"
-
-    az workload-orchestration configuration set -g "$rg" --solution-template-name "$lappname" --target-name "$lineTarget"
+    az workload-orchestration configuration set -g "$rg" --template-name "$lappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget" --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -557,36 +545,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Set the configuration for Global Adapter solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $ganame --target-name $level1Name
+    az workload-orchestration configuration set -g "$rg" --template-name "$ganame" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget" --solution
     ```
+
 1. Set the configuration for City App solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $cappname --target-name $level1Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $cappname --target-name $level2Name
-    ```    
+    az workload-orchestration configuration set -g "$rg" --template-name "$cappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget" --solution
+    ```
+
 1. Set the configuration for Factory App solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level1Name
-
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level2Name
-    
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $fappname --target-name $level3Name
+    az workload-orchestration configuration set -g "$rg" --template-name "$fappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget" --solution
     ```
 
 1. Set the configuration for Line App solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level1Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level2Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $lappname --target-name $level3Name
-    
-    az workload-orchestration configuration set -g $rg --solution-template-name $lappname --target-name $lineTarget
+    az workload-orchestration configuration set -g "$rg" --template-name "$lappname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget" --solution
     ```
 
 ***

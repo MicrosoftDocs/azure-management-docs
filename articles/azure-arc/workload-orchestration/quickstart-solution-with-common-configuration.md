@@ -57,6 +57,10 @@ configFile="common-config.yaml"
 # Enter config version name
 configVersion="1.0.0"
 
+# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
+#  SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
+#  LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
+
 # Create variables for application/solution
 # Enter name of application
 appName1="PriceDetector"
@@ -101,6 +105,10 @@ $configName = "common-config"
 $configFile = "common-config.yaml"
 # Enter config version name
 $configVersion = "1.0.0"
+
+# Edit "app-config-template.yaml" & add these 2 new configs. Change names in $config lookup as per your resources.
+#  SqlServerEndpoint: ${{$config(CommonConfig/version1,SqlServerEndpoint)}}
+#  LineHealthEndpoint: ${{$config(CommonConfig/version1,LineHealthEndpoint)}}
 
 # Create variables for application/solution
 # Enter name of application
@@ -209,6 +217,8 @@ az workload-orchestration config-template link -g "$rg" -n "$configName" --hiera
 az workload-orchestration config-template hierarchy show -g "$rg" -n "$configName"
 ```
 
+> [!NOTE]
+> You can also link a configuration template to a specific target instead of a hierarchy, by specifying the target ID as value for parameter --hierarchy-ids. 
 ***
 
 ### Create the solution
