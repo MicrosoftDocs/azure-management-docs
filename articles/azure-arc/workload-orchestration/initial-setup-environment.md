@@ -204,7 +204,7 @@ The following steps are required to set up the Azure resources for workload orch
     > [!NOTE]
     > To connect to an AKS cluster through the Azure portal, follow these steps:
     > 
-    > 1. Open the [Azure portal](https://ms.portal.azure.com) and log in with your Azure account.
+    > 1. Open the [Azure portal](https://portal.azure.com) and log in with your Azure account.
     > 1. In the search bar at the top of the portal, type **Kubernetes services** and select it from the search results to access the Kubernetes services page.
     > 1. From the list of Kubernetes services, select the **AKS cluster** you want to connect to.
     > 1. On the **Overview page** of your AKS cluster, click on the **Connect** button from the top menu.

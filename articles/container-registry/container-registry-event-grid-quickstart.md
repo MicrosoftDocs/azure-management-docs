@@ -245,12 +245,8 @@ In this quickstart, you deployed a container registry, built an image with ACR T
 [sample-app-02]: ./media/container-registry-event-grid-quickstart/sample-app-02-no-events.png
 [sample-app-03]: ./media/container-registry-event-grid-quickstart/sample-app-03-with-events.png
 
-<!-- LINKS - External -->
-[azure-account]: https://azure.microsoft.com/free/?WT.mc_id=A261C142F
-[sample-app]: https://github.com/dbarkol/azure-event-grid-viewer
-
 <!-- LINKS - Internal -->
 [az-acr-create]: /cli/azure/acr/repository
-[az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
-[az-eventgrid-event-subscription-create]: /cli/azure/eventgrid/event-subscription#az_eventgrid_event_subscription_create
-[az-group-create]: /cli/azure/group#az_group_create
+[az-acr-repository-delete]: /cli/azure/acr/repository#az-acr-repository-delete
+[az-eventgrid-event-subscription-create]: /cli/azure/eventgrid/event-subscription#az-eventgrid-event-subscription-create
+[az-group-create]: /cli/azure/group#az-group-create

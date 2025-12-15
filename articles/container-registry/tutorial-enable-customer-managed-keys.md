@@ -419,25 +419,14 @@ You can use a Resource Manager template to create a container registry and enabl
 
 Advance to the [next article](tutorial-rotate-revoke-customer-managed-keys.md) to walk through rotating customer-managed keys, updating key versions, and revoking a customer-managed key. 
 
-
-<!-- LINKS - external -->
-
 <!-- LINKS - internal -->
 
 [azure-cli]: /cli/azure/install-azure-cli
-[az-feature-register]: /cli/azure/feature#az_feature_register
-[az-feature-show]: /cli/azure/feature#az_feature_show
-[az-group-create]: /cli/azure/group#az_group_create
-[az-identity-create]: /cli/azure/identity#az_identity_create
-[az-feature-register]: /cli/azure/feature#az_feature_register
-[az-deployment-group-create]: /cli/azure/deployment/group#az_deployment_group_create
-[az-keyvault-create]: /cli/azure/keyvault#az_keyvault_create
-[az-keyvault-key-create]: /cli/azure/keyvault/key#az_keyvault_key_create
-[az-keyvault-key]: /cli/azure/keyvault/key
-[az-keyvault-set-policy]: /cli/azure/keyvault#az_keyvault_set_policy
-[az-keyvault-delete-policy]: /cli/azure/keyvault#az_keyvault_delete_policy
-[az-resource-show]: /cli/azure/resource#az_resource_show
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-show]: /cli/azure/acr#az_acr_show
-[az-acr-encryption-rotate-key]: /cli/azure/acr/encryption#az_acr_encryption_rotate_key
-[az-acr-encryption-show]: /cli/azure/acr/encryption#az_acr_encryption_show
+[az-group-create]: /cli/azure/group#az-group-create
+[az-identity-create]: /cli/azure/identity#az-identity-create
+[az-deployment-group-create]: /cli/azure/deployment/group#az-deployment-group-create
+[az-keyvault-create]: /cli/azure/keyvault#az-keyvault-create
+[az-keyvault-key-create]: /cli/azure/keyvault/key#az-keyvault-key-create
+[az-keyvault-set-policy]: /cli/azure/keyvault#az-keyvault-set-policy
+[az-acr-create]: /cli/azure/acr#az-acr-create
+[az-acr-encryption-show]: /cli/azure/acr/encryption#az-acr-encryption-show

@@ -24,6 +24,7 @@ In the command output, the `identity` section shows an identity of type `SystemA
   "location": "eastus",
 [...]
 ``` 
+
 Use the [az acr task show][az-acr-task-show] command to store the principalId in a variable, to use in later commands. Substitute the name of your task and your registry in the following command:
 
 ```azurecli
@@ -33,4 +34,4 @@ principalID=$(az acr task show \
 ```
 
 <!-- LINKS - Internal -->
-[az-acr-task-show]: /cli/azure/acr/task#az_acr_task_show
+[az-acr-task-show]: /cli/azure/acr/task#az-acr-task-show

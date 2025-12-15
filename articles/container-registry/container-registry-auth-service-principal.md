@@ -123,6 +123,6 @@ The service principal is created with one-year validity. You have options to ext
 [acr-scripts-psh]: https://github.com/Azure/azure-docs-powershell-samples/tree/master/container-registry
 
 <!-- LINKS - Internal -->
-[az-acr-login]: /cli/azure/acr#az_acr_login
-[az-login]: /cli/azure/reference-index#az_login
-[az-ad-sp-credential-reset]: /cli/azure/ad/sp/credential#az_ad_sp_credential_reset
+[az-acr-login]: /cli/azure/acr#az-acr-login
+[az-login]: /cli/azure/reference-index#az-login
+[az-ad-sp-credential-reset]: /cli/azure/ad/sp/credential#az-ad-sp-credential-reset

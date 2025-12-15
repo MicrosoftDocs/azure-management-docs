@@ -10,9 +10,9 @@ ms.service: azure-container-registry
 # Customer intent: As a developer, I want to set up a dedicated compute pool in my Azure Container Registry so that I can run tasks in a scalable and managed environment tailored to my workload needs.
 ---
 
-# Run an ACR task on a dedicated agent pool
+# Run an Azure Container Registry task on a dedicated agent pool
 
-Set up an Azure-managed VM pool (*agent pool*) to enable running your [Azure Container Registry tasks][acr-tasks] in a dedicated compute environment. After you've configured one or more pools in your registry, you can choose a pool to run a task in place of the service's default compute environment.
+Set up an Azure-managed VM pool (*agent pool*) to enable running your [Azure Container Registry tasks][acr-tasks] in a dedicated compute environment. After you configure one or more pools in your registry, you can choose a pool to run a task in place of the service's default compute environment.
 
 An agent pool provides:
 
@@ -31,7 +31,7 @@ This feature is available in the **Premium** container registry service tier. Fo
 
 - Task agent pools currently support Linux nodes. Windows nodes aren't currently supported.
 - Task agent pools are available in preview in the following regions: West US 2, South Central US, East US 2, East US, Central US, West Europe, North Europe, Canada Central, East Asia, Switzerland North, USGov Arizona, USGov Texas, and USGov Virginia.
-- For each registry, the default total vCPU (core) quota is 16 for all standard agent pools and is 0 for isolated agent pools. Open a [support request][open-support-ticket] for additional allocation.
+- For each registry, the default total vCPU (core) quota is 16 for all standard agent pools and is 0 for isolated agent pools. To increase your quota, open a [support request][open-support-ticket].
 
 ## Prerequisites
 
@@ -54,17 +54,17 @@ Agent pool tiers provide the following resources per instance in the pool.
 
 ### Set default registry (optional)
 
-To simplify Azure CLI commands that follow, set the default registry by running the [az config][az-config] command:
+To simplify Azure CLI commands that follow, set the default registry by running the [`az config`][az-config] command:
 
 ```azurecli
 az config set defaults.acr=<registryName>
 ```
 
-The following examples assume that you've set the default registry. If not, pass a `--registry <registryName>` parameter in each `az acr` command.
+The following examples assume that you already set the default registry. If not, pass a `--registry <registryName>` parameter in each `az acr` command.
 
 ### Create agent pool
 
-Create an agent pool by using the [az acr agentpool create][az-acr-agentpool-create] command. The following example creates a tier S2 pool (4 CPU/instance). By default, the pool contains 1 instance.
+Create an agent pool by using the [`az acr agentpool create`][az-acr-agentpool-create] command. The following example creates a tier S2 pool (4 CPU/instance). By default, the pool contains one instance.
 
 ```azurecli
 az acr agentpool create \
@@ -78,7 +78,7 @@ az acr agentpool create \
 
 ### Scale pool
 
-Scale the pool size up or down with the [az acr agentpool update][az-acr-agentpool-update] command. The following example scales the pool to 2 instances. You can scale to 0 instances.
+Scale the pool size up or down with the [`az acr agentpool update`][az-acr-agentpool-update] command. The following example scales the pool to two instances.
 
 ```azurecli
 az acr agentpool update \
@@ -102,7 +102,7 @@ Task agent pools require access to the following Azure services. The following f
 | Outbound  | TCP      | VirtualNetwork | Any         | AzureMonitor         | 443,12000 | Default | Port 12000 is a unique port used for diagnostics  |
 
 > [!NOTE]
-> If your tasks require additional resources from the public internet, add the corresponding rules. For example, additional rules are needed to run a docker build task that pulls the base images from Docker Hub, or restores a NuGet package.
+> If your tasks require other resources from the public internet, add the corresponding rules. For example, rules are needed to run a docker build task that pulls the base images from Docker Hub, or that restores a NuGet package.
 
 Customers basing their deployments with MCR can refer to [MCR/MAR firewall rules.](https://github.com/microsoft/containerregistry/blob/main/docs/client-firewall-rules.md)
 
@@ -111,34 +111,33 @@ Customers basing their deployments with MCR can refer to [MCR/MAR firewall rules
 If the standard Firewall/NSG (Network Security Group) rules are deemed too permissive, and more fine-grained control is required for outbound connections, consider the following approach:
 
 - Enable service endpoints on the agent pool subnet. This grants the agent pool access to its service dependencies while maintaining a secure network posture.
-- It's important to note that outbound Firewall/NSG rules are still necessary. These rules facilitate the Virtual Network's ability to switch the source IP from public to private, which is an additional step beyond enabling service endpoints.
- 
-More information on service endpoints is documented [here][az-vnet-svc-ep].
- 
-At minimum, the following service endpoints will be required
- 
+- It's important to note that outbound Firewall/NSG rules are still necessary. These rules facilitate the Virtual Network's ability to switch the source IP from public to private, which is another step beyond enabling service endpoints.
+
+For more information on service endpoints, see [Secure Azure services to virtual networks][az-vnet-svc-ep].
+
+At minimum, the following service endpoints are required:
+
 - Microsoft.AzureActiveDirectory
 - Microsoft.ContainerRegistry (only if the registry is not using a [private link](/azure/container-registry/container-registry-vnet))
 - Microsoft.EventHub
 - Microsoft.KeyVault
 - Microsoft.Storage (or the corresponding storage regions taking geo-replication into account)
- 
+
 > [!NOTE] 
-> Currently a service endpoint for Azure Monitor does not exist. If outbound traffic for Azure Monitor is not configured, the agent pool will be unable to emit diagnostic logs but may appear to still operate normally. In this case ACR will be unable to help fully troubleshoot any issues encountered so it is important that the network administrator take this into account when planning the network configuration.
- 
-Also, it is important to note that all of ACR Tasks have pre-cached images for some of the more common use cases. Tasks will only cache a single version at a time, meaning that if the full tagged image reference is used, then the build agent will attempt to pull the image. For example, a common use case is `cmd: mcr.microsoft.com/acr/acr-cli:<tag>`. However, the pre-cached version is frequently updated, which means the actual version on the machine will likely be higher. In this case, the network configuration must configure a route for outbound traffic to the target registry host which in the example above would be mcr.microsoft.com. The same rules would apply to any other external public registry (docker.io, quay.io, ghcr.io, etc.).
+> Currently a service endpoint for Azure Monitor does not exist. If outbound traffic for Azure Monitor is not configured, the agent pool can't emit diagnostic logs but may appear to still operate normally. In this case, ACR isn't able to fully troubleshoot any issues encountered, so it's important to take this into account when planning the network configuration.
+
+Also keep in mind that ACR Tasks have precached images for some of the more common use cases. Tasks only cache a single version at a time, meaning that if the full tagged image reference is used, then the build agent attempts to pull the image. For example, a common use case is `cmd: mcr.microsoft.com/acr/acr-cli:<tag>`. However, the precached version is frequently updated, which means the actual version on the machine will likely be higher. In this case, the network configuration must configure a route for outbound traffic to the target registry host, which in the previous example would be `mcr.microsoft.com`. The same rules would apply to any other external public registry (docker.io, quay.io, ghcr.io, etc.).
 
 #### Using custom DNS
 
-If the subnet has a custom DNS server configured, this will be inherited by the build agent during runtime. 
+If the subnet has a custom DNS server configured, this configuration is inherited by the build agent during runtime.
 
 > [!IMPORTANT]
-> The IP range used by the custom DNS endpoint must not conflict with docker's default range of `172.17.0.0/16`
->
+> The IP range used by the custom DNS endpoint must not conflict with docker's default range of `172.17.0.0/16`.
 
 ### Create pool in VNet
 
-The following example creates an agent pool in the *mysubnet* subnet of network *myvnet*:
+The following example creates an agent pool in the `mysubnet` subnet of network `myvnet`:
 
 ```azurecli
 # Get the subnet ID
@@ -160,12 +159,12 @@ az acr agentpool create \
 The following examples show how to specify an agent pool when queuing a task.
 
 > [!NOTE]
-> To use an agent pool in an ACR task, ensure that the pool contains at least 1 instance.
+> To use an agent pool in an ACR task, ensure that the pool contains at least one instance.
 >
 
 ### Quick task
 
-Queue a quick task on the agent pool by using the [az acr build][az-acr-build] command and pass the `--agent-pool` parameter:
+Queue a quick task on the agent pool by using the [`az acr build`][az-acr-build] command and pass the `--agent-pool` parameter:
 
 ```azurecli
 az acr build \
@@ -178,7 +177,7 @@ az acr build \
 
 ### Automatically triggered task
 
-For example, create a scheduled task on the agent pool with [az acr task create][az-acr-task-create], passing the `--agent-pool` parameter.
+For example, create a scheduled task on the agent pool with [`az acr task create`][az-acr-task-create], passing the `--agent-pool` parameter.
 
 ```azurecli
 az acr task create \
@@ -192,7 +191,7 @@ az acr task create \
     --commit-trigger-enabled false
 ```
 
-To verify task setup, run [az acr task run][az-acr-task-run]:
+To verify task setup, run [`az acr task run`][az-acr-task-run]:
 
 ```azurecli
 az acr task run \
@@ -202,7 +201,7 @@ az acr task run \
 
 ### Query pool status
 
-To find the number of runs currently scheduled on the agent pool, run [az acr agentpool show][az-acr-agentpool-show].
+To find the number of runs currently scheduled on the agent pool, run [`az acr agentpool show`][az-acr-agentpool-show].
 
 ```azurecli
 az acr agentpool show \
@@ -215,19 +214,17 @@ az acr agentpool show \
 
 For more examples of container image builds and maintenance in the cloud, check out the [ACR Tasks tutorial series](container-registry-tutorial-quick-task.md).
 
-
-
-[acr-tasks]:           container-registry-tasks-overview.md
-[acr-tiers]:           container-registry-skus.md
-[azure-cli]:           /cli/azure/install-azure-cli
+[acr-tasks]: container-registry-tasks-overview.md
+[acr-tiers]: container-registry-skus.md
+[azure-cli]: /cli/azure/install-azure-cli
 [open-support-ticket]: https://aka.ms/acr/support/create-ticket
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
-[az-config]: /cli/azure#az_config
-[az-acr-agentpool-create]: /cli/azure/acr/agentpool#az_acr_agentpool_create
-[az-acr-agentpool-update]: /cli/azure/acr/agentpool#az_acr_agentpool_update
-[az-acr-agentpool-show]: /cli/azure/acr/agentpool#az_acr_agentpool_show
-[az-acr-build]: /cli/azure/acr#az_acr_build
-[az-acr-task-create]: /cli/azure/acr/task#az_acr_task_create
-[az-acr-task-run]: /cli/azure/acr/task#az_acr_task_run
+[az-config]: /cli/azure#az-config
+[az-acr-agentpool-create]: /cli/azure/acr/agentpool#az-acr-agentpool-create
+[az-acr-agentpool-update]: /cli/azure/acr/agentpool#az-acr-agentpool-update
+[az-acr-agentpool-show]: /cli/azure/acr/agentpool#az-acr-agentpool-show
+[az-acr-build]: /cli/azure/acr#az-acr-build
+[az-acr-task-create]: /cli/azure/acr/task#az-acr-task-create
+[az-acr-task-run]: /cli/azure/acr/task#az-acr-task-run
 [create-reg-cli]: container-registry-get-started-azure-cli.md
 [az-vnet-svc-ep]: /azure/virtual-network/virtual-network-service-endpoints-overview#secure-azure-services-to-virtual-networks

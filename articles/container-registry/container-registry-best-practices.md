@@ -112,12 +112,9 @@ Azure Container Registry is available in several tiers (also called SKUs) that p
 For recommendations to improve the security posture of your container registries, see [Azure Security Baseline for Azure Container Registry](security-baseline.md).
 
 <!-- IMAGES -->
-[delete-repository-portal]: ./media/container-registry-best-practices/delete-repository-portal.png
 [registry-overview-quotas]: ./media/container-registry-best-practices/registry-overview-quotas.png
 
 <!-- LINKS - Internal -->
-[az-acr-repository-delete]: /cli/azure/acr/repository#az_acr_repository_delete
-[az-acr-show-usage]: /cli/azure/acr#az_acr_show_usage
-[azure-cli]: /cli/azure
+[az-acr-show-usage]: /cli/azure/acr#az-acr-show-usage
 [container-registry-geo-replication]: container-registry-geo-replication.md
 [container-registry-skus]: container-registry-skus.md

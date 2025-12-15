@@ -187,5 +187,5 @@ Check out the three-part tutorial series, [Geo-replication in Azure Container Re
 > [!div class="nextstepaction"]
 > [Geo-replication in Azure Container Registry](container-registry-tutorial-prepare-registry.md)
 
-[az-acr-replication-list]: /cli/azure/acr/replication#az_acr_replication_list
-[az-acr-replication-update]: /cli/azure/acr/replication#az_acr_replication_update
+[az-acr-replication-list]: /cli/azure/acr/replication#az-acr-replication-list
+[az-acr-replication-update]: /cli/azure/acr/replication#az-acr-replication-update

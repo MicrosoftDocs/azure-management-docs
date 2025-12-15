@@ -192,12 +192,7 @@ Continue to the connected registry deployment guides to learn how to deploy and 
 > [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
 <!-- LINKS - internal -->
-[az-acr-connected-registry-create]: /cli/azure/acr/connected-registry#az_acr_connected_registry_create
-[az-acr-connected-registry-list]: /cli/azure/acr/connected-registry#az_acr_connected_registry_list
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-update]: /cli/azure/acr#az_acr_update
-[az-acr-import]: /cli/azure/acr#az_acr_import
-[az-group-create]: /cli/azure/group#az_group_create
-[container-registry-intro]: container-registry-intro.md
-[container-registry-skus]: container-registry-skus.md
+[az-acr-connected-registry-create]: /cli/azure/acr/connected-registry#az-acr-connected-registry-create
+[az-acr-connected-registry-list]: /cli/azure/acr/connected-registry#az-acr-connected-registry-list
+[az-acr-update]: /cli/azure/acr#az-acr-update
 [quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
