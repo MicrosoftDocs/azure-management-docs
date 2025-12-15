@@ -28,7 +28,7 @@ The following providers and their corresponding Kubernetes distributions success
 
 | Provider name | Distribution name | Validated versions|
 | ------------ | ----------------- | -------------------- |
-| SUSE Rancher | [Rancher Kubernetes Engine (RKE1/RKE2)](https://www.rancher.com/index.php/products/rke) | [v1.33.3-rc2+rke2r1](https://github.com/rancher/rke2/releases)<br>v1.32.7-rc2+rke2r1<br>v1.31.11-rc2+rke2r1 |
+| SUSE Rancher | [Rancher Kubernetes Engine (RKE1/RKE2)](https://www.rancher.com/index.php/products/rke)/(https://docs.rke2.io/) | [v1.33.3-rc2+rke2r1](https://github.com/rancher/rke2/releases)<br>v1.32.7-rc2+rke2r1<br>v1.31.11-rc2+rke2r1 |
 | SUSE Rancher      | [K3s](https://rancher.com/products/k3s/) | [K3S version v1.33.2+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.33.2%2Bk3s1)<br>[K3S version v1.32.3+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.32.3%2Bk3s1)<br> [K3S version v1.31.5+k3s1](https://github.com/k3s-io/k3s/releases/tag/v1.31.5%2Bk3s1) |
 | Red Hat       | [OpenShift Container Platform](https://www.openshift.com/products/container-platform) | [4.19.4](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/release_notes/ocp-4-19-release-notes), [4.18.9](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/release_notes/ocp-4-18-release-notes),  [4.17.5](https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/release_notes/ocp-4-17-release-notes),  |
 | VMware       | [Tanzu Kubernetes Grid/vSphere Kubernetes Service](https://tanzu.vmware.com/kubernetes-grid) | VKS 3.3, TKr v1.32.0+vmware.6-fips, Upstream K8s 1.32<br>VKS 3.3, TKr v1.31.4+vmware.1-fips, Upstream K8s 1.31 |
