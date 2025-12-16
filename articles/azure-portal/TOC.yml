@@ -55,10 +55,10 @@
     href: supportability/how-to-create-azure-support-request.md
   - name: Manage an Azure support request
     href: supportability/how-to-manage-azure-support-request.md
-  - name: Capture a browser trace for troubleshooting
-    href: capture-browser-trace.md
   - name: Get help through Priority Community Support
     href: supportability/priority-community-support.md
+  - name: Capture a browser trace for troubleshooting
+    href: capture-browser-trace.md
 - name: Azure mobile app
   items:
   - name: Overview
