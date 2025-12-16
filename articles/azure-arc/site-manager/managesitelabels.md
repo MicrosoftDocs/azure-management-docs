@@ -3,14 +3,14 @@
 # For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
-title:       # Add a title for the browser tab
-description: # Add a meaningful description for search results
+title: 'Create and manage labels for an Arc site '
+description: 'Create and manage labels for an Arc site '
 author:      dawagle # GitHub alias
 ms.author:   dawagle # Microsoft alias
-ms.service:  # Add the ms.service or ms.prod value
-# ms.prod:   # To use ms.prod, uncomment it and delete ms.service
-ms.topic:    # Add the ms.topic value
+ms.service: azure-arc
+ms.topic: how-to
 ms.date:     12/16/2025
+ms.subservice: azure-arc-site-manager
 ---
 
 # Create and manage labels for an Arc site
