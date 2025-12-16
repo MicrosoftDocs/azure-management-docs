@@ -160,7 +160,6 @@
       "feedback_product_url": {
         "articles/azure-arc/**/*.md": "https://feedback.azure.com/d365community/forum/5c778dec-0625-ec11-b6e6-000d3a4f0858",
         "articles/azure-portal/**/*.md": "https://feedback.azure.com/d365community/forum/a222eda7-2425-ec11-b6e6-000d3a4f09d0",
-        "articles/azure-portal/supportability/**/*.md": "https://feedback.azure.com/d365community/forum/a222eda7-2425-ec11-b6e6-000d3a4f09d0",
         "articles/container-registry/**/*.md": "https://feedback.azure.com/d365community/forum/180a533d-0d25-ec11-b6e6-000d3a4f0858",
         "articles/lighthouse/**/*.md": "https://feedback.azure.com/d365community/forum/cd8dfdcb-f824-ec11-b6e6-000d3a4f0da0"
       },
@@ -190,8 +189,6 @@
         "articles/copilot/**/*.yml": "rayoflores",      
         "articles/azure-portal/**/*.md": "rayoflores",
         "articles/azure-portal/**/*.yml": "rayoflores",
-        "articles/azure-portal/supportability/**/*.md": "rayoflores",
-        "articles/azure-portal/supportability/**/*.yml": "rayoflores",
         "articles/container-registry/**/*.md": "rayoflores",
         "articles/container-registry/**/*.yml": "rayoflores",
         "articles/lighthouse/**/*.md": "rayoflores",
@@ -212,8 +209,6 @@
         "articles/copilot/**/*.yml": "jenhayes",      
         "articles/azure-portal/**/*.md": "jenhayes",
         "articles/azure-portal/**/*.yml": "jenhayes",
-        "articles/azure-portal/supportability/**/*.md": "jenhayes",
-        "articles/azure-portal/supportability/**/*.yml": "jenhayes",
         "articles/container-registry/**/*.md": "rayoflores",
         "articles/container-registry/**/*.yml": "rayoflores",
         "articles/lighthouse/**/*.md": "jenhayes",
@@ -242,7 +237,6 @@
       "ms.service": {
         "articles/azure-arc/**/*.md": "azure-arc",
         "articles/azure-portal/**/*.md": "azure-portal",
-        "articles/azure-portal/supportability/**/*.md": "azure",
         "articles/container-registry/**/*.md": "azure-container-registry",
         "articles/lighthouse/**/*.md": "azure-lighthouse",
         "articles/quotas/**/*.md": "azure-quotas"
@@ -250,7 +244,6 @@
       "ms.subservice": {
         "articles/azure-arc/kubernetes/**/*.md": "azure-arc-kubernetes",
         "articles/azure-arc/servers/**/*.md": "azure-arc-servers",
-        "articles/azure-portal/supportability/**/*.md": "azure-supportability",
         "articles/azure-arc/container-storage/**/*.md": "azure-arc-container-storage"
       },
       "searchScope": {
@@ -270,16 +263,11 @@
           "Azure",
           "Azure portal"
         ],
-        "articles/azure-portal/supportability/**/*.md": [
-          "Azure",
-          "Azure supportability"
-        ]
       },
       "titleSuffix": {
         "articles/azure-arc/**/*.md": "Azure Arc",
         "articles/azure-portal/**/*.md": "Azure portal",
         "articles/azure-portal/**/*.yml": "Azure portal",
-        "articles/azure-portal/supportability/**/*.md": "Azure supportability",
         "articles/container-registry/**/*.md": "Azure Container Registry",
         "articles/lighthouse/**/*.md": "Azure Lighthouse",
         "articles/quotas/**/*.md": "Azure Quotas",
