@@ -62,8 +62,6 @@ To add tiles to a dashboard by using the Tile Gallery, follow these steps.
 
 1. To save your changes, select **Save**. You can also preview the changes without saving by selecting **Preview**. This preview mode also allows you to see how [filters](#apply-dashboard-filters) affect your tiles. From the preview screen, you can select **Save** to keep the changes, **Cancel** to remove them, or **Edit** to go back to the editing options and make further changes.
 
-   :::image type="content" source="media/azure-portal-dashboards/dashboard-save.png" alt-text="Screenshot of the Save and Preview options for an edited dashboard.":::
-
 ### Resize or rearrange tiles
 
 To change the size of a tile, or to rearrange the tiles on a dashboard, follow these steps:
@@ -82,7 +80,7 @@ To change the size of a tile, or to rearrange the tiles on a dashboard, follow t
 
 Another way to add tiles to your dashboard is directly from a resource page.
 
-Many resource pages include a pin icon in the page header, which means that you can pin a tile representing the source page. In some cases, a pin icon may also appear by specific content within a page, which means you can pin a tile for that specific content, rather than the entire page.
+Many resources and services include a pin icon in the page header, oroviding an easy way to pin a tile representing that resource or service to a dashboard.
 
 :::image type="content" source="media/azure-portal-dashboards/dashboard-pin-icon.png" alt-text="Screenshot of page command bar with pin icon.":::
 
@@ -93,8 +91,6 @@ Select this icon to pin the tile to an existing private or shared dashboard. You
 ### Copy a tile to a new dashboard
 
 If you want to reuse a tile on a different dashboard, you can copy it from one dashboard to another. To do so, select the context menu in the upper right corner and then select **Copy**.
-
-:::image type="content" source="media/azure-portal-dashboards/copy-dashboard.png" alt-text="Screenshot showing how to copy a tile in the Azure portal.":::
 
 You can then select whether to copy the tile to a different private or shared dashboard, or create a copy of the tile within the dashboard you're already working in. You can also create a new dashboard that includes a copy of the tile by selecting **Create new**.
 
@@ -110,13 +106,11 @@ Some tiles might require more configuration to show the information you want. Fo
 
 ### Change the title and subtitle of a tile
 
-Some tiles allow you to edit their title and/or subtitle. To do so, select **Configure tile settings** from the context menu.
+Some tiles allow you to edit their title and/or subtitle. To update the title or subtitle, select **Configure tile settings** from the context menu.
 
 :::image type="content" source="media/azure-portal-dashboards/dashboard-tile-rename.png" alt-text="Screenshot showing the Configure tile settings option.":::
 
 Make your changes, then select **Apply**.
-
-:::image type="content" source="media/azure-portal-dashboards/dashboard-title-subtitle.png" alt-text="Screenshot showing how to change the title and subtitle for a tile.":::
 
 ### Complete tile configuration
 
@@ -126,7 +120,7 @@ To customize the tile:
 
 1. If needed, select **Save** or **Cancel** near the top of the page to exit edit mode.
 
-1. Select the banner, then do the required setup.
+1. Select the banner, then make selections to customize the tile.
 
     :::image type="content" source="media/azure-portal-dashboards/dashboard-configure-tile.png" alt-text="Screenshot of a tile that requires configuration.":::
 
@@ -174,7 +168,7 @@ To use an existing dashboard as a template for a new dashboard, follow these ste
 
 1. A duplicate copy of the dashboard, named **Clone of (your dashboard name)**, opens in edit mode. You can then rename and customize the new dashboard.
 
-## Publish and share a dashboard
+## Use shared dashboards
 
 When you create a dashboard, it's private by default, which means you're the only one who can see it. To make dashboards available to others, you can publish and share them. For more information, see [Share Azure dashboards by using Azure role-based access control](azure-portal-dashboard-share-access.md).
 
@@ -207,8 +201,6 @@ To permanently delete a private or shared dashboard, follow these steps.
 1. Select ![delete icon](./media/azure-portal-dashboards/dashboard-delete-icon.png) **Delete** from the page header.
 
 1. For a private dashboard, select **OK** on the confirmation dialog to remove the dashboard. For a shared dashboard, on the confirmation dialog, select the checkbox to confirm that the published dashboard will no longer be viewable by others. Then, select **OK**.
-
-    :::image type="content" source="media/azure-portal-dashboards/dashboard-delete-dash.png" alt-text="Screenshot of delete confirmation.":::
 
 ## Next steps
 
