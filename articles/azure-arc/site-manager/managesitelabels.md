@@ -41,7 +41,7 @@ A site created for the associated resource group or subscription or service grou
 
 1. Any prior label name: value pair can be deleted to manage the list of labels for selected sites.  
 
-![sitelabel](media/managesitelabels/sitelabel.png)
+![screenshot to create site label](media/managesitelabels/sitelabel.png)
 
 ## Filter through labels 
 
@@ -53,7 +53,7 @@ A site created for the associated resource group or subscription or service grou
 
 1. The list of sites in this page can be filtered using the "Add Filter". The label name can be mentioned under filter field while the value field allows a choice of options from the list of label values detected for that label name. 
 
-![sitelabelfiltering](media/managesitelabels/sitelabelfiltering.png)
+![screebshot to show site list filtering using labels](media/managesitelabels/sitelabelfiltering.png)
 
 ## Define a site label strategy  
 
