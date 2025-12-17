@@ -26,8 +26,6 @@ Each lesson card shows information about the module, including the title, averag
 
 To see more of the most popular lessons, select **More** in the top right. The current top 10 most popular lessons will be shown.
 
-:::image type="content" source="media/learn-training/most-popular-more.png" alt-text="Screenshot showing the top 10 most popular lessons in the Azure mobile app.":::
-
 To start a lesson, just select it to begin. Remember to sign in to your Microsoft account to save your progress!
 
 ## Learn Links
@@ -44,8 +42,6 @@ Select any of these links to explore their content.
 ## Learn more about Azure AI
 
 The **Learn more about Azure AI** section showcases a few of the most popular learning modules focused on Azure AI. The content you see here will vary, based on popularity and new releases. Select any module to open and begin it. As noted earlier, be sure to sign in with your Microsoft account if you want to save your progress.
-
-:::image type="content" source="media/learn-training/learn-azure-ai.png" alt-text="Screenshot of the Learn Links and Learn more about Azure AI sections in the Azure mobile app.":::
 
 ## Next steps
 

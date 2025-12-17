@@ -63,8 +63,6 @@ Use the following steps to:
     ```
 
 1. Select **Consent on behalf of your organization** and then **Accept**. 
-    
-    :::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-consent.png" alt-text="Grant tenant access to application":::
 
 ### Step 3: Grant service principal permission to pull from registry
 
