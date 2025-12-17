@@ -138,18 +138,16 @@ Dedicated data endpoints is an optional feature of the **Premium** container reg
 
 You can enable dedicated data endpoints using the Azure portal or the Azure CLI. The data endpoints follow a regional pattern, `<registry-name>.<region>.data.azurecr.io`. In a geo-replicated registry, enabling data endpoints enables endpoints in all replica regions.
 
-### Portal
+### Azure portal
 
-To enable data endpoints using the portal:
+To enable data endpoints using the Azure portal:
 
 1. Navigate to your container registry.
 1. Select **Networking** > **Public access**.
-1. Select the **Enable dedicated data endpoint** checkbox.
+1. Select the **Use dedicated data endpoint** checkbox.
 1. Select **Save**.
 
-The data endpoint or endpoints appear in the portal.
-
-:::image type="content" source="media/container-registry-firewall-access-rules/dedicated-data-endpoints-portal.png" alt-text="Dedicated data endpoints in portal":::
+You now see the data endpoints in the Azure portal.
 
 ### Azure CLI
 
