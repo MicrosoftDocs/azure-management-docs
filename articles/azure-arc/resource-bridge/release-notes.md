@@ -10,11 +10,34 @@ description: "Learn about the latest releases of Azure Arc resource bridge."
 
 To stay up to date with the most recent developments, this article provides you with information about recent releases of the Arc resource bridge Azure CLI extension, `az arcappliance`.  
 
-The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, **whichever is more recent**. Even if a version is within the version support policy (n-3), the appliance should be upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+The [version support policy](overview.md#supported-versions) for Arc resource bridge generally covers version(s) released within the last 6 months or within the latest n-3 versions, **whichever is more recent**. Even if a version is within the version support policy (n-3), the appliance should be manually upgraded at least once every six months. This is to ensure the internal components and certificates are refreshed. You can check your appliance version and the version release date for an estimate on the last upgrade date. When a patch version is released, the upgrade path might skip the minor version and directly upgrade to the patch version. In such cases, the supported versions (n-3) exclude the skipped minor version and include the patch version instead.
+
+
+## Version 1.7.0 (Dec 2025)
+
+- Support version: n
+- Appliance: 1.7.0
+- CLI extension: 1.7.0
+- Kubernetes: 1.32.6
+- Mariner: 3.0.20251030
+
+### Arc resource bridge platform
+
+- Update the network proxy settings with new command: `az arcappliance configuration proxy update`. This command requires a resource bridge deployed or upgraded to 1.7.0. This command is only supported for Azure Local and VMware. If an ARB upgrade fails due to incorrect or out-of-date network proxy settings, you can run a proxy update to fix the values. If a proxy update operation fails, you must retry and have it succeed before performing any other operation, including retrying upgrade.
+- New CLI command to show the local resource bridge configuration: `az arcappliance configuration show`. For ARM configuration, continue to use: `az arcappliance show`.
+- Configuration setting overlaps with Service CIDR (10.96.0.0/12) will now be blocked from deployment.
+- Return error for VMware credentials that contain an invalid character (single quote)
+- New user management key is downloaded with the `az arcappliance get-credentials` CLI command. This key is used for network proxy settings update. This key is only downloaded for resource bridges on version 1.7.0.
+- The `--config-file` argument is now optional for the `az arcappliance create` command. If it is not provided, please pass these other arguments: `--name ,--resource-group, --location`.
+- The `--config-file` argument is now optional for the `az arcappliance delete` command. If it is not provided, please pass these other arguments based on private cloud type:
+Azure Local: `--name, --resource-group` 
+VMware: `--name, --resource-group, --datacenter, --datastore, --folder` 
+SCVMM: `--name, --resource-group`
+- The `--config-file` argument is now optional for the `az arcappliance upgrade` command. If it is not provided, please pass these other arguments: `--name, --resource-group, --kubeconfig`. The kubeconfig can be retrieved using the CLI command `az arcappliance get-credentials`. This is only supported for Azure Local and VMware.
 
 ## Version 1.6.0 (Sept 2025)
 
-- Support version: n
+- Support version: n-1
 - Appliance: 1.6.0
 - CLI extension: 1.6.0
 - Kubernetes: 1.31.5
@@ -28,12 +51,11 @@ The [version support policy](overview.md#supported-versions) for Arc resource br
 - KVAIO cleanup and optimizations for cloud login or RBAC failures
 - Improvements to Validate, CreateConfig, and error messages
 - Pass network profile even when proxy is not enabled
-- Bump Kubernetes SDK to 32.0.1
-
+- Bump Kubernetes SDK to 1.32.0.1
 
 ## Version 1.5.0 (June 2025)
 
-- Support version: n-1
+- Support version: n-2
 - Appliance: 1.5.0
 - CLI extension: 1.5.0
 - Kubernetes: 1.30.4
@@ -56,7 +78,6 @@ The [version support policy](overview.md#supported-versions) for Arc resource br
 ## Version 1.4.1 (February 2025)
 
 - Support version: past 6 months, unsupported
-
 - Appliance: 1.4.0
 - CLI extension: 1.4.0
 - Kubernetes: 1.30.4
