@@ -1,5 +1,5 @@
 ---
-title: Connect machines at scale using Ansible Playbooks
+title: Connect machines to Azure Arc at scale using Ansible Playbooks
 description: In this article, you learn how to connect machines to Azure using Azure Arc-enabled servers using Ansible playbooks.
 ms.date: 12/30/2024
 ms.topic: how-to
@@ -7,13 +7,20 @@ ms.custom: template-how-to, devx-track-ansible
 # Customer intent: "As a cloud administrator, I want to onboard multiple machines to Azure Arc using Ansible playbooks, so that I can efficiently manage and monitor my hybrid infrastructure at scale."
 ---
 
-# Connect machines at scale using Ansible playbooks
+# Connect machines to Azure Arc at scale using Ansible playbooks
 
 You can onboard Ansible-managed nodes to Azure Arc-enabled servers at scale using Ansible playbooks. To do so, download, modify, and then run the appropriate playbook.
 
-Before you get started, be sure to review the [prerequisites](prerequisites.md) and verify that your subscription and resources meet the requirements. For information about supported regions and other related considerations, see [supported Azure regions](overview.md#supported-regions). Also review our [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as our management and monitoring recommendations.
+## Prerequisites
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+Before you get started, ensure you have the following:
+
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- Review the [general prerequisites](prerequisites.md) and verify that your subscription and resources meet the requirements.
+- Familiarity with [supported Azure regions](overview.md#supported-regions) and other related considerations.
+- Review the [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as management and monitoring recommendations.
+- An Ansible control node with Ansible installed and configured to manage your target machines.
+- Network connectivity from the Ansible control node to both the target machines and Azure endpoints.
 
 [!INCLUDE [sql-server-auto-onboard](includes/sql-server-auto-onboard.md)]
 
@@ -23,14 +30,23 @@ Before you can run the script to connect your machines, you'll need to:
 
 1. Follow the steps to [create a service principal for onboarding at scale](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
 
-    * Assign the Azure Connected Machine Onboarding role to your service principal and limit the scope of the role to the target Azure subscription or resource group.
+    * Assign the Azure Connected Machine Onboarding role to your service principal and limit the scope of the role to the target Azure subscription or resource group.
     * Make a note of the Service Principal Secret and Service Principal Client ID; you'll need these values later.
 
-1. Collect details on the Tenant ID, Subscription ID, Resource Group, and Region where the Azure Arc-enabled resource will onboard.
+1. Collect the details in the following table about where the Azure Arc-enabled resource will onboard. You'll use this information to update the playbook in the next sections. 
+
+| Parameter | Description | Variable name in playbook |
+|-----------|-------------|---------------------------|
+| Service Principal Client ID | The application (client) ID of your service principal | `service_principal_id` |
+| Service Principal Secret | The client secret value of your service principal | `service_principal_secret` |
+| Tenant ID | Your Azure Active Directory tenant ID | `tenant_id` |
+| Subscription ID | The Azure subscription where resources will be created | `subscription_id` |
+| Resource Group | The name of the resource group for Arc-enabled servers | `resource_group` |
+| Region | The Azure region where the Arc-enabled resource will onboard | `location` |
 
 ## Download the Ansible playbook
 
-If you're onboarding machines to Azure Arc-enabled servers, copy the following Ansible playbook template and save the playbook as `arc-server-onboard-playbook.yml`.
+On your Ansible control node, copy the following Ansible playbook template and save it as `arc-server-onboard-playbook.yml`.
 
 ```yaml
 ---
@@ -117,12 +133,12 @@ After downloading the Ansible playbook, complete the following steps:
 
 1. Within the Ansible playbook, modify the variables under the **vars section** with the service principal and Azure details collected earlier:
 
-    * Service Principal ID
-    * Service Principal Secret
-    * Resource Group
-    * Tenant ID
-    * Subscription ID
-    * Region
+    * Service Principal Client ID (`service_principal_id`)
+    * Service Principal Secret (`service_principal_secret`)
+    * Resource Group (`resource_group`)
+    * Tenant ID (`tenant_id`)
+    * Subscription ID (`subscription_id`)
+    * Region (`location`)
 
 1. Enter the correct hosts field capturing the target servers for onboarding to Azure Arc. You can employ [Ansible patterns](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns) to selectively target which hybrid machines to onboard.
 
