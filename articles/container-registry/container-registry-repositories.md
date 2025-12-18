@@ -19,7 +19,11 @@ To view a repository and its image tags in the Azure portal, follow these steps:
 1. Under **Services**, select **Repositories** to see a list of the repositories that contain the images in the registry.
 1. Select a repository to see the image tags within that repository.
 
-For example, if you followed the steps in [Push and pull an image](container-registry-get-started-docker-cli.md) and didn't subsequently delete the image, you should have an Nginx image in your container registry. The instructions in that article specify that you tag the image with a namespace, the "samples" in `/samples/nginx`. In this case, you see something similar to the following image:
+For example, if you followed the steps in [Push and pull an image](container-registry-get-started-docker-cli.md) and didn't subsequently delete the image, you should have an Nginx image in your container registry. The instructions in that article specify that you tag the `nginx` image with a `samples` namespace tag, resulting  in `/samples/nginx`. In this case, you see something similar to the following image:
 
 :::image type="content" source="media/container-registry-repositories/container-registry-repositories.png" alt-text="Screenshot showing a repository and tags for a container registry in the Azure portal." lightbox="media/container-registry-repositories/container-registry-repositories.png":::
 
+Related content
+
+- Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+- Understand [best practices for repository namespaces](container-registry-best-practices.md#repository-namespaces).
