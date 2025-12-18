@@ -142,7 +142,7 @@ After downloading the Ansible playbook, complete the following steps:
 
 1. Enter the correct hosts field capturing the target servers for onboarding to Azure Arc. You can employ [Ansible patterns](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns) to selectively target which hybrid machines to onboard.
 
-1. This template passes the service principal secret as a variable in the Ansible playbook. You can use [Ansible vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) to encrypt this secret and the you can pass the variables through a configuration file.
+1. This template passes the service principal secret as a variable in the Ansible playbook. You can use [Ansible vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) to encrypt this secret and then you can pass the variables through a configuration file.
 
 ## Run the Ansible playbook
 
