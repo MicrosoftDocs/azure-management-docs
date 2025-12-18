@@ -23,7 +23,7 @@ For example, if you followed the steps in [Push and pull an image](container-reg
 
 :::image type="content" source="media/container-registry-repositories/container-registry-repositories.png" alt-text="Screenshot showing a repository and tags for a container registry in the Azure portal." lightbox="media/container-registry-repositories/container-registry-repositories.png":::
 
-Related content
+## Related content
 
 - Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
 - Understand [best practices for repository namespaces](container-registry-best-practices.md#repository-namespaces).
