@@ -4,14 +4,14 @@ description: Use the Azure portal to view Azure Container Registry repositories,
 ms.topic: how-to
 author: rayoef
 ms.author: rayoflores
-ms.date: 10/31/2023
+ms.date: 12/18/2025
 ms.service: azure-container-registry
 # Customer intent: As a developer managing container images, I want to view repositories in the Azure portal, so that I can organize and track the versions of my Docker container images effectively.
 ---
 
 # View container registry repositories in the Azure portal
 
-Azure Container Registry allows you to store Docker container images in repositories. By storing images in repositories, you can store groups of images (or versions of images) in isolated environments. You can specify these repositories when you push images to your registry, and view their contents in the Azure portal.
+Azure Container Registry allows you to store Docker container images in repositories. By storing images in repositories, you can store groups of images (or versions of images) in isolated environments. You can specify repositories when you push images to your registry, and view their contents in the Azure portal.
 
 ## Prerequisites
 
