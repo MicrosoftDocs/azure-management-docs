@@ -13,9 +13,9 @@ You can onboard Ansible-managed nodes to Azure Arc-enabled servers at scale usin
 
 ## Prerequisites
 
-Before you get started, ensure you have the following:
+Before you get started, ensure you have the following items:
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Review the [general prerequisites](prerequisites.md) and verify that your subscription and resources meet the requirements.
 - Familiarity with [supported Azure regions](overview.md#supported-regions) and other related considerations.
 - Review the [at-scale planning guide](plan-at-scale-deployment.md) to understand the design and deployment criteria, as well as management and monitoring recommendations.
@@ -26,21 +26,21 @@ Before you get started, ensure you have the following:
 
 ## Generate a service principal and collect Azure details
 
-Before you can run the script to connect your machines, you'll need to:
+Before you run the script to connect your machines, complete the following steps:
 
 1. Follow the steps to [create a service principal for onboarding at scale](onboard-service-principal.md#create-a-service-principal-for-onboarding-at-scale).
 
     * Assign the Azure Connected Machine Onboarding role to your service principal and limit the scope of the role to the target Azure subscription or resource group.
-    * Make a note of the Service Principal Secret and Service Principal Client ID; you'll need these values later.
+    * Make a note of the Service Principal Secret and Service Principal Client ID values; you need these values later.
 
-1. Collect the details in the following table about where the Azure Arc-enabled resource will onboard. You'll use this information to update the playbook in the next sections. 
+1. Collect the details in the following table about where the Azure Arc-enabled resource will onboard. Use this information to update the playbook in the next sections. 
 
 | Parameter | Description | Variable name in playbook |
 |-----------|-------------|---------------------------|
 | Service Principal Client ID | The application (client) ID of your service principal | `service_principal_id` |
 | Service Principal Secret | The client secret value of your service principal | `service_principal_secret` |
 | Tenant ID | Your Azure Active Directory tenant ID | `tenant_id` |
-| Subscription ID | The Azure subscription where resources will be created | `subscription_id` |
+| Subscription ID | The Azure subscription where you create resources | `subscription_id` |
 | Resource Group | The name of the resource group for Arc-enabled servers | `resource_group` |
 | Region | The Azure region where the Arc-enabled resource will onboard | `location` |
 
@@ -131,7 +131,7 @@ On your Ansible control node, copy the following Ansible playbook template and s
 
 After downloading the Ansible playbook, complete the following steps:
 
-1. Within the Ansible playbook, modify the variables under the **vars section** with the service principal and Azure details collected earlier:
+1. Within the Ansible playbook, modify the variables under the **vars section** with the service principal and Azure details you collected earlier:
 
     * Service Principal Client ID (`service_principal_id`)
     * Service Principal Secret (`service_principal_secret`)
@@ -142,7 +142,7 @@ After downloading the Ansible playbook, complete the following steps:
 
 1. Enter the correct hosts field capturing the target servers for onboarding to Azure Arc. You can employ [Ansible patterns](https://docs.ansible.com/ansible/latest/user_guide/intro_patterns.html#common-patterns) to selectively target which hybrid machines to onboard.
 
-1. This template passes the service principal secret as a variable in the Ansible playbook. Note that [Ansible vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) can be used to encrypt this secret and the variables can be passed through a configuration file.
+1. This template passes the service principal secret as a variable in the Ansible playbook. You can use [Ansible vault](https://docs.ansible.com/ansible/latest/user_guide/vault.html) to encrypt this secret and the you can pass the variables through a configuration file.
 
 ## Run the Ansible playbook
 
@@ -156,7 +156,7 @@ After the playbook runs, **PLAY RECAP** indicates all tasks completed successful
 
 ## Verify the connection with Azure Arc
 
-After installing the agent and configuring it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the servers in your target hosts have successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
+After installing the agent and configuring it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the servers in your target hosts successfully connected. View your machines in the [Azure portal](https://aka.ms/hybridmachineportal).
 
 ## Next steps
 
