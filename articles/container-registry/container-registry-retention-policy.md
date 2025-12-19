@@ -16,16 +16,16 @@ Azure Container Registry gives you the option to set a *retention policy* for st
 
 To set a retention policy for untagged manifests, use the Azure portal or the Azure CLI. For the Azure CLI, run commands in either Azure Cloud Shell or a local installation with the latest version of the Azure CLI. To install or upgrade, see [How to install the Azure CLI][azure-cli].
 
-A retention policy for untagged manifests is currently a preview feature of **Premium** container registries. For information about registry service tiers, see [Azure Container Registry service tiers](container-registry-skus.md).
+A retention policy for untagged manifests is currently a preview feature of container registries with the **Premium** pricing plan. For information about registry pricing plans (SKUs), see [Azure Container Registry SKU features and limits](container-registry-skus.md).
 
 > [!WARNING]
 > Set a retention policy with care; deleted image data is **unrecoverable**. If you have systems that pull images by manifest digest (as opposed to image name), don't set a retention policy for untagged manifests. Deleting untagged images prevents those systems from pulling the images from your registry. Instead of pulling by manifest, consider adopting a *unique tag* scheme, a [recommended best practice](container-registry-image-tag-version.md#unique-tags).
 
-## About the retention policy
+## How the retention policy works
 
 Azure Container Registry does reference counting for manifests in the registry. When you untag a manifest, the registry checks to see if there's a retention policy. If a retention policy is enabled, and the `delete-enabled` attribute of the manifest is set to `true`, the registry schedules a manifest delete operation for a specific date and time, according to the number of days set in the retention policy.
 
-As an example, suppose you untagged two manifests, one hour apart, in a registry with a retention policy of 30 days. The registry schedules delete operations for each of the manifests. Then, 30 days later, approximately one hour apart, the manifests are deleted, unless the retention policy is disabled before the scheduled deletion date.
+As an example, suppose you untagged two manifests, one hour apart, in a registry with a retention policy of 30 days. The registry schedules delete operations for each of the manifests. Then, 30 days later, approximately one hour apart, both manifests are deleted, unless the retention policy is disabled before the scheduled deletion date.
 
 You can exclude untagged manifests from being deleted by a retention policy by setting its `delete-enabled` attribute to `false`. For more information, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
 
@@ -42,7 +42,9 @@ The default retention period for a retention policy is seven days, but you can s
 
 # [Azure CLI](#tab/azure-cli)
 
-To set or update a retention policy, run the [az acr config retention update][az-acr-config-retention-update] command in the Azure CLI.
+### Set or update a retention policy
+
+To set or update a retention policy, run the [az acr config retention update][az-acr-config-retention-update] command.
 
 The following example sets a retention policy of 30 days for untagged manifests in the registry *myregistry*:
 
@@ -52,7 +54,7 @@ az acr config retention update --registry myregistry --status enabled --days 30 
 
 ### Verify the retention policy
 
-If you enable the preceding policy with a retention period of 0 days, you can quickly verify that untagged manifests are deleted:
+If you enable a retention policy with a retention period of 0 days, you can quickly verify that untagged manifests are deleted:
 
 1. Push a test image `hello-world:latest` image to your registry, or substitute another test image of your choice.
 1. Untag the `hello-world:latest` image by using the [az acr repository untag][az-acr-repository-untag] command. This command doesn't delete the untagged manifest from the registry.
@@ -62,7 +64,7 @@ If you enable the preceding policy with a retention period of 0 days, you can qu
       --name myregistry --image hello-world:latest
     ```
 
-1. Within a few seconds, because of your retention policy, the untagged manifest is deleted. Verify the deletion by using the [az acr manifest list-metadata][az-acr-manifest-list-metadata] command to list all manifests in the repository. If the test image was the only one in the repository, the repository itself is also deleted.
+1. Within a few seconds, because of your retention policy, the untagged manifest is deleted. Use the [az acr manifest list-metadata][az-acr-manifest-list-metadata] command to list all manifests in the repository, and confirm that your test image is no longer listed. If the test image was the only one in the repository, the repository itself is also deleted.
 
 ### Show the retention policy
 
