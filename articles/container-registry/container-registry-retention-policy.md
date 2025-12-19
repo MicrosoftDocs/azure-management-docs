@@ -12,9 +12,9 @@ ms.service: azure-container-registry
 
 # Set a retention policy to retain untagged manifests
 
-Azure Container Registry gives you the option to set a *retention policy* for stored image manifests that don't have any associated tags. When a retention policy is enabled, untagged manifests in the registry are automatically deleted after a number of days you set. This feature prevents the registry from filling up with unneeded artifacts and helps you save on storage costs.
+Azure Container Registry gives you the option to set a *retention policy* for stored image manifests that don't have any associated tags. When you enable a retention policy, the registry automatically deletes untagged manifests after the number of days you set. This feature prevents the registry from filling up with unneeded artifacts and helps you save on storage costs.
 
-To set a retention policy for untagged manifests, you can use the Azure portal or the Azure CLI. For the Azure CLI, you can run commands in either Azure Cloud Shell or a local installation. If you'd like to use it locally, we recommend using the latest version of the Azure CLI. To install or upgrade, see [How to install the Azure CLI][azure-cli].
+To set a retention policy for untagged manifests, use the Azure portal or the Azure CLI. For the Azure CLI, run commands in either Azure Cloud Shell or a local installation with the latest version of the Azure CLI. To install or upgrade, see [How to install the Azure CLI][azure-cli].
 
 A retention policy for untagged manifests is currently a preview feature of **Premium** container registries. For information about registry service tiers, see [Azure Container Registry service tiers](container-registry-skus.md).
 
@@ -23,9 +23,9 @@ A retention policy for untagged manifests is currently a preview feature of **Pr
 
 ## About the retention policy
 
-Azure Container Registry does reference counting for manifests in the registry. When a manifest is untagged, it checks the retention policy status for that registry. If a retention policy is enabled, and the `delete-enabled` attribute of the manifest is set to `true`, a manifest delete operation is scheduled for a specific date and time, according to the number of days set in the retention policy.
+Azure Container Registry does reference counting for manifests in the registry. When you untag a manifest, the registry checks to see if there's a retention policy. If a retention policy is enabled, and the `delete-enabled` attribute of the manifest is set to `true`, the registry schedules a manifest delete operation for a specific date and time, according to the number of days set in the retention policy.
 
-As an example, suppose you untagged two manifests, one hour apart, in a registry with a retention policy of 30 days. Delete operations would be scheduled for each of the manifests. Then, 30 days later, approximately one hour apart, the manifests would be deleted, unless the retention policy was disabled before the scheduled date.
+As an example, suppose you untagged two manifests, one hour apart, in a registry with a retention policy of 30 days. The registry schedules delete operations for each of the manifests. Then, 30 days later, approximately one hour apart, the manifests are deleted, unless the retention policy is disabled before the scheduled deletion date.
 
 You can exclude untagged manifests from being deleted by a retention policy by setting its `delete-enabled` attribute to `false`. For more information, see [Lock a container image in an Azure container registry](container-registry-image-lock.md).
 
@@ -36,7 +36,9 @@ You can exclude untagged manifests from being deleted by a retention policy by s
 
 ## Set a retention policy
 
-By default, container registries don't have a retention policy for untagged manifests. To set or update a retention policy, you can use either the Azure CLI or the Azure portal. The default retention period is 7 days, but you can specify any number of days between 0 and 365. After the retention period, all untagged manifests in the registry are automatically deleted. Setting the value to 0 removes untagged manifests as soon as they become untagged.
+By default, container registries don't have a retention policy for untagged manifests. To set or update a retention policy, use either the Azure CLI or the Azure portal. 
+
+The default retention period for a retention policy is seven days, but you can specify any number of days between 0 and 365. After the retention period, the registry automatically deletes untagged manifests. Setting the value to 0 removes untagged manifests as soon as they become untagged.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -48,7 +50,7 @@ The following example sets a retention policy of 30 days for untagged manifests 
 az acr config retention update --registry myregistry --status enabled --days 30 --type UntaggedManifests
 ```
 
-## Verify the retention policy
+### Verify the retention policy
 
 If you enable the preceding policy with a retention period of 0 days, you can quickly verify that untagged manifests are deleted:
 
@@ -74,7 +76,7 @@ az acr config retention show --registry myregistry
 
 You can enable a registry's retention policy in the [Azure portal](https://portal.azure.com). 
 
-1. Navigate to your Azure container registry.
+1. Go to your Azure container registry.
 1. In the service menu, under **Policies**, select **Retention (Preview)**.
 1. In **Status**, select **Enabled**.
 1. Specify a number of days between 0 and 365 to retain the untagged manifests.
@@ -100,7 +102,7 @@ az acr config retention update \
 
 ### Disable a retention policy
 
-1. Navigate to your Azure container registry.
+1. Go to your Azure container registry.
 1. In the service menu, under **Policies**, select **Retention (Preview)**.
 1. In **Status**, select **Disabled**.
 1. Select **Save**.
