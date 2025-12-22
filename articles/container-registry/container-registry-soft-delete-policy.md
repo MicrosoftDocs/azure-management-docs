@@ -35,7 +35,7 @@ This preview feature is available in all [service tiers](container-registry-skus
 
 Keep in mind the following current limitations:
 
-* Azure Container Registry currently doesn't support manually purging soft-deleted artifacts.
+* Azure Container Registry doesn't support manually purging soft-deleted artifacts.
 * The soft delete policy doesn't support registries configured for zone redundancy, geo-replication, or artifact cache.
 * Azure Container Registry doesn't allow enabling both the [retention policy](container-registry-retention-policy.md) and the soft delete policy.
 
