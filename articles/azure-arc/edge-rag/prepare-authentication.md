@@ -92,7 +92,7 @@ Next, in the Microsoft Entra ID tenant, assign users or groups to the roles you 
 1. Go to **Manage** > **Properties**.
 1. Disable **Assignment Required**.
 1. On the left-hand side menu, select **Users and groups** > **Add user/group**.
-1. Select users and/or groups and assign **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate.
+1. Select users and/or groups and assign **EdgeRAGDeveloper** or **EdgeRAGEndUser** role as appropriate. Assign both roles to the developers working on the chat solution.
 1. When complete, close the **Users and groups** page.
 
 ## (Optional) Get app and tenant IDs

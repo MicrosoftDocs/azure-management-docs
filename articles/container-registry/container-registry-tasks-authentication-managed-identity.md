@@ -81,7 +81,7 @@ You can get the resource ID of the identity by running the [az identity show][az
 > [!NOTE]
 > If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must explicitly attach and set a managed identity that will be used by the Task to authenticate with an ABAC-enabled source registry using the new `--source-acr-auth-id` flag. Afterwards, you must perform a separate role assignment (with optional ABAC conditions) to grant this identity permissions to an ABAC-enabled source registry.
 >
-> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 ### 3. Grant the identity permissions to access other Azure resources
 
