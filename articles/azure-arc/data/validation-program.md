@@ -109,9 +109,9 @@ To see how all Azure Arc-enabled components are validated, see [Validation progr
 
 |Solution and version | Kubernetes version | Azure Arc-enabled data services version | SQL engine version |
 |-----|-----|-----|-----|
-|[Wind River Cloud Platform 25.09](https://www.windriver.com/studio/operator/cloud-platform)|1.32.2|1.41.0_2025-09-09|17.0.429.2218|
-|[Wind River Cloud Platform 24.09](https://www.windriver.com/studio/operator/cloud-platform)|1.30.6|1.37.0_2025-03-11|16.0.5564|
-|[Wind River Cloud Platform 22.12](https://www.windriver.com/studio/operator/cloud-platform)|1.24.4|1.26.0_2023-12-12|16.0.5100.7246|
+|[Wind River Cloud Platform 25.09](https://www.windriver.com/products/cloud-platform)|1.32.2|1.41.0_2025-09-09|17.0.429.2218|
+|[Wind River Cloud Platform 24.09](https://www.windriver.com/products/cloud-platform)|1.30.6|1.37.0_2025-03-11|16.0.5564|
+|[Wind River Cloud Platform 22.12](https://www.windriver.com/products/cloud-platform)|1.24.4|1.26.0_2023-12-12|16.0.5100.7246|
 
 ## Data services validation process
 
