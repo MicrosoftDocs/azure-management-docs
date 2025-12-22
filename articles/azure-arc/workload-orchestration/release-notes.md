@@ -27,7 +27,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### Improvements in CLI
 
-- **Azure CLI Workload Orchestration Extension 4.2.0** is now available with new capabilities and improvements. To install it, run:
+- **Azure CLI Workload Orchestration Extension 5.0.0** is now available with new capabilities and improvements. To install it, run:
 
   ```bash
   az extension add --name workload-orchestration
