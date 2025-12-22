@@ -496,24 +496,6 @@ To use a resource group, run the following commands:
     az rest --method put --url "$siteId/providers/Microsoft.Edge/configurationreferences/default?api-version=2025-08-01" --body "{\"properties\":{\"configurationResourceId\":\"$configId\"}}"
     ```
 
-1. Create the schema.
-
-    ```bash
-    schemaName="<schema name>"
-    schemaId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{\"location\":\"$location\"}"
-    ```
-
-1. Create the schema reference.
-
-    ```bash
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
-
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/Microsoft.Edge/schemareferences/default?api-version=2025-08-01" --body "{\"properties\":{\"schemaId\":\"$schemaId\"}}"
-    ```
-
 ### [PowerShell](#tab/powershell)
 
 1. Create a JSON file for site and name it */<SITE_NAME>/.json*. The JSON file must contain the following information:
@@ -572,24 +554,6 @@ To use a resource group, run the following commands:
     
     # For resource group-based sites
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
-    ```
-
-1. Create the schema.
-
-    ```powershell
-    $schemaName="<schema name>"
-    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
-    ```
-
-1. Create the schema reference.
-
-    ```powershell
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
     ```
 
 ***

@@ -11,23 +11,36 @@ ms.date: 11/04/2025
 
 This article provides the latest and past release notes for workload orchestration in Azure Arc. It includes new features, improvements, and bug fixes.
 
-## November 2025 release
+## December 2025 release
 
 ### New features
 
 - **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multi-cloud environments.
-- Schemas will no longer support the **editableAt** property for application parameters, that was used to specify the hierarchy level at which those parameters need to be configured. Configuration templates referring to them will now need to be explicitly linked to a hierarchy level, and all solution templates will be automatically linked to the target where the corresponding solution is deployed. This enforces stricter control over configuration changes, avoiding ambiguity and reducing accidental edits at unintended levels.
-- Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
+- **Support for Target/Site level configuration**: Users can now create and set common configurations at any hierarchy level or target without authoring solution templates, by explicitly linking a configuration template to the desired level. Solution templates will automatically map to the deployment target. Schemas will no longer support the **editableAt** property for application parameters that was earlier used for such mapping. This enforces clearer configuration boundaries and reduces unintended edits.
+- **Bulk deployment in portal**: Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
 
 ### Improvements in Portal
 
-- The **Configure** tab that enabled operations related to configuration and publishing of solutions and targets, has now been split into **Configure hierarchy** and **Configure solutions**, which offers clear segregation between hierarchy and leaf targets, and solutions.
+- The **Configure** tab that enabled operations related to configuration and publishing of solutions and targets, has now been split into **Configure hierarchy** and **Configure solutions**, which offers clear segregation between hierarchy and targets, and solutions.
 - Users can now filter and group targets by their parent site, in addition to existing parameters, in the **Monitor**, **Configure hierarchy** and **Deploy** tabs of portal.
+- Acceleration in portal loading time for capability matching, configuration templates linkage, and few other scenarios.
 
 ### Improvements in CLI
 
+- **Azure CLI Workload Orchestration Extension 4.2.0** is now available with new capabilities and improvements. To install it, run:
+
+  ```bash
+  az extension add --name workload-orchestration
+  ```
+
+  To update your existing installation to the latest version, run:
+
+  ```bash
+  az extension update --name workload-orchestration
+  ```
+- The first-party application **EdgeConfigurationManagerApp** no longer requires RBAC read/write permission assignment.
 - The time taken for target and solution template creation has been significantly reduced, resulting in faster response time and enhanced CLI experience.
-- Users can now view the schema validation rules while configuring solution parameters for a target.
+- Users can now view the schema validation rules while configuring solution parameters for a target or a Site.
 
 ## October 2025 release
 
@@ -51,9 +64,9 @@ This article provides the latest and past release notes for workload orchestrati
 
 - The Azure CLI Workload Orchestration extension has been updated to version **4.0.0**, introducing bulk capabilities for review and configuration tasks, along with additional flexibility for bulk publishing operations. It also utilizes the latest API version 2025-08-01. To update to the latest version of extension, simply run:
 
-```bash
-az extension update --name workload-orchestration
-```
+  ```bash
+  az extension update --name workload-orchestration
+  ```
 
 - The existing bulk publish CLI functionality is upgraded to allow users to bypass the review step and achieve configuration and publishing of a solution to multiple targets in a single command. The list of targets can include a mix of those that have been already reviewed and those for which they intend to bypass the review process.
 
