@@ -180,13 +180,14 @@
           href: container-registry-configure-conditional-access.md
         - name: Disable authentication as ARM (Microsoft Entra ARM audience tokens)
           href: container-registry-disable-authentication-as-arm.md
-      - name: Microsoft Entra role-based access control and authorization
+      - name: Role-based access control and authorization
         items:
-        - name: Microsoft Entra permissions and role assignments
+        - name: Overview
           href: container-registry-rbac-built-in-roles-overview.md
-          displayName: permissions, authorization
-        - name: Microsoft Entra repository permissions
+          displayName: permission, authorization, role, assign, entra, rbac, built-in
+        - name: Azure ABAC repository permissions
           href: container-registry-rbac-abac-repository-permissions.md
+          displayName: authorization, role, assign, entra, attribute
         - name: Role directory reference
           href: container-registry-rbac-built-in-roles-directory-reference.md
           displayName: permissions, authorization

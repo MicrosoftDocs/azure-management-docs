@@ -32,68 +32,45 @@ This tutorial requires a local installation of the Azure CLI (version 2.0.31 or 
 
 You should be familiar with core Docker concepts such as containers, container images, and basic Docker CLI commands. For a primer on container basics, see [Get started with Docker]( https://docs.docker.com/get-started/).
 
-To complete this tutorial, you need a local Docker installation. Docker provides installation instructions for [macOS](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/), and [Linux](https://docs.docker.com/engine/installation/#supported-platforms) systems.
+To complete this tutorial, you need a local Docker installation. Docker provides installation instructions for [macOS](https://docs.docker.com/desktop/setup/install/mac-install/), [Windows](https://docs.docker.com/desktop/setup/install/windows-install/), and [Linux](https://docs.docker.com/engine/install) systems.
 
-Azure Cloud Shell does not include the Docker components required to complete every step this tutorial. Therefore, we recommend a local installation of the Azure CLI and Docker development environment.
+Azure Cloud Shell doesn't include the Docker components required to complete every step this tutorial. Therefore, we recommend a local installation of the Azure CLI and Docker development environment.
 
 ## Create a container registry
 
-For this tutorial, you need an Azure container registry in the Premium service tier. To create a new Azure container registry, follow the steps in this section.
+For this tutorial, you need an Azure container registry in the Premium service tier. To create a new Azure container registry, follow the steps in [Quickstart: Create an Azure container registry by using the Azure portal](container-registry-get-started-portal.md). Be sure to select the following options:
+
+* For **Pricing Plan** (SKU), select **Premium**, which is required for geo-replication.
+* Create the registry in the **West US** region. This region is referenced in this tutorial to demonstrate geo-replication.
+* Because Azure container registries are typically long-lived resources that are used across multiple container hosts, we recommend that you create your registry in its own resource group. As you configure geo-replicated registries and webhooks, these additional resources are placed in the same resource group.
 
 > [!TIP]
-> If you previously created a registry and need to upgrade, see [Changing tiers](container-registry-skus.md#changing-tiers). 
+> If you previously created a registry and need to upgrade, see [Changing SKUs](container-registry-skus.md#changing-skus).
 
-Sign in to the [Azure portal](https://portal.azure.com).
-
-Select **Create a resource** > **Containers** > **Azure Container Registry**.
-
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-01.png" alt-text="Creating a container registry in the Azure portal":::
-
-Configure your new registry with the following settings. In the **Basics** tab:
-
-* **Registry name**: Create a registry name that's globally unique within Azure, and contains 5-50 alphanumeric characters
-* **Resource Group**: **Create new** > `myResourceGroup`
-* **Location**: `West US`
-* **SKU**: `Premium` (required for geo-replication)
-
-Select **Review + create** and then **Create** to create the registry instance.
-
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-02.png" alt-text="Configuring a container registry in the Azure portal":::
-
-Throughout the rest of this tutorial, we use `<acrName>` as a placeholder for the container **Registry name** that you chose.
-
-> [!TIP]
-> Because Azure container registries are typically long-lived resources that are used across multiple container hosts, we recommend that you create your registry in its own resource group. As you configure geo-replicated registries and webhooks, these additional resources are placed in the same resource group.
+Throughout the rest of this tutorial, we use `<acrName>` as a placeholder for your container's **Registry name**.
 
 ## Configure geo-replication
 
 Now that you have a Premium registry, you can configure geo-replication. Your web app, which you configure in the next tutorial to run in two regions, can then pull its container images from the nearest registry.
 
-Navigate to your new container registry in the Azure portal and select **Replications** under **Services**:
+Go to your container registry in the Azure portal. In the service menu, under **Services**, select **Geo-replications**.
 
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-03.png" alt-text="Replications in the Azure portal container registry UI":::
-
-A map is displayed showing green hexagons representing Azure regions available for geo-replication:
+In the **Geo-replications** pane, you see a map which shows Azure regions that are available for geo-replication.
 
 :::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-map-01.png" alt-text="Region map in the Azure portal":::
 
-Replicate your registry to the East US region by selecting its green hexagon, then select **Create** under **Create replication**:
+To replicate your registry to the East US region, select the green hexagon for that region. In the **Create replication** pane, confirm the correct region is shown, then select **Create**.
 
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-04.png" alt-text="Create replication UI in the Azure portal":::
+When the replication is complete, you see both regions listed on the **Geo-replications** pane with status **Ready**.
 
-When the replication is complete, the portal reflects *Ready* for both regions. Use the **Refresh** button to refresh the status of the replication; it can take a minute or so for the replicas to be created and synchronized.
-
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-05.png" alt-text="Replication status UI in the Azure portal":::
-
+> [!TIP]
+> You can't use geo-replication on registries that use a [soft delete policy](container-registry-soft-delete-policy.md).
 
 ## Enable admin account
 
 In subsequent tutorials, you deploy a container image from the registry directly to Web App for Containers. To enable this capability, you must also enable the registry's [admin account](container-registry-authentication.md#admin-account).
 
-Navigate to your new container registry in the Azure portal and select **Access keys** under **Settings**. Under **Admin user**, select **Enable**.
-
-:::image type="content" source="./media/container-registry-tutorial-prepare-registry/tut-portal-06.png" alt-text="Enable admin account in the Azure portal":::
-
+Go to your container registry in the Azure portal, In the service menu, under **Settings**, select **Access keys**. Select the box for **Admin user**.
 
 ## Container registry login
 

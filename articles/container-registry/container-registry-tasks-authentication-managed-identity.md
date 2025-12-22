@@ -81,7 +81,7 @@ You can get the resource ID of the identity by running the [az identity show][az
 > [!NOTE]
 > If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must explicitly attach and set a managed identity that will be used by the Task to authenticate with an ABAC-enabled source registry using the new `--source-acr-auth-id` flag. Afterwards, you must perform a separate role assignment (with optional ABAC conditions) to grant this identity permissions to an ABAC-enabled source registry.
 >
-> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 ### 3. Grant the identity permissions to access other Azure resources
 
@@ -141,12 +141,11 @@ In this article, you learned how to enable and use a user-assigned or system-ass
 * [Cross-registry authentication](container-registry-tasks-cross-registry-authentication.md)
 * [Access external resources with secrets stored in Azure Key Vault](container-registry-tasks-authentication-key-vault.md)
 
-
 <!-- LINKS - Internal -->
-[az-role-assignment-create]: /cli/azure/role/assignment#az_role_assignment_create
-[az-identity-create]: /cli/azure/identity#az_identity_create
-[az-identity-show]: /cli/azure/identity#az_identity_show
-[az-acr-task-create]: /cli/azure/acr/task#az_acr_task_create
-[az-acr-task-run]: /cli/azure/acr/task#az_acr_task_run
-[az-acr-task-credential-add]: /cli/azure/acr/task/credential#az_acr_task_credential_add
+[az-role-assignment-create]: /cli/azure/role/assignment#az-role-assignment-create
+[az-identity-create]: /cli/azure/identity#az-identity-create
+[az-identity-show]: /cli/azure/identity#az-identity-show
+[az-acr-task-create]: /cli/azure/acr/task#az-acr-task-create
+[az-acr-task-run]: /cli/azure/acr/task#az-acr-task-run
+[az-acr-task-credential-add]: /cli/azure/acr/task/credential#az-acr-task-credential-add
 [azure-cli-install]: /cli/azure/install-azure-cli

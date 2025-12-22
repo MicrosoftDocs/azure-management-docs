@@ -1,7 +1,7 @@
 ---
 title: Understand service health events and status using Azure Copilot
 description: Learn about scenarios where Azure Copilot can provide information about service health events.
-ms.date: 04/24/2025
+ms.date: 11/18/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.custom:
@@ -35,8 +35,8 @@ Here are a few examples of the kinds of prompts you can use to get service healt
 - "How many security advisories in the last 10 days?"
 - "How many Azure retirements?"
 - "Are there any active planned maintenance events?"
-- "How many Azure health advisories over the last 20 days?" 
-- "Can you share health information of resource <br>``/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource?`
+- "How many Azure health advisories over the last 20 days?"
+- "Can you share health information of resource `/subscriptions/testSub/resourceGroups/testRG/providers/Microsoft.Compute/virtualMachines/testResource`?"
 
 ## Examples
 

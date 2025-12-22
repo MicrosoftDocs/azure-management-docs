@@ -62,7 +62,7 @@ az acr build --image sample/hello-world:v1 \
 > [!NOTE]
 > If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `build` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr build`.
 >
-> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 Output from a successful build and push is similar to the following:
 
@@ -130,7 +130,7 @@ az acr run --registry mycontainerregistry008 \
 > [!NOTE]
 > If you are using an [ABAC-enabled source registry](container-registry-rbac-abac-repository-permissions.md), you must pass in the caller's identity as the identity that will be used by the `run` to authenticate with the registry. You must do so by passing in the additional `--source-acr-auth-id [caller]` flag when running `az acr run`.
 >
-> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#appendix-effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
+> For more information, see [effects of enabling ABAC on ACR Tasks, Quick Tasks, Quick Builds, and Quick Runs](container-registry-rbac-abac-repository-permissions.md#effects-of-enabling-abac-on-acr-tasks-quick-tasks-quick-builds-and-quick-runs).
 
 The `cmd` parameter in this example runs the container in its default configuration, but `cmd` supports additional `docker run` parameters or even other `docker` commands.
 
@@ -194,26 +194,13 @@ In this quickstart, you used features of ACR Tasks to quickly build, push, and r
 > [!div class="nextstepaction"]
 > [Azure Container Registry Tasks tutorials][container-registry-tutorial-quick-task]
 
-<!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-push]: https://docs.docker.com/engine/reference/commandline/push/
-[docker-pull]: https://docs.docker.com/engine/reference/commandline/pull/
-[docker-rmi]: https://docs.docker.com/engine/reference/commandline/rmi/
-[docker-run]: https://docs.docker.com/engine/reference/commandline/run/
-[docker-tag]: https://docs.docker.com/engine/reference/commandline/tag/
-[docker-windows]: https://docs.docker.com/docker-for-windows/
-[azure-account]: https://azure.microsoft.com/free/
-
 <!-- LINKS - internal -->
-[az-acr-create]: /cli/azure/acr#az_acr_create
-[az-acr-build]: /cli/azure/acr#az_acr_build
-[az-acr-run]: /cli/azure/acr#az_acr_run
-[az-group-create]: /cli/azure/group#az_group_create
-[az-group-delete]: /cli/azure/group#az_group_delete
-[azure-cli]: /cli/azure/install-azure-cli
+[az-acr-create]: /cli/azure/acr#az-acrcreate
+[az-acr-build]: /cli/azure/acr#az-acrbuild
+[az-acr-run]: /cli/azure/acr#azacrrun
+[az-group-create]: /cli/azure/group#azgroupcreate
+[az-group-delete]: /cli/azure/group#azgroupdelete
 [container-registry-tasks-overview]: container-registry-tasks-overview.md
 [container-registry-tasks-multi-step]: container-registry-tasks-multi-step.md
 [container-registry-tutorial-quick-task]: container-registry-tutorial-quick-task.md
 [container-registry-skus]: container-registry-skus.md
-[azure-cli-install]: /cli/azure/install-azure-cli

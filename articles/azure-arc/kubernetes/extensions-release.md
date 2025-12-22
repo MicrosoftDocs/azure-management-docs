@@ -1,6 +1,6 @@
 ---
 title: "Available extensions for Azure Arc-enabled Kubernetes clusters"
-ms.date: 10/17/2025
+ms.date: 11/25/2025
 ms.topic: how-to
 description: "See a list of extensions that are currently available for Azure Arc-enabled Kubernetes clusters. View Flux extension release notes."
 ms.custom:
@@ -60,6 +60,9 @@ For more information, see [Enable Microsoft Defender for Containers](/azure/defe
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 ## Azure Arc-enabled Open Service Mesh
+
+> [!WARNING]
+> Microsoft has announced the retirement of the [Open Service Mesh (OSM) add-on for AKS](https://azure.microsoft.com/updates?id=open-service-mesh-add-on-for-aks-will-be-retired-on-september-30-2027) on September 30, 2027. The upstream OSM project has also been retired by the [Cloud Native Computing Foundation (CNCF)](https://docs.openservicemesh.io/).
 
 - **Supported distributions**: AKS, AKS on Azure Local,  AKS enabled by Azure Arc, Cluster API Azure, Google Kubernetes Engine, Canonical Kubernetes Distribution, Rancher Kubernetes Engine, OpenShift Kubernetes Distribution, Amazon Elastic Kubernetes Service, and VMware Tanzu Kubernetes Grid.
 
@@ -175,7 +178,7 @@ The following Flux APIs are being deprecated and will be removed:
 
 For a complete list of deprecated APIs and their replacements, see the PRs linked in <https://github.com/fluxcd/flux2/issues/5474>.
 
-**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs. Use the supported API versions for all impacted resources. We strongly recommend completing these steps before October 2025 to avoid deployment failures or resource reconciliation issues.
+**Required action:** To ensure continued compatibility and avoid disruptions, update your sources to remove references to deprecated APIs. Use the supported API versions for all impacted resources. We strongly recommend completing these steps before January 2026 to avoid deployment failures or resource reconciliation issues.
 
 Migrate all your resources to the Flux stable APIs in your sources (Git repositories, OCI repositories, buckets, blob storage) by replacing the API version in the manifests:
 
@@ -197,6 +200,36 @@ Note that the `ImageUpdateAutomation` commit template should use the fields `.Ch
 
 Once the manifests are updated in the sources, Flux will reconcile the new API versions.
 
+### `microsoft.flux` version 1.18.5 (December 2025)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4
+- kustomize-controller: v1.6.1
+- helm-controller: v1.3.2
+- notification-controller: v1.6.0
+- image-automation-controller: v0.41.2
+- image-reflector-controller: v0.35.2
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages and base images.
+
+### `microsoft.flux` version 1.18.4 (November 2025)
+
+Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
+
+- source-controller: v1.6.4-2
+- kustomize-controller: v1.6.1-5
+- helm-controller: v1.3.2-2
+- notification-controller: v1.6.0-5
+- image-automation-controller: v0.41.2-5
+- image-reflector-controller: v0.35.2-5
+
+Changes in this version include:
+
+- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, `kustomize-controller`, `helm-controller`, `image-reflector-controller`, and `image-automation-controller` by updating the Go packages and base images.
+
 ### `microsoft.flux` version 1.18.2 (October 2025)
 
 Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
@@ -211,36 +244,6 @@ Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6
 Changes in this version include:
 
 - Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller`, `fluent-bit-mdm`, `source-controller`, and `helm-controller` by updating the Go packages.
-
-### `microsoft.flux` version 1.17.3 (September 2025)
-
-Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
-
-- source-controller: v1.6.2
-- kustomize-controller: v1.6.1
-- helm-controller: v1.3.0
-- notification-controller: v1.6.0
-- image-automation-controller: v0.41.2
-- image-reflector-controller: v0.35.2
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
-
-### `microsoft.flux` version 1.17.2 (August 2025)
-
-Flux version: [Release v2.6.4](https://github.com/fluxcd/flux2/releases/tag/v2.6.4)
-
-- source-controller: v1.6.2
-- kustomize-controller: v1.6.1
-- helm-controller: v1.3.0
-- notification-controller: v1.6.0
-- image-automation-controller: v0.41.2
-- image-reflector-controller: v0.35.2
-
-Changes in this version include:
-
-- Addressed security vulnerabilities in `fluxconfig-agent`, `fluxconfig-controller` and `fluent-bit-mdm` by updating the Go packages.
 
 ## Dapr extension for Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes
 

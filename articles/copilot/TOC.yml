@@ -75,7 +75,7 @@
     - name: Troubleshoot disk performance
       href: troubleshoot-disk-performance.md
     - name: Design, troubleshoot, and secure networks
-      href: network-management.md
+      href: copilot-networking.md
     - name: Work with Azure Load Balancer
       href: work-load-balancer.md
     - name: Discover Azure Marketplace solutions
@@ -103,6 +103,6 @@
   - name: Regional availability
     href: https://azure.microsoft.com/global-infrastructure/services/
   - name: Microsoft Q&A
-    href: /answers/products/
+    href: /answers/tags/133/azure
   - name: Product feedback
     href: https://feedback.azure.com/d365community/

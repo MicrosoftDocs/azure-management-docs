@@ -1,12 +1,12 @@
 ---
-title: azcmagent config CLI reference
-description: Syntax for the azcmagent config command line tool
+title: CLI reference for `azcmagent config`
+description: Syntax for the `azcmagent config` command line tool
 ms.topic: reference
-ms.date: 04/20/2023
+ms.date: 12/01/2025
 # Customer intent: As an IT administrator managing the Azure connected machine agent, I want to configure and retrieve various agent settings via a command line tool, so that I can optimize the agent's performance and tailor it to my infrastructure needs.
 ---
 
-# azcmagent config
+# `azcmagent config`
 
 Configure settings for the Azure connected machine agent. Configurations are stored locally and are unique to each machine. Available configuration properties vary by agent version. Use [azcmagent config info](#azcmagent-config-info) to see all available configuration properties and supported values for the currently installed agent.
 
@@ -14,13 +14,13 @@ Configure settings for the Azure connected machine agent. Configurations are sto
 
 | Command | Purpose |
 | ------- | ------- |
-| [azcmagent config clear](#azcmagent-config-clear) | Clear a configuration property's value |
-| [azcmagent config get](#azcmagent-config-get) | Gets a configuration property's value |
-| [azcmagent config info](#azcmagent-config-info) | Describes all available configuration properties and supported values |
-| [azcmagent config list](#azcmagent-config-list) | Lists all configuration properties and values |
-| [azcmagent config set](#azcmagent-config-set) | Set a value for a configuration property |
+| [`azcmagent config clear`](#azcmagent-config-clear) | Clear a configuration property's value |
+| [`azcmagent config get`](#azcmagent-config-get) | Gets a configuration property's value |
+| [`azcmagent config info`](#azcmagent-config-info) | Describes all available configuration properties and supported values |
+| [`azcmagent config list`](#azcmagent-config-list) | Lists all configuration properties and values |
+| [`azcmagent config set`](#azcmagent-config-set) | Set a value for a configuration property |
 
-## azcmagent config clear
+## `azcmagent config clear`
 
 Clear a configuration property's value and reset it to its default state.
 
@@ -32,7 +32,7 @@ azcmagent config clear [property] [flags]
 
 ### Examples
 
-Clear the proxy server URL property.
+Clear the proxy server URL property:
 
 ```
 azcmagent config clear proxy.url
@@ -40,9 +40,9 @@ azcmagent config clear proxy.url
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
-## azcmagent config get
+## `azcmagent config get`
 
 Get a configuration property's value.
 
@@ -54,7 +54,7 @@ azcmagent config get [property] [flags]
 
 ### Examples
 
-Get the agent mode.
+Get the agent mode:
 
 ```
 azcmagent config get config.mode
@@ -62,9 +62,9 @@ azcmagent config get config.mode
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
-## azcmagent config info
+## `azcmagent config info`
 
 Describes available configuration properties and supported values. When run without specifying a specific property, the command describes all available properties their supported values.
 
@@ -76,13 +76,13 @@ azcmagent config info [property] [flags]
 
 ### Examples
 
-Describe all available configuration properties and supported values.
+Describe all available configuration properties and supported values:
 
 ```
 azcmagent config info
 ```
 
-Learn more about the extensions allowlist property and its supported values.
+Learn more about the extensions allowlist property and its supported values:
 
 ```
 azcmagent config info extensions.allowlist
@@ -90,9 +90,9 @@ azcmagent config info extensions.allowlist
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
-## azcmagent config list
+## `azcmagent config list`
 
 Lists all configuration properties and their current values
 
@@ -104,7 +104,7 @@ azcmagent config list [flags]
 
 ### Examples
 
-List the current agent configuration.
+List the current agent configuration:
 
 ```
 azcmagent config list
@@ -112,9 +112,9 @@ azcmagent config list
 
 ### Flags
 
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]
+This command supports the flags described in [Common flags](azcmagent.md#common-flags).
 
-## azcmagent config set
+## `azcmagent config set`
 
 Set a value for a configuration property.
 
@@ -126,13 +126,13 @@ azcmagent config set [property] [value] [flags]
 
 ### Examples
 
-Configure the agent to use a proxy server.
+Configure the agent to use a proxy server:
 
 ```
 azcmagent config set proxy.url "http://proxy.contoso.corp:8080"
 ```
 
-Append an extension to the extension allowlist.
+Append an extension to the extension allowlist:
 
 ```
 azcmagent config set extensions.allowlist "Microsoft.Azure.Monitor/AzureMonitorWindowsAgent" --add
@@ -146,6 +146,8 @@ azcmagent config set incomingconnections.enabled false
 
 ### Flags
 
+This command supports the flags described in [Common flags](azcmagent.md#common-flags), and the flags listed in this section.
+
 `-a`, `--add`
 
 Append the value to the list of existing values. If not specified, the default behavior is to replace the list of existing values. This flag is only supported for configuration properties that support more than one value. Can't be used with the `--remove` flag.
@@ -153,5 +155,3 @@ Append the value to the list of existing values. If not specified, the default b
 `-r`, `--remove`
 
 Remove the specified value from the list, retaining all other values. If not specified, the default behavior is to replace the list of existing values. This flag is only supported for configuration properties that support more than one value. Can't be used in conjunction with the `--add` flag.
-
-[!INCLUDE [common-flags](includes/azcmagent-common-flags.md)]

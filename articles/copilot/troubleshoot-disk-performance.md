@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot disk performance using Azure Copilot
 description: Learn how to use Azure Copilot to help troubleshoot issues with disk performance.
-ms.date: 04/08/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -28,8 +28,6 @@ To diagnose performance issues when your application requires higher performance
 
 [!INCLUDE [scenario-note](includes/scenario-note.md)]
 
-
-
 ## Sample prompts
 
 Here are a few examples of the kinds of prompts you can use to troubleshoot disk performance. Modify these prompts based on your real-life scenarios, or try additional prompts to meet your needs.
@@ -50,7 +48,7 @@ After you select a VM, you're prompted to select one or more disks for Azure Cop
 
 :::image type="content" source="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.png" lightbox="media/troubleshoot-disk-performance/troubleshoot-disk-slow-select.png"alt-text="Screenshot of Azure Copilot prompting to select disks to analyze.":::
 
-Next, tell Azure Copilot when the issues began. enter an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
+Next, tell Azure Copilot when the issues began by entering an exact or approximate timeframe. For best results, be sure the VM and disk you selected have been active during the period you specify.
 
 Azure Copilot then shows you the VM and disks you selected and the metrics to be analyzed. After you confirm, Azure Copilot runs the analysis to determine if your application performance is being capped due to requesting more IOPS or throughput than what is allotted for the virtual machines or attached disks.
 
@@ -58,7 +56,7 @@ Azure Copilot then shows you the VM and disks you selected and the metrics to be
 
 If Azure Copilot detects a performance issue with your VM-Disk configuration due to hitting IOPS or throughput limits, it provides you with a summary of the analysis, a primary recommendation based on the least downtime to your application, and other recommendation options. You can also view metric details from the analysis metrics by selecting **Show additional details**. This option provides more information such as the VM IOPS/MBPS limits, total time period when limits were hit, and the top three time intervals when disk limits were hit. If your VM has caching enabled, the VM IOPS/MBPS limits shown here reflect your cached limits.
 
-If you choose to enact any of the recommendation options provided by Azure Copilot, you're directed to the location in the Azure portal where you can implement the recommendation. If you're dissatisfied with the recommendation, you can choose to submit a support request to get more assistance.
+If you choose to enact any of the recommendation options provided by Azure Copilot, you're directed to the location in the Azure portal where you can implement the recommendation. If you're dissatisfied with the recommendations, but still need help, you can choose to submit a support request to get more assistance.
 
 ## Next steps
 

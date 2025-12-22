@@ -148,7 +148,7 @@ version: v1.1.0
 
 steps:
 - build: -t {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-amd64 -f dockerfile.arm64 . 
-- build: -t {{.Run.Registry}}/multi-arch-samples/myyimage:{{.Run.ID}}-arm64 -f dockerfile.amd64 . 
+- build: -t {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-arm64 -f dockerfile.amd64 . 
 - push: 
     - {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-arm64
     - {{.Run.Registry}}/multi-arch-samples/myimage:{{.Run.ID}}-amd64
@@ -166,7 +166,3 @@ steps:
 * Use [Azure Pipelines](/azure/devops/pipelines/get-started/what-is-azure-pipelines) to build container images for different architectures.
 * Learn about building multi-platform images using the experimental Docker [buildx](https://docs.docker.com/buildx/working-with-buildx/) plug-in.
 
-<!-- LINKS - external -->
-[docker-linux]: https://docs.docker.com/engine/installation/#supported-platforms
-[docker-mac]: https://docs.docker.com/docker-for-mac/
-[docker-windows]: https://docs.docker.com/docker-for-windows/

@@ -1,7 +1,7 @@
 ---
 title: Discover Azure Marketplace solutions 
 description: Learn how Azure Copilot helps you find the right Azure Marketplace solutions using natural language queries.
-ms.date: 07/08/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -13,7 +13,7 @@ author: JnHs
 
 Azure Copilot enables you to find the right Azure Marketplace solutions using natural language queries. Instead of relying on filters or knowing specific product names, you can describe your needs in your own words and get tailored suggestions.
 
-When you ask a question about tools and offers, Azure Copilot determines your intent, then enriches your query with context and inferred filters. Next, it searches the Azure Marketplace using intelligent APIs and returns a list of the top relevant offers, services, or follow-ups. Where applicable, an **"Explore Marketplace"** button is provided to navigate directly to the Azure Marketplace so you can explore and implement the suggested solutions. Copilot may also provide follow-up questions or related prompts to refine your search or explore other solutions.
+When you ask a question about tools and offers, Azure Copilot determines your intent, then enriches your query with context and inferred filters. Next, it searches the Azure Marketplace using intelligent APIs and returns a list of the top relevant offers, services, or follow-ups. You'll see live results based on the current offerings in Azure Marketplace. Where applicable, an **"Explore Marketplace"** button is provided to navigate directly to the Azure Marketplace so you can explore and implement the suggested solutions. Copilot may also provide follow-up questions or related prompts to refine your search or explore other solutions.
 
 ## Sample prompts
 
@@ -38,7 +38,7 @@ You can ask "**I'm looking for a blockchain solution for managing digital assets
 
 :::image type="content" source="media/discover-marketplace/blockchain-solutions.png" alt-text="Screenshot of Azure Copilot providing options for blockchain solutions in Azure Marketplace.":::
 
-In this example, the prompt "**Show me virtual machine offers**" results in a list of virtual machine options, including Azure Virtual Machines and Windows Virtual Desktop.
+In this example, the prompt "**Show me virtual machine offers**" results in a list of virtual machine options.
 
 :::image type="content" source="media/discover-marketplace/virtual-machine-offers.png" alt-text="Screenshot of Azure Copilot providing options for virtual machine offers in Azure Marketplace.":::
 
@@ -46,6 +46,7 @@ Similarly, the prompt "**I'm looking for a speech to text recognition tool**" pr
 
 :::image type="content" source="media/discover-marketplace/speech-to-text-tools.png" alt-text="Screenshot of Azure Copilot providing options for speech-to-text recognition tools in Azure Marketplace.":::
 
+For each of these examples, the results you see may vary based on the current offerings in Azure Marketplace. To view more details about any solution, select its name or the **Explore Marketplace** button.
 
 ## Next steps
 

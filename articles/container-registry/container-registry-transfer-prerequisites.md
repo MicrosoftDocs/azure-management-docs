@@ -148,19 +148,8 @@ az keyvault secret set \
 <!-- LINKS - External -->
 [terms-of-use]: https://azure.microsoft.com/support/legal/preview-supplemental-terms/
 
-
 <!-- LINKS - Internal -->
 [azure-cli]: /cli/azure/install-azure-cli
-[az-login]: /cli/azure/reference-index#az_login
-[az-keyvault-secret-set]: /cli/azure/keyvault/secret#az_keyvault_secret_set
-[az-keyvault-secret-show]: /cli/azure/keyvault/secret#az_keyvault_secret_show
-[az-keyvault-set-policy]: /cli/azure/keyvault#az_keyvault_set_policy
-[az-storage-container-generate-sas]: /cli/azure/storage/container#az_storage_container_generate_sas
-[az-storage-blob-list]: /cli/azure/storage/blob#az_storage-blob-list
-[az-deployment-group-create]: /cli/azure/deployment/group#az_deployment_group_create
-[az-deployment-group-delete]: /cli/azure/deployment/group#az_deployment_group_delete
-[az-deployment-group-show]: /cli/azure/deployment/group#az_deployment_group_show
-[az-acr-repository-list]: /cli/azure/acr/repository#az_acr_repository_list
-[az-acr-import]: /cli/azure/acr#az_acr_import
-[az-resource-delete]: /cli/azure/resource#az_resource_delete
+[az-keyvault-secret-set]: /cli/azure/keyvault/secret#az-keyvault-secret-set
+[az-storage-container-generate-sas]: /cli/azure/storage/container#az-storage-container-generate-sas
 [kv-managed-sas]: /azure/key-vault/secrets/overview-storage-keys

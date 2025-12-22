@@ -46,9 +46,7 @@ Your first step is to enable DCT at the registry level. After you enable DCT, cl
 
 Enabling DCT for your registry doesn't restrict registry usage to only consumers who have DCT enabled. Consumers who don't have DCT enabled can continue to use your registry as normal. Consumers who enabled DCT in their clients, however, can see *only* signed images in your registry.
 
-To enable DCT for your registry by using the Azure portal, go to the registry. Under **Policies**, select **Content trust** > **Enabled** > **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
-
-:::image type="content" source="./media/container-registry-content-trust/content-trust-01-portal.png" alt-text="Screenshot that shows the toggle for enabling Docker Content Trust for a registry in the Azure portal.":::
+To enable DCT for your registry by using the Azure portal, go to the registry. Under **Policies**, select **Content trust**. Select **Enabled**, then select **Save**. You can also use the [az acr config content-trust update][az-acr-config-content-trust-update] command in the Azure CLI.
 
 ## Enable DCT for the client
 
@@ -216,9 +214,7 @@ If you lose access to your root key, you lose access to the signed tags in any r
 > [!WARNING]
 > Disabling and re-enabling DCT in your registry *deletes all trust data for all signed tags in every repository in your registry*. This action is irreversible. Container Registry can't recover deleted trust data. Disabling DCT does not delete the images themselves.
 
-To disable DCT for your registry, go to the registry in the Azure portal. Under **Policies**, select **Content Trust** > **Disabled** > **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
-
-:::image type="content" source="./media/container-registry-content-trust/content-trust-03-portal.png" alt-text="Screenshot of the confirmation message about disabling Docker Content Trust for a registry in the Azure portal.":::
+To disable DCT for your registry, go to the registry in the Azure portal. Under **Policies**, select **Content Trust**. Select **Disabled**, then select **Save**. You're warned of the loss of all signatures in the registry. Select **OK** to permanently delete all signatures in your registry.
 
 ## Related content
 
@@ -231,4 +227,4 @@ To disable DCT for your registry, go to the registry in the Azure portal. Under 
 [docker-notary-cli]: https://docs.docker.com/notary/getting_started/
 
 <!-- LINKS - internal -->
-[az-acr-config-content-trust-update]: /cli/azure/acr/config/content-trust#az_acr_config_content_trust_update
+[az-acr-config-content-trust-update]: /cli/azure/acr/config/content-trust#az-acr-config-content-trust-update

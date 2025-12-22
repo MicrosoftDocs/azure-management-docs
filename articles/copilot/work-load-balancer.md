@@ -1,7 +1,7 @@
 ---
 title: Work with Azure Load Balancer using Azure Copilot
 description: Learn how Azure Copilot can help you understand and use Azure Load Balancer.
-ms.date: 04/08/2025
+ms.date: 11/20/2025
 ms.topic: how-to
 ms.service: copilot-for-azure
 ms.author: jenhayes
@@ -37,11 +37,9 @@ When you say "**Which type of load balancer should I use**", Azure Copilot asks 
 
 ## Upgrade to Standard Load Balancer
 
-On September 30, 2025, Basic Load Balancer [will be retired](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). If you currently use Basic Load Balancer, Azure Copilot can help you understand the advantages of Standard Load Balancer and how to migrate from Basic to Standard.
+As of September 30, 2025, Basic Load Balancer [is retired](https://azure.microsoft.com/updates/azure-basic-load-balancer-will-be-retired-on-30-september-2025-upgrade-to-standard-load-balancer/). If you still use Basic Load Balancer, Azure Copilot can help you understand [how to migrate from Basic to Standard](/azure/load-balancer/load-balancer-basic-upgrade-guidance) so that you can upgrade as soon as possible.
 
-To get help upgrading to Standard Load Balancer, navigate to your Basic Load Balancer, then select the banner that appears near the top of the pane. Select one of the provided prompts to get assistance from Azure Copilot.
-
-:::image type="content" source="media/work-load-balancer/load-balancer-upgrade.png" lightbox="media/work-load-balancer/load-balancer-upgrade.png"  alt-text="Screenshot of Azure Copilot providing assistance to upgrade to Standard Load Balancer.":::
+To get help upgrading to Standard Load Balancer, navigate to your Basic Load Balancer, then select the banner that appears near the top of the pane. Select one of the provided prompts to get assistance from Azure Copilot. You can also enter prompts directly, such as "**What are the benefits of a Standard SKU Load Balancer?**" or "**Help me upgrade to a Standard SKU Load Balancer**."
 
 ## Next steps
 

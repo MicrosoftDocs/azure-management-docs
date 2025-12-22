@@ -783,7 +783,6 @@ In this quickstart, you learned about using the Azure Container Registry client 
 [dotnet_samples]: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/containerregistry/Azure.Containers.ContainerRegistry/samples
 [dotnet_docs]: /dotnet/api/azure.containers.containerregistry
 [rest_docs]: /rest/api/containerregistry/
-[product_docs]:  container-registry-intro.md
 [nuget]: https://www.nuget.org/
 [dotnet_identity]: https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/identity/Azure.Identity/README.md
 [javascript_identity]: https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/identity/identity/README.md
@@ -793,7 +792,7 @@ In this quickstart, you learned about using the Azure Container Registry client 
 [jdk_link]: /java/azure/jdk/
 [javascript_samples]: https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/containerregistry/container-registry/samples
 [java_source]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/containerregistry/azure-containers-containerregistry/src
-[java_package]: https://search.maven.org/artifact/com.azure/azure-containers-containerregistry
+[java_package]: https://central.sonatype.com/artifact/com.azure/azure-containers-containerregistry
 [java_docs]: /java/api/overview/azure/containers-containerregistry-readme
 [java_identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 [java_samples]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/containerregistry/azure-containers-containerregistry/src/samples/

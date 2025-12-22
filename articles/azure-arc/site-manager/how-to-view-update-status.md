@@ -22,8 +22,8 @@ This article details how to view update status for an Arc site. A site's update 
 * An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Azure portal access
 * Internet connectivity
-* A resource group or subscription in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
-* A site created for the associated resource group or subscription. If you don't have one, see [Create and manage sites](./how-to-crud-site.md).
+* A resource group or subscription or service group in Azure with at least one resource for a site. For more information, see [Supported resource types](./overview.md#supported-resource-types).
+* A site created for the associated resource group or subscription or service group. If you don't have one, see [Create and manage sites](./how-to-crud-site.md).
 
 ## Update status colors and meanings
 

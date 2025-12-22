@@ -206,7 +206,7 @@ sections:
       - question:  |
           How do I grant access to pull or push images without granting permissions to manage the registry resource?
         answer: |
-          ACR supports [Microsoft Entra role-bases access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Microsoft Entra-based permissions, such as granting image push or pull permissions without granting permissions to the entire registry.
+          ACR supports [Microsoft Entra role-based access control (RBAC) and built-in roles](container-registry-rbac-built-in-roles-overview.md) that provide different levels of Microsoft Entra-based permissions, such as granting image push or pull permissions without granting permissions to the entire registry.
 
           You can optionally use [Microsoft Entra attribute-based access control (ABAC)] to manage [Microsoft Entra-based repository permissions](container-registry-rbac-abac-repository-permissions.md) and scope role assignments to specific repositories.
 
@@ -224,7 +224,7 @@ sections:
         answer: |
           A nondistributable layer in a manifest contains a URL parameter that content may be fetched from. Some possible use cases for enabling nondistributable layer pushes are for network restricted registries, air-gapped registries with restricted access, or for registries with no internet connectivity.
           
-          For example, if you have Network Security Group (NSG) rules set up so that a VM can pull images only from your Azure container registry, Docker will encounter failures when pulling foreign or nondistributable layers. For example, a Windows Server Core image would contain foreign layer references to Azure container registry in its manifest and would fail to pull in this scenario.
+          For example, if you have Network Security Group (NSG) rules set up so that a VM can pull images only from your Azure container registry, Docker might encounter failures when pulling foreign or nondistributable layers. For example, a Windows Server Core image would contain foreign layer references to Azure container registry in its manifest and would fail to pull in this scenario.
           
           To enable pushing of nondistributable layers:
           
@@ -431,7 +431,7 @@ sections:
           * Classic registries are no longer supported. Upgrade to a supported [service tier](./container-registry-skus.md) using [az acr update](/cli/azure/acr#az-acr-update) or the Azure portal.
           * The image or repository maybe locked so that it can't be deleted or updated. You can use the [az acr repository show](./container-registry-image-lock.md) command to view current attributes.
           * Some operations are disallowed if the image is in quarantine. Learn more about [quarantine](https://github.com/Azure/acr/tree/master/docs/preview/quarantine).
-          * Your registry may have reached its [storage limit](container-registry-skus.md#service-tier-features-and-limits).
+          * Your registry may have reached its [storage limit](container-registry-skus.md#sku-features-and-limits).
           
       - question:  |
           Repository format is invalid or unsupported
@@ -444,7 +444,7 @@ sections:
           #### Prerequisites
 
           - Enable [decrypting HTTPS in Fiddler](https://docs.telerik.com/fiddler/Configure-Fiddler/Tasks/DecryptHTTPS)
-          - Enable Docker to [use a proxy](https://docs.docker.com/docker-for-windows/#proxies) via the Docker UI.
+          - Enable Docker to [use a proxy](https://docs.docker.com/desktop/features/networking/#using-docker-desktop-with-a-proxy) via the Docker UI.
           - Be sure to revert when complete. Docker doesn't work with this enabled and Fiddler not running.
           
           #### Windows containers
@@ -474,7 +474,7 @@ sections:
           ```
           
       - question:  |
-          How do I include the .git folder in az acr build command?
+          How do I include the `.git` folder in `az acr build` command?
         answer: |
           If you pass a local source folder to the `az acr build` command, the `.git` folder is excluded from the uploaded package by default. You can create a `.dockerignore` file with the following setting. It tells the command to restore all files under `.git` in the uploaded package. 
           
@@ -501,7 +501,7 @@ sections:
 
           | Error message | Troubleshooting guide |
           |---|---|
-          |No access was configured for the VM, hence no subscriptions were found|This could happen if you're using `az login --identity` in your ACR Task. This error is transient and occurs when the role assignment of your Managed Identity hasn't been propagated yet. Waiting a few seconds before retrying works.|
+          |No access was configured for the VM, hence no subscriptions were found|This could happen if you're using `az login --identity` in your ACR Task. This error is transient and occurs when the role assignment of your Managed Identity isn't propagated yet. Waiting a few seconds before retrying works.|
           
           ## CI/CD integration
 
@@ -514,9 +514,9 @@ sections:
           Set up the correct [firewalls rules](./tasks-agent-pools.md#add-firewall-rules) to the existing network security groups or user-defined routes. After the setup, wait a few minutes for the firewall rules to apply.
 
       - question:  |
-          How will enabling the Azure built-in policy for ACR blocks enabling admin credentials?
+          How does enabling the Azure built-in policy for ACR block enabling admin credentials?
         answer: |
-          The following [Azure built-policy](./policy-reference.md), when set to respective policy status, blocks users from enabling admin user on their registry.
+          The following [Azure built-policy](./policy-reference.md), when set to respective policy status, block users from enabling admin user on their registry.
           
           | Azure built-in policy | Policy status | Admin status |
           |---|---|---|

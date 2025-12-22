@@ -67,8 +67,6 @@ landingContent:
             url: /azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json
           - text: In-cluster policy enforcements using Azure Policy
             url: /azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json
-          - text: Deploy Azure Arc-enabled Open Service Mesh
-            url: tutorial-arc-enabled-open-service-mesh.md
           - text: Access secrets from Azure Key Vault
             url: tutorial-akv-secrets-provider.md
   

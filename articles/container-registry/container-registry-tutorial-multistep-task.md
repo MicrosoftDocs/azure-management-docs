@@ -448,14 +448,8 @@ In this tutorial, you learned how to create multi-step, multi-container-based ta
 [sample-repo]: https://github.com/Azure-Samples/acr-build-helloworld-node
 
 <!-- LINKS - Internal -->
-[azure-cli]: /cli/azure/install-azure-cli
-[az-acr-task]: /cli/azure/acr/task
 [az-acr-task-create]: /cli/azure/acr/task#az-acr-task-create
 [az-acr-task-run]: /cli/azure/acr/task#az-acr-task-run
 [az-acr-task-list-runs]: /cli/azure/acr/task#az-acr-task-list-runs
 [az-acr-task-credential-add]: /cli/azure/acr/task/credential#az-acr-task-credential-add
-[az-login]: /cli/azure/reference-index#az-login
 
-<!-- IMAGES -->
-[build-task-01-new-token]: ./media/container-registry-tutorial-build-tasks/build-task-01-new-token.png
-[build-task-02-generated-token]: ./media/container-registry-tutorial-build-tasks/build-task-02-generated-token.png

@@ -124,9 +124,5 @@ For options to check the health of a registry, see [Check the health of an Azure
 
 See the [FAQ](container-registry-faq.yml) for frequently asked questions and other known issues about Azure Container Registry.
 
-
-
-
-
 <!-- LINKS - internal -->
-[az-acr-check-health]: /cli/azure/acr#az_acr_check_health
+[az-acr-check-health]: /cli/azure/acr#az-acr-check-health

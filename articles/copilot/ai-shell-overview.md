@@ -1,7 +1,7 @@
 ---
 title: Use Azure Copilot with AI Shell
 description: Learn about the things you can do with Azure Copilot from the command line.
-ms.date: 04/08/2025
+ms.date: 11/20/2025
 ms.topic: concept-article
 ms.service: copilot-for-azure
 ms.author: sewhee

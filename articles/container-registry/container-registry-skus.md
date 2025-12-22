@@ -1,84 +1,105 @@
 ---
-title: Registry Service Tiers and Features
-description: Learn about the features and limits in the Basic, Standard, and Premium service tiers of Azure Container Registry.
+title: Azure Container Registry SKU Features and Limits
+description: Learn about the features and limits in various SKUs of Azure Container Registry.
 ms.topic: concept-article
 author: rayoef
 ms.author: rayoflores
 ms.date: 10/31/2023
 ms.service: azure-container-registry
-# Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between service tiers and their limits, so that I can choose the most appropriate tier for my project's storage and performance needs."
+# Customer intent: "As a developer using Azure Container Registry, I want to understand the differences between SKU features and limits, so that I can choose the most appropriate SKU."
 ---
 
-# Azure Container Registry service tiers
+# Azure Container Registry SKU features and limits
 
-Azure Container Registry is available in multiple service tiers (also known as SKUs). These tiers provide predictable pricing and several options for aligning to the capacity and usage patterns of your private Docker registry in Azure.
+Azure Container Registry is available in multiple SKUs. These SKUs provide predictable pricing and several options for aligning to the capacity and usage patterns of your private container registry in Azure.
 
-| Tier | Description |
+| SKU | Description |
 | --- | ----------- |
 | **Basic** | A cost-optimized entry point for developers learning about Azure Container Registry. Basic registries have the same programmatic capabilities as Standard and Premium (such as Microsoft Entra [authentication integration](container-registry-authentication.md#individual-login-with-azure-ad), [image deletion][container-registry-delete], and [webhooks][container-registry-webhook]). However, the included storage and image throughput are most appropriate for lower usage scenarios. |
 | **Standard** | Standard registries offer the same capabilities as Basic, with increased included storage and image throughput. Standard registries should satisfy the needs of most production scenarios. |
-| **Premium** | Premium registries provide the highest amount of included storage and concurrent operations, enabling high-volume scenarios. In addition to higher image throughput, Premium adds features such as [geo-replication][container-registry-geo-replication] for managing a single registry across multiple regions, [content trust](container-registry-content-trust.md) for image tag signing, [private link with private endpoints](container-registry-private-link.md) to restrict access to the registry. |
+| **Premium** | Premium registries provide the highest amount of included storage and concurrent operations, enabling high-volume scenarios. In addition to higher image throughput, Premium adds features such as high availability and resiliency through [geo-replication][container-registry-geo-replication] for managing a single registry across multiple regions, [private link with private endpoints](container-registry-private-link.md) to restrict access to the registry, as well as higher API concurrency and bandwidth throughput for large-scale concurrent deployments. |
 
-The Basic, Standard, and Premium tiers all provide the same programmatic capabilities. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure. Choosing a higher-level tier provides more performance and scale. With multiple service tiers, you can get started with Basic, then convert to Standard and Premium as your registry usage increases.
+The Basic, Standard, and Premium SKUs all provide the same programmatic capabilities and data plane APIs. They also all benefit from [image storage][container-registry-storage] managed entirely by Azure. Azure Container Registry recommends the Premium SKU for most scenarios to take advantage of the additional features and higher limits.
 
-For example :
+> [!NOTE]
+> Some limits listed in this table can be increased by contacting [Azure Support](https://azure.microsoft.com/support/create-ticket/). See the [Request a limit increase](#request-a-limit-increase) section for details on the various limits that can be increased.
 
-- If you purchase a Basic tier registry, it includes a storage of 10 GB. The price you pay here is $0.167 per day. Prices are calculated based on US dollars.
-- If you have a Basic tier registry and use 25 GB storage, you are paying $0.003/day*15 = $0.045 per day for the additional 15 GB.
-- So, the pricing for the Basic ACR with 25 GB storage is $0.167+$0.045= 0.212 USD per day with other related charges like networking, builds, etc, according to the [Pricing - Container Registry.](https://azure.microsoft.com/pricing/details/container-registry/)
+## SKU features and limits
 
-
-## Service tier features and limits
-
-The following table details the features and registry limits of the Basic, Standard, and Premium service tiers.
+The following table details the features and registry limits of the Basic, Standard, and Premium SKUs.
 
 [!INCLUDE [container-instances-limits](~/reusable-content/ce-skilling/azure/includes/container-registry/container-registry-limits.md)]
 
-## Registry throughput and throttling
+## Private endpoint limits
 
-### Throughput 
+Private endpoints are available exclusively in the Premium SKU and enable secure, private network access to your container registry. With private endpoints, you can restrict registry access to specific Azure virtual networks using Azure Private Link.
 
-When generating a high rate of registry operations, use the service tier's limits for read and write operations and bandwidth as a guide for expected maximum throughput. These limits affect data-plane operations including listing, deleting, pushing, and pulling images and other artifacts.
+The Premium SKU supports a maximum number of private endpoints per registry. Consult the Premium SKU's limit in the [SKU features and limits table](#sku-features-and-limits).
 
-To estimate the throughput of image pulls and pushes specifically, consider the registry limits and these factors: 
+## Registry image pull and push performance limits
+
+Image pull and push performance is primarily affected by API concurrency, bandwidth throughput, and throttling during high-volume operations. These factors depend on your registry SKU, network configuration, and client configuration.
+
+### API concurrency and bandwidth throughput limits
+
+API concurrency and bandwidth throughput depend on your SKU. Higher-SKU registries support more concurrent operations and greater bandwidth for data-plane operations like listing, deleting, pushing, and pulling images.
+
+API concurrency and bandwidth throughput during image pulls and pushes is affected by: 
 
 * Number and size of image layers
-* Reuse of layers or base images across images
-* additional API calls that might be required for each pull or push
+* Reuse of layers across images in the registry
+* Additional API calls required for each operation
+* Scale of concurrent deployments (for example, Kubernetes deployments pulling images across multiple nodes simultaneously)
 
-For details, see documentation for the [Docker HTTP API V2](https://docs.docker.com/registry/spec/api/).
+Client environment factors:
 
-When evaluating or troubleshooting registry throughput, also consider the configuration of your client environment:
+* Docker daemon or Podman configuration for concurrent operations
+* Container runtime configuration, such as containerd or CRI-O concurrency settings
+* Cluster configuration or cluster data plane settings
 
-* your Docker daemon configuration for concurrent operations
-* your network connection to the registry's data endpoint (or endpoints, if your registry is [geo-replicated](container-registry-geo-replication.md)).
+Network factors:
 
-If you experience issues with throughput to your registry, see [Troubleshoot registry performance](container-registry-troubleshoot-performance.md). 
+* Network bandwidth and latency for the network hops from clients to the registry
+* Client-side network configuration (for example, firewall rules, proxy settings)
+* Geographic distance to the registry (or nearest replica if [geo-replicated](container-registry-geo-replication.md))
+
+For API operation details that happen during image push and pull, see the [Docker HTTP API V2](https://docs.docker.com/registry/spec/api/) documentation.
+
+For troubleshooting, see [Troubleshoot registry performance](container-registry-troubleshoot-performance.md). 
 
 #### Example
 
-Pushing a single 133 MB `nginx:latest` image to an Azure container registry requires multiple read and write operations for the image's five layers: 
+Pushing a single 133 MB `nginx:latest` image to an Azure container registry requires multiple read and write API operations for the image's five layers, all of which consume bandwidth throughput and API concurrency:
 
 * Read operations to read the image manifest, if it exists in the registry
 * Write operations to write the configuration blob of the image
 * Write operations to write the image manifest
 
-### Throttling
+### Throttling and bandwidth constraints
 
-You may experience throttling of pull or push operations when the registry determines the rate of requests exceeds the limits allowed for the registry's service tier. You may see an HTTP 429 error similar to `Too many requests`.
+During periods of high request volume, you may experience throttling with an HTTP 429 `Too many requests` error or slow bandwidth throughput. To mitigate these issues:
 
-Throttling could occur temporarily when you generate a burst of image pull or push operations in a very short period, even when the average rate of read and write operations is within registry limits. You may need to implement retry logic with some backoff in your code or reduce the maximum rate of requests to the registry.
+* Implement retry logic with exponential backoff
+* Reduce the rate of concurrent requests
+* Space out large-scale deployments to reduce simultaneous image pulls across multiple nodes
+
+> [!NOTE]
+> If you experience persistent API throttling or slow bandwidth throughput, see [Request a limit increase](#request-a-limit-increase) for information on contacting Azure Support to discuss increasing your registry's image pull/push performance limits.
+
+## Registry storage limits
+
+Azure fully manages registry storage, which varies by SKU. Each SKU includes a specific amount of free storage, with additional storage available at a per-GB rate. Each SKU also has a different maximum storage limit.
 
 ## Show registry usage
 
-Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command in the Azure CLI, [Get-AzContainerRegistryUsage](/powershell/module/az.containerregistry/get-azcontainerregistryusage) in Azure PowerShell, or the [List Usages](/rest/api/containerregistry/registries/list-usages) REST API, to get a snapshot of your registry's current consumption of storage and other resources, compared with the limits for that registry's service tier. Storage usage also appears on the registry's **Overview** page in the portal.
+Use the [az acr show-usage](/cli/azure/acr#az-acr-show-usage) command in the Azure CLI, [Get-AzContainerRegistryUsage](/powershell/module/az.containerregistry/get-azcontainerregistryusage) in Azure PowerShell, or the [Registries - List Usages](/rest/api/containerregistry/) REST API, to get a snapshot of your registry's current consumption of storage and other resources, compared with the limits for that registry's SKU. Storage usage also appears on the registry's **Overview** page in the portal.
 
-Usage information helps you make decisions about [changing the service tier](#changing-tiers) when your registry nears a limit. This information also helps you [manage consumption](container-registry-best-practices.md#manage-registry-size). 
+Usage information helps you make decisions about [changing the SKU](#changing-skus) when your registry nears a limit. This information also helps you [manage consumption](container-registry-best-practices.md#manage-registry-size).
 
 > [!NOTE]
-> The registry's storage usage should only be used as a guide and may not reflect recent registry operations. Monitor the registry's [StorageUsed metric](monitor-service-reference.md#container-registry-metrics) for up-to-date data. 
+> The registry's storage usage should only be used as a guide and may not reflect recent registry operations. Monitor the registry's [StorageUsed metric](monitor-service-reference.md#container-registry-metrics) for up-to-date data.
 
-Depending on your registry's service tier, usage information includes some or all of the following, along with the limit in that tier:
+Depending on your registry's SKU, usage information includes some or all of the following, along with the limit in that SKU:
 
 * Storage consumed in bytes<sup>1</sup>
 * Number of [webhooks](container-registry-webhook.md)
@@ -89,15 +110,15 @@ Depending on your registry's service tier, usage information includes some or al
 
 <sup>1</sup>In a geo-replicated registry, storage usage is shown for the home region. Multiply by the number of replications for total storage consumed.
 
-## Changing tiers
+## Changing SKUs
 
-You can change a registry's service tier with the Azure CLI or in the Azure portal. You can move freely between tiers as long as the tier you're switching to has the required maximum storage capacity. 
+You can change a registry's SKU with the Azure CLI or in the Azure portal. You can move freely between SKUs as long as the SKU you're switching to has the required maximum storage capacity.
 
-There is no registry downtime or impact on registry operations when you move between service tiers.
+There is no registry downtime or impact on registry operations when you move between SKUs.
 
 ### Azure CLI
 
-To move between service tiers in the Azure CLI, use the [az acr update][az-acr-update] command. For example, to switch to Premium:
+To move between SKUs in the Azure CLI, use the [az acr update][az-acr-update] command. For example, to switch to Premium:
 
 ```azurecli
 az acr update --name myContainerRegistry --sku Premium
@@ -105,7 +126,7 @@ az acr update --name myContainerRegistry --sku Premium
 
 ### Azure PowerShell
 
-To move between service tiers in Azure PowerShell, use the [Update-AzContainerRegistry][update-azcontainerregistry] cmdlet. For example, to switch to Premium:
+To move between service SKUs in Azure PowerShell, use the [Update-AzContainerRegistry][update-azcontainerregistry] cmdlet. For example, to switch to Premium:
 
 ```azurepowershell
 Update-AzContainerRegistry -ResourceGroupName myResourceGroup -Name myContainerRegistry -Sku Premium
@@ -119,19 +140,23 @@ In the container registry **Overview** in the Azure portal, select **Update**, t
 
 ## Pricing
 
-For pricing information on each of the Azure Container Registry service tiers, see [Container Registry pricing][container-registry-pricing].
+For pricing information on each of the Azure Container Registry SKUs, see [Container Registry pricing][container-registry-pricing].
 
-For details about pricing for data transfers, see [Bandwidth Pricing Details](https://azure.microsoft.com/pricing/details/bandwidth/). 
+For details about pricing for data transfers, see [Bandwidth Pricing Details](https://azure.microsoft.com/pricing/details/bandwidth/).
+
+## Request a limit increase
+
+If you need to increase limits for your registry, contact [Azure Support](https://azure.microsoft.com/support/create-ticket/) to discuss:
+
+- Increasing private endpoint limits
+- Increasing image pull/push performance if you experience throttling, low API concurrency, or slow bandwidth
+- Increasing storage limits
 
 ## Next steps
 
 **Azure Container Registry Roadmap**
 
-Visit the [ACR Roadmap][acr-roadmap] on GitHub to find information about upcoming features in the service.
-
-**Azure Container Registry UserVoice**
-
-Submit and vote on new feature suggestions in [ACR UserVoice][container-registry-uservoice].
+Visit the [Roadmap][acr-roadmap] on GitHub to find information about upcoming features in the service.
 
 <!-- IMAGES -->
 [update-registry-sku]: ./media/container-registry-skus/update-registry-sku.png
@@ -139,10 +164,9 @@ Submit and vote on new feature suggestions in [ACR UserVoice][container-registry
 <!-- LINKS - External -->
 [acr-roadmap]: https://aka.ms/acr/roadmap
 [container-registry-pricing]: https://azure.microsoft.com/pricing/details/container-registry/
-[container-registry-uservoice]: https://feedback.azure.com/d365community/forum/180a533d-0d25-ec11-b6e6-000d3a4f0858
 
 <!-- LINKS - Internal -->
-[az-acr-update]: /cli/azure/acr#az_acr_update
+[az-acr-update]: /cli/azure/acr#az-acr-update
 [update-azcontainerregistry]: /powershell/module/az.containerregistry/update-azcontainerregistry
 [container-registry-geo-replication]: container-registry-geo-replication.md
 [container-registry-storage]: container-registry-storage.md
