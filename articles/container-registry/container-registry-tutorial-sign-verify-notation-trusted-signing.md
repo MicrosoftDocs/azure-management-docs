@@ -97,7 +97,7 @@ This guide runs commands on Linux AMD64 and Windows as examples.
 
     ---
 
-    Find the latest plug-in URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning/releases).
+    Find the latest plug-in URL and checksum on the [release page](https://github.com/Azure/azure-trustedsigning-notation-plugin/releases).
 
 3. Verify plug-in installation:
 
