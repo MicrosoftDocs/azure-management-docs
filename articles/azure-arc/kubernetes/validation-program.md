@@ -33,7 +33,7 @@ The following providers and their corresponding Kubernetes distributions success
 | Red Hat       | [OpenShift Container Platform](https://www.openshift.com/products/container-platform) | [4.19.4](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/release_notes/ocp-4-19-release-notes), [4.18.9](https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/release_notes/ocp-4-18-release-notes),  [4.17.5](https://docs.redhat.com/en/documentation/openshift_container_platform/4.17/html/release_notes/ocp-4-17-release-notes),  |
 | VMware       | [Tanzu Kubernetes Grid/vSphere Kubernetes Service](https://tanzu.vmware.com/kubernetes-grid) | VKS 3.3, TKr v1.32.0+vmware.6-fips, Upstream K8s 1.32<br>VKS 3.3, TKr v1.31.4+vmware.1-fips, Upstream K8s 1.31 |
 | Canonical    | [Charmed Kubernetes](https://ubuntu.com/kubernetes/charmed-k8s/docs)| [1.34](https://ubuntu.com/kubernetes/charmed-k8s/docs/1.34/components), [1.33](https://ubuntu.com/kubernetes/docs/1.33/components), [1.32](https://ubuntu.com/kubernetes/charmed-k8s/docs/1.32/components)|
-| Wind River | [Wind River Cloud Platform](https://www.windriver.com/studio/operator/cloud-platform) |Wind River Cloud Platform 24.09; Upstream K8s version: 1.30.6|
+| Wind River | [Wind River Cloud Platform](https://www.windriver.com/products/cloud-platform) |Wind River Cloud Platform 24.09; Upstream K8s version: 1.30.6|
 
 ## Scenarios validated
 
