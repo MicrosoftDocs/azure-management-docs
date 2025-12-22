@@ -18,7 +18,7 @@ To learn more about Azure Copilot, see [What is Azure Copilot?](/azure/copilot/o
 
 ## Access Azure Copilot on the Azure mobile app
 
-In the Azure Mobile app, select the **Copilot** to launch Azure Copilot. The first time you use Azure Copilot, a welcome screen tells you more about the feature and how to use it.
+In the Azure Mobile app, select the **Copilot** icon to launch Azure Copilot. The first time you use Azure Copilot, a welcome screen tells you more about the feature and how to use it.
 
 To start a conversation with Azure Copilot, just type or speak your query or command in natural language. You can also use the provided prompts that appear above the keyboard in the mobile app. These prompts are based on common tasks and your Azure environment. Azure Copilot responds with relevant information, code snippets, or suggestions that you can utilize to monitor and manage your resources. When needed, it prompts you to provide more information or select a specific resource.
 

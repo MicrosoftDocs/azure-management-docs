@@ -45,8 +45,6 @@ You can get a list of the VM extensions on your Azure Arc-enabled server from th
 
 1. Under **Settings**, select **Extensions**. The list of installed extensions appears.
 
-   :::image type="content" source="media/manage-vm-extensions-portal/list-vm-extensions.png" alt-text="Screenshot showing the extensions deployed to a selected machine." lightbox="media/manage-vm-extensions-portal/list-vm-extensions.png":::
-
 ## Upgrade extensions
 
 When a new version of a supported extension is released, you can upgrade the extension to that latest release. Extensions are upgraded by installing a newer version of the extension than the one currently installed on the machine, rather than deploying an update to the current version.

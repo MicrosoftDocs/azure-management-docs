@@ -197,15 +197,7 @@ Follow the steps to create artifact streaming in the [Azure portal](https://port
    > [!div class="mx-imgBorder"]
    > [![A screenshot of Azure portal with the streaming artifact highlighted.](./media/container-registry-artifact-streaming/02-artifact-streaming-generated-inline.png)](./media/container-registry-artifact-streaming/02-artifact-streaming-generated-expanded.png#lightbox)
 
-6. You can also delete the artifact streaming from the repository. 
-
-   > [!div class="mx-imgBorder"]
-   > [![A screenshot of Azure portal with the delete artifact streaming button highlighted.](./media/container-registry-artifact-streaming/04-delete-artifact-streaming-inline.png)](./media/container-registry-artifact-streaming/04-delete-artifact-streaming-expanded.png#lightbox)
-
-7. You can also enable autoconversion by accessing the repository on portal. Active means autoconversion is enabled on the repository. Inactive means autoconversion is disabled on the repository. 
-    
-   > [!div class="mx-imgBorder"]
-   > [![A screenshot of Azure portal with the start artifact streaming button highlighted.](./media/container-registry-artifact-streaming/03-start-artifact-streaming-inline.png)](./media/container-registry-artifact-streaming/03-start-artifact-streaming-expanded.png#lightbox)
+In the Azure portal, you can change a repository's autoconversion status by right-clicking it from the **Repositories** pane. Select **Stop artifact streaming** to change its **Artifact streaming** status to **Inactive**, or **Start artifact streaming** to change its **Artifact streaming** status to **Active**.
 
 > [!NOTE]
 > The state of artifact streaming in a repository (inactive or active) determines whether newly pushed compatible images will be automatically converted. By default, all repositories are in an inactive state for artifact streaming. This means that when new compatible images are pushed to the repository, artifact streaming will not be triggered, and the images will not be automatically converted. If you want to start automatic conversion of newly pushed images, you need to set the repository's artifact streaming to the active state. Once the repository is in the active state, any new compatible container images that are pushed to the repository will trigger artifact streaming. This will start the automatic conversion of those images.
