@@ -124,7 +124,7 @@ The solution is named EdgeLink (EL) and is deployed at the target, which means t
 
 ## Prepare the solution template
 
-To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
+To create the solution schema, configuration templates and solution template, you can use the sample files provided in **Service Groups/Scenario1_LeafTarget** within [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
 
 
 ### [Bash](#tab/bash)
@@ -132,22 +132,38 @@ To create the solution schema and solution template files, you can use *common-s
 1. Create the solution schema file. 
 
     ```bash
-    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-name "$Linename-schema" --schema-file ./edgeLink-schema.yaml -l "$l"
+    az workload-orchestration schema create --resource-group "$rg" --version "1.0.0" --schema-file ./edgeLink-schema.yaml -l "$l"
     ```
+
+1. Create the region config template file and link it to **region** hierarchy level
+
+    ```bash
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-region-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $regionSiteId --context-id $contextId
+    ```
+
+1. Create the city config template file and link it to **city** hierarchy level
+
+    ```bash
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-city-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $citySiteId --context-id $contextId
+
+1. Create the factory config template file and link it to **factory** hierarchy level
+
+    ```bash
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-factory-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $factorySiteId --context-id $contextId
 
 1. Create the solution template file. 
 
     ```bash
-    solutionName="Edge-Link App"
-
     az workload-orchestration solution-template create \
-        --solution-template-name "$solutionName" \
         -g "$rg" \
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is EdgeLink Solution" \
-        --config-template-file ./edgeLink-config-template.yaml \
-        --specification "@specs.json" \
+        --configuration-template-file ./edgeLink-config-template.yaml \
+        --specification "@edgeLink-specs.json" \
         --version "1.0.0"
     ```
 
@@ -159,75 +175,91 @@ To create the solution schema and solution template files, you can use *common-s
     az workload-orchestration schema create --resource-group $rg --version "1.0.0" --schema-name "$Linename-schema" --schema-file .\edgeLink-schema.yaml -l $l
     ```
 
+1. Create the region config template file and link it to **region** hierarchy level
+
+    ```powershell
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-region-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $regionSiteId --context-id $contextId
+    ```
+
+1. Create the city config template file and link it to **city** hierarchy level
+
+    ```powershell
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-city-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $citySiteId --context-id $contextId
+
+1. Create the factory config template file and link it to **factory** hierarchy level
+
+    ```powershell
+    az workload-orchestration config-template create -g "$rg" --location "$l" --configuration-template-file ./edgeLink-factory-config-template.yaml --description "<description>"
+    az workload-orchestration config-template link -g "$rg" -n "$configName" --hierarchy-ids $factorySiteId --context-id $contextId
+
 1. Create the solution template file. 
 
     ```powershell
-    $solutionName = "Edge-Link App"
-
     az workload-orchestration solution-template create `
-        --solution-template-name $solutionName `
         -g $rg `
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is EdgeLink Solution" `
-        --config-template-file .\edgeLink-config-template.yaml `
-        --specification "@specs.json" `
+        --configuration-template-file .\edgeLink-config-template.yaml `
+        --specification "@edgeLink-specs.json" `
         --version "1.0.0"
     ```
 ***
 
-## Set the configuration for the solution template
+## Set the configuration for each template
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration for region service group.
+1. Set the configuration for region site.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level1Name"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
     ```
 
-1. Set the configuration for city service group.
+1. Set the configuration for city site.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level2Name"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
-1. Set the configuration for factory service group.
+1. Set the configuration for factory site.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$solutionName" --target-name "$level3Name"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
-1. Set the configuration for target service group.
+1. Set the configuration for target at line (leaf) level.
 
     ```bash
-    az workload-orchestration configuration set -g "$rg" --solution-template-name "$solutionName" --target-name "$Linename"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
     ```
 
 ### [PowerShell](#tab/powershell)
 
-1. Set the configuration for region service group.
+1. Set the configuration for region site.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level1Name
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
     ```
 
-1. Set the configuration for city service group.
+1. Set the configuration for city site.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level2Name
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
-1. Set the configuration for factory service group.
+1. Set the configuration for factory site.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $solutionName --target-name $level3Name
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
-1. Set the configuration for target service group.
+1. Set the configuration for target at line (leaf) level.
 
     ```powershell
-    az workload-orchestration configuration set -g $rg --solution-template-name $solutionName --target-name $Linename
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
     ```
 ***
 
@@ -238,9 +270,6 @@ To create the solution schema and solution template files, you can use *common-s
 1. Review the configuration. Replace the `<solution-version>` with the version of your solution template if you revised it, or use "1.0.0" if this is the first time you run this command.
 
     ```bash
-    solutionVersion="<solution-version>"
-    subId="<subscription-id>"
-
     az workload-orchestration target review --resource-group "$rg" --target-name "$Linename" --solution-template-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/solutionTemplates/$solutionName/versions/$solutionVersion
     ```
 
@@ -270,13 +299,13 @@ To create the solution schema and solution template files, you can use *common-s
 1. Publish the configuration. 
 
     ```powershell
-    az workload-orchestration target publish --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$LineName/solutions/$solutionName/versions/$solutionVersion
+    az workload-orchestration target publish --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename/solutions/$solutionName/versions/$solutionVersion
     ```
 
 1. Deploy the solution. 
 
     ```powershell
-   az workload-orchestration target install --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineName/solutions/$solutionName/versions/$solutionVersion
+   az workload-orchestration target install --resource-group $rg --target-name $Linename --solution-version-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename/solutions/$solutionName/versions/$solutionVersion
     ```
 ***
 

@@ -147,20 +147,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$factory" --display-name "$factory" --hierarchy-level "$level1" --capabilities "$capParentList" --description "$parentDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```bash
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line01" --display-name "$line01" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line02" --display-name "$line02" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName"
+    az workload-orchestration target create --resource-group "$rg" --location "$l" --name "$line03" --display-name "$line03" --hierarchy-level "$level2" --capabilities "$capChildList" --description "$childDesc" --solution-scope "$solutionScope" --target-specification "@targetspecs.json" --extended-location "@custom-location.json" --context-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName"
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -175,20 +175,20 @@ $app2Version = "1.0.1"
 1. Create a target at parent level *Redmond*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
-    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextParentName
+    az workload-orchestration target create --resource-group $rg --location $l --name $factory --display-name $factory --hierarchy-level $level1 --capabilities $capParentList --description $parentDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 1. Create targets at line level *Line01*, *Line02*, and *Line03*. Ensure *custom-location.json* is updated with the created custom location's ID.
 
     ```powershell
     # Create target at line level (Line01)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line01 --display-name $line01 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
 
     # Create target at line level (Line02)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line02 --display-name $line02 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
 
     # Create target at line level (Line03)
-    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextChildName
+    az workload-orchestration target create --resource-group $rg --location $l --name $line03 --display-name $line03 --hierarchy-level $level2 --capabilities $capChildList --description $childDesc --solution-scope $solutionScope --target-specification @targetspecs.json --extended-location @custom-location.json --context-id /subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/contexts/$contextName
     ```
 
 ***
@@ -304,20 +304,20 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 ### [Bash](#tab/bash)
 
-1. Set the configuration values for SSA at factory and line levels.
+1. Set the configuration values for SSA.
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$factory" --solution-template-name "$appName"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
     ```
 
 1. Set the configuration values for FSAD at line level. Configuration `DeploymentName` should be unique for each line.
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$line01" --solution-template-name "$appName2"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$line02" --solution-template-name "$appName2"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$line03" --solution-template-name "$appName2"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -325,17 +325,17 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Set the configuration values for SSA at factory and line levels.
 
     ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $factory --solution-template-name $appName
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
     ```
 
 1. Set the configuration values for FSAD at line level. Configuration `DeploymentName` should be unique for each line.
 
     ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $line01 --solution-template-name $appName2
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --resource-group $rg --target-name $line02 --solution-template-name $appName2
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --resource-group $rg --target-name $line03 --solution-template-name $appName2
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ***
@@ -540,9 +540,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 1. Verify that FSAD at line level *Line03* depends on *ssa-instance-b*. The *ssa-instance-b* instance should have unique `DeploymentName`.
 
-    ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --solution-template-name "$appName" --target-name "$factory"
-    
+    ```bash    
     az workload-orchestration target review --resource-group "$rg" --solution-name "$appName" --solution-version "$appVersion" --target-name "$factory" --solution-instance-name "ssa-instance-b"
     ```
 
@@ -563,9 +561,7 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 
 1. Verify that FSAD at line level *Line03* depends on *ssa-instance-b*. The *ssa-instance-b* instance should have unique `DeploymentName`.
 
-    ```powershell
-    az workload-orchestration configuration set --resource-group $rg --solution-template-name $appName --target-name $factory
-    
+    ```powershell    
     az workload-orchestration target review --resource-group $rg --solution-name $appName --solution-version $appVersion --target-name $factory --solution-instance-name "ssa-instance-b"
     ```
 

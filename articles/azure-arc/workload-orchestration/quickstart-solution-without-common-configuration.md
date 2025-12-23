@@ -32,6 +32,19 @@ Create the template and schema files by referring to *shared-schema.yaml* and *a
 ### [Bash](#tab/bash)
 
 ```bash
+# Set environment variables
+subId="<SUBSCRIPTION_ID>"
+rg="<RESOURCE_GROUP_NAME>"
+l="<LOCATION>"
+# Enter name of context
+contextName="redmondInstance"
+# Enter id of context
+contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
+# Enter name of site
+siteName="Site01"
+# Enter id of the site
+siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+
 # Create variables for schema
 # Enter schema name
 schemaName="Sharedschema"
@@ -59,6 +72,21 @@ chartVersion="enter in this format x.x.x e.g. 0.8.0"
 ### [PowerShell](#tab/powershell)
 
 ```powershell
+# Set environment variables
+$subId="<SUBSCRIPTION_ID>"
+$rg="<RESOURCE_GROUP_NAME>"
+$l="<LOCATION>"
+# Enter name of context
+$contextName="redmondInstance"
+# Enter id of context
+$contextId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/context/$contextName"
+# Enter name of site
+$siteName="Site01"
+# Enter id of the site
+$siteId="/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/sites/$sitename"
+# Enter name of target
+$childName="Line01"
+
 # Create variables for schema
 # Enter schema name
 $schemaName = "Sharedschema"
@@ -169,7 +197,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json" --version "$appVersion"
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -183,7 +211,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without `--version` argument. The service takes version input from file.
 
     ```bash
-    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --config-template-file "$appConfig" --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group "$rg" --location "$l" --solution-template-name "$appName1" --description "$desc" --capabilities "$appCapList1" --configuration-template-file "$appConfig" --specification "@specs.json"
     ```
 
     The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
@@ -198,7 +226,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. Create the Helm solution. The following command takes version input from CLI argument:
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json" --version $appVersion
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json" --version $appVersion
     ```
 
     Version can be provided on file instead of as a CLI argument. Add the following section to the *app-config-template.yaml* file:
@@ -212,7 +240,7 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
     Run the same CLI command without `--version` argument. The service takes version input from file.
 
     ```powershell
-    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --config-template-file $appConfig --specification "@specs.json"
+    az workload-orchestration solution-template create --resource-group $rg --location $l --solution-template-name $appName1 --description $desc --capabilities $appCapList1 --configuration-template-file $appConfig --specification "@specs.json"
     ```
 
     The name field is introduced for user to identify the resource name and its version the file refers to. If name is provided, then it should match `--solution-template-name` argument
@@ -223,81 +251,48 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 
 #### [Bash](#tab/bash)
 
-1. View parameters at parent level, for example, Contoso factory.
+1. View solution parameters for your target.
 
     ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
-1. View parameters for a specific template version.
+1. You can choose to view schema rules for the template before setting configuration values.
 
-    ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1" --version "$appVersion"
+    ```bash    
+    az workload-orchestration configuration schema show --template-rg "$rg" --template-name "$appName1" --version $appVersion --solution 
     ```
 
-1. Edit parameters at parent level.
+1. Edit solution parameters.
 
     ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$parentName" --solution-template-name "$appName1"
-    ```
-
-1. View parameters at child level.
-
-    ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
-    ```
-
-1. View parameters for a specific template version.
-
-    ```bash
-    az workload-orchestration configuration show --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1" --version "$appVersion"
-    ```
-
-1. Edit parameters of child level.
-
-    ```bash
-    az workload-orchestration configuration set --resource-group "$rg" --target-name "$childName" --solution-template-name "$appName1"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 #### [PowerShell](#tab/powershell)
 
-1. View parameters at parent level, for example, Contoso factory.
+1. View solution parameters for your target.
 
     ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
-1. View parameters for a specific template version.
+1. You can choose to view schema rules for the template before setting configuration values.
 
-    ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $parentName --solution-template-name $appName1 --version $appVersion
+    ```powershell    
+    az workload-orchestration configuration schema show --template-rg "$rg" --template-name "$appName1" --version $appVersion --solution
     ```
 
-1. Edit parameters at parent level.
+1. Edit solution parameters.
 
     ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $parentName --solution-template-name $appName1
-    ```
-
-1. View parameters at child level.
-
-    ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1
-    ```
-
-1. View parameters for a specific template version.
-
-    ```powershell
-    az workload-orchestration configuration show --resource-group $rg --target-name $childName --solution-template-name $appName1 --version $appVersion
-    ```
-
-1. Edit parameters at child level.
-
-    ```powershell
-    az workload-orchestration configuration set --resource-group $rg --target-name $childName --solution-template-name $appName1
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 ***
+
+> [!NOTE]
+> You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
 > [!TIP]
 > You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)

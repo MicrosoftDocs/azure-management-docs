@@ -21,73 +21,42 @@ This article describes how to use the workload orchestration portal to add confi
 - An Azure subscription. If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 - All users with access to configure platform or solution level parameters can access the Configure tab. If you don't see a tab or a feature, it might be due to insufficient permissions. Contact your IT administrator to ensure you have the necessary access.
 
-## Navigate the Configure tab
+## Navigate the Configure tabs
 
 1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
-1. Once you sign in, you see the **Configure** tab on the left side of the page.
-1. The Configure tab provides more sub-tabs: **Factory**, **Line**, **Solutions**, and **Published Solutions**. The Factory tab shows the status of all solutions deployed in your environment at the factory level, while the Line tab shows the status of all solutions deployed in your environment at the line level. The Solutions tab shows the status of all solutions deployed in your environment, while the Published Solutions tab shows the status of all published solutions.
+1. Once you sign in, you see the **Configure Hierarchy** and **Configure Solutions** tabs on the left side of the screen.
+1. The **Configure Hierarchy** tab provides dedicated sub-tabs for each level of hierarchy, as custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements, for example, region, city, factory, and line levels. The Line tab, for instance, shows the status of all solutions deployed in your environment at the line level.
+    :::image type="content" source="./media/configure-hierarchy.png" alt-text="Screenshot of the Configure tab showing how to apply filters." lightbox="./media/configure-hierarchy.png":::
+1. In the **Configure Solutions** tab, the Solutions sub-tab shows the status of all solutions deployed in your environment, while the Published Solutions sub-tab shows the status of all published solutions.
 
-    > [!IMPORTANT]
-    > Hierarchical levels are custom-defined by the IT admin. You can have up to four hierarchical levels and name them per your requirements, for example, region, city, factory, and line levels. In that case, you see the name of the custom-defined levels in the Configure tab, together with the Solutions and Published Solutions tabs.
+     :::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the Configure tab showing how to apply filters1." lightbox="./media/configure-solutions.png":::
+1. In any of the sub-tabs, you can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of entries will be filtered to show only those that match the keyword. You can also apply filters to the list by clicking on **Filter** on the top right of the list and selecting the **Column** you want to filter by. Then select an **Operator** and enter the **Value** you want to filter by.
 
-1. In any of the sub-tabs, you can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of solutions will be filtered to show only those that match the keyword.
-
-    :::image type="content" source="./media/configure-keyword.png" alt-text="Screenshot of the Configure tab showing how to search by keyword." lightbox="./media/configure-keyword.png":::
-
-    You can also apply filters to the list of solutions. To do this, click on **Filter** on the top right of the list and select the **Column** you want to filter by. Then select an **Operator** and enter the **Value** you want to filter by. The list of solutions will be filtered to show only those that match the selected column and value.
-
-    :::image type="content" source="./media/configure-filter-by.png" alt-text="Screenshot of the Configure tab showing how to apply filters." lightbox="./media/configure-filter-by.png":::
+    :::image type="content" source="./media/configure-filter-by.png" alt-text="Screenshot of the Configure tab showing how to apply filters2." lightbox="./media/configure-filter-by.png":::
 
 
-## Configure factory parameters
+## Configure Hierarchy and Targets
 
-The **Factory** sub-tab shows the list of factories, including their configuration status, linked solutions, and parent site.
-
-:::image type="content" source="./media/configure-factory.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing the default view." lightbox="./media/configure-factory.png":::
-
-To configure a factory, follow these steps:
+You can set common configuration parameters for a target or any hierarchy level (for example, region, factory, etc.) from the **Configure Hierarchy** tab. The following example demonstrates the process for a factory:
 
 1. Select the name of the factory you want to configure and click on **Configure**. 
-
-    :::image type="content" source="./media/configure-factory-1.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to select a factory." lightbox="./media/configure-factory-1.png":::
-
-1. The new details pane shows the configuration values for the selected factory.
-1. In the **Configure factory** step, enter the value to configure the factory and click on **Next**.
-
-    :::image type="content" source="./media/configure-factory-2.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to configure a factory in the step 1." lightbox="./media/configure-factory-2.png":::
-
-1. In the **Linked solutions** step, select the solutions and define the common solution parameters. Click on **Next**.
-
-    :::image type="content" source="./media/configure-factory-3.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to add the configuration of the solutions for a factory." lightbox="./media/configure-factory-3.png":::
-
-1. Review the details and click on **Configure factory** to apply the changes.
-
-    :::image type="content" source="./media/configure-factory-4.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to review and apply the changes of a configuration." lightbox="./media/configure-factory-4.png":::
-
-
-## Configure line parameters
-
-The **Line** sub-tab shows the list of factories, including their configuration status, linked solutions, and parent site.
-
-:::image type="content" source="./media/configure-line.png" alt-text="Screenshot of the Line tab in workload orchestration portal showing the default view." lightbox="./media/configure-line.png":::
-
-To configure a line, follow these steps:
-
-1. Select the name of the line you want to configure and click on **Configure Target**. 
 
     :::image type="content" source="./media/configure-line-1.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line." lightbox="./media/configure-line-1.png":::
 
     > [!NOTE]
-    > You can update the configuration of a line if its status is not *Configuration up to date*. 
+    > You can update the configuration of a target if its status is not *Configuration up to date*. 
 
-1. The new details pane shows the configuration values for the selected line.
-1. In the **Configure Target** step, enter the parameters to ensure the deployment of each target and click on **Next**.
+1. In case there is a single common configuration template linked to the hierarchy level, you can directly configure the values. In case of multiple templates, select the templates to be configured from the **Select Version** screen and click on **Next**. You can also filter templates by Name, Version and Status.
 
-    :::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to enter the parameters to configure a target." lightbox="./media/configure-line-2.png":::
+    :::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line1." lightbox="./media/configure-line-2.png":::
 
-1. Review the details and click on **Configure Target** to apply the changes.
+1. In the **Configure** step, enter the parameters for each template and click on **Next**. You can choose to autofill values from previous version only if configuration template was previously configured.
 
-    :::image type="content" source="./media/configure-line-3.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to review and apply the changes of the configuration." lightbox="./media/configure-line-3.png":::
+    :::image type="content" source="./media/configure-line-3.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to enter the parameters to configure a target." lightbox="./media/configure-line-3.png":::
+
+1. Review the details and click on **Confirm** to apply the changes.
+
+    :::image type="content" source="./media/configure-line-4.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to review and apply the changes of the configuration." lightbox="./media/configure-line-4.png":::
 
 
 ## Configure solution parameters
@@ -103,38 +72,31 @@ To configure a solution, follow these steps:
     :::image type="content" source="./media/configure-solution-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to select a solution to configure it." lightbox="./media/configure-solution-1.png":::
 
 1. The new details pane shows the configuration values for the selected solution.
-1. In the **Select targets to publish solution** step, auto-publish option is enabled by default which means the values will be applied for all targeted lines. You can **disable auto-publish** and choose certain lines from the dropdown. Click on **Next**.
+1. Select targets to which you want to publish the solution. Targets can be filtered by name, parent site, hierarchy level and capabilities, and grouped by parent site and hierarchy level. Click on **Next**.
 
     :::image type="content" source="./media/configure-solution-2.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to configure a solution and disable auto-publish." lightbox="./media/configure-solution-2.png":::
 
-1. In the **Configure target** step, enter the instance name and the parameters to publish the solution and click on **Next**.
+1. In the **Configure target** step, enter the instance name and the parameters to publish the solution. You can also click on the **custom target value** icon to set custom parameters for selective targets. Once done, click on **Next**.
 
     :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
+    :::image type="content" source="./media/configure-solution-3-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets1." lightbox="./media/configure-solution-3-1.png":::
 
     > [!TIP]
     > In the authoring process, the default value of a parameter is displayed below the field.
 
-1. The **Review** step lists the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not.
+1. The **Review** step lists the final details of the configuration values for the selected targets. You can view the target name, configuration status, which shows if the status is resolved or not, and the publish status, which shows if the solution is published or not. You can click on the **download symbol** next to the status to download the final configurations.
 
     :::image type="content" source="./media/configure-solution-4.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the targets." lightbox="./media/configure-solution-4.png":::
 
-1. Click on the **name** of the target to open the pane showing the list of the resolved configuration values.
+1. Click on the **name** of a target to open the pane showing the list of the resolved configuration values.
 
     :::image type="content" source="./media/configure-solution-5.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to click on the targets." lightbox="./media/configure-solution-5.png":::
 
-1. Review the resolved configuration values.
-
-    :::image type="content" source="./media/configure-solution-6.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to review the resolved configuration values." lightbox="./media/configure-solution-6.png":::
-
-1. You can click on the **download symbol** next to the status to download the final configurations.
-
-    :::image type="content" source="./media/configure-solution-download.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to download the final configurations." lightbox="./media/configure-solution-download.png":::
-
-1. Finally, click on **Publish** to create a new revision of configuration values for the selected targets.
+1. Review the final configurations and click on **Publish** to create a new revision of configuration values for the selected targets.
 
     :::image type="content" source="./media/configure-solution-7.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to publish the configuration of a solution target." lightbox="./media/configure-solution-7.png":::
 
-1. Once the configuration is successful, the publish status is updated to **Published**.
+1. Once the configuration is successful, the publish status is updated to **Published** for the successful cases.
 
     :::image type="content" source="./media/configure-solution-8.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to publish the configuration of the targets." lightbox="./media/configure-solution-8.png":::
 
@@ -200,9 +162,7 @@ During the configuration process, if a solution fails, you can resolve the failu
 
 ### View details of a solution version
 
-1. Click on the **solution name** to open the details pane.
-
-    :::image type="content" source="./media/configure-solution-details-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how open the details pane of a solution." lightbox="./media/configure-solution-details-1.png":::
+1. In the **Configure Solutions** tab, click on the **solution name** to open the details pane.
 
 1. In the new pane, click on **Show all revisions of this version**.
 
