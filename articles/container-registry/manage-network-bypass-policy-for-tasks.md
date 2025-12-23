@@ -124,7 +124,7 @@ https://github.com/Azure-Samples/acr-build-helloworld-node.git#main
 
 ```azurecli
 task="mytask"
-schedule="
+schedule="0 21 * * *"
 
 az acr task create \
 --name $task \
