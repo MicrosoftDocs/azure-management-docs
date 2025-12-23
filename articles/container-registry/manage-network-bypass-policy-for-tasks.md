@@ -96,26 +96,48 @@ Review [Use Dedicated Pool to Run Tasks in Azure Container Registry](~/articles/
 Provision a dedicated agent pool:
 
 ```azurecli
-az acr agentpool create --name <agent-pool-name> --registry \
+agentpool="myagentpool"
+registry="myregistry"
+subnet="/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.Network/virtualNetworks/<NetworkName>/subnets/<SubnetName>"
 
-<registry-name> --vnet <vnet-name>
+az acr agentpool create \
+--name $agentpool \
+--registry $registry \
+--subnet-id $subnet
 ```
 
 Configure a quick task to run in the agent pool using acr build or automatically triggered task using acr task commands.
 
 
 ```azurecli
-az acr build --registry <registry-name> --agent-pool \
+image="myimage:mytag"
 
-<agent-pool-name> --image <image:tag> --file Dockerfile <path>
+az acr build \
+--registry $registry \
+--agent-pool $agentpool \
+--image $image \
+--file Dockerfile \
+https://github.com/Azure-Samples/acr-build-helloworld-node.git#main
 ```
 
 
 
 ```azurecli
-az acr task create --name <task-name> --agent-pool \
+task="mytask"
+schedule="0 21 * * *"
 
-<agent-pool-name> --registry <registry-name> --schedule <cron_format>
+az acr task create \
+--name $task \
+--agent-pool $agentpool \
+--registry $registry \
+--file Dockerfile \
+--context https://github.com/Azure-Samples/acr-build-helloworld-node.git#main \
+--image $image \
+--schedule $schedule
+
+az acr task run \
+--name $task \
+--registry $registry
 ```
 
 ### Scenario 2: Opt in to enable the new network bypass policy setting
@@ -126,13 +148,13 @@ resourceGroup="myresourcegroup"  
 
 az resource update \
 --namespace Microsoft.ContainerRegistry \
---resource-type registries \ --name $registry \
+--resource-type registries \
+--name $registry \
 --resource-group $resourceGroup \
 --api-version 2025-05-01-preview \
 --set properties.networkRuleBypassAllowedForTasks=true
 ```
- 
-Verify that tasks can continue bypassing network restrictions successfully by running az acr task run commands and viewing the [streamed logs](~/articles/container-registry/container-registry-tasks-logs.md).
+Verify that tasks can continue bypassing network restrictions successfully by running `az acr task run` commands and viewing the [streamed logs](~/articles/container-registry/container-registry-tasks-logs.md).
 
 
 > [!IMPORTANT]
