@@ -23,7 +23,7 @@ This article describes how to use the workload orchestration portal to monitor y
 
 ## Navigate the Solutions tab 
 
-The Monitor tab provides two sub-tabs: **Solutions** and **Targets**. The Solutions tab shows the status of all solutions deployed in your environment, while the Targets tab shows the status of all targets.
+The Monitor tab provides 3 sub-tabs: **Solutions**, **Targets** and **Event log**. The Solutions tab shows the status of all solutions deployed in your environment, while the Targets tab shows the status of all targets.
 
 1. Sign in to the [workload orchestration portal](https://portal.digitaloperations.configmanager.azure.com/#/browse/overview).
 1. Once you sign in, you see the **Monitor** tab on the left side of the page. 
