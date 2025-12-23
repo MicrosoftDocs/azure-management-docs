@@ -15,7 +15,7 @@ This article provides the latest and past release notes for workload orchestrati
 
 ### New features
 
-- **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multi-cloud environments.
+- **Bulk deployment across multiple clusters**: Workload orchestration now supports deploying a solution to targets residing across multiple clusters in a single operation. This enhancement delivers greater flexibility and scalability for hybrid and multicloud environments.
 - **Support for Target/Site level configuration**: Users can now create and set common configurations at any hierarchy level or target without authoring solution templates, by explicitly linking a configuration template to the desired level. Solution templates will automatically map to the deployment target. Schemas will no longer support the **editableAt** property for application parameters that was earlier used for such mapping. This enforces clearer configuration boundaries and reduces unintended edits.
 - **Bulk deployment in portal**: Users can now configure, publish and deploy solutions to multiple targets, a capability previously accessible only through CLI, via the workload orchestration portal interface. Targets can be filtered by name, hierarchy level, capability tags, parent site, etc. and users can choose to configure common parameter values for all targets or set custom values for each.
 
