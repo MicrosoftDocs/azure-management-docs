@@ -307,17 +307,17 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Set the configuration values for SSA.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
     ```
 
 1. Set the configuration values for FSAD at line level. Configuration `DeploymentName` should be unique for each line.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -325,17 +325,17 @@ az workload-orchestration schema create --resource-group $rg --location $l --sch
 1. Set the configuration values for SSA at factory and line levels.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factory" --template-name "$appName" --version $appVersion --solution
     ```
 
 1. Set the configuration values for FSAD at line level. Configuration `DeploymentName` should be unique for each line.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line01" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line02" --template-name "$appName2" --version $appVersion --solution
     
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$line03" --template-name "$appName2" --version $appVersion --solution
     ```
 
 ***

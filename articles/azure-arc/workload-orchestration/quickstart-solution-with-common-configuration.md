@@ -283,25 +283,25 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. View parameters at the parent level, for example, Contoso factory:
 
     ```bash
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. Edit parameters at the parent level:
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. View parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. Edit parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -309,28 +309,31 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. View parameters at the parent level, for example, Contoso factory:
 
     ```bash
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. Edit parameters at the parent level:
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "siteId" --template-name "$appName1" --version $appVersion
     ```
 
 1. View parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. Edit parameters at the child level:
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 ***
+
+> [!NOTE]
+> You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
 > [!TIP]
 > You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)

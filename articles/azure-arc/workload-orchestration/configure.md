@@ -29,10 +29,10 @@ This article describes how to use the workload orchestration portal to add confi
     :::image type="content" source="./media/configure-hierarchy.png" alt-text="Screenshot of the Configure tab showing how to apply filters." lightbox="./media/configure-hierarchy.png":::
 1. In the **Configure Solutions** tab, the Solutions sub-tab shows the status of all solutions deployed in your environment, while the Published Solutions sub-tab shows the status of all published solutions.
 
-     :::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the Configure tab showing how to apply filters." lightbox="./media/configure-solutions.png":::
+     :::image type="content" source="./media/configure-solutions.png" alt-text="Screenshot of the Configure tab showing how to apply filters1." lightbox="./media/configure-solutions.png":::
 1. In any of the sub-tabs, you can filter the list by keyword. To do this, enter the keyword in the **search box** on the top right of the list next to "Group by:". The list of entries will be filtered to show only those that match the keyword. You can also apply filters to the list by clicking on **Filter** on the top right of the list and selecting the **Column** you want to filter by. Then select an **Operator** and enter the **Value** you want to filter by.
 
-    :::image type="content" source="./media/configure-filter-by.png" alt-text="Screenshot of the Configure tab showing how to apply filters." lightbox="./media/configure-filter-by.png":::
+    :::image type="content" source="./media/configure-filter-by.png" alt-text="Screenshot of the Configure tab showing how to apply filters2." lightbox="./media/configure-filter-by.png":::
 
 
 ## Configure Hierarchy and Targets
@@ -48,7 +48,7 @@ You can set common configuration parameters for a target or any hierarchy level 
 
 1. In case there is a single common configuration template linked to the hierarchy level, you can directly configure the values. In case of multiple templates, select the templates to be configured from the **Select Version** screen and click on **Next**. You can also filter templates by Name, Version and Status.
 
-:::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line." lightbox="./media/configure-line-2.png":::
+:::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line1." lightbox="./media/configure-line-2.png":::
 
 1. In the **Configure** step, enter the parameters for each template and click on **Next**. You can choose to autofill values from previous version only if configuration template was previously configured.
 
@@ -79,7 +79,7 @@ To configure a solution, follow these steps:
 1. In the **Configure target** step, enter the instance name and the parameters to publish the solution. You can also click on the **custom target value** icon to set custom parameters for selective targets. Once done, click on **Next**.
 
     :::image type="content" source="./media/configure-solution-3.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3.png":::
-    :::image type="content" source="./media/configure-solution-3-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets." lightbox="./media/configure-solution-3-1.png":::
+    :::image type="content" source="./media/configure-solution-3-1.png" alt-text="Screenshot of the solution tab in workload orchestration portal showing how to enter the parameters to configure the targets1." lightbox="./media/configure-solution-3-1.png":::
 
     > [!TIP]
     > In the authoring process, the default value of a parameter is displayed below the field.

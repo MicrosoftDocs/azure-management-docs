@@ -215,25 +215,25 @@ To create the solution schema, configuration templates and solution template, yo
 1. Set the configuration for region site.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
     ```
 
 1. Set the configuration for city site.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
 1. Set the configuration for factory site.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
 1. Set the configuration for target at line (leaf) level.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -241,25 +241,25 @@ To create the solution schema, configuration templates and solution template, yo
 1. Set the configuration for region site.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "EdgeLinkRegion" --version "1.0.0"
     ```
 
 1. Set the configuration for city site.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
 1. Set the configuration for factory site.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "citySiteId" --template-name "EdgeLinkCity" --version "1.0.0"
     ```
 
 1. Set the configuration for target at line (leaf) level.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$Linename" --template-name "EdgeLinkApp" --version 1.0.0 --solution
     ```
 ***
 

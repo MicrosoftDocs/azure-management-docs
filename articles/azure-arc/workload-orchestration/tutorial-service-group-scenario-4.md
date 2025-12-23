@@ -765,7 +765,7 @@ In the *dependencies.json* file, replace `solutionVersionId` with the ID from th
 
 ### [Bash](#tab/bash)
 
-1. Get the cluster credentials for the target. The cluster should be linked to the custom location which used in target creation.
+1. Get cluster credentials for the target. The cluster should be linked to the custom location which used in target creation.
 
     ```bash
     az aks get-credentials --resource-group <ResourceGroupName> --name <ClusterName> --overwrite-existing

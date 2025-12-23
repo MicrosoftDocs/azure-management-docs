@@ -513,7 +513,7 @@ To create the solution schema, configuration templates and solution template, yo
     ```
 ***
 
-## Set the configuration for the solution templates
+## Set configuration for the solution templates
 
 ### [Bash](#tab/bash)
 

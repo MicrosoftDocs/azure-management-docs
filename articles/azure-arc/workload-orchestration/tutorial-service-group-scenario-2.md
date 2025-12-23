@@ -191,13 +191,13 @@ To create the solution schema, configuration template and solution template, you
 1. Set the configuration for region site.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
     ```
 
 1. Set the configuration for target at City level.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -205,13 +205,13 @@ To create the solution schema, configuration template and solution template, you
 1. Set the configuration for region site.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "regionSiteId" --template-name "RegionHubConfig" --version "1.0.0"
     ```
 
 1. Set the configuration for target at City level.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$CityName" --template-name "RegionHubApp" --version 1.0.0 --solution
     ```
 ***
 

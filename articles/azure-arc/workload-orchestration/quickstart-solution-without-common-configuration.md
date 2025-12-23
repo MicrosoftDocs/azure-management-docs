@@ -254,19 +254,19 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. View solution parameters for your target.
 
     ```bash
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. You can choose to view schema rules for the template before setting configuration values.
 
     ```bash    
-    az workload-orchestration configuration schema show --template-resource-group "$rg" --template-name "$appName1" --version $appVersion --solution 
+    az workload-orchestration configuration schema show --template-rg "$rg" --template-name "$appName1" --version $appVersion --solution 
     ```
 
 1. Edit solution parameters.
 
     ```bash
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 #### [PowerShell](#tab/powershell)
@@ -274,22 +274,25 @@ Update the *app-config-template.yaml* file with proper reference to your schema 
 1. View solution parameters for your target.
 
     ```powershell
-    az workload-orchestration configuration show --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration show --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. You can choose to view schema rules for the template before setting configuration values.
 
     ```powershell    
-    az workload-orchestration configuration schema show --template-resource-group "$rg" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration schema show --template-rg "$rg" --template-name "$appName1" --version $appVersion --solution
     ```
 
 1. Edit solution parameters.
 
     ```powershell
-    az workload-orchestration configuration set --template-resource-group "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
+    az workload-orchestration configuration set --template-rg "$rg" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$childName" --template-name "$appName1" --version $appVersion --solution
     ```
 
 ***
+
+> [!NOTE]
+> You can use the `--template-subscription` argument to set or show configurations for a template residing in an Azure subscription other than the current subscription.
 
 > [!TIP]
 > You can also set the configuration values for the solution using the [Configure tab in Workload orchestration portal](configure.md)
