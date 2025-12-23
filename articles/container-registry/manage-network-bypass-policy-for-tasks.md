@@ -136,7 +136,7 @@ az acr task create \
 --schedule $schedule
 
 az acr task run \
---name $task
+--name $task \
 --registry $registry
 ```
 
