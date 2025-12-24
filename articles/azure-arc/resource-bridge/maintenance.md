@@ -72,7 +72,7 @@ For more information about resource health alert rule options, see [Create or ed
 
 ## Update proxy settings (Preview)
 
-Starting with appliance version 1.7.0 and `azarcappliance` CLI version 1.7.0, you can update proxy settings on an appliance using the Azure CLI command: [`az arcappliance configuration proxy update`](/cli/azure/arcappliance/configuration/proxy/update). The [proxy update command](/cli/azure/arcappliance/configuration/proxy/update) is only supported for Azure Local and Arc-enabled VMware. 
+Starting with appliance version 1.7.0 and `az arcappliance` CLI version 1.7.0, you can update proxy settings on an appliance using the Azure CLI command: [`az arcappliance configuration proxy update`](/cli/azure/arcappliance/configuration/proxy/update). The [proxy update command](/cli/azure/arcappliance/configuration/proxy/update) is only supported for Azure Local and Arc-enabled VMware. 
 
 Use this command when:
 
