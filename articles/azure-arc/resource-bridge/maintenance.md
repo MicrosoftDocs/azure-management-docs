@@ -6,18 +6,16 @@ ms.date: 1/21/2025
 # Customer intent: As an IT administrator responsible for managing an on-premises appliance VM, I want to perform maintenance operations on the Azure Arc resource bridge, so that I can ensure it remains online, secure, and operational for managing my on-premises resources effectively.
 ---
 
-# Azure Arc resource bridge maintenance operations
+# Azure Arc resource bridge maintenance
 
-To keep your Azure Arc resource bridge deployment online and operational, you need to perform maintenance operations such as updating credentials, monitoring upgrades, and ensuring the appliance VM is online.
+To keep your Azure Arc resource bridge healthy and available, you need to perform maintenance such as updating credentials, monitoring upgrades, and creating a resource health alert. You can also update the proxy settings if there are changes post-deployment.
 
 > [!IMPORTANT]
 > Arc resource bridge can't be offline for longer than 45 days because the security key within the appliance VM may expire and can't be refreshed. As a best practice, [create a resource health alert](#create-resource-health-alerts) in the Azure portal to stay informed if an Arc resource bridge becomes unavailable.
 
 ## Prerequisites
 
-To maintain the on-premises appliance VM, the [appliance configuration files generated during deployment](deploy-cli.md#az-arcappliance-createconfig) need to be saved in a secure location and made available on the management machine. The YAML configuration files are used for two az arcappliance CLI commands: to delete Arc resource bridge via `az arcappliance delete` command and to manually upgrade the Arc resource bridge via `az arcappliance upgrade` command.
-
-The management machine used to perform maintenance operations must meet all of [the Arc resource bridge requirements](system-requirements.md).  
+The management machine used to perform maintenance must meet all of [the Arc resource bridge requirements](system-requirements.md).  
 
 The following sections describe common maintenance tasks for Arc resource bridge.
 
@@ -25,13 +23,13 @@ The following sections describe common maintenance tasks for Arc resource bridge
 
 For more information on maintaining credentials for Arc-enabled VMware, see [Update the vSphere account credentials](../vmware-vsphere/administer-arc-vmware.md#update-the-vsphere-account-credentials-using-a-new-password-or-a-new-vsphere-account-after-onboarding). For Arc-enabled SCVMM, see [Update the SCVMM account credentials](../system-center-virtual-machine-manager/administer-arc-scvmm.md).
 
-Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources. The credentials used by Arc resource bridge are the same ones provided during deployment of the resource bridge, which gives the resource bridge visibility to on-premises resources for guest management in Azure. If the credentials change, the credentials stored in the Arc resource bridge must be updated. 
+Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources (ex: vCenter credentials). The credentials used by Arc resource bridge are the same ones provided during deployment. It gives the resource bridge visibility to on-premises resources for guest management in Azure. If the credentials change, the credentials stored in the Arc resource bridge must be updated. 
 
-You can test if the credentials within the appliance VM are valid by going to the Azure portal and performing an action on an Arc-enabled Private Cloud VM. If you receive an error, then it is possible that the credentials need to be updated.
+You can test if the credentials within the appliance VM are valid by going to the Azure portal and performing an action on a machine that's Arc-enabled via the resource bridge. If you receive an error, then it is possible that the credentials need to be updated.
 
 ## Upgrade Arc resource bridge
 
-Arc resource bridge should be upgraded once every six months to refresh critical certificates within the appliance required to maintain security and communications to Azure cloud. Each Arc private cloud solution has its own upgrade guidelines and procedures. For more information, please refer to the [Upgrade page](upgrade.md).
+Each Arc-enabled private cloud has its own upgrade guidelines and procedures. For more information, please refer to the [Upgrade page](upgrade.md).
 
 ## Create resource health alerts
 
@@ -71,6 +69,19 @@ You can [create a resource health alert rule](/azure/service-health/resource-hea
 1. Select **Review + create**, then select **Create**.
 
 For more information about resource health alert rule options, see [Create or edit an activity log, service health, or resource health alert rule](/azure/azure-monitor/alerts/alerts-create-activity-log-alert-rule?tabs=resource-health).
+
+## Update proxy settings (Preview)
+
+Starting with appliance version 1.7.0 and `azarcappliance` CLI version 1.7.0, you can update proxy settings on an appliance using the Azure CLI command: [`az arcappliance configuration proxy update`](/azure/arcappliance/configuration/proxy/update). The [proxy update command](/azure/arcappliance/configuration/proxy/update) is only supported for Azure Local and Arc-enabled VMware. 
+
+Use this command when:
+
+- Your organization switches to a new proxy server.
+- You need to disable proxy usage entirely.
+- You want to rotate proxy credentials or certificates.
+
+If an upgrade fails due to incorrect network proxy settings, you can run a proxy update to fix the values. If a proxy update operation fails, you must retry and have it succeed before performing any other operation, including retrying upgrade.
+
 
 ## Delete Arc resource bridge
 
