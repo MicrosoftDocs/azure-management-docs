@@ -149,7 +149,7 @@ subnetId=$(az network vnet subnet show \
         --query id --output tsv)
 
 az acr agentpool create \
-    --registry MyRegistry \
+    --registry myregistry \
     --name myagentpool \
     --tier S2 \
     --subnet-id $subnetId
@@ -182,7 +182,7 @@ For example, create a scheduled task on the agent pool with [`az acr task create
 
 ```azurecli
 az acr task create \
-    --registry MyRegistry \
+    --registry myregistry \
     --name mytask \
     --agent-pool myagentpool \
     --image myimage:mytag \
