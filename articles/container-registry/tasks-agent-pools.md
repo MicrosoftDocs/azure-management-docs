@@ -30,7 +30,8 @@ This feature is available in the **Premium** container registry service tier. Fo
 ## Preview limitations
 
 - Task agent pools currently support Linux nodes. Windows nodes aren't currently supported.
-- Task agent pools are available in preview in the following regions: West US 2, South Central US, East US 2, East US, Central US, West Europe, North Europe, Canada Central, East Asia, Switzerland North, USGov Arizona, USGov Texas, and USGov Virginia.
+- Task agent pools are available in preview in the following regions: West US 2, South Central US, East US 2, East US, Central US, West Europe, North Europe, Canada Central, East Asia, Switzerland North, Jio India West, Jio India Central, USGov Arizona, USGov Texas, and USGov Virginia.
+
 - For each registry, the default total vCPU (core) quota is 16 for all standard agent pools and is 0 for isolated agent pools. To increase your quota, open a [support request][open-support-ticket].
 
 ## Prerequisites
@@ -68,7 +69,7 @@ Create an agent pool by using the [`az acr agentpool create`][az-acr-agentpool-c
 
 ```azurecli
 az acr agentpool create \
-    --registry MyRegistry \
+    --registry myregistry \
     --name myagentpool \
     --tier S2
 ```
@@ -82,7 +83,7 @@ Scale the pool size up or down with the [`az acr agentpool update`][az-acr-agent
 
 ```azurecli
 az acr agentpool update \
-    --registry MyRegistry \
+    --registry myregistry \
     --name myagentpool \
     --count 2
 ```
@@ -168,7 +169,7 @@ Queue a quick task on the agent pool by using the [`az acr build`][az-acr-build]
 
 ```azurecli
 az acr build \
-    --registry MyRegistry \
+    --registry myregistry \
     --agent-pool myagentpool \
     --image myimage:mytag \
     --file Dockerfile \
@@ -195,7 +196,7 @@ To verify task setup, run [`az acr task run`][az-acr-task-run]:
 
 ```azurecli
 az acr task run \
-    --registry MyRegistry \
+    --registry myregistry \
     --name mytask
 ```
 
@@ -205,7 +206,7 @@ To find the number of runs currently scheduled on the agent pool, run [`az acr a
 
 ```azurecli
 az acr agentpool show \
-    --registry MyRegistry \
+    --registry myregistry \
     --name myagentpool \
     --queue-count
 ```
