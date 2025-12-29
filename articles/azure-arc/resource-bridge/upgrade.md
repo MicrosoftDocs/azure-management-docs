@@ -83,28 +83,28 @@ az arcappliance show --resource-group [REQUIRED] --name [REQUIRED]
 > [!WARNING] 
 > For Azure Local, you must use the built-in Azure Local LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
 
-You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig and [appliance configuration files](system-requirements.md#configuration-files) stored locally; otherwise, you cannot run the upgrade.
+You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig stored locally. You can retrieve the kubeconfig with the Az CLI command: `[az arcappliance get-credentials](/cli/azure/arcappliance#az-arcappliance-get-credentials)`. 
 
-Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades could be needed to reach a [supported version](#supported-versions). You can check your appliance version by checking the Azure resource of your Arc resource bridge.
+Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades may be needed to reach a [supported version](#supported-versions). You can check your appliance version by checking the Azure resource of your Arc resource bridge.
 
-Before upgrading, you need the latest Azure CLI extension for `arcappliance`:
+1. Before upgrading, you need the latest Azure CLI extension for `arcappliance`:
 
 ```azurecli
 az extension add --upgrade --name arcappliance 
 ```
 
-To manually upgrade your resource bridge, use the following command:
+1. To run an upgrade, you need the kubeconfig, which can be retrieved with the following `[get-credentials](/cli/azure/arcappliance#az-arcappliance-get-credentials)` command: 
 
-```azurecli
-az arcappliance upgrade <private cloud> --config-file <file path to ARBname-appliance.yaml> 
+```
+az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --credentials-dir [OPTIONAL]
 ```
 
-For example:
+1. (Arc-enabled VMware)To upgrade a resource bridge on VMware:
+```
+az arcappliance upgrade vmware --resource-group [REQUIRED] --name [REQUIRED] --kubeconfig [REQUIRED] --address [OPTIONAL] --username [OPTIONAL] --password [OPTIONAL]
+```
 
-To upgrade a resource bridge on VMware:
-```az arcappliance upgrade vmware --config-file c:\contosoARB01-appliance.yaml```
-
-To upgrade on SCVMM:
+1. (Arc-enabled SCVMM) To upgrade on SCVMM:
 ```az arcappliance upgrade scvmm --config-file c:\contosoARB01-appliance.yaml```
 
 To upgrade a resource bridge on Azure Local, transition to 23H2 and use the built-in upgrade management tool. For more information, see [About updates for Azure Local, version 23H2](/azure/azure-local/update/about-updates-23h2).
