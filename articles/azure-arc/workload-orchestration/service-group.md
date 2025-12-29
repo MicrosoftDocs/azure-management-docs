@@ -125,24 +125,6 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId'}}"
     ```
 
-1. Create the schema.
-
-    ```bash
-    schemaName="<schema name>"
-    schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/microsoft.edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId?api-version=2025-08-01" --body "{'location':'$location'}"
-    ```
-
-1. Create the schema reference.
-
-    ```bash
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    ```
-
 #### [PowerShell](#tab/powershell)
 
 1. To tag the Site correctly, you can use the following commands, ensuring that the Site is tagged according to its respective hierarchy level:
@@ -185,41 +167,11 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
     az rest --method put --url "$siteId/providers/microsoft.edge/configurationreferences/default`?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'$configId}}"
     ```
 
-1. Create the schema.
-
-    ```powershell
-    $schemaName="<schema name>"
-    $schemaId="/subscriptions/$subscriptionId/resourceGroups/$resourcegroup/providers/$microsoft.edge/schemas/$schemaName"
-    az rest --method put --url "$schemaId`?api-version=2025-08-01" --body "{'location':'$location'}"
-    ```
-
-1. Create the schema reference.
-
-    ```powershell
-    # For service group-based sites
-    az rest --method put --url "$servicegroupId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    
-    # For resource group-based sites
-    az rest --method put --url "$siteId/providers/microsoft.edge/schemareferences/default`?api-version=2025-08-01" --body "{'properties':{'schemaId':'$schemaId'}}"
-    ```
-
 ***
 
 ## Set up a service group hierarchy for workload orchestration
 
 #### [Bash](#tab/bash)
-
-1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Reader` role. 
-
-    ```bash
-    # Assign the Service Group Reader role
-    providerAppId="cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
-    providerOid=$(az ad sp show --id "$providerAppId" --query "id" --output "tsv")
-
-    az role assignment create --assignee "$providerOid" \
-      --role "Service Group Reader" \
-      --scope "/providers/Microsoft.Management/serviceGroups/$sg"
-    ```
 
 1. To connect a service group site to a context, you need to create a site reference. This is done by using the `az workload-orchestration context site-reference create` command. Make sure to replace the placeholders with your actual values.
 
@@ -301,26 +253,7 @@ For example, if the hierarchy is *[Factory, Line]*, then Site is created at the 
       --body "{'properties':{ 'targetId': '/providers/Microsoft.Management/serviceGroups/$sg'}}"
     ```
 
-1. Update or refresh a target after connecting it to a service group to make sure hierarchy configuration is in sync with the service group. This step is optional.
-
-    ```bash
-    # Update or refresh a target
-    az workload-orchestration target update --resource-group "$rg" --name "$childName"
-    ```
-
 #### [PowerShell](#tab/powershell)
-
-1. Once the service group is created and the sites are appropriately tagged, you need to grant the workload orchestration access to the service group hierarchy. This is done by assigning the `Service Group Reader` role. 
-
-    ```powershell
-    # Assign the Service Group Reader role
-    $providerAppId = "cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
-    $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
-    
-    az role assignment create --assignee "$providerOid" `
-        --role "Service Group Reader" `
-        --scope "/providers/Microsoft.Management/serviceGroups/$sg"
-    ```
 
 1. To connect a service group site to a context, you need to create a site reference. This is done by using the `az workload-orchestration context site-reference create` command. Make sure to replace the placeholders with your actual values.
 

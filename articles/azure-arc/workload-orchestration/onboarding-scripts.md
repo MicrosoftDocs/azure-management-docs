@@ -109,6 +109,9 @@ The infra-related properties fall under the `infraOnboarding` section in this fi
 - `siteHierarchy`: (Optional) An array defining the site structure and associated deployment targets.
     - `siteName`: (Required) Name of the site resource to be created. Avoid adding trailing numbers in the name.
     - `parentSite`: (Optional) Name of the parent site in the hierarchy. Set to `null` for top-level sites.
+    - `configuration` (Required): Nested object containing data about site configuration
+        - `name` (Required): name of site config
+        - `location` (Required): location to create site config
     - `level`: (Required) The hierarchy level this site represents (for example, "factory", "line"). Must match a level defined in the Context.
     - `capabilityList`: (Optional) Defines capabilities to be added to the Context if this site node is processed for capability setup.
         - `capabilities`: (Required) An array of capability names (strings) to add/update in the Context.

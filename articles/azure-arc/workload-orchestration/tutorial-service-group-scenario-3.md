@@ -306,7 +306,7 @@ All the instances of RA, CA, FA, and LET are deployed in the same Azure Arc-enab
 
 ## Prepare the solution templates
 
-To create the solution schema and solution template files, you can use *common-schema.yaml* and *app-config-template.yaml* files, respectively, in [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference. 
+To create the solution schema, configuration templates and solution template, you can use the sample files provided in **Service Groups/Scenario3_1AppNDependency** within [GitHub repository](https://github.com/Azure/workload-orchestration/blob/main/workload%20orchestration%20files.zip) as reference.
 
 ### Solution template for RA
 
@@ -330,7 +330,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is RA Solution" \
-        --config-template-file ./ra-config-template.yaml \
+        --configuration-template-file ./ra-config-template.yaml \
         --specification "@ra-specs.json" \
         --version "$raversion"
     ```
@@ -354,7 +354,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is RA Solution" `
-        --config-template-file .\ra-config-template.yaml `
+        --configuration-template-file .\ra-config-template.yaml `
         --specification "@ra-specs.json" `
         --version $raversion
     ```
@@ -381,7 +381,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is CA Solution" \
-        --config-template-file ./ca-config-template.yaml \
+        --configuration-template-file ./ca-config-template.yaml \
         --specification "@ca-specs.json" \
         --version "$caversion"
     ```
@@ -405,7 +405,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is CA Solution" `
-        --config-template-file .\ca-config-template.yaml `
+        --configuration-template-file .\ca-config-template.yaml `
         --specification "@ca-specs.json" `
         --version $caversion
     ```
@@ -432,7 +432,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is fa Solution" \
-        --config-template-file ./fa-config-template.yaml \
+        --configuration-template-file ./fa-config-template.yaml \
         --specification "@fa-specs.json" \
         --version "$faversion"
     ```
@@ -456,7 +456,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is FA Solution" `
-        --config-template-file .\fa-config-template.yaml `
+        --configuration-template-file .\fa-config-template.yaml `
         --specification "@fa-specs.json" `
         --version $faversion
     ```
@@ -483,7 +483,7 @@ To create the solution schema and solution template files, you can use *common-s
         -l "$l" \
         --capabilities "Use for soap production" \
         --description "This is LET Solution" \
-        --config-template-file ./let-config-template.yaml \
+        --configuration-template-file ./let-config-template.yaml \
         --specification "@let-specs.json" \
         --version "$letversion"
     ```
@@ -507,50 +507,38 @@ To create the solution schema and solution template files, you can use *common-s
         -l $l `
         --capabilities "Use for soap production" `
         --description "This is LET Solution" `
-        --config-template-file .\let-config-template.yaml `
+        --configuration-template-file .\let-config-template.yaml `
         --specification "@let-specs.json" `
         --version $letversion
     ```
 ***
 
-## Set the configuration for the solution templates
+## Set configuration for the solution templates
 
 ### [Bash](#tab/bash)
 
 1. Set the configuration for RA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$raname" --target-name "$level1Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$raname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget" --solution
     ```
 
 1. Set the configuration for CA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$caname" --target-name "$level2Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$caname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget" --solution
     ```
 
 1. Set the configuration for FA solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level2Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$faname" --target-name "$level3Name"
+    az workload-orchestration configuration set -g "$rg" --template-name "$faname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget" --solution
     ```
 
 1. Set the configuration for LET solution.
 
     ```bash
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level1Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level2Name"
-
-    az workload-orchestration configuration set --subscription "$contextSubscriptionId" -g "$contextRG" --solution-template-name "$letname" --target-name "$level3Name"
-
-    az workload-orchestration configuration set -g "$rg" --solution-template-name "$letname" --target-name "$lineTarget"
+    az workload-orchestration configuration set -g "$rg" --template-name "$letname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget" --solution
     ```
 
 ### [PowerShell](#tab/powershell)
@@ -558,36 +546,25 @@ To create the solution schema and solution template files, you can use *common-s
 1. Set the configuration for RA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $raname --target-name $level1Name
+    az workload-orchestration configuration set -g "$rg" --template-name "$raname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$regionTarget" --solution
     ```
+
 1. Set the configuration for CA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level1Name
+    az workload-orchestration configuration set -g "$rg" --template-name "$caname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$cityTarget" --solution
+    ```
 
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $caname --target-name $level2Name
-    ```    
 1. Set the configuration for FA solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level1Name
-
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level2Name
-    
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $faname --target-name $level3Name
+    az workload-orchestration configuration set -g "$rg" --template-name "$faname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$factoryTarget" --solution
     ```
 
 1. Set the configuration for LET solution.
 
     ```powershell
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level1Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level2Name
-    
-    az workload-orchestration configuration set --subscription $contextSubscriptionId -g $contextRG --solution-template-name $letname --target-name $level3Name
-    
-    az workload-orchestration configuration set -g $rg --solution-template-name $letname --target-name $lineTarget
+    az workload-orchestration configuration set -g "$rg" --template-name "$letname" --hierarchy-id "/subscriptions/$subId/resourceGroups/$rg/providers/Microsoft.Edge/targets/$lineTarget" --solution
     ```
 
 ***

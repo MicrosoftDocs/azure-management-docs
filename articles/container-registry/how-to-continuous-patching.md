@@ -131,11 +131,9 @@ az acr supply-chain workflow create --help
 ```
 ## Use Azure portal to view workflow tasks
 
-1. Once the workflow succeeds, go to the Azure portal to view your running tasks. Select Services -> Repositories, and you should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
+1. Once the workflow succeeds, go to the Azure portal to view your running tasks. In the service menu, under **Services**, select **Repositories. You should see a new repository named ```csscpolicies/patchpolicy```. This repository hosts the JSON configuration artifact that is continuously referenced for continuous patching.
 
-:::image type="content" source="media/continuous-patching-media/portal-repos-1.png" alt-text="Screenshot that shows the repository that hosts the configuration artifact for continuous patching." lightbox="media/continuous-patching-media/portal-repos-1.png":::
-
-2. Next, select on "Tasks” under "Services” - you should see three new tasks:
+2. Next, under **Services**, select select **Tasks**. You should see three new tasks:
 
 :::image type="content" source="media/continuous-patching-media/portal-tasks-1.png" alt-text="Screenshot that shows the tasks created for continuous patching." lightbox="media/continuous-patching-media/portal-tasks-1.png":::
 

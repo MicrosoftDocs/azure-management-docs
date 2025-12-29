@@ -9,7 +9,7 @@ ms.date: 09/30/2025
 
 # Bulk review, publish, and deploy with workload orchestration
 
-Workload orchestration allows you to bulk review, publish, and deploy a solution to multiple targets within the same cluster. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process. 
+Workload orchestration allows you to bulk review, publish, and deploy a solution to multiple targets within the same or different Arc-connected clusters. If [external validation](external-validation.md) and [staging](how-to-stage.md) are enabled, they are automatically triggered as part of the bulk process. 
 
 ## Prerequisites
 
@@ -267,6 +267,9 @@ Once the input file is prepared, run the script using:
 ```powershell
 bulk_deployment.ps1 "input.json"
 ```
+
+> [!NOTE]
+> Every deployment (bulk or single) creates a Workflow resource. The default limitation on the number of Workflows is 800. Once this quota is reached, you need to delete existing Workflows by running the script [workflow-delete.ps1](https://github.com/Azure/workload-orchestration/blob/main/workflow-delete.ps1), before performing additional deployments.
 
 ## Related content
 

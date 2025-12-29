@@ -42,11 +42,7 @@ For example, a user's MAM policy may specify a 6-digit PIN requirement. When tha
 
 After the user sets up their PIN, they'll be prompted to enter that PIN every time they sign in. The PIN must be entered in order to use the Azure mobile app.
 
-:::image type="content" source="media/intune-management/intune-pin-enter.png" alt-text="Screenshot of Intune MAM prompting the user to enter their PIN in the Azure mobile app.":::
-
 If a user is marked as out of compliance with their policy (following any remediation steps), they'll be signed out of the app. For example, a user might switch to a different policy-protected account that was marked as out of compliance. In this case, the app signs them out and displays a message notifying the user that they must sign back in.
-
-:::image type="content" source="media/intune-management/intune-sign-in-required.png" alt-text="Screenshot of Intune MAM requiring a user to sign back in to the Azure mobile app.":::
 
 ## Next steps
 

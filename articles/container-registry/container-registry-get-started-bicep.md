@@ -101,8 +101,6 @@ Use the Azure portal or a tool such as the Azure CLI to review the properties of
 
 When you no longer need the resource, delete the resource group, and the registry. To do so, go to the Azure portal, select the resource group that contains the registry, and then select **Delete resource group**.
 
-:::image type="content" source="media/container-registry-get-started-bicep/delete-resource-group.png" alt-text="Delete resource group":::
-
 ## Next steps
 
 In this quickstart, you created an Azure Container Registry with a Bicep file. Continue to the Azure Container Registry tutorials for a deeper look at ACR.

@@ -41,27 +41,29 @@ Goal: Configure the parameters of a factory level to prepare it for deployment.
 
 Steps:
 
-1. Go to the [**Configure tab**](https://portal.digitaloperations.configmanager.azure.com/#/configure/overview).
+1. Go to the **Configure Hierarchy** tab.
 1. Select the **Factory** subtab.
 
-    :::image type="content" source="./media/configure-factory.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing the default view." lightbox="./media/configure-factory.png":::
+    :::image type="content" source="./media/configure-line.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing the default view." lightbox="./media/configure-line.png":::
 
 1. Select the name of the factory you want to configure and click on **Configure**. 
 
-    :::image type="content" source="./media/configure-factory-1.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to select a factory." lightbox="./media/configure-factory-1.png":::
+    :::image type="content" source="./media/configure-line-1.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line." lightbox="./media/configure-line-1.png":::
 
-1. The new details pane shows the configuration values for the selected factory.
-1. In the **Configure factory** step, enter the value to configure the factory and click on **Next**.
+    > [!NOTE]
+    > You can update the configuration of a target if its status is not *Configuration up to date*. 
 
-    :::image type="content" source="./media/configure-factory-2.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to configure a factory in the step 1." lightbox="./media/configure-factory-2.png":::
+1. In case there is a single common configuration template linked to the hierarchy level, you can directly configure the values. In case of multiple templates, select the templates to be configured from the **Select Version** screen and click on **Next**. You can also filter templates by Name, Version and Status.
 
-1. In the **Linked solutions** step, select the solutions and define the common solution parameters. Click on **Next**.
+    :::image type="content" source="./media/configure-line-2.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to select a line-1." lightbox="./media/configure-line-2.png":::
 
-    :::image type="content" source="./media/configure-factory-3.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to add the configuration of the solutions for a factory." lightbox="./media/configure-factory-3.png":::
+1. In the **Configure** step, enter the parameters for each template and click on **Next**. You can choose to autofill values from previous version only if configuration template was previously configured.
 
-1. Review the details and click on **Configure factory** to apply the changes.
+    :::image type="content" source="./media/configure-line-3.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to enter the parameters to configure a target." lightbox="./media/configure-line-3.png":::
 
-    :::image type="content" source="./media/configure-factory-4.png" alt-text="Screenshot of the Factory tab in workload orchestration portal showing how to review and apply the changes of a configuration." lightbox="./media/configure-factory-4.png":::
+1. Review the details and click on **Confirm** to apply the changes.
+
+    :::image type="content" source="./media/configure-line-4.png" alt-text="Screenshot of the line tab in workload orchestration portal showing how to review and apply the changes of the configuration." lightbox="./media/configure-line-4.png":::
 
 ### Other things you can do in the Configure tab
 
@@ -69,7 +71,6 @@ In the Configure tab, you can also:
 
 |Link|Action	|
 |---------------------|------------------|
-|[Configure line parameters](configure.md#configure-line-parameters)|Configure the parameters of a target at line level.|
 |[Configure solution parameters](configure.md#configure-solution-parameters)|Configure the parameters of a solution and choose the target to publish it.|
 |[Configure solution parameters for a solution with dependencies](configure.md#configure-solution-parameters-for-a-solution-with-dependencies)|Configure the parameters of a solution which is dependent on another solution.|
 |[Resolve a solution failure during authoring](configure.md#resolve-a-solution-failure-during-authoring)|Resolve the failure of a solution that fails during the configuration process.|
@@ -88,33 +89,33 @@ Goal: Deploy a solution to a target.
 
 Steps:
 
-1. Under the **Deploy** tab, click on the **target name** to open the details page which lists the applicable solutions and their statuses.
+1. Click on the **Deploy** tab and switch to solution view to view the applicable solutions and their statuses.
 
     :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
 
-1. In the details page of the target, choose the solution in **Published Completed** state and click on **Deploy Solution**.
+1. You can filter or group solutions by any of the column values. Click on a solution name which has 1 or more targets available to deploy to.
 
-    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
+    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to click on a target-1." lightbox="./media/deploy-2.png":::
+
+1. Choose the targets in **Publish Completed** state and click on **Deploy Solution**.
+
+    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-3.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
 
-    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/deploy-3.png":::
+    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/deploy-4.png":::
 
 1. You can see a notification of deployment in progress at the top right corner of the page. 
 
-    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-5.png":::
 
-1. To view the detailed status of your deployment, click on **Status**.
+1. To view the detailed status of your deployment, click on the notification icon at the top right and click on **Show in event logs**.
 
-    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
+    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-6.png":::
 
-1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane. The steps currently in progress are highlighted in bold.
+1. Click on the respective **Event name** to open the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
 
-    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
-
-1. In case the deployment fails at any step, the pane shows the details on the exact step of failure.
-
-    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing an example failed deployment." lightbox="./media/deploy-7.png":::
+    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-7.png":::
 
 ### Other things you can do in the Deploy tab
 

@@ -39,36 +39,56 @@ This article describes how to use the workload orchestration portal to deploy, d
 
 You can deploy a solution to a target by following these steps:
 
-1. Under the **Deploy** tab, click on the **target name** to open the details page which lists the applicable solutions and their statuses.
+1. Click on the **Deploy** tab and click on the target you want to deploy the solution to.
+:::image type="content" source="./media/single-deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/single-deploy-1.png":::
 
-    :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target." lightbox="./media/deploy-1.png":::
-
-1. In the details page of the target, choose the solution in **Publish Completed** state and click on **Deploy Solution**.
-
-    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-2.png":::
+1. From the list of solutions applicable on that target, select any solution in **Publish completed** state and click on **Deploy Solution**.
+:::image type="content" source="./media/single-deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to click on a target1." lightbox="./media/single-deploy-2.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
 
-    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/deploy-3.png":::
+    :::image type="content" source="./media/single-deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution." lightbox="./media/single-deploy-3.png":::
 
 1. You can see a notification of deployment in progress at the top right corner of the page. 
 
-    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-4.png":::
+    :::image type="content" source="./media/single-deploy-4.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress1." lightbox="./media/single-deploy-4.png":::
 
-1. To view the detailed status of your deployment, click on **Status**.
+1. You can click on the status of the solution you deployed, to open the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
 
-    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-5.png":::
+    :::image type="content" source="./media/single-deploy-5.png" alt-text="Screenshot of the Deploy tab showing the deployment status details1." lightbox="./media/single-deploy-5.png":::
 
-1. This opens the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane. The steps currently in progress are highlighted in bold. 
+## Deploy a solution to multiple targets
 
-    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-6.png":::
+You can deploy a solution to multiple targets at once by following these steps:
 
-1. In case the deployment fails at any step, the pane shows the details on the exact step of failure.
+1. Click on the **Deploy** tab and switch to solution view to view the applicable solutions and their statuses.
 
-    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing an example failed deployment." lightbox="./media/deploy-7.png":::
+    :::image type="content" source="./media/deploy-1.png" alt-text="Screenshot of the Deploy tab showing how to click on a target2." lightbox="./media/deploy-1.png":::
 
-    > [!NOTE]
-    > All actions and statuses are shown under notifications.
+1. You can filter or group solutions by any of the column values. Click on a solution name which has 1 or more targets available to deploy to.
+
+    :::image type="content" source="./media/deploy-2.png" alt-text="Screenshot of the Deploy tab showing how to click on a target3." lightbox="./media/deploy-2.png":::
+
+1. Choose the targets in **Publish Completed** state and click on **Deploy Solution**.
+
+    :::image type="content" source="./media/deploy-3.png" alt-text="Screenshot of the Deploy tab showing how to deploy a solution." lightbox="./media/deploy-3.png":::
+
+1. In the confirmation window, click on **Confirm** to proceed.
+
+    :::image type="content" source="./media/deploy-4.png" alt-text="Screenshot of the Deploy tab showing how to confirm the deployment of a solution1." lightbox="./media/deploy-4.png":::
+
+1. You can see a notification of deployment in progress at the top right corner of the page. 
+
+    :::image type="content" source="./media/deploy-5.png" alt-text="Screenshot of the Deploy tab showing the notification of a deployment in progress." lightbox="./media/deploy-5.png":::
+
+1. To view the detailed status of your deployment, click on the notification icon at the top right and click on **Show in event logs**.
+
+    :::image type="content" source="./media/deploy-6.png" alt-text="Screenshot of the Deploy tab showing the deployment status." lightbox="./media/deploy-6.png":::
+
+1. Click on the respective **Event name** to open the **Status details** pane showing all the intermediate steps of the operation, along with date and time of completion and the user who initiated it. Details of shared app dependencies associated with the current deployment, if any, also show up on this side-pane.
+
+    :::image type="content" source="./media/deploy-7.png" alt-text="Screenshot of the Deploy tab showing the deployment status details." lightbox="./media/deploy-7.png":::
+
 
 ## Roll back a solution
 
@@ -84,7 +104,6 @@ You can undo a deployment and roll back a solution to a previous version. To do 
 
 1. Once the deployment finishes, the status of the solution is updated to **Deployment Completed**.
 
-
 ## Retry a failed deployment
 
 If a deployment fails, you can retry the deployment by following these steps:
@@ -94,7 +113,6 @@ If a deployment fails, you can retry the deployment by following these steps:
     :::image type="content" source="./media/deploy-retry.png" alt-text="Screenshot of the Deploy tab showing how to retry a failed deployment." lightbox="./media/deploy-retry.png":::
 
 1. In the confirmation window, click on **Confirm** to proceed.
-
 
 ## Stop a deployed solution
 
