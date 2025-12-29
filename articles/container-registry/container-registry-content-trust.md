@@ -16,6 +16,8 @@ Azure Container Registry implements the [Docker Content Trust (DCT)][docker-cont
 
 > [!IMPORTANT]
 > DCT will be deprecated and completely removed on March 31, 2028. For details and transition guidance, refer to [Transition from Docker Content Trust to Notary Project](./container-registry-content-trust-deprecation.md).
+>
+> Starting May 31, 2026, Docker Content Trust cannot be enabled on new container registries or registries that haven't enabled it previously.
 
 ## Limitations
 
