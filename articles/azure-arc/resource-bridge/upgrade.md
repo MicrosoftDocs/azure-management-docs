@@ -62,15 +62,17 @@ Before an Arc resource bridge can be upgraded, the following prerequisites must 
 - (Manual upgrade only) The management machine needs 3.5 GB of free space.
 
 ## Check the version
-To check the appliance version of your Arc resource bridge, you can check the Azure resource of your resource bridge in Azure Resource Manager.
-
-If the appliance status or provisioningState is “UpgradeFailed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
+Check the Azure resource of your resource bridge in Azure Resource Manager to view the appliance version. If the appliance status or provisioningState is “UpgradeFailed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
 
 ## Supplemental cloud-managed upgrade for Arc-enabled VMware
 
 Microsoft may offer cloud-managed upgrades as a supplementary service for Arc-enabled VMware. However, you still need to keep your appliance on a supporte version. You should manual upgrade every 6 months. Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work. If your appliance is soon to be unsupported, do no wait for cloud-managed upgrade - perform a manual upgrade as soon as possible.
 
-To check the status and version of your resource bridge, run `az arcappliance show` from your management machine, or view the Azure resource for your Arc resource bridge. Make sure the status is "Running." If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
+To check the status and version of your resource bridge:
+1. View the Azure resource for your Arc resource bridge.
+2. Make sure the status is "Running." 
+
+If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
 
 Azure manages cloud upgrades. During an upgrade, the resource bridge changes status to show each step. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
 
@@ -85,27 +87,24 @@ az arcappliance show --resource-group [REQUIRED] --name [REQUIRED]
 > [!WARNING] 
 > For Azure Local, you must use the built-in Azure Local LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
 
-You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig stored locally. You can retrieve the kubeconfig with the Az CLI `get-credentials` command: [az arcappliance get-credentials](/cli/azure/arcappliance#az-arcappliance-get-credentials). 
+You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig locally stored. 
 
-Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades may be needed to reach a [supported version](#supported-versions). You can check your appliance version by checking the Azure resource of your Arc resource bridge.
+Manual upgrade generally takes between 30-90 minutes, depending on network speeds. The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades may be needed to reach a [supported version](#supported-versions).
 
 1. Before upgrading, you need the latest Azure CLI extension for `arcappliance`:
-
 ```azurecli
 az extension add --upgrade --name arcappliance 
 ```
-
-1. To run an upgrade, you need the kubeconfig, which can be retrieved with the following [get-credentials command](/cli/azure/arcappliance#az-arcappliance-get-credentials): 
-```
+2. To run an upgrade, you need the kubeconfig, which can be retrieved with the following [get-credentials command](/cli/azure/arcappliance#az-arcappliance-get-credentials):
+```azurecli
 az arcappliance get-credentials --resource-group [REQUIRED] --name [REQUIRED] --credentials-dir [OPTIONAL]
 ```
-
-1. (Arc-enabled VMware)To [upgrade a resource bridge on VMware](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware) without the configuration file, you must provide the following required and optional parameters in lieu of the configuration file:
+3. (Arc-enabled VMware) To [upgrade a resource bridge on VMware](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-vmware) without the configuration file, you must provide the following required and optional parameters in lieu of the configuration file:
 ```
 az arcappliance upgrade vmware --resource-group [REQUIRED] --name [REQUIRED] --kubeconfig [REQUIRED] --address [OPTIONAL] --username [OPTIONAL] --password [OPTIONAL]
 ```
 
-1. (Arc-enabled SCVMM) To [upgrade on SCVMM](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-scvmm) without the configuration file,  you must provide the following optional parameters in lieu of the configuration file:
+(Arc-enabled SCVMM) To [upgrade on SCVMM](/cli/azure/arcappliance/upgrade#az-arcappliance-upgrade-scvmm) without the configuration file,  you must provide the following optional parameters in lieu of the configuration file:
 ```
 az arcappliance upgrade scvmm --address [OPTIONAL] --kubeconfig [OPTIONAL] --location [OPTIONAL] --name [OPTIONAL] --password [OPTIONAL] --resource-group [OPTIONAL] --username [OPTIONAL]
 ```
