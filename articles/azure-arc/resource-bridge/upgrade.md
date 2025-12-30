@@ -15,22 +15,21 @@ This article describes how Arc resource bridge is upgraded, and the two ways upg
 Private cloud providers have different support policies and upgrade procedures for Arc resource bridge. Review the sections below to learn how to upgrade your Arc resource bridge for your private cloud.
 
 ### Arc-enabled VMware vSphere
-For **Arc-enabled VMware vSphere**, you must manually upgrade every 6 months. Choose a version released in the last six months or one of the three most recent versions — whichever option is most recent. We recommend performing manual upgrades every 6 months to refresh critical certificates within the appliance before expiration. If these certificates expire or the appliance is offline for longer than 45 days, your resource bridge may need to be [manually recovered](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). To find your appliance version and its release date, see the [Arc resource bridge release notes](release-notes.md). Microsoft may offer supplemental cloud-managed upgrades as limited assistance, but you are primarily responsible for ensuring your appliance is on a supported version with regular manual upgrades. 
+For **Arc-enabled VMware vSphere**, you must manual upgrade your Azure Arc resource bridge to a version released within the past 6 months. The appliance version should also be within the most recent 3 versions released. We recommend performing manual upgrades every 6 months to refresh critical certificates within the appliance. If these certificates expire or the appliance is offline for longer than 45 days, your resource bridge may need to be [recovered](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). To find the version release date, see the [Arc resource bridge release notes](release-notes.md). Microsoft offers cloud-managed upgrades as a limited supplemental service. You are primarily responsible for ensuring your resource bridge is on a supported version with regular manual upgrades. 
 
-If your appliance is version 1.0.15 or higher, it is automatically opted into supplemental cloud-managed upgrades. Microsoft may upgrade your Arc resource bridge if your appliance is close to being unsupported. However, supplemental cloud-managed upgrades may not succeed due to network disruptions or errors. Don’t wait for a cloud upgrade when your appliance is about to expire. Manually upgrade to avoid service disruption.
+Arc resource bridges on version 1.0.15 or higher are automatically opted into supplemental cloud-managed upgrades. Microsoft may upgrade your Arc resource bridge if the appliance is close to being unsupported. Supplemental cloud-managed upgrades may not succeed due to network disruptions or errors. If your appliance is nearing the end of its supported version, perform a manual upgrade to avoid service disruptions.
 
 ### Azure Local
-For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is available only on Azure Local build 23H2. In this version, use the built-in LCM tool to manage upgrades for Azure Local, Arc resource bridge, and extensions as a single package. Remove any preview version of Arc resource bridge before updating from 22H2 to 23H2. Do not upgrade Arc resource bridge separately from other Azure Local components, as this can cause severe issues. For details, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
+For **Azure Arc VM management on Azure Local**, appliance version 1.0.15 or higher is available only on Azure Local build 23H2. In this version, you should use the built-in LCM tool to manage upgrades for Azure Local, Arc resource bridge, and extensions as a single package. Remove any preview version of Arc resource bridge before updating from 22H2 to 23H2. Do not upgrade Arc resource bridge separately from other Azure Local components, as this can cause critical issues. For details, see [About updates for Azure Local](/azure/azure-local/update/about-updates-23h2).
 
 ### Azure Arc-enabled SCVMM
-For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, you must manually upgrade every 6 months. Choose a version released in the last six months or one of the three most recent versions — whichever option is most recent. We recommend performing manual upgrades at least every 6 months to refresh critical certificates within the appliance before expiration. If these certificates expire or the appliance is offline for longer than 45 days, you may need to [perform recovery of the resource bridge](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
+For **Arc-enabled System Center Virtual Machine Manager (SCVMM)**, you are responsible for upgrading your Azure Arc resource bridge to an appliance version that was released within the past 6 months. The appliane version should also be within the most recent 3 versions released. We recommend performing manual upgrades at least every 6 months to refresh critical certificates within the appliance. If these certificates expire or the appliance is offline for longer than 45 days, you may need to [perform recovery of the resource bridge](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
 
-Check your appliance version and its release date to estimate the last upgrade. Make sure you upgrade at least every six months. For version information, please refer to [Arc resource bridge release notes](release-notes.md). Manual upgrade is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to perform the recovery option to get to version 1.0.15 or higher. Review the steps for [performing the recovery operation](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery). 
-
+To find the version release date, refer to the [Arc resource bridge release notes](release-notes.md). Manual upgrade is available for appliance version 1.0.15 and higher. Appliances running a version lower than 1.0.15 need to [perform the recovery option](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery) to get to version 1.0.15 or higher.
 
 ## Overview
 
-The upgrade process deploys a new resource bridge using the reserved appliance virtual machine (VM) IP. When the new resource bridge is ready, it becomes active. The upgrade process deletes the old resource bridge and reserves its IP for the next upgrade.
+The upgrade process deploys a new resource bridge using the reserved appliance virtual machine (VM) IP. When the new resource bridge is ready, it becomes active. The upgrade process deletes the old resource bridge and reserves its VM IP for the next upgrade.
 
 The upgrade process consists of the following actions:
 
@@ -49,7 +48,7 @@ Before an Arc resource bridge can be upgraded, the following prerequisites must 
 
 - Arc resource bridge must be online and healthy with a status of `Running`. You can check the Azure resource of your Arc resource bridge to verify.
 
-- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled VM from Azure.
+- The [credentials in the appliance VM](maintenance.md#update-credentials-in-the-appliance-vm) must be valid. To test the credentials, perform an operation on an Arc-enabled private cloud VM from the Azure portal.
 
 - Arc resource bridge must be in the same location path where it was originally deployed.
 
@@ -57,39 +56,29 @@ Before an Arc resource bridge can be upgraded, the following prerequisites must 
 
 - For Arc-enabled VMware, upgrading the resource bridge requires 200 GB of free space on the datastore. A new template is also created.
 
-- (Manual upgrade only) Run the upgrade command from the management machine used to initially deploy the Arc resource bridge. You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements).
+- (Manual upgrade only) When performing a manual upgrade, you should run the upgrade command from the management machine used to initially deploy the Arc resource bridge.  You can also run the upgrade command from a different machine that meets the [management machine requirements](system-requirements.md#management-machine-requirements).
 
 - (Manual upgrade only) The management machine needs 3.5 GB of free space.
 
 ## Check the version
-Check the Azure resource of your resource bridge in Azure Resource Manager to view the appliance version. If the appliance status or provisioningState is “UpgradeFailed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
 
-## Supplemental cloud-managed upgrade for Arc-enabled VMware
+To check the appliance version of your Arc resource bridge, you can check the Azure resource of your resource bridge in Azure Resource Manager. If the appliance status or provisioning state is “Upgrade Failed” or “Failed”, an upgrade attempt may have failed. Upon upgrade failure, the appliance version shown in Azure Resource Manager or via the Azure CLI `show` command may not reflect the actual version. The actual version is most likely the version prior to upgrading. 
 
-Microsoft may offer cloud-managed upgrades as a supplementary service for Arc-enabled VMware. However, you still need to keep your appliance on a supported version. You should manual upgrade every 6 months. Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. The upgrade prerequisites must be met for cloud-managed upgrade to work. If your appliance is soon to be unsupported, do not wait for cloud-managed upgrade - perform a manual upgrade as soon as possible.
+## Supplemental cloud-managed upgrade
 
-To check the status and version of your resource bridge:
-1. View the Azure resource for your Arc resource bridge.
-2. Make sure the status is "Running." 
+For Arc-enabled VMware, Microsoft may offer cloud-managed upgrades as a supplementary service. Supplemental cloud-managed upgrades do not replace the need for you to manual upgrade at least once every 6 months. Microsoft may attempt to upgrade your Arc resource bridge at any time if it will soon be out of support. You should ensure that upgrade prerequisites are met for cloud-managed upgrade to succeed. If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
 
-If your appliance VM is not healthy, cloud-managed upgrades may fail. If an upgrade fails, the reported version may be incorrect. The upgrade must succeed for your appliance to be on the new version.
-
-Azure manages cloud upgrades. During an upgrade, the resource bridge changes status to show each step. Upgrade is complete when the appliance VM `status` is `Running` and `provisioningState` is `Succeeded`.  
-
-To check the status of a cloud-managed upgrade, run the following Azure CLI command from the management machine:  
-
-```azurecli
-az arcappliance show --resource-group [REQUIRED] --name [REQUIRED] 
-```
+Azure manages cloud upgrades. During an upgrade, the resource bridge changes status to show each step. Upgrade is complete when the appliance status is `Running` and `provisioning state` is `Succeeded`. You can view the status by going to your Azure resource in the Azure portal.
 
 ## Manual upgrade
 
 > [!WARNING] 
 > For Azure Local, you must use the built-in Azure Local LCM tool to upgrade Arc resource bridge. If you attempt to manual upgrade using the Azure CLI command, your environment will break and be irrecoverable. If you need assistance with an Arc resource bridge upgrade, please contact Microsoft Support.
 
-You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig locally stored. Manual upgrade generally takes between 30-90 minutes, depending on network speeds.The upgrade command takes your Arc resource bridge to the next appliance version, which might not be the latest available appliance version. Multiple upgrades may be needed to reach a [supported version](#supported-versions).
+You can manually upgrade the Arc resource bridge from your management machine. Before upgrading, make sure you meet all prerequisites. The management machine must have the kubeconfig locally stored. Manual upgrade generally takes about 30-90 minutes, depending on your network speeds. An upgrade takes your Arc resource bridge to the next appliance version, which may not be the newest appliance version. Multiple upgrades may be needed to reach a supported version.
 
-1. Before upgrading, you need the latest Azure CLI extension for `arcappliance`:
+###Perform a manual upgrade
+1. Before upgrading, you should get the latest Azure CLI extension for `arcappliance`:
 ```azurecli
 az extension add --upgrade --name arcappliance 
 ```
