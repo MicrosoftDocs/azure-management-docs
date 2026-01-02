@@ -53,7 +53,7 @@ A site created for the associated resource group or subscription or service grou
 
 1. The list of sites in this page can be filtered using the "Add Filter". The label name can be mentioned under filter field while the value field allows a choice of options from the list of label values detected for that label name. 
 
-![screebshot to show site list filtering using labels](media/managesitelabels/sitelabelfiltering.png)
+![Screenshot to show site list filtering using labels.](media/managesitelabels/sitelabelfiltering.png)
 
 ## Define a site label strategy  
 
