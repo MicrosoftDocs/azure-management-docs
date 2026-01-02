@@ -1,3 +1,6 @@
+- name: Create and manage labels for an Arc Site
+  href: managesitelabels.md
+  displayName: labels, azure arc
 - name: Azure Arc site manager
   href: index.yml
 - name: Get started
