@@ -31,8 +31,6 @@ The **Compliance** state shows whether the current state of the cluster matches 
 - **Pending**: An updated desired state was detected, but that state isn't yet reconciled on the cluster.
 - **Not Compliant**: The current state doesn't match the desired state.
 
-:::image type="content" source="media/monitor-gitops-flux2/portal-gitops-compliance.png" alt-text="Screenshot of cluster compliance and other values in the Azure portal." lightbox="media/monitor-gitops-flux2/portal-gitops-compliance.png":::
-
 To help debug reconciliation issues for a cluster, select **Configuration objects**. Here, you can view logs of each of the configuration objects that Flux creates for each Flux configuration. Select an object name to view its logs.
 
 :::image type="content" source="media/monitor-gitops-flux2/portal-configuration-object-details.png" alt-text="Screenshot showing detailed conditions for a configuration object." lightbox="media/monitor-gitops-flux2/portal-configuration-object-details.png":::
