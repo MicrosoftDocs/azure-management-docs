@@ -457,7 +457,7 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
 
          :::image type="content" source="media/tutorial-use-gitops-flux2/portal-kustomization-infrastructure.png" alt-text="Screenshot showing the options to create the infrastructure kustomization in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-kustomization-infrastructure.png":::
 
-   1. The `infrastructure` kustomization now appears in the **Kustomizations** section. To create the next kustomization, select **Create** again.
+   1. The `infrastructure` kustomization now appears in the **Kustomizations** section. To create the next kustomization, select **Create** again. The process is similar to the previous step, but with different values.
    1. In the **Create a Kustomization** screen:
 
       1. For **Instance name**, enter **staging**.
@@ -465,8 +465,6 @@ Follow these steps to apply a sample Flux configuration to a cluster. As part of
       1. Check the box for **Prune**.
       1. In the **Depends on** box, select **infrastructure**.
       1. Leave the other options as is, then select **Save** to create the `staging` kustomization.
-
-         :::image type="content" source="media/tutorial-use-gitops-flux2/portal-kustomization-staging.png" alt-text="Screenshot showing the options to create the staging kustomization in the Azure portal." lightbox="media/tutorial-use-gitops-flux2/portal-kustomization-staging.png":::
 
    1. You now should see both kustomizations shown in the **Kustomizations** section. Select **Next** to continue.
 

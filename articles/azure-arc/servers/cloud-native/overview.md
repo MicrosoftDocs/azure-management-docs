@@ -26,7 +26,7 @@ The following table provides an overview of key Azure services and concepts that
 | **Licensing** | Pay-as-you-go licensing for Windows Server and SQL Server lets you pay for only what you use when you use it. Extended Security Updates (ESUs) via Azure Arc simplifies the process of delivering security updates to your on-premises Windows Server 2012 machines. |
 | **Identity** | [Microsoft Entra](/entra/fundamentals/whatis) helps manage user identities, apps, and access to Microsoft resources. [Azure  role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) lets you assign specific roles to follow the principle of least privilege. |
 
-Explore the articles in this section to learn how typical on-premises system administration tasks can be achieved with cloud-native methods through Azure-Arc enabled servers.
+To learn how typical on-premises system administration tasks can be achieved by using cloud-native methods through Azure-Arc enabled servers, explore the articles in this section.
 
 - [Cloud-native inventory and resource organization](inventory-resource.md)
 - [Cloud-native governance and policy](governance-policy.md)
