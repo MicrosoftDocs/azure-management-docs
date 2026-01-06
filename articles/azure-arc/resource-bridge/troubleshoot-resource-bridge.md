@@ -95,6 +95,33 @@ If your network speed is slow, you might not be able to successfully download th
 
 As a workaround, try creating a VM directly on the on-premises private cloud, and then run the Arc resource bridge deployment script from that VM. Doing this should result in a faster upload of the image to the datastore.
 
+
+### Invalid overlap with Kubernetes Service CIDR
+
+When deploying or upgrading Azure Arc Resource Bridge, the operation fails with an error similar to:
+
+```
+{
+  "code": "PreflightCheckError",
+  "message": {
+    "code": "InvalidEntityError",
+    "message": {
+      "code": "InvalidOverlapWithServiceCIDR",
+      "message": "Network overlap validation failed: IP: <IP_ADDRESS> overlaps with K8s Default Service CIDR: 10.96.0.0/12. Please reconfigure the network to resolve this conflict."
+    }
+```
+
+Azure Arc Resource Bridge reserves specific IP ranges as defined in the [network requirements](network-requirements.md#designated-ip-ranges-for-arc-resource-bridge) This error indicates that the specified IP address or subnet configured for your Arc resource bridge overlaps with the Kubernetes Service CIDR (10.96.0.0/12 by default). This overlap is not supported and is blocked by preflight validation. 
+
+The resolution depends on whether this is an initial deployment or post-deployment scenario. If you are deploying for the first time, choose a different IP address or subnet that does not overlap with the Kubernetes Service CIDR (10.96.0.0/12 or any other reserved CIDRs. 
+
+If the Arc resource bridge is already deployed and you encounter this error during an upgrade or configuration change, perform a recovery operation. During recovery, specify a non-overlapping IP address or subnet that meets the network requirements. Follow the recovery guidance for your Arc private cloud:
+
+- For Arc-enabled VMware, follow the [Arc VMware recovery guide](/azure/azure-arc/vmware-vsphere/recover-from-resource-bridge-deletion). 
+- For Azure Local, please contact Microsoft Support. Arc resource bridge is an integrated part of Azure Local and any changes should be guided by the support team.
+- For Arc-enabled SCVMM, follow the [Arc SCVMM recovery guide](/azure/azure-arc/system-center-virtual-machine-manager/disaster-recovery).
+
+
 ### Context timed out during phase `ApplyingKvaImageOperator`
 
 When you deploy Arc resource bridge, you might see this error: `Deployment of the Arc resource bridge appliance VM timed out. Collect logs with _az arcappliance logs_ and create a support ticket for help. To troubleshoot the error, refer to aka.ms/arc-rb-error   { _errorCode_: _ContextError_, _errorResponse_: _{\n\_message\_: \_Context timed out during phase _ApplyingKvaImageOperator_\_\n}_ }`
