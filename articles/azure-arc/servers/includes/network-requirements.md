@@ -14,7 +14,7 @@ The Azure Connected Machine agent for Linux and Windows communicates outbound se
 To further secure your network connectivity to Azure Arc, instead of using public networks and proxy servers, you can implement an [Azure Arc private link scope](../private-link-security.md).
 
 > [!NOTE]
-> Azure Arc-enabled servers doesn't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateways.
+> Azure Arc-enabled servers don't support using a [Log Analytics gateway](/azure/azure-monitor/agents/gateway) as a proxy for the Connected Machine agent. At the same time, Azure Monitor Agent supports Log Analytics gateways.
 
 If your firewall or proxy server restricts outbound connectivity, make sure that the URLs and service tags listed here aren't blocked.
 
@@ -96,7 +96,7 @@ For extension versions up to and including February 13, 2024, use `san-af-<regio
 |`*.blob.core.usgovcloudapi.net`|Download source for Azure Arc-enabled servers extensions.|Always, except when you use private endpoints.| Not used when a private link is configured. |
 |`dc.applicationinsights.us`|Agent telemetry.|Optional. Not used in agent versions 1.24+.| Public. |
 | `*.<region>.arcdataservices.azure.us`<sup>2</sup> | For Azure Arc-enabled SQL Server. Sends data processing service, service telemetry, and performance monitoring to Azure. Allows TLS 1.2 or 1.3 only. | If you use Azure Arc-enabled SQL Server. | Public. |
-|`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates ( uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
+|`www.microsoft.com/pkiops/certs`| Intermediate certificate updates for Extended Security Updates (uses HTTP/TCP 80 and HTTPS/TCP 443). | If you use Extended Security Updates enabled by Azure Arc. Always required for automatic updates or temporarily if you download certificates manually. | Public. |
 
 <sup>1</sup> Access to this URL is also needed when updates are performed automatically.
 
