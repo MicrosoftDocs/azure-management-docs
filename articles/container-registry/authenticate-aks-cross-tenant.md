@@ -39,10 +39,12 @@ You need at least the **Contributor** role for the AKS cluster's subscription. Y
 1. Search for and select **Microsoft Entra ID**.
 1. In the service menu, under **Manage**, select **App registrations**.
 1. Select **+ New registration**.
-1. Enter a name for the application.
-1. In **Supported account types**, select **Accounts in any organizational directory**.
-1. In **Redirect URI**, select **Web** for **Platform** and enter `https://www.microsoft.com`.
-1. Select **Register**.
+1. 
+   1. Enter a name for the application.
+   1. In **Supported account types**, select **Accounts in any organizational directory**.
+   1. In **Redirect URI**, select **Web** for **Platform** and enter `https://www.microsoft.com`.
+   1. Select **Register**.
+
 1. On the **Overview** page, take note of the **Application (client) ID**. You'll need this ID later.
 
     :::image type="content" source="media/authenticate-aks-cross-tenant/service-principal-overview.png" alt-text="Service principal application ID":::
@@ -62,11 +64,14 @@ You need at least the **Contributor** role for the AKS cluster's subscription. Y
 
 1. Open the edited link with an admin account in **Tenant B**.
 
-1. Select **Consent on behalf of your organization** and then **Accept**.
+1. Select **Consent on behalf of your organization**, and then select **Accept**.
 
 ## Configure the service principal to pull from registry
 
-In **Tenant B**, assign the correct role to the service principal, scoped to the target container registry. For [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md), assign `Container Registry Repository Reader`. For non-ABAC registries, assign `AcrPull`.
+In **Tenant B**, assign the correct role to the service principal, scoped to the target container registry:
+
+- For [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md), assign `Container Registry Repository Reader`.
+- For non-ABAC registries, assign `AcrPull`.
 
 You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [the Azure CLI](container-registry-auth-service-principal.md#use-an-existing-service-principal), or other tools to assign this role.
 
@@ -76,7 +81,7 @@ You can use the [Azure portal](/azure/role-based-access-control/role-assignments
 
 Use the multitenant app's application (client) ID and client secret to [update the AKS service principal credential](/azure/aks/update-credentials#update-aks-cluster-with-service-principal-credentials).
 
-Updating the service principal can take several minutes.
+Updating the service principal can take several minutes to complete. After the update is finished, the AKS cluster in **Tenant A** can pull images from the Azure container registry in **Tenant B**.
 
 ## Related content
 
