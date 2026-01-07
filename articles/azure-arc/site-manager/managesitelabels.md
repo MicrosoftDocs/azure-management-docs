@@ -19,15 +19,15 @@ Labels enable tagging Azure Arc Sites with metadata for categorization and opera
 
 ## Prerequisites 
 
-An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/). 
+- An Azure subscription. If you don't have a service subscription, create a [free trial account in Azure](https://azure.microsoft.com/free/). 
 
-Azure portal access 
+- Azure portal access 
 
-Internet connectivity 
+- Internet connectivity 
 
-A resource group or subscription or service group in Azure with at least one resource for a site. For more information, see [Supported resource types](https://github.com/dawagle/azure-management-docs-pr/blob/docs-editor/createlabels-1760696724/azure/azure-arc/site-manager/overview). 
+- A resource group or subscription or service group in Azure with at least one resource for a site. For more information, see [Supported resource types](https://github.com/dawagle/azure-management-docs-pr/blob/docs-editor/createlabels-1760696724/azure/azure-arc/site-manager/overview). 
 
-A site created for the associated resource group or subscription or service group. If you don't have one, see [Create and manage sites](https://github.com/dawagle/azure-management-docs-pr/blob/docs-editor/createlabels-1760696724/azure/azure-arc/site-manager/how-to-crud-site). 
+- A site created for the associated resource group or subscription or service group. If you don't have one, see [Create and manage sites](https://github.com/dawagle/azure-management-docs-pr/blob/docs-editor/createlabels-1760696724/azure/azure-arc/site-manager/how-to-crud-site). 
 
 ## Create and Manage labels 
 
