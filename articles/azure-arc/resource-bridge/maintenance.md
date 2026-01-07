@@ -19,7 +19,7 @@ The management machine used to perform maintenance must meet all of [the Arc res
 
 The following sections describe common maintenance tasks for Arc resource bridge.
 
-## Update credentials
+## Update credentials in the appliance VM
 
 Arc resource bridge consists of an on-premises appliance VM. The appliance VM [stores credentials](system-requirements.md#user-account-and-credentials) that are used to access the control plane of the on-premises infrastructure to view and manage on-premises resources (ex: vCenter credentials). The credentials used by Arc resource bridge are the same ones provided during deployment. It gives the resource bridge visibility to on-premises resources for guest management in Azure. If the credentials change (ex: your company requires a password change every 90 days), then the credentials stored in the Arc resource bridge must be updated. 
 
