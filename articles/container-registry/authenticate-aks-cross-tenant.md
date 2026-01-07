@@ -6,7 +6,6 @@ author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
 ms.date: 01/07/2026
-ms.custom: sfi-image-nochange
 # Customer intent: As a developer, I want to configure cross-tenant authentication for an AKS cluster to access an Azure container registry, so that I can enable seamless pulling of container images across different Microsoft Entra tenants.
 ---
 
@@ -14,7 +13,7 @@ ms.custom: sfi-image-nochange
 
 If you have an Azure Kubernetes Service (AKS) cluster in one Microsoft Entra tenant, and an Azure container registry in a different tenant, you can configure cross-tenant authentication to enable the AKS cluster to pull images from the container registry. This article walks through the steps to enable cross-tenant authentication by using the AKS service principal credential to pull from the container registry.
 
-In this article, we refer to the two tenants as **Tenant A** and **Tenant B**.* The AKS cluster is in **Tenant A** and the Azure container registry is in **Tenant B**.
+In this article, we refer to the tenant containing the AKS cluster as **Tenant A**, and the tenant containing the Azure container registry as **Tenant B**.
 
 The high-level steps to enable cross-tenant authentication are:
 
@@ -27,8 +26,6 @@ The high-level steps to enable cross-tenant authentication are:
 > When the cluster and the container registry are in different tenants, you can't use an AKS managed identity to attach the registry and authenticate.
 
 ## Prerequisites
-
-
 
 The AKS cluster must be configured with [service principal authentication](/azure/aks/kubernetes-service-principal) in **Tenant A**.
 
@@ -44,7 +41,7 @@ You need at least the **Contributor** role for the AKS cluster's subscription. Y
 1. Select **+ New registration**.
 1. Enter a name for the application.
 1. In **Supported account types**, select **Accounts in any organizational directory**.
-1. In **Redirect URI**, select **Web** for **Platform** and enter *https://www.microsoft.com*.
+1. In **Redirect URI**, select **Web** for **Platform** and enter `https://www.microsoft.com`.
 1. Select **Register**.
 1. On the **Overview** page, take note of the **Application (client) ID**. You'll need this ID later.
 
