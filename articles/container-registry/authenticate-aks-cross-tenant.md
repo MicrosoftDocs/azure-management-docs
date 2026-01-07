@@ -40,42 +40,44 @@ You need at least the **Contributor** role for the AKS cluster's subscription. Y
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) in **Tenant A**.
 1. Search for and select **Microsoft Entra ID**.
-1. Under **Manage**, select **App registrations > + New registration**.
+1. In the service menu, under **Manage**, select **App registrations**.
+1. Select **+ New registration**.
+1. Enter a name for the application.
 1. In **Supported account types**, select **Accounts in any organizational directory**.
-1. In **Redirect URI**, enter *https://www.microsoft.com*.
+1. In **Redirect URI**, select **Web** for **Platform** and enter *https://www.microsoft.com*.
 1. Select **Register**.
-1. On the **Overview** page, take note of the **Application (client) ID**. You use this ID in Step 2 and Step 4.
+1. On the **Overview** page, take note of the **Application (client) ID**. You'll need this ID later.
 
-    :::image type="content" source="media/authenticate-kubernetes-cross-tenant/service-principal-overview.png" alt-text="Service principal application ID":::
-1. In **Certificates & secrets**, under **Client secrets**, select **+ New client secret**.
-1. Enter a **Description** such as *Password* and select **Add**.
-1. In **Client secrets**, take note of the value of the client secret. You use it to update the AKS cluster's service principal in Step 4.
+    :::image type="content" source="media/authenticate-aks-cross-tenant/service-principal-overview.png" alt-text="Service principal application ID":::
 
-    :::image type="content" source="media/authenticate-kubernetes-cross-tenant/configure-client-secret.png" alt-text="Configure client secret":::
+1. In the service menu, under **Manage**, select **Certificates & secrets**.
+1. In the **Client secrets** section, select **+ New client secret**.
+1. Enter a **Description** such as *Password*, and then select **Add**.
+1. In **Client secrets**, take note of the value of the client secret. You'll use this value to update the AKS cluster's service principal.
 
 ## Provision the service principal in the ACR tenant
 
-1. Open the following link with an admin account in **Tenant B**. Where indicated, insert the **ID of Tenant B** and the **application ID** (client ID) of the multitenant app.
+1. Edit the following link with the tenant ID for **Tenant B** and the application (client) ID of the multitenant app.
 
     ```console
     https://login.microsoftonline.com/<Tenant B ID>/oauth2/authorize?client_id=<Multitenant application ID>&response_type=code&redirect_uri=<redirect url>
     ```
 
-1. Select **Consent on behalf of your organization** and then **Accept**. 
+1. Open the edited link with an admin account in **Tenant B**.
+
+1. Select **Consent on behalf of your organization** and then **Accept**.
 
 ## Configure the service principal to pull from registry
 
-In **Tenant B**, assign the correct role to the service principal, scoped to the target container registry. Assign either `Container Registry Repository Reader` (for [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md)) or `AcrPull` (for non-ABAC registries).
+In **Tenant B**, assign the correct role to the service principal, scoped to the target container registry. For [ABAC-enabled registries](container-registry-rbac-abac-repository-permissions.md), assign `Container Registry Repository Reader`. For non-ABAC registries, assign `AcrPull`.
 
-Use the [Azure portal](/azure/role-based-access-control/role-assignments-portal) or other tools to assign the role. For example steps using the Azure CLI, see [Azure Container Registry authentication with service principals](container-registry-auth-service-principal.md#use-an-existing-service-principal).
-
-:::image type="content" source="media/authenticate-kubernetes-cross-tenant/multitenant-app-acr-pull.png" alt-text="Screenshot of assigning role to multitenant app.":::
+You can use the [Azure portal](/azure/role-based-access-control/role-assignments-portal), [the Azure CLI](container-registry-auth-service-principal.md#use-an-existing-service-principal), or other tools to assign this role.
 
 <a name='step-4-update-aks-with-the-azure-ad-application-secret'></a>
 
 ## Update the AKS cluster with the Microsoft Entra application secret
 
-Use the multitenant application (client) ID and client secret you collected in Step 1 to [update the AKS service principal credential](/azure/aks/update-credentials#update-aks-cluster-with-service-principal-credentials).
+Use the multitenant app's application (client) ID and client secret to [update the AKS service principal credential](/azure/aks/update-credentials#update-aks-cluster-with-service-principal-credentials).
 
 Updating the service principal can take several minutes.
 
