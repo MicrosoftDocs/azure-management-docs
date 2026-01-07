@@ -88,15 +88,10 @@ Azure Container Registry has two built-in policy definitions to disable authenti
 
    1. Sign in to the [Azure portal](https://portal.azure.com).
 
-   1. Navigate to your **Azure Container Registry** > **Resource Group** > **Settings** > **Policies** .
-   
-      :::image type="content" source="media/container-registry-enable-conditional-policy/01-azure-policies.png" alt-text="Screenshot showing how to navigate Azure policies.":::
-
-   1. Navigate to  **Azure Policy**, On the **Assignments**, select **Assign policy**.
-      
-      :::image type="content" source="media/container-registry-enable-conditional-policy/02-Assign-policy.png" alt-text="Screenshot showing how to assign a policy.":::
-
-   1. Under the **Assign policy** , use filters to search and find the **Scope**, **Policy definition**, **Assignment name**.
+   1. Go to the resource group that contains your Azure Container Registry.
+   1. In the service menu, under **Settings**, select **Policies**.
+   1. Select **Assign policy**.
+   1. Under **Assign policy** , use filters to search and find the **Scope**, **Policy definition**, **Assignment name**.
 
       :::image type="content" source="media/container-registry-enable-conditional-policy/03-Assign-policy-tab.png" alt-text="Screenshot of the assign policy tab.":::
 
