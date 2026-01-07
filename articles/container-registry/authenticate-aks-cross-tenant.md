@@ -38,8 +38,8 @@ You need at least the **Contributor** role for the AKS cluster's subscription. Y
 1. Sign in to the [Azure portal](https://portal.azure.com/) in **Tenant A**.
 1. Search for and select **Microsoft Entra ID**.
 1. In the service menu, under **Manage**, select **App registrations**.
-1. Select **+ New registration**.
-1. 
+1. Select **+ New registration**, and then complete the following steps:
+
    1. Enter a name for the application.
    1. In **Supported account types**, select **Accounts in any organizational directory**.
    1. In **Redirect URI**, select **Web** for **Platform** and enter `https://www.microsoft.com`.
