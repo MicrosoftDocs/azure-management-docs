@@ -1,6 +1,3 @@
-- name: Create and manage labels for an Arc Site
-  href: managesitelabels.md
-  displayName: labels, azure arc
 - name: Azure Arc site manager
   href: index.yml
 - name: Get started
@@ -25,6 +22,8 @@
     href: how-to-configure-monitor-site.md
   - name: View alerts
     href: how-to-view-alerts.md
+  - name: Create and manage labels for an Arc Site
+    href: managesitelabels.md
 - name: FAQ
   items:
   - name: FAQ
@@ -42,3 +41,4 @@
     href: ../overview.md
   - name: Azure Monitor
     href: /azure/azure-monitor/overview
+
