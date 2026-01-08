@@ -4,13 +4,12 @@ description: "Artifact streaming is a preview feature in Azure Container Registr
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-zone_pivot_groups: container-registry-zones
 ms.topic: concept-article #Don't change
-ms.date: 02/26/2024
+ms.date: 01/08/2026
 ai-usage: ai-assisted
 ms.custom:
   - devx-track-azurecli
-  - sfi-image-nochange
+
 # Customer intent: "As a developer, I want to utilize artifact streaming in my container registry so that I can efficiently manage and deploy containerized applications across multiple regions with reduced latency and improved scalability."
 ---
 
@@ -61,9 +60,9 @@ Use the [Azure portal](https://portal.azure.com/) or the Azure CLI to manage art
 > [!NOTE]
 > If you use artifact streaming with a [soft delete policy](container-registry-soft-delete-policy.md) enabled, and you delete an artifact, both the original and artifact streaming versions are deleted. However, only the original version can be [viewed or restored](container-registry-soft-delete-policy.md#view-and-restore-soft-deleted-artifacts) during the retention period.
 
-## Manage artifact streaming
+## Enable and manage artifact streaming
 
-Start artifact streaming to enable pushing, importing, and generating streaming artifacts for container images in an Azure container registry. These instructions outline the process for importing an image, generating a streaming artifact, and managing automatic conversion of streaming artifacts.
+Start artifact streaming to enable pushing, importing, and generating streaming artifacts for container images in an Azure container registry. These instructions outline the process for generating a streaming artifact and managing automatic conversion of streaming artifacts.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -73,49 +72,51 @@ These examples use the Azure CLI to work with a premium Azure Container Registry
 
 ## Import an image and create artifact streaming
 
-First, run the [az configure] command to configure your registry. Then, use [az acr import][az-acr-import] to import a Jupyter Notebook image from Docker Hub:
+First, run the [az configure] command to configure your registry.
 
 ```azurecli-interactive
 az configure --defaults acr="mystreamingtest"
+```
+
+If you don't already have an image that you want to use, run the [az acr import][az-acr-import] command to import a Jupyter Notebook image from Docker Hub:
+
+```azurecli-interactive
 az acr import --source docker.io/jupyter/all-spark-notebook:latest -t jupyter/all-spark-notebook:latest
 ```
 
 > [!NOTE]
 > If you see an error from the docker registry, it might be due to [rate limiting](/troubleshoot/azure/azure-container-instances/configuration-setup/docker-hub-rate-limit-registryerrorresponse). To avoid this error, consider authenticating with Docker Hub by [providing your Docker ID and password](container-registry-import-images.md#import-from-docker-hub) by using the `--username` and `--password` parameters in the `az acr import` command.
 
-To create a streaming artifact from the imported image, run the [az acr artifact-streaming create][az-acr-artifact-streaming-create] command:
+To create a streaming artifact from the image, run the [az acr artifact-streaming create][az-acr-artifact-streaming-create] command:
 
 ```azurecli-interactive
 az acr artifact-streaming create --image jupyter/all-spark-notebook:latest
 ```
 
-[!NOTE]
-An operation ID is generated during the process for future reference to verify the status of the operation.
-
-To verify the generated artifact streaming, use [az acr manifest list-referrers][az-acr-manifest-list-referrers] to list the streaming artifacts:
-
-```azurecli-interactive
-az acr manifest list-referrers -n jupyter/all-spark-notebook:latest
-```
-
-To stop the process of creating the streaming artifact, run [az acr artifact-streaming operation cancel][az-acr-artifact-streaming-operation-cancel]:
+An operation ID is generated during this process. If you want to stop the process of creating the streaming artifact, run [az acr artifact-streaming operation cancel][az-acr-artifact-streaming-operation-cancel] with the operation ID:
 
    ```azurecli-interactive
    az acr artifact-streaming operation cancel --repository jupyter/all-spark-notebook --id c015067a-7463-4a5a-9168-3b17dbe42ca3
    ```
 
+After the streaming artifact is generated, you can confirm its creation by using [az acr manifest list-referrers][az-acr-manifest-list-referrers] to list streaming artifacts:
+
+```azurecli-interactive
+az acr manifest list-referrers -n jupyter/all-spark-notebook:latest
+```
+
 ## Manage artifact streaming for new images in the repository
 
-Use the [az acr artifact-streaming update][az-acr-artifact-streaming-update]  command to enable automatic conversion for streaming artifacts in the repository for newly pushed or imported images. When started, new images pushed into that repository trigger the generation of streaming artifacts.
+By default, newly pushed or imported images in a repository aren't automatically enabled for artifact streaming. To ensure that new images pushed into the repository automatically trigger the generation of streaming artifacts, use the [az acr artifact-streaming update][az-acr-artifact-streaming-update] command on the repository:
 
 ```azurecli-interactive
 az acr artifact-streaming update --repository jupyter/all-spark-notebook --enable-streaming true
 ```
 
 > [!NOTE]
-> Existing images in the repository aren't automatically converted.
+> Existing images in the repository aren't automatically converted when you run this command.
 
-To verify the streaming conversion progress, push a new image `jupyter/all-spark-notebook:newtag` to the repository, and then run the  [az acr artifact-streaming operation show][az-acr-artifact-streaming-operation-show] command:
+To verify that automatic conversion is working, push a new image to the repository, and then run the  [az acr artifact-streaming operation show][az-acr-artifact-streaming-operation-show] command:
 
 ```azurecli-interactive
 az acr artifact-streaming operation show --image jupyter/all-spark-notebook:newtag
@@ -133,7 +134,7 @@ az acr artifact-streaming update --repository jupyter/all-spark-notebook --enabl
 
 To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-portal.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#changing-skus).
 
-Follow the steps to enable artifact streaming for an Azure container repository in the [Azure portal](https://portal.azure.com). 
+Follow the steps to enable artifact streaming for an Azure container repository in the [Azure portal](https://portal.azure.com).
 
 1. Go to your Azure container registry in the Azure portal.
 1. In the service menu, under  **Services**, select **Repositories**.
