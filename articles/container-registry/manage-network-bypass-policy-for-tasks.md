@@ -46,7 +46,7 @@ az resource update \
 --resource-type registries \
 --name $registry \
 --resource-group $resourceGroup \
---api-version 2025-05-01-preview \
+--api-version 2025-06-01-preview \
 --set properties.networkRuleBypassAllowedForTasks=true
 ```
 
@@ -61,7 +61,7 @@ az resource update \
 --namespace Microsoft.ContainerRegistry \
 --resource-type registries \ --name $registry \
 --resource-group $resourceGroup \
---api-version 2025-05-01-preview \
+--api-version 2025-06-01-preview \
 --set properties.networkRuleBypassAllowedForTasks=false
 ```
 
@@ -78,7 +78,7 @@ az resource show \
 --resource-type registries \  
 --name $registry \  
 --resource-group $resourceGroup \  
---api-version 2025-05-01-preview \  
+--api-version 2025-06-01-preview \  
 --query properties.networkRuleBypassAllowedForTasks
 ```
 
@@ -151,7 +151,7 @@ az resource update \
 --resource-type registries \
 --name $registry \
 --resource-group $resourceGroup \
---api-version 2025-05-01-preview \
+--api-version 2025-06-01-preview \
 --set properties.networkRuleBypassAllowedForTasks=true
 ```
 Verify that tasks can continue bypassing network restrictions successfully by running `az acr task run` commands and viewing the [streamed logs](~/articles/container-registry/container-registry-tasks-logs.md).
