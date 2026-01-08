@@ -72,7 +72,7 @@ These examples use the Azure CLI to work with a premium Azure Container Registry
 
 ## Import an image and create artifact streaming
 
-First, run the [az config](/cli/azure/azure-cli-configuration) command to use your registry name as the default for `az acr` commands:
+First, run the [az config](/cli/azure/azure-cli-configuration) command to set your registry name as the default for `az acr` commands:
 
 ```azurecli-interactive
 az config set defaults.acr="mystreamingtest"
@@ -142,13 +142,14 @@ Follow the steps to enable artifact streaming for an Azure container repository 
 
    :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" lightbox="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure container registry with the option to enable artifact streaming.":::
 
-The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts. To change this, select **Stop artifact streaming**.
+The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts. To change this setting so that new images aren't converted, select **Stop artifact streaming**.
 
 When you enable artifact streaming on a repository, existing images in the repository aren't automatically converted to use artifact streaming. To create a streaming artifact for a previously imported image, follow these steps:
 
 1. From the **Repositories** pane, select the image that you want to convert.
-1. Select **+ Create streaming artifact.**
-1. When the process is complete, you can view the streaming artifact in the **Referrers** tab of the image.
+1. Select **Create streaming artifact.**
+
+Once the process is complete, you can view the streaming artifact in the **Referrers** tab of the image.
 
 After you enable artifact streaming for images in the repository, you can [stream images from ACR to Azure Kubernetes Service (AKS) clusters](/azure/aks/artifact-streaming).
 
