@@ -16,7 +16,7 @@ ms.custom:
 
 # Artifact streaming in Azure Container Registry (Preview)
 
-Artifact streaming (preview) is a feature in Azure Container Registry that allows you to store and manage container images within a single registry, then stream the container images to Azure Kubernetes Service (AKS) clusters in multiple regions. This feature is designed to accelerate containerized workloads for Azure customers using AKS. With artifact streaming, you can scale workloads without having to wait for slow pull times for your node.
+Artifact streaming (preview) is a feature in Azure Container Registry that you can use to store and manage container images within a single registry. You can stream the container images to Azure Kubernetes Service (AKS) clusters in multiple regions. This feature accelerates containerized workloads for Azure customers using AKS. By using artifact streaming, you can scale workloads without waiting for slow pull times for your node.
 
 > [!IMPORTANT]
 > Artifact streaming is currently in PREVIEW.
@@ -28,21 +28,21 @@ Customers with new and existing registries can start artifact streaming for spec
 
 Artifact streaming can be particularly useful in the following scenarios:
 
-**Deploying containerized applications to multiple regions**: With artifact streaming, you can store container images within a single registry and stream them to AKS clusters in multiple regions.
+**Deploying containerized applications to multiple regions**: By using artifact streaming, you can store container images within a single registry and stream them to AKS clusters in multiple regions.
 
 **Reducing image pull latency**: Artifact streaming can reduce time-to-pod readiness by over 15%, depending on the size of the image. This reduction is especially helpful for images that are larger than 30 GB. This feature reduces image pull latency and helps containers start up faster.
 
 **Effective scaling of containerized applications**:  Artifact streaming makes it easier to design, build, and deploy containerized applications at a high scale.
 
-Artifact streaming works across regions, regardless of whether geo-replication is started or not. Artifact streaming can also be used with private endpoints.
+Artifact streaming works across regions, regardless of whether geo-replication is started or not. You can also use artifact streaming with private endpoints.
 
-The state of artifact streaming in a repository (inactive or active) determines whether newly pushed compatible images are automatically converted. By default, all repositories are in an inactive state for artifact streaming. This means that when new compatible images are pushed to the repository, artifact streaming isn't triggered, and the images aren't automatically converted. To enable automatic conversion of newly pushed images, you need to set the repository's artifact streaming to the active state. Once the repository is in the active state, any new compatible container images that are pushed to the repository will automatically be converted.
+The state of artifact streaming in a repository (inactive or active) determines whether newly pushed compatible images are automatically converted. By default, all repositories are in an inactive state for artifact streaming. This means that when new compatible images are pushed to the repository, artifact streaming isn't triggered, and the images aren't automatically converted. To enable automatic conversion of newly pushed images, set the repository's artifact streaming to the active state. Once the repository is in the active state, any new compatible container images that are pushed to the repository are automatically converted.
 
 ## Pricing and availability
 
 Artifact streaming is currently available only for the **Premium** [service tier](container-registry-skus.md) (SKU).
 
-Use of artifact streaming may increase overall registry storage consumption. If  consumption exceeds the included 500 GiB Premium SKU threshold, you may be subject to additional charges, as outlined in our [pricing](https://azure.microsoft.com/pricing/details/container-registry/).
+Use of artifact streaming might increase overall registry storage consumption. If consumption exceeds the included 500 GiB Premium SKU threshold, you might incur additional charges, as outlined in the [pricing](https://azure.microsoft.com/pricing/details/container-registry/).
 
 ## Current limitations and requirements
 
@@ -51,7 +51,7 @@ Artifact streaming is currently in preview. The following limitations apply:
 * Only images with Linux AMD64 architecture are supported in the preview release.
 * The preview release doesn't support Windows-based container images and ARM64 images.
 * The preview release partially supports multi-architecture images; only the AMD64 architecture is supported.
-* For creating Ubuntu based node pool in AKS, you must use Ubuntu version 20.04 or higher.
+* To create an Ubuntu-based node pool in AKS, you must use Ubuntu version 20.04 or higher.
 * For Kubernetes, you must use Kubernetes version 1.26 or higher.
 * CMK (Customer-Managed Keys) registries aren't currently supported.
 * Kubernetes `regcred` isn't currently supported.
@@ -63,7 +63,7 @@ Use the [Azure portal](https://portal.azure.com/) or the Azure CLI to manage art
 
 ## Manage artifact streaming
 
-Start artifact streaming to enable pushing, importing, and generating streaming artifacts for container images in an Azure container registry. These instructions outline the process for importing an image, generating a streaming artifact, and managing automatic conversion of streaming artifacts
+Start artifact streaming to enable pushing, importing, and generating streaming artifacts for container images in an Azure container registry. These instructions outline the process for importing an image, generating a streaming artifact, and managing automatic conversion of streaming artifacts.
 
 ### [Azure CLI](#tab/azure-cli)
 
@@ -73,7 +73,7 @@ These examples use the Azure CLI to work with a premium Azure Container Registry
 
 ## Import an image and create artifact streaming
 
-First, run the [az configure] command to configure your registry, and then use [az acr import][az-acr-import] to import a Jupyter Notebook image from Docker Hub:
+First, run the [az configure] command to configure your registry. Then, use [az acr import][az-acr-import] to import a Jupyter Notebook image from Docker Hub:
 
 ```azurecli-interactive
 az configure --defaults acr="mystreamingtest"
@@ -81,7 +81,7 @@ az acr import --source docker.io/jupyter/all-spark-notebook:latest -t jupyter/al
 ```
 
 > [!NOTE]
-> If you see an error from the docker registry, it may be due to [rate limiting](/troubleshoot/azure/azure-container-instances/configuration-setup/docker-hub-rate-limit-registryerrorresponse). To avoid this, consider authenticating with Docker Hub by [providing your Docker ID and password](container-registry-import-images.md#import-from-docker-hub) by using the `--username` and `--password` parameters in the `az acr import` command.
+> If you see an error from the docker registry, it might be due to [rate limiting](/troubleshoot/azure/azure-container-instances/configuration-setup/docker-hub-rate-limit-registryerrorresponse). To avoid this error, consider authenticating with Docker Hub by [providing your Docker ID and password](container-registry-import-images.md#import-from-docker-hub) by using the `--username` and `--password` parameters in the `az acr import` command.
 
 To create a streaming artifact from the imported image, run the [az acr artifact-streaming create][az-acr-artifact-streaming-create] command:
 
@@ -115,7 +115,7 @@ az acr artifact-streaming update --repository jupyter/all-spark-notebook --enabl
 > [!NOTE]
 > Existing images in the repository aren't automatically converted.
 
-Verify the streaming conversion progress by pushing a new image `jupyter/all-spark-notebook:newtag` to the repository, then running the  [az acr artifact-streaming operation show][az-acr-artifact-streaming-operation-show] command:
+To verify the streaming conversion progress, push a new image `jupyter/all-spark-notebook:newtag` to the repository, and then run the  [az acr artifact-streaming operation show][az-acr-artifact-streaming-operation-show] command:
 
 ```azurecli-interactive
 az acr artifact-streaming operation show --image jupyter/all-spark-notebook:newtag
@@ -133,44 +133,39 @@ az acr artifact-streaming update --repository jupyter/all-spark-notebook --enabl
 
 To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-portal.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#changing-skus).
 
-Follow the steps to enable artifact streaming in the [Azure portal](https://portal.azure.com). 
+Follow the steps to enable artifact streaming for an Azure container repository in the [Azure portal](https://portal.azure.com). 
 
-1. Go to your Azure Container Registry in the Azure portal.
+1. Go to your Azure container registry in the Azure portal.
 1. In the service menu, under  **Services**, select **Repositories**.
-1. Select **Create streaming artifact.**
+1. Select **Start artifact streaming.**
 
-   :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure Container Registry with the option to enable artifact streaming.":::
+   :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure container registry with the option to enable artifact streaming.":::
 
-The status of **Artifact streaming** will change to **Active**. Once the repository is in the active state, any new compatible container images that are pushed to the repository will automatically be converted. However, existing images in the repository aren't automatically converted to use artifact streaming.
+The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts.
 
-To create a streaming artifact for a previously imported image, follow these steps:
+To disable automatic conversion for newly pushed images in the repository, select **Stop artifact streaming**.
+
+Existing images in the repository aren't automatically converted to use artifact streaming. To create a streaming artifact for a previously imported image, follow these steps:
 
 1. From the **Repositories** pane, select the image that you want to convert.
 1. Select **+ Create streaming artifact.**
 1. When the process is complete, you can view the streaming artifact in the **Referrers** tab of the image.
 
-Once artifact streaming is enabled for images in the repository, you can [stream images from ACR to Azure Kubernetes Service (AKS) clusters](/azure/aks/artifact-streaming).
-
-To change the automatic conversion status for newly pushed images in the repository, select **Stop artifact streaming**.
-
-In the Azure portal, you can change a repository's autoconversion status by right-clicking it from the **Repositories** pane. Select **Stop artifact streaming** to change its **Artifact streaming** status to **Inactive**, or **Start artifact streaming** to change its **Artifact streaming** status to **Active**.
+After you enable artifact streaming for images in the repository, you can [stream images from ACR to Azure Kubernetes Service (AKS) clusters](/azure/aks/artifact-streaming).
 
 ---
 
+## Related content
 
-## Next steps
-
-> [!div class="nextstepaction"]
-> [Troubleshoot Artifact streaming](troubleshoot-artifact-streaming.md)
+- Get tips for [troubleshooting artifact streaming problems](troubleshoot-artifact-streaming.md).
+- Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
 
 <!-- LINKS - External -->
 [Install Azure CLI]: /cli/azure/install-azure-cli
 [Azure Cloud Shell]: /azure/cloud-shell/quickstart
-[az-group-create]: /cli/azure/group#az-group-create
 [az-acr-import]: /cli/azure/acr#az-acr-import
 [az-acr-artifact-streaming-create]: /cli/azure/acr/artifact-streaming#az-acr-artifact-streaming-create
 [az-acr-manifest-list-referrers]: /cli/azure/acr/manifest#az-acr-manifest-list-referrers
-[az-acr-create]: /cli/azure/acr#az-acr-create
 [az-acr-artifact-streaming-operation-cancel]: /cli/azure/acr/artifact-streaming/operation#az-acr-artifact-streaming-operation-cancel
 [az-acr-artifact-streaming-operation-show]: /cli/azure/acr/artifact-streaming/operation#az-acr-artifact-streaming-operation-show
 [az-acr-artifact-streaming-update]: /cli/azure/acr/artifact-streaming#az-acr-artifact-streaming-update
