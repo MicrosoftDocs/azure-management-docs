@@ -72,10 +72,10 @@ These examples use the Azure CLI to work with a premium Azure Container Registry
 
 ## Import an image and create artifact streaming
 
-First, run the [az configure] command to configure your registry.
+First, run the [az config](/cli/azure/azure-cli-configuration) command to use your registry name as the default for `az acr` commands:
 
 ```azurecli-interactive
-az configure --defaults acr="mystreamingtest"
+az config set defaults.acr="mystreamingtest"
 ```
 
 If you don't already have an image that you want to use, run the [az acr import][az-acr-import] command to import a Jupyter Notebook image from Docker Hub:
@@ -142,11 +142,9 @@ Follow the steps to enable artifact streaming for an Azure container repository 
 
    :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" lightbox="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure container registry with the option to enable artifact streaming.":::
 
-The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts.
+The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts. To change this, select **Stop artifact streaming**.
 
-To disable automatic conversion for newly pushed images in the repository, select **Stop artifact streaming**.
-
-Existing images in the repository aren't automatically converted to use artifact streaming. To create a streaming artifact for a previously imported image, follow these steps:
+When you enable artifact streaming on a repository, existing images in the repository aren't automatically converted to use artifact streaming. To create a streaming artifact for a previously imported image, follow these steps:
 
 1. From the **Repositories** pane, select the image that you want to convert.
 1. Select **+ Create streaming artifact.**
@@ -158,8 +156,8 @@ After you enable artifact streaming for images in the repository, you can [strea
 
 ## Related content
 
-- Get tips for [troubleshooting artifact streaming problems](troubleshoot-artifact-streaming.md).
-- Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
+* Get tips for [troubleshooting artifact streaming problems](troubleshoot-artifact-streaming.md).
+* Learn more about [registries, repositories, and artifacts](container-registry-concepts.md).
 
 <!-- LINKS - External -->
 [Install Azure CLI]: /cli/azure/install-azure-cli
