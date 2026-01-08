@@ -140,7 +140,7 @@ Follow the steps to enable artifact streaming for an Azure container repository 
 1. In the service menu, under  **Services**, select **Repositories**.
 1. Select **Start artifact streaming.**
 
-   :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure container registry with the option to enable artifact streaming.":::
+   :::image type="content" source="media/container-registry-artifact-streaming/start-artifact-streaming.png" lightbox="media/container-registry-artifact-streaming/start-artifact-streaming.png" alt-text="Screenshot of an Azure container registry with the option to enable artifact streaming.":::
 
 The status of **Artifact streaming** changes to **Active**. Any new compatible container images that you push to the repository are automatically converted to streaming artifacts.
 
