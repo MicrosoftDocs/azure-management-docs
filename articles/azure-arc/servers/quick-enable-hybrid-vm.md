@@ -53,6 +53,7 @@ Use the Azure portal to create a script that automates the agent download and in
         1. Choose either **Public endpoint** or **Private endpoint**. If you select **Private endpoint**, you can either select an existing private link scope or create a new one.
         1. If you want to use a **Proxy server URL**, enter the proxy server IP address or the name and port number that the machine will use in the format `http://<proxyURL>:<proxyport>`.
         1. If you selected **Public endpoint** and you want to use [Azure Arc Gateway](arc-gateway.md), select an existing **Gateway resource** or create a new one.
+    1. For **Authentication method**, select **Authenticate machines manually**.
 
     1. Select **Next**.
 
@@ -94,7 +95,7 @@ Install the Linux agent on the target machine by using one of the following meth
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected.
+After you install the agent and configure it to connect to Azure Arc-enabled servers, verify that the server has successfully connected.
 
 1. Go to the **Machines - Azure Arc** page in the Azure portal.
 
@@ -106,7 +107,6 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 
 ## Next steps
 
-Now that your Linux or Windows hybrid machine is connected to Azure Arc, you can enable Azure Policy to understand compliance in Azure.
-
-> [!div class="nextstepaction"]
-> [Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)
+* Learn how to [connect multiple machines to Azure Arc using a service principal](onboard-service-principal.md).
+* Understand the various [deployment options for Azure Arc-enabled servers](deployment-options.md).
+* [Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)
