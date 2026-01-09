@@ -42,16 +42,16 @@ A *static workflow* involves manually creating and managing the following Kubern
 
 ### What is a retain policy?
 
-The retain policy (`unbacked-retain-sc` / `cloud-backed-retain-sc` storage class) ensures that when you delete a PVC, the process preserves the underlying PV and EdgeVolume instead of automatically deleting them. This policy prevents accidental data loss and provides extra safety for critical workloads.
+The retain policy (`unbacked-retain-sc` and `cloud-backed-retain-sc` storage classes) ensures that when you delete a PVC, the process preserves the underlying PV and EdgeVolume instead of automatically deleting them. This policy prevents accidental data loss and provides extra safety for critical workloads.
 
 ## Prerequisites
 
 Before creating static workflows, make sure you have the following prerequisites:
 
-- **Azure Arc-enabled Kubernetes cluster** with extension installed
-- **kubectl** access to the cluster
-- **Appropriate RBAC permissions** to create EdgeVolumes, PVs, and PVCs
-- **CSI driver** (`wyvern.csi.azure.com`) running on the cluster
+- **Azure Arc-enabled Kubernetes cluster** with extension installed.
+- **kubectl** access to the cluster.
+- **Appropriate RBAC permissions** to create EdgeVolumes, PVs, and PVCs.
+- **CSI driver** (`wyvern.csi.azure.com`) running on the cluster.
 
 Verify that the Arc extension is installed by running the following commands:
 
@@ -454,4 +454,4 @@ This guide provided comprehensive coverage of static workflows with retain funct
 
 ## Next steps
 
-- [Azure Container Storage enabled by Azure Arc overview](overview.md)
+[Azure Container Storage enabled by Azure Arc overview](overview.md)
