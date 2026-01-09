@@ -42,7 +42,7 @@ items:
           - name: Map paths on Edge Volumes
             href: howto-map-names.md
           - name: Static retain workflow guide
-            href: retain.md
+            href: static-retain.md
   - name: Set up authentication
     items:
       - name: Configure OneLake Identity
