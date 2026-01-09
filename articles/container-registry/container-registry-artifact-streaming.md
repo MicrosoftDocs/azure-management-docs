@@ -68,7 +68,7 @@ Start artifact streaming to enable pushing, importing, and generating streaming 
 
 To enable artifact streaming, you must use a **Premium** [service tier (SKU)](container-registry-skus.md) registry. If you don't already have one, [create a new registry](container-registry-get-started-azure-cli.md) and select the **Premium** service tier, or [change the SKU for an existing registry](container-registry-skus.md#changing-skus).
 
-These examples use the Azure CLI to work with a premium Azure Container Registry named `mystreamingtest` in the `my-streaming-test` resource group located in the West US region, along with an example Jupyter Notebook image. Replace these names with your own values, including a unique name for the registry.
+These examples use the Azure CLI to work with a premium Azure Container Registry named `mystreamingtest` in the `my-streaming-test` resource group located in the West US region, along with an example Jupyter Notebook image. Replace these names with your own values.
 
 ## Import an image and create artifact streaming
 
