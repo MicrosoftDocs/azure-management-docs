@@ -1,77 +1,79 @@
 items:
-- name: Azure Container Storage enabled by Azure Arc
-  href: index.yml
-- name: Overview
-  href: overview.md
-- name: What's new?
-  href: whats-new.md
-- name: Quickstarts
-  items:
-  - name: Install Container Storage on a single-node Ubuntu cluster
-    href: quickstart-install.md
-- name: Install the Extension
-  items:
-  - name: Prepare Linux
+  - name: Azure Container Storage enabled by Azure Arc
+    href: index.yml
+  - name: Overview
+    href: overview.md
+  - name: What's new?
+    href: whats-new.md
+  - name: Quickstarts
     items:
-    - name: Linux prerequisites
-      href: howto-prepare-linux-edge-volumes.md
-    - name: Single-node cluster
-      href: howto-single-node-cluster-edge-volumes.md
-    - name: Multi-node cluster
-      href: howto-multi-node-cluster-edge-volumes.md
-  - name: Install extension
-    href: howto-install-edge-volumes.md
-- name: Configure Edge Volumes
-  items:
-  - name: Volumes and subvolumes overview
-    href: volumes-subvolumes.md
-  - name: Configure Local Shared volumes
-    href: howto-configure-local-shared-edge-volumes.md
-  - name: Configure Cloud Ingest subvolumes
-    href: howto-configure-cloud-ingest-subvolumes.md
-  - name: Configure Cloud Mirror subvolumes
-    href: howto-configure-cloud-mirror-subvolumes.md
-  - name: Using Edge Volumes together
-    href: storage-options.md
-  - name: How to
+      - name: Install Container Storage on a single-node Ubuntu cluster
+        href: quickstart-install.md
+  - name: Install the Extension
     items:
-    - name: Control ingest data flow
-      href: howto-ingest-data-flow.md
-    - name: Generate blob index and metadata tags
-      href: howto-blob-index-metadata-tags.md
-    - name: Map paths on Edge Volumes
-      href: howto-map-names.md
-- name: Set up authentication
-  items:
-  - name: Configure OneLake Identity
-    href: howto-configure-onelake-identity.md
-  - name: Configure Workload Identity
-    href: howto-configure-workload-identity.md
-- name: Monitor deployments
-  items:
-  - name: Monitor with Azure Monitor
-    href: howto-azure-monitor-kubernetes.md
-  - name: Monitor with Prometheus and Grafana
-    href: howto-third-party-monitoring.md
-- name: Understand disconnected operations
-  href: disconnected-operations.md
-- name: Tutorials
-  items:
-  - name: Create a Local Shared Edge Volume
-    href: tutorial-create-local-shared-volume.md
-- name: Troubleshooting
-  items:
-  - name: Troubleshoot common issues
-    href: troubleshooting.md
-  - name: Blobs not uploaded or mirrored when using Managed Identity
-    href: blobs-not-uploaded.md
-- name: Resources
-  items:
-  - name: Release notes
-    href: release-notes.md
-  - name: FAQ
-    href: faq.yml
-  - name: Azure Arc Jumpstart scenarios
-    href: jumpstart.md
-  - name: Support and feedback
-    href: support-feedback.md
+      - name: Prepare Linux
+        items:
+          - name: Linux prerequisites
+            href: howto-prepare-linux-edge-volumes.md
+          - name: Single-node cluster
+            href: howto-single-node-cluster-edge-volumes.md
+          - name: Multi-node cluster
+            href: howto-multi-node-cluster-edge-volumes.md
+      - name: Install extension
+        href: howto-install-edge-volumes.md
+  - name: Configure Edge Volumes
+    items:
+      - name: Volumes and subvolumes overview
+        href: volumes-subvolumes.md
+      - name: Configure Local Shared volumes
+        href: howto-configure-local-shared-edge-volumes.md
+      - name: Configure Cloud Ingest subvolumes
+        href: howto-configure-cloud-ingest-subvolumes.md
+      - name: Configure Cloud Mirror subvolumes
+        href: howto-configure-cloud-mirror-subvolumes.md
+      - name: Using Edge Volumes together
+        href: storage-options.md
+      - name: How to
+        items:
+          - name: Control ingest data flow
+            href: howto-ingest-data-flow.md
+          - name: Generate blob index and metadata tags
+            href: howto-blob-index-metadata-tags.md
+          - name: Map paths on Edge Volumes
+            href: howto-map-names.md
+          - name: Static retain workflow guide
+            href: retain.md
+  - name: Set up authentication
+    items:
+      - name: Configure OneLake Identity
+        href: howto-configure-onelake-identity.md
+      - name: Configure Workload Identity
+        href: howto-configure-workload-identity.md
+  - name: Monitor deployments
+    items:
+      - name: Monitor with Azure Monitor
+        href: howto-azure-monitor-kubernetes.md
+      - name: Monitor with Prometheus and Grafana
+        href: howto-third-party-monitoring.md
+  - name: Understand disconnected operations
+    href: disconnected-operations.md
+  - name: Tutorials
+    items:
+      - name: Create a Local Shared Edge Volume
+        href: tutorial-create-local-shared-volume.md
+  - name: Troubleshooting
+    items:
+      - name: Troubleshoot common issues
+        href: troubleshooting.md
+      - name: Blobs not uploaded or mirrored when using Managed Identity
+        href: blobs-not-uploaded.md
+  - name: Resources
+    items:
+      - name: Release notes
+        href: release-notes.md
+      - name: FAQ
+        href: faq.yml
+      - name: Azure Arc Jumpstart scenarios
+        href: jumpstart.md
+      - name: Support and feedback
+        href: support-feedback.md
