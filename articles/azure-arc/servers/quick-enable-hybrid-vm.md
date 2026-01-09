@@ -13,30 +13,30 @@ Get started with [Azure Arc-enabled servers](overview.md) to manage and govern y
 
 In this quickstart, you deploy and configure the Azure Connected Machine agent on a Windows or Linux machine hosted outside of Azure, so that the machine can be managed through Azure Arc-enabled servers.
 
-For Linux, the installation script will configure the repository on your machine and install the Connected Machine agent package using your package manager. If you prefer to onboard your Linux machine without an installation script, you can [manually onboard the machine by using your package manager](quick-onboard-linux.md).
+For Linux, the installation script configures the repository on your machine and installs the Connected Machine agent package by using your package manager. If you prefer to onboard your Linux machine without an installation script, you can [manually onboard the machine by using your package manager](quick-onboard-linux.md).
 
-While you can repeat the steps in this article as needed to onboard additional machines, we also provide other options for deploying the agent, including several methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
+While you can repeat the steps in this article as needed to onboard additional machines, you can also use other options for deploying the agent, including methods designed to onboard machines at scale. For more information, see [Azure Connected Machine agent deployment options](deployment-options.md).
 
 > [!TIP]
-> If you prefer to try out things in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
+> If you prefer to try using Azure Arc-enabled servers in a sample/practice experience, get started quickly with [Azure Arc Jumpstart](https://azurearcjumpstart.com/azure_arc_jumpstart/azure_arc_servers).
 
 ## Prerequisites
 
 * An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-* Administrator permissions to install and configure the Connected Machine agent. 
-  * Linux—Use the root account. 
-  * Windows—Use an account that's a member of the Local Administrators group.
+* Administrator permissions to install and configure the Connected Machine agent.
+  * For Linux, use the root account.
+  * For Windows, use an account that's a member of the Local Administrators group.
 * Review the [Connected Machine agent prerequisites](prerequisites.md) and verify the following requirements:
-  * These [resource providers are registered](prerequisites.md#azure-resource-providers) on your subscription:
+  * These resource providers are [registered on your subscription](prerequisites.md#azure-resource-providers):
     * Microsoft.HybridCompute
     * Microsoft.GuestConfiguration
     * Microsoft.HybridConnectivity
     * Microsoft.AzureArcData  
-  * Your target machine is running a supported [operating system](prerequisites.md#supported-operating-systems).
+  * Your target machine runs a supported [operating system](prerequisites.md#supported-operating-systems).
   * Your account has the [required Azure built-in roles](prerequisites.md#required-permissions).
   * The machine is in a [supported region](overview.md#supported-regions).
   * The Linux hostname or Windows computer name doesn't use a [reserved word or trademark](/azure/azure-resource-manager/templates/error-reserved-resource-name).
-  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure the URLs [listed](network-requirements.md#urls) aren't blocked.
+  * If the machine connects through a firewall or proxy server to communicate over the Internet, make sure that no [required URLs](network-requirements.md#urls) are blocked.
 
 ## Generate installation script
 
@@ -73,23 +73,23 @@ Use the Azure portal to create a script that automates the agent download and in
    1. Review the script. If you want to make any changes, use the **Previous** button to go back and update your selections. 
    1. Select **Download** to save the script file.
 
-## Install the agent using the script
+## Install the agent by using the script
 
-Now that you've generated the script, the next step is to run it on the server that you want to onboard to Azure Arc. The script will download the Connected Machine agent from the Microsoft Download Center, install the agent on the server, create the Azure Arc-enabled server resource, and associate it with the agent.
+Now that you've generated the script, run it on the server that you want to onboard to Azure Arc. The script downloads the Connected Machine agent from the Microsoft Download Center, installs the agent on the server, creates the Azure Arc-enabled server resource, and associates it with the agent.
 
 Complete the following steps for the operating system of your server.
 
 ### Windows agent
 
-1. Log in to the server.
+1. Sign in to the server.
 
 1. Open an elevated 64-bit PowerShell command prompt.
 
-1. Change to the folder or share that you copied the script to, then execute it on the server by running the `./OnboardingScript.ps1` script.
+1. Change to the folder or share where you copied the script. Run the `./OnboardingScript.ps1` script to execute it on the server.
 
 ### Linux agent
 
-Install the Linux agent on the target machine in one of the following ways:
+Install the Linux agent on the target machine by using one of the following methods:
 
 * On target machines that can directly communicate to Azure, run the following command:
 
@@ -117,7 +117,7 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 
 ## Next steps
 
-Now that your Linux or Windows hybrid machine is Arc-enabled, you're ready to enable Azure Policy to understand compliance in Azure.
+Now that your Linux or Windows hybrid machine is connected to Azure Arc, you can enable Azure Policy to understand compliance in Azure.
 
 > [!div class="nextstepaction"]
 > [Create a policy assignment to identify non-compliant resources](tutorial-assign-policy-portal.md)

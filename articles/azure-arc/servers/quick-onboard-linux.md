@@ -2,7 +2,7 @@
 title: Quickstart - Connect a Linux machine with Azure Arc-enabled servers (package-based installation)
 description: In this quickstart, you connect and register a Linux machine to Azure Arc using a package-based installation method.
 ms.topic: quickstart
-ms.date: 09/25/2025
+ms.date: 01/08/2026
 # Customer intent: "As an IT administrator, I want to connect and register Linux machines with Azure management tools, so that I can effectively manage and oversee my on-premises, edge, and multicloud environments."
 ---
 
