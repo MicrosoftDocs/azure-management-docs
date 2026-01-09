@@ -42,18 +42,7 @@ While you can repeat the steps in this article as needed to onboard additional m
 
 Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. You'll install this script, in a later step, to the hybrid machine you want to onboard to Azure Arc.
 
-<!--1. Launch the Azure Arc service in the Azure portal by searching for and selecting **Servers - Azure Arc**.
-
-   :::image type="content" source="media/quick-enable-hybrid-vm/search-machines.png" alt-text="Search for Azure Arc-enabled servers in the Azure portal.":::
-
-1. On the **Servers - Azure Arc** page, select **Add** near the upper left.-->
-
-1. [Go to the Azure portal page for adding servers with Azure Arc](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/HybridVmAddBlade). Select the **Add a single server** tile, then select **Generate script**.
-
-    :::image type="content" source="media/quick-enable-hybrid-vm/add-single-server.png" alt-text="Screenshot of Azure portal's add server page." lightbox="media/quick-enable-hybrid-vm/add-single-server.png":::
-
-   > [!TIP]
-   > In the portal, you can also reach this page by searching for and selecting "Servers - Azure Arc" and then selecting **+Add**.
+1. [Go to the Azure portal page for adding servers with Azure Arc](https://portal.azure.com/#view/Microsoft_Azure_HybridCompute/HybridVmAddBlade). You can also get to this page from **Machines - Azure Arc** in the portal by selecting the **Onboard/Create** link, then selecting **Onboard existing machines**.
 
 1. On the **Basics** page, complete the following steps:
 
@@ -107,9 +96,9 @@ Install the Linux agent on the target machine by using one of the following meth
 
 After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the Azure portal to verify that the server has successfully connected.
 
-1. Go to the [Azure portal page for hybrid machines](https://aka.ms/hybridmachineportal).
-   > [!TIP]
-   > You can also reach this page in the portal by searching for and selecting "Machines - Azure Arc".
+1. Go to the **Machines - Azure Arc** page in the Azure portal.
+
+1. Find the machine you onboarded and confirm that its status is **Connected**.
 
 1. Confirm the machine has a connected status.
 
