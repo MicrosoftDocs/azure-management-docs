@@ -24,7 +24,6 @@ You can install the Connected Machine agent manually, or on multiple machines at
 
 > [!NOTE]
 > For additional guidance regarding the different services Azure Arc offers, see [Choosing the right Azure Arc service for machines](../choose-service.md).
-> 
 
 ## Supported cloud operations
 
@@ -51,7 +50,7 @@ Watch this video to learn more about Azure monitoring, security, and update serv
 
 ## Supported regions
 
-For a list of supported regions with Azure Arc-enabled servers, see the [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/?products=azure-arc) page.
+For a list of supported regions with Azure Arc-enabled servers, see the [Azure products by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) page.
 
 In most cases, the location you select when you create the installation script should be the Azure region geographically closest to your machine's location. Data at rest is stored within the Azure geography containing the region you specify, which may also affect your choice of region if you have data residency requirements. If the Azure region your machine connects to has an outage, the connected machine isn't affected, but management operations using Azure may be unable to complete. If there's a regional outage, and if you have multiple locations that support a geographically redundant service, it's best to connect the machines in each location to a different Azure region.
 
