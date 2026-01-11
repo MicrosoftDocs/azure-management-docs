@@ -149,4 +149,4 @@ additionalContent:
         # Card
         - title: Azure Copilot with the Azure mobile app
           summary: Use Azure Copilot on your mobile device.
-          url: /azure/azure-portal/mobile-app/microsoft-copilot-in-azure
+          url: /azure/azure-portal/mobile-app/azure-copilot

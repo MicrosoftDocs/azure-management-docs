@@ -26,7 +26,7 @@ To interact with Azure Copilot in a larger, immersive mode, select the fullscree
 
 When working with services or resources, you might see suggested prompts near the top of a pane. These suggestions are tailored to the context of the service or resource you're working with to help you get started quickly. Select a suggested prompt to start a conversation with Azure Copilot.
 
-You can also use Azure Copilot from within the [Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md).
+You can also use Azure Copilot from within the [Azure mobile app](../azure-portal/mobile-app/azure-copilot.md).
 
 The following sections describe some of the ways you can use Azure Copilot.
 
@@ -133,4 +133,4 @@ Keep in mind these general current limitations:
 
 - [Get tips for writing effective prompts](write-effective-prompts.md) to use with Azure Copilot.
 - Learn about [managing access to Azure Copilot](manage-access.md) in your organization.
-- Learn how to use Azure Copilot with [AI Shell](ai-shell-overview.md) or [in the Azure mobile app](/azure/azure-portal/mobile-app/microsoft-copilot-in-azure).
+- Learn how to use Azure Copilot with [AI Shell](ai-shell-overview.md) or [in the Azure mobile app](/azure/azure-portal/mobile-app/azure-copilot).

@@ -83,7 +83,7 @@
     href: mobile-app/learn-training.md
     displayName: mobile, app, training
   - name: Azure Copilot
-    href: mobile-app/microsoft-copilot-in-azure.md
+    href: mobile-app/azure-copilot.md
   - name: Intune MAM
     href: mobile-app/intune-management.md
 - name: Reference
