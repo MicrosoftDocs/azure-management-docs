@@ -23,7 +23,7 @@ Azure Copilot can help you navigate the hundreds of services and thousands of re
 
 ## How Azure Copilot works
 
-You can access Azure Copilot in the Azure portal, [through the Azure mobile app](../azure-portal/mobile-app/microsoft-copilot-in-azure.md), or through [AI Shell](ai-shell-overview.md). Throughout a conversation, Azure Copilot answers questions, generates queries, performs tasks, and safely acts on your behalf. It makes high-quality recommendations and takes actions while respecting your organization's policy and privacy. Azure Copilot can access all of the resources that you have permission to access, and can take actions that you have permission to perform, with your confirmation required for any actions.
+You can access Azure Copilot in the Azure portal, [through the Azure mobile app](../azure-portal/mobile-app/azure-copilot.md), or through [AI Shell](ai-shell-overview.md). Throughout a conversation, Azure Copilot answers questions, generates queries, performs tasks, and safely acts on your behalf. It makes high-quality recommendations and takes actions while respecting your organization's policy and privacy. Azure Copilot can access all of the resources that you have permission to access, and can take actions that you have permission to perform, with your confirmation required for any actions.
 
 ## Features of Azure Copilot
 
