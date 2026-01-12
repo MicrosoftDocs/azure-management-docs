@@ -455,13 +455,12 @@ There are approximately **375** unique integration tests available, across **27*
 | 18      | `sqlinstance-ha`                 | Various High Availability Stress tests, including pod reboots, forced failovers and suspensions.                                                       |
 | 19      | `sqlinstance-tde`                | Various Transparent Data Encryption tests.                                                                                                             |
 | 20      | `telemetry-elasticsearch`        | Validates Log ingestion into Elasticsearch.                                                                                                            |
-| 21      | `telemetry-grafana`              | Validates Grafana is reachable.                                                                                                                        |
-| 22      | `telemetry-influxdb`             | Validates Metric ingestion into InfluxDB.                                                                                                              |
-| 23      | `telemetry-kafka`                | Various tests for Kafka using SSL, single/multi-broker setup.                                                                                          |
-| 24      | `telemetry-monitorstack`         | Tests Monitoring components, such as `Fluentbit` and `Collectd` are functional.                                                                            |
-| 25      | `telemetry-telemetryrouter`      | Tests Open Telemetry.                                                                                                                                  |
-| 26      | `telemetry-webhook`              | Tests Data Services Webhooks with valid and invalid calls.                                                                                             |
-| 27      | `upgrade-arcdata`                | Upgrades a full suite of SQL Instances (GP, BC 2 replica, BC 3 replica, with Active Directory) and upgrades from last month's release to latest build. |
+| 21      | `telemetry-influxdb`             | Validates Metric ingestion into InfluxDB.                                                                                                              |
+| 22      | `telemetry-kafka`                | Various tests for Kafka using SSL, single/multi-broker setup.                                                                                          |
+| 23      | `telemetry-monitorstack`         | Tests Monitoring components, such as `Fluentbit` and `Collectd` are functional.                                                                            |
+| 24      | `telemetry-telemetryrouter`      | Tests Open Telemetry.                                                                                                                                  |
+| 25      | `telemetry-webhook`              | Tests Data Services Webhooks with valid and invalid calls.                                                                                             |
+| 26      | `upgrade-arcdata`                | Upgrades a full suite of SQL Instances (GP, BC 2 replica, BC 3 replica, with Active Directory) and upgrades from last month's release to latest build. |
 
 As an example, for `sqlinstance-ha`, the following tests are performed:
 

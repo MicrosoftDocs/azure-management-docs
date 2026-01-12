@@ -58,17 +58,7 @@ Diagnostics|Diagnostic information for troubleshooting purposes|Manually exporte
 
 ## Operational data
 
-Operational data is collected for all database instances and for the Azure Arc-enabled data services platform itself. There are two types of operational data: 
-
-- Metrics – Performance and capacity related metrics, which are collected to an Influx DB provided as part of Azure Arc-enabled data services. You can view these metrics in the provided Grafana dashboard. 
-
-- Logs – Records emitted by all components including failure, warning, and informational events are collected to an OpenSearch database provided as part of Azure Arc-enabled data services. You can view the logs in the provided Kibana dashboard. Prior to the May, 2023 release, the log database used Elasticsearch. Thereafter, it uses OpenSearch. 
-
-The operational data stored locally requires built-in administrative privileges to view it in Grafana/Kibana.
-
-The operational data does not leave your environment unless you chooses to export/upload (indirect connected mode) or automatically send (directly connected mode) the data to Azure Monitor/Log Analytics. The data goes into a Log Analytics workspace, which you control. 
-
-If the data is sent to Azure Monitor or Log Analytics, you can choose which Azure region or datacenter the Log Analytics workspace resides in. After that, access to view or copy it from other locations can be controlled by you. 
+Operational data is collected for all database instances and for the Azure Arc-enabled data services platform itself. 
 
 ## Inventory data 
 
@@ -510,8 +500,8 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
                 },
                 "state": "Ready",
                 "endpoints": {
-                    "logSearchDashboard": "https://230.41.13.18:5601/app/kibana#/discover?_a=(query:(language:kuery,query:'custom_resource_name:sqlmi1'))",
-                    "metricsDashboard": "https://230.41.13.18:3000/d/40q72HnGk/sql-managed-instance-metrics?var-hostname=sqlmi1-0",
+
+
                     "mirroring": "230.41.13.18:5022",
                     "primary": "230.41.13.18,1433",
                     "secondary": "230.41.13.18,1433"
@@ -522,8 +512,7 @@ The following JSON document is an example of the SQL Managed Instance - Azure Ar
                     "healthState": "Error",
                     "replicas": []
                 },
-                "logSearchDashboard": "https://230.41.13.18:5601/app/kibana#/discover?_a=(query:(language:kuery,query:'custom_resource_name:sqlmi1'))",
-                "metricsDashboard": "https://230.41.13.18:3000/d/40q72HnGk/sql-managed-instance-metrics?var-hostname=sqlmi1-0",
+
                 "primaryEndpoint": "230.41.13.18,1433",
                 "runningVersion": "v1.14.0_2022-12-13",
                 "registryVersions": {

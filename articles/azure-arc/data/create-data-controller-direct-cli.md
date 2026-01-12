@@ -44,11 +44,7 @@ export resourceGroup=<Your resource group>
 export clusterName=<name of your connected Kubernetes cluster>
 export customLocationName=<name of your custom location>
 
-## variables for logs and metrics dashboard credentials
-export AZDATA_LOGSUI_USERNAME=<username for Kibana dashboard>
-export AZDATA_LOGSUI_PASSWORD=<password for Kibana dashboard>
-export AZDATA_METRICSUI_USERNAME=<username for Grafana dashboard>
-export AZDATA_METRICSUI_PASSWORD=<password for Grafana dashboard>
+
 ```
 
 ##### [Windows (PowerShell)](#tab/windows)
@@ -59,11 +55,7 @@ $ENV:resourceGroup="<Your resource group>"
 $ENV:clusterName="<name of your connected Kubernetes cluster>"
 $ENV:customLocationName="<name of your custom location>" 
 
-## variables for Metrics and Monitoring dashboard credentials
-$ENV:AZDATA_LOGSUI_USERNAME="<username for Kibana dashboard>"
-$ENV:AZDATA_LOGSUI_PASSWORD="<password for Kibana dashboard>"
-$ENV:AZDATA_METRICSUI_USERNAME="<username for Grafana dashboard>"
-$ENV:AZDATA_METRICSUI_PASSWORD="<password for Grafana dashboard>"
+
 ```
 
 --- 
@@ -75,7 +67,7 @@ Deploy the Azure Arc data controller using released profile
 az arcdata dc create --name <name> -g ${resourceGroup} --custom-location ${customLocationName} --cluster-name ${clusterName} --connectivity-mode direct --profile-name <the-deployment-profile> --auto-upload-metrics true --auto-upload-logs true --storage-class <storageclass>
 
 # Example
-az arcdata dc create --name arc-dc1 --resource-group my-resource-group ----custom-location cl-name --connectivity-mode direct --profile-name azure-arc-aks-premium-storage  --auto-upload-metrics true --auto-upload-logs true --storage-class mystorageclass
+az arcdata dc create --name arc-dc1 --resource-group my-resource-group --custom-location cl-name --connectivity-mode direct --profile-name azure-arc-aks-premium-storage  --auto-upload-metrics true --auto-upload-logs true --storage-class mystorageclass
 ```
 
 ##### [Windows (PowerShell)](#tab/windows)
@@ -96,7 +88,7 @@ If you want to create the Azure Arc data controller using a custom configuration
 az arcdata dc create --name  -g ${resourceGroup} --custom-location ${customLocationName} --cluster-name ${clusterName} --connectivity-mode direct --path ./azure-arc-custom --auto-upload-metrics true --auto-upload-logs true
 
 # Example
-az arcdata dc create --name arc-dc1 --resource-group my-resource-group ----custom-location cl-name --connectivity-mode direct --path ./azure-arc-custom  --auto-upload-metrics true --auto-upload-logs true
+az arcdata dc create --name arc-dc1 --resource-group my-resource-group --custom-location cl-name --connectivity-mode direct --path ./azure-arc-custom  --auto-upload-metrics true --auto-upload-logs true
 ```
 
 ##### [Windows (PowerShell)](#tab/windows)
