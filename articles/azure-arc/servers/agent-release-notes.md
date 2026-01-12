@@ -26,6 +26,20 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 > [!WARNING]
 > Only Connected Machine agent versions released within the last year are officially supported by the product group. All customers should update to an agent version within this window or [enable automatic agent upgrades (preview)](manage-agent.md#automatic-agent-upgrade-preview). Microsoft recommends staying up to date with the latest agent version whenever possible.
 
+## Version 1.60 - January 2026
+
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+
+| Feature|Windows|Linux| Change Type|
+| -------- | -------- | -------- | -------- |
+| **Guest Config** |**1.26.103.0**|**1.29.103.0**||
+|Address CVE 2026-21224|✓|✓|Security Fix  |
+|Fixed bugs that cause Machine Configuration agent and GC worker to crash|✓|✓|Bug Fix|
+|Added additional parameter validation to ExtensionCleanup.ps1|✓||Improvement|
+|Enhanced reliability for compliance evaluation for ApplyAndAutoCorrect Machine Configuration policy assignments|✓|✓|Improvement|
+|**Azcmagent**|**1.60.03293.2680**|**1.60.03293.809**||
+|Address CVE 2026-21224|✓|✓|Security Fix|
+
 ## Version 1.59 - December 2025
 
 Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
