@@ -3,7 +3,7 @@ title: Observability agent capabilities in Agents (preview) in Azure Copilot
 description: Agents (preview) in Azure Copilot helps investigate Azure Monitor alerts and provide observability using intelligent agent capabilities.
 author: JnHs
 ms.author: jenhayes
-ms.date: 11/18/2025
+ms.date: 1/12/2025
 ms.service: copilot-for-azure
 ms.topic: concept-article
 
@@ -17,7 +17,7 @@ ms.topic: concept-article
 > [!NOTE]
 > To use investigation capabilities, you must have the Contributor, Monitoring Contributor, or Issue Contributor role on the Azure Monitor Workspace. For more information, see [Use Azure Monitor issues and investigations (preview)](/azure/azure-monitor/aiops/aiops-issue-and-investigation-how-to).
 
-You can ask for help understanding alerts when viewing an alert instance in the Azure portal. If you aren't currently viewing the alert, you need to provide the Azure resource ID for the alert so that Azure Copilot knows which alert to investigate.
+You can ask for help understanding alerts when viewing an alert instance in the Azure portal. If you aren't currently viewing the alert, provide the Azure resource ID for the alert so that Azure Copilot knows which alert to investigate.
 
 > [!IMPORTANT]
 > The functionality described in this article is only available for tenants that have access to [Agents (preview) in Azure Copilot](agents-preview.md).
@@ -38,6 +38,14 @@ When viewing a specific alert in the Azure portal, you can ask more general ques
 
 - "Can you help investigate this alert?"
 - "Can you help troubleshoot this?"
+
+For example, when viewing an alert, you can say "**Start an investigation for this alert**." Azure Copilot begins an investigation. Select **Show activity** to view progress and reasoning as Azure Copilot works on your request.
+
+:::image type="content" source="media/observability-agent/observability-agent-investigate-alert.png" alt-text="Screenshot of Azure Copilot beginning an alert investigation with detailed reasoning.":::
+
+When the investigation is complete, Azure Copilot provides a summary of its findings with steps you can take to remediate the issue, along with links where you can find more information.
+
+:::image type="content" source="media/observability-agent/observability-agent-steps.png" alt-text="Screenshot of Azure Copilot providing steps to investigate and remediate an alert.":::
 
 ## Current considerations and limitations
 
