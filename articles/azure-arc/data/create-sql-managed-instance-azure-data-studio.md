@@ -91,4 +91,4 @@ View all the SQL Managed Instances provisioned to this data controller. Use the 
 
 ## Related information
 
-Now try to [monitor your SQL instance](monitor-grafana-kibana.md)
+Learn more about [Azure Data Studio dashboards](azure-data-studio-dashboards.md).

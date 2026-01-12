@@ -44,11 +44,7 @@ export resourceGroup=<Your resource group>
 export clusterName=<name of your connected Kubernetes cluster>
 export customLocationName=<name of your custom location>
 
-## variables for logs and metrics dashboard credentials
-export AZDATA_LOGSUI_USERNAME=<username for Kibana dashboard>
-export AZDATA_LOGSUI_PASSWORD=<password for Kibana dashboard>
-export AZDATA_METRICSUI_USERNAME=<username for Grafana dashboard>
-export AZDATA_METRICSUI_PASSWORD=<password for Grafana dashboard>
+
 ```
 
 ##### [Windows (PowerShell)](#tab/windows)
@@ -59,11 +55,7 @@ $ENV:resourceGroup="<Your resource group>"
 $ENV:clusterName="<name of your connected Kubernetes cluster>"
 $ENV:customLocationName="<name of your custom location>" 
 
-## variables for Metrics and Monitoring dashboard credentials
-$ENV:AZDATA_LOGSUI_USERNAME="<username for Kibana dashboard>"
-$ENV:AZDATA_LOGSUI_PASSWORD="<password for Kibana dashboard>"
-$ENV:AZDATA_METRICSUI_USERNAME="<username for Grafana dashboard>"
-$ENV:AZDATA_METRICSUI_PASSWORD="<password for Grafana dashboard>"
+
 ```
 
 --- 
