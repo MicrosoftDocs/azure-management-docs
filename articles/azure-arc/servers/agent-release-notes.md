@@ -28,7 +28,7 @@ This page is updated monthly, so revisit it regularly. If you're looking for ite
 
 ## Version 1.60 - January 2026
 
-Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.59/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
+Download for [Windows](https://gbl.his.arc.azure.com/azcmagent/1.60/AzureConnectedMachineAgent.msi) or [Linux](manage-agent.md#install-a-specific-version-of-the-agent)
 
 | Feature|Windows|Linux| Change Type|
 | -------- | -------- | -------- | -------- |
