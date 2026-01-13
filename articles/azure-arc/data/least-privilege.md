@@ -104,19 +104,6 @@ Now you are ready to create the data controller itself.
 
 First, create a copy of the [template file](https://raw.githubusercontent.com/microsoft/azure_arc/main/arc_data_services/deploy/yaml/data-controller.yaml) locally on your computer so that you can modify some of the settings.
 
-### Create the metrics and logs dashboards user names and passwords
-
-At the top of the file, you can specify a user name and password that is used to authenticate to the metrics and logs dashboards as an administrator. Choose a secure password and share it with only those that need to have these privileges.
-
-A Kubernetes secret is stored as a base64 encoded string - one for the username and one for the password.
-
-```consoole
-echo -n '<your string to encode here>' | base64
-# echo -n 'example' | base64
-```
-
-Optionally, you can create SSL/TLS certificates for the logs and metrics dashboards. Follow the instructions at [Specify SSL/TLS certificates during Kubernetes native tools deployment](monitor-certificates.md).
-
 ### Edit the data controller configuration
 
 Edit the data controller configuration as needed:
@@ -152,8 +139,7 @@ The following settings are optional.
 - `dockerRegistry`: The secret to use to pull the images from a private container registry if required.
 - `repository`: The default repository on the Microsoft Container Registry is arcdata. If you are using a private container registry, enter the path the folder/repository containing the Azure Arc-enabled data services container images.
 - `imageTag`: The current latest version tag is defaulted in the template, but you can change it if you want to use an older version.
-- `logsui-certificate-secret`: The name of the secret created on the Kubernetes cluster for the logs UI certificate.
-- `metricsui-certificate-secret`: The name of the secret created on the Kubernetes cluster for the metrics UI certificate.
+
 
 The following example shows a completed data controller yaml.
 

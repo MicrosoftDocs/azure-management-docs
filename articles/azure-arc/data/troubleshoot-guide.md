@@ -147,7 +147,7 @@ bootstrapper-848f8f44b5-7qxbx           1/1     Running            0            
 control-7qxw8                           2/2     Running            0               16m
 controldb-0                             2/2     Running            0               16m
 logsdb-0                                3/3     Running            0               18d
-logsui-hvsrm                            3/3     Running            0               18d
+logsui-hvsrm                            3/3     Running           0               18d
 metricsdb-0                             1/2     Running            0               18d
 ```
 
@@ -169,7 +169,7 @@ If you see a message about insufficient CPU or memory, you should add more nodes
 
 ## Resources by type
 
-[View logs and metrics using Kibana and Grafana](monitor-grafana-kibana.md)
+
 
 ## Related content
 

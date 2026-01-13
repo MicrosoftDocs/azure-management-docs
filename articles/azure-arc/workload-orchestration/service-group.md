@@ -437,17 +437,6 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/${siteName}Schema'}}"
     ```
 
-1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
-
-    ```bash
-    providerAppId="cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
-    providerOid=$(az ad sp show --id "$providerAppId" --query "id" --output "tsv")
-
-    az role assignment create --assignee "$providerOid" \
-      --role "Service Group Reader" \
-      --scope "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion"
-    ```
-
 1. To connect a service group site to a context, you need to create a site reference.
 
     ```bash
@@ -585,17 +574,6 @@ To ease the process, the following steps show how to create a four-level service
     az rest --method put --url "/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")?api-version=2025-08-01" --body "{'location':'$l'}"
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/configurationreferences/default?api-version=2025-08-01" --body "{'properties':{'configurationResourceId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/configurations/$($siteName + "Config")'}}"
     az rest --method put --url "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGFactory/providers/microsoft.edge/schemareferences/default?api-version=2025-08-01" --body "{'properties':{'schemaId':'/subscriptions/$subscriptionId/resourceGroups/$rg/providers/microsoft.edge/schemas/$($siteName + "Schema")'}}"
-    ```
-
-1. Once the service groups are created, you need to grant access to the workload orchestration service. This is done by assigning the `Service Group Reader` role to the workload orchestration provider app ID.
-
-    ```powershell
-    $providerAppId = "cba491bc-48c0-44a6-a6c7-23362a7f54a9" # Workload orchestration Provider App ID
-    $providerOid = $(az ad sp show --id $providerAppId --query id -o tsv)
-    
-    az role assignment create --assignee "$providerOid" `
-        --role "Service Group Reader" `
-        --scope "/providers/Microsoft.Management/serviceGroups/$resourcePrefix-SGRegion"
     ```
 
 1. To connect a service group site to a context, you need to create a site reference.

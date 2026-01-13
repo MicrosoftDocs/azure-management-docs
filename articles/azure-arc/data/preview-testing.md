@@ -98,7 +98,7 @@ To install with the Azure CLI, follow the steps for your connectivity mode:
    # [Windows (PowerShell)](#tab/windows)
 
    ```PowerShell
-   ## variables for Metrics and Monitoring dashboard credentials
+   ## variables for the docker registry, repository, and image
    $ENV:DOCKER_REGISTRY="<Docker registry>"
    $ENV:DOCKER_REPOSITORY="<Docker repository>"
    $ENV:DOCKER_IMAGE_TAG="<Docker image tag>"
@@ -138,7 +138,7 @@ If you install using the Azure CLI:
    # [Windows (PowerShell)](#tab/windows)
 
    ```PowerShell
-   ## variables for Metrics and Monitoring dashboard credentials
+   ## variables for monitoring dashboard credentials
    $ENV:DOCKER_REGISTRY="<Docker registry>"
    $ENV:DOCKER_REPOSITORY="<Docker repository>"
    $ENV:DOCKER_IMAGE_TAG="<Docker image tag>"

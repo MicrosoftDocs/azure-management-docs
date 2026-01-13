@@ -64,7 +64,7 @@ To view the SQL Managed Instance dashboard for a given instance, right-click on 
 
 The **Connection** panel prompts you for the login and password to connect to an instance. If you know the connection information you can enter it and choose **Connect**.  If you don't know, choose **Cancel**.  Either way, Azure Data Studio returns to the dashboard when the **Connection** panel closes.
 
-On the **Overview** tab, view resource group, data controller, subscription ID, status, region, and other information. This location also provides links to the Grafana dashboard for viewing metrics or Kibana dashboard for viewing logs in context to that SQL managed instance.
+On the **Overview** tab, view resource group, data controller, subscription ID, status, region, and other information.
 
 With a connection to the SQL manage instance, you can see additional information here.
 
