@@ -145,9 +145,9 @@ The following table describes some of the user scenarios and the associated cust
 
 The following table shows recommended actions for different user roles when using a custom-defined role at a service group level. For more information about service groups, see [Service groups for workload orchestration](service-group.md).
 
-#### Service group reader​
+#### Service group contributor
 
-A Service group reader​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
+A Service group contributor​ is the admin user who creates the service group and is responsible for setting up the entire service group and Sites hierarchy​
 
 |Description|Actions|
 |---|---|
