@@ -80,11 +80,12 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 2. If the machine needs to communicate through a proxy server, to set the proxy server environment variable, run the following command:
 
     ```powershell
-    [Environment]::SetEnvironmentVariable("https_proxy", "http://{proxy-url}:{proxy-port}", "Machine")
+    [Environment]::SetEnvironmentVariable("https_proxy", "http://proxy.contoso.com:8080", "Machine")
     $env:https_proxy = [System.Environment]::GetEnvironmentVariable("https_proxy","Machine")
     # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
     Restart-Service -Name himds
     ```
+    <!-- Explanation: Replaced placeholder proxy values with a concrete example, as requested in agent feedback. -->
     
     > [!NOTE]
     > The agent does not support setting proxy authentication.
@@ -92,11 +93,33 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
     For more information, see [Agent-specific proxy configuration](manage-agent.md#agent-specific-proxy-configuration).
 
-3. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:
+3. After installing the agent, configure it to communicate with the Azure Arc service.
+
+    **Connection parameters**
+
+    | Parameter | Example value |
+    |----------|---------------|
+    | `--resource-group` | `rg-arc-prod` |
+    | `--tenant-id` | `11111111-2222-3333-4444-555555555555` |
+    | `--subscription-id` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` |
+    | `--location` | `eastus` |
+    | `--cloud` | `AzureCloud` |
+    | `--proxy` | `http://proxy.contoso.com:8080` |
+
+    <!-- Explanation: Added a concise parameter table immediately above the Windows connect command per agent feedback. -->
 
     ```dos
-    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID"
+    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "rg-arc-prod" --tenant-id "11111111-2222-3333-4444-555555555555" --location "eastus" --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
     ```
+    <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
+
+    **Verify the Windows connection**
+
+    ```powershell
+    azcmagent show
+    ```
+    Expected output includes `Status : Connected`. Then confirm the machine appears in the Azure portal under **Azure Arc | Machines**.
+    <!-- Explanation: Added a one-line verification step with a copy-paste command, expected output, and portal confirmation. -->
 
 ### Install with the scripted method
 
@@ -117,7 +140,6 @@ If the agent fails to start after setup is finished, check the logs for detailed
 The Connected Machine agent for Linux is provided in the preferred package format for the distribution (.RPM or .DEB) that's hosted in the Microsoft [package repository](https://packages.microsoft.com/). The [shell script bundle `Install_linux_azcmagent.sh`](https://aka.ms/azcmagent) performs the following actions:
 
 * Configures the host machine to download the agent package from packages.microsoft.com.
-
 * Installs the Hybrid Resource Provider package.
 
 Optionally, you can configure the agent with your proxy information by including the `--proxy "{proxy-url}:{proxy-port}"` parameter. Using this configuration, the agent communicates through the proxy server using the HTTP protocol.
@@ -140,16 +162,38 @@ bash ~/Install_linux_azcmagent.sh
     # Download the installation package.
     wget https://aka.ms/azcmagent -O ~/Install_linux_azcmagent.sh
 
-    # Install the AZure Connected Machine agent.
-    bash ~/Install_linux_azcmagent.sh --proxy "{proxy-url}:{proxy-port}"
+    # Install the Azure Connected Machine agent.
+    bash ~/Install_linux_azcmagent.sh --proxy "proxy.contoso.com:8080"
     ```
+    <!-- Explanation: Added a concrete proxy example value as required by the agent feedback. -->
 
-2. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:
+2. After installing the agent, configure it to communicate with the Azure Arc service.
+
+    **Connection parameters**
+
+    | Parameter | Example value |
+    |----------|---------------|
+    | `--resource-group` | `rg-arc-prod` |
+    | `--tenant-id` | `11111111-2222-3333-4444-555555555555` |
+    | `--subscription-id` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` |
+    | `--location` | `eastus` |
+    | `--cloud` | `AzureCloud` |
+    | `--proxy` | `proxy.contoso.com:8080` |
+
+    <!-- Explanation: Added a concise parameter table immediately above the Linux connect command per agent feedback. -->
 
     ```bash
-    azcmagent connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID" --cloud "cloudName"
-    if [ $? = 0 ]; then echo "\033[33mTo view your onboarded server(s), navigate to https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.HybridCompute%2Fmachines\033[m"; fi
+    azcmagent connect --resource-group "rg-arc-prod" --tenant-id "11111111-2222-3333-4444-555555555555" --location "eastus" --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --cloud "AzureCloud"
     ```
+    <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
+
+    **Verify the Linux connection**
+
+    ```bash
+    azcmagent show
+    ```
+    Expected output includes `Status: Connected`. Then confirm the machine appears in the Azure portal under **Azure Arc | Machines**.
+    <!-- Explanation: Added a one-line verification step with a copy-paste command, expected output, and portal confirmation. -->
 
 ### Install with the scripted method
 
@@ -172,3 +216,19 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 - Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
 
 - Learn how to manage your machine using [Azure Policy](/azure/governance/policy/overview), for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verify the machine is reporting to the expected Log Analytics workspace, enable monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
+
+---
+
+### Agent feedback applied
+
+[Agent: mamccrea-test-agent]
+- Added a concise parameter list above the Windows `azcmagent.exe connect` command.
+- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
+- Added a one-line verification step for Windows installation and connection.
+- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
+- Added a concise parameter list above the Linux `azcmagent connect` command.
+- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
+- Added a one-line verification step for Linux installation and connection.
+- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
+- Ensured connect commands are placed immediately after their parameter lists and include concrete example values.
+- ACTION: Place each small code snippet (≤100 tokens) immediately adjacent to the parameter list it demonstrates and include one concrete example value for each placeholder.

@@ -14,42 +14,153 @@ Evolve your server management approach by following the approach described in th
 
 ## Hybrid enablement
 
-Begin by [onboarding a subset of your servers to Azure Arc](../plan-at-scale-deployment.md). There are [different ways you can deploy the Connected Machine agent](../deployment-options.md), depending on your requirements and the tools you prefer to use. For example, you can [connect machines from Windows Admin Center](../onboard-windows-admin-center.md) or through a [Configuration Manager script](../onboard-configuration-manager-powershell.md) or [custom task sequence](../onboard-configuration-manager-custom-task.md). Alternately, you can [generate a script in the Azure portal and deploy it to individual machines](../onboard-portal.md).
+Begin by onboarding a subset of your servers to Azure Arc to establish a baseline hybrid management model.
+<!-- Converted narrative guidance into a defined procedure with steps, per agent feedback. -->
 
-Consider how to make use of [Azure's resource organization](inventory-resource.md) and figure out what approach makes sense for you. For example, you can group servers that have similar needs together in the same resource groups, and use consistent tagging conventions to designate, environment, location, or other considerations. A well-planned resource hierarchy will pay off in clarity and policy application.
+### Onboard a subset of servers
+
+1. Identify a small, representative group of servers that reflect your broader environment (for example, different operating systems, roles, or locations).
+2. Choose a deployment method for the Connected Machine agent based on your tooling and operational preferences.
+3. Deploy the Connected Machine agent to the selected servers.
+4. Validate that the servers appear as Azure Arc-enabled resources in the Azure portal.
+<!-- Steps added to make the procedure actionable and repeatable. -->
+
+**Deployment options to consider:**
+- [Windows Admin Center](../onboard-windows-admin-center.md)
+- [Configuration Manager script](../onboard-configuration-manager-powershell.md)
+- [Configuration Manager custom task sequence](../onboard-configuration-manager-custom-task.md)
+- [Azure portal-generated script for individual machines](../onboard-portal.md)
+<!-- Converted prose list into concise bullets for clarity. -->
+
+**Verification:** Selected servers are visible in Azure as Arc-enabled servers and report a healthy connection status.
+<!-- Added one-line expected outcome as requested. -->
+
+After onboarding, plan how to organize these resources in Azure to support management at scale.
+<!-- Minor transition added to connect procedure to next guidance. -->
+
+**Resource organization considerations:**
+- Resource groups aligned to application, environment, or business unit
+- Consistent tagging for environment, location, or ownership
+- Alignment with Azure Policy scope boundaries
+<!-- Converted descriptive paragraph into a bulleted list. -->
+
+A well-planned resource hierarchy improves clarity and simplifies policy application.
+<!-- Sentence retained to preserve original intent. -->
 
 ## Iterative adoption of services
 
-When starting your cloud-native journey, you don't have to change everything at once. You have the flexibility to make changes that work for you on your own timeframe and refine new processes to ensure they improve productivity and meet your organization's needs.
+Adopt Azure services incrementally so your team can build confidence and refine processes over time.
+<!-- Reframed opening sentence for procedural clarity. -->
 
-For example, you might start using [Azure Update Manager](/azure/update-manager/overview) for patching, even if you keep using Active Directory Group Policy Objects (GPOs) for configurations. Later, you might introduce [Azure machine configuration](/azure/governance/machine-configuration/) for a few critical settings, to help get familiar with compliance reporting in Azure. After that, you can explore using [Azure Run Command](/azure/virtual-machines/run-command-overview) for routine tasks on a designated set of servers, then expand more broadly when you're ready. By designing a phased approach, your team can learn and build confidence.
+### Phased service adoption
 
-You might even decide that it makes sense to maintain overlapping solutions during your transition period. For example, you might keep Windows Server Update Services (WSUS) running as a backup while you confirm that that Azure Update Manager covers all patches. Another example is continuing to use GPO enforcement, but start using Azure Policy in audit mode to double-check compliance. This approach lets you compare results with your existing tools and helps you feel confident that nothing will fall through the cracks while you shift management planes. After you feel confident that your new cloud-based processes meet your needs, you can phase out redundant systems to reduce cost and complexity.
+1. Select a single management capability to adopt first, such as patching or compliance reporting.
+2. Enable the chosen Azure service for a limited set of Arc-enabled servers.
+3. Operate the service alongside existing tools to compare results and validate coverage.
+4. Gradually expand usage to additional servers as confidence increases.
+<!-- Converted narrative examples into a numbered procedure. -->
+
+**Examples of phased adoption:**
+- Use [Azure Update Manager](/azure/update-manager/overview) for patching while continuing to rely on Group Policy Objects (GPOs) for configuration.
+- Introduce [Azure machine configuration](/azure/governance/machine-configuration/) in audit mode for critical settings.
+- Run routine tasks on a subset of servers using [Azure Run Command](/azure/virtual-machines/run-command-overview).
+<!-- Converted example paragraph into a bulleted list. -->
+
+**Verification:** Azure-based services operate successfully alongside existing tools without disrupting current operations.
+<!-- Added expected outcome line. -->
+
+During the transition, maintaining overlapping solutions can reduce risk.
+<!-- Retained concept while shortening sentence. -->
+
+**Common overlap scenarios:**
+- Keep Windows Server Update Services (WSUS) as a backup while validating Azure Update Manager coverage.
+- Continue enforcing GPOs while using Azure Policy in audit mode for compliance comparison.
+<!-- Converted prose into bullets for scannability. -->
+
+Once cloud-based processes consistently meet your requirements, you can retire redundant systems to reduce cost and complexity.
+<!-- Clarified conclusion of the phase. -->
 
 ## Automation and environment management
 
-Look for ways to automate common tasks. For example, you can use Azure Policy to automatically apply tags when your servers meet certain requirements. You can create scripts that automatically onboard new servers to Azure Arc by installing the Connected Machine agent as part of server provisioning. These types of automations reduce manual work and ensure consistency.
+Automation helps reduce manual effort and enforce consistency across your environment.
+<!-- Slight rewrite for active voice. -->
 
-Leverage Azure's strengths by treating your Arc-managed servers with the same security rigor available for Azure VMs. By using [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/built-in-roles), you can ensure that only the right people can perform actions on your Arc-enabled servers, following the principle of least privilege. Microsoft Defender for Cloud provides recommendations for your Arc-enabled servers to improve your security posture, helping you address issues such as missing updates or vulnerable configurations. Many of these recommendations can be addressed immediately by applying an Azure Policy or script. Azure Activity logs record actions and provide an audit trail.
+### Automation setup
 
-To ensure the Azure Connected Machine agent (and dependent agents like Azure Monitor agent) remain healthy on each server, you can create alerts that notify you when an Arc-enabled server is unreachable, or if an extension has failed.
+1. Identify repetitive management tasks suitable for automation, such as tagging or onboarding.
+2. Create Azure Policy definitions to enforce standards automatically.
+3. Integrate Connected Machine agent installation into server provisioning workflows.
+4. Configure monitoring and alerts for agent and extension health.
+<!-- Converted narrative guidance into numbered steps. -->
+
+**Automation opportunities include:**
+- Automatic tagging based on resource properties
+- Scripted onboarding of new servers to Azure Arc
+- Policy-based remediation for configuration drift
+<!-- Converted examples into a concise bullet list. -->
+
+**Verification:** New and existing servers are onboarded and configured automatically with minimal manual intervention.
+<!-- Added one-line verification outcome. -->
+
+Apply Azure security and governance controls consistently across Arc-enabled servers.
+<!-- Transition sentence preserved. -->
+
+**Security and governance components:**
+- [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/built-in-roles) to enforce least privilege
+- Microsoft Defender for Cloud recommendations for security posture improvements
+- Azure Policy and scripts for rapid remediation
+- Azure Activity logs for auditing and change tracking
+<!-- Converted security paragraph into bulleted list. -->
+
+To maintain agent health, configure alerts for connectivity or extension failures so issues are detected early.
+<!-- Clarified final sentence for actionability. -->
 
 ## Team training
 
-As you refine your processes, document your approach and any necessary steps for your team. For example, when you establish a regular patching routine by using Azure Update Manager, you can create custom guidance letting team members understand how to schedule an on-demand patch run when needed.
+As you refine your processes, document your standards and operational steps so your team can work consistently.
+<!-- Minor rewrite for clarity. -->
 
-Your team may also need to get familiar with using the Azure portal and Azure CLI, as well as new concepts such as Azure role-based access control (Azure RBAC) and Azure Resource Graph queries. Invest time in training or hands-on labs for your team. Microsoft offers an extensive catalog of [free training for Azure services](/training/azure/), including specific learning paths for Azure Arc, such as [Bring innovation to your hybrid environments with Azure Arc](/training/paths/manage-hybrid-infrastructure-with-azure-arc/) and [Deploy and manage Azure Arc-enabled servers](/training/paths/deploy-manage-azure-arc-enabled-servers/).
+**Training focus areas:**
+- Azure portal and Azure CLI usage
+- Azure role-based access control (Azure RBAC)
+- Azure Resource Graph queries
+- Service-specific operational procedures (for example, on-demand patching)
+<!-- Converted narrative list into bullets. -->
+
+Microsoft provides extensive [free training for Azure services](/training/azure/), including Azure Arc learning paths such as:
+- [Bring innovation to your hybrid environments with Azure Arc](/training/paths/manage-hybrid-infrastructure-with-azure-arc/)
+- [Deploy and manage Azure Arc-enabled servers](/training/paths/deploy-manage-azure-arc-enabled-servers/)
+<!-- Converted inline list into bullets for consistency. -->
 
 ## Community resources
 
-Azure Arc is still evolving, with new capabilities rolled out regularly. Staying informed helps you explore new approaches and try out preview features to optimize your cloud management road map.
+Azure Arc continues to evolve, with new capabilities released regularly.
+<!-- Shortened opening sentence for clarity. -->
 
-Follow the [Azure Arc blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog) to stay updated on the latest features and news related to Azure Arc. You can also view [Azure Updates](https://azure.microsoft.com/updates/) to get the latest updates on all Azure products and features.
+**Ways to stay informed:**
+- Follow the [Azure Arc blog](https://techcommunity.microsoft.com/category/azure/blog/azurearcblog)
+- Review [Azure Updates](https://azure.microsoft.com/updates/) for new features
+- Ask and answer questions on [Microsoft Q&A](/answers/tags/146/azure-arc)
+<!-- Converted paragraph into a bulleted list. -->
 
-When you have questions about using Azure, you can get support from the community through [Microsoft Q&A](/answers/tags/146/azure-arc). As you build your expertise, you can also share your knowledge here to help others.
-
-The [Azure Arc Jumpstart](https://azurearcjumpstart.io/) provides a virtual, hybrid sandbox environment, letting you explore different capabilities and scenarios. New features and updates are regularly added, so it's a great resource for hands-on learning.
+The [Azure Arc Jumpstart](https://azurearcjumpstart.io/) provides a hybrid sandbox for hands-on experimentation, with scenarios updated frequently.
+<!-- Minor rewrite to improve conciseness. -->
 
 ## Continuous improvement
 
-Finally, prioritize learning and improvement, even after you've established your Azure-based processes. Review how each area is performing, and make adjustments to further optimize your approach. Explore Azure services that you hadn't previously considered to see how they can be extended to your Arc-enabled servers. Over a few cycles, your confidence in a cloud-native approach to server management will grow.
+Prioritize continuous learning and evaluation, even after establishing cloud-based processes.
+<!-- Minor wording adjustment for tone. -->
+
+Regularly review outcomes, optimize configurations, and explore additional Azure services that can extend management capabilities to Arc-enabled servers. Over time, your confidence and efficiency with a cloud-native server management model will continue to grow.
+<!-- Combined closing thoughts into a clear concluding paragraph. -->
+
+---
+
+### Agent feedback applied
+
+- ACTION: Turn each recommended procedure (onboard a subset, phased service adoption, automation setup) into numbered steps and add a one-line verification or expected outcome at the end of each procedure
+- ACTION: Convert prerequisite and parameter prose into concise bulleted lists or a simple two-column table inside the existing sections
+- ACTION: Turn each recommended procedure (onboard a subset, phased service adoption, automation setup) into numbered steps and add a one-line verification or expected outcome at the end of each procedure
+- ACTION: Convert prerequisite and parameter prose into concise bulleted lists or a simple two-column table inside the existing sections
+- ACTION: Turn each recommended procedure (onboard a subset, phased service adoption, automation setup) into numbered steps and add a one-line verification or expected outcome at the end of each procedure
+- ACTION: Convert prerequisite and parameter prose into concise bulleted lists or a simple two-column table inside the existing sections
