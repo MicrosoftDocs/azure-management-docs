@@ -24,7 +24,7 @@ You can ask for help understanding alerts when viewing an alert instance in the 
 
 ## Supported resource and alert types
 
-Currently, Agents (preview) in Azure Copilot supports investigations for all [types of Azure monitor alerts](/azure/azure-monitor/alerts/alerts-types#types-of-azure-monitor-alerts) for any Azure resource type or service.
+Currently, Agents (preview) in Azure Copilot supports investigations for all [types of Azure Monitor alerts](/azure/azure-monitor/alerts/alerts-types#types-of-azure-monitor-alerts) for any Azure resource type or service.
 
 ## Observability sample prompts
 
