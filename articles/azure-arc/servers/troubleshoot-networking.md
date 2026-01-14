@@ -1,7 +1,7 @@
 ---
 title: Troubleshoot Azure Arc-enabled servers networking issues
 description: This article tells how to troubleshoot and resolve networking issues with Azure Arc-enabled servers.
-ms.date: 12/17/2025
+ms.date: 01/14/2026
 ms.topic: troubleshooting
 ms.custom:
   - build-2025
@@ -31,7 +31,10 @@ You can check the cipher suites on a machine with the following PowerShell comma
 Get-TlsCipherSuite | Format-List Name
 ```
 
-To enable cipher suites, you can use one of the following methods:
+To enable cipher suites, you can use one of the following methods.
+
+> [!NOTE]
+> For domain-joined machines, Group Policy Objects (GPOs) override local policies, so GPOs need to be updated to enable required cipher suites.
 
 ### Enable cipher suites with Group Policy
 
