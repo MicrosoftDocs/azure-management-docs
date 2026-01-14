@@ -81,7 +81,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - For a Microsoft Entra group account:
 
      ```azurecli
-     AAD_ENTITY_ID=$(az ad signed-in-user show --query id -o tsv)
+     AAD_ENTITY_ID=$(az ad group show --group <group-name> --query id -o tsv)
      ```
 
    - For a Microsoft Entra single user account:
@@ -130,7 +130,7 @@ On the existing Arc-enabled cluster, create the ClusterRoleBinding with either M
    - For a Microsoft Entra application:
 
      ```azurepowershell
-     $AAD_ENTITY_ID = (az ad sp show --id <id> --query objectId -o tsv)
+     $AAD_ENTITY_ID = (az ad sp show --id <id> --query id -o tsv)
      ```
 
 1. Authorize the entity with appropriate permissions.
@@ -260,7 +260,7 @@ Now you can access the cluster from a different client. Run the following steps 
 1. In a different shell session, use `kubectl` to send requests to the cluster:
 
    ```powershell
-   kubectl get pods -A
+   kubectl get pods -default
    ```
 
 You should now see a response from the cluster containing the list of all pods under the `default` namespace.
