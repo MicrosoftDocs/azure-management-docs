@@ -12,7 +12,7 @@ ms.topic: concept-article
 
 # Observability capabilities in Agents (preview) in Azure Copilot
 
-[Agents (preview) in Azure Copilot](agents-preview.md) intelligently surfaces the right agent to help with your tasks. When you ask Azure Copilot for help with investigating Azure Monitor alerts, Azure Copilot creates an Azure Monitor issue and starts an [investigation](/azure/azure-monitor/aiops/aiops-issue-and-investigation-overview). If no default Azure Monitor Workspace is configured for the subscription (or one is not passed as context in the prompt), Azure Copilot attempts to configure one for you. Azure Copilot investigates the alert and provides a summary of the issue and its findings, including possible explanations and potential remediation steps. You can view more details by following a link to the Azure Monitor issue it created.
+[Agents (preview) in Azure Copilot](agents-preview.md) intelligently surfaces the right agent to help with your tasks. When you ask Azure Copilot for help with investigating [Azure Monitor alerts](/azure/azure-monitor/alerts/alerts-overview), it creates an Azure Monitor issue and starts an [investigation](/azure/azure-monitor/aiops/aiops-issue-and-investigation-overview). If no default Azure Monitor Workspace is configured for the subscription (or one isn't passed as context in the prompt), Azure Copilot attempts to configure one for you. Azure Copilot investigates the alert and provides a summary of the issue and its findings, including possible explanations and potential remediation steps. You can view more details by following a link to the Azure Monitor issue it created.
 
 > [!NOTE]
 > To use investigation capabilities, you must have the Contributor, Monitoring Contributor, or Issue Contributor role on the Azure Monitor Workspace. For more information, see [Use Azure Monitor issues and investigations (preview)](/azure/azure-monitor/aiops/aiops-issue-and-investigation-how-to).
@@ -21,6 +21,10 @@ You can ask for help understanding alerts when viewing an alert instance in the 
 
 > [!IMPORTANT]
 > The functionality described in this article is only available for tenants that have access to [Agents (preview) in Azure Copilot](agents-preview.md).
+
+## Supported resource types
+
+Currently, Agents (preview) in Azure Copilot supports investigations for all [types of Azure monitor alerts](/azure/azure-monitor/alerts/alerts-typess#types-of-azure-monitor-alerts) for any Azure resource types and service. You can get assistance investigating many types of alerts, including:
 
 ## Observability sample prompts
 
@@ -43,13 +47,13 @@ For example, when viewing an alert, you can say "**Start an investigation for th
 
 :::image type="content" source="media/observability-agent/observability-agent-investigate-alert.png" alt-text="Screenshot of Azure Copilot beginning an alert investigation with detailed reasoning.":::
 
-When the investigation is complete, Azure Copilot provides a summary of its findings with steps you can take to remediate the issue, along with links where you can find more information.
+When the investigation is complete, Azure Copilot provides a summary of its findings with steps you can take to fix the problem, along with links where you can find more information.
 
 :::image type="content" source="media/observability-agent/observability-agent-steps.png" alt-text="Screenshot of Azure Copilot providing steps to investigate and remediate an alert.":::
 
 ## Current considerations and limitations
 
-Keep in mind the following considerations and limitations when working with observability in Agents (preview) in Azure Copilot.
+Keep the following considerations and limitations in mind when working with observability in Agents (preview) in Azure Copilot.
 
-- Agent capabilities are currently scoped to alerts coming from Application Insights components. Support for other alert types isn't currently available.
-- While the agent can perform investigations and recommend remediations, it can't perform remediation steps suggested by the investigation results.
+- Agent capabilities currently support only alerts from Application Insights components. Support for other alert types isn't available.
+- While the agent can investigate problems and recommend remediations, it can't perform remediation steps suggested by the investigation results.
