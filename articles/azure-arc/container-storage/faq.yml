@@ -7,7 +7,7 @@ metadata:
   ms.topic: faq
   ms.service: azure-arc
   ms.subservice: azure-arc-container-storage
-  ms.date: 09/29/2025
+  ms.date: 01/15/2026
   ms.custom: references-regions
 
 title: Azure Container Storage enabled by Azure Arc (preview) FAQ
@@ -30,6 +30,24 @@ sections:
           - West Europe
           - Australia East
           - Germany West Central
+
+      - question: What are the firewall requirements?
+        answer: |
+          The general [Arc firewall requirements can be found here](/azure/azure-arc/network-requirements-consolidated?tabs=azure-cloud).
+
+          For this Arc extension, you must allow outbound permit rules for the following sites:
+
+          For storage accounts:
+
+          - `https://*.blob.core.windows.net/`
+          - `https://*.dfs.fabric.microsoft.com/`
+
+          For Azure Monitor:
+
+          - `https://*.monitoring.core.windows.net/`
+          - `https://*.warm.ingest.monitor.core.windows.net/`
+          - `https://*.hot.ingest.monitor.core.windows.net/`
+          - `https://*.microsoftmetrics.com/`
 
       - question: How do I uninstall a previous version of Azure Container Storage enabled by Azure Arc?
         answer: |
