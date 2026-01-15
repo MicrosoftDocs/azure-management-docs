@@ -4,7 +4,7 @@ description: Learn how to create and destroy static workflows using retain polic
 author: sethmanheim
 ms.author: sethm
 ms.reviewer: stevenpepin
-ms.date: 01/09/2026
+ms.date: 01/15/2026
 ms.topic: concept-article
 ---
 
@@ -199,10 +199,8 @@ Because of bonding protection, you must delete the PV and EdgeVolume at the same
 Delete both the PV and EdgeVolume at the same time:
 
 ```bash
-# Open two terminal windows and run these commands simultaneously
-kubectl delete pv my-static-pv &
-kubectl delete edgevolume my-static-volume &
-wait
+# Open a terminal window and run this command
+kubectl delete pv/my-static-pv edgevolume/my-static-volume
 ```
 
 #### Method 2: Use a script
@@ -242,13 +240,13 @@ Avoid the following actions.
 - Don't delete just the PV:
 
   ```bash
-  kubectl delete pv my-static-pv  # This will hang due to bonding protection
+  kubectl delete pv my-static-pv  # This will wait forever due to bonding protection
   ```
 
 - Don't delete just the EdgeVolume:
 
   ```bash
-  kubectl delete edgevolume my-static-volume  # This also hangs due to bonding protection
+  kubectl delete edgevolume my-static-volume  # This also waits forever due to bonding protection
   ```
 
 ### Force deletion (emergency only)
@@ -267,84 +265,6 @@ kubectl delete edgevolume my-static-volume --force --grace-period=0
 
 > [!WARNING]
 > Force deletion should only be used as a last resort and might leave orphaned resources.
-
-## Troubleshoot common issues
-
-This section covers common issues encountered during static workflow creation and destruction.
-
-### EdgeVolume stuck in pending state
-
-EdgeVolume shows `state: pending`.
-
-#### Solutions
-
-- Check operator logs: `kubectl logs -n azure-arc-acstor -l app=config-operator`
-- Verify storage class exists: `kubectl get storageclass unbacked-retain-sc`
-- Check cluster node capacity.
-
-### PVC not binding to PV
-
-PVC shows `Status: Pending`.
-
-#### Solutions
-
-- Verify `volumeName` in PVC matches PV name exactly.
-- Check that `claimRef` in PV matches PVC name and namespace.
-- Ensure storage sizes match between PV and PVC.
-
-### Deletion hangs
-
-`kubectl delete` command never completes.
-
-#### Solutions
-
-- Ensure you're deleting PV and EdgeVolume simultaneously.
-- Check for finalizers: `kubectl get pv my-static-pv -o yaml | grep finalizers`.
-- Use force deletion if necessary (last resort).
-
-### Permission denied errors
-
-The following errors are caused by insufficient permissions.
-
-#### Symptoms
-
-You can't create EdgeVolumes or access CSI volumes.
-
-#### Solutions
-
-- Verify RBAC permissions for EdgeVolume resources.
-- Check that service accounts have proper permissions.
-- Ensure the CSI driver is running by using `kubectl get pods -n azure-arc-acstor`.
-
-### Diagnostic commands
-
-Check component status:
-
-```bash
-# Check all pods
-kubectl get pods -n azure-arc-containerstorage
-
-# Check logs
-kubectl logs -n azure-arc-containerstorage -l app=config-operator --tail=100
-
-# Check CSI driver status
-kubectl get csidrivers
-
-# Check storage classes
-kubectl get storageclass
-```
-
-Check resource relationships:
-```bash
-# Get detailed PV information
-kubectl describe pv my-static-pv
-
-# Get EdgeVolume details
-kubectl describe edgevolume my-static-volume
-
-# Check PVC events
-kubectl describe pvc my-static-pvc
-```
 
 ## Best practices
 
