@@ -4,7 +4,7 @@ description: Learn how to create and destroy static workflows using retain polic
 author: sethmanheim
 ms.author: sethm
 ms.reviewer: stevenpepin
-ms.date: 01/15/2026
+ms.date: 01/16/2026
 ms.topic: concept-article
 ---
 
