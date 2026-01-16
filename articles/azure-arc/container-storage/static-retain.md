@@ -25,7 +25,7 @@ Use static workflows when you need:
 
 ## Key benefits of retain policies
 
-The retain storage classes (`unbacked-retain-sc` and `cloud-backed-retain-sc`) provide:
+The retain storage classes (`unbacked-retain-sc` and `cloud-backed-retain-sc`) provide the following benefits:
 
 - **Data protection**: Prevents accidental data loss when PVCs are deleted.
 - **Resource preservation**: Keeps underlying storage intact for reuse or recovery.
