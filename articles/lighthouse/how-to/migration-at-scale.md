@@ -38,7 +38,7 @@ In this scenario, no resources are created or stored in the managing tenant, eve
 
 Creating migration projects in each customer's tenant minimizes context switching for service providers working across multiple customers, and lets customers keep all of their resources in their own tenants.
 
-## High-level workflow for creating a migration project in the customer tenant
+### High-level workflow for creating a migration project in the customer tenant
 
 1. [Onboard the customer to Azure Lighthouse](onboard-customer.md). The identity you use with Azure Migrate requires the Contributor built-in role. For an example onboarding template that includes this role, see the [delegated-resource-management-azmigrate](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/delegated-resource-management-azmigrate) sample. Before deploying the template, modify the parameter file to reflect your environment.
 1. After onboarding is complete, the designated user signs in to the managing tenant in the Azure portal, then goes to Azure Migrate. This user [creates an Azure Migrate project](/azure/migrate/create-manage-projects), selecting the appropriate delegated customer subscription.
@@ -68,7 +68,7 @@ As with the previous scenario, users in the managing tenant perform migration-re
 
 This approach enables service providers to quickly start migration discovery and assessment projects, abstracting those initial steps from customer subscriptions and tenants.
 
-## High-level workflow for creating a migration project in the managing tenant
+### High-level workflow for creating a migration project in the managing tenant
 
 1. [Onboard the customer to Azure Lighthouse](onboard-customer.md). The identity you use with Azure Migrate requires the Contributor built-in role. For an example onboarding template that includes this role, see the [delegated-resource-management-azmigrate](https://github.com/Azure/Azure-Lighthouse-samples/tree/master/templates/delegated-resource-management-azmigrate) sample. Before deploying the template, modify the parameter file to reflect your environment.
 1. After onboarding is complete, the designated user signs in to the managing tenant in the Azure portal, then goes to Azure Migrate. This user [creates an Azure Migrate project](/azure/migrate/create-manage-projects) in a subscription that belongs to the managing tenant.
