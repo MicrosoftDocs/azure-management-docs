@@ -16,7 +16,7 @@ This article explains how to identify and resolve problems when enabling [Extend
 
 If you're unable to provision a Windows Server 2012 ESU license for Azure Arc-enabled servers, verify you meet these conditions:
 
-- **Permissions:** Verify you have sufficient permissions (Contributor role or higher) within the scope of ESU provisioning and linking.
+- **Permissions:** Verify you have sufficient permissions (**Contributor** role or higher) within the scope of ESU provisioning and linking.
 
 - **Core minimums:** Verify that you specified sufficient cores for the ESU license. Physical core-based licenses require a minimum of 16 cores per machine, and virtual core-based licenses require a minimum of eight cores per virtual machine (VM).
 
@@ -30,15 +30,15 @@ If you're unable to successfully link your Azure Arc-enabled server to an activa
 
 - **Agent version:** Connected Machine agent is version 1.34 or higher. If the agent version is less than 1.34, you need to update it to this version or higher.
 
-- **Operating system:** Only Azure Arc-enabled servers running the Windows Server 2012 and 2012 R2 operating system are eligible to enroll in ESU.
+- **Operating system:** Only Azure Arc-enabled servers running the Windows Server 2012 and Windows Server 2012 R2 operating system are eligible to enroll in ESU.
 
-- **Environment:** The connected machine shouldn't be running on Azure Local, Azure VMware solution (AVS), or as an Azure virtual machine. **In these scenarios, WS2012 ESUs are available for free**. For information about no-cost ESUs through Azure Local, see [Free Extended Security Updates through Azure Local](/azure/azure-local/manage/azure-benefits-esu?tabs=windows-server-2012).
+- **Environment:** The connected machine shouldn't be running on Azure Local, Azure VMware solution (AVS), or as an Azure virtual machine. **In these scenarios, Windows Server 2012 ESU is available for free**. For information about no-cost ESUs through Azure Local, see [Free Extended Security Updates through Azure Local](/azure/azure-local/manage/azure-benefits-esu?tabs=windows-server-2012).
 
 - **License properties:** Verify the license is activated and allocated sufficient physical or virtual cores to support the intended scope of servers.
 
 ## Resource providers
 
-If you're unable to enable this service offering, review the resource providers registered on the subscription. If you receive an error while attempting to register the resource providers, validate the role assignment/s on the subscription. Also review any potential Azure policies that may be set with a Deny effect, preventing the enablement of these resource providers.
+If you're unable to enable this service offering, review the resource providers registered on the subscription. If you receive an error while attempting to register the resource providers, validate the role assignments on the subscription. Also review any potential Azure policies that may be set with a **Deny** policy, preventing the enablement of these resource providers:
 
 - **Microsoft.HybridCompute:** This resource provider is essential for Azure Arc-enabled servers, allowing you to onboard and manage on-premises servers in the Azure portal.
 
@@ -64,7 +64,7 @@ Both of these options are available at no additional cost for Azure Arc-enabled 
 
 ### ESU prerequisites
 
-Ensure that both the licensing package and servicing stack update (SSU) are downloaded for the Azure Arc-enabled server as documented at [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Ensure you're following all of the networking prerequisites as recorded at [Prepare to deliver Extended Security Updates for Windows Server 2012](prepare-extended-security-updates.md?tabs=azure-cloud#networking).
+Ensure that both the licensing package and servicing stack update (SSU) are downloaded for the Azure Arc-enabled server as documented in [KB5031043: Procedure to continue receiving security updates after extended support ended on October 10, 2023](https://support.microsoft.com/topic/kb5031043-procedure-to-continue-receiving-security-updates-after-extended-support-has-ended-on-october-10-2023-c1a20132-e34c-402d-96ca-1e785ed51d45). Ensure you're following all of the networking prerequisites as documented in [Prepare to deliver Extended Security Updates for Windows Server 2012](prepare-extended-security-updates.md?tabs=azure-cloud#networking).
 
 ## Troubleshooting errors
 
