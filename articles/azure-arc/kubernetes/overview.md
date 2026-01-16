@@ -12,7 +12,7 @@ Azure Arc-enabled Kubernetes allows you to attach Kubernetes clusters running an
 
 When the [Azure Arc agents are deployed to the cluster](quickstart-connect-cluster.md), an outbound connection to Azure is initiated, using industry-standard SSL to secure data in transit.
 
-Clusters that you connect to Azure are represented as their own resources in Azure Resource Manager, and they can be organized using resource groups and tagging.
+Kubernetes clusters that you connect to Azure are represented as their own resources in Azure Resource Manager. They can be organized using resource groups and tagging, just like native Azure resources.
 
 ## Supported Kubernetes distributions
 
@@ -20,7 +20,7 @@ Azure Arc-enabled Kubernetes works with any Cloud Native Computing Foundation (C
 
 The Azure Arc team has worked with key industry partners to [validate conformance of their Kubernetes distributions with Azure Arc-enabled Kubernetes](./validation-program.md).
 
-## Scenarios and enhanced functionality
+## Arc-enabled Kubernetes scenarios and enhanced functionality
 
 Once your Kubernetes clusters are connected to Azure, at scale you can:
 
@@ -32,7 +32,7 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 
 * Enforce threat protection using [Microsoft Defender for Kubernetes](/azure/defender-for-cloud/defender-for-kubernetes-azure-arc?toc=/azure/azure-arc/kubernetes/toc.json).
 
-* Ensure governance through applying policies with [Azure Policy for Kubernetes](/azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json).
+* Ensure governance with [Azure Policy for Kubernetes](/azure/governance/policy/concepts/policy-for-kubernetes?toc=/azure/azure-arc/kubernetes/toc.json).
 
 * Grant access and [connect](cluster-connect.md) to your Kubernetes clusters from anywhere, and manage access by using [Azure role-based access control (RBAC)](azure-rbac.md) on your cluster.
 
@@ -42,7 +42,6 @@ Once your Kubernetes clusters are connected to Azure, at scale you can:
 
 * Deploy services that allow you to take advantage of specific hardware, comply with data residency requirements, or enable new scenarios. Examples of services include:
   * [Azure Arc-enabled data services](../data/overview.md)
-  * [Azure Machine Learning for Kubernetes clusters](/azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json)
   * [Event Grid on Kubernetes](/azure/event-grid/kubernetes/overview)
   * [App Services on Azure Arc](/azure/app-service/overview-arc-integration)
 
