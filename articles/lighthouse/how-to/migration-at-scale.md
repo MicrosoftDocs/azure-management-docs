@@ -14,7 +14,7 @@ By using Azure Lighthouse, service providers can perform operations at scale acr
 
 Azure Migrate provides a centralized hub to assess and migrate to Azure on-premises servers, infrastructure, applications, and data.
 
-By integrating Azure Lighthouse with Azure Migrate, service providers can discover, assess, and migrate workloads for different customers at scale, rather than accessing each customer subscription individually. Service providers can perform migration tasks such as deploying the Azure Migrate appliance to discover the workloads, assessing workloads by grouping VMs and calculating cloud-related costs, reviewing VM readiness, and performing the actual migration.
+By integrating Azure Lighthouse with Azure Migrate, service providers can discover, assess, and migrate workloads for different customers at scale, rather than accessing each customer subscription individually. Service providers can deploy the Azure Migrate appliance to discover workloads, assess workloads by grouping VMs and calculating cloud-related costs, review VM readiness, complete the actual migration, and perform other migration-related tasks for their customers.
 
 Through Azure Lighthouse, service providers can have a single view of all of the Azure Migrate projects they manage across multiple customer tenants. Customers have visibility into actions taken by their service provider, and they maintain control of their own environments.
 
@@ -80,7 +80,7 @@ This approach enables service providers to quickly start migration discovery and
 
 ## Partner recognition for customer migrations
 
-As a member of the [Microsoft Cloud Partner Program](https://partner.microsoft.com), you can link your partner ID with the credentials you use to manage delegated customer resources. By linking your partner ID, Microsoft can attribute influence and Azure consumed revenue to your organization based on the tasks you perform for customers, including migration projects.
+As a member of the [Microsoft Cloud Partner Program](https://partner.microsoft.com), you can link your partner ID with the credentials you use to manage delegated customer resources. When you link your partner ID, Microsoft can attribute influence and Azure consumed revenue to your organization based on the tasks you perform for customers, including migration projects.
 
 For more information, see [Link a partner ID](/azure/cost-management-billing/manage/link-partner-id).
 

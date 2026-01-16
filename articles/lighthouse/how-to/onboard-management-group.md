@@ -14,7 +14,7 @@ The policy uses the [deployIfNotExists effect](/azure/governance/policy/concepts
 
 When using this policy, keep in mind:
 
-- Each subscription within the management group wll have the same set of authorizations. To vary the users and roles who are granted access, you must onboard subscriptions manually.
+- Each subscription within the management group will have the same set of authorizations. To vary the users and roles who are granted access, you must onboard subscriptions manually.
 - While every subscription in the management group is onboarded, you can't take actions on the entire management group resource through Azure Lighthouse. You need to select subscriptions to work on, just as you would if they were onboarded individually.
 
 Unless specified, a user in the customer's tenant with the appropriate permissions must perform all of these steps.

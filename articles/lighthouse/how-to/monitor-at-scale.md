@@ -78,7 +78,7 @@ You can view [alerts](/azure/azure-monitor/alerts/alerts-overview) for delegated
 
 To refresh alerts automatically across multiple customers, use an [Azure Resource Graph](/azure/governance/resource-graph/overview) query to filter for alerts. You can pin the query to your dashboard and select all of the appropriate customers and subscriptions.
 
-For example, the following query displays severity 0 and 1 alerts, refreshing every 60 minutes.
+For example, the following query displays alerts with severity 0 and 1, refreshing every 60 minutes.
 
 ```kusto
 alertsmanagementresources
