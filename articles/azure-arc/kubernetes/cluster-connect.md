@@ -257,7 +257,7 @@ Now you can access the cluster from a different client. Run the following steps 
      > [!NOTE]
      > This command opens the proxy and blocks the current shell.
 
-1. In a different shell session, use `kubectl` to send requests to the cluster:
+1. In a different shell session, use `kubectl` to send requests to the cluster. For example, run the following command:
 
    ```powershell
    kubectl get pods -default
