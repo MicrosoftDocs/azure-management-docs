@@ -54,7 +54,7 @@ Creating migration projects in each customer's tenant minimizes context switchin
 > [!TIP]
 > Prior to migration, you must deploy a landing zone to provision the foundation infrastructure resources and to prepare the subscription to which virtual machines will be migrated. The Owner built-in role might be required to access or create some resources in this landing zone. Because the Owner role isn't currently supported in Azure Lighthouse, the customer might need to provide [guest access](/entra/external-id/what-is-b2b) or delegate admin access via the [Cloud Solution Provider (CSP) subscription model](/partner-center/customers-revoke-admin-privileges).
 >
-> For more information about multi-tenant landing zones, see [Considerations and recommendations for multi-tenant Azure landing zone scenarios](/azure/cloud-adoption-framework/ready/landing-zone/design-area/multi-tenant/considerations-recommendations) and the [Multi-tenant Landing-Zones demo solution](https://github.com/Azure/Multi-tenant-Landing-Zones) on GitHub.
+> For more information about multitenant landing zones, see [Considerations and recommendations for multitenant Azure landing zone scenarios](/azure/cloud-adoption-framework/ready/landing-zone/design-area/multi-tenant/considerations-recommendations) and the [Multitenant Landing-Zones demo solution](https://github.com/Azure/Multi-tenant-Landing-Zones) on GitHub.
 
 ## Create an Azure Migrate project in the managing tenant
 
