@@ -22,7 +22,7 @@ The Azure Arc gateway (preview) lets you:
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
 > [!NOTE]
-> Arc gateway creation is currently impacted by temporary Azure Front Door changes. Resource creation may take up to two 2 hours and can time out, causing failures. If resource creation fails, please try Arc gateway resource creation again.
+> Arc gateway creation is currently impacted by temporary Azure Front Door changes. Resource creation may take up to two hours and can time out, causing failures. If resource creation fails, please try Arc gateway resource creation again.
 
 ## How the Azure Arc gateway works
 
@@ -74,7 +74,7 @@ When you create the Arc gateway resource, you specify the subscription and resou
 1. Next, run the following Azure CLI Command to create your Arc gateway resource, replacing the placeholders with your desired values:
 
    ```azurecli
-   az arcgateway create --name <gateway's name> --resource-group <resource group> --location <region> --gateway-type public --allowed-features * --subscription <subscription name or id>
+   az arcgateway create --name <gateway name> --resource-group <resource group> --location <region> --gateway-type public --allowed-features * --subscription <subscription name or id>
    ```
 
 ### [Azure PowerShell](#tab/azure-powershell)
@@ -83,7 +83,7 @@ When you create the Arc gateway resource, you specify the subscription and resou
 
    ```azurepowershell
    New-AzArcgateway 
-   -name <gateway's name> 
+   -name <gateway name> 
    -resource-group <resource group> 
    -location <region> 
    -subscription <subscription name or id> 
@@ -115,9 +115,9 @@ After the resource is created successfully, the success response will include th
 1. Ensure your environment meets all of the [required prerequisites for Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli#connect-using-an-outbound-proxy-server). Since you're using Azure Arc gateway, you don't need to meet the full set of network requirements.
 1. On the deployment machine, set the environment variables needed for Azure CLI to use the outbound proxy server:
 
-   `export HTTP_PROXY=<proxy-server-ip-address>:<port>`
-   `export HTTPS_PROXY=<proxy-server-ip-address>:<port>`
-   `export NO_PROXY=<cluster-apiserver-ip-address>:<port>`
+   `export HTTP_PROXY=<proxy-server-ip-address>:<port>
+   export HTTPS_PROXY=<proxy-server-ip-address>:<port>
+   export NO_PROXY=<cluster-apiserver-ip-address>:<port>`
 
 1. On the Kubernetes cluster, run the connect command with the `proxy-https` and `proxy-http` parameters specified. If your proxy server is set up with both HTTP and HTTPS, be sure to use `--proxy-http` for the HTTP proxy and `--proxy-https` for the HTTPS proxy. If your proxy server only uses HTTP, you can use that value for both parameters.
 
@@ -138,7 +138,7 @@ After the resource is created successfully, the success response will include th
 
     - If your cluster is not behind an outbound proxy server, run the following Azure PowerShell command:
 
-     `New-AzConnectedKubernetes -ClusterName <clustername> -ResourceGroupName <rg> -Location <region>> –GatewayResourceId <resourceId>`
+     `New-AzConnectedKubernetes -ClusterName <clustername> -ResourceGroupName <rg> -Location <region> –GatewayResourceId <resourceId>`
 
    - If your cluster is behind an outbound proxy server:
 
@@ -150,7 +150,7 @@ After the resource is created successfully, the success response will include th
 
      1. On the Kubernetes cluster, run the connect command with the proxy parameter specified:
 
-       `New-AzConnectedKubernetes -ClusterName <cluster-name> -ResourceGroupName <resource-group> -Location <region> -HttpProxy 'http://<proxy-server-ip-address>:<port>', -HttpsProxy 'https://<proxy-server-ip-address>:<port>' -NoProxy <excludedIP>,<excludedCIDR>`
+       `New-AzConnectedKubernetes -ClusterName <cluster-name> -ResourceGroupName <resource-group> -Location <region> -HttpProxy 'http://<proxy-server-ip-address>:<port>' -HttpsProxy 'https://<proxy-server-ip-address>:<port>' -NoProxy <excludedIP>,<excludedCIDR>`
 
 ---
 

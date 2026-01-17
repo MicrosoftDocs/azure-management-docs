@@ -25,7 +25,7 @@ ms.date: 02/18/2025
 To translate the `*.servicebus.usgovcloudapi.net` wildcard into specific endpoints, use the command:
 
 ```rest
-GET https://guestnotificationservice.azure.us/urls/allowlist?api-version=2020-01-01&location=region
+GET https://guestnotificationservice.azure.us/urls/allowlist?api-version=2020-01-01&location=<region>
 ```
 
 [!INCLUDE [arc-region-note](../../includes/arc-region-note.md)]

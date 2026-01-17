@@ -66,7 +66,7 @@ export FEDERATED_IDENTITY_CREDENTIAL_NAME="myFedIdentity"
 To create an Azure Arc-enabled cluster with workload identity enabled, use the following command:
 
 ```azurecli
-az connectedk8s connect --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" --enable-oidc-issuer –-enable-workload-identity
+az connectedk8s connect --name "${CLUSTER_NAME}" --resource-group "${RESOURCE_GROUP}" --enable-oidc-issuer --enable-workload-identity
 ```
 
 To enable workload identity on an existing Arc-enabled Kubernetes cluster, use the `update` command.  
@@ -144,11 +144,11 @@ az identity federated-credential create \
 ```
 
 > [!NOTE]
-> After the federal identity credential is added, it takes a few seconds to propagate. If a token request is made immediately after adding the federated identity credential, the request might fail until the cache is refreshed. To avoid this issue, add a slight delay in your scripts after adding the federated identity credential.
+> After the federated identity credential is added, it takes a few seconds to propagate. If a token request is made immediately after adding the federated identity credential, the request might fail until the cache is refreshed. To avoid this issue, add a slight delay in your scripts after adding the federated identity credential.
 
 ## Configure service account annotations and pod labels
 
-The following service account and pod annotations are available for configuring workload identity based on application requirements. Pod label specified below is mandatory if `–-enable-workload-identity` is set to `true`.
+The following service account and pod annotations are available for configuring workload identity based on application requirements. Pod label specified below is mandatory if `--enable-workload-identity` is set to `true`.
 
 ### Service account annotations
 
@@ -162,9 +162,9 @@ All service account annotations are optional. If an annotation isn't specified, 
 
 ### Pod labels
 
-|Annotation  |Description  |Recommended value  |Required |
+|Label  |Description  |Recommended value  |Required |
 |---------|---------|---------|---------|
-|`azure.workload.identity/use` |Required in the pod template spec. If `–-enable-workload-identity` is set to `true`, only pods with this label are mutated by the mutating admission webhook to inject the Azure-specific environment variables and the projected service account token volume. | `true` | Yes |
+|`azure.workload.identity/use` |Required in the pod template spec. If `--enable-workload-identity` is set to `true`, only pods with this label are mutated by the mutating admission webhook to inject the Azure-specific environment variables and the projected service account token volume. | `true` | Yes |
 
 ### Pod annotations
 
@@ -187,9 +187,9 @@ To configure workload identity settings on the various Kubernetes distributions,
 1. Edit `/etc/rancher/k3s/config.yaml` to add these settings:
 
    ```yml
-      `kube-apiserver-arg:  
-        - 'service-account-issuer=${OIDC_ISSUER}'
-        - 'service-account-max-token-expiration=24h'`
+      kube-apiserver-arg:  
+        - "service-account-issuer=${OIDC_ISSUER}"
+        - "service-account-max-token-expiration=24h"
    ```
 
 1. Save the config.yaml.

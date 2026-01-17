@@ -11,7 +11,7 @@ Network security provides an additional layer of defense for your Kubernetes clu
 
 ## Configure Kubernetes network policy to control access to/from your workloads
 
-In addition to [helping to protect your cluster’s workload data traffic via TLS](conceptual-secure-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. Evaluate if you can use the [Calico](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy) or [Cillium](https://docs.cilium.io/en/latest/security/policy/index.html) engines in your cluster.
+In addition to [helping to protect your cluster’s workload data traffic via TLS](conceptual-secure-your-workloads.md#configure-tls-encryption-and-authentication-withintofrom-workloads), you can help further protect it by creating [network policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/). These policies control the pods, namespaces, and IP addresses from which ingress requests can be received, and to which egress requests can be sent. You need to deploy a Network Policy Engine to enforce these policies. Evaluate if you can use the [Calico](https://docs.tigera.io/calico/latest/network-policy/get-started/calico-policy/calico-network-policy) or [Cilium](https://docs.cilium.io/en/latest/security/policy/index.html) engines in your cluster.
 
 ### References
 * [CIS Kubernetes Benchmark - Sections 1, 2, and 4](https://www.cisecurity.org/benchmark/kubernetes)
@@ -21,11 +21,12 @@ In addition to [helping to protect your cluster’s workload data traffic via TL
 
 ## Configure your network infrastructure for further defense in depth
 
-You can also create further defense in depth, for both your management and data traffic, by appropriately configuring the network of your underlying infrastructure. For example, if you’re using AKS enabled by Azure Arc on Azure Local, you should review the [guidance](/azure/aks/aksarc/aks-hci-network-system-requirements) for cluster IP address planning. Consider fully separating management and data traffic if your workloads don’t need to access the API server. 
+You can also create further defense in depth, for both your management and data traffic, by appropriately configuring the network of your underlying infrastructure. For example, if you’re using AKS enabled by Azure Arc on Azure Local, you should review the [guidance](/azure/aks/aksarc/aks-hci-network-system-requirements) for cluster IP address planning. Consider fully separating management and data traffic if your workloads don’t need to access the API server.
 
-Further, we recommend evaluating your organization’s external firewall rules so that they're consistent with the rules you set at the Kubernetes and infrastructure layers. Enable only those outbound and inbound destinations strictly required, and no more. You can also use [Azure Arc Gateway (preview)](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking?tabs=azure-cli) to simplify the firewall rules needed to enable  your cluster’s access to Azure resources.
+Further, we recommend evaluating your organization’s external firewall rules so that they're consistent with the rules you set at the Kubernetes and infrastructure layers. Enable only those outbound and inbound destinations strictly required, and no more. You can also use [Azure Arc gateway (preview)](/azure/azure-arc/kubernetes/arc-gateway-simplify-networking?tabs=azure-cli) to simplify the firewall rules needed to enable  your cluster’s access to Azure resources.
 
 ### References
+
 * [NIST Application Container Security Guide - Section 4.3.3, 4.3.4, and 4.4.2](https://csrc.nist.gov/pubs/sp/800/190/final)
 * [NSA Kubernetes Hardening Guidance – "Control plane hardening"](https://media.defense.gov/2022/Aug/29/2003066362/-1/-1/0/CTR_KUBERNETES_HARDENING_GUIDANCE_1.2_20220829.PDF)
 
@@ -35,4 +36,4 @@ In addition to helping protect your traffic to Azure with [TLS and Workload Iden
 
 ## Next steps
 
-- Return to the top of this [security book](conceptual-security-book.md)
+* To review related content, return to the start of this [security book](conceptual-security-book.md).

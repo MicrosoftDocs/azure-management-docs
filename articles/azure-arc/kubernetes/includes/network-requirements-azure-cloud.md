@@ -6,7 +6,7 @@ ms.date: 04/15/2025
 ---
 
 > [!IMPORTANT]
-> Azure Arc agents require the following outbound URLs on `https://:443` to function.
+> Azure Arc agents require the following outbound URLs on `https://:443` (unless otherwise noted).
 > For `*.servicebus.windows.net`, websockets need to be enabled for outbound access on firewall and proxy.
 
 | Endpoint (DNS) | Description |
