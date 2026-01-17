@@ -8,11 +8,11 @@ ms.topic: how-to
 
 # Publish a Managed Service offer to Microsoft Marketplace
 
-This article describes how to publish a public or private Managed Service offer to [Microsoft Marketplace](https://marketplace.microsoft.com) by using the [commercial marketplace](/partner-center/marketplace-offers/overview) program in Partner Center. Customers who purchase the offer can delegate subscriptions or resource groups, so you can manage them through [Azure Lighthouse](../overview.md) according to the access you specify in the offer.
+This article describes how to publish a public or private Managed Service offer to [Microsoft Marketplace](https://marketplace.microsoft.com) by using the [Microsoft Marketplace](/partner-center/marketplace-offers/overview) program in Partner Center. Customers who purchase the offer can delegate subscriptions or resource groups, so you can manage them through [Azure Lighthouse](../overview.md) according to the access you specify in the offer.
 
 ## Managed Service offer publishing requirements
 
-You must have a valid [Microsoft Marketplace account in Partner Center](/partner-center/account-settings/create-account) to create and publish offers. If you don't have an account, the [sign-up process](https://aka.ms/joinmarketplace) guides you through the steps of creating an account in Partner Center and enrolling in the commercial marketplace program.
+You must have a valid [Microsoft Marketplace account in Partner Center](/partner-center/account-settings/create-account) to create and publish offers. If you don't have an account, the [sign-up process](https://aka.ms/joinmarketplace) guides you through the steps of creating an account in Partner Center and enrolling in the Microsoft Marketplace program.
 
 Per the [Managed Service offer certification requirements](/legal/marketplace/certification-policies#700-managed-services), you must have [Solutions Partner designation](/partner-center/partner-capability-score) for Infrastructure (Azure) or Security to publish a Managed Service offer.
 
