@@ -172,6 +172,7 @@
         href: /azure/machine-learning/how-to-attach-kubernetes-anywhere?toc=/azure/azure-arc/kubernetes/toc.json&bc=/azure/azure-arc/kubernetes/breadcrumb/toc.json
   - name: Simplify network connectivity
     href: arc-gateway-simplify-networking.md
+    displayName: gateway, arc gateway
   - name: Troubleshooting
     items:
     - name: Platform issues
