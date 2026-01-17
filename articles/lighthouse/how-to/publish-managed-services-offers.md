@@ -12,7 +12,7 @@ This article describes how to publish a public or private Managed Service offer 
 
 ## Managed Service offer publishing requirements
 
-You must have a valid [Microsoft Marketplace account in Partner Center](/partner-center/marketplace-offers/create-account) to create and publish offers. If you don't have an account, the [sign-up process](https://aka.ms/joinmarketplace) guides you through the steps of creating an account in Partner Center and enrolling in the commercial marketplace program.
+You must have a valid [Microsoft Marketplace account in Partner Center](/partner-center/account-settings/create-account) to create and publish offers. If you don't have an account, the [sign-up process](https://aka.ms/joinmarketplace) guides you through the steps of creating an account in Partner Center and enrolling in the commercial marketplace program.
 
 Per the [Managed Service offer certification requirements](/legal/marketplace/certification-policies#700-managed-services), you must have [Solutions Partner designation](/partner-center/partner-capability-score) for Infrastructure (Azure) or Security to publish a Managed Service offer.
 
@@ -22,7 +22,7 @@ If you don't want to publish a Managed Service offer to Microsoft Marketplace, o
 
 |**Consideration**  |**Managed Service offer**  |**ARM templates**  |
 |---------|---------|---------|
-|Requires [Microsoft Marketplace account in Partner Center](/partner-center/marketplace-offers/create-account)   |Yes         |No        |
+|Requires [Microsoft Marketplace account in Partner Center](/partner-center/account-settings/create-account)   |Yes         |No        |
 |Requires [Solutions Partner designation](/partner-center/partner-capability-score) for Infrastructure (Azure) or Security      |Yes         |No         |
 |Available to new customers through Microsoft Marketplace     |Yes     |No       |
 |Can limit offer to specific customers     |Yes (only with private plans, which can't be used with subscriptions established through a reseller of the Cloud Solution Provider (CSP) program)         |Yes         |
@@ -46,7 +46,7 @@ When a customer adds your offer, they can delegate one or more subscriptions or 
 > [!IMPORTANT]
 > Each plan in a Managed Service offer includes a **Manifest Details** section. In this section, you define the Microsoft Entra entities in your tenant that will have access to the delegated resource groups and subscriptions for customers who purchase that plan. It's important to be aware that permissions for any group, user, or service principal will apply to every customer who purchases the plan.
 >
-> To assign different groups to work with each customer, publish a separate [private plan](/partner-center/marketplace-offers-offers/private-plans) that is exclusive to each customer. These private plans don't support subscriptions established through a reseller of the Cloud Solution Provider (CSP) program.
+> To assign different groups to work with each customer, publish a separate [private plan](/partner-center/marketplace-offers/private-plans) that is exclusive to each customer. These private plans don't support subscriptions established through a reseller of the Cloud Solution Provider (CSP) program.
 
 ## Publish your Managed Service offer
 
