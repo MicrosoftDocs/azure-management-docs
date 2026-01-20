@@ -1,6 +1,6 @@
 ---
-title: Sign Container Images with Notation and Trusted Signing (Preview)
-description: Learn how to sign and verify container images and OCI artifacts in Azure Container Registry by using Notary Project tooling, Notation, and Trusted Signing.
+title: Sign Container Images with Notation and Artifact Signing (Preview)
+description: Learn how to sign and verify container images and OCI artifacts in Azure Container Registry by using Notary Project tooling, Notation, and Artifact Signing.
 author: yizha1
 ms.author: yizha1
 ms.service: azure-container-registry
@@ -10,31 +10,31 @@ ms.date: 9/5/2025
 # Customer intent: As a developer, I want to sign and verify container images so that I can ensure the authenticity and integrity of those images throughout their lifecycle.
 ---
 
-# Sign container images by using Notation and Trusted Signing (preview)
+# Sign container images by using Notation and Artifact Signing (preview)
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-This article focuses on signing by using Notary Project tooling, Notation, and [Trusted Signing](/azure/trusted-signing/overview):
+This article focuses on signing by using Notary Project tooling, Notation, and [Artifact Signing](/azure/trusted-signing/overview):
 
-- **What you'll learn here**: How to use the Notation command-line interface (CLI) to sign artifacts by using Trusted Signing.
-- **Where it fits**: Trusted Signing is an alternative to Azure Key Vault. Although Key Vault gives organizations full control of certificate lifecycle management, Trusted Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
-- **Why it matters**: Trusted Signing simplifies the developer experience while providing strong identity assurance. It helps teams reduce operational complexity without compromising security.
+- **What you'll learn here**: How to use the Notation command-line interface (CLI) to sign artifacts by using Artifact Signing.
+- **Where it fits**: Artifact Signing is an alternative to Azure Key Vault. Although Key Vault gives organizations full control of certificate lifecycle management, Artifact Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
+- **Why it matters**: Artifact Signing simplifies the developer experience while providing strong identity assurance. It helps teams reduce operational complexity without compromising security.
 
 ## Prerequisites
 
-Before you can sign and verify container images by using Notation and Trusted Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Trusted Signing, and setting up the Azure CLI as your development environment.
+Before you can sign and verify container images by using Notation and Artifact Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Artifact Signing, and setting up the Azure CLI as your development environment.
 
 > [!NOTE]
-> At this time, Trusted Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
+> At this time, Artifact Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
 
 ### Prepare container images in Azure Container Registry
 
 1. Create or use a [container registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts, and signatures.
 1. Push or use a container image in your container registry.
 
-### Set up Trusted Signing
+### Set up Artifact Signing
 
-Set up a [Trusted Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription.
+Set up a [Artifact Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription.
 
 Your certificate profile must include country/region (`C`), state or province (`ST` or `S`), and organization (`O`) in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
@@ -42,7 +42,7 @@ Your certificate profile must include country/region (`C`), state or province (`
 
 Install the [Azure CLI](/cli/azure/install-azure-cli), or use [Azure Cloud Shell](https://portal.azure.com/#cloudshell/).
 
-## Install the Notation CLI and Trusted Signing plug-in
+## Install the Notation CLI and Artifact Signing plug-in
 
 This guide runs commands on Linux AMD64 and Windows as examples.
 
@@ -81,7 +81,7 @@ This guide runs commands on Linux AMD64 and Windows as examples.
 
     For other platforms, see the [Notation installation guide](https://notaryproject.dev/docs/user-guides/installation/cli/).
 
-2. Install the Trusted Signing plug-in:
+2. Install the Artifact Signing plug-in:
 
    # [Linux](#tab/linux)
 
@@ -119,7 +119,7 @@ This guide runs commands on Linux AMD64 and Windows as examples.
 
     ```text
     NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
-    azure-trustedsigning   Sign OCI artifacts using the Trusted Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
+    azure-trustedsigning   Sign OCI artifacts using the Artifact Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
     ```
 
 ## Configure environment variables
@@ -128,13 +128,13 @@ Set the following environment variables for use in subsequent commands. Replace 
 
 You can find the required values in the Azure portal:
 
-- For Trusted Signing account information, go to your account, and then select **Overview**.
+- For Artifact Signing account information, go to your account, and then select **Overview**.
 - For certificate profile information, go to your account, and then select **Objects** > **Certificate Profiles**.
 
 # [Linux](#tab/linux)
 
 ```bash
-# Trusted Signing environment variables
+# Artifact Signing environment variables
 TS_SUB_ID="<subscription-id>"
 TS_ACCT_RG=<ts-account-resource-group>
 TS_ACCT_NAME=<ts-account-name>
@@ -158,7 +158,7 @@ IMAGE=$ACR_LOGIN_SERVER/${REPOSITORY}:$TAG
 # [Windows](#tab/windows)
 
 ```powershell
-# Trusted Signing environment variables (current session)
+# Artifact Signing environment variables (current session)
 $env:TS_SUB_ID = "<subscription-id>"
 $env:TS_ACCT_RG = "<ts-account-resource-group>"
 $env:TS_ACCT_NAME = "<ts-account-name>"
@@ -204,7 +204,7 @@ $USER_ID = az ad signed-in-user show --query id -o tsv
 > [!NOTE]
 > This guide demonstrates signing in with a user account. For other identity options, including a managed identity, see [Authenticate to Azure by using the Azure CLI](/cli/azure/authenticate-azure-cli).
 
-## Assign permissions for Azure Container Registry and Trusted Signing
+## Assign permissions for Azure Container Registry and Artifact Signing
 
 Grant your identity the necessary roles to access Container Registry:
 
@@ -231,7 +231,7 @@ az role assignment create --role "Container Registry Repository Writer" --assign
 
 ---
 
-Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign by using Trusted Signing:
+Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign by using Artifact Signing:
 
 # [Linux](#tab/linux)
 
@@ -280,8 +280,8 @@ notation sign --signature-format cose --timestamp-url $Env:TS_TSA_URL --timestam
 Key flags explained:
 
 - `--signature-format cose`: Uses CBOR Object Signing and Encryption (COSE) format for signatures.
-- `--timestamp-url`: Uses the timestamping server that Trusted Signing supports.
-- `--plugin-config`: Passes configuration to the Trusted Signing plug-in.
+- `--timestamp-url`: Uses the timestamping server that Artifact Signing supports.
+- `--plugin-config`: Passes configuration to the Artifact Signing plug-in.
 
 List signed images and signatures:
 
@@ -429,6 +429,6 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
 ## Related content
 
-- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
-- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Trusted Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
+- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
+- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
 - For verification on Azure Kubernetes Service (AKS), see [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
