@@ -13,15 +13,15 @@ The following table includes links to key Azure Resource Manager templates for A
 
 [!INCLUDE [azure-lighthouse-samples-onboarding](../includes/azure-lighthouse-samples-onboarding.md)]
 
-## Sample templates to use Azure Policy with Azure Lighthouse
+## Sample templates for Azure Policy and Azure Lighthouse
 
 [!INCLUDE [azure-lighthouse-samples-policy](../includes/azure-lighthouse-samples-policy.md)]
 
-## Sample templates to use Azure Monitor with Azure Lighthouse
+## Sample templates for Azure Monitor and Azure Lighthouse
 
 [!INCLUDE [azure-lighthouse-samples-monitor](../includes/azure-lighthouse-samples-monitor.md)]
 
-## Sample tenants for other Azure Lighthouse scenarios
+## Sample templates for other Azure Lighthouse scenarios
 
 [!INCLUDE [azure-lighthouse-samples-scenarios](../includes/azure-lighthouse-samples-scenarios.md)]
 
