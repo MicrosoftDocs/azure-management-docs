@@ -96,18 +96,18 @@ Signing in a GitHub workflow:
 
 Signing via the Notation CLI:
 
-- [Sign container images by using Notation and Artifact Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
 
 Signing in a GitHub workflow:
 
-- [Sign container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+- [Sign container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
 ### Verification
 
 Verification in a GitHub workflow:
 
 - [Verify container images in a GitHub workflow by using Notation and Azure Key Vault](/azure/security/container-secure-supply-chain/articles/verify-gha)
-- [Verify container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md)
+- [Verify container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md)
 
 Verification on AKS:
 

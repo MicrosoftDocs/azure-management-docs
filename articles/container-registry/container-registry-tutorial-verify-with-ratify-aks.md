@@ -45,7 +45,7 @@ Additionally, Ratify and cluster policies are configured on AKS to verify signat
 
 As the image producer, you can follow these articles for signing container images by using Artifact Signing:
 
-- [Sign container images by using Notation and Artifact Signing (preview)](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
+- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
 - [Sign container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
 
 This article guides you, as the image consumer, through the process of verifying container image signatures by using Ratify and Azure Policy on AKS clusters.

@@ -1,5 +1,5 @@
 ---
-title: Sign Container Images with Notation and Artifact Signing (Preview)
+title: Sign Container Images with Notation and Artifact Signing
 description: Learn how to sign and verify container images and OCI artifacts in Azure Container Registry by using Notary Project tooling, Notation, and Artifact Signing.
 author: yizha1
 ms.author: yizha1
@@ -10,7 +10,7 @@ ms.date: 9/5/2025
 # Customer intent: As a developer, I want to sign and verify container images so that I can ensure the authenticity and integrity of those images throughout their lifecycle.
 ---
 
-# Sign container images by using Notation and Artifact Signing (preview)
+# Sign container images by using Notation and Artifact Signing
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
@@ -429,6 +429,6 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
 ## Related content
 
-- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-sign-notation-trusted-signing.md).
-- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Artifact Signing (preview)](container-registry-tutorial-github-verify-notation-trusted-signing.md).
+- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md).
+- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md).
 - For verification on Azure Kubernetes Service (AKS), see [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).
