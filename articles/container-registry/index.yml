@@ -176,7 +176,7 @@ landingContent:
           - text: Push and pull supply chain artifacts (Preview)
             url: container-registry-manage-artifact.md
           - text: Sign container images with Notation and Artifact Signing
-            url: container-registry-tutorial-sign-verify-notation-trusted-signing.md
+            url: container-registry-tutorial-sign-verify-notation-artifact-signing.md
           - text: Sign container images with Notation and AKV using a CA issued certificate
             url: container-registry-tutorial-sign-trusted-ca.md
           - text: Continuous patching concepts

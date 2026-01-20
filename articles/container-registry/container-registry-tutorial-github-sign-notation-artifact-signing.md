@@ -22,7 +22,7 @@ In this article, you learn how to create a GitHub Actions workflow to:
 
 ## Prerequisites
 
-- Set up a [Artifact Signing account and certificate profile](/azure/trusted-signing/quickstart). Your Artifact Signing certificate profile must include the following attributes in its subject:
+- Set up a [Artifact Signing account and certificate profile](/azure/artifact-signing/quickstart). Your Artifact Signing certificate profile must include the following attributes in its subject:
   - Country/region (`C`)
   - State or province (`ST` or `S`)
   - Organization (`O`)
@@ -114,20 +114,20 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
    ---
 
-4. Assign the `Trusted Signing Certificate Profile Signer` role to the managed identity for accessing Artifact Signing:
+4. Assign the `Artifact Signing Certificate Profile Signer` role to the managed identity for accessing Artifact Signing:
 
    # [Linux](#tab/linux)
 
    ```bash
-   TS_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>
-   az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
+   AS_SCOPE=/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>
+   az role assignment create --assignee $CLIENT_ID --scope $AS_SCOPE --role "Artifact Signing Certificate Profile Signer"
    ```
 
    # [Windows](#tab/windows)
 
    ```powershell
-   $TS_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>"
-   az role assignment create --assignee $CLIENT_ID --scope $TS_SCOPE --role "Trusted Signing Certificate Profile Signer"
+   $AS_SCOPE = "/subscriptions/<subscription-id>/resourceGroups/<ts-account-resource-group>/providers/Microsoft.CodeSigning/codeSigningAccounts/<ts-account>/certificateProfiles/<ts-cert-profile>"
+   az role assignment create --assignee $CLIENT_ID --scope $AS_SCOPE --role "Artifact Signing Certificate Profile Signer"
    ```
 
    ---
@@ -146,7 +146,7 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
 ## Store the TSA root certificate
 
-Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Artifact Signing uses short-lived certificates, so timestamping is critical. The server URL for the time stamp authority (TSA) is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/trusted-signing/concept-trusted-signing-cert-management#time-stamp-countersignatures).
+Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Artifact Signing uses short-lived certificates, so timestamping is critical. The server URL for the time stamp authority (TSA) is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/artifact-signing/concept-cert-management#time-stamp-countersignatures).
 
 1. Download the TSA root certificate:
 
@@ -171,7 +171,7 @@ Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust 
 
 1. Create a `.github/workflows` directory in your repository, if it doesn't exist.
 
-2. Create a new workflow file; for example, `.github/workflows/sign-with-trusted-signing.yml`.
+2. Create a new workflow file; for example, `.github/workflows/sign-with-artifact-signing.yml`.
 
 3. Copy the following signing workflow template into your file.
 
@@ -180,7 +180,7 @@ Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust 
 
 ```yaml
 # Build and push an image to Azure Container Registry, set up notation, and sign the image
-name: notation-github-actions-sign-with-trusted-signing-template
+name: notation-github-actions-sign-with-artifact-signing-template
 
 on:
   push:
@@ -189,14 +189,14 @@ env:
   ACR_LOGIN_SERVER: <registry-login-server>             # example: myregistry.azurecr.io
   ACR_REPO_NAME: <repository-name>                      # example: myrepo
   IMAGE_TAG: <image-tag>                                # example: v1
-  PLUGIN_NAME: azure-trustedsigning                     # name of Notation Artifact Signing plug-in; do not change
-  PLUGIN_DOWNLOAD_URL: <plugin-download-url>            # example: "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz"
-  PLUGIN_CHECKSUM: <plugin-package-checksum>            # example: 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
+  PLUGIN_NAME: azure-artifactsigning                     # name of Notation Artifact Signing plug-in; do not change
+  PLUGIN_DOWNLOAD_URL: <plugin-download-url>            # example: "https://github.com/Azure/artifact-signing-notation-plugin/releases/download/v1.0.0/notation-azure-artifactsigning_1.0.0_linux_amd64.tar.gz"
+  PLUGIN_CHECKSUM: <plugin-package-checksum>            # example: 2f45891a14aa9c88c9bee3d11a887c1adbe9d2d24e50de4bc4b4fa3fe595292f
   TSA_URL: "http://timestamp.acs.microsoft.com/"        # timestamping server URL
   TSA_ROOT_CERT: <root-cert-file-path>                  # example: .github/certs/msft-identity-verification-root-cert-authority-2020.crt
-  TS_ACCOUNT_NAME: <artifact-signing-account-name>       # Artifact Signing account name
-  TS_CERT_PROFILE: <artifact-signing-cert-profile-name>  # Artifact Signing certificate profile name 
-  TS_ACCOUNT_URI: <artifact-signing-account-uri>         # Artifact Signing account URI; for example, "https://eus.codesigning.azure.net/"
+  AS_ACCOUNT_NAME: <artifact-signing-account-name>       # Artifact Signing account name
+  AS_CERT_PROFILE: <artifact-signing-cert-profile-name>  # Artifact Signing certificate profile name 
+  AS_ACCOUNT_URI: <artifact-signing-account-uri>         # Artifact Signing account URI; for example, "https://eus.codesigning.azure.net/"
 
 jobs:
   notation-sign:
@@ -256,32 +256,32 @@ jobs:
           plugin_name: ${{ env.PLUGIN_NAME }}
           plugin_url: ${{ env.PLUGIN_DOWNLOAD_URL }}
           plugin_checksum: ${{ env.PLUGIN_CHECKSUM }}
-          key_id: ${{ env.TS_CERT_PROFILE }}
+          key_id: ${{ env.AS_CERT_PROFILE }}
           target_artifact_reference: ${{ env.target_artifact_reference }}
           signature_format: cose
           plugin_config: |-
-            accountName=${{ env.TS_ACCOUNT_NAME }}
-            baseUrl=${{ env.TS_ACCOUNT_URI }}
-            certProfile=${{ env.TS_CERT_PROFILE }}
+            accountName=${{ env.AS_ACCOUNT_NAME }}
+            baseUrl=${{ env.AS_ACCOUNT_URI }}
+            certProfile=${{ env.AS_CERT_PROFILE }}
           force_referrers_tag: 'false'
 ```
 </details>
 
 Notes on environment variables:
 
-- `PLUGIN_NAME`: Always use `azure-trustedsigning`.
-- `PLUGIN_DOWNLOAD_URL`: Get the URL from the [Artifact Signing plug-in release page](https://github.com/Azure/trustedsigning-notation-plugin/releases/).
-- `PLUGIN_CHECKSUM`: Use the checksum file on the release page; for example, `notation-azure-trustedsigning_<version>_checksums.txt`.
-- `TS_ACCOUNT_URI`: Use the endpoint for your Artifact Signing account, specific to its region; for example, `https://eus.codesigning.azure.net/`.
+- `PLUGIN_NAME`: Always use `azure-artifactsigning`.
+- `PLUGIN_DOWNLOAD_URL`: Get the URL from the [Artifact Signing plug-in release page](https://github.com/Azure/artifact-signing-notation-plugin/releases).
+- `PLUGIN_CHECKSUM`: Use the checksum file on the release page; for example, `notation-azure-artifactsigning_<version>_checksums.txt`.
+- `AS_ACCOUNT_URI`: Use the endpoint for your Artifact Signing account, specific to its region; for example, `https://eus.codesigning.azure.net/`.
 
 ## Trigger the GitHub Actions workflow
 
 The `on:push` syntax triggers the sample workflow. Committing changes starts the workflow. Under your GitHub repository name, select **Actions** to view the workflow logs.
 
-On success, the workflow builds the image, pushes it to Azure Container Registry, and signs it by using Artifact Signing. You can view the workflow logs to confirm that the `azure-trustedsigning` plug-in was installed and the image was successfully signed.
+On success, the workflow builds the image, pushes it to Azure Container Registry, and signs it by using Artifact Signing. You can view the workflow logs to confirm that the `azure-artifactsigning` plug-in was installed and the image was successfully signed.
 
 Additionally, you can open your container registry in the Azure portal. Go to **Repositories**, go to your image, and then select **Referrers**. Confirm that artifacts (signatures) of type `application/vnd.cncf.notary.signature` are listed.
 
 ## Related content
 
-- [Verify container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md)
+- [Verify container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-artifact-signing.md)

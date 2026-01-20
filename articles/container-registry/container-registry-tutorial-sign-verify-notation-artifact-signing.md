@@ -14,7 +14,7 @@ ms.date: 9/5/2025
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
-This article focuses on signing by using Notary Project tooling, Notation, and [Artifact Signing](/azure/trusted-signing/overview):
+This article focuses on signing by using Notary Project tooling, Notation, and [Artifact Signing](/azure/artifact-signing/overview):
 
 - **What you'll learn here**: How to use the Notation command-line interface (CLI) to sign artifacts by using Artifact Signing.
 - **Where it fits**: Artifact Signing is an alternative to Azure Key Vault. Although Key Vault gives organizations full control of certificate lifecycle management, Artifact Signing provides streamlined signing experience with zero-touch certificate lifecycle management and short-lived certificates.
@@ -34,7 +34,7 @@ Before you can sign and verify container images by using Notation and Artifact S
 
 ### Set up Artifact Signing
 
-Set up a [Artifact Signing account and certificate profile](/azure/trusted-signing/quickstart) in your Azure subscription.
+Set up a [Artifact Signing account and certificate profile](/azure/artifact-signing/quickstart) in your Azure subscription.
 
 Your certificate profile must include country/region (`C`), state or province (`ST` or `S`), and organization (`O`) in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
@@ -86,18 +86,18 @@ This guide runs commands on Linux AMD64 and Windows as examples.
    # [Linux](#tab/linux)
 
    ```bash
-   notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_linux_amd64.tar.gz" --sha256sum 538b497be0f0b4c6ced99eceb2be16f1c4b8e3d7c451357a52aeeca6751ccb44
+   notation plugin install --url "https://github.com/Azure/artifact-signing-notation-plugin/releases/download/v1.0.0/notation-azure-artifactsigning_1.0.0_linux_amd64.tar.gz" --sha256sum 2f45891a14aa9c88c9bee3d11a887c1adbe9d2d24e50de4bc4b4fa3fe595292f
    ```
 
    # [Windows](#tab/windows)
 
    ```powershell
-   notation plugin install --url "https://github.com/Azure/trustedsigning-notation-plugin/releases/download/v1.0.0-beta.1/notation-azure-trustedsigning_1.0.0-beta.1_windows_amd64.zip" --sha256sum 778661034f98c455a86608b9a6426168fd81228b52112acdf75c367d5e463255
+   notation plugin install --url "https://github.com/Azure/artifact-signing-notation-plugin/releases/download/v1.0.0/notation-azure-artifactsigning_1.0.0_windows_amd64.zip" --sha256sum adf5e3d7f1fa41db9786d0ed5362e9b61c4def0e694da33fdb2ad2dd44cd57b7
    ```
 
     ---
 
-    Find the latest plug-in URL and checksum on the [release page](https://github.com/Azure/trustedsigning-notation-plugin/releases).
+    Find the latest plug-in URL and checksum on the [release page](https://github.com/Azure/artifact-signing-notation-plugin/releases).
 
 3. Verify plug-in installation:
 
@@ -118,8 +118,8 @@ This guide runs commands on Linux AMD64 and Windows as examples.
     Example output:
 
     ```text
-    NAME                   DESCRIPTION                                            VERSION   CAPABILITIES                ERROR
-    azure-trustedsigning   Sign OCI artifacts using the Artifact Signing Service   0.3.0     [SIGNATURE_GENERATOR.RAW]   <nil>
+    NAME                    DESCRIPTION                                             VERSION   CAPABILITIES                ERROR
+    azure-artifactsigning   Sign OCI artifacts using the Artifact Signing Service   1.0.0     [SIGNATURE_GENERATOR.RAW]   <nil>
     ```
 
 ## Configure environment variables
@@ -135,15 +135,15 @@ You can find the required values in the Azure portal:
 
 ```bash
 # Artifact Signing environment variables
-TS_SUB_ID="<subscription-id>"
-TS_ACCT_RG=<ts-account-resource-group>
-TS_ACCT_NAME=<ts-account-name>
-TS_ACCT_URL=<ts-account-url>
-TS_CERT_PROFILE=<ts-cert-profile>
-TS_CERT_SUBJECT=<ts-cert-subject>
-TS_SIGNING_ROOT_CERT="https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
-TS_TSA_URL="http://timestamp.acs.microsoft.com/"
-TS_TSA_ROOT_CERT="http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
+AS_SUB_ID="<subscription-id>"
+AS_ACCT_RG=<ts-account-resource-group>
+AS_ACCT_NAME=<ts-account-name>
+AS_ACCT_URL=<ts-account-url>
+AS_CERT_PROFILE=<ts-cert-profile>
+AS_CERT_SUBJECT=<ts-cert-subject>
+AS_SIGNING_ROOT_CERT="https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
+AS_TSA_URL="http://timestamp.acs.microsoft.com/"
+AS_TSA_ROOT_CERT="http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
 # Azure Container Registry and image environment variables
 ACR_SUB_ID="<acr-subscription-id>"
@@ -159,15 +159,15 @@ IMAGE=$ACR_LOGIN_SERVER/${REPOSITORY}:$TAG
 
 ```powershell
 # Artifact Signing environment variables (current session)
-$env:TS_SUB_ID = "<subscription-id>"
-$env:TS_ACCT_RG = "<ts-account-resource-group>"
-$env:TS_ACCT_NAME = "<ts-account-name>"
-$env:TS_ACCT_URL = "<ts-account-url>"
-$env:TS_CERT_PROFILE = "<ts-cert-profile>"
-$env:TS_CERT_SUBJECT = "<ts-cert-subject>"
-$env:TS_SIGNING_ROOT_CERT = "https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
-$env:TS_TSA_URL = "http://timestamp.acs.microsoft.com/"
-$env:TS_TSA_ROOT_CERT = "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
+$env:AS_SUB_ID = "<subscription-id>"
+$env:AS_ACCT_RG = "<ts-account-resource-group>"
+$env:AS_ACCT_NAME = "<ts-account-name>"
+$env:AS_ACCT_URL = "<ts-account-url>"
+$env:AS_CERT_PROFILE = "<ts-cert-profile>"
+$env:AS_CERT_SUBJECT = "<ts-cert-subject>"
+$env:AS_SIGNING_ROOT_CERT = "https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt"
+$env:AS_TSA_URL = "http://timestamp.acs.microsoft.com/"
+$env:AS_TSA_ROOT_CERT = "http://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt"
 
 # Azure Container Registry and image environment variables (current session)
 $env:ACR_SUB_ID = "<acr-subscription-id>"
@@ -231,18 +231,18 @@ az role assignment create --role "Container Registry Repository Writer" --assign
 
 ---
 
-Assign the role `Trusted Signing Certificate Profile Signer` to your identity so that you can sign by using Artifact Signing:
+Assign the role `Artifact Signing Certificate Profile Signer` to your identity so that you can sign by using Artifact Signing:
 
 # [Linux](#tab/linux)
 
 ```bash
-az role assignment create --assignee $USER_ID --role "Trusted Signing Certificate Profile Signer" --scope "/subscriptions/$TS_SUB_ID/resourceGroups/$TS_ACCT_RG/providers/Microsoft.CodeSigning/codeSigningAccounts/$TS_ACCT_NAME/certificateProfiles/$TS_CERT_PROFILE"
+az role assignment create --assignee $USER_ID --role "Artifact Signing Certificate Profile Signer" --scope "/subscriptions/$AS_SUB_ID/resourceGroups/$AS_ACCT_RG/providers/Microsoft.CodeSigning/codeSigningAccounts/$AS_ACCT_NAME/certificateProfiles/$AS_CERT_PROFILE"
 ```
 
 # [Windows](#tab/windows)
 
 ```powershell
-az role assignment create --assignee $USER_ID --role "Trusted Signing Certificate Profile Signer" --scope "/subscriptions/$($env:TS_SUB_ID)/resourceGroups/$($env:TS_ACCT_RG)/providers/Microsoft.CodeSigning/codeSigningAccounts/$($env:TS_ACCT_NAME)/certificateProfiles/$($env:TS_CERT_PROFILE)"
+az role assignment create --assignee $USER_ID --role "Artifact Signing Certificate Profile Signer" --scope "/subscriptions/$($env:AS_SUB_ID)/resourceGroups/$($env:AS_ACCT_RG)/providers/Microsoft.CodeSigning/codeSigningAccounts/$($env:AS_ACCT_NAME)/certificateProfiles/$($env:AS_CERT_PROFILE)"
 ```
 
 ---
@@ -256,10 +256,10 @@ az role assignment create --assignee $USER_ID --role "Trusted Signing Certificat
 az acr login --name $ACR_NAME
 
 # Download the timestamping root certificate
-curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
+curl -o msft-tsa-root-certificate-authority-2020.crt $AS_TSA_ROOT_CERT
 
 # Sign the image
-notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$TS_ACCT_NAME --plugin-config baseUrl=$TS_ACCT_URL --plugin-config certProfile=$TS_CERT_PROFILE $IMAGE
+notation sign --signature-format cose --timestamp-url $AS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $AS_CERT_PROFILE --plugin azure-artifactsigning --plugin-config accountName=$AS_ACCT_NAME --plugin-config baseUrl=$AS_ACCT_URL --plugin-config certProfile=$AS_CERT_PROFILE $IMAGE
 ```
 
 # [Windows](#tab/windows)
@@ -269,10 +269,10 @@ notation sign --signature-format cose --timestamp-url $TS_TSA_URL --timestamp-ro
 az acr login --name $Env:ACR_NAME
 
 # Download the timestamping root certificate
-Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
+Invoke-WebRequest -Uri $Env:AS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
 
 # Sign the image
-notation sign --signature-format cose --timestamp-url $Env:TS_TSA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $Env:TS_CERT_PROFILE --plugin azure-trustedsigning --plugin-config accountName=$Env:TS_ACCT_NAME --plugin-config baseUrl=$Env:TS_ACCT_URL --plugin-config certProfile=$Env:TS_CERT_PROFILE $Env:IMAGE
+notation sign --signature-format cose --timestamp-url $Env:AS_ASA_URL --timestamp-root-cert "msft-tsa-root-certificate-authority-2020.crt" --id $Env:AS_CERT_PROFILE --plugin azure-artifactsigning --plugin-config accountName=$Env:AS_ACCT_NAME --plugin-config baseUrl=$Env:AS_ACCT_URL --plugin-config certProfile=$Env:AS_CERT_PROFILE $Env:IMAGE
 ```
 
 ---
@@ -314,11 +314,11 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
    # [Linux](#tab/linux)
 
    ```bash
-   curl -o msft-root-certificate-authority-2020.crt $TS_SIGNING_ROOT_CERT
+   curl -o msft-root-certificate-authority-2020.crt $AS_SIGNING_ROOT_CERT
    SIGNING_TRUST_STORE="myRootCerts"
    notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
     
-   curl -o msft-tsa-root-certificate-authority-2020.crt $TS_TSA_ROOT_CERT
+   curl -o msft-tsa-root-certificate-authority-2020.crt $AS_TSA_ROOT_CERT
    TSA_TRUST_STORE="myTsaRootCerts"
    notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
    notation cert ls
@@ -327,11 +327,11 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
    # [Windows](#tab/windows)
 
    ```powershell
-   Invoke-WebRequest -Uri $Env:TS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
+   Invoke-WebRequest -Uri $Env:AS_SIGNING_ROOT_CERT -OutFile msft-root-certificate-authority-2020.crt
    $SIGNING_TRUST_STORE = "myRootCerts"
    notation cert add --type ca --store $SIGNING_TRUST_STORE msft-root-certificate-authority-2020.crt
     
-   Invoke-WebRequest -Uri $Env:TS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
+   Invoke-WebRequest -Uri $Env:AS_TSA_ROOT_CERT -OutFile msft-tsa-root-certificate-authority-2020.crt
    $TSA_TRUST_STORE = "myTsaRootCerts"
    notation cert add -t tsa -s $TSA_TRUST_STORE msft-tsa-root-certificate-authority-2020.crt
    notation cert ls
@@ -356,7 +356,7 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
                },
                "trustStores": [ "ca:$SIGNING_TRUST_STORE", "tsa:$TSA_TRUST_STORE" ],
                "trustedIdentities": [
-                   "x509.subject: $TS_CERT_SUBJECT"
+                   "x509.subject: $AS_CERT_SUBJECT"
                ]
            }
        ]
@@ -386,7 +386,7 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
                },
                "trustStores": [ "ca:$($SIGNING_TRUST_STORE)", "tsa:$($TSA_TRUST_STORE)" ],
                "trustedIdentities": [
-                   "x509.subject: $($env:TS_CERT_SUBJECT)"
+                   "x509.subject: $($env:AS_CERT_SUBJECT)"
                ]
            }
        ]
@@ -429,6 +429,6 @@ myregistry.azurecr.io/myrepo@sha256:5d0bf1e8f5a0c74a4c22d8c0f962a7cfa06a4f9d8423
 
 ## Related content
 
-- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md).
-- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-trusted-signing.md).
+- For signing in a GitHub workflow, see [Sign container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-artifact-signing.md).
+- For verification in a GitHub workflow, see [Verify container images in a GitHub workflow by using Notation and Artifact Signing](container-registry-tutorial-github-verify-notation-artifact-signing.md).
 - For verification on Azure Kubernetes Service (AKS), see [Verify container image signatures by using Ratify and Azure Policy](container-registry-tutorial-verify-with-ratify-aks.md).

@@ -16,7 +16,7 @@ This article is part of a series on ensuring the integrity and authenticity of c
 You can use this guide in two scenarios:
 
 - **Consuming signed images**: Verify container images that other teams or organizations already signed by using Notation and Artifact Signing.
-- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-trusted-signing.md) or the [Notation command-line interface (CLI)](container-registry-tutorial-sign-verify-notation-trusted-signing.md). Then follow this guide to verify the signatures.
+- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-artifact-signing.md) or the [Notation command-line interface (CLI)](container-registry-tutorial-sign-verify-notation-artifact-signing.md). Then follow this guide to verify the signatures.
 
 In this article, you learn how to:
 
@@ -218,14 +218,14 @@ Your repository should look like this example:
 When authentication and trust configuration are ready, create the workflow:
 
 1. Create a `.github/workflows` directory in your repo if it doesn't exist.
-2. Create a new workflow file; for example, `verify-with-trusted-signing.yml`.
+2. Create a new workflow file; for example, `verify-with-artifact-signing.yml`.
 3. Copy the following workflow template into your file.
 
     <details>
     <summary>Expand to view the verification workflow template.</summary>
 
     ```yaml
-    name: notation-verify-with-trusted-signing
+    name: notation-verify-with-artifact-signing
     
     on:
       push:

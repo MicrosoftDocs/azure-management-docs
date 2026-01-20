@@ -222,11 +222,11 @@
       - name: Overview of Ensuring Integrity and Authenticity for Container Images and OCI Artifacts
         href: overview-sign-verify-artifacts.md
       - name: Sign container images with Notation and Artifact Signing
-        href: container-registry-tutorial-sign-verify-notation-trusted-signing.md
+        href: container-registry-tutorial-sign-verify-notation-artifact-signing.md
       - name: Sign container images in GitHub workflow with Notation and Artifact Signing
-        href: container-registry-tutorial-github-sign-notation-trusted-signing.md
+        href: container-registry-tutorial-github-sign-notation-artifact-signing.md
       - name: Verify container images in GitHub workflow with Notation and Artifact Signing
-        href: container-registry-tutorial-github-verify-notation-trusted-signing.md
+        href: container-registry-tutorial-github-verify-notation-artifact-signing.md
       - name: Sign container images with Notation and AKV using a self-signed certificate
         href: container-registry-tutorial-sign-build-push.md
       - name: Sign container images with Notation and AKV using a CA issued certificate
