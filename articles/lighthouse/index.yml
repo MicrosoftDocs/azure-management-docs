@@ -57,7 +57,7 @@ landingContent:
             url: ./how-to/publish-managed-services-offers.md
       - linkListType: concept
         links:
-          - text: Managed Services offers in Azure Marketplace
+          - text: Managed Services offers in Microsoft Marketplace
             url: ./concepts/managed-services-offers.md
             
   - title: Customer experiences

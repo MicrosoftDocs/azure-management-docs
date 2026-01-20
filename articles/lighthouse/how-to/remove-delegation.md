@@ -40,7 +40,7 @@ This example shows an assignment granting the **Managed Services Registration As
     ] 
 ```
 
-This role can also be selected in an **Authorization** when [creating a Managed Service offer](/azure/marketplace/plan-managed-service-offer) to publish to Azure Marketplace.
+This role can also be selected in an **Authorization** when [creating a Managed Service offer](/azure/marketplace/plan-managed-service-offer) to publish to Microsoft Marketplace.
 
 A user with this permission can remove a delegation in one of the following ways.
 
