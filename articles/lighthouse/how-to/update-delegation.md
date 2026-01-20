@@ -4,7 +4,7 @@ description: Learn how to update a delegation for a customer previously onboarde
 ms.date: 09/22/2025
 ms.topic: how-to
 ms.custom: devx-track-arm-template
-# Customer intent: As a service provider managing customer subscriptions, I want to update delegations using ARM templates or through a new offer in Azure Marketplace, so that I can adjust authorizations or change managing tenants effectively while ensuring proper access and permissions are maintained.
+# Customer intent: As a service provider managing customer subscriptions, I want to update delegations using ARM templates or through a new offer in Microsoft Marketplace, so that I can adjust authorizations or change managing tenants effectively while ensuring proper access and permissions are maintained.
 ---
 
 # Update a delegation
@@ -53,7 +53,7 @@ After the deployment is complete, [confirm that it was successful](onboard-custo
 
 ## Update Managed Service offers
 
-If you onboarded your customer through a Managed Service offer published to Azure Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](/azure/marketplace/update-existing-offer) with updates to the [authorizations](/azure/marketplace/create-managed-service-offer-plans#authorizations) in the plan for that customer. The customer can then [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
+If you onboarded your customer through a Managed Service offer published to Microsoft Marketplace, and you want to update authorizations, you can do so by [publishing a new version of your offer](/azure/marketplace/update-existing-offer) with updates to the [authorizations](/azure/marketplace/create-managed-service-offer-plans#authorizations) in the plan for that customer. The customer can then [review the changes in the Azure portal and accept the updated version](view-manage-service-providers.md#update-service-provider-offers).
 
 To change the managing tenant for a delegation, you must [create and publish a new Managed Service offer](publish-managed-services-offers.md) for the customer to accept.
 

@@ -12,7 +12,7 @@ Before onboarding customers for [Azure Lighthouse](../overview.md), it's importa
 
 A *tenant* is a dedicated and trusted instance of Microsoft Entra ID. Typically, each tenant represents a single organization. Azure Lighthouse enables [logical projection](architecture.md#logical-projection) of resources from one tenant to another tenant. This allows users in the managing tenant (such as one belonging to a service provider) to access delegated resources in a customer's tenant, or lets [enterprises with multiple tenants centralize their management operations](enterprise.md).
 
-In order to achieve this logical projection, a subscription (or one or more resource groups within a subscription) in the customer tenant must be *onboarded* to Azure Lighthouse. This onboarding process can be done either [through Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a public or private offer to Azure Marketplace](../how-to/publish-managed-services-offers.md).
+In order to achieve this logical projection, a subscription (or one or more resource groups within a subscription) in the customer tenant must be *onboarded* to Azure Lighthouse. This onboarding process can be done either [through Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a public or private offer to Microsoft Marketplace](../how-to/publish-managed-services-offers.md).
 
 With either onboarding method, you'll need to define *authorizations*. Each authorization includes a **principalId** (a Microsoft Entra user, group, or service principal in the managing tenant) combined with a built-in role that defines the specific permissions that will be granted for the delegated resources.
 
@@ -74,4 +74,4 @@ The only exception is if the subscription is transferred to a Microsoft Entra te
 ## Next steps
 
 - Learn about [recommended security practices for Azure Lighthouse](recommended-security-practices.md).
-- Onboard your customers to Azure Lighthouse, either by [using Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a private or public managed services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md).
+- Onboard your customers to Azure Lighthouse, either by [using Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a private or public managed services offer to Microsoft Marketplace](../how-to/publish-managed-services-offers.md).

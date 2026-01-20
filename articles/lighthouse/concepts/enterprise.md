@@ -42,11 +42,11 @@ For more information, see [Recommended security practices](recommended-security-
 
 ## Onboarding considerations
 
-Subscriptions (or resource groups within a subscription) can be onboarded to Azure Lighthouse either by deploying Azure Resource Manager templates or through Managed Services offers published to Azure Marketplace.
+Subscriptions (or resource groups within a subscription) can be onboarded to Azure Lighthouse either by deploying Azure Resource Manager templates or through Managed Services offers published to Microsoft Marketplace.
 
 Since enterprise users typically have direct access to the enterprise’s tenants, and there's no need to market or promote a management offering, it's usually faster and more straightforward to deploy Azure Resource Manager templates. While the [onboarding guidance](../how-to/onboard-customer.md) refers to service providers and customers, enterprises can use the same processes to onboard their tenants.
 
-If you prefer, tenants within an enterprise can be onboarded by [publishing a Managed Services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md). To ensure that the offer is only available to the appropriate tenants, be sure that your [plans are set to private](/partner-center/marketplace-offers/create-managed-service-offer-plans#make-your-plan-private). With a private plan, you provide the subscription IDs for each tenant that you plan to onboard, and no one else will be able to get your offer.
+If you prefer, tenants within an enterprise can be onboarded by [publishing a Managed Services offer to Microsoft Marketplace](../how-to/publish-managed-services-offers.md). To ensure that the offer is only available to the appropriate tenants, be sure that your [plans are set to private](/partner-center/marketplace-offers/create-managed-service-offer-plans#make-your-plan-private). With a private plan, you provide the subscription IDs for each tenant that you plan to onboard, and no one else will be able to get your offer.
 
 ## Microsoft Entra External ID
 

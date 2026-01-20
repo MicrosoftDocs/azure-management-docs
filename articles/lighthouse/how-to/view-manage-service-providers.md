@@ -37,7 +37,7 @@ To add an offer from a template, select **Add offer** in the command bar, then c
 
 ## Update service provider offers
 
-After a customer adds an offer, a service provider may publish an updated version of the same offer to Azure Marketplace, such as to add a new role definition. If a new version of the offer is published, an "update" icon appears in the row for that offer. Select this icon to see the changes in the current version of the offer.
+After a customer adds an offer, a service provider may publish an updated version of the same offer to Microsoft Marketplace, such as to add a new role definition. If a new version of the offer is published, an "update" icon appears in the row for that offer. Select this icon to see the changes in the current version of the offer.
 
  ![Update offer icon](../media/update-offer.jpg)
 
