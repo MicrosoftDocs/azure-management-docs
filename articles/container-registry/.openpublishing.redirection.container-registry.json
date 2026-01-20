@@ -231,12 +231,12 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "articles/container-registry/container-registry-tutorial-github-verify-notation-trusted-signing.md",
+      "source_path_from_root": "/articles/container-registry/container-registry-tutorial-github-verify-notation-trusted-signing.md",
       "redirect_url": "/azure/container-registry/container-registry-tutorial-github-verify-notation-artifact-signing",
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "articles/container-registry/container-registry-tutorial-sign-verify-notation-trusted-signing.md",
+      "source_path_from_root": "/articles/container-registry/container-registry-tutorial-sign-verify-notation-trusted-signing.md",
       "redirect_url": "/azure/container-registry/container-registry-tutorial-sign-verify-notation-artifact-signing",
       "redirect_document_id": false
     }
