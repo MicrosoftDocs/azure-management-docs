@@ -181,6 +181,6 @@ With all scenarios, be aware of the following current limitations:
 
 ## Next steps
 
-- Onboard your customers to Azure Lighthouse, either by [using Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a private or public managed services offer to Azure Marketplace](../how-to/publish-managed-services-offers.md).
+- Onboard your customers to Azure Lighthouse, either by [using Azure Resource Manager templates](../how-to/onboard-customer.md) or by [publishing a private or public managed services offer to Microsoft Marketplace](../how-to/publish-managed-services-offers.md).
 - [View and manage customers](../how-to/view-manage-customers.md) by going to **My customers** in the Azure portal.
 - Learn more about [Azure Lighthouse architecture](architecture.md). 

@@ -21,7 +21,7 @@ This table illustrates some high-level differences that may impact whether you m
 |---------|---------|---------|
 |Typical user     |Service providers or enterprises managing multiple tenants         |Independent Software Vendors (ISVs)         |
 |Scope of cross-tenant access     |Subscription(s) or resource group(s)         |Resource group (scoped to a single application)         |
-|Purchasable in Azure Marketplace     |No (offers can be published to Azure Marketplace, but customers are billed separately)        |Yes         |
+|Purchasable in Microsoft Marketplace     |No (offers can be published to Microsoft Marketplace, but customers are billed separately)        |Yes         |
 |IP protection |Yes (IP can remain in the service provider's tenant) |Yes (If the ISV chooses to restrict customer access with deny assignments, the managed resource group is locked to customers) |
 |Deny assignments     |No         |Yes        |
 
@@ -29,7 +29,7 @@ This table illustrates some high-level differences that may impact whether you m
 
 With [Azure Lighthouse](../overview.md), a service provider can perform a wide range of management tasks directly on a customer's subscription (or resource group). This access is achieved through a [logical projection](architecture.md#logical-projection), allowing service providers to sign in to their own tenant and access resources that belong to the customer's tenant. The customer can determine which subscriptions or resource groups to delegate to the service provider, and the customer maintains full access to those resources. They can also remove the service provider's access at any time.
 
-To use Azure Lighthouse, customers are onboarded either by [deploying ARM templates](../how-to/onboard-customer.md) or through a [Managed Service offer in Azure Marketplace](managed-services-offers.md). You can track your impact on customer engagements by [linking your partner ID](/azure/cost-management-billing/manage/link-partner-id).
+To use Azure Lighthouse, customers are onboarded either by [deploying ARM templates](../how-to/onboard-customer.md) or through a [Managed Service offer in Microsoft Marketplace](managed-services-offers.md). You can track your impact on customer engagements by [linking your partner ID](/azure/cost-management-billing/manage/link-partner-id).
 
 Azure Lighthouse is typically used when a service provider will perform management tasks for a customer on an ongoing basis. To learn more about how Azure Lighthouse works at a technical level, see [Azure Lighthouse architecture](architecture.md).
 
@@ -41,7 +41,7 @@ In a managed application, the resources used by the application are bundled toge
 
 Managed applications support [customized Azure portal experiences](/azure/azure-resource-manager/managed-applications/concepts-view-definition) and [integration with custom providers](/azure/azure-resource-manager/managed-applications/tutorial-create-managed-app-with-custom-provider). These options can be used to deliver a more customized and integrated experience, making it easier for customers to perform some management tasks themselves.
 
-Managed applications can be [published to Azure Marketplace](/azure/marketplace/azure-app-offer-setup), either as a private offer for a specific customer's use, or as public offers that multiple customers can purchase. They can also be delivered to users within your organization by [publishing managed applications to your service catalog](/azure/azure-resource-manager/managed-applications/publish-service-catalog-app). You can deploy both service catalog and Marketplace instances using ARM templates, which can include a commercial marketplace partner's unique identifier to track [customer usage attribution](/azure/marketplace/azure-partner-customer-usage-attribution).
+Managed applications can be [published to Microsoft Marketplace](/azure/marketplace/azure-app-offer-setup), either as a private offer for a specific customer's use, or as public offers that multiple customers can purchase. They can also be delivered to users within your organization by [publishing managed applications to your service catalog](/azure/azure-resource-manager/managed-applications/publish-service-catalog-app). You can deploy both service catalog and Marketplace instances using ARM templates, which can include a commercial marketplace partner's unique identifier to track [customer usage attribution](/azure/marketplace/azure-partner-customer-usage-attribution).
 
 Azure managed applications are typically used for a specific customer need that can be achieved through a turnkey solution that is fully managed by the service provider.
 
