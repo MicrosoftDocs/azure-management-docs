@@ -146,7 +146,7 @@ In this guide, you sign in with OpenID Connect (OIDC), use a user-assigned manag
 
 ## Store the TSA root certificate
 
-Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Artifact Signing uses short-lived certificates, so timestamping is critical. The server URL for the time stamp authority (TSA) is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/artifact-signing/concept-cert-management#time-stamp-countersignatures).
+Timestamping ([RFC 3161](https://www.rfc-editor.org/rfc/rfc3161)) extends trust for signatures beyond the signing certificate's validity period. Artifact Signing uses short-lived certificates, so timestamping is critical. The server URL for the time stamp authority (TSA) is available at `http://timestamp.acs.microsoft.com/`, as recommended in [Time stamp countersignatures](/azure/artifact-signing/concept-certificate-management#time-stamp-countersignatures).
 
 1. Download the TSA root certificate:
 

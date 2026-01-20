@@ -45,8 +45,8 @@ Additionally, Ratify and cluster policies are configured on AKS to verify signat
 
 As the image producer, you can follow these articles for signing container images by using Artifact Signing:
 
-- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-trusted-signing.md)
-- [Sign container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-trusted-signing.md)
+- [Sign container images by using Notation and Artifact Signing](container-registry-tutorial-sign-verify-notation-artifact-signing.md)
+- [Sign container images in GitHub workflows by using Notation and Artifact Signing](container-registry-tutorial-github-sign-notation-artifact-signing.md)
 
 This article guides you, as the image consumer, through the process of verifying container image signatures by using Ratify and Azure Policy on AKS clusters.
 
@@ -205,7 +205,7 @@ If you have multiple certificates for signature verification, specify extra para
 | `azurekeyvault.certificates[1].name`              | Name of the certificate                                                    | `"$CERT_NAME_2"`                      |
 | `notation.trustPolicies[0].trustedIdentities[1]`  | Another subject field of the signing certificate, indicating what you trust  | `"x509.subject: $SUBJECT_2"`          |
 
-#### [Artifact Signing](#tab/trusted-signing)
+#### [Artifact Signing](#tab/artifact-signing)
 
 You need to configure:
 
@@ -265,7 +265,7 @@ helm install ratify ratify/ratify --atomic --namespace $RATIFY_NAMESPACE --creat
 
 For timestamping support, you need to specify additional parameters: `--set-file notationCerts[0]="$TSA_ROOT_CERT_FILE"` and `--set notation.trustPolicies[0].trustStores[1]="ca:azurekeyvault"`.
 
-#### [Artifact Signing](#tab/trusted-signing)
+#### [Artifact Signing](#tab/artifact-signing)
 
 By default, the Artifact Signing root certificate and TSA root certificate are in `.crt` format. Before you pass them to the Helm installation, you must convert them to PEM format.
 
