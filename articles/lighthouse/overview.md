@@ -53,4 +53,4 @@ For help with Azure Lighthouse, [open a support request](../azure-portal/support
 - Learn [how Azure Lighthouse works on a technical level](concepts/architecture.md).
 - Explore [cross-tenant management experiences](concepts/cross-tenant-management-experience.md).
 - See how to [use Azure Lighthouse within an enterprise](concepts/enterprise.md).
-- View [availability](https://azure.microsoft.com/en-us/explore/global-infrastructure/products-by-region/table) and [FedRAMP and DoD CC SRG audit scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope) details for Azure Lighthouse.
+- View [availability](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) and [FedRAMP and DoD CC SRG audit scope](/azure/azure-government/compliance/azure-services-in-fedramp-auditscope) details for Azure Lighthouse.
