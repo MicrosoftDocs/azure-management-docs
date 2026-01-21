@@ -33,9 +33,6 @@ In this article, you learn how to create a GitHub Actions workflow to:
 
 - Create or use a GitHub repository to store your workflow file and GitHub secrets.
 
-> [!NOTE]
-> At this time, Artifact Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
-
 ## Authenticate from Azure to GitHub
 
 According to [Use GitHub Actions to connect to Azure](/azure/developer/github/connect-from-azure), you must authenticate with Azure in your workflow by using the Azure Login action before you run Azure CLI or Azure PowerShell commands. The Azure Login action supports multiple authentication methods.
