@@ -77,11 +77,11 @@ You can change the user response by selecting the edit option (pencil icon) next
 
 :::image type="content" source="media/alerts-notifications/alert-details.png" alt-text="Screenshot of the Alert details page in the Azure mobile app.":::
 
-### Alerts card on Home view
+### Latest alerts card on Home
 
-You can also view alerts on the **Alerts** tile on your [Azure mobile app **Home**](home.md).
+You can also view alerts on the **Latest alerts** card on your [Azure mobile app **Home**](home.md).
 
-The **Alerts** tile includes two viewing options: **List** or **Chart**.
+**Latest alerts** includes two viewing options: **List** or **Chart**.
 
 The **List** view shows your latest alerts along with top level information including:
 
