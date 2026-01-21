@@ -30,15 +30,12 @@ To enable push notifications for Service Health on specific subscriptions:
 1. Open the Azure mobile app and sign in with your Azure account.
 1. Select the menu icon on the top left corner, and then select **Settings**.
 1. Select **Service Health issue alerts**.
-
-   :::image type="content" source="media/alerts-notifications/service-health.png" alt-text="Screenshot showing the Service Health issue alerts section of the Settings page in the Azure mobile app.":::
-
 1. Use the toggle switches to select subscriptions for which you want to receive push notifications.
 1. Select **Save** to confirm your changes.
 
 ## Enable push notifications for custom alerts
 
-You can enable push notifications in the Azure mobile app for custom alerts that you define. To do so, first [create a new alert rule](/azure/azure-monitor/alerts/alerts-create-new-alert-rule?tabs=metric) in the Azure portal.
+You can enable push notifications in the Azure mobile app for custom alerts that you define. To do so, first [create a new alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule=) in the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) with the same Azure account information that you use in the Azure mobile app.
 1. In the Azure portal, open **Azure Monitor**.
@@ -58,9 +55,7 @@ Select the **Notifications** icon on the bottom toolbar to see a list view of al
 
 :::image type="content" source="media/alerts-notifications/notifications-icon-toolbar.png" alt-text="Screenshot showing the Notifications icon on the bottom toolbar of the Azure mobile app.":::
 
-In the list view, you can search for specific alerts or use the filter option in the top right of the screen to filter by specific subscriptions.
-
-:::image type="content" source="media/alerts-notifications/notifications-list-view-filter.png" alt-text="Screenshot showing the notification list view and filter option in the Azure mobile app.":::
+In the list view, you can search for specific alerts or use the filter option near the top of the screen to filter by specific subscriptions.
 
 When you select a specific alert, you see an alert details page that provides more information, including:
 
