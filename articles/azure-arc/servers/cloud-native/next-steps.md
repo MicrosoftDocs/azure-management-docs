@@ -25,20 +25,13 @@ Begin by onboarding a subset of your servers to Azure Arc to establish a baselin
 4. Validate that the servers appear as Azure Arc-enabled resources in the Azure portal.
 <!-- Steps added to make the procedure actionable and repeatable. -->
 
-**Deployment options to consider:**
-- [Windows Admin Center](../onboard-windows-admin-center.md)
-- [Configuration Manager script](../onboard-configuration-manager-powershell.md)
-- [Configuration Manager custom task sequence](../onboard-configuration-manager-custom-task.md)
-- [Azure portal-generated script for individual machines](../onboard-portal.md)
-<!-- Converted prose list into concise bullets for clarity. -->
-
 **Verification:** Selected servers are visible in Azure as Arc-enabled servers and report a healthy connection status.
 <!-- Added one-line expected outcome as requested. -->
 
-After onboarding, plan how to organize these resources in Azure to support management at scale.
+As part of your onboarding, consider how to organize these resources in Azure to support management at scale.
 <!-- Minor transition added to connect procedure to next guidance. -->
 
-**Resource organization considerations:**
+**Examples of resource organization considerations:**
 - Resource groups aligned to application, environment, or business unit
 - Consistent tagging for environment, location, or ownership
 - Alignment with Azure Policy scope boundaries
@@ -85,24 +78,14 @@ Once cloud-based processes consistently meet your requirements, you can retire r
 Automation helps reduce manual effort and enforce consistency across your environment.
 <!-- Slight rewrite for active voice. -->
 
-### Automation setup
+Some ways you can leverage automation with Azure Arc-enabled servers include:
 
-1. Identify repetitive management tasks suitable for automation, such as tagging or onboarding.
-2. Create Azure Policy definitions to enforce standards automatically.
-3. Integrate Connected Machine agent installation into server provisioning workflows.
-4. Configure monitoring and alerts for agent and extension health.
-<!-- Converted narrative guidance into numbered steps. -->
-
-**Automation opportunities include:**
-- Automatic tagging based on resource properties
+- Using Azure Policy to automatically apply tags when your servers meet specific requirements
 - Scripted onboarding of new servers to Azure Arc
 - Policy-based remediation for configuration drift
 <!-- Converted examples into a concise bullet list. -->
 
-**Verification:** New and existing servers are onboarded and configured automatically with minimal manual intervention.
-<!-- Added one-line verification outcome. -->
-
-Apply Azure security and governance controls consistently across Arc-enabled servers.
+Apply Azure security and governance controls consistently across both your Arc-enabled servers and native Azure VMs.
 <!-- Transition sentence preserved. -->
 
 **Security and governance components:**
