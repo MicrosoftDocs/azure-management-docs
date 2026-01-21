@@ -27,9 +27,9 @@ Current card options include:
 - **Favorites**: A list of the resources you've added to your favorites, and the option to see all.
 - **Dashboards (preview)**: Access to [shared dashboards](../dashboard-hub.md).
 
-:::image type="content" source="media/azure-mobile-app-home-layout.png" alt-text="Screenshot of the Azure mobile app Home screen with several display cards.":::
-
 You also see the **Copilot** icon, which you can use to [launch Azure Copilot](azure-copilot.md).
+
+:::image type="content" source="media/azure-mobile-app-home-layout.png" alt-text="Screenshot of the Azure mobile app Home screen with several display cards.":::
 
 ## Customize Azure mobile app Home
 
