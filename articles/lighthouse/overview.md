@@ -16,7 +16,7 @@ By using [cross-tenant management experiences](concepts/cross-tenant-management-
 
 ![Diagram showing an overview of how Azure Lighthouse works.](media/azure-lighthouse-overview.jpg)
 
-## Benefits
+## Benefits of Azure Lighthouse
 
 Azure Lighthouse helps service providers efficiently build and deliver managed services. Benefits include:
 
@@ -24,7 +24,7 @@ Azure Lighthouse helps service providers efficiently build and deliver managed s
 - **Greater visibility and control for customers**: Customers have precise control over the scopes they delegate and the permissions that are allowed. They can [audit service provider actions](how-to/view-service-provider-activity.md) and [remove access completely](how-to/remove-delegation.md) at any time.
 - **Comprehensive and unified platform tooling**: Azure Lighthouse works with existing tools and APIs, [Azure managed applications](concepts/managed-applications.md), and partner programs like the [Cloud Solution Provider (CSP) program](concepts/cloud-solution-provider.md). This flexibility supports key service provider scenarios, including multiple licensing models such as EA, CSP, and pay-as-you-go. You can integrate Azure Lighthouse into your existing workflows and applications, and track your impact on customer engagements by [linking your partner ID](/azure/cost-management-billing/manage/link-partner-id).
 
-## Capabilities
+## Azure Lighthouse capabilities
 
 Azure Lighthouse includes multiple ways to streamline engagement and management:
 
@@ -36,11 +36,11 @@ Azure Lighthouse includes multiple ways to streamline engagement and management:
 > [!TIP]
 > A similar offering, [Microsoft 365 Lighthouse](/microsoft-365/lighthouse/m365-lighthouse-overview), helps service providers onboard, monitor, and manage their Microsoft 365 customers at scale.
 
-## Pricing and availability
+## Azure Lighthouse pricing and availability
 
 There's no extra cost for using Azure Lighthouse to manage Azure resources. Any Azure customer or partner can use Azure Lighthouse.
 
-## Cross-region and cloud considerations
+## Azure Lighthouse cross-region and cloud considerations
 
 Azure Lighthouse is a nonregional service. You can manage delegated resources that are located in different [regions](/azure/cloud-adoption-framework/ready/azure-setup-guide/regions). However, you can't delegate resources across a [national cloud](/entra/identity-platform/authentication-national-cloud) and the Azure public cloud, or across two separate national clouds.
 
