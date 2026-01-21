@@ -20,7 +20,7 @@ Begin by onboarding a subset of your servers to Azure Arc to establish a baselin
 ### Onboard a subset of servers
 
 1. Identify a small, representative group of servers that reflect your broader environment (for example, different operating systems, roles, or locations).
-2. Choose a deployment method for the Connected Machine agent based on your tooling and operational preferences.
+2. [Choose a deployment method](../deployment-options.md) for the Connected Machine agent based on your tooling and operational preferences.
 3. Deploy the Connected Machine agent to the selected servers.
 4. Validate that the servers appear as Azure Arc-enabled resources in the Azure portal.
 <!-- Steps added to make the procedure actionable and repeatable. -->
