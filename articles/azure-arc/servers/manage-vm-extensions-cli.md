@@ -9,15 +9,29 @@ ms.custom:
 # Customer intent: As a system administrator managing hybrid cloud environments, I want to deploy and manage VM extensions using Azure CLI, so that I can efficiently automate tasks and maintain consistency across my Azure Arc-enabled servers.
 ---
 
-# Enable Azure VM extensions by using the Azure CLI (Windows and Linux)
+# Enable Arc VM extensions by using the Azure CLI (Windows and Linux)
 
-This article explains how to deploy, upgrade, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) on Azure Arc-enabled servers by using the Azure CLI (Windows and Linux).
+This article explains how to deploy, upgrade, update, and uninstall [virtual machine (VM) extensions](manage-vm-extensions.md) on Azure Arc-enabled servers by using the Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)).
+
+## Extension deployment prerequisites
+
+Review the documentation for each [VM extension referenced in the extension tables](manage-vm-extensions.md) to understand its network and system requirements beyond the Arc-enabled servers [general prerequisites](prerequisites.md) and [networking requirements](network-requirements.md) for Arc-enabled servers. This effort can help prevent connectivity issues with an Azure service or feature that relies on that VM extension.
+
+To deploy an extension to Azure Arc-enabled servers, a user needs the following permissions:
+
+- `microsoft.hybridcompute/machines/read`
+- `microsoft.hybridcompute/machines/extensions/read`
+- `microsoft.hybridcompute/machines/extensions/write`
+
+The role **Azure Connected Machine Resource Administrator** includes the permissions required to deploy extensions. It also includes permission to delete Azure Arc-enabled server resources.
+
+Azure Arc-enabled servers with one or more VM extensions installed can be moved between resource groups, or to another Azure subscription, without experiencing any impact to their configuration. The source and destination scopes must exist within the same [Microsoft Entra tenant](/azure/active-directory/develop/quickstart-create-new-tenant). For more information about moving resources and considerations before you proceed, see [Move resources to a new resource group or subscription](/azure/azure-resource-manager/management/move-resource-group-and-subscription).
 
 [!INCLUDE [Azure CLI Prepare your environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment.md)]
 
 ## Install the Connected Machine extension in the Azure CLI
 
-The `ConnectedMachine` commands aren't shipped as part of the Azure CLI. Before you use the Azure CLI to connect to Azure and manage VM extensions on your hybrid server managed by Azure Arc-enabled servers, you need to load the `ConnectedMachine` extension.
+The `ConnectedMachine` commands aren't shipped as part of the Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)). Before you use the Azure CLI ([Windows](/cli/azure/install-azure-cli-windows) or [Linux](/cli/azure/install-azure-cli-linux)) to connect to Azure and manage VM extensions on your Arc-enabled server, you need to load the `ConnectedMachine` extension.
 
 You can perform these management operations from your workstation, rather than on the Azure Arc-enabled server.
 
@@ -29,7 +43,7 @@ az extension add --name connectedmachine
 
 ## Enable an extension
 
-To enable a VM extension on your Azure Arc-enabled server, use [`az connectedmachine extension create`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters.
+To enable a VM extension on your Azure Arc-enabled server, use [`az connectedmachine extension create`](/cli/azure/connectedmachine/extension#az-connectedmachine-extension-create) with the `--machine-name`, `--extension-name`, `--location`, `--type`, `settings`, and `--publisher` parameters. You can view the parameter values and deployment instructions, supported OS or additional information for each [VM extension in the corresponding Windows or Linux extension table](manage-vm-extensions.md).
 
 This example enables the Custom Script Extension on an Azure Arc-enabled server:
 
