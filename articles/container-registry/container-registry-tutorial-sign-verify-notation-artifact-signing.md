@@ -34,7 +34,7 @@ Before you can sign and verify container images by using Notation and Artifact S
 
 ### Set up Artifact Signing
 
-Set up a [Artifact Signing account and certificate profile](/azure/artifact-signing/quickstart) in your Azure subscription.
+Set up an [Artifact Signing account and certificate profile](/azure/artifact-signing/quickstart) in your Azure subscription.
 
 Your certificate profile must include country/region (`C`), state or province (`ST` or `S`), and organization (`O`) in the certificate subject. The [Notary Project specification](https://github.com/notaryproject/specifications/blob/v1.1.0/specs/trust-store-trust-policy.md#trusted-identities-constraints) requires these fields.
 
