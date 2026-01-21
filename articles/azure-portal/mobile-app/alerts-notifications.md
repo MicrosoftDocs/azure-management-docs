@@ -35,7 +35,7 @@ To enable push notifications for Service Health on specific subscriptions:
 
 ## Enable push notifications for custom alerts
 
-You can enable push notifications in the Azure mobile app for custom alerts that you define. To do so, first [create a new alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule=) in the Azure portal.
+You can enable push notifications in the Azure mobile app for custom alerts that you define. To do so, first [create a new alert rule](/azure/azure-monitor/alerts/alerts-create-metric-alert-rule) in the Azure portal.
 
 1. Sign in to the [Azure portal](https://portal.azure.com) with the same Azure account information that you use in the Azure mobile app.
 1. In the Azure portal, open **Azure Monitor**.
