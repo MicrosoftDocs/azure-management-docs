@@ -1,27 +1,27 @@
 ---
-title: Verify Container Images in GitHub Workflows with Notation and Trusted Signing
-description: Learn how to verify container images with Notation and Trusted Signing by using a GitHub Actions workflow.
+title: Verify Container Images in GitHub Workflows with Notation and Artifact Signing
+description: Learn how to verify container images with Notation and Artifact Signing by using a GitHub Actions workflow.
 ms.topic: how-to
 author: yizha1
 ms.author: yizha1
 ms.date: 09/08/2025
 ms.service: security
-# Customer intent: As a developer, I want to verify container image signatures in GitHub Actions by using Trusted Signing, so that I can ensure authenticity and integrity before using them in builds or deployments.
+# Customer intent: As a developer, I want to verify container image signatures in GitHub Actions by using Artifact Signing, so that I can ensure authenticity and integrity before using them in builds or deployments.
 ---
 
-# Verify container images in GitHub workflows by using Notation and Trusted Signing
+# Verify container images in GitHub workflows by using Notation and Artifact Signing
 
 This article is part of a series on ensuring the integrity and authenticity of container images and other Open Container Initiative (OCI) artifacts. For the complete picture, start with the [overview](overview-sign-verify-artifacts.md), which explains why signing matters and outlines the various scenarios.
 
 You can use this guide in two scenarios:
 
-- **Consuming signed images**: Verify container images that other teams or organizations already signed by using Notation and Trusted Signing.
-- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-trusted-signing.md) or the [Notation command-line interface (CLI)](container-registry-tutorial-sign-verify-notation-trusted-signing.md). Then follow this guide to verify the signatures.
+- **Consuming signed images**: Verify container images that other teams or organizations already signed by using Notation and Artifact Signing.
+- **Verifying your own images**: If you publish images yourself, first sign them by using a [GitHub workflow](container-registry-tutorial-github-sign-notation-artifact-signing.md) or the [Notation command-line interface (CLI)](container-registry-tutorial-sign-verify-notation-artifact-signing.md). Then follow this guide to verify the signatures.
 
 In this article, you learn how to:
 
 - Configure a GitHub workflow.
-- Verify that container images were signed by using Trusted Signing and GitHub Actions for Notation.
+- Verify that container images were signed by using Artifact Signing and GitHub Actions for Notation.
 
 ## Prerequisites
 
@@ -126,7 +126,7 @@ Verification requires a [Notary Project trust store and trust policy](https://gi
 
 The trust store (`.github/truststore/`) contains the certificate authority (CA) certificates and the time stamp authority (TSA) root certificates that are required for verification.
 
-Download the [Trusted Signing root certificate](https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt) and store it in the `ca` directory:
+Download the [Artifact Signing root certificate](https://www.microsoft.com/pkiops/certs/Microsoft%20Enterprise%20Identity%20Verification%20Root%20Certificate%20Authority%202020.crt) and store it in the `ca` directory:
 
 # [Linux](#tab/linux)
 
@@ -148,7 +148,7 @@ Invoke-WebRequest -Uri "https://www.microsoft.com/pkiops/certs/Microsoft%20Enter
 
 ---
 
-Download the [Trusted Signing TSA root certificate](https://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt) and store it in the `tsa` directory:
+Download the [Artifact Signing TSA root certificate](https://www.microsoft.com/pkiops/certs/microsoft%20identity%20verification%20root%20certificate%20authority%202020.crt) and store it in the `tsa` directory:
 
 # [Linux](#tab/linux)
 
@@ -174,7 +174,7 @@ Invoke-WebRequest -Uri "http://www.microsoft.com/pkiops/certs/microsoft%20identi
 
 The trust policy (`.github/trustpolicy/trustpolicy.json`) defines which identities and CAs are trusted.
 
-Here's an example of `trustpolicy.json`. Replace repository URIs, trust store names, and the Trusted Signing certificate profile subject with your values.
+Here's an example of `trustpolicy.json`. Replace repository URIs, trust store names, and the Artifact Signing certificate profile subject with your values.
 
 ```json
 {
@@ -218,14 +218,14 @@ Your repository should look like this example:
 When authentication and trust configuration are ready, create the workflow:
 
 1. Create a `.github/workflows` directory in your repo if it doesn't exist.
-2. Create a new workflow file; for example, `verify-with-trusted-signing.yml`.
+2. Create a new workflow file; for example, `verify-with-artifact-signing.yml`.
 3. Copy the following workflow template into your file.
 
     <details>
     <summary>Expand to view the verification workflow template.</summary>
 
     ```yaml
-    name: notation-verify-with-trusted-signing
+    name: notation-verify-with-artifact-signing
     
     on:
       push:
