@@ -24,9 +24,6 @@ This article focuses on signing by using Notary Project tooling, Notation, and [
 
 Before you can sign and verify container images by using Notation and Artifact Signing, you need to set up the required Azure resources and install the necessary tools. This section walks you through preparing Azure Container Registry, configuring Artifact Signing, and setting up the Azure CLI as your development environment.
 
-> [!NOTE]
-> At this time, Artifact Signing is available only to organizations based in the United States and Canada that have a verifiable history of three years or more.
-
 ### Prepare container images in Azure Container Registry
 
 1. Create or use a [container registry](../container-registry/container-registry-get-started-azure-cli.md) to store container images, OCI artifacts, and signatures.
