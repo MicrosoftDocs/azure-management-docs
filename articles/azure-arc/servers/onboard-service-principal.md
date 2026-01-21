@@ -55,7 +55,7 @@ You can create the service principal with Azure CLI ([Windows](/cli/azure/instal
 The Azure Arc service in the Azure portal provides a streamlined way to create a service principal that can be used to connect your hybrid machines to Azure.
 
 1. At the top of the Azure portal, search for and select **Azure Arc**.
-1. In the left pane, expand **Additional setup**, then select **Service principals**.
+1. In the service menu, expand **Additional setup**, then select **Service principals**.
 1. In the right pane, select **Add**.
 1. In the following fields, provide:
    1. A name for your service principal.
@@ -142,8 +142,8 @@ You can use [Azure PowerShell](/powershell/azure/install-azure-powershell) to cr
 Use the Azure portal to create a script that automates the agent download and installation and establishes the connection with Azure Arc. To complete the process, do the following steps:
 
 1. At the top of the [Azure portal](https://portal.azure.com), search for and select **Azure Arc**.
-1. In the left pane, expand **Infrastructure**, then select **Machines**.
-1. In the right pane, select **Onboard/Create**, then select **Onboard existing machines**.
+1. In the service menu, expand **Infrastructure**, then select **Machines**.
+1. Select **Onboard/Create**, then select **Onboard existing machines**.
 1. On the **Basics** page, provide the following:
    1. Select the **Subscription** and **Resource group** for the machines.
    1. Under **Region**, select the Azure region to store the servers' metadata.
