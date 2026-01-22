@@ -84,6 +84,26 @@
       href: container-registry-image-formats.md
     - name: Tag and version images
       href: container-registry-image-tag-version.md
+    - name: Connected registry
+      items:
+      - name: About connected registry
+        href: intro-connected-registry.md
+      - name: Create connected registry
+        href: quickstart-create-connected-registry.md
+      - name: Deploy connected registry to Azure Arc
+        href: quickstart-connected-registry-arc-cli.md
+      - name: Secure and deploy Connected registry Arc extension
+        href: tutorial-connected-registry-arc.md
+      - name: Sync Connected registry with Azure arc
+        href: tutorial-connected-registry-sync.md
+      - name: Upgrade Connected registry with Azure arc
+        href: tutorial-connected-registry-upgrade.md
+      - name: Troubleshoot Connected registry with Azure arc
+        href: troubleshoot-connected-registry-arc.md
+      - name: Access to connected registry
+        href: overview-connected-registry-access.md
+      - name: Pull image from connected registry
+        href: pull-images-from-connected-registry.md
     - name: Artifact streaming
       href: container-registry-artifact-streaming.md
     - name: Geo-replication
@@ -256,7 +276,7 @@
           - name: Scan with Microsoft Defender for Cloud
             href: scan-images-defender.md
 - name: Tasks
-  expanded: true
+  expanded: false
   items:
   - name: Overview
     expanded: false
@@ -321,39 +341,6 @@
         href: container-registry-tasks-logs.md
       - name: Manage network bypass policy for tasks
         href: manage-network-bypass-policy-for-tasks.md
-- name: Connected registry
-  expanded: true
-  items:
-  - name: Overview
-    expanded: false
-    items:
-    - name: About connected registry
-      href: intro-connected-registry.md
-  - name: Quickstarts
-    expanded: true
-    items:
-    - name: Create connected registry
-      href: quickstart-create-connected-registry.md
-    - name: Deploy connected registry to Azure Arc
-      href: quickstart-connected-registry-arc-cli.md
-  - name: Tutorials
-    items:
-    - name: Secure and deploy Connected registry Arc extension
-      href: tutorial-connected-registry-arc.md
-    - name: Sync Connected registry with Azure arc
-      href: tutorial-connected-registry-sync.md
-    - name: Upgrade Connected registry with Azure arc
-      href: tutorial-connected-registry-upgrade.md
-    - name: Troubleshoot Connected registry with Azure arc
-      href: troubleshoot-connected-registry-arc.md
-  - name: Concepts
-    items:
-    - name: Access to connected registry
-      href: overview-connected-registry-access.md
-  - name: How-to guides
-    items:
-    - name: Pull image from connected registry
-      href: pull-images-from-connected-registry.md
 - name: Reference
   expanded: false
   items:
