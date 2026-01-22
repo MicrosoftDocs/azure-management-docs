@@ -47,4 +47,4 @@ If a user is marked as out of compliance with their policy (following any remedi
 ## Next steps
 
 - Learn more about [Microsoft Intune](/mem/intune/fundamentals/what-is-intune).
-- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc), or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc) or [Google Play](https://aka.ms/azureapp/android/doc).
