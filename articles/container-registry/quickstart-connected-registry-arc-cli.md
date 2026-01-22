@@ -1,10 +1,10 @@
 ---
-title: "Quickstart: Deploying the Connected Registry Arc Extension"
+title: "Deploy the Connected Registry Arc Extension"
 description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-ms.topic: quickstart  #Don't change
+ms.topic: how-to
 ms.date: 05/20/2025
 ai-usage: ai-assisted
 ms.custom: sfi-ropc-blocked
@@ -12,9 +12,9 @@ ms.custom: sfi-ropc-blocked
 # Customer intent: As a DevOps engineer, I want to deploy the Connected Registry Arc extension using CLI with secure settings, so that I can manage container workloads efficiently and securely in my Kubernetes cluster.
 ---
 
-# Quickstart: Deploy the connected registry Arc extension 
+# Deploy the connected registry Arc extension 
 
-In this quickstart, you learn how to deploy the Connected registry Arc extension using the CLI UX with secure-by-default settings to ensure robust security and operational integrity. 
+In this article, you learn how to deploy the Connected registry Arc extension using the CLI UX with secure-by-default settings to ensure robust security and operational integrity. 
  
 The connected registry is a pivotal tool for edge customers, enabling efficient management and access to containerized workloads, whether on-premises or at remote sites. By integrating with Azure Arc, the service ensures a seamless and unified lifecycle management experience for Kubernetes-based containerized workloads. Deploying the connected registry Arc extension on Arc-enabled Kubernetes clusters simplifies the management and access of these workloads. 
 
@@ -363,10 +363,6 @@ By deleting the deployed connected registry, you remove the connected registry c
     --name myconnectedregistry \
     --resource-group myresourcegroup 
     ```
-
-## Next steps
-
-- [Known issues: Connected registry Arc Extension](troubleshoot-connected-registry-arc.md)
 
 
 <!-- LINKS - internal -->

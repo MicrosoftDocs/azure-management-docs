@@ -12,11 +12,11 @@ ms.custom: sfi-ropc-nochange
 
 # Troubleshoot connected registry extension 
 
-This article discusses some common error messages that you may receive when you install or update the connected registry extension for Arc-enabled Kubernetes clusters. 
+This article discusses some common error messages that you may receive when you install or update the connected registry extension for Arc-enabled Kubernetes clusters.
 
-## How is the connected registry extension installed 
+## Check extension and pod status
 
-The connected registry extension is released as a helm chart and installed by Helm V3. All components of the connected registry extension are installed in _connected-registry_ namespace. You can use the following commands to check the extension status. 
+The connected registry extension is released as a Helm chart and installed by Helm V3. All components of the connected registry extension are installed in the _connected-registry_ namespace. Use the following commands to check the extension status.
 
 ```bash
 # get the extension status 
@@ -27,25 +27,31 @@ kubectl get pod -n connected-registry
 kubectl get events -n connected-registry   --sort-by='.lastTimestamp'
 ```
 
-## Common errors 
+## Resolve common errors
 
-### Error: can't reuse a name that is still in use 
+Review this section to find tips on resolving errors you may encounter when installing or updating the connected registry extension.
 
-This error means the extension name you specified already exists. If the name is already in use, you need to use another name.   
+### Error: can't reuse a name that is still in use
+
+This error means the extension name you specified already exists. Use a different name for the extension.
+
+The connected registry name must start with a letter and contain only alphanumeric characters. It must be 5 to 40 characters long.
 
 ### Error: unable to create new content in namespace _connected-registry_ because it's being terminated 
 
-This error happens when an uninstallation operation isn't finished, and another installation operation is triggered. You can run `az k8s-extension show` command to check the provisioning status of the extension and make sure the extension has been uninstalled before taking other actions. 
+This error happens when an uninstallation operation isn't finished, and another installation operation is triggered. Run `az k8s-extension show` command to check the provisioning status of the extension and make sure the extension has been uninstalled before taking other actions.
 
 ### Error: failed in download the Chart path not found 
 
-This error happens when you specify the wrong extension version. You need to make sure the specified version exists. If you want to use the latest version, you don't need to specify `--version`. 
+This error happens when you specify an extension version that doesn't exist. Update your command to use a valid version, or to use the latest extension version, don't specify `--version` at all.
 
-## Common Scenarios 
+## Common scenarios
 
-### Scenario 1: Installation fails but doesn't show an error message 
+This section describes common scenarios that may cause issues when installing or updating the connected registry extension, and how to resolve them.
 
-If the extension generates an error message when you create or update it, you can inspect where the creation failed by running the `az k8s-extension list` command: 
+### Installation fails without an error message
+
+If the extension generates an error message when you create or update it, inspect where the creation failed by running the `az k8s-extension list` command:
 
 ```bash
 az k8s-extension list \ 
@@ -54,29 +60,11 @@ az k8s-extension list \
 --cluster-type connectedClusters
 ```
  
-**Solution:** Restart the cluster, register the service provider, or delete and reinstall connected registry 
+To resolve this issue, try restarting the cluster, and make sure the KubernetesConfiguration service provider is registered. Alternately, delete and reinstall the connected registry extension.
 
-To fix this issue, try the following methods: 
+### Extension creation stuck in running state
 
-- Restart your Arc Kubernetes cluster. 
-
-- Register the KubernetesConfiguration service provider. 
-
-- Force delete and reinstall the connected registry extension. 
-
-### Scenario 2: Targeted connected registry version doesn't exist 
-
-When you try to install the connected registry extension to target a specific version, you receive an error message that states that the connected registry version doesn't exist. 
-
-**Solution:** Install again for a supported connected registry version 
-
-Try again to install the extension. Make sure that you use a supported version of connected registry. 
-
-## Common issues 
-
-### Issue: Extension creation stuck in running state
-
-**Possibility 1:** Issue with Persistent Volume Claim (PVC) 
+**Possibility 1:** Issue with Persistent Volume Claim (PVC)
 
 - Check status of connected registry PVC 
 ```bash
@@ -155,7 +143,7 @@ az k8s-extension update \
 --config-protected-file protected-settings-extension.json
 ```
 
-### Issue: Extension created, but connected registry is not an 'Online' state 
+### Extension created, but connected registry is not in 'Online' state 
 
 **Possibility 1:** Previous connected registry has not been deactivated 
 
@@ -184,10 +172,10 @@ az acr connected-registry deactivate -n <myconnectedregistry> -r <mycontainerreg
 ```
 
 After a few minutes, the connected registry pod should be recreated, and the error should disappear. 
- 
+
 ## Enable logging
 
-- Run the [az acr connected-registry update] command to update the connected registry extension with the debug log level:
+- Run the `az acr connected-registry update` command to update the connected registry extension with the debug log level:
 
 ```azurecli
 az acr connected-registry update --registry mycloudregistry --name myacrregistry --log-level debug
@@ -220,6 +208,8 @@ The az cli log level controls the verbosity of the output messages during the op
 **--debug** enables full debug logs. Debug logs provide the most detailed information, including all the information provided at the "verbose" level plus more details intended for diagnosing problems.
 
 ## Glossary of terms
+
+Review this information to help understand the terminology used in connected registry extension deployment and management.
 
 ### Auto-upgrade-version
 
@@ -386,9 +376,3 @@ The az cli log level controls the verbosity of the output messages during the op
 ### Registry Hierarchy
 
 - **Description:** The structure of connected registries, where each connected registry is linked to a parent registry. The top parent in this hierarchy is the ACR registry.
-
-## Next steps
-
-> [!div class="nextstepaction"]
-> [Quickstart: Deploying the Connected Registry Arc Extension](quickstart-connected-registry-arc-cli.md)
-> [Glossary of terms](connected-registry-glossary.md)

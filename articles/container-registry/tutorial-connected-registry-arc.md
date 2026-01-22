@@ -221,11 +221,9 @@ By deleting the Connected registry extension and the Connected registry, you rem
 
 ## Next steps
 
-- [Enable Connected registry with Azure arc CLI][quickstart]
-- [Upgrade Connected registry with Azure arc](tutorial-connected-registry-upgrade.md)
-- [Sync Connected registry with Azure arc in Scheduled window](tutorial-connected-registry-sync.md)
-- [Troubleshoot Connected registry with Azure arc](troubleshoot-connected-registry-arc.md)
-- [Glossary of terms](connected-registry-glossary.md)
+- [Enable Connected registry with Azure Arc CLI][quickstart]
+- [Sync Connected registry with Azure Arc in Scheduled window](tutorial-connected-registry-sync.md)
+- [Troubleshoot Connected registry with Azure Arc](troubleshoot-connected-registry-arc.md)
 
 <!-- LINKS - internal -->
 [quickstart]: quickstart-connected-registry-arc-cli.md

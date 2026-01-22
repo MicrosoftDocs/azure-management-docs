@@ -57,15 +57,12 @@ Token credentials for connected registries are scoped to access specific registr
 
 * A sync token accesses the endpoint of the parent registry, which is either another connected registry endpoint or the cloud registry itself. When scoped to access the cloud registry, the sync token needs to reach two registry endpoints:
 
-    - The fully qualified login server name, for example, `contoso.azurecr.io`. This endpoint is used for authentication.
-    - A fully qualified regional [data endpoint](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for the cloud registry, for example, `contoso.westus2.data.azurecr.io`. This endpoint is used to exchange messages with the connected registry for synchronization purposes. 
+  * The fully qualified login server name, for example, `contoso.azurecr.io`. This endpoint is used for authentication.
+  * A fully qualified regional [data endpoint](container-registry-firewall-access-rules.md#enable-dedicated-data-endpoints) for the cloud registry, for example, `contoso.westus2.data.azurecr.io`. This endpoint is used to exchange messages with the connected registry for synchronization purposes. 
 
 ## Next steps
 
-Continue to  the following article to learn about specific scenarios where connected registry can be utilized.
+* Learn how to [create a connected registry](quickstart-create-connected-registry.md).
+* Learn how to [deploy a connected registry to Azure Arc](quickstart-connected-registry-arc-cli.md).
 
-> [!div class="nextstepaction"]
-> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
 
-<!-- LINKS - internal -->
-[quickstart-connected-registry-arc-cli]:quickstart-connected-registry-arc-cli.md
