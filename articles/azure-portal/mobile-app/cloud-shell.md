@@ -59,5 +59,5 @@ The Cloud Shell feature in the Azure mobile app has certain limitations compared
 
 - Learn more about the [Azure mobile app](overview.md).
 - Learn more about [Azure mobile app **Home**](home.md) and how to customize it.
-- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc) or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc) or [Google Play](https://aka.ms/azureapp/android/doc).
 - Learn more about [Azure Cloud Shell](/azure/cloud-shell/overview).

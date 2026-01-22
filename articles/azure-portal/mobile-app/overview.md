@@ -8,7 +8,7 @@ ms.topic: overview
 
 # What is the Azure mobile app?
 
-The Azure mobile app is a tool that allows you to monitor and manage your Azure resources and services from your mobile device. You can use the app to view the status, performance, and health of your resources, as well as perform common operations such as starting and stopping virtual machines, web apps, and databases. You can also access Azure Cloud Shell from the app and get push notifications and alerts about your resources. The Azure mobile app is available for iOS and Android devices, and you can download it for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc) or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+The Azure mobile app is a tool that allows you to monitor and manage your Azure resources and services from your mobile device. You can use the app to view the status, performance, and health of your resources, as well as perform common operations such as starting and stopping virtual machines, web apps, and databases. You can also access Azure Cloud Shell from the app and get push notifications and alerts about your resources. The Azure mobile app is available for iOS and Android devices, and you can download it for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc) or [Google Play](https://aka.ms/azureapp/android/doc).
 
 To use the app, you need an Azure account with the appropriate permissions to access your resources. The app supports multiple accounts, and you can switch between them easily. The app also supports Microsoft Entra ID authentication and multifactor authentication for enhanced security. The Azure mobile app is a convenient way to stay connected to your Azure resources and Entra tenant, and manage much more on the go.
 
@@ -55,7 +55,7 @@ If available in your tenant, you can also access [Azure Copilot](microsoft-copil
 
 ## Download the Azure mobile app
 
-You can download the Azure mobile app today for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc), [Google Play](https://aka.ms/azureapp/android/doc) or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+You can download the Azure mobile app today for free from the [Apple App Store](https://aka.ms/azureapp/ios/doc) or [Google Play](https://aka.ms/azureapp/android/doc).
 
 ## Next steps
 
