@@ -77,12 +77,7 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
     If the agent fails to start after setup is finished, check the logs for detailed error information. The log directory is *%ProgramData%\AzureConnectedMachineAgent\log*.
 
-2. If the machine needs to communicate through a proxy server, to set the proxy server environment variable, run the following command:
-
-    **Parameters**
-
-    - `{proxy-url}` (string, example: `proxy.example.com`)
-    - `{proxy-port}` (int, example: `8080`)
+2. If the machine needs to communicate through a proxy server, set the proxy server environment variable by running the following command. Replace `{proxy-url}` with your proxy server address (for example, `proxy.example.com`) and `{proxy-port}` with the port number (for example, `8080`).
 
     ```powershell
     [Environment]::SetEnvironmentVariable("https_proxy", "http://{proxy-url}:{proxy-port}", "Machine")
