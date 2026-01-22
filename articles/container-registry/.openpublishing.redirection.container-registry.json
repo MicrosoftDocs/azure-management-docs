@@ -225,6 +225,11 @@
       "redirect_url": "/azure/container-registry/quickstart-create-connected-registry",
       "redirect_document_id": false
     },
+        {
+      "source_path_from_root": "/articles/container-registry/connected-registry-glossary.md",
+      "redirect_url": "/azure/container-registry/intro-connected-registry",
+      "redirect_document_id": true
+    },
     {
       "source_path_from_root": "/articles/container-registry/container-registry-tutorial-github-sign-notation-trusted-signing.md",
       "redirect_url": "/azure/container-registry/container-registry-tutorial-github-sign-notation-artifact-signing",

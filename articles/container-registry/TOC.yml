@@ -399,11 +399,6 @@
     href: troubleshoot-artifact-cache.md
   - name: Troubleshoot Continuous Patching
     href: troubleshoot-continuous-patching.md
-- name: Glossary
-  expanded: false
-  items:
-  - name: Glossary for Connected registry with Azure Arc
-    href: connected-registry-glossary.md
 - name: Resources
   expanded: false
   items:

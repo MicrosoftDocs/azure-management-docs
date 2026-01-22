@@ -13,18 +13,13 @@ ms.custom: references_regions
 
 In this article, you learn about the *connected registry* feature of [Azure Container Registry](container-registry-intro.md). A connected registry is an on-premises or remote replica that synchronizes container images with your cloud-based Azure container registry. Use a connected registry to help speed-up access to registry artifacts on-premises or remote.
 
-### Billing
+## Pricing and availability
 
->[!IMPORTANT]
-> There are **important recent changes** to the connected registry billing which began on August 1, 2025. The pricing calculator is being updated to reflect this change as well. 
-
-- A monthly price of $10 will apply for each connected registry deployed on or after August 1, 2025.
-- This price represents Microsoft's commitment to deliver high-quality services and product support.
-- This cost applies to the Azure subscription that is associated with the parent registry.
-
-## Available regions
+The connected registry feature is currently available only for the **Premium** [service tier](container-registry-skus.md) (SKU).
 
 A connected registry can be deployed in any region where Azure Container Registry is available.
+
+There are **important recent changes** to the connected registry billing which began on August 1, 2025, including a monthly charge applied to the Azure subscription associated with the parent registry. For more information, see [Azure Container Registry pricing](https://azure.microsoft.com/pricing/details/container-registry/).
 
 ## Scenarios
 
@@ -85,7 +80,9 @@ Each connected registry also needs to regularly communicate with its parent regi
 
 For more information, see [Manage access to a connected registry][overview-connected-registry-access].
 
-## Limitations
+## Current limitations
+
+When using connected registries, be aware of the following limitations:
 
 - Number of tokens and scope maps is [limited](container-registry-skus.md) to 20,000 each for a single container registry. This indirectly limits the number of connected registries for a cloud registry, because every Connected registry needs a sync and client token.
 - Number of repository permissions in a scope map is limited to 500.
@@ -104,11 +101,3 @@ For more information, see [Manage access to a connected registry][overview-conne
     - `minSyncWindow` is 1 hr
     - `maxSyncWindow` is seven days
 
-## Conclusion
-
-In this article, you learned about the connected registry and some basic concepts. To learn more about specific scenarios where connected registry can be utilized, continue into one of the following articles.
-
-> [!div class="nextstepaction"]
-<!-- LINKS - internal -->
-[overview-connected-registry-access]:overview-connected-registry-access.md
-[non-Microsoft Entra token-based repository permissions]: container-registry-token-based-repository-permissions.md
