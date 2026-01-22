@@ -88,6 +88,8 @@
       items:
       - name: About connected registry
         href: intro-connected-registry.md
+      - name: Access to connected registry
+        href: overview-connected-registry-access.md
       - name: Create connected registry
         href: quickstart-create-connected-registry.md
       - name: Deploy connected registry to Azure Arc
@@ -96,12 +98,10 @@
         href: tutorial-connected-registry-arc.md
       - name: Sync Connected registry with Azure Arc
         href: tutorial-connected-registry-sync.md
-      - name: Troubleshoot Connected registry with Azure Arc
-        href: troubleshoot-connected-registry-arc.md
-      - name: Access to connected registry
-        href: overview-connected-registry-access.md
       - name: Pull image from connected registry
         href: pull-images-from-connected-registry.md
+      - name: Troubleshoot Connected registry
+        href: troubleshoot-connected-registry-arc.md
     - name: Artifact streaming
       href: container-registry-artifact-streaming.md
     - name: Geo-replication
