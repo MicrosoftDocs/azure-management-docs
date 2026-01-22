@@ -28,7 +28,7 @@ Begin by onboarding a subset of your servers to Azure Arc to establish a baselin
 **Verification:** Selected servers are visible in Azure as Arc-enabled servers and report a healthy connection status.
 <!-- Added one-line expected outcome as requested. -->
 
-As part of your onboarding, consider how to organize these resources in Azure to support management at scale.
+As part of your onboarding plan, consider how to organize these resources in Azure to support management at scale.
 <!-- Minor transition added to connect procedure to next guidance. -->
 
 **Examples of resource organization considerations:**
