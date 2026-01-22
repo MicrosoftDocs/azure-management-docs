@@ -197,19 +197,3 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 - Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
 
 - Learn how to manage your machine using [Azure Policy](/azure/governance/policy/overview), for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verify the machine is reporting to the expected Log Analytics workspace, enable monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
-
----
-
-### Agent feedback applied
-
-[Agent: mamccrea-test-agent]
-- Added a concise parameter list above the Windows `azcmagent.exe connect` command.
-- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
-- Added a one-line verification step for Windows installation and connection.
-- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
-- Added a concise parameter list above the Linux `azcmagent connect` command.
-- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
-- Added a one-line verification step for Linux installation and connection.
-- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
-- Ensured connect commands are placed immediately after their parameter lists and include concrete example values.
-- ACTION: Place each small code snippet (≤100 tokens) immediately adjacent to the parameter list it demonstrates and include one concrete example value for each placeholder.
