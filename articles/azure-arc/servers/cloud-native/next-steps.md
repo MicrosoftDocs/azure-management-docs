@@ -50,7 +50,7 @@ Adopt Azure services incrementally so your team can build confidence and refine 
 1. Select a single management capability to adopt first, such as patching or compliance reporting.
 2. Enable the chosen Azure service for a limited set of Arc-enabled servers.
 3. Operate the service alongside existing tools to compare results and validate coverage.
-4. Gradually expand usage to additional servers as confidence increases.
+4. Gradually expand usage to other servers as confidence increases.
 <!-- Converted narrative examples into a numbered procedure. -->
 
 **Examples of phased adoption:**
@@ -78,7 +78,7 @@ Once cloud-based processes consistently meet your requirements, you can retire r
 Automation helps reduce manual effort and enforce consistency across your environment.
 <!-- Slight rewrite for active voice. -->
 
-Some ways you can leverage automation with Azure Arc-enabled servers include:
+Some ways to automate your Azure Arc-enabled server management include:
 
 - Using Azure Policy to automatically apply tags when your servers meet specific requirements
 - Scripted onboarding of new servers to Azure Arc
@@ -134,7 +134,7 @@ The [Azure Arc Jumpstart](https://azurearcjumpstart.io/) provides a hybrid sandb
 Prioritize continuous learning and evaluation, even after establishing cloud-based processes.
 <!-- Minor wording adjustment for tone. -->
 
-Regularly review outcomes, optimize configurations, and explore additional Azure services that can extend management capabilities to Arc-enabled servers. Over time, your confidence and efficiency with a cloud-native server management model will continue to grow.
+Regularly review outcomes, optimize configurations, and explore other Azure services that can extend management capabilities to Arc-enabled servers. Over time, your confidence and efficiency with a cloud-native server management model will continue to grow.
 <!-- Combined closing thoughts into a clear concluding paragraph. -->
 
 ---

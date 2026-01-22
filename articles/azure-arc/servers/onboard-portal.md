@@ -69,7 +69,7 @@ For example, run the installation program with the `/?` parameter to review the 
 msiexec.exe /i AzureConnectedMachineAgent.msi /?
 ```
 
-1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder that exist, run the following command.
+1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder, run the following command.
 
     ```dos
     msiexec.exe /i AzureConnectedMachineAgent.msi /qn /l*v "C:\Support\Logs\Azcmagentsetup.log"
