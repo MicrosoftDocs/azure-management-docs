@@ -232,7 +232,7 @@
     },
     {
       "source_path_from_root": "/articles/container-registry/tutorial-connected-registry-upgrade.md",
-      "redirect_url": "/azure/container-registry/tutorial-connected-registry-arc-cli",
+      "redirect_url": "/azure/container-registry/quickstart-connected-registry-arc-cli",
       "redirect_document_id": true
     },
     {
