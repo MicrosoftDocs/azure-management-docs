@@ -101,4 +101,4 @@ Alternately, select the **Chart** view to see the severity of the latest alerts 
 ## Next steps
 
 - Learn more about the [Azure mobile app](overview.md).
-- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/ReferAzureIOSAlertsNotifsMobileAppDocs), [Google Play](https://aka.ms/azureapp/android/doc), or [Amazon App Store](https://aka.ms/azureapp/amazon/doc).
+- Download the Azure mobile app for free from the [Apple App Store](https://aka.ms/ReferAzureIOSAlertsNotifsMobileAppDocs) or [Google Play](https://aka.ms/azureapp/android/doc).
