@@ -226,13 +226,13 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/container-registry/connected-registry-glossary.md",
-      "redirect_url": "/azure/container-registry/intro-connected-registry",
+      "source_path_from_root": "/articles/container-registry/tutorial-connected-registry-upgrade.md",
+      "redirect_url": "/azure/container-registry/quickstart-connected-registry-arc-cli",
       "redirect_document_id": true
     },
     {
-      "source_path_from_root": "/articles/container-registry/tutorial-connected-registry-upgrade.md",
-      "redirect_url": "/azure/container-registry/quickstart-connected-registry-arc-cli",
+      "source_path_from_root": "/articles/container-registry/connected-registry-glossary.md",
+      "redirect_url": "/azure/container-registry/intro-connected-registry",
       "redirect_document_id": true
     },
     {
