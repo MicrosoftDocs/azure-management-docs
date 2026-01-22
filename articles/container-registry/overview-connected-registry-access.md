@@ -1,15 +1,15 @@
 ---
-title: Access Control for Connected Registries in ACR
+title: Manage access to a connected registry
 description: Learn about token-based authentication and authorization for connected registries in Azure Container Registry.
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
-ms.topic: overview
+ms.topic: how-to
 ms.date: 05/20/2025
 # Customer intent: As a developer managing container registries, I want to implement token-based authentication for connected registries so that I can securely control access and synchronization of image artifacts.
 ---
 
-# Understand access to a connected registry
+# Manage access to a connected registry
 
 To access and manage a [connected registry](intro-connected-registry.md), currently only ACR [non-Microsoft Entra tokens](container-registry-token-based-repository-permissions.md) are supported. As shown in the following image, two different types of tokens are used by each connected registry:
 
