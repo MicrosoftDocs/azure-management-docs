@@ -5,7 +5,7 @@ description: This article describes the new features and enhancements supported 
 ms.author: v-gajeronika
 author: Jeronika-MS
 ms.date: 06/10/2025
-ms.topic: article
+ms.topic: whats-new
 ms.service: azure-arc
 ms.subservice: azure-arc-scvmm
 ms.custom:
