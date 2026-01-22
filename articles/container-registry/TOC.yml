@@ -4,12 +4,12 @@
   expanded: true
   items:
   - name: Overview
-    expanded: false
+    expanded: true
     items:
     - name: About Container Registry
       href: container-registry-intro.md
   - name: Quickstarts
-    expanded: true
+    expanded: false
     items:
     - name: Create container registry - CLI
       href: container-registry-get-started-azure-cli.md
@@ -94,11 +94,9 @@
         href: quickstart-connected-registry-arc-cli.md
       - name: Secure and deploy Connected registry Arc extension
         href: tutorial-connected-registry-arc.md
-      - name: Sync Connected registry with Azure arc
+      - name: Sync Connected registry with Azure Arc
         href: tutorial-connected-registry-sync.md
-      - name: Upgrade Connected registry with Azure arc
-        href: tutorial-connected-registry-upgrade.md
-      - name: Troubleshoot Connected registry with Azure arc
+      - name: Troubleshoot Connected registry with Azure Arc
         href: troubleshoot-connected-registry-arc.md
       - name: Access to connected registry
         href: overview-connected-registry-access.md
@@ -284,7 +282,7 @@
     - name: About ACR Tasks
       href: container-registry-tasks-overview.md
   - name: Quickstarts
-    expanded: true
+    expanded: false
     items:
     - name: Build, push, and run image - CLI
       href: container-registry-quickstart-task-cli.md

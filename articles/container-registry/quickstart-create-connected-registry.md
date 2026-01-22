@@ -1,7 +1,7 @@
 ---
-title: Quickstart - Create Connected Registry Using the CLI and Portal
+title: Create a connected registry 
 description: Use Azure CLI commands or Azure portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
-ms.topic: quickstart
+ms.topic: how-to
 ms.date: 05/20/2025
 ms.author: rayoflores
 author: rayoef
@@ -11,9 +11,9 @@ ms.service: azure-container-registry
 # Customer intent: "As a cloud infrastructure engineer, I want to create a connected registry in Azure using the CLI or portal, so that I can synchronize images and artifacts between my local environment and the cloud registry."
 ---
 
-# Quickstart: Create a connected registry using the Azure CLI or Azure portal
+# Create a connected registry
 
-In this quickstart, you use the Azure CLI and Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The connected registry feature of Azure Container Registry allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with the cloud registry. 
+This article shows how to use the Azure CLI or Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The connected registry feature of Azure Container Registry allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with the cloud registry. 
 
 Here you create two connected registry resources for a cloud registry: one connected registry allows read and write (artifact pull and push) functionality and one allows read-only functionality. 
 
@@ -23,14 +23,14 @@ After creating a connected registry, you can follow other guides to deploy and u
 
 #### [Azure portal](#tab/azure-portal)
 
-* Azure Container registry - If you don't already have a container registry, [create one](container-registry-get-started-portal.md) (Premium tier required) in a [region](intro-connected-registry.md#available-regions) that supports connected registries. 
+* Azure Container registry - If you don't already have a container registry, [create one](container-registry-get-started-portal.md) (Premium tier required). 
 
 To import images to the container registry, use the Azure CLI
 [!INCLUDE [Prepare Azure CLI environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
 #### [Azure CLI](#tab/azure-cli)
 
-* Azure Container registry - If you don't already have a container registry, [create one](container-registry-get-started-azure-cli.md) (Premium tier required) in a [region](intro-connected-registry.md#available-regions) that supports connected registries. 
+* Azure Container registry - If you don't already have a container registry, [create one](container-registry-get-started-azure-cli.md) (Premium tier required).
 
 [!INCLUDE [Prepare Azure CLI environment](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 

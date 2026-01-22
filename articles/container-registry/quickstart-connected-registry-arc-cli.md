@@ -139,10 +139,14 @@ By deploying the connected Registry Arc extension, you can synchronize container
 - It ensures secure trust distribution between the connected registry and all client nodes within the cluster, and installs the cert-manager service for Transport Layer Security (TLS) encryption.
 - The clusterIP must be from the AKS cluster subnet IP range. The `service.clusterIP` parameter specifies the IP address of the connected registry service within the cluster. It's essential to set the `service.clusterIP` within the range of valid service IPs for the Kubernetescluster. Ensure that the IP address specified for `service.clusterIP` falls within the designated service IP range defined during the cluster's initial configuration, typically found in the cluster's networking settings. If the `service.clusterIP` isn't within this range, it must be updated to an IP address that is both within the valid range and not currently in use by another service.
 
+> [!TIP]
+> To deploy a specific version of the connected registry extension, include the `--version <version number>` parameter in your [az-k8s-extension-create][az-k8s-extension-create] command.
+>
+> To enable automatic upgrades for the connected registry extension, include the `--auto-upgrade-minor-version true` parameter in your [az-k8s-extension-create][az-k8s-extension-create] command. This parameter automatically upgrades the extension to the latest version whenever a new version is available.
 
 ### Verify the connected registry extension deployment
 
-To verify the deployment of the connected registry extension on the Arc-enabled Kubernetescluster, follow the steps:
+To verify the deployment of the connected registry extension in the Arc-enabled Kubernetes cluster, follow the steps:
 
 1. Verify the deployment status
 
@@ -284,6 +288,54 @@ kubectl create secret docker-registry regcred --docker-server=192.100.100.1 --do
               image: 192.100.100.1/hello-world:latest
     EOF
     ``` 
+
+## Upgrade the connected registry extension
+
+To enable automatic upgrades for the connected registry extension, edit the [az-k8s-extension-create][az-k8s-extension-create] command and include the `--auto-upgrade-minor-version true` parameter. This parameter automatically upgrades the extension to the latest version whenever a new version is available.
+
+```azurecli
+    az k8s-extension create --cluster-name myarck8scluster \ 
+    --cluster-type connectedClusters \
+    --extension-type Microsoft.ContainerRegistry.ConnectedRegistry \
+    --name myconnectedregistry \
+    --resource-group myresourcegroup \ 
+    --config service.clusterIP=192.100.100.1 \ 
+    --config-protected-file protected-settings-extension.json \  
+    --auto-upgrade-minor-version true
+```
+
+## Deploy the connected registry extension with auto roll back enabled
+
+> [!IMPORTANT]
+> When a customer pins to a specific version, the extension does not auto-rollback. Auto-rollback will only occur if the--auto-upgrade-minor-version flag is set to true.
+
+Follow the [quickstart][quickstart] to edit the [az k8s-extension update] command and add --version with your desired version. This example uses version 0.6.0. This parameter updates the extension version to the desired pinned version. 
+
+```azurecli
+    az k8s-extension update --cluster-name myarck8scluster \ 
+    --cluster-type connectedClusters \ 
+    --extension-type  Microsoft.ContainerRegistry.ConnectedRegistry \ 
+    --name myconnectedregistry \ 
+    --resource-group myresourcegroup \ 
+    --config service.clusterIP=192.100.100.1 \
+    --config-protected-file <JSON file path> \
+    --auto-upgrade-minor-version true \
+    --version 0.6.0 
+```
+
+## Deploy the connected registry extension using manual upgrade steps
+
+Follow the [quickstart][quickstart] to edit the [az-k8s-extension-update][az-k8s-extension-update] command and add--version with your desired version. This example uses version 0.6.1. This parameter upgrades the extension version to 0.6.1. 
+
+```azurecli
+    az k8s-extension update --cluster-name myarck8scluster \ 
+    --cluster-type connectedClusters \ 
+    --name myconnectedregistry \ 
+    --resource-group myresourcegroup \ 
+    --config service.clusterIP=192.100.100.1 \
+    --auto-upgrade-minor-version false \
+    --version 0.6.1 
+```
 
 ## Clean up resources
 
