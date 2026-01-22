@@ -49,7 +49,7 @@ Use the Azure portal to create a script that automates the agent download and in
 
 1. On the **Download and run script** page, review the summary information, and then select **Download**. If you still need to make changes, select **Previous**.
 
-## Install and validate the agent on Windows
+## Install the agent on Windows
 
 ### Install manually
 
@@ -69,7 +69,7 @@ For example, run the installation program with the `/?` parameter to review the 
 msiexec.exe /i AzureConnectedMachineAgent.msi /?
 ```
 
-1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder that exist, run the following command.
+1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder, run the following command.
 
     ```dos
     msiexec.exe /i AzureConnectedMachineAgent.msi /qn /l*v "C:\Support\Logs\Azcmagentsetup.log"
@@ -77,10 +77,10 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
     If the agent fails to start after setup is finished, check the logs for detailed error information. The log directory is *%ProgramData%\AzureConnectedMachineAgent\log*.
 
-2. If the machine needs to communicate through a proxy server, to set the proxy server environment variable, run the following command:
+2. If the machine needs to communicate through a proxy server, set the proxy server environment variable by running the following command. Replace `{proxy-url}` with your proxy server address (for example, `proxy.example.com`) and `{proxy-port}` with the port number (for example, `8080`).
 
     ```powershell
-    [Environment]::SetEnvironmentVariable("https_proxy", "http://proxy.contoso.com:8080", "Machine")
+    [Environment]::SetEnvironmentVariable("https_proxy", "http://{proxy-url}:{proxy-port}", "Machine")
     $env:https_proxy = [System.Environment]::GetEnvironmentVariable("https_proxy","Machine")
     # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
     Restart-Service -Name himds
@@ -95,31 +95,22 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
 3. After installing the agent, configure it to communicate with the Azure Arc service.
 
-    **Connection parameters**
+    **Parameters**
 
-    | Parameter | Example value |
-    |----------|---------------|
-    | `--resource-group` | `rg-arc-prod` |
-    | `--tenant-id` | `11111111-2222-3333-4444-555555555555` |
-    | `--subscription-id` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` |
-    | `--location` | `eastus` |
-    | `--cloud` | `AzureCloud` |
-    | `--proxy` | `http://proxy.contoso.com:8080` |
+    - `--resource-group` (string, example: `myResourceGroup`)
+    - `--tenant-id` (string, example: `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+    - `--subscription-id` (string, example: `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`)
+    - `--location` (string, example: `eastus`)
+    - `--cloud` (string, example: `AzureCloud`)
+    - `--proxy` (string, example: `http://proxy.example.com:8080`)
 
     <!-- Explanation: Added a concise parameter table immediately above the Windows connect command per agent feedback. -->
 
     ```dos
-    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "rg-arc-prod" --tenant-id "11111111-2222-3333-4444-555555555555" --location "eastus" --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "myResourceGroup" --tenant-id "aaaabbbb-0000-cccc-1111-dddd2222eeee" --location "eastus" --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     ```
     <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
 
-    **Verify the Windows connection**
-
-    ```powershell
-    azcmagent show
-    ```
-    Expected output includes `Status : Connected`. Then confirm the machine appears in the Azure portal under **Azure Arc | Machines**.
-    <!-- Explanation: Added a one-line verification step with a copy-paste command, expected output, and portal confirmation. -->
 
 ### Install with the scripted method
 
@@ -135,7 +126,7 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
 If the agent fails to start after setup is finished, check the logs for detailed error information. The log directory is *%ProgramData%\AzureConnectedMachineAgent\log*.
 
-## Install and validate the agent on Linux
+## Install the agent on Linux
 
 The Connected Machine agent for Linux is provided in the preferred package format for the distribution (.RPM or .DEB) that's hosted in the Microsoft [package repository](https://packages.microsoft.com/). The [shell script bundle `Install_linux_azcmagent.sh`](https://aka.ms/azcmagent) performs the following actions:
 
@@ -169,31 +160,21 @@ bash ~/Install_linux_azcmagent.sh
 
 2. After installing the agent, configure it to communicate with the Azure Arc service.
 
-    **Connection parameters**
+    **Parameters**
 
-    | Parameter | Example value |
-    |----------|---------------|
-    | `--resource-group` | `rg-arc-prod` |
-    | `--tenant-id` | `11111111-2222-3333-4444-555555555555` |
-    | `--subscription-id` | `aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee` |
-    | `--location` | `eastus` |
-    | `--cloud` | `AzureCloud` |
-    | `--proxy` | `proxy.contoso.com:8080` |
+    - `--resource-group` (string, example: `myResourceGroup`)
+    - `--tenant-id` (string, example: `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+    - `--subscription-id` (string, example: `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`)
+    - `--location` (string, example: `eastus`)
+    - `--cloud` (string, example: `AzureCloud`)
+    - `--proxy` (string, example: `http://proxy.example.com:8080`)
 
     <!-- Explanation: Added a concise parameter table immediately above the Linux connect command per agent feedback. -->
 
     ```bash
-    azcmagent connect --resource-group "rg-arc-prod" --tenant-id "11111111-2222-3333-4444-555555555555" --location "eastus" --subscription-id "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee" --cloud "AzureCloud"
+    azcmagent connect --resource-group "myResourceGroup" --tenant-id "aaaabbbb-0000-cccc-1111-dddd2222eeee" --location "eastus" --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e" --cloud "AzureCloud"
     ```
     <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
-
-    **Verify the Linux connection**
-
-    ```bash
-    azcmagent show
-    ```
-    Expected output includes `Status: Connected`. Then confirm the machine appears in the Azure portal under **Azure Arc | Machines**.
-    <!-- Explanation: Added a one-line verification step with a copy-paste command, expected output, and portal confirmation. -->
 
 ### Install with the scripted method
 
@@ -205,7 +186,7 @@ If the agent fails to start after setup is finished, check the logs for detailed
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected..
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected.
 
 :::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
@@ -216,19 +197,3 @@ After you install the agent and configure it to connect to Azure Arc-enabled ser
 - Review the [Planning and deployment guide](plan-at-scale-deployment.md) to plan for deploying Azure Arc-enabled servers at any scale and implement centralized management and monitoring.
 
 - Learn how to manage your machine using [Azure Policy](/azure/governance/policy/overview), for such things as VM [guest configuration](/azure/governance/machine-configuration/overview), verify the machine is reporting to the expected Log Analytics workspace, enable monitoring with [VM insights](/azure/azure-monitor/vm/vminsights-enable-policy), and much more.
-
----
-
-### Agent feedback applied
-
-[Agent: mamccrea-test-agent]
-- Added a concise parameter list above the Windows `azcmagent.exe connect` command.
-- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
-- Added a one-line verification step for Windows installation and connection.
-- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
-- Added a concise parameter list above the Linux `azcmagent connect` command.
-- ACTION: Convert the connection parameters (resource-group, tenant-id, subscription-id, location, cloud, proxy) into a concise parameter list or two-column table placed immediately above each connect command.
-- Added a one-line verification step for Linux installation and connection.
-- ACTION: Add a one-line verification step after each install/connect procedure showing a copy-paste command and its expected short output and also state the portal confirmation step.
-- Ensured connect commands are placed immediately after their parameter lists and include concrete example values.
-- ACTION: Place each small code snippet (≤100 tokens) immediately adjacent to the parameter list it demonstrates and include one concrete example value for each placeholder.
