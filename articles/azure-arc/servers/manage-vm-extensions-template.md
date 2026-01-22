@@ -11,15 +11,15 @@ ms.custom:
 
 # Enable Azure VM extensions by using an ARM template
 
-This article shows you how to use an Azure Resource Manager template (ARM template) to deploy [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers.
+This article shows you how to use an Azure Resource Manager template (ARM template) to deploy [virtual machine (VM) extensions](manage-vm-extensions.md) to Azure Arc-enabled servers (Arc-enabled machines).
 
-To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows connected machines by using Azure PowerShell.
+To deploy extensions to Arc-enabled servers with an ARM template, you add extensions to the template and execute them with the template deployment. You can deploy the extensions on Linux or Windows machines connected to Azure Arc by using Azure PowerShell.
 
 This article shows how to deploy several different VM extensions to an Arc-enabled server by using a template file, along with a separate parameter file for some extensions. Replace the example values in the samples with your own values before deploying.
 
 ## Deployment commands
 
-These sample PowerShell commands install an extension on all the connected machines within a resource group, based on the information in your ARM template. The command uses the `TemplateFile` parameter to specify the template. If a parameters file is required, the `TemplateParameterFile` parameter is included to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
+These sample PowerShell commands install an extension on all the connected Arc-enabled servers within a resource group, based on the information in your ARM template. The command uses the `TemplateFile` parameter to specify the template. If a parameters file is required, the `TemplateParameterFile` parameter is included to specify a file that contains parameters and parameter values. Replace the placeholders with the appropriate values for your deployment.
 
 To deploy an ARM template and parameter file, use the following command, replacing the example values with your own:
 
@@ -30,26 +30,37 @@ New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -Templa
 For example:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\AzureMonitorAgent.json" -TemplateParameterFile "D:\Azure\Templates\AzureMonitorAgentParms.json"
+New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\AzureMonitorAgent.json" -TemplateParameterFile "D:\Azure\Templates\AzureMonitorAgentParams.json"
 ```
 
 To deploy an ARM template without a parameter file, use the following command, replacing the example values with your own:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>>"
+New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "<template-filename.json>"
 ```
 
 For example:
 
 ```powershell
-New-AzResourceGroupDeployment -ResourceGroupName "<ContosoEngineering>" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
+New-AzResourceGroupDeployment -ResourceGroupName "ContosoEngineering" -TemplateFile "D:\Azure\Templates\DependencyAgent.json"
 ```
 
 ## Deploy the Azure Monitor Agent VM extension
 
-To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview), use one of the following sample templates to install the agent on either Linux or Windows.
+To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview) to an Arc-enabled server, use one of the following sample templates to install the agent on either Linux or Windows.
 
-### Azure Monitor Agent template file for Linux
+> **Resource type**
+>
+> All Arc-enabled server VM extensions use the resource type `Microsoft.HybridCompute/machines/extensions` (mapped from the Azure VM extension resource type).
+
+### Azure Monitor Agent template file for Linux (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `workspaceId` (string, example: Log Analytics workspace ID)
+- `workspaceKey` (string, example: Log Analytics primary key)
 
 ```json
 {
@@ -72,9 +83,9 @@ To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-ag
     "resources": [
         {
             "name": "[concat(parameters('vmName'),'/AzureMonitorLinuxAgent')]",
-            "type": "Microsoft.Compute/machines/extensions",
+            "type": "Microsoft.HybridCompute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2021-11-01",
+            "apiVersion": "2025-06-01",
             "properties": {
                 "publisher": "Microsoft.Azure.Monitor",
                 "type": "AzureMonitorLinuxAgent",
@@ -91,7 +102,14 @@ To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-ag
 }
 ```
 
-### Azure Monitor Agent template file for Windows
+### Azure Monitor Agent template file for Windows (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `workspaceId` (string, example: Log Analytics workspace ID)
+- `workspaceKey` (string, example: Log Analytics primary key)
 
 ```json
 {
@@ -114,9 +132,9 @@ To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-ag
     "resources": [
         {
             "name": "[concat(parameters('vmName'),'/AzureMonitorWindowsAgent')]",
-            "type": "Microsoft.Compute/machines/extensions",
+            "type": "Microsoft.HybridCompute/machines/extensions",
             "location": "[parameters('location')]",
-            "apiVersion": "2021-11-01",
+            "apiVersion": "2025-06-01",
             "properties": {
                 "publisher": "Microsoft.Azure.Monitor",
                 "type": "AzureMonitorWindowsAgent",
@@ -134,7 +152,7 @@ To deploy the [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-ag
 }
 ```
 
-### Azure Monitor Agent parameter file
+### Azure Monitor Agent parameter file (Arc-enabled server)
 
 This parameter file can be used for both Linux and Windows.
 
@@ -159,19 +177,29 @@ This parameter file can be used for both Linux and Windows.
 }
 ```
 
-Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Azure Monitor Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
+Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment.
+
+### Deploy Azure Monitor Agent
+
+1. **Prerequisites**: Arc-enabled server is connected and a Log Analytics workspace exists.
+2. **Deploy**:
+   ```powershell
+   New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "AzureMonitorAgent.json" -TemplateParameterFile "AzureMonitorAgentParams.json"
+   ```
+3. **Verify**: In the Azure portal, confirm the extension status is **Succeeded** on the Arc-enabled server.
 
 ## Deploy the Custom Script Extension
 
-To use the Custom Script Extension, deploy one of the following sample templates for Linux and Windows. For information about the Custom Script Extension, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows). There are a few differing characteristics that you should understand when you're using this extension with hybrid machines:
+To use the Custom Script Extension on an Arc-enabled server, deploy one of the following sample templates for Linux or Windows. For more information, see [Custom Script Extension for Linux](/azure/virtual-machines/extensions/custom-script-linux) or [Custom Script Extension for Windows](/azure/virtual-machines/extensions/custom-script-windows).
 
-- The list of supported operating systems with the Azure VM Custom Script Extension doesn't apply to Azure Arc-enabled servers. See the [list of supported operating systems for Azure Arc-enabled servers](prerequisites.md#supported-operating-systems).
-- Configuration details regarding Azure virtual machine scale sets or VMs created through the classic deployment model aren't applicable.
-- If your machines need to download a script externally and can communicate only through a proxy server, you need to [configure the Connected Machine agent](manage-agent.md#update-or-remove-proxy-settings) to set the proxy server's environmental variable.
+### Custom script extension template file for Linux (Arc-enabled server)
 
-The Custom Script Extension configuration specifies things like script location and the command to be run. This configuration is specified in the following templates.
+**Parameters**
 
-### Custom script extension template file for Linux
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `fileUris` (array, example: script URLs)
+- `commandToExecute` (securestring, example: `sh script.sh`)
 
 ```json
 {
@@ -196,7 +224,7 @@ The Custom Script Extension configuration specifies things like script location 
       "name": "[concat(parameters('vmName'),'/CustomScript')]",
       "type": "Microsoft.HybridCompute/machines/extensions",
       "location": "[parameters('location')]",
-      "apiVersion": "2022-03-10",
+      "apiVersion": "2025-06-01",
       "properties": {
         "publisher": "Microsoft.Azure.Extensions",
         "type": "CustomScript",
@@ -212,7 +240,14 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Custom script template file for Windows
+### Custom script template file for Windows (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `fileUris` (string, example: script URL)
+- `arguments` (securestring, optional, example: `-Param1 Value1`)
 
 ```json
 {
@@ -261,67 +296,23 @@ The Custom Script Extension configuration specifies things like script location 
 }
 ```
 
-### Custom script parameter file
+### Deploy Custom Script Extension
 
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/0.1.2-preview/CreateUIDefinition.MultiVm.json#",
-  "handler": "Microsoft.Azure.CreateUIDef",
-  "version": "0.1.2-preview",
-  "parameters": {
-    "basics": [
-      {}
-    ],
-    "steps": [
-      {
-        "name": "customScriptExt",
-        "label": "Add Custom Script Extension",
-        "elements": [
-          {
-            "name": "fileUris",
-            "type": "Microsoft.Common.FileUpload",
-            "label": "Script files",
-            "toolTip": "The script files that will be downloaded to the virtual machine.",
-            "constraints": {
-              "required": false
-            },
-            "options": {
-              "multiple": true,
-              "uploadMode": "url"
-            },
-            "visible": true
-          },
-          {
-            "name": "commandToExecute",
-            "type": "Microsoft.Common.TextBox",
-            "label": "Command",
-            "defaultValue": "sh script.sh",
-            "toolTip": "The command to execute, for example: sh script.sh",
-            "constraints": {
-              "required": true
-            },
-            "visible": true
-          }
-        ]
-      }
-    ],
-    "outputs": {
-      "vmName": "[vmName()]",
-      "location": "[location()]",
-      "fileUris": "[steps('customScriptExt').fileUris]",
-      "commandToExecute": "[steps('customScriptExt').commandToExecute]"
-    }
-  }
-}
-```
-
-Save the template and parameter file, and edit the parameter file with the appropriate values for your deployment. Then install the Custom Script extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
+1. **Prerequisites**: Script files accessible from the Arc-enabled server.
+2. **Deploy**:
+   ```powershell
+   New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "CustomScript.json"
+   ```
 
 ## Deploy the Dependency Agent extension
 
-To use the Azure Monitor Dependency Agent extension, run one of the following samples for Linux and Windows. For more information about the Dependency Agent, see [Overview of Azure Monitor agents](/azure/azure-monitor/vm/vminsights-dependency-agent-maintenance).
+Use the following templates to deploy the Dependency Agent to an Arc-enabled Linux or Windows machine.
 
-### Dependency Agent template file for Linux
+### Dependency Agent template file for Linux (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
 
 ```json
 {
@@ -329,33 +320,30 @@ To use the Azure Monitor Dependency Agent extension, run one of the following sa
   "contentVersion": "1.0.0.0",
   "parameters": {
     "vmName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of existing Linux machine."
-      }
+      "type": "string"
     }
   },
   "resources": [
     {
       "type": "Microsoft.HybridCompute/machines/extensions",
       "name": "[concat(parameters('vmName'),'/DAExtension')]",
-      "apiVersion": "2022-03-10",
+      "apiVersion": "2025-06-01",
       "location": "[resourceGroup().location]",
-      "dependsOn": [
-      ],
       "properties": {
         "publisher": "Microsoft.Azure.Monitoring.DependencyAgent",
         "type": "DependencyAgentLinux",
         "enableAutomaticUpgrade": true
       }
     }
-  ],
-  "outputs": {
-  }
+  ]
 }
 ```
 
-### Dependency Agent template file for Windows
+### Dependency Agent template file for Windows (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
 
 ```json
 {
@@ -389,13 +377,32 @@ To use the Azure Monitor Dependency Agent extension, run one of the following sa
 }
 ```
 
-Save the template, then install the Dependency Agent extension to your connected machines by running the [PowerShell deployment command](#deployment-commands) found earlier in this article.
+### Deploy Dependency Agent
+
+1. **Prerequisites**: Azure Monitor enabled for the Arc-enabled server.
+2. **Deploy**:
+   ```powershell
+   New-AzResourceGroupDeployment -ResourceGroupName "<resource-group-name>" -TemplateFile "DependencyAgent.json"
+   ```
+3. **Verify**: In the Azure portal, confirm the extension status is **Succeeded** on the Arc-enabled server.
 
 ## Deploy the Azure Key Vault extension
 
 The following JSON shows the schema for the Azure Key Vault extension. This extension doesn't require protected settings, because all its settings are considered public information. The extension requires a list of monitored certificates, the polling frequency, and the destination certificate store.
 
-### Azure Key Vault template file for Linux
+### Azure Key Vault template file for Linux (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `autoUpgradeMinorVersion` (bool, example: `true`)
+- `pollingIntervalInS` (int, example: `3600`)
+- `certificateStoreName` (string, ignored on Linux)
+- `certificateStoreLocation` (string, example: `/var/lib/waagent/Microsoft.Azure.KeyVault`)
+- `observedCertificates` (string, example: Key Vault certificate URI)
+- `msiEndpoint` (string, example: `http://localhost:40342/metadata/identity`)
+- `msiClientId` (string, example: managed identity client ID)
 
 ```json
 {
@@ -457,7 +464,21 @@ The following JSON shows the schema for the Azure Key Vault extension. This exte
 }
 ```
 
-### Azure Key Vault template file for Windows
+### Azure Key Vault template file for Windows (Arc-enabled server)
+
+**Parameters**
+
+- `vmName` (string, example: `myArcMachine`)
+- `location` (string, example: `eastus`)
+- `autoUpgradeMinorVersion` (bool, example: `true`)
+- `pollingIntervalInS` (int, example: `3600`)
+- `certificateStoreName` (string, example: `MY`)
+- `linkOnRenewal` (bool, example: `false`)
+- `certificateStoreLocation` (string, example: `LocalMachine`)
+- `requireInitialSync` (bool, example: `true`)
+- `observedCertificates` (string, example: Key Vault certificate URI)
+- `msiEndpoint` (string, example: `http://localhost:40342/metadata/identity`)
+- `msiClientId` (string, example: managed identity client ID)
 
 ```json
 {

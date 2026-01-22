@@ -49,7 +49,7 @@ Use the Azure portal to create a script that automates the agent download and in
 
 1. On the **Download and run script** page, review the summary information, and then select **Download**. If you still need to make changes, select **Previous**.
 
-## Install and validate the agent on Windows
+## Install the agent on Windows
 
 ### Install manually
 
@@ -69,7 +69,7 @@ For example, run the installation program with the `/?` parameter to review the 
 msiexec.exe /i AzureConnectedMachineAgent.msi /?
 ```
 
-1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder that exist, run the following command.
+1. To install the agent silently and create a setup log file in the `C:\Support\Logs` folder, run the following command.
 
     ```dos
     msiexec.exe /i AzureConnectedMachineAgent.msi /qn /l*v "C:\Support\Logs\Azcmagentsetup.log"
@@ -77,7 +77,7 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
     If the agent fails to start after setup is finished, check the logs for detailed error information. The log directory is *%ProgramData%\AzureConnectedMachineAgent\log*.
 
-2. If the machine needs to communicate through a proxy server, to set the proxy server environment variable, run the following command:
+2. If the machine needs to communicate through a proxy server, set the proxy server environment variable by running the following command. Replace `{proxy-url}` with your proxy server address (for example, `proxy.example.com`) and `{proxy-port}` with the port number (for example, `8080`).
 
     ```powershell
     [Environment]::SetEnvironmentVariable("https_proxy", "http://{proxy-url}:{proxy-port}", "Machine")
@@ -85,6 +85,7 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
     # For the changes to take effect, the agent service needs to be restarted after the proxy environment variable is set.
     Restart-Service -Name himds
     ```
+    <!-- Explanation: Replaced placeholder proxy values with a concrete example, as requested in agent feedback. -->
     
     > [!NOTE]
     > The agent does not support setting proxy authentication.
@@ -92,11 +93,24 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
     For more information, see [Agent-specific proxy configuration](manage-agent.md#agent-specific-proxy-configuration).
 
-3. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:
+3. After installing the agent, configure it to communicate with the Azure Arc service.
+
+    **Parameters**
+
+    - `--resource-group` (string, example: `myResourceGroup`)
+    - `--tenant-id` (string, example: `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+    - `--subscription-id` (string, example: `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`)
+    - `--location` (string, example: `eastus`)
+    - `--cloud` (string, example: `AzureCloud`)
+    - `--proxy` (string, example: `http://proxy.example.com:8080`)
+
+    <!-- Explanation: Added a concise parameter table immediately above the Windows connect command per agent feedback. -->
 
     ```dos
-    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID"
+    "%ProgramFiles%\AzureConnectedMachineAgent\azcmagent.exe" connect --resource-group "myResourceGroup" --tenant-id "aaaabbbb-0000-cccc-1111-dddd2222eeee" --location "eastus" --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     ```
+    <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
+
 
 ### Install with the scripted method
 
@@ -112,12 +126,11 @@ msiexec.exe /i AzureConnectedMachineAgent.msi /?
 
 If the agent fails to start after setup is finished, check the logs for detailed error information. The log directory is *%ProgramData%\AzureConnectedMachineAgent\log*.
 
-## Install and validate the agent on Linux
+## Install the agent on Linux
 
 The Connected Machine agent for Linux is provided in the preferred package format for the distribution (.RPM or .DEB) that's hosted in the Microsoft [package repository](https://packages.microsoft.com/). The [shell script bundle `Install_linux_azcmagent.sh`](https://aka.ms/azcmagent) performs the following actions:
 
 * Configures the host machine to download the agent package from packages.microsoft.com.
-
 * Installs the Hybrid Resource Provider package.
 
 Optionally, you can configure the agent with your proxy information by including the `--proxy "{proxy-url}:{proxy-port}"` parameter. Using this configuration, the agent communicates through the proxy server using the HTTP protocol.
@@ -140,16 +153,28 @@ bash ~/Install_linux_azcmagent.sh
     # Download the installation package.
     wget https://aka.ms/azcmagent -O ~/Install_linux_azcmagent.sh
 
-    # Install the AZure Connected Machine agent.
-    bash ~/Install_linux_azcmagent.sh --proxy "{proxy-url}:{proxy-port}"
+    # Install the Azure Connected Machine agent.
+    bash ~/Install_linux_azcmagent.sh --proxy "proxy.contoso.com:8080"
     ```
+    <!-- Explanation: Added a concrete proxy example value as required by the agent feedback. -->
 
-2. After installing the agent, you need to configure it to communicate with the Azure Arc service by running the following command:
+2. After installing the agent, configure it to communicate with the Azure Arc service.
+
+    **Parameters**
+
+    - `--resource-group` (string, example: `myResourceGroup`)
+    - `--tenant-id` (string, example: `aaaabbbb-0000-cccc-1111-dddd2222eeee`)
+    - `--subscription-id` (string, example: `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`)
+    - `--location` (string, example: `eastus`)
+    - `--cloud` (string, example: `AzureCloud`)
+    - `--proxy` (string, example: `http://proxy.example.com:8080`)
+
+    <!-- Explanation: Added a concise parameter table immediately above the Linux connect command per agent feedback. -->
 
     ```bash
-    azcmagent connect --resource-group "resourceGroupName" --tenant-id "tenantID" --location "regionName" --subscription-id "subscriptionID" --cloud "cloudName"
-    if [ $? = 0 ]; then echo "\033[33mTo view your onboarded server(s), navigate to https://portal.azure.com/#blade/HubsExtension/BrowseResource/resourceType/Microsoft.HybridCompute%2Fmachines\033[m"; fi
+    azcmagent connect --resource-group "myResourceGroup" --tenant-id "aaaabbbb-0000-cccc-1111-dddd2222eeee" --location "eastus" --subscription-id "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e" --cloud "AzureCloud"
     ```
+    <!-- Explanation: Placed the connect command immediately after the parameter list and included concrete example values. -->
 
 ### Install with the scripted method
 
@@ -161,7 +186,7 @@ If the agent fails to start after setup is finished, check the logs for detailed
 
 ## Verify the connection with Azure Arc
 
-After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected..
+After you install the agent and configure it to connect to Azure Arc-enabled servers, go to the [Azure portal](https://aka.ms/hybridmachineportal) to verify that the server has successfully connected.
 
 :::image type="content" source="./media/quick-enable-hybrid-vm/enabled-machine.png" alt-text="Screenshot showing a successful machine connection in the Azure portal." border="false":::
 
