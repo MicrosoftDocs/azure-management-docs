@@ -1,8 +1,8 @@
 ---
-title: Create a connected registry 
+title: Create a connected registry for your Azure Container Registry
 description: Use Azure CLI commands or Azure portal to create a connected Azure container registry resource that can synchronize images and other artifacts with the cloud registry.
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 01/23/2026
 ms.author: rayoflores
 author: rayoef
 ms.custom: mode-api, devx-track-azurecli
@@ -11,7 +11,7 @@ ms.service: azure-container-registry
 # Customer intent: "As a cloud infrastructure engineer, I want to create a connected registry in Azure using the CLI or portal, so that I can synchronize images and artifacts between my local environment and the cloud registry."
 ---
 
-# Create a connected registry
+# Create a connected registry for your Azure Container Registry
 
 This article shows how to use the Azure CLI or Azure portal to create a [connected registry](intro-connected-registry.md) resource in Azure. The [connected registry feature of Azure Container Registry](intro-connected-registry.md) allows you to deploy a registry remotely or on your premises and synchronize images and other artifacts with a cloud=based Azure container registry.
 
