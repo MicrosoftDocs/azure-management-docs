@@ -1,6 +1,6 @@
 ---
 title: "Deploy the Connected Registry Arc Extension"
-description: "Learn how to deploy the Connected Registry Arc Extension CLI UX with secure-by-default settings for efficient and secure container workload operations."
+description: "Learn how to deploy the connected registry extension to an Arc-enabled Kubernetes cluster using Azure CLI with secure-by-default settings for efficient and secure container workload operations."
 author: rayoef
 ms.author: rayoflores
 ms.service: azure-container-registry
@@ -12,11 +12,11 @@ ms.custom: sfi-ropc-blocked
 # Customer intent: As a DevOps engineer, I want to deploy the Connected Registry Arc extension using CLI with secure settings, so that I can manage container workloads efficiently and securely in my Kubernetes cluster.
 ---
 
-# Deploy the connected registry Arc extension 
+# Deploy the connected registry Arc extension
 
-In this article, you learn how to deploy the Connected registry Arc extension using the CLI UX with secure-by-default settings to ensure robust security and operational integrity. 
- 
-The connected registry is a pivotal tool for edge customers, enabling efficient management and access to containerized workloads, whether on-premises or at remote sites. By integrating with Azure Arc, the service ensures a seamless and unified lifecycle management experience for Kubernetes-based containerized workloads. Deploying the connected registry Arc extension on Arc-enabled Kubernetes clusters simplifies the management and access of these workloads. 
+In this article, you learn how to deploy the connected registry extension to an Arc-enabled Kubernetes cluster using Azure CLI with secure-by-default settings.
+
+The [connected registry feature of Azure Container Registry](intro-connected-registry.md) enables efficient management and access to containerized workloads, whether on-premises or at remote sites. By integrating with Azure Arc, the service ensures a seamless and unified lifecycle management experience for Kubernetes-based containerized workloads. Deploying the connected registry Arc extension on Arc-enabled Kubernetes clusters simplifies the management and access of these workloads.
 
 ## Prerequisites
 
@@ -208,12 +208,12 @@ To verify the deployment of the connected registry extension in the Arc-enabled 
       "type": "Microsoft.KubernetesConfiguration/extensions",
       "version": null
     }
-  ```    
+  ```
 
 2. Verify the connected registry status and state
 
     For each connected registry, you can view the status and state of the connected registry using the [az acr connected-registry list][az-acr-connected-registry-list] command:
-    
+
     ```azurecli
         az acr connected-registry list --registry myacrregistry \
         --output table
@@ -246,22 +246,20 @@ To verify the deployment of the connected registry extension in the Arc-enabled 
    | myconnectedregistry | ReadWrite | online           | myacrregistry | myacrregistry.azurecr.io | 2024-05-09 12:00:00 | 0 0 * * *     | 00:00:00-23:59:59 |
 ```
 
-- The [az k8s-extension show][az-k8s-extension-show] command verifies the state of the extension deployment.
-- The command also provides details on the connected registry's connection status, last sync, sync window, sync schedule, and more.
+* The [az k8s-extension show][az-k8s-extension-show] command verifies the state of the extension deployment.
+* The command also provides details on the connected registry's connection status, last sync, sync window, sync schedule, and more.
 
 ### Deploy a pod that uses an image from connected registry
 
-To deploy a pod that uses an image from connected registry within the cluster, the operation must be performed from within the cluster node itself. Follow these steps:
+To deploy a pod that uses an image from connected registry within the cluster, the operation must be performed from within the cluster node itself.
 
-1. Create a secret in the cluster to authenticate with the connected registry:
+1. Run the [kubectl create secret docker-registry][kubectl-create-secret-docker-registry] command to create a secret in the cluster to authenticate with the Connected registry:
 
-Run the [kubectl create secret docker-registry][kubectl-create-secret-docker-registry] command to create a secret in the cluster to authenticate with the Connected registry:
+   ```bash
+   kubectl create secret docker-registry regcred --docker-server=192.100.100.1 --docker-username=mytoken --docker-password=mypassword
+     ```
 
-```bash
-kubectl create secret docker-registry regcred --docker-server=192.100.100.1 --docker-username=mytoken --docker-password=mypassword
-  ```
-
-2. Deploy the pod that uses the desired image from the connected registry using the value of service.clusterIP address `192.100.100.1` of the connected registry, and the image name `hello-world` with tag `latest`:
+1. Deploy the pod that uses the desired image from the connected registry using the value of service.clusterIP address `192.100.100.1` of the connected registry, and the image name `hello-world` with tag `latest`:
 
     ```bash
     kubectl apply -f - <<EOF
@@ -287,83 +285,28 @@ kubectl create secret docker-registry regcred --docker-server=192.100.100.1 --do
             - name: hello-world
               image: 192.100.100.1/hello-world:latest
     EOF
-    ``` 
-
-## Upgrade the connected registry extension
-
-To enable automatic upgrades for the connected registry extension, edit the [az-k8s-extension-create][az-k8s-extension-create] command and include the `--auto-upgrade-minor-version true` parameter. This parameter automatically upgrades the extension to the latest version whenever a new version is available.
-
-```azurecli
-    az k8s-extension create --cluster-name myarck8scluster \ 
-    --cluster-type connectedClusters \
-    --extension-type Microsoft.ContainerRegistry.ConnectedRegistry \
-    --name myconnectedregistry \
-    --resource-group myresourcegroup \ 
-    --config service.clusterIP=192.100.100.1 \ 
-    --config-protected-file protected-settings-extension.json \  
-    --auto-upgrade-minor-version true
-```
-
-## Deploy the connected registry extension with auto roll back enabled
-
-> [!IMPORTANT]
-> When a customer pins to a specific version, the extension does not auto-rollback. Auto-rollback will only occur if the--auto-upgrade-minor-version flag is set to true.
-
-Follow the [quickstart][quickstart] to edit the [az k8s-extension update] command and add --version with your desired version. This example uses version 0.6.0. This parameter updates the extension version to the desired pinned version. 
-
-```azurecli
-    az k8s-extension update --cluster-name myarck8scluster \ 
-    --cluster-type connectedClusters \ 
-    --extension-type  Microsoft.ContainerRegistry.ConnectedRegistry \ 
-    --name myconnectedregistry \ 
-    --resource-group myresourcegroup \ 
-    --config service.clusterIP=192.100.100.1 \
-    --config-protected-file <JSON file path> \
-    --auto-upgrade-minor-version true \
-    --version 0.6.0 
-```
-
-## Deploy the connected registry extension using manual upgrade steps
-
-Follow the [quickstart][quickstart] to edit the [az-k8s-extension-update][az-k8s-extension-update] command and add--version with your desired version. This example uses version 0.6.1. This parameter upgrades the extension version to 0.6.1. 
-
-```azurecli
-    az k8s-extension update --cluster-name myarck8scluster \ 
-    --cluster-type connectedClusters \ 
-    --name myconnectedregistry \ 
-    --resource-group myresourcegroup \ 
-    --config service.clusterIP=192.100.100.1 \
-    --auto-upgrade-minor-version false \
-    --version 0.6.1 
-```
+    ```
 
 ## Clean up resources
 
-By deleting the deployed connected registry extension, you remove the corresponding connected registry pods and configuration settings.  
+If you no longer want to use your connected registry, delete the extension from your Arc-enabled Kubernetes cluster and then delete the connected registry resource.
 
-1. Delete the connected registry extension
-
-    Run the [az k8s-extension delete][az-k8s-extension-delete] command to delete the connected registry extension: 
+1. Run the [az k8s-extension delete][az-k8s-extension-delete] command to delete the connected registry extension:
 
     ```azurecli
     az k8s-extension delete --name myconnectedregistry 
     --cluster-name myarcakscluster \ 
     --resource-group myresourcegroup \ 
     --cluster-type connectedClusters
-    ```   
-   
-By deleting the deployed connected registry, you remove the connected registry cloud instance and its configuration details. 
+    ```
 
-2. Delete the connected registry
-
-    Run the [az acr connected-registry delete][az-acr-connected-registry-delete] command to delete the Connected registry: 
+2. Run the [az acr connected-registry delete][az-acr-connected-registry-delete] command to delete the connected registry resource:
 
     ```azurecli
     az acr connected-registry delete --registry myacrregistry \
     --name myconnectedregistry \
     --resource-group myresourcegroup 
     ```
-
 
 <!-- LINKS - internal -->
 [create-acr]: container-registry-get-started-azure-cli.md

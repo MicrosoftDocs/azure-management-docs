@@ -78,22 +78,21 @@ Follow these steps to create a connected registry in [ReadWrite mode](intro-conn
 
 #### [Azure CLI](#tab/azure-cli)
 
-Use the [az acr connected-registry create][az-acr-connected-registry-create] command to create a connected registry with read-only functionality.
+Use the [az acr connected-registry create][az-acr-connected-registry-create] command to create a connected registry with read-write functionality.
 
 ```azurecli
-# Set the CONNECTED_REGISTRY_READ environment variable to provide a name for the connected registry with read-only functionality
-CONNECTED_REGISTRY_RO=<connnected-registry-name>
+# Set the CONNECTED_REGISTRY_READ environment variable to provide a name for the connected registry with read-write functionality
+CONNECTED_REGISTRY_RW=<connnected-registry-name>
 az acr connected-registry create --registry $REGISTRY_NAME \
-  --parent $CONNECTED_REGISTRY_RW \
-  --name $CONNECTED_REGISTRY_RO \
+  --name $CONNECTED_REGISTRY_RW \
   --repository "hello-world" "acr/connected-registry" \
-  --mode ReadOnly
+  --mode ReadWrite
 ```
 
-This command creates a connected registry resource with the name *$CONNECTED_REGISTRY_RO* and links it to the cloud registry named *$REGISTRY_NAME*.
+This command creates a connected registry resource using the value stored in *$CONNECTED_REGISTRY_RW* and links it to the cloud registry that you specified earlier for *$REGISTRY_NAME*.
 
-* The specified repositories synchronize between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
-* The resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality.
+* The specified repositories synchronize between the parent registry and the connected registry.
+* The resource is created in the [ReadWrite mode](intro-connected-registry.md#modes), which enables push and pull functionality.
 * The repositories synchronize between the parent registry and the connected registry without interruptions because there's no synchronization schedule defined for this connected registry.
 
 ---
@@ -114,11 +113,10 @@ Next, create a connected registry in [ReadOnly mode](intro-connected-registry.md
 
 1. Select **Save**.
 
-
-
 #### [Azure CLI](#tab/azure-cli)
 
-Use the [az acr connected-registry create][az-acr-connected-registry-create] command to create a connected registry with read-only functionality. 
+Use the [az acr connected-registry create][az-acr-connected-registry-create] command to create a connected registry with read-only functionality.
+
 ```azurecli
 # Set the CONNECTED_REGISTRY_READ environment variable to provide a name for the connected registry with read-only functionality
 CONNECTED_REGISTRY_RO=<connnected-registry-name>
@@ -129,27 +127,29 @@ az acr connected-registry create --registry $REGISTRY_NAME \
   --mode ReadOnly
 ```
 
-This command creates a connected registry resource with the name *$CONNECTED_REGISTRY_RO* and links it to the cloud registry named *$REGISTRY_NAME*.
+This command creates a connected registry resource named with the value stored in *$CONNECTED_REGISTRY_RO* and links it to the same cloud registry that you specified earlier for *$REGISTRY_NAME*.
 
-* The specified repositories synchronize between the parent registry named with the value of *$CONNECTED_REGISTRY_RW* and the connected registry once deployed.
-* The resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality. 
+* The specified repositories synchronize between the *$CONNECTED_REGISTRY_RW* parent connected registry that you created in the previous step and the new connected registry.
+* The resource is created in the [ReadOnly mode](intro-connected-registry.md#modes), which enables read-only (artifact pull) functionality.
 * The repositories synchronize between the parent registry and the connected registry without interruptions because there's no synchronization schedule defined for this connected registry.
 
 ---
 
 ## Verify that the resources are created
 
+After you create the connected registry resources, verify that they exist and view their properties.
+
 #### [Azure portal](#tab/azure-portal)
 
-Select a connected registry in the portal to view its properties, such as its connection status (Offline, Online, or Unhealthy) and whether it activated (deployed on-premises). In the following example, the connected registry isn't deployed. The connection state of "Offline" indicates that it disconnected from the cloud.
+Select a connected registry in the portal to view its properties, such as its connection status (**Offline**, **Online**, or **Unhealthy**) and whether it activated (deployed on-premises). In the following example, the connected registry isn't deployed yet, so the connection state is **Offline**.
 
-:::image type="content" source="media/quickstart-connected-registry-portal/connected-registry-properties.png" alt-text="View connected registry properties" lightbox="media/quickstart-connected-registry-portal/connected-registry-properties.png":::
+:::image type="content" source="media/quickstart-connected-registry-portal/connected-registry-properties.png" alt-text="Screenshot of a connected registry showing its connection status and other properties.":::
 
-From this view, you can also generate a connection string and optionally generate passwords for the [sync token](overview-connected-registry-access.md#sync-token). A connection string contains configuration settings used for deploying a connected registry and synchronizing content with a parent registry.
+From this view, you can select **Connection string** to generate a connection string, which contains configuration settings used for deploying a connected registry and synchronizing content with a parent registry. You can also optionally generate passwords for the [sync token](overview-connected-registry-access.md#sync-token).
 
 #### [Azure CLI](#tab/azure-cli)
 
-Use the connected registry [az acr connected-registry list][az-acr-connected-registry-list] command to verify that the resources are created. 
+Use the connected registry [az acr connected-registry list][az-acr-connected-registry-list] command to verify that the resources are created.
 
 ```azurecli
 az acr connected-registry list \
@@ -157,7 +157,7 @@ az acr connected-registry list \
   --output table
 ```
 
-You see a response as follows. Because the connected registries aren't yet deployed, the connection state of "Offline" indicates that they're currently disconnected from the cloud.
+You see a response similar to the example below. Because the connected registries aren't yet deployed, the connection state of `Offline` indicates that they're currently disconnected from the cloud.
 
 ```
 NAME                 MODE        CONNECTION STATE    PARENT               LOGIN SERVER    LAST SYNC (UTC)
@@ -172,10 +172,7 @@ myconnectedregro    ReadOnly     Offline             myconnectedregrw
 
 In this quickstart, you used the Azure CLI and Azure portal to create two connected registry resources in Azure. These new connected registry resources tie to your cloud registry and allow synchronization of artifacts with the cloud registry.
 
-To learn how to deploy and use a connected registry in your infrastructure, see the connected registry deployment guides.
-
-> [!div class="nextstepaction"]
-> [Quickstart: Deploy connected registry to Azure Arc][quickstart-connected-registry-arc-cli]
+Next, learn how to [deploy connected registry to an Azure Arc-enabled Kubernetes cluster][quickstart-connected-registry-arc-cli].
 
 <!-- LINKS - internal -->
 [az-acr-connected-registry-create]: /cli/azure/acr/connected-registry#az-acr-connected-registry-create
